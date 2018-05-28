@@ -1,0 +1,37 @@
+plugins {
+	id 'java-library'
+	id 'eclipse'
+	//id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
+}
+
+sourceSets {
+    main {
+        java.srcDirs = ['src/']
+        resources.srcDirs = ['resources/']
+    }
+}
+
+project.ext.lwjglVersion = "3.1.6"
+project.ext.jomlVersion = "1.9.9"
+project.ext.lwjglNatives = "natives-linux"
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	api "org.joml:joml:${jomlVersion}"
+	api "org.lwjgl:lwjgl:$lwjglVersion"
+	api "org.lwjgl:lwjgl-assimp:$lwjglVersion"
+	api "org.lwjgl:lwjgl-glfw:$lwjglVersion"
+	api "org.lwjgl:lwjgl-openal:$lwjglVersion"
+	api "org.lwjgl:lwjgl-stb:$lwjglVersion"
+	api "org.lwjgl:lwjgl-vulkan:$lwjglVersion"
+	implementation "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-assimp:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+}
+
