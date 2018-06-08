@@ -9,21 +9,24 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
+import org.sheepy.lily.game.vulkan.buffer.DepthResource;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.imageview.ImageView;
-import org.sheepy.lily.game.vulkan.imageview.ImageViewManager;
 import org.sheepy.lily.game.vulkan.pipeline.RenderPass;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
+import org.sheepy.lily.game.vulkan.view.ImageView;
+import org.sheepy.lily.game.vulkan.view.ImageViewManager;
 
 public class Framebuffers
 {
 	private LogicalDevice logicalDevice;
+	private DepthResource depthResource;
 
 	private List<Long> framebuffersIds = null;
 
-	public Framebuffers(LogicalDevice logicalDevice)
+	public Framebuffers(LogicalDevice logicalDevice, DepthResource depthResource)
 	{
 		this.logicalDevice = logicalDevice;
+		this.depthResource = depthResource;
 	}
 
 	public void load(SwapChainManager swapChain,
@@ -33,8 +36,14 @@ public class Framebuffers
 		framebuffersIds = new ArrayList<>(aImageViews.size());
 		for (ImageView aImageView: aImageViews)
 		{
-			LongBuffer attachments = MemoryUtil.memAllocLong(1);
-			attachments.put(aImageView.getImageViewId());
+			int attachementCount = 1;
+			attachementCount += depthResource != null ? 1 : 0;
+			LongBuffer attachments = MemoryUtil.memAllocLong(attachementCount);
+			attachments.put(aImageView.getId());
+			if(depthResource != null)
+			{
+				attachments.put(depthResource.getDepthImageViewId());
+			}
 			attachments.flip();
 
 			VkFramebufferCreateInfo framebufferInfo = VkFramebufferCreateInfo.calloc();

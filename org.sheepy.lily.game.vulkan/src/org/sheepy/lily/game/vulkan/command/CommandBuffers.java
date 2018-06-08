@@ -13,23 +13,26 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
 import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.game.vulkan.buffer.IndexBuffer;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
 import org.sheepy.lily.game.vulkan.framebuffer.Framebuffers;
 import org.sheepy.lily.game.vulkan.pipeline.GraphicPipeline;
 import org.sheepy.lily.game.vulkan.pipeline.RenderPass;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
-import org.sheepy.lily.game.vulkan.vertex.IndexBuffer;
+import org.sheepy.lily.game.vulkan.swappipeline.SwapConfiguration;
 
 public class CommandBuffers implements Iterable<CommandBuffer>
 {
 	private CommandPool commandPool;
+	private SwapConfiguration configuration;
 
 	private List<CommandBuffer> commandBuffers;
 
-	public CommandBuffers(CommandPool commandPool)
+	public CommandBuffers(CommandPool commandPool, SwapConfiguration configuration)
 	{
 		this.commandPool = commandPool;
+		this.configuration = configuration;
 	}
 
 	public void load(SwapChainManager swapChain,
@@ -63,8 +66,8 @@ public class CommandBuffers implements Iterable<CommandBuffer>
 			Long framebufferId = framebuffers.getIDs().get(i);
 			long commandBufferId = pCommandBuffers.get(i);
 			VkCommandBuffer vkCommandBuffer = new VkCommandBuffer(commandBufferId, logicalDevice);
-			commandBuffers
-					.add(new CommandBuffer(vkCommandBuffer, framebufferId, swapChain.getExtent()));
+			commandBuffers.add(new CommandBuffer(vkCommandBuffer, configuration, framebufferId,
+					swapChain.getExtent()));
 		}
 
 		commandBuffers = Collections.unmodifiableList(commandBuffers);

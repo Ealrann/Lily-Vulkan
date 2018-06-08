@@ -1,4 +1,4 @@
-package org.sheepy.lily.game.vulkan.vertex;
+package org.sheepy.lily.game.vulkan.buffer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -20,7 +20,7 @@ public class UniformBufferObject
 	private static final Vector3f UP_AXIS = new Vector3f(0f, 0f, 1f);
 	private static final Vector3f AXIS = new Vector3f(0f, 0f, 1f);
 	private static final Vector3f CENTER_LOCATION = new Vector3f(0f);
-	private static final Vector3f EYE_LOCATION = new Vector3f(2f, 2f, 2f);
+	private static final Vector3f EYE_LOCATION = new Vector3f(1.5f, 1.5f, 1.5f);
 	private static final float RADIANS_90 = (float) Math.toRadians(90f);
 	private static final float RADIANS_45 = (float) Math.toRadians(45f);
 
@@ -53,9 +53,6 @@ public class UniformBufferObject
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
 
 		update(0);
-
-		descriptorSet.updateDescriptorSet(this);
-
 	}
 
 	private ByteBuffer allocBuffer()
@@ -75,7 +72,7 @@ public class UniformBufferObject
 
 	public void update(float time)
 	{
-		model.identity().rotate((float) (time * RADIANS_90), AXIS);
+		model.identity().rotate((float) (time * -RADIANS_90), AXIS);
 
 		view.identity().lookAt(EYE_LOCATION, CENTER_LOCATION, UP_AXIS);
 

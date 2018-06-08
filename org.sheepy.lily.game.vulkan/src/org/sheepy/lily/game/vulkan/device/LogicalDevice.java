@@ -1,6 +1,5 @@
 package org.sheepy.lily.game.vulkan.device;
 
-import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 import static org.lwjgl.system.MemoryUtil.memAllocFloat;
 import static org.lwjgl.vulkan.KHRSwapchain.vkQueuePresentKHR;
@@ -19,8 +18,6 @@ import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.lwjgl.vulkan.VkQueue;
 import org.sheepy.lily.game.vulkan.QueueManager;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
-import org.sheepy.lily.game.vulkan.swapchain.ColorDomain;
-import org.sheepy.lily.game.vulkan.swappipeline.SwapConfiguration;
 import org.sheepy.lily.game.vulkan.swappipeline.SwapPipeline;
 
 public class LogicalDevice
@@ -84,7 +81,8 @@ public class LogicalDevice
 		}
 		extensionsBuffer.flip();
 		VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.callocStack(stack);
-
+		deviceFeatures.samplerAnisotropy(true);
+		
 		VkDeviceCreateInfo createInfo = VkDeviceCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO);
 		createInfo.pNext(NULL);
@@ -106,14 +104,10 @@ public class LogicalDevice
 		commandPool = CommandPool.alloc(stack, this, queueManager.getGraphicQueueIndex());
 	}
 
-	public SwapPipeline createSwapPipeline(SwapConfiguration configuration, ColorDomain colorDomain)
+	
+	public void attachSwapPipeline(SwapPipeline swapPipeline)
 	{
-		try (MemoryStack stack = stackPush())
-		{
-			swapPipeline = new SwapPipeline(this, configuration, commandPool, colorDomain);
-		}
-
-		return swapPipeline;
+		this.swapPipeline = swapPipeline;
 	}
 
 	public void recreateSwapChain(long surface, int width, int height)

@@ -1,4 +1,4 @@
-package org.sheepy.lily.game.vulkan.vertex;
+package org.sheepy.lily.game.vulkan.buffer;
 
 import static org.lwjgl.system.MemoryUtil.memAddress;
 import static org.lwjgl.vulkan.VK10.*;
@@ -7,9 +7,13 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.vulkan.VkBufferCopy;
 import org.lwjgl.vulkan.VkBufferCreateInfo;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
+import org.lwjgl.vulkan.VkQueue;
+import org.sheepy.lily.game.vulkan.command.SingleTimeCommands;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
 public class Buffer
@@ -77,8 +81,7 @@ public class Buffer
 
 		vkBindBufferMemory(logicalDevice.getVkDevice(), bufferId, bufferMemoryId, 0);
 
-//		 SysHexString(bufferId)));
-
+		bufferInfo.free();
 		allocInfo.free();
 		memRequirements.free();
 	}
@@ -107,6 +110,25 @@ public class Buffer
 		MemoryUtil.memCopy(memAddress(byteBuffer), data, byteBuffer.capacity());
 		vkUnmapMemory(logicalDevice.getVkDevice(), bufferMemoryId);
 		MemoryUtil.memFree(pBuffer);
+	}
+	
+	public static void copyBuffer(LogicalDevice logicalDevice,
+			VkQueue queue,
+			long srcBuffer,
+			long dstBuffer,
+			int size)
+	{
+		SingleTimeCommands stc = logicalDevice.getCommandPool().newSingleTimeCommand();
+		VkCommandBuffer vkCommandBuffer = stc.startRecording();
+
+		VkBufferCopy.Buffer copyRegion = VkBufferCopy.calloc(1);
+		copyRegion.srcOffset(0); // Optional
+		copyRegion.dstOffset(0); // Optional
+		copyRegion.size(size);
+		vkCmdCopyBuffer(vkCommandBuffer, srcBuffer, dstBuffer, copyRegion);
+
+		// Now, we execute the command
+		stc.submitCommands(queue);
 	}
 
 }

@@ -1,4 +1,4 @@
-package org.sheepy.lily.game.vulkan.vertex;
+package org.sheepy.lily.game.vulkan.buffer;
 
 import java.util.ArrayList;
 import java.util.Collections;

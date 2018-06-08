@@ -23,6 +23,11 @@ public class CommandPool
 	{
 		this.logicalDevice = logicalDevice;
 	}
+	
+	public SingleTimeCommands newSingleTimeCommand()
+	{
+		return new SingleTimeCommands(logicalDevice.getCommandPool()); 
+	}
 
 	public void load(MemoryStack stack, int queueIndex)
 	{

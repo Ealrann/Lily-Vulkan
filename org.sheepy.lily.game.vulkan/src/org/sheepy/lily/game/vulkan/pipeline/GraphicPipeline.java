@@ -12,11 +12,11 @@ import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.pipeline.impl.BasicColorBlendState;
+import org.sheepy.lily.game.vulkan.pipeline.impl.BasicDepthStencilState;
 import org.sheepy.lily.game.vulkan.pipeline.impl.BasicInputAssembly;
 import org.sheepy.lily.game.vulkan.pipeline.impl.BasicMultisampleState;
 import org.sheepy.lily.game.vulkan.pipeline.impl.BasicRasterizer;
 import org.sheepy.lily.game.vulkan.pipeline.impl.BasicShaderStage;
-import org.sheepy.lily.game.vulkan.pipeline.impl.BasicVertexInputState;
 import org.sheepy.lily.game.vulkan.pipeline.impl.BasicViewportState;
 import org.sheepy.lily.game.vulkan.shader.Shader;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
@@ -27,10 +27,11 @@ public class GraphicPipeline
 	private LogicalDevice logicalDevice;
 
 	private IShaderStage shaderStage = new BasicShaderStage();
-	private IVertexInputState vertexInputState = new BasicVertexInputState();
+	private IVertexDescriptor<?> vertexInputState;
 	private IInputAssembly inputAssembly = new BasicInputAssembly();
 	private IViewportState viewportState = new BasicViewportState();
 	private IRasterizer rasterizer;
+	private IDepthStencilState depthStencilState = null;
 	private IMultisampleState multisampleState = new BasicMultisampleState();
 	private IColorBlendState colorBlendState = new BasicColorBlendState();
 	// private IDynamicState dynamicState;
@@ -42,10 +43,17 @@ public class GraphicPipeline
 	{
 		this.logicalDevice = logicalDevice;
 
+		vertexInputState = configuration.getVertexInputState();
+
 		rasterizer = new BasicRasterizer(configuration);
+
+		if (configuration.depthBuffer == true)
+		{
+			depthStencilState = new BasicDepthStencilState();
+		}
 		// dynamicState = new BasicDynamicState();
 	}
-	
+
 	public void load(SwapChainManager swapChainManager,
 			List<Shader> shaders,
 			RenderPass renderPass,
@@ -58,12 +66,12 @@ public class GraphicPipeline
 		if (descriptorPool != null)
 		{
 			LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorPool.getSize());
-			
-			for(DescriptorSet descriptorSet : descriptorPool)
+
+			for (DescriptorSet descriptorSet : descriptorPool)
 			{
 				bDescriptorSet.put(descriptorSet.getLayoutId());
 			}
-			
+
 			bDescriptorSet.flip();
 			pipelineLayoutInfo.pSetLayouts(bDescriptorSet); // Optional
 		}
@@ -87,7 +95,8 @@ public class GraphicPipeline
 		pipelineInfo.pViewportState(viewportState.allocViewportStateCreateInfo(swapChainManager));
 		pipelineInfo.pRasterizationState(rasterizer.allocRasterizationStateCreateInfo());
 		pipelineInfo.pMultisampleState(multisampleState.allocMultisampleStateCreateInfo());
-		pipelineInfo.pDepthStencilState(null); // Optional
+		if (depthStencilState != null)
+			pipelineInfo.pDepthStencilState(depthStencilState.allocDepthStencilStateCreateInfo());
 		pipelineInfo.pColorBlendState(colorBlendState.allocColorBlendStateCreateInfo());
 		// pipelineInfo.pDynamicState(dynamicState.allocDynamicStateCreateInfo());
 		// // Optional
@@ -132,6 +141,7 @@ public class GraphicPipeline
 	{
 		// dynamicState.free();
 		colorBlendState.free();
+		if (depthStencilState != null) depthStencilState.free();
 		multisampleState.free();
 		rasterizer.free();
 		viewportState.free();

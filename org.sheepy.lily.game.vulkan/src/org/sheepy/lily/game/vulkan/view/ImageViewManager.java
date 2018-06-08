@@ -1,4 +1,6 @@
-package org.sheepy.lily.game.vulkan.imageview;
+package org.sheepy.lily.game.vulkan.view;
+
+import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +12,7 @@ import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 public class ImageViewManager
 {
 	private LogicalDevice logicalDevice;
-	
+
 	private List<ImageView> imageViews = null;
 
 	public ImageViewManager(LogicalDevice logicalDevice)
@@ -24,9 +26,10 @@ public class ImageViewManager
 		imageViews = new ArrayList<>();
 		for (long imageId : swapChainManager.getSwapChainImages())
 		{
-			imageViews.add(new ImageView(logicalDevice, imageId, colorFormat));
+			imageViews.add(ImageView.alloc(logicalDevice, imageId, colorFormat,
+					VK_IMAGE_ASPECT_COLOR_BIT));
 		}
-		
+
 		imageViews = Collections.unmodifiableList(imageViews);
 	}
 

@@ -9,6 +9,8 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
+import org.sheepy.lily.game.vulkan.buffer.Texture;
+import org.sheepy.lily.game.vulkan.buffer.UniformBufferObject;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
 public class DescriptorPool implements Iterable<DescriptorSet>
@@ -18,14 +20,14 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 	private List<DescriptorSet> descriptorSets = null;
 
 	private long id;
-	private int size;
 
 	public static final DescriptorPool alloc(MemoryStack stack,
 			LogicalDevice logicalDevice,
-			int descriptorSetCount)
+			UniformBufferObject uniformBuffer,
+			Texture texture)
 	{
 		DescriptorPool res = new DescriptorPool(logicalDevice);
-		res.load(stack, descriptorSetCount);
+		res.load(stack, uniformBuffer, texture);
 		return res;
 	}
 
@@ -34,17 +36,31 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 		this.logicalDevice = logicalDevice;
 	}
 
-	private void load(MemoryStack stack, int size)
+	private void load(MemoryStack stack, UniformBufferObject uniformBuffer, Texture texture)
 	{
-		this.size = size;
+		int size = 0;
+		size += uniformBuffer != null ? 1 : 0;
+		size += texture != null ? 1 : 0;
 
-		VkDescriptorPoolSize.Buffer poolSize = VkDescriptorPoolSize.callocStack(1);
-		poolSize.type(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER);
-		poolSize.descriptorCount(size);
+		VkDescriptorPoolSize.Buffer poolSizes = VkDescriptorPoolSize.callocStack(size);
+
+		if (uniformBuffer != null)
+		{
+			VkDescriptorPoolSize poolSize = poolSizes.get();
+			poolSize.type(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER);
+			poolSize.descriptorCount(1);
+		}
+		if (texture != null)
+		{
+			VkDescriptorPoolSize poolSize = poolSizes.get();
+			poolSize.type(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
+			poolSize.descriptorCount(1);
+		}
+		poolSizes.flip();
 
 		VkDescriptorPoolCreateInfo poolInfo = VkDescriptorPoolCreateInfo.callocStack();
 		poolInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO);
-		poolInfo.pPoolSizes(poolSize);
+		poolInfo.pPoolSizes(poolSizes);
 		poolInfo.maxSets(1);
 
 		long[] aDescriptor = new long[1];
@@ -55,12 +71,9 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 		}
 		id = aDescriptor[0];
 
-		// Building the descriptorSets
 		descriptorSets = new ArrayList<>();
-		for (int i = 0; i < size; i++)
-		{
-			descriptorSets.add(DescriptorSet.alloc(logicalDevice, this));
-		}
+
+		descriptorSets.add(DescriptorSet.alloc(logicalDevice, this, uniformBuffer, texture));
 	}
 
 	public void destroy()
@@ -79,7 +92,7 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 
 	public int getSize()
 	{
-		return size;
+		return descriptorSets.size();
 	}
 
 	public DescriptorSet get(int index)

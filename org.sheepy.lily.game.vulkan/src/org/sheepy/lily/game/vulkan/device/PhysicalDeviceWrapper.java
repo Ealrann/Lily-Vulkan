@@ -61,17 +61,12 @@ public class PhysicalDeviceWrapper
 		}
 
 		// Application can't work without required extensions
-		if (checkDeviceExtensionSupport() == false)
+		// Application can't work without swap chain
+		if (checkDeviceExtensionSupport() == false
+				|| details.isAdequate() == false
+				|| deviceFeatures.samplerAnisotropy() == false)
 		{
 			score = 0;
-		}
-		// Application can't work without swap chain
-		else
-		{
-			if (details.isAdequate() == false)
-			{
-				score = 0;
-			}
 		}
 
 		rate = score;
@@ -136,8 +131,8 @@ public class PhysicalDeviceWrapper
 		}
 
 		memProperties.free();
-		
-		if(res == -1)
+
+		if (res == -1)
 		{
 			System.err.println("Memory type not found");
 		}
@@ -159,7 +154,7 @@ public class PhysicalDeviceWrapper
 	{
 		return name;
 	}
-	
+
 	public VkInstance getVkInstance()
 	{
 		return vkInstance;
