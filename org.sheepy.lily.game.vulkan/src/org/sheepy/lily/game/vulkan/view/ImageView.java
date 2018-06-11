@@ -15,7 +15,7 @@ public class ImageView
 	public static ImageView alloc(LogicalDevice logicalDevice, long imageId, int format, int aspectMask)
 	{
 		ImageView res = new ImageView(logicalDevice);
-		res.load(imageId, format, aspectMask);
+		res.load(imageId, 1, format, aspectMask);
 		return res;
 	}
 	
@@ -24,7 +24,7 @@ public class ImageView
 		this.logicalDevice = logicalDevice;
 	}
 
-	public void load(long imageId, int format, int aspectMask)
+	public void load(long imageId, int levelCount, int format, int aspectMask)
 	{
 		VkImageViewCreateInfo createInfo = VkImageViewCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO);
@@ -37,7 +37,7 @@ public class ImageView
 		createInfo.components().a(VK_COMPONENT_SWIZZLE_IDENTITY);
 		createInfo.subresourceRange().aspectMask(aspectMask);
 		createInfo.subresourceRange().baseMipLevel(0);
-		createInfo.subresourceRange().levelCount(1);
+		createInfo.subresourceRange().levelCount(levelCount);
 		createInfo.subresourceRange().baseArrayLayer(0);
 		createInfo.subresourceRange().layerCount(1);
 

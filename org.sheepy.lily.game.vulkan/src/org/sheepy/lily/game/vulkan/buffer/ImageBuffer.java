@@ -32,7 +32,7 @@ public class ImageBuffer
 			int properties)
 	{
 		ImageBuffer res = new ImageBuffer(logicalDevice);
-		res.createImage(width, height, format, tiling, usage, properties);
+		res.createImage(width, height, 1, format, tiling, usage, properties);
 		return res;
 	}
 
@@ -43,6 +43,7 @@ public class ImageBuffer
 
 	public void createImage(int width,
 			int height,
+			int mipLevels,
 			int format,
 			int tiling,
 			int usage,
@@ -57,7 +58,7 @@ public class ImageBuffer
 		imageInfo.extent().width(width);
 		imageInfo.extent().height(height);
 		imageInfo.extent().depth(1);
-		imageInfo.mipLevels(1);
+		imageInfo.mipLevels(mipLevels);
 		imageInfo.arrayLayers(1);
 		imageInfo.format(format);
 		imageInfo.tiling(tiling);
@@ -101,7 +102,8 @@ public class ImageBuffer
 			VkQueue queue,
 			int format,
 			int oldLayout,
-			int newLayout)
+			int newLayout,
+			int mipLevels)
 	{
 		SingleTimeCommands singleTimeCommand = commandPool.newSingleTimeCommand();
 		VkCommandBuffer commandBuffer = singleTimeCommand.startRecording();
@@ -129,7 +131,7 @@ public class ImageBuffer
 		barrier.dstQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
 		barrier.image(imageId);
 		barrier.subresourceRange().baseMipLevel(0);
-		barrier.subresourceRange().levelCount(1);
+		barrier.subresourceRange().levelCount(mipLevels);
 		barrier.subresourceRange().baseArrayLayer(0);
 		barrier.subresourceRange().layerCount(1);
 		barrier.subresourceRange().aspectMask(aspectMask);
@@ -174,7 +176,7 @@ public class ImageBuffer
 
 		singleTimeCommand.submitCommands(queue);
 	}
-
+	
 	private boolean hasStencilComponent(int format)
 	{
 		return format == VK_FORMAT_D32_SFLOAT_S8_UINT || format == VK_FORMAT_D24_UNORM_S8_UINT;

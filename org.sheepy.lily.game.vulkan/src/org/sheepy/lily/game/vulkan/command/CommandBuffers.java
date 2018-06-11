@@ -97,7 +97,7 @@ public class CommandBuffers implements Iterable<CommandBuffer>
 					graphicsPipeline.getId());
 			vkCmdBindVertexBuffers(commandBuffer.getVkCommandBuffer(), 0, vertexBuffers, offsets);
 			vkCmdBindIndexBuffer(commandBuffer.getVkCommandBuffer(), indexBuffer.getIndexBufferId(),
-					0, VK_INDEX_TYPE_UINT16);
+					0, VK_INDEX_TYPE_UINT32);
 
 			if (descriptorPool != null)
 			{

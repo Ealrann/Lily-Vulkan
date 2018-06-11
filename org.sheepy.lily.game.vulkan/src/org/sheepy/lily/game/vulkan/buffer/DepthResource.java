@@ -33,13 +33,13 @@ public class DepthResource
 	public void load(int width, int height)
 	{
 		depthFormat = findDepthFormat();
-		depthImage.createImage(width, height, depthFormat, VK_IMAGE_TILING_OPTIMAL,
+		depthImage.createImage(width, height, 1, depthFormat, VK_IMAGE_TILING_OPTIMAL,
 				VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-		depthImageView.load(depthImage.getId(), depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT);
+		depthImageView.load(depthImage.getId(), 1, depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT);
 
 		depthImage.transitionImageLayout(logicalDevice.getCommandPool(),
 				logicalDevice.getGraphicQueue(), depthFormat, VK_IMAGE_LAYOUT_UNDEFINED,
-				VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
+				VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
 	}
 
 	private int findSupportedFormat(int[] candidates, int tiling, int features)

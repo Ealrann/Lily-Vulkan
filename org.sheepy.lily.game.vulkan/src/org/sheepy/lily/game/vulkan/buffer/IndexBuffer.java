@@ -3,7 +3,7 @@ package org.sheepy.lily.game.vulkan.buffer;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
-import java.nio.ShortBuffer;
+import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkQueue;
@@ -25,18 +25,21 @@ public class IndexBuffer
 		this.logicalDevice = logicalDevice;
 	}
 
-	public <T extends IVertex> void allocIndexBuffer(VkQueue queue, IVertexDescriptor<T> vertexDescriptor, T[] vertices, short[] indices)
+	public <T extends IVertex> void allocIndexBuffer(VkQueue queue,
+			IVertexDescriptor<T> vertexDescriptor,
+			T[] vertices,
+			int[] indices)
 	{
 		allocIndexBuffer(queue, indices);
 		allocIVertexBuffer(queue, vertexDescriptor, vertices);
 	}
 
-	private void allocIndexBuffer(VkQueue queue, short[] indices)
+	private void allocIndexBuffer(VkQueue queue, int[] indices)
 	{
 		ByteBuffer verticeBuffer = allocBuffer(indices);
 		indexCount = indices.length;
 
-		int byteSize = indexCount * Short.BYTES;
+		int byteSize = indexCount * Integer.BYTES;
 
 		Buffer stagingBuffer = Buffer.alloc(logicalDevice, byteSize,
 				VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
@@ -55,7 +58,9 @@ public class IndexBuffer
 		MemoryUtil.memFree(verticeBuffer);
 	}
 
-	private <T extends IVertex> void allocIVertexBuffer(VkQueue queue, IVertexDescriptor<T> vertexDescriptor, T[] vertices)
+	private <T extends IVertex> void allocIVertexBuffer(VkQueue queue,
+			IVertexDescriptor<T> vertexDescriptor,
+			T[] vertices)
 	{
 		ByteBuffer verticeBuffer = vertexDescriptor.toBuffer(vertices);
 		vertexCount = vertices.length;
@@ -79,12 +84,12 @@ public class IndexBuffer
 		MemoryUtil.memFree(verticeBuffer);
 	}
 
-	private ByteBuffer allocBuffer(short[] indices)
+	private ByteBuffer allocBuffer(int[] indices)
 	{
-		ByteBuffer res = MemoryUtil.memAlloc(indices.length * Short.BYTES);
-		ShortBuffer sb = res.asShortBuffer();
+		ByteBuffer res = MemoryUtil.memAlloc(indices.length * Integer.BYTES);
+		IntBuffer sb = res.asIntBuffer();
 
-		for (short index : indices)
+		for (int index : indices)
 		{
 			sb.put(index);
 		}

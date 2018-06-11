@@ -16,10 +16,9 @@ public class Sampler
 	{
 		this.logicalDevice = logicalDevice;
 		this.anisotropy = anisotropy;
-		load();
 	}
 
-	private void load()
+	public void load(int minLod, int maxLod)
 	{
 		VkSamplerCreateInfo samplerInfo = VkSamplerCreateInfo.calloc();
 		samplerInfo.sType(VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO);
@@ -46,8 +45,8 @@ public class Sampler
 		samplerInfo.compareOp(VK_COMPARE_OP_ALWAYS);
 		samplerInfo.mipmapMode(VK_SAMPLER_MIPMAP_MODE_LINEAR);
 		samplerInfo.mipLodBias(0.0f);
-		samplerInfo.minLod(0.0f);
-		samplerInfo.maxLod(0.0f);
+		samplerInfo.minLod(minLod);
+		samplerInfo.maxLod(maxLod);
 
 		long[] aSamplerId = new long[1];
 		if (vkCreateSampler(logicalDevice.getVkDevice(), samplerInfo, null,
