@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.game.vulkan.command.CommandBuffers;
+import org.sheepy.lily.game.vulkan.command.graphic.GraphicCommandBuffers;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 import org.sheepy.lily.game.vulkan.util.VkSemaphore;
 
@@ -15,7 +15,7 @@ public class FrameSubmission
 
 	public void load(int frameCount,
 			SwapChainManager swapChain,
-			CommandBuffers commandBuffers,
+			GraphicCommandBuffers commandBuffers,
 			VkSemaphore imageAvailableSemaphore,
 			VkSemaphore renderFinishedSemaphore)
 	{

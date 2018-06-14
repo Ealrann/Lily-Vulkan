@@ -12,7 +12,7 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.game.vulkan.command.CommandBuffer;
+import org.sheepy.lily.game.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 import org.sheepy.lily.game.vulkan.util.VkSemaphore;
 
@@ -20,7 +20,7 @@ public class FrameSumissionInfo
 {
 	private int imageIndex;
 	private SwapChainManager swapChain;
-	private CommandBuffer commandBuffer;
+	private RenderCommandBuffer commandBuffer;
 	private VkSemaphore imageAvailableSemaphore;
 	private VkSemaphore renderFinishedSemaphore;
 
@@ -34,7 +34,7 @@ public class FrameSumissionInfo
 	private LongBuffer bSwapChains;
 
 	public FrameSumissionInfo(int imageIndex, SwapChainManager swapChain,
-			CommandBuffer commandBuffer, VkSemaphore imageAvailableSemaphore,
+			RenderCommandBuffer commandBuffer, VkSemaphore imageAvailableSemaphore,
 			VkSemaphore renderFinishedSemaphore)
 	{
 		this.imageIndex = imageIndex;
