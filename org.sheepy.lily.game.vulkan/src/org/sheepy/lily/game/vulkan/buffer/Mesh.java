@@ -17,7 +17,7 @@ public class Mesh
 		this.shaders = Collections.unmodifiableList(new ArrayList<>(shaders));
 	}
 
-	public void destroy()
+	public void free()
 	{
 		buffer.free();
 		for (Shader shader : shaders)

@@ -38,7 +38,7 @@ public class DepthResource
 		depthImageView.load(depthImage.getId(), 1, depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT);
 
 		depthImage.transitionImageLayout(logicalDevice.getCommandPool(),
-				logicalDevice.getGraphicQueue(), depthFormat, VK_IMAGE_LAYOUT_UNDEFINED,
+				logicalDevice.getQueueManager().getGraphicQueue(logicalDevice.getVkDevice()), depthFormat, VK_IMAGE_LAYOUT_UNDEFINED,
 				VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
 	}
 

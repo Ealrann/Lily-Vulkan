@@ -174,7 +174,7 @@ public class ImageBuffer
 
 		vkCmdPipelineBarrier(commandBuffer, sourceStage, destinationStage, 0, null, null, barrier);
 
-		singleTimeCommand.submitCommands(queue);
+		singleTimeCommand.submitCommands(queue);;
 	}
 	
 	private boolean hasStencilComponent(int format)
@@ -200,7 +200,7 @@ public class ImageBuffer
 		region.imageOffset().set(0, 0, 0);
 		region.imageExtent().set(width, height, 1);
 
-		vkCmdCopyBufferToImage(commandBuffer, buffer.getBufferId(), imageId,
+		vkCmdCopyBufferToImage(commandBuffer, buffer.getId(), imageId,
 				VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region);
 
 		transaction.submitCommands(queue);

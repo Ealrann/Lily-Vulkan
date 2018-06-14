@@ -51,8 +51,8 @@ public class IndexBuffer
 				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		Buffer.copyBuffer(logicalDevice, queue, stagingBuffer.getBufferId(),
-				indexBuffer.getBufferId(), byteSize);
+		Buffer.copyBuffer(logicalDevice, queue, stagingBuffer.getId(),
+				indexBuffer.getId(), byteSize);
 
 		stagingBuffer.free();
 		MemoryUtil.memFree(verticeBuffer);
@@ -77,7 +77,7 @@ public class IndexBuffer
 				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		Buffer.copyBuffer(logicalDevice, queue, stagingBuffer.getBufferId(), buffer.getBufferId(),
+		Buffer.copyBuffer(logicalDevice, queue, stagingBuffer.getId(), buffer.getId(),
 				byteSize);
 
 		stagingBuffer.free();
@@ -110,12 +110,12 @@ public class IndexBuffer
 
 	public long getBufferId()
 	{
-		return buffer.getBufferId();
+		return buffer.getId();
 	}
 
 	public long getIndexBufferId()
 	{
-		return indexBuffer.getBufferId();
+		return indexBuffer.getId();
 	}
 
 	public int indexCount()

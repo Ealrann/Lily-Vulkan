@@ -95,6 +95,6 @@ public class UniformBufferObject
 
 	public long getBufferId()
 	{
-		return buffer.getBufferId();
+		return buffer.getId();
 	}
 }

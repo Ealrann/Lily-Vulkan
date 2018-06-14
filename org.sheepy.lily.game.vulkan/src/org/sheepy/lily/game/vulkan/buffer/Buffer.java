@@ -23,6 +23,8 @@ public class Buffer
 	private long bufferId;
 	private long bufferMemoryId;
 
+	private long size;
+
 	/**
 	 * Don't forget to free it.
 	 * 
@@ -33,7 +35,7 @@ public class Buffer
 	 * @param properties
 	 * @return
 	 */
-	public static Buffer alloc(LogicalDevice logicalDevice, int size, int usage, int properties)
+	public static Buffer alloc(LogicalDevice logicalDevice, long size, int usage, int properties)
 	{
 		Buffer buffer = new Buffer(logicalDevice);
 		buffer.load(size, usage, properties);
@@ -46,8 +48,9 @@ public class Buffer
 		this.logicalDevice = logicalDevice;
 	}
 
-	private void load(int size, int usage, int properties)
+	private void load(long size, int usage, int properties)
 	{
+		this.size = size;
 		VkBufferCreateInfo bufferInfo = VkBufferCreateInfo.calloc();
 		bufferInfo.sType(VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO);
 		bufferInfo.size(size);
@@ -81,6 +84,8 @@ public class Buffer
 
 		vkBindBufferMemory(logicalDevice.getVkDevice(), bufferId, bufferMemoryId, 0);
 
+//		System.out.println(Long.toHexString(bufferMemoryId));
+		
 		bufferInfo.free();
 		allocInfo.free();
 		memRequirements.free();
@@ -92,17 +97,22 @@ public class Buffer
 		vkFreeMemory(logicalDevice.getVkDevice(), bufferMemoryId, null);
 	}
 
-	public long getBufferId()
+	public long getId()
 	{
 		return bufferId;
 	}
 
-	public long getBufferMemoryId()
+	public long getMemoryId()
 	{
 		return bufferMemoryId;
 	}
 
-	public void fillWithBuffer(ByteBuffer byteBuffer, int byteSize)
+	public long getSize()
+	{
+		return size;
+	}
+
+	public void fillWithBuffer(ByteBuffer byteBuffer, long byteSize)
 	{
 		PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
 		vkMapMemory(logicalDevice.getVkDevice(), bufferMemoryId, 0, byteSize, 0, pBuffer);
@@ -111,7 +121,7 @@ public class Buffer
 		vkUnmapMemory(logicalDevice.getVkDevice(), bufferMemoryId);
 		MemoryUtil.memFree(pBuffer);
 	}
-	
+
 	public static void copyBuffer(LogicalDevice logicalDevice,
 			VkQueue queue,
 			long srcBuffer,

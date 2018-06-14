@@ -122,7 +122,7 @@ public class SwapPipeline
 		if (descriptorPool != null) descriptorPool.destroy();
 		if (uniformBufferObject != null) uniformBufferObject.free();
 		if (full && texture != null) texture.free();
-		if (full && mesh != null) mesh.destroy();
+		if (full && mesh != null) mesh.free();
 		if (depthResource != null) depthResource.free();
 		frameSubmission.free();
 		commandBuffers.free();
