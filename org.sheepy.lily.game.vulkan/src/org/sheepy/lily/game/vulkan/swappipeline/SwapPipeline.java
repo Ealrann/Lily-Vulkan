@@ -4,14 +4,17 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
 import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.game.vulkan.UniformBufferObject;
 import org.sheepy.lily.game.vulkan.buffer.DepthResource;
 import org.sheepy.lily.game.vulkan.buffer.Mesh;
-import org.sheepy.lily.game.vulkan.buffer.Texture;
-import org.sheepy.lily.game.vulkan.buffer.UniformBufferObject;
 import org.sheepy.lily.game.vulkan.command.CommandBuffers;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
+import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.framebuffer.Framebuffers;
 import org.sheepy.lily.game.vulkan.framesubmission.FrameSubmission;
@@ -19,6 +22,7 @@ import org.sheepy.lily.game.vulkan.pipeline.GraphicPipeline;
 import org.sheepy.lily.game.vulkan.pipeline.RenderPass;
 import org.sheepy.lily.game.vulkan.swapchain.ColorDomain;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
+import org.sheepy.lily.game.vulkan.texture.Texture;
 import org.sheepy.lily.game.vulkan.util.VkSemaphore;
 import org.sheepy.lily.game.vulkan.view.ImageViewManager;
 
@@ -95,8 +99,11 @@ public class SwapPipeline
 		{
 			try (MemoryStack stack = stackPush())
 			{
-				descriptorPool = DescriptorPool.alloc(stack, logicalDevice, uniformBufferObject,
-						texture);
+				Collection<IDescriptor> descriptors = new ArrayList<>();
+				if (uniformBufferObject != null) descriptors.add(uniformBufferObject);
+				if (texture != null) descriptors.add(texture);
+				
+				descriptorPool = DescriptorPool.alloc(stack, logicalDevice, descriptors);
 			}
 		}
 

@@ -2,15 +2,16 @@ package org.sheepy.lily.game.vulkan.descriptor;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.nio.LongBuffer;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.sheepy.lily.game.vulkan.buffer.Texture;
-import org.sheepy.lily.game.vulkan.buffer.UniformBufferObject;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
 public class DescriptorPool implements Iterable<DescriptorSet>
@@ -23,11 +24,10 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 
 	public static final DescriptorPool alloc(MemoryStack stack,
 			LogicalDevice logicalDevice,
-			UniformBufferObject uniformBuffer,
-			Texture texture)
+			Collection<IDescriptor> descriptors)
 	{
 		DescriptorPool res = new DescriptorPool(logicalDevice);
-		res.load(stack, uniformBuffer, texture);
+		res.load(stack, descriptors);
 		return res;
 	}
 
@@ -36,25 +36,14 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 		this.logicalDevice = logicalDevice;
 	}
 
-	private void load(MemoryStack stack, UniformBufferObject uniformBuffer, Texture texture)
+	private void load(MemoryStack stack, Collection<IDescriptor> descriptors)
 	{
-		int size = 0;
-		size += uniformBuffer != null ? 1 : 0;
-		size += texture != null ? 1 : 0;
+		VkDescriptorPoolSize.Buffer poolSizes = VkDescriptorPoolSize
+				.callocStack(descriptors.size());
 
-		VkDescriptorPoolSize.Buffer poolSizes = VkDescriptorPoolSize.callocStack(size);
-
-		if (uniformBuffer != null)
+		for (IDescriptor descriptor : descriptors)
 		{
-			VkDescriptorPoolSize poolSize = poolSizes.get();
-			poolSize.type(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER);
-			poolSize.descriptorCount(1);
-		}
-		if (texture != null)
-		{
-			VkDescriptorPoolSize poolSize = poolSizes.get();
-			poolSize.type(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-			poolSize.descriptorCount(1);
+			poolSizes.put(descriptor.allocPoolSize(stack));
 		}
 		poolSizes.flip();
 
@@ -73,7 +62,7 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 
 		descriptorSets = new ArrayList<>();
 
-		descriptorSets.add(DescriptorSet.alloc(logicalDevice, this, uniformBuffer, texture));
+		descriptorSets.add(DescriptorSet.alloc(stack, logicalDevice, this, descriptors));
 	}
 
 	public void destroy()
@@ -104,5 +93,18 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 	public Iterator<DescriptorSet> iterator()
 	{
 		return descriptorSets.iterator();
+	}
+
+	public LongBuffer allocLayoutBuffer()
+	{
+		LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorSets.size());
+
+		for (DescriptorSet descriptorSet : descriptorSets)
+		{
+			bDescriptorSet.put(descriptorSet.getLayoutId());
+		}
+
+		bDescriptorSet.flip();
+		return bDescriptorSet;
 	}
 }

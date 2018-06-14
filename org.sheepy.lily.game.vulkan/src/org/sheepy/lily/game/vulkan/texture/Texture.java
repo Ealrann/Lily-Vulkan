@@ -1,4 +1,4 @@
-package org.sheepy.lily.game.vulkan.buffer;
+package org.sheepy.lily.game.vulkan.texture;
 
 import static org.lwjgl.stb.STBImage.STBI_rgb_alpha;
 import static org.lwjgl.vulkan.VK10.*;
@@ -8,18 +8,25 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.stb.STBImage;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
+import org.lwjgl.vulkan.VkDescriptorImageInfo;
+import org.lwjgl.vulkan.VkDescriptorPoolSize;
+import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
 import org.lwjgl.vulkan.VkQueue;
+import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.lily.game.vulkan.buffer.Buffer;
+import org.sheepy.lily.game.vulkan.buffer.ImageBuffer;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.command.SingleTimeCommands;
+import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.sampler.Sampler;
 import org.sheepy.lily.game.vulkan.view.ImageView;
 
-public class Texture
+public class Texture implements IDescriptor
 {
 	private LogicalDevice logicalDevice;
 	private String imagePath;
@@ -70,7 +77,7 @@ public class Texture
 				VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, mipLevels);
 
 		imageBuffer.fillWithBuffer(commandPool, graphicQueue, buffer);
-		
+
 		// imageBuffer.transitionImageLayout(commandPool, graphicQueue,
 		// VK_FORMAT_R8G8B8A8_UNORM,
 		// VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
@@ -81,7 +88,7 @@ public class Texture
 				VK_IMAGE_ASPECT_COLOR_BIT);
 
 		sampler.load(0, mipLevels);
-		
+
 		buffer.free();
 	}
 
@@ -109,8 +116,7 @@ public class Texture
 		height = texHeight[0];
 		int imageSize = width * height * 4;
 		mipLevels = 1;
-		if(generateMipMap)
-			mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
+		if (generateMipMap) mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
 
 		Buffer buffer = Buffer.alloc(logicalDevice, imageSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
@@ -190,24 +196,21 @@ public class Texture
 
 			if (mipWidth > 1) mipWidth /= 2;
 			if (mipHeight > 1) mipHeight /= 2;
-			
+
 			blit.free();
 		}
-		
-	    barrier.subresourceRange().baseMipLevel(mipLevels - 1);
-	    barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-	    barrier.newLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-	    barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
-	    barrier.dstAccessMask(VK_ACCESS_SHADER_READ_BIT);
 
-	    vkCmdPipelineBarrier(commandBuffer,
-	        VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0,
-	        null,
-	        null,
-	        barrier);
+		barrier.subresourceRange().baseMipLevel(mipLevels - 1);
+		barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+		barrier.newLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+		barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
+		barrier.dstAccessMask(VK_ACCESS_SHADER_READ_BIT);
+
+		vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT,
+				VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, null, null, barrier);
 
 		command.submitCommands(queue);
-		
+
 		barrier.free();
 	}
 
@@ -231,5 +234,42 @@ public class Texture
 		sampler.free();
 		imageView.free();
 		imageBuffer.free();
+	}
+
+	@Override
+	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
+	{
+		VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		res.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
+		res.descriptorCount(1);
+		res.stageFlags(VK_SHADER_STAGE_FRAGMENT_BIT);
+		return res;
+	}
+
+	@Override
+	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
+	{
+		VkDescriptorImageInfo.Buffer imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
+		imageInfo.imageLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+		imageInfo.imageView(getImageViewId());
+		imageInfo.sampler(getSampler().getId());
+
+		VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
+		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		descriptorWrite.dstArrayElement(0);
+		descriptorWrite.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
+		descriptorWrite.pBufferInfo(null);
+		descriptorWrite.pImageInfo(imageInfo); // Optional
+		descriptorWrite.pTexelBufferView(null); // Optional
+		return descriptorWrite;
+	}
+
+	@Override
+	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
+	{
+		VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
+		poolSize.type(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
+		poolSize.descriptorCount(1);
+		return poolSize;
 	}
 }

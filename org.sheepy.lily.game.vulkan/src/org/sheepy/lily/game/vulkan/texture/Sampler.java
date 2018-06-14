@@ -1,4 +1,4 @@
-package org.sheepy.lily.game.vulkan.sampler;
+package org.sheepy.lily.game.vulkan.texture;
 
 import static org.lwjgl.vulkan.VK10.*;
 
