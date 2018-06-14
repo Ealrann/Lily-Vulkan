@@ -8,7 +8,7 @@ import java.nio.IntBuffer;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkQueue;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.pipeline.IVertexDescriptor;
+import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.IVertexDescriptor;
 
 public class IndexBuffer
 {

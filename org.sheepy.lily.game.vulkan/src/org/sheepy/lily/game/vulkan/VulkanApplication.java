@@ -22,7 +22,7 @@ import org.sheepy.lily.game.vulkan.window.Window;
 
 public class VulkanApplication
 {
-	private static final boolean DEBUG = true;
+	public static boolean DEBUG = true;
 	private static final ByteBuffer[] LAYERS_TO_ENABLE = {
 			memUTF8("VK_LAYER_LUNARG_standard_validation")
 	};
@@ -55,6 +55,11 @@ public class VulkanApplication
 	}
 
 	public LogicalDevice initLogicalDevice()
+	{
+		return initLogicalDevice(false);
+	}
+
+	public LogicalDevice initLogicalDevice(boolean needComputeCapability)
 	{
 		try (MemoryStack stack = stackPush())
 		{
@@ -120,7 +125,7 @@ public class VulkanApplication
 
 	public void drawFrame()
 	{
-		vkQueueWaitIdle(logicalDevice.getPresentQueue());
+		vkQueueWaitIdle(logicalDevice.getQueueManager().getPresentQueue());
 
 		logicalDevice.draw();
 	}

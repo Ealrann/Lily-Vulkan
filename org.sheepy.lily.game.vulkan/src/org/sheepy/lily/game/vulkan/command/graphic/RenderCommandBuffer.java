@@ -8,9 +8,9 @@ import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
 import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.pipeline.RenderPass;
+import org.sheepy.lily.game.vulkan.pipeline.swap.RenderPass;
+import org.sheepy.lily.game.vulkan.pipeline.swap.SwapConfiguration;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager.Extent2D;
-import org.sheepy.lily.game.vulkan.swappipeline.SwapConfiguration;
 
 public class RenderCommandBuffer extends AbstractCommandBuffer
 {

@@ -10,12 +10,11 @@ import java.nio.LongBuffer;
 import java.util.Collections;
 import java.util.List;
 
-import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkExtent2D;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
-import org.sheepy.lily.game.vulkan.QueueManager;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.device.PhysicalDeviceSupportDetails;
+import org.sheepy.lily.game.vulkan.queue.QueueManager;
 import org.sheepy.lily.game.vulkan.util.VulkanBufferUtils;
 import org.sheepy.lily.game.vulkan.util.VulkanUtils;
 
@@ -64,16 +63,12 @@ public class SwapChainManager
 		createInfo.imageArrayLayers(1);
 		createInfo.imageUsage(VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT);
 
-		IntBuffer indices = MemoryUtil.memAllocInt(queueManager.size());
-		for (int index : queueManager)
-		{
-			indices.put(index);
-		}
-		indices.flip();
+		IntBuffer indices = null;
 
 		if (queueManager.isExclusive() == false)
 		{
 			createInfo.imageSharingMode(VK_SHARING_MODE_CONCURRENT);
+			indices = queueManager.allocIndices();
 			createInfo.pQueueFamilyIndices(indices);
 		}
 		else
@@ -108,7 +103,7 @@ public class SwapChainManager
 		memFree(pSwapchainImages);
 		memFree(pImageCount);
 		memFree(pSwapChain);
-		memFree(indices);
+		if (indices != null) memFree(indices);
 		createInfo.free();
 
 		return swapChain;

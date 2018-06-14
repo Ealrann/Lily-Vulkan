@@ -38,8 +38,8 @@ public class DepthResource
 		depthImageView.load(depthImage.getId(), 1, depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT);
 
 		depthImage.transitionImageLayout(logicalDevice.getCommandPool(),
-				logicalDevice.getQueueManager().getGraphicQueue(logicalDevice.getVkDevice()), depthFormat, VK_IMAGE_LAYOUT_UNDEFINED,
-				VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
+				logicalDevice.getQueueManager().getGraphicQueue(), depthFormat,
+				VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
 	}
 
 	private int findSupportedFormat(int[] candidates, int tiling, int features)
@@ -71,22 +71,22 @@ public class DepthResource
 				VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT
 		}, VK_IMAGE_TILING_OPTIMAL, VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT);
 	}
-	
+
 	public int getDepthFormat()
 	{
 		return depthFormat;
 	}
-	
+
 	public long getDepthImageId()
 	{
 		return depthImage.getId();
 	}
-	
+
 	public long getDepthImageViewId()
 	{
 		return depthImageView.getId();
 	}
-	
+
 	public void free()
 	{
 		depthImageView.free();

@@ -15,19 +15,17 @@ import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkDeviceCreateInfo;
 import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
-import org.lwjgl.vulkan.VkQueue;
-import org.sheepy.lily.game.vulkan.QueueManager;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
-import org.sheepy.lily.game.vulkan.swappipeline.SwapPipeline;
+import org.sheepy.lily.game.vulkan.pipeline.swap.SwapPipeline;
+import org.sheepy.lily.game.vulkan.queue.QueueManager;
 
 public class LogicalDevice
 {
 	private PhysicalDeviceWrapper physicalDevice;
 	private QueueManager queueManager;
+	private boolean needComputeCapability;
 
 	private VkDevice vkDevice;
-	private VkQueue graphicQueue;
-	private VkQueue presentQueue;
 	private CommandPool commandPool;
 
 	private SwapPipeline swapPipeline;
@@ -38,38 +36,50 @@ public class LogicalDevice
 			String[] requiredExtensions,
 			PointerBuffer ppEnabledLayerNames)
 	{
-		LogicalDevice res = new LogicalDevice(physicalDevice, surface);
+		return alloc(stack, physicalDevice, surface, requiredExtensions, ppEnabledLayerNames,
+				false);
+	}
+
+	public final static LogicalDevice alloc(MemoryStack stack,
+			PhysicalDeviceWrapper physicalDevice,
+			long surface,
+			String[] requiredExtensions,
+			PointerBuffer ppEnabledLayerNames,
+			boolean needComputeCapability)
+	{
+		LogicalDevice res = new LogicalDevice(physicalDevice, surface, needComputeCapability);
 
 		res.load(stack, requiredExtensions, ppEnabledLayerNames);
 		return res;
 	}
 
-	private LogicalDevice(PhysicalDeviceWrapper physicalDevice, long surface)
+	private LogicalDevice(PhysicalDeviceWrapper physicalDevice, long surface,
+			boolean needComputeCapability)
 	{
 		this.physicalDevice = physicalDevice;
+		this.needComputeCapability = needComputeCapability;
 
-		queueManager = new QueueManager(physicalDevice.getVkPhysicalDevice());
-		queueManager.load(surface);
+		queueManager = new QueueManager();
+		queueManager.load(physicalDevice.getVkPhysicalDevice(), surface, needComputeCapability);
 	}
 
 	public void load(MemoryStack stack,
 			String[] requiredExtensions,
 			PointerBuffer ppEnabledLayerNames)
 	{
-		VkDeviceQueueCreateInfo.Buffer queueCreateInfos = VkDeviceQueueCreateInfo.callocStack(2,
-				stack);
-		VkDeviceQueueCreateInfo queueCreateInfo = VkDeviceQueueCreateInfo.callocStack(stack);
-
 		Set<Integer> uniqueQueueIndexes = new HashSet<Integer>(queueManager.getQueueIndexes());
+		VkDeviceQueueCreateInfo.Buffer queueCreateInfos = VkDeviceQueueCreateInfo
+				.callocStack(uniqueQueueIndexes.size(), stack);
+
 		for (int queueIndex : uniqueQueueIndexes)
 		{
+			VkDeviceQueueCreateInfo queueCreateInfo = queueCreateInfos.get();
+			
 			FloatBuffer queuePriority = memAllocFloat(1).put(1f);
 			queuePriority.flip();
 			queueCreateInfo.sType(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO);
 			queueCreateInfo.queueFamilyIndex(queueIndex);
 			queueCreateInfo.pQueuePriorities(queuePriority);
-
-			queueCreateInfos.put(queueCreateInfo);
 		}
 		queueCreateInfos.flip();
 
@@ -82,7 +92,7 @@ public class LogicalDevice
 		extensionsBuffer.flip();
 		VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.callocStack(stack);
 		deviceFeatures.samplerAnisotropy(true);
-		
+
 		VkDeviceCreateInfo createInfo = VkDeviceCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO);
 		createInfo.pNext(NULL);
@@ -98,13 +108,12 @@ public class LogicalDevice
 		}
 		long deviceId = pDevice.get(0);
 		vkDevice = new VkDevice(deviceId, physicalDevice.getVkPhysicalDevice(), createInfo);
-		graphicQueue = queueManager.getGraphicQueue(vkDevice);
-		presentQueue = queueManager.getPresentQueue(vkDevice);
+
+		queueManager.loadVkQueues(vkDevice);
 
 		commandPool = CommandPool.alloc(stack, this, queueManager.getGraphicQueueIndex());
 	}
 
-	
 	public void attachSwapPipeline(SwapPipeline swapPipeline)
 	{
 		this.swapPipeline = swapPipeline;
@@ -113,8 +122,9 @@ public class LogicalDevice
 	public void recreateSwapChain(long surface, int width, int height)
 	{
 		waitIdle();
-		
-		queueManager.load(surface);
+
+		queueManager.load(physicalDevice.getVkPhysicalDevice(), surface, needComputeCapability);
+		queueManager.loadVkQueues(vkDevice);
 
 		swapPipeline.destroy(false);
 		swapPipeline.load(surface, width, height);
@@ -123,16 +133,6 @@ public class LogicalDevice
 	public VkDevice getVkDevice()
 	{
 		return vkDevice;
-	}
-
-	public VkQueue getGraphicQueue()
-	{
-		return graphicQueue;
-	}
-
-	public VkQueue getPresentQueue()
-	{
-		return presentQueue;
 	}
 
 	public QueueManager getQueueManager()
@@ -164,14 +164,14 @@ public class LogicalDevice
 		{
 			int imageIndex = swapPipeline.acquireNextImage();
 
-			if (vkQueueSubmit(graphicQueue,
+			if (vkQueueSubmit(queueManager.getGraphicQueue(),
 					swapPipeline.getFrameSubmission().getSubmitInfo(imageIndex),
 					VK_NULL_HANDLE) != VK_SUCCESS)
 			{
 				throw new AssertionError("failed to submit draw command buffer!");
 			}
 
-			vkQueuePresentKHR(presentQueue,
+			vkQueuePresentKHR(queueManager.getGraphicQueue(),
 					swapPipeline.getFrameSubmission().getPresentInfo(imageIndex));
 		}
 	}

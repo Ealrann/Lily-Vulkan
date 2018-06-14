@@ -13,12 +13,12 @@ import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
-import org.sheepy.lily.game.vulkan.framebuffer.Framebuffers;
-import org.sheepy.lily.game.vulkan.pipeline.GraphicPipeline;
-import org.sheepy.lily.game.vulkan.pipeline.RenderPass;
+import org.sheepy.lily.game.vulkan.pipeline.swap.Framebuffers;
+import org.sheepy.lily.game.vulkan.pipeline.swap.RenderPass;
+import org.sheepy.lily.game.vulkan.pipeline.swap.SwapConfiguration;
+import org.sheepy.lily.game.vulkan.pipeline.swap.SwapPipeline;
+import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.GraphicPipeline;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
-import org.sheepy.lily.game.vulkan.swappipeline.SwapConfiguration;
-import org.sheepy.lily.game.vulkan.swappipeline.SwapPipeline;
 
 public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandBuffer>
 {
