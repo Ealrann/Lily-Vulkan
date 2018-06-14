@@ -13,7 +13,7 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
 import org.lwjgl.vulkan.VkQueue;
-import org.sheepy.lily.game.vulkan.command.SingleTimeCommands;
+import org.sheepy.lily.game.vulkan.command.SingleTimeCommand;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
 public class Buffer
@@ -128,8 +128,8 @@ public class Buffer
 			long dstBuffer,
 			int size)
 	{
-		SingleTimeCommands stc = logicalDevice.getCommandPool().newSingleTimeCommand();
-		VkCommandBuffer vkCommandBuffer = stc.startRecording();
+		SingleTimeCommand stc = logicalDevice.getCommandPool().newSingleTimeCommand(queue);
+		VkCommandBuffer vkCommandBuffer = stc.start();
 
 		VkBufferCopy.Buffer copyRegion = VkBufferCopy.calloc(1);
 		copyRegion.srcOffset(0); // Optional
@@ -138,7 +138,7 @@ public class Buffer
 		vkCmdCopyBuffer(vkCommandBuffer, srcBuffer, dstBuffer, copyRegion);
 
 		// Now, we execute the command
-		stc.submitCommands(queue);
+		stc.end();
 	}
 
 }

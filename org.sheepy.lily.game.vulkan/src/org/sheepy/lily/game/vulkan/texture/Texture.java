@@ -21,7 +21,7 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.game.vulkan.buffer.Buffer;
 import org.sheepy.lily.game.vulkan.buffer.ImageBuffer;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
-import org.sheepy.lily.game.vulkan.command.SingleTimeCommands;
+import org.sheepy.lily.game.vulkan.command.SingleTimeCommand;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.view.ImageView;
@@ -135,9 +135,9 @@ public class Texture implements IDescriptor
 
 	private void generateMipmaps(CommandPool commandPool, VkQueue queue, long image)
 	{
-		SingleTimeCommands command = commandPool.newSingleTimeCommand();
+		SingleTimeCommand command = commandPool.newSingleTimeCommand(queue);
 
-		VkCommandBuffer commandBuffer = command.startRecording();
+		VkCommandBuffer commandBuffer = command.start();
 
 		VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.calloc(1);
 		barrier.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
@@ -209,7 +209,7 @@ public class Texture implements IDescriptor
 		vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT,
 				VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, null, null, barrier);
 
-		command.submitCommands(queue);
+		command.end();
 
 		barrier.free();
 	}

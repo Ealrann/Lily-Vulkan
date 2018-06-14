@@ -10,7 +10,7 @@ import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
 import org.lwjgl.vulkan.VkQueue;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
-import org.sheepy.lily.game.vulkan.command.SingleTimeCommands;
+import org.sheepy.lily.game.vulkan.command.SingleTimeCommand;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
 public class ImageBuffer
@@ -105,8 +105,8 @@ public class ImageBuffer
 			int newLayout,
 			int mipLevels)
 	{
-		SingleTimeCommands singleTimeCommand = commandPool.newSingleTimeCommand();
-		VkCommandBuffer commandBuffer = singleTimeCommand.startRecording();
+		SingleTimeCommand singleTimeCommand = commandPool.newSingleTimeCommand(queue);
+		VkCommandBuffer commandBuffer = singleTimeCommand.start();
 
 		int aspectMask = 0;
 		if (newLayout == VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL)
@@ -174,7 +174,7 @@ public class ImageBuffer
 
 		vkCmdPipelineBarrier(commandBuffer, sourceStage, destinationStage, 0, null, null, barrier);
 
-		singleTimeCommand.submitCommands(queue);;
+		singleTimeCommand.end();
 	}
 	
 	private boolean hasStencilComponent(int format)
@@ -184,8 +184,8 @@ public class ImageBuffer
 
 	public void fillWithBuffer(CommandPool commandPool, VkQueue queue, Buffer buffer)
 	{
-		SingleTimeCommands transaction = commandPool.newSingleTimeCommand();
-		VkCommandBuffer commandBuffer = transaction.startRecording();
+		SingleTimeCommand transaction = commandPool.newSingleTimeCommand(queue);
+		VkCommandBuffer commandBuffer = transaction.start();
 
 		VkBufferImageCopy.Buffer region = VkBufferImageCopy.calloc(1);
 		region.bufferOffset(0);
@@ -203,7 +203,7 @@ public class ImageBuffer
 		vkCmdCopyBufferToImage(commandBuffer, buffer.getId(), imageId,
 				VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region);
 
-		transaction.submitCommands(queue);
+		transaction.end();
 	}
 
 	public long getId()

@@ -4,6 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
+import org.lwjgl.vulkan.VkQueue;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
 public class CommandPool
@@ -24,9 +25,9 @@ public class CommandPool
 		this.logicalDevice = logicalDevice;
 	}
 	
-	public SingleTimeCommands newSingleTimeCommand()
+	public SingleTimeCommand newSingleTimeCommand(VkQueue queue)
 	{
-		return new SingleTimeCommands(logicalDevice.getCommandPool()); 
+		return SingleTimeCommand.alloc(this, queue); 
 	}
 
 	public void load(MemoryStack stack, int queueIndex)
