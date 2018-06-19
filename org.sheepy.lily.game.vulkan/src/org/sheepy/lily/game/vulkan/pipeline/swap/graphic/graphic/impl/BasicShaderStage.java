@@ -8,7 +8,7 @@ import org.sheepy.lily.game.vulkan.shader.Shader;
 
 public class BasicShaderStage implements IShaderStage
 {
-	private VkPipelineShaderStageCreateInfo.Buffer shaderStages;
+	private VkPipelineShaderStageCreateInfo.Buffer shaderStages = null;
 
 	@Override
 	public VkPipelineShaderStageCreateInfo.Buffer allocShaderStageInfo(List<Shader> shaders)
@@ -33,6 +33,7 @@ public class BasicShaderStage implements IShaderStage
 	@Override
 	public void free()
 	{
-		// For now, let's suppose the shaders will be free by the user, with the Mesh
+		// For now, let's suppose the shaders will be free by the user, with the
+		// Mesh
 	}
 }

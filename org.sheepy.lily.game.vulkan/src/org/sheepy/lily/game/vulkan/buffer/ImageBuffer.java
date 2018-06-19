@@ -233,4 +233,25 @@ public class ImageBuffer
 	{
 		return size;
 	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (imageId ^ (imageId >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		ImageBuffer other = (ImageBuffer) obj;
+		if (imageId != other.imageId) return false;
+		return true;
+	}
+	
 }

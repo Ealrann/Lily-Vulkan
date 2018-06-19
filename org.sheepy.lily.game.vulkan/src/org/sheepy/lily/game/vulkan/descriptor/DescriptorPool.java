@@ -81,7 +81,7 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 			int index = 0;
 			for (IDescriptor descriptor : configuration)
 			{
-				DescriptorSetInfo info = new DescriptorSetInfo(descriptorSet, index);
+				DescriptorSetInfo info = new DescriptorSetInfo(descriptorSet, index++);
 				infoMap.put(descriptor, info);
 			}
 			descriptorSets.add(descriptorSet);

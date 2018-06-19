@@ -1,6 +1,7 @@
 package org.sheepy.lily.game.vulkan.descriptor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +16,11 @@ public class BasicDescriptorSetConfiguration<T extends IDescriptor> implements I
 	public void add(T descriptor)
 	{
 		descriptors.add(descriptor);
+	}
+
+	public void addAll(Collection<T> descriptors)
+	{
+		this.descriptors.addAll(descriptors);
 	}
 	
 	@Override

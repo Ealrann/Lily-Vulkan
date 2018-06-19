@@ -272,4 +272,35 @@ public class Texture implements IDescriptor
 		poolSize.descriptorCount(1);
 		return poolSize;
 	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((imageBuffer == null) ? 0 : imageBuffer.hashCode());
+		result = prime * result + ((imagePath == null) ? 0 : imagePath.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		Texture other = (Texture) obj;
+		if (imageBuffer == null)
+		{
+			if (other.imageBuffer != null) return false;
+		}
+		else if (!imageBuffer.equals(other.imageBuffer)) return false;
+		if (imagePath == null)
+		{
+			if (other.imagePath != null) return false;
+		}
+		else if (!imagePath.equals(other.imagePath)) return false;
+		return true;
+	}
+	
 }

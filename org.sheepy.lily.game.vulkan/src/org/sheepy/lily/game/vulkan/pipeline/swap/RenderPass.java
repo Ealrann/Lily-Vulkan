@@ -3,26 +3,88 @@ package org.sheepy.lily.game.vulkan.pipeline.swap;
 import static org.lwjgl.vulkan.KHRSwapchain.VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.nio.LongBuffer;
+import java.util.List;
+
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkAttachmentDescription;
 import org.lwjgl.vulkan.VkAttachmentReference;
 import org.lwjgl.vulkan.VkRenderPassCreateInfo;
 import org.lwjgl.vulkan.VkSubpassDependency;
 import org.lwjgl.vulkan.VkSubpassDescription;
 import org.sheepy.lily.game.vulkan.buffer.DepthResource;
+import org.sheepy.lily.game.vulkan.buffer.IndexBuffer;
+import org.sheepy.lily.game.vulkan.buffer.Mesh;
+import org.sheepy.lily.game.vulkan.command.graphic.RenderCommandBuffer;
+import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
+import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
+import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.GraphicPipeline;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 
 public class RenderPass
 {
 	private LogicalDevice logicalDevice;
 	private DepthResource depthResource;
-
+	private Mesh mesh;
+	private DescriptorPool descriptorPool;
+	private GraphicPipeline graphicsPipeline;
+	
 	private long renderPass;
 
-	public RenderPass(LogicalDevice logicalDevice, DepthResource depthResource)
+	public RenderPass(LogicalDevice logicalDevice, DepthResource depthResource,
+			GraphicPipeline graphicsPipeline, Mesh mesh, DescriptorPool descriptorPool)
 	{
 		this.logicalDevice = logicalDevice;
 		this.depthResource = depthResource;
+		this.mesh = mesh;
+		this.descriptorPool = descriptorPool;
+		this.graphicsPipeline = graphicsPipeline;
+	}
+
+	public void rebuildRenderPass(List<RenderCommandBuffer> commandBuffers)
+	{
+		IndexBuffer indexBuffer = mesh.getIndexBuffer();
+		long[] vertexBuffers = new long[] {
+				indexBuffer.getBufferId()
+		};
+		long[] offsets = {
+				0
+		};
+
+		for (RenderCommandBuffer commandBuffer : commandBuffers)
+		{
+			commandBuffer.start();
+
+			vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_GRAPHICS,
+					graphicsPipeline.getId());
+
+			// TODO decoupler ce code
+			vkCmdBindVertexBuffers(commandBuffer.getVkCommandBuffer(), 0, vertexBuffers, offsets);
+			vkCmdBindIndexBuffer(commandBuffer.getVkCommandBuffer(), indexBuffer.getIndexBufferId(),
+					0, VK_INDEX_TYPE_UINT32);
+			// endTODO
+
+			if (descriptorPool != null)
+			{
+				LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorPool.size());
+				for (DescriptorSet descriptorSet : descriptorPool)
+				{
+					bDescriptorSet.put(descriptorSet.getId());
+				}
+				bDescriptorSet.flip();
+				vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(),
+						VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline.getLayoutId(), 0,
+						bDescriptorSet, null);
+			}
+
+			// TODO decoupler ce code
+			vkCmdDrawIndexed(commandBuffer.getVkCommandBuffer(), indexBuffer.indexCount(), 1, 0, 0,
+					0);
+			// endTODO
+
+			commandBuffer.end();
+		}
 	}
 
 	public void load(SwapChainManager swapChain)
@@ -77,14 +139,15 @@ public class RenderPass
 
 		int attachmentCount = 1;
 		attachmentCount += depthAttachment != null ? 1 : 0;
-		VkAttachmentDescription.Buffer attachments = VkAttachmentDescription.calloc(attachmentCount);
+		VkAttachmentDescription.Buffer attachments = VkAttachmentDescription
+				.calloc(attachmentCount);
 		attachments.put(colorAttachment);
-		if(depthAttachment != null)
+		if (depthAttachment != null)
 		{
 			attachments.put(depthAttachment);
 		}
 		attachments.flip();
-		
+
 		VkRenderPassCreateInfo renderPassInfo = VkRenderPassCreateInfo.calloc();
 		renderPassInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO);
 		renderPassInfo.pAttachments(attachments);
@@ -99,10 +162,8 @@ public class RenderPass
 		}
 		renderPass = aRenderPass[0];
 
-		if (depthAttachment != null)
-			depthAttachment.free();
-		if (depthAttachmentRef != null)
-			depthAttachmentRef.free();
+		if (depthAttachment != null) depthAttachment.free();
+		if (depthAttachmentRef != null) depthAttachmentRef.free();
 		attachments.free();
 		dependency.free();
 		renderPassInfo.free();

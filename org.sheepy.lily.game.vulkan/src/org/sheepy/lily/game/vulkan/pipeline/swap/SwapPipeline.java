@@ -5,9 +5,9 @@ import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
 import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.game.vulkan.UniformBufferObject;
 import org.sheepy.lily.game.vulkan.buffer.DepthResource;
 import org.sheepy.lily.game.vulkan.buffer.Mesh;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
@@ -17,9 +17,9 @@ import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.GraphicPipeline;
+import org.sheepy.lily.game.vulkan.shader.Shader;
 import org.sheepy.lily.game.vulkan.swapchain.ColorDomain;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
-import org.sheepy.lily.game.vulkan.texture.Texture;
 import org.sheepy.lily.game.vulkan.util.VkSemaphore;
 import org.sheepy.lily.game.vulkan.view.ImageViewManager;
 
@@ -48,16 +48,15 @@ public class SwapPipeline
 	private VkSemaphore imageAvailableSemaphore;
 	private VkSemaphore renderFinishedSemaphore;
 
-	private UniformBufferObject uniformBufferObject;
-	private Texture texture;
 	private Mesh mesh = null;
 
-	public SwapPipeline(LogicalDevice logicalDevice, SwapConfiguration configuration,
+	public SwapPipeline(LogicalDevice logicalDevice, Mesh mesh, SwapConfiguration configuration,
 			CommandPool commandPool, ColorDomain targetColorDomain)
 	{
 		this.logicalDevice = logicalDevice;
 		this.commandPool = commandPool;
 		this.configuration = configuration;
+		this.mesh = mesh;
 
 		swapChainManager = new SwapChainManager(logicalDevice, targetColorDomain);
 
@@ -66,9 +65,21 @@ public class SwapPipeline
 			depthResource = new DepthResource(logicalDevice);
 		}
 
+		if (mesh != null && mesh.getDescriptors().isEmpty() == false)
+		{
+			try (MemoryStack stack = stackPush())
+			{
+				BasicDescriptorSetConfiguration<IDescriptor> descriptorConfiguration = new BasicDescriptorSetConfiguration<>();
+				descriptorConfiguration.addAll(mesh.getDescriptors());
+
+				descriptorPool = DescriptorPool.alloc(stack, logicalDevice,
+						Collections.singletonList(descriptorConfiguration));
+			}
+		}
+
 		imageViewManager = new ImageViewManager(logicalDevice);
-		renderPass = new RenderPass(logicalDevice, depthResource);
 		pipeline = new GraphicPipeline(logicalDevice, configuration);
+		renderPass = new RenderPass(logicalDevice, depthResource, pipeline, mesh, descriptorPool);
 		framebuffers = new Framebuffers(logicalDevice, depthResource);
 
 		renderFinishedSemaphore = new VkSemaphore(logicalDevice);
@@ -77,11 +88,6 @@ public class SwapPipeline
 		frameSubmission = new FrameSubmission();
 
 		logicalDevice.attachSwapPipeline(this);
-	}
-
-	public void attachMesh(Mesh mesh)
-	{
-		this.mesh = mesh;
 	}
 
 	public void load(long surface, int width, int height)
@@ -93,27 +99,24 @@ public class SwapPipeline
 			depthResource.load(width, height);
 		}
 
-		if (uniformBufferObject != null || texture != null)
+		List<Shader> shaders = null;
+		if (mesh != null)
 		{
-			try (MemoryStack stack = stackPush())
-			{
-				BasicDescriptorSetConfiguration<IDescriptor> configuration = new BasicDescriptorSetConfiguration<>();
-				if (uniformBufferObject != null) configuration.add(uniformBufferObject);
-				if (texture != null) configuration.add(texture);
-
-				descriptorPool = DescriptorPool.alloc(stack, logicalDevice,
-						Collections.singletonList(configuration));
-			}
+			shaders = mesh.getShaders();
+		}
+		else
+		{
+			shaders = Collections.emptyList();
 		}
 
 		imageViewManager.load(swapChainManager);
 		renderPass.load(swapChainManager);
-		pipeline.load(swapChainManager, mesh.getShaders(), renderPass, descriptorPool);
+		if (mesh != null) pipeline.load(swapChainManager, shaders, renderPass, descriptorPool);
 		framebuffers.load(swapChainManager, imageViewManager, renderPass);
 
-		commandBuffers = new GraphicCommandBuffers(commandPool, configuration, this,
-				mesh.getIndexBuffer());
+		commandBuffers = new GraphicCommandBuffers(commandPool, configuration, this);
 		commandBuffers.load();
+		renderPass.rebuildRenderPass(commandBuffers.getCommandBuffers());
 		frameSubmission.load(commandBuffers.size(), swapChainManager, commandBuffers,
 				imageAvailableSemaphore, renderFinishedSemaphore);
 	}
@@ -127,8 +130,6 @@ public class SwapPipeline
 		}
 
 		if (descriptorPool != null) descriptorPool.destroy();
-		if (full && uniformBufferObject != null) uniformBufferObject.free();
-		if (full && texture != null) texture.free();
 		if (full && mesh != null) mesh.free();
 		if (depthResource != null) depthResource.free();
 		frameSubmission.free();
@@ -183,15 +184,5 @@ public class SwapPipeline
 				UINT64_MAX, imageAvailableSemaphore.getId(), VK_NULL_HANDLE, nextImageArray);
 
 		return nextImageArray[0];
-	}
-
-	public void attachUniformBuffer(UniformBufferObject ubo)
-	{
-		this.uniformBufferObject = ubo;
-	}
-
-	public void attachTexture(Texture texture)
-	{
-		this.texture = texture;
 	}
 }
