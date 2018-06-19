@@ -14,7 +14,6 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.game.vulkan.buffer.Buffer;
-import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager.Extent2D;
@@ -45,20 +44,6 @@ public class UniformBufferObject implements IDescriptor
 
 		buffer = Buffer.alloc(logicalDevice, SIZE_OF, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
-	}
-
-	@Deprecated
-	/** @TODO Remove **/
-	public void load(DescriptorSet descriptorSet)
-	{
-		// LongBuffer bLayouts = MemoryUtil.memAllocLong(1);
-		// bLayouts.put(descriptorSet.getLayoutId());
-		// bLayouts.flip();
-		//
-		// VkPipelineLayoutCreateInfo pipelineLayoutInfo =
-		// VkPipelineLayoutCreateInfo.calloc();
-		// pipelineLayoutInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
-		// pipelineLayoutInfo.pSetLayouts(bLayouts);
 	}
 
 	private ByteBuffer allocBuffer()
