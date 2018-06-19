@@ -20,6 +20,7 @@ public class ImageBuffer
 	private int width;
 	private int height;
 
+	private long size;
 	protected long imageId;
 	protected long imageMemoryId;
 
@@ -78,6 +79,7 @@ public class ImageBuffer
 		VkMemoryRequirements memRequirements = VkMemoryRequirements.calloc();
 		vkGetImageMemoryRequirements(logicalDevice.getVkDevice(), imageId, memRequirements);
 
+		this.size = memRequirements.size();
 		VkMemoryAllocateInfo allocInfo = VkMemoryAllocateInfo.calloc();
 		allocInfo.sType(VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO);
 		allocInfo.allocationSize(memRequirements.size());
@@ -225,5 +227,10 @@ public class ImageBuffer
 	{
 		vkDestroyImage(logicalDevice.getVkDevice(), imageId, null);
 		vkFreeMemory(logicalDevice.getVkDevice(), imageMemoryId, null);
+	}
+
+	public long getSize()
+	{
+		return size;
 	}
 }

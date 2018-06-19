@@ -3,7 +3,6 @@ package org.sheepy.lily.game.vulkan.descriptor;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
-import java.util.Collection;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
@@ -23,10 +22,10 @@ public class DescriptorSet
 	public static final DescriptorSet alloc(MemoryStack stack,
 			LogicalDevice logicalDevice,
 			DescriptorPool pool,
-			Collection<IDescriptor> descriptors)
+			IDescriptorSetConfiguration<?> configuration)
 	{
 		DescriptorSet res = new DescriptorSet(logicalDevice);
-		res.load(stack, pool, descriptors);
+		res.load(stack, pool, configuration);
 		return res;
 	}
 
@@ -35,10 +34,10 @@ public class DescriptorSet
 		this.logicalDevice = logicalDevice;
 	}
 
-	private void load(MemoryStack stack, DescriptorPool pool, Collection<IDescriptor> descriptors)
+	private void load(MemoryStack stack, DescriptorPool pool, IDescriptorSetConfiguration<?> configuration)
 	{
 		VkDescriptorSetLayoutBinding.Buffer layoutBindings = createLayoutBinding(stack,
-				descriptors);
+				configuration);
 
 		VkDescriptorSetLayoutCreateInfo layoutInfo = VkDescriptorSetLayoutCreateInfo
 				.callocStack(stack);
@@ -70,18 +69,18 @@ public class DescriptorSet
 		}
 		descriptorSetId = aDescriptorSet[0];
 
-		updateDescriptorSet(stack, descriptors);
+		updateDescriptorSet(stack, configuration);
 	}
 
 	private VkDescriptorSetLayoutBinding.Buffer createLayoutBinding(MemoryStack stack,
-			Collection<IDescriptor> descriptors)
+			IDescriptorSetConfiguration<?> configuration)
 	{
 		VkDescriptorSetLayoutBinding.Buffer layoutBindings = VkDescriptorSetLayoutBinding
-				.callocStack(descriptors.size(), stack);
+				.callocStack(configuration.size(), stack);
 
 		int index = 0;
 
-		for (IDescriptor provider : descriptors)
+		for (IDescriptor provider : configuration)
 		{
 			VkDescriptorSetLayoutBinding layoutBinding = provider.allocLayoutBinding(stack);
 			layoutBinding.binding(index++);
@@ -92,13 +91,13 @@ public class DescriptorSet
 		return layoutBindings;
 	}
 
-	private void updateDescriptorSet(MemoryStack stack, Collection<IDescriptor> descriptors)
+	private void updateDescriptorSet(MemoryStack stack, IDescriptorSetConfiguration<?> configuration)
 	{
 		VkWriteDescriptorSet.Buffer descriptorWrites = VkWriteDescriptorSet
-				.callocStack(descriptors.size(), stack);
+				.callocStack(configuration.size(), stack);
 		int index = 0;
 
-		for (IDescriptor descriptor : descriptors)
+		for (IDescriptor descriptor : configuration)
 		{
 			VkWriteDescriptorSet allocWriteDescriptor = descriptor.allocWriteDescriptor(stack);
 			allocWriteDescriptor.dstSet(descriptorSetId);

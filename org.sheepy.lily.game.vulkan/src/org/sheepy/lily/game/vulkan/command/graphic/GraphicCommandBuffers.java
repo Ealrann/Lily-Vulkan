@@ -60,7 +60,7 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 		}
 
 		commandBuffers = Collections.unmodifiableList(commandBuffers);
-		
+
 		rebuildRenderPass(commandBuffers, renderPass, graphicsPipeline, indexBuffer,
 				descriptorPool);
 
@@ -92,7 +92,7 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 
 			if (descriptorPool != null)
 			{
-				LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorPool.getSize());
+				LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorPool.size());
 				for (DescriptorSet descriptorSet : descriptorPool)
 				{
 					bDescriptorSet.put(descriptorSet.getId());

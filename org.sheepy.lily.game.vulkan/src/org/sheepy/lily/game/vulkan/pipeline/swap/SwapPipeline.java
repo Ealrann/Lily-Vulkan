@@ -4,8 +4,7 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
 import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.game.vulkan.UniformBufferObject;
@@ -13,6 +12,7 @@ import org.sheepy.lily.game.vulkan.buffer.DepthResource;
 import org.sheepy.lily.game.vulkan.buffer.Mesh;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.command.graphic.GraphicCommandBuffers;
+import org.sheepy.lily.game.vulkan.descriptor.BasicDescriptorSetConfiguration;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
@@ -30,18 +30,18 @@ public class SwapPipeline
 	 */
 	private static final long UINT64_MAX = 0xFFFFFFFFFFFFFFFFL;
 
-	private LogicalDevice logicalDevice;
-	private CommandPool commandPool;
+	protected LogicalDevice logicalDevice;
+	protected CommandPool commandPool;
 	private SwapConfiguration configuration;
 
-	private SwapChainManager swapChainManager;
-	private ImageViewManager imageViewManager;
-	private RenderPass renderPass;
-	private GraphicPipeline pipeline;
-	private Framebuffers framebuffers;
-	private GraphicCommandBuffers commandBuffers;
-	private FrameSubmission frameSubmission;
-	private DescriptorPool descriptorPool;
+	protected SwapChainManager swapChainManager;
+	protected ImageViewManager imageViewManager;
+	protected RenderPass renderPass;
+	protected GraphicPipeline pipeline;
+	protected Framebuffers framebuffers;
+	protected GraphicCommandBuffers commandBuffers;
+	protected FrameSubmission frameSubmission;
+	protected DescriptorPool descriptorPool;
 
 	private DepthResource depthResource = null;
 
@@ -97,11 +97,12 @@ public class SwapPipeline
 		{
 			try (MemoryStack stack = stackPush())
 			{
-				Collection<IDescriptor> descriptors = new ArrayList<>();
-				if (uniformBufferObject != null) descriptors.add(uniformBufferObject);
-				if (texture != null) descriptors.add(texture);
+				BasicDescriptorSetConfiguration<IDescriptor> configuration = new BasicDescriptorSetConfiguration<>();
+				if (uniformBufferObject != null) configuration.add(uniformBufferObject);
+				if (texture != null) configuration.add(texture);
 
-				descriptorPool = DescriptorPool.alloc(stack, logicalDevice, descriptors);
+				descriptorPool = DescriptorPool.alloc(stack, logicalDevice,
+						Collections.singletonList(configuration));
 			}
 		}
 

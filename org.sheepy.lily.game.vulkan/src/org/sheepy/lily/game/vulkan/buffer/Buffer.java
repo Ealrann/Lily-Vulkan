@@ -140,5 +140,4 @@ public class Buffer
 		// Now, we execute the command
 		stc.end();
 	}
-
 }
