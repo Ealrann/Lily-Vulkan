@@ -16,7 +16,7 @@ import org.sheepy.lily.game.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 import org.sheepy.lily.game.vulkan.util.VkSemaphore;
 
-public class FrameSumissionInfo
+public class FrameSuBmissionInfo
 {
 	private int imageIndex;
 	private SwapChainManager swapChain;
@@ -33,7 +33,7 @@ public class FrameSumissionInfo
 	private IntBuffer bImageIndex;
 	private LongBuffer bSwapChains;
 
-	public FrameSumissionInfo(int imageIndex, SwapChainManager swapChain,
+	public FrameSuBmissionInfo(int imageIndex, SwapChainManager swapChain,
 			RenderCommandBuffer commandBuffer, VkSemaphore imageAvailableSemaphore,
 			VkSemaphore renderFinishedSemaphore)
 	{

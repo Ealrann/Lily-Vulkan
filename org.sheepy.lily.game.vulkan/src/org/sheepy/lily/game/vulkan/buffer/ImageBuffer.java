@@ -104,6 +104,15 @@ public class ImageBuffer
 			VkQueue queue,
 			int format,
 			int oldLayout,
+			int newLayout)
+	{
+		transitionImageLayout(commandPool, queue, format, oldLayout, newLayout, 1);
+	}
+
+	public void transitionImageLayout(CommandPool commandPool,
+			VkQueue queue,
+			int format,
+			int oldLayout,
 			int newLayout,
 			int mipLevels)
 	{
@@ -178,7 +187,7 @@ public class ImageBuffer
 
 		singleTimeCommand.end();
 	}
-	
+
 	private boolean hasStencilComponent(int format)
 	{
 		return format == VK_FORMAT_D32_SFLOAT_S8_UINT || format == VK_FORMAT_D24_UNORM_S8_UINT;
@@ -253,5 +262,5 @@ public class ImageBuffer
 		if (imageId != other.imageId) return false;
 		return true;
 	}
-	
+
 }

@@ -29,7 +29,7 @@ public class Framebuffers
 	}
 
 	public void load(SwapChainManager swapChain,
-			ImageViewManager imageViews, RenderPass renderPass)
+			ImageViewManager imageViews, IRenderPass renderPass)
 	{
 		List<ImageView> aImageViews = imageViews.getImageViews();
 		framebuffersIds = new ArrayList<>(aImageViews.size());

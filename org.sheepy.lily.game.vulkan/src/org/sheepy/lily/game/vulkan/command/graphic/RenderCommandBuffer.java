@@ -8,7 +8,7 @@ import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
 import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.pipeline.swap.RenderPass;
+import org.sheepy.lily.game.vulkan.pipeline.swap.IRenderPass;
 import org.sheepy.lily.game.vulkan.pipeline.swap.SwapConfiguration;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager.Extent2D;
 
@@ -17,10 +17,11 @@ public class RenderCommandBuffer extends AbstractCommandBuffer
 	private SwapConfiguration configuration;
 	private long framebufferId;
 	private Extent2D extent;
-	private RenderPass renderPass;
+	private IRenderPass renderPass;
 
-	public RenderCommandBuffer(LogicalDevice logicalDevice, long commandBufferId, SwapConfiguration configuration,
-			long framebufferId, Extent2D extent, RenderPass renderPass)
+	public RenderCommandBuffer(LogicalDevice logicalDevice, long commandBufferId,
+			SwapConfiguration configuration, long framebufferId, Extent2D extent,
+			IRenderPass renderPass)
 	{
 		super(logicalDevice, commandBufferId);
 		this.configuration = configuration;
@@ -73,7 +74,7 @@ public class RenderCommandBuffer extends AbstractCommandBuffer
 		clearColor.free();
 		renderPassInfo.free();
 		beginInfo.free();
-		
+
 		return vkCommandBuffer;
 	}
 

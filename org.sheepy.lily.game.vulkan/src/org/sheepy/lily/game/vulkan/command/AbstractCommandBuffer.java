@@ -16,7 +16,8 @@ public abstract class AbstractCommandBuffer implements ICommandBuffer
 		vkCommandBuffer = new VkCommandBuffer(commandBufferId, logicalDevice.getVkDevice());
 	}
 	
-	public VkCommandBuffer getVkCommandBuffer()
+	@Override
+	public final VkCommandBuffer getVkCommandBuffer()
 	{
 		return vkCommandBuffer;
 	}

@@ -3,6 +3,7 @@ package org.sheepy.lily.game.vulkan.buffer;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkFormatProperties;
+import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.view.ImageView;
 
@@ -15,10 +16,10 @@ public class DepthResource
 
 	private int depthFormat;
 
-	public static final DepthResource alloc(LogicalDevice logicalDevice, int width, int height)
+	public static final DepthResource alloc(LogicalDevice logicalDevice, CommandPool commandPool, int width, int height)
 	{
 		DepthResource res = new DepthResource(logicalDevice);
-		res.load(width, height);
+		res.load(commandPool, width, height);
 		return res;
 	}
 
@@ -30,14 +31,14 @@ public class DepthResource
 		depthImageView = new ImageView(logicalDevice);
 	}
 
-	public void load(int width, int height)
+	public void load(CommandPool commandPool, int width, int height)
 	{
 		depthFormat = findDepthFormat();
 		depthImage.createImage(width, height, 1, depthFormat, VK_IMAGE_TILING_OPTIMAL,
 				VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 		depthImageView.load(depthImage.getId(), 1, depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT);
 
-		depthImage.transitionImageLayout(logicalDevice.getCommandPool(),
+		depthImage.transitionImageLayout(commandPool,
 				logicalDevice.getQueueManager().getGraphicQueue(), depthFormat,
 				VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
 	}

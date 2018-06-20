@@ -8,7 +8,7 @@ import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.pipeline.swap.RenderPass;
+import org.sheepy.lily.game.vulkan.pipeline.swap.IRenderPass;
 import org.sheepy.lily.game.vulkan.pipeline.swap.SwapConfiguration;
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.graphic.impl.BasicColorBlendState;
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.graphic.impl.BasicDepthStencilState;
@@ -54,7 +54,7 @@ public class GraphicPipeline
 
 	public void load(SwapChainManager swapChainManager,
 			List<Shader> shaders,
-			RenderPass renderPass,
+			IRenderPass renderPass,
 			DescriptorPool descriptorPool)
 	{
 		// Create Pipeline Layout

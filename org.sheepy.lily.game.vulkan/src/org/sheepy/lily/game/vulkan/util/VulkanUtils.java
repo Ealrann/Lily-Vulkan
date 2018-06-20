@@ -69,6 +69,7 @@ public class VulkanUtils
 		createInfo.flags(VK_DEBUG_REPORT_ERROR_BIT_EXT | VK_DEBUG_REPORT_WARNING_BIT_EXT);
 		createInfo.pfnCallback(new VkDebugReportCallbackEXT()
 		{
+			@Override
 			public int invoke(int flags,
 					int objectType,
 					long object,

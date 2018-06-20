@@ -7,6 +7,8 @@ import static org.lwjgl.vulkan.KHRSwapchain.VK_KHR_SWAPCHAIN_EXTENSION_NAME;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
@@ -16,11 +18,12 @@ import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.device.PhysicalDeviceSelector;
 import org.sheepy.lily.game.vulkan.device.PhysicalDeviceWrapper;
+import org.sheepy.lily.game.vulkan.pipeline.IPipelinePool;
 import org.sheepy.lily.game.vulkan.util.VulkanUtils;
 import org.sheepy.lily.game.vulkan.window.IWindowListener;
 import org.sheepy.lily.game.vulkan.window.Window;
 
-public class VulkanApplication
+public abstract class VulkanApplication
 {
 	public static boolean DEBUG = true;
 	private static final ByteBuffer[] LAYERS_TO_ENABLE = {
@@ -31,12 +34,14 @@ public class VulkanApplication
 			VK_KHR_SWAPCHAIN_EXTENSION_NAME
 	};
 
-	private VkInstance vkInstance;
-	private PhysicalDeviceWrapper physicalDevice;
+	protected VkInstance vkInstance;
+	protected PhysicalDeviceWrapper physicalDevice;
+	protected LogicalDevice logicalDevice = null;
+
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames;
 
-	private LogicalDevice logicalDevice = null;
+	public List<IPipelinePool> pipelinePools = new ArrayList<>();
 
 	private int width;
 	private int height;
@@ -50,8 +55,20 @@ public class VulkanApplication
 
 	public void run()
 	{
+		loadPipelinePool();
 		mainLoop();
 		cleanup();
+	}
+
+	private void loadPipelinePool()
+	{
+		try (MemoryStack stack = stackPush())
+		{
+			for (IPipelinePool pipelinePool : pipelinePools)
+			{
+				pipelinePool.load(stack, window.getSurface(), width, height);
+			}
+		}
 	}
 
 	public LogicalDevice initLogicalDevice()
@@ -69,7 +86,8 @@ public class VulkanApplication
 				@Override
 				public void onWindowResize(long surface, int width, int height)
 				{
-					logicalDevice.recreateSwapChain(surface, width, height);
+					logicalDevice.createQueues(surface, width, height);
+					resizePipelinePools(surface, width, height);
 				}
 			});
 			createInstance(stack);
@@ -123,11 +141,12 @@ public class VulkanApplication
 		logicalDevice.waitIdle();
 	}
 
-	public void drawFrame()
+	private void resizePipelinePools(long surface, int width, int height)
 	{
-		vkQueueWaitIdle(logicalDevice.getQueueManager().getPresentQueue());
-
-		logicalDevice.draw();
+		for (IPipelinePool pipelinePool : pipelinePools)
+		{
+			pipelinePool.resize(surface, width, height);
+		}
 	}
 
 	protected void updateAppState()
@@ -191,6 +210,11 @@ public class VulkanApplication
 
 	public void cleanup()
 	{
+		for (IPipelinePool pipelinePool : pipelinePools)
+		{
+			pipelinePool.free();
+		}
+
 		logicalDevice.free();
 
 		if (DEBUG)
@@ -210,4 +234,11 @@ public class VulkanApplication
 	{
 		return window;
 	}
+
+	public void attachPipelinePool(IPipelinePool pipelinePool)
+	{
+		pipelinePools.add(pipelinePool);
+	}
+
+	public abstract void drawFrame();
 }

@@ -16,7 +16,6 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.game.vulkan.buffer.Buffer;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager.Extent2D;
 import org.sheepy.lily.game.vulkan.util.SizeOf;
 
 public class UniformBufferObject implements IDescriptor
@@ -67,10 +66,11 @@ public class UniformBufferObject implements IDescriptor
 
 		view.identity().lookAt(EYE_LOCATION, CENTER_LOCATION, UP_AXIS);
 
-		Extent2D extent = logicalDevice.getSwapPipeline().getSwapChain().getExtent();
+		int width = logicalDevice.getWidth();
+		int height = logicalDevice.getHeight();
 
 		proj.identity().perspective(RADIANS_45,
-				(float) extent.getWidth() / (float) extent.getHeight(), 0.1f, 10f);
+				(float) width / (float) height, 0.1f, 10f);
 		// inverse the y axis
 		proj.mul(new Matrix4f().m11(-1f));
 

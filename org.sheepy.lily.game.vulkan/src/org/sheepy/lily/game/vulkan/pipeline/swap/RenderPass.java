@@ -13,57 +13,43 @@ import org.lwjgl.vulkan.VkRenderPassCreateInfo;
 import org.lwjgl.vulkan.VkSubpassDependency;
 import org.lwjgl.vulkan.VkSubpassDescription;
 import org.sheepy.lily.game.vulkan.buffer.DepthResource;
-import org.sheepy.lily.game.vulkan.buffer.IndexBuffer;
 import org.sheepy.lily.game.vulkan.buffer.Mesh;
-import org.sheepy.lily.game.vulkan.command.graphic.RenderCommandBuffer;
+import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.GraphicPipeline;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 
-public class RenderPass
+public class RenderPass implements IRenderPass
 {
 	private LogicalDevice logicalDevice;
 	private DepthResource depthResource;
 	private Mesh mesh;
 	private DescriptorPool descriptorPool;
-	private GraphicPipeline graphicsPipeline;
-	
+
 	private long renderPass;
 
-	public RenderPass(LogicalDevice logicalDevice, DepthResource depthResource,
-			GraphicPipeline graphicsPipeline, Mesh mesh, DescriptorPool descriptorPool)
+	public RenderPass(LogicalDevice logicalDevice, DepthResource depthResource, Mesh mesh,
+			DescriptorPool descriptorPool)
 	{
 		this.logicalDevice = logicalDevice;
 		this.depthResource = depthResource;
 		this.mesh = mesh;
 		this.descriptorPool = descriptorPool;
-		this.graphicsPipeline = graphicsPipeline;
 	}
 
-	public void rebuildRenderPass(List<RenderCommandBuffer> commandBuffers)
+	public void buildRenderPass(List<? extends AbstractCommandBuffer> commandBuffers,
+			GraphicPipeline graphicsPipeline)
 	{
-		IndexBuffer indexBuffer = mesh.getIndexBuffer();
-		long[] vertexBuffers = new long[] {
-				indexBuffer.getBufferId()
-		};
-		long[] offsets = {
-				0
-		};
-
-		for (RenderCommandBuffer commandBuffer : commandBuffers)
+		for (AbstractCommandBuffer commandBuffer : commandBuffers)
 		{
 			commandBuffer.start();
 
 			vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_GRAPHICS,
 					graphicsPipeline.getId());
 
-			// TODO decoupler ce code
-			vkCmdBindVertexBuffers(commandBuffer.getVkCommandBuffer(), 0, vertexBuffers, offsets);
-			vkCmdBindIndexBuffer(commandBuffer.getVkCommandBuffer(), indexBuffer.getIndexBufferId(),
-					0, VK_INDEX_TYPE_UINT32);
-			// endTODO
+			mesh.bindBufferForRender(commandBuffer);
 
 			if (descriptorPool != null)
 			{
@@ -78,15 +64,13 @@ public class RenderPass
 						bDescriptorSet, null);
 			}
 
-			// TODO decoupler ce code
-			vkCmdDrawIndexed(commandBuffer.getVkCommandBuffer(), indexBuffer.indexCount(), 1, 0, 0,
-					0);
-			// endTODO
+			mesh.draw(commandBuffer);
 
 			commandBuffer.end();
 		}
 	}
 
+	@Override
 	public void load(SwapChainManager swapChain)
 	{
 		VkAttachmentDescription colorAttachment = VkAttachmentDescription.calloc();
@@ -172,11 +156,13 @@ public class RenderPass
 		colorAttachment.free();
 	}
 
+	@Override
 	public long getID()
 	{
 		return renderPass;
 	}
 
+	@Override
 	public void free()
 	{
 		vkDestroyRenderPass(logicalDevice.getVkDevice(), renderPass, null);

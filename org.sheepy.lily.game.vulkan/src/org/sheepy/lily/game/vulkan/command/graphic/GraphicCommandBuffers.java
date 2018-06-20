@@ -6,19 +6,19 @@ import java.util.List;
 
 import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
+import org.sheepy.lily.game.vulkan.pipeline.swap.AbstractSwapPipeline;
 import org.sheepy.lily.game.vulkan.pipeline.swap.Framebuffers;
-import org.sheepy.lily.game.vulkan.pipeline.swap.RenderPass;
+import org.sheepy.lily.game.vulkan.pipeline.swap.IRenderPass;
 import org.sheepy.lily.game.vulkan.pipeline.swap.SwapConfiguration;
-import org.sheepy.lily.game.vulkan.pipeline.swap.SwapPipeline;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 
 public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandBuffer>
 {
 	private SwapConfiguration configuration;
-	private SwapPipeline swapPipeline;
+	private AbstractSwapPipeline swapPipeline;
 
 	public GraphicCommandBuffers(CommandPool commandPool, SwapConfiguration configuration,
-			SwapPipeline swapPipeline)
+			AbstractSwapPipeline swapPipeline)
 	{
 		super(commandPool);
 		this.configuration = configuration;
@@ -30,7 +30,7 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 	{
 		Framebuffers framebuffers = swapPipeline.getFramebuffers();
 		SwapChainManager swapChain = swapPipeline.getSwapChain();
-		RenderPass renderPass = swapPipeline.getRenderPass();
+		IRenderPass renderPass = swapPipeline.getRenderPass();
 
 		long commandPoolId = commandPool.getId();
 

@@ -7,6 +7,7 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkQueue;
+import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.IVertexDescriptor;
 
@@ -25,16 +26,17 @@ public class IndexBuffer
 		this.logicalDevice = logicalDevice;
 	}
 
-	public <T extends IVertex> void allocIndexBuffer(VkQueue queue,
+	public <T extends IVertex> void allocIndexBuffer(CommandPool commandPool,
+			VkQueue queue,
 			IVertexDescriptor<T> vertexDescriptor,
 			T[] vertices,
 			int[] indices)
 	{
-		allocIndexBuffer(queue, indices);
-		allocIVertexBuffer(queue, vertexDescriptor, vertices);
+		allocIndexBuffer(commandPool, queue, indices);
+		allocIVertexBuffer(commandPool, queue, vertexDescriptor, vertices);
 	}
 
-	private void allocIndexBuffer(VkQueue queue, int[] indices)
+	private void allocIndexBuffer(CommandPool commandPool, VkQueue queue, int[] indices)
 	{
 		ByteBuffer verticeBuffer = allocBuffer(indices);
 		indexCount = indices.length;
@@ -51,14 +53,14 @@ public class IndexBuffer
 				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		Buffer.copyBuffer(logicalDevice, queue, stagingBuffer.getId(),
-				indexBuffer.getId(), byteSize);
+		Buffer.copyBuffer(commandPool, queue, stagingBuffer.getId(), indexBuffer.getId(), byteSize);
 
 		stagingBuffer.free();
 		MemoryUtil.memFree(verticeBuffer);
 	}
 
-	private <T extends IVertex> void allocIVertexBuffer(VkQueue queue,
+	private <T extends IVertex> void allocIVertexBuffer(CommandPool commandPool,
+			VkQueue queue,
 			IVertexDescriptor<T> vertexDescriptor,
 			T[] vertices)
 	{
@@ -77,8 +79,7 @@ public class IndexBuffer
 				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		Buffer.copyBuffer(logicalDevice, queue, stagingBuffer.getId(), buffer.getId(),
-				byteSize);
+		Buffer.copyBuffer(commandPool, queue, stagingBuffer.getId(), buffer.getId(), byteSize);
 
 		stagingBuffer.free();
 		MemoryUtil.memFree(verticeBuffer);

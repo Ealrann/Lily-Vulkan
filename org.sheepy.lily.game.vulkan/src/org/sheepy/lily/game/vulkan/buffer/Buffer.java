@@ -13,6 +13,7 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
 import org.lwjgl.vulkan.VkQueue;
+import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.command.SingleTimeCommand;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
@@ -84,8 +85,8 @@ public class Buffer
 
 		vkBindBufferMemory(logicalDevice.getVkDevice(), bufferId, bufferMemoryId, 0);
 
-//		System.out.println(Long.toHexString(bufferMemoryId));
-		
+		// System.out.println(Long.toHexString(bufferMemoryId));
+
 		bufferInfo.free();
 		allocInfo.free();
 		memRequirements.free();
@@ -122,13 +123,13 @@ public class Buffer
 		MemoryUtil.memFree(pBuffer);
 	}
 
-	public static void copyBuffer(LogicalDevice logicalDevice,
+	public static void copyBuffer(CommandPool commandPool,
 			VkQueue queue,
 			long srcBuffer,
 			long dstBuffer,
 			int size)
 	{
-		SingleTimeCommand stc = logicalDevice.getCommandPool().newSingleTimeCommand(queue);
+		SingleTimeCommand stc = commandPool.newSingleTimeCommand(queue);
 		VkCommandBuffer vkCommandBuffer = stc.start();
 
 		VkBufferCopy.Buffer copyRegion = VkBufferCopy.calloc(1);

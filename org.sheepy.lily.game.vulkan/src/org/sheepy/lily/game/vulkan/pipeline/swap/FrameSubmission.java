@@ -11,7 +11,7 @@ import org.sheepy.lily.game.vulkan.util.VkSemaphore;
 
 public class FrameSubmission
 {
-	private List<FrameSumissionInfo> infos = null;
+	private List<FrameSuBmissionInfo> infos = null;
 
 	public void load(int frameCount,
 			SwapChainManager swapChain,
@@ -22,7 +22,7 @@ public class FrameSubmission
 		infos = new ArrayList<>();
 		for (int i = 0; i < frameCount; i++)
 		{
-			infos.add(new FrameSumissionInfo(i, swapChain, commandBuffers.get(i),
+			infos.add(new FrameSuBmissionInfo(i, swapChain, commandBuffers.get(i),
 					imageAvailableSemaphore, renderFinishedSemaphore));
 		}
 	}
@@ -39,7 +39,7 @@ public class FrameSubmission
 
 	public void free()
 	{
-		for (FrameSumissionInfo info : infos)
+		for (FrameSuBmissionInfo info : infos)
 		{
 			info.free();
 		}
