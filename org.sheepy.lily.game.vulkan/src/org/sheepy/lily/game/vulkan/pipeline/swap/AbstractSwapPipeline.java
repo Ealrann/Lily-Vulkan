@@ -4,7 +4,6 @@ import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
 import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
 
 import org.sheepy.lily.game.vulkan.buffer.DepthResource;
-import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.command.graphic.GraphicCommandBuffers;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
@@ -139,6 +138,5 @@ public abstract class AbstractSwapPipeline
 		return nextImageArray[0];
 	}
 
-	public abstract void bind(AbstractCommandBuffer commandBuffer);
 	protected abstract IRenderPass buildRenderPass();
 }

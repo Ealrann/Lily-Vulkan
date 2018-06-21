@@ -148,7 +148,7 @@ public class QueueManager implements Iterable<Integer>
 		return graphicQueue;
 	}
 
-	public VkQueue getComuteQueue()
+	public VkQueue getComputeQueue()
 	{
 		return computeQueue;
 	}

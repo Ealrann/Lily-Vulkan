@@ -27,9 +27,6 @@ public class BasicRenderPipelinePool implements IPipelinePool
 		}
 	}
 
-	public void load(MemoryStack stack)
-	{}
-
 	@Override
 	public void load(MemoryStack stack, long surface, int width, int height)
 	{

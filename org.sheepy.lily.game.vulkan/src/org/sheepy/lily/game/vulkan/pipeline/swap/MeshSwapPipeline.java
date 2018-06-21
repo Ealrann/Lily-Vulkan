@@ -1,14 +1,11 @@
 package org.sheepy.lily.game.vulkan.pipeline.swap;
 
 import static org.lwjgl.system.MemoryStack.stackPush;
-import static org.lwjgl.vulkan.VK10.VK_PIPELINE_BIND_POINT_GRAPHICS;
-import static org.lwjgl.vulkan.VK10.vkCmdBindPipeline;
 
 import java.util.Collections;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.game.vulkan.buffer.Mesh;
-import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.descriptor.BasicDescriptorSetConfiguration;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
@@ -80,14 +77,5 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 	public DescriptorPool getDescriptorPool()
 	{
 		return descriptorPool;
-	}
-
-	@Override
-	public void bind(AbstractCommandBuffer commandBuffer)
-	{
-		vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_GRAPHICS, graphicPipeline.getId());
-		
-		mesh.bindBufferForRender(commandBuffer);
-		
 	}
 }
