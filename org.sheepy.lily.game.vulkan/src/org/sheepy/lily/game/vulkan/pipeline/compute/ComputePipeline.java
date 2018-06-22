@@ -2,8 +2,8 @@ package org.sheepy.lily.game.vulkan.pipeline.compute;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
@@ -15,26 +15,29 @@ import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
 public class ComputePipeline
 {
-	private LogicalDevice logicalDevice;
-	private CommandPool commandPool;
+	protected LogicalDevice logicalDevice;
+	protected CommandPool commandPool;
 
-	private Collection<ComputerPool> computerPools = null;
+	private Collection<ComputerPool> computerPools = new ArrayList<>();
 
-	private DescriptorPool descriptorPool;
-	private long pipeline;
-	private long pipelineLayout;
-	private ComputeCommandBuffers commandBuffers;
+	protected DescriptorPool descriptorPool;
+	protected long pipeline;
+	protected long pipelineLayout;
+	protected ComputeCommandBuffers commandBuffers;
 
 	public ComputePipeline(LogicalDevice logicalDevice, CommandPool commandPool)
 	{
 		this.logicalDevice = logicalDevice;
 		this.commandPool = commandPool;
 	}
-
-	public void load(Collection<ComputerPool> computerPools)
+	
+	public void attachComputerPool(ComputerPool computerPool)
 	{
-		this.computerPools = Collections.unmodifiableCollection(computerPools);
+		computerPools.add(computerPool);
+	}
 
+	public void load()
+	{
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
 			descriptorPool = DescriptorPool.alloc(stack, logicalDevice, computerPools);
@@ -113,6 +116,7 @@ public class ComputePipeline
 				computer.free();
 			}
 		}
+		computerPools.clear();
 
 		commandBuffers.free();
 
