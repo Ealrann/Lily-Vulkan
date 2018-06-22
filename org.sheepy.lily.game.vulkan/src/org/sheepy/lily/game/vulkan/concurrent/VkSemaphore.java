@@ -1,4 +1,4 @@
-package org.sheepy.lily.game.vulkan.util;
+package org.sheepy.lily.game.vulkan.concurrent;
 
 import static org.lwjgl.vulkan.VK10.*;
 
