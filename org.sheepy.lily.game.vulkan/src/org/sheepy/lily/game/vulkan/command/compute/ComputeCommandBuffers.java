@@ -5,7 +5,9 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.LongBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.joml.Vector3i;
 import org.lwjgl.system.MemoryUtil;
@@ -23,6 +25,8 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 	private CommandPool commandPool;
 	private ComputePipeline computePipeline;
 	private ComputerPool[] computerPools;
+
+	private Map<ComputerPool, ComputeCommandBuffer> mapBuffers = new HashMap<>();
 
 	public ComputeCommandBuffers(ComputePipeline computePipeline, CommandPool commandPool,
 			Collection<ComputerPool> computerPools)
@@ -59,7 +63,7 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 				LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(1);
 				bDescriptorSet.put(descriptorSet.getId());
 				bDescriptorSet.flip();
-				
+
 				vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(),
 						VK_PIPELINE_BIND_POINT_COMPUTE, pipelineLayout, 0, bDescriptorSet, null);
 				MemoryUtil.memFree(bDescriptorSet);
@@ -79,9 +83,14 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 			commandBuffer.end();
 
 			res.add(commandBuffer);
-
+			mapBuffers.put(computerPool, commandBuffer);
 		}
 
 		return res;
+	}
+
+	public ComputeCommandBuffer getCommandBuffer(ComputerPool computerPool)
+	{
+		return mapBuffers.get(computerPool);
 	}
 }

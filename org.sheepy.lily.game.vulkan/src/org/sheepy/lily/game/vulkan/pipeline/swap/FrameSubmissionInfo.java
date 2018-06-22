@@ -7,50 +7,54 @@ import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_SUBMIT_INFO;
 
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
+import java.util.Collection;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.game.vulkan.command.graphic.RenderCommandBuffer;
+import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
-import org.sheepy.lily.game.vulkan.util.VkSemaphore;
 
-public class FrameSuBmissionInfo
+public class FrameSubmissionInfo
 {
 	private int imageIndex;
 	private SwapChainManager swapChain;
 	private RenderCommandBuffer commandBuffer;
-	private VkSemaphore imageAvailableSemaphore;
-	private VkSemaphore renderFinishedSemaphore;
+	private Collection<VkSemaphore> waitSemaphores;
+	private Collection<VkSemaphore> signalSemaphores;
 
 	private VkSubmitInfo submitInfo;
 	private VkPresentInfoKHR presentInfo;
-	private LongBuffer waitSemaphores;
+	private LongBuffer bWaitSemaphores;
 	private IntBuffer waitStages;
 	private PointerBuffer pCommandBuffers;
-	private LongBuffer signalSemaphores;
+	private LongBuffer bSignalSemaphores;
 	private IntBuffer bImageIndex;
 	private LongBuffer bSwapChains;
 
-	public FrameSuBmissionInfo(int imageIndex, SwapChainManager swapChain,
-			RenderCommandBuffer commandBuffer, VkSemaphore imageAvailableSemaphore,
-			VkSemaphore renderFinishedSemaphore)
+	public FrameSubmissionInfo(int imageIndex, SwapChainManager swapChain,
+			RenderCommandBuffer commandBuffer, Collection<VkSemaphore> waitSemaphores,
+			Collection<VkSemaphore> signalSemaphores)
 	{
 		this.imageIndex = imageIndex;
 		this.swapChain = swapChain;
 		this.commandBuffer = commandBuffer;
-		this.imageAvailableSemaphore = imageAvailableSemaphore;
-		this.renderFinishedSemaphore = renderFinishedSemaphore;
-		
+		this.waitSemaphores = waitSemaphores;
+		this.signalSemaphores = signalSemaphores;
+
 		load();
 	}
 
 	private void load()
 	{
-		waitSemaphores = MemoryUtil.memAllocLong(1);
-		waitSemaphores.put(imageAvailableSemaphore.getId());
-		waitSemaphores.flip();
+		bWaitSemaphores = MemoryUtil.memAllocLong(waitSemaphores.size());
+		for (VkSemaphore waitSemaphore : waitSemaphores)
+		{
+			bWaitSemaphores.put(waitSemaphore.getId());
+		}
+		bWaitSemaphores.flip();
 		waitStages = MemoryUtil.memAllocInt(1);
 		waitStages.put(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
 		waitStages.flip();
@@ -59,29 +63,32 @@ public class FrameSuBmissionInfo
 		pCommandBuffers.put(commandBuffer.getVkCommandBuffer());
 		pCommandBuffers.flip();
 
-		signalSemaphores = MemoryUtil.memAllocLong(1);
-		signalSemaphores.put(renderFinishedSemaphore.getId());
-		signalSemaphores.flip();
+		bSignalSemaphores = MemoryUtil.memAllocLong(signalSemaphores.size());
+		for (VkSemaphore signalSemaphore : signalSemaphores)
+		{
+			bSignalSemaphores.put(signalSemaphore.getId());
+		}
+		bSignalSemaphores.flip();
 
 		submitInfo = VkSubmitInfo.calloc();
 		submitInfo.sType(VK_STRUCTURE_TYPE_SUBMIT_INFO);
 		submitInfo.waitSemaphoreCount(1);
-		submitInfo.pWaitSemaphores(waitSemaphores);
+		submitInfo.pWaitSemaphores(bWaitSemaphores);
 		submitInfo.pWaitDstStageMask(waitStages);
 		submitInfo.pCommandBuffers(pCommandBuffers);
-		submitInfo.pSignalSemaphores(signalSemaphores);
+		submitInfo.pSignalSemaphores(bSignalSemaphores);
 
 		bSwapChains = memAllocLong(1);
 		bSwapChains.put(swapChain.getSwapChain());
 		bSwapChains.flip();
-		
+
 		bImageIndex = MemoryUtil.memAllocInt(1);
 		bImageIndex.put(imageIndex);
 		bImageIndex.flip();
 
 		presentInfo = VkPresentInfoKHR.calloc();
 		presentInfo.sType(VK_STRUCTURE_TYPE_PRESENT_INFO_KHR);
-		presentInfo.pWaitSemaphores(signalSemaphores);
+		presentInfo.pWaitSemaphores(bSignalSemaphores);
 		presentInfo.swapchainCount(1);
 		presentInfo.pSwapchains(bSwapChains);
 		presentInfo.pImageIndices(bImageIndex);
@@ -94,9 +101,9 @@ public class FrameSuBmissionInfo
 		memFree(bSwapChains);
 		memFree(pCommandBuffers);
 		memFree(waitStages);
-		memFree(signalSemaphores);
-		memFree(waitSemaphores);
-		
+		memFree(bSignalSemaphores);
+		memFree(bWaitSemaphores);
+
 		submitInfo.free();
 		presentInfo.free();
 	}

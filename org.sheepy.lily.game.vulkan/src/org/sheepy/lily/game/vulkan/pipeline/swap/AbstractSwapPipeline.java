@@ -3,16 +3,21 @@ package org.sheepy.lily.game.vulkan.pipeline.swap;
 import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
 import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.sheepy.lily.game.vulkan.buffer.DepthResource;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.command.graphic.GraphicCommandBuffers;
+import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
+import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.swapchain.ColorDomain;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
-import org.sheepy.lily.game.vulkan.util.VkSemaphore;
 import org.sheepy.lily.game.vulkan.view.ImageViewManager;
 
-public abstract class AbstractSwapPipeline
+public abstract class AbstractSwapPipeline implements ISignalEmitter
 {
 	/**
 	 * This is just -1L, but it is nicer as a symbolic constant.
@@ -33,7 +38,9 @@ public abstract class AbstractSwapPipeline
 	protected DepthResource depthResource = null;
 
 	protected VkSemaphore imageAvailableSemaphore;
-	protected VkSemaphore renderFinishedSemaphore;
+	private VkSemaphore renderFinishedSemaphore;
+	
+	protected List<VkSemaphore> renderWaitSemaphore = new ArrayList<>();
 
 	/**
 	 * @param logicalDevice
@@ -59,14 +66,27 @@ public abstract class AbstractSwapPipeline
 		imageViewManager = new ImageViewManager(logicalDevice);
 		framebuffers = new Framebuffers(logicalDevice, depthResource);
 
-		renderFinishedSemaphore = new VkSemaphore(logicalDevice);
 		imageAvailableSemaphore = new VkSemaphore(logicalDevice);
 
-		frameSubmission = new FrameSubmission();
+		frameSubmission = buildFrameSubmission();
+	}
+
+	@Override
+	public VkSemaphore newSignalSemaphore()
+	{
+		return imageAvailableSemaphore;
+	}
+	
+	protected FrameSubmission buildFrameSubmission()
+	{
+		return new FrameSubmission(logicalDevice);
 	}
 
 	public void load(long surface, int width, int height)
 	{
+		renderFinishedSemaphore = frameSubmission.newSignalSemaphore();
+		renderWaitSemaphore.add(imageAvailableSemaphore);
+		
 		renderPass = buildRenderPass();
 
 		swapChainManager.load(surface, width, height);
@@ -83,7 +103,7 @@ public abstract class AbstractSwapPipeline
 		commandBuffers = new GraphicCommandBuffers(commandPool, configuration, this);
 		commandBuffers.load();
 		frameSubmission.load(commandBuffers.size(), swapChainManager, commandBuffers,
-				imageAvailableSemaphore, renderFinishedSemaphore);
+				Collections.singletonList(this));
 	}
 
 	public void destroy(boolean full)
@@ -91,9 +111,9 @@ public abstract class AbstractSwapPipeline
 		if (full)
 		{
 			imageAvailableSemaphore.free();
-			renderFinishedSemaphore.free();
 		}
-
+		renderWaitSemaphore.remove(renderFinishedSemaphore);
+		
 		if (depthResource != null) depthResource.free();
 		frameSubmission.free();
 		commandBuffers.free();

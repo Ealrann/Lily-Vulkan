@@ -62,7 +62,7 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 	@Override
 	public void destroy(boolean full)
 	{
-		if (descriptorPool != null) descriptorPool.destroy();
+		if (full && descriptorPool != null) descriptorPool.destroy();
 		if (full && mesh != null) mesh.free();
 		graphicPipeline.free();
 
