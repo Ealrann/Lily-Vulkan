@@ -22,9 +22,6 @@ public class LogicalDevice
 	private QueueManager queueManager;
 	private boolean needComputeCapability;
 
-	private int width = -1;
-	private int height = -1;
-
 	private VkDevice vkDevice;
 
 	public final static LogicalDevice alloc(MemoryStack stack,
@@ -109,11 +106,8 @@ public class LogicalDevice
 		queueManager.loadVkQueues(vkDevice);
 	}
 
-	public void createQueues(long surface, int width, int height)
+	public void createQueues(long surface)
 	{
-		this.width = width;
-		this.height = height;
-
 		waitIdle();
 
 		queueManager.load(physicalDevice.getVkPhysicalDevice(), surface, needComputeCapability);
@@ -143,15 +137,5 @@ public class LogicalDevice
 	public int waitIdle()
 	{
 		return vkDeviceWaitIdle(vkDevice);
-	}
-
-	public int getWidth()
-	{
-		return width;
-	}
-
-	public int getHeight()
-	{
-		return height;
 	}
 }

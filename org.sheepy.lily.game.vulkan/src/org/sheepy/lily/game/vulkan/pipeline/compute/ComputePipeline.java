@@ -4,16 +4,21 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
+import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.command.compute.ComputeCommandBuffers;
+import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
+import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
+import org.sheepy.lily.game.vulkan.pipeline.PipelineSubmission;
 
-public class ComputePipeline
+public class ComputePipeline implements ISignalEmitter
 {
 	protected LogicalDevice logicalDevice;
 	protected CommandPool commandPool;
@@ -25,12 +30,27 @@ public class ComputePipeline
 	protected long pipelineLayout;
 	protected ComputeCommandBuffers commandBuffers;
 
-	public ComputePipeline(LogicalDevice logicalDevice, CommandPool commandPool)
+	private PipelineSubmission submission;
+
+	private List<ISignalEmitter> waitForEmitters;
+
+	public ComputePipeline(LogicalDevice logicalDevice, CommandPool commandPool,
+			Collection<ISignalEmitter> waitForEmitters)
 	{
 		this.logicalDevice = logicalDevice;
 		this.commandPool = commandPool;
+
+		this.waitForEmitters = new ArrayList<>(waitForEmitters);
+
+		submission = new PipelineSubmission(logicalDevice);
 	}
-	
+
+	@Override
+	public VkSemaphore newSignalSemaphore()
+	{
+		return submission.newSignalSemaphore();
+	}
+
 	public void attachComputerPool(ComputerPool computerPool)
 	{
 		computerPools.add(computerPool);
@@ -87,6 +107,8 @@ public class ComputePipeline
 			// Command Buffers
 			commandBuffers = new ComputeCommandBuffers(this, commandPool, computerPools);
 
+			submission.load(commandBuffers, waitForEmitters);
+
 			pipelineCreateInfos.free();
 			pipelineLayoutCreateInfo.free();
 		}
@@ -105,6 +127,11 @@ public class ComputePipeline
 	public long getPipelineLayout()
 	{
 		return pipelineLayout;
+	}
+
+	public VkSubmitInfo getSubmitInfo()
+	{
+		return submission.getSubmitInfo(0);
 	}
 
 	public void free()

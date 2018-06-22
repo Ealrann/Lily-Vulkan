@@ -1,4 +1,4 @@
-package org.sheepy.lily.game.vulkan.pipeline;
+package org.sheepy.lily.game.vulkan.pipeline.swap;
 
 import static org.lwjgl.vulkan.KHRSwapchain.vkQueuePresentKHR;
 import static org.lwjgl.vulkan.VK10.*;
@@ -6,8 +6,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.pipeline.swap.AbstractSwapPipeline;
-import org.sheepy.lily.game.vulkan.pipeline.swap.MeshSwapPipeline;
+import org.sheepy.lily.game.vulkan.pipeline.IPipelinePool;
 
 public class BasicRenderPipelinePool implements IPipelinePool
 {

@@ -29,7 +29,7 @@ public class UniformBufferObject implements IDescriptor
 
 	public static final int SIZE_OF = SizeOf.MATRIX4F * 3;
 
-	private LogicalDevice logicalDevice;
+	private VulkanApplication app;
 
 	private Matrix4f model = new Matrix4f();
 	private Matrix4f view = new Matrix4f();
@@ -37,9 +37,9 @@ public class UniformBufferObject implements IDescriptor
 
 	private Buffer buffer;
 
-	public UniformBufferObject(LogicalDevice logicalDevice)
+	public UniformBufferObject(VulkanApplication app, LogicalDevice logicalDevice)
 	{
-		this.logicalDevice = logicalDevice;
+		this.app = app;
 
 		buffer = Buffer.alloc(logicalDevice, SIZE_OF, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
@@ -66,11 +66,10 @@ public class UniformBufferObject implements IDescriptor
 
 		view.identity().lookAt(EYE_LOCATION, CENTER_LOCATION, UP_AXIS);
 
-		int width = logicalDevice.getWidth();
-		int height = logicalDevice.getHeight();
+		int width = app.getWidth();
+		int height = app.getHeight();
 
-		proj.identity().perspective(RADIANS_45,
-				(float) width / (float) height, 0.1f, 10f);
+		proj.identity().perspective(RADIANS_45, (float) width / (float) height, 0.1f, 10f);
 		// inverse the y axis
 		proj.mul(new Matrix4f().m11(-1f));
 

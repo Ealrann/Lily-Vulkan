@@ -86,7 +86,10 @@ public abstract class VulkanApplication
 				@Override
 				public void onWindowResize(long surface, int width, int height)
 				{
-					logicalDevice.createQueues(surface, width, height);
+					VulkanApplication.this.width = width;
+					VulkanApplication.this.height = height;
+					
+					logicalDevice.createQueues(surface);
 					resizePipelinePools(surface, width, height);
 				}
 			});
@@ -238,6 +241,16 @@ public abstract class VulkanApplication
 	public void attachPipelinePool(IPipelinePool pipelinePool)
 	{
 		pipelinePools.add(pipelinePool);
+	}
+
+	public int getWidth()
+	{
+		return width;
+	}
+	
+	public int getHeight()
+	{
+		return height;
 	}
 
 	public abstract void drawFrame();

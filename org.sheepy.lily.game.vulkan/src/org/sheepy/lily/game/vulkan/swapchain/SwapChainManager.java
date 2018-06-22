@@ -30,10 +30,10 @@ public class SwapChainManager
 	private ColorDomain currentColorDomain;
 	private Extent2D extent;
 
-	public SwapChainManager(LogicalDevice logicalDevice, ColorDomain targetColorDomain)
+	public SwapChainManager(LogicalDevice logicalDevice, ColorDomain colorDomain)
 	{
 		this.logicalDevice = logicalDevice;
-		this.targetColorDomain = targetColorDomain;
+		this.targetColorDomain = colorDomain;
 	}
 
 	public Long load(long surface, int width, int height)

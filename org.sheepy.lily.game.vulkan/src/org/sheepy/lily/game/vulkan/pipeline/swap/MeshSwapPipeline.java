@@ -2,11 +2,13 @@ package org.sheepy.lily.game.vulkan.pipeline.swap;
 
 import static org.lwjgl.system.MemoryStack.stackPush;
 
+import java.util.Collection;
 import java.util.Collections;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.game.vulkan.buffer.Mesh;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
+import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.lily.game.vulkan.descriptor.BasicDescriptorSetConfiguration;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
@@ -21,10 +23,18 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 
 	private Mesh mesh = null;
 
+
 	public MeshSwapPipeline(LogicalDevice logicalDevice, Mesh mesh, SwapConfiguration configuration,
-			CommandPool commandPool, ColorDomain targetColorDomain)
+			CommandPool commandPool, ColorDomain colorDomain)
 	{
-		super(logicalDevice, configuration, commandPool, targetColorDomain);
+		this(logicalDevice, mesh, configuration, commandPool, colorDomain, null);
+	}
+	
+	public MeshSwapPipeline(LogicalDevice logicalDevice, Mesh mesh, SwapConfiguration configuration,
+			CommandPool commandPool, ColorDomain colorDomain,
+			Collection<ISignalEmitter> waitForSignals)
+	{
+		super(logicalDevice, configuration, commandPool, colorDomain, waitForSignals);
 
 		this.mesh = mesh;
 
@@ -56,7 +66,8 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 
 		graphicPipeline.load(swapChainManager, mesh.getShaders(), renderPass, descriptorPool);
 
-		((RenderPass) renderPass).buildRenderPass(commandBuffers.getCommandBuffers(), graphicPipeline);
+		((RenderPass) renderPass).buildRenderPass(commandBuffers.getCommandBuffers(),
+				graphicPipeline);
 	}
 
 	@Override

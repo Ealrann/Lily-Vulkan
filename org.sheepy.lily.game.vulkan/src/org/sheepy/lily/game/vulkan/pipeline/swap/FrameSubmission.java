@@ -1,74 +1,38 @@
 package org.sheepy.lily.game.vulkan.pipeline.swap;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.lwjgl.vulkan.VkPresentInfoKHR;
-import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.game.vulkan.command.graphic.GraphicCommandBuffers;
-import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
-import org.sheepy.lily.game.vulkan.concurrent.SemaphoreManager;
+import org.sheepy.lily.game.vulkan.command.ICommandBuffer;
 import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
+import org.sheepy.lily.game.vulkan.pipeline.PipelineSubmission;
+import org.sheepy.lily.game.vulkan.pipeline.SubmissionInfo;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 
-public class FrameSubmission implements ISignalEmitter
+public class FrameSubmission extends PipelineSubmission
 {
-	private List<FrameSubmissionInfo> infos = null;
+	private SwapChainManager swapChain;
 
-	private SemaphoreManager signalSemaphoreManager;
-
-	public FrameSubmission(LogicalDevice logicalDevice)
+	public FrameSubmission(LogicalDevice logicalDevice, SwapChainManager swapChain)
 	{
-		signalSemaphoreManager = new SemaphoreManager(logicalDevice);
+		super(logicalDevice);
+
+		this.swapChain = swapChain;
 	}
 
 	@Override
-	public VkSemaphore newSignalSemaphore()
+	protected SubmissionInfo buildSumissionInfo(int infoNumber,
+			ICommandBuffer commandBuffer,
+			Collection<VkSemaphore> waitSemaphores,
+			Collection<VkSemaphore> signalSemaphores)
 	{
-		return signalSemaphoreManager.newSemaphore();
-	}
-
-	public void load(int frameCount,
-			SwapChainManager swapChain,
-			GraphicCommandBuffers commandBuffers,
-			Collection<ISignalEmitter> waitForEmitters)
-	{
-		infos = new ArrayList<>();
-
-		List<VkSemaphore> waitSemaphores = new ArrayList<>();
-		for (ISignalEmitter emiter : waitForEmitters)
-		{
-			waitSemaphores.add(emiter.newSignalSemaphore());
-		}
-
-		for (int i = 0; i < frameCount; i++)
-		{
-			infos.add(new FrameSubmissionInfo(i, swapChain, commandBuffers.get(i), waitSemaphores,
-					signalSemaphoreManager.getSemaphores()));
-		}
-	}
-
-	public VkSubmitInfo getSubmitInfo(int frameIndex)
-	{
-		return infos.get(frameIndex).getSubmitInfo();
+		return new FrameSubmissionInfo(infoNumber, swapChain, commandBuffer, waitSemaphores,
+				signalSemaphoreManager.getSemaphores());
 	}
 
 	public VkPresentInfoKHR getPresentInfo(int frameIndex)
 	{
-		return infos.get(frameIndex).getPresentInfo();
-	}
-
-	public void free()
-	{
-		for (FrameSubmissionInfo info : infos)
-		{
-			info.free();
-		}
-		
-		signalSemaphoreManager.free();
-		
-		infos = null;
+		return ((FrameSubmissionInfo) infos.get(frameIndex)).getPresentInfo();
 	}
 }
