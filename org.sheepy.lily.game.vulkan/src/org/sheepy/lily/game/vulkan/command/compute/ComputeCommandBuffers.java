@@ -22,7 +22,6 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 {
 	private static final float WORKGROUP_SIZE = 32f;
 
-	private CommandPool commandPool;
 	private ComputePipeline computePipeline;
 	private ComputerPool[] computerPools;
 
@@ -40,6 +39,7 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 	protected List<ComputeCommandBuffer> allocCommandBuffers()
 	{
 		DescriptorPool descriptorPool = computePipeline.getDescriptorPool();
+		long pipeline = computePipeline.getId();
 		long pipelineLayout = computePipeline.getPipelineLayout();
 
 		List<ComputeCommandBuffer> res = new ArrayList<>();
@@ -55,6 +55,9 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 					commandPool.getLogicalDevice(), commandBufferId);
 
 			commandBuffer.start();
+
+			vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_COMPUTE,
+					pipeline);
 
 			if (descriptorPool != null)
 			{

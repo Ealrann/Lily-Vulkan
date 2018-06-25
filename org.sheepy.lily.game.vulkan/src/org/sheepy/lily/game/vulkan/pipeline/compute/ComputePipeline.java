@@ -78,7 +78,7 @@ public class ComputePipeline implements ISignalEmitter
 			int computerCount = 0;
 			for (ComputerPool pool : computerPools)
 			{
-				computerCount += pool.size();
+				computerCount += pool.getDescriptors().size();
 			}
 
 			VkComputePipelineCreateInfo.Buffer pipelineCreateInfos = VkComputePipelineCreateInfo
@@ -86,7 +86,7 @@ public class ComputePipeline implements ISignalEmitter
 
 			for (ComputerPool pool : computerPools)
 			{
-				for (IComputer computer : pool)
+				for (IComputer computer : pool.getComputers())
 				{
 					VkComputePipelineCreateInfo pipelineCreateInfo = pipelineCreateInfos.get();
 					pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
@@ -106,7 +106,9 @@ public class ComputePipeline implements ISignalEmitter
 
 			// Command Buffers
 			commandBuffers = new ComputeCommandBuffers(this, commandPool, computerPools);
-
+			commandBuffers.load();
+			
+			
 			submission.load(commandBuffers, waitForEmitters);
 
 			pipelineCreateInfos.free();
@@ -133,12 +135,17 @@ public class ComputePipeline implements ISignalEmitter
 	{
 		return submission.getSubmitInfo(0);
 	}
+	
+	public long getId()
+	{
+		return pipeline;
+	}
 
 	public void free()
 	{
 		for (ComputerPool computerPool : computerPools)
 		{
-			for (IComputer computer : computerPool)
+			for (IComputer computer : computerPool.getComputers())
 			{
 				computer.free();
 			}

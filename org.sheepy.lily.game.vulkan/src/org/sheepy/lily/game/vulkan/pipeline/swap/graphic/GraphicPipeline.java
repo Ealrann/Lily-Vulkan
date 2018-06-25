@@ -79,7 +79,7 @@ public class GraphicPipeline
 		// -----------------------
 		VkGraphicsPipelineCreateInfo.Buffer pipelineInfo = VkGraphicsPipelineCreateInfo.calloc(1);
 		pipelineInfo.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
-		if(shaders.isEmpty() == false) pipelineInfo.pStages(shaderStage.allocShaderStageInfo(shaders));
+		pipelineInfo.pStages(shaderStage.allocShaderStageInfo(shaders));
 		pipelineInfo.pVertexInputState(vertexInputState.allocInputStateCreateInfo());
 		pipelineInfo.pInputAssemblyState(inputAssembly.allocInputAssemblyStateCreateInfo());
 		pipelineInfo.pViewportState(viewportState.allocViewportStateCreateInfo(swapChainManager));

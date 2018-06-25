@@ -21,14 +21,14 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 	private LogicalDevice logicalDevice;
 
 	private Map<IDescriptor, DescriptorSetInfo> infoMap = new HashMap<>();
-	private Map<IDescriptorSetConfiguration<?>, DescriptorSet> configurationMap = new HashMap<>();
+	private Map<IDescriptorSetConfiguration, DescriptorSet> configurationMap = new HashMap<>();
 	private List<DescriptorSet> descriptorSets = new ArrayList<>();
 
 	private long id;
 
 	public static final DescriptorPool alloc(MemoryStack stack,
 			LogicalDevice logicalDevice,
-			Collection<? extends IDescriptorSetConfiguration<?>> configurations)
+			Collection<? extends IDescriptorSetConfiguration> configurations)
 	{
 		DescriptorPool res = new DescriptorPool(logicalDevice);
 		res.load(stack, configurations);
@@ -40,21 +40,21 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 		this.logicalDevice = logicalDevice;
 	}
 
-	private void load(MemoryStack stack, Collection<? extends IDescriptorSetConfiguration<?>> configurations)
+	private void load(MemoryStack stack, Collection<? extends IDescriptorSetConfiguration> configurations)
 	{
 		int poolSize = 0;
-		for (IDescriptorSetConfiguration<?> configuration : configurations)
+		for (IDescriptorSetConfiguration configuration : configurations)
 		{
-			poolSize += configuration.size();
+			poolSize += configuration.getDescriptors().size();
 		}
 
 		VkDescriptorPoolSize.Buffer poolSizes = VkDescriptorPoolSize.callocStack(poolSize);
 
 		int size = 0;
-		for (IDescriptorSetConfiguration<?> configuration : configurations)
+		for (IDescriptorSetConfiguration configuration : configurations)
 		{
 			size++;
-			for (IDescriptor descriptor : configuration)
+			for (IDescriptor descriptor : configuration.getDescriptors())
 			{
 				poolSizes.put(descriptor.allocPoolSize(stack));
 			}
@@ -74,12 +74,12 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 		}
 		id = aDescriptor[0];
 
-		for (IDescriptorSetConfiguration<?> configuration : configurations)
+		for (IDescriptorSetConfiguration configuration : configurations)
 		{
 			DescriptorSet descriptorSet = DescriptorSet.alloc(stack, logicalDevice, this,
 					configuration);
 			int index = 0;
-			for (IDescriptor descriptor : configuration)
+			for (IDescriptor descriptor : configuration.getDescriptors())
 			{
 				DescriptorSetInfo info = new DescriptorSetInfo(descriptorSet, index++);
 				infoMap.put(descriptor, info);
@@ -112,7 +112,7 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 		return descriptorSets.get(index);
 	}
 
-	public DescriptorSet getDescriptorSet(IDescriptorSetConfiguration<?> configuration)
+	public DescriptorSet getDescriptorSet(IDescriptorSetConfiguration configuration)
 	{
 		return configurationMap.get(configuration);
 	}

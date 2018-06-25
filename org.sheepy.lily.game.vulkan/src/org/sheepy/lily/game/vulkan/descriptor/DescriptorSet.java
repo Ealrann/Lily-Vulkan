@@ -22,7 +22,7 @@ public class DescriptorSet
 	public static final DescriptorSet alloc(MemoryStack stack,
 			LogicalDevice logicalDevice,
 			DescriptorPool pool,
-			IDescriptorSetConfiguration<?> configuration)
+			IDescriptorSetConfiguration configuration)
 	{
 		DescriptorSet res = new DescriptorSet(logicalDevice);
 		res.load(stack, pool, configuration);
@@ -34,7 +34,7 @@ public class DescriptorSet
 		this.logicalDevice = logicalDevice;
 	}
 
-	private void load(MemoryStack stack, DescriptorPool pool, IDescriptorSetConfiguration<?> configuration)
+	private void load(MemoryStack stack, DescriptorPool pool, IDescriptorSetConfiguration configuration)
 	{
 		VkDescriptorSetLayoutBinding.Buffer layoutBindings = createLayoutBinding(stack,
 				configuration);
@@ -73,14 +73,14 @@ public class DescriptorSet
 	}
 
 	private VkDescriptorSetLayoutBinding.Buffer createLayoutBinding(MemoryStack stack,
-			IDescriptorSetConfiguration<?> configuration)
+			IDescriptorSetConfiguration configuration)
 	{
 		VkDescriptorSetLayoutBinding.Buffer layoutBindings = VkDescriptorSetLayoutBinding
-				.callocStack(configuration.size(), stack);
+				.callocStack(configuration.getDescriptors().size(), stack);
 
 		int index = 0;
 
-		for (IDescriptor provider : configuration)
+		for (IDescriptor provider : configuration.getDescriptors())
 		{
 			VkDescriptorSetLayoutBinding layoutBinding = provider.allocLayoutBinding(stack);
 			layoutBinding.binding(index++);
@@ -91,13 +91,13 @@ public class DescriptorSet
 		return layoutBindings;
 	}
 
-	private void updateDescriptorSet(MemoryStack stack, IDescriptorSetConfiguration<?> configuration)
+	private void updateDescriptorSet(MemoryStack stack, IDescriptorSetConfiguration configuration)
 	{
 		VkWriteDescriptorSet.Buffer descriptorWrites = VkWriteDescriptorSet
-				.callocStack(configuration.size(), stack);
+				.callocStack(configuration.getDescriptors().size(), stack);
 		int index = 0;
 
-		for (IDescriptor descriptor : configuration)
+		for (IDescriptor descriptor : configuration.getDescriptors())
 		{
 			VkWriteDescriptorSet allocWriteDescriptor = descriptor.allocWriteDescriptor(stack);
 			allocWriteDescriptor.dstSet(descriptorSetId);

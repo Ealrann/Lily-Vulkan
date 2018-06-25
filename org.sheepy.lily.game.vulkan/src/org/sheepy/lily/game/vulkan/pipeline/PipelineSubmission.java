@@ -11,7 +11,6 @@ import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.lily.game.vulkan.concurrent.SemaphoreManager;
 import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.pipeline.swap.FrameSubmissionInfo;
 
 public class PipelineSubmission implements ISignalEmitter
 {
@@ -36,8 +35,8 @@ public class PipelineSubmission implements ISignalEmitter
 		for (int i = 0; i < commandBuffers.size(); i++)
 		{
 			ICommandBuffer commandBuffer = commandBuffers.get(i);
-			infos.add((FrameSubmissionInfo) buildSumissionInfo(i, commandBuffer,
-					waitSemaphores, signalSemaphoreManager.getSemaphores()));
+			infos.add(buildSumissionInfo(i, commandBuffer, waitSemaphores,
+					signalSemaphoreManager.getSemaphores()));
 		}
 	}
 

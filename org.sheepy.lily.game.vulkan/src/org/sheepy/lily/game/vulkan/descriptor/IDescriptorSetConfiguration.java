@@ -1,6 +1,8 @@
 package org.sheepy.lily.game.vulkan.descriptor;
 
-public interface IDescriptorSetConfiguration<T extends IDescriptor> extends Iterable<T>
+import java.util.Collection;
+
+public interface IDescriptorSetConfiguration
 {
-	int size();
+	Collection<IDescriptor> getDescriptors();
 }

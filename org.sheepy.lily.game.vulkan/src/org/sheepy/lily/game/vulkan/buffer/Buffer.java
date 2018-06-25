@@ -44,12 +44,12 @@ public class Buffer
 		return buffer;
 	}
 
-	private Buffer(LogicalDevice logicalDevice)
+	public Buffer(LogicalDevice logicalDevice)
 	{
 		this.logicalDevice = logicalDevice;
 	}
 
-	private void load(long size, int usage, int properties)
+	public void load(long size, int usage, int properties)
 	{
 		this.size = size;
 		VkBufferCreateInfo bufferInfo = VkBufferCreateInfo.calloc();

@@ -13,13 +13,17 @@ public class BasicShaderStage implements IShaderStage
 	@Override
 	public VkPipelineShaderStageCreateInfo.Buffer allocShaderStageInfo(List<Shader> shaders)
 	{
-		shaderStages = VkPipelineShaderStageCreateInfo.calloc(shaders.size());
-		for (Shader shader : shaders)
+		if (shaders.isEmpty()) shaderStages = VkPipelineShaderStageCreateInfo.calloc(1);
+		else
 		{
-			VkPipelineShaderStageCreateInfo shaderStageInfo = shader.allocInfo();
-			shaderStages.put(shaderStageInfo);
+			shaderStages = VkPipelineShaderStageCreateInfo.calloc(shaders.size());
+			for (Shader shader : shaders)
+			{
+				VkPipelineShaderStageCreateInfo shaderStageInfo = shader.allocInfo();
+				shaderStages.put(shaderStageInfo);
+			}
+			shaderStages.flip();
 		}
-		shaderStages.flip();
 
 		return shaderStages;
 	}

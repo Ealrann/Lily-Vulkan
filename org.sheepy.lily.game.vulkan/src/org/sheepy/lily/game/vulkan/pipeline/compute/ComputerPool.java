@@ -1,12 +1,13 @@
 package org.sheepy.lily.game.vulkan.pipeline.compute;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
+import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptorSetConfiguration;
 
-public class ComputerPool implements IDescriptorSetConfiguration<IComputer>
+public class ComputerPool implements IDescriptorSetConfiguration
 {
 	private static final int NO_VALUE = -1;
 
@@ -42,15 +43,15 @@ public class ComputerPool implements IDescriptorSetConfiguration<IComputer>
 	}
 
 	@Override
-	public Iterator<IComputer> iterator()
+	public List<IDescriptor> getDescriptors()
 	{
-		return computers.iterator();
-	}
+		List<IDescriptor> res = new ArrayList<>();
+		for (IComputer computer : computers)
+		{
+			res.addAll(computer.getDescriptors());
+		}
 
-	@Override
-	public int size()
-	{
-		return computers.size();
+		return res;
 	}
 
 	public int getDataWidth()
@@ -66,5 +67,10 @@ public class ComputerPool implements IDescriptorSetConfiguration<IComputer>
 	public int getDataDepth()
 	{
 		return dataHeight;
+	}
+
+	public List<IComputer> getComputers()
+	{
+		return computers;
 	}
 }

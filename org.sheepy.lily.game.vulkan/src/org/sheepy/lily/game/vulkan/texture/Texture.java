@@ -229,6 +229,7 @@ public class Texture implements IDescriptor
 		return imageView.getId();
 	}
 
+	@Override
 	public void free()
 	{
 		sampler.free();
@@ -259,7 +260,7 @@ public class Texture implements IDescriptor
 		descriptorWrite.dstArrayElement(0);
 		descriptorWrite.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
 		descriptorWrite.pBufferInfo(null);
-		descriptorWrite.pImageInfo(imageInfo); // Optional
+		descriptorWrite.pImageInfo(imageInfo);
 		descriptorWrite.pTexelBufferView(null); // Optional
 		return descriptorWrite;
 	}

@@ -2,37 +2,29 @@ package org.sheepy.lily.game.vulkan.descriptor;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * @author ealrann
  *
  */
-public class BasicDescriptorSetConfiguration<T extends IDescriptor> implements IDescriptorSetConfiguration<T>
+public class BasicDescriptorSetConfiguration implements IDescriptorSetConfiguration
 {
-	private List<T> descriptors = new ArrayList<>();
+	private List<IDescriptor> descriptors = new ArrayList<>();
 
-	public void add(T descriptor)
+	public void add(IDescriptor descriptor)
 	{
 		descriptors.add(descriptor);
 	}
 
-	public void addAll(Collection<T> descriptors)
+	public void addAll(Collection<IDescriptor> descriptors)
 	{
 		this.descriptors.addAll(descriptors);
 	}
 	
 	@Override
-	public Iterator<T> iterator()
+	public Collection<IDescriptor> getDescriptors()
 	{
-		return descriptors.iterator();
+		return descriptors;
 	}
-
-	@Override
-	public int size()
-	{
-		return descriptors.size();
-	}
-
 }

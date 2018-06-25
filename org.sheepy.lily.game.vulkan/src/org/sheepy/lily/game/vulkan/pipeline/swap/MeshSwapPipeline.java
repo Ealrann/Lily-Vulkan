@@ -11,7 +11,6 @@ import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.lily.game.vulkan.descriptor.BasicDescriptorSetConfiguration;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
-import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.GraphicPipeline;
 import org.sheepy.lily.game.vulkan.swapchain.ColorDomain;
@@ -23,13 +22,12 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 
 	private Mesh mesh = null;
 
-
 	public MeshSwapPipeline(LogicalDevice logicalDevice, Mesh mesh, SwapConfiguration configuration,
 			CommandPool commandPool, ColorDomain colorDomain)
 	{
 		this(logicalDevice, mesh, configuration, commandPool, colorDomain, null);
 	}
-	
+
 	public MeshSwapPipeline(LogicalDevice logicalDevice, Mesh mesh, SwapConfiguration configuration,
 			CommandPool commandPool, ColorDomain colorDomain,
 			Collection<ISignalEmitter> waitForSignals)
@@ -42,7 +40,7 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 		{
 			try (MemoryStack stack = stackPush())
 			{
-				BasicDescriptorSetConfiguration<IDescriptor> descriptorConfiguration = new BasicDescriptorSetConfiguration<>();
+				BasicDescriptorSetConfiguration descriptorConfiguration = new BasicDescriptorSetConfiguration();
 				descriptorConfiguration.addAll(mesh.getDescriptors());
 
 				descriptorPool = DescriptorPool.alloc(stack, logicalDevice,

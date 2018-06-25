@@ -21,6 +21,7 @@ public class Shader
 	private VkDevice logicalDevice;
 	private String shaderPath;
 	private int shaderType;
+
 	private long shaderModule;
 
 	public Shader(LogicalDevice logicalDevice, String shaderPath, int shaderType)

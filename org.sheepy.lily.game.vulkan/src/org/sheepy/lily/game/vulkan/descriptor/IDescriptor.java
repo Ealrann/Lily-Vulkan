@@ -12,4 +12,6 @@ public interface IDescriptor
 	VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack);
 	
 	VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack);
+	
+	void free();
 }
