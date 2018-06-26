@@ -22,10 +22,10 @@ public class FrameSubmissionInfo extends SubmissionInfo
 	private VkPresentInfoKHR presentInfo;
 
 	public FrameSubmissionInfo(int imageIndex, SwapChainManager swapChain,
-			ICommandBuffer commandBuffer, Collection<VkSemaphore> waitSemaphores,
+			ICommandBuffer commandBuffer, int waitStage, Collection<VkSemaphore> waitSemaphores,
 			Collection<VkSemaphore> signalSemaphores)
 	{
-		super(commandBuffer, waitSemaphores, signalSemaphores);
+		super(commandBuffer, waitStage, waitSemaphores, signalSemaphores);
 
 		bSwapChains = memAllocLong(1);
 		bSwapChains.put(swapChain.getSwapChain());

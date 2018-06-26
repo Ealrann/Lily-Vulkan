@@ -42,7 +42,7 @@ public class ComputePipeline implements ISignalEmitter
 
 		this.waitForEmitters = new ArrayList<>(waitForEmitters);
 
-		submission = new PipelineSubmission(logicalDevice);
+		submission = new PipelineSubmission(logicalDevice, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
 	}
 
 	@Override
@@ -107,8 +107,7 @@ public class ComputePipeline implements ISignalEmitter
 			// Command Buffers
 			commandBuffers = new ComputeCommandBuffers(this, commandPool, computerPools);
 			commandBuffers.load();
-			
-			
+
 			submission.load(commandBuffers, waitForEmitters);
 
 			pipelineCreateInfos.free();
@@ -135,7 +134,7 @@ public class ComputePipeline implements ISignalEmitter
 	{
 		return submission.getSubmitInfo(0);
 	}
-	
+
 	public long getId()
 	{
 		return pipeline;

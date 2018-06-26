@@ -47,7 +47,7 @@ public class Framebuffers
 
 			VkFramebufferCreateInfo framebufferInfo = VkFramebufferCreateInfo.calloc();
 			framebufferInfo.sType(VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO);
-			framebufferInfo.renderPass(renderPass.getID());
+			framebufferInfo.renderPass(renderPass.getId());
 			framebufferInfo.pAttachments(attachments);
 			framebufferInfo.width(swapChain.getExtent().getWidth());
 			framebufferInfo.height(swapChain.getExtent().getHeight());

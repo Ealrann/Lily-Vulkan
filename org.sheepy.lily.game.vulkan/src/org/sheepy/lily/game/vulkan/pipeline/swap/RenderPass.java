@@ -18,7 +18,6 @@ import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.GraphicPipeline;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 
 public class RenderPass implements IRenderPass
@@ -27,20 +26,22 @@ public class RenderPass implements IRenderPass
 	private DepthResource depthResource;
 	private Mesh mesh;
 	private DescriptorPool descriptorPool;
+	private IGraphicsPipeline graphicsPipeline;
 
 	private long renderPass;
 
 	public RenderPass(LogicalDevice logicalDevice, DepthResource depthResource, Mesh mesh,
-			DescriptorPool descriptorPool)
+			DescriptorPool descriptorPool, IGraphicsPipeline graphicsPipeline)
 	{
 		this.logicalDevice = logicalDevice;
 		this.depthResource = depthResource;
 		this.mesh = mesh;
 		this.descriptorPool = descriptorPool;
+		this.graphicsPipeline = graphicsPipeline;
 	}
 
-	public void buildRenderPass(List<? extends AbstractCommandBuffer> commandBuffers,
-			GraphicPipeline graphicsPipeline)
+	@Override
+	public void buildRenderPass(List<? extends AbstractCommandBuffer> commandBuffers)
 	{
 		for (AbstractCommandBuffer commandBuffer : commandBuffers)
 		{
@@ -157,7 +158,7 @@ public class RenderPass implements IRenderPass
 	}
 
 	@Override
-	public long getID()
+	public long getId()
 	{
 		return renderPass;
 	}

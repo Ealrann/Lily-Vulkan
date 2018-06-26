@@ -14,9 +14,9 @@ public class FrameSubmission extends PipelineSubmission
 {
 	private SwapChainManager swapChain;
 
-	public FrameSubmission(LogicalDevice logicalDevice, SwapChainManager swapChain)
+	public FrameSubmission(LogicalDevice logicalDevice, SwapChainManager swapChain, int waitStage)
 	{
-		super(logicalDevice);
+		super(logicalDevice, waitStage);
 
 		this.swapChain = swapChain;
 	}
@@ -24,11 +24,12 @@ public class FrameSubmission extends PipelineSubmission
 	@Override
 	protected SubmissionInfo buildSumissionInfo(int infoNumber,
 			ICommandBuffer commandBuffer,
+			int waitStage,
 			Collection<VkSemaphore> waitSemaphores,
 			Collection<VkSemaphore> signalSemaphores)
 	{
-		return new FrameSubmissionInfo(infoNumber, swapChain, commandBuffer, waitSemaphores,
-				signalSemaphoreManager.getSemaphores());
+		return new FrameSubmissionInfo(infoNumber, swapChain, commandBuffer, waitStage,
+				waitSemaphores, signalSemaphoreManager.getSemaphores());
 	}
 
 	public VkPresentInfoKHR getPresentInfo(int frameIndex)

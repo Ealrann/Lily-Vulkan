@@ -2,7 +2,6 @@ package org.sheepy.lily.game.vulkan.pipeline;
 
 import static org.lwjgl.system.MemoryUtil.memAllocPointer;
 import static org.lwjgl.system.MemoryUtil.memFree;
-import static org.lwjgl.vulkan.VK10.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_SUBMIT_INFO;
 
 import java.nio.IntBuffer;
@@ -23,18 +22,21 @@ public class SubmissionInfo
 	protected PointerBuffer pCommandBuffers;
 	protected LongBuffer bSignalSemaphores;
 
-	public SubmissionInfo(ICommandBuffer commandBuffer, Collection<VkSemaphore> waitSemaphores,
-			Collection<VkSemaphore> signalSemaphores)
+	public SubmissionInfo(ICommandBuffer commandBuffer, int waitStage,
+			Collection<VkSemaphore> waitSemaphores, Collection<VkSemaphore> signalSemaphores)
 	{
-		bWaitSemaphores = MemoryUtil.memAllocLong(waitSemaphores.size());
-		for (VkSemaphore waitSemaphore : waitSemaphores)
+		if (waitSemaphores.isEmpty() == false)
 		{
-			bWaitSemaphores.put(waitSemaphore.getId());
+			bWaitSemaphores = MemoryUtil.memAllocLong(waitSemaphores.size());
+			waitStages = MemoryUtil.memAllocInt(waitSemaphores.size());
+			for (VkSemaphore waitSemaphore : waitSemaphores)
+			{
+				bWaitSemaphores.put(waitSemaphore.getId());
+				waitStages.put(waitStage);
+			}
+			bWaitSemaphores.flip();
+			waitStages.flip();
 		}
-		bWaitSemaphores.flip();
-		waitStages = MemoryUtil.memAllocInt(1);
-		waitStages.put(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-		waitStages.flip();
 
 		pCommandBuffers = memAllocPointer(1);
 		pCommandBuffers.put(commandBuffer.getVkCommandBuffer());
@@ -49,7 +51,7 @@ public class SubmissionInfo
 
 		submitInfo = VkSubmitInfo.calloc();
 		submitInfo.sType(VK_STRUCTURE_TYPE_SUBMIT_INFO);
-		submitInfo.waitSemaphoreCount(1);
+		submitInfo.waitSemaphoreCount(waitSemaphores.size());
 		submitInfo.pWaitSemaphores(bWaitSemaphores);
 		submitInfo.pWaitDstStageMask(waitStages);
 		submitInfo.pCommandBuffers(pCommandBuffers);
@@ -59,9 +61,9 @@ public class SubmissionInfo
 	public void free()
 	{
 		memFree(pCommandBuffers);
-		memFree(waitStages);
+		if (waitStages != null) memFree(waitStages);
 		memFree(bSignalSemaphores);
-		memFree(bWaitSemaphores);
+		if (bWaitSemaphores != null) memFree(bWaitSemaphores);
 
 		submitInfo.free();
 	}

@@ -208,7 +208,7 @@ public abstract class VulkanApplication
 	private void createLogicalDevice(MemoryStack stack)
 	{
 		logicalDevice = LogicalDevice.alloc(stack, physicalDevice, window.getSurface(),
-				REQUIRED_EXTENSIONS, ppEnabledLayerNames);
+				REQUIRED_EXTENSIONS, ppEnabledLayerNames, true);
 	}
 
 	public void cleanup()

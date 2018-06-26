@@ -2,12 +2,14 @@ package org.sheepy.lily.game.vulkan.pipeline.swap.graphic;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
+import org.sheepy.lily.game.vulkan.pipeline.swap.IGraphicsPipeline;
 import org.sheepy.lily.game.vulkan.pipeline.swap.IRenderPass;
 import org.sheepy.lily.game.vulkan.pipeline.swap.SwapConfiguration;
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.graphic.impl.BasicColorBlendState;
@@ -20,9 +22,11 @@ import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.graphic.impl.BasicViewp
 import org.sheepy.lily.game.vulkan.shader.Shader;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 
-public class GraphicPipeline
+public class GraphicsPipeline implements IGraphicsPipeline
 {
 	private LogicalDevice logicalDevice;
+	private List<Shader> shaders;
+	private DescriptorPool descriptorPool;
 
 	private IShaderStage shaderStage = new BasicShaderStage();
 	private IVertexDescriptor<?> vertexInputState;
@@ -37,9 +41,13 @@ public class GraphicPipeline
 	private long graphicsPipeline = -1;
 	private long pipelineLayout = 1;
 
-	public GraphicPipeline(LogicalDevice logicalDevice, SwapConfiguration configuration)
+	public GraphicsPipeline(LogicalDevice logicalDevice, SwapConfiguration configuration,
+			List<Shader> shaders,
+			DescriptorPool descriptorPool)
 	{
 		this.logicalDevice = logicalDevice;
+		this.shaders = new ArrayList<>(shaders);
+		this.descriptorPool = descriptorPool;
 
 		vertexInputState = configuration.getVertexInputState();
 
@@ -52,10 +60,9 @@ public class GraphicPipeline
 		// dynamicState = new BasicDynamicState();
 	}
 
+	@Override
 	public void load(SwapChainManager swapChainManager,
-			List<Shader> shaders,
-			IRenderPass renderPass,
-			DescriptorPool descriptorPool)
+			IRenderPass renderPass)
 	{
 		// Create Pipeline Layout
 		// -----------------------
@@ -90,7 +97,7 @@ public class GraphicPipeline
 		pipelineInfo.pColorBlendState(colorBlendState.allocColorBlendStateCreateInfo());
 		// pipelineInfo.pDynamicState(dynamicState.allocDynamicStateCreateInfo());
 		pipelineInfo.layout(pipelineLayout);
-		pipelineInfo.renderPass(renderPass.getID());
+		pipelineInfo.renderPass(renderPass.getId());
 		pipelineInfo.subpass(0);
 		pipelineInfo.basePipelineHandle(VK_NULL_HANDLE); // Optional
 		pipelineInfo.basePipelineIndex(-1); // Optional
@@ -116,6 +123,7 @@ public class GraphicPipeline
 		pipelineInfo.free();
 	}
 
+	@Override
 	public long getId()
 	{
 		return graphicsPipeline;
@@ -126,6 +134,7 @@ public class GraphicPipeline
 		this.shaderStage = shaderStage;
 	}
 
+	@Override
 	public void free()
 	{
 		// dynamicState.free();
@@ -145,6 +154,7 @@ public class GraphicPipeline
 		pipelineLayout = -1;
 	}
 
+	@Override
 	public long getLayoutId()
 	{
 		return pipelineLayout;

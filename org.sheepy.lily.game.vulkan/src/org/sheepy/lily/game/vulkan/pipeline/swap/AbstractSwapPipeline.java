@@ -2,6 +2,7 @@ package org.sheepy.lily.game.vulkan.pipeline.swap;
 
 import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
 import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
+import static org.lwjgl.vulkan.VK10.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,7 +27,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 
 	protected LogicalDevice logicalDevice;
 	protected CommandPool commandPool;
-	private SwapConfiguration configuration;
+	protected SwapConfiguration configuration;
 
 	protected SwapChainManager swapChainManager;
 	protected ImageViewManager imageViewManager;
@@ -34,6 +35,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 	protected Framebuffers framebuffers;
 	protected GraphicCommandBuffers commandBuffers;
 	protected FrameSubmission frameSubmission;
+	protected IGraphicsPipeline graphicsPipeline;
 
 	protected DepthResource depthResource = null;
 
@@ -58,7 +60,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 		this.configuration = configuration;
 
 		this.waitForSignals.add(this);
-		if(waitForSignals != null) this.waitForSignals.addAll(waitForSignals);
+		if (waitForSignals != null) this.waitForSignals.addAll(waitForSignals);
 
 		swapChainManager = new SwapChainManager(logicalDevice, colorDomain);
 
@@ -83,13 +85,15 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 
 	protected FrameSubmission buildFrameSubmission()
 	{
-		return new FrameSubmission(logicalDevice, swapChainManager);
+		return new FrameSubmission(logicalDevice, swapChainManager,
+				VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
 	}
 
 	public void load(long surface, int width, int height)
 	{
 		frameSubmission.newSignalSemaphore();
 
+		graphicsPipeline = buildGraphicsPipeline();
 		renderPass = buildRenderPass();
 
 		swapChainManager.load(surface, width, height);
@@ -106,6 +110,11 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 		commandBuffers = new GraphicCommandBuffers(commandPool, configuration, this);
 		commandBuffers.load();
 		frameSubmission.load(commandBuffers, waitForSignals);
+
+		if (graphicsPipeline != null)
+			graphicsPipeline.load(swapChainManager, renderPass);
+
+		renderPass.buildRenderPass(commandBuffers.getCommandBuffers());
 	}
 
 	public void destroy(boolean full)
@@ -116,6 +125,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 		}
 
 		if (depthResource != null) depthResource.free();
+		if (graphicsPipeline != null) graphicsPipeline.free();
 		frameSubmission.free();
 		commandBuffers.free();
 		framebuffers.free();
@@ -149,6 +159,11 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 		return frameSubmission;
 	}
 
+	public IGraphicsPipeline getGraphicPipeline()
+	{
+		return graphicsPipeline;
+	}
+	
 	private int[] nextImageArray = new int[1];
 
 	public int acquireNextImage()
@@ -158,6 +173,8 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 
 		return nextImageArray[0];
 	}
+
+	protected abstract IGraphicsPipeline buildGraphicsPipeline();
 
 	protected abstract IRenderPass buildRenderPass();
 }

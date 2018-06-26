@@ -12,12 +12,11 @@ import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.lily.game.vulkan.descriptor.BasicDescriptorSetConfiguration;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.GraphicPipeline;
+import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.GraphicsPipeline;
 import org.sheepy.lily.game.vulkan.swapchain.ColorDomain;
 
 public class MeshSwapPipeline extends AbstractSwapPipeline
 {
-	protected GraphicPipeline graphicPipeline;
 	protected DescriptorPool descriptorPool;
 
 	private Mesh mesh = null;
@@ -47,14 +46,18 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 						Collections.singletonList(descriptorConfiguration));
 			}
 		}
-
-		graphicPipeline = new GraphicPipeline(logicalDevice, configuration);
+	}
+	
+	@Override
+	protected IGraphicsPipeline buildGraphicsPipeline()
+	{
+		return new GraphicsPipeline(logicalDevice, configuration, mesh.getShaders(), descriptorPool);
 	}
 
 	@Override
 	protected IRenderPass buildRenderPass()
 	{
-		return new RenderPass(logicalDevice, depthResource, mesh, descriptorPool);
+		return new RenderPass(logicalDevice, depthResource, mesh, descriptorPool, graphicsPipeline);
 	}
 
 	@Override
@@ -62,10 +65,6 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 	{
 		super.load(surface, width, height);
 
-		graphicPipeline.load(swapChainManager, mesh.getShaders(), renderPass, descriptorPool);
-
-		((RenderPass) renderPass).buildRenderPass(commandBuffers.getCommandBuffers(),
-				graphicPipeline);
 	}
 
 	@Override
@@ -73,16 +72,10 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 	{
 		if (full && descriptorPool != null) descriptorPool.destroy();
 		if (full && mesh != null) mesh.free();
-		graphicPipeline.free();
 
 		super.destroy(full);
 	}
-
-	public GraphicPipeline getGraphicPipeline()
-	{
-		return graphicPipeline;
-	}
-
+	
 	public DescriptorPool getDescriptorPool()
 	{
 		return descriptorPool;

@@ -63,7 +63,7 @@ public class RenderCommandBuffer extends AbstractCommandBuffer
 
 		VkRenderPassBeginInfo renderPassInfo = VkRenderPassBeginInfo.calloc();
 		renderPassInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO);
-		renderPassInfo.renderPass(renderPass.getID());
+		renderPassInfo.renderPass(renderPass.getId());
 		renderPassInfo.framebuffer(framebufferId);
 		renderPassInfo.renderArea().offset().set(0, 0);
 		renderPassInfo.renderArea().extent().set(extent.getWidth(), extent.getHeight());

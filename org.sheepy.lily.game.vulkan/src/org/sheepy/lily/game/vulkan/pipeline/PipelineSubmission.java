@@ -15,12 +15,14 @@ import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 public class PipelineSubmission implements ISignalEmitter
 {
 	protected SemaphoreManager signalSemaphoreManager;
+	protected int waitStage;
 
 	protected List<SubmissionInfo> infos = new ArrayList<>();
 
-	public PipelineSubmission(LogicalDevice logicalDevice)
+	public PipelineSubmission(LogicalDevice logicalDevice, int waitStage)
 	{
 		signalSemaphoreManager = new SemaphoreManager(logicalDevice);
+		this.waitStage = waitStage;
 	}
 
 	public void load(AbstractCommandBuffers<?> commandBuffers,
@@ -32,20 +34,21 @@ public class PipelineSubmission implements ISignalEmitter
 			waitSemaphores.add(emiter.newSignalSemaphore());
 		}
 
+		signalSemaphoreManager.lock(true);
 		for (int i = 0; i < commandBuffers.size(); i++)
 		{
 			ICommandBuffer commandBuffer = commandBuffers.get(i);
-			infos.add(buildSumissionInfo(i, commandBuffer, waitSemaphores,
+			infos.add(buildSumissionInfo(i, commandBuffer, waitStage, waitSemaphores,
 					signalSemaphoreManager.getSemaphores()));
 		}
 	}
 
 	protected SubmissionInfo buildSumissionInfo(int infoNumber,
-			ICommandBuffer commandBuffer,
+			ICommandBuffer commandBuffer, int waitStage, 
 			Collection<VkSemaphore> waitSemaphores,
 			Collection<VkSemaphore> signalSemaphores)
 	{
-		return new SubmissionInfo(commandBuffer, waitSemaphores,
+		return new SubmissionInfo(commandBuffer, waitStage, waitSemaphores,
 				signalSemaphoreManager.getSemaphores());
 	}
 
@@ -61,6 +64,7 @@ public class PipelineSubmission implements ISignalEmitter
 			info.free();
 		}
 
+		signalSemaphoreManager.lock(false);
 		signalSemaphoreManager.free();
 
 		infos.clear();
