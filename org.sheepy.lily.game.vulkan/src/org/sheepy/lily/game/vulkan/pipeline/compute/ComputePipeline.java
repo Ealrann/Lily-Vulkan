@@ -150,8 +150,8 @@ public class ComputePipeline implements ISignalEmitter
 			}
 		}
 		computerPools.clear();
-
 		commandBuffers.free();
+		submission.free();
 
 		vkDestroyPipeline(logicalDevice.getVkDevice(), pipeline, null);
 		vkDestroyPipelineLayout(logicalDevice.getVkDevice(), pipelineLayout, null);
