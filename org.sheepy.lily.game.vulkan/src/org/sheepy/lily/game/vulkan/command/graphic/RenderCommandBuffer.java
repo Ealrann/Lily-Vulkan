@@ -4,15 +4,13 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
-import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.pipeline.swap.IRenderPass;
 import org.sheepy.lily.game.vulkan.pipeline.swap.SwapConfiguration;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager.Extent2D;
 
-public class RenderCommandBuffer extends AbstractCommandBuffer
+public class RenderCommandBuffer extends GraphicCommandBuffer
 {
 	private SwapConfiguration configuration;
 	private long framebufferId;
@@ -33,16 +31,7 @@ public class RenderCommandBuffer extends AbstractCommandBuffer
 	@Override
 	public VkCommandBuffer start()
 	{
-		// Start buffer record
-		VkCommandBufferBeginInfo beginInfo = VkCommandBufferBeginInfo.calloc();
-		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);
-		beginInfo.flags(VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT);
-		beginInfo.pInheritanceInfo(null); // Optional
-
-		if (vkBeginCommandBuffer(vkCommandBuffer, beginInfo) != VK_SUCCESS)
-		{
-			throw new AssertionError("failed to begin recording command buffer!");
-		}
+		super.start();
 
 		// Start Render Pass
 		int clearCount = 1;
@@ -73,7 +62,6 @@ public class RenderCommandBuffer extends AbstractCommandBuffer
 
 		clearColor.free();
 		renderPassInfo.free();
-		beginInfo.free();
 
 		return vkCommandBuffer;
 	}
@@ -82,10 +70,6 @@ public class RenderCommandBuffer extends AbstractCommandBuffer
 	public void end()
 	{
 		vkCmdEndRenderPass(vkCommandBuffer);
-
-		if (vkEndCommandBuffer(vkCommandBuffer) != VK_SUCCESS)
-		{
-			throw new AssertionError("failed to record command buffer!");
-		}
+		super.end();
 	}
 }

@@ -26,6 +26,8 @@ public class SwapConfiguration
 	
 	public int swapImageUsages = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 	
+	/** true if the graphic pipeline should activate a render pass during command recording **/
+	public boolean renderPipeline = true;
 	public boolean depthBuffer = false;
 	
 	private IVertexDescriptor<?> vertexInputState = null;

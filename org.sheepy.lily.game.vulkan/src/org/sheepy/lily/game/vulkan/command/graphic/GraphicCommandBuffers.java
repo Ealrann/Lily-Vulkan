@@ -12,7 +12,7 @@ import org.sheepy.lily.game.vulkan.pipeline.swap.IRenderPass;
 import org.sheepy.lily.game.vulkan.pipeline.swap.SwapConfiguration;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 
-public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandBuffer>
+public class GraphicCommandBuffers extends AbstractCommandBuffers<GraphicCommandBuffer>
 {
 	private SwapConfiguration configuration;
 	private AbstractSwapPipeline swapPipeline;
@@ -26,7 +26,7 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 	}
 
 	@Override
-	protected List<RenderCommandBuffer> allocCommandBuffers()
+	protected List<GraphicCommandBuffer> allocCommandBuffers()
 	{
 		Framebuffers framebuffers = swapPipeline.getFramebuffers();
 		SwapChainManager swapChain = swapPipeline.getSwapChain();
@@ -38,13 +38,21 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 		// ------------------
 		long[] commandBufferIds = allocCommandBuffers(commandPoolId, framebuffers.size());
 
-		List<RenderCommandBuffer> commandBuffers = new ArrayList<>();
+		List<GraphicCommandBuffer> commandBuffers = new ArrayList<>();
 		for (int i = 0; i < framebuffers.getIDs().size(); i++)
 		{
 			Long framebufferId = framebuffers.getIDs().get(i);
 			long commandBufferId = commandBufferIds[i];
-			commandBuffers.add(new RenderCommandBuffer(logicalDevice, commandBufferId,
-					configuration, framebufferId, swapChain.getExtent(), renderPass));
+
+			if (configuration.renderPipeline == true)
+			{
+				commandBuffers.add(new RenderCommandBuffer(logicalDevice, commandBufferId,
+						configuration, framebufferId, swapChain.getExtent(), renderPass));
+			}
+			else
+			{
+				commandBuffers.add(new GraphicCommandBuffer(logicalDevice, commandBufferId));
+			}
 		}
 
 		return Collections.unmodifiableList(commandBuffers);

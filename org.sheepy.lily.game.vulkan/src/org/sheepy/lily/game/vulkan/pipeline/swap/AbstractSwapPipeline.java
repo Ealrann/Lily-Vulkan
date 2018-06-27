@@ -109,13 +109,18 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 		renderPass.load(swapChainManager);
 		framebuffers.load(swapChainManager, imageViewManager, renderPass);
 
-		commandBuffers = new GraphicCommandBuffers(commandPool, configuration, this);
+		commandBuffers = buildCommandBuffers();
 		commandBuffers.load();
 		frameSubmission.load(commandBuffers, waitForSignals);
 
 		if (graphicsPipeline != null) graphicsPipeline.load(swapChainManager, renderPass);
 
 		renderPass.buildRenderPass(commandBuffers.getCommandBuffers());
+	}
+
+	private GraphicCommandBuffers buildCommandBuffers()
+	{
+		return new GraphicCommandBuffers(commandPool, configuration, this);
 	}
 
 	public void destroy(boolean full)
