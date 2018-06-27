@@ -1,14 +1,30 @@
 package org.sheepy.lily.game.vulkan.pipeline.swap;
 
+import static org.lwjgl.vulkan.KHRSurface.VK_COLOR_SPACE_SRGB_NONLINEAR_KHR;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.IVertexDescriptor;
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.graphic.impl.VertexDescriptor;
+import org.sheepy.lily.game.vulkan.swapchain.ColorDomain;
 
 public class SwapConfiguration
 {
+	public final ColorDomain colorDomain;
+	
+	public SwapConfiguration()
+	{
+		this(VK_FORMAT_B8G8R8A8_UNORM, VK_COLOR_SPACE_SRGB_NONLINEAR_KHR);
+	}
+	
+	public SwapConfiguration(int imageFormat, int colorSpace)
+	{
+		this.colorDomain = new ColorDomain(imageFormat, colorSpace);
+	}
+	
 	public int rasterizerCullMode = VK_CULL_MODE_BACK_BIT;
 	public int rasterizerFrontFace = VK_FRONT_FACE_CLOCKWISE;
+	
+	public int swapImageUsages = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 	
 	public boolean depthBuffer = false;
 	

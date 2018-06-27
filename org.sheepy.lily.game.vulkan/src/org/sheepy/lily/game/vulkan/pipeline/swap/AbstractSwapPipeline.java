@@ -1,8 +1,7 @@
 package org.sheepy.lily.game.vulkan.pipeline.swap;
 
 import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
-import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
-import static org.lwjgl.vulkan.VK10.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +13,6 @@ import org.sheepy.lily.game.vulkan.command.graphic.GraphicCommandBuffers;
 import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.swapchain.ColorDomain;
 import org.sheepy.lily.game.vulkan.swapchain.SwapChainManager;
 import org.sheepy.lily.game.vulkan.view.ImageViewManager;
 
@@ -52,8 +50,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 	 *            VK_PIPELINE_BIND_POINT_GRAPHICS
 	 */
 	public AbstractSwapPipeline(LogicalDevice logicalDevice, SwapConfiguration configuration,
-			CommandPool commandPool, ColorDomain colorDomain,
-			Collection<ISignalEmitter> waitForSignals)
+			CommandPool commandPool, Collection<ISignalEmitter> waitForSignals)
 	{
 		this.logicalDevice = logicalDevice;
 		this.commandPool = commandPool;
@@ -62,7 +59,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 		this.waitForSignals.add(this);
 		if (waitForSignals != null) this.waitForSignals.addAll(waitForSignals);
 
-		swapChainManager = new SwapChainManager(logicalDevice, colorDomain);
+		swapChainManager = buildSwapChainManager();
 
 		if (configuration.depthBuffer == true)
 		{
@@ -75,6 +72,11 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 		imageAvailableSemaphore = new VkSemaphore(logicalDevice);
 
 		frameSubmission = buildFrameSubmission();
+	}
+
+	private SwapChainManager buildSwapChainManager()
+	{
+		return new SwapChainManager(logicalDevice, configuration);
 	}
 
 	@Override
@@ -111,8 +113,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 		commandBuffers.load();
 		frameSubmission.load(commandBuffers, waitForSignals);
 
-		if (graphicsPipeline != null)
-			graphicsPipeline.load(swapChainManager, renderPass);
+		if (graphicsPipeline != null) graphicsPipeline.load(swapChainManager, renderPass);
 
 		renderPass.buildRenderPass(commandBuffers.getCommandBuffers());
 	}
@@ -163,7 +164,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 	{
 		return graphicsPipeline;
 	}
-	
+
 	private int[] nextImageArray = new int[1];
 
 	public int acquireNextImage()

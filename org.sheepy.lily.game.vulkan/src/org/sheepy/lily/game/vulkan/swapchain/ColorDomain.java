@@ -2,8 +2,8 @@ package org.sheepy.lily.game.vulkan.swapchain;
 
 public class ColorDomain
 {
-	private int colorFormat;
-	private int colorSpace;
+	public final int colorFormat;
+	public final int colorSpace;
 	
 	public ColorDomain(int colorFormat, int colorSpace)
 	{

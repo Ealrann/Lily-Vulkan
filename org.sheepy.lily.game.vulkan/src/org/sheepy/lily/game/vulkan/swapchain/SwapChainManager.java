@@ -14,6 +14,7 @@ import org.lwjgl.vulkan.VkExtent2D;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.device.PhysicalDeviceSupportDetails;
+import org.sheepy.lily.game.vulkan.pipeline.swap.SwapConfiguration;
 import org.sheepy.lily.game.vulkan.queue.QueueManager;
 import org.sheepy.lily.game.vulkan.util.VulkanBufferUtils;
 import org.sheepy.lily.game.vulkan.util.VulkanUtils;
@@ -21,8 +22,9 @@ import org.sheepy.lily.game.vulkan.util.VulkanUtils;
 public class SwapChainManager
 {
 	private LogicalDevice logicalDevice;
+	private SwapConfiguration configuration;
+	
 	private PhysicalDeviceSupportDetails details;
-	private ColorDomain targetColorDomain;
 	private Long swapChain = null;
 
 	private List<Long> swapChainImages = null;
@@ -30,10 +32,10 @@ public class SwapChainManager
 	private ColorDomain currentColorDomain;
 	private Extent2D extent;
 
-	public SwapChainManager(LogicalDevice logicalDevice, ColorDomain colorDomain)
+	public SwapChainManager(LogicalDevice logicalDevice, SwapConfiguration configuration)
 	{
 		this.logicalDevice = logicalDevice;
-		this.targetColorDomain = colorDomain;
+		this.configuration = configuration;
 	}
 
 	public Long load(long surface, int width, int height)
@@ -61,7 +63,7 @@ public class SwapChainManager
 		createInfo.imageExtent().width(extent.width);
 		createInfo.imageExtent().height(extent.height);
 		createInfo.imageArrayLayers(1);
-		createInfo.imageUsage(VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT);
+		createInfo.imageUsage(configuration.swapImageUsages);
 
 		IntBuffer indices = null;
 
@@ -173,6 +175,7 @@ public class SwapChainManager
 	{
 		ColorDomain res = null;
 		ColorDomain[] availableDomains = details.getColorDomains();
+		ColorDomain targetColorDomain = configuration.colorDomain;
 
 		// Best case : the graphic card has no preferences
 		if (availableDomains.length == 1

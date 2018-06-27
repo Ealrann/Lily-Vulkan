@@ -13,7 +13,6 @@ import org.sheepy.lily.game.vulkan.descriptor.BasicDescriptorSetConfiguration;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.GraphicsPipeline;
-import org.sheepy.lily.game.vulkan.swapchain.ColorDomain;
 
 public class MeshSwapPipeline extends AbstractSwapPipeline
 {
@@ -22,16 +21,15 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 	private Mesh mesh = null;
 
 	public MeshSwapPipeline(LogicalDevice logicalDevice, Mesh mesh, SwapConfiguration configuration,
-			CommandPool commandPool, ColorDomain colorDomain)
+			CommandPool commandPool)
 	{
-		this(logicalDevice, mesh, configuration, commandPool, colorDomain, null);
+		this(logicalDevice, mesh, configuration, commandPool, null);
 	}
 
 	public MeshSwapPipeline(LogicalDevice logicalDevice, Mesh mesh, SwapConfiguration configuration,
-			CommandPool commandPool, ColorDomain colorDomain,
-			Collection<ISignalEmitter> waitForSignals)
+			CommandPool commandPool, Collection<ISignalEmitter> waitForSignals)
 	{
-		super(logicalDevice, configuration, commandPool, colorDomain, waitForSignals);
+		super(logicalDevice, configuration, commandPool, waitForSignals);
 
 		this.mesh = mesh;
 
@@ -47,11 +45,12 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 			}
 		}
 	}
-	
+
 	@Override
 	protected IGraphicsPipeline buildGraphicsPipeline()
 	{
-		return new GraphicsPipeline(logicalDevice, configuration, mesh.getShaders(), descriptorPool);
+		return new GraphicsPipeline(logicalDevice, configuration, mesh.getShaders(),
+				descriptorPool);
 	}
 
 	@Override
@@ -75,7 +74,7 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 
 		super.destroy(full);
 	}
-	
+
 	public DescriptorPool getDescriptorPool()
 	{
 		return descriptorPool;
