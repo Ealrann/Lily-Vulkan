@@ -11,7 +11,8 @@ public class ImageView
 {
 	private LogicalDevice logicalDevice;
 	private long imageId;
-
+	private int imageFormat;
+	
 	private long imageViewId = -1;
 
 	public static ImageView alloc(LogicalDevice logicalDevice,
@@ -32,6 +33,7 @@ public class ImageView
 	public void load(long imageId, int levelCount, int format, int aspectMask)
 	{
 		this.imageId = imageId;
+		this.imageFormat = format;
 		
 		VkImageViewCreateInfo createInfo = VkImageViewCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO);
@@ -59,15 +61,13 @@ public class ImageView
 	}
 
 	public void transitionImageLayout(VkCommandBuffer commandBuffer,
-			int format,
 			int oldLayout,
 			int newLayout)
 	{
-		transitionImageLayout(commandBuffer, format, oldLayout, newLayout, 1);
+		transitionImageLayout(commandBuffer, oldLayout, newLayout, 1);
 	}
 
 	public void transitionImageLayout(VkCommandBuffer commandBuffer,
-			int format,
 			int oldLayout,
 			int newLayout,
 			int mipLevels)
@@ -77,7 +77,7 @@ public class ImageView
 		{
 			aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
 
-			if (hasStencilComponent(format))
+			if (hasStencilComponent())
 			{
 				aspectMask |= VK_IMAGE_ASPECT_STENCIL_BIT;
 			}
@@ -139,9 +139,9 @@ public class ImageView
 		vkCmdPipelineBarrier(commandBuffer, sourceStage, destinationStage, 0, null, null, barrier);
 	}
 
-	private boolean hasStencilComponent(int format)
+	private boolean hasStencilComponent()
 	{
-		return format == VK_FORMAT_D32_SFLOAT_S8_UINT || format == VK_FORMAT_D24_UNORM_S8_UINT;
+		return imageFormat == VK_FORMAT_D32_SFLOAT_S8_UINT || imageFormat == VK_FORMAT_D24_UNORM_S8_UINT;
 	}
 
 	public long getId()

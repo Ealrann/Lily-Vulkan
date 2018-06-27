@@ -50,8 +50,8 @@ public class DepthResource
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
-				depthImageView.transitionImageLayout(commandBuffer, depthFormat,
-						VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
+				depthImageView.transitionImageLayout(commandBuffer, VK_IMAGE_LAYOUT_UNDEFINED,
+						VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
 			}
 		};
 		stc.execute();

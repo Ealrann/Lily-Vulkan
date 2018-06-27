@@ -81,8 +81,8 @@ public class Texture implements IDescriptor
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
-				imageView.transitionImageLayout(commandBuffer, VK_FORMAT_R8G8B8A8_UNORM,
-						VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, mipLevels);
+				imageView.transitionImageLayout(commandBuffer, VK_IMAGE_LAYOUT_UNDEFINED,
+						VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, mipLevels);
 
 				imageBuffer.fillWithBuffer(commandBuffer, buffer);
 
