@@ -3,6 +3,7 @@ package org.sheepy.lily.game.vulkan.command;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
@@ -10,12 +11,39 @@ import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
 
-public class SingleTimeCommand extends AbstractCommandBuffer
+public abstract class SingleTimeCommand extends AbstractCommandBuffer
 {
 	private CommandPool commandPool;
 	private VkQueue queue;
 
-	public static SingleTimeCommand alloc(CommandPool commandPool, VkQueue queue)
+	private SingleTimeCommand(CommandPool commandPool, VkQueue queue, long commandBufferId)
+	{
+		super(commandPool.getLogicalDevice(), commandBufferId);
+
+		this.commandPool = commandPool;
+		this.queue = queue;
+	}
+
+	public SingleTimeCommand(CommandPool commandPool, VkQueue queue)
+	{
+		this(commandPool, queue, allocCommandBufferId(commandPool));
+	}
+
+	public void execute()
+	{
+		VkCommandBuffer commandBuffer = start();
+
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			doExecute(stack, commandBuffer);
+		}
+
+		end();
+		
+		postExecute();
+	}
+
+	private static long allocCommandBufferId(CommandPool commandPool)
 	{
 		VkCommandBufferAllocateInfo allocInfo = VkCommandBufferAllocateInfo.calloc();
 		allocInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO);
@@ -28,20 +56,9 @@ public class SingleTimeCommand extends AbstractCommandBuffer
 				pCommandBuffer);
 		long commandBufferId = pCommandBuffer.get(0);
 
-		SingleTimeCommand res = new SingleTimeCommand(commandPool, queue, commandBufferId);
-		
 		pCommandBuffer.free();
 		allocInfo.free();
-		
-		return res;
-	}
-
-	private SingleTimeCommand(CommandPool commandPool, VkQueue queue, long commandBufferId)
-	{
-		super(commandPool.getLogicalDevice(), commandBufferId);
-
-		this.commandPool = commandPool;
-		this.queue = queue;
+		return commandBufferId;
 	}
 
 	@Override
@@ -80,5 +97,10 @@ public class SingleTimeCommand extends AbstractCommandBuffer
 
 		submitInfo.free();
 	}
+
+	protected abstract void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer);
+
+	protected void postExecute()
+	{}
 
 }

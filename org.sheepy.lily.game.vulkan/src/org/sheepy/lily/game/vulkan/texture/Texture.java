@@ -19,7 +19,7 @@ import org.lwjgl.vulkan.VkOffset3D;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.game.vulkan.buffer.Buffer;
-import org.sheepy.lily.game.vulkan.buffer.ImageBuffer;
+import org.sheepy.lily.game.vulkan.buffer.Image;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.command.SingleTimeCommand;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
@@ -32,7 +32,7 @@ public class Texture implements IDescriptor
 	private String imagePath;
 	private boolean generateMipMap;
 
-	private ImageBuffer imageBuffer;
+	private Image imageBuffer;
 	private ImageView imageView;
 	private Sampler sampler;
 
@@ -57,7 +57,7 @@ public class Texture implements IDescriptor
 		this.imagePath = imagePath;
 		this.generateMipMap = generateMipMap;
 
-		imageBuffer = new ImageBuffer(logicalDevice);
+		imageBuffer = new Image(logicalDevice);
 		imageView = new ImageView(logicalDevice);
 		sampler = new Sampler(logicalDevice, true);
 	}
@@ -73,19 +73,28 @@ public class Texture implements IDescriptor
 						| VK_IMAGE_USAGE_SAMPLED_BIT,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		imageBuffer.transitionImageLayout(commandPool, graphicQueue, VK_FORMAT_R8G8B8A8_UNORM,
-				VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, mipLevels);
-
-		imageBuffer.fillWithBuffer(commandPool, graphicQueue, buffer);
-
-		// imageBuffer.transitionImageLayout(commandPool, graphicQueue,
-		// VK_FORMAT_R8G8B8A8_UNORM,
-		// VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-		// VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, mipLevels);
-		generateMipmaps(commandPool, graphicQueue, imageBuffer.getId());
-
 		imageView.load(imageBuffer.getId(), mipLevels, VK_FORMAT_R8G8B8A8_UNORM,
 				VK_IMAGE_ASPECT_COLOR_BIT);
+
+		SingleTimeCommand stc = new SingleTimeCommand(commandPool, graphicQueue)
+		{
+			@Override
+			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			{
+				imageView.transitionImageLayout(commandBuffer, VK_FORMAT_R8G8B8A8_UNORM,
+						VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, mipLevels);
+
+				imageBuffer.fillWithBuffer(commandBuffer, buffer);
+
+				// imageBuffer.transitionImageLayout(commandPool, graphicQueue,
+				// VK_FORMAT_R8G8B8A8_UNORM,
+				// VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+				// VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, mipLevels);
+
+				generateMipmaps(commandBuffer, imageBuffer.getId());
+			}
+		};
+		stc.execute();
 
 		sampler.load(0, mipLevels);
 
@@ -133,12 +142,8 @@ public class Texture implements IDescriptor
 		return 31 - Integer.numberOfLeadingZeros(bits);
 	}
 
-	private void generateMipmaps(CommandPool commandPool, VkQueue queue, long image)
+	private void generateMipmaps(VkCommandBuffer commandBuffer, long image)
 	{
-		SingleTimeCommand command = commandPool.newSingleTimeCommand(queue);
-
-		VkCommandBuffer commandBuffer = command.start();
-
 		VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.calloc(1);
 		barrier.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		barrier.image(image);
@@ -208,8 +213,6 @@ public class Texture implements IDescriptor
 
 		vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT,
 				VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, null, null, barrier);
-
-		command.end();
 
 		barrier.free();
 	}
@@ -303,5 +306,5 @@ public class Texture implements IDescriptor
 		else if (!imagePath.equals(other.imagePath)) return false;
 		return true;
 	}
-	
+
 }

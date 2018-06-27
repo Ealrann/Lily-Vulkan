@@ -12,9 +12,6 @@ import org.lwjgl.vulkan.VkBufferCreateInfo;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
-import org.lwjgl.vulkan.VkQueue;
-import org.sheepy.lily.game.vulkan.command.CommandPool;
-import org.sheepy.lily.game.vulkan.command.SingleTimeCommand;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
 public class Buffer
@@ -123,22 +120,15 @@ public class Buffer
 		MemoryUtil.memFree(pBuffer);
 	}
 
-	public static void copyBuffer(CommandPool commandPool,
-			VkQueue queue,
+	public static void copyBuffer(VkCommandBuffer vkCommandBuffer,
 			long srcBuffer,
 			long dstBuffer,
 			int size)
 	{
-		SingleTimeCommand stc = commandPool.newSingleTimeCommand(queue);
-		VkCommandBuffer vkCommandBuffer = stc.start();
-
 		VkBufferCopy.Buffer copyRegion = VkBufferCopy.calloc(1);
 		copyRegion.srcOffset(0); // Optional
 		copyRegion.dstOffset(0); // Optional
 		copyRegion.size(size);
 		vkCmdCopyBuffer(vkCommandBuffer, srcBuffer, dstBuffer, copyRegion);
-
-		// Now, we execute the command
-		stc.end();
 	}
 }

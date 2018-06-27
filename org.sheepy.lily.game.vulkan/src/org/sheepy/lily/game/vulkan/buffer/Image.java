@@ -5,15 +5,11 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageCreateInfo;
-import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
-import org.lwjgl.vulkan.VkQueue;
-import org.sheepy.lily.game.vulkan.command.CommandPool;
-import org.sheepy.lily.game.vulkan.command.SingleTimeCommand;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
-public class ImageBuffer
+public class Image
 {
 	private LogicalDevice logicalDevice;
 
@@ -24,7 +20,7 @@ public class ImageBuffer
 	protected long imageId;
 	protected long imageMemoryId;
 
-	public static ImageBuffer alloc(LogicalDevice logicalDevice,
+	public static Image alloc(LogicalDevice logicalDevice,
 			int width,
 			int height,
 			int format,
@@ -32,12 +28,12 @@ public class ImageBuffer
 			int usage,
 			int properties)
 	{
-		ImageBuffer res = new ImageBuffer(logicalDevice);
+		Image res = new Image(logicalDevice);
 		res.createImage(width, height, 1, format, tiling, usage, properties);
 		return res;
 	}
 
-	public ImageBuffer(LogicalDevice logicalDevice)
+	public Image(LogicalDevice logicalDevice)
 	{
 		this.logicalDevice = logicalDevice;
 	}
@@ -100,104 +96,8 @@ public class ImageBuffer
 		allocInfo.free();
 	}
 
-	public void transitionImageLayout(CommandPool commandPool,
-			VkQueue queue,
-			int format,
-			int oldLayout,
-			int newLayout)
+	public void fillWithBuffer(VkCommandBuffer commandBuffer, Buffer buffer)
 	{
-		transitionImageLayout(commandPool, queue, format, oldLayout, newLayout, 1);
-	}
-
-	public void transitionImageLayout(CommandPool commandPool,
-			VkQueue queue,
-			int format,
-			int oldLayout,
-			int newLayout,
-			int mipLevels)
-	{
-		SingleTimeCommand singleTimeCommand = commandPool.newSingleTimeCommand(queue);
-		VkCommandBuffer commandBuffer = singleTimeCommand.start();
-
-		int aspectMask = 0;
-		if (newLayout == VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL)
-		{
-			aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
-
-			if (hasStencilComponent(format))
-			{
-				aspectMask |= VK_IMAGE_ASPECT_STENCIL_BIT;
-			}
-		}
-		else
-		{
-			aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
-		}
-
-		VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.calloc(1);
-		barrier.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
-		barrier.oldLayout(oldLayout);
-		barrier.newLayout(newLayout);
-		barrier.srcQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
-		barrier.dstQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
-		barrier.image(imageId);
-		barrier.subresourceRange().baseMipLevel(0);
-		barrier.subresourceRange().levelCount(mipLevels);
-		barrier.subresourceRange().baseArrayLayer(0);
-		barrier.subresourceRange().layerCount(1);
-		barrier.subresourceRange().aspectMask(aspectMask);
-
-		int sourceStage;
-		int destinationStage;
-
-		if (oldLayout == VK_IMAGE_LAYOUT_UNDEFINED
-				&& newLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL)
-		{
-			barrier.srcAccessMask(0);
-			barrier.dstAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
-
-			sourceStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
-			destinationStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
-		}
-		else if (oldLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
-				&& newLayout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL)
-		{
-			barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
-			barrier.dstAccessMask(VK_ACCESS_SHADER_READ_BIT);
-
-			sourceStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
-			destinationStage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
-		}
-		else if (oldLayout == VK_IMAGE_LAYOUT_UNDEFINED
-				&& newLayout == VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL)
-		{
-			barrier.srcAccessMask(0);
-			barrier.dstAccessMask(VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT
-					| VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT);
-
-			sourceStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
-			destinationStage = VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
-		}
-		else
-		{
-			throw new AssertionError("unsupported layout transition!");
-		}
-
-		vkCmdPipelineBarrier(commandBuffer, sourceStage, destinationStage, 0, null, null, barrier);
-
-		singleTimeCommand.end();
-	}
-
-	private boolean hasStencilComponent(int format)
-	{
-		return format == VK_FORMAT_D32_SFLOAT_S8_UINT || format == VK_FORMAT_D24_UNORM_S8_UINT;
-	}
-
-	public void fillWithBuffer(CommandPool commandPool, VkQueue queue, Buffer buffer)
-	{
-		SingleTimeCommand transaction = commandPool.newSingleTimeCommand(queue);
-		VkCommandBuffer commandBuffer = transaction.start();
-
 		VkBufferImageCopy.Buffer region = VkBufferImageCopy.calloc(1);
 		region.bufferOffset(0);
 		region.bufferRowLength(0);
@@ -213,8 +113,6 @@ public class ImageBuffer
 
 		vkCmdCopyBufferToImage(commandBuffer, buffer.getId(), imageId,
 				VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region);
-
-		transaction.end();
 	}
 
 	public long getId()
@@ -258,7 +156,7 @@ public class ImageBuffer
 		if (this == obj) return true;
 		if (obj == null) return false;
 		if (getClass() != obj.getClass()) return false;
-		ImageBuffer other = (ImageBuffer) obj;
+		Image other = (Image) obj;
 		if (imageId != other.imageId) return false;
 		return true;
 	}

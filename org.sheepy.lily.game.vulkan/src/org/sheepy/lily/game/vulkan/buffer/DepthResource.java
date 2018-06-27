@@ -2,8 +2,11 @@ package org.sheepy.lily.game.vulkan.buffer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkFormatProperties;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
+import org.sheepy.lily.game.vulkan.command.SingleTimeCommand;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.view.ImageView;
 
@@ -11,12 +14,15 @@ public class DepthResource
 {
 	private LogicalDevice logicalDevice;
 
-	private ImageBuffer depthImage;
+	private Image depthImage;
 	private ImageView depthImageView;
 
 	private int depthFormat;
 
-	public static final DepthResource alloc(LogicalDevice logicalDevice, CommandPool commandPool, int width, int height)
+	public static final DepthResource alloc(LogicalDevice logicalDevice,
+			CommandPool commandPool,
+			int width,
+			int height)
 	{
 		DepthResource res = new DepthResource(logicalDevice);
 		res.load(commandPool, width, height);
@@ -27,7 +33,7 @@ public class DepthResource
 	{
 		this.logicalDevice = logicalDevice;
 
-		depthImage = new ImageBuffer(logicalDevice);
+		depthImage = new Image(logicalDevice);
 		depthImageView = new ImageView(logicalDevice);
 	}
 
@@ -38,9 +44,17 @@ public class DepthResource
 				VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 		depthImageView.load(depthImage.getId(), 1, depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT);
 
-		depthImage.transitionImageLayout(commandPool,
-				logicalDevice.getQueueManager().getGraphicQueue(), depthFormat,
-				VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
+		SingleTimeCommand stc = new SingleTimeCommand(commandPool,
+				logicalDevice.getQueueManager().getGraphicQueue())
+		{
+			@Override
+			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			{
+				depthImageView.transitionImageLayout(commandBuffer, depthFormat,
+						VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
+			}
+		};
+		stc.execute();
 	}
 
 	private int findSupportedFormat(int[] candidates, int tiling, int features)
