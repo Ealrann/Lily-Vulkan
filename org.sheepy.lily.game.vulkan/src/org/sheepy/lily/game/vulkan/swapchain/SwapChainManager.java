@@ -23,7 +23,7 @@ public class SwapChainManager
 {
 	private LogicalDevice logicalDevice;
 	private SwapConfiguration configuration;
-	
+
 	private PhysicalDeviceSupportDetails details;
 	private Long swapChain = null;
 
@@ -184,10 +184,12 @@ public class SwapChainManager
 			res = targetColorDomain;
 		}
 
+		System.out.println("\nAvaillable Color Formats:");
 		for (ColorDomain availableDomain : availableDomains)
 		{
+			System.out.println("\t" + availableDomain);
 			if (availableDomain.getColorFormat() == targetColorDomain.getColorFormat()
-					&& availableDomain.getColorSpace() == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR)
+					&& availableDomain.getColorSpace() == targetColorDomain.getColorSpace())
 			{
 				res = targetColorDomain;
 				break;
