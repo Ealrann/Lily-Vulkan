@@ -66,7 +66,7 @@ public class ComputerPool implements IDescriptorSetConfiguration
 
 	public int getDataDepth()
 	{
-		return dataHeight;
+		return dataDepth;
 	}
 
 	public List<IComputer> getComputers()
