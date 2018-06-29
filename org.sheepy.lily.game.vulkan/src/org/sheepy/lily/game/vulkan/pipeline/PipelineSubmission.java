@@ -36,10 +36,6 @@ public class PipelineSubmission implements ISignalEmitter
 
 	public void load(AbstractCommandBuffers<?> commandBuffers)
 	{
-		// At least one semaphore is needed
-		if(signalSemaphoreManager.getSemaphores().isEmpty())
-			signalSemaphoreManager.newSemaphore();
-			
 		signalSemaphoreManager.lock(true);
 		for (int i = 0; i < commandBuffers.size(); i++)
 		{
