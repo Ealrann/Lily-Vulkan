@@ -17,7 +17,6 @@ public class PipelineSubmission implements ISignalEmitter
 	protected SemaphoreManager signalSemaphoreManager;
 	protected List<VkSemaphore> waitSemaphores;
 	protected int waitStage;
-	
 
 	protected List<SubmissionInfo> infos = new ArrayList<>();
 
@@ -28,10 +27,18 @@ public class PipelineSubmission implements ISignalEmitter
 		this.waitStage = waitStage;
 		
 		waitSemaphores = new ArrayList<>();
-		for (ISignalEmitter emiter : waitForEmitters)
+		for (ISignalEmitter emitter : waitForEmitters)
 		{
-			waitSemaphores.add(emiter.newSignalSemaphore());
+			waitSemaphores.add(emitter.newSignalSemaphore());
 		}
+	}
+	
+	public void addEmitterToWait(ISignalEmitter emitter)
+	{
+		VkSemaphore newSignalSemaphore = emitter.newSignalSemaphore();
+		waitSemaphores.add(newSignalSemaphore);
+		
+//		System.out.println("New Semaphore to wait : " + Long.toHexString(newSignalSemaphore.getId()));
 	}
 
 	public void load(AbstractCommandBuffers<?> commandBuffers)
@@ -76,6 +83,11 @@ public class PipelineSubmission implements ISignalEmitter
 	public VkSemaphore newSignalSemaphore()
 	{
 		return signalSemaphoreManager.newSemaphore();
+	}
+
+	public List<VkSemaphore> getWaitSemaphores()
+	{
+		return waitSemaphores;
 	}
 
 }

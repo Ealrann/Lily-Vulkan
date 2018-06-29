@@ -22,15 +22,14 @@ public class ComputePipeline implements ISignalEmitter
 	protected LogicalDevice logicalDevice;
 	protected CommandPool commandPool;
 
-	private Collection<ComputerPool> computerPools = new ArrayList<>();
+	protected Collection<ComputerPool> computerPools = new ArrayList<>();
 
 	protected DescriptorPool descriptorPool;
 	protected long pipeline;
 	protected long pipelineLayout;
 	protected ComputeCommandBuffers commandBuffers;
 
-	private PipelineSubmission submission;
-
+	protected PipelineSubmission submission;
 
 	public ComputePipeline(LogicalDevice logicalDevice, CommandPool commandPool,
 			Collection<ISignalEmitter> waitForEmitters)
@@ -38,7 +37,8 @@ public class ComputePipeline implements ISignalEmitter
 		this.logicalDevice = logicalDevice;
 		this.commandPool = commandPool;
 
-		submission = new PipelineSubmission(logicalDevice, waitForEmitters, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
+		submission = new PipelineSubmission(logicalDevice, waitForEmitters,
+				VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
 	}
 
 	@Override
@@ -129,6 +129,11 @@ public class ComputePipeline implements ISignalEmitter
 	public VkSubmitInfo getSubmitInfo()
 	{
 		return submission.getSubmitInfo(0);
+	}
+
+	public PipelineSubmission getSubmission()
+	{
+		return submission;
 	}
 
 	public long getId()
