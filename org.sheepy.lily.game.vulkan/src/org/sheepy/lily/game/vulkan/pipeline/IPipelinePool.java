@@ -14,5 +14,4 @@ public interface IPipelinePool
 	void free();
 
 	CommandPool getCommandPool();
-
 }
