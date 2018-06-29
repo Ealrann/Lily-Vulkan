@@ -87,14 +87,12 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 
 	protected FrameSubmission buildFrameSubmission()
 	{
-		return new FrameSubmission(logicalDevice, swapChainManager,
+		return new FrameSubmission(logicalDevice, swapChainManager, waitForSignals,
 				VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
 	}
 
 	public void load(long surface, int width, int height)
 	{
-		frameSubmission.newSignalSemaphore();
-
 		graphicsPipeline = buildGraphicsPipeline();
 		renderPass = buildRenderPass();
 
@@ -111,7 +109,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 
 		commandBuffers = buildCommandBuffers();
 		commandBuffers.load();
-		frameSubmission.load(commandBuffers, waitForSignals);
+		frameSubmission.load(commandBuffers);
 
 		if (graphicsPipeline != null) graphicsPipeline.load(swapChainManager, renderPass);
 

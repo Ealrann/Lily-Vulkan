@@ -4,7 +4,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
@@ -32,7 +31,6 @@ public class ComputePipeline implements ISignalEmitter
 
 	private PipelineSubmission submission;
 
-	private List<ISignalEmitter> waitForEmitters;
 
 	public ComputePipeline(LogicalDevice logicalDevice, CommandPool commandPool,
 			Collection<ISignalEmitter> waitForEmitters)
@@ -40,9 +38,7 @@ public class ComputePipeline implements ISignalEmitter
 		this.logicalDevice = logicalDevice;
 		this.commandPool = commandPool;
 
-		this.waitForEmitters = new ArrayList<>(waitForEmitters);
-
-		submission = new PipelineSubmission(logicalDevice, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
+		submission = new PipelineSubmission(logicalDevice, waitForEmitters, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
 	}
 
 	@Override
@@ -108,7 +104,7 @@ public class ComputePipeline implements ISignalEmitter
 			commandBuffers = new ComputeCommandBuffers(this, commandPool, computerPools);
 			commandBuffers.load();
 
-			submission.load(commandBuffers, waitForEmitters);
+			submission.load(commandBuffers);
 
 			pipelineCreateInfos.free();
 			pipelineLayoutCreateInfo.free();

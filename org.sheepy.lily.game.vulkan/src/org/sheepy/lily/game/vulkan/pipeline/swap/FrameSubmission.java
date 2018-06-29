@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.sheepy.lily.game.vulkan.command.ICommandBuffer;
+import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.pipeline.PipelineSubmission;
@@ -14,9 +15,9 @@ public class FrameSubmission extends PipelineSubmission
 {
 	private SwapChainManager swapChain;
 
-	public FrameSubmission(LogicalDevice logicalDevice, SwapChainManager swapChain, int waitStage)
+	public FrameSubmission(LogicalDevice logicalDevice, SwapChainManager swapChain, Collection<ISignalEmitter> waitForSignals, int waitStage)
 	{
-		super(logicalDevice, waitStage);
+		super(logicalDevice, waitForSignals, waitStage);
 
 		this.swapChain = swapChain;
 	}

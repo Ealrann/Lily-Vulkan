@@ -5,14 +5,14 @@ import org.sheepy.lily.game.vulkan.command.CommandPool;
 
 public interface IPipelinePool
 {
+	void load(MemoryStack stack, long surface, int width, int height);
 
 	void execute();
-	
+
 	void resize(long surface, int width, int height);
-	
+
 	void free();
-	
+
 	CommandPool getCommandPool();
 
-	void load(MemoryStack stack, long surface, int width, int height);
 }
