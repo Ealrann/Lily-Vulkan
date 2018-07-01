@@ -74,7 +74,7 @@ public class UniformBufferObject implements IDescriptor
 		proj.mul(new Matrix4f().m11(-1f));
 
 		ByteBuffer datas = allocBuffer();
-		buffer.fillWithBuffer(datas, SIZE_OF);
+		buffer.fillWithBuffer(datas);
 		MemoryUtil.memFree(datas);
 	}
 

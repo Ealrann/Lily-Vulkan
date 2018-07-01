@@ -129,7 +129,7 @@ public class Texture implements IDescriptor
 
 		Buffer buffer = Buffer.alloc(logicalDevice, imageSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
-		buffer.fillWithBuffer(pixels, imageSize);
+		buffer.fillWithBuffer(pixels);
 
 		STBImage.stbi_image_free(pixels);
 

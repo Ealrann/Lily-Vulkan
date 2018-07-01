@@ -110,10 +110,10 @@ public class Buffer
 		return size;
 	}
 
-	public void fillWithBuffer(ByteBuffer byteBuffer, long byteSize)
+	public void fillWithBuffer(ByteBuffer byteBuffer)
 	{
 		PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-		vkMapMemory(logicalDevice.getVkDevice(), bufferMemoryId, 0, byteSize, 0, pBuffer);
+		vkMapMemory(logicalDevice.getVkDevice(), bufferMemoryId, 0, size, 0, pBuffer);
 		long data = pBuffer.get(0);
 		MemoryUtil.memCopy(memAddress(byteBuffer), data, byteBuffer.capacity());
 		vkUnmapMemory(logicalDevice.getVkDevice(), bufferMemoryId);

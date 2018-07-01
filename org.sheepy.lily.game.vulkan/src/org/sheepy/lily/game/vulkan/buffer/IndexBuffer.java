@@ -69,7 +69,7 @@ public class IndexBuffer
 				VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
 
-		indexStagingBuffer.fillWithBuffer(verticeBuffer, byteSize);
+		indexStagingBuffer.fillWithBuffer(verticeBuffer);
 
 		indexBuffer = Buffer.alloc(logicalDevice, byteSize,
 				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT,
@@ -94,7 +94,7 @@ public class IndexBuffer
 				VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
 
-		vertexStagingBuffer.fillWithBuffer(verticeBuffer, byteSize);
+		vertexStagingBuffer.fillWithBuffer(verticeBuffer);
 
 		buffer = Buffer.alloc(logicalDevice, byteSize,
 				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
