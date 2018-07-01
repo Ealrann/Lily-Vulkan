@@ -119,6 +119,16 @@ public class Buffer
 		vkUnmapMemory(logicalDevice.getVkDevice(), bufferMemoryId);
 		MemoryUtil.memFree(pBuffer);
 	}
+	
+	public void copyToBuffer(ByteBuffer byteBuffer)
+	{
+		PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
+		vkMapMemory(logicalDevice.getVkDevice(), bufferMemoryId, 0, size, 0, pBuffer);
+		long data = pBuffer.get(0);
+		MemoryUtil.memCopy(data, memAddress(byteBuffer), byteBuffer.capacity());
+		vkUnmapMemory(logicalDevice.getVkDevice(), bufferMemoryId);
+		MemoryUtil.memFree(pBuffer);
+	}
 
 	public static void copyBuffer(VkCommandBuffer vkCommandBuffer,
 			long srcBuffer,
