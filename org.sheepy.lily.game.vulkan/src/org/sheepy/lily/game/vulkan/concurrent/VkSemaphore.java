@@ -2,7 +2,14 @@ package org.sheepy.lily.game.vulkan.concurrent;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.Collections;
+
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkCommandBuffer;
+import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
+import org.sheepy.lily.game.vulkan.command.CommandPool;
+import org.sheepy.lily.game.vulkan.command.SingleTimeCommand;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
 public class VkSemaphore
@@ -38,6 +45,18 @@ public class VkSemaphore
 	public long getId()
 	{
 		return semaphoreId;
+	}
+
+	public void signalSemaphore(CommandPool commandPool, VkQueue queue)
+	{
+		SingleTimeCommand stc = new SingleTimeCommand(commandPool, queue, Collections.singletonList(this))
+		{
+			@Override
+			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			{}
+		};
+		
+		stc.execute();
 	}
 
 	public void free()
