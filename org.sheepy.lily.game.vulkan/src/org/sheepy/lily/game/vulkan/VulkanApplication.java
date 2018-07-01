@@ -88,7 +88,7 @@ public abstract class VulkanApplication
 				{
 					VulkanApplication.this.width = width;
 					VulkanApplication.this.height = height;
-					
+
 					logicalDevice.createQueues(surface);
 					resizePipelinePools(surface, width, height);
 				}
@@ -109,36 +109,11 @@ public abstract class VulkanApplication
 
 	public void mainLoop()
 	{
-		long counter = 0;
-		long counterTime = System.currentTimeMillis();
-		boolean ecoMode = false;
-
 		while (window.shouldClose() == false)
 		{
 			window.pollEvents();
 			updateAppState();
 			drawFrame();
-
-			if (ecoMode == false)
-			{
-				counter++;
-
-				if (System.currentTimeMillis() > counterTime + 2000)
-				{
-					System.out.println("FPS: " + (counter / 2));
-					ecoMode = true;
-				}
-			}
-			else
-			{
-				try
-				{
-					Thread.sleep(16);
-				} catch (InterruptedException e)
-				{
-					e.printStackTrace();
-				}
-			}
 		}
 
 		logicalDevice.waitIdle();
@@ -247,7 +222,7 @@ public abstract class VulkanApplication
 	{
 		return width;
 	}
-	
+
 	public int getHeight()
 	{
 		return height;
