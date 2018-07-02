@@ -114,10 +114,11 @@ public class Texture implements IDescriptor
 		int[] texWidth = new int[1];
 		int[] texHeight = new int[1];
 		int[] texChannels = new int[1];
-		ByteBuffer pixels = STBImage.stbi_load(url.getFile(), texWidth, texHeight, texChannels,
+		ByteBuffer pixels = STBImage.stbi_load(file.getAbsolutePath(), texWidth, texHeight, texChannels,
 				STBI_rgb_alpha);
 		if (pixels == null)
 		{
+			System.err.println(("Problem with file: " + url.getFile()));
 			throw new AssertionError(
 					"Failed to load texture image: " + STBImage.stbi_failure_reason());
 		}
