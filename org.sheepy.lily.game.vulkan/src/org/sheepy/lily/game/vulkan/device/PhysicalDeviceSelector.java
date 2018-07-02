@@ -17,7 +17,7 @@ import org.sheepy.lily.game.vulkan.util.VulkanUtils;
 
 public class PhysicalDeviceSelector
 {
-	private static final Comparator<PhysicalDeviceWrapper> DEVICE_COMPARATOR = new Comparator<>()
+	private static final Comparator<PhysicalDeviceWrapper> DEVICE_COMPARATOR = new Comparator<PhysicalDeviceWrapper>()
 	{
 		public int compare(PhysicalDeviceWrapper o1, PhysicalDeviceWrapper o2)
 		{
