@@ -109,7 +109,7 @@ public class Buffer
 	{
 		return size;
 	}
-
+	
 	public void fillWithBuffer(ByteBuffer byteBuffer)
 	{
 		PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);

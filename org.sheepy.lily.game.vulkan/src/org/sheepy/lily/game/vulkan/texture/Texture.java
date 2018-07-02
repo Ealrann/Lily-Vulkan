@@ -86,11 +86,6 @@ public class Texture implements IDescriptor
 
 				imageBuffer.fillWithBuffer(commandBuffer, buffer);
 
-				// imageBuffer.transitionImageLayout(commandPool, graphicQueue,
-				// VK_FORMAT_R8G8B8A8_UNORM,
-				// VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-				// VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, mipLevels);
-
 				generateMipmaps(commandBuffer, imageBuffer.getId());
 			}
 		};
