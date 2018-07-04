@@ -19,6 +19,7 @@ public class PhysicalDeviceSelector
 {
 	private static final Comparator<PhysicalDeviceWrapper> DEVICE_COMPARATOR = new Comparator<PhysicalDeviceWrapper>()
 	{
+		@Override
 		public int compare(PhysicalDeviceWrapper o1, PhysicalDeviceWrapper o2)
 		{
 			return Integer.compare(o1.getRate(), o2.getRate());
