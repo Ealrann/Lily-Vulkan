@@ -1,14 +1,13 @@
 package org.sheepy.lily.game.vulkan.pipeline.compute;
 
-import java.util.List;
-
-import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
+import org.sheepy.lily.game.vulkan.descriptor.IDescriptorSetConfiguration;
 import org.sheepy.lily.game.vulkan.shader.Shader;
 
-public interface IComputer
+public interface IComputer extends IDescriptorSetConfiguration
 {
+	void load();
+	
 	Shader getShader();
-	List<IDescriptor> getDescriptors();
 
 	int getDataWidth();
 

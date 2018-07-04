@@ -16,83 +16,88 @@ import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
 import org.sheepy.lily.game.vulkan.pipeline.compute.ComputePipeline;
-import org.sheepy.lily.game.vulkan.pipeline.compute.ComputerPool;
+import org.sheepy.lily.game.vulkan.pipeline.compute.ComputeProcess;
 
 public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommandBuffer>
 {
 	private static final float WORKGROUP_SIZE = 32f;
 
-	private ComputePipeline computePipeline;
-	private ComputerPool[] computerPools;
+	private ComputeProcess[] computeProcesses;
 
-	private Map<ComputerPool, ComputeCommandBuffer> mapBuffers = new HashMap<>();
+	private Map<ComputeProcess, ComputeCommandBuffer> mapBuffers = new HashMap<>();
 
-	public ComputeCommandBuffers(ComputePipeline computePipeline, CommandPool commandPool,
-			Collection<ComputerPool> computerPools)
+	public ComputeCommandBuffers(CommandPool commandPool, List<ComputeProcess> computeProcesses)
 	{
 		super(commandPool);
-		this.computerPools = computerPools.toArray(new ComputerPool[computerPools.size()]);
-		this.computePipeline = computePipeline;
+		this.computeProcesses = computeProcesses.toArray(new ComputeProcess[0]);
 	}
 
 	@Override
 	protected List<ComputeCommandBuffer> allocCommandBuffers()
 	{
-		DescriptorPool descriptorPool = computePipeline.getDescriptorPool();
-		long pipeline = computePipeline.getId();
-		long pipelineLayout = computePipeline.getPipelineLayout();
 
 		List<ComputeCommandBuffer> res = new ArrayList<>();
 		long commandPoolId = commandPool.getId();
 
-		long[] commandBufferIds = allocCommandBuffers(commandPoolId, computerPools.length);
+		long[] commandBufferIds = allocCommandBuffers(commandPoolId, computeProcesses.length);
 
-		for (int i = 0; i < computerPools.length; i++)
+		for (int i = 0; i < computeProcesses.length; i++)
 		{
+			ComputeProcess computeprocess = computeProcesses[i];
 			long commandBufferId = commandBufferIds[i];
-			ComputerPool computerPool = computerPools[i];
+
+			DescriptorPool descriptorPool = computeprocess.getDescriptorPool();
+			Collection<ComputePipeline> pipelines = computeprocess.getPipelines();
+
 			ComputeCommandBuffer commandBuffer = new ComputeCommandBuffer(
 					commandPool.getLogicalDevice(), commandBufferId);
 
 			commandBuffer.start();
 
-			vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_COMPUTE,
-					pipeline);
-
-			if (descriptorPool != null)
+			for (ComputePipeline pipeline : pipelines)
 			{
-				DescriptorSet descriptorSet = descriptorPool.getDescriptorSet(computerPool);
+				long pipelineLayout = pipeline.getPipelineLayout();
+				
+				int dataWidth = pipeline.getDataWidth();
+				int dataHeight = pipeline.getDataHeight();
+				int dataDepth = pipeline.getDataDepth();
 
-				LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(1);
-				bDescriptorSet.put(descriptorSet.getId());
-				bDescriptorSet.flip();
+				Vector3i groupCount = new Vector3i((int) Math.ceil(dataWidth / WORKGROUP_SIZE),
+						(int) Math.ceil(dataHeight / WORKGROUP_SIZE),
+						(int) Math.ceil(dataDepth / WORKGROUP_SIZE));
 
-				vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(),
-						VK_PIPELINE_BIND_POINT_COMPUTE, pipelineLayout, 0, bDescriptorSet, null);
-				MemoryUtil.memFree(bDescriptorSet);
+				if (descriptorPool != null)
+				{
+					DescriptorSet descriptorSet = descriptorPool.getDescriptorSet(pipeline);
+
+					LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(1);
+					bDescriptorSet.put(descriptorSet.getId());
+					bDescriptorSet.flip();
+
+					vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(),
+							VK_PIPELINE_BIND_POINT_COMPUTE, pipelineLayout, 0, bDescriptorSet,
+							null);
+
+					MemoryUtil.memFree(bDescriptorSet);
+				}
+
+				vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(),
+						VK_PIPELINE_BIND_POINT_COMPUTE, pipeline.getId());
+
+				vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCount.x, groupCount.y,
+						groupCount.z);
 			}
-
-			int dataWidth = computerPool.getDataWidth();
-			int dataHeight = computerPool.getDataHeight();
-			int dataDepth = computerPool.getDataDepth();
-
-			Vector3i groupCount = new Vector3i((int) Math.ceil(dataWidth / WORKGROUP_SIZE),
-					(int) Math.ceil(dataHeight / WORKGROUP_SIZE),
-					(int) Math.ceil(dataDepth / WORKGROUP_SIZE));
-
-			vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCount.x, groupCount.y,
-					groupCount.z);
 
 			commandBuffer.end();
 
 			res.add(commandBuffer);
-			mapBuffers.put(computerPool, commandBuffer);
+			mapBuffers.put(computeprocess, commandBuffer);
 		}
 
 		return res;
 	}
 
-	public ComputeCommandBuffer getCommandBuffer(ComputerPool computerPool)
+	public ComputeCommandBuffer getCommandBuffer(ComputeProcess computerPool)
 	{
 		return mapBuffers.get(computerPool);
 	}

@@ -35,12 +35,12 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 		return res;
 	}
 
-	private DescriptorPool(LogicalDevice logicalDevice)
+	public DescriptorPool(LogicalDevice logicalDevice)
 	{
 		this.logicalDevice = logicalDevice;
 	}
 
-	private void load(MemoryStack stack, Collection<? extends IDescriptorSetConfiguration> configurations)
+	public void load(MemoryStack stack, Collection<? extends IDescriptorSetConfiguration> configurations)
 	{
 		int poolSize = 0;
 		for (IDescriptorSetConfiguration configuration : configurations)
@@ -50,10 +50,8 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 
 		VkDescriptorPoolSize.Buffer poolSizes = VkDescriptorPoolSize.callocStack(poolSize);
 
-		int size = 0;
 		for (IDescriptorSetConfiguration configuration : configurations)
 		{
-			size++;
 			for (IDescriptor descriptor : configuration.getDescriptors())
 			{
 				poolSizes.put(descriptor.allocPoolSize(stack));
@@ -64,7 +62,7 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 		VkDescriptorPoolCreateInfo poolInfo = VkDescriptorPoolCreateInfo.callocStack();
 		poolInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO);
 		poolInfo.pPoolSizes(poolSizes);
-		poolInfo.maxSets(size);
+		poolInfo.maxSets(configurations.size());
 
 		long[] aDescriptor = new long[1];
 		if (vkCreateDescriptorPool(logicalDevice.getVkDevice(), poolInfo, null,

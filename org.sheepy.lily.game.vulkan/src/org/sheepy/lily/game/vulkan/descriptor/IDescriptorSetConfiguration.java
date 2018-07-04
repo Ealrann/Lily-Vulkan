@@ -1,8 +1,8 @@
 package org.sheepy.lily.game.vulkan.descriptor;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface IDescriptorSetConfiguration
 {
-	Collection<IDescriptor> getDescriptors();
+	List<IDescriptor> getDescriptors();
 }

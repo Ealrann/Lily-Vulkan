@@ -1,7 +1,8 @@
 package org.sheepy.lily.game.vulkan.pipeline.swap;
 
 import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
+import static org.lwjgl.vulkan.VK10.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
 
 import java.util.ArrayList;
 import java.util.Collection;

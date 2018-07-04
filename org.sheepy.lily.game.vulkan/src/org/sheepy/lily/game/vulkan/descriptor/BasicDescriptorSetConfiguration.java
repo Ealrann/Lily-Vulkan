@@ -21,9 +21,9 @@ public class BasicDescriptorSetConfiguration implements IDescriptorSetConfigurat
 	{
 		this.descriptors.addAll(descriptors);
 	}
-	
+
 	@Override
-	public Collection<IDescriptor> getDescriptors()
+	public List<IDescriptor> getDescriptors()
 	{
 		return descriptors;
 	}

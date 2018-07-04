@@ -33,7 +33,7 @@ public class PipelineSubmission implements ISignalEmitter
 		}
 	}
 	
-	public void addEmitterToWait(ISignalEmitter emitter)
+	public void addEmitterToWaitFor(ISignalEmitter emitter)
 	{
 		VkSemaphore newSignalSemaphore = emitter.newSignalSemaphore();
 		waitSemaphores.add(newSignalSemaphore);

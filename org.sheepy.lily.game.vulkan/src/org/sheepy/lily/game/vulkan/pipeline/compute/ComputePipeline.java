@@ -2,138 +2,72 @@ package org.sheepy.lily.game.vulkan.pipeline.compute;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.nio.LongBuffer;
+import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
-import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.game.vulkan.command.CommandPool;
-import org.sheepy.lily.game.vulkan.command.compute.ComputeCommandBuffers;
-import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
-import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
-import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
+import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
+import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
+import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
+import org.sheepy.lily.game.vulkan.descriptor.IDescriptorSetConfiguration;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
-import org.sheepy.lily.game.vulkan.pipeline.PipelineSubmission;
 
-public class ComputePipeline implements ISignalEmitter
+public class ComputePipeline implements IDescriptorSetConfiguration
 {
 	protected LogicalDevice logicalDevice;
-	protected CommandPool commandPool;
+	protected IComputer computer;
 
-	protected Collection<ComputerPool> computerPools = new ArrayList<>();
-
-	protected DescriptorPool descriptorPool;
 	protected long pipeline;
 	protected long pipelineLayout;
-	protected ComputeCommandBuffers commandBuffers;
 
-	protected PipelineSubmission submission;
-
-	public ComputePipeline(LogicalDevice logicalDevice, CommandPool commandPool,
-			Collection<ISignalEmitter> waitForEmitters)
+	public ComputePipeline(LogicalDevice logicalDevice, IComputer computer)
 	{
 		this.logicalDevice = logicalDevice;
-		this.commandPool = commandPool;
-
-		submission = new PipelineSubmission(logicalDevice, waitForEmitters,
-				VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
+		this.computer = computer;
 	}
 
-	@Override
-	public VkSemaphore newSignalSemaphore()
+	public void load(DescriptorSet descriptorSet)
 	{
-		return submission.newSignalSemaphore();
-	}
+		computer.load();
 
-	public void attachComputerPool(ComputerPool computerPool)
-	{
-		computerPools.add(computerPool);
-	}
+		LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(1);
+		bDescriptorSet.put(descriptorSet.getLayoutId());
+		bDescriptorSet.flip();
 
-	public void load()
-	{
-		try (MemoryStack stack = MemoryStack.stackPush())
+		// Create compute pipeline
+		long[] aLayout = new long[1];
+		VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo = VkPipelineLayoutCreateInfo.calloc();
+		pipelineLayoutCreateInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
+		pipelineLayoutCreateInfo.pSetLayouts(bDescriptorSet);
+		if (vkCreatePipelineLayout(logicalDevice.getVkDevice(), pipelineLayoutCreateInfo, null,
+				aLayout) != VK_SUCCESS)
 		{
-			descriptorPool = DescriptorPool.alloc(stack, logicalDevice, computerPools);
-
-			// Create compute pipeline
-			long[] aLayout = new long[1];
-			VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo = VkPipelineLayoutCreateInfo
-					.calloc();
-			pipelineLayoutCreateInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
-			pipelineLayoutCreateInfo.pSetLayouts(descriptorPool.allocLayoutBuffer());
-			if (vkCreatePipelineLayout(logicalDevice.getVkDevice(), pipelineLayoutCreateInfo, null,
-					aLayout) != VK_SUCCESS)
-			{
-				throw new AssertionError("Failed to create compute pipeline layout!");
-			}
-			pipelineLayout = aLayout[0];
-
-			int computerCount = 0;
-			for (ComputerPool pool : computerPools)
-			{
-				computerCount += pool.getDescriptors().size();
-			}
-
-			VkComputePipelineCreateInfo.Buffer pipelineCreateInfos = VkComputePipelineCreateInfo
-					.calloc(computerCount);
-
-			for (ComputerPool pool : computerPools)
-			{
-				for (IComputer computer : pool.getComputers())
-				{
-					VkComputePipelineCreateInfo pipelineCreateInfo = pipelineCreateInfos.get();
-					pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
-					pipelineCreateInfo.stage(computer.getShader().allocInfo());
-					pipelineCreateInfo.layout(pipelineLayout);
-				}
-			}
-			pipelineCreateInfos.flip();
-
-			long[] aPipeline = new long[1];
-			if (vkCreateComputePipelines(logicalDevice.getVkDevice(), VK_NULL_HANDLE,
-					pipelineCreateInfos, null, aPipeline) != VK_SUCCESS)
-			{
-				throw new AssertionError("Failed to create compute pipeline!");
-			}
-			pipeline = aPipeline[0];
-
-			// Command Buffers
-			commandBuffers = new ComputeCommandBuffers(this, commandPool, computerPools);
-			commandBuffers.load();
-
-			submission.load(commandBuffers);
-
-			pipelineCreateInfos.free();
-			pipelineLayoutCreateInfo.free();
+			throw new AssertionError("Failed to create compute pipeline layout!");
 		}
-	}
+		pipelineLayout = aLayout[0];
 
-	public DescriptorPool getDescriptorPool()
-	{
-		return descriptorPool;
-	}
+		VkComputePipelineCreateInfo.Buffer pipelineCreateInfo = VkComputePipelineCreateInfo
+				.calloc(1);
 
-	public ComputeCommandBuffers getCommandBuffers()
-	{
-		return commandBuffers;
-	}
+		VkPipelineShaderStageCreateInfo shaderInfo = computer.getShader().allocInfo();
+		pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
+		pipelineCreateInfo.stage(shaderInfo);
+		pipelineCreateInfo.layout(pipelineLayout);
 
-	public long getPipelineLayout()
-	{
-		return pipelineLayout;
-	}
+		long[] aPipeline = new long[1];
+		if (vkCreateComputePipelines(logicalDevice.getVkDevice(), VK_NULL_HANDLE,
+				pipelineCreateInfo, null, aPipeline) != VK_SUCCESS)
+		{
+			throw new AssertionError("Failed to create compute pipeline!");
+		}
+		pipeline = aPipeline[0];
 
-	public VkSubmitInfo getSubmitInfo()
-	{
-		return submission.getSubmitInfo(0);
-	}
-
-	public PipelineSubmission getSubmission()
-	{
-		return submission;
+		MemoryUtil.memFree(bDescriptorSet);
+		shaderInfo.free();
+		pipelineCreateInfo.free();
+		pipelineLayoutCreateInfo.free();
 	}
 
 	public long getId()
@@ -143,20 +77,40 @@ public class ComputePipeline implements ISignalEmitter
 
 	public void free()
 	{
-		for (ComputerPool computerPool : computerPools)
-		{
-			for (IComputer computer : computerPool.getComputers())
-			{
-				computer.free();
-			}
-		}
-		computerPools.clear();
-		commandBuffers.free();
-		submission.free();
+		computer.free();
 
 		vkDestroyPipeline(logicalDevice.getVkDevice(), pipeline, null);
 		vkDestroyPipelineLayout(logicalDevice.getVkDevice(), pipelineLayout, null);
+	}
 
-		if (descriptorPool != null) descriptorPool.destroy();
+	public IComputer getComputer()
+	{
+		return computer;
+	}
+
+	public int getDataWidth()
+	{
+		return computer.getDataWidth();
+	}
+
+	public int getDataHeight()
+	{
+		return computer.getDataHeight();
+	}
+
+	public int getDataDepth()
+	{
+		return computer.getDataDepth();
+	}
+
+	@Override
+	public List<IDescriptor> getDescriptors()
+	{
+		return computer.getDescriptors();
+	}
+
+	public long getPipelineLayout()
+	{
+		return pipelineLayout;
 	}
 }
