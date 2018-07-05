@@ -17,19 +17,20 @@ import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
 import org.sheepy.lily.game.vulkan.pipeline.compute.ComputePipeline;
 import org.sheepy.lily.game.vulkan.pipeline.compute.ComputeProcess;
+import org.sheepy.lily.game.vulkan.pipeline.compute.ComputeProcessPool;
 
 public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommandBuffer>
 {
 	private static final float WORKGROUP_SIZE = 32f;
 
-	private ComputeProcess[] computeProcesses;
+	private ComputeProcessPool computeProcesses;
 
 	private Map<ComputeProcess, ComputeCommandBuffer> mapBuffers = new HashMap<>();
 
-	public ComputeCommandBuffers(CommandPool commandPool, List<ComputeProcess> computeProcesses)
+	public ComputeCommandBuffers(CommandPool commandPool, ComputeProcessPool computeProcesses)
 	{
 		super(commandPool);
-		this.computeProcesses = computeProcesses.toArray(new ComputeProcess[0]);
+		this.computeProcesses = computeProcesses;
 	}
 
 	@Override
@@ -39,11 +40,12 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 		List<ComputeCommandBuffer> res = new ArrayList<>();
 		long commandPoolId = commandPool.getId();
 
-		long[] commandBufferIds = allocCommandBuffers(commandPoolId, computeProcesses.length);
+		long[] commandBufferIds = allocCommandBuffers(commandPoolId,
+				computeProcesses.getProcesses().size());
 
-		for (int i = 0; i < computeProcesses.length; i++)
+		for (int i = 0; i < computeProcesses.getProcesses().size(); i++)
 		{
-			ComputeProcess computeprocess = computeProcesses[i];
+			ComputeProcess computeprocess = computeProcesses.getProcesses().get(i);
 			long commandBufferId = commandBufferIds[i];
 
 			DescriptorPool descriptorPool = computeprocess.getDescriptorPool();
@@ -57,7 +59,7 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 			for (ComputePipeline pipeline : pipelines)
 			{
 				long pipelineLayout = pipeline.getPipelineLayout();
-				
+
 				int dataWidth = pipeline.getDataWidth();
 				int dataHeight = pipeline.getDataHeight();
 				int dataDepth = pipeline.getDataDepth();
