@@ -37,16 +37,13 @@ public class ComputeProcess
 		computePipelines.add(pipeline);
 	}
 
-	public void load()
+	public void load(MemoryStack stack)
 	{
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			descriptorPool.load(stack, computePipelines);
+		descriptorPool.load(stack, computePipelines);
 
-			for (ComputePipeline pipeline : computePipelines)
-			{
-				pipeline.load(descriptorPool.getDescriptorSet(pipeline));
-			}
+		for (ComputePipeline pipeline : computePipelines)
+		{
+			pipeline.load(descriptorPool.getDescriptorSet(pipeline));
 		}
 	}
 
@@ -59,7 +56,6 @@ public class ComputeProcess
 			pipeline.free();
 		}
 	}
-
 
 	public List<ComputePipeline> getPipelines()
 	{

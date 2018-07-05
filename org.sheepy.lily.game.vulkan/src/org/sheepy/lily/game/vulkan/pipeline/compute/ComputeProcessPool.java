@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
@@ -44,15 +45,19 @@ public class ComputeProcessPool implements ISignalEmitter
 
 	public void load()
 	{
-		for (ComputeProcess computeProcess : processes)
-		{
-			computeProcess.load();
-		}
 
-		// Command Buffers
-		commandBuffers = new ComputeCommandBuffers(commandPool, this);
-		commandBuffers.load();
-		submission.load(commandBuffers);
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			for (ComputeProcess computeProcess : processes)
+			{
+				computeProcess.load(stack);
+			}
+
+			// Command Buffers
+			commandBuffers = new ComputeCommandBuffers(commandPool, this);
+			commandBuffers.load();
+			submission.load(commandBuffers);
+		}
 	}
 
 	public void exectue(VkQueue queue, int processIndex)
