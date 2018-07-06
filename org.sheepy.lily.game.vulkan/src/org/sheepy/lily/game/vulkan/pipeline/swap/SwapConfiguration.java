@@ -1,6 +1,6 @@
 package org.sheepy.lily.game.vulkan.pipeline.swap;
 
-import static org.lwjgl.vulkan.KHRSurface.VK_COLOR_SPACE_SRGB_NONLINEAR_KHR;
+import static org.lwjgl.vulkan.KHRSurface.*;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.lily.game.vulkan.pipeline.swap.graphic.IVertexDescriptor;
@@ -20,6 +20,7 @@ public class SwapConfiguration
 	{
 		this.colorDomain = new ColorDomain(imageFormat, colorSpace);
 	}
+	public int presentationMode = VK_PRESENT_MODE_MAILBOX_KHR;
 	
 	public int rasterizerCullMode = VK_CULL_MODE_BACK_BIT;
 	public int rasterizerFrontFace = VK_FRONT_FACE_CLOCKWISE;

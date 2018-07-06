@@ -43,7 +43,7 @@ public class SwapChainManager
 		this.details = new PhysicalDeviceSupportDetails(logicalDevice.getPhysicalDevice(), surface);
 		QueueManager queueManager = logicalDevice.getQueueManager();
 		currentColorDomain = chooseSwapSurfaceFormat();
-		int presentMode = selectPresentationMode(surface);
+		int presentMode = selectPresentationMode(surface, configuration.presentationMode);
 		extent = new Extent2D(width, height);
 
 		// Select max image in swap queue
@@ -126,7 +126,7 @@ public class SwapChainManager
 		return currentColorDomain;
 	}
 
-	private int selectPresentationMode(long surface)
+	private int selectPresentationMode(long surface, int desiredMode)
 	{
 		IntBuffer pPresentModeCount = memAllocInt(1);
 		int err = vkGetPhysicalDeviceSurfacePresentModesKHR(
@@ -154,15 +154,14 @@ public class SwapChainManager
 		int swapchainPresentMode = VK_PRESENT_MODE_FIFO_KHR;
 		for (int i = 0; i < presentModeCount; i++)
 		{
+			if (pPresentModes.get(i) == desiredMode)
+			{
+				swapchainPresentMode = desiredMode;
+				break;
+			}
 			if (pPresentModes.get(i) == VK_PRESENT_MODE_MAILBOX_KHR)
 			{
 				swapchainPresentMode = VK_PRESENT_MODE_MAILBOX_KHR;
-				break;
-			}
-			if ((swapchainPresentMode != VK_PRESENT_MODE_MAILBOX_KHR)
-					&& (pPresentModes.get(i) == VK_PRESENT_MODE_IMMEDIATE_KHR))
-			{
-				swapchainPresentMode = VK_PRESENT_MODE_IMMEDIATE_KHR;
 			}
 		}
 		memFree(pPresentModeCount);
