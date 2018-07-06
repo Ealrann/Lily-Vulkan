@@ -6,17 +6,26 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkBufferCopy;
 import org.lwjgl.vulkan.VkBufferCreateInfo;
 import org.lwjgl.vulkan.VkCommandBuffer;
+import org.lwjgl.vulkan.VkDescriptorBufferInfo;
+import org.lwjgl.vulkan.VkDescriptorPoolSize;
+import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
+import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
-public class Buffer
+public class Buffer implements IDescriptor
 {
 	private LogicalDevice logicalDevice;
+	
+	protected int stage = -1;
+	protected int descriptorType = -1;
 
 	private long bufferId;
 	private long bufferMemoryId;
@@ -141,4 +150,58 @@ public class Buffer
 		copyRegion.size(size);
 		vkCmdCopyBuffer(vkCommandBuffer, srcBuffer, dstBuffer, copyRegion);
 	}
+	
+	public void configureDescriptor(int stage, int descriptorType)
+	{
+		this.stage = stage;
+		this.descriptorType = descriptorType;
+	}
+	
+	@Override
+	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
+	{
+		if(descriptorType == -1)
+			new Exception("Unconfigured descriptor, call configureDescriptor() first.").printStackTrace();
+		
+		VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		res.descriptorType(descriptorType);
+		res.descriptorCount(1);
+		res.stageFlags(stage);
+		return res;
+	}
+
+	@Override
+	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
+	{
+		if(descriptorType == -1)
+			new Exception("Unconfigured descriptor, call configureDescriptor() first.").printStackTrace();
+		
+		VkDescriptorBufferInfo.Buffer bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
+		bufferInfo.buffer(bufferId);
+		bufferInfo.offset(0);
+		bufferInfo.range(size);
+
+		VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
+		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		descriptorWrite.dstArrayElement(0);
+		descriptorWrite.descriptorType(descriptorType);
+		descriptorWrite.pBufferInfo(bufferInfo);
+		descriptorWrite.pImageInfo(null); // Optional
+		descriptorWrite.pTexelBufferView(null); // Optional
+		return descriptorWrite;
+	}
+
+	@Override
+	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
+	{
+		if(descriptorType == -1)
+			new Exception("Unconfigured descriptor, call configureDescriptor() first.").printStackTrace();
+		
+		VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
+		poolSize.type(descriptorType);
+		poolSize.descriptorCount(1);
+		return poolSize;
+	}
+	
+	
 }
