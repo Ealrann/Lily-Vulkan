@@ -29,6 +29,7 @@ public class ComputeProcessPool implements ISignalEmitter
 	{
 		this.commandPool = commandPool;
 
+		commandBuffers = new ComputeCommandBuffers(commandPool, this);
 		submission = new PipelineSubmission(logicalDevice, Collections.emptyList(),
 				VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
 	}
@@ -53,8 +54,6 @@ public class ComputeProcessPool implements ISignalEmitter
 				computeProcess.load(stack);
 			}
 
-			// Command Buffers
-			commandBuffers = new ComputeCommandBuffers(commandPool, this);
 			commandBuffers.load();
 			submission.load(commandBuffers);
 		}
