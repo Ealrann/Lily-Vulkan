@@ -13,5 +13,9 @@ public interface IDescriptor
 	
 	VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack);
 	
+	/**
+	 * @deprecated ne devrait pas exister ici.
+	 */
+	@Deprecated
 	void free();
 }
