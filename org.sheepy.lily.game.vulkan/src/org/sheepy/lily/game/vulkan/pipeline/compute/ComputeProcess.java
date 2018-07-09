@@ -26,8 +26,6 @@ import org.sheepy.lily.game.vulkan.device.LogicalDevice;
  */ 
 public class ComputeProcess extends AllocationNode
 {
-	private static final float WORKGROUP_SIZE = 32f;
-
 	private LogicalDevice logicalDevice;
 	private List<ComputePipeline> computePipelines = new ArrayList<>();
 	private List<IAllocable> children = new ArrayList<>();
@@ -71,10 +69,12 @@ public class ComputeProcess extends AllocationNode
 			int dataWidth = pipeline.getDataWidth();
 			int dataHeight = pipeline.getDataHeight();
 			int dataDepth = pipeline.getDataDepth();
+			
+			float workgroupSize = pipeline.getComputer().getWorkgroupSize();
 
-			Vector3i groupCount = new Vector3i((int) Math.ceil(dataWidth / WORKGROUP_SIZE),
-					(int) Math.ceil(dataHeight / WORKGROUP_SIZE),
-					(int) Math.ceil(dataDepth / WORKGROUP_SIZE));
+			Vector3i groupCount = new Vector3i((int) Math.ceil(dataWidth / workgroupSize),
+					(int) Math.ceil(dataHeight / workgroupSize),
+					(int) Math.ceil(dataDepth / workgroupSize));
 
 			if (descriptorPool != null)
 			{

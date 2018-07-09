@@ -15,9 +15,12 @@ import org.sheepy.lily.game.vulkan.shader.Shader;
 
 public class Computer extends AllocationNode
 {
+	public static final float DEFAULT_WORKGROUP_SIZE = 32f;
+	
 	protected int width;
 	protected int height;
 	protected List<IDescriptor> descriptors;
+	protected float workgroupSize = DEFAULT_WORKGROUP_SIZE;
 
 	protected Shader shader;
 
@@ -60,5 +63,15 @@ public class Computer extends AllocationNode
 	protected Collection<? extends IAllocationObject> getSubAllocables()
 	{
 		return Collections.singletonList(shader);
+	}
+
+	public float getWorkgroupSize()
+	{
+		return workgroupSize;
+	}
+	
+	public void setWorkgroupSize(float workgroupSize)
+	{
+		this.workgroupSize = workgroupSize;
 	}
 }
