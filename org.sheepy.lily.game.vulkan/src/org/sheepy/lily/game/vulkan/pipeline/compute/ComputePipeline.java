@@ -3,35 +3,46 @@ package org.sheepy.lily.game.vulkan.pipeline.compute;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
+import org.sheepy.lily.game.vulkan.common.AllocationNode;
+import org.sheepy.lily.game.vulkan.common.IAllocable;
+import org.sheepy.lily.game.vulkan.common.IAllocationObject;
+import org.sheepy.lily.game.vulkan.descriptor.DescriptorPool;
 import org.sheepy.lily.game.vulkan.descriptor.DescriptorSet;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptorSetConfiguration;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
-public class ComputePipeline implements IDescriptorSetConfiguration
+public class ComputePipeline extends AllocationNode
+		implements IDescriptorSetConfiguration, IAllocable
 {
 	protected LogicalDevice logicalDevice;
-	protected IComputer computer;
+	protected DescriptorPool descriptorPool;
+	protected Computer computer;
 
 	protected long pipeline;
 	protected long pipelineLayout;
 
-	public ComputePipeline(LogicalDevice logicalDevice, IComputer computer)
+	public ComputePipeline(LogicalDevice logicalDevice, DescriptorPool descriptorPool,
+			Computer computer)
 	{
 		this.logicalDevice = logicalDevice;
+		this.descriptorPool = descriptorPool;
 		this.computer = computer;
 	}
 
-	public void load(DescriptorSet descriptorSet)
+	@Override
+	public void allocate(MemoryStack stack)
 	{
-		computer.load();
-
+		DescriptorSet descriptorSet = descriptorPool.getDescriptorSet(this);
 		LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(1);
 		bDescriptorSet.put(descriptorSet.getLayoutId());
 		bDescriptorSet.flip();
@@ -75,15 +86,14 @@ public class ComputePipeline implements IDescriptorSetConfiguration
 		return pipeline;
 	}
 
+	@Override
 	public void free()
 	{
-		computer.free();
-
 		vkDestroyPipeline(logicalDevice.getVkDevice(), pipeline, null);
 		vkDestroyPipelineLayout(logicalDevice.getVkDevice(), pipelineLayout, null);
 	}
 
-	public IComputer getComputer()
+	public Computer getComputer()
 	{
 		return computer;
 	}
@@ -112,5 +122,11 @@ public class ComputePipeline implements IDescriptorSetConfiguration
 	public long getPipelineLayout()
 	{
 		return pipelineLayout;
+	}
+
+	@Override
+	protected Collection<? extends IAllocationObject> getSubAllocables()
+	{
+		return Collections.singletonList(computer);
 	}
 }

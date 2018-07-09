@@ -3,20 +3,22 @@ package org.sheepy.lily.game.vulkan.pipeline.compute;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.command.compute.ComputeCommandBuffers;
+import org.sheepy.lily.game.vulkan.common.AllocationNode;
+import org.sheepy.lily.game.vulkan.common.IAllocationObject;
 import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 import org.sheepy.lily.game.vulkan.pipeline.PipelineSubmission;
 
-public class ComputeProcessPool implements ISignalEmitter
+public class ComputeProcessPool extends AllocationNode implements ISignalEmitter
 {
 	protected CommandPool commandPool;
 
@@ -30,7 +32,7 @@ public class ComputeProcessPool implements ISignalEmitter
 		this.commandPool = commandPool;
 
 		commandBuffers = new ComputeCommandBuffers(commandPool, this);
-		submission = new PipelineSubmission(logicalDevice, Collections.emptyList(),
+		submission = new PipelineSubmission(logicalDevice, commandBuffers, Collections.emptyList(),
 				VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
 	}
 
@@ -44,35 +46,9 @@ public class ComputeProcessPool implements ISignalEmitter
 		return processes;
 	}
 
-	public void load()
-	{
-
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			for (ComputeProcess computeProcess : processes)
-			{
-				computeProcess.load(stack);
-			}
-
-			commandBuffers.load();
-			submission.load(commandBuffers);
-		}
-	}
-
 	public void exectue(VkQueue queue, int processIndex)
 	{
 		vkQueueSubmit(queue, submission.getSubmitInfo(processIndex), VK_NULL_HANDLE);
-	}
-
-	public void free()
-	{
-		commandBuffers.free();
-		submission.free();
-
-		for (ComputeProcess computeProcess : processes)
-		{
-			computeProcess.free();
-		}
 	}
 
 	public VkSubmitInfo getSubmitInfo()
@@ -89,5 +65,16 @@ public class ComputeProcessPool implements ISignalEmitter
 	public VkSemaphore newSignalSemaphore()
 	{
 		return submission.newSignalSemaphore();
+	}
+
+	@Override
+	protected Collection<? extends IAllocationObject> getSubAllocables()
+	{
+		List<IAllocationObject> res = new ArrayList<>();
+		res.addAll(processes);
+		res.add(commandBuffers);
+		res.add(submission);
+		
+		return res;
 	}
 }

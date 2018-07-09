@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.pipeline.swap.AbstractSwapPipeline;
@@ -26,7 +27,7 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<GraphicCommand
 	}
 
 	@Override
-	protected List<GraphicCommandBuffer> allocCommandBuffers()
+	protected List<GraphicCommandBuffer> allocCommandBuffers(MemoryStack stack)
 	{
 		Framebuffers framebuffers = swapPipeline.getFramebuffers();
 		SwapChainManager swapChain = swapPipeline.getSwapChain();

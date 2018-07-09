@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.lily.game.vulkan.descriptor.IDescriptor;
 import org.sheepy.lily.game.vulkan.shader.Shader;
@@ -52,7 +53,7 @@ public class Mesh
 		buffer.free();
 		for (Shader shader : shaders)
 		{
-			shader.destroy();
+			shader.free();
 		}
 	}
 
@@ -69,5 +70,13 @@ public class Mesh
 	public List<IDescriptor> getDescriptors()
 	{
 		return descriptors;
+	}
+
+	public void allocate(MemoryStack stack)
+	{
+		for (Shader shader : shaders)
+		{
+			shader.allocate(stack);
+		}
 	}
 }

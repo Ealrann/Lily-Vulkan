@@ -14,11 +14,13 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
+import org.sheepy.lily.game.vulkan.common.IAllocable;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
-public class DescriptorPool implements Iterable<DescriptorSet>
+public class DescriptorPool implements Iterable<DescriptorSet>, IAllocable
 {
 	private LogicalDevice logicalDevice;
+	private List<IDescriptorSetConfiguration> configurations;
 
 	private Map<IDescriptor, DescriptorSetInfo> infoMap = new HashMap<>();
 	private Map<IDescriptorSetConfiguration, DescriptorSet> configurationMap = new HashMap<>();
@@ -30,17 +32,25 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 			LogicalDevice logicalDevice,
 			Collection<? extends IDescriptorSetConfiguration> configurations)
 	{
-		DescriptorPool res = new DescriptorPool(logicalDevice);
-		res.load(stack, configurations);
+		DescriptorPool res = new DescriptorPool(logicalDevice, configurations);
+		res.allocate(stack);
 		return res;
 	}
 
-	public DescriptorPool(LogicalDevice logicalDevice)
+	public DescriptorPool(LogicalDevice logicalDevice,
+			Collection<? extends IDescriptorSetConfiguration> configurations)
 	{
 		this.logicalDevice = logicalDevice;
+		this.configurations = new ArrayList<>(configurations);
+	}
+	
+	public void addConfiguration(IDescriptorSetConfiguration configuration)
+	{
+		this.configurations.add(configuration);
 	}
 
-	public void load(MemoryStack stack, Collection<? extends IDescriptorSetConfiguration> configurations)
+	@Override
+	public void allocate(MemoryStack stack)
 	{
 		int poolSize = 0;
 		for (IDescriptorSetConfiguration configuration : configurations)
@@ -87,7 +97,8 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 		}
 	}
 
-	public void destroy()
+	@Override
+	public void free()
 	{
 		for (DescriptorSet descriptorSet : descriptorSets)
 		{
@@ -138,7 +149,7 @@ public class DescriptorPool implements Iterable<DescriptorSet>
 	{
 		return descriptorSets.iterator();
 	}
-	
+
 	public int size()
 	{
 		return descriptorSets.size();

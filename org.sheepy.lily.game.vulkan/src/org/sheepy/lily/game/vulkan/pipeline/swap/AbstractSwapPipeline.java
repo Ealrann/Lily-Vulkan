@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.game.vulkan.buffer.DepthResource;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.command.graphic.GraphicCommandBuffers;
@@ -72,6 +73,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 
 		imageAvailableSemaphore = new VkSemaphore(logicalDevice);
 
+		commandBuffers = buildCommandBuffers();
 		frameSubmission = buildFrameSubmission();
 	}
 
@@ -88,7 +90,7 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 
 	protected FrameSubmission buildFrameSubmission()
 	{
-		return new FrameSubmission(logicalDevice, swapChainManager, waitForSignals,
+		return new FrameSubmission(logicalDevice, commandBuffers, swapChainManager, waitForSignals,
 				VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
 	}
 
@@ -108,9 +110,11 @@ public abstract class AbstractSwapPipeline implements ISignalEmitter
 		renderPass.load(swapChainManager);
 		framebuffers.load(swapChainManager, imageViewManager, renderPass);
 
-		commandBuffers = buildCommandBuffers();
-		commandBuffers.load();
-		frameSubmission.load(commandBuffers);
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			commandBuffers.allocate(stack);
+			frameSubmission.allocate(stack);
+		}
 
 		if (graphicsPipeline != null) graphicsPipeline.load(swapChainManager, renderPass);
 

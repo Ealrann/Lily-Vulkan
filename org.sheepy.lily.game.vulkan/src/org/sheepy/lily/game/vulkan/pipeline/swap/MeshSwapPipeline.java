@@ -62,14 +62,18 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 	@Override
 	public void load(long surface, int width, int height)
 	{
-		super.load(surface, width, height);
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			mesh.allocate(stack);
+		}
 
+		super.load(surface, width, height);
 	}
 
 	@Override
 	public void destroy(boolean full)
 	{
-		if (full && descriptorPool != null) descriptorPool.destroy();
+		if (full && descriptorPool != null) descriptorPool.free();
 		if (full && mesh != null) mesh.free();
 
 		super.destroy(full);

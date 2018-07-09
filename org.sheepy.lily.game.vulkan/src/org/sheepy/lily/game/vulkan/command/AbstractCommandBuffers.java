@@ -8,11 +8,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
+import org.sheepy.lily.game.vulkan.common.IAllocable;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
-public abstract class AbstractCommandBuffers<T extends ICommandBuffer> implements Iterable<T>
+public abstract class AbstractCommandBuffers<T extends ICommandBuffer>
+		implements Iterable<T>, IAllocable
 {
 	protected LogicalDevice logicalDevice;
 	protected CommandPool commandPool;
@@ -25,9 +28,10 @@ public abstract class AbstractCommandBuffers<T extends ICommandBuffer> implement
 		this.commandPool = commandPool;
 	}
 
-	public void load()
+	@Override
+	public void allocate(MemoryStack stack)
 	{
-		commandBuffers = Collections.unmodifiableList(allocCommandBuffers());
+		commandBuffers = Collections.unmodifiableList(allocCommandBuffers(stack));
 	}
 
 	protected long[] allocCommandBuffers(long commandPoolId, int size)
@@ -60,6 +64,7 @@ public abstract class AbstractCommandBuffers<T extends ICommandBuffer> implement
 		return commandBuffers;
 	}
 
+	@Override
 	public void free()
 	{
 		for (T commandBuffer : commandBuffers)
@@ -87,5 +92,5 @@ public abstract class AbstractCommandBuffers<T extends ICommandBuffer> implement
 		return getCommandBuffers().get(index);
 	}
 
-	protected abstract List<T> allocCommandBuffers();
+	protected abstract List<T> allocCommandBuffers(MemoryStack stack);
 }

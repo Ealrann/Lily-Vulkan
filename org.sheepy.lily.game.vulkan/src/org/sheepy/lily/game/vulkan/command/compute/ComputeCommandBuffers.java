@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.lily.game.vulkan.command.CommandPool;
 import org.sheepy.lily.game.vulkan.pipeline.compute.ComputeProcess;
@@ -23,7 +24,7 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 	}
 	
 	@Override
-	protected List<ComputeCommandBuffer> allocCommandBuffers()
+	protected List<ComputeCommandBuffer> allocCommandBuffers(MemoryStack stack)
 	{
 		List<ComputeCommandBuffer> res = new ArrayList<>();
 		long commandPoolId = commandPool.getId();

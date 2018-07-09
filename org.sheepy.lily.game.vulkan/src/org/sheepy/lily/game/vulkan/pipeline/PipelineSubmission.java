@@ -4,33 +4,38 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.game.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.lily.game.vulkan.command.ICommandBuffer;
+import org.sheepy.lily.game.vulkan.common.IAllocable;
 import org.sheepy.lily.game.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.lily.game.vulkan.concurrent.SemaphoreManager;
 import org.sheepy.lily.game.vulkan.concurrent.VkSemaphore;
 import org.sheepy.lily.game.vulkan.device.LogicalDevice;
 
-public class PipelineSubmission implements ISignalEmitter
+public class PipelineSubmission implements ISignalEmitter, IAllocable
 {
-	protected SemaphoreManager signalSemaphoreManager;
-	protected List<VkSemaphore> waitSemaphores;
+	protected AbstractCommandBuffers<?> commandBuffers;
 	protected int waitStage;
+	protected List<VkSemaphore> waitSemaphores;
+
+	protected SemaphoreManager signalSemaphoreManager;
 
 	protected List<SubmissionInfo> infos = new ArrayList<>();
 
-	public PipelineSubmission(LogicalDevice logicalDevice, 
+	public PipelineSubmission(LogicalDevice logicalDevice, AbstractCommandBuffers<?> commandBuffers,
 			Collection<ISignalEmitter> waitForEmitters, int waitStage)
 	{
-		signalSemaphoreManager = new SemaphoreManager(logicalDevice);
+		this.commandBuffers = commandBuffers;
 		this.waitStage = waitStage;
-		
 		waitSemaphores = new ArrayList<>();
 		for (ISignalEmitter emitter : waitForEmitters)
 		{
 			waitSemaphores.add(emitter.newSignalSemaphore());
 		}
+		
+		signalSemaphoreManager = new SemaphoreManager(logicalDevice);
 	}
 	
 	public void addEmitterToWaitFor(ISignalEmitter emitter)
@@ -41,7 +46,8 @@ public class PipelineSubmission implements ISignalEmitter
 //		System.out.println("New Semaphore to wait : " + Long.toHexString(newSignalSemaphore.getId()));
 	}
 
-	public void load(AbstractCommandBuffers<?> commandBuffers)
+	@Override
+	public void allocate(MemoryStack stack)
 	{
 		signalSemaphoreManager.lock(true);
 		for (int i = 0; i < commandBuffers.size(); i++)
@@ -66,6 +72,7 @@ public class PipelineSubmission implements ISignalEmitter
 		return infos.get(index).getSubmitInfo();
 	}
 
+	@Override
 	public void free()
 	{
 		for (SubmissionInfo info : infos)
