@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.glfw.GLFWMouseButtonCallback;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
 import org.sheepy.vulkan.util.VulkanUtils;
@@ -52,6 +54,28 @@ public class Window
 			}
 		};
 		glfwSetWindowSizeCallback(id, callback);
+	}
+	
+	public void setMouseButtonCallback(GLFWMouseButtonCallback callback)
+	{
+		glfwSetMouseButtonCallback(id, callback);
+	}
+	
+	public void setKeyCallback(GLFWKeyCallback callback)
+	{
+		glfwSetKeyCallback(id, callback);
+	}
+
+	private double[] cursorPositionX = new double[1];
+	private double[] cursorPositionY = new double[1];
+	private double[] cursorPosition = new double[2];
+	public double[] getCursorPosition()
+	{
+		// The elegance itself
+		glfwGetCursorPos(id, cursorPositionX, cursorPositionY);
+		cursorPosition[0] = cursorPositionX[0];
+		cursorPosition[1] = cursorPositionY[0];
+		return cursorPosition;
 	}
 	
 	public void addListener(IWindowListener listener)

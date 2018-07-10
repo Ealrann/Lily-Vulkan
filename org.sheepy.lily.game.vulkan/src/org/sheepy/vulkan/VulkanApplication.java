@@ -45,7 +45,7 @@ public abstract class VulkanApplication
 
 	private int width;
 	private int height;
-	private Window window;
+	protected Window window;
 
 	public VulkanApplication(int width, int height)
 	{
