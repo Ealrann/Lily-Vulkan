@@ -10,42 +10,56 @@ import java.nio.LongBuffer;
 import java.util.Collections;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkExtent2D;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.PhysicalDeviceSupportDetails;
 import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
 import org.sheepy.vulkan.queue.QueueManager;
 import org.sheepy.vulkan.util.VulkanBufferUtils;
 import org.sheepy.vulkan.util.VulkanUtils;
+import org.sheepy.vulkan.window.Surface;
 
-public class SwapChainManager
+public class SwapChainManager implements IAllocable
 {
 	private LogicalDevice logicalDevice;
 	private SwapConfiguration configuration;
 
 	private PhysicalDeviceSupportDetails details;
-	private Long swapChain = null;
-
-	private List<Long> swapChainImages = null;
-
-	private ColorDomain currentColorDomain;
+	
+	private Surface surface;
 	private Extent2D extent;
-
+	private int presentMode;
+	
+	private Long swapChain = null;
+	private List<Long> swapChainImages = null;
+	private ColorDomain currentColorDomain;
+	
 	public SwapChainManager(LogicalDevice logicalDevice, SwapConfiguration configuration)
 	{
 		this.logicalDevice = logicalDevice;
 		this.configuration = configuration;
+
+		this.details = new PhysicalDeviceSupportDetails(logicalDevice.getPhysicalDevice().getVkPhysicalDevice());
 	}
 
-	public Long load(long surface, int width, int height)
+	public void configure(Surface surface)
 	{
-		this.details = new PhysicalDeviceSupportDetails(logicalDevice.getPhysicalDevice(), surface);
+		details.load(surface);
+		presentMode = selectPresentationMode(surface.id, configuration.presentationMode);
+		extent = new Extent2D(surface.width, surface.height);
+		this.surface = surface;
+	}
+	
+	@Override
+	public void allocate(MemoryStack stack)
+	{
 		QueueManager queueManager = logicalDevice.getQueueManager();
+		details.allocate(stack);
 		currentColorDomain = chooseSwapSurfaceFormat();
-		int presentMode = selectPresentationMode(surface, configuration.presentationMode);
-		extent = new Extent2D(width, height);
-
+		
 		// Select max image in swap queue
 		int swapImageCount = details.getCapabilities().minImageCount() + 1;
 		if (details.getCapabilities().maxImageCount() > 0
@@ -54,9 +68,9 @@ public class SwapChainManager
 			swapImageCount = details.getCapabilities().maxImageCount();
 		}
 
-		VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.calloc();
+		VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
-		createInfo.surface(surface);
+		createInfo.surface(surface.id);
 		createInfo.minImageCount(swapImageCount);
 		createInfo.imageFormat(currentColorDomain.getColorFormat());
 		createInfo.imageColorSpace(currentColorDomain.getColorSpace());
@@ -70,7 +84,7 @@ public class SwapChainManager
 		if (queueManager.isExclusive() == false)
 		{
 			createInfo.imageSharingMode(VK_SHARING_MODE_CONCURRENT);
-			indices = queueManager.allocIndices();
+			indices = queueManager.allocIndices(stack);
 			createInfo.pQueueFamilyIndices(indices);
 		}
 		else
@@ -85,7 +99,7 @@ public class SwapChainManager
 		createInfo.clipped(true);
 		createInfo.oldSwapchain(VK_NULL_HANDLE);
 
-		LongBuffer pSwapChain = memAllocLong(1);
+		LongBuffer pSwapChain = stack.mallocLong(1);
 		if (vkCreateSwapchainKHR(logicalDevice.getVkDevice(), createInfo, null,
 				pSwapChain) != VK_SUCCESS)
 		{
@@ -93,22 +107,14 @@ public class SwapChainManager
 		}
 		swapChain = pSwapChain.get(0);
 
-		IntBuffer pImageCount = memAllocInt(1);
+		IntBuffer pImageCount = stack.mallocInt(1);
 		vkGetSwapchainImagesKHR(logicalDevice.getVkDevice(), swapChain, pImageCount, null);
 		swapImageCount = pImageCount.get(0);
-		LongBuffer pSwapchainImages = memAllocLong(swapImageCount);
+		LongBuffer pSwapchainImages = stack.mallocLong(swapImageCount);
 		vkGetSwapchainImagesKHR(logicalDevice.getVkDevice(), swapChain, pImageCount,
 				pSwapchainImages);
 
 		swapChainImages = Collections.unmodifiableList(VulkanBufferUtils.toList(pSwapchainImages));
-
-		memFree(pSwapchainImages);
-		memFree(pImageCount);
-		memFree(pSwapChain);
-		if (indices != null) memFree(indices);
-		createInfo.free();
-
-		return swapChain;
 	}
 
 	public List<Long> getSwapChainImages()
@@ -183,10 +189,10 @@ public class SwapChainManager
 			res = targetColorDomain;
 		}
 
-		System.out.println("\nAvaillable Color Formats:");
+//		System.out.println("\nAvaillable Color Formats:");
 		for (ColorDomain availableDomain : availableDomains)
 		{
-			System.out.println("\t" + availableDomain);
+//			System.out.println("\t" + availableDomain);
 			if (availableDomain.getColorFormat() == targetColorDomain.getColorFormat()
 					&& availableDomain.getColorSpace() == targetColorDomain.getColorSpace())
 			{
@@ -203,6 +209,7 @@ public class SwapChainManager
 		return extent;
 	}
 
+	@Override
 	public void free()
 	{
 		vkDestroySwapchainKHR(logicalDevice.getVkDevice(), swapChain, null);

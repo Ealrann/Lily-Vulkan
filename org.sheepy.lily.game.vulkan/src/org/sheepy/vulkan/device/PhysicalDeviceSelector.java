@@ -14,6 +14,7 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.vulkan.util.VulkanUtils;
+import org.sheepy.vulkan.window.Surface;
 
 public class PhysicalDeviceSelector
 {
@@ -29,14 +30,13 @@ public class PhysicalDeviceSelector
 	private VkInstance vkInstance;
 	private List<PhysicalDeviceWrapper> devices = new ArrayList<>();
 	private String[] requiredExtensions;
-	private long desiredSurface;
+	private Surface desiredSurface;
 
 	public PhysicalDeviceSelector(VkInstance vkInstance, String[] requiredExtensions,
-			long desiredSurface)
+			Surface desiredSurface)
 	{
 		this.vkInstance = vkInstance;
 		this.requiredExtensions = requiredExtensions;
-		this.desiredSurface = desiredSurface;
 		this.desiredSurface = desiredSurface;
 
 		load();

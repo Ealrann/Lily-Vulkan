@@ -1,7 +1,5 @@
 package org.sheepy.vulkan.pipeline.swap;
 
-import static org.lwjgl.system.MemoryStack.stackPush;
-
 import java.util.Collection;
 import java.util.Collections;
 
@@ -35,15 +33,27 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 
 		if (mesh.getDescriptors().isEmpty() == false)
 		{
-			try (MemoryStack stack = stackPush())
-			{
-				BasicDescriptorSetConfiguration descriptorConfiguration = new BasicDescriptorSetConfiguration();
-				descriptorConfiguration.addAll(mesh.getDescriptors());
+			BasicDescriptorSetConfiguration descriptorConfiguration = new BasicDescriptorSetConfiguration();
+			descriptorConfiguration.addAll(mesh.getDescriptors());
 
-				descriptorPool = DescriptorPool.alloc(stack, logicalDevice,
-						Collections.singletonList(descriptorConfiguration));
-			}
+			descriptorPool = new DescriptorPool(logicalDevice,
+					Collections.singletonList(descriptorConfiguration));
 		}
+	}
+
+	boolean first = true;
+
+	@Override
+	public void allocate(MemoryStack stack)
+	{
+		if (first)
+		{
+			mesh.allocate(stack);
+			if (descriptorPool != null) descriptorPool.allocate(stack);
+			first = false;
+		}
+
+		super.allocate(stack);
 	}
 
 	@Override
@@ -60,23 +70,12 @@ public class MeshSwapPipeline extends AbstractSwapPipeline
 	}
 
 	@Override
-	public void load(long surface, int width, int height)
+	public void free(boolean full)
 	{
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			mesh.allocate(stack);
-		}
+		super.free(full);
 
-		super.load(surface, width, height);
-	}
-
-	@Override
-	public void destroy(boolean full)
-	{
 		if (full && descriptorPool != null) descriptorPool.free();
 		if (full && mesh != null) mesh.free();
-
-		super.destroy(full);
 	}
 
 	public DescriptorPool getDescriptorPool()

@@ -64,7 +64,7 @@ public class Computer extends AllocationNode
 	{
 		return Collections.singletonList(shader);
 	}
-
+	
 	public float getWorkgroupSize()
 	{
 		return workgroupSize;

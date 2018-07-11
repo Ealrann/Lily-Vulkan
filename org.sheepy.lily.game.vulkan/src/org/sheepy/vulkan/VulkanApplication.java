@@ -18,9 +18,11 @@ import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.PhysicalDeviceSelector;
 import org.sheepy.vulkan.device.PhysicalDeviceWrapper;
-import org.sheepy.vulkan.pipeline.IPipelinePool;
+import org.sheepy.vulkan.pipeline.PipelinePool;
+import org.sheepy.vulkan.pipeline.SurfacePipelinePool;
 import org.sheepy.vulkan.util.VulkanUtils;
 import org.sheepy.vulkan.window.IWindowListener;
+import org.sheepy.vulkan.window.Surface;
 import org.sheepy.vulkan.window.Window;
 
 public abstract class VulkanApplication
@@ -41,7 +43,7 @@ public abstract class VulkanApplication
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames;
 
-	public List<IPipelinePool> pipelinePools = new ArrayList<>();
+	public List<PipelinePool> pipelinePools = new ArrayList<>();
 
 	private int width;
 	private int height;
@@ -64,9 +66,13 @@ public abstract class VulkanApplication
 	{
 		try (MemoryStack stack = stackPush())
 		{
-			for (IPipelinePool pipelinePool : pipelinePools)
+			for (PipelinePool pipelinePool : pipelinePools)
 			{
-				pipelinePool.load(stack, window.getSurface(), width, height);
+				if (pipelinePool instanceof SurfacePipelinePool)
+				{
+					((SurfacePipelinePool) pipelinePool).configure(window.getSurface());
+				}
+				pipelinePool.allocateNode(stack);
 			}
 		}
 	}
@@ -81,22 +87,23 @@ public abstract class VulkanApplication
 		try (MemoryStack stack = stackPush())
 		{
 			window = new Window(width, height);
-			window.addListener(new IWindowListener()
-			{
-				@Override
-				public void onWindowResize(long surface, int width, int height)
-				{
-					VulkanApplication.this.width = width;
-					VulkanApplication.this.height = height;
-
-					logicalDevice.createQueues(surface);
-					resizePipelinePools(surface, width, height);
-				}
-			});
 			createInstance(stack);
 			window.open(vkInstance);
 			pickPhysicalDevice(stack);
 			createLogicalDevice(stack);
+
+			window.addListener(new IWindowListener()
+			{
+				@Override
+				public void onWindowResize(Surface surface)
+				{
+					VulkanApplication.this.width = surface.width;
+					VulkanApplication.this.height = surface.height;
+
+					logicalDevice.createQueues(surface);
+					resizePipelinePools(surface);
+				}
+			});
 		}
 
 		return logicalDevice;
@@ -119,11 +126,17 @@ public abstract class VulkanApplication
 		logicalDevice.waitIdle();
 	}
 
-	private void resizePipelinePools(long surface, int width, int height)
+	private void resizePipelinePools(Surface surface)
 	{
-		for (IPipelinePool pipelinePool : pipelinePools)
+		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			pipelinePool.resize(surface, width, height);
+			for (PipelinePool pipelinePool : pipelinePools)
+			{
+				if (pipelinePool instanceof SurfacePipelinePool)
+				{
+					((SurfacePipelinePool) pipelinePool).resize(stack, surface);
+				}
+			}
 		}
 	}
 
@@ -188,9 +201,9 @@ public abstract class VulkanApplication
 
 	public void cleanup()
 	{
-		for (IPipelinePool pipelinePool : pipelinePools)
+		for (PipelinePool pipelinePool : pipelinePools)
 		{
-			pipelinePool.free();
+			pipelinePool.freeNode();
 		}
 
 		logicalDevice.free();
@@ -213,7 +226,7 @@ public abstract class VulkanApplication
 		return window;
 	}
 
-	public void attachPipelinePool(IPipelinePool pipelinePool)
+	public void attachPipelinePool(PipelinePool pipelinePool)
 	{
 		pipelinePools.add(pipelinePool);
 	}

@@ -7,37 +7,39 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkFormatProperties;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.SingleTimeCommand;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.view.ImageView;
 
-public class DepthResource
+public class DepthResource implements IAllocable
 {
 	private LogicalDevice logicalDevice;
+	private CommandPool commandPool;
+	private int width;
+	private int height;
 
 	private Image depthImage;
 	private ImageView depthImageView;
 
 	private int depthFormat;
 
-	public static final DepthResource alloc(LogicalDevice logicalDevice,
-			CommandPool commandPool,
-			int width,
-			int height)
-	{
-		DepthResource res = new DepthResource(logicalDevice);
-		res.load(commandPool, width, height);
-		return res;
-	}
-
-	public DepthResource(LogicalDevice logicalDevice)
+	public DepthResource(LogicalDevice logicalDevice, CommandPool commandPool)
 	{
 		this.logicalDevice = logicalDevice;
+		this.commandPool = commandPool;
 
 		depthImage = new Image(logicalDevice);
 		depthImageView = new ImageView(logicalDevice);
 	}
 
-	public void load(CommandPool commandPool, int width, int height)
+	public void configure(int width, int height)
+	{
+		this.width = width;
+		this.height = height;
+	}
+
+	@Override
+	public void allocate(MemoryStack stack)
 	{
 		depthFormat = findDepthFormat();
 		depthImage.createImage(width, height, 1, depthFormat, VK_IMAGE_TILING_OPTIMAL,
@@ -102,6 +104,7 @@ public class DepthResource
 		return depthImageView.getId();
 	}
 
+	@Override
 	public void free()
 	{
 		depthImageView.free();

@@ -23,7 +23,7 @@ public class Window
 	public List<IWindowListener> listeners = new ArrayList<>();
 	
 	private long id;
-	private long surface;
+	private Surface surface;
 	
 	public Window(int initialWidth, int initialHeight)
 	{
@@ -43,14 +43,13 @@ public class Window
 	public void open(VkInstance vkInstance)
 	{
 		id = glfwCreateWindow(width, height, "Vulkan", 0, 0);
-		createSurface(vkInstance);
+		createSurface(vkInstance, width, height);
 		GLFWWindowSizeCallback callback = new GLFWWindowSizeCallback()
 		{
 			@Override
 			public void invoke(long window, int width, int height)
 			{
-				createSurface(vkInstance);
-				fireResizeEvent(width, height);
+				createSurface(vkInstance, width, height);
 			}
 		};
 		glfwSetWindowSizeCallback(id, callback);
@@ -88,11 +87,11 @@ public class Window
 		listeners.remove(listener);
 	}
 	
-	private void fireResizeEvent(int width, int height)
+	private void fireResizeEvent()
 	{
 		for (IWindowListener listener : listeners)
 		{
-			listener.onWindowResize(surface, width, height);
+			listener.onWindowResize(surface);
 		}
 	}
 	
@@ -101,7 +100,7 @@ public class Window
 		return id;
 	}
 	
-	public long getSurface()
+	public Surface getSurface()
 	{
 		return surface;
 	}
@@ -118,7 +117,7 @@ public class Window
 	}
 	
 	private long[] aSurface = new long[1];
-	private void createSurface(VkInstance vkInstance)
+	private void createSurface(VkInstance vkInstance, int width, int height)
 	{
 		int err = glfwCreateWindowSurface(vkInstance, id, null, aSurface);
 		if (err != VK_SUCCESS)
@@ -127,7 +126,9 @@ public class Window
 					"Failed to create surface: " + VulkanUtils.translateVulkanResult(err));
 		}
 		
-		surface = aSurface[0];
+		surface = new Surface(aSurface[0], width, height);
+		
+		fireResizeEvent();
 	}
 
 	public PointerBuffer getRequiredInstanceExtensions()

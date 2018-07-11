@@ -17,47 +17,39 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
 
-public class Buffer implements IDescriptor
+public class Buffer implements IDescriptor, IAllocable
 {
 	private LogicalDevice logicalDevice;
-	
+	private long size;
+	private int usage;
+	private int properties;
+
 	protected int stage = -1;
 	protected int descriptorType = -1;
 
 	private long bufferId;
 	private long bufferMemoryId;
 
-	private long size;
-
-	/**
-	 * Don't forget to free it.
-	 * 
-	 * @param physicalDevice
-	 * @param logicalDevice
-	 * @param size
-	 * @param usage
-	 * @param properties
-	 * @return
-	 */
-	public static Buffer alloc(LogicalDevice logicalDevice, long size, int usage, int properties)
-	{
-		Buffer buffer = new Buffer(logicalDevice);
-		buffer.load(size, usage, properties);
-
-		return buffer;
-	}
-
-	public Buffer(LogicalDevice logicalDevice)
+	public Buffer(LogicalDevice logicalDevice, long size, int usage, int properties)
 	{
 		this.logicalDevice = logicalDevice;
+		this.size = size;
+		this.usage = usage;
+		this.properties = properties;
 	}
 
-	public void load(long size, int usage, int properties)
+	@Override
+	public void allocate(MemoryStack stack)
 	{
-		this.size = size;
+		allocate();
+	}
+	
+	public void allocate()
+	{
 		VkBufferCreateInfo bufferInfo = VkBufferCreateInfo.calloc();
 		bufferInfo.sType(VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO);
 		bufferInfo.size(size);
@@ -98,6 +90,7 @@ public class Buffer implements IDescriptor
 		memRequirements.free();
 	}
 
+	@Override
 	public void free()
 	{
 		vkDestroyBuffer(logicalDevice.getVkDevice(), bufferId, null);
@@ -118,7 +111,7 @@ public class Buffer implements IDescriptor
 	{
 		return size;
 	}
-	
+
 	public void fillWithBuffer(ByteBuffer byteBuffer)
 	{
 		PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
@@ -128,7 +121,7 @@ public class Buffer implements IDescriptor
 		vkUnmapMemory(logicalDevice.getVkDevice(), bufferMemoryId);
 		MemoryUtil.memFree(pBuffer);
 	}
-	
+
 	public void copyToBuffer(ByteBuffer byteBuffer)
 	{
 		PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
@@ -150,19 +143,20 @@ public class Buffer implements IDescriptor
 		copyRegion.size(size);
 		vkCmdCopyBuffer(vkCommandBuffer, srcBuffer, dstBuffer, copyRegion);
 	}
-	
+
 	public void configureDescriptor(int stage, int descriptorType)
 	{
 		this.stage = stage;
 		this.descriptorType = descriptorType;
 	}
-	
+
 	@Override
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
-		if(descriptorType == -1)
-			new Exception("Unconfigured descriptor, call configureDescriptor() first.").printStackTrace();
-		
+		if (descriptorType == -1)
+			new Exception("Unconfigured descriptor, call configureDescriptor() first.")
+					.printStackTrace();
+
 		VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(descriptorType);
 		res.descriptorCount(1);
@@ -173,9 +167,10 @@ public class Buffer implements IDescriptor
 	@Override
 	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
 	{
-		if(descriptorType == -1)
-			new Exception("Unconfigured descriptor, call configureDescriptor() first.").printStackTrace();
-		
+		if (descriptorType == -1)
+			new Exception("Unconfigured descriptor, call configureDescriptor() first.")
+					.printStackTrace();
+
 		VkDescriptorBufferInfo.Buffer bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
 		bufferInfo.buffer(bufferId);
 		bufferInfo.offset(0);
@@ -194,14 +189,14 @@ public class Buffer implements IDescriptor
 	@Override
 	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
 	{
-		if(descriptorType == -1)
-			new Exception("Unconfigured descriptor, call configureDescriptor() first.").printStackTrace();
-		
+		if (descriptorType == -1)
+			new Exception("Unconfigured descriptor, call configureDescriptor() first.")
+					.printStackTrace();
+
 		VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
 		poolSize.type(descriptorType);
 		poolSize.descriptorCount(1);
 		return poolSize;
 	}
-	
-	
+
 }

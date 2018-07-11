@@ -7,12 +7,14 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.lwjgl.vulkan.VkPhysicalDeviceMemoryProperties;
 import org.lwjgl.vulkan.VkPhysicalDeviceProperties;
+import org.sheepy.vulkan.window.Surface;
 
 public class PhysicalDeviceWrapper
 {
@@ -24,14 +26,19 @@ public class PhysicalDeviceWrapper
 
 	private String[] requiredExtensions;
 
-	PhysicalDeviceWrapper(VkPhysicalDevice physicalDevice, VkInstance vkInstance, long surface,
+	PhysicalDeviceWrapper(VkPhysicalDevice physicalDevice, VkInstance vkInstance, Surface surface,
 			String[] requiredExtensions)
 	{
 		this.physicalDevice = physicalDevice;
 		this.vkInstance = vkInstance;
 		this.requiredExtensions = requiredExtensions;
 
-		details = new PhysicalDeviceSupportDetails(this, surface);
+		details = new PhysicalDeviceSupportDetails(physicalDevice);
+		details.load(surface);
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			details.allocate(stack);
+		}
 
 		rateDeviceSuitability();
 	}

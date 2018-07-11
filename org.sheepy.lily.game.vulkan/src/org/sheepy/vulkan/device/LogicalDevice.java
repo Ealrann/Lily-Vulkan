@@ -15,6 +15,7 @@ import org.lwjgl.vulkan.VkDeviceCreateInfo;
 import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.vulkan.queue.QueueManager;
+import org.sheepy.vulkan.window.Surface;
 
 public class LogicalDevice
 {
@@ -26,7 +27,7 @@ public class LogicalDevice
 
 	public final static LogicalDevice alloc(MemoryStack stack,
 			PhysicalDeviceWrapper physicalDevice,
-			long surface,
+			Surface surface,
 			String[] requiredExtensions,
 			PointerBuffer ppEnabledLayerNames)
 	{
@@ -36,7 +37,7 @@ public class LogicalDevice
 
 	public final static LogicalDevice alloc(MemoryStack stack,
 			PhysicalDeviceWrapper physicalDevice,
-			long surface,
+			Surface surface,
 			String[] requiredExtensions,
 			PointerBuffer ppEnabledLayerNames,
 			boolean needComputeCapability)
@@ -47,7 +48,7 @@ public class LogicalDevice
 		return res;
 	}
 
-	private LogicalDevice(PhysicalDeviceWrapper physicalDevice, long surface,
+	private LogicalDevice(PhysicalDeviceWrapper physicalDevice, Surface surface,
 			boolean needComputeCapability)
 	{
 		this.physicalDevice = physicalDevice;
@@ -106,7 +107,7 @@ public class LogicalDevice
 		queueManager.loadVkQueues(vkDevice);
 	}
 
-	public void createQueues(long surface)
+	public void createQueues(Surface surface)
 	{
 		waitIdle();
 

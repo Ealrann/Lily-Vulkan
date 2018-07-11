@@ -2,7 +2,7 @@ package org.sheepy.vulkan;
 
 import static org.lwjgl.vulkan.VK10.vkQueueWaitIdle;
 
-import org.sheepy.vulkan.pipeline.IPipelinePool;
+import org.sheepy.vulkan.pipeline.PipelinePool;
 
 public class BasicVulkanApplication extends VulkanApplication
 {
@@ -16,7 +16,7 @@ public class BasicVulkanApplication extends VulkanApplication
 	{
 		vkQueueWaitIdle(logicalDevice.getQueueManager().getPresentQueue());
 
-		for (IPipelinePool iPipelinePool : pipelinePools)
+		for (PipelinePool iPipelinePool : pipelinePools)
 		{
 			iPipelinePool.execute();
 		}

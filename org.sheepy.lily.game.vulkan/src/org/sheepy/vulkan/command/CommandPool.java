@@ -4,27 +4,24 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
 
-public class CommandPool
+public class CommandPool implements IAllocable
 {
 	private LogicalDevice logicalDevice;
+	private int queueIndex;
 
 	private long commandPoolId = -1;
 	
-	public static final CommandPool alloc(MemoryStack stack, LogicalDevice logicalDevice, int queueIndex)
-	{
-		CommandPool res = new CommandPool(logicalDevice);
-		res.load(stack, queueIndex);
-		return res;
-	}
-	
-	private CommandPool(LogicalDevice logicalDevice)
+	public CommandPool(LogicalDevice logicalDevice, int queueIndex)
 	{
 		this.logicalDevice = logicalDevice;
+		this.queueIndex = queueIndex;
 	}
 	
-	public void load(MemoryStack stack, int queueIndex)
+	@Override
+	public void allocate(MemoryStack stack)
 	{
 		// Command Pool
 		// ------------------
@@ -46,6 +43,7 @@ public class CommandPool
 		return commandPoolId;
 	}
 
+	@Override
 	public void free()
 	{
 		vkDestroyCommandPool(logicalDevice.getVkDevice(), commandPoolId, null);

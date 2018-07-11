@@ -8,16 +8,18 @@ import java.nio.IntBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkQueue;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.SingleTimeCommand;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.swap.graphic.IVertexDescriptor;
 
-public class IndexBuffer
+public class IndexBuffer<T extends IVertex> 
 {
 	private LogicalDevice logicalDevice;
-
+	private IVertexDescriptor<T> vertexDescriptor;
+	private T[] vertices;
+	private int[] indices;
+	
 	private Buffer buffer;
 	private Buffer indexBuffer;
 
@@ -27,18 +29,22 @@ public class IndexBuffer
 	private Buffer indexStagingBuffer;
 	private Buffer vertexStagingBuffer;
 
-	public IndexBuffer(LogicalDevice logicalDevice)
-	{
-		this.logicalDevice = logicalDevice;
-	}
-
-	public <T extends IVertex> void allocIndexBuffer(CommandPool commandPool,
-			VkQueue queue,
+	public IndexBuffer(LogicalDevice logicalDevice, 
 			IVertexDescriptor<T> vertexDescriptor,
 			T[] vertices,
 			int[] indices)
 	{
-		SingleTimeCommand stc = new SingleTimeCommand(commandPool, queue)
+		this.logicalDevice = logicalDevice;
+		
+		this.vertexDescriptor = vertexDescriptor;
+		this.vertices = vertices;
+		this.indices = indices;
+	}
+
+	public void allocIndexBuffer(CommandPool commandPool)
+	{
+		SingleTimeCommand stc = new SingleTimeCommand(commandPool,
+				logicalDevice.getQueueManager().getGraphicQueue())
 		{
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
@@ -46,7 +52,7 @@ public class IndexBuffer
 				allocIndexBuffer(stack, commandBuffer, indices);
 				allocIVertexBuffer(stack, commandBuffer, vertexDescriptor, vertices);
 			}
-			
+
 			@Override
 			protected void postExecute()
 			{
@@ -65,22 +71,23 @@ public class IndexBuffer
 
 		int byteSize = indexCount * Integer.BYTES;
 
-		indexStagingBuffer = Buffer.alloc(logicalDevice, byteSize,
-				VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+		indexStagingBuffer = new Buffer(logicalDevice, byteSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
-
+		indexStagingBuffer.allocate();
+		
 		indexStagingBuffer.fillWithBuffer(verticeBuffer);
 
-		indexBuffer = Buffer.alloc(logicalDevice, byteSize,
+		indexBuffer = new Buffer(logicalDevice, byteSize,
 				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		indexBuffer.allocate();
 
 		Buffer.copyBuffer(commandBuffer, indexStagingBuffer.getId(), indexBuffer.getId(), byteSize);
-		
+
 		MemoryUtil.memFree(verticeBuffer);
 	}
 
-	private <T extends IVertex> void allocIVertexBuffer(MemoryStack stack,
+	private void allocIVertexBuffer(MemoryStack stack,
 			VkCommandBuffer commandBuffer,
 			IVertexDescriptor<T> vertexDescriptor,
 			T[] vertices)
@@ -90,18 +97,20 @@ public class IndexBuffer
 
 		int byteSize = vertexCount * vertexDescriptor.sizeOfVertex();
 
-		vertexStagingBuffer = Buffer.alloc(logicalDevice, byteSize,
+		vertexStagingBuffer = new Buffer(logicalDevice, byteSize,
 				VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
-
+		vertexStagingBuffer.allocate();
+		
 		vertexStagingBuffer.fillWithBuffer(verticeBuffer);
 
-		buffer = Buffer.alloc(logicalDevice, byteSize,
+		buffer = new Buffer(logicalDevice, byteSize,
 				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-
-		Buffer.copyBuffer(commandBuffer, vertexStagingBuffer.getId(), buffer.getId(), byteSize);
+		buffer.allocate();
 		
+		Buffer.copyBuffer(commandBuffer, vertexStagingBuffer.getId(), buffer.getId(), byteSize);
+
 		MemoryUtil.memFree(verticeBuffer);
 	}
 

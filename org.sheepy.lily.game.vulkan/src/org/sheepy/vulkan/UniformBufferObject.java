@@ -14,11 +14,12 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.buffer.Buffer;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.util.SizeOf;
 
-public class UniformBufferObject implements IDescriptor
+public class UniformBufferObject implements IDescriptor, IAllocable
 {
 	private static final Vector3f UP_AXIS = new Vector3f(0f, 0f, 1f);
 	private static final Vector3f AXIS = new Vector3f(0f, 0f, 1f);
@@ -41,10 +42,17 @@ public class UniformBufferObject implements IDescriptor
 	{
 		this.app = app;
 
-		buffer = Buffer.alloc(logicalDevice, SIZE_OF, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
+		buffer = new Buffer(logicalDevice, SIZE_OF, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+		buffer.allocate();
 	}
 
+	@Override
+	public void allocate(MemoryStack stack)
+	{
+		
+	}
+	
 	private ByteBuffer allocBuffer()
 	{
 		ByteBuffer res = MemoryUtil.memAlloc(SIZE_OF);

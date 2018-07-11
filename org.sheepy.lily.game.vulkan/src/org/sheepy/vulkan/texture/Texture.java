@@ -16,19 +16,20 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
-import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.buffer.Buffer;
 import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.SingleTimeCommand;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.view.ImageView;
 
-public class Texture implements IDescriptor
+public class Texture implements IDescriptor, IAllocable
 {
 	private LogicalDevice logicalDevice;
+	private CommandPool commandPool;
 	private String imagePath;
 	private boolean generateMipMap;
 
@@ -40,20 +41,11 @@ public class Texture implements IDescriptor
 	private int width;
 	private int height;
 
-	public static Texture alloc(LogicalDevice logicalDevice,
-			String imagePath,
-			CommandPool commandPool,
-			VkQueue graphicQueue,
+	public Texture(LogicalDevice logicalDevice, CommandPool commandPool, String imagePath,
 			boolean generateMipMap)
 	{
-		Texture res = new Texture(logicalDevice, imagePath, generateMipMap);
-		res.load(commandPool, graphicQueue);
-		return res;
-	}
-
-	public Texture(LogicalDevice logicalDevice, String imagePath, boolean generateMipMap)
-	{
 		this.logicalDevice = logicalDevice;
+		this.commandPool = commandPool;
 		this.imagePath = imagePath;
 		this.generateMipMap = generateMipMap;
 
@@ -62,7 +54,8 @@ public class Texture implements IDescriptor
 		sampler = new Sampler(logicalDevice, true);
 	}
 
-	public void load(CommandPool commandPool, VkQueue graphicQueue)
+	@Override
+	public void allocate(MemoryStack stack)
 	{
 		Buffer buffer = loadImageFile();
 
@@ -76,7 +69,8 @@ public class Texture implements IDescriptor
 		imageView.load(imageBuffer.getId(), mipLevels, VK_FORMAT_R8G8B8A8_UNORM,
 				VK_IMAGE_ASPECT_COLOR_BIT);
 
-		SingleTimeCommand stc = new SingleTimeCommand(commandPool, graphicQueue)
+		SingleTimeCommand stc = new SingleTimeCommand(commandPool,
+				logicalDevice.getQueueManager().getGraphicQueue())
 		{
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
@@ -109,8 +103,8 @@ public class Texture implements IDescriptor
 		int[] texWidth = new int[1];
 		int[] texHeight = new int[1];
 		int[] texChannels = new int[1];
-		ByteBuffer pixels = STBImage.stbi_load(file.getAbsolutePath(), texWidth, texHeight, texChannels,
-				STBI_rgb_alpha);
+		ByteBuffer pixels = STBImage.stbi_load(file.getAbsolutePath(), texWidth, texHeight,
+				texChannels, STBI_rgb_alpha);
 		if (pixels == null)
 		{
 			System.err.println(("Problem with file: " + url.getFile()));
@@ -123,8 +117,9 @@ public class Texture implements IDescriptor
 		mipLevels = 1;
 		if (generateMipMap) mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
 
-		Buffer buffer = Buffer.alloc(logicalDevice, imageSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+		Buffer buffer = new Buffer(logicalDevice, imageSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+		buffer.allocate(null);
 		buffer.fillWithBuffer(pixels);
 
 		STBImage.stbi_image_free(pixels);

@@ -16,11 +16,11 @@ import java.util.Set;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkQueueFamilyProperties;
+import org.sheepy.vulkan.window.Surface;
 
 public class QueueManager implements Iterable<Integer>
 {
@@ -39,7 +39,7 @@ public class QueueManager implements Iterable<Integer>
 	public QueueManager()
 	{}
 
-	public void load(VkPhysicalDevice physicalDevice, Long surface, boolean loadComputeQueue)
+	public void load(VkPhysicalDevice physicalDevice, Surface surface, boolean loadComputeQueue)
 	{
 		try (MemoryStack stack = stackPush())
 		{
@@ -104,14 +104,14 @@ public class QueueManager implements Iterable<Integer>
 	private Integer findPresentQueueIndex(MemoryStack stack,
 			VkPhysicalDevice physicalDevice,
 			VkQueueFamilyProperties.Buffer queueProps,
-			long surface)
+			Surface surface)
 	{
 		Integer res = null;
 
 		for (int index = 0; index < queueProps.capacity(); index++)
 		{
 			IntBuffer supportsPresent = stack.callocInt(1); // memAllocInt(queueCount);
-			vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, index, surface, supportsPresent);
+			vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, index, surface.id, supportsPresent);
 
 			if (supportsPresent.get(0) == VK_TRUE)
 			{
@@ -178,9 +178,9 @@ public class QueueManager implements Iterable<Integer>
 		return queueIndexes.iterator();
 	}
 
-	public IntBuffer allocIndices()
+	public IntBuffer allocIndices(MemoryStack stack)
 	{
-		IntBuffer res = MemoryUtil.memAllocInt(size());
+		IntBuffer res = stack.mallocInt(queueIndexes.size());
 		for (int index : queueIndexes)
 		{
 			res.put(index);

@@ -7,21 +7,50 @@ import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.vulkan.UniformBufferObject;
 import org.sheepy.vulkan.command.AbstractCommandBuffer;
+import org.sheepy.vulkan.command.CommandPool;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.texture.Texture;
 
-public class Mesh
+public class Mesh implements IAllocable
 {
-	private IndexBuffer buffer;
-	private List<Shader> shaders = new ArrayList<>();
+	private CommandPool commandPool;
+	private IndexBuffer<?> buffer;
+	protected List<Shader> shaders = new ArrayList<>();
+	protected UniformBufferObject ubo;
+	protected Texture texture;
 	private List<IDescriptor> descriptors = new ArrayList<>();
 
-	public Mesh(IndexBuffer buffer, List<Shader> shaders, List<IDescriptor> descriptors)
+	public Mesh(CommandPool commandPool, IndexBuffer<?> buffer, List<Shader> shaders,
+			UniformBufferObject ubo, Texture texture)
 	{
+		this.commandPool = commandPool;
 		this.buffer = buffer;
 		this.shaders = Collections.unmodifiableList(new ArrayList<>(shaders));
-		this.descriptors = Collections.unmodifiableList(new ArrayList<>(descriptors));
+
+		this.ubo = ubo;
+		this.texture = texture;
+
+		this.descriptors = new ArrayList<>();
+		if (ubo != null) descriptors.add(ubo);
+		if (texture != null) descriptors.add(texture);
+	}
+
+	@Override
+	public void allocate(MemoryStack stack)
+	{
+		if (ubo != null) ubo.allocate(stack);
+		if (texture != null) texture.allocate(stack);
+
+		buffer.allocIndexBuffer(commandPool);
+
+		for (Shader shader : shaders)
+		{
+			shader.allocate(stack);
+		}
 	}
 
 	public void bindBufferForRender(AbstractCommandBuffer commandBuffer)
@@ -43,12 +72,11 @@ public class Mesh
 		vkCmdDrawIndexed(commandBuffer.getVkCommandBuffer(), buffer.indexCount(), 1, 0, 0, 0);
 	}
 
+	@Override
 	public void free()
 	{
-		for (IDescriptor descriptor : descriptors)
-		{
-			descriptor.free();
-		}
+		if (ubo != null) ubo.free();
+		if (texture != null) texture.free();
 
 		buffer.free();
 		for (Shader shader : shaders)
@@ -62,7 +90,7 @@ public class Mesh
 		return shaders;
 	}
 
-	public IndexBuffer getIndexBuffer()
+	public IndexBuffer<?> getIndexBuffer()
 	{
 		return buffer;
 	}
@@ -70,13 +98,5 @@ public class Mesh
 	public List<IDescriptor> getDescriptors()
 	{
 		return descriptors;
-	}
-
-	public void allocate(MemoryStack stack)
-	{
-		for (Shader shader : shaders)
-		{
-			shader.allocate(stack);
-		}
 	}
 }

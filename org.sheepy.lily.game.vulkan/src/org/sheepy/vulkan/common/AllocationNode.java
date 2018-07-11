@@ -8,7 +8,7 @@ import org.lwjgl.system.MemoryStack;
 
 public abstract class AllocationNode implements IAllocationObject
 {
-	private final Deque<IAllocable> allocatedObjects = new ArrayDeque<>();
+	protected final Deque<IAllocable> allocatedObjects = new ArrayDeque<>();
 
 	public final void allocateNode(MemoryStack stack)
 	{
@@ -26,6 +26,11 @@ public abstract class AllocationNode implements IAllocationObject
 			}
 		}
 
+		loadAllocationObject(stack, allocationObject);
+	}
+
+	protected void loadAllocationObject(MemoryStack stack, IAllocationObject allocationObject)
+	{
 		if (allocationObject instanceof IAllocable
 				&& allocatedObjects.contains((IAllocable) allocationObject) == false)
 		{
@@ -33,7 +38,7 @@ public abstract class AllocationNode implements IAllocationObject
 			((IAllocable) allocationObject).allocate(stack);
 		}
 	}
-
+	
 	public final void freeNode()
 	{
 		while (allocatedObjects.isEmpty() == false)
