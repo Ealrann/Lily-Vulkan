@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.pipeline.swap.graphic.graphic.impl;
+package org.sheepy.vulkan.pipeline.swap.graphic.impl;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.pipeline.swap.graphic.graphic.impl;
+package org.sheepy.vulkan.pipeline.swap.graphic.impl;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
 

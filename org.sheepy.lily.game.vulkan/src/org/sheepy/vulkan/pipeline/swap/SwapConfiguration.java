@@ -4,7 +4,7 @@ import static org.lwjgl.vulkan.KHRSurface.*;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.vulkan.pipeline.swap.graphic.IVertexDescriptor;
-import org.sheepy.vulkan.pipeline.swap.graphic.graphic.impl.VertexDescriptor;
+import org.sheepy.vulkan.pipeline.swap.graphic.impl.VertexDescriptor;
 import org.sheepy.vulkan.swapchain.ColorDomain;
 
 public class SwapConfiguration
