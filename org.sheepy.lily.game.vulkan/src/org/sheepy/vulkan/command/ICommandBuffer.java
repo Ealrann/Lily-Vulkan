@@ -4,7 +4,7 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 
 public interface ICommandBuffer
 {
-	VkCommandBuffer start();
+	void start();
 
 	void end();
 

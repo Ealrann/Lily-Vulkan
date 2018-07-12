@@ -13,7 +13,7 @@ import org.sheepy.vulkan.pipeline.swap.IRenderPass;
 import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
 import org.sheepy.vulkan.swapchain.SwapChainManager;
 
-public class GraphicCommandBuffers extends AbstractCommandBuffers<GraphicCommandBuffer>
+public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandBuffer>
 {
 	private SwapConfiguration configuration;
 	private AbstractSwapPipeline swapPipeline;
@@ -27,7 +27,7 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<GraphicCommand
 	}
 
 	@Override
-	protected List<GraphicCommandBuffer> allocCommandBuffers(MemoryStack stack)
+	protected List<RenderCommandBuffer> allocCommandBuffers(MemoryStack stack)
 	{
 		Framebuffers framebuffers = swapPipeline.getFramebuffers();
 		SwapChainManager swapChain = swapPipeline.getSwapChain();
@@ -39,21 +39,14 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<GraphicCommand
 		// ------------------
 		long[] commandBufferIds = allocCommandBuffers(commandPoolId, framebuffers.size());
 
-		List<GraphicCommandBuffer> commandBuffers = new ArrayList<>();
+		List<RenderCommandBuffer> commandBuffers = new ArrayList<>();
 		for (int i = 0; i < framebuffers.getIDs().size(); i++)
 		{
 			Long framebufferId = framebuffers.getIDs().get(i);
 			long commandBufferId = commandBufferIds[i];
 
-			if (configuration.renderPipeline == true)
-			{
-				commandBuffers.add(new RenderCommandBuffer(logicalDevice, commandBufferId,
-						configuration, framebufferId, swapChain.getExtent(), renderPass));
-			}
-			else
-			{
-				commandBuffers.add(new GraphicCommandBuffer(logicalDevice, commandBufferId));
-			}
+			commandBuffers.add(new RenderCommandBuffer(logicalDevice, commandBufferId,
+					configuration, framebufferId, swapChain.getExtent(), renderPass));
 		}
 
 		return Collections.unmodifiableList(commandBuffers);

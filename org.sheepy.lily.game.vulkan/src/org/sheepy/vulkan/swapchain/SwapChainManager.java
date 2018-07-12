@@ -1,6 +1,7 @@
 package org.sheepy.vulkan.swapchain;
 
-import static org.lwjgl.system.MemoryUtil.*;
+import static org.lwjgl.system.MemoryUtil.memAllocInt;
+import static org.lwjgl.system.MemoryUtil.memFree;
 import static org.lwjgl.vulkan.KHRSurface.*;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;

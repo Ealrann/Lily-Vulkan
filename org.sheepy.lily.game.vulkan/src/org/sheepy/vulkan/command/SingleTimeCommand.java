@@ -57,11 +57,11 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 
 	public void execute()
 	{
-		VkCommandBuffer commandBuffer = start();
+		start();
 
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			doExecute(stack, commandBuffer);
+			doExecute(stack, vkCommandBuffer);
 		}
 
 		end();
@@ -88,7 +88,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 	}
 
 	@Override
-	public VkCommandBuffer start()
+	public void start()
 	{
 		VkCommandBufferBeginInfo beginInfo = VkCommandBufferBeginInfo.calloc();
 		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);
@@ -97,8 +97,6 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		vkBeginCommandBuffer(vkCommandBuffer, beginInfo);
 
 		beginInfo.free();
-
-		return vkCommandBuffer;
 	}
 
 	@Override

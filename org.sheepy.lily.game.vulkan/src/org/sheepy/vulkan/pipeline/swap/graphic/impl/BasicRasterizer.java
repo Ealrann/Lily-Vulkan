@@ -1,6 +1,7 @@
 package org.sheepy.vulkan.pipeline.swap.graphic.impl;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_POLYGON_MODE_FILL;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
 
 import org.lwjgl.vulkan.VkPipelineRasterizationStateCreateInfo;
 import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
@@ -9,19 +10,18 @@ import org.sheepy.vulkan.pipeline.swap.graphic.IRasterizer;
 public class BasicRasterizer implements IRasterizer
 {
 	private SwapConfiguration configuration;
-	
+
 	private VkPipelineRasterizationStateCreateInfo rasterizer;
 
-	public BasicRasterizer( SwapConfiguration configuration)
+	public BasicRasterizer(SwapConfiguration configuration)
 	{
 		this.configuration = configuration;
 	}
-	
+
 	@Override
 	public VkPipelineRasterizationStateCreateInfo allocRasterizationStateCreateInfo()
 	{
-		rasterizer = VkPipelineRasterizationStateCreateInfo
-				.calloc();
+		rasterizer = VkPipelineRasterizationStateCreateInfo.calloc();
 		rasterizer.sType(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO);
 		rasterizer.depthClampEnable(false);
 		rasterizer.rasterizerDiscardEnable(false);
@@ -33,7 +33,7 @@ public class BasicRasterizer implements IRasterizer
 		rasterizer.depthBiasConstantFactor(0.0f); // Optional
 		rasterizer.depthBiasClamp(0.0f); // Optional
 		rasterizer.depthBiasSlopeFactor(0.0f); // Optional
-		
+
 		return rasterizer;
 	}
 
@@ -45,6 +45,5 @@ public class BasicRasterizer implements IRasterizer
 
 	@Override
 	public void free()
-	{
-	}
+	{}
 }

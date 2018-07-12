@@ -2,7 +2,7 @@ package org.sheepy.vulkan.pipeline.swap;
 
 import java.util.List;
 
-import org.sheepy.vulkan.command.AbstractCommandBuffer;
+import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.swapchain.SwapChainManager;
 
 public interface IRenderPass
@@ -14,6 +14,6 @@ public interface IRenderPass
 
 	void free();
 
-	void buildRenderPass(List<? extends AbstractCommandBuffer> commandBuffers);
+	void buildRenderPass(List<RenderCommandBuffer> commandBuffers);
 
 }

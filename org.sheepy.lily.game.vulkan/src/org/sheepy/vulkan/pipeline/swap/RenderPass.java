@@ -15,6 +15,7 @@ import org.lwjgl.vulkan.VkSubpassDescription;
 import org.sheepy.vulkan.buffer.DepthResource;
 import org.sheepy.vulkan.buffer.Mesh;
 import org.sheepy.vulkan.command.AbstractCommandBuffer;
+import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.DescriptorSet;
 import org.sheepy.vulkan.device.LogicalDevice;
@@ -41,7 +42,7 @@ public class RenderPass implements IRenderPass
 	}
 
 	@Override
-	public void buildRenderPass(List<? extends AbstractCommandBuffer> commandBuffers)
+	public void buildRenderPass(List<RenderCommandBuffer> commandBuffers)
 	{
 		for (AbstractCommandBuffer commandBuffer : commandBuffers)
 		{

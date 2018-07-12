@@ -2,12 +2,15 @@ package org.sheepy.vulkan.command.graphic;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.sheepy.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.vulkan.device.LogicalDevice;
 
-public class GraphicCommandBuffer extends AbstractCommandBuffer
+/**
+ * 
+ * @author ealrann
+ */
+public abstract class GraphicCommandBuffer extends AbstractCommandBuffer
 {
 	public GraphicCommandBuffer(LogicalDevice logicalDevice, long commandBufferId)
 	{
@@ -15,7 +18,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 	}
 
 	@Override
-	public VkCommandBuffer start()
+	public void start()
 	{
 		// Start buffer record
 		VkCommandBufferBeginInfo beginInfo = VkCommandBufferBeginInfo.calloc();
@@ -29,8 +32,6 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 		}
 
 		beginInfo.free();
-
-		return vkCommandBuffer;
 	}
 
 	@Override

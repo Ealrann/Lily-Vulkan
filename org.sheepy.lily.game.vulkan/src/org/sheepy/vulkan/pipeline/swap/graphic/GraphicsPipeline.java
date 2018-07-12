@@ -12,31 +12,15 @@ import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.swap.IGraphicsPipeline;
 import org.sheepy.vulkan.pipeline.swap.IRenderPass;
 import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicColorBlendState;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicDepthStencilState;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicInputAssembly;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicMultisampleState;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicRasterizer;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicShaderStage;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicViewportState;
 import org.sheepy.vulkan.shader.Shader;
 import org.sheepy.vulkan.swapchain.SwapChainManager;
 
 public class GraphicsPipeline implements IGraphicsPipeline
 {
 	private LogicalDevice logicalDevice;
+	private SwapConfiguration configuration;
 	private List<Shader> shaders;
 	private DescriptorPool descriptorPool;
-
-	private IShaderStage shaderStage = new BasicShaderStage();
-	private IVertexDescriptor<?> vertexInputState;
-	private IInputAssembly inputAssembly = new BasicInputAssembly();
-	private IViewportState viewportState = new BasicViewportState();
-	private IRasterizer rasterizer;
-	private IDepthStencilState depthStencilState = null;
-	private IMultisampleState multisampleState = new BasicMultisampleState();
-	private IColorBlendState colorBlendState = new BasicColorBlendState();
-	// private IDynamicState dynamicState;
 
 	private long graphicsPipeline = -1;
 	private long pipelineLayout = 1;
@@ -46,17 +30,11 @@ public class GraphicsPipeline implements IGraphicsPipeline
 			DescriptorPool descriptorPool)
 	{
 		this.logicalDevice = logicalDevice;
+		this.configuration = configuration;
 		this.shaders = new ArrayList<>(shaders);
 		this.descriptorPool = descriptorPool;
 
-		vertexInputState = configuration.getVertexInputState();
 
-		rasterizer = new BasicRasterizer(configuration);
-
-		if (configuration.depthBuffer == true)
-		{
-			depthStencilState = new BasicDepthStencilState();
-		}
 		// dynamicState = new BasicDynamicState();
 	}
 
@@ -86,15 +64,15 @@ public class GraphicsPipeline implements IGraphicsPipeline
 		// -----------------------
 		VkGraphicsPipelineCreateInfo.Buffer pipelineInfo = VkGraphicsPipelineCreateInfo.calloc(1);
 		pipelineInfo.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
-		pipelineInfo.pStages(shaderStage.allocShaderStageInfo(shaders));
-		pipelineInfo.pVertexInputState(vertexInputState.allocInputStateCreateInfo());
-		pipelineInfo.pInputAssemblyState(inputAssembly.allocInputAssemblyStateCreateInfo());
-		pipelineInfo.pViewportState(viewportState.allocViewportStateCreateInfo(swapChainManager));
-		pipelineInfo.pRasterizationState(rasterizer.allocRasterizationStateCreateInfo());
-		pipelineInfo.pMultisampleState(multisampleState.allocMultisampleStateCreateInfo());
-		if (depthStencilState != null)
-			pipelineInfo.pDepthStencilState(depthStencilState.allocDepthStencilStateCreateInfo());
-		pipelineInfo.pColorBlendState(colorBlendState.allocColorBlendStateCreateInfo());
+		pipelineInfo.pStages(configuration.shaderStage.allocShaderStageInfo(shaders));
+		pipelineInfo.pVertexInputState(configuration.vertexInputState.allocInputStateCreateInfo());
+		pipelineInfo.pInputAssemblyState(configuration.inputAssembly.allocInputAssemblyStateCreateInfo());
+		pipelineInfo.pViewportState(configuration.viewportState.allocViewportStateCreateInfo(swapChainManager));
+		pipelineInfo.pRasterizationState(configuration.rasterizer.allocRasterizationStateCreateInfo());
+		pipelineInfo.pMultisampleState(configuration.multisampleState.allocMultisampleStateCreateInfo());
+		if (configuration.depthBuffer == true)
+			pipelineInfo.pDepthStencilState(configuration.depthStencilState.allocDepthStencilStateCreateInfo());
+		pipelineInfo.pColorBlendState(configuration.colorBlendState.allocColorBlendStateCreateInfo());
 		// pipelineInfo.pDynamicState(dynamicState.allocDynamicStateCreateInfo());
 		pipelineInfo.layout(pipelineLayout);
 		pipelineInfo.renderPass(renderPass.getId());
@@ -111,13 +89,15 @@ public class GraphicsPipeline implements IGraphicsPipeline
 		graphicsPipeline = aGraphicsPipeline[0];
 
 		// dynamicState.freeDynamicStateCreateInfo();
-		colorBlendState.freeColorBlendStateCreateInfo();
-		multisampleState.freeMultisampleStateCreateInfo();
-		rasterizer.freeRasterizationStateCreateInfo();
-		viewportState.freeViewportStateCreateInfo();
-		inputAssembly.freeInputAssemblyStateCreateInfo();
-		vertexInputState.freeInputStateCreateInfo();
-		shaderStage.freeShaderStageInfo();
+		configuration.colorBlendState.freeColorBlendStateCreateInfo();
+		configuration.multisampleState.freeMultisampleStateCreateInfo();
+		configuration.rasterizer.freeRasterizationStateCreateInfo();
+		configuration.viewportState.freeViewportStateCreateInfo();
+		configuration.inputAssembly.freeInputAssemblyStateCreateInfo();
+		configuration.vertexInputState.freeInputStateCreateInfo();
+		configuration.shaderStage.freeShaderStageInfo();
+		if (configuration.depthBuffer == true)
+			configuration.depthStencilState.freeDepthStencilStateCreateInfo();
 
 		pipelineLayoutInfo.free();
 		pipelineInfo.free();
@@ -129,23 +109,18 @@ public class GraphicsPipeline implements IGraphicsPipeline
 		return graphicsPipeline;
 	}
 
-	public void setShaderStage(IShaderStage shaderStage)
-	{
-		this.shaderStage = shaderStage;
-	}
-
 	@Override
 	public void free()
 	{
 		// dynamicState.free();
-		colorBlendState.free();
-		if (depthStencilState != null) depthStencilState.free();
-		multisampleState.free();
-		rasterizer.free();
-		viewportState.free();
-		inputAssembly.free();
-		vertexInputState.free();
-		shaderStage.free();
+		configuration.colorBlendState.free();
+		if (configuration.depthBuffer == true) configuration.depthStencilState.free();
+		configuration.multisampleState.free();
+		configuration.rasterizer.free();
+		configuration.viewportState.free();
+		configuration.inputAssembly.free();
+		configuration.vertexInputState.free();
+		configuration.shaderStage.free();
 
 		vkDestroyPipeline(logicalDevice.getVkDevice(), graphicsPipeline, null);
 		vkDestroyPipelineLayout(logicalDevice.getVkDevice(), pipelineLayout, null);

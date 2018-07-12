@@ -3,7 +3,6 @@ package org.sheepy.vulkan.command.graphic;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkClearValue;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.swap.IRenderPass;
@@ -28,11 +27,21 @@ public class RenderCommandBuffer extends GraphicCommandBuffer
 		this.renderPass = renderPass;
 	}
 
-	@Override
-	public VkCommandBuffer start()
+
+	public void startCommand()
 	{
 		super.start();
-
+	}
+	
+	@Override
+	public void start()
+	{
+		startCommand();
+		startRenderPass();
+	}
+	
+	public void startRenderPass()
+	{
 		// Start Render Pass
 		int clearCount = 1;
 		clearCount += configuration.depthBuffer == true ? 1 : 0;
@@ -62,14 +71,22 @@ public class RenderCommandBuffer extends GraphicCommandBuffer
 
 		clearColor.free();
 		renderPassInfo.free();
+	}
 
-		return vkCommandBuffer;
+	public void endRenderPass()
+	{
+		vkCmdEndRenderPass(vkCommandBuffer);
+	}
+	
+	public void endCommand()
+	{
+		super.end();
 	}
 
 	@Override
 	public void end()
 	{
-		vkCmdEndRenderPass(vkCommandBuffer);
-		super.end();
+		endRenderPass();
+		endCommand();
 	}
 }
