@@ -319,4 +319,9 @@ public class Image
 		return true;
 	}
 
+	public long getMemoryId()
+	{
+		return imageMemoryId;
+	}
+
 }
