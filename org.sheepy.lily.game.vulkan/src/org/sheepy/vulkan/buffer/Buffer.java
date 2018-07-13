@@ -154,7 +154,7 @@ public class Buffer implements IDescriptor, IAllocable
 
 	public int flush()
 	{
-		return flush(size, 0);
+		return flush(VK_WHOLE_SIZE, 0);
 	}
 	
 	/** 
