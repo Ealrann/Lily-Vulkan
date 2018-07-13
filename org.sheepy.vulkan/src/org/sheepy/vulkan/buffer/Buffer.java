@@ -118,7 +118,7 @@ public class Buffer implements IDescriptor, IAllocable
 		PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
 		vkMapMemory(logicalDevice.getVkDevice(), bufferMemoryId, 0, size, 0, pBuffer);
 		long data = pBuffer.get(0);
-		MemoryUtil.memCopy(memAddress(byteBuffer), data, byteBuffer.capacity());
+		MemoryUtil.memCopy(memAddress(byteBuffer), data, size);
 		vkUnmapMemory(logicalDevice.getVkDevice(), bufferMemoryId);
 		MemoryUtil.memFree(pBuffer);
 	}

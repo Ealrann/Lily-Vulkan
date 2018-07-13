@@ -2,36 +2,21 @@ import org.gradle.internal.os.OperatingSystem
 
 plugins {
 	id 'java-library'
-	id 'eclipse'
-	//id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
 }
-
-sourceSets {
-    main {
-        java.srcDirs = ['src/']
-        resources.srcDirs = ['resources/']
-    }
-}
-
-
 
 project.ext.lwjglVersion = "3.1.6"
 project.ext.jomlVersion = "1.9.9"
+
 switch ( OperatingSystem.current() ) {
 	case OperatingSystem.WINDOWS:
 		project.ext.lwjglNatives = "natives-windows"
 		break
 	case OperatingSystem.LINUX:
 		project.ext.lwjglNatives = "natives-linux"
-	break
+		break
 	case OperatingSystem.MAC_OS:
 		project.ext.lwjglNatives = "natives-macos"
 		break
-}
-
-repositories {
-	mavenLocal()
-	mavenCentral()
 }
 
 dependencies {
