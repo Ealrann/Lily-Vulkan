@@ -28,7 +28,12 @@ public abstract class PipelinePool implements IAllocable
 	{
 		commandPool = new CommandPool(logicalDevice,
 				logicalDevice.getQueueManager().getGraphicQueueIndex());
-		subAllocationObjects.add(commandPool);
+		
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			// Allocate the pool early, becaus it's practical
+			commandPool.allocate(stack);
+		}
 	}
 
 	@Override
@@ -63,6 +68,8 @@ public abstract class PipelinePool implements IAllocable
 				((IAllocable) allocation).free();
 			}
 		}
+		
+		commandPool.free();
 	}
 
 	public abstract void execute();

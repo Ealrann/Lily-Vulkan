@@ -19,7 +19,7 @@ import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicMultisampleState;
 import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicRasterizer;
 import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicShaderStage;
 import org.sheepy.vulkan.pipeline.swap.graphic.impl.BasicViewportState;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.VertexDescriptor;
+import org.sheepy.vulkan.pipeline.swap.graphic.impl.IndexBufferDescriptor;
 import org.sheepy.vulkan.shader.Shader;
 
 public class GraphicSwapConfiguration extends SwapConfiguration
@@ -41,7 +41,7 @@ public class GraphicSwapConfiguration extends SwapConfiguration
 	public int rasterizerFrontFace = VK_FRONT_FACE_CLOCKWISE;
 
 	public IShaderStage shaderStage = new BasicShaderStage();
-	public IVertexDescriptor<?> vertexInputState = new VertexDescriptor();
+	public IVertexBufferDescriptor<?> vertexInputState = new IndexBufferDescriptor();
 	public IInputAssembly inputAssembly = new BasicInputAssembly();
 	public IViewportState viewportState = new BasicViewportState();
 	public IRasterizer rasterizer = new BasicRasterizer(this);

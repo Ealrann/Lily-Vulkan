@@ -12,14 +12,13 @@ import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
 import org.sheepy.vulkan.buffer.IVertex;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.TextureVertexDescriptor.TextureVertex;
+import org.sheepy.vulkan.pipeline.swap.graphic.impl.IndexBufferDescriptor.Vertex;
 
-public class TextureVertexDescriptor extends AbstractIntergerIndexDescriptor<TextureVertex>
+public class IndexBufferDescriptor extends AbstractIntergerIndexDescriptor<Vertex>
 {
-	public static final int SIZE_OF = 8 * 4;
+	public static final int SIZE_OF = 5 * 4;
 	public static final int POSITION_OFFSET = 0 * 4;
-	public static final int COLOR_OFFSET = 3 * 4;
-	public static final int TEXTURE_OFFSET = 6 * 4;
+	public static final int COLOR_OFFSET = 2 * 4;
 
 	private VkPipelineVertexInputStateCreateInfo vertexInputInfo;
 	private VkVertexInputBindingDescription.Buffer allocBindingDescription;
@@ -55,13 +54,13 @@ public class TextureVertexDescriptor extends AbstractIntergerIndexDescriptor<Tex
 	public VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions()
 	{
 		VkVertexInputAttributeDescription.Buffer attributeDescriptions = VkVertexInputAttributeDescription
-				.calloc(3);
+				.calloc(2);
 
 		VkVertexInputAttributeDescription attributeDescriptionPosition = attributeDescriptions
 				.get(0);
 		attributeDescriptionPosition.binding(0);
 		attributeDescriptionPosition.location(0);
-		attributeDescriptionPosition.format(VK_FORMAT_R32G32B32_SFLOAT);
+		attributeDescriptionPosition.format(VK_FORMAT_R32G32_SFLOAT);
 		attributeDescriptionPosition.offset(POSITION_OFFSET);
 
 		VkVertexInputAttributeDescription attributeDescriptionColor = attributeDescriptions.get(1);
@@ -69,13 +68,6 @@ public class TextureVertexDescriptor extends AbstractIntergerIndexDescriptor<Tex
 		attributeDescriptionColor.location(1);
 		attributeDescriptionColor.format(VK_FORMAT_R32G32B32_SFLOAT);
 		attributeDescriptionColor.offset(COLOR_OFFSET);
-
-		VkVertexInputAttributeDescription attributeDescriptionTexCoord = attributeDescriptions
-				.get(2);
-		attributeDescriptionTexCoord.binding(0);
-		attributeDescriptionTexCoord.location(2);
-		attributeDescriptionTexCoord.format(VK_FORMAT_R32G32_SFLOAT);
-		attributeDescriptionTexCoord.offset(TEXTURE_OFFSET);
 
 		return attributeDescriptions;
 	}
@@ -99,43 +91,37 @@ public class TextureVertexDescriptor extends AbstractIntergerIndexDescriptor<Tex
 	}
 
 	@Override
-	public ByteBuffer toVertexBuffer(TextureVertex[] vertices)
+	public ByteBuffer toVertexBuffer(Vertex[] vertices)
 	{
 		ByteBuffer res = MemoryUtil.memAlloc(SIZE_OF * vertices.length);
 		FloatBuffer fb = res.asFloatBuffer();
 
-		for (TextureVertex vertex : vertices)
+		for (Vertex vertex : vertices)
 		{
 			fb.put(vertex.position.x);
 			fb.put(vertex.position.y);
-			fb.put(vertex.position.z);
 			fb.put(vertex.color.x);
 			fb.put(vertex.color.y);
 			fb.put(vertex.color.z);
-			fb.put(vertex.texCoord.x);
-			fb.put(vertex.texCoord.y);
 		}
 
 		return res;
 	}
 
-	public static class TextureVertex implements IVertex
+	public static class Vertex implements IVertex
 	{
-		Vector3f position;
+		Vector2f position;
 		Vector3f color;
-		Vector2f texCoord;
 
-		public TextureVertex(Vector3f position, Vector3f color, Vector2f texCoord)
+		public Vertex(Vector2f position, Vector3f color)
 		{
 			this.position = position;
 			this.color = color;
-			this.texCoord = texCoord;
 		}
 
-		public TextureVertex(float x, float y, float z, float r, float g, float b, float xTex,
-				float yTex)
+		public Vertex(float x, float y, float r, float g, float b)
 		{
-			this(new Vector3f(x, y, z), new Vector3f(r, g, b), new Vector2f(xTex, yTex));
+			this(new Vector2f(x, y), new Vector3f(r, g, b));
 		}
 	}
 }

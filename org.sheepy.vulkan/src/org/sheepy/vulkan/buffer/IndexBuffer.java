@@ -3,24 +3,23 @@ package org.sheepy.vulkan.buffer;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.SingleTimeCommand;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.graphic.IVertexDescriptor;
+import org.sheepy.vulkan.pipeline.swap.graphic.IIndexBufferDescriptor;
 
-public class IndexBuffer<T extends IVertex> 
+public class IndexBuffer<T extends IVertex> implements IAllocable
 {
 	private LogicalDevice logicalDevice;
-	private IVertexDescriptor<T> vertexDescriptor;
-	private T[] vertices;
-	private int[] indices;
-	
-	private Buffer buffer;
+	private IIndexBufferDescriptor<T> vertexDescriptor;
+	private CommandPool commandPool;
+
+	private Buffer vertexBuffer;
 	private Buffer indexBuffer;
 
 	private int vertexCount;
@@ -29,28 +28,74 @@ public class IndexBuffer<T extends IVertex>
 	private Buffer indexStagingBuffer;
 	private Buffer vertexStagingBuffer;
 
-	public IndexBuffer(LogicalDevice logicalDevice, 
-			IVertexDescriptor<T> vertexDescriptor,
+	public static <T extends IVertex> IndexBuffer<T> alloc(LogicalDevice logicalDevice,
+			IIndexBufferDescriptor<T> vertexDescriptor,
+			CommandPool commandPool,
 			T[] vertices,
 			int[] indices)
 	{
-		this.logicalDevice = logicalDevice;
-		
-		this.vertexDescriptor = vertexDescriptor;
-		this.vertices = vertices;
-		this.indices = indices;
+		IndexBuffer<T> res = new IndexBuffer<>(logicalDevice, vertexDescriptor, commandPool,
+				vertices.length, indices.length);
+
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			res.allocate(stack);
+		}
+		res.fillBuffer(vertices, indices);
+
+		return res;
 	}
 
-	public void allocIndexBuffer(CommandPool commandPool)
+	public IndexBuffer(LogicalDevice logicalDevice, IIndexBufferDescriptor<T> vertexDescriptor,
+			CommandPool commandPool, int vertexSize, int indiceSize)
 	{
+		this.logicalDevice = logicalDevice;
+		this.vertexDescriptor = vertexDescriptor;
+		this.commandPool = commandPool;
+
+		long indexByteSize = indiceSize * vertexDescriptor.sizeOfIndex();
+		indexBuffer = new Buffer(logicalDevice, indexByteSize,
+				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT,
+				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+
+		long vertexByteSize = vertexSize * vertexDescriptor.sizeOfVertex();
+		vertexBuffer = new Buffer(logicalDevice, vertexByteSize,
+				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+	}
+
+	@Override
+	public void allocate(MemoryStack stack)
+	{
+		indexBuffer.allocate();
+		vertexBuffer.allocate();
+	}
+
+	public void fillBuffer(T[] vertices, int[] indices)
+	{
+		ByteBuffer vertexBuffer = vertexDescriptor.toVertexBuffer(vertices);
+		ByteBuffer indexBuffer = vertexDescriptor.toIndexBuffer(indices);
+		fillBuffer(vertexBuffer, vertices.length, indexBuffer, indices.length);
+		MemoryUtil.memFree(indexBuffer);
+		MemoryUtil.memFree(vertexBuffer);
+	}
+
+	public void fillBuffer(ByteBuffer verticeBuffer,
+			int numberOfVertice,
+			ByteBuffer indiceBuffer,
+			int numberOfIndice)
+	{
+		indexCount = numberOfIndice;
+		vertexCount = numberOfVertice;
+
 		SingleTimeCommand stc = new SingleTimeCommand(commandPool,
 				logicalDevice.getQueueManager().getGraphicQueue())
 		{
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
-				allocIndexBuffer(stack, commandBuffer, indices);
-				allocIVertexBuffer(stack, commandBuffer, vertexDescriptor, vertices);
+				fillVertexBuffer(stack, commandBuffer, verticeBuffer);
+				fillIndexBuffer(stack, commandBuffer, indiceBuffer);
 			}
 
 			@Override
@@ -61,76 +106,48 @@ public class IndexBuffer<T extends IVertex>
 			}
 		};
 		stc.execute();
-
 	}
 
-	private void allocIndexBuffer(MemoryStack stack, VkCommandBuffer commandBuffer, int[] indices)
+	private void fillIndexBuffer(MemoryStack stack,
+			VkCommandBuffer commandBuffer,
+			ByteBuffer verticeBuffer)
 	{
-		ByteBuffer verticeBuffer = allocBuffer(indices);
-		indexCount = indices.length;
-
-		int byteSize = indexCount * Integer.BYTES;
+		int byteSize = indexCount * vertexDescriptor.sizeOfIndex();
 
 		indexStagingBuffer = new Buffer(logicalDevice, byteSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
 		indexStagingBuffer.allocate();
-		
+
 		indexStagingBuffer.fillWithBuffer(verticeBuffer);
 
-		indexBuffer = new Buffer(logicalDevice, byteSize,
-				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT,
-				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-		indexBuffer.allocate();
-
 		Buffer.copyBuffer(commandBuffer, indexStagingBuffer.getId(), indexBuffer.getId(), byteSize);
-
-		MemoryUtil.memFree(verticeBuffer);
+		
+		indexStagingBuffer.flush();
 	}
 
-	private void allocIVertexBuffer(MemoryStack stack,
+	private void fillVertexBuffer(MemoryStack stack,
 			VkCommandBuffer commandBuffer,
-			IVertexDescriptor<T> vertexDescriptor,
-			T[] vertices)
+			ByteBuffer verticeBuffer)
 	{
-		ByteBuffer verticeBuffer = vertexDescriptor.toBuffer(vertices);
-		vertexCount = vertices.length;
-
 		int byteSize = vertexCount * vertexDescriptor.sizeOfVertex();
 
-		vertexStagingBuffer = new Buffer(logicalDevice, byteSize,
-				VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+		vertexStagingBuffer = new Buffer(logicalDevice, byteSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
 		vertexStagingBuffer.allocate();
-		
+
 		vertexStagingBuffer.fillWithBuffer(verticeBuffer);
 
-		buffer = new Buffer(logicalDevice, byteSize,
-				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
-				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-		buffer.allocate();
-		
-		Buffer.copyBuffer(commandBuffer, vertexStagingBuffer.getId(), buffer.getId(), byteSize);
+		Buffer.copyBuffer(commandBuffer, vertexStagingBuffer.getId(), vertexBuffer.getId(),
+				byteSize);
 
-		MemoryUtil.memFree(verticeBuffer);
+		vertexStagingBuffer.flush();
 	}
 
-	private ByteBuffer allocBuffer(int[] indices)
-	{
-		ByteBuffer res = MemoryUtil.memAlloc(indices.length * Integer.BYTES);;
-		IntBuffer sb = res.asIntBuffer();
-
-		for (int index : indices)
-		{
-			sb.put(index);
-		}
-
-		return res;
-	}
-
+	@Override
 	public void free()
 	{
 		indexBuffer.free();
-		buffer.free();
+		vertexBuffer.free();
 	}
 
 	public int verticeCount()
@@ -138,9 +155,9 @@ public class IndexBuffer<T extends IVertex>
 		return vertexCount;
 	}
 
-	public long getBufferId()
+	public long getVertexBufferId()
 	{
-		return buffer.getId();
+		return vertexBuffer.getId();
 	}
 
 	public long getIndexBufferId()
