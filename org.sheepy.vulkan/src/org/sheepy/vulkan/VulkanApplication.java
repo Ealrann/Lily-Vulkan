@@ -72,7 +72,7 @@ public abstract class VulkanApplication
 				{
 					((SurfacePipelinePool) pipelinePool).configure(window.getSurface());
 				}
-				pipelinePool.allocateNode(stack);
+				pipelinePool.allocate(stack);
 			}
 		}
 	}
@@ -203,7 +203,7 @@ public abstract class VulkanApplication
 	{
 		for (PipelinePool pipelinePool : pipelinePools)
 		{
-			pipelinePool.freeNode();
+			pipelinePool.free();
 		}
 
 		logicalDevice.free();
