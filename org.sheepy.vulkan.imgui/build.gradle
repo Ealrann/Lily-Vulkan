@@ -1,0 +1,12 @@
+plugins {
+	id 'java-library'
+}
+
+dependencies {
+
+	api 'com.google.guava:guava:24.1-jre'
+
+	api project(':org.sheepy.vulkan')
+	
+	api 'com.github.kotlin-graphics:imgui:-SNAPSHOT'
+}
