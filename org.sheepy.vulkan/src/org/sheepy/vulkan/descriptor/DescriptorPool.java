@@ -28,15 +28,6 @@ public class DescriptorPool implements Iterable<DescriptorSet>, IAllocable
 
 	private long id;
 
-	public static final DescriptorPool alloc(MemoryStack stack,
-			LogicalDevice logicalDevice,
-			Collection<? extends IDescriptorSetConfiguration> configurations)
-	{
-		DescriptorPool res = new DescriptorPool(logicalDevice, configurations);
-		res.allocate(stack);
-		return res;
-	}
-
 	public DescriptorPool(LogicalDevice logicalDevice,
 			Collection<? extends IDescriptorSetConfiguration> configurations)
 	{

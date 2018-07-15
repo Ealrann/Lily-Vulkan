@@ -7,7 +7,6 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.vulkan.command.CommandPool;
-import org.sheepy.vulkan.pipeline.swap.AbstractSwapPipeline;
 import org.sheepy.vulkan.pipeline.swap.Framebuffers;
 import org.sheepy.vulkan.pipeline.swap.IRenderPass;
 import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
@@ -16,22 +15,20 @@ import org.sheepy.vulkan.swapchain.SwapChainManager;
 public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandBuffer>
 {
 	private SwapConfiguration configuration;
-	private AbstractSwapPipeline swapPipeline;
 
-	public GraphicCommandBuffers(CommandPool commandPool, SwapConfiguration configuration,
-			AbstractSwapPipeline swapPipeline)
+	public GraphicCommandBuffers(CommandPool commandPool, SwapConfiguration configuration
+			)
 	{
 		super(commandPool);
 		this.configuration = configuration;
-		this.swapPipeline = swapPipeline;
 	}
 
 	@Override
 	protected List<RenderCommandBuffer> allocCommandBuffers(MemoryStack stack)
 	{
-		Framebuffers framebuffers = swapPipeline.getFramebuffers();
-		SwapChainManager swapChain = swapPipeline.getSwapChain();
-		IRenderPass renderPass = swapPipeline.getRenderPass();
+		Framebuffers framebuffers = configuration.framebuffers;
+		SwapChainManager swapChain = configuration.swapChainManager;
+		IRenderPass renderPass = configuration.renderPass;
 
 		long commandPoolId = commandPool.getId();
 

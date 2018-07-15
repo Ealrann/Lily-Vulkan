@@ -3,6 +3,7 @@ package org.sheepy.vulkan.concurrent;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.device.LogicalDevice;
 
 public class SemaphoreManager
@@ -11,24 +12,28 @@ public class SemaphoreManager
 
 	private boolean lock;
 	private List<VkSemaphore> semaphores = new ArrayList<>();
-	
+
 	public SemaphoreManager(LogicalDevice logicalDevice)
 	{
 		this.logicalDevice = logicalDevice;
 	}
-	
+
 	public VkSemaphore newSemaphore()
 	{
-		if(lock == true)
+		if (lock == true)
 		{
 			throw new AssertionError("Object locked, can't create a Semaphore");
 		}
-		
+
 		VkSemaphore res = new VkSemaphore(logicalDevice);
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			res.allocate(stack);
+		}
 		semaphores.add(res);
 		return res;
 	}
-	
+
 	public void free()
 	{
 		for (VkSemaphore vkSemaphore : semaphores)
@@ -37,7 +42,7 @@ public class SemaphoreManager
 		}
 		semaphores.clear();
 	}
-	
+
 	/**
 	 * If lock, creation of Semaphore will be forbidden
 	 * 
@@ -47,7 +52,7 @@ public class SemaphoreManager
 	{
 		this.lock = value;
 	}
-	
+
 	public boolean isLocked()
 	{
 		return lock;

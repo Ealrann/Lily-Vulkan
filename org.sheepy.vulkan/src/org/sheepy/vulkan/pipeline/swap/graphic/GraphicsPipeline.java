@@ -2,58 +2,40 @@ package org.sheepy.vulkan.pipeline.swap.graphic;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
-import org.sheepy.vulkan.descriptor.DescriptorPool;
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.swap.IGraphicsPipeline;
-import org.sheepy.vulkan.pipeline.swap.IRenderPass;
-import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
-import org.sheepy.vulkan.shader.Shader;
-import org.sheepy.vulkan.swapchain.SwapChainManager;
 
 public class GraphicsPipeline implements IGraphicsPipeline
 {
-	private LogicalDevice logicalDevice;
-	private SwapConfiguration configuration;
-	private List<Shader> shaders;
-	private DescriptorPool descriptorPool;
+	private GraphicSwapConfiguration configuration;
 
 	private long graphicsPipeline = -1;
 	private long pipelineLayout = 1;
 
-	public GraphicsPipeline(LogicalDevice logicalDevice, SwapConfiguration configuration,
-			List<Shader> shaders,
-			DescriptorPool descriptorPool)
+	
+	public GraphicsPipeline(GraphicSwapConfiguration configuration)
 	{
-		this.logicalDevice = logicalDevice;
 		this.configuration = configuration;
-		this.shaders = new ArrayList<>(shaders);
-		this.descriptorPool = descriptorPool;
-
-
-		// dynamicState = new BasicDynamicState();
 	}
-
+	
 	@Override
-	public void load(SwapChainManager swapChainManager,
-			IRenderPass renderPass)
+	public void allocate(MemoryStack stack)
 	{
 		// Create Pipeline Layout
 		// -----------------------
-		VkPipelineLayoutCreateInfo pipelineLayoutInfo = VkPipelineLayoutCreateInfo.calloc();
+		VkPipelineLayoutCreateInfo pipelineLayoutInfo = VkPipelineLayoutCreateInfo
+				.callocStack(stack);
 		pipelineLayoutInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
-		if (descriptorPool != null)
+		if (configuration.descriptorPool != null)
 		{
-			pipelineLayoutInfo.pSetLayouts(descriptorPool.allocLayoutBuffer());
+			pipelineLayoutInfo.pSetLayouts(configuration.descriptorPool.allocLayoutBuffer());
 		}
 		pipelineLayoutInfo.pPushConstantRanges(null); // Optional
 
 		long[] aPipelineLayout = new long[1];
-		if (vkCreatePipelineLayout(logicalDevice.getVkDevice(), pipelineLayoutInfo, null,
+		if (vkCreatePipelineLayout(configuration.getVkDevice(), pipelineLayoutInfo, null,
 				aPipelineLayout) != VK_SUCCESS)
 		{
 			throw new AssertionError("failed to create pipeline layout!");
@@ -62,26 +44,33 @@ public class GraphicsPipeline implements IGraphicsPipeline
 
 		// Create Pipeline
 		// -----------------------
-		VkGraphicsPipelineCreateInfo.Buffer pipelineInfo = VkGraphicsPipelineCreateInfo.calloc(1);
+		VkGraphicsPipelineCreateInfo.Buffer pipelineInfo = VkGraphicsPipelineCreateInfo
+				.callocStack(1, stack);
 		pipelineInfo.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
-		pipelineInfo.pStages(configuration.shaderStage.allocShaderStageInfo(shaders));
+		pipelineInfo
+				.pStages(configuration.shaderStage.allocShaderStageInfo(configuration.shaders));
 		pipelineInfo.pVertexInputState(configuration.vertexInputState.allocInputStateCreateInfo());
-		pipelineInfo.pInputAssemblyState(configuration.inputAssembly.allocInputAssemblyStateCreateInfo());
-		pipelineInfo.pViewportState(configuration.viewportState.allocViewportStateCreateInfo(swapChainManager));
-		pipelineInfo.pRasterizationState(configuration.rasterizer.allocRasterizationStateCreateInfo());
-		pipelineInfo.pMultisampleState(configuration.multisampleState.allocMultisampleStateCreateInfo());
-		if (configuration.depthBuffer == true)
-			pipelineInfo.pDepthStencilState(configuration.depthStencilState.allocDepthStencilStateCreateInfo());
-		pipelineInfo.pColorBlendState(configuration.colorBlendState.allocColorBlendStateCreateInfo());
+		pipelineInfo.pInputAssemblyState(
+				configuration.inputAssembly.allocInputAssemblyStateCreateInfo());
+		pipelineInfo.pViewportState(
+				configuration.viewportState.allocViewportStateCreateInfo(configuration.swapChainManager));
+		pipelineInfo
+				.pRasterizationState(configuration.rasterizer.allocRasterizationStateCreateInfo());
+		pipelineInfo.pMultisampleState(
+				configuration.multisampleState.allocMultisampleStateCreateInfo());
+		if (configuration.depthBuffer == true) pipelineInfo.pDepthStencilState(
+				configuration.depthStencilState.allocDepthStencilStateCreateInfo());
+		pipelineInfo
+				.pColorBlendState(configuration.colorBlendState.allocColorBlendStateCreateInfo());
 		// pipelineInfo.pDynamicState(dynamicState.allocDynamicStateCreateInfo());
 		pipelineInfo.layout(pipelineLayout);
-		pipelineInfo.renderPass(renderPass.getId());
+		pipelineInfo.renderPass(configuration.renderPass.getId());
 		pipelineInfo.subpass(0);
 		pipelineInfo.basePipelineHandle(VK_NULL_HANDLE); // Optional
 		pipelineInfo.basePipelineIndex(-1); // Optional
 
 		long[] aGraphicsPipeline = new long[1];
-		if (vkCreateGraphicsPipelines(logicalDevice.getVkDevice(), VK_NULL_HANDLE, pipelineInfo,
+		if (vkCreateGraphicsPipelines(configuration.getVkDevice(), VK_NULL_HANDLE, pipelineInfo,
 				null, aGraphicsPipeline) != VK_SUCCESS)
 		{
 			throw new AssertionError("failed to create graphics pipeline!");
@@ -98,9 +87,6 @@ public class GraphicsPipeline implements IGraphicsPipeline
 		configuration.shaderStage.freeShaderStageInfo();
 		if (configuration.depthBuffer == true)
 			configuration.depthStencilState.freeDepthStencilStateCreateInfo();
-
-		pipelineLayoutInfo.free();
-		pipelineInfo.free();
 	}
 
 	@Override
@@ -122,8 +108,8 @@ public class GraphicsPipeline implements IGraphicsPipeline
 		configuration.vertexInputState.free();
 		configuration.shaderStage.free();
 
-		vkDestroyPipeline(logicalDevice.getVkDevice(), graphicsPipeline, null);
-		vkDestroyPipelineLayout(logicalDevice.getVkDevice(), pipelineLayout, null);
+		vkDestroyPipeline(configuration.getVkDevice(), graphicsPipeline, null);
+		vkDestroyPipelineLayout(configuration.getVkDevice(), pipelineLayout, null);
 
 		graphicsPipeline = -1;
 		pipelineLayout = -1;

@@ -10,9 +10,10 @@ import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.SingleTimeCommand;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
 
-public class VkSemaphore
+public class VkSemaphore implements IAllocable
 {
 	private LogicalDevice logicalDevice;
 
@@ -21,11 +22,10 @@ public class VkSemaphore
 	public VkSemaphore(LogicalDevice logicalDevice)
 	{
 		this.logicalDevice = logicalDevice;
-
-		load();
 	}
 
-	private void load()
+	@Override
+	public void allocate(MemoryStack stack)
 	{
 		VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
 		semaphoreInfo.sType(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO);
@@ -59,6 +59,7 @@ public class VkSemaphore
 		stc.execute();
 	}
 
+	@Override
 	public void free()
 	{
 		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphoreId, null);

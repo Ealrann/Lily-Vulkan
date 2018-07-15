@@ -6,21 +6,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.swapchain.SwapChainManager;
 
-public class ImageViewManager
+public class ImageViewManager implements IAllocable
 {
 	private LogicalDevice logicalDevice;
+	private SwapChainManager swapChainManager;
 
 	private List<ImageView> imageViews = null;
 
-	public ImageViewManager(LogicalDevice logicalDevice)
+	public ImageViewManager(LogicalDevice logicalDevice, SwapChainManager swapChainManager)
 	{
 		this.logicalDevice = logicalDevice;
+		this.swapChainManager = swapChainManager;
 	}
 
-	public void load(SwapChainManager swapChainManager)
+	@Override
+	public void allocate(MemoryStack stack)
 	{
 		int colorFormat = swapChainManager.getColorDomain().getColorFormat();
 		imageViews = new ArrayList<>();
@@ -38,6 +43,7 @@ public class ImageViewManager
 		return imageViews;
 	}
 
+	@Override
 	public void free()
 	{
 		for (ImageView view : imageViews)

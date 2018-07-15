@@ -3,24 +3,23 @@ package org.sheepy.vulkan.pipeline.swap;
 import java.util.Collection;
 
 import org.lwjgl.vulkan.VkPresentInfoKHR;
-import org.sheepy.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.vulkan.command.ICommandBuffer;
 import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.PipelineSubmission;
 import org.sheepy.vulkan.pipeline.SubmissionInfo;
-import org.sheepy.vulkan.swapchain.SwapChainManager;
 
 public class FrameSubmission extends PipelineSubmission
 {
-	private SwapChainManager swapChain;
+	private SwapConfiguration configuration;
 
-	public FrameSubmission(LogicalDevice logicalDevice, AbstractCommandBuffers<?> commandBuffers, SwapChainManager swapChain, Collection<ISignalEmitter> waitForSignals, int waitStage)
+	public FrameSubmission(SwapConfiguration configuration,
+			Collection<ISignalEmitter> waitForSignals)
 	{
-		super(logicalDevice, commandBuffers, waitForSignals, waitStage);
-
-		this.swapChain = swapChain;
+		super(configuration.logicalDevice, configuration.commandBuffers, waitForSignals,
+				configuration.frameWaitStage);
+		
+		this.configuration = configuration;
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class FrameSubmission extends PipelineSubmission
 			Collection<VkSemaphore> waitSemaphores,
 			Collection<VkSemaphore> signalSemaphores)
 	{
-		return new FrameSubmissionInfo(infoNumber, swapChain, commandBuffer, waitStage,
+		return new FrameSubmissionInfo(infoNumber, configuration.swapChainManager, commandBuffer, waitStage,
 				waitSemaphores, signalSemaphoreManager.getSemaphores());
 	}
 

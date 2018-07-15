@@ -18,6 +18,8 @@ public abstract class AllocationNode implements IAllocationObject
 
 	private void gatherAllocateChildren(MemoryStack stack, IAllocationObject allocationObject)
 	{
+		// TODO la stack pourrait être conservée, jusqu'au free du node. Cela
+		// permettrait un reuse des objets
 		if (allocationObject instanceof AllocationNode)
 		{
 			for (IAllocationObject sub : ((AllocationNode) allocationObject).getSubAllocables())
@@ -38,7 +40,7 @@ public abstract class AllocationNode implements IAllocationObject
 			((IAllocable) allocationObject).allocate(stack);
 		}
 	}
-	
+
 	public final void freeNode()
 	{
 		while (allocatedObjects.isEmpty() == false)
