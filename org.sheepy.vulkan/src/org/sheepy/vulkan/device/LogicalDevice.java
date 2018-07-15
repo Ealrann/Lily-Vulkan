@@ -16,10 +16,12 @@ import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.vulkan.queue.QueueManager;
 import org.sheepy.vulkan.window.Surface;
+import org.sheepy.vulkan.window.Window;
 
 public class LogicalDevice
 {
 	private PhysicalDeviceWrapper physicalDevice;
+	private Window window;
 	private QueueManager queueManager;
 	private boolean needComputeCapability;
 
@@ -27,35 +29,36 @@ public class LogicalDevice
 
 	public final static LogicalDevice alloc(MemoryStack stack,
 			PhysicalDeviceWrapper physicalDevice,
-			Surface surface,
+			Window window,
 			String[] requiredExtensions,
 			PointerBuffer ppEnabledLayerNames)
 	{
-		return alloc(stack, physicalDevice, surface, requiredExtensions, ppEnabledLayerNames,
+		return alloc(stack, physicalDevice, window, requiredExtensions, ppEnabledLayerNames,
 				false);
 	}
 
 	public final static LogicalDevice alloc(MemoryStack stack,
 			PhysicalDeviceWrapper physicalDevice,
-			Surface surface,
+			Window window,
 			String[] requiredExtensions,
 			PointerBuffer ppEnabledLayerNames,
 			boolean needComputeCapability)
 	{
-		LogicalDevice res = new LogicalDevice(physicalDevice, surface, needComputeCapability);
+		LogicalDevice res = new LogicalDevice(physicalDevice, window, needComputeCapability);
 
 		res.load(stack, requiredExtensions, ppEnabledLayerNames);
 		return res;
 	}
 
-	private LogicalDevice(PhysicalDeviceWrapper physicalDevice, Surface surface,
+	private LogicalDevice(PhysicalDeviceWrapper physicalDevice, Window window,
 			boolean needComputeCapability)
 	{
 		this.physicalDevice = physicalDevice;
 		this.needComputeCapability = needComputeCapability;
+		this.window = window;
 
 		queueManager = new QueueManager();
-		queueManager.load(physicalDevice.getVkPhysicalDevice(), surface, needComputeCapability);
+		queueManager.load(physicalDevice.getVkPhysicalDevice(), window.getSurface(), needComputeCapability);
 	}
 
 	public void load(MemoryStack stack,
@@ -133,6 +136,11 @@ public class LogicalDevice
 	public PhysicalDeviceWrapper getPhysicalDevice()
 	{
 		return physicalDevice;
+	}
+	
+	public Window getWindow()
+	{
+		return window;
 	}
 
 	public int waitIdle()
