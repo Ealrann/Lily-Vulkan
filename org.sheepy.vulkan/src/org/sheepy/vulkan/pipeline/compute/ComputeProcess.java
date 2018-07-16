@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.joml.Vector3i;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.command.compute.ComputeCommandBuffer;
 import org.sheepy.vulkan.common.AllocationNode;
@@ -23,10 +22,9 @@ import org.sheepy.vulkan.device.LogicalDevice;
  * 
  * @author ealrann
  *
- */ 
+ */
 public class ComputeProcess extends AllocationNode
 {
-	private LogicalDevice logicalDevice;
 	private List<ComputePipeline> computePipelines = new ArrayList<>();
 	private List<IAllocable> children = new ArrayList<>();
 
@@ -34,11 +32,10 @@ public class ComputeProcess extends AllocationNode
 
 	public ComputeProcess(LogicalDevice logicalDevice, List<ComputePipeline> computePipeline)
 	{
-		this.logicalDevice = logicalDevice;
 		this.computePipelines.addAll(computePipeline);
 
 		descriptorPool = new DescriptorPool(logicalDevice, computePipelines);
-		
+
 		children.add(descriptorPool);
 		children.addAll(computePipelines);
 	}
@@ -55,47 +52,47 @@ public class ComputeProcess extends AllocationNode
 		children.add(pipeline);
 	}
 
-	public void addNewPipeline(Computer computer)
-	{
-		addPipeline(new ComputePipeline(logicalDevice, descriptorPool, computer));
-	}
-
 	public void recordCommand(ComputeCommandBuffer commandBuffer)
 	{
+		LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(1);
 		for (ComputePipeline pipeline : computePipelines)
 		{
-			long pipelineLayout = pipeline.getPipelineLayout();
-
-			int dataWidth = pipeline.getDataWidth();
-			int dataHeight = pipeline.getDataHeight();
-			int dataDepth = pipeline.getDataDepth();
-			
-			float workgroupSize = pipeline.getComputer().getWorkgroupSize();
-
-			Vector3i groupCount = new Vector3i((int) Math.ceil(dataWidth / workgroupSize),
-					(int) Math.ceil(dataHeight / workgroupSize),
-					(int) Math.ceil(dataDepth / workgroupSize));
-
-			if (descriptorPool != null)
+			if (pipeline.isEnabled())
 			{
-				DescriptorSet descriptorSet = descriptorPool.getDescriptorSet(pipeline);
+				long pipelineLayout = pipeline.getPipelineLayout();
 
-				LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(1);
-				bDescriptorSet.put(descriptorSet.getId());
-				bDescriptorSet.flip();
+				int dataWidth = pipeline.getDataWidth();
+				int dataHeight = pipeline.getDataHeight();
+				int dataDepth = pipeline.getDataDepth();
 
-				vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(),
-						VK_PIPELINE_BIND_POINT_COMPUTE, pipelineLayout, 0, bDescriptorSet, null);
+				float workgroupSize = pipeline.getWorkgroupSize();
 
-				MemoryUtil.memFree(bDescriptorSet);
+				if (descriptorPool != null)
+				{
+					DescriptorSet descriptorSet = descriptorPool.getDescriptorSet(pipeline);
+
+					bDescriptorSet.put(descriptorSet.getId());
+					bDescriptorSet.flip();
+
+					vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(),
+							VK_PIPELINE_BIND_POINT_COMPUTE, pipelineLayout, 0, bDescriptorSet,
+							null);
+				}
+
+				long[] pipelines = pipeline.getId();
+				for (long pipelineId : pipelines)
+				{
+					vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(),
+							VK_PIPELINE_BIND_POINT_COMPUTE, pipelineId);
+					
+					vkCmdDispatch(commandBuffer.getVkCommandBuffer(),
+							(int) Math.ceil(dataWidth / workgroupSize),
+							(int) Math.ceil(dataHeight / workgroupSize),
+							(int) Math.ceil(dataDepth / workgroupSize));
+				}
 			}
-
-			vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_COMPUTE,
-					pipeline.getId());
-
-			vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCount.x, groupCount.y,
-					groupCount.z);
 		}
+		MemoryUtil.memFree(bDescriptorSet);
 	}
 
 	public DescriptorPool getDescriptorPool()

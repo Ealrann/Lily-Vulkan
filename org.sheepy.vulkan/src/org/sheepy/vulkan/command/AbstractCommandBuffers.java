@@ -20,7 +20,7 @@ public abstract class AbstractCommandBuffers<T extends ICommandBuffer>
 	protected LogicalDevice logicalDevice;
 	protected CommandPool commandPool;
 
-	private List<T> commandBuffers = new ArrayList<>();
+	protected List<T> commandBuffers = new ArrayList<>();
 
 	public AbstractCommandBuffers(CommandPool commandPool)
 	{

@@ -22,7 +22,7 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 		super(commandPool);
 		this.computeProcesses = computeProcesses;
 	}
-	
+
 	@Override
 	protected List<ComputeCommandBuffer> allocCommandBuffers(MemoryStack stack)
 	{
@@ -40,17 +40,24 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 			ComputeCommandBuffer commandBuffer = new ComputeCommandBuffer(
 					commandPool.getLogicalDevice(), commandBufferId);
 
-			commandBuffer.start();
-
-			computeProcess.recordCommand(commandBuffer);
-
-			commandBuffer.end();
-
 			res.add(commandBuffer);
 			mapBuffers.put(computeProcess, commandBuffer);
 		}
 
 		return res;
+	}
+
+	public void recordCommands()
+	{
+		for (int i = 0; i < computeProcesses.getProcesses().size(); i++)
+		{
+			ComputeProcess computeProcess = computeProcesses.getProcesses().get(i);
+			ComputeCommandBuffer commandBuffer = mapBuffers.get(computeProcess);
+			
+			commandBuffer.start();
+			computeProcess.recordCommand(commandBuffer);
+			commandBuffer.end();
+		}
 	}
 
 	public ComputeCommandBuffer getCommandBuffer(ComputeProcess computerPool)

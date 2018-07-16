@@ -196,7 +196,7 @@ public class ImGuiPipeline implements IAllocable
 		descriptorLayout.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO);
 		descriptorLayout.pBindings(setLayoutBindings);
 		VK_CHECK_RESULT(vkCreateDescriptorSetLayout(device, descriptorLayout, null, lArray));
-		descriptorSetLayout = lArray[0];
+ 		descriptorSetLayout = lArray[0];
 
 		LongBuffer lBuffer = MemoryUtil.memAllocLong(1);
 		lBuffer.put(descriptorSetLayout);

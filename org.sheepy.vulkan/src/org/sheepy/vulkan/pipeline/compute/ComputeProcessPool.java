@@ -7,18 +7,20 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.compute.ComputeCommandBuffers;
 import org.sheepy.vulkan.common.AllocationNode;
+import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.common.IAllocationObject;
 import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.PipelineSubmission;
 
-public class ComputeProcessPool extends AllocationNode implements ISignalEmitter
+public class ComputeProcessPool extends AllocationNode implements ISignalEmitter, IAllocable
 {
 	protected CommandPool commandPool;
 
@@ -76,5 +78,21 @@ public class ComputeProcessPool extends AllocationNode implements ISignalEmitter
 		res.add(submission);
 		
 		return res;
+	}
+
+	@Override
+	public void allocate(MemoryStack stack)
+	{
+		recordCommands();
+	}
+	
+	public void recordCommands()
+	{
+		commandBuffers.recordCommands();
+	}
+
+	@Override
+	public void free()
+	{
 	}
 }
