@@ -11,13 +11,15 @@ public class CommandPool implements IAllocable
 {
 	private LogicalDevice logicalDevice;
 	private int queueIndex;
+	private boolean allowReset;
 
 	private long commandPoolId = -1;
 	
-	public CommandPool(LogicalDevice logicalDevice, int queueIndex)
+	public CommandPool(LogicalDevice logicalDevice, int queueIndex, boolean allowReset)
 	{
 		this.logicalDevice = logicalDevice;
 		this.queueIndex = queueIndex;
+		this.allowReset = allowReset;
 	}
 	
 	@Override
@@ -28,7 +30,7 @@ public class CommandPool implements IAllocable
 		VkCommandPoolCreateInfo poolInfo = VkCommandPoolCreateInfo.callocStack(stack);
 		poolInfo.sType(VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO);
 		poolInfo.queueFamilyIndex(queueIndex);
-		poolInfo.flags(0); // Optional
+		poolInfo.flags(allowReset ? VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT : 0);
 
 		long[] aCommandPool = new long[1];
 		if (vkCreateCommandPool(logicalDevice.getVkDevice(), poolInfo, null, aCommandPool) != VK_SUCCESS)

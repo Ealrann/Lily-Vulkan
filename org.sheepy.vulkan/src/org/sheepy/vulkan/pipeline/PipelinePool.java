@@ -26,8 +26,13 @@ public abstract class PipelinePool implements IAllocable
 
 	public PipelinePool(LogicalDevice logicalDevice, int queueIndex)
 	{
+		this(logicalDevice, queueIndex, false);
+	}
+	
+	public PipelinePool(LogicalDevice logicalDevice, int queueIndex, boolean allowReset)
+	{
 		commandPool = new CommandPool(logicalDevice,
-				logicalDevice.getQueueManager().getGraphicQueueIndex());
+				queueIndex, allowReset);
 		
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{

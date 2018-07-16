@@ -6,6 +6,11 @@ import org.sheepy.vulkan.window.Surface;
 
 public abstract class SurfacePipelinePool extends PipelinePool
 {
+	public SurfacePipelinePool(LogicalDevice logicalDevice, int queueIndex, boolean allowReset)
+	{
+		super(logicalDevice, queueIndex, allowReset);
+	}
+
 	public SurfacePipelinePool(LogicalDevice logicalDevice, int queueIndex)
 	{
 		super(logicalDevice, queueIndex);
