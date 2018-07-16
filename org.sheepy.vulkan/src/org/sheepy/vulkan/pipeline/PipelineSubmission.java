@@ -34,18 +34,20 @@ public class PipelineSubmission implements ISignalEmitter, IAllocable
 		{
 			VkSemaphore newSignalSemaphore = emitter.newSignalSemaphore();
 			waitSemaphores.add(newSignalSemaphore);
-			System.out.println("New Semaphore to wait : " + Long.toHexString(newSignalSemaphore.getId()));
+			// System.out.println("New Semaphore to wait : " +
+			// Long.toHexString(newSignalSemaphore.getId()));
 		}
-		
+
 		signalSemaphoreManager = new SemaphoreManager(logicalDevice);
 	}
-	
+
 	public void addEmitterToWaitFor(ISignalEmitter emitter)
 	{
 		VkSemaphore newSignalSemaphore = emitter.newSignalSemaphore();
 		waitSemaphores.add(newSignalSemaphore);
-		
-		System.out.println("New Semaphore to wait : " + Long.toHexString(newSignalSemaphore.getId()));
+
+		// System.out.println("New Semaphore to wait : " +
+		// Long.toHexString(newSignalSemaphore.getId()));
 	}
 
 	@Override
@@ -61,7 +63,8 @@ public class PipelineSubmission implements ISignalEmitter, IAllocable
 	}
 
 	protected SubmissionInfo buildSumissionInfo(int infoNumber,
-			ICommandBuffer commandBuffer, int waitStage, 
+			ICommandBuffer commandBuffer,
+			int waitStage,
 			Collection<VkSemaphore> waitSemaphores,
 			Collection<VkSemaphore> signalSemaphores)
 	{

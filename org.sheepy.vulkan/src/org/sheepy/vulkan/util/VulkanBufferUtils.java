@@ -25,7 +25,6 @@ public class VulkanBufferUtils
 	public static ByteBuffer ioResourceToByteBuffer(String resource, int initialBufferSize)
 			throws IOException
 	{
-		System.out.println(resource);
 		ByteBuffer buffer = null;
 		InputStream fis = null;
 

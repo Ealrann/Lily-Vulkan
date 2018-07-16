@@ -29,7 +29,9 @@ public abstract class VulkanApplication
 {
 	public static boolean DEBUG = true;
 	private static final ByteBuffer[] LAYERS_TO_ENABLE = {
-			memUTF8("VK_LAYER_LUNARG_standard_validation")
+			memUTF8("VK_LAYER_LUNARG_standard_validation"),
+			memUTF8("VK_LAYER_LUNARG_core_validation"), 
+			memUTF8("VK_LAYER_LUNARG_parameter_validation")
 	};
 
 	private static final String[] REQUIRED_EXTENSIONS = {
