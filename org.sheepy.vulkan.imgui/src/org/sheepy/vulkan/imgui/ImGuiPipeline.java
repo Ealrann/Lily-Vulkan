@@ -74,8 +74,8 @@ public class ImGuiPipeline implements IAllocable
 	// UI params are set via push constants
 	private class PushConstBlock
 	{
-		Vec2 scale;
-		Vec2 translate;
+		Vec2 scale = new Vec2();
+		Vec2 translate = new Vec2(-1.0f);
 
 		public float[] toArray()
 		{
@@ -111,6 +111,10 @@ public class ImGuiPipeline implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack)
 	{
+		viewport = VkViewport.calloc(1);
+		pushConstBlock = new PushConstBlock();
+		scissorRect = VkRect2D.calloc(1);
+
 		init();
 
 		texture.allocate(stack);
@@ -120,6 +124,9 @@ public class ImGuiPipeline implements IAllocable
 	}
 
 	private long[] lArray = new long[1];
+	private VkViewport.Buffer viewport;
+	private VkRect2D.Buffer scissorRect;
+	private PushConstBlock pushConstBlock;
 
 	@Override
 	public void free()
@@ -127,6 +134,10 @@ public class ImGuiPipeline implements IAllocable
 		// Release all Vulkan resources required for rendering imGui
 		texture.free();
 		font.free();
+
+		viewport.free();
+		pushConstBlock = null;
+		scissorRect.free();;
 
 		vkDestroyPipelineCache(device, pipelineCache, null);
 		vkDestroyPipeline(device, pipeline, null);
@@ -300,6 +311,7 @@ public class ImGuiPipeline implements IAllocable
 		VkPipelineDynamicStateCreateInfo dynamicState = VkPipelineDynamicStateCreateInfo.malloc();
 		dynamicState.sType(VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO);
 		dynamicState.pDynamicStates(dynamicStates);
+		dynamicState.flags(0);
 
 		VkPipelineShaderStageCreateInfo.Buffer shaderStages = VkPipelineShaderStageCreateInfo
 				.callocStack(2, stack);
@@ -353,42 +365,9 @@ public class ImGuiPipeline implements IAllocable
 	// Starts a new imGui frame and sets up windows and ui elements
 	public void newFrame(boolean updateFrameGraph)
 	{
-
-		// Init imGui windows and elements
-
-		// imgui.textUnformatted(infos.title, 0);
-		// imgui.textUnformatted(device.getPhysicalDevice().toString(), 0);
-		//
-		// // Update frame time display
-		// if (updateFrameGraph)
-		// {
-		// // std::rotate(infos.frameTimes.begin(), infos.frameTimes.begin() +
-		// // 1, infos.frameTimes.end());
-		// //
-		// // float frameTime = 1000.0f / (infos.frameTimer * 1000.0f);
-		// // infos.frameTimes.back() = frameTime;
-		// // if (frameTime < infos.frameTimeMin) {
-		// // infos.frameTimeMin = frameTime;
-		// // }
-		// // if (frameTime > infos.frameTimeMax) {
-		// // infos.frameTimeMax = frameTime;
-		// // }
-		// }
-		//
-		// imgui.plotLines("Frame Times", infos.frameTimes, 0, "",
-		// infos.frameTimeMin,
-		// infos.frameTimeMax, new Vec2(0, 80), 0);
-		//
-		// imgui.text("Camera");
-		// imgui.inputFloat3("pos", infos.cameraPosition, "%f", 0);
-		// imgui.inputFloat3("rot", infos.cameraRotation, "oh?", 0);
-
 		imgui.newFrame();
 
 		uiDescriptor.newFrame(imgui);
-
-		imgui.endFrame();
-		// imgui.showDemoWindow(new boolean[1]);
 
 		// Render to generate draw buffers
 		imgui.render();
@@ -406,7 +385,6 @@ public class ImGuiPipeline implements IAllocable
 	// Draw current imGui frame into a command buffer
 	public void drawFrame(VkCommandBuffer commandBuffer)
 	{
-		long[] lArray = new long[1];
 		lArray[0] = descriptorSet;
 		vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0,
 				lArray, null);
@@ -414,30 +392,24 @@ public class ImGuiPipeline implements IAllocable
 
 		texture.bind(commandBuffer);
 
-		VkViewport.Buffer viewport = VkViewport.calloc(1);
 		viewport.get(0).set(0, 0, io.getDisplaySize().getX(), io.getDisplaySize().getY(), 0, 1);
 		vkCmdSetViewport(commandBuffer, 0, viewport);
-		viewport.free();
 
-		// UI scale and translate via push constants
-		PushConstBlock pushConstBlock = new PushConstBlock();
-		pushConstBlock.scale = new Vec2(2.0f / io.getDisplaySize().getX(),
-				2.0f / io.getDisplaySize().getY());
-		pushConstBlock.translate = new Vec2(-1.0f);
+		pushConstBlock.scale.setX(2.0f / io.getDisplaySize().getX());
+		pushConstBlock.scale.setY(2.0f / io.getDisplaySize().getY());
 		vkCmdPushConstants(commandBuffer, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0,
 				pushConstBlock.toArray());
 
 		// Render commands
-		DrawData imDrawData = imgui.getDrawData();
 		int vertexOffset = 0;
 		int indexOffset = 0;
+		DrawData imDrawData = imgui.getDrawData();
 		for (int i = 0; i < imDrawData.getCmdListsCount(); i++)
 		{
 			DrawList cmd_list = imDrawData.getCmdLists().get(i);
 			for (int j = 0; j < cmd_list.getCmdBuffer().size(); j++)
 			{
 				DrawCmd pcmd = cmd_list.getCmdBuffer().get(j);
-				VkRect2D.Buffer scissorRect = VkRect2D.calloc(1);
 				scissorRect.offset().set((int) Math.max(pcmd.getClipRect().getX(), 0),
 						(int) Math.max(pcmd.getClipRect().getY(), 0));
 				scissorRect.extent()
@@ -448,7 +420,6 @@ public class ImGuiPipeline implements IAllocable
 				vkCmdDrawIndexed(commandBuffer, pcmd.getElemCount(), 1, indexOffset, vertexOffset,
 						0);
 				indexOffset += pcmd.getElemCount();
-				scissorRect.free();
 			}
 			vertexOffset += cmd_list.getVtxBuffer().size();
 		}
