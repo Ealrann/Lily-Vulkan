@@ -25,7 +25,7 @@ import org.sheepy.vulkan.device.LogicalDevice;
  */
 public class ComputeProcess extends AllocationNode
 {
-	private List<ComputePipeline> computePipelines = new ArrayList<>();
+	protected List<ComputePipeline> computePipelines = new ArrayList<>();
 	private List<IAllocable> children = new ArrayList<>();
 
 	protected DescriptorPool descriptorPool;
@@ -103,10 +103,7 @@ public class ComputeProcess extends AllocationNode
 	@Override
 	protected Collection<? extends IAllocationObject> getSubAllocables()
 	{
-		List<IAllocationObject> res = new ArrayList<>();
-		res.add(descriptorPool);
-		res.addAll(computePipelines);
-		return res;
+		return children;
 	}
 
 }
