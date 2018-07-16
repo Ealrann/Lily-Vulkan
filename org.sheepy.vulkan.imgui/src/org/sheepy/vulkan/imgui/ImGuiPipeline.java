@@ -89,6 +89,11 @@ public class ImGuiPipeline implements IAllocable
 		}
 	}
 
+	private long[] lArray = new long[1];
+	private VkViewport.Buffer viewport;
+	private VkRect2D.Buffer scissorRect;
+	private PushConstBlock pushConstBlock;
+
 	private LogicalDevice logicalDevice;
 	private UIDescriptor uiDescriptor;
 	private SwapConfiguration configuration;
@@ -122,11 +127,6 @@ public class ImGuiPipeline implements IAllocable
 
 		buildPipeline(stack);
 	}
-
-	private long[] lArray = new long[1];
-	private VkViewport.Buffer viewport;
-	private VkRect2D.Buffer scissorRect;
-	private PushConstBlock pushConstBlock;
 
 	@Override
 	public void free()
@@ -361,16 +361,26 @@ public class ImGuiPipeline implements IAllocable
 				vkCreateGraphicsPipelines(device, pipelineCache, pipelineCreateInfo, null, lArray));
 		pipeline = lArray[0];
 	}
+	
+	boolean firstFrame = true;
 
 	// Starts a new imGui frame and sets up windows and ui elements
-	public void newFrame(boolean updateFrameGraph)
+	public boolean newFrame()
 	{
 		imgui.newFrame();
 
-		uiDescriptor.newFrame(imgui);
-
-		// Render to generate draw buffers
-		imgui.render();
+		if(uiDescriptor.newFrame(imgui) || firstFrame)
+		{
+			// Render to generate draw buffers
+			imgui.render();
+			firstFrame = false;
+			return true;
+		}
+		else
+		{
+			imgui.endFrame();
+			return false;
+		}
 	}
 
 	// Update vertex and index buffer containing the imGui elements when
@@ -392,7 +402,7 @@ public class ImGuiPipeline implements IAllocable
 
 		texture.bind(commandBuffer);
 
-		viewport.get(0).set(0, 0, io.getDisplaySize().getX(), io.getDisplaySize().getY(), 0, 1);
+		viewport.get(0).set(0, 0, io.getDisplaySize().getX(), io.getDisplaySize().getY(), 1, 1);
 		vkCmdSetViewport(commandBuffer, 0, viewport);
 
 		pushConstBlock.scale.setX(2.0f / io.getDisplaySize().getX());

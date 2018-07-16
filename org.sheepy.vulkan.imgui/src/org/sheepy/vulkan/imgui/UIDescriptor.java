@@ -27,7 +27,7 @@ public abstract class UIDescriptor
 		style.getColors().set(Col.CheckMark.getI(), new Vec4(0.0f, 1.0f, 0.0f, 1.0f));
 	}
 	
-	public abstract void newFrame(ImGui imgui);
+	public abstract boolean newFrame(ImGui imgui);
 	
 	public int[] getSize()
 	{
