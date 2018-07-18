@@ -8,7 +8,7 @@ import org.lwjgl.system.MemoryStack;
 
 public abstract class AllocationNode implements IAllocationObject
 {
-	protected final Deque<IAllocable> allocatedObjects = new ArrayDeque<>();
+	private final Deque<IAllocable> allocatedObjects = new ArrayDeque<>();
 
 	public final void allocateNode(MemoryStack stack)
 	{

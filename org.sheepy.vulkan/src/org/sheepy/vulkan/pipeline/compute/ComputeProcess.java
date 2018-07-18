@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.sheepy.vulkan.command.compute.ComputeCommandBuffer;
@@ -27,12 +28,13 @@ import org.sheepy.vulkan.pipeline.compute.ComputePipeline.IComputePipelineExecut
  * @author ealrann
  *
  */
-public class ComputeProcess extends AllocationNode
+public class ComputeProcess extends AllocationNode implements IAllocable
 {
 	protected List<IComputeProcessUnit> computePipelines = new ArrayList<>();
-	protected List<IAllocable> children = new ArrayList<>();
+	protected List<IAllocationObject> children = new ArrayList<>();
 
 	protected DescriptorPool descriptorPool;
+	private VkBufferMemoryBarrier.Buffer barrierInfo;
 
 	public ComputeProcess(LogicalDevice logicalDevice, List<IComputeProcessUnit> units)
 	{
@@ -47,11 +49,24 @@ public class ComputeProcess extends AllocationNode
 			{
 				descriptorPool.addConfiguration((IDescriptorSetConfiguration) unit);
 			}
-			if (unit instanceof IAllocable)
+			if (unit instanceof IAllocationObject)
 			{
-				children.add((IAllocable) unit);
+				children.add((IAllocationObject) unit);
 			}
 		}
+	}
+
+	@Override
+	public void allocate(MemoryStack stack)
+	{
+		barrierInfo = VkBufferMemoryBarrier.calloc(1);
+		barrierInfo.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
+	}
+
+	@Override
+	public void free()
+	{
+		barrierInfo.free();
 	}
 
 	public ComputeProcess(LogicalDevice logicalDevice)
@@ -67,9 +82,9 @@ public class ComputeProcess extends AllocationNode
 		{
 			descriptorPool.addConfiguration((IDescriptorSetConfiguration) unit);
 		}
-		if (unit instanceof IAllocable)
+		if (unit instanceof IAllocationObject)
 		{
-			children.add((IAllocable) unit);
+			children.add((IAllocationObject) unit);
 		}
 	}
 
@@ -94,9 +109,6 @@ public class ComputeProcess extends AllocationNode
 
 	private void recordBarrier(ComputeCommandBuffer commandBuffer, PipelineBarrier unit)
 	{
-		VkBufferMemoryBarrier.Buffer barrierInfo = VkBufferMemoryBarrier.calloc(1);
-
-		barrierInfo.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
 		barrierInfo.buffer(unit.getBuffer().getId());
 		barrierInfo.srcAccessMask(unit.getSrcAccessMask());
 		barrierInfo.dstAccessMask(unit.getDstAccessMask());
@@ -106,12 +118,9 @@ public class ComputeProcess extends AllocationNode
 		vkCmdPipelineBarrier(commandBuffer.getVkCommandBuffer(),
 				VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, 0, null,
 				barrierInfo, null);
-		
-		barrierInfo.free();
 	}
 
-	private void recordComputePipeline(ComputeCommandBuffer commandBuffer,
-			ComputePipeline pipeline)
+	private void recordComputePipeline(ComputeCommandBuffer commandBuffer, ComputePipeline pipeline)
 	{
 		LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(1);
 		long pipelineLayout = pipeline.getPipelineLayout();
@@ -134,8 +143,9 @@ public class ComputeProcess extends AllocationNode
 		}
 
 		List<IComputePipelineExecutableUnit> executables = pipeline.getExecutablesUnit();
-		for (IComputePipelineExecutableUnit executable : executables)
+		for (int i = 0; i < executables.size(); i++)
 		{
+			IComputePipelineExecutableUnit executable = executables.get(i);
 			if (executable instanceof ComputePipelineId)
 			{
 				vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(),

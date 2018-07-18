@@ -137,7 +137,10 @@ public class ImGuiPipeline implements IAllocable
 
 		viewport.free();
 		pushConstBlock = null;
-		scissorRect.free();;
+		scissorRect.free();
+		
+		vertShader.free();
+		fragShader.free();
 
 		vkDestroyPipelineCache(device, pipelineCache, null);
 		vkDestroyPipeline(device, pipeline, null);
@@ -345,9 +348,9 @@ public class ImGuiPipeline implements IAllocable
 		vertexInputState.pVertexAttributeDescriptions(vertexInputAttributes);
 		pipelineCreateInfo.pVertexInputState(vertexInputState);
 
-		Shader vertShader = new Shader(logicalDevice, IMGUI_VERT_SHADER,
+		vertShader = new Shader(logicalDevice, IMGUI_VERT_SHADER,
 				VK_SHADER_STAGE_VERTEX_BIT);
-		Shader fragShader = new Shader(logicalDevice, IMGUI_FRAG_SHADER,
+		fragShader = new Shader(logicalDevice, IMGUI_FRAG_SHADER,
 				VK_SHADER_STAGE_FRAGMENT_BIT);
 
 		vertShader.allocate(stack);
@@ -363,6 +366,8 @@ public class ImGuiPipeline implements IAllocable
 	}
 	
 	boolean firstFrame = true;
+	private Shader vertShader;
+	private Shader fragShader;
 
 	// Starts a new imGui frame and sets up windows and ui elements
 	public boolean newFrame()
