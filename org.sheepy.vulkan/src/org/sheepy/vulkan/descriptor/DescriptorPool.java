@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.LongBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,11 @@ public class DescriptorPool implements Iterable<DescriptorSet>, IAllocable
 
 	private long id;
 
+	public DescriptorPool(LogicalDevice logicalDevice)
+	{
+		this(logicalDevice, Collections.emptyList());
+	}
+	
 	public DescriptorPool(LogicalDevice logicalDevice,
 			Collection<? extends IDescriptorSetConfiguration> configurations)
 	{

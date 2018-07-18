@@ -13,10 +13,11 @@ import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.lwjgl.vulkan.VkShaderModuleCreateInfo;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.pipeline.compute.IComputePipelineUnit;
 import org.sheepy.vulkan.util.VulkanBufferUtils;
 import org.sheepy.vulkan.util.VulkanUtils;
 
-public class Shader implements IAllocable
+public class Shader implements IAllocable, IComputePipelineUnit
 {
 	private static final ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memUTF8("main");
 

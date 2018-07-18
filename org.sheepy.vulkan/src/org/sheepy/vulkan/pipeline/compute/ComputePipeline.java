@@ -23,7 +23,7 @@ import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.shader.Shader;
 
 public class ComputePipeline extends AllocationNode
-		implements IDescriptorSetConfiguration, IAllocable
+		implements IDescriptorSetConfiguration, IAllocable, IComputeProcessUnit
 {
 	private static final float DEFAULT_WORKGROUP_SIZE = 32;
 
@@ -31,17 +31,18 @@ public class ComputePipeline extends AllocationNode
 	protected DescriptorPool descriptorPool;
 
 	protected List<IDescriptor> descriptors;
-	protected List<Shader> shaders;
+	protected List<IComputePipelineUnit> units;
+	protected List<Shader> shaders = new ArrayList<>();
+	protected List<IComputePipelineExecutableUnit> executables = new ArrayList<>();
 
 	protected float workgroupSize = DEFAULT_WORKGROUP_SIZE;
 
 	int dataWidth = -1;
 	int dataHeight = -1;
 	int dataDepth = -1;
-	
+
 	private boolean enabled = true;
 
-	protected long[] pipelines;
 	protected long pipelineLayout;
 
 	public ComputePipeline(LogicalDevice logicalDevice, DescriptorPool descriptorPool, int width,
@@ -71,24 +72,33 @@ public class ComputePipeline extends AllocationNode
 	{
 		this.logicalDevice = logicalDevice;
 		this.descriptorPool = descriptorPool;
-		this.shaders = shaders;
+		this.units = new ArrayList<>(shaders);
 
 		this.dataWidth = width;
 		this.dataHeight = height;
 		this.dataDepth = depth;
 
-		this.shaders = new ArrayList<>(shaders);
+		this.units = new ArrayList<>(shaders);
+		this.shaders.addAll(shaders);
 		this.descriptors = new ArrayList<>(descriptors);
 	}
 
 	public void addShader(Shader shader)
 	{
+		units.add(shader);
 		shaders.add(shader);
 	}
 
 	public void addShader(String shaderLocation)
 	{
-		shaders.add(new Shader(logicalDevice, shaderLocation, VK_SHADER_STAGE_COMPUTE_BIT));
+		Shader shader = new Shader(logicalDevice, shaderLocation, VK_SHADER_STAGE_COMPUTE_BIT);
+		units.add(shader);
+		shaders.add(shader);
+	}
+
+	public void addPipelineBarrier(PipelineBarrier barrier)
+	{
+		units.add(barrier);
 	}
 
 	@Override
@@ -112,40 +122,70 @@ public class ComputePipeline extends AllocationNode
 		}
 		pipelineLayout = aLayout[0];
 
-		VkComputePipelineCreateInfo.Buffer pipelineCreateInfos = VkComputePipelineCreateInfo
-				.callocStack(shaders.size(), stack);
+		int countShader = 0;
 
-		for (Shader shader : shaders)
+		for (IComputePipelineUnit unit : units)
 		{
-			VkPipelineShaderStageCreateInfo shaderInfo = shader.allocInfo();
+			if (unit instanceof Shader)
+			{
+				countShader++;
+			}
+		}
 
-			VkComputePipelineCreateInfo pipelineCreateInfo = pipelineCreateInfos.get();
-			pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
-			pipelineCreateInfo.stage(shaderInfo);
-			pipelineCreateInfo.layout(pipelineLayout);
-			shaderInfo.free();
+		VkComputePipelineCreateInfo.Buffer pipelineCreateInfos = VkComputePipelineCreateInfo
+				.callocStack(countShader, stack);
+
+		for (IComputePipelineUnit unit : units)
+		{
+			if (unit instanceof Shader)
+			{
+				VkPipelineShaderStageCreateInfo shaderInfo = ((Shader) unit).allocInfo();
+
+				VkComputePipelineCreateInfo pipelineCreateInfo = pipelineCreateInfos.get();
+				pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
+				pipelineCreateInfo.stage(shaderInfo);
+				pipelineCreateInfo.layout(pipelineLayout);
+				shaderInfo.free();
+			}
 		}
 		pipelineCreateInfos.flip();
 
-		pipelines = new long[shaders.size()];
+		long[] pipelines = new long[countShader];
 		if (vkCreateComputePipelines(logicalDevice.getVkDevice(), VK_NULL_HANDLE,
 				pipelineCreateInfos, null, pipelines) != VK_SUCCESS)
 		{
 			throw new AssertionError("Failed to create compute pipeline!");
 		}
+
+		int indexPipeline = 0;
+		for (IComputePipelineUnit unit : units)
+		{
+			if (unit instanceof Shader)
+			{
+				executables.add(new ComputePipelineId(pipelines[indexPipeline++]));
+			}
+			else if (unit instanceof PipelineBarrier)
+			{
+				executables.add((PipelineBarrier) unit);
+			}
+		}
 	}
 
-	public long[] getId()
+	public List<IComputePipelineExecutableUnit> getExecutablesUnit()
 	{
-		return pipelines;
+		return executables;
 	}
 
 	@Override
 	public void free()
 	{
-		for (long pipeline : pipelines)
+		for (IComputePipelineExecutableUnit executable : executables)
 		{
-			vkDestroyPipeline(logicalDevice.getVkDevice(), pipeline, null);
+			if (executable instanceof ComputePipelineId)
+			{
+				vkDestroyPipeline(logicalDevice.getVkDevice(), ((ComputePipelineId) executable).id,
+						null);
+			}
 		}
 		vkDestroyPipelineLayout(logicalDevice.getVkDevice(), pipelineLayout, null);
 	}
@@ -191,15 +231,27 @@ public class ComputePipeline extends AllocationNode
 	{
 		return workgroupSize;
 	}
-	
+
 	public void setEnabled(boolean enabled)
 	{
 		this.enabled = enabled;
 	}
-	
+
 	public boolean isEnabled()
 	{
 		return enabled;
 	}
-}
 
+	public interface IComputePipelineExecutableUnit
+	{}
+
+	public class ComputePipelineId implements IComputePipelineExecutableUnit
+	{
+		public final long id;
+
+		ComputePipelineId(long id)
+		{
+			this.id = id;
+		}
+	}
+}
