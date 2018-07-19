@@ -8,5 +8,5 @@ dependencies {
 
 	api project(':org.sheepy.vulkan')
 	
-	api 'com.github.kotlin-graphics:imgui:-SNAPSHOT'
+	api 'com.github.kotlin-graphics:imgui:v1.62-beta-02'
 }
