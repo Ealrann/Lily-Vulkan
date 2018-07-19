@@ -138,7 +138,7 @@ public class ImGuiPipeline implements IAllocable
 		viewport.free();
 		pushConstBlock = null;
 		scissorRect.free();
-		
+
 		vertShader.free();
 		fragShader.free();
 
@@ -199,7 +199,7 @@ public class ImGuiPipeline implements IAllocable
 		descriptorLayout.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO);
 		descriptorLayout.pBindings(setLayoutBindings);
 		VK_CHECK_RESULT(vkCreateDescriptorSetLayout(device, descriptorLayout, null, lArray));
- 		descriptorSetLayout = lArray[0];
+		descriptorSetLayout = lArray[0];
 
 		LongBuffer lBuffer = MemoryUtil.memAllocLong(1);
 		lBuffer.put(descriptorSetLayout);
@@ -348,10 +348,8 @@ public class ImGuiPipeline implements IAllocable
 		vertexInputState.pVertexAttributeDescriptions(vertexInputAttributes);
 		pipelineCreateInfo.pVertexInputState(vertexInputState);
 
-		vertShader = new Shader(logicalDevice, IMGUI_VERT_SHADER,
-				VK_SHADER_STAGE_VERTEX_BIT);
-		fragShader = new Shader(logicalDevice, IMGUI_FRAG_SHADER,
-				VK_SHADER_STAGE_FRAGMENT_BIT);
+		vertShader = new Shader(logicalDevice, IMGUI_VERT_SHADER, VK_SHADER_STAGE_VERTEX_BIT);
+		fragShader = new Shader(logicalDevice, IMGUI_FRAG_SHADER, VK_SHADER_STAGE_FRAGMENT_BIT);
 
 		vertShader.allocate(stack);
 		fragShader.allocate(stack);
@@ -364,7 +362,7 @@ public class ImGuiPipeline implements IAllocable
 				vkCreateGraphicsPipelines(device, pipelineCache, pipelineCreateInfo, null, lArray));
 		pipeline = lArray[0];
 	}
-	
+
 	boolean firstFrame = true;
 	private Shader vertShader;
 	private Shader fragShader;
@@ -374,7 +372,7 @@ public class ImGuiPipeline implements IAllocable
 	{
 		imgui.newFrame();
 
-		if(uiDescriptor.newFrame(imgui) || firstFrame)
+		if (uiDescriptor.newFrame(imgui) || firstFrame)
 		{
 			// Render to generate draw buffers
 			imgui.render();
@@ -394,7 +392,7 @@ public class ImGuiPipeline implements IAllocable
 	{
 		DrawData imDrawData = imgui.getDrawData();
 
-		texture.update(imDrawData);
+		if (imDrawData != null) texture.update(imDrawData);
 	}
 
 	// Draw current imGui frame into a command buffer
