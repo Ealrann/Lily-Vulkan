@@ -206,9 +206,14 @@ public class Buffer implements IDescriptor, IAllocable
 
 		VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(descriptorType);
-		res.descriptorCount(1);
+		res.descriptorCount(getDescriptorCount());
 		res.stageFlags(stage);
 		return res;
+	}
+
+	protected int getDescriptorCount()
+	{
+		return 1;
 	}
 
 	@Override
@@ -218,10 +223,7 @@ public class Buffer implements IDescriptor, IAllocable
 			new Exception("Unconfigured descriptor, call configureDescriptor() first.")
 					.printStackTrace();
 
-		VkDescriptorBufferInfo.Buffer bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
-		bufferInfo.buffer(bufferId);
-		bufferInfo.offset(0);
-		bufferInfo.range(size);
+		VkDescriptorBufferInfo.Buffer bufferInfo = allocBufferInfo(stack);
 
 		VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
 		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
@@ -231,6 +233,16 @@ public class Buffer implements IDescriptor, IAllocable
 		descriptorWrite.pImageInfo(null); // Optional
 		descriptorWrite.pTexelBufferView(null); // Optional
 		return descriptorWrite;
+	}
+	
+	protected VkDescriptorBufferInfo.Buffer allocBufferInfo(MemoryStack stack)
+	{
+		VkDescriptorBufferInfo.Buffer bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
+		bufferInfo.buffer(bufferId);
+		bufferInfo.offset(0);
+		bufferInfo.range(size);
+		
+		return bufferInfo;
 	}
 
 	@Override
@@ -242,7 +254,7 @@ public class Buffer implements IDescriptor, IAllocable
 
 		VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
 		poolSize.type(descriptorType);
-		poolSize.descriptorCount(1);
+		poolSize.descriptorCount(getDescriptorCount());
 		return poolSize;
 	}
 
