@@ -159,6 +159,9 @@ public class ComputeProcess extends AllocationNode implements IAllocable
 				recordBarrier(commandBuffer, (PipelineBarrier) executable);
 			}
 		}
+		
+		pipeline.setDirty(false);
+		
 		MemoryUtil.memFree(bDescriptorSet);
 	}
 
@@ -171,6 +174,19 @@ public class ComputeProcess extends AllocationNode implements IAllocable
 	protected Collection<? extends IAllocationObject> getSubAllocables()
 	{
 		return children;
+	}
+
+	public boolean isDirty()
+	{
+		for (IComputeProcessUnit unit : computePipelines)
+		{
+			if (unit instanceof ComputePipeline && ((ComputePipeline) unit).isDirty())
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

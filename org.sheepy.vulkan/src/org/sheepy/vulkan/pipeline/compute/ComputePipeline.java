@@ -42,6 +42,7 @@ public class ComputePipeline extends AllocationNode
 	int dataDepth = -1;
 
 	private boolean enabled = true;
+	protected boolean dirty = false;
 
 	protected long pipelineLayout;
 
@@ -234,7 +235,21 @@ public class ComputePipeline extends AllocationNode
 
 	public void setEnabled(boolean enabled)
 	{
-		this.enabled = enabled;
+		if (this.enabled != enabled)
+		{
+			this.enabled = enabled;
+			dirty = true;
+		}
+	}
+	
+	public boolean isDirty()
+	{
+		return dirty;
+	}
+
+	public void setDirty(boolean dirty)
+	{
+		this.dirty = dirty;
 	}
 
 	public boolean isEnabled()
