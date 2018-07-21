@@ -27,7 +27,20 @@ import org.sheepy.vulkan.window.Window;
 
 public abstract class VulkanApplication
 {
-	public static boolean DEBUG = true;
+	public static final boolean DEBUG;
+	static {
+		String debug = System.getProperty("debug");
+
+		if (debug == null || "false".equals(debug.toLowerCase()))
+		{
+			DEBUG = false;
+		}
+		else
+		{
+			DEBUG = true;
+		}
+	}
+
 	private static final ByteBuffer[] LAYERS_TO_ENABLE = {
 			memUTF8("VK_LAYER_LUNARG_standard_validation"),
 			memUTF8("VK_LAYER_LUNARG_core_validation"), 
