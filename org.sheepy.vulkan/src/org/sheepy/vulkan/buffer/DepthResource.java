@@ -52,8 +52,12 @@ public class DepthResource implements IAllocable
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
-				depthImageView.transitionImageLayout(commandBuffer, VK_IMAGE_LAYOUT_UNDEFINED,
-						VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL, 1);
+				ImageBarrier.execute(commandBuffer, depthImage,
+						VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT,
+						VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT,
+						VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL,
+						VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT
+								| VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT);
 			}
 		};
 		stc.execute();

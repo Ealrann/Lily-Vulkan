@@ -97,7 +97,7 @@ public class ComputePipeline extends AllocationNode
 		shaders.add(shader);
 	}
 
-	public void addPipelineBarrier(PipelineBarrier barrier)
+	public void addPipelineBarrier(BufferBarrier barrier)
 	{
 		units.add(barrier);
 	}
@@ -165,9 +165,9 @@ public class ComputePipeline extends AllocationNode
 			{
 				executables.add(new ComputePipelineId(pipelines[indexPipeline++]));
 			}
-			else if (unit instanceof PipelineBarrier)
+			else if (unit instanceof BufferBarrier)
 			{
-				executables.add((PipelineBarrier) unit);
+				executables.add((BufferBarrier) unit);
 			}
 		}
 	}

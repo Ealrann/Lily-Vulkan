@@ -2,9 +2,7 @@ package org.sheepy.vulkan.view;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageViewCreateInfo;
-import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.device.LogicalDevice;
 
 public class ImageView
@@ -60,33 +58,6 @@ public class ImageView
 		createInfo.free();
 	}
 
-	public void transitionImageLayout(VkCommandBuffer commandBuffer, int oldLayout, int newLayout)
-	{
-		Image.transitionImageLayout(commandBuffer, imageId, imageFormat, oldLayout, newLayout);
-	}
-
-	public void transitionImageLayout(VkCommandBuffer commandBuffer,
-			int oldLayout,
-			int newLayout,
-			int mipLevels)
-	{
-		Image.transitionImageLayout(commandBuffer, imageId, imageFormat, oldLayout, newLayout,
-				mipLevels);
-	}
-
-	public void transitionImageLayout(VkCommandBuffer commandBuffer,
-			int oldLayout,
-			int newLayout,
-			int mipLevels,
-			int srcStage,
-			int dstStage,
-			int srcAccessMask,
-			int dstAccessMask)
-	{
-		Image.transitionImageLayout(commandBuffer, imageId, imageFormat, oldLayout, newLayout,
-				mipLevels, srcStage, dstStage, srcAccessMask, dstAccessMask);
-	}
-
 	public long getId()
 	{
 		return imageViewId;
@@ -101,5 +72,10 @@ public class ImageView
 	public long getImageId()
 	{
 		return imageId;
+	}
+	
+	public int getImageFormat()
+	{
+		return imageFormat;
 	}
 }

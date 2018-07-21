@@ -1,12 +1,10 @@
 package org.sheepy.vulkan.buffer;
 
-import static org.lwjgl.vulkan.KHRSwapchain.VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageCreateInfo;
-import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
 import org.sheepy.vulkan.device.LogicalDevice;
@@ -18,10 +16,14 @@ public class Image
 	private int width;
 	private int height;
 	private int format;
-
+	private int mipLevels = 1;
+	
 	private long size;
 	protected long imageId;
 	protected long imageMemoryId;
+	
+	private int layout = VK_IMAGE_LAYOUT_UNDEFINED;
+	private int access = 0;
 
 	public static Image alloc(LogicalDevice logicalDevice,
 			int width,
@@ -52,6 +54,7 @@ public class Image
 		this.width = width;
 		this.height = height;
 		this.format = format;
+		this.mipLevels = mipLevels;
 
 		VkImageCreateInfo imageInfo = VkImageCreateInfo.calloc();
 		imageInfo.sType(VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO);
@@ -119,155 +122,16 @@ public class Image
 				VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region);
 	}
 
-	public void transitionImageLayout(VkCommandBuffer commandBuffer, int oldLayout, int newLayout)
-	{
-		Image.transitionImageLayout(commandBuffer, imageId, format, oldLayout, newLayout);
-	}
-	
 	public void transitionImageLayout(VkCommandBuffer commandBuffer,
-			int oldLayout,
-			int newLayout,
-			int mipLevels,
 			int srcStage,
 			int dstStage,
-			int srcAccessMask,
+			int newLayout,
 			int dstAccessMask)
 	{
-		Image.transitionImageLayout(commandBuffer, imageId, format, oldLayout, newLayout, mipLevels, srcStage, dstStage, srcAccessMask, dstAccessMask);
+		ImageBarrier.execute(commandBuffer, this, srcStage, dstStage, newLayout, dstAccessMask);
 	}
 
-	public static void transitionImageLayout(VkCommandBuffer commandBuffer,
-			long imageId,
-			int imageFormat,
-			int oldLayout,
-			int newLayout)
-	{
-		transitionImageLayout(commandBuffer, imageId, imageFormat, oldLayout, newLayout, 1);
-	}
-
-	public static void transitionImageLayout(VkCommandBuffer commandBuffer,
-			long imageId,
-			int imageFormat,
-			int oldLayout,
-			int newLayout,
-			int mipLevels)
-	{
-		int srcStage;
-		int dstStage;
-		int srcAccessMask;
-		int dstAccessMask;
-
-		if (oldLayout == VK_IMAGE_LAYOUT_UNDEFINED
-				&& newLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL)
-		{
-			srcAccessMask = 0;
-			dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
-
-			srcStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
-			dstStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
-		}
-		else if (oldLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
-				&& newLayout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL)
-		{
-			srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
-			dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
-
-			srcStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
-			dstStage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
-		}
-		else if (oldLayout == VK_IMAGE_LAYOUT_UNDEFINED
-				&& newLayout == VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL)
-		{
-			srcAccessMask = 0;
-			dstAccessMask = VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT
-					| VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
-
-			srcStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
-			dstStage = VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
-		}
-		else if (oldLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
-				&& newLayout == VK_IMAGE_LAYOUT_PRESENT_SRC_KHR)
-		{
-			srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
-			dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_READ_BIT;
-
-			srcStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
-			dstStage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-		}
-		else if (oldLayout == VK_IMAGE_LAYOUT_GENERAL
-				&& newLayout == VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL)
-		{
-			srcAccessMask = 0;
-			dstAccessMask = VK_ACCESS_TRANSFER_READ_BIT;
-
-			srcStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
-			dstStage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-		}
-		else if (oldLayout == VK_IMAGE_LAYOUT_UNDEFINED
-				&& newLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL)
-		{
-			srcAccessMask = 0;
-			dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
-
-			srcStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
-			dstStage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-		}
-		else
-		{
-			throw new AssertionError("unsupported layout transition!");
-		}
-
-		transitionImageLayout(commandBuffer, imageId, imageFormat, oldLayout, newLayout, mipLevels,
-				srcStage, dstStage, srcAccessMask, dstAccessMask);
-	}
-
-	public static void transitionImageLayout(VkCommandBuffer commandBuffer,
-			long imageId,
-			int imageFormat,
-			int oldLayout,
-			int newLayout,
-			int mipLevels,
-			int srcStage,
-			int dstStage,
-			int srcAccessMask,
-			int dstAccessMask)
-	{
-		int aspectMask = 0;
-		if (newLayout == VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL)
-		{
-			aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
-
-			if (hasStencilComponent(imageFormat))
-			{
-				aspectMask |= VK_IMAGE_ASPECT_STENCIL_BIT;
-			}
-		}
-		else
-		{
-			aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
-		}
-
-		VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.calloc(1);
-		barrier.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
-		barrier.oldLayout(oldLayout);
-		barrier.newLayout(newLayout);
-		barrier.srcQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
-		barrier.dstQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
-		barrier.image(imageId);
-		barrier.subresourceRange().baseMipLevel(0);
-		barrier.subresourceRange().levelCount(mipLevels);
-		barrier.subresourceRange().baseArrayLayer(0);
-		barrier.subresourceRange().layerCount(1);
-		barrier.subresourceRange().aspectMask(aspectMask);
-		barrier.srcAccessMask(srcAccessMask);
-		barrier.dstAccessMask(dstAccessMask);
-
-		vkCmdPipelineBarrier(commandBuffer, srcStage, dstStage, 0, null, null, barrier);
-
-		barrier.free();
-	}
-
-	private static boolean hasStencilComponent(int imageFormat)
+	public static boolean hasStencilComponent(int imageFormat)
 	{
 		return imageFormat == VK_FORMAT_D32_SFLOAT_S8_UINT
 				|| imageFormat == VK_FORMAT_D24_UNORM_S8_UINT;
@@ -297,6 +161,36 @@ public class Image
 	public long getSize()
 	{
 		return size;
+	}
+	
+	public int getLayout()
+	{
+		return layout;
+	}
+	
+	public void setLayout(int imageLayout) 
+	{
+		this.layout = imageLayout;
+	}
+
+	public int getAccess()
+	{
+		return access;
+	}
+
+	public void setAccess(int access)
+	{
+		this.access = access;
+	}
+	
+	public int getMipLevels()
+	{
+		return mipLevels;
+	}
+	
+	public int getFormat()
+	{
+		return format;
 	}
 
 	@Override

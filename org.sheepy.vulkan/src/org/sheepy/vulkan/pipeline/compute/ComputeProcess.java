@@ -100,14 +100,14 @@ public class ComputeProcess extends AllocationNode implements IAllocable
 					recordComputePipeline(commandBuffer, pipeline);
 				}
 			}
-			else if (unit instanceof PipelineBarrier)
+			else if (unit instanceof BufferBarrier)
 			{
-				recordBarrier(commandBuffer, (PipelineBarrier) unit);
+				recordBarrier(commandBuffer, (BufferBarrier) unit);
 			}
 		}
 	}
 
-	private void recordBarrier(ComputeCommandBuffer commandBuffer, PipelineBarrier unit)
+	private void recordBarrier(ComputeCommandBuffer commandBuffer, BufferBarrier unit)
 	{
 		barrierInfo.buffer(unit.getBuffer().getId());
 		barrierInfo.srcAccessMask(unit.getSrcAccessMask());
@@ -154,9 +154,9 @@ public class ComputeProcess extends AllocationNode implements IAllocable
 				vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCountX, groupCountY,
 						groupCountZ);
 			}
-			else if (executable instanceof PipelineBarrier)
+			else if (executable instanceof BufferBarrier)
 			{
-				recordBarrier(commandBuffer, (PipelineBarrier) executable);
+				recordBarrier(commandBuffer, (BufferBarrier) executable);
 			}
 		}
 		
