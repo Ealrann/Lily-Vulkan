@@ -43,7 +43,7 @@ public abstract class VulkanApplication
 
 	private static final ByteBuffer[] LAYERS_TO_ENABLE = {
 			memUTF8("VK_LAYER_LUNARG_standard_validation"),
-			memUTF8("VK_LAYER_LUNARG_core_validation"), 
+			memUTF8("VK_LAYER_LUNARG_core_validation"),
 			memUTF8("VK_LAYER_LUNARG_parameter_validation")
 	};
 
@@ -210,8 +210,8 @@ public abstract class VulkanApplication
 
 	private void createLogicalDevice(MemoryStack stack)
 	{
-		logicalDevice = LogicalDevice.alloc(stack, physicalDevice, window,
-				REQUIRED_EXTENSIONS, ppEnabledLayerNames, true);
+		logicalDevice = LogicalDevice.alloc(stack, physicalDevice, window, REQUIRED_EXTENSIONS,
+				ppEnabledLayerNames, true);
 	}
 
 	public void cleanup()
