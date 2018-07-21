@@ -43,6 +43,7 @@ import org.sheepy.vulkan.shader.Shader;
 
 import glm_.vec2.Vec2;
 import glm_.vec2.Vec2i;
+import imgui.Context;
 import imgui.DrawCmd;
 import imgui.DrawData;
 import imgui.DrawList;
@@ -98,6 +99,8 @@ public class ImGuiPipeline implements IAllocable
 	private UIDescriptor uiDescriptor;
 	private SwapConfiguration configuration;
 	private ImGuiVertexBuffer texture;
+	
+	private Context ctx;
 
 	public ImGuiPipeline(CommandPool commandPool, SwapConfiguration configuration,
 			UIDescriptor uiConfiguration)
@@ -107,6 +110,7 @@ public class ImGuiPipeline implements IAllocable
 		this.configuration = configuration;
 		this.uiDescriptor = uiConfiguration;
 
+		ctx = new Context();
 		imgui = ImGui.INSTANCE;
 
 		texture = new ImGuiVertexBuffer(logicalDevice, commandPool);
@@ -147,6 +151,8 @@ public class ImGuiPipeline implements IAllocable
 		vkDestroyPipelineLayout(device, pipelineLayout, null);
 		vkDestroyDescriptorPool(device, descriptorPool, null);
 		vkDestroyDescriptorSetLayout(device, descriptorSetLayout, null);
+		
+		ctx.shutdown();
 	}
 
 	// Initialize styles, keys, etc.
