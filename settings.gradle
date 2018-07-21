@@ -1,0 +1,6 @@
+rootProject.name = "Vulkan"
+
+
+include ':org.sheepy.vulkan'
+include ':org.sheepy.vulkan.imgui'
+include ':org.sheepy.vulkan.test'
