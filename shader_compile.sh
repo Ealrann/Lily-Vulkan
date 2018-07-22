@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in `find res/ -type f -name "*.frag" -o -name "*.vert" -o -name "*.comp" 2>/dev/null`
+for i in `find */res/ -type f -name "*.frag" -o -name "*.vert" -o -name "*.comp" 2>/dev/null`
 do
     rm $i.spv 2>/dev/null
     name=`basename $i`
