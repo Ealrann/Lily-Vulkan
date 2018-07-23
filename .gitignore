@@ -6,3 +6,5 @@ bin/
 .classpath
 build/
 .settings/
+*.log
+
