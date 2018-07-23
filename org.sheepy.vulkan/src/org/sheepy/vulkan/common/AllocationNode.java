@@ -1,14 +1,19 @@
 package org.sheepy.vulkan.common;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Deque;
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 
 public abstract class AllocationNode implements IAllocationObject
 {
 	private final Deque<IAllocable> allocatedObjects = new ArrayDeque<>();
+
+	protected List<IAllocationObject> allocationObjects = new ArrayList<>();
 
 	public final void allocateNode(MemoryStack stack)
 	{
@@ -23,6 +28,10 @@ public abstract class AllocationNode implements IAllocationObject
 		if (allocationObject instanceof AllocationNode)
 		{
 			for (IAllocationObject sub : ((AllocationNode) allocationObject).getSubAllocables())
+			{
+				gatherAllocateChildren(stack, sub);
+			}
+			for (IAllocationObject sub : ((AllocationNode) allocationObject).allocationObjects)
 			{
 				gatherAllocateChildren(stack, sub);
 			}
@@ -49,5 +58,10 @@ public abstract class AllocationNode implements IAllocationObject
 		}
 	}
 
-	protected abstract Collection<? extends IAllocationObject> getSubAllocables();
+	@Deprecated
+	protected Collection<? extends IAllocationObject> getSubAllocables()
+	{
+		return Collections.emptyList();
+	}
+
 }

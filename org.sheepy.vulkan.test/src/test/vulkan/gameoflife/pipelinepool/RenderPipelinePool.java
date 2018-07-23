@@ -1,38 +1,34 @@
 package test.vulkan.gameoflife.pipelinepool;
 
-import static org.lwjgl.vulkan.KHRSwapchain.vkQueuePresentKHR;
-import static org.lwjgl.vulkan.VK10.*;
-
-import java.util.Collection;
+import static org.lwjgl.vulkan.VK10.VK_IMAGE_USAGE_TRANSFER_DST_BIT;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.buffer.Image;
-import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.SurfacePipelinePool;
-import org.sheepy.vulkan.pipeline.graphic.SwapPipeline;
+import org.sheepy.vulkan.pipeline.SurfaceProcessPool;
+import org.sheepy.vulkan.pipeline.graphic.GraphicProcess;
+import org.sheepy.vulkan.pipeline.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.window.Surface;
 
 import test.vulkan.gameoflife.graphics.BufferToPixelRenderPass;
+import test.vulkan.gameoflife.graphics.BufferedGraphicPipeline;
 import test.vulkan.gameoflife.graphics.BufferedSwapConfiguration;
 
-public class RenderPipelinePool extends SurfacePipelinePool
+public class RenderPipelinePool extends SurfaceProcessPool
 {
 	private LogicalDevice logicalDevice;
 	private Image image;
-	private Collection<ISignalEmitter> waitForEmitters;
 
-	private SwapPipeline swapPipeline;
 	private BufferedSwapConfiguration configuration;
 
-	public RenderPipelinePool(LogicalDevice logicalDevice, Image image,
-			Collection<ISignalEmitter> waitForEmitters)
+	private GraphicProcessPool graphicProcessPool;
+
+	public RenderPipelinePool(LogicalDevice logicalDevice, Image image)
 	{
 		super(logicalDevice, logicalDevice.getQueueManager().getGraphicQueueIndex());
 
 		this.logicalDevice = logicalDevice;
 		this.image = image;
-		this.waitForEmitters = waitForEmitters;
 
 		buildPipelines();
 	}
@@ -46,41 +42,35 @@ public class RenderPipelinePool extends SurfacePipelinePool
 
 		configuration.renderPass = new BufferToPixelRenderPass(configuration);
 
-		swapPipeline = new SwapPipeline(configuration, waitForEmitters);
+
+		graphicProcessPool = new GraphicProcessPool(logicalDevice, commandPool, configuration);
+		
+		GraphicProcess process = new GraphicProcess(configuration);
+		process.addProcessUnit(new BufferedGraphicPipeline(configuration));
+
+		graphicProcessPool.addProcess(process);
+		
 		subAllocationObjects.add(configuration);
-		subAllocationObjects.add(swapPipeline);
+		subAllocationObjects.add(graphicProcessPool);
 	}
 
 	@Override
 	public void configure(Surface surface)
 	{
-		swapPipeline.configure(surface);
+		graphicProcessPool.configure(surface);
 	}
 
 	@Override
 	public void execute()
 	{
-		Integer imageIndex = swapPipeline.acquireNextImage();
-
-		if (imageIndex != null)
-		{
-			if (vkQueueSubmit(logicalDevice.getQueueManager().getGraphicQueue(),
-					configuration.frameSubmission.getSubmitInfo(imageIndex),
-					VK_NULL_HANDLE) != VK_SUCCESS)
-			{
-				throw new AssertionError("failed to submit draw command buffer!");
-			}
-
-			vkQueuePresentKHR(logicalDevice.getQueueManager().getGraphicQueue(),
-					configuration.frameSubmission.getPresentInfo(imageIndex));
-		}
+		graphicProcessPool.exectue();
 	}
 
 	@Override
 	public void resize(MemoryStack stack, Surface surface)
 	{
-		swapPipeline.freeNode();
+		graphicProcessPool.freeNode();
 		configure(surface);
-		swapPipeline.allocateNode(stack);
+		graphicProcessPool.allocateNode(stack);
 	}
 }

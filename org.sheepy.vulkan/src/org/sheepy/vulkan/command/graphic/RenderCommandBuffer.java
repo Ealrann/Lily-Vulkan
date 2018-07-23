@@ -6,45 +6,44 @@ import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.graphic.IRenderPass;
-import org.sheepy.vulkan.pipeline.graphic.SwapConfiguration;
 import org.sheepy.vulkan.swapchain.SwapChainManager.Extent2D;
 
 public class RenderCommandBuffer extends GraphicCommandBuffer
 {
-	private SwapConfiguration configuration;
+	public final int id;
+	private boolean depthBuffer;
 	private long framebufferId;
 	private Extent2D extent;
 	private IRenderPass renderPass;
 
-	public RenderCommandBuffer(LogicalDevice logicalDevice, long commandBufferId,
-			SwapConfiguration configuration, long framebufferId, Extent2D extent,
-			IRenderPass renderPass)
+	public RenderCommandBuffer(LogicalDevice logicalDevice, int id, long commandBufferId,
+			boolean depthBuffer, long framebufferId, Extent2D extent, IRenderPass renderPass)
 	{
 		super(logicalDevice, commandBufferId);
-		this.configuration = configuration;
+		this.id = id;
+		this.depthBuffer = depthBuffer;
 		this.framebufferId = framebufferId;
 		this.extent = extent;
 		this.renderPass = renderPass;
 	}
 
-
 	public void startCommand()
 	{
 		super.start();
 	}
-	
+
 	@Override
 	public void start()
 	{
 		startCommand();
 		startRenderPass();
 	}
-	
+
 	public void startRenderPass()
 	{
 		// Start Render Pass
 		int clearCount = 1;
-		clearCount += configuration.depthBuffer == true ? 1 : 0;
+		clearCount += depthBuffer == true ? 1 : 0;
 		VkClearValue.Buffer clearValues = VkClearValue.malloc(clearCount);
 		VkClearValue clearColor = clearValues.get();
 		clearColor.color().float32(0, 0f);
@@ -52,7 +51,7 @@ public class RenderCommandBuffer extends GraphicCommandBuffer
 		clearColor.color().float32(2, 0f);
 		clearColor.color().float32(3, 1f);
 
-		if (configuration.depthBuffer == true)
+		if (depthBuffer == true)
 		{
 			VkClearValue clearDepth = clearValues.get();
 			clearDepth.depthStencil().set(1.0f, 0);
@@ -77,7 +76,7 @@ public class RenderCommandBuffer extends GraphicCommandBuffer
 	{
 		vkCmdEndRenderPass(vkCommandBuffer);
 	}
-	
+
 	public void endCommand()
 	{
 		super.end();

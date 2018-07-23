@@ -10,16 +10,18 @@ import org.sheepy.vulkan.BasicVulkanApplication;
 import org.sheepy.vulkan.buffer.IndexBuffer;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.graphic.render.GraphicsPipeline;
+import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.GraphicProcess;
+import org.sheepy.vulkan.pipeline.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor.Vertex;
 import org.sheepy.vulkan.shader.Shader;
 
-import test.vulkan.mesh.MeshRenderPipelinePool;
 import test.vulkan.mesh.Mesh;
+import test.vulkan.mesh.MeshGraphicPipeline;
+import test.vulkan.mesh.MeshPipelineConfiguration;
 import test.vulkan.mesh.MeshRenderPass;
-import test.vulkan.mesh.MeshSwapConfiguration;
-import test.vulkan.mesh.MeshSwapPipeline;
+import test.vulkan.mesh.MeshRenderProcessPool;
 
 public class MainTriangle
 {
@@ -37,19 +39,29 @@ public class MainTriangle
 
 		LogicalDevice logicalDevice = app.initLogicalDevice();
 
-		MeshRenderPipelinePool pipelinePool = new MeshRenderPipelinePool(logicalDevice);
-
+		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(logicalDevice);
 		CommandPool commandPool = pipelinePool.getCommandPool();
+		
 		createMeshBuffer(logicalDevice, commandPool);
+		pipelinePool.attachMesh(mesh);
 
-		MeshSwapConfiguration configuration = new MeshSwapConfiguration(logicalDevice, commandPool,
-				mesh);
-		configuration.graphicsPipeline = new GraphicsPipeline(configuration);
-		configuration.renderPass = new MeshRenderPass(configuration);
+		MeshPipelineConfiguration pipelineConfiguration = new MeshPipelineConfiguration(
+				logicalDevice, commandPool, mesh);
 
-		MeshSwapPipeline swapPipeline = new MeshSwapPipeline(logicalDevice, configuration,
-				commandPool);
-		pipelinePool.setSwapPipeline(swapPipeline, configuration);
+		GraphicConfiguration configuration = new GraphicConfiguration(logicalDevice, commandPool);
+		configuration.renderPass = new MeshRenderPass();
+
+		MeshGraphicPipeline graphicPipeline = new MeshGraphicPipeline(logicalDevice,
+				pipelineConfiguration);
+
+		GraphicProcess graphicProcess = new GraphicProcess(configuration);
+		graphicProcess.addGraphicPipeline(graphicPipeline);
+
+		GraphicProcessPool processPool = new GraphicProcessPool(logicalDevice, commandPool,
+				configuration);
+		processPool.addProcess(graphicProcess);
+
+		pipelinePool.setProcessPool(processPool, configuration);
 		app.attachPipelinePool(pipelinePool);
 
 		try

@@ -10,17 +10,19 @@ import org.sheepy.vulkan.VulkanApplication;
 import org.sheepy.vulkan.buffer.IndexBuffer;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.graphic.render.GraphicsPipeline;
+import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.GraphicProcess;
+import org.sheepy.vulkan.pipeline.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.TextureVertexDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.TextureVertexDescriptor.TextureVertex;
 import org.sheepy.vulkan.shader.Shader;
 import org.sheepy.vulkan.texture.Texture;
 
 import test.vulkan.mesh.Mesh;
+import test.vulkan.mesh.MeshGraphicPipeline;
+import test.vulkan.mesh.MeshPipelineConfiguration;
 import test.vulkan.mesh.MeshRenderPass;
-import test.vulkan.mesh.MeshRenderPipelinePool;
-import test.vulkan.mesh.MeshSwapConfiguration;
-import test.vulkan.mesh.MeshSwapPipeline;
+import test.vulkan.mesh.MeshRenderProcessPool;
 import test.vulkan.mesh.UniformBufferObject;
 
 public class MainTexture
@@ -51,21 +53,32 @@ public class MainTexture
 
 		LogicalDevice logicalDevice = app.initLogicalDevice();
 
-		MeshRenderPipelinePool pipelinePool = new MeshRenderPipelinePool(logicalDevice);
+		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(logicalDevice);
 		CommandPool commandPool = pipelinePool.getCommandPool();
 
 		Mesh mesh = createMeshBuffer(app, logicalDevice, commandPool);
+		pipelinePool.attachMesh(mesh);
 
-		MeshSwapConfiguration configuration = new MeshSwapConfiguration(logicalDevice, commandPool, mesh);
-		configuration.renderPass = new MeshRenderPass(configuration);
+		MeshPipelineConfiguration pipelineConfiguration = new MeshPipelineConfiguration(
+				logicalDevice, commandPool, mesh);
+		pipelineConfiguration.rasterizerFrontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
+		pipelineConfiguration.vertexInputState = new TextureVertexDescriptor();
+
+		GraphicConfiguration configuration = new GraphicConfiguration(logicalDevice, commandPool);
+		configuration.renderPass = new MeshRenderPass();
 		configuration.depthBuffer = true;
-		configuration.rasterizerFrontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
-		configuration.vertexInputState = new TextureVertexDescriptor();
-		configuration.graphicsPipeline = new GraphicsPipeline(configuration);
 
-		MeshSwapPipeline swapPipeline = new MeshSwapPipeline(logicalDevice, configuration,
-				pipelinePool.getCommandPool());
-		pipelinePool.setSwapPipeline(swapPipeline, configuration);
+		MeshGraphicPipeline graphicPipeline = new MeshGraphicPipeline(logicalDevice,
+				pipelineConfiguration);
+
+		GraphicProcess graphicProcess = new GraphicProcess(configuration);
+		graphicProcess.addGraphicPipeline(graphicPipeline);
+
+		GraphicProcessPool processPool = new GraphicProcessPool(logicalDevice, commandPool,
+				configuration);
+		processPool.addProcess(graphicProcess);
+
+		pipelinePool.setProcessPool(processPool, configuration);
 		app.attachPipelinePool(pipelinePool);
 		
 		try

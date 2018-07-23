@@ -17,7 +17,6 @@ import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.PhysicalDeviceSupportDetails;
-import org.sheepy.vulkan.pipeline.graphic.SwapConfiguration;
 import org.sheepy.vulkan.queue.QueueManager;
 import org.sheepy.vulkan.util.VulkanBufferUtils;
 import org.sheepy.vulkan.util.VulkanUtils;
@@ -26,41 +25,48 @@ import org.sheepy.vulkan.window.Surface;
 public class SwapChainManager implements IAllocable
 {
 	private LogicalDevice logicalDevice;
-	private SwapConfiguration configuration;
 
-	private PhysicalDeviceSupportDetails details;
-	
+	private final ColorDomain targetColorDomain;
+	private final int swapImageUsages;
+	private final int presentationMode;
+
+	private final PhysicalDeviceSupportDetails details;
+
 	private Surface surface;
 	private Extent2D extent;
 	private int presentMode;
-	
+
 	private Long swapChain = null;
 	private List<Long> swapChainImages = null;
 	private ColorDomain currentColorDomain;
-	
-	public SwapChainManager(LogicalDevice logicalDevice, SwapConfiguration configuration)
+
+	public SwapChainManager(LogicalDevice logicalDevice, ColorDomain targetColorDomain,
+			int swapImageUsages, int presentationMode)
 	{
 		this.logicalDevice = logicalDevice;
-		this.configuration = configuration;
+		this.targetColorDomain = targetColorDomain;
+		this.swapImageUsages = swapImageUsages;
+		this.presentationMode = presentationMode;
 
-		this.details = new PhysicalDeviceSupportDetails(logicalDevice.getPhysicalDevice().getVkPhysicalDevice());
+		this.details = new PhysicalDeviceSupportDetails(
+				logicalDevice.getPhysicalDevice().getVkPhysicalDevice());
 	}
 
 	public void configure(Surface surface)
 	{
 		details.load(surface);
-		presentMode = selectPresentationMode(surface.id, configuration.presentationMode);
+		presentMode = selectPresentationMode(surface.id, presentationMode);
 		extent = new Extent2D(surface.width, surface.height);
 		this.surface = surface;
 	}
-	
+
 	@Override
 	public void allocate(MemoryStack stack)
 	{
 		QueueManager queueManager = logicalDevice.getQueueManager();
 		details.allocate(stack);
 		currentColorDomain = chooseSwapSurfaceFormat();
-		
+
 		// Select max image in swap queue
 		int swapImageCount = details.getCapabilities().minImageCount() + 1;
 		if (details.getCapabilities().maxImageCount() > 0
@@ -78,7 +84,7 @@ public class SwapChainManager implements IAllocable
 		createInfo.imageExtent().width(extent.width);
 		createInfo.imageExtent().height(extent.height);
 		createInfo.imageArrayLayers(1);
-		createInfo.imageUsage(configuration.swapImageUsages);
+		createInfo.imageUsage(swapImageUsages);
 
 		IntBuffer indices = null;
 
@@ -181,7 +187,6 @@ public class SwapChainManager implements IAllocable
 	{
 		ColorDomain res = null;
 		ColorDomain[] availableDomains = details.getColorDomains();
-		ColorDomain targetColorDomain = configuration.colorDomain;
 
 		// Best case : the graphic card has no preferences
 		if (availableDomains.length == 1
@@ -190,10 +195,10 @@ public class SwapChainManager implements IAllocable
 			res = targetColorDomain;
 		}
 
-//		System.out.println("\nAvaillable Color Formats:");
+		// System.out.println("\nAvaillable Color Formats:");
 		for (ColorDomain availableDomain : availableDomains)
 		{
-//			System.out.println("\t" + availableDomain);
+			// System.out.println("\t" + availableDomain);
 			if (availableDomain.getColorFormat() == targetColorDomain.getColorFormat()
 					&& availableDomain.getColorSpace() == targetColorDomain.getColorSpace())
 			{

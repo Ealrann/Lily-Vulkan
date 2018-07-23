@@ -11,26 +11,25 @@ import org.sheepy.vulkan.pipeline.SubmissionInfo;
 
 public class FrameSubmission extends PipelineSubmission
 {
-	private SwapConfiguration configuration;
+	private GraphicContext context;
 
-	public FrameSubmission(SwapConfiguration configuration,
-			Collection<ISignalEmitter> waitForSignals)
+	public FrameSubmission(GraphicContext context, Collection<ISignalEmitter> waitForSignals)
 	{
-		super(configuration.logicalDevice, configuration.commandBuffers, waitForSignals,
-				configuration.frameWaitStage);
-		
-		this.configuration = configuration;
+		super(context.logicalDevice, context.commandBuffers, waitForSignals,
+				context.configuration.frameWaitStage);
+
+		this.context = context;
 	}
 
 	@Override
-	protected SubmissionInfo buildSumissionInfo(int infoNumber,
+	protected SubmissionInfo buildSubmissionInfo(int infoNumber,
 			ICommandBuffer commandBuffer,
 			int waitStage,
 			Collection<VkSemaphore> waitSemaphores,
 			Collection<VkSemaphore> signalSemaphores)
 	{
-		return new FrameSubmissionInfo(infoNumber, configuration.swapChainManager, commandBuffer, waitStage,
-				waitSemaphores, signalSemaphoreManager.getSemaphores());
+		return new FrameSubmissionInfo(infoNumber, context.swapChainManager, commandBuffer,
+				waitStage, waitSemaphores, signalSemaphoreManager.getSemaphores());
 	}
 
 	public VkPresentInfoKHR getPresentInfo(int frameIndex)

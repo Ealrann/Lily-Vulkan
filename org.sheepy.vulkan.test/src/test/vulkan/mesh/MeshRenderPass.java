@@ -3,73 +3,32 @@ package test.vulkan.mesh;
 import static org.lwjgl.vulkan.KHRSwapchain.VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.nio.LongBuffer;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkAttachmentDescription;
 import org.lwjgl.vulkan.VkAttachmentReference;
 import org.lwjgl.vulkan.VkRenderPassCreateInfo;
 import org.lwjgl.vulkan.VkSubpassDependency;
 import org.lwjgl.vulkan.VkSubpassDescription;
-import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
-import org.sheepy.vulkan.descriptor.DescriptorSet;
-import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.pipeline.graphic.GraphicContext;
 import org.sheepy.vulkan.pipeline.graphic.IRenderPass;
 
 public class MeshRenderPass implements IRenderPass
 {
-	private LogicalDevice logicalDevice;
-	private MeshSwapConfiguration configuration;
-	private Mesh mesh;
+	private GraphicContext context;
 
 	private long renderPass;
 
-	public MeshRenderPass(MeshSwapConfiguration configuration)
-	{
-		this.logicalDevice = configuration.logicalDevice;
-		this.configuration = configuration;
-		this.mesh = ((MeshSwapConfiguration) configuration).mesh;
-	}
-
 	@Override
-	public void buildRenderPass(List<RenderCommandBuffer> commandBuffers)
+	public void bindContext(GraphicContext context)
 	{
-		for (RenderCommandBuffer commandBuffer : commandBuffers)
-		{
-			commandBuffer.start();
-
-			vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_GRAPHICS,
-					configuration.graphicsPipeline.getId());
-
-			mesh.bindBufferForRender(commandBuffer);
-
-			if (configuration.descriptorPool != null)
-			{
-				LongBuffer bDescriptorSet = MemoryUtil
-						.memAllocLong(configuration.descriptorPool.size());
-				for (DescriptorSet descriptorSet : configuration.descriptorPool)
-				{
-					bDescriptorSet.put(descriptorSet.getId());
-				}
-				bDescriptorSet.flip();
-				vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(),
-						VK_PIPELINE_BIND_POINT_GRAPHICS, configuration.graphicsPipeline.getLayoutId(), 0,
-						bDescriptorSet, null);
-			}
-
-			mesh.draw(commandBuffer);
-
-			commandBuffer.end();
-		}
+		this.context = context;
 	}
 
 	@Override
 	public void allocate(MemoryStack stack)
 	{
 		VkAttachmentDescription colorAttachment = VkAttachmentDescription.callocStack(stack);
-		colorAttachment.format(configuration.swapChainManager.getColorDomain().getColorFormat());
+		colorAttachment.format(context.swapChainManager.getColorDomain().getColorFormat());
 		colorAttachment.samples(VK_SAMPLE_COUNT_1_BIT);
 		colorAttachment.loadOp(VK_ATTACHMENT_LOAD_OP_CLEAR);
 		colorAttachment.storeOp(VK_ATTACHMENT_STORE_OP_STORE);
@@ -85,10 +44,10 @@ public class MeshRenderPass implements IRenderPass
 
 		VkAttachmentDescription depthAttachment = null;
 		VkAttachmentReference depthAttachmentRef = null;
-		if (configuration.depthResource != null)
+		if (context.depthResource != null)
 		{
 			depthAttachment = VkAttachmentDescription.callocStack(stack);
-			depthAttachment.format(configuration.depthResource.getDepthFormat());
+			depthAttachment.format(context.depthResource.getDepthFormat());
 			depthAttachment.samples(VK_SAMPLE_COUNT_1_BIT);
 			depthAttachment.loadOp(VK_ATTACHMENT_LOAD_OP_CLEAR);
 			depthAttachment.storeOp(VK_ATTACHMENT_STORE_OP_DONT_CARE);
@@ -135,7 +94,7 @@ public class MeshRenderPass implements IRenderPass
 		renderPassInfo.pDependencies(dependency);
 
 		long[] aRenderPass = new long[1];
-		if (vkCreateRenderPass(logicalDevice.getVkDevice(), renderPassInfo, null,
+		if (vkCreateRenderPass(context.logicalDevice.getVkDevice(), renderPassInfo, null,
 				aRenderPass) != VK_SUCCESS)
 		{
 			throw new AssertionError("Failed to create render pass!");
@@ -152,6 +111,6 @@ public class MeshRenderPass implements IRenderPass
 	@Override
 	public void free()
 	{
-		vkDestroyRenderPass(logicalDevice.getVkDevice(), renderPass, null);
+		vkDestroyRenderPass(context.logicalDevice.getVkDevice(), renderPass, null);
 	}
 }

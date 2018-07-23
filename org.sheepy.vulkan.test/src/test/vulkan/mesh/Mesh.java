@@ -7,11 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.buffer.IndexBuffer;
-import org.sheepy.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.IAllocable;
-import org.sheepy.vulkan.descriptor.BasicDescriptorSetConfiguration;
-import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.shader.Shader;
@@ -23,10 +21,10 @@ public class Mesh implements IAllocable
 	protected List<Shader> shaders = new ArrayList<>();
 	protected UniformBufferObject ubo;
 	protected Texture texture;
-	private DescriptorPool descriptorPool;
+	public final List<IDescriptor> descriptors;
 
-	public Mesh(LogicalDevice logicalDevice, IndexBuffer<?> buffer,
-			List<Shader> shaders, UniformBufferObject ubo, Texture texture)
+	public Mesh(LogicalDevice logicalDevice, IndexBuffer<?> buffer, List<Shader> shaders,
+			UniformBufferObject ubo, Texture texture)
 	{
 		this.buffer = buffer;
 		this.shaders = Collections.unmodifiableList(new ArrayList<>(shaders));
@@ -34,18 +32,9 @@ public class Mesh implements IAllocable
 		this.ubo = ubo;
 		this.texture = texture;
 
-		List<IDescriptor> descriptors = new ArrayList<>();
+		descriptors = new ArrayList<>();
 		if (ubo != null) descriptors.add(ubo);
 		if (texture != null) descriptors.add(texture);
-
-		if (descriptors.isEmpty() == false)
-		{
-			BasicDescriptorSetConfiguration descriptorConfiguration = new BasicDescriptorSetConfiguration();
-			descriptorConfiguration.addAll(descriptors);
-
-			descriptorPool = new DescriptorPool(logicalDevice,
-					Collections.singletonList(descriptorConfiguration));
-		}
 	}
 
 	@Override
@@ -60,7 +49,7 @@ public class Mesh implements IAllocable
 		}
 	}
 
-	public void bindBufferForRender(AbstractCommandBuffer commandBuffer)
+	public void bindBufferForRender(VkCommandBuffer commandBuffer)
 	{
 		long[] indexBuffers = new long[] {
 				buffer.getVertexBufferId()
@@ -69,14 +58,14 @@ public class Mesh implements IAllocable
 				0
 		};
 
-		vkCmdBindVertexBuffers(commandBuffer.getVkCommandBuffer(), 0, indexBuffers, offsets);
-		vkCmdBindIndexBuffer(commandBuffer.getVkCommandBuffer(), buffer.getIndexBufferId(), 0,
+		vkCmdBindVertexBuffers(commandBuffer, 0, indexBuffers, offsets);
+		vkCmdBindIndexBuffer(commandBuffer, buffer.getIndexBufferId(), 0,
 				VK_INDEX_TYPE_UINT32);
 	}
 
-	public void draw(AbstractCommandBuffer commandBuffer)
+	public void draw(VkCommandBuffer commandBuffer)
 	{
-		vkCmdDrawIndexed(commandBuffer.getVkCommandBuffer(), buffer.indexCount(), 1, 0, 0, 0);
+		vkCmdDrawIndexed(commandBuffer, buffer.indexCount(), 1, 0, 0, 0);
 	}
 
 	@Override
@@ -92,11 +81,6 @@ public class Mesh implements IAllocable
 		}
 	}
 
-	public DescriptorPool getDescriptorPool()
-	{
-		return descriptorPool;
-	}
-
 	public List<Shader> getShaders()
 	{
 		return shaders;
@@ -105,5 +89,10 @@ public class Mesh implements IAllocable
 	public IndexBuffer<?> getIndexBuffer()
 	{
 		return buffer;
+	}
+
+	public List<IDescriptor> getDescriptors()
+	{
+		return descriptors;
 	}
 }

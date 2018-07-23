@@ -4,16 +4,16 @@ import static org.lwjgl.vulkan.VK10.VK_POLYGON_MODE_FILL;
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
 
 import org.lwjgl.vulkan.VkPipelineRasterizationStateCreateInfo;
-import org.sheepy.vulkan.pipeline.graphic.render.GraphicSwapConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.render.GraphicPipelineConfiguration;
 import org.sheepy.vulkan.pipeline.graphic.render.IRasterizer;
 
 public class BasicRasterizer implements IRasterizer
 {
-	private GraphicSwapConfiguration configuration;
+	private GraphicPipelineConfiguration configuration;
 
 	private VkPipelineRasterizationStateCreateInfo rasterizer;
 
-	public BasicRasterizer(GraphicSwapConfiguration configuration)
+	public BasicRasterizer(GraphicPipelineConfiguration configuration)
 	{
 		this.configuration = configuration;
 	}

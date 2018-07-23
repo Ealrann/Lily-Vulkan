@@ -19,24 +19,24 @@ import org.sheepy.vulkan.device.LogicalDevice;
  * @author ealrann
  *
  */
-public abstract class PipelinePool implements IAllocable
+public abstract class AbstractProcessPool implements IAllocable
 {
 	protected CommandPool commandPool;
 	protected List<IAllocationObject> subAllocationObjects = new ArrayList<>();
 
-	public PipelinePool(LogicalDevice logicalDevice, int queueIndex)
+	public AbstractProcessPool(LogicalDevice logicalDevice, int queueIndex)
 	{
 		this(logicalDevice, queueIndex, false);
 	}
 	
-	public PipelinePool(LogicalDevice logicalDevice, int queueIndex, boolean allowReset)
+	public AbstractProcessPool(LogicalDevice logicalDevice, int queueIndex, boolean allowReset)
 	{
 		commandPool = new CommandPool(logicalDevice,
 				queueIndex, allowReset);
 		
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			// Allocate the pool early, becaus it's practical
+			// Allocate the pool early, because it's practical
 			commandPool.allocate(stack);
 		}
 	}

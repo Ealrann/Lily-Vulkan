@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.vulkan.pipeline.PipelineBarrier;
@@ -14,7 +15,10 @@ public class ImageBarrier extends PipelineBarrier
 	private int srcStage;
 	private int dstStage;
 
+	private boolean lock = false;
+	
 	private List<IImageTransition> transitions = new ArrayList<>();
+	private VkImageMemoryBarrier.Buffer barrierInfos;
 
 	public ImageBarrier(int srcStage, int dstStage)
 	{
@@ -24,6 +28,10 @@ public class ImageBarrier extends PipelineBarrier
 
 	public void addImageBarrier(Image image, int dstLayout, int dstAccess)
 	{
+		if(lock == true)
+		{
+			throw new AssertionError("Forbidden call after this object is allocated");
+		}
 		ImageTransition transition = new ImageTransition();
 
 		transition.image = image;
@@ -41,6 +49,10 @@ public class ImageBarrier extends PipelineBarrier
 			int srcAccess,
 			int dstAccess)
 	{
+		if(lock == true)
+		{
+			throw new AssertionError("Forbidden call after this object is allocated");
+		}
 		ReferenceImageTransition transition = new ReferenceImageTransition();
 
 		transition.imageId = imageId;
@@ -54,10 +66,30 @@ public class ImageBarrier extends PipelineBarrier
 		transitions.add(transition);
 	}
 
+	@Override
+	public void allocate(MemoryStack stack)
+	{
+		lock = true;
+		barrierInfos = VkImageMemoryBarrier.calloc(transitions.size());
+	}
+
+	@Override
+	public void free()
+	{
+		barrierInfos.free();
+		lock = false;
+	}
+
+	@Override
 	public void execute(VkCommandBuffer commandBuffer)
 	{
-		VkImageMemoryBarrier.Buffer barrierInfos = VkImageMemoryBarrier.calloc(transitions.size());
-
+		boolean destroyInfos = false;
+		if(barrierInfos == null)
+		{
+			barrierInfos = VkImageMemoryBarrier.calloc(transitions.size());
+			destroyInfos = true;
+		}
+		
 		for (IImageTransition transition : transitions)
 		{
 			transition.fillVkImageMemoryBarrier(barrierInfos.get());
@@ -67,7 +99,10 @@ public class ImageBarrier extends PipelineBarrier
 
 		vkCmdPipelineBarrier(commandBuffer, srcStage, dstStage, 0, null, null, barrierInfos);
 		
-		barrierInfos.free();
+		if(destroyInfos)
+		{
+			barrierInfos.free();
+		}
 	}
 
 	public static void execute(VkCommandBuffer commandBuffer,
@@ -78,9 +113,9 @@ public class ImageBarrier extends PipelineBarrier
 			int dstAccessMask)
 	{
 		ImageBarrier barrier = new ImageBarrier(srcStage, dstStage);
-		
+
 		barrier.addImageBarrier(image, newLayout, dstAccessMask);
-		
+
 		barrier.execute(commandBuffer);
 	}
 
@@ -96,9 +131,10 @@ public class ImageBarrier extends PipelineBarrier
 			int dstAccessMask)
 	{
 		ImageBarrier barrier = new ImageBarrier(srcStage, dstStage);
-		
-		barrier.addImageBarrier(imageId, imageFormat, mipLevels, oldLayout, newLayout, srcAccessMask, dstAccessMask);
-		
+
+		barrier.addImageBarrier(imageId, imageFormat, mipLevels, oldLayout, newLayout,
+				srcAccessMask, dstAccessMask);
+
 		barrier.execute(commandBuffer);
 	}
 
@@ -178,7 +214,7 @@ public class ImageBarrier extends PipelineBarrier
 			{
 				aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
 			}
-			
+
 			barrierInfo.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 			barrierInfo.oldLayout(srcLayout);
 			barrierInfo.newLayout(dstLayout);

@@ -10,16 +10,18 @@ import org.sheepy.vulkan.VulkanApplication;
 import org.sheepy.vulkan.buffer.IndexBuffer;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.graphic.render.GraphicsPipeline;
+import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.GraphicProcess;
+import org.sheepy.vulkan.pipeline.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor.Vertex;
 import org.sheepy.vulkan.shader.Shader;
 
-import test.vulkan.mesh.MeshRenderPipelinePool;
 import test.vulkan.mesh.Mesh;
+import test.vulkan.mesh.MeshGraphicPipeline;
+import test.vulkan.mesh.MeshPipelineConfiguration;
 import test.vulkan.mesh.MeshRenderPass;
-import test.vulkan.mesh.MeshSwapConfiguration;
-import test.vulkan.mesh.MeshSwapPipeline;
+import test.vulkan.mesh.MeshRenderProcessPool;
 import test.vulkan.mesh.UniformBufferObject;
 
 public class MainRotating
@@ -50,19 +52,30 @@ public class MainRotating
 
 		LogicalDevice logicalDevice = app.initLogicalDevice();
 
-		MeshRenderPipelinePool pipelinePool = new MeshRenderPipelinePool(logicalDevice);
-
+		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(logicalDevice);
 		CommandPool commandPool = pipelinePool.getCommandPool();
+
 		createMeshBuffer(app, logicalDevice, commandPool);
+		pipelinePool.attachMesh(mesh);
 
-		MeshSwapConfiguration configuration = new MeshSwapConfiguration(logicalDevice, commandPool, mesh);
-		configuration.renderPass = new MeshRenderPass(configuration);
-		configuration.rasterizerFrontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
-		configuration.graphicsPipeline = new GraphicsPipeline(configuration);
+		MeshPipelineConfiguration pipelineConfiguration = new MeshPipelineConfiguration(
+				logicalDevice, commandPool, mesh);
+		pipelineConfiguration.rasterizerFrontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
 
-		MeshSwapPipeline swapPipeline = new MeshSwapPipeline(logicalDevice, configuration,
-				commandPool);
-		pipelinePool.setSwapPipeline(swapPipeline, configuration);
+		GraphicConfiguration configuration = new GraphicConfiguration(logicalDevice, commandPool);
+		configuration.renderPass = new MeshRenderPass();
+
+		MeshGraphicPipeline graphicPipeline = new MeshGraphicPipeline(logicalDevice,
+				pipelineConfiguration);
+
+		GraphicProcess graphicProcess = new GraphicProcess(configuration);
+		graphicProcess.addGraphicPipeline(graphicPipeline);
+
+		GraphicProcessPool processPool = new GraphicProcessPool(logicalDevice, commandPool,
+				configuration);
+		processPool.addProcess(graphicProcess);
+
+		pipelinePool.setProcessPool(processPool, configuration);
 		app.attachPipelinePool(pipelinePool);
 
 		try
@@ -94,7 +107,7 @@ public class MainRotating
 
 		IndexBuffer<Vertex> indexBuffer = IndexBuffer.alloc(logicalDevice,
 				new IndexBufferDescriptor(), commandPool, vertices, indices);
-		
+
 		List<Shader> shaders = new ArrayList<>();
 		shaders.add(new Shader(logicalDevice, VERTEX_SHADER_PATH, VK_SHADER_STAGE_VERTEX_BIT));
 		shaders.add(new Shader(logicalDevice, FRAGMENT_SHADER_PATH, VK_SHADER_STAGE_FRAGMENT_BIT));

@@ -4,7 +4,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,39 +11,33 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.vulkan.common.AllocationNode;
-import org.sheepy.vulkan.common.IAllocable;
-import org.sheepy.vulkan.common.IAllocationObject;
+import org.sheepy.vulkan.buffer.BufferBarrier;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.DescriptorSet;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.descriptor.IDescriptorSetConfiguration;
 import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.pipeline.AbstractPipeline;
+import org.sheepy.vulkan.pipeline.IPipelineExecutable;
+import org.sheepy.vulkan.pipeline.IPipelineUnit;
+import org.sheepy.vulkan.pipeline.PipelineBarrier;
 import org.sheepy.vulkan.shader.Shader;
 
-public class ComputePipeline extends AllocationNode
-		implements IDescriptorSetConfiguration, IAllocable, IComputeProcessUnit
+public class ComputePipeline extends AbstractPipeline
+		implements IDescriptorSetConfiguration, IComputeProcessUnit
 {
 	private static final float DEFAULT_WORKGROUP_SIZE = 32;
 
-	protected LogicalDevice logicalDevice;
 	protected DescriptorPool descriptorPool;
 
 	protected List<IDescriptor> descriptors;
-	protected List<IComputePipelineUnit> units;
 	protected List<Shader> shaders = new ArrayList<>();
-	protected List<IComputePipelineExecutableUnit> executables = new ArrayList<>();
 
 	protected float workgroupSize = DEFAULT_WORKGROUP_SIZE;
 
-	int dataWidth = -1;
-	int dataHeight = -1;
-	int dataDepth = -1;
-
-	private boolean enabled = true;
-	protected boolean dirty = false;
-
-	protected long pipelineLayout;
+	private int dataWidth = -1;
+	private int dataHeight = -1;
+	private int dataDepth = -1;
 
 	public ComputePipeline(LogicalDevice logicalDevice, DescriptorPool descriptorPool, int width,
 			int height, int depth, List<IDescriptor> descriptors, String shaderLocation)
@@ -71,39 +64,39 @@ public class ComputePipeline extends AllocationNode
 	public ComputePipeline(LogicalDevice logicalDevice, DescriptorPool descriptorPool, int width,
 			int height, int depth, List<IDescriptor> descriptors, List<Shader> shaders)
 	{
-		this.logicalDevice = logicalDevice;
+		super(logicalDevice);
+
 		this.descriptorPool = descriptorPool;
-		this.units = new ArrayList<>(shaders);
 
 		this.dataWidth = width;
 		this.dataHeight = height;
 		this.dataDepth = depth;
 
-		this.units = new ArrayList<>(shaders);
+		addPipelineUnits(shaders);
 		this.shaders.addAll(shaders);
 		this.descriptors = new ArrayList<>(descriptors);
 	}
 
 	public void addShader(Shader shader)
 	{
-		units.add(shader);
+		addPipelineUnit(shader);
 		shaders.add(shader);
 	}
 
 	public void addShader(String shaderLocation)
 	{
 		Shader shader = new Shader(logicalDevice, shaderLocation, VK_SHADER_STAGE_COMPUTE_BIT);
-		units.add(shader);
+		addPipelineUnit(shader);
 		shaders.add(shader);
 	}
 
 	public void addPipelineBarrier(BufferBarrier barrier)
 	{
-		units.add(barrier);
+		addPipelineUnit(barrier);
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	protected long allocatePipelineLayout(MemoryStack stack)
 	{
 		DescriptorSet descriptorSet = descriptorPool.getDescriptorSet(this);
 		LongBuffer bDescriptorSet = stack.mallocLong(1);
@@ -121,37 +114,28 @@ public class ComputePipeline extends AllocationNode
 		{
 			throw new AssertionError("Failed to create compute pipeline layout!");
 		}
-		pipelineLayout = aLayout[0];
+		return aLayout[0];
+	}
 
-		int countShader = 0;
-
-		for (IComputePipelineUnit unit : units)
-		{
-			if (unit instanceof Shader)
-			{
-				countShader++;
-			}
-		}
-
+	@Override
+	public List<IPipelineExecutable> allocatePipeline(MemoryStack stack)
+	{
 		VkComputePipelineCreateInfo.Buffer pipelineCreateInfos = VkComputePipelineCreateInfo
-				.callocStack(countShader, stack);
+				.callocStack(shaders.size(), stack);
 
-		for (IComputePipelineUnit unit : units)
+		for (Shader shader : shaders)
 		{
-			if (unit instanceof Shader)
-			{
-				VkPipelineShaderStageCreateInfo shaderInfo = ((Shader) unit).allocInfo();
+			VkPipelineShaderStageCreateInfo shaderInfo = shader.allocInfo();
 
-				VkComputePipelineCreateInfo pipelineCreateInfo = pipelineCreateInfos.get();
-				pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
-				pipelineCreateInfo.stage(shaderInfo);
-				pipelineCreateInfo.layout(pipelineLayout);
-				shaderInfo.free();
-			}
+			VkComputePipelineCreateInfo pipelineCreateInfo = pipelineCreateInfos.get();
+			pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
+			pipelineCreateInfo.stage(shaderInfo);
+			pipelineCreateInfo.layout(pipelineLayout);
+			shaderInfo.free();
 		}
 		pipelineCreateInfos.flip();
 
-		long[] pipelines = new long[countShader];
+		long[] pipelines = new long[shaders.size()];
 		if (vkCreateComputePipelines(logicalDevice.getVkDevice(), VK_NULL_HANDLE,
 				pipelineCreateInfos, null, pipelines) != VK_SUCCESS)
 		{
@@ -159,68 +143,31 @@ public class ComputePipeline extends AllocationNode
 		}
 
 		int indexPipeline = 0;
-		for (IComputePipelineUnit unit : units)
+
+		int groupCountX = (int) Math.ceil(dataWidth / workgroupSize);
+		int groupCountY = (int) Math.ceil(dataHeight / workgroupSize);
+		int groupCountZ = (int) Math.ceil(dataDepth / workgroupSize);
+
+		List<IPipelineExecutable> res = new ArrayList<>();
+		for (IPipelineUnit unit : getUnits())
 		{
 			if (unit instanceof Shader)
 			{
-				executables.add(new ComputePipelineId(pipelines[indexPipeline++]));
+				res.add(new Computer(pipelines[indexPipeline++], groupCountX, groupCountY,
+						groupCountZ));
 			}
-			else if (unit instanceof BufferBarrier)
+			else if (unit instanceof PipelineBarrier)
 			{
-				executables.add((BufferBarrier) unit);
+				res.add((PipelineBarrier) unit);
 			}
 		}
-	}
-
-	public List<IComputePipelineExecutableUnit> getExecutablesUnit()
-	{
-		return executables;
-	}
-
-	@Override
-	public void free()
-	{
-		for (IComputePipelineExecutableUnit executable : executables)
-		{
-			if (executable instanceof ComputePipelineId)
-			{
-				vkDestroyPipeline(logicalDevice.getVkDevice(), ((ComputePipelineId) executable).id,
-						null);
-			}
-		}
-		vkDestroyPipelineLayout(logicalDevice.getVkDevice(), pipelineLayout, null);
-	}
-
-	public int getDataWidth()
-	{
-		return dataWidth;
-	}
-
-	public int getDataHeight()
-	{
-		return dataHeight;
-	}
-
-	public int getDataDepth()
-	{
-		return dataDepth;
+		return res;
 	}
 
 	@Override
 	public List<IDescriptor> getDescriptors()
 	{
 		return descriptors;
-	}
-
-	public long getPipelineLayout()
-	{
-		return pipelineLayout;
-	}
-
-	@Override
-	protected Collection<? extends IAllocationObject> getSubAllocables()
-	{
-		return shaders;
 	}
 
 	public void setWorkgroupSize(float workgroupSize)
@@ -231,42 +178,5 @@ public class ComputePipeline extends AllocationNode
 	public float getWorkgroupSize()
 	{
 		return workgroupSize;
-	}
-
-	public void setEnabled(boolean enabled)
-	{
-		if (this.enabled != enabled)
-		{
-			this.enabled = enabled;
-			dirty = true;
-		}
-	}
-	
-	public boolean isDirty()
-	{
-		return dirty;
-	}
-
-	public void setDirty(boolean dirty)
-	{
-		this.dirty = dirty;
-	}
-
-	public boolean isEnabled()
-	{
-		return enabled;
-	}
-
-	public interface IComputePipelineExecutableUnit
-	{}
-
-	public class ComputePipelineId implements IComputePipelineExecutableUnit
-	{
-		public final long id;
-
-		ComputePipelineId(long id)
-		{
-			this.id = id;
-		}
 	}
 }

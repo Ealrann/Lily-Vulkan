@@ -18,8 +18,8 @@ import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.PhysicalDeviceSelector;
 import org.sheepy.vulkan.device.PhysicalDeviceWrapper;
-import org.sheepy.vulkan.pipeline.PipelinePool;
-import org.sheepy.vulkan.pipeline.SurfacePipelinePool;
+import org.sheepy.vulkan.pipeline.AbstractProcessPool;
+import org.sheepy.vulkan.pipeline.SurfaceProcessPool;
 import org.sheepy.vulkan.util.VulkanUtils;
 import org.sheepy.vulkan.window.IWindowListener;
 import org.sheepy.vulkan.window.Surface;
@@ -58,7 +58,7 @@ public abstract class VulkanApplication
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames;
 
-	public List<PipelinePool> pipelinePools = new ArrayList<>();
+	public List<AbstractProcessPool> pipelinePools = new ArrayList<>();
 
 	private int width;
 	private int height;
@@ -81,11 +81,11 @@ public abstract class VulkanApplication
 	{
 		try (MemoryStack stack = stackPush())
 		{
-			for (PipelinePool pipelinePool : pipelinePools)
+			for (AbstractProcessPool pipelinePool : pipelinePools)
 			{
-				if (pipelinePool instanceof SurfacePipelinePool)
+				if (pipelinePool instanceof SurfaceProcessPool)
 				{
-					((SurfacePipelinePool) pipelinePool).configure(window.getSurface());
+					((SurfaceProcessPool) pipelinePool).configure(window.getSurface());
 				}
 				pipelinePool.allocate(stack);
 			}
@@ -145,11 +145,11 @@ public abstract class VulkanApplication
 	{
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			for (PipelinePool pipelinePool : pipelinePools)
+			for (AbstractProcessPool pipelinePool : pipelinePools)
 			{
-				if (pipelinePool instanceof SurfacePipelinePool)
+				if (pipelinePool instanceof SurfaceProcessPool)
 				{
-					((SurfacePipelinePool) pipelinePool).resize(stack, surface);
+					((SurfaceProcessPool) pipelinePool).resize(stack, surface);
 				}
 			}
 		}
@@ -216,7 +216,7 @@ public abstract class VulkanApplication
 
 	public void cleanup()
 	{
-		for (PipelinePool pipelinePool : pipelinePools)
+		for (AbstractProcessPool pipelinePool : pipelinePools)
 		{
 			pipelinePool.free();
 		}
@@ -241,7 +241,7 @@ public abstract class VulkanApplication
 		return window;
 	}
 
-	public void attachPipelinePool(PipelinePool pipelinePool)
+	public void attachPipelinePool(AbstractProcessPool pipelinePool)
 	{
 		pipelinePools.add(pipelinePool);
 	}

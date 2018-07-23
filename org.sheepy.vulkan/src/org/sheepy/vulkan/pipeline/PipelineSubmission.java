@@ -57,12 +57,12 @@ public class PipelineSubmission implements ISignalEmitter, IAllocable
 		for (int i = 0; i < commandBuffers.size(); i++)
 		{
 			ICommandBuffer commandBuffer = commandBuffers.get(i);
-			infos.add(buildSumissionInfo(i, commandBuffer, waitStage, waitSemaphores,
+			infos.add(buildSubmissionInfo(i, commandBuffer, waitStage, waitSemaphores,
 					signalSemaphoreManager.getSemaphores()));
 		}
 	}
 
-	protected SubmissionInfo buildSumissionInfo(int infoNumber,
+	protected SubmissionInfo buildSubmissionInfo(int infoNumber,
 			ICommandBuffer commandBuffer,
 			int waitStage,
 			Collection<VkSemaphore> waitSemaphores,

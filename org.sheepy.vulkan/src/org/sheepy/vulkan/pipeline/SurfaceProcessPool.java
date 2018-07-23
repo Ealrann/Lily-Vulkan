@@ -4,14 +4,14 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.window.Surface;
 
-public abstract class SurfacePipelinePool extends PipelinePool
+public abstract class SurfaceProcessPool extends AbstractProcessPool
 {
-	public SurfacePipelinePool(LogicalDevice logicalDevice, int queueIndex, boolean allowReset)
+	public SurfaceProcessPool(LogicalDevice logicalDevice, int queueIndex, boolean allowReset)
 	{
 		super(logicalDevice, queueIndex, allowReset);
 	}
 
-	public SurfacePipelinePool(LogicalDevice logicalDevice, int queueIndex)
+	public SurfaceProcessPool(LogicalDevice logicalDevice, int queueIndex)
 	{
 		super(logicalDevice, queueIndex);
 	}

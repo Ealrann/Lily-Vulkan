@@ -1,6 +1,8 @@
 package org.sheepy.vulkan.pipeline.compute;
 
-public interface IComputeProcessUnit
+import org.sheepy.vulkan.pipeline.IProcessUnit;
+
+public interface IComputeProcessUnit extends IProcessUnit
 {
 
 }

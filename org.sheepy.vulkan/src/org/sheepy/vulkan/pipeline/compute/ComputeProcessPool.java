@@ -76,7 +76,7 @@ public class ComputeProcessPool extends AllocationNode implements ISignalEmitter
 		res.addAll(processes);
 		res.add(commandBuffers);
 		res.add(submission);
-		
+
 		return res;
 	}
 
@@ -85,7 +85,7 @@ public class ComputeProcessPool extends AllocationNode implements ISignalEmitter
 	{
 		recordCommands();
 	}
-	
+
 	public void recordCommands()
 	{
 		commandBuffers.recordCommands();
@@ -93,6 +93,5 @@ public class ComputeProcessPool extends AllocationNode implements ISignalEmitter
 
 	@Override
 	public void free()
-	{
-	}
+	{}
 }

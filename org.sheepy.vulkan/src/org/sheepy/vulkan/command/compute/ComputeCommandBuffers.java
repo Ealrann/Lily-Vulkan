@@ -27,8 +27,11 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 	protected List<ComputeCommandBuffer> allocCommandBuffers(MemoryStack stack)
 	{
 		List<ComputeCommandBuffer> res = new ArrayList<>();
+		
 		long commandPoolId = commandPool.getId();
 
+		// Command Pool Buffers
+		// ------------------
 		long[] commandBufferIds = allocCommandBuffers(commandPoolId,
 				computeProcesses.getProcesses().size());
 

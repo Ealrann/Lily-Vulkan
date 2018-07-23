@@ -1,6 +1,7 @@
 package org.sheepy.vulkan.pipeline.graphic.render;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_CULL_MODE_BACK_BIT;
+import static org.lwjgl.vulkan.VK10.VK_FRONT_FACE_CLOCKWISE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,10 +9,9 @@ import java.util.List;
 
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.vulkan.command.CommandPool;
-import org.sheepy.vulkan.descriptor.DescriptorPool;
+import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.graphic.IGraphicsPipeline;
-import org.sheepy.vulkan.pipeline.graphic.SwapConfiguration;
+import org.sheepy.vulkan.pipeline.IPipelineUnit;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.BasicColorBlendState;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.BasicDepthStencilState;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.BasicInputAssembly;
@@ -22,19 +22,23 @@ import org.sheepy.vulkan.pipeline.graphic.render.impl.BasicViewportState;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
 import org.sheepy.vulkan.shader.Shader;
 
-public class GraphicSwapConfiguration extends SwapConfiguration
+public class GraphicPipelineConfiguration implements IPipelineUnit
 {
-	public IGraphicsPipeline graphicsPipeline;
-	
-	public final DescriptorPool descriptorPool;
+	public final LogicalDevice logicalDevice;
+	public final CommandPool commandPool;
+	public final List<IDescriptor> descriptors;
+
+	public GraphicsPipeline graphicPipeline;
+
 	public final List<Shader> shaders;
 
-	public GraphicSwapConfiguration(LogicalDevice logicalDevice, CommandPool commandPool,
-			DescriptorPool descriptorPool, List<Shader> shaders)
+	public GraphicPipelineConfiguration(LogicalDevice logicalDevice, CommandPool commandPool,
+			List<Shader> shaders, List<IDescriptor> descriptors)
 	{
-		super(logicalDevice, commandPool);
-		this.descriptorPool = descriptorPool;
+		this.logicalDevice = logicalDevice;
+		this.commandPool = commandPool;
 		this.shaders = Collections.unmodifiableList(new ArrayList<>(shaders));
+		this.descriptors = Collections.unmodifiableList(new ArrayList<>(descriptors));
 	}
 
 	public int rasterizerCullMode = VK_CULL_MODE_BACK_BIT;

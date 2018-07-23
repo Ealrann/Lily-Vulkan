@@ -7,9 +7,9 @@ import static org.lwjgl.vulkan.VK10.VK_PIPELINE_STAGE_TRANSFER_BIT;
 import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.graphic.SwapConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
 
-public class BufferedSwapConfiguration extends SwapConfiguration
+public class BufferedSwapConfiguration extends GraphicConfiguration
 {
 	public Image pixelImage;
 

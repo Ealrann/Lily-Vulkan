@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.VK_FORMAT_R8G8B8A8_UNORM;
 import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.PipelinePool;
+import org.sheepy.vulkan.pipeline.AbstractProcessPool;
 import org.sheepy.vulkan.pipeline.compute.ComputeProcess;
 import org.sheepy.vulkan.pipeline.compute.ComputeProcessPool;
 
@@ -15,7 +15,7 @@ import test.vulkan.gameoflife.compute.BoardImage;
 import test.vulkan.gameoflife.compute.LifeCompute;
 import test.vulkan.gameoflife.compute.PixelCompute;
 
-public class BoardPool extends PipelinePool
+public class BoardPool extends AbstractProcessPool
 {
 	private LogicalDevice logicalDevice;
 	private Board board;
