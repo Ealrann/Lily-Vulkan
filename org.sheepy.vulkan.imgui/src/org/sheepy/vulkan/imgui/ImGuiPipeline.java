@@ -38,7 +38,7 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.SwapConfiguration;
 import org.sheepy.vulkan.shader.Shader;
 
 import glm_.vec2.Vec2;

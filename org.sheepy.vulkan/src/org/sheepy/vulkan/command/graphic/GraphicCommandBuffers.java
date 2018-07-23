@@ -7,9 +7,9 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.vulkan.command.CommandPool;
-import org.sheepy.vulkan.pipeline.swap.Framebuffers;
-import org.sheepy.vulkan.pipeline.swap.IRenderPass;
-import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.Framebuffers;
+import org.sheepy.vulkan.pipeline.graphic.IRenderPass;
+import org.sheepy.vulkan.pipeline.graphic.SwapConfiguration;
 import org.sheepy.vulkan.swapchain.SwapChainManager;
 
 public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandBuffer>

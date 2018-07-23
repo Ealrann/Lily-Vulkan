@@ -17,7 +17,7 @@ import org.sheepy.vulkan.buffer.ImageBarrier;
 import org.sheepy.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.IRenderPass;
+import org.sheepy.vulkan.pipeline.graphic.IRenderPass;
 import org.sheepy.vulkan.swapchain.SwapChainManager.Extent2D;
 import org.sheepy.vulkan.view.ImageView;
 

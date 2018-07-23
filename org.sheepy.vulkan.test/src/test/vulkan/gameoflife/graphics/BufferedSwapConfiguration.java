@@ -7,7 +7,7 @@ import static org.lwjgl.vulkan.VK10.VK_PIPELINE_STAGE_TRANSFER_BIT;
 import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.SwapConfiguration;
 
 public class BufferedSwapConfiguration extends SwapConfiguration
 {

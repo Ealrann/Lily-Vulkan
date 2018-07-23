@@ -1,24 +1,24 @@
-package org.sheepy.vulkan.imgui;
+package org.sheepy.vulkan.pipeline.graphic.render.impl;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
+import org.joml.Vector2f;
+import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
 import org.sheepy.vulkan.buffer.IVertex;
-import org.sheepy.vulkan.imgui.ImGuiVertexDescriptor.ImGuiVertex;
-import org.sheepy.vulkan.pipeline.graphic.render.IIndexBufferDescriptor;
+import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor.Vertex;
 
-public class ImGuiVertexDescriptor implements IIndexBufferDescriptor<ImGuiVertex>
+public class IndexBufferDescriptor extends AbstractIntergerIndexDescriptor<Vertex>
 {
 	public static final int SIZE_OF = 5 * 4;
-	public static final int POSITION_OFFSET = 0;
+	public static final int POSITION_OFFSET = 0 * 4;
 	public static final int COLOR_OFFSET = 2 * 4;
-	public static final int TEX_COORD_OFFSET = 4 * 4;
 
 	private VkPipelineVertexInputStateCreateInfo vertexInputInfo;
 	private VkVertexInputBindingDescription.Buffer allocBindingDescription;
@@ -43,7 +43,7 @@ public class ImGuiVertexDescriptor implements IIndexBufferDescriptor<ImGuiVertex
 	{
 		VkVertexInputBindingDescription.Buffer bindingDescription = VkVertexInputBindingDescription
 				.calloc(1);
-		
+
 		bindingDescription.binding(0);
 		bindingDescription.stride(SIZE_OF);
 		bindingDescription.inputRate(VK_VERTEX_INPUT_RATE_VERTEX);
@@ -54,13 +54,13 @@ public class ImGuiVertexDescriptor implements IIndexBufferDescriptor<ImGuiVertex
 	public VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions()
 	{
 		VkVertexInputAttributeDescription.Buffer attributeDescriptions = VkVertexInputAttributeDescription
-				.calloc(3);
+				.calloc(2);
 
 		VkVertexInputAttributeDescription attributeDescriptionPosition = attributeDescriptions
 				.get(0);
 		attributeDescriptionPosition.binding(0);
 		attributeDescriptionPosition.location(0);
-		attributeDescriptionPosition.format(VK_FORMAT_R32G32B32_SFLOAT);
+		attributeDescriptionPosition.format(VK_FORMAT_R32G32_SFLOAT);
 		attributeDescriptionPosition.offset(POSITION_OFFSET);
 
 		VkVertexInputAttributeDescription attributeDescriptionColor = attributeDescriptions.get(1);
@@ -68,13 +68,6 @@ public class ImGuiVertexDescriptor implements IIndexBufferDescriptor<ImGuiVertex
 		attributeDescriptionColor.location(1);
 		attributeDescriptionColor.format(VK_FORMAT_R32G32B32_SFLOAT);
 		attributeDescriptionColor.offset(COLOR_OFFSET);
-
-		VkVertexInputAttributeDescription attributeDescriptionTexCoord = attributeDescriptions
-				.get(2);
-		attributeDescriptionTexCoord.binding(0);
-		attributeDescriptionTexCoord.location(2);
-		attributeDescriptionTexCoord.format(VK_FORMAT_R8G8B8A8_UNORM);
-		attributeDescriptionTexCoord.offset(TEX_COORD_OFFSET);
 
 		return attributeDescriptions;
 	}
@@ -98,49 +91,37 @@ public class ImGuiVertexDescriptor implements IIndexBufferDescriptor<ImGuiVertex
 	}
 
 	@Override
-	public ByteBuffer toVertexBuffer(ImGuiVertex[] vertices)
+	public ByteBuffer toVertexBuffer(Vertex[] vertices)
 	{
 		ByteBuffer res = MemoryUtil.memAlloc(SIZE_OF * vertices.length);
 		FloatBuffer fb = res.asFloatBuffer();
 
-		for (ImGuiVertex vertex : vertices)
+		for (Vertex vertex : vertices)
 		{
-			fb.put(vertex.posX);
-			fb.put(vertex.posY);
-			fb.put(vertex.uvX);
-			fb.put(vertex.uvY);
-			fb.put(vertex.tex);
+			fb.put(vertex.position.x);
+			fb.put(vertex.position.y);
+			fb.put(vertex.color.x);
+			fb.put(vertex.color.y);
+			fb.put(vertex.color.z);
 		}
 
 		return res;
 	}
 
-	public class ImGuiVertex implements IVertex
+	public static class Vertex implements IVertex
 	{
-		float posX;
-		float posY;
-		float uvX;
-		float uvY;
-		int tex;
-	}
+		Vector2f position;
+		Vector3f color;
 
-	@Override
-	public int sizeOfIndex()
-	{
-		return Short.BYTES;
-	}
-
-	@Override
-	public ByteBuffer toIndexBuffer(int[] indices)
-	{
-		ByteBuffer res = MemoryUtil.memAlloc(indices.length * Short.BYTES);
-
-		for (Integer index : indices)
+		public Vertex(Vector2f position, Vector3f color)
 		{
-			res.putShort(index.shortValue());
+			this.position = position;
+			this.color = color;
 		}
-		res.flip();
 
-		return res;
+		public Vertex(float x, float y, float r, float g, float b)
+		{
+			this(new Vector2f(x, y), new Vector3f(r, g, b));
+		}
 	}
 }

@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.graphic.GraphicSwapPipeline;
+import org.sheepy.vulkan.pipeline.graphic.render.GraphicSwapPipeline;
 
 public class MeshSwapPipeline extends GraphicSwapPipeline
 {

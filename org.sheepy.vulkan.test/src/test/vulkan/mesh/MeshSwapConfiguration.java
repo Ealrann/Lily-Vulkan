@@ -3,7 +3,7 @@ package test.vulkan.mesh;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.graphic.GraphicSwapConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.render.GraphicSwapConfiguration;
 
 public class MeshSwapConfiguration extends GraphicSwapConfiguration
 {

@@ -17,7 +17,7 @@ import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.PhysicalDeviceSupportDetails;
-import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.SwapConfiguration;
 import org.sheepy.vulkan.queue.QueueManager;
 import org.sheepy.vulkan.util.VulkanBufferUtils;
 import org.sheepy.vulkan.util.VulkanUtils;

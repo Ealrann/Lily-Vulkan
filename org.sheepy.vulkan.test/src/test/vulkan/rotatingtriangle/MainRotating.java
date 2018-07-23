@@ -10,9 +10,9 @@ import org.sheepy.vulkan.VulkanApplication;
 import org.sheepy.vulkan.buffer.IndexBuffer;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.graphic.GraphicsPipeline;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.IndexBufferDescriptor;
-import org.sheepy.vulkan.pipeline.swap.graphic.impl.IndexBufferDescriptor.Vertex;
+import org.sheepy.vulkan.pipeline.graphic.render.GraphicsPipeline;
+import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
+import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor.Vertex;
 import org.sheepy.vulkan.shader.Shader;
 
 import test.vulkan.mesh.MeshRenderPipelinePool;

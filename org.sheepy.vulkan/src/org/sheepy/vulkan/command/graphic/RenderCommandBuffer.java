@@ -5,8 +5,8 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.IRenderPass;
-import org.sheepy.vulkan.pipeline.swap.SwapConfiguration;
+import org.sheepy.vulkan.pipeline.graphic.IRenderPass;
+import org.sheepy.vulkan.pipeline.graphic.SwapConfiguration;
 import org.sheepy.vulkan.swapchain.SwapChainManager.Extent2D;
 
 public class RenderCommandBuffer extends GraphicCommandBuffer

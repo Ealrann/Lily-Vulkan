@@ -16,7 +16,7 @@ import org.lwjgl.vulkan.VkSubpassDescription;
 import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.descriptor.DescriptorSet;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.IRenderPass;
+import org.sheepy.vulkan.pipeline.graphic.IRenderPass;
 
 public class MeshRenderPass implements IRenderPass
 {

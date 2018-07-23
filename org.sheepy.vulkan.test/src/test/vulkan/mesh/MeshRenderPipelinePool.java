@@ -6,7 +6,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.SurfacePipelinePool;
-import org.sheepy.vulkan.pipeline.swap.SwapPipeline;
+import org.sheepy.vulkan.pipeline.graphic.SwapPipeline;
 import org.sheepy.vulkan.window.Surface;
 
 public class MeshRenderPipelinePool extends SurfacePipelinePool

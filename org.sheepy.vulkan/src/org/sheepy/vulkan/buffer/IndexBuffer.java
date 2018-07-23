@@ -11,7 +11,7 @@ import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.SingleTimeCommand;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.swap.graphic.IIndexBufferDescriptor;
+import org.sheepy.vulkan.pipeline.graphic.render.IIndexBufferDescriptor;
 
 public class IndexBuffer<T extends IVertex> implements IAllocable
 {

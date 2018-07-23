@@ -10,7 +10,7 @@ import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.SurfacePipelinePool;
-import org.sheepy.vulkan.pipeline.swap.SwapPipeline;
+import org.sheepy.vulkan.pipeline.graphic.SwapPipeline;
 import org.sheepy.vulkan.window.Surface;
 
 import test.vulkan.gameoflife.graphics.BufferToPixelRenderPass;
