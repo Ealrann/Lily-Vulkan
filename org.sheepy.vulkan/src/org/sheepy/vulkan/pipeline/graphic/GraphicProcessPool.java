@@ -131,7 +131,7 @@ public class GraphicProcessPool extends SurfaceProcessPool implements IAllocable
 	public void execute()
 	{
 		Integer imageIndex = acquireNextImage();
-
+		
 		if (imageIndex != null)
 		{
 			if (vkQueueSubmit(logicalDevice.getQueueManager().getGraphicQueue(),

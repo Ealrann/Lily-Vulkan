@@ -56,8 +56,8 @@ public class BufferToPixelRenderPass implements IRenderPass
 		dependency.srcSubpass(VK_SUBPASS_EXTERNAL);
 		dependency.dstSubpass(0);
 		dependency.srcStageMask(VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
-		dependency.srcAccessMask(0);
 		dependency.dstStageMask(VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT);
+		dependency.srcAccessMask(0);
 		dependency.dstAccessMask(
 				VK_ACCESS_COLOR_ATTACHMENT_READ_BIT | VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT);
 
