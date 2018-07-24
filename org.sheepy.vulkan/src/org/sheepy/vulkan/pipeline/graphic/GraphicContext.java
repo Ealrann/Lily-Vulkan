@@ -21,6 +21,8 @@ public class GraphicContext extends AllocationNode
 	public final FrameSubmission submission;
 	public final GraphicCommandBuffers commandBuffers;
 
+	public final CommandPool commandPool;
+
 	public final DepthResource depthResource;
 	
 	public final GraphicConfiguration configuration;
@@ -31,6 +33,7 @@ public class GraphicContext extends AllocationNode
 		this.logicalDevice = logicalDevice;
 		this.renderPass = configuration.renderPass;
 		this.configuration = configuration;
+		this.commandPool = commandPool;
 
 		swapChainManager = new SwapChainManager(logicalDevice, configuration.targetColorDomain,
 				configuration.swapImageUsages, configuration.presentationMode);

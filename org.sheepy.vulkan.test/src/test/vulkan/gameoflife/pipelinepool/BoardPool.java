@@ -5,7 +5,6 @@ import static org.lwjgl.vulkan.VK10.VK_FORMAT_R8G8B8A8_UNORM;
 import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.AbstractProcessPool;
 import org.sheepy.vulkan.pipeline.compute.ComputeProcess;
 import org.sheepy.vulkan.pipeline.compute.ComputeProcessPool;
 
@@ -15,21 +14,14 @@ import test.vulkan.gameoflife.compute.BoardImage;
 import test.vulkan.gameoflife.compute.LifeCompute;
 import test.vulkan.gameoflife.compute.PixelCompute;
 
-public class BoardPool extends AbstractProcessPool
+public class BoardPool extends ComputeProcessPool
 {
-	private LogicalDevice logicalDevice;
 	private Board board;
 	private BoardImage image;
 
-	private ComputeProcessPool boardProcesses;
-
-	private int currentIndex = 0;
-	private BoardBuffer[] boardBuffers;
-
 	public BoardPool(LogicalDevice logicalDevice, Board board)
 	{
-		super(logicalDevice, logicalDevice.getQueueManager().getComputeQueueIndex());
-		this.logicalDevice = logicalDevice;
+		super(logicalDevice);
 		this.board = board;
 
 		buildPipelines();
@@ -41,18 +33,15 @@ public class BoardPool extends AbstractProcessPool
 				logicalDevice.getQueueManager().getComputeQueue());
 		BoardBuffer boardBuffer2 = new BoardBuffer(logicalDevice, board, commandPool,
 				logicalDevice.getQueueManager().getComputeQueue());
-		boardBuffers = new BoardBuffer[2];
-		boardBuffers[0] = boardBuffer1;
-		boardBuffers[1] = boardBuffer2;
 
-		subAllocationObjects.add(boardBuffer1);
-		subAllocationObjects.add(boardBuffer2);
+		allocationObjects.add(boardBuffer1);
+		allocationObjects.add(boardBuffer2);
 
 		image = new BoardImage(logicalDevice, commandPool,
 				logicalDevice.getQueueManager().getComputeQueue(), board.getWidth(),
 				board.getHeight(), VK_FORMAT_R8G8B8A8_UNORM);
 
-		subAllocationObjects.add(image);
+		allocationObjects.add(image);
 
 		ComputeProcess boardProcess1 = new ComputeProcess(logicalDevice);
 		ComputeProcess boardProcess2 = new ComputeProcess(logicalDevice);
@@ -74,19 +63,8 @@ public class BoardPool extends AbstractProcessPool
 		boardProcess2.addProcessUnit(lifeComputer2);
 		boardProcess2.addProcessUnit(pixelComputer2);
 
-		boardProcesses = new ComputeProcessPool(logicalDevice, commandPool);
-		boardProcesses.addProcess(boardProcess1);
-		boardProcesses.addProcess(boardProcess2);
-
-		subAllocationObjects.add(boardProcesses);
-	}
-
-	@Override
-	public void execute()
-	{
-		boardProcesses.exectue(logicalDevice.getQueueManager().getComputeQueue(), currentIndex);
-
-		currentIndex = currentIndex == 1 ? 0 : 1;
+		addProcess(boardProcess1);
+		addProcess(boardProcess2);
 	}
 
 	public Image getImage()

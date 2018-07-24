@@ -87,7 +87,7 @@ public abstract class VulkanApplication
 				{
 					((SurfaceProcessPool) pipelinePool).configure(window.getSurface());
 				}
-				pipelinePool.allocate(stack);
+				pipelinePool.allocateNode(stack);
 			}
 		}
 	}
@@ -218,7 +218,7 @@ public abstract class VulkanApplication
 	{
 		for (AbstractProcessPool pipelinePool : pipelinePools)
 		{
-			pipelinePool.free();
+			pipelinePool.freeNode();
 		}
 
 		logicalDevice.free();

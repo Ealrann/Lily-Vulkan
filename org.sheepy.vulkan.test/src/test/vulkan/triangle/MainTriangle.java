@@ -11,14 +11,11 @@ import org.sheepy.vulkan.buffer.IndexBuffer;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
-import org.sheepy.vulkan.pipeline.graphic.GraphicProcess;
-import org.sheepy.vulkan.pipeline.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor.Vertex;
 import org.sheepy.vulkan.shader.Shader;
 
 import test.vulkan.mesh.Mesh;
-import test.vulkan.mesh.MeshGraphicPipeline;
 import test.vulkan.mesh.MeshPipelineConfiguration;
 import test.vulkan.mesh.MeshRenderPass;
 import test.vulkan.mesh.MeshRenderProcessPool;
@@ -39,29 +36,20 @@ public class MainTriangle
 
 		LogicalDevice logicalDevice = app.initLogicalDevice();
 
-		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(logicalDevice);
+		GraphicConfiguration configuration = new GraphicConfiguration(logicalDevice);
+		configuration.renderPass = new MeshRenderPass();
+
+		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(logicalDevice,
+				configuration);
 		CommandPool commandPool = pipelinePool.getCommandPool();
-		
+
 		createMeshBuffer(logicalDevice, commandPool);
-		pipelinePool.attachMesh(mesh);
 
 		MeshPipelineConfiguration pipelineConfiguration = new MeshPipelineConfiguration(
 				logicalDevice, commandPool, mesh);
 
-		GraphicConfiguration configuration = new GraphicConfiguration(logicalDevice, commandPool);
-		configuration.renderPass = new MeshRenderPass();
-
-		MeshGraphicPipeline graphicPipeline = new MeshGraphicPipeline(logicalDevice,
-				pipelineConfiguration);
-
-		GraphicProcess graphicProcess = new GraphicProcess(configuration);
-		graphicProcess.addGraphicPipeline(graphicPipeline);
-
-		GraphicProcessPool processPool = new GraphicProcessPool(logicalDevice, commandPool,
-				configuration);
-		processPool.addProcess(graphicProcess);
-
-		pipelinePool.setProcessPool(processPool, configuration);
+		pipelinePool.configure(pipelineConfiguration);
+		
 		app.attachPipelinePool(pipelinePool);
 
 		try

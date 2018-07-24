@@ -8,35 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.command.CommandPool;
-import org.sheepy.vulkan.common.AllocationNode;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.pipeline.SurfaceProcessPool;
 import org.sheepy.vulkan.window.Surface;
 
-public class GraphicProcessPool extends AllocationNode implements IAllocable, ISignalEmitter
+public class GraphicProcessPool extends SurfaceProcessPool implements IAllocable, ISignalEmitter
 {
 	/**
 	 * This is just -1L, but it is nicer as a symbolic constant.
 	 */
 	protected static final long UINT64_MAX = 0xFFFFFFFFFFFFFFFFL;
 
-	public final LogicalDevice logicalDevice;
-	public final CommandPool commandPool;
-
-	public final GraphicContext context;
-
 	public final GraphicConfiguration configuration;
+	public final GraphicContext context;
 
 	private List<GraphicProcess> processes = new ArrayList<>();
 
-	public GraphicProcessPool(LogicalDevice logicalDevice, CommandPool commandPool,
-			GraphicConfiguration configuration)
+	public GraphicProcessPool(LogicalDevice logicalDevice, GraphicConfiguration configuration,
+			boolean allowReset)
 	{
-		this.logicalDevice = logicalDevice;
-		this.commandPool = commandPool;
+		super(logicalDevice, logicalDevice.getQueueManager().getGraphicQueueIndex(), allowReset);
+
 		this.configuration = configuration;
 
 		// if (waitForSignals != null)
@@ -44,6 +39,7 @@ public class GraphicProcessPool extends AllocationNode implements IAllocable, IS
 
 		context = new GraphicContext(logicalDevice, commandPool, configuration, this);
 
+		allocationObjects.add(configuration);
 		allocationObjects.add(context);
 	}
 
@@ -53,6 +49,7 @@ public class GraphicProcessPool extends AllocationNode implements IAllocable, IS
 		return configuration.imageAvailableSemaphore;
 	}
 
+	@Override
 	public void configure(Surface surface)
 	{
 		context.swapChainManager.configure(surface);
@@ -63,10 +60,43 @@ public class GraphicProcessPool extends AllocationNode implements IAllocable, IS
 	}
 
 	@Override
+	public void resize(MemoryStack stack, Surface surface)
+	{
+		freeProcesses();
+		configure(surface);
+		allocateProcesses(stack);
+		recordCommands();
+	}
+
+	private void allocateProcesses(MemoryStack stack)
+	{
+		configuration.allocate(stack);
+		context.allocateNode(stack);
+		for (GraphicProcess process : processes)
+		{
+			process.allocateNode(stack);
+		}
+	}
+
+	private void freeProcesses()
+	{
+		for (GraphicProcess process : processes)
+		{
+			process.freeNode();
+		}
+		context.freeNode();
+		configuration.free();
+	}
+
+	@Override
 	public void allocate(MemoryStack stack)
 	{
 		recordCommands();
 	}
+
+	@Override
+	public void free()
+	{}
 
 	public void recordCommands()
 	{
@@ -85,10 +115,6 @@ public class GraphicProcessPool extends AllocationNode implements IAllocable, IS
 		else return null;
 	}
 
-	@Override
-	public void free()
-	{}
-
 	public void addProcess(GraphicProcess process)
 	{
 		processes.add(process);
@@ -101,7 +127,8 @@ public class GraphicProcessPool extends AllocationNode implements IAllocable, IS
 		return processes;
 	}
 
-	public void exectue()
+	@Override
+	public void execute()
 	{
 		Integer imageIndex = acquireNextImage();
 

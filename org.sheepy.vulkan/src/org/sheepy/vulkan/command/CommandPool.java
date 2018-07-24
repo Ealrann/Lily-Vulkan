@@ -25,6 +25,9 @@ public class CommandPool implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack)
 	{
+		if(commandPoolId != -1)
+			free();
+		
 		// Command Pool
 		// ------------------
 		VkCommandPoolCreateInfo poolInfo = VkCommandPoolCreateInfo.callocStack(stack);

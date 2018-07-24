@@ -20,15 +20,14 @@ public class BufferToPixelRenderPass implements IRenderPass
 
 	private long renderPass;
 
-	public BufferToPixelRenderPass(BufferedSwapConfiguration configuration)
-	{
-		this.logicalDevice = configuration.logicalDevice;
-	}
+	public BufferToPixelRenderPass()
+	{}
 
 	@Override
 	public void bindContext(GraphicContext context)
 	{
 		this.context = context;
+		this.logicalDevice = context.logicalDevice;
 	}
 
 	@Override

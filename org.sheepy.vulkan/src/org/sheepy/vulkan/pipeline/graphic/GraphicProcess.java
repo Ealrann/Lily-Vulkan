@@ -3,7 +3,6 @@ package org.sheepy.vulkan.pipeline.graphic;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.common.AllocationNode;
 import org.sheepy.vulkan.common.IAllocationObject;
@@ -22,7 +21,6 @@ import org.sheepy.vulkan.pipeline.graphic.render.GraphicsPipeline;
 public class GraphicProcess extends AllocationNode
 {
 	public final LogicalDevice logicalDevice;
-	protected CommandPool commandPool;
 	protected GraphicContext context;
 
 	public DescriptorPool descriptorPool;
@@ -41,7 +39,6 @@ public class GraphicProcess extends AllocationNode
 	public GraphicProcess(GraphicConfiguration configuration)
 	{
 		this.logicalDevice = configuration.logicalDevice;
-		this.commandPool = configuration.commandPool;
 
 		descriptorPool = new DescriptorPool(logicalDevice);
 		allocationObjects.add(descriptorPool);

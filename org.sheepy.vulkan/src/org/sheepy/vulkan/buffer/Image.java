@@ -22,8 +22,8 @@ public class Image
 	protected long imageId;
 	protected long imageMemoryId;
 	
-	private int layout = VK_IMAGE_LAYOUT_UNDEFINED;
-	private int access = 0;
+	private int layout;
+	private int access;
 
 	public static Image alloc(LogicalDevice logicalDevice,
 			int width,
@@ -55,6 +55,9 @@ public class Image
 		this.height = height;
 		this.format = format;
 		this.mipLevels = mipLevels;
+		
+		layout = VK_IMAGE_LAYOUT_UNDEFINED;
+		access = 0;
 
 		VkImageCreateInfo imageInfo = VkImageCreateInfo.calloc();
 		imageInfo.sType(VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO);

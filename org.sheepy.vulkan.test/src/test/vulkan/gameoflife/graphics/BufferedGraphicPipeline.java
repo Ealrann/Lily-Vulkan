@@ -21,9 +21,9 @@ public class BufferedGraphicPipeline implements IGraphicProcessUnit
 	private GraphicContext context;
 	private Image srcImage;
 
-	public BufferedGraphicPipeline(BufferedSwapConfiguration configuration)
+	public BufferedGraphicPipeline(Image srcImage)
 	{
-		this.srcImage = configuration.pixelImage;
+		this.srcImage = srcImage;
 	}
 	
 	@Override
