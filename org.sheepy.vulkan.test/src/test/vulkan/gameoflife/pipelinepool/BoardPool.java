@@ -21,7 +21,7 @@ public class BoardPool extends ComputeProcessPool
 
 	public BoardPool(LogicalDevice logicalDevice, Board board)
 	{
-		super(logicalDevice);
+		super(logicalDevice, false);
 		this.board = board;
 
 		buildPipelines();

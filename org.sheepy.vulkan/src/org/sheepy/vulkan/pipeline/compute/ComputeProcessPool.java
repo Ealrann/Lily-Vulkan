@@ -25,9 +25,9 @@ public class ComputeProcessPool extends AbstractProcessPool implements ISignalEm
 
 	private List<ComputeProcess> processes = new ArrayList<>();
 
-	public ComputeProcessPool(LogicalDevice logicalDevice)
+	public ComputeProcessPool(LogicalDevice logicalDevice, boolean allowReset)
 	{
-		super(logicalDevice, logicalDevice.getQueueManager().getGraphicQueueIndex());
+		super(logicalDevice, logicalDevice.getQueueManager().getComputeQueueIndex(), allowReset);
 
 		commandBuffers = new ComputeCommandBuffers(commandPool, this);
 		submission = new PipelineSubmission(logicalDevice, commandBuffers, Collections.emptyList(),

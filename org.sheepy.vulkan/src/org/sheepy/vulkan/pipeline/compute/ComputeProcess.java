@@ -81,6 +81,7 @@ public class ComputeProcess extends AllocationNode
 				{
 					recordComputePipeline(commandBuffer, pipeline);
 				}
+				pipeline.setDirty(false);
 			}
 			else if (unit instanceof PipelineBarrier)
 			{
@@ -112,8 +113,6 @@ public class ComputeProcess extends AllocationNode
 
 			executable.execute(commandBuffer.getVkCommandBuffer());
 		}
-
-		pipeline.setDirty(false);
 
 		MemoryUtil.memFree(bDescriptorSet);
 	}
