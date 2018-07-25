@@ -8,7 +8,8 @@ import java.util.List;
  * @author ealrann
  *
  */
-public class BasicDescriptorSetConfiguration implements IDescriptorSetConfiguration
+@Deprecated
+public class BasicDescriptorSetConfiguration implements IDescriptorSetContext
 {
 	private List<IDescriptor> descriptors = new ArrayList<>();
 
@@ -26,5 +27,11 @@ public class BasicDescriptorSetConfiguration implements IDescriptorSetConfigurat
 	public List<IDescriptor> getDescriptors()
 	{
 		return descriptors;
+	}
+
+	@Override
+	public long getLayoutId()
+	{
+		return 0;
 	}
 }

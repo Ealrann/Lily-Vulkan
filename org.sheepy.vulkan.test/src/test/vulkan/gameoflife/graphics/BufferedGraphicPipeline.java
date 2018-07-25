@@ -2,21 +2,18 @@ package test.vulkan.gameoflife.graphics;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.buffer.ImageBarrier;
 import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
-import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.GraphicContext;
+import org.sheepy.vulkan.pipeline.graphic.IGraphicExecutable;
 import org.sheepy.vulkan.pipeline.graphic.IGraphicProcessUnit;
 import org.sheepy.vulkan.swapchain.SwapChainManager.Extent2D;
 import org.sheepy.vulkan.view.ImageView;
 
-public class BufferedGraphicPipeline implements IGraphicProcessUnit
+public class BufferedGraphicPipeline implements IGraphicExecutable, IGraphicProcessUnit
 {
 	private GraphicContext context;
 	private Image srcImage;
@@ -34,10 +31,6 @@ public class BufferedGraphicPipeline implements IGraphicProcessUnit
 
 	@Override
 	public void execute(RenderCommandBuffer commandBuffer)
-	{}
-
-	@Override
-	public void executePreRender(RenderCommandBuffer commandBuffer)
 	{
 		Extent2D extent = context.swapChainManager.getExtent();
 		ImageView dstImageView = context.imageViewManager.getImageViews().get(commandBuffer.id);
@@ -91,15 +84,5 @@ public class BufferedGraphicPipeline implements IGraphicProcessUnit
 				VK_ACCESS_TRANSFER_WRITE_BIT, VK_ACCESS_SHADER_WRITE_BIT);
 
 		barrierEnd.execute(commandBuffer.getVkCommandBuffer());
-	}
-
-	@Override
-	public void executePostRender(RenderCommandBuffer commandBuffer)
-	{}
-
-	@Override
-	public List<IDescriptor> getDescriptors()
-	{
-		return Collections.emptyList();
 	}
 }

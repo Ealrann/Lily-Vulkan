@@ -13,13 +13,12 @@ import org.sheepy.vulkan.buffer.BufferBarrier;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.AbstractPipeline;
-import org.sheepy.vulkan.pipeline.IPipelineExecutable;
 import org.sheepy.vulkan.pipeline.IPipelineUnit;
+import org.sheepy.vulkan.pipeline.IProcessUnit;
 import org.sheepy.vulkan.pipeline.PipelineBarrier;
 import org.sheepy.vulkan.shader.Shader;
 
 public class ComputePipeline extends AbstractPipeline
-		implements IComputeProcessUnit
 {
 	private static final float DEFAULT_WORKGROUP_SIZE = 32;
 
@@ -55,7 +54,7 @@ public class ComputePipeline extends AbstractPipeline
 			List<Shader> shaders)
 	{
 		super(descriptors);
-		
+
 		this.dataWidth = width;
 		this.dataHeight = height;
 		this.dataDepth = depth;
@@ -76,8 +75,9 @@ public class ComputePipeline extends AbstractPipeline
 	}
 
 	@Override
-	public List<IPipelineExecutable> allocatePipeline(MemoryStack stack)
+	public List<IProcessUnit> allocatePipeline(MemoryStack stack)
 	{
+		List<IProcessUnit> res = new ArrayList<>();
 		VkComputePipelineCreateInfo.Buffer pipelineCreateInfos = VkComputePipelineCreateInfo
 				.callocStack(shaders.size(), stack);
 
@@ -106,7 +106,6 @@ public class ComputePipeline extends AbstractPipeline
 		int groupCountY = (int) Math.ceil(dataHeight / workgroupSizeY);
 		int groupCountZ = (int) Math.ceil(dataDepth / workgroupSizeZ);
 
-		List<IPipelineExecutable> res = new ArrayList<>();
 		for (IPipelineUnit unit : getUnits())
 		{
 			if (unit instanceof Shader)

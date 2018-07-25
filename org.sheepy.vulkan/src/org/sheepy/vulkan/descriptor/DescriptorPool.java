@@ -21,10 +21,10 @@ import org.sheepy.vulkan.device.LogicalDevice;
 public class DescriptorPool implements Iterable<DescriptorSet>, IAllocable
 {
 	private LogicalDevice logicalDevice;
-	private List<IDescriptorSetConfiguration> configurations;
+	private List<IDescriptorSetContext> contexts;
 
 	private Map<IDescriptor, DescriptorSetInfo> infoMap = new HashMap<>();
-	private Map<IDescriptorSetConfiguration, DescriptorSet> configurationMap = new HashMap<>();
+	private Map<IDescriptorSetContext, DescriptorSet> configurationMap = new HashMap<>();
 	private List<DescriptorSet> descriptorSets = new ArrayList<>();
 
 	private long id;
@@ -35,33 +35,33 @@ public class DescriptorPool implements Iterable<DescriptorSet>, IAllocable
 	}
 
 	public DescriptorPool(LogicalDevice logicalDevice,
-			Collection<? extends IDescriptorSetConfiguration> configurations)
+			Collection<? extends IDescriptorSetContext> contexts)
 	{
 		this.logicalDevice = logicalDevice;
-		this.configurations = new ArrayList<>(configurations);
+		this.contexts = new ArrayList<>(contexts);
 	}
 
-	public void addConfiguration(IDescriptorSetConfiguration configuration)
+	public void addConfiguration(IDescriptorSetContext context)
 	{
-		this.configurations.add(configuration);
+		this.contexts.add(context);
 	}
 
 	@Override
 	public void allocate(MemoryStack stack)
 	{
-		if (configurations.isEmpty() == false)
+		int poolSize = 0;
+		for (IDescriptorSetContext context : contexts)
 		{
-			int poolSize = 0;
-			for (IDescriptorSetConfiguration configuration : configurations)
-			{
-				poolSize += configuration.getDescriptors().size();
-			}
+			poolSize += context.getDescriptors().size();
+		}
 
+		if (poolSize > 0)
+		{
 			VkDescriptorPoolSize.Buffer poolSizes = VkDescriptorPoolSize.callocStack(poolSize);
 
-			for (IDescriptorSetConfiguration configuration : configurations)
+			for (IDescriptorSetContext context : contexts)
 			{
-				for (IDescriptor descriptor : configuration.getDescriptors())
+				for (IDescriptor descriptor : context.getDescriptors())
 				{
 					poolSizes.put(descriptor.allocPoolSize(stack));
 				}
@@ -71,7 +71,7 @@ public class DescriptorPool implements Iterable<DescriptorSet>, IAllocable
 			VkDescriptorPoolCreateInfo poolInfo = VkDescriptorPoolCreateInfo.callocStack();
 			poolInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO);
 			poolInfo.pPoolSizes(poolSizes);
-			poolInfo.maxSets(configurations.size());
+			poolInfo.maxSets(contexts.size());
 
 			long[] aDescriptor = new long[1];
 			if (vkCreateDescriptorPool(logicalDevice.getVkDevice(), poolInfo, null,
@@ -81,18 +81,18 @@ public class DescriptorPool implements Iterable<DescriptorSet>, IAllocable
 			}
 			id = aDescriptor[0];
 
-			for (IDescriptorSetConfiguration configuration : configurations)
+			for (IDescriptorSetContext context : contexts)
 			{
 				DescriptorSet descriptorSet = DescriptorSet.alloc(stack, logicalDevice, this,
-						configuration);
+						context);
 				int index = 0;
-				for (IDescriptor descriptor : configuration.getDescriptors())
+				for (IDescriptor descriptor : context.getDescriptors())
 				{
 					DescriptorSetInfo info = new DescriptorSetInfo(descriptorSet, index++);
 					infoMap.put(descriptor, info);
 				}
 				descriptorSets.add(descriptorSet);
-				configurationMap.put(configuration, descriptorSet);
+				configurationMap.put(context, descriptorSet);
 			}
 		}
 	}
@@ -121,9 +121,9 @@ public class DescriptorPool implements Iterable<DescriptorSet>, IAllocable
 		return descriptorSets.get(index);
 	}
 
-	public DescriptorSet getDescriptorSet(IDescriptorSetConfiguration configuration)
+	public DescriptorSet getDescriptorSet(IDescriptorSetContext context)
 	{
-		return configurationMap.get(configuration);
+		return configurationMap.get(context);
 	}
 
 	public DescriptorSetInfo getDescriptorSetInfo(IDescriptor descriptor)

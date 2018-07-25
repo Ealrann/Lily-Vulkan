@@ -7,6 +7,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.vulkan.command.CommandPool;
+import org.sheepy.vulkan.command.ECommandStage;
 import org.sheepy.vulkan.pipeline.graphic.Framebuffers;
 import org.sheepy.vulkan.pipeline.graphic.GraphicProcess;
 import org.sheepy.vulkan.pipeline.graphic.GraphicProcessPool;
@@ -60,21 +61,21 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 
 			for (GraphicProcess graphicProcess : processPool.getProcesses())
 			{
-				graphicProcess.recordBeginCommand(commandBuffer);
+				graphicProcess.recordCommand(commandBuffer, ECommandStage.PreRender);
 			}
 
 			commandBuffer.startRenderPass();
 
 			for (GraphicProcess graphicProcess : processPool.getProcesses())
 			{
-				graphicProcess.recordRenderPass(commandBuffer);
+				graphicProcess.recordCommand(commandBuffer, ECommandStage.Render);
 			}
 
 			commandBuffer.endRenderPass();
 
 			for (GraphicProcess graphicProcess : processPool.getProcesses())
 			{
-				graphicProcess.recordEndCommand(commandBuffer);
+				graphicProcess.recordCommand(commandBuffer, ECommandStage.PostRender);
 			}
 
 			commandBuffer.endCommand();

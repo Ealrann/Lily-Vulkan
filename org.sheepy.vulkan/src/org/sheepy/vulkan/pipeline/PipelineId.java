@@ -1,7 +1,6 @@
 package org.sheepy.vulkan.pipeline;
 
-
-public abstract class PipelineId implements IPipelineExecutable
+public abstract class PipelineId implements IProcessUnit
 {
 	public final long id;
 

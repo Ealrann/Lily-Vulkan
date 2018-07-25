@@ -2,16 +2,15 @@ package org.sheepy.vulkan.pipeline.compute;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.pipeline.IPipelineExecutable;
+import org.sheepy.vulkan.command.compute.ComputeCommandBuffer;
 import org.sheepy.vulkan.pipeline.PipelineId;
 
-public class Computer extends PipelineId implements IPipelineExecutable
+public class Computer extends PipelineId implements IComputeExecutable
 {
 	public final int groupCountX;
 	public final int groupCountY;
 	public final int groupCountZ;
-	
+
 	public Computer(long pipelineId, int groupCountX, int groupCountY, int groupCountZ)
 	{
 		super(pipelineId);
@@ -21,10 +20,10 @@ public class Computer extends PipelineId implements IPipelineExecutable
 	}
 
 	@Override
-	public void execute(VkCommandBuffer commandBuffer)
+	public void execute(ComputeCommandBuffer commandBuffer)
 	{
-		vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE, id);
+		vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_COMPUTE, id);
 
-		vkCmdDispatch(commandBuffer, groupCountX, groupCountY, groupCountZ);
+		vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCountX, groupCountY, groupCountZ);
 	}
 }

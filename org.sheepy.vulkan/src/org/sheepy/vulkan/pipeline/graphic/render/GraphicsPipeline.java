@@ -2,26 +2,18 @@ package org.sheepy.vulkan.pipeline.graphic.render;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.nio.LongBuffer;
 import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
-import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
-import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
-import org.sheepy.vulkan.descriptor.DescriptorSet;
-import org.sheepy.vulkan.descriptor.IDescriptorSetConfiguration;
 import org.sheepy.vulkan.pipeline.AbstractPipeline;
-import org.sheepy.vulkan.pipeline.IPipelineExecutable;
-import org.sheepy.vulkan.pipeline.PipelineId;
+import org.sheepy.vulkan.pipeline.IProcessUnit;
 import org.sheepy.vulkan.pipeline.graphic.GraphicContext;
 import org.sheepy.vulkan.pipeline.graphic.IGraphicProcessUnit;
 
-public abstract class GraphicsPipeline extends AbstractPipeline
-		implements IGraphicProcessUnit, IDescriptorSetConfiguration, IAllocable
+public abstract class GraphicsPipeline extends AbstractPipeline implements IGraphicProcessUnit
 {
 	protected final GraphicPipelineConfiguration pipelineConfiguration;
 	protected GraphicContext context;
@@ -43,7 +35,7 @@ public abstract class GraphicsPipeline extends AbstractPipeline
 	}
 
 	@Override
-	protected List<IPipelineExecutable> allocatePipeline(MemoryStack stack)
+	protected List<IProcessUnit> allocatePipeline(MemoryStack stack)
 	{
 		// Create Pipeline
 		// -----------------------
@@ -111,43 +103,6 @@ public abstract class GraphicsPipeline extends AbstractPipeline
 		super.free();
 	}
 
-	@Override
-	public void executePreRender(RenderCommandBuffer commandBuffer)
-	{}
+	protected abstract GraphicPipelineId buildGraphicPipeline(long id);
 
-	@Override
-	public void executePostRender(RenderCommandBuffer commandBuffer)
-	{}
-
-	@Override
-	public void execute(RenderCommandBuffer commandBuffer)
-	{
-		LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(1);
-
-		if (descriptorPool != null && descriptorPool.size() > 0)
-		{
-			DescriptorSet descriptorSet = descriptorPool.getDescriptorSet(this);
-
-			bDescriptorSet.put(descriptorSet.getId());
-			bDescriptorSet.flip();
-
-			long pipelineLayout = getLayoutId();
-			vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(),
-					VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, bDescriptorSet, null);
-		}
-
-		List<IPipelineExecutable> executables = getExecutables();
-		for (int i = 0; i < executables.size(); i++)
-		{
-			IPipelineExecutable executable = executables.get(i);
-
-			executable.execute(commandBuffer.getVkCommandBuffer());
-		}
-
-		setDirty(false);
-
-		MemoryUtil.memFree(bDescriptorSet);
-	}
-
-	protected abstract PipelineId buildGraphicPipeline(long id);
 }

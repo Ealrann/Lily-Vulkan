@@ -22,7 +22,7 @@ public class DescriptorSet
 	public static final DescriptorSet alloc(MemoryStack stack,
 			LogicalDevice logicalDevice,
 			DescriptorPool pool,
-			IDescriptorSetConfiguration configuration)
+			IDescriptorSetContext configuration)
 	{
 		DescriptorSet res = new DescriptorSet(logicalDevice);
 		res.load(stack, pool, configuration);
@@ -34,7 +34,7 @@ public class DescriptorSet
 		this.logicalDevice = logicalDevice;
 	}
 
-	private void load(MemoryStack stack, DescriptorPool pool, IDescriptorSetConfiguration configuration)
+	private void load(MemoryStack stack, DescriptorPool pool, IDescriptorSetContext configuration)
 	{
 		VkDescriptorSetLayoutBinding.Buffer layoutBindings = createLayoutBinding(stack,
 				configuration);
@@ -73,7 +73,7 @@ public class DescriptorSet
 	}
 
 	private VkDescriptorSetLayoutBinding.Buffer createLayoutBinding(MemoryStack stack,
-			IDescriptorSetConfiguration configuration)
+			IDescriptorSetContext configuration)
 	{
 		VkDescriptorSetLayoutBinding.Buffer layoutBindings = VkDescriptorSetLayoutBinding
 				.callocStack(configuration.getDescriptors().size(), stack);
@@ -91,7 +91,7 @@ public class DescriptorSet
 		return layoutBindings;
 	}
 
-	private void updateDescriptorSet(MemoryStack stack, IDescriptorSetConfiguration configuration)
+	private void updateDescriptorSet(MemoryStack stack, IDescriptorSetContext configuration)
 	{
 		VkWriteDescriptorSet.Buffer descriptorWrites = VkWriteDescriptorSet
 				.callocStack(configuration.getDescriptors().size(), stack);

@@ -1,16 +1,15 @@
 package test.vulkan.mesh;
 
-
 import static org.lwjgl.vulkan.VK10.VK_PIPELINE_BIND_POINT_GRAPHICS;
 import static org.lwjgl.vulkan.VK10.vkCmdBindPipeline;
 
-import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.pipeline.PipelineId;
+import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
+import org.sheepy.vulkan.pipeline.graphic.render.GraphicPipelineId;
 
-public class IndexedGraphicPipeline extends PipelineId
+public class IndexedGraphicPipeline extends GraphicPipelineId
 {
 	private Mesh mesh;
-	
+
 	public IndexedGraphicPipeline(long id, Mesh mesh)
 	{
 		super(id);
@@ -18,12 +17,12 @@ public class IndexedGraphicPipeline extends PipelineId
 	}
 
 	@Override
-	public void execute(VkCommandBuffer commandBuffer)
+	public void execute(RenderCommandBuffer commandBuffer)
 	{
-		vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, id);
+		vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_GRAPHICS, id);
 
-		mesh.bindBufferForRender(commandBuffer);
+		mesh.bindBufferForRender(commandBuffer.getVkCommandBuffer());
 
-		mesh.draw(commandBuffer);
+		mesh.draw(commandBuffer.getVkCommandBuffer());
 	}
 }

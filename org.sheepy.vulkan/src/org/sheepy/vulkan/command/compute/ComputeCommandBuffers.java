@@ -8,6 +8,7 @@ import java.util.Map;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.vulkan.command.CommandPool;
+import org.sheepy.vulkan.command.ECommandStage;
 import org.sheepy.vulkan.pipeline.compute.ComputeProcess;
 import org.sheepy.vulkan.pipeline.compute.ComputeProcessPool;
 
@@ -58,7 +59,7 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 			ComputeCommandBuffer commandBuffer = mapBuffers.get(computeProcess);
 			
 			commandBuffer.start();
-			computeProcess.recordCommand(commandBuffer);
+			computeProcess.recordCommand(commandBuffer, ECommandStage.Compute);
 			commandBuffer.end();
 		}
 	}

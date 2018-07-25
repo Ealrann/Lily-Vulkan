@@ -20,7 +20,7 @@ public class ComputeProcessPool extends AbstractProcessPool implements ISignalEm
 {
 	protected ComputeCommandBuffers commandBuffers;
 	protected PipelineSubmission submission;
-	
+
 	protected int processIndex = 0;
 
 	private List<ComputeProcess> processes = new ArrayList<>();
@@ -53,9 +53,9 @@ public class ComputeProcessPool extends AbstractProcessPool implements ISignalEm
 	{
 		vkQueueSubmit(logicalDevice.getQueueManager().getComputeQueue(),
 				submission.getSubmitInfo(processIndex), VK_NULL_HANDLE);
-		
-		processIndex ++;
-		if(processIndex >= processes.size())
+
+		processIndex++;
+		if (processIndex >= processes.size())
 		{
 			processIndex = 0;
 		}
