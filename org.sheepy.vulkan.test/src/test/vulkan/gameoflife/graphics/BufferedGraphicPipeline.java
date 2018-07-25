@@ -25,9 +25,9 @@ public class BufferedGraphicPipeline implements IGraphicProcessUnit
 	{
 		this.srcImage = srcImage;
 	}
-	
+
 	@Override
-	public void bindContext(GraphicContext context, DescriptorPool descriptorPool)
+	public void bindContext(DescriptorPool descriptorPool, GraphicContext context)
 	{
 		this.context = context;
 	}

@@ -29,6 +29,7 @@ public class ComputeProcess extends AllocationNode
 {
 	protected final List<IComputeProcessUnit> computePipelines = new ArrayList<>();
 
+	protected LogicalDevice logicalDevice;
 	protected DescriptorPool descriptorPool;
 
 	public ComputeProcess(LogicalDevice logicalDevice)
@@ -38,6 +39,8 @@ public class ComputeProcess extends AllocationNode
 
 	public ComputeProcess(LogicalDevice logicalDevice, List<IComputeProcessUnit> units)
 	{
+		this.logicalDevice = logicalDevice;
+
 		this.computePipelines.addAll(units);
 
 		descriptorPool = new DescriptorPool(logicalDevice);
@@ -53,6 +56,10 @@ public class ComputeProcess extends AllocationNode
 			{
 				allocationObjects.add((IAllocationObject) unit);
 			}
+			if (unit instanceof ComputePipeline)
+			{
+				((ComputePipeline) unit).bindContext(logicalDevice, descriptorPool);
+			}
 		}
 	}
 
@@ -67,6 +74,10 @@ public class ComputeProcess extends AllocationNode
 		if (unit instanceof IAllocationObject)
 		{
 			allocationObjects.add((IAllocationObject) unit);
+		}
+		if (unit instanceof ComputePipeline)
+		{
+			((ComputePipeline) unit).bindContext(logicalDevice, descriptorPool);
 		}
 	}
 

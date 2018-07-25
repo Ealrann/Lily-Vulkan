@@ -15,9 +15,8 @@ public class MeshRenderProcessPool extends GraphicProcessPool
 	public void configure(MeshPipelineConfiguration pipelineConfiguration)
 	{
 		allocationObjects.add(pipelineConfiguration.mesh);
-		
-		MeshGraphicPipeline graphicPipeline = new MeshGraphicPipeline(logicalDevice,
-				pipelineConfiguration);
+
+		MeshGraphicPipeline graphicPipeline = new MeshGraphicPipeline(pipelineConfiguration);
 
 		GraphicProcess graphicProcess = new GraphicProcess(configuration);
 		graphicProcess.addGraphicPipeline(graphicPipeline);

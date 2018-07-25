@@ -9,14 +9,11 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
-import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.DescriptorSet;
-import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.descriptor.IDescriptorSetConfiguration;
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.AbstractPipeline;
 import org.sheepy.vulkan.pipeline.IPipelineExecutable;
 import org.sheepy.vulkan.pipeline.PipelineId;
@@ -26,47 +23,23 @@ import org.sheepy.vulkan.pipeline.graphic.IGraphicProcessUnit;
 public abstract class GraphicsPipeline extends AbstractPipeline
 		implements IGraphicProcessUnit, IDescriptorSetConfiguration, IAllocable
 {
-	private GraphicContext context;
-	private DescriptorPool descriptorPool;
 	protected final GraphicPipelineConfiguration pipelineConfiguration;
+	protected GraphicContext context;
 
-	public GraphicsPipeline(LogicalDevice logicalDevice,
-			GraphicPipelineConfiguration pipelineConfiguration)
+	public GraphicsPipeline(GraphicPipelineConfiguration pipelineConfiguration)
 	{
-		super(logicalDevice);
+		super(pipelineConfiguration.descriptors);
+
 		this.pipelineConfiguration = pipelineConfiguration;
 
 		addPipelineUnit(pipelineConfiguration);
 	}
 
 	@Override
-	public void bindContext(GraphicContext context, DescriptorPool descriptorPool)
+	public void bindContext(DescriptorPool descriptorPool, GraphicContext context)
 	{
+		super.bindContext(context.logicalDevice, descriptorPool);
 		this.context = context;
-		this.descriptorPool = descriptorPool;
-	}
-
-	@Override
-	protected long allocatePipelineLayout(MemoryStack stack)
-	{
-		// Create Pipeline Layout
-		// -----------------------
-		VkPipelineLayoutCreateInfo pipelineLayoutInfo = VkPipelineLayoutCreateInfo
-				.callocStack(stack);
-		pipelineLayoutInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
-		if (descriptorPool != null && descriptorPool.size() > 0)
-		{
-			pipelineLayoutInfo.pSetLayouts(descriptorPool.allocLayoutBuffer());
-		}
-		pipelineLayoutInfo.pPushConstantRanges(null); // Optional
-
-		long[] aPipelineLayout = new long[1];
-		if (vkCreatePipelineLayout(pipelineConfiguration.getVkDevice(), pipelineLayoutInfo, null,
-				aPipelineLayout) != VK_SUCCESS)
-		{
-			throw new AssertionError("failed to create pipeline layout!");
-		}
-		return aPipelineLayout[0];
 	}
 
 	@Override
@@ -159,8 +132,8 @@ public abstract class GraphicsPipeline extends AbstractPipeline
 			bDescriptorSet.flip();
 
 			long pipelineLayout = getLayoutId();
-			vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(), VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout,
-					0, bDescriptorSet, null);
+			vkCmdBindDescriptorSets(commandBuffer.getVkCommandBuffer(),
+					VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, bDescriptorSet, null);
 		}
 
 		List<IPipelineExecutable> executables = getExecutables();
@@ -174,12 +147,6 @@ public abstract class GraphicsPipeline extends AbstractPipeline
 		setDirty(false);
 
 		MemoryUtil.memFree(bDescriptorSet);
-	}
-
-	@Override
-	public List<IDescriptor> getDescriptors()
-	{
-		return pipelineConfiguration.descriptors;
 	}
 
 	protected abstract PipelineId buildGraphicPipeline(long id);

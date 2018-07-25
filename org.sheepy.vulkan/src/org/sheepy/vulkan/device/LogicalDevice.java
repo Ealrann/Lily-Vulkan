@@ -15,6 +15,7 @@ import org.lwjgl.vulkan.VkDeviceCreateInfo;
 import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.vulkan.queue.QueueManager;
+import org.sheepy.vulkan.shader.Shader;
 import org.sheepy.vulkan.window.Surface;
 import org.sheepy.vulkan.window.Window;
 
@@ -146,5 +147,10 @@ public class LogicalDevice
 	public int waitIdle()
 	{
 		return vkDeviceWaitIdle(vkDevice);
+	}
+
+	public Shader newComputeShader(String location)
+	{
+		return new Shader(this, location, VK_SHADER_STAGE_COMPUTE_BIT);
 	}
 }

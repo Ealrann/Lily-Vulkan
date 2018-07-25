@@ -3,7 +3,6 @@ package test.vulkan.gameoflife.pipelinepool;
 import static org.lwjgl.vulkan.VK10.VK_FORMAT_R8G8B8A8_UNORM;
 
 import org.sheepy.vulkan.buffer.Image;
-import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.compute.ComputeProcess;
 import org.sheepy.vulkan.pipeline.compute.ComputeProcessPool;
@@ -46,16 +45,13 @@ public class BoardPool extends ComputeProcessPool
 		ComputeProcess boardProcess1 = new ComputeProcess(logicalDevice);
 		ComputeProcess boardProcess2 = new ComputeProcess(logicalDevice);
 
-		DescriptorPool dPool1 = boardProcess1.getDescriptorPool();
-		DescriptorPool dPool2 = boardProcess2.getDescriptorPool();
-
-		LifeCompute lifeComputer1 = new LifeCompute(logicalDevice, dPool1, boardBuffer2,
+		LifeCompute lifeComputer1 = new LifeCompute(logicalDevice, boardBuffer2,
 				boardBuffer1);
-		LifeCompute lifeComputer2 = new LifeCompute(logicalDevice, dPool2, boardBuffer1,
+		LifeCompute lifeComputer2 = new LifeCompute(logicalDevice, boardBuffer1,
 				boardBuffer2);
 
-		PixelCompute pixelComputer1 = new PixelCompute(logicalDevice, dPool1, boardBuffer1, image);
-		PixelCompute pixelComputer2 = new PixelCompute(logicalDevice, dPool2, boardBuffer2, image);
+		PixelCompute pixelComputer1 = new PixelCompute(logicalDevice, boardBuffer1, image);
+		PixelCompute pixelComputer2 = new PixelCompute(logicalDevice, boardBuffer2, image);
 
 		boardProcess1.addProcessUnit(lifeComputer1);
 		boardProcess1.addProcessUnit(pixelComputer1);

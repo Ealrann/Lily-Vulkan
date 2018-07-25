@@ -1,16 +1,14 @@
 package test.vulkan.mesh;
 
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.PipelineId;
 import org.sheepy.vulkan.pipeline.graphic.render.GraphicsPipeline;
 
 public class MeshGraphicPipeline extends GraphicsPipeline
 {
 
-	public MeshGraphicPipeline(LogicalDevice logicalDevice,
-			MeshPipelineConfiguration pipelineConfiguration)
+	public MeshGraphicPipeline(MeshPipelineConfiguration pipelineConfiguration)
 	{
-		super(logicalDevice, pipelineConfiguration);
+		super(pipelineConfiguration);
 	}
 
 	@Override

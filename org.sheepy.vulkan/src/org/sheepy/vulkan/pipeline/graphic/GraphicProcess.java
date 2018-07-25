@@ -60,7 +60,10 @@ public class GraphicProcess extends AllocationNode
 
 		if (processUnit instanceof IGraphicProcessUnit)
 		{
-			((IGraphicProcessUnit) processUnit).bindContext(context, descriptorPool);
+			if (context != null)
+			{
+				((IGraphicProcessUnit) processUnit).bindContext(descriptorPool, context);
+			}
 
 			if (((IGraphicProcessUnit) processUnit).getDescriptors().isEmpty() == false)
 			{
@@ -76,7 +79,7 @@ public class GraphicProcess extends AllocationNode
 		{
 			if (unit instanceof IGraphicProcessUnit)
 			{
-				((IGraphicProcessUnit) unit).bindContext(context, descriptorPool);
+				((IGraphicProcessUnit) unit).bindContext(descriptorPool, context);
 			}
 		}
 	}
