@@ -33,7 +33,9 @@ public class ComputePipeline extends AbstractPipeline
 	protected List<IDescriptor> descriptors;
 	protected List<Shader> shaders = new ArrayList<>();
 
-	protected float workgroupSize = DEFAULT_WORKGROUP_SIZE;
+	protected float workgroupSizeX = DEFAULT_WORKGROUP_SIZE;
+	protected float workgroupSizeY = DEFAULT_WORKGROUP_SIZE;
+	protected float workgroupSizeZ = DEFAULT_WORKGROUP_SIZE;
 
 	private int dataWidth = -1;
 	private int dataHeight = -1;
@@ -144,9 +146,9 @@ public class ComputePipeline extends AbstractPipeline
 
 		int indexPipeline = 0;
 
-		int groupCountX = (int) Math.ceil(dataWidth / workgroupSize);
-		int groupCountY = (int) Math.ceil(dataHeight / workgroupSize);
-		int groupCountZ = (int) Math.ceil(dataDepth / workgroupSize);
+		int groupCountX = (int) Math.ceil(dataWidth / workgroupSizeX);
+		int groupCountY = (int) Math.ceil(dataHeight / workgroupSizeY);
+		int groupCountZ = (int) Math.ceil(dataDepth / workgroupSizeZ);
 
 		List<IPipelineExecutable> res = new ArrayList<>();
 		for (IPipelineUnit unit : getUnits())
@@ -170,13 +172,10 @@ public class ComputePipeline extends AbstractPipeline
 		return descriptors;
 	}
 
-	public void setWorkgroupSize(float workgroupSize)
+	public void setWorkgroupSize(int x, int y, int z)
 	{
-		this.workgroupSize = workgroupSize;
-	}
-
-	public float getWorkgroupSize()
-	{
-		return workgroupSize;
+		this.workgroupSizeX = x;
+		this.workgroupSizeY = y;
+		this.workgroupSizeZ = z;
 	}
 }
