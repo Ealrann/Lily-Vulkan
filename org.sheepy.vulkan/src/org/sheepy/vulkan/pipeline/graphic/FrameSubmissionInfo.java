@@ -7,6 +7,7 @@ import static org.lwjgl.vulkan.KHRSwapchain.VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
@@ -23,9 +24,9 @@ public class FrameSubmissionInfo extends SubmissionInfo
 
 	public FrameSubmissionInfo(int imageIndex, SwapChainManager swapChain,
 			ICommandBuffer commandBuffer, int waitStage, Collection<VkSemaphore> waitSemaphores,
-			Collection<VkSemaphore> signalSemaphores)
+			VkSemaphore waitPresentSemaphore)
 	{
-		super(commandBuffer, waitStage, waitSemaphores, signalSemaphores);
+		super(commandBuffer, waitStage, waitSemaphores, Collections.singletonList(waitPresentSemaphore));
 
 		bSwapChains = memAllocLong(1);
 		bSwapChains.put(swapChain.getSwapChain());
