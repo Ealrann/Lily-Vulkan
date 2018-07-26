@@ -16,6 +16,8 @@ public class GraphicConfiguration implements IAllocable
 	public final LogicalDevice logicalDevice;
 
 	public IRenderPass renderPass;
+	
+	public boolean clearBeforeRender = true;
 
 	public final VkSemaphore imageAvailableSemaphore;
 

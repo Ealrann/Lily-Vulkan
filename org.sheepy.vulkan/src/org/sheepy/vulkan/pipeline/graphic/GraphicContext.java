@@ -27,10 +27,10 @@ public class GraphicContext extends AllocationNode
 	
 	public final GraphicConfiguration configuration;
 
-	public GraphicContext(LogicalDevice logicalDevice, CommandPool commandPool,
+	public GraphicContext(CommandPool commandPool,
 			GraphicConfiguration configuration, GraphicProcessPool processPool)
 	{
-		this.logicalDevice = logicalDevice;
+		this.logicalDevice = configuration.logicalDevice;
 		this.renderPass = configuration.renderPass;
 		this.configuration = configuration;
 		this.commandPool = commandPool;
@@ -52,7 +52,7 @@ public class GraphicContext extends AllocationNode
 		framebuffers = new Framebuffers(logicalDevice, swapChainManager, imageViewManager,
 				configuration.renderPass, depthResource);
 
-		commandBuffers = new GraphicCommandBuffers(commandPool, processPool);
+		commandBuffers = new GraphicCommandBuffers(configuration, commandPool, processPool);
 
 		submission = new FrameSubmission(this, Collections.singletonList(processPool));
 		

@@ -37,7 +37,7 @@ public class GraphicProcessPool extends SurfaceProcessPool implements IAllocable
 		// if (waitForSignals != null)
 		// this.waitForSignals.addAll(waitForSignals);
 
-		context = new GraphicContext(logicalDevice, commandPool, configuration, this);
+		context = new GraphicContext(commandPool, configuration, this);
 
 		allocationObjects.add(configuration);
 		allocationObjects.add(context);

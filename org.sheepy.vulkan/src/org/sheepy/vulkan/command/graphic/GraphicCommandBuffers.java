@@ -9,6 +9,7 @@ import org.sheepy.vulkan.command.AbstractCommandBuffers;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.ECommandStage;
 import org.sheepy.vulkan.pipeline.graphic.Framebuffers;
+import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.pipeline.graphic.GraphicProcess;
 import org.sheepy.vulkan.pipeline.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.pipeline.graphic.IRenderPass;
@@ -18,11 +19,13 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 {
 
 	private GraphicProcessPool processPool;
+	private GraphicConfiguration configuration;
 
-	public GraphicCommandBuffers(CommandPool commandPool, GraphicProcessPool processPool)
+	public GraphicCommandBuffers(GraphicConfiguration configuration, CommandPool commandPool, GraphicProcessPool processPool)
 	{
 		super(commandPool);
 		this.processPool = processPool;
+		this.configuration = configuration;
 	}
 
 	@Override
@@ -44,7 +47,7 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 			Long framebufferId = framebuffers.getIDs().get(i);
 			long commandBufferId = commandBufferIds[i];
 
-			commandBuffers.add(new RenderCommandBuffer(logicalDevice, i, commandBufferId,
+			commandBuffers.add(new RenderCommandBuffer(configuration, i, commandBufferId,
 					processPool.configuration.depthBuffer, framebufferId, swapChain.getExtent(), renderPass));
 		}
 
