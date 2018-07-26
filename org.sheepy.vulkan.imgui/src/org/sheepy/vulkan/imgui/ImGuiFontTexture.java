@@ -71,8 +71,8 @@ public class ImGuiFontTexture implements IAllocable
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
 				image.transitionImageLayout(commandBuffer, VK_PIPELINE_STAGE_HOST_BIT,
-						VK_PIPELINE_STAGE_TRANSFER_BIT, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-						VK_ACCESS_TRANSFER_WRITE_BIT);
+						VK_PIPELINE_STAGE_TRANSFER_BIT, VK_IMAGE_LAYOUT_UNDEFINED,
+						VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 0, VK_ACCESS_TRANSFER_WRITE_BIT);
 
 				// Copy
 				VkBufferImageCopy.Buffer bufferCopyRegion = VkBufferImageCopy.callocStack(1, stack);
@@ -86,8 +86,8 @@ public class ImGuiFontTexture implements IAllocable
 						VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, bufferCopyRegion);
 
 				image.transitionImageLayout(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT,
-						VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
-						VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
+						VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+						VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_ACCESS_TRANSFER_WRITE_BIT,
 						VK_ACCESS_INPUT_ATTACHMENT_READ_BIT);
 			}
 		};

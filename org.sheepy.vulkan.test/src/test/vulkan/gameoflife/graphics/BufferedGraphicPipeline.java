@@ -39,7 +39,8 @@ public class BufferedGraphicPipeline implements IGraphicExecutable, IGraphicProc
 
 		ImageBarrier barrier = new ImageBarrier(VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT,
 				VK_PIPELINE_STAGE_TRANSFER_BIT);
-		barrier.addImageBarrier(srcImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+		barrier.addImageBarrier(srcImage, VK_IMAGE_LAYOUT_GENERAL,
+				VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_ACCESS_TRANSFER_WRITE_BIT,
 				VK_ACCESS_TRANSFER_READ_BIT);
 		barrier.addImageBarrier(dstImageView.getImageId(), dstImageView.getImageFormat(), 1, 0,
 				VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 0, VK_ACCESS_TRANSFER_WRITE_BIT);
@@ -78,7 +79,8 @@ public class BufferedGraphicPipeline implements IGraphicExecutable, IGraphicProc
 
 		ImageBarrier barrierEnd = new ImageBarrier(VK_PIPELINE_STAGE_TRANSFER_BIT,
 				VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT);
-		barrierEnd.addImageBarrier(srcImage, VK_IMAGE_LAYOUT_GENERAL, VK_ACCESS_SHADER_WRITE_BIT);
+		barrierEnd.addImageBarrier(srcImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+				VK_IMAGE_LAYOUT_GENERAL, VK_ACCESS_SHADER_READ_BIT, VK_ACCESS_SHADER_WRITE_BIT);
 		barrierEnd.addImageBarrier(dstImageView.getImageId(), dstImageView.getImageFormat(), 1,
 				VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
 				VK_ACCESS_TRANSFER_WRITE_BIT, VK_ACCESS_SHADER_WRITE_BIT);

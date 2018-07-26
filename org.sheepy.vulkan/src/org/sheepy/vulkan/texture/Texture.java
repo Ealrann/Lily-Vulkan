@@ -76,7 +76,8 @@ public class Texture implements IDescriptor, IAllocable
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
 				imageBuffer.transitionImageLayout(commandBuffer, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT,
-						VK_PIPELINE_STAGE_TRANSFER_BIT, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_ACCESS_TRANSFER_WRITE_BIT);
+						VK_PIPELINE_STAGE_TRANSFER_BIT, VK_IMAGE_LAYOUT_UNDEFINED,
+						VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 0, VK_ACCESS_TRANSFER_WRITE_BIT);
 
 				imageBuffer.fillWithBuffer(commandBuffer, buffer);
 

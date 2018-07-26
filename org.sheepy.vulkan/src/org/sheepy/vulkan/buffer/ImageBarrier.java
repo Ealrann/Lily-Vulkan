@@ -16,7 +16,7 @@ public class ImageBarrier extends PipelineBarrier
 	private int dstStage;
 
 	private boolean lock = false;
-	
+
 	private List<IImageTransition> transitions = new ArrayList<>();
 	private VkImageMemoryBarrier.Buffer barrierInfos;
 
@@ -26,16 +26,29 @@ public class ImageBarrier extends PipelineBarrier
 		this.dstStage = dstStage;
 	}
 
-	public void addImageBarrier(Image image, int dstLayout, int dstAccess)
+	public ImageBarrier(Image image, int srcStage, int dstStage, int srcLayout, int dstLayout,
+			int srcAccess, int dstAccess)
 	{
-		if(lock == true)
+		this(srcStage, dstStage);
+		addImageBarrier(image, srcLayout, dstLayout, srcAccess, dstAccess);
+	}
+
+	public void addImageBarrier(Image image,
+			int srcLayout,
+			int dstLayout,
+			int srcAccess,
+			int dstAccess)
+	{
+		if (lock == true)
 		{
 			throw new AssertionError("Forbidden call after this object is allocated");
 		}
 		ImageTransition transition = new ImageTransition();
 
 		transition.image = image;
+		transition.srcLayout = srcLayout;
 		transition.dstLayout = dstLayout;
+		transition.srcAccess = srcAccess;
 		transition.dstAccess = dstAccess;
 
 		transitions.add(transition);
@@ -49,7 +62,7 @@ public class ImageBarrier extends PipelineBarrier
 			int srcAccess,
 			int dstAccess)
 	{
-		if(lock == true)
+		if (lock == true)
 		{
 			throw new AssertionError("Forbidden call after this object is allocated");
 		}
@@ -84,12 +97,12 @@ public class ImageBarrier extends PipelineBarrier
 	public void execute(VkCommandBuffer commandBuffer)
 	{
 		boolean destroyInfos = false;
-		if(barrierInfos == null)
+		if (barrierInfos == null)
 		{
 			barrierInfos = VkImageMemoryBarrier.calloc(transitions.size());
 			destroyInfos = true;
 		}
-		
+
 		for (IImageTransition transition : transitions)
 		{
 			transition.fillVkImageMemoryBarrier(barrierInfos.get());
@@ -98,8 +111,8 @@ public class ImageBarrier extends PipelineBarrier
 		barrierInfos.flip();
 
 		vkCmdPipelineBarrier(commandBuffer, srcStage, dstStage, 0, null, null, barrierInfos);
-		
-		if(destroyInfos)
+
+		if (destroyInfos)
 		{
 			barrierInfos.free();
 		}
@@ -109,12 +122,14 @@ public class ImageBarrier extends PipelineBarrier
 			Image image,
 			int srcStage,
 			int dstStage,
-			int newLayout,
+			int srcLayout,
+			int dstLayout,
+			int srcAccessMask,
 			int dstAccessMask)
 	{
 		ImageBarrier barrier = new ImageBarrier(srcStage, dstStage);
 
-		barrier.addImageBarrier(image, newLayout, dstAccessMask);
+		barrier.addImageBarrier(image, srcLayout, dstLayout, srcAccessMask, dstAccessMask);
 
 		barrier.execute(commandBuffer);
 	}
@@ -146,7 +161,9 @@ public class ImageBarrier extends PipelineBarrier
 	private class ImageTransition implements IImageTransition
 	{
 		Image image;
+		int srcLayout;
 		int dstLayout;
+		int srcAccess;
 		int dstAccess;
 
 		@Override
@@ -168,7 +185,7 @@ public class ImageBarrier extends PipelineBarrier
 			}
 
 			barrierInfo.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
-			barrierInfo.oldLayout(image.getLayout());
+			barrierInfo.oldLayout(srcLayout);
 			barrierInfo.newLayout(dstLayout);
 			barrierInfo.srcQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
 			barrierInfo.dstQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
@@ -178,11 +195,8 @@ public class ImageBarrier extends PipelineBarrier
 			barrierInfo.subresourceRange().baseArrayLayer(0);
 			barrierInfo.subresourceRange().layerCount(1);
 			barrierInfo.subresourceRange().aspectMask(aspectMask);
-			barrierInfo.srcAccessMask(image.getAccess());
+			barrierInfo.srcAccessMask(srcAccess);
 			barrierInfo.dstAccessMask(dstAccess);
-
-			image.setLayout(dstLayout);
-			image.setAccess(dstAccess);
 		}
 	}
 

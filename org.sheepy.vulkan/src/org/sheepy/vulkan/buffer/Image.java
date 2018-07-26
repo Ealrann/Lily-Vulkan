@@ -17,13 +17,10 @@ public class Image
 	private int height;
 	private int format;
 	private int mipLevels = 1;
-	
+
 	private long size;
 	protected long imageId;
 	protected long imageMemoryId;
-	
-	private int layout;
-	private int access;
 
 	public static Image alloc(LogicalDevice logicalDevice,
 			int width,
@@ -55,9 +52,6 @@ public class Image
 		this.height = height;
 		this.format = format;
 		this.mipLevels = mipLevels;
-		
-		layout = VK_IMAGE_LAYOUT_UNDEFINED;
-		access = 0;
 
 		VkImageCreateInfo imageInfo = VkImageCreateInfo.calloc();
 		imageInfo.sType(VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO);
@@ -128,10 +122,13 @@ public class Image
 	public void transitionImageLayout(VkCommandBuffer commandBuffer,
 			int srcStage,
 			int dstStage,
-			int newLayout,
+			int srcLayout,
+			int dstLayout,
+			int srcAccessMask,
 			int dstAccessMask)
 	{
-		ImageBarrier.execute(commandBuffer, this, srcStage, dstStage, newLayout, dstAccessMask);
+		ImageBarrier.execute(commandBuffer, this, srcStage, dstStage, srcLayout, dstLayout,
+				srcAccessMask, dstAccessMask);
 	}
 
 	public static boolean hasStencilComponent(int imageFormat)
@@ -165,32 +162,12 @@ public class Image
 	{
 		return size;
 	}
-	
-	public int getLayout()
-	{
-		return layout;
-	}
-	
-	public void setLayout(int imageLayout) 
-	{
-		this.layout = imageLayout;
-	}
 
-	public int getAccess()
-	{
-		return access;
-	}
-
-	public void setAccess(int access)
-	{
-		this.access = access;
-	}
-	
 	public int getMipLevels()
 	{
 		return mipLevels;
 	}
-	
+
 	public int getFormat()
 	{
 		return format;
