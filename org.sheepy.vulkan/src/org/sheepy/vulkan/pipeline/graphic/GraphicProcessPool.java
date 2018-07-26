@@ -4,18 +4,17 @@ import static org.lwjgl.vulkan.KHRSwapchain.vkAcquireNextImageKHR;
 import static org.lwjgl.vulkan.KHRSwapchain.vkQueuePresentKHR;
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
-import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.pipeline.Configuration;
+import org.sheepy.vulkan.pipeline.Context;
 import org.sheepy.vulkan.pipeline.SurfaceProcessPool;
 import org.sheepy.vulkan.window.Surface;
 
-public class GraphicProcessPool extends SurfaceProcessPool implements IAllocable, ISignalEmitter
+public class GraphicProcessPool extends SurfaceProcessPool<GraphicProcess>
+		implements IAllocable, ISignalEmitter
 {
 	/**
 	 * This is just -1L, but it is nicer as a symbolic constant.
@@ -25,28 +24,47 @@ public class GraphicProcessPool extends SurfaceProcessPool implements IAllocable
 	public final GraphicConfiguration configuration;
 	public final GraphicContext context;
 
-	private List<GraphicProcess> processes = new ArrayList<>();
+	private VkSemaphore imageAvailableSemaphore;
 
-	public GraphicProcessPool(LogicalDevice logicalDevice, GraphicConfiguration configuration,
-			boolean allowReset)
+	public GraphicProcessPool(GraphicConfiguration configuration, boolean allowReset)
 	{
-		super(logicalDevice, logicalDevice.getQueueManager().getGraphicQueueIndex(), allowReset);
+		super(configuration, configuration.logicalDevice.getQueueManager().getGraphicQueueIndex(),
+				allowReset);
 
 		this.configuration = configuration;
 
 		// if (waitForSignals != null)
 		// this.waitForSignals.addAll(waitForSignals);
 
-		context = new GraphicContext(commandPool, configuration, this);
+		this.context = (GraphicContext) super.context;
+	}
 
-		allocationObjects.add(configuration);
-		allocationObjects.add(context);
+	@Override
+	protected Context createContext(Configuration configuration)
+	{
+		return new GraphicContext(commandPool, resourceManager, descriptorPool,
+				(GraphicConfiguration) configuration, this);
+	}
+
+	public GraphicProcess newGraphicProcess()
+	{
+		GraphicProcess res = new GraphicProcess(context);
+		addProcess(res);
+		return res;
 	}
 
 	@Override
 	public VkSemaphore newSignalSemaphore()
 	{
-		return configuration.imageAvailableSemaphore;
+		if (imageAvailableSemaphore == null)
+		{
+			imageAvailableSemaphore = new VkSemaphore(logicalDevice);
+			try (MemoryStack stack = MemoryStack.stackPush())
+			{
+				imageAvailableSemaphore.allocate(stack);;
+			}
+		}
+		return imageAvailableSemaphore;
 	}
 
 	@Override
@@ -70,7 +88,6 @@ public class GraphicProcessPool extends SurfaceProcessPool implements IAllocable
 
 	private void allocateProcesses(MemoryStack stack)
 	{
-		configuration.allocate(stack);
 		context.allocateNode(stack);
 		for (GraphicProcess process : processes)
 		{
@@ -85,7 +102,6 @@ public class GraphicProcessPool extends SurfaceProcessPool implements IAllocable
 			process.freeNode();
 		}
 		context.freeNode();
-		configuration.free();
 	}
 
 	@Override
@@ -96,7 +112,9 @@ public class GraphicProcessPool extends SurfaceProcessPool implements IAllocable
 
 	@Override
 	public void free()
-	{}
+	{
+		imageAvailableSemaphore.free();
+	}
 
 	public void recordCommands()
 	{
@@ -109,29 +127,28 @@ public class GraphicProcessPool extends SurfaceProcessPool implements IAllocable
 	{
 		int res = vkAcquireNextImageKHR(logicalDevice.getVkDevice(),
 				context.swapChainManager.getSwapChain(), UINT64_MAX,
-				configuration.imageAvailableSemaphore.getId(), VK_NULL_HANDLE, nextImageArray);
+				imageAvailableSemaphore.getId(), VK_NULL_HANDLE, nextImageArray);
 
 		if (res == VK_SUCCESS) return nextImageArray[0];
 		else return null;
 	}
 
-	public void addProcess(GraphicProcess process)
-	{
-		processes.add(process);
-		process.bindContext(context);
-		allocationObjects.add(process);
-	}
-
-	public List<GraphicProcess> getProcesses()
-	{
-		return processes;
-	}
-
 	@Override
 	public void execute()
 	{
+		boolean needUpdate = false;
+		for (GraphicProcess graphicProcess : processes)
+		{
+			needUpdate |= graphicProcess.update();
+		}
+
+		if (needUpdate)
+		{
+			recordCommands();
+		}
+
 		Integer imageIndex = acquireNextImage();
-		
+
 		if (imageIndex != null)
 		{
 			if (vkQueueSubmit(logicalDevice.getQueueManager().getGraphicQueue(),

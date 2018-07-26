@@ -20,7 +20,7 @@ import org.sheepy.vulkan.pipeline.graphic.render.impl.BasicRasterizer;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.BasicShaderStage;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.BasicViewportState;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
-import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.resource.Shader;
 
 public class GraphicPipelineConfiguration implements IPipelineUnit
 {

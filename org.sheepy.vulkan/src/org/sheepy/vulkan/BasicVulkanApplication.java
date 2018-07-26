@@ -16,7 +16,7 @@ public class BasicVulkanApplication extends VulkanApplication
 	{
 		vkQueueWaitIdle(logicalDevice.getQueueManager().getPresentQueue());
 
-		for (AbstractProcessPool iPipelinePool : pipelinePools)
+		for (AbstractProcessPool<?> iPipelinePool : pipelinePools)
 		{
 			iPipelinePool.execute();
 		}

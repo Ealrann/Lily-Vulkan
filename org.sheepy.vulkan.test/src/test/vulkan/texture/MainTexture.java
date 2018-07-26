@@ -13,7 +13,7 @@ import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.TextureVertexDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.TextureVertexDescriptor.TextureVertex;
-import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.resource.Shader;
 import org.sheepy.vulkan.texture.Texture;
 
 import test.vulkan.mesh.Mesh;
@@ -54,7 +54,7 @@ public class MainTexture
 		configuration.renderPass = new MeshRenderPass();
 		configuration.depthBuffer = true;
 
-		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(logicalDevice, configuration);
+		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(configuration);
 		CommandPool commandPool = pipelinePool.getCommandPool();
 
 		Mesh mesh = createMeshBuffer(app, logicalDevice, commandPool);

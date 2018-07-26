@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.sheepy.vulkan.command.ECommandStage;
 import org.sheepy.vulkan.command.compute.ComputeCommandBuffer;
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.AbstractProcess;
+import org.sheepy.vulkan.pipeline.Context;
 import org.sheepy.vulkan.pipeline.ICompositeProcessUnit;
 import org.sheepy.vulkan.pipeline.IProcessUnit;
 
@@ -23,27 +23,18 @@ public class ComputeProcess extends AbstractProcess<ComputeCommandBuffer>
 {
 	protected final List<IProcessUnit> units = new ArrayList<>();
 
-	public ComputeProcess(LogicalDevice logicalDevice)
+	public ComputeProcess(Context context)
 	{
-		this(logicalDevice, Collections.emptyList());
+		this(context, Collections.emptyList());
 	}
 
-	public ComputeProcess(LogicalDevice logicalDevice, List<ICompositeProcessUnit> units)
+	public ComputeProcess(Context context, List<ICompositeProcessUnit> units)
 	{
-		super(logicalDevice, VK_PIPELINE_BIND_POINT_COMPUTE, ECommandStage.Compute);
+		super(context, VK_PIPELINE_BIND_POINT_COMPUTE, ECommandStage.Compute);
 
 		for (ICompositeProcessUnit unit : units)
 		{
 			addProcessUnit(unit);
-		}
-	}
-
-	@Override
-	protected void bindUnit(IProcessUnit unit)
-	{
-		if (unit instanceof ComputePipeline)
-		{
-			((ComputePipeline) unit).bindContext(logicalDevice, descriptorPool);
 		}
 	}
 
@@ -63,10 +54,9 @@ public class ComputeProcess extends AbstractProcess<ComputeCommandBuffer>
 	@Override
 	protected void doExecuteUnit(ComputeCommandBuffer commandBuffer, IProcessUnit unit)
 	{
-		if(unit instanceof IComputeExecutable)
+		if (unit instanceof IComputeExecutable)
 		{
 			((IComputeExecutable) unit).execute(commandBuffer);
 		}
 	}
-
 }

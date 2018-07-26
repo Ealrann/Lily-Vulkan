@@ -1,26 +1,26 @@
 package test.vulkan.mesh;
 
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.pipeline.graphic.GraphicProcess;
 import org.sheepy.vulkan.pipeline.graphic.GraphicProcessPool;
 
 public class MeshRenderProcessPool extends GraphicProcessPool
 {
-	public MeshRenderProcessPool(LogicalDevice logicalDevice, GraphicConfiguration configuration)
+	public MeshRenderProcessPool(GraphicConfiguration configuration)
 	{
-		super(logicalDevice, configuration, false);
+		super(configuration, false);
 	}
 
 	public void configure(MeshPipelineConfiguration pipelineConfiguration)
 	{
-		allocationObjects.add(pipelineConfiguration.mesh);
+		MeshGraphicPipeline graphicPipeline = new MeshGraphicPipeline(context,
+				pipelineConfiguration);
 
-		MeshGraphicPipeline graphicPipeline = new MeshGraphicPipeline(pipelineConfiguration);
-
-		GraphicProcess graphicProcess = new GraphicProcess(configuration);
+		GraphicProcess graphicProcess = new GraphicProcess(context);
 		graphicProcess.addGraphicPipeline(graphicPipeline);
 
 		addProcess(graphicProcess);
+
+		addResource(pipelineConfiguration.mesh);
 	}
 }

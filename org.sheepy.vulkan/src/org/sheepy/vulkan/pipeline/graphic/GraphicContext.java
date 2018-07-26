@@ -5,15 +5,14 @@ import java.util.Collections;
 import org.sheepy.vulkan.buffer.DepthResource;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.graphic.GraphicCommandBuffers;
-import org.sheepy.vulkan.common.AllocationNode;
-import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.descriptor.DescriptorPool;
+import org.sheepy.vulkan.pipeline.Context;
+import org.sheepy.vulkan.resource.ResourceManager;
 import org.sheepy.vulkan.swapchain.SwapChainManager;
 import org.sheepy.vulkan.view.ImageViewManager;
 
-public class GraphicContext extends AllocationNode
+public class GraphicContext extends Context
 {
-	public final LogicalDevice logicalDevice;
-
 	public final SwapChainManager swapChainManager;
 	public final Framebuffers framebuffers;
 	public final IRenderPass renderPass;
@@ -21,19 +20,16 @@ public class GraphicContext extends AllocationNode
 	public final FrameSubmission submission;
 	public final GraphicCommandBuffers commandBuffers;
 
-	public final CommandPool commandPool;
-
 	public final DepthResource depthResource;
 	
-	public final GraphicConfiguration configuration;
+	public GraphicConfiguration configuration;
 
-	public GraphicContext(CommandPool commandPool,
+	public GraphicContext(CommandPool commandPool, ResourceManager resourceManager, DescriptorPool descriptorPool,
 			GraphicConfiguration configuration, GraphicProcessPool processPool)
 	{
-		this.logicalDevice = configuration.logicalDevice;
+		super(configuration, commandPool, resourceManager, descriptorPool);
 		this.renderPass = configuration.renderPass;
 		this.configuration = configuration;
-		this.commandPool = commandPool;
 
 		swapChainManager = new SwapChainManager(logicalDevice, configuration.targetColorDomain,
 				configuration.swapImageUsages, configuration.presentationMode);

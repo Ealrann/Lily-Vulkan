@@ -11,14 +11,14 @@ import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.vulkan.buffer.BufferBarrier;
 import org.sheepy.vulkan.descriptor.IDescriptor;
-import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.AbstractPipeline;
+import org.sheepy.vulkan.pipeline.AbstractCompositePipeline;
+import org.sheepy.vulkan.pipeline.Context;
 import org.sheepy.vulkan.pipeline.IPipelineUnit;
 import org.sheepy.vulkan.pipeline.IProcessUnit;
 import org.sheepy.vulkan.pipeline.PipelineBarrier;
-import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.resource.Shader;
 
-public class ComputePipeline extends AbstractPipeline
+public class ComputePipeline extends AbstractCompositePipeline
 {
 	private static final float DEFAULT_WORKGROUP_SIZE = 32;
 
@@ -32,28 +32,29 @@ public class ComputePipeline extends AbstractPipeline
 	private int dataHeight = -1;
 	private int dataDepth = -1;
 
-	public ComputePipeline(LogicalDevice logicalDevice, int width, int height, int depth,
+	public ComputePipeline(Context context, int width, int height, int depth,
 			List<IDescriptor> descriptors, String shaderLocation)
 	{
-		this(width, height, depth, descriptors, Collections.singletonList(
-				new Shader(logicalDevice, shaderLocation, VK_SHADER_STAGE_COMPUTE_BIT)));
+		this(context, width, height, depth, descriptors, Collections.singletonList(
+				new Shader(context.logicalDevice, shaderLocation, VK_SHADER_STAGE_COMPUTE_BIT)));
 	}
 
-	public ComputePipeline(int width, int height, int depth, List<IDescriptor> descriptors,
-			Shader shader)
+	public ComputePipeline(Context context, int width, int height, int depth,
+			List<IDescriptor> descriptors, Shader shader)
 	{
-		this(width, height, depth, descriptors, Collections.singletonList(shader));
+		this(context, width, height, depth, descriptors, Collections.singletonList(shader));
 	}
 
-	public ComputePipeline(int width, int height, int depth, List<IDescriptor> descriptors)
+	public ComputePipeline(Context context, int width, int height, int depth,
+			List<IDescriptor> descriptors)
 	{
-		this(width, height, depth, descriptors, Collections.emptyList());
+		this(context, width, height, depth, descriptors, Collections.emptyList());
 	}
 
-	public ComputePipeline(int width, int height, int depth, List<IDescriptor> descriptors,
-			List<Shader> shaders)
+	public ComputePipeline(Context context, int width, int height, int depth,
+			List<IDescriptor> descriptors, List<Shader> shaders)
 	{
-		super(descriptors);
+		super(context, descriptors);
 
 		this.dataWidth = width;
 		this.dataHeight = height;
@@ -61,12 +62,18 @@ public class ComputePipeline extends AbstractPipeline
 
 		addPipelineUnits(shaders);
 		this.shaders.addAll(shaders);
+		
+		for (Shader shader : shaders)
+		{
+			context.resourceManager.addResource(shader);
+		}
 	}
 
 	public void addShader(Shader shader)
 	{
 		addPipelineUnit(shader);
 		shaders.add(shader);
+		context.resourceManager.addResource(shader);
 	}
 
 	public void addPipelineBarrier(BufferBarrier barrier)
@@ -94,8 +101,8 @@ public class ComputePipeline extends AbstractPipeline
 		pipelineCreateInfos.flip();
 
 		long[] pipelines = new long[shaders.size()];
-		if (vkCreateComputePipelines(logicalDevice.getVkDevice(), VK_NULL_HANDLE,
-				pipelineCreateInfos, null, pipelines) != VK_SUCCESS)
+		if (vkCreateComputePipelines(context.getVkDevice(), VK_NULL_HANDLE, pipelineCreateInfos,
+				null, pipelines) != VK_SUCCESS)
 		{
 			throw new AssertionError("Failed to create compute pipeline!");
 		}

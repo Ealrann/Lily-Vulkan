@@ -41,7 +41,7 @@ public class DescriptorPool implements Iterable<DescriptorSet>, IAllocable
 		this.contexts = new ArrayList<>(contexts);
 	}
 
-	public void addConfiguration(IDescriptorSetContext context)
+	public void addContext(IDescriptorSetContext context)
 	{
 		this.contexts.add(context);
 	}

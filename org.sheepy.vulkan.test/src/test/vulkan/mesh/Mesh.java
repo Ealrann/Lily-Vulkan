@@ -9,13 +9,14 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.buffer.IndexBuffer;
-import org.sheepy.vulkan.common.IAllocable;
+import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.resource.IResource;
+import org.sheepy.vulkan.resource.Shader;
 import org.sheepy.vulkan.texture.Texture;
 
-public class Mesh implements IAllocable
+public class Mesh implements IResource
 {
 	private IndexBuffer<?> buffer;
 	protected List<Shader> shaders = new ArrayList<>();
@@ -38,14 +39,14 @@ public class Mesh implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, CommandPool commandPool)
 	{
 		if (ubo != null) ubo.allocate(stack);
 		if (texture != null) texture.allocate(stack);
 
 		for (Shader shader : shaders)
 		{
-			shader.allocate(stack);
+			shader.allocate(stack, commandPool);
 		}
 	}
 

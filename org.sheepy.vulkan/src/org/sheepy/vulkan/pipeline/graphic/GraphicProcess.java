@@ -35,22 +35,9 @@ public class GraphicProcess extends AbstractProcess<RenderCommandBuffer>
 	 *            VK_PIPELINE_BIND_POINT_COMPUTE or
 	 *            VK_PIPELINE_BIND_POINT_GRAPHICS
 	 */
-	public GraphicProcess(GraphicConfiguration configuration)
+	public GraphicProcess(GraphicContext context)
 	{
-		super(configuration.logicalDevice, VK_PIPELINE_BIND_POINT_GRAPHICS, ECommandStage.Render);
-	}
-
-	public void bindContext(GraphicContext context)
-	{
-		this.context = context;
-
-		for (ECommandStage stage : ECommandStage.values())
-		{
-			for (IProcessUnit unit : getStageList(stage))
-			{
-				bindUnit(unit);
-			}
-		}
+		super(context, VK_PIPELINE_BIND_POINT_GRAPHICS, ECommandStage.Render);
 	}
 
 	public void addGraphicPipeline(GraphicsPipeline pipeline)
@@ -75,20 +62,29 @@ public class GraphicProcess extends AbstractProcess<RenderCommandBuffer>
 	}
 
 	@Override
-	protected void bindUnit(IProcessUnit unit)
-	{
-		if (unit instanceof IGraphicProcessUnit && context != null)
-		{
-			((IGraphicProcessUnit) unit).bindContext(descriptorPool, context);
-		}
-	}
-
-	@Override
 	protected void doExecuteUnit(RenderCommandBuffer commandBuffer, IProcessUnit unit)
 	{
 		if (unit instanceof IGraphicExecutable)
 		{
 			((IGraphicExecutable) unit).execute(commandBuffer);
 		}
+	}
+
+	public boolean update()
+	{
+		boolean res = false;
+
+		for (ECommandStage stage : ECommandStage.values())
+		{
+			for (IProcessUnit unit : getStageList(stage))
+			{
+				if (unit instanceof IGraphicProcessUnit)
+				{
+					res |= ((IGraphicProcessUnit) unit).update();
+				}
+			}
+		}
+
+		return res;
 	}
 }

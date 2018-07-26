@@ -13,7 +13,7 @@ import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor.Vertex;
-import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.resource.Shader;
 
 import test.vulkan.mesh.Mesh;
 import test.vulkan.mesh.MeshPipelineConfiguration;
@@ -52,8 +52,7 @@ public class MainRotating
 		GraphicConfiguration configuration = new GraphicConfiguration(logicalDevice);
 		configuration.renderPass = new MeshRenderPass();
 
-		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(logicalDevice,
-				configuration);
+		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(configuration);
 		CommandPool commandPool = pipelinePool.getCommandPool();
 
 		createMeshBuffer(app, logicalDevice, commandPool);
@@ -63,7 +62,7 @@ public class MainRotating
 		pipelineConfiguration.rasterizerFrontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
 
 		pipelinePool.configure(pipelineConfiguration);
-		
+
 		app.attachPipelinePool(pipelinePool);
 
 		try

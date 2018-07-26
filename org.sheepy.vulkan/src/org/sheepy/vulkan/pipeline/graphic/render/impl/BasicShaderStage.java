@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.vulkan.pipeline.graphic.render.IShaderStage;
-import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.resource.Shader;
 
 public class BasicShaderStage implements IShaderStage
 {

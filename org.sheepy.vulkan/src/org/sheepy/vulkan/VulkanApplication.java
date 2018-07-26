@@ -56,7 +56,7 @@ public abstract class VulkanApplication
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames;
 
-	public List<AbstractProcessPool> pipelinePools = new ArrayList<>();
+	public List<AbstractProcessPool<?>> pipelinePools = new ArrayList<>();
 
 	private int width;
 	private int height;
@@ -79,11 +79,11 @@ public abstract class VulkanApplication
 	{
 		try (MemoryStack stack = stackPush())
 		{
-			for (AbstractProcessPool pipelinePool : pipelinePools)
+			for (AbstractProcessPool<?> pipelinePool : pipelinePools)
 			{
 				if (pipelinePool instanceof SurfaceProcessPool)
 				{
-					((SurfaceProcessPool) pipelinePool).configure(window.getSurface());
+					((SurfaceProcessPool<?>) pipelinePool).configure(window.getSurface());
 				}
 				pipelinePool.allocateNode(stack);
 			}
@@ -143,11 +143,11 @@ public abstract class VulkanApplication
 	{
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			for (AbstractProcessPool pipelinePool : pipelinePools)
+			for (AbstractProcessPool<?> pipelinePool : pipelinePools)
 			{
 				if (pipelinePool instanceof SurfaceProcessPool)
 				{
-					((SurfaceProcessPool) pipelinePool).resize(stack, surface);
+					((SurfaceProcessPool<?>) pipelinePool).resize(stack, surface);
 				}
 			}
 		}
@@ -214,7 +214,7 @@ public abstract class VulkanApplication
 
 	public void cleanup()
 	{
-		for (AbstractProcessPool pipelinePool : pipelinePools)
+		for (AbstractProcessPool<?> pipelinePool : pipelinePools)
 		{
 			pipelinePool.freeNode();
 		}
@@ -239,7 +239,7 @@ public abstract class VulkanApplication
 		return window;
 	}
 
-	public void attachPipelinePool(AbstractProcessPool pipelinePool)
+	public void attachPipelinePool(AbstractProcessPool<?> pipelinePool)
 	{
 		pipelinePools.add(pipelinePool);
 	}

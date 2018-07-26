@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.shader;
+package org.sheepy.vulkan.resource;
 
 import static org.lwjgl.system.MemoryUtil.NULL;
 import static org.lwjgl.vulkan.VK10.*;
@@ -11,13 +11,13 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.lwjgl.vulkan.VkShaderModuleCreateInfo;
-import org.sheepy.vulkan.common.IAllocable;
+import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.IPipelineUnit;
 import org.sheepy.vulkan.util.VulkanBufferUtils;
 import org.sheepy.vulkan.util.VulkanUtils;
 
-public class Shader implements IAllocable, IPipelineUnit
+public class Shader implements IPipelineUnit, IResource
 {
 	private static final ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memUTF8("main");
 
@@ -35,7 +35,7 @@ public class Shader implements IAllocable, IPipelineUnit
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, CommandPool commandPool)
 	{
 		ByteBuffer shaderCode;
 		try

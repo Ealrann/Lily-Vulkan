@@ -2,7 +2,6 @@ package test.vulkan.gameoflife;
 
 import org.sheepy.vulkan.VulkanApplication;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.AbstractProcessPool;
 
 import test.vulkan.gameoflife.pipelinepool.BoardPool;
 import test.vulkan.gameoflife.pipelinepool.RenderPipelinePool;
@@ -13,8 +12,8 @@ public class GameOfLifeApplication extends VulkanApplication
 	private static final int FRAME_TIME_STEP_MS = (int) ((1f / TARGET_FPS) * 1000);
 
 	private BoardPool boardPool;
-	private AbstractProcessPool renderPool;
-	
+	private RenderPipelinePool renderPool;
+
 	public GameOfLifeApplication(int width, int height)
 	{
 		super(width, height);
@@ -99,7 +98,7 @@ public class GameOfLifeApplication extends VulkanApplication
 				}
 				else
 				{
-					countFrame ++;
+					countFrame++;
 				}
 			}
 		}

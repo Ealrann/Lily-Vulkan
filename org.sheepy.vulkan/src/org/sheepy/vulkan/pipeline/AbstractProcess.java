@@ -10,40 +10,32 @@ import org.sheepy.vulkan.command.AbstractCommandBuffer;
 import org.sheepy.vulkan.command.ECommandStage;
 import org.sheepy.vulkan.common.AllocationNode;
 import org.sheepy.vulkan.common.IAllocationObject;
-import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.DescriptorSet;
 import org.sheepy.vulkan.descriptor.IDescriptorSetContext;
-import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.compute.ComputePipeline;
 
 public abstract class AbstractProcess<T extends AbstractCommandBuffer> extends AllocationNode
 {
-	protected final LogicalDevice logicalDevice;
+	protected final Context context;
+
 	private int bindPoint;
 
 	private ECommandStage currentStage;
-	protected final DescriptorPool descriptorPool;
 
-	public AbstractProcess(LogicalDevice logicalDevice, int bindPoint, ECommandStage stage)
+	public AbstractProcess(Context context, int bindPoint, ECommandStage stage)
 	{
-		this.logicalDevice = logicalDevice;
+		this.context = context;
 		this.bindPoint = bindPoint;
 		this.currentStage = stage;
-
-		descriptorPool = new DescriptorPool(logicalDevice);
-		allocationObjects.add(descriptorPool);
 	}
 
 	public void addProcessUnit(IProcessUnit unit)
 	{
 		addProcessUnit(unit, currentStage);
 	}
-	
+
 	public void addProcessUnit(IProcessUnit unit, ECommandStage stage)
 	{
 		getStageList(stage).add(unit);
-
-		bindUnit(unit);
 
 		if (unit instanceof IAllocationObject)
 		{
@@ -51,7 +43,7 @@ public abstract class AbstractProcess<T extends AbstractCommandBuffer> extends A
 		}
 		if (unit instanceof IDescriptorSetContext)
 		{
-			descriptorPool.addConfiguration((IDescriptorSetContext) unit);
+			context.descriptorPool.addContext((IDescriptorSetContext) unit);
 		}
 	}
 
@@ -62,7 +54,7 @@ public abstract class AbstractProcess<T extends AbstractCommandBuffer> extends A
 			if (unit instanceof IDescriptorSetContext)
 			{
 				IDescriptorSetContext context = (IDescriptorSetContext) unit;
-				DescriptorSet descriptorSet = descriptorPool.getDescriptorSet(context);
+				DescriptorSet descriptorSet = this.context.descriptorPool.getDescriptorSet(context);
 				if (descriptorSet != null)
 				{
 					long pipelineLayout = context.getLayoutId();
@@ -98,12 +90,11 @@ public abstract class AbstractProcess<T extends AbstractCommandBuffer> extends A
 		{
 			((IExecutable) unit).execute(commandBuffer.getVkCommandBuffer());
 		}
-		else 
+		else
 		{
 			doExecuteUnit(commandBuffer, unit);
 		}
 	}
-
 
 	public boolean isDirty()
 	{
@@ -111,7 +102,8 @@ public abstract class AbstractProcess<T extends AbstractCommandBuffer> extends A
 		{
 			for (IProcessUnit unit : getStageList(stage))
 			{
-				if (unit instanceof ComputePipeline && ((ComputePipeline) unit).isDirty())
+				if (unit instanceof AbstractCompositePipeline
+						&& ((AbstractCompositePipeline) unit).isDirty())
 				{
 					return true;
 				}
@@ -127,6 +119,6 @@ public abstract class AbstractProcess<T extends AbstractCommandBuffer> extends A
 	}
 
 	protected abstract List<IProcessUnit> getStageList(ECommandStage stage);
-	protected abstract void bindUnit(IProcessUnit unit);
+
 	protected abstract void doExecuteUnit(T commandBuffer, IProcessUnit unit);
 }

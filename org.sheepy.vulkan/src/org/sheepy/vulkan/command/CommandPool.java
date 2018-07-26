@@ -9,7 +9,7 @@ import org.sheepy.vulkan.device.LogicalDevice;
 
 public class CommandPool implements IAllocable
 {
-	private LogicalDevice logicalDevice;
+	public final LogicalDevice logicalDevice;
 	private int queueIndex;
 	private boolean allowReset;
 

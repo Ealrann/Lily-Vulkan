@@ -13,7 +13,7 @@ import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor.Vertex;
-import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.resource.Shader;
 
 import test.vulkan.mesh.Mesh;
 import test.vulkan.mesh.MeshPipelineConfiguration;
@@ -39,8 +39,7 @@ public class MainTriangle
 		GraphicConfiguration configuration = new GraphicConfiguration(logicalDevice);
 		configuration.renderPass = new MeshRenderPass();
 
-		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(logicalDevice,
-				configuration);
+		MeshRenderProcessPool pipelinePool = new MeshRenderProcessPool(configuration);
 		CommandPool commandPool = pipelinePool.getCommandPool();
 
 		createMeshBuffer(logicalDevice, commandPool);
@@ -49,7 +48,7 @@ public class MainTriangle
 				logicalDevice, commandPool, mesh);
 
 		pipelinePool.configure(pipelineConfiguration);
-		
+
 		app.attachPipelinePool(pipelinePool);
 
 		try

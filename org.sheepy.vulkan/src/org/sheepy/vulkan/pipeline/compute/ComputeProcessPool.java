@@ -2,9 +2,7 @@ package org.sheepy.vulkan.pipeline.compute;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubmitInfo;
@@ -14,20 +12,21 @@ import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.AbstractProcessPool;
+import org.sheepy.vulkan.pipeline.Configuration;
 import org.sheepy.vulkan.pipeline.PipelineSubmission;
 
-public class ComputeProcessPool extends AbstractProcessPool implements ISignalEmitter, IAllocable
+public class ComputeProcessPool extends AbstractProcessPool<ComputeProcess>
+		implements ISignalEmitter, IAllocable
 {
 	protected ComputeCommandBuffers commandBuffers;
 	protected PipelineSubmission submission;
 
 	protected int processIndex = 0;
 
-	private List<ComputeProcess> processes = new ArrayList<>();
-
 	public ComputeProcessPool(LogicalDevice logicalDevice, boolean allowReset)
 	{
-		super(logicalDevice, logicalDevice.getQueueManager().getComputeQueueIndex(), allowReset);
+		super(new Configuration(logicalDevice),
+				logicalDevice.getQueueManager().getComputeQueueIndex(), allowReset);
 
 		commandBuffers = new ComputeCommandBuffers(commandPool, this);
 		submission = new PipelineSubmission(logicalDevice, commandBuffers, Collections.emptyList(),
@@ -37,15 +36,11 @@ public class ComputeProcessPool extends AbstractProcessPool implements ISignalEm
 		allocationObjects.add(submission);
 	}
 
-	public void addProcess(ComputeProcess process)
+	public ComputeProcess newComputeProcess()
 	{
-		processes.add(process);
-		allocationObjects.add(process);
-	}
-
-	public List<ComputeProcess> getProcesses()
-	{
-		return processes;
+		ComputeProcess res = new ComputeProcess(context);
+		addProcess(res);
+		return res;
 	}
 
 	@Override

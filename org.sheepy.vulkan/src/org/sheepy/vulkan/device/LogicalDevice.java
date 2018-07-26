@@ -15,7 +15,7 @@ import org.lwjgl.vulkan.VkDeviceCreateInfo;
 import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.vulkan.queue.QueueManager;
-import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.resource.Shader;
 import org.sheepy.vulkan.window.Surface;
 import org.sheepy.vulkan.window.Window;
 

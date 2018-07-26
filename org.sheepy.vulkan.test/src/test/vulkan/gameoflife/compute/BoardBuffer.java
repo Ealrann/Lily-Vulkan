@@ -16,16 +16,15 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.buffer.Buffer;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.SingleTimeCommand;
-import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.resource.IResource;
 
 import test.vulkan.gameoflife.Board;
 
-public class BoardBuffer implements IDescriptor, IAllocable
+public class BoardBuffer implements IDescriptor, IResource
 {
 	private LogicalDevice logicalDevice;
-	private CommandPool commandPool;
 	private VkQueue queue;
 	
 	private int width;
@@ -34,10 +33,9 @@ public class BoardBuffer implements IDescriptor, IAllocable
 
 	private Buffer buffer;
 
-	public BoardBuffer(LogicalDevice logicalDevice, Board board, CommandPool commandPool, VkQueue queue)
+	public BoardBuffer(LogicalDevice logicalDevice, Board board, VkQueue queue)
 	{
 		this.logicalDevice = logicalDevice;
-		this.commandPool = commandPool;
 		this.queue = queue;
 		
 		this.width = board.getWidth();
@@ -53,7 +51,7 @@ public class BoardBuffer implements IDescriptor, IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, CommandPool commandPool)
 	{
 		long size = board.getWidth() * board.getHeight();
 		buffer.allocate();

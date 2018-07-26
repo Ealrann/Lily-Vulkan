@@ -28,30 +28,27 @@ public class BoardPool extends ComputeProcessPool
 
 	public void buildPipelines()
 	{
-		BoardBuffer boardBuffer1 = new BoardBuffer(logicalDevice, board, commandPool,
+		BoardBuffer boardBuffer1 = new BoardBuffer(logicalDevice, board,
 				logicalDevice.getQueueManager().getComputeQueue());
-		BoardBuffer boardBuffer2 = new BoardBuffer(logicalDevice, board, commandPool,
+		BoardBuffer boardBuffer2 = new BoardBuffer(logicalDevice, board,
 				logicalDevice.getQueueManager().getComputeQueue());
 
-		allocationObjects.add(boardBuffer1);
-		allocationObjects.add(boardBuffer2);
+		addResource(boardBuffer1);
+		addResource(boardBuffer2);
 
-		image = new BoardImage(logicalDevice, commandPool,
-				logicalDevice.getQueueManager().getComputeQueue(), board.getWidth(),
-				board.getHeight(), VK_FORMAT_R8G8B8A8_UNORM);
+		image = new BoardImage(logicalDevice, logicalDevice.getQueueManager().getComputeQueue(),
+				board.getWidth(), board.getHeight(), VK_FORMAT_R8G8B8A8_UNORM);
 
-		allocationObjects.add(image);
+		addResource(image);
 
-		ComputeProcess boardProcess1 = new ComputeProcess(logicalDevice);
-		ComputeProcess boardProcess2 = new ComputeProcess(logicalDevice);
+		ComputeProcess boardProcess1 = new ComputeProcess(context);
+		ComputeProcess boardProcess2 = new ComputeProcess(context);
 
-		LifeCompute lifeComputer1 = new LifeCompute(logicalDevice, boardBuffer2,
-				boardBuffer1);
-		LifeCompute lifeComputer2 = new LifeCompute(logicalDevice, boardBuffer1,
-				boardBuffer2);
+		LifeCompute lifeComputer1 = new LifeCompute(context, boardBuffer2, boardBuffer1);
+		LifeCompute lifeComputer2 = new LifeCompute(context, boardBuffer1, boardBuffer2);
 
-		PixelCompute pixelComputer1 = new PixelCompute(logicalDevice, boardBuffer1, image);
-		PixelCompute pixelComputer2 = new PixelCompute(logicalDevice, boardBuffer2, image);
+		PixelCompute pixelComputer1 = new PixelCompute(context, boardBuffer1, image);
+		PixelCompute pixelComputer2 = new PixelCompute(context, boardBuffer2, image);
 
 		boardProcess1.addProcessUnit(lifeComputer1);
 		boardProcess1.addProcessUnit(pixelComputer1);

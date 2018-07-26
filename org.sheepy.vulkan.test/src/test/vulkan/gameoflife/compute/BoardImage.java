@@ -12,14 +12,13 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.SingleTimeCommand;
-import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.resource.IResource;
 import org.sheepy.vulkan.view.ImageView;
 
-public class BoardImage implements IDescriptor, IAllocable
+public class BoardImage implements IDescriptor, IResource
 {
-	private CommandPool commandPool;
 	private VkQueue queue;
 	private int width;
 	private int height;
@@ -28,10 +27,9 @@ public class BoardImage implements IDescriptor, IAllocable
 	private Image image;
 	private ImageView imageView;
 
-	public BoardImage(LogicalDevice logicalDevice, CommandPool commandPool, VkQueue queue,
+	public BoardImage(LogicalDevice logicalDevice, VkQueue queue,
 			int width, int height, int imageFormat)
 	{
-		this.commandPool = commandPool;
 		this.queue = queue;
 		this.width = width;
 		this.height = height;
@@ -42,7 +40,7 @@ public class BoardImage implements IDescriptor, IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, CommandPool commandPool)
 	{
 		image.createImage(width, height, 1, imageFormat, VK_IMAGE_TILING_OPTIMAL,
 				VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_STORAGE_BIT,

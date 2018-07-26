@@ -7,13 +7,18 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
+import org.lwjgl.vulkan.VkDescriptorImageInfo;
+import org.lwjgl.vulkan.VkDescriptorPoolSize;
+import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
+import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.buffer.Buffer;
 import org.sheepy.vulkan.buffer.Image;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.command.SingleTimeCommand;
-import org.sheepy.vulkan.common.IAllocable;
+import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.resource.IResource;
 import org.sheepy.vulkan.view.ImageView;
 
 import glm_.vec2.Vec2i;
@@ -21,24 +26,18 @@ import imgui.IO;
 import imgui.ImGui;
 import kotlin.Triple;
 
-public class ImGuiFontTexture implements IAllocable
+public class ImGuiFontTexture implements IResource, IDescriptor
 {
 	private LogicalDevice logicalDevice;
-	private CommandPool commandPool;
-
 	private long sampler;
 	private Image image;
 	private ImageView imageView;
 
-	public ImGuiFontTexture(LogicalDevice logicalDevice, CommandPool commandPool)
-	{
-		this.logicalDevice = logicalDevice;
-		this.commandPool = commandPool;
-	}
-
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, CommandPool commandPool)
 	{
+		logicalDevice = commandPool.logicalDevice;
+		
 		long[] lArray = new long[1];
 		// Create font texture
 		IO io = ImGui.INSTANCE.getIo();
@@ -111,20 +110,45 @@ public class ImGuiFontTexture implements IAllocable
 	}
 
 	@Override
+	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
+	{
+		VkDescriptorPoolSize poolSizes = VkDescriptorPoolSize.callocStack(stack);
+		poolSizes.type(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
+		poolSizes.descriptorCount(1);
+		return poolSizes;
+	}
+
+	@Override
+	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
+	{
+		VkDescriptorSetLayoutBinding setLayoutBindings = VkDescriptorSetLayoutBinding
+				.callocStack(stack);
+		setLayoutBindings.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
+		setLayoutBindings.stageFlags(VK_SHADER_STAGE_FRAGMENT_BIT);
+		setLayoutBindings.descriptorCount(1);
+		return setLayoutBindings;
+	}
+
+	@Override
+	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
+	{
+		VkDescriptorImageInfo.Buffer fontDescriptor = VkDescriptorImageInfo.callocStack(1, stack);
+		fontDescriptor.get(0).set(sampler, imageView.getId(),
+				VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+
+		VkWriteDescriptorSet writeDescriptorSets = VkWriteDescriptorSet.callocStack(stack);
+		writeDescriptorSets.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		writeDescriptorSets.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
+		writeDescriptorSets.pImageInfo(fontDescriptor);
+		writeDescriptorSets.dstBinding(0);
+		return writeDescriptorSets;
+	}
+
+	@Override
 	public void free()
 	{
 		imageView.free();
 		image.free();
 		vkDestroySampler(logicalDevice.getVkDevice(), sampler, null);
-	}
-
-	public ImageView getImageView()
-	{
-		return imageView;
-	}
-
-	public long getSampler()
-	{
-		return sampler;
 	}
 }

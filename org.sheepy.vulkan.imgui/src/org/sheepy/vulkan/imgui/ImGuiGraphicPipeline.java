@@ -4,18 +4,12 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
+import java.util.Collections;
 
 import org.joml.Math;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkDescriptorImageInfo;
-import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
-import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
-import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
-import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
-import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineCacheCreateInfo;
 import org.lwjgl.vulkan.VkPipelineColorBlendAttachmentState;
@@ -34,12 +28,14 @@ import org.lwjgl.vulkan.VkRect2D;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
 import org.lwjgl.vulkan.VkViewport;
-import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.command.CommandPool;
+import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.common.IAllocable;
-import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
-import org.sheepy.vulkan.shader.Shader;
+import org.sheepy.vulkan.descriptor.IDescriptorSetContext;
+import org.sheepy.vulkan.pipeline.AbstractPipeline;
+import org.sheepy.vulkan.pipeline.graphic.GraphicContext;
+import org.sheepy.vulkan.pipeline.graphic.IGraphicExecutable;
+import org.sheepy.vulkan.pipeline.graphic.IGraphicProcessUnit;
+import org.sheepy.vulkan.resource.Shader;
 
 import glm_.vec2.Vec2;
 import glm_.vec2.Vec2i;
@@ -51,7 +47,8 @@ import imgui.IO;
 import imgui.ImGui;
 import imgui.Style;
 
-public class ImGuiPipeline implements IAllocable
+public class ImGuiGraphicPipeline extends AbstractPipeline
+		implements IAllocable, IGraphicProcessUnit, IGraphicExecutable, IDescriptorSetContext
 {
 	private final static String IMGUI_VERT_SHADER = "org/sheepy/vulkan/imgui/ui.vert.spv";
 	private final static String IMGUI_FRAG_SHADER = "org/sheepy/vulkan/imgui/ui.frag.spv";
@@ -60,14 +57,10 @@ public class ImGuiPipeline implements IAllocable
 	// ImGUI class
 	// ----------------------------------------------------------------------------
 	// Vulkan resources for rendering the UI
-	private ImGuiFontTexture font;
+	private final static ImGuiFontTexture font = new ImGuiFontTexture();
 	private long pipelineCache;
 	private long pipelineLayout;
 	private long pipeline;
-	private long descriptorPool;
-	private long descriptorSetLayout;
-	private long descriptorSet;
-	private VkDevice device;
 
 	private ImGui imgui;
 	private IO io;
@@ -95,31 +88,34 @@ public class ImGuiPipeline implements IAllocable
 	private VkRect2D.Buffer scissorRect;
 	private PushConstBlock pushConstBlock;
 
-	private LogicalDevice logicalDevice;
 	private UIDescriptor uiDescriptor;
-	private GraphicConfiguration configuration;
 	private ImGuiVertexBuffer texture;
-	
+
+	private GraphicContext context;
 	private Context ctx;
 
-	public ImGuiPipeline(CommandPool commandPool, GraphicConfiguration configuration,
-			UIDescriptor uiConfiguration)
-	{
-		this.logicalDevice = configuration.logicalDevice;
-		this.device = logicalDevice.getVkDevice();
-		this.configuration = configuration;
-		this.uiDescriptor = uiConfiguration;
+	boolean firstFrame = true;
+	private Shader vertShader;
+	private Shader fragShader;
 
+	public ImGuiGraphicPipeline(GraphicContext context, UIDescriptor uiConfiguration)
+	{
+		super(context, Collections.singletonList(font));
+		this.uiDescriptor = uiConfiguration;
+		this.context = context;
+		
 		ctx = new Context();
 		imgui = ImGui.INSTANCE;
-
-		texture = new ImGuiVertexBuffer(logicalDevice, commandPool);
-		font = new ImGuiFontTexture(logicalDevice, commandPool);
+		
+		context.resourceManager.addResource(font);
 	}
 
 	@Override
 	public void allocate(MemoryStack stack)
 	{
+		super.allocate(stack);
+		texture = new ImGuiVertexBuffer(context.logicalDevice, context.commandPool);
+
 		viewport = VkViewport.calloc(1);
 		pushConstBlock = new PushConstBlock();
 		scissorRect = VkRect2D.calloc(1);
@@ -127,9 +123,11 @@ public class ImGuiPipeline implements IAllocable
 		init();
 
 		texture.allocate(stack);
-		font.allocate(stack);
 
 		buildPipeline(stack);
+
+		newFrame();
+		updateBuffers();
 	}
 
 	@Override
@@ -137,7 +135,6 @@ public class ImGuiPipeline implements IAllocable
 	{
 		// Release all Vulkan resources required for rendering imGui
 		texture.free();
-		font.free();
 
 		viewport.free();
 		pushConstBlock = null;
@@ -146,13 +143,12 @@ public class ImGuiPipeline implements IAllocable
 		vertShader.free();
 		fragShader.free();
 
-		vkDestroyPipelineCache(device, pipelineCache, null);
-		vkDestroyPipeline(device, pipeline, null);
-		vkDestroyPipelineLayout(device, pipelineLayout, null);
-		vkDestroyDescriptorPool(device, descriptorPool, null);
-		vkDestroyDescriptorSetLayout(device, descriptorSetLayout, null);
-		
+		vkDestroyPipelineCache(context.getVkDevice(), pipelineCache, null);
+		vkDestroyPipeline(context.getVkDevice(), pipeline, null);
+		vkDestroyPipelineLayout(context.getVkDevice(), pipelineLayout, null);
+
 		ctx.shutdown();
+		super.free();
 	}
 
 	// Initialize styles, keys, etc.
@@ -169,6 +165,17 @@ public class ImGuiPipeline implements IAllocable
 		io.setDisplayFramebufferScale(new Vec2(1.0f, 1.0f));
 	}
 
+	@Override
+	public boolean update()
+	{
+		if (newFrame())
+		{
+			updateBuffers();
+			return true;
+		}
+		return false;
+	}
+
 	private void VK_CHECK_RESULT(int res)
 	{
 		if (res != VK_SUCCESS)
@@ -180,66 +187,11 @@ public class ImGuiPipeline implements IAllocable
 	// Initialize all Vulkan resources used by the ui
 	public void buildPipeline(MemoryStack stack)
 	{
-		// Descriptor pool
-		VkDescriptorPoolSize.Buffer poolSizes = VkDescriptorPoolSize.callocStack(1, stack);
-		poolSizes.type(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		poolSizes.descriptorCount(1);
-
-		VkDescriptorPoolCreateInfo descriptorPoolInfo = VkDescriptorPoolCreateInfo
-				.callocStack(stack);
-		descriptorPoolInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO);
-		descriptorPoolInfo.pPoolSizes(poolSizes);
-		descriptorPoolInfo.maxSets(2);
-		VK_CHECK_RESULT(vkCreateDescriptorPool(device, descriptorPoolInfo, null, lArray));
-		descriptorPool = lArray[0];
-
-		// Descriptor set layout
-		VkDescriptorSetLayoutBinding.Buffer setLayoutBindings = VkDescriptorSetLayoutBinding
-				.callocStack(1, stack);
-		setLayoutBindings.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		setLayoutBindings.stageFlags(VK_SHADER_STAGE_FRAGMENT_BIT);
-		setLayoutBindings.descriptorCount(1);
-
-		VkDescriptorSetLayoutCreateInfo descriptorLayout = VkDescriptorSetLayoutCreateInfo
-				.callocStack(stack);
-		descriptorLayout.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO);
-		descriptorLayout.pBindings(setLayoutBindings);
-		VK_CHECK_RESULT(vkCreateDescriptorSetLayout(device, descriptorLayout, null, lArray));
-		descriptorSetLayout = lArray[0];
-
-		LongBuffer lBuffer = MemoryUtil.memAllocLong(1);
-		lBuffer.put(descriptorSetLayout);
-		lBuffer.flip();
-
-		// Descriptor set
-		VkDescriptorSetAllocateInfo allocInfo = VkDescriptorSetAllocateInfo.callocStack(stack);
-		allocInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO);
-		allocInfo.descriptorPool(descriptorPool);
-		allocInfo.pSetLayouts(lBuffer);
-		VK_CHECK_RESULT(vkAllocateDescriptorSets(device, allocInfo, lArray));
-		MemoryUtil.memFree(lBuffer);
-
-		descriptorSet = lArray[0];
-
-		VkDescriptorImageInfo.Buffer fontDescriptor = VkDescriptorImageInfo.callocStack(1, stack);
-		fontDescriptor.get(0).set(font.getSampler(), font.getImageView().getId(),
-				VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-
-		VkWriteDescriptorSet.Buffer writeDescriptorSets = VkWriteDescriptorSet.callocStack(1,
-				stack);
-		writeDescriptorSets.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
-		writeDescriptorSets.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		writeDescriptorSets.pImageInfo(fontDescriptor);
-		writeDescriptorSets.dstSet(descriptorSet);
-		writeDescriptorSets.dstBinding(0);
-
-		vkUpdateDescriptorSets(device, writeDescriptorSets, null);
-
 		// Pipeline cache
 		VkPipelineCacheCreateInfo pipelineCacheCreateInfo = VkPipelineCacheCreateInfo
 				.callocStack(stack);
 		pipelineCacheCreateInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO);
-		VK_CHECK_RESULT(vkCreatePipelineCache(device, pipelineCacheCreateInfo, null, lArray));
+		VK_CHECK_RESULT(vkCreatePipelineCache(context.getVkDevice(), pipelineCacheCreateInfo, null, lArray));
 		pipelineCache = lArray[0];
 
 		// Pipeline layout
@@ -249,7 +201,7 @@ public class ImGuiPipeline implements IAllocable
 		pushConstantRange.get(0).set(VK_SHADER_STAGE_VERTEX_BIT, 0, 16);
 
 		LongBuffer layoutBuffer = MemoryUtil.memAllocLong(1);
-		layoutBuffer.put(descriptorSetLayout);
+		layoutBuffer.put(context.descriptorPool.getDescriptorSet(this).getLayoutId());
 		layoutBuffer.flip();
 
 		VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo = VkPipelineLayoutCreateInfo
@@ -257,7 +209,7 @@ public class ImGuiPipeline implements IAllocable
 		pipelineLayoutCreateInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
 		pipelineLayoutCreateInfo.pSetLayouts(layoutBuffer);
 		pipelineLayoutCreateInfo.pPushConstantRanges(pushConstantRange);
-		VK_CHECK_RESULT(vkCreatePipelineLayout(device, pipelineLayoutCreateInfo, null, lArray));
+		VK_CHECK_RESULT(vkCreatePipelineLayout(context.getVkDevice(), pipelineLayoutCreateInfo, null, lArray));
 		pipelineLayout = lArray[0];
 
 		// Setup graphics pipeline for UI rendering
@@ -320,6 +272,7 @@ public class ImGuiPipeline implements IAllocable
 		VkPipelineDynamicStateCreateInfo dynamicState = VkPipelineDynamicStateCreateInfo.malloc();
 		dynamicState.sType(VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO);
 		dynamicState.pDynamicStates(dynamicStates);
+		dynamicState.pNext(VK_NULL_HANDLE);
 		dynamicState.flags(0);
 
 		VkPipelineShaderStageCreateInfo.Buffer shaderStages = VkPipelineShaderStageCreateInfo
@@ -329,7 +282,7 @@ public class ImGuiPipeline implements IAllocable
 				.callocStack(1, stack);
 		pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
 		pipelineCreateInfo.layout(pipelineLayout);
-		pipelineCreateInfo.renderPass(configuration.renderPass.getId());
+		pipelineCreateInfo.renderPass(context.configuration.renderPass.getId());
 
 		pipelineCreateInfo.pInputAssemblyState(inputAssemblyState);
 		pipelineCreateInfo.pRasterizationState(rasterizationState);
@@ -354,24 +307,20 @@ public class ImGuiPipeline implements IAllocable
 		vertexInputState.pVertexAttributeDescriptions(vertexInputAttributes);
 		pipelineCreateInfo.pVertexInputState(vertexInputState);
 
-		vertShader = new Shader(logicalDevice, IMGUI_VERT_SHADER, VK_SHADER_STAGE_VERTEX_BIT);
-		fragShader = new Shader(logicalDevice, IMGUI_FRAG_SHADER, VK_SHADER_STAGE_FRAGMENT_BIT);
+		vertShader = new Shader(context.logicalDevice, IMGUI_VERT_SHADER, VK_SHADER_STAGE_VERTEX_BIT);
+		fragShader = new Shader(context.logicalDevice, IMGUI_FRAG_SHADER, VK_SHADER_STAGE_FRAGMENT_BIT);
 
-		vertShader.allocate(stack);
-		fragShader.allocate(stack);
+		vertShader.allocate(stack, null);
+		fragShader.allocate(stack, null);
 
 		shaderStages.put(vertShader.allocInfo());
 		shaderStages.put(fragShader.allocInfo());
 		shaderStages.flip();
 
 		VK_CHECK_RESULT(
-				vkCreateGraphicsPipelines(device, pipelineCache, pipelineCreateInfo, null, lArray));
+				vkCreateGraphicsPipelines(context.getVkDevice(), pipelineCache, pipelineCreateInfo, null, lArray));
 		pipeline = lArray[0];
 	}
-
-	boolean firstFrame = true;
-	private Shader vertShader;
-	private Shader fragShader;
 
 	// Starts a new imGui frame and sets up windows and ui elements
 	public boolean newFrame()
@@ -402,11 +351,10 @@ public class ImGuiPipeline implements IAllocable
 	}
 
 	// Draw current imGui frame into a command buffer
-	public void drawFrame(VkCommandBuffer commandBuffer)
+	@Override
+	public void execute(RenderCommandBuffer renderCommandBuffer)
 	{
-		lArray[0] = descriptorSet;
-		vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0,
-				lArray, null);
+		VkCommandBuffer commandBuffer = renderCommandBuffer.getVkCommandBuffer();
 		vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
 
 		texture.bind(commandBuffer);

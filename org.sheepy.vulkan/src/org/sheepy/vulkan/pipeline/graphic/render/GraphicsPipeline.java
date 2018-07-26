@@ -7,31 +7,26 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
-import org.sheepy.vulkan.descriptor.DescriptorPool;
-import org.sheepy.vulkan.pipeline.AbstractPipeline;
+import org.sheepy.vulkan.pipeline.AbstractCompositePipeline;
 import org.sheepy.vulkan.pipeline.IProcessUnit;
 import org.sheepy.vulkan.pipeline.graphic.GraphicContext;
 import org.sheepy.vulkan.pipeline.graphic.IGraphicProcessUnit;
 
-public abstract class GraphicsPipeline extends AbstractPipeline implements IGraphicProcessUnit
+public abstract class GraphicsPipeline extends AbstractCompositePipeline
+		implements IGraphicProcessUnit
 {
 	protected final GraphicPipelineConfiguration pipelineConfiguration;
 	protected GraphicContext context;
 
-	public GraphicsPipeline(GraphicPipelineConfiguration pipelineConfiguration)
+	public GraphicsPipeline(GraphicContext context,
+			GraphicPipelineConfiguration pipelineConfiguration)
 	{
-		super(pipelineConfiguration.descriptors);
+		super(context, pipelineConfiguration.descriptors);
 
+		this.context = context;
 		this.pipelineConfiguration = pipelineConfiguration;
 
 		addPipelineUnit(pipelineConfiguration);
-	}
-
-	@Override
-	public void bindContext(DescriptorPool descriptorPool, GraphicContext context)
-	{
-		super.bindContext(context.logicalDevice, descriptorPool);
-		this.context = context;
 	}
 
 	@Override
