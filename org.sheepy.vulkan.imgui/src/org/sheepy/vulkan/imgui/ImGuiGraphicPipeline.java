@@ -3,7 +3,6 @@ package org.sheepy.vulkan.imgui;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.IntBuffer;
-import java.nio.LongBuffer;
 import java.util.Collections;
 
 import org.joml.Math;
@@ -11,23 +10,21 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
-import org.lwjgl.vulkan.VkPipelineCacheCreateInfo;
 import org.lwjgl.vulkan.VkPipelineColorBlendAttachmentState;
 import org.lwjgl.vulkan.VkPipelineColorBlendStateCreateInfo;
 import org.lwjgl.vulkan.VkPipelineDepthStencilStateCreateInfo;
 import org.lwjgl.vulkan.VkPipelineDynamicStateCreateInfo;
 import org.lwjgl.vulkan.VkPipelineInputAssemblyStateCreateInfo;
-import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.lwjgl.vulkan.VkPipelineMultisampleStateCreateInfo;
 import org.lwjgl.vulkan.VkPipelineRasterizationStateCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkPipelineViewportStateCreateInfo;
-import org.lwjgl.vulkan.VkPushConstantRange;
 import org.lwjgl.vulkan.VkRect2D;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
 import org.lwjgl.vulkan.VkViewport;
+import org.sheepy.vulkan.buffer.PushConstant;
 import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.IDescriptorSetContext;
@@ -58,8 +55,6 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 	// ----------------------------------------------------------------------------
 	// Vulkan resources for rendering the UI
 	private final static ImGuiFontTexture font = new ImGuiFontTexture();
-	private long pipelineCache;
-	private long pipelineLayout;
 	private long pipeline;
 
 	private ImGui imgui;
@@ -102,11 +97,21 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		super(context, Collections.singletonList(font));
 		this.uiDescriptor = uiConfiguration;
 		this.context = context;
-		
+
 		imgui = ImGui.INSTANCE;
 		new Context();
-		
+
+		setPushConstant(new PushConstant(context.logicalDevice, VK_SHADER_STAGE_VERTEX_BIT, 16));
+
 		texture = new ImGuiVertexBuffer(context.logicalDevice, context.commandPool);
+
+		vertShader = new Shader(context.logicalDevice, IMGUI_VERT_SHADER,
+				VK_SHADER_STAGE_VERTEX_BIT);
+		fragShader = new Shader(context.logicalDevice, IMGUI_FRAG_SHADER,
+				VK_SHADER_STAGE_FRAGMENT_BIT);
+
+		context.resourceManager.addResource(vertShader);
+		context.resourceManager.addResource(fragShader);
 
 		context.resourceManager.addResource(font);
 		context.resourceManager.addResource(texture);
@@ -118,7 +123,7 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		super.allocate(stack);
 
 		firstFrame = true;
-		
+
 		viewport = VkViewport.calloc(1);
 		pushConstBlock = new PushConstBlock();
 		scissorRect = VkRect2D.calloc(1);
@@ -139,17 +144,13 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		pushConstBlock = null;
 		scissorRect.free();
 
-		vertShader.free();
-		fragShader.free();
-
-		vkDestroyPipelineCache(context.getVkDevice(), pipelineCache, null);
 		vkDestroyPipeline(context.getVkDevice(), pipeline, null);
 
 		super.free();
 	}
 
 	// Initialize styles, keys, etc.
-	public void init()
+	private void init()
 	{
 		// Color scheme
 		Style style = imgui.getStyle();
@@ -173,6 +174,76 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		return false;
 	}
 
+	// Starts a new imGui frame and sets up windows and ui elements
+	private boolean newFrame()
+	{
+		imgui.newFrame();
+
+		if (uiDescriptor.newFrame(imgui) || firstFrame)
+		{
+			// Render to generate draw buffers
+			imgui.render();
+			firstFrame = false;
+			return true;
+		}
+		else
+		{
+			imgui.endFrame();
+			return false;
+		}
+	}
+
+	// Update vertex and index buffer containing the imGui elements when
+	// required
+	public void updateBuffers()
+	{
+		DrawData imDrawData = imgui.getDrawData();
+
+		if (imDrawData != null) texture.update(imDrawData);
+	}
+
+	// Draw current imGui frame into a command buffer
+	@Override
+	public void execute(RenderCommandBuffer renderCommandBuffer)
+	{
+		VkCommandBuffer commandBuffer = renderCommandBuffer.getVkCommandBuffer();
+		vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
+
+		texture.bind(commandBuffer);
+
+		viewport.get(0).set(0, 0, io.getDisplaySize().getX(), io.getDisplaySize().getY(), 1, 1);
+		vkCmdSetViewport(commandBuffer, 0, viewport);
+
+		pushConstBlock.scale.setX(2.0f / io.getDisplaySize().getX());
+		pushConstBlock.scale.setY(2.0f / io.getDisplaySize().getY());
+		vkCmdPushConstants(commandBuffer, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0,
+				pushConstBlock.toArray());
+
+		// Render commands
+		int vertexOffset = 0;
+		int indexOffset = 0;
+		DrawData imDrawData = imgui.getDrawData();
+		for (int i = 0; i < imDrawData.getCmdListsCount(); i++)
+		{
+			DrawList cmd_list = imDrawData.getCmdLists().get(i);
+			for (int j = 0; j < cmd_list.getCmdBuffer().size(); j++)
+			{
+				DrawCmd pcmd = cmd_list.getCmdBuffer().get(j);
+				scissorRect.offset().set((int) Math.max(pcmd.getClipRect().getX(), 0),
+						(int) Math.max(pcmd.getClipRect().getY(), 0));
+				scissorRect.extent()
+						.width((int) (pcmd.getClipRect().getZ() - pcmd.getClipRect().getX()));
+				scissorRect.extent()
+						.height((int) (pcmd.getClipRect().getW() - pcmd.getClipRect().getY()));
+				vkCmdSetScissor(commandBuffer, 0, scissorRect);
+				vkCmdDrawIndexed(commandBuffer, pcmd.getElemCount(), 1, indexOffset, vertexOffset,
+						0);
+				indexOffset += pcmd.getElemCount();
+			}
+			vertexOffset += cmd_list.getVtxBuffer().size();
+		}
+	}
+
 	private void VK_CHECK_RESULT(int res)
 	{
 		if (res != VK_SUCCESS)
@@ -184,31 +255,6 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 	// Initialize all Vulkan resources used by the ui
 	public void buildPipeline(MemoryStack stack)
 	{
-		// Pipeline cache
-		VkPipelineCacheCreateInfo pipelineCacheCreateInfo = VkPipelineCacheCreateInfo
-				.callocStack(stack);
-		pipelineCacheCreateInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO);
-		VK_CHECK_RESULT(vkCreatePipelineCache(context.getVkDevice(), pipelineCacheCreateInfo, null, lArray));
-		pipelineCache = lArray[0];
-
-		// Pipeline layout
-		// Push constants for UI rendering parameters
-		VkPushConstantRange.Buffer pushConstantRange = VkPushConstantRange.callocStack(1, stack);
-		// 16 should be for sizeof(PushConstBlock)
-		pushConstantRange.get(0).set(VK_SHADER_STAGE_VERTEX_BIT, 0, 16);
-
-		LongBuffer layoutBuffer = MemoryUtil.memAllocLong(1);
-		layoutBuffer.put(context.descriptorPool.getDescriptorSet(this).getLayoutId());
-		layoutBuffer.flip();
-
-		VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo = VkPipelineLayoutCreateInfo
-				.callocStack(stack);
-		pipelineLayoutCreateInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
-		pipelineLayoutCreateInfo.pSetLayouts(layoutBuffer);
-		pipelineLayoutCreateInfo.pPushConstantRanges(pushConstantRange);
-		VK_CHECK_RESULT(vkCreatePipelineLayout(context.getVkDevice(), pipelineLayoutCreateInfo, null, lArray));
-		pipelineLayout = lArray[0];
-
 		// Setup graphics pipeline for UI rendering
 		VkPipelineInputAssemblyStateCreateInfo inputAssemblyState = VkPipelineInputAssemblyStateCreateInfo
 				.callocStack(stack);
@@ -304,88 +350,12 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		vertexInputState.pVertexAttributeDescriptions(vertexInputAttributes);
 		pipelineCreateInfo.pVertexInputState(vertexInputState);
 
-		vertShader = new Shader(context.logicalDevice, IMGUI_VERT_SHADER, VK_SHADER_STAGE_VERTEX_BIT);
-		fragShader = new Shader(context.logicalDevice, IMGUI_FRAG_SHADER, VK_SHADER_STAGE_FRAGMENT_BIT);
-
-		vertShader.allocate(stack, null);
-		fragShader.allocate(stack, null);
-
 		shaderStages.put(vertShader.allocInfo());
 		shaderStages.put(fragShader.allocInfo());
 		shaderStages.flip();
 
-		VK_CHECK_RESULT(
-				vkCreateGraphicsPipelines(context.getVkDevice(), pipelineCache, pipelineCreateInfo, null, lArray));
+		VK_CHECK_RESULT(vkCreateGraphicsPipelines(context.getVkDevice(), VK_NULL_HANDLE,
+				pipelineCreateInfo, null, lArray));
 		pipeline = lArray[0];
-	}
-
-	// Starts a new imGui frame and sets up windows and ui elements
-	public boolean newFrame()
-	{
-		imgui.newFrame();
-
-		if (uiDescriptor.newFrame(imgui) || firstFrame)
-		{
-			// Render to generate draw buffers
-			imgui.render();
-			firstFrame = false;
-			return true;
-		}
-		else
-		{
-			imgui.endFrame();
-			return false;
-		}
-	}
-
-	// Update vertex and index buffer containing the imGui elements when
-	// required
-	public void updateBuffers()
-	{
-		DrawData imDrawData = imgui.getDrawData();
-
-		if (imDrawData != null) texture.update(imDrawData);
-	}
-
-	// Draw current imGui frame into a command buffer
-	@Override
-	public void execute(RenderCommandBuffer renderCommandBuffer)
-	{
-		VkCommandBuffer commandBuffer = renderCommandBuffer.getVkCommandBuffer();
-		vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
-
-		texture.bind(commandBuffer);
-
-		viewport.get(0).set(0, 0, io.getDisplaySize().getX(), io.getDisplaySize().getY(), 1, 1);
-		vkCmdSetViewport(commandBuffer, 0, viewport);
-
-		pushConstBlock.scale.setX(2.0f / io.getDisplaySize().getX());
-		pushConstBlock.scale.setY(2.0f / io.getDisplaySize().getY());
-		vkCmdPushConstants(commandBuffer, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0,
-				pushConstBlock.toArray());
-
-		// Render commands
-		int vertexOffset = 0;
-		int indexOffset = 0;
-		DrawData imDrawData = imgui.getDrawData();
-		for (int i = 0; i < imDrawData.getCmdListsCount(); i++)
-		{
-			DrawList cmd_list = imDrawData.getCmdLists().get(i);
-			for (int j = 0; j < cmd_list.getCmdBuffer().size(); j++)
-			{
-				DrawCmd pcmd = cmd_list.getCmdBuffer().get(j);
-				scissorRect.offset().set((int) Math.max(pcmd.getClipRect().getX(), 0),
-						(int) Math.max(pcmd.getClipRect().getY(), 0));
-				scissorRect.extent()
-						.width((int) (pcmd.getClipRect().getZ() - pcmd.getClipRect().getX()));
-				scissorRect.extent()
-						.height((int) (pcmd.getClipRect().getW() - pcmd.getClipRect().getY()));
-				vkCmdSetScissor(commandBuffer, 0, scissorRect);
-				vkCmdDrawIndexed(commandBuffer, pcmd.getElemCount(), 1, indexOffset, vertexOffset,
-						0);
-				indexOffset += pcmd.getElemCount();
-			}
-			vertexOffset += cmd_list.getVtxBuffer().size();
-		}
 	}
 }

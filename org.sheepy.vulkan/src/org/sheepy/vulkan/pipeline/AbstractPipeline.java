@@ -58,7 +58,6 @@ public abstract class AbstractPipeline extends AllocationNode
 	{
 		// Create Pipeline Layout
 		// -----------------------
-
 		DescriptorSet descriptorSet = context.descriptorPool.getDescriptorSet(this);
 		LongBuffer bDescriptorSet = null;
 		if (descriptorSet != null)

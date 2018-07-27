@@ -1,7 +1,5 @@
 package org.sheepy.vulkan.buffer;
 
-import static org.lwjgl.vulkan.VK10.VK_SHADER_STAGE_VERTEX_BIT;
-
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
@@ -13,6 +11,7 @@ import org.sheepy.vulkan.device.LogicalDevice;
 public class PushConstant implements IAllocable
 {
 	public final int size;
+	public final int stage;
 	public ByteBuffer buffer;
 
 	/**
@@ -20,15 +19,16 @@ public class PushConstant implements IAllocable
 	 * @param size
 	 *            in bytes
 	 */
-	public PushConstant(LogicalDevice logicalDevice, int size)
+	public PushConstant(LogicalDevice logicalDevice, int stage, int size)
 	{
 		this.size = size;
+		this.stage = stage;
 	}
 
 	public VkPushConstantRange.Buffer alloPushConstantRange(MemoryStack stack)
 	{
 		VkPushConstantRange.Buffer pushConstantRange = VkPushConstantRange.callocStack(1, stack);
-		pushConstantRange.get(0).set(VK_SHADER_STAGE_VERTEX_BIT, 0, size);
+		pushConstantRange.get(0).set(stage, 0, size);
 
 		return pushConstantRange;
 	}
