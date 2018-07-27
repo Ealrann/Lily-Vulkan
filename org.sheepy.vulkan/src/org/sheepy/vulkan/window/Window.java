@@ -17,6 +17,7 @@ import org.sheepy.vulkan.util.VulkanUtils;
 
 public class Window
 {
+	private String title;
 	private int width;
 	private int height;
 
@@ -25,8 +26,9 @@ public class Window
 	private long id;
 	private Surface surface;
 	
-	public Window(int initialWidth, int initialHeight)
+	public Window(String title, int initialWidth, int initialHeight)
 	{
+		this.title = title;
 		this.width = initialWidth;
 		this.height = initialHeight;
 		
@@ -42,7 +44,7 @@ public class Window
 
 	public void open(VkInstance vkInstance)
 	{
-		id = glfwCreateWindow(width, height, "Vulkan", 0, 0);
+		id = glfwCreateWindow(width, height, title, 0, 0);
 		createSurface(vkInstance, width, height);
 		GLFWWindowSizeCallback callback = new GLFWWindowSizeCallback()
 		{

@@ -6,9 +6,9 @@ import org.sheepy.vulkan.pipeline.AbstractProcessPool;
 
 public class BasicVulkanApplication extends VulkanApplication
 {
-	public BasicVulkanApplication(int width, int height)
+	public BasicVulkanApplication(String windowTitle, int width, int height)
 	{
-		super(width, height);
+		super(windowTitle, width, height);
 	}
 
 	@Override

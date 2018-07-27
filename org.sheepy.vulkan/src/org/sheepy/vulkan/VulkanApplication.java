@@ -58,12 +58,14 @@ public abstract class VulkanApplication
 
 	public List<AbstractProcessPool<?>> pipelinePools = new ArrayList<>();
 
+	private String windowTitle;
 	private int width;
 	private int height;
 	protected Window window;
 
-	public VulkanApplication(int width, int height)
+	public VulkanApplication(String windowTitle, int width, int height)
 	{
+		this.windowTitle = windowTitle;
 		this.width = width;
 		this.height = height;
 	}
@@ -99,7 +101,7 @@ public abstract class VulkanApplication
 	{
 		try (MemoryStack stack = stackPush())
 		{
-			window = new Window(width, height);
+			window = new Window(windowTitle, width, height);
 			createInstance(stack);
 			window.open(vkInstance);
 			pickPhysicalDevice(stack);
@@ -160,7 +162,7 @@ public abstract class VulkanApplication
 	{
 		VkApplicationInfo appInfo = VkApplicationInfo.calloc();
 		appInfo.sType(VK_STRUCTURE_TYPE_APPLICATION_INFO);
-		appInfo.pApplicationName(stack.UTF8("Hello Triangle"));
+		appInfo.pApplicationName(stack.UTF8(windowTitle));
 		appInfo.applicationVersion(VK_MAKE_VERSION(1, 0, 0));
 		appInfo.pEngineName(stack.UTF8("No Engine"));
 		appInfo.engineVersion(VK_MAKE_VERSION(1, 0, 0));

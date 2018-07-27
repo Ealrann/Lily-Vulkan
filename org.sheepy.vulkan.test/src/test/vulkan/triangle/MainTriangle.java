@@ -32,7 +32,7 @@ public class MainTriangle
 
 	public static void main(String[] args)
 	{
-		BasicVulkanApplication app = new BasicVulkanApplication(WIDTH, HEIGHT);
+		BasicVulkanApplication app = new BasicVulkanApplication("Vulkan Triangle", WIDTH, HEIGHT);
 
 		LogicalDevice logicalDevice = app.initLogicalDevice();
 

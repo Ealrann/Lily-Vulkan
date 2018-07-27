@@ -16,7 +16,7 @@ public class GameOfLifeApplication extends VulkanApplication
 
 	public GameOfLifeApplication(int width, int height)
 	{
-		super(width, height);
+		super("Vulkan Game of Life", width, height);
 
 		LogicalDevice logicalDevice = initLogicalDevice();
 

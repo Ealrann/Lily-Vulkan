@@ -36,7 +36,7 @@ public class MainTexture
 	public static void main(String[] args)
 	{
 		long start = System.currentTimeMillis();
-		VulkanApplication app = new BasicVulkanApplication(WIDTH, HEIGHT)
+		VulkanApplication app = new BasicVulkanApplication("Vulkan Texture", WIDTH, HEIGHT)
 		{
 			@Override
 			protected void updateAppState()
@@ -65,9 +65,9 @@ public class MainTexture
 		pipelineConfiguration.vertexInputState = new TextureVertexDescriptor();
 
 		pipelinePool.configure(pipelineConfiguration);
-		
+
 		app.attachPipelinePool(pipelinePool);
-		
+
 		try
 		{
 			app.run();
@@ -77,7 +77,9 @@ public class MainTexture
 		}
 	}
 
-	private static Mesh createMeshBuffer(VulkanApplication app, LogicalDevice logicalDevice, CommandPool commandPool)
+	private static Mesh createMeshBuffer(VulkanApplication app,
+			LogicalDevice logicalDevice,
+			CommandPool commandPool)
 	{
 		TextureVertex[] vertices = new TextureVertex[8];
 		vertices[0] = new TextureVertex(-0.5f, -0.5f, 0f, 1.0f, 0.0f, 0.0f, 1f, 0f);
@@ -101,7 +103,7 @@ public class MainTexture
 		shaders.add(new Shader(logicalDevice, VERTEX_SHADER_PATH, VK_SHADER_STAGE_VERTEX_BIT));
 		shaders.add(new Shader(logicalDevice, FRAGMENT_SHADER_PATH, VK_SHADER_STAGE_FRAGMENT_BIT));
 
-		Texture texture = new Texture(logicalDevice,commandPool, IMAGE_PATH, false);
+		Texture texture = new Texture(logicalDevice, commandPool, IMAGE_PATH, false);
 		ubo = new UniformBufferObject(app, logicalDevice);
 
 		return new Mesh(logicalDevice, indexBuffer, shaders, ubo, texture);

@@ -35,7 +35,7 @@ public class MainRotating
 	public static void main(String[] args)
 	{
 		long start = System.currentTimeMillis();
-		VulkanApplication app = new BasicVulkanApplication(WIDTH, HEIGHT)
+		VulkanApplication app = new BasicVulkanApplication("Vulkan Rotating", WIDTH, HEIGHT)
 		{
 			@Override
 			protected void updateAppState()
