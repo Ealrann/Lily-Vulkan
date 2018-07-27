@@ -154,13 +154,13 @@ public class GraphicProcessPool extends SurfaceProcessPool<GraphicProcess>
 			if (vkQueueSubmit(logicalDevice.getQueueManager().getGraphicQueue(),
 					context.submission.getSubmitInfo(imageIndex), VK_NULL_HANDLE) != VK_SUCCESS)
 			{
-				throw new AssertionError("failed to submit draw command buffer!");
+				System.err.println("failed to submit draw command buffer!");
 			}
 
 			if (vkQueuePresentKHR(logicalDevice.getQueueManager().getGraphicQueue(),
 					context.submission.getPresentInfo(imageIndex)) != VK_SUCCESS)
 			{
-				throw new AssertionError("failed to submit draw command buffer!");
+				System.err.println("failed to submit draw command buffer!");
 			}
 		}
 	}

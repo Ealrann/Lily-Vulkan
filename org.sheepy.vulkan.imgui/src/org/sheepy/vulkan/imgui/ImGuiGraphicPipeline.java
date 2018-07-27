@@ -92,7 +92,6 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 	private ImGuiVertexBuffer texture;
 
 	private GraphicContext context;
-	private Context ctx;
 
 	boolean firstFrame = true;
 	private Shader vertShader;
@@ -104,25 +103,27 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		this.uiDescriptor = uiConfiguration;
 		this.context = context;
 		
-		ctx = new Context();
 		imgui = ImGui.INSTANCE;
+		new Context();
 		
+		texture = new ImGuiVertexBuffer(context.logicalDevice, context.commandPool);
+
 		context.resourceManager.addResource(font);
+		context.resourceManager.addResource(texture);
 	}
 
 	@Override
 	public void allocate(MemoryStack stack)
 	{
 		super.allocate(stack);
-		texture = new ImGuiVertexBuffer(context.logicalDevice, context.commandPool);
 
+		firstFrame = true;
+		
 		viewport = VkViewport.calloc(1);
 		pushConstBlock = new PushConstBlock();
 		scissorRect = VkRect2D.calloc(1);
 
 		init();
-
-		texture.allocate(stack);
 
 		buildPipeline(stack);
 
@@ -134,8 +135,6 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 	public void free()
 	{
 		// Release all Vulkan resources required for rendering imGui
-		texture.free();
-
 		viewport.free();
 		pushConstBlock = null;
 		scissorRect.free();
@@ -145,9 +144,7 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 
 		vkDestroyPipelineCache(context.getVkDevice(), pipelineCache, null);
 		vkDestroyPipeline(context.getVkDevice(), pipeline, null);
-		vkDestroyPipelineLayout(context.getVkDevice(), pipelineLayout, null);
 
-		ctx.shutdown();
 		super.free();
 	}
 
