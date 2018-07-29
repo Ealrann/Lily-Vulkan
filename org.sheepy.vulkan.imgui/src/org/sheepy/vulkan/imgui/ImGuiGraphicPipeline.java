@@ -62,7 +62,6 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 	private long[] lArray = new long[1];
 	private VkViewport.Buffer viewport;
 	private VkRect2D.Buffer scissorRect;
-	private ImGuiPushConstant pushConstant;
 
 	private UIDescriptor uiDescriptor;
 	private ImGuiVertexBuffer texture;
@@ -82,8 +81,7 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		imgui = ImGui.INSTANCE;
 		new Context();
 
-		pushConstant = new ImGuiPushConstant(context.logicalDevice, imgui.getIo());
-		setPushConstant(pushConstant);
+		setPushConstant(new ImGuiPushConstant(context.logicalDevice, imgui.getIo()));
 
 		texture = new ImGuiVertexBuffer(context.logicalDevice, context.commandPool);
 
@@ -194,8 +192,6 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 
 		viewport.get(0).set(0, 0, io.getDisplaySize().getX(), io.getDisplaySize().getY(), 1, 1);
 		vkCmdSetViewport(commandBuffer, 0, viewport);
-
-		pushConstant.pushConstants(commandBuffer, pipelineLayout);
 
 		// Render commands
 		int vertexOffset = 0;

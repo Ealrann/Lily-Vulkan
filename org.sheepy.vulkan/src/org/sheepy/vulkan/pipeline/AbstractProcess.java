@@ -73,6 +73,16 @@ public abstract class AbstractProcess<T extends AbstractCommandBuffer> extends A
 
 	private void executeUnit(T commandBuffer, IProcessUnit unit)
 	{
+		if (unit instanceof AbstractPipeline)
+		{
+			AbstractPipeline pipeline = (AbstractPipeline) unit;
+			if (pipeline.getPushConstant() != null)
+			{
+				pipeline.getPushConstant().pushConstants(commandBuffer.getVkCommandBuffer(),
+						pipeline.getLayoutId());
+			}
+		}
+
 		if (unit instanceof ICompositeProcessUnit)
 		{
 			ICompositeProcessUnit pipeline = (ICompositeProcessUnit) unit;
