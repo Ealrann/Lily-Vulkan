@@ -24,7 +24,6 @@ import org.lwjgl.vulkan.VkRect2D;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
 import org.lwjgl.vulkan.VkViewport;
-import org.sheepy.vulkan.buffer.PushConstant;
 import org.sheepy.vulkan.command.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.IDescriptorSetContext;
@@ -60,28 +59,10 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 	private ImGui imgui;
 	private IO io;
 
-	// UI params are set via push constants
-	private class PushConstBlock
-	{
-		Vec2 scale = new Vec2();
-		Vec2 translate = new Vec2(-1.0f);
-
-		public float[] toArray()
-		{
-			float[] res = new float[4];
-			res[0] = scale.getX();
-			res[1] = scale.getY();
-			res[2] = translate.getX();
-			res[3] = translate.getY();
-
-			return res;
-		}
-	}
-
 	private long[] lArray = new long[1];
 	private VkViewport.Buffer viewport;
 	private VkRect2D.Buffer scissorRect;
-	private PushConstBlock pushConstBlock;
+	private ImGuiPushConstant pushConstant;
 
 	private UIDescriptor uiDescriptor;
 	private ImGuiVertexBuffer texture;
@@ -101,7 +82,8 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		imgui = ImGui.INSTANCE;
 		new Context();
 
-		setPushConstant(new PushConstant(context.logicalDevice, VK_SHADER_STAGE_VERTEX_BIT, 16));
+		pushConstant = new ImGuiPushConstant(context.logicalDevice, imgui.getIo());
+		setPushConstant(pushConstant);
 
 		texture = new ImGuiVertexBuffer(context.logicalDevice, context.commandPool);
 
@@ -115,6 +97,7 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 
 		context.resourceManager.addResource(font);
 		context.resourceManager.addResource(texture);
+
 	}
 
 	@Override
@@ -125,7 +108,6 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		firstFrame = true;
 
 		viewport = VkViewport.calloc(1);
-		pushConstBlock = new PushConstBlock();
 		scissorRect = VkRect2D.calloc(1);
 
 		init();
@@ -141,7 +123,6 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 	{
 		// Release all Vulkan resources required for rendering imGui
 		viewport.free();
-		pushConstBlock = null;
 		scissorRect.free();
 
 		vkDestroyPipeline(context.getVkDevice(), pipeline, null);
@@ -214,10 +195,7 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 		viewport.get(0).set(0, 0, io.getDisplaySize().getX(), io.getDisplaySize().getY(), 1, 1);
 		vkCmdSetViewport(commandBuffer, 0, viewport);
 
-		pushConstBlock.scale.setX(2.0f / io.getDisplaySize().getX());
-		pushConstBlock.scale.setY(2.0f / io.getDisplaySize().getY());
-		vkCmdPushConstants(commandBuffer, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0,
-				pushConstBlock.toArray());
+		pushConstant.pushConstants(commandBuffer, pipelineLayout);
 
 		// Render commands
 		int vertexOffset = 0;
