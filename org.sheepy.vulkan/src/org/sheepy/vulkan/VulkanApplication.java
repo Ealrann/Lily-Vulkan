@@ -206,6 +206,9 @@ public abstract class VulkanApplication
 				window.getSurface());
 		physicalDevice = pds.getBestPhysicalDevice();
 		System.out.println("\nGraphic Device : " + physicalDevice.getName());
+		
+		if(DEBUG)
+			physicalDevice.printDeviceProperties();
 	}
 
 	private void createLogicalDevice(MemoryStack stack)

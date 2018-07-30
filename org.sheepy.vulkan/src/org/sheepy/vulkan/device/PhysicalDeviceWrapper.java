@@ -42,6 +42,17 @@ public class PhysicalDeviceWrapper
 
 		rateDeviceSuitability();
 	}
+	
+	public void printDeviceProperties()
+	{
+		VkPhysicalDeviceProperties deviceProperties = VkPhysicalDeviceProperties.calloc();
+		vkGetPhysicalDeviceProperties(physicalDevice, deviceProperties);
+
+		System.out.println("\tmaxImageDimension2D:\t" + deviceProperties.limits().maxImageDimension2D());
+		System.out.println("\tmaxUniformBufferRange:\t" + deviceProperties.limits().maxUniformBufferRange());
+		System.out.println("\tmaxStorageBufferRange:\t" + deviceProperties.limits().maxStorageBufferRange());
+		System.out.println("\tmaxPushConstantsSize:\t" + deviceProperties.limits().maxPushConstantsSize());
+	}
 
 	private void rateDeviceSuitability()
 	{
