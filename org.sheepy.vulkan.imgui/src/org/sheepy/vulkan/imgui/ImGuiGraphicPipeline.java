@@ -160,6 +160,15 @@ public class ImGuiGraphicPipeline extends AbstractPipeline
 
 		if (uiDescriptor.newFrame(imgui) || firstFrame)
 		{
+
+			while(uiDescriptor.isDirty())
+			{
+				imgui.endFrame();
+				imgui.newFrame();
+				uiDescriptor.setDirty(false);
+				uiDescriptor.newFrame(imgui);
+			}
+			
 			// Render to generate draw buffers
 			imgui.render();
 			firstFrame = false;

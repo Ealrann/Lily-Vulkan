@@ -10,6 +10,8 @@ import imgui.Style;
 public abstract class UIDescriptor
 {
 	private Window window;
+	
+	protected boolean dirty = false;
 
 	public UIDescriptor(Window window)
 	{
@@ -32,5 +34,15 @@ public abstract class UIDescriptor
 	public int[] getSize()
 	{
 		return window.getSurface().size;
+	}
+	
+	public boolean isDirty()
+	{
+		return dirty;
+	}
+
+	public void setDirty(boolean dirty)
+	{
+		this.dirty = dirty;
 	}
 }
