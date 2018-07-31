@@ -7,7 +7,7 @@ This project is intended to simplify the use of Vulkan in Java with LWJGL. The p
 
 Some tests projects are present, heavily inspired from https://vulkan-tutorial.com/.
 
-Another project using this wrapper: https://github.com/Ealrann/Vulkanize
+Another project using this wrapper: https://github.com/Ealrann/VSand
 
 Using:
 - Vulkan
