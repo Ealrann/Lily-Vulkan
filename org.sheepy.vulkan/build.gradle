@@ -4,21 +4,30 @@ plugins {
 	id 'java-library'
 }
 
+switch ( OperatingSystem.current() ) {
+	case OperatingSystem.WINDOWS:
+		project.ext.lwjglNatives = "natives-windows"
+		break
+	case OperatingSystem.LINUX:
+		project.ext.lwjglNatives = "natives-linux"
+		break
+	case OperatingSystem.MAC_OS:
+		project.ext.lwjglNatives = "natives-macos"
+		break
+}
+
 project.ext.lwjglVersion = "3.2.0"
-project.ext.jomlVersion = "1.9.9"
+project.ext.jomlVersion = "1.9.10"
 
 dependencies {
 	api "org.joml:joml:${jomlVersion}"
+	
 	api "org.lwjgl:lwjgl:$lwjglVersion"
 	api "org.lwjgl:lwjgl-glfw:$lwjglVersion"
 	api "org.lwjgl:lwjgl-stb:$lwjglVersion"
 	api "org.lwjgl:lwjgl-vulkan:$lwjglVersion"
 
-	['natives-windows', 'natives-linux', 'natives-macos'].each {
-
-		implementation "org.lwjgl:lwjgl:$lwjglVersion:$it"
-		implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion:$it"
-		implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$it"
-	}
+	implementation "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
 }
-
