@@ -4,8 +4,6 @@ plugins {
 
 dependencies {
 
-	api 'com.google.guava:guava:24.1-jre'
-
 	api project(':org.sheepy.vulkan')
 	
 	api('com.github.kotlin-graphics:imgui:383579e83b:light'){
