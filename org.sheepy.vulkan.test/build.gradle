@@ -2,7 +2,7 @@ import org.gradle.internal.os.OperatingSystem
 
 plugins {
 	id 'java-library'
-	id 'application'
+//	id 'application'
 }
 
 dependencies {
@@ -12,7 +12,8 @@ dependencies {
 	api project(':org.sheepy.vulkan')
 }
 
-mainClassName = 'test.vulkan.texture.MainTexture'
+// mainClassName = 'test.vulkan.texture.MainTexture'
+
 sourceSets {
 	main {
 		java.srcDirs = ['src/']
