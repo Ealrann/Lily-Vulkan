@@ -31,3 +31,10 @@ dependencies {
 	implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
 	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
 }
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/']
+		resources.srcDirs = ['res/']
+	}
+}
