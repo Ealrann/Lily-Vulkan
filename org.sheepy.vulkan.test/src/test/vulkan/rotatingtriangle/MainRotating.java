@@ -1,6 +1,8 @@
 package test.vulkan.rotatingtriangle;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_FRONT_FACE_COUNTER_CLOCKWISE;
+import static org.lwjgl.vulkan.VK10.VK_SHADER_STAGE_FRAGMENT_BIT;
+import static org.lwjgl.vulkan.VK10.VK_SHADER_STAGE_VERTEX_BIT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor.Vertex;
 import org.sheepy.vulkan.resource.Shader;
+import org.sheepy.vulkan.util.ModuleResource;
 
 import test.vulkan.mesh.Mesh;
 import test.vulkan.mesh.MeshPipelineConfiguration;
@@ -95,9 +98,12 @@ public class MainRotating
 		IndexBuffer<Vertex> indexBuffer = IndexBuffer.alloc(logicalDevice,
 				new IndexBufferDescriptor(), commandPool, vertices, indices);
 
+		Module module = MainRotating.class.getModule();
 		List<Shader> shaders = new ArrayList<>();
-		shaders.add(new Shader(logicalDevice, VERTEX_SHADER_PATH, VK_SHADER_STAGE_VERTEX_BIT));
-		shaders.add(new Shader(logicalDevice, FRAGMENT_SHADER_PATH, VK_SHADER_STAGE_FRAGMENT_BIT));
+		shaders.add(new Shader(logicalDevice, new ModuleResource(module, VERTEX_SHADER_PATH),
+				VK_SHADER_STAGE_VERTEX_BIT));
+		shaders.add(new Shader(logicalDevice, new ModuleResource(module, FRAGMENT_SHADER_PATH),
+				VK_SHADER_STAGE_FRAGMENT_BIT));
 
 		ubo = new UniformBufferObject(app, logicalDevice);
 

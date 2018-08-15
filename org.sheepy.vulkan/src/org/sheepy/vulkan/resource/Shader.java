@@ -1,9 +1,12 @@
 package org.sheepy.vulkan.resource;
 
 import static org.lwjgl.system.MemoryUtil.NULL;
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
+import static org.lwjgl.vulkan.VK10.vkCreateShaderModule;
+import static org.lwjgl.vulkan.VK10.vkDestroyShaderModule;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
@@ -14,7 +17,7 @@ import org.lwjgl.vulkan.VkShaderModuleCreateInfo;
 import org.sheepy.vulkan.command.CommandPool;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.pipeline.IPipelineUnit;
-import org.sheepy.vulkan.util.VulkanBufferUtils;
+import org.sheepy.vulkan.util.ModuleResource;
 import org.sheepy.vulkan.util.VulkanUtils;
 
 public class Shader implements IPipelineUnit, IResource
@@ -22,44 +25,36 @@ public class Shader implements IPipelineUnit, IResource
 	private static final ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memUTF8("main");
 
 	private VkDevice logicalDevice;
-	private String shaderPath;
+	private ModuleResource shaderResource;
 	private int shaderType;
 
 	private long shaderModule;
 
-	public Shader(LogicalDevice logicalDevice, String shaderPath, int shaderType)
+	public Shader(LogicalDevice logicalDevice, ModuleResource shaderResource, int shaderType)
 	{
 		this.logicalDevice = logicalDevice.getVkDevice();
-		this.shaderPath = shaderPath;
+		this.shaderResource = shaderResource;
 		this.shaderType = shaderType;
 	}
 
 	@Override
 	public void allocate(MemoryStack stack, CommandPool commandPool)
 	{
-		ByteBuffer shaderCode;
-		try
-		{
-			shaderCode = VulkanBufferUtils.ioResourceToByteBuffer(shaderPath, 1024);
-			VkShaderModuleCreateInfo moduleCreateInfo = VkShaderModuleCreateInfo.callocStack(stack);
-			moduleCreateInfo.sType(VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO);
-			moduleCreateInfo.pNext(NULL);
-			moduleCreateInfo.pCode(shaderCode);
-			moduleCreateInfo.flags(0);
+		ByteBuffer shaderCode = shaderResource.ioResourceToByteBuffer();
+		VkShaderModuleCreateInfo moduleCreateInfo = VkShaderModuleCreateInfo.callocStack(stack);
+		moduleCreateInfo.sType(VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO);
+		moduleCreateInfo.pNext(NULL);
+		moduleCreateInfo.pCode(shaderCode);
+		moduleCreateInfo.flags(0);
 
-			long[] aShaderModule = new long[1];
-			int err = vkCreateShaderModule(logicalDevice, moduleCreateInfo, null, aShaderModule);
-			if (err != VK_SUCCESS)
-			{
-				throw new AssertionError(
-						"Failed to create shader module: " + VulkanUtils.translateVulkanResult(err));
-			}
-			shaderModule = aShaderModule[0];
-
-		} catch (IOException e)
+		long[] aShaderModule = new long[1];
+		int err = vkCreateShaderModule(logicalDevice, moduleCreateInfo, null, aShaderModule);
+		if (err != VK_SUCCESS)
 		{
-			e.printStackTrace();
+			throw new AssertionError(
+					"Failed to create shader module: " + VulkanUtils.translateVulkanResult(err));
 		}
+		shaderModule = aShaderModule[0];
 	}
 
 	/**

@@ -2,7 +2,13 @@ package org.sheepy.vulkan.device;
 
 import static org.lwjgl.system.MemoryUtil.NULL;
 import static org.lwjgl.system.MemoryUtil.memAllocFloat;
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_SHADER_STAGE_COMPUTE_BIT;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
+import static org.lwjgl.vulkan.VK10.vkCreateDevice;
+import static org.lwjgl.vulkan.VK10.vkDestroyDevice;
+import static org.lwjgl.vulkan.VK10.vkDeviceWaitIdle;
 
 import java.nio.FloatBuffer;
 import java.util.HashSet;
@@ -16,6 +22,7 @@ import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.vulkan.queue.QueueManager;
 import org.sheepy.vulkan.resource.Shader;
+import org.sheepy.vulkan.util.ModuleResource;
 import org.sheepy.vulkan.window.Surface;
 import org.sheepy.vulkan.window.Window;
 
@@ -149,8 +156,8 @@ public class LogicalDevice
 		return vkDeviceWaitIdle(vkDevice);
 	}
 
-	public Shader newComputeShader(String location)
+	public Shader newComputeShader(ModuleResource shaderResource)
 	{
-		return new Shader(this, location, VK_SHADER_STAGE_COMPUTE_BIT);
+		return new Shader(this, shaderResource, VK_SHADER_STAGE_COMPUTE_BIT);
 	}
 }

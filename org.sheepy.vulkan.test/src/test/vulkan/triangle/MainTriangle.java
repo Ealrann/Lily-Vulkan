@@ -14,6 +14,7 @@ import org.sheepy.vulkan.pipeline.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.IndexBufferDescriptor.Vertex;
 import org.sheepy.vulkan.resource.Shader;
+import org.sheepy.vulkan.util.ModuleResource;
 
 import test.vulkan.mesh.Mesh;
 import test.vulkan.mesh.MeshPipelineConfiguration;
@@ -78,10 +79,13 @@ public class MainTriangle
 
 		IndexBuffer<Vertex> indexBuffer = IndexBuffer.alloc(logicalDevice,
 				new IndexBufferDescriptor(), commandPool, vertices, indices);
-
+		
+		Module module = MainTriangle.class.getModule();
 		List<Shader> shaders = new ArrayList<>();
-		shaders.add(new Shader(logicalDevice, VERTEX_SHADER_PATH, VK_SHADER_STAGE_VERTEX_BIT));
-		shaders.add(new Shader(logicalDevice, FRAGMENT_SHADER_PATH, VK_SHADER_STAGE_FRAGMENT_BIT));
+		shaders.add(new Shader(logicalDevice, new ModuleResource(module, VERTEX_SHADER_PATH),
+				VK_SHADER_STAGE_VERTEX_BIT));
+		shaders.add(new Shader(logicalDevice, new ModuleResource(module, FRAGMENT_SHADER_PATH),
+				VK_SHADER_STAGE_FRAGMENT_BIT));
 
 		mesh = new Mesh(logicalDevice, indexBuffer, shaders, null, null);
 	}

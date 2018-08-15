@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import org.sheepy.vulkan.pipeline.Context;
 import org.sheepy.vulkan.pipeline.compute.ComputePipeline;
+import org.sheepy.vulkan.util.ModuleResource;
 
 public class PixelCompute extends ComputePipeline
 {
@@ -12,6 +13,6 @@ public class PixelCompute extends ComputePipeline
 	public PixelCompute(Context context, BoardBuffer board, BoardImage image)
 	{
 		super(context, board.getWidth(), board.getHeight(), 1, Arrays.asList(board, image),
-				SHADER_LOCATION);
+				new ModuleResource(PixelCompute.class.getModule(), SHADER_LOCATION));
 	}
 }

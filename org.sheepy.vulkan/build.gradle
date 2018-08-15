@@ -2,6 +2,7 @@ import org.gradle.internal.os.OperatingSystem
 
 plugins {
 	id 'java-library'
+	id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
 }
 
 switch ( OperatingSystem.current() ) {
@@ -15,6 +16,8 @@ switch ( OperatingSystem.current() ) {
 		project.ext.lwjglNatives = "natives-macos"
 		break
 }
+
+javaModule.name = 'org.sheepy.vulkan'
 
 project.ext.lwjglVersion = "3.2.0"
 project.ext.jomlVersion = "1.9.10"
@@ -38,3 +41,4 @@ sourceSets {
 		resources.srcDirs = ['res/']
 	}
 }
+

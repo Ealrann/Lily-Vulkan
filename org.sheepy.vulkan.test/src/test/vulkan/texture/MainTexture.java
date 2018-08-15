@@ -15,12 +15,14 @@ import org.sheepy.vulkan.pipeline.graphic.render.impl.TextureVertexDescriptor;
 import org.sheepy.vulkan.pipeline.graphic.render.impl.TextureVertexDescriptor.TextureVertex;
 import org.sheepy.vulkan.resource.Shader;
 import org.sheepy.vulkan.texture.Texture;
+import org.sheepy.vulkan.util.ModuleResource;
 
 import test.vulkan.mesh.Mesh;
 import test.vulkan.mesh.MeshPipelineConfiguration;
 import test.vulkan.mesh.MeshRenderPass;
 import test.vulkan.mesh.MeshRenderProcessPool;
 import test.vulkan.mesh.UniformBufferObject;
+import test.vulkan.triangle.MainTriangle;
 
 public class MainTexture
 {
@@ -99,11 +101,15 @@ public class MainTexture
 		IndexBuffer<TextureVertex> indexBuffer = IndexBuffer.alloc(logicalDevice,
 				new TextureVertexDescriptor(), commandPool, vertices, indices);
 
+		Module module = MainTriangle.class.getModule();
 		List<Shader> shaders = new ArrayList<>();
-		shaders.add(new Shader(logicalDevice, VERTEX_SHADER_PATH, VK_SHADER_STAGE_VERTEX_BIT));
-		shaders.add(new Shader(logicalDevice, FRAGMENT_SHADER_PATH, VK_SHADER_STAGE_FRAGMENT_BIT));
+		shaders.add(new Shader(logicalDevice, new ModuleResource(module, VERTEX_SHADER_PATH),
+				VK_SHADER_STAGE_VERTEX_BIT));
+		shaders.add(new Shader(logicalDevice, new ModuleResource(module, FRAGMENT_SHADER_PATH),
+				VK_SHADER_STAGE_FRAGMENT_BIT));
 
-		Texture texture = new Texture(logicalDevice, commandPool, IMAGE_PATH, false);
+		Texture texture = new Texture(logicalDevice, commandPool,
+				new ModuleResource(module, IMAGE_PATH), false);
 		ubo = new UniformBufferObject(app, logicalDevice);
 
 		return new Mesh(logicalDevice, indexBuffer, shaders, ubo, texture);

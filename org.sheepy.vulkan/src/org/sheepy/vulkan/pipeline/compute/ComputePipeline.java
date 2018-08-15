@@ -1,6 +1,10 @@
 package org.sheepy.vulkan.pipeline.compute;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_NULL_HANDLE;
+import static org.lwjgl.vulkan.VK10.VK_SHADER_STAGE_COMPUTE_BIT;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
+import static org.lwjgl.vulkan.VK10.vkCreateComputePipelines;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +21,7 @@ import org.sheepy.vulkan.pipeline.IPipelineUnit;
 import org.sheepy.vulkan.pipeline.IProcessUnit;
 import org.sheepy.vulkan.pipeline.PipelineBarrier;
 import org.sheepy.vulkan.resource.Shader;
+import org.sheepy.vulkan.util.ModuleResource;
 
 public class ComputePipeline extends AbstractCompositePipeline
 {
@@ -33,10 +38,10 @@ public class ComputePipeline extends AbstractCompositePipeline
 	private int dataDepth = -1;
 
 	public ComputePipeline(Context context, int width, int height, int depth,
-			List<IDescriptor> descriptors, String shaderLocation)
+			List<IDescriptor> descriptors, ModuleResource shaderResource)
 	{
 		this(context, width, height, depth, descriptors, Collections.singletonList(
-				new Shader(context.logicalDevice, shaderLocation, VK_SHADER_STAGE_COMPUTE_BIT)));
+				new Shader(context.logicalDevice, shaderResource, VK_SHADER_STAGE_COMPUTE_BIT)));
 	}
 
 	public ComputePipeline(Context context, int width, int height, int depth,

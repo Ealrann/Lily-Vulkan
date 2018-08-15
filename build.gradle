@@ -26,6 +26,27 @@ subprojects {
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
 
+	sourceCompatibility = targetCompatibility = '1.9'
+
+	eclipse {
+		classpath {
+			file {
+				whenMerged {
+					//Define a module as being either a library or a project dependency.
+					//Test sources are excluded because eclipse wants them on the classpath for some reason (1)
+					entries.findAll { (it instanceof org.gradle.plugins.ide.eclipse.model.Library || it instanceof org.gradle.plugins.ide.eclipse.model.ProjectDependency) && !it.entryAttributes.get('gradle_used_by_scope').equals('test') }.each {
+						it.entryAttributes['module'] = 'true'
+					}
+
+					//Test-scoped stuff should set the appropriate flag
+					entries.findAll { (it.properties.kind.equals('src') || it.properties.kind.equals('lib')) && it.entryAttributes.get('gradle_used_by_scope').equals('test') }.each {
+						it.entryAttributes['test'] = 'true'
+					}
+				}
+			}
+		}
+	}
+
 	afterEvaluate {
 		repositories {
 			jcenter()
@@ -36,3 +57,9 @@ subprojects {
 		}
 	}
 }
+
+boolean isLibrary(entry) { return entry.properties.kind.equals('lib') }
+boolean isTestScope(entry) { return entry.entryAttributes.get('gradle_used_by_scope').equals('test'); }
+boolean isModule(entry) { isLibrary(entry) && !isTestScope(entry); }
+boolean isSource(entry) { return entry.properties.kind.equals('src'); }
+

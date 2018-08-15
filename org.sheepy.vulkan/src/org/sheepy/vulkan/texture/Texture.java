@@ -3,8 +3,6 @@ package org.sheepy.vulkan.texture;
 import static org.lwjgl.stb.STBImage.STBI_rgb_alpha;
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.io.File;
-import java.net.URL;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.stb.STBImage;
@@ -24,13 +22,14 @@ import org.sheepy.vulkan.command.SingleTimeCommand;
 import org.sheepy.vulkan.common.IAllocable;
 import org.sheepy.vulkan.descriptor.IDescriptor;
 import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.util.ModuleResource;
 import org.sheepy.vulkan.view.ImageView;
 
 public class Texture implements IDescriptor, IAllocable
 {
 	private LogicalDevice logicalDevice;
 	private CommandPool commandPool;
-	private String imagePath;
+	private ModuleResource resource;
 	private boolean generateMipMap;
 
 	private Image imageBuffer;
@@ -41,12 +40,12 @@ public class Texture implements IDescriptor, IAllocable
 	private int width;
 	private int height;
 
-	public Texture(LogicalDevice logicalDevice, CommandPool commandPool, String imagePath,
+	public Texture(LogicalDevice logicalDevice, CommandPool commandPool, ModuleResource resource,
 			boolean generateMipMap)
 	{
 		this.logicalDevice = logicalDevice;
 		this.commandPool = commandPool;
-		this.imagePath = imagePath;
+		this.resource = resource;
 		this.generateMipMap = generateMipMap;
 
 		imageBuffer = new Image(logicalDevice);
@@ -93,22 +92,21 @@ public class Texture implements IDescriptor, IAllocable
 
 	private Buffer loadImageFile()
 	{
-		URL url = Thread.currentThread().getContextClassLoader().getResource(imagePath);
-		File file = new File(url.getFile());
+		ByteBuffer bufferedRessource = resource.ioResourceToByteBuffer();
 
-		if (file.exists() == false)
+		if (bufferedRessource == null)
 		{
-			System.err.println("Can't access the file : " + imagePath);
+			System.err.println("Can't access the file : " + resource.path);
 		}
 
 		int[] texWidth = new int[1];
 		int[] texHeight = new int[1];
 		int[] texChannels = new int[1];
-		ByteBuffer pixels = STBImage.stbi_load(file.getAbsolutePath(), texWidth, texHeight,
+		ByteBuffer pixels = STBImage.stbi_load_from_memory(bufferedRessource, texWidth, texHeight,
 				texChannels, STBI_rgb_alpha);
 		if (pixels == null)
 		{
-			System.err.println(("Problem with file: " + url.getFile()));
+			System.err.println(("Problem with file: " + resource.path));
 			throw new AssertionError(
 					"Failed to load texture image: " + STBImage.stbi_failure_reason());
 		}
@@ -274,8 +272,8 @@ public class Texture implements IDescriptor, IAllocable
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((imageBuffer == null) ? 0 : imageBuffer.hashCode());
-		result = prime * result + ((imagePath == null) ? 0 : imagePath.hashCode());
+		result = prime * result + ((logicalDevice == null) ? 0 : logicalDevice.hashCode());
+		result = prime * result + ((resource == null) ? 0 : resource.hashCode());
 		return result;
 	}
 
@@ -286,17 +284,16 @@ public class Texture implements IDescriptor, IAllocable
 		if (obj == null) return false;
 		if (getClass() != obj.getClass()) return false;
 		Texture other = (Texture) obj;
-		if (imageBuffer == null)
+		if (logicalDevice == null)
 		{
-			if (other.imageBuffer != null) return false;
+			if (other.logicalDevice != null) return false;
 		}
-		else if (!imageBuffer.equals(other.imageBuffer)) return false;
-		if (imagePath == null)
+		else if (!logicalDevice.equals(other.logicalDevice)) return false;
+		if (resource == null)
 		{
-			if (other.imagePath != null) return false;
+			if (other.resource != null) return false;
 		}
-		else if (!imagePath.equals(other.imagePath)) return false;
+		else if (!resource.equals(other.resource)) return false;
 		return true;
 	}
-
 }
