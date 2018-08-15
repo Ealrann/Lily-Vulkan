@@ -1,16 +1,15 @@
 buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-        maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
-        maven { url 'https://jitpack.io' }
-        jcenter()
-    }
-    dependencies {
-        
-    }
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+		maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+		maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
+		maven { url 'https://jitpack.io' }
+		jcenter()
+	}
+	dependencies {
+	}
 }
 
 repositories {
@@ -18,15 +17,14 @@ repositories {
 	mavenCentral()
 	maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-    maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
-    maven { url 'https://jitpack.io' }
+	maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
+	maven { url 'https://jitpack.io' }
 }
 
 subprojects {
 
-    apply plugin: 'java'
-    apply plugin: 'eclipse'
-    
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
     sourceSets {
         main {
             java.srcDirs = ['src/']
@@ -34,13 +32,13 @@ subprojects {
         }
     }
 
-    afterEvaluate {
-        repositories {
-            jcenter()
-            maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-            maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-            maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
-            maven { url 'https://jitpack.io' }
-        }
-    }
+	afterEvaluate {
+		repositories {
+			jcenter()
+			maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+			maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+			maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
+			maven { url 'https://jitpack.io' }
+		}
+	}
 }
