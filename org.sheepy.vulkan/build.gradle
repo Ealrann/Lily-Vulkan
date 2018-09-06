@@ -2,7 +2,6 @@ import org.gradle.internal.os.OperatingSystem
 
 plugins {
 	id 'java-library'
-	id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
 }
 
 switch ( OperatingSystem.current() ) {
@@ -17,7 +16,9 @@ switch ( OperatingSystem.current() ) {
 		break
 }
 
-javaModule.name = 'org.sheepy.vulkan'
+if (project.hasProperty('javaModule')) {
+	javaModule.name = 'org.sheepy.vulkan'
+}
 
 project.ext.lwjglVersion = "3.2.0"
 project.ext.jomlVersion = "1.9.10"

@@ -12,6 +12,10 @@ buildscript {
 	}
 }
 
+plugins {
+	id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
+}
+
 repositories {
 	mavenLocal()
 	mavenCentral()
@@ -25,6 +29,7 @@ subprojects {
 
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
+	apply plugin: 'org.gradle.java.experimental-jigsaw'
 
 	sourceCompatibility = targetCompatibility = '1.9'
 
@@ -62,4 +67,3 @@ boolean isLibrary(entry) { return entry.properties.kind.equals('lib') }
 boolean isTestScope(entry) { return entry.entryAttributes.get('gradle_used_by_scope').equals('test'); }
 boolean isModule(entry) { isLibrary(entry) && !isTestScope(entry); }
 boolean isSource(entry) { return entry.properties.kind.equals('src'); }
-
