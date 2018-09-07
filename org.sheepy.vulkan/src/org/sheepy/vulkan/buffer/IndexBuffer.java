@@ -17,7 +17,6 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 {
 	private LogicalDevice logicalDevice;
 	private IIndexBufferDescriptor<T> vertexDescriptor;
-	private CommandPool commandPool;
 
 	private Buffer vertexBuffer;
 	private Buffer indexBuffer;
@@ -27,6 +26,8 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 
 	private Buffer indexStagingBuffer;
 	private Buffer vertexStagingBuffer;
+	
+	boolean allocated = false;
 
 	public static <T extends IVertex> IndexBuffer<T> alloc(LogicalDevice logicalDevice,
 			IIndexBufferDescriptor<T> vertexDescriptor,
@@ -41,7 +42,7 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 		{
 			res.allocate(stack);
 		}
-		res.fillBuffer(vertices, indices);
+		res.fillBuffer(commandPool, vertices, indices);
 
 		return res;
 	}
@@ -51,7 +52,6 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 	{
 		this.logicalDevice = logicalDevice;
 		this.vertexDescriptor = vertexDescriptor;
-		this.commandPool = commandPool;
 
 		long indexByteSize = indiceSize * vertexDescriptor.sizeOfIndex();
 		indexBuffer = new Buffer(logicalDevice, indexByteSize,
@@ -67,20 +67,28 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack)
 	{
+		allocate();
+	}
+	
+	public void allocate()
+	{
 		indexBuffer.allocate();
 		vertexBuffer.allocate();
+		
+		allocated = true;
 	}
 
-	public void fillBuffer(T[] vertices, int[] indices)
+	public void fillBuffer(final CommandPool commandPool, T[] vertices, int[] indices)
 	{
 		ByteBuffer vertexBuffer = vertexDescriptor.toVertexBuffer(vertices);
 		ByteBuffer indexBuffer = vertexDescriptor.toIndexBuffer(indices);
-		fillBuffer(vertexBuffer, vertices.length, indexBuffer, indices.length);
+		fillBuffer(commandPool, vertexBuffer, vertices.length, indexBuffer, indices.length);
 		MemoryUtil.memFree(indexBuffer);
 		MemoryUtil.memFree(vertexBuffer);
 	}
 
-	public void fillBuffer(ByteBuffer verticeBuffer,
+	private void fillBuffer(final CommandPool commandPool, 
+			ByteBuffer verticeBuffer,
 			int numberOfVertice,
 			ByteBuffer indiceBuffer,
 			int numberOfIndice)
@@ -148,8 +156,15 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 	{
 		indexBuffer.free();
 		vertexBuffer.free();
+		
+		allocated = false;
 	}
 
+	public boolean isAllocated()
+	{
+		return allocated;
+	}
+	
 	public int verticeCount()
 	{
 		return vertexCount;
