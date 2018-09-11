@@ -26,7 +26,7 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 
 	private Buffer indexStagingBuffer;
 	private Buffer vertexStagingBuffer;
-	
+
 	boolean allocated = false;
 
 	public static <T extends IVertex> IndexBuffer<T> alloc(LogicalDevice logicalDevice,
@@ -69,12 +69,12 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 	{
 		allocate();
 	}
-	
+
 	public void allocate()
 	{
 		indexBuffer.allocate();
 		vertexBuffer.allocate();
-		
+
 		allocated = true;
 	}
 
@@ -87,7 +87,7 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 		MemoryUtil.memFree(vertexBuffer);
 	}
 
-	private void fillBuffer(final CommandPool commandPool, 
+	private void fillBuffer(final CommandPool commandPool,
 			ByteBuffer verticeBuffer,
 			int numberOfVertice,
 			ByteBuffer indiceBuffer,
@@ -129,7 +129,7 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 		indexStagingBuffer.fillWithBuffer(verticeBuffer);
 
 		Buffer.copyBuffer(commandBuffer, indexStagingBuffer.getId(), indexBuffer.getId(), byteSize);
-		
+
 		indexStagingBuffer.flush();
 	}
 
@@ -156,7 +156,7 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 	{
 		indexBuffer.free();
 		vertexBuffer.free();
-		
+
 		allocated = false;
 	}
 
@@ -164,7 +164,7 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 	{
 		return allocated;
 	}
-	
+
 	public int verticeCount()
 	{
 		return vertexCount;
