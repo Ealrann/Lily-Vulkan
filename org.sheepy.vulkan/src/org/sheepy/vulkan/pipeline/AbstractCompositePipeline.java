@@ -65,7 +65,7 @@ public abstract class AbstractCompositePipeline extends AbstractPipeline
 				vkDestroyPipeline(context.getVkDevice(), ((PipelineId) executable).id, null);
 			}
 		}
-		
+
 		executables.clear();
 		executables = null;
 
@@ -96,7 +96,22 @@ public abstract class AbstractCompositePipeline extends AbstractPipeline
 	@Override
 	public boolean isDirty()
 	{
-		return dirty;
+		if (isDirty())
+		{
+			return dirty;
+		}
+		else
+		{
+			for (IDescriptor descriptor : descriptors)
+			{
+				if(descriptor.isDirty())
+				{
+					return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 
 	@Override

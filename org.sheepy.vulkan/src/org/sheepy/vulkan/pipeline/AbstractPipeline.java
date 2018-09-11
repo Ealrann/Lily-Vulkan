@@ -21,7 +21,7 @@ public abstract class AbstractPipeline extends AllocationNode
 {
 	protected Context context;
 
-	private List<IDescriptor> descriptors;
+	protected List<IDescriptor> descriptors;
 	private PushConstant pushConstant = null;
 	protected long pipelineLayout = 1;
 	protected boolean lock = false;

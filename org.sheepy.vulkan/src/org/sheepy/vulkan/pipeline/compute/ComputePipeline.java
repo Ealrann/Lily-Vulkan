@@ -33,9 +33,9 @@ public class ComputePipeline extends AbstractCompositePipeline
 	protected float workgroupSizeY = DEFAULT_WORKGROUP_SIZE;
 	protected float workgroupSizeZ = DEFAULT_WORKGROUP_SIZE;
 
-	private int dataWidth = -1;
-	private int dataHeight = -1;
-	private int dataDepth = -1;
+	private int dataWidth;
+	private int dataHeight;
+	private int dataDepth;
 
 	public ComputePipeline(Context context, int width, int height, int depth,
 			List<IDescriptor> descriptors, ModuleResource shaderResource)
@@ -48,6 +48,11 @@ public class ComputePipeline extends AbstractCompositePipeline
 			List<IDescriptor> descriptors, Shader shader)
 	{
 		this(context, width, height, depth, descriptors, Collections.singletonList(shader));
+	}
+
+	public ComputePipeline(Context context, List<IDescriptor> descriptors)
+	{
+		this(context, -1, -1, -1, descriptors, Collections.emptyList());
 	}
 
 	public ComputePipeline(Context context, int width, int height, int depth,
@@ -67,7 +72,7 @@ public class ComputePipeline extends AbstractCompositePipeline
 
 		addPipelineUnits(shaders);
 		this.shaders.addAll(shaders);
-		
+
 		for (Shader shader : shaders)
 		{
 			context.resourceManager.addResource(shader);
@@ -138,5 +143,28 @@ public class ComputePipeline extends AbstractCompositePipeline
 		this.workgroupSizeX = x;
 		this.workgroupSizeY = y;
 		this.workgroupSizeZ = z;
+	}
+
+	public int getDataWidth()
+	{
+		return dataWidth;
+	}
+
+	public int getDataHeight()
+	{
+		return dataHeight;
+	}
+
+	public int getDataDepth()
+	{
+		return dataDepth;
+	}
+
+	public void setDataSize(int dataWidth, int dataHeight, int dataDepth)
+	{
+		this.dataWidth = dataWidth;
+		this.dataHeight = dataHeight;
+		this.dataDepth = dataDepth;
+		dirty = true;
 	}
 }
