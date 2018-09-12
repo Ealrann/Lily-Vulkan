@@ -55,6 +55,11 @@ public class ComputePipeline extends AbstractCompositePipeline
 		this(context, -1, -1, -1, descriptors, Collections.emptyList());
 	}
 
+	public ComputePipeline(Context context)
+	{
+		this(context, -1, -1, -1, Collections.emptyList(), Collections.emptyList());
+	}
+
 	public ComputePipeline(Context context, int width, int height, int depth,
 			List<IDescriptor> descriptors)
 	{
