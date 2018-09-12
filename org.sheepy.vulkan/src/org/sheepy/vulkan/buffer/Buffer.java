@@ -34,6 +34,13 @@ public class Buffer implements IDescriptor, IAllocable
 
 	private long bufferId;
 	private long bufferMemoryId;
+	
+	private boolean allocated = false;
+
+	public Buffer(LogicalDevice logicalDevice, int usage, int properties)
+	{
+		this(logicalDevice, -1, usage, properties);
+	}
 
 	public Buffer(LogicalDevice logicalDevice, long size, int usage, int properties)
 	{
@@ -89,6 +96,8 @@ public class Buffer implements IDescriptor, IAllocable
 		bufferInfo.free();
 		allocInfo.free();
 		memRequirements.free();
+		
+		allocated = true;
 	}
 
 	@Override
@@ -96,6 +105,23 @@ public class Buffer implements IDescriptor, IAllocable
 	{
 		vkDestroyBuffer(logicalDevice.getVkDevice(), bufferId, null);
 		vkFreeMemory(logicalDevice.getVkDevice(), bufferMemoryId, null);
+		
+		allocated = false;
+	}
+	
+	public boolean isAllocated()
+	{
+		return allocated;
+	}
+	
+	public void setSize(long size)
+	{
+		if(allocated)
+		{
+			throw new AssertionError("Impossible to change the size, this buffer is already allocated");
+		}
+		
+		this.size = size;
 	}
 
 	public long getId()
