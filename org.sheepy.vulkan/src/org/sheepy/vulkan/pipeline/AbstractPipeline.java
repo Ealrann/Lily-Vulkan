@@ -25,7 +25,7 @@ public abstract class AbstractPipeline extends AllocationNode
 	private PushConstant pushConstant = null;
 	protected long pipelineLayout = 1;
 	protected boolean lock = false;
-
+	
 	public AbstractPipeline(Context context, List<IDescriptor> descriptors)
 	{
 		this.context = context;
@@ -47,6 +47,8 @@ public abstract class AbstractPipeline extends AllocationNode
 		this.pushConstant = pushConstant;
 		allocationObjects.add(pushConstant);
 	}
+	
+	
 
 	@Override
 	public void allocate(MemoryStack stack)

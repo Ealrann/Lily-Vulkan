@@ -7,9 +7,9 @@ import org.sheepy.vulkan.pipeline.PipelineId;
 
 public class Computer extends PipelineId implements IComputeExecutable
 {
-	public final int groupCountX;
-	public final int groupCountY;
-	public final int groupCountZ;
+	public int groupCountX;
+	public int groupCountY;
+	public int groupCountZ;
 
 	public Computer(long pipelineId, int groupCountX, int groupCountY, int groupCountZ)
 	{
