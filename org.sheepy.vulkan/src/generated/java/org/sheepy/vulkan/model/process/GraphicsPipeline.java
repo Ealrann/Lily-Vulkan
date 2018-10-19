@@ -3,7 +3,6 @@
 package org.sheepy.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.sheepy.vulkan.model.resource.Shader;
 
 /**

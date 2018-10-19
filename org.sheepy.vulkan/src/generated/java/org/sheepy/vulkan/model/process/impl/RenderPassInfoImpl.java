@@ -196,7 +196,7 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
+		@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)

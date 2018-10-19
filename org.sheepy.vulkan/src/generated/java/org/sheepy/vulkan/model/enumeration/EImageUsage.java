@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -28,7 +27,6 @@ public enum EImageUsage implements Enumerator
 	 * @ordered
 	 */
 	TRANSFER_SRC(1, "TransferSrc", "TransferSrc"),
-
 	/**
 	 * The '<em><b>Transfer Dst</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -38,7 +36,6 @@ public enum EImageUsage implements Enumerator
 	 * @ordered
 	 */
 	TRANSFER_DST(2, "TransferDst", "TransferDst"),
-
 	/**
 	 * The '<em><b>Sampled</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -48,7 +45,6 @@ public enum EImageUsage implements Enumerator
 	 * @ordered
 	 */
 	SAMPLED(4, "Sampled", "Sampled"),
-
 	/**
 	 * The '<em><b>Storage</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -58,7 +54,6 @@ public enum EImageUsage implements Enumerator
 	 * @ordered
 	 */
 	STORAGE(8, "Storage", "Storage"),
-
 	/**
 	 * The '<em><b>Color Attachment</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -68,7 +63,6 @@ public enum EImageUsage implements Enumerator
 	 * @ordered
 	 */
 	COLOR_ATTACHMENT(16, "ColorAttachment", "ColorAttachment"),
-
 	/**
 	 * The '<em><b>Depth Stencil Attachment</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -78,7 +72,6 @@ public enum EImageUsage implements Enumerator
 	 * @ordered
 	 */
 	DEPTH_STENCIL_ATTACHMENT(32, "DepthStencilAttachment", "DepthStencilAttachment"),
-
 	/**
 	 * The '<em><b>Transient Attachment</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -88,7 +81,6 @@ public enum EImageUsage implements Enumerator
 	 * @ordered
 	 */
 	TRANSIENT_ATTACHMENT(64, "TransientAttachment", "TransientAttachment"),
-
 	/**
 	 * The '<em><b>Input Attachement</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -98,7 +90,6 @@ public enum EImageUsage implements Enumerator
 	 * @ordered
 	 */
 	INPUT_ATTACHEMENT(128, "InputAttachement", "InputAttachement");
-
 	/**
 	 * The '<em><b>Transfer Src</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -387,5 +378,4 @@ public enum EImageUsage implements Enumerator
 	{
 		return literal;
 	}
-	
-} //EImageUsage
+}

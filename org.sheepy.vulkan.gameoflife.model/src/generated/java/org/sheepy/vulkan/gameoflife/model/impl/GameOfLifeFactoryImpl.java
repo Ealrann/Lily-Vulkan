@@ -59,7 +59,6 @@ public class GameOfLifeFactoryImpl extends EFactoryImpl implements GameOfLifeFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EObject create(EClass eClass)
 	{
 		switch (eClass.getClassifierID())
@@ -109,7 +108,6 @@ public class GameOfLifeFactoryImpl extends EFactoryImpl implements GameOfLifeFac
 	 * @deprecated
 	 * @generated
 	 */
-	@Deprecated
 	public static GameOfLifePackage getPackage()
 	{
 		return GameOfLifePackage.eINSTANCE;

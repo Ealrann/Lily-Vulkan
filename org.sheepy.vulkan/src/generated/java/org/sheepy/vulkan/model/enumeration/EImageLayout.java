@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -28,7 +27,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	UNDEFINED(0, "UNDEFINED", "UNDEFINED"),
-
 	/**
 	 * The '<em><b>GENERAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -38,7 +36,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	GENERAL(1, "GENERAL", "GENERAL"),
-
 	/**
 	 * The '<em><b>COLOR ATTACHMENT OPTIMAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -48,7 +45,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	COLOR_ATTACHMENT_OPTIMAL(2, "COLOR_ATTACHMENT_OPTIMAL", "COLOR_ATTACHMENT_OPTIMAL"),
-
 	/**
 	 * The '<em><b>DEPTH STENCIL ATTACHMENT OPTIMAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -58,7 +54,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	DEPTH_STENCIL_ATTACHMENT_OPTIMAL(3, "DEPTH_STENCIL_ATTACHMENT_OPTIMAL", "DEPTH_STENCIL_ATTACHMENT_OPTIMAL"),
-
 	/**
 	 * The '<em><b>DEPTH STENCIL READ ONLY OPTIMAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -68,7 +63,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	DEPTH_STENCIL_READ_ONLY_OPTIMAL(4, "DEPTH_STENCIL_READ_ONLY_OPTIMAL", "DEPTH_STENCIL_READ_ONLY_OPTIMAL"),
-
 	/**
 	 * The '<em><b>SHADER READ ONLY OPTIMAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -78,7 +72,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	SHADER_READ_ONLY_OPTIMAL(5, "SHADER_READ_ONLY_OPTIMAL", "SHADER_READ_ONLY_OPTIMAL"),
-
 	/**
 	 * The '<em><b>TRANSFER SRC OPTIMAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -88,7 +81,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	TRANSFER_SRC_OPTIMAL(6, "TRANSFER_SRC_OPTIMAL", "TRANSFER_SRC_OPTIMAL"),
-
 	/**
 	 * The '<em><b>TRANSFER DST OPTIMAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -98,7 +90,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	TRANSFER_DST_OPTIMAL(7, "TRANSFER_DST_OPTIMAL", "TRANSFER_DST_OPTIMAL"),
-
 	/**
 	 * The '<em><b>PREINITIALIZED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -108,7 +99,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	PREINITIALIZED(8, "PREINITIALIZED", "PREINITIALIZED"),
-
 	/**
 	 * The '<em><b>PRESENT SRC KHR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -118,7 +108,6 @@ public enum EImageLayout implements Enumerator
 	 * @ordered
 	 */
 	PRESENT_SRC_KHR(1000001002, "PRESENT_SRC_KHR", "PRESENT_SRC_KHR");
-
 	/**
 	 * The '<em><b>UNDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -441,5 +430,4 @@ public enum EImageLayout implements Enumerator
 	{
 		return literal;
 	}
-	
-} //EImageLayout
+}

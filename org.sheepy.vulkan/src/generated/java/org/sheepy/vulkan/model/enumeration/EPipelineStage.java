@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -28,7 +27,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	TOP_OF_PIPE_BIT(1, "TOP_OF_PIPE_BIT", "TOP_OF_PIPE_BIT"),
-
 	/**
 	 * The '<em><b>DRAW INDIRECT BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -38,7 +36,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	DRAW_INDIRECT_BIT(2, "DRAW_INDIRECT_BIT", "DRAW_INDIRECT_BIT"),
-
 	/**
 	 * The '<em><b>VERTEX INPUT BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -48,7 +45,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	VERTEX_INPUT_BIT(4, "VERTEX_INPUT_BIT", "VERTEX_INPUT_BIT"),
-
 	/**
 	 * The '<em><b>VERTEX SHADER BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -58,7 +54,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	VERTEX_SHADER_BIT(8, "VERTEX_SHADER_BIT", "VERTEX_SHADER_BIT"),
-
 	/**
 	 * The '<em><b>TESSELLATION CONTROL SHADER BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -68,7 +63,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	TESSELLATION_CONTROL_SHADER_BIT(16, "TESSELLATION_CONTROL_SHADER_BIT", "TESSELLATION_CONTROL_SHADER_BIT"),
-
 	/**
 	 * The '<em><b>TESSELLATION EVALUATION SHADER BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -78,7 +72,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	TESSELLATION_EVALUATION_SHADER_BIT(32, "TESSELLATION_EVALUATION_SHADER_BIT", "TESSELLATION_EVALUATION_SHADER_BIT"),
-
 	/**
 	 * The '<em><b>GEOMETRY SHADER BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -88,7 +81,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	GEOMETRY_SHADER_BIT(64, "GEOMETRY_SHADER_BIT", "GEOMETRY_SHADER_BIT"),
-
 	/**
 	 * The '<em><b>FRAGMENT SHADER BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -98,7 +90,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	FRAGMENT_SHADER_BIT(128, "FRAGMENT_SHADER_BIT", "FRAGMENT_SHADER_BIT"),
-
 	/**
 	 * The '<em><b>EARLY FRAGMENT TESTS BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -108,7 +99,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	EARLY_FRAGMENT_TESTS_BIT(256, "EARLY_FRAGMENT_TESTS_BIT", "EARLY_FRAGMENT_TESTS_BIT"),
-
 	/**
 	 * The '<em><b>LATE FRAGMENT TESTS BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -118,7 +108,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	LATE_FRAGMENT_TESTS_BIT(512, "LATE_FRAGMENT_TESTS_BIT", "LATE_FRAGMENT_TESTS_BIT"),
-
 	/**
 	 * The '<em><b>COLOR ATTACHMENT OUTPUT BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -128,7 +117,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	COLOR_ATTACHMENT_OUTPUT_BIT(1024, "COLOR_ATTACHMENT_OUTPUT_BIT", "COLOR_ATTACHMENT_OUTPUT_BIT"),
-
 	/**
 	 * The '<em><b>COMPUTE SHADER BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -138,7 +126,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	COMPUTE_SHADER_BIT(2048, "COMPUTE_SHADER_BIT", "COMPUTE_SHADER_BIT"),
-
 	/**
 	 * The '<em><b>TRANSFER BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -148,7 +135,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	TRANSFER_BIT(4096, "TRANSFER_BIT", "TRANSFER_BIT"),
-
 	/**
 	 * The '<em><b>BOTTOM OF PIPE BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -158,7 +144,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	BOTTOM_OF_PIPE_BIT(8192, "BOTTOM_OF_PIPE_BIT", "BOTTOM_OF_PIPE_BIT"),
-
 	/**
 	 * The '<em><b>HOST BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -168,7 +153,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	HOST_BIT(16384, "HOST_BIT", "HOST_BIT"),
-
 	/**
 	 * The '<em><b>ALL GRAPHICS BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -178,7 +162,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	ALL_GRAPHICS_BIT(32768, "ALL_GRAPHICS_BIT", "ALL_GRAPHICS_BIT"),
-
 	/**
 	 * The '<em><b>ALL COMMANDS BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -188,7 +171,6 @@ public enum EPipelineStage implements Enumerator
 	 * @ordered
 	 */
 	ALL_COMMANDS_BIT(65536, "ALL_COMMANDS_BIT", "ALL_COMMANDS_BIT");
-
 	/**
 	 * The '<em><b>TOP OF PIPE BIT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -630,5 +612,4 @@ public enum EPipelineStage implements Enumerator
 	{
 		return literal;
 	}
-	
-} //EPipelineStage
+}

@@ -98,7 +98,7 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
+		@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)

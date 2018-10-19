@@ -5,12 +5,16 @@ package org.sheepy.vulkan.gameoflife.model.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.sheepy.vulkan.gameoflife.model.BoardBuffer;
 import org.sheepy.vulkan.gameoflife.model.BoardImage;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifeFactory;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
+
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -185,17 +189,13 @@ public class GameOfLifePackageImpl extends EPackageImpl implements GameOfLifePac
 		// Obtain other dependent packages
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
-		// Create type parameters
-
-		// Set bounds for type parameters
-
 		// Add supertypes to classes
 		boardBufferEClass.getESuperTypes().add(theResourcePackage.getVulkanBuffer());
 		boardBufferEClass.getESuperTypes().add(theResourcePackage.getIDescriptor());
 		boardImageEClass.getESuperTypes().add(theResourcePackage.getImage());
 		boardImageEClass.getESuperTypes().add(theResourcePackage.getIDescriptor());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(boardBufferEClass, BoardBuffer.class, "BoardBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(boardImageEClass, BoardImage.class, "BoardImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

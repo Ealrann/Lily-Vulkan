@@ -1,10 +1,13 @@
 @GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
 @GenModel(publicConstructors="true")
+@GenModel(updateClasspath="false")
 
 package org.sheepy.vulkan.model.resource
 
 import org.sheepy.vulkan.model.enumeration.EShaderStage
 import org.sheepy.vulkan.model.enumeration.EPipelineStage
+
+import java.lang.Module
 
 interface Resource
 {

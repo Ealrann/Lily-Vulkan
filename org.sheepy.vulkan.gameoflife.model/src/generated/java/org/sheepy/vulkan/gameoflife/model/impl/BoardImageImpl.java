@@ -3,8 +3,10 @@
 package org.sheepy.vulkan.gameoflife.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.sheepy.vulkan.gameoflife.model.BoardImage;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
+
 import org.sheepy.vulkan.model.resource.impl.ImageImpl;
 
 /**
@@ -31,7 +33,6 @@ public class BoardImageImpl extends ImageImpl implements BoardImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass()
 	{
 		return GameOfLifePackage.Literals.BOARD_IMAGE;

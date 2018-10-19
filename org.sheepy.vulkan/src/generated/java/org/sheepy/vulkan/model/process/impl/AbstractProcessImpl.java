@@ -118,7 +118,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
+		@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)

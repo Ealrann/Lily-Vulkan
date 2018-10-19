@@ -97,7 +97,7 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
+		@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)

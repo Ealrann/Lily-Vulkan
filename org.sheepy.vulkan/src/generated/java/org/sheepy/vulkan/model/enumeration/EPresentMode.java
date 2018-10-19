@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -28,7 +27,6 @@ public enum EPresentMode implements Enumerator
 	 * @ordered
 	 */
 	IMMEDIATE(0, "Immediate", "Immediate"),
-
 	/**
 	 * The '<em><b>Mail Box</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -38,7 +36,6 @@ public enum EPresentMode implements Enumerator
 	 * @ordered
 	 */
 	MAIL_BOX(1, "MailBox", "MailBox"),
-
 	/**
 	 * The '<em><b>Fifo</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -48,7 +45,6 @@ public enum EPresentMode implements Enumerator
 	 * @ordered
 	 */
 	FIFO(2, "Fifo", "Fifo"),
-
 	/**
 	 * The '<em><b>Fifo Relaxed</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -58,7 +54,6 @@ public enum EPresentMode implements Enumerator
 	 * @ordered
 	 */
 	FIFO_RELAXED(3, "FifoRelaxed", "FifoRelaxed");
-
 	/**
 	 * The '<em><b>Immediate</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -279,5 +274,4 @@ public enum EPresentMode implements Enumerator
 	{
 		return literal;
 	}
-	
-} //EPresentMode
+}

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.vulkan.gameoflife.model.*;
+
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.Resource;
@@ -56,7 +57,6 @@ public class GameOfLifeAdapterFactory extends AdapterFactoryImpl
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	@Override
 	public boolean isFactoryForType(Object object)
 	{
 		if (object == modelPackage)
@@ -76,46 +76,38 @@ public class GameOfLifeAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GameOfLifeSwitch<Adapter> modelSwitch =
-		new GameOfLifeSwitch<Adapter>()
+	protected GameOfLifeSwitch modelSwitch =
+		new GameOfLifeSwitch()
 		{
-			@Override
-			public Adapter caseBoardBuffer(BoardBuffer object)
+			public Object caseBoardBuffer(BoardBuffer object)
 			{
 				return createBoardBufferAdapter();
 			}
-			@Override
-			public Adapter caseBoardImage(BoardImage object)
+			public Object caseBoardImage(BoardImage object)
 			{
 				return createBoardImageAdapter();
 			}
-			@Override
-			public Adapter caseResource(Resource object)
+			public Object caseResource(Resource object)
 			{
 				return createResourceAdapter();
 			}
-			@Override
-			public Adapter caseVulkanBuffer(VulkanBuffer object)
+			public Object caseVulkanBuffer(VulkanBuffer object)
 			{
 				return createVulkanBufferAdapter();
 			}
-			@Override
-			public Adapter caseIDescriptor(IDescriptor object)
+			public Object caseIDescriptor(IDescriptor object)
 			{
 				return createIDescriptorAdapter();
 			}
-			@Override
-			public Adapter caseSizedBuffer(SizedBuffer object)
+			public Object caseSizedBuffer(SizedBuffer object)
 			{
 				return createSizedBufferAdapter();
 			}
-			@Override
-			public Adapter caseImage(Image object)
+			public Object caseImage(Image object)
 			{
 				return createImageAdapter();
 			}
-			@Override
-			public Adapter defaultCase(EObject object)
+			public Object defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
 			}
@@ -129,10 +121,9 @@ public class GameOfLifeAdapterFactory extends AdapterFactoryImpl
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject)target);
+		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 
 

@@ -14,14 +14,13 @@ import org.eclipse.emf.ecore.EReference;
  * <ul>
  *   <li>each class,</li>
  *   <li>each feature of each class,</li>
- *   <li>each operation of each class,</li>
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see org.sheepy.vulkan.model.process.ProcessFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' publicConstructors='true' basePackage='org.sheepy.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.vulkan.model'"
  * @generated
  */
 public interface ProcessPackage extends EPackage
@@ -1784,6 +1783,7 @@ public interface ProcessPackage extends EPackage
 	 */
 	int IMAGE_PIPELINE_FEATURE_COUNT = ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
 
+
 	/**
 	 * The number of operations of the '<em>Image Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
@@ -1792,6 +1792,7 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int IMAGE_PIPELINE_OPERATION_COUNT = ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}'.
@@ -2795,7 +2796,6 @@ public interface ProcessPackage extends EPackage
 	 * <ul>
 	 *   <li>each class,</li>
 	 *   <li>each feature of each class,</li>
-	 *   <li>each operation of each class,</li>
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>

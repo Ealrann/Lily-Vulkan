@@ -2,11 +2,13 @@
  */
 package org.sheepy.vulkan.gameoflife.model.util;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.vulkan.gameoflife.model.*;
+
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.Resource;
@@ -26,7 +28,7 @@ import org.sheepy.vulkan.model.resource.VulkanBuffer;
  * @see org.sheepy.vulkan.gameoflife.model.GameOfLifePackage
  * @generated
  */
-public class GameOfLifeSwitch<T> extends Switch<T>
+public class GameOfLifeSwitch
 {
 	/**
 	 * The cached model package
@@ -51,17 +53,15 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Checks whether this is a switch for the given package.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
-	 * @return whether this is a switch for the given package.
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
+	public Object doSwitch(EObject theEObject)
 	{
-		return ePackage == modelPackage;
+		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
 	/**
@@ -71,15 +71,37 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
+	protected Object doSwitch(EClass theEClass, EObject theEObject)
+	{
+		if (theEClass.eContainer() == modelPackage)
+		{
+			return doSwitch(theEClass.getClassifierID(), theEObject);
+		}
+		else
+		{
+			List eSuperTypes = theEClass.getESuperTypes();
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch((EClass)eSuperTypes.get(0), theEObject);
+		}
+	}
+
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
+	protected Object doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 			case GameOfLifePackage.BOARD_BUFFER:
 			{
 				BoardBuffer boardBuffer = (BoardBuffer)theEObject;
-				T result = caseBoardBuffer(boardBuffer);
+				Object result = caseBoardBuffer(boardBuffer);
 				if (result == null) result = caseVulkanBuffer(boardBuffer);
 				if (result == null) result = caseIDescriptor(boardBuffer);
 				if (result == null) result = caseResource(boardBuffer);
@@ -89,7 +111,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 			case GameOfLifePackage.BOARD_IMAGE:
 			{
 				BoardImage boardImage = (BoardImage)theEObject;
-				T result = caseBoardImage(boardImage);
+				Object result = caseBoardImage(boardImage);
 				if (result == null) result = caseImage(boardImage);
 				if (result == null) result = caseIDescriptor(boardImage);
 				if (result == null) result = caseSizedBuffer(boardImage);
@@ -113,7 +135,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBoardBuffer(BoardBuffer object)
+	public Object caseBoardBuffer(BoardBuffer object)
 	{
 		return null;
 	}
@@ -129,7 +151,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBoardImage(BoardImage object)
+	public Object caseBoardImage(BoardImage object)
 	{
 		return null;
 	}
@@ -145,7 +167,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseResource(Resource object)
+	public Object caseResource(Resource object)
 	{
 		return null;
 	}
@@ -161,7 +183,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVulkanBuffer(VulkanBuffer object)
+	public Object caseVulkanBuffer(VulkanBuffer object)
 	{
 		return null;
 	}
@@ -177,7 +199,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIDescriptor(IDescriptor object)
+	public Object caseIDescriptor(IDescriptor object)
 	{
 		return null;
 	}
@@ -193,7 +215,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSizedBuffer(SizedBuffer object)
+	public Object caseSizedBuffer(SizedBuffer object)
 	{
 		return null;
 	}
@@ -209,7 +231,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImage(Image object)
+	public Object caseImage(Image object)
 	{
 		return null;
 	}
@@ -225,8 +247,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	@Override
-	public T defaultCase(EObject object)
+	public Object defaultCase(EObject object)
 	{
 		return null;
 	}

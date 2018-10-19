@@ -1,5 +1,7 @@
 @GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
 @GenModel(publicConstructors="true")
+@GenModel(updateClasspath="false")
+
 package org.sheepy.vulkan.model.enumeration
 
 enum EImageLayout

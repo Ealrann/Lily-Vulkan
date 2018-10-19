@@ -3,25 +3,27 @@
 package org.sheepy.vulkan.gameoflife.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.vulkan.gameoflife.model.BoardImage;
+
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.sheepy.vulkan.gameoflife.model.BoardBuffer;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
-import org.sheepy.vulkan.model.resource.impl.ImageImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Board Image</b></em>'.
+ * An implementation of the model object '<em><b>Board Buffer</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class BoardImageImpl extends ImageImpl implements BoardImage
+public class BoardBufferImpl extends MinimalEObjectImpl.Container implements BoardBuffer
 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BoardImageImpl()
+	public BoardBufferImpl()
 	{
 		super();
 	}
@@ -31,10 +33,9 @@ public class BoardImageImpl extends ImageImpl implements BoardImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass()
 	{
-		return GameOfLifePackage.Literals.BOARD_IMAGE;
+		return GameOfLifePackage.Literals.BOARD_BUFFER;
 	}
 
-} //BoardImageImpl
+} //BoardBufferImpl

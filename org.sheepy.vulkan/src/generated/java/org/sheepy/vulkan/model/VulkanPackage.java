@@ -14,14 +14,13 @@ import org.eclipse.emf.ecore.EReference;
  * <ul>
  *   <li>each class,</li>
  *   <li>each feature of each class,</li>
- *   <li>each operation of each class,</li>
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see org.sheepy.vulkan.model.VulkanFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' basePackage='org.sheepy.vulkan'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.vulkan'"
  * @generated
  */
 public interface VulkanPackage extends EPackage
@@ -149,6 +148,7 @@ public interface VulkanPackage extends EPackage
 	 */
 	int VULKAN_APPLICATION_FEATURE_COUNT = 8;
 
+
 	/**
 	 * The number of operations of the '<em>Application</em>' class.
 	 * <!-- begin-user-doc -->
@@ -272,7 +272,6 @@ public interface VulkanPackage extends EPackage
 	 * <ul>
 	 *   <li>each class,</li>
 	 *   <li>each feature of each class,</li>
-	 *   <li>each operation of each class,</li>
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>

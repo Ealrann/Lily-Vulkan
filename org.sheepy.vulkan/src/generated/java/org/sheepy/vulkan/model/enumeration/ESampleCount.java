@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -28,7 +27,6 @@ public enum ESampleCount implements Enumerator
 	 * @ordered
 	 */
 	SAMPLE_COUNT_1BIT(1, "SAMPLE_COUNT_1_BIT", "SAMPLE_COUNT_1_BIT"),
-
 	/**
 	 * The '<em><b>SAMPLE COUNT 2BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -38,7 +36,6 @@ public enum ESampleCount implements Enumerator
 	 * @ordered
 	 */
 	SAMPLE_COUNT_2BIT(2, "SAMPLE_COUNT_2_BIT", "SAMPLE_COUNT_2_BIT"),
-
 	/**
 	 * The '<em><b>SAMPLE COUNT 4BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -48,7 +45,6 @@ public enum ESampleCount implements Enumerator
 	 * @ordered
 	 */
 	SAMPLE_COUNT_4BIT(4, "SAMPLE_COUNT_4_BIT", "SAMPLE_COUNT_4_BIT"),
-
 	/**
 	 * The '<em><b>SAMPLE COUNT 8BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -58,7 +54,6 @@ public enum ESampleCount implements Enumerator
 	 * @ordered
 	 */
 	SAMPLE_COUNT_8BIT(8, "SAMPLE_COUNT_8_BIT", "SAMPLE_COUNT_8_BIT"),
-
 	/**
 	 * The '<em><b>SAMPLE COUNT 16 BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -68,7 +63,6 @@ public enum ESampleCount implements Enumerator
 	 * @ordered
 	 */
 	SAMPLE_COUNT_16_BIT(16, "SAMPLE_COUNT_16_BIT", "SAMPLE_COUNT_16_BIT"),
-
 	/**
 	 * The '<em><b>SAMPLE COUNT 32 BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -78,7 +72,6 @@ public enum ESampleCount implements Enumerator
 	 * @ordered
 	 */
 	SAMPLE_COUNT_32_BIT(32, "SAMPLE_COUNT_32_BIT", "SAMPLE_COUNT_32_BIT"),
-
 	/**
 	 * The '<em><b>SAMPLE COUNT 64 BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -88,7 +81,6 @@ public enum ESampleCount implements Enumerator
 	 * @ordered
 	 */
 	SAMPLE_COUNT_64_BIT(64, "SAMPLE_COUNT_64_BIT", "SAMPLE_COUNT_64_BIT");
-
 	/**
 	 * The '<em><b>SAMPLE COUNT 1BIT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -360,5 +352,4 @@ public enum ESampleCount implements Enumerator
 	{
 		return literal;
 	}
-	
-} //ESampleCount
+}

@@ -116,7 +116,7 @@ public abstract class AbstractCompositePipelineImpl extends AbstractPipelineImpl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
+		@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)

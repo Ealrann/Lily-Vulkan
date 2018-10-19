@@ -1,6 +1,8 @@
 @GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
 @GenModel(modelName="Vulkan", prefix="Vulkan")
 @GenModel(publicConstructors="true")
+@GenModel(updateClasspath="false")
+
 package org.sheepy.vulkan.model
 
 import org.sheepy.common.model.types.SVector2i
