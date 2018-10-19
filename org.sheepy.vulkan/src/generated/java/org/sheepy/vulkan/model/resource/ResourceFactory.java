@@ -95,24 +95,6 @@ public interface ResourceFactory extends EFactory
 	DescriptorSet createDescriptorSet();
 
 	/**
-	 * Returns a new object of class '<em>Mesh Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mesh Buffer</em>'.
-	 * @generated
-	 */
-	MeshBuffer createMeshBuffer();
-
-	/**
-	 * Returns a new object of class '<em>Uniform Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Uniform Buffer</em>'.
-	 * @generated
-	 */
-	UniformBuffer createUniformBuffer();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

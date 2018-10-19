@@ -1,7 +1,9 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.vulkan.demo.model;
 
+import org.sheepy.vulkan.model.resource.IndexedBuffer;
+import org.sheepy.vulkan.model.resource.Texture;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,10 +14,10 @@ package org.sheepy.vulkan.model.resource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.MeshBuffer#getTexture <em>Texture</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.demo.model.MeshBuffer#getTexture <em>Texture</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getMeshBuffer()
+ * @see org.sheepy.vulkan.demo.model.VulkanDemoPackage#getMeshBuffer()
  * @model
  * @generated
  */
@@ -31,14 +33,14 @@ public interface MeshBuffer extends IndexedBuffer
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Texture</em>' reference.
 	 * @see #setTexture(Texture)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getMeshBuffer_Texture()
+	 * @see org.sheepy.vulkan.demo.model.VulkanDemoPackage#getMeshBuffer_Texture()
 	 * @model
 	 * @generated
 	 */
 	Texture getTexture();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.MeshBuffer#getTexture <em>Texture</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.demo.model.MeshBuffer#getTexture <em>Texture</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Texture</em>' reference.

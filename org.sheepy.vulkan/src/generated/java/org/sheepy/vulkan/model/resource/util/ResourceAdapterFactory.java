@@ -150,16 +150,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createIndexedBufferAdapter();
 			}
 			@Override
-			public Adapter caseMeshBuffer(MeshBuffer object)
-			{
-				return createMeshBufferAdapter();
-			}
-			@Override
-			public Adapter caseUniformBuffer(UniformBuffer object)
-			{
-				return createUniformBufferAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -402,36 +392,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIndexedBufferAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.MeshBuffer <em>Mesh Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.MeshBuffer
-	 * @generated
-	 */
-	public Adapter createMeshBufferAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.UniformBuffer <em>Uniform Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.UniformBuffer
-	 * @generated
-	 */
-	public Adapter createUniformBufferAdapter()
 	{
 		return null;
 	}

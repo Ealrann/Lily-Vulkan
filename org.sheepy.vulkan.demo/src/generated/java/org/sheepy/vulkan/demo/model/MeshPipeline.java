@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model.process;
+package org.sheepy.vulkan.demo.model;
 
-import org.sheepy.vulkan.model.resource.MeshBuffer;
+import org.sheepy.vulkan.model.process.GraphicsPipeline;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,10 +13,10 @@ import org.sheepy.vulkan.model.resource.MeshBuffer;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.MeshPipeline#getMesh <em>Mesh</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.demo.model.MeshPipeline#getMesh <em>Mesh</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.ProcessPackage#getMeshPipeline()
+ * @see org.sheepy.vulkan.demo.model.VulkanDemoPackage#getMeshPipeline()
  * @model
  * @generated
  */
@@ -32,14 +32,14 @@ public interface MeshPipeline extends GraphicsPipeline
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mesh</em>' reference.
 	 * @see #setMesh(MeshBuffer)
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getMeshPipeline_Mesh()
+	 * @see org.sheepy.vulkan.demo.model.VulkanDemoPackage#getMeshPipeline_Mesh()
 	 * @model
 	 * @generated
 	 */
 	MeshBuffer getMesh();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.MeshPipeline#getMesh <em>Mesh</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.demo.model.MeshPipeline#getMesh <em>Mesh</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mesh</em>' reference.

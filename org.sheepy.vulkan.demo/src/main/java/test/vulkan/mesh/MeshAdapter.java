@@ -2,8 +2,8 @@ package test.vulkan.mesh;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.execution.IExecutionManagerAdapter;
-import org.sheepy.vulkan.model.resource.MeshBuffer;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.indexed.IIndexedBufferBuilder;
 import org.sheepy.vulkan.resource.indexed.IVertex;

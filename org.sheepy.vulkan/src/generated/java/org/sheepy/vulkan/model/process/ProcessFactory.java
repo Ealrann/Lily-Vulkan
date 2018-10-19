@@ -167,15 +167,6 @@ public interface ProcessFactory extends EFactory
 	ImagePipeline createImagePipeline();
 
 	/**
-	 * Returns a new object of class '<em>Mesh Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mesh Pipeline</em>'.
-	 * @generated
-	 */
-	MeshPipeline createMeshPipeline();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,13 +1,13 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.vulkan.demo.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.UniformBuffer;
+import org.sheepy.vulkan.demo.model.UniformBuffer;
+import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,10 +33,9 @@ public class UniformBufferImpl extends MinimalEObjectImpl.Container implements U
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.UNIFORM_BUFFER;
+		return VulkanDemoPackage.Literals.UNIFORM_BUFFER;
 	}
 
 } //UniformBufferImpl

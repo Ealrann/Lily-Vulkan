@@ -273,16 +273,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.MESH_PIPELINE:
-			{
-				MeshPipeline meshPipeline = (MeshPipeline)theEObject;
-				T1 result = caseMeshPipeline(meshPipeline);
-				if (result == null) result = caseGraphicsPipeline(meshPipeline);
-				if (result == null) result = caseAbstractPipeline(meshPipeline);
-				if (result == null) result = caseIProcessUnit(meshPipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -683,22 +673,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseImagePipeline(ImagePipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mesh Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mesh Pipeline</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseMeshPipeline(MeshPipeline object)
 	{
 		return null;
 	}

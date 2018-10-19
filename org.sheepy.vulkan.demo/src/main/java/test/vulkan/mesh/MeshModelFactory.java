@@ -3,6 +3,12 @@ package test.vulkan.mesh;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.vulkan.demo.model.MeshBuffer;
+import org.sheepy.vulkan.demo.model.MeshPipeline;
+import org.sheepy.vulkan.demo.model.UniformBuffer;
+import org.sheepy.vulkan.demo.model.impl.MeshBufferImpl;
+import org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl;
+import org.sheepy.vulkan.demo.model.impl.UniformBufferImpl;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -15,7 +21,6 @@ import org.sheepy.vulkan.model.process.AttachmentDescription;
 import org.sheepy.vulkan.model.process.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.GraphicProcess;
 import org.sheepy.vulkan.model.process.GraphicProcessPool;
-import org.sheepy.vulkan.model.process.MeshPipeline;
 import org.sheepy.vulkan.model.process.RenderPassInfo;
 import org.sheepy.vulkan.model.process.SubpassDependency;
 import org.sheepy.vulkan.model.process.impl.AttachmentDescriptionImpl;
@@ -23,22 +28,17 @@ import org.sheepy.vulkan.model.process.impl.ColorDomainImpl;
 import org.sheepy.vulkan.model.process.impl.GraphicConfigurationImpl;
 import org.sheepy.vulkan.model.process.impl.GraphicProcessImpl;
 import org.sheepy.vulkan.model.process.impl.GraphicProcessPoolImpl;
-import org.sheepy.vulkan.model.process.impl.MeshPipelineImpl;
 import org.sheepy.vulkan.model.process.impl.RenderPassInfoImpl;
 import org.sheepy.vulkan.model.process.impl.SubpassDependencyImpl;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.MeshBuffer;
 import org.sheepy.vulkan.model.resource.ModuleResource;
 import org.sheepy.vulkan.model.resource.Shader;
-import org.sheepy.vulkan.model.resource.UniformBuffer;
 import org.sheepy.vulkan.model.resource.impl.DepthImageImpl;
 import org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl;
-import org.sheepy.vulkan.model.resource.impl.MeshBufferImpl;
 import org.sheepy.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.vulkan.model.resource.impl.ShaderImpl;
 import org.sheepy.vulkan.model.resource.impl.TextureImpl;
-import org.sheepy.vulkan.model.resource.impl.UniformBufferImpl;
 
 public class MeshModelFactory
 {

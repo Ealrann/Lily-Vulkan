@@ -1,8 +1,7 @@
 package test.vulkan.common;
 
 import org.sheepy.vulkan.adapter.VulkanAdapterRegistry;
-import org.sheepy.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.resource.indexed.IIndexedBufferBuilder;
 
 import test.vulkan.mesh.MeshAdapterWrapper;
@@ -15,9 +14,9 @@ public class VulkanDemoWrapperUtil
 	{
 		final var registry = VulkanAdapterRegistry.INSTANCE;
 		final var pipelineClass = MeshPipelineAdapter.class;
-		final var pipelineEClass = ProcessPackage.Literals.MESH_PIPELINE;
+		final var pipelineEClass = VulkanDemoPackage.Literals.MESH_PIPELINE;
 		final var uniformClass = UniformBufferAdapter.class;
-		final var uniformEClass = ResourcePackage.Literals.UNIFORM_BUFFER;
+		final var uniformEClass = VulkanDemoPackage.Literals.UNIFORM_BUFFER;
 		
 		registry.addWrapper(new MeshAdapterWrapper(meshBuilder));
 		registry.addWrapper(new VulkanDemoAdapterWrapper(pipelineClass, pipelineEClass));

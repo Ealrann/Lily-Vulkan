@@ -18,7 +18,7 @@ if (project.hasProperty('javaModule')) {
 
 sourceSets {
 	main {
-		java.srcDirs = ['src/']
-		resources.srcDirs = ['res/']
+		java.srcDirs = ['src/generated/java',
+			'src/main/java']
 	}
 }

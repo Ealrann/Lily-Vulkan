@@ -1794,89 +1794,6 @@ public interface ProcessPackage extends EPackage
 	int IMAGE_PIPELINE_OPERATION_COUNT = ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.MeshPipelineImpl <em>Mesh Pipeline</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.MeshPipelineImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getMeshPipeline()
-	 * @generated
-	 */
-	int MESH_PIPELINE = 25;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE__ENABLED = GRAPHICS_PIPELINE__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE__STAGE = GRAPHICS_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE__DESCRIPTOR_SET = GRAPHICS_PIPELINE__DESCRIPTOR_SET;
-
-	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE__PUSH_CONSTANT = GRAPHICS_PIPELINE__PUSH_CONSTANT;
-
-	/**
-	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE__SHADERS = GRAPHICS_PIPELINE__SHADERS;
-
-	/**
-	 * The feature id for the '<em><b>Mesh</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE__MESH = GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Mesh Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE_FEATURE_COUNT = GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Mesh Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE_OPERATION_COUNT = GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
-
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2864,27 +2781,6 @@ public interface ProcessPackage extends EPackage
 	EAttribute getImagePipeline_ImageDstAccess();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.MeshPipeline <em>Mesh Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Mesh Pipeline</em>'.
-	 * @see org.sheepy.vulkan.model.process.MeshPipeline
-	 * @generated
-	 */
-	EClass getMeshPipeline();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.MeshPipeline#getMesh <em>Mesh</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Mesh</em>'.
-	 * @see org.sheepy.vulkan.model.process.MeshPipeline#getMesh()
-	 * @see #getMeshPipeline()
-	 * @generated
-	 */
-	EReference getMeshPipeline_Mesh();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3693,24 +3589,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute IMAGE_PIPELINE__IMAGE_DST_ACCESS = eINSTANCE.getImagePipeline_ImageDstAccess();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.MeshPipelineImpl <em>Mesh Pipeline</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.impl.MeshPipelineImpl
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getMeshPipeline()
-		 * @generated
-		 */
-		EClass MESH_PIPELINE = eINSTANCE.getMeshPipeline();
-
-		/**
-		 * The meta object literal for the '<em><b>Mesh</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MESH_PIPELINE__MESH = eINSTANCE.getMeshPipeline_Mesh();
 
 	}
 

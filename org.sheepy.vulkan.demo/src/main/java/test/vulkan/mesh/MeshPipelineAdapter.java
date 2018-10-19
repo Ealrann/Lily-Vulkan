@@ -2,8 +2,8 @@ package test.vulkan.mesh;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.execution.graphic.GraphicCommandBuffer;
-import org.sheepy.vulkan.model.process.MeshPipeline;
 import org.sheepy.vulkan.pipeline.graphic.GraphicsPipelineAdapter;
 import org.sheepy.vulkan.pipeline.graphic.render.IVertexBufferDescriptor;
 

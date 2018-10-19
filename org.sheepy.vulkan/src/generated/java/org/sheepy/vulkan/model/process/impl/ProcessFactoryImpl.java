@@ -80,7 +80,6 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 			case ProcessPackage.COMPUTE_PIPELINE: return createComputePipeline();
 			case ProcessPackage.COMPUTER: return createComputer();
 			case ProcessPackage.IMAGE_PIPELINE: return createImagePipeline();
-			case ProcessPackage.MESH_PIPELINE: return createMeshPipeline();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -260,17 +259,6 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		ImagePipelineImpl imagePipeline = new ImagePipelineImpl();
 		return imagePipeline;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MeshPipeline createMeshPipeline()
-	{
-		MeshPipelineImpl meshPipeline = new MeshPipelineImpl();
-		return meshPipeline;
 	}
 
 	/**

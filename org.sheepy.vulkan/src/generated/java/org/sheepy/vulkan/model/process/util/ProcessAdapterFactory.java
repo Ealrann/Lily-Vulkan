@@ -200,11 +200,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createImagePipelineAdapter();
 			}
 			@Override
-			public Adapter caseMeshPipeline(MeshPipeline object)
-			{
-				return createMeshPipelineAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -597,21 +592,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createImagePipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.MeshPipeline <em>Mesh Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.process.MeshPipeline
-	 * @generated
-	 */
-	public Adapter createMeshPipelineAdapter()
 	{
 		return null;
 	}

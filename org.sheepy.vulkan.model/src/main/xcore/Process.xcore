@@ -15,7 +15,6 @@ import org.sheepy.vulkan.model.resource.DepthImage
 import org.sheepy.vulkan.model.resource.Image
 import org.sheepy.vulkan.model.resource.PushConstant
 import org.sheepy.vulkan.model.resource.Shader
-import org.sheepy.vulkan.model.resource.MeshBuffer
 import org.sheepy.vulkan.model.resource.Resource
 import org.sheepy.vulkan.model.enumeration.EFormat
 import org.sheepy.vulkan.model.enumeration.EColorSpace
@@ -193,9 +192,4 @@ class ImagePipeline extends AbstractPipeline
 	
 	int imageSrcAccess = "0"
 	int imageDstAccess = "0"
-}
-
-class MeshPipeline extends GraphicsPipeline
-{
-	refers MeshBuffer mesh
 }

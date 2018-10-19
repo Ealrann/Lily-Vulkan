@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.impl;
+package org.sheepy.vulkan.demo.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,42 +9,44 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.vulkan.model.process.MeshPipeline;
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.vulkan.demo.model.MeshBuffer;
+import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 
-import org.sheepy.vulkan.model.resource.MeshBuffer;
+import org.sheepy.vulkan.model.resource.Texture;
+
+import org.sheepy.vulkan.model.resource.impl.IndexedBufferImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mesh Pipeline</b></em>'.
+ * An implementation of the model object '<em><b>Mesh Buffer</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.MeshPipelineImpl#getMesh <em>Mesh</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.demo.model.impl.MeshBufferImpl#getTexture <em>Texture</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeline
+public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 {
 	/**
-	 * The cached value of the '{@link #getMesh() <em>Mesh</em>}' reference.
+	 * The cached value of the '{@link #getTexture() <em>Texture</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMesh()
+	 * @see #getTexture()
 	 * @generated
 	 * @ordered
 	 */
-	protected MeshBuffer mesh;
+	protected Texture texture;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MeshPipelineImpl()
+	public MeshBufferImpl()
 	{
 		super();
 	}
@@ -54,10 +56,9 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass()
 	{
-		return ProcessPackage.Literals.MESH_PIPELINE;
+		return VulkanDemoPackage.Literals.MESH_BUFFER;
 	}
 
 	/**
@@ -65,19 +66,19 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MeshBuffer getMesh()
+	public Texture getTexture()
 	{
-		if (mesh != null && mesh.eIsProxy())
+		if (texture != null && texture.eIsProxy())
 		{
-			InternalEObject oldMesh = (InternalEObject)mesh;
-			mesh = (MeshBuffer)eResolveProxy(oldMesh);
-			if (mesh != oldMesh)
+			InternalEObject oldTexture = (InternalEObject)texture;
+			texture = (Texture)eResolveProxy(oldTexture);
+			if (texture != oldTexture)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.MESH_PIPELINE__MESH, oldMesh, mesh));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanDemoPackage.MESH_BUFFER__TEXTURE, oldTexture, texture));
 			}
 		}
-		return mesh;
+		return texture;
 	}
 
 	/**
@@ -85,9 +86,9 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MeshBuffer basicGetMesh()
+	public Texture basicGetTexture()
 	{
-		return mesh;
+		return texture;
 	}
 
 	/**
@@ -95,12 +96,12 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMesh(MeshBuffer newMesh)
+	public void setTexture(Texture newTexture)
 	{
-		MeshBuffer oldMesh = mesh;
-		mesh = newMesh;
+		Texture oldTexture = texture;
+		texture = newTexture;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.MESH_PIPELINE__MESH, oldMesh, mesh));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanDemoPackage.MESH_BUFFER__TEXTURE, oldTexture, texture));
 	}
 
 	/**
@@ -108,14 +109,13 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.MESH_PIPELINE__MESH:
-				if (resolve) return getMesh();
-				return basicGetMesh();
+			case VulkanDemoPackage.MESH_BUFFER__TEXTURE:
+				if (resolve) return getTexture();
+				return basicGetTexture();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,13 +125,12 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.MESH_PIPELINE__MESH:
-				setMesh((MeshBuffer)newValue);
+			case VulkanDemoPackage.MESH_BUFFER__TEXTURE:
+				setTexture((Texture)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,13 +141,12 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eUnset(int featureID)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.MESH_PIPELINE__MESH:
-				setMesh((MeshBuffer)null);
+			case VulkanDemoPackage.MESH_BUFFER__TEXTURE:
+				setTexture((Texture)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -159,15 +157,14 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eIsSet(int featureID)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.MESH_PIPELINE__MESH:
-				return mesh != null;
+			case VulkanDemoPackage.MESH_BUFFER__TEXTURE:
+				return texture != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //MeshPipelineImpl
+} //MeshBufferImpl

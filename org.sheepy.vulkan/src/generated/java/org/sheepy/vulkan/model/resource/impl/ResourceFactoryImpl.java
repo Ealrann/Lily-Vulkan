@@ -73,8 +73,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.SHADER: return createShader();
 			case ResourcePackage.PUSH_CONSTANT: return createPushConstant();
 			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
-			case ResourcePackage.MESH_BUFFER: return createMeshBuffer();
-			case ResourcePackage.UNIFORM_BUFFER: return createUniformBuffer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -200,28 +198,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		DescriptorSetImpl descriptorSet = new DescriptorSetImpl();
 		return descriptorSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MeshBuffer createMeshBuffer()
-	{
-		MeshBufferImpl meshBuffer = new MeshBufferImpl();
-		return meshBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UniformBuffer createUniformBuffer()
-	{
-		UniformBufferImpl uniformBuffer = new UniformBufferImpl();
-		return uniformBuffer;
 	}
 
 	/**

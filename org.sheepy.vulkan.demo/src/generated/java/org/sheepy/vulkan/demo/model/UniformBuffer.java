@@ -1,7 +1,9 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.vulkan.demo.model;
 
+import org.sheepy.vulkan.model.resource.IDescriptor;
+import org.sheepy.vulkan.model.resource.VulkanBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -9,7 +11,7 @@ package org.sheepy.vulkan.model.resource;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getUniformBuffer()
+ * @see org.sheepy.vulkan.demo.model.VulkanDemoPackage#getUniformBuffer()
  * @model
  * @generated
  */

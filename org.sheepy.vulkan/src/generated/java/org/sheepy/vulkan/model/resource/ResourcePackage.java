@@ -606,71 +606,6 @@ public interface ResourcePackage extends EPackage
 	int INDEXED_BUFFER_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.MeshBufferImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getMeshBuffer()
-	 * @generated
-	 */
-	int MESH_BUFFER = 15;
-
-	/**
-	 * The feature id for the '<em><b>Texture</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_BUFFER__TEXTURE = INDEXED_BUFFER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Mesh Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_BUFFER_FEATURE_COUNT = INDEXED_BUFFER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Mesh Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_BUFFER_OPERATION_COUNT = INDEXED_BUFFER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.UniformBufferImpl <em>Uniform Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.UniformBufferImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getUniformBuffer()
-	 * @generated
-	 */
-	int UNIFORM_BUFFER = 16;
-
-	/**
-	 * The number of structural features of the '<em>Uniform Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIFORM_BUFFER_FEATURE_COUNT = VULKAN_BUFFER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Uniform Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIFORM_BUFFER_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -678,7 +613,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 17;
+	int JAVA_MODULE = 15;
 
 
 	/**
@@ -964,37 +899,6 @@ public interface ResourcePackage extends EPackage
 	EClass getIndexedBuffer();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.MeshBuffer <em>Mesh Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Mesh Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.resource.MeshBuffer
-	 * @generated
-	 */
-	EClass getMeshBuffer();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.resource.MeshBuffer#getTexture <em>Texture</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Texture</em>'.
-	 * @see org.sheepy.vulkan.model.resource.MeshBuffer#getTexture()
-	 * @see #getMeshBuffer()
-	 * @generated
-	 */
-	EReference getMeshBuffer_Texture();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.UniformBuffer <em>Uniform Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Uniform Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.resource.UniformBuffer
-	 * @generated
-	 */
-	EClass getUniformBuffer();
-
-	/**
 	 * Returns the meta object for data type '{@link java.lang.Module <em>Java Module</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1274,34 +1178,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EClass INDEXED_BUFFER = eINSTANCE.getIndexedBuffer();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.MeshBufferImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getMeshBuffer()
-		 * @generated
-		 */
-		EClass MESH_BUFFER = eINSTANCE.getMeshBuffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Texture</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MESH_BUFFER__TEXTURE = eINSTANCE.getMeshBuffer_Texture();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.UniformBufferImpl <em>Uniform Buffer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.UniformBufferImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getUniformBuffer()
-		 * @generated
-		 */
-		EClass UNIFORM_BUFFER = eINSTANCE.getUniformBuffer();
 
 		/**
 		 * The meta object literal for the '<em>Java Module</em>' data type.

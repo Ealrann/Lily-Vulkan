@@ -1,20 +1,20 @@
-package test.vulkan.texture;
+package test.vulkan.rotatingtriangle;
 
 import org.sheepy.vulkan.VulkanApplicationLauncher;
+import org.sheepy.vulkan.demo.model.UniformBuffer;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
-import org.sheepy.vulkan.model.resource.UniformBuffer;
 
 import test.vulkan.common.VulkanDemoWrapperUtil;
 import test.vulkan.mesh.MeshConfiguration;
 import test.vulkan.mesh.MeshModelFactory;
 import test.vulkan.mesh.UniformBufferAdapter;
+import test.vulkan.triangle.TriangleMeshBuilder;
 
-public class MainTexture
+public class MainRotating
 {
-	private static final String IMAGE_PATH = "test/vulkan/texture/image_77MJJZ.png";
-	private static final String VERTEX_SHADER_PATH = "test/vulkan/texture/triangle.vert.spv";
-	private static final String FRAGMENT_SHADER_PATH = "test/vulkan/texture/triangle.frag.spv";
+	private static final String VERTEX_SHADER_PATH = "test/vulkan/rotatingtriangle/triangle.vert.spv";
+	private static final String FRAGMENT_SHADER_PATH = "test/vulkan/rotatingtriangle/triangle.frag.spv";
 
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
@@ -25,13 +25,13 @@ public class MainTexture
 
 	public static void main(String[] args)
 	{
-		final MainTexture mainTexture = new MainTexture();
-		mainTexture.launch();
+		final MainRotating mainRotating = new MainRotating();
+		mainRotating.launch();
 	}
 
-	public MainTexture()
+	public MainRotating()
 	{
-		final var meshBuilder = new TextureMeshBuilder();
+		final var meshBuilder = new TriangleMeshBuilder();
 		VulkanDemoWrapperUtil.registerWrappers(meshBuilder);
 	}
 
@@ -64,13 +64,12 @@ public class MainTexture
 
 	private static MeshModelFactory buildModelFactory()
 	{
-		final var meshConfiguration = new MeshConfiguration(WIDTH, HEIGHT, true);
+		final var meshConfiguration = new MeshConfiguration(WIDTH, HEIGHT, false);
 
 		meshConfiguration.buildUniformBuffer = true;
 		meshConfiguration.vertexShaderPath = VERTEX_SHADER_PATH;
 		meshConfiguration.fragmentShaderPath = FRAGMENT_SHADER_PATH;
 		meshConfiguration.rasterizerFrontFace = EFrontFace.COUNTER_CLOCKWISE;
-		meshConfiguration.texturePath = IMAGE_PATH;
 
 		final var modelFactory = new MeshModelFactory(meshConfiguration);
 		return modelFactory;

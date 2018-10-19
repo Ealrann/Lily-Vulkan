@@ -35,7 +35,6 @@ import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.ImageBarrier;
 import org.sheepy.vulkan.model.process.ImagePipeline;
 import org.sheepy.vulkan.model.process.ImageTransition;
-import org.sheepy.vulkan.model.process.MeshPipeline;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.ProcessFactory;
 import org.sheepy.vulkan.model.process.ProcessPackage;
@@ -227,13 +226,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass imagePipelineEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass meshPipelineEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1228,26 +1220,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMeshPipeline()
-	{
-		return meshPipelineEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMeshPipeline_Mesh()
-	{
-		return (EReference)meshPipelineEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ProcessFactory getProcessFactory()
 	{
 		return (ProcessFactory)getEFactoryInstance();
@@ -1389,9 +1361,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_STAGE);
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_SRC_ACCESS);
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_ACCESS);
-
-		meshPipelineEClass = createEClass(MESH_PIPELINE);
-		createEReference(meshPipelineEClass, MESH_PIPELINE__MESH);
 	}
 
 	/**
@@ -1453,7 +1422,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		computePipelineEClass.getESuperTypes().add(this.getAbstractPipeline());
 		computerEClass.getESuperTypes().add(this.getIProcessUnit());
 		imagePipelineEClass.getESuperTypes().add(this.getAbstractPipeline());
-		meshPipelineEClass.getESuperTypes().add(this.getGraphicsPipeline());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1573,9 +1541,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEAttribute(getImagePipeline_ImageDstStage(), theEnumerationPackage.getEPipelineStage(), "imageDstStage", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImagePipeline_ImageSrcAccess(), theEcorePackage.getEInt(), "imageSrcAccess", "0", 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImagePipeline_ImageDstAccess(), theEcorePackage.getEInt(), "imageDstAccess", "0", 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(meshPipelineEClass, MeshPipeline.class, "MeshPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMeshPipeline_Mesh(), theResourcePackage.getMeshBuffer(), null, "mesh", null, 0, 1, MeshPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

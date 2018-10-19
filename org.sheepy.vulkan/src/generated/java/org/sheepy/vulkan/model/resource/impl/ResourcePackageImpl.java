@@ -20,7 +20,6 @@ import org.sheepy.vulkan.model.resource.FileResource;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
-import org.sheepy.vulkan.model.resource.MeshBuffer;
 import org.sheepy.vulkan.model.resource.ModuleResource;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.PushConstant;
@@ -30,7 +29,6 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.resource.SizedBuffer;
 import org.sheepy.vulkan.model.resource.Texture;
-import org.sheepy.vulkan.model.resource.UniformBuffer;
 import org.sheepy.vulkan.model.resource.VulkanBuffer;
 
 /**
@@ -145,20 +143,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass indexedBufferEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass meshBufferEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass uniformBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -509,36 +493,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMeshBuffer()
-	{
-		return meshBufferEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMeshBuffer_Texture()
-	{
-		return (EReference)meshBufferEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getUniformBuffer()
-	{
-		return uniformBufferEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EDataType getJavaModule()
 	{
 		return javaModuleEDataType;
@@ -616,11 +570,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		indexedBufferEClass = createEClass(INDEXED_BUFFER);
 
-		meshBufferEClass = createEClass(MESH_BUFFER);
-		createEReference(meshBufferEClass, MESH_BUFFER__TEXTURE);
-
-		uniformBufferEClass = createEClass(UNIFORM_BUFFER);
-
 		// Create data types
 		javaModuleEDataType = createEDataType(JAVA_MODULE);
 	}
@@ -672,9 +621,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		pushConstantEClass.getESuperTypes().add(this.getVulkanBuffer());
 		indexedBufferEClass.getESuperTypes().add(this.getVulkanBuffer());
 		indexedBufferEClass.getESuperTypes().add(this.getIDescriptor());
-		meshBufferEClass.getESuperTypes().add(this.getIndexedBuffer());
-		uniformBufferEClass.getESuperTypes().add(this.getVulkanBuffer());
-		uniformBufferEClass.getESuperTypes().add(this.getIDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(resourceEClass, Resource.class, "Resource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -718,11 +664,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getDescriptorSet_Descriptors(), this.getIDescriptor(), null, "descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(indexedBufferEClass, IndexedBuffer.class, "IndexedBuffer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(meshBufferEClass, MeshBuffer.class, "MeshBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMeshBuffer_Texture(), this.getTexture(), null, "texture", null, 0, 1, MeshBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(uniformBufferEClass, UniformBuffer.class, "UniformBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize data types
 		initEDataType(javaModuleEDataType, Module.class, "JavaModule", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
