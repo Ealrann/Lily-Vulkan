@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.sheepy.vulkan.model.VulkanFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model.plugin/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' basePackage='org.sheepy.vulkan'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' basePackage='org.sheepy.vulkan'"
  * @generated
  */
 public interface VulkanPackage extends EPackage

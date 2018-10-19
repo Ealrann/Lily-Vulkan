@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.sheepy.vulkan.model;singleton:=true
-Automatic-Module-Name: org.sheepy.vulkan.model.plugin
+Automatic-Module-Name: org.sheepy.vulkan.model
 Bundle-Version: 0.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.ecore.xcore.lib,
- org.sheepy.vulkan.model.plugin;visibility:=reexport,
- org.sheepy.common.model;bundle-version="0.1.0";visibility:=reexport
+ org.sheepy.common.model;bundle-version="0.1.0";visibility:=reexport,
+ org.sheepy.vulkan.model;visibility:=reexport
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy

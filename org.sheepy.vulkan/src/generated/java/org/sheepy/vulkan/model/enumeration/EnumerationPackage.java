@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.vulkan.model.enumeration.EnumerationFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model.plugin/src/generated/java' publicConstructors='true' basePackage='org.sheepy.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' publicConstructors='true' basePackage='org.sheepy.vulkan.model'"
  * @generated
  */
 public interface EnumerationPackage extends EPackage
