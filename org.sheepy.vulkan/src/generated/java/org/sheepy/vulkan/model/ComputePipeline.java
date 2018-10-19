@@ -4,7 +4,6 @@ package org.sheepy.vulkan.model;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Compute Pipeline</b></em>'.
@@ -29,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ComputePipeline extends AbstractPipeline
 {
-
 	/**
 	 * Returns the value of the '<em><b>Computers</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.vulkan.model.Computer}.
@@ -204,4 +202,5 @@ public interface ComputePipeline extends AbstractPipeline
 	 * @generated
 	 */
 	void setDepth(int value);
+
 } // ComputePipeline

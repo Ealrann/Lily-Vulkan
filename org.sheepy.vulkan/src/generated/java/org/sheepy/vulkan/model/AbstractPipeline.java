@@ -2,6 +2,7 @@
  */
 package org.sheepy.vulkan.model;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Abstract Pipeline</b></em>'.

@@ -21,7 +21,6 @@ package org.sheepy.vulkan.model;
  */
 public interface Computer extends IProcessUnit
 {
-
 	/**
 	 * Returns the value of the '<em><b>Shader</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -47,4 +46,5 @@ public interface Computer extends IProcessUnit
 	 * @generated
 	 */
 	void setShader(Shader value);
+
 } // Computer

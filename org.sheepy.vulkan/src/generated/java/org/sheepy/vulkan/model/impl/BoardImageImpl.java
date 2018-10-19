@@ -3,6 +3,7 @@
 package org.sheepy.vulkan.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.sheepy.vulkan.model.BoardImage;
 import org.sheepy.vulkan.model.VulkanPackage;
 

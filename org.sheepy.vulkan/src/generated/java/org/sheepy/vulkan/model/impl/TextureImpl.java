@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.sheepy.vulkan.model.PathResource;
 import org.sheepy.vulkan.model.Texture;
 import org.sheepy.vulkan.model.VulkanPackage;

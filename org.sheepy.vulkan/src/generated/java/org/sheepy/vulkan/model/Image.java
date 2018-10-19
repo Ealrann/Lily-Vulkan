@@ -15,5 +15,4 @@ package org.sheepy.vulkan.model;
  */
 public interface Image extends SizedBuffer
 {
-
 } // Image

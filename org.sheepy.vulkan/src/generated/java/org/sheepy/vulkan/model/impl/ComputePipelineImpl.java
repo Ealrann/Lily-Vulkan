@@ -3,15 +3,20 @@
 package org.sheepy.vulkan.model.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.vulkan.model.ComputePipeline;
 import org.sheepy.vulkan.model.Computer;
 import org.sheepy.vulkan.model.VulkanPackage;
@@ -46,6 +51,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected EList<Computer> computers;
+
 	/**
 	 * The default value of the '{@link #getWorkgroupSizeX() <em>Workgroup Size X</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -55,6 +61,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int WORKGROUP_SIZE_X_EDEFAULT = 32;
+
 	/**
 	 * The cached value of the '{@link #getWorkgroupSizeX() <em>Workgroup Size X</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,6 +71,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int workgroupSizeX = WORKGROUP_SIZE_X_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getWorkgroupSizeY() <em>Workgroup Size Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,6 +81,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int WORKGROUP_SIZE_Y_EDEFAULT = 32;
+
 	/**
 	 * The cached value of the '{@link #getWorkgroupSizeY() <em>Workgroup Size Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,6 +91,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int workgroupSizeY = WORKGROUP_SIZE_Y_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getWorkgroupSizeZ() <em>Workgroup Size Z</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -91,6 +101,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int WORKGROUP_SIZE_Z_EDEFAULT = 32;
+
 	/**
 	 * The cached value of the '{@link #getWorkgroupSizeZ() <em>Workgroup Size Z</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -110,6 +121,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int WIDTH_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -119,6 +131,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int width = WIDTH_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -128,6 +141,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int HEIGHT_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -137,6 +151,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int height = HEIGHT_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getDepth() <em>Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -146,6 +161,7 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int DEPTH_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getDepth() <em>Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->

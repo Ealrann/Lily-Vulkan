@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.sheepy.vulkan.model.Image;
 import org.sheepy.vulkan.model.ImagePipeline;
 import org.sheepy.vulkan.model.VulkanPackage;

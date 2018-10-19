@@ -2153,116 +2153,6 @@ public interface VulkanPackage extends EPackage
 	int BUFFER_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ImageImpl <em>Image</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.ImageImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getImage()
-	 * @generated
-	 */
-	int IMAGE = 33;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.TextureImpl <em>Texture</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.TextureImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getTexture()
-	 * @generated
-	 */
-	int TEXTURE = 34;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.DepthImageImpl <em>Depth Image</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.DepthImageImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getDepthImage()
-	 * @generated
-	 */
-	int DEPTH_IMAGE = 35;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.PathResourceImpl <em>Path Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.PathResourceImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getPathResource()
-	 * @generated
-	 */
-	int PATH_RESOURCE = 36;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.FileResourceImpl <em>File Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.FileResourceImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getFileResource()
-	 * @generated
-	 */
-	int FILE_RESOURCE = 37;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ModuleResourceImpl <em>Module Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.ModuleResourceImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getModuleResource()
-	 * @generated
-	 */
-	int MODULE_RESOURCE = 38;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ShaderImpl <em>Shader</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.ShaderImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getShader()
-	 * @generated
-	 */
-	int SHADER = 39;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.PushConstantImpl <em>Push Constant</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.PushConstantImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getPushConstant()
-	 * @generated
-	 */
-	int PUSH_CONSTANT = 40;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.IndexedBufferImpl <em>Indexed Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.IndexedBufferImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIndexedBuffer()
-	 * @generated
-	 */
-	int INDEXED_BUFFER = 41;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.MeshBufferImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getMeshBuffer()
-	 * @generated
-	 */
-	int MESH_BUFFER = 42;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.UniformBufferImpl <em>Uniform Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.UniformBufferImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getUniformBuffer()
-	 * @generated
-	 */
-	int UNIFORM_BUFFER = 43;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.SizedBuffer <em>Sized Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2291,6 +2181,16 @@ public interface VulkanPackage extends EPackage
 	int SIZED_BUFFER_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ImageImpl <em>Image</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.ImageImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getImage()
+	 * @generated
+	 */
+	int IMAGE = 33;
+
+	/**
 	 * The number of structural features of the '<em>Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2307,6 +2207,16 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int IMAGE_OPERATION_COUNT = SIZED_BUFFER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.TextureImpl <em>Texture</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.TextureImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getTexture()
+	 * @generated
+	 */
+	int TEXTURE = 34;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
@@ -2345,6 +2255,16 @@ public interface VulkanPackage extends EPackage
 	int TEXTURE_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.DepthImageImpl <em>Depth Image</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.DepthImageImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getDepthImage()
+	 * @generated
+	 */
+	int DEPTH_IMAGE = 35;
+
+	/**
 	 * The number of structural features of the '<em>Depth Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2361,6 +2281,16 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int DEPTH_IMAGE_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.PathResourceImpl <em>Path Resource</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.PathResourceImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getPathResource()
+	 * @generated
+	 */
+	int PATH_RESOURCE = 36;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -2390,6 +2320,16 @@ public interface VulkanPackage extends EPackage
 	int PATH_RESOURCE_OPERATION_COUNT = RESOURCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.FileResourceImpl <em>File Resource</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.FileResourceImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getFileResource()
+	 * @generated
+	 */
+	int FILE_RESOURCE = 37;
+
+	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2415,6 +2355,16 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int FILE_RESOURCE_OPERATION_COUNT = PATH_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ModuleResourceImpl <em>Module Resource</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.ModuleResourceImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getModuleResource()
+	 * @generated
+	 */
+	int MODULE_RESOURCE = 38;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -2453,6 +2403,16 @@ public interface VulkanPackage extends EPackage
 	int MODULE_RESOURCE_OPERATION_COUNT = PATH_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ShaderImpl <em>Shader</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.ShaderImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getShader()
+	 * @generated
+	 */
+	int SHADER = 39;
+
+	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2487,6 +2447,16 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int SHADER_OPERATION_COUNT = RESOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.PushConstantImpl <em>Push Constant</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.PushConstantImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getPushConstant()
+	 * @generated
+	 */
+	int PUSH_CONSTANT = 40;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -2525,6 +2495,16 @@ public interface VulkanPackage extends EPackage
 	int PUSH_CONSTANT_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.IndexedBufferImpl <em>Indexed Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.IndexedBufferImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIndexedBuffer()
+	 * @generated
+	 */
+	int INDEXED_BUFFER = 41;
+
+	/**
 	 * The number of structural features of the '<em>Indexed Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2541,6 +2521,16 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int INDEXED_BUFFER_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.MeshBufferImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getMeshBuffer()
+	 * @generated
+	 */
+	int MESH_BUFFER = 42;
 
 	/**
 	 * The feature id for the '<em><b>Texture</b></em>' reference.
@@ -2568,6 +2558,16 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int MESH_BUFFER_OPERATION_COUNT = INDEXED_BUFFER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.UniformBufferImpl <em>Uniform Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.UniformBufferImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getUniformBuffer()
+	 * @generated
+	 */
+	int UNIFORM_BUFFER = 43;
 
 	/**
 	 * The number of structural features of the '<em>Uniform Buffer</em>' class.
@@ -3855,6 +3855,16 @@ public interface VulkanPackage extends EPackage
 	EAttribute getBuffer_Properties();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.SizedBuffer <em>Sized Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sized Buffer</em>'.
+	 * @see org.sheepy.vulkan.model.SizedBuffer
+	 * @generated
+	 */
+	EClass getSizedBuffer();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.Image <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4062,16 +4072,6 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	EClass getUniformBuffer();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.SizedBuffer <em>Sized Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Sized Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.SizedBuffer
-	 * @generated
-	 */
-	EClass getSizedBuffer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.BoardBuffer <em>Board Buffer</em>}'.
@@ -5089,6 +5089,16 @@ public interface VulkanPackage extends EPackage
 		EAttribute BUFFER__PROPERTIES = eINSTANCE.getBuffer_Properties();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.SizedBuffer <em>Sized Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.SizedBuffer
+		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getSizedBuffer()
+		 * @generated
+		 */
+		EClass SIZED_BUFFER = eINSTANCE.getSizedBuffer();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.ImageImpl <em>Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5269,16 +5279,6 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EClass UNIFORM_BUFFER = eINSTANCE.getUniformBuffer();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.SizedBuffer <em>Sized Buffer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.SizedBuffer
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getSizedBuffer()
-		 * @generated
-		 */
-		EClass SIZED_BUFFER = eINSTANCE.getSizedBuffer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.BoardBufferImpl <em>Board Buffer</em>}' class.

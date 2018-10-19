@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface GraphicsPipeline extends AbstractPipeline
 {
-
 	/**
 	 * Returns the value of the '<em><b>Shaders</b></em>' reference list.
 	 * The list contents are of type {@link org.sheepy.vulkan.model.Shader}.

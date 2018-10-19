@@ -3,14 +3,17 @@
 package org.sheepy.vulkan.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.sheepy.vulkan.model.Computer;
 import org.sheepy.vulkan.model.Shader;
 import org.sheepy.vulkan.model.VulkanPackage;
+
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
@@ -39,6 +42,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected static final boolean ENABLED_EDEFAULT = true;
+
 	/**
 	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,6 +52,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -57,6 +62,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.RENDER;
+
 	/**
 	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -66,6 +72,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getShader() <em>Shader</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -75,6 +82,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected Shader shader;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

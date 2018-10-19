@@ -3,9 +3,13 @@
 package org.sheepy.vulkan.model.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.sheepy.vulkan.model.GraphicsPipeline;
 import org.sheepy.vulkan.model.Shader;
 import org.sheepy.vulkan.model.VulkanPackage;

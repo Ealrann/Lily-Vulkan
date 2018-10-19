@@ -3,7 +3,9 @@
 package org.sheepy.vulkan.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.sheepy.vulkan.model.Image;
 import org.sheepy.vulkan.model.VulkanPackage;
 

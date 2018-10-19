@@ -303,6 +303,13 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass sizedBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass imageEClass = null;
 
 	/**
@@ -374,13 +381,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass uniformBufferEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass sizedBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1596,6 +1596,16 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSizedBuffer()
+	{
+		return sizedBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getImage()
 	{
 		return imageEClass;
@@ -1789,16 +1799,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	public EClass getUniformBuffer()
 	{
 		return uniformBufferEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSizedBuffer()
-	{
-		return sizedBufferEClass;
 	}
 
 	/**
