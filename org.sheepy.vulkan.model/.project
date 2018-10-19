@@ -35,13 +35,7 @@
 		<link>
 			<name>src/generated/java</name>
 			<type>2</type>
-			<locationURI>copy_PARENT/org.sheepy.vulkan/src/generated/java</locationURI>
+			<locationURI>.../org.sheepy.vulkan/src/generated/java</locationURI>
 		</link>
 	</linkedResources>
-	<variableList>
-		<variable>
-			<name>copy_PARENT</name>
-			<value>$%7BPARENT-3-ECLIPSE_HOME%7D/ealrann/git/Sheepy-Vulkan</value>
-		</variable>
-	</variableList>
 </projectDescription>
