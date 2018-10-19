@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Vulkan -->
+      <package
+            uri="org.sheepy.vulkan.model"
+            class="org.sheepy.vulkan.model.VulkanPackage"
+            genModel="src/main/xcore/Vulkan.xcore"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated VulkanEnum -->
+      <package
+            uri="org.sheepy.vulkan.model.enumeration"
+            class="org.sheepy.vulkan.model.enumeration.EnumerationPackage"
+            genModel="src/main/xcore/VulkanEnum.xcore"/>
+   </extension>
+
+</plugin>

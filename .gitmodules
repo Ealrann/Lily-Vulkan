@@ -1,0 +1,3 @@
+[submodule "Sheepy"]
+	path = Sheepy
+	url = https://github.com/Ealrann/Sheepy.git

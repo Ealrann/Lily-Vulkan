@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:VulkanApplication xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:model="org.sheepy.vulkan.model" xsi:schemaLocation="org.sheepy.vulkan.model ../../../../../org.sheepy.vulkan.model.plugin/src/main/xcore/Vulkan.xcore#/EPackage"/>

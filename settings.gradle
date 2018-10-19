@@ -2,4 +2,9 @@ rootProject.name = "Vulkan"
 
 
 include ':org.sheepy.vulkan'
-include ':org.sheepy.vulkan.test'
+include ':org.sheepy.vulkan.demo'
+
+include ':org.sheepy.common'
+
+
+project(':org.sheepy.common').projectDir = new File(settingsDir, 'Sheepy/org.sheepy.common')
