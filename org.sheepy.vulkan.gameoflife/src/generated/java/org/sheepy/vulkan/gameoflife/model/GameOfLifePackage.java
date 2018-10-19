@@ -4,7 +4,7 @@ package org.sheepy.vulkan.gameoflife.model;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.sheepy.vulkan.model.VulkanPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,7 +73,7 @@ public interface GameOfLifePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOARD_BUFFER_FEATURE_COUNT = EcorePackage.EOBJECT_FEATURE_COUNT + 0;
+	int BOARD_BUFFER_FEATURE_COUNT = VulkanPackage.VULKAN_BUFFER_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.gameoflife.model.impl.BoardImageImpl <em>Board Image</em>}' class.
@@ -92,7 +92,7 @@ public interface GameOfLifePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOARD_IMAGE_FEATURE_COUNT = EcorePackage.EOBJECT_FEATURE_COUNT + 0;
+	int BOARD_IMAGE_FEATURE_COUNT = VulkanPackage.IMAGE_FEATURE_COUNT + 0;
 
 
 	/**

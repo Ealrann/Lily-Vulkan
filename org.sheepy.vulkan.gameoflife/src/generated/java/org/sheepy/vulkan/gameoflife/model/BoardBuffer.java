@@ -2,7 +2,8 @@
  */
 package org.sheepy.vulkan.gameoflife.model;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.vulkan.model.IDescriptor;
+import org.sheepy.vulkan.model.VulkanBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,9 +12,9 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see org.sheepy.vulkan.gameoflife.model.GameOfLifePackage#getBoardBuffer()
- * @model superTypes="org.eclipse.emf.ecore.EJavaObject org.eclipse.emf.ecore.EJavaObject"
+ * @model
  * @generated
  */
-public interface BoardBuffer extends EObject
+public interface BoardBuffer extends VulkanBuffer, IDescriptor
 {
 } // BoardBuffer

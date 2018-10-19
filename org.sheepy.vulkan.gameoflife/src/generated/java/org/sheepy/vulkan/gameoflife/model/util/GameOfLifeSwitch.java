@@ -8,6 +8,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.vulkan.gameoflife.model.*;
+import org.sheepy.vulkan.model.IDescriptor;
+import org.sheepy.vulkan.model.Image;
+import org.sheepy.vulkan.model.Resource;
+import org.sheepy.vulkan.model.SizedBuffer;
+import org.sheepy.vulkan.model.VulkanBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -96,6 +101,9 @@ public class GameOfLifeSwitch
 			{
 				BoardBuffer boardBuffer = (BoardBuffer)theEObject;
 				Object result = caseBoardBuffer(boardBuffer);
+				if (result == null) result = caseVulkanBuffer(boardBuffer);
+				if (result == null) result = caseIDescriptor(boardBuffer);
+				if (result == null) result = caseResource(boardBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -103,6 +111,11 @@ public class GameOfLifeSwitch
 			{
 				BoardImage boardImage = (BoardImage)theEObject;
 				Object result = caseBoardImage(boardImage);
+				if (result == null) result = caseImage(boardImage);
+				if (result == null) result = caseIDescriptor(boardImage);
+				if (result == null) result = caseSizedBuffer(boardImage);
+				if (result == null) result = caseVulkanBuffer(boardImage);
+				if (result == null) result = caseResource(boardImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,6 +151,86 @@ public class GameOfLifeSwitch
 	 * @generated
 	 */
 	public Object caseBoardImage(BoardImage object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseResource(Resource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseVulkanBuffer(VulkanBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseIDescriptor(IDescriptor object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sized Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sized Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseSizedBuffer(SizedBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseImage(Image object)
 	{
 		return null;
 	}

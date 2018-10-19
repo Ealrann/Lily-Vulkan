@@ -2,7 +2,8 @@
  */
 package org.sheepy.vulkan.gameoflife.model;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.vulkan.model.IDescriptor;
+import org.sheepy.vulkan.model.Image;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,9 +12,9 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see org.sheepy.vulkan.gameoflife.model.GameOfLifePackage#getBoardImage()
- * @model superTypes="org.eclipse.emf.ecore.EJavaObject org.eclipse.emf.ecore.EJavaObject"
+ * @model
  * @generated
  */
-public interface BoardImage extends EObject
+public interface BoardImage extends Image, IDescriptor
 {
 } // BoardImage

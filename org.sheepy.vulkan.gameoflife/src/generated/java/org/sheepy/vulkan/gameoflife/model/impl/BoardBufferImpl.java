@@ -3,7 +3,7 @@
 package org.sheepy.vulkan.gameoflife.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.sheepy.vulkan.gameoflife.model.BoardBuffer;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
 
@@ -14,7 +14,7 @@ import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
  *
  * @generated
  */
-public class BoardBufferImpl extends EObjectImpl implements BoardBuffer
+public class BoardBufferImpl extends MinimalEObjectImpl.Container implements BoardBuffer
 {
 	/**
 	 * <!-- begin-user-doc -->

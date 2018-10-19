@@ -3,9 +3,9 @@
 package org.sheepy.vulkan.gameoflife.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.sheepy.vulkan.gameoflife.model.BoardImage;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
+import org.sheepy.vulkan.model.impl.ImageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +14,7 @@ import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
  *
  * @generated
  */
-public class BoardImageImpl extends EObjectImpl implements BoardImage
+public class BoardImageImpl extends ImageImpl implements BoardImage
 {
 	/**
 	 * <!-- begin-user-doc -->
