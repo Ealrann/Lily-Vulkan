@@ -1,4 +1,4 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model.plugin/src/generated/java")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
 @GenModel(modelName="Vulkan", prefix="Vulkan")
 @GenModel(publicConstructors="true")
 package org.sheepy.vulkan.model

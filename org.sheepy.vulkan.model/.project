@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.sheepy.vulkan.model.plugin</name>
+	<name>org.sheepy.vulkan.model</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -35,7 +35,13 @@
 		<link>
 			<name>src/generated/java</name>
 			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan/src/generated/java</locationURI>
+			<locationURI>copy_PARENT/org.sheepy.vulkan/src/generated/java</locationURI>
 		</link>
 	</linkedResources>
+	<variableList>
+		<variable>
+			<name>copy_PARENT</name>
+			<value>$%7BPARENT-3-ECLIPSE_HOME%7D/ealrann/git/Sheepy-Vulkan</value>
+		</variable>
+	</variableList>
 </projectDescription>
