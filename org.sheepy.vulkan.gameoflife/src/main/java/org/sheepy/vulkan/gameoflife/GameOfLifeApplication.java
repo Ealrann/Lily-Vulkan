@@ -1,13 +1,12 @@
-package test.vulkan.gameoflife;
+package org.sheepy.vulkan.gameoflife;
 
 import org.sheepy.vulkan.VulkanApplicationLauncher;
 import org.sheepy.vulkan.adapter.IProcessPoolAdapter;
 import org.sheepy.vulkan.adapter.IVulkanApplicationAdapter;
+import org.sheepy.vulkan.gameoflife.model.ModelFactory;
 import org.sheepy.vulkan.model.ComputeProcessPool;
 import org.sheepy.vulkan.model.GraphicProcessPool;
 import org.sheepy.vulkan.model.VulkanApplication;
-
-import test.vulkan.gameoflife.model.ModelFactory;
 
 public class GameOfLifeApplication
 {

@@ -1,11 +1,11 @@
-package test.vulkan.gameoflife.model;
+package org.sheepy.vulkan.gameoflife.model;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.vulkan.gameoflife.model.impl.BoardBufferImpl;
+import org.sheepy.vulkan.gameoflife.model.impl.BoardImageImpl;
 import org.sheepy.vulkan.model.AttachmentDescription;
-import org.sheepy.vulkan.model.BoardBuffer;
-import org.sheepy.vulkan.model.BoardImage;
 import org.sheepy.vulkan.model.ComputePipeline;
 import org.sheepy.vulkan.model.ComputeProcess;
 import org.sheepy.vulkan.model.ComputeProcessPool;
@@ -30,8 +30,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.impl.AttachmentDescriptionImpl;
-import org.sheepy.vulkan.model.impl.BoardBufferImpl;
-import org.sheepy.vulkan.model.impl.BoardImageImpl;
 import org.sheepy.vulkan.model.impl.ColorDomainImpl;
 import org.sheepy.vulkan.model.impl.ComputePipelineImpl;
 import org.sheepy.vulkan.model.impl.ComputeProcessImpl;
@@ -50,8 +48,8 @@ import org.sheepy.vulkan.model.impl.VulkanApplicationImpl;
 
 public class ModelFactory
 {
-	private static final String SHADER_LIFE = "test/vulkan/gameoflife/life.comp.spv";
-	private static final String SHADER_LIFE2PIXEL = "test/vulkan/gameoflife/life2pixel.comp.spv";
+	private static final String SHADER_LIFE = "life.comp.spv";
+	private static final String SHADER_LIFE2PIXEL = "life2pixel.comp.spv";
 
 	public final VulkanApplication application = new VulkanApplicationImpl();
 	public final GraphicProcessPool imageProcessPool;

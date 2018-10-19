@@ -1,4 +1,4 @@
-package test.vulkan.gameoflife.compute;
+package org.sheepy.vulkan.gameoflife.compute;
 
 import static org.lwjgl.vulkan.VK10.*;
 

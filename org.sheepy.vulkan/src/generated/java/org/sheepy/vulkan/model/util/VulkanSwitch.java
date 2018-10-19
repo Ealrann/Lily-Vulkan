@@ -440,28 +440,6 @@ public class VulkanSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.BOARD_BUFFER:
-			{
-				BoardBuffer boardBuffer = (BoardBuffer)theEObject;
-				T1 result = caseBoardBuffer(boardBuffer);
-				if (result == null) result = caseVulkanBuffer(boardBuffer);
-				if (result == null) result = caseIDescriptor(boardBuffer);
-				if (result == null) result = caseResource(boardBuffer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.BOARD_IMAGE:
-			{
-				BoardImage boardImage = (BoardImage)theEObject;
-				T1 result = caseBoardImage(boardImage);
-				if (result == null) result = caseImage(boardImage);
-				if (result == null) result = caseIDescriptor(boardImage);
-				if (result == null) result = caseSizedBuffer(boardImage);
-				if (result == null) result = caseVulkanBuffer(boardImage);
-				if (result == null) result = caseResource(boardImage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1166,38 +1144,6 @@ public class VulkanSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseUniformBuffer(UniformBuffer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Board Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Board Buffer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseBoardBuffer(BoardBuffer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Board Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Board Image</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseBoardImage(BoardImage object)
 	{
 		return null;
 	}

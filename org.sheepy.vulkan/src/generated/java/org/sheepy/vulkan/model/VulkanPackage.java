@@ -2588,62 +2588,6 @@ public interface VulkanPackage extends EPackage
 	int UNIFORM_BUFFER_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.BoardBufferImpl <em>Board Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.BoardBufferImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getBoardBuffer()
-	 * @generated
-	 */
-	int BOARD_BUFFER = 44;
-
-	/**
-	 * The number of structural features of the '<em>Board Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOARD_BUFFER_FEATURE_COUNT = VULKAN_BUFFER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Board Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOARD_BUFFER_OPERATION_COUNT = VULKAN_BUFFER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.BoardImageImpl <em>Board Image</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.BoardImageImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getBoardImage()
-	 * @generated
-	 */
-	int BOARD_IMAGE = 45;
-
-	/**
-	 * The number of structural features of the '<em>Board Image</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOARD_IMAGE_FEATURE_COUNT = IMAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Board Image</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOARD_IMAGE_OPERATION_COUNT = IMAGE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2651,7 +2595,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 46;
+	int JAVA_MODULE = 44;
 
 
 	/**
@@ -4074,26 +4018,6 @@ public interface VulkanPackage extends EPackage
 	EClass getUniformBuffer();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.BoardBuffer <em>Board Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Board Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.BoardBuffer
-	 * @generated
-	 */
-	EClass getBoardBuffer();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.BoardImage <em>Board Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Board Image</em>'.
-	 * @see org.sheepy.vulkan.model.BoardImage
-	 * @generated
-	 */
-	EClass getBoardImage();
-
-	/**
 	 * Returns the meta object for data type '{@link java.lang.Module <em>Java Module</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5279,26 +5203,6 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EClass UNIFORM_BUFFER = eINSTANCE.getUniformBuffer();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.BoardBufferImpl <em>Board Buffer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.impl.BoardBufferImpl
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getBoardBuffer()
-		 * @generated
-		 */
-		EClass BOARD_BUFFER = eINSTANCE.getBoardBuffer();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.BoardImageImpl <em>Board Image</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.impl.BoardImageImpl
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getBoardImage()
-		 * @generated
-		 */
-		EClass BOARD_IMAGE = eINSTANCE.getBoardImage();
 
 		/**
 		 * The meta object literal for the '<em>Java Module</em>' data type.

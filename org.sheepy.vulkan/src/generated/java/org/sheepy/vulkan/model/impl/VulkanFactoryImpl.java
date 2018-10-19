@@ -93,8 +93,6 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 			case VulkanPackage.PUSH_CONSTANT: return createPushConstant();
 			case VulkanPackage.MESH_BUFFER: return createMeshBuffer();
 			case VulkanPackage.UNIFORM_BUFFER: return createUniformBuffer();
-			case VulkanPackage.BOARD_BUFFER: return createBoardBuffer();
-			case VulkanPackage.BOARD_IMAGE: return createBoardImage();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -440,28 +438,6 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	{
 		UniformBufferImpl uniformBuffer = new UniformBufferImpl();
 		return uniformBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BoardBuffer createBoardBuffer()
-	{
-		BoardBufferImpl boardBuffer = new BoardBufferImpl();
-		return boardBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BoardImage createBoardImage()
-	{
-		BoardImageImpl boardImage = new BoardImageImpl();
-		return boardImage;
 	}
 
 	/**

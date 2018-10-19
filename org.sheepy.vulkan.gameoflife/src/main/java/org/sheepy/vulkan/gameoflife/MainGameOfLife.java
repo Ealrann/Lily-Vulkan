@@ -1,4 +1,4 @@
-package test.vulkan.gameoflife;
+package org.sheepy.vulkan.gameoflife;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -7,10 +7,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.sheepy.common.api.adapter.ISheepyAdapter;
 import org.sheepy.common.api.adapter.impl.SheepyAdapterWrapper;
 import org.sheepy.vulkan.adapter.VulkanAdapterRegistry;
-import org.sheepy.vulkan.model.VulkanPackage;
-
-import test.vulkan.gameoflife.compute.BoardBufferAdapter;
-import test.vulkan.gameoflife.compute.BoardImageAdapter;
+import org.sheepy.vulkan.gameoflife.compute.BoardBufferAdapter;
+import org.sheepy.vulkan.gameoflife.compute.BoardImageAdapter;
+import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
 
 public class MainGameOfLife
 {
@@ -35,11 +34,11 @@ public class MainGameOfLife
 	private static void registerWrappers()
 	{
 		var boardBufferWrapper = new GOLAdapterWrapper(BoardBufferAdapter.class,
-				VulkanPackage.Literals.BOARD_BUFFER);
+				GameOfLifePackage.Literals.BOARD_BUFFER);
 		VulkanAdapterRegistry.INSTANCE.addWrapper(boardBufferWrapper);
 
 		var boardImageWrapper = new GOLAdapterWrapper(BoardImageAdapter.class,
-				VulkanPackage.Literals.BOARD_IMAGE);
+				GameOfLifePackage.Literals.BOARD_IMAGE);
 		VulkanAdapterRegistry.INSTANCE.addWrapper(boardImageWrapper);
 	}
 

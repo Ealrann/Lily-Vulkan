@@ -275,24 +275,6 @@ public interface VulkanFactory extends EFactory
 	UniformBuffer createUniformBuffer();
 
 	/**
-	 * Returns a new object of class '<em>Board Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Board Buffer</em>'.
-	 * @generated
-	 */
-	BoardBuffer createBoardBuffer();
-
-	/**
-	 * Returns a new object of class '<em>Board Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Board Image</em>'.
-	 * @generated
-	 */
-	BoardImage createBoardImage();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

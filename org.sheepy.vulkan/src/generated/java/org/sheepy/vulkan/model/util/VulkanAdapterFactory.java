@@ -295,16 +295,6 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 				return createUniformBufferAdapter();
 			}
 			@Override
-			public Adapter caseBoardBuffer(BoardBuffer object)
-			{
-				return createBoardBufferAdapter();
-			}
-			@Override
-			public Adapter caseBoardImage(BoardImage object)
-			{
-				return createBoardImageAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -982,36 +972,6 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createUniformBufferAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.BoardBuffer <em>Board Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.BoardBuffer
-	 * @generated
-	 */
-	public Adapter createBoardBufferAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.BoardImage <em>Board Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.BoardImage
-	 * @generated
-	 */
-	public Adapter createBoardImageAdapter()
 	{
 		return null;
 	}

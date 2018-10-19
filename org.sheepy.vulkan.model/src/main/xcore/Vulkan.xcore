@@ -288,12 +288,3 @@ class MeshBuffer extends IndexedBuffer
 class UniformBuffer extends VulkanBuffer, IDescriptor
 {
 }
-
-// Game of Life
-class BoardBuffer extends VulkanBuffer, IDescriptor
-{
-}
-
-class BoardImage extends Image, IDescriptor
-{
-}

@@ -17,5 +17,4 @@ module org.sheepy.vulkan.demo {
 	opens test.vulkan.triangle;
 	opens test.vulkan.rotatingtriangle;
 	opens test.vulkan.texture;
-	opens test.vulkan.gameoflife;
 }

@@ -1,13 +1,11 @@
 /**
  */
-package org.sheepy.vulkan.model.impl;
+package org.sheepy.vulkan.gameoflife.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.sheepy.vulkan.model.BoardBuffer;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.sheepy.vulkan.gameoflife.model.BoardBuffer;
+import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +14,7 @@ import org.sheepy.vulkan.model.VulkanPackage;
  *
  * @generated
  */
-public class BoardBufferImpl extends MinimalEObjectImpl.Container implements BoardBuffer
+public class BoardBufferImpl extends EObjectImpl implements BoardBuffer
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -33,10 +31,9 @@ public class BoardBufferImpl extends MinimalEObjectImpl.Container implements Boa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass()
 	{
-		return VulkanPackage.Literals.BOARD_BUFFER;
+		return GameOfLifePackage.Literals.BOARD_BUFFER;
 	}
 
 } //BoardBufferImpl

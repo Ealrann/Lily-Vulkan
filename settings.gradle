@@ -3,6 +3,7 @@ rootProject.name = "Vulkan"
 
 include ':org.sheepy.vulkan'
 include ':org.sheepy.vulkan.demo'
+include ':org.sheepy.vulkan.gameoflife'
 
 include ':org.sheepy.common'
 

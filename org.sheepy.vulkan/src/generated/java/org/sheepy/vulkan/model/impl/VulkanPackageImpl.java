@@ -21,8 +21,6 @@ import org.sheepy.vulkan.model.AbstractPipeline;
 import org.sheepy.vulkan.model.AbstractProcess;
 import org.sheepy.vulkan.model.AbstractProcessPool;
 import org.sheepy.vulkan.model.AttachmentDescription;
-import org.sheepy.vulkan.model.BoardBuffer;
-import org.sheepy.vulkan.model.BoardImage;
 import org.sheepy.vulkan.model.Buffer;
 import org.sheepy.vulkan.model.BufferBarrier;
 import org.sheepy.vulkan.model.ColorDomain;
@@ -381,20 +379,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass uniformBufferEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass boardBufferEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass boardImageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1806,26 +1790,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBoardBuffer()
-	{
-		return boardBufferEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBoardImage()
-	{
-		return boardImageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EDataType getJavaModule()
 	{
 		return javaModuleEDataType;
@@ -2038,10 +2002,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		uniformBufferEClass = createEClass(UNIFORM_BUFFER);
 
-		boardBufferEClass = createEClass(BOARD_BUFFER);
-
-		boardImageEClass = createEClass(BOARD_IMAGE);
-
 		// Create data types
 		javaModuleEDataType = createEDataType(JAVA_MODULE);
 	}
@@ -2123,10 +2083,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		meshBufferEClass.getESuperTypes().add(this.getIndexedBuffer());
 		uniformBufferEClass.getESuperTypes().add(this.getVulkanBuffer());
 		uniformBufferEClass.getESuperTypes().add(this.getIDescriptor());
-		boardBufferEClass.getESuperTypes().add(this.getVulkanBuffer());
-		boardBufferEClass.getESuperTypes().add(this.getIDescriptor());
-		boardImageEClass.getESuperTypes().add(this.getImage());
-		boardImageEClass.getESuperTypes().add(this.getIDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(vulkanApplicationEClass, VulkanApplication.class, "VulkanApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2306,10 +2262,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEReference(getMeshBuffer_Texture(), this.getTexture(), null, "texture", null, 0, 1, MeshBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(uniformBufferEClass, UniformBuffer.class, "UniformBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(boardBufferEClass, BoardBuffer.class, "BoardBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(boardImageEClass, BoardImage.class, "BoardImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize data types
 		initEDataType(javaModuleEDataType, Module.class, "JavaModule", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

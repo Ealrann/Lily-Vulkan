@@ -1,0 +1,17 @@
+@GenModel(modelDirectory="/org.sheepy.vulkan.gameoflife.model/src/generated/java")
+@GenModel(modelName="GameOfLife", prefix="GameOfLife")
+@GenModel(publicConstructors="true")
+package org.sheepy.vulkan.gameoflife.model
+
+// Game of Life
+import org.sheepy.vulkan.model.IDescriptor
+import org.sheepy.vulkan.model.VulkanBuffer
+import org.sheepy.vulkan.model.Image
+
+class BoardBuffer extends VulkanBuffer, IDescriptor
+{
+}
+
+class BoardImage extends Image, IDescriptor
+{
+}

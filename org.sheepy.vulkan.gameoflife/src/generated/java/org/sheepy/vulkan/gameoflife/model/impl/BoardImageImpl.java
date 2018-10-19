@@ -1,11 +1,11 @@
 /**
  */
-package org.sheepy.vulkan.model.impl;
+package org.sheepy.vulkan.gameoflife.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.sheepy.vulkan.model.BoardImage;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.sheepy.vulkan.gameoflife.model.BoardImage;
+import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +14,7 @@ import org.sheepy.vulkan.model.VulkanPackage;
  *
  * @generated
  */
-public class BoardImageImpl extends ImageImpl implements BoardImage
+public class BoardImageImpl extends EObjectImpl implements BoardImage
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -31,10 +31,9 @@ public class BoardImageImpl extends ImageImpl implements BoardImage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass()
 	{
-		return VulkanPackage.Literals.BOARD_IMAGE;
+		return GameOfLifePackage.Literals.BOARD_IMAGE;
 	}
 
 } //BoardImageImpl
