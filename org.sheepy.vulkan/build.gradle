@@ -22,7 +22,7 @@ if (project.hasProperty('javaModule')) {
 
 project.ext.lwjglVersion = "3.2.0"
 project.ext.jomlVersion = "1.9.10"
-project.ext.emfVersion = "+"
+project.ext.emfVersion = "2.15.0"
 
 dependencies {
 
