@@ -4,7 +4,7 @@ import static org.lwjgl.vulkan.VK10.VK_PIPELINE_BIND_POINT_COMPUTE;
 
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.execution.compute.ComputeCommandBuffer;
-import org.sheepy.vulkan.model.ComputeProcess;
+import org.sheepy.vulkan.model.process.ComputeProcess;
 import org.sheepy.vulkan.process.AbstractProcessAdapter;
 
 /**

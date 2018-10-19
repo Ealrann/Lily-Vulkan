@@ -1,7 +1,6 @@
 package org.sheepy.vulkan.pipeline.graphic.render.impl;
 
-import static org.lwjgl.vulkan.VK10.VK_COMPARE_OP_LESS;
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkPipelineDepthStencilStateCreateInfo;
 import org.sheepy.vulkan.pipeline.graphic.render.IDepthStencilState;

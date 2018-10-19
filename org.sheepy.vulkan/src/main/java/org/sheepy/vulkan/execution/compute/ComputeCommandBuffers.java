@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.execution.AbstractCommandBuffers;
-import org.sheepy.vulkan.model.ComputeProcess;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.process.ComputeProcess;
 import org.sheepy.vulkan.process.compute.ComputeProcessAdapter;
 import org.sheepy.vulkan.processpool.compute.ComputeContext;
 

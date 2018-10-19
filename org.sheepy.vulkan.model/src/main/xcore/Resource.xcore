@@ -1,0 +1,90 @@
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(publicConstructors="true")
+
+package org.sheepy.vulkan.model.resource
+
+import org.sheepy.vulkan.model.enumeration.EShaderStage
+import org.sheepy.vulkan.model.enumeration.EPipelineStage
+
+interface Resource
+{
+}
+
+interface VulkanBuffer extends Resource
+{
+}
+
+class Buffer extends VulkanBuffer
+{
+	long size
+	int usage
+	int properties
+}
+
+interface SizedBuffer extends VulkanBuffer
+{
+}
+
+abstract class Image extends SizedBuffer
+{
+}
+
+class Texture extends VulkanBuffer, IDescriptor
+{
+	contains PathResource file
+	boolean mipmapEnabled = "false"
+}
+
+class DepthImage extends VulkanBuffer
+{
+}
+
+abstract class PathResource extends Resource
+{
+	String path
+}
+
+class FileResource extends PathResource
+{
+}
+
+class ModuleResource extends PathResource
+{
+	JavaModule module
+}
+
+type JavaModule wraps Module
+
+class Shader extends Resource
+{
+	contains PathResource file
+	EShaderStage stage
+}
+
+class PushConstant extends VulkanBuffer
+{
+	int size
+	EPipelineStage stage
+}
+
+interface IDescriptor
+{
+}
+
+class DescriptorSet
+{
+	refers IDescriptor[1..*] descriptors
+}
+
+abstract class IndexedBuffer extends VulkanBuffer, IDescriptor
+{
+}
+
+class MeshBuffer extends IndexedBuffer
+{
+	refers Texture texture
+}
+
+class UniformBuffer extends VulkanBuffer, IDescriptor
+{
+}

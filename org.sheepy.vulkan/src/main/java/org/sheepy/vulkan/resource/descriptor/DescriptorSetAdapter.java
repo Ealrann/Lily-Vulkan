@@ -14,8 +14,8 @@ import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.DescriptorSet;
-import org.sheepy.vulkan.model.IDescriptor;
+import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.resource.IResourceManagerAdapter;
 import org.sheepy.vulkan.util.Logger;
 

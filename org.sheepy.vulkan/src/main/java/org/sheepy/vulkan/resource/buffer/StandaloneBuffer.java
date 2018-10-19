@@ -9,7 +9,7 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.model.Buffer;
+import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.nativehelper.VkBufferAllocator;
 import org.sheepy.vulkan.nativehelper.VkMemoryAllocator;
 import org.sheepy.vulkan.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;

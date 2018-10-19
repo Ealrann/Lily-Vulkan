@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubpassDependency;
-import org.sheepy.vulkan.model.SubpassDependency;
+import org.sheepy.vulkan.model.process.SubpassDependency;
 
 public class VkSubpassDependencyAllocator
 {

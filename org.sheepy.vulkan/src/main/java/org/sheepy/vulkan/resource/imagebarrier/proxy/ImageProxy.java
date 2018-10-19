@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.resource.imagebarrier.proxy;
 
-import org.sheepy.vulkan.model.ImageBarrier;
+import org.sheepy.vulkan.model.process.ImageBarrier;
 import org.sheepy.vulkan.resource.image.IImageAdapter;
 
 public class ImageProxy implements IImageProxy

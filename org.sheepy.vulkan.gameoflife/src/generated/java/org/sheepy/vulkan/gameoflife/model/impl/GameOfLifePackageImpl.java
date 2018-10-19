@@ -6,13 +6,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.gameoflife.model.BoardBuffer;
 import org.sheepy.vulkan.gameoflife.model.BoardImage;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifeFactory;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
-import org.sheepy.vulkan.model.VulkanPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,9 +85,8 @@ public class GameOfLifePackageImpl extends EPackageImpl implements GameOfLifePac
 		isInited = true;
 
 		// Initialize simple dependencies
-		VulkanPackage.eINSTANCE.eClass();
+		ResourcePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -185,13 +183,13 @@ public class GameOfLifePackageImpl extends EPackageImpl implements GameOfLifePac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
 		// Add supertypes to classes
-		boardBufferEClass.getESuperTypes().add(theVulkanPackage.getVulkanBuffer());
-		boardBufferEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
-		boardImageEClass.getESuperTypes().add(theVulkanPackage.getImage());
-		boardImageEClass.getESuperTypes().add(theVulkanPackage.getIDescriptor());
+		boardBufferEClass.getESuperTypes().add(theResourcePackage.getVulkanBuffer());
+		boardBufferEClass.getESuperTypes().add(theResourcePackage.getIDescriptor());
+		boardImageEClass.getESuperTypes().add(theResourcePackage.getImage());
+		boardImageEClass.getESuperTypes().add(theResourcePackage.getIDescriptor());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(boardBufferEClass, BoardBuffer.class, "BoardBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

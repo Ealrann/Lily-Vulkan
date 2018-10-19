@@ -6,7 +6,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.execution.graphic.GraphicCommandBuffer;
-import org.sheepy.vulkan.model.ImagePipeline;
+import org.sheepy.vulkan.model.process.ImagePipeline;
 import org.sheepy.vulkan.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.pipeline.graphic.IGraphicPipelineAdapter;
 import org.sheepy.vulkan.processpool.graphic.IGraphicContextAdapter;

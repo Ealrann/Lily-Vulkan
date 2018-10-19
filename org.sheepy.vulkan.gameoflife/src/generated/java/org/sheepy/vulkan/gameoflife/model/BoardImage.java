@@ -2,8 +2,8 @@
  */
 package org.sheepy.vulkan.gameoflife.model;
 
-import org.sheepy.vulkan.model.IDescriptor;
-import org.sheepy.vulkan.model.Image;
+import org.sheepy.vulkan.model.resource.IDescriptor;
+import org.sheepy.vulkan.model.resource.Image;
 
 /**
  * <!-- begin-user-doc -->

@@ -2,7 +2,7 @@ package org.sheepy.vulkan.pipeline.graphic;
 
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.execution.graphic.GraphicCommandBuffer;
-import org.sheepy.vulkan.model.GraphicsPipeline;
+import org.sheepy.vulkan.model.process.GraphicsPipeline;
 import org.sheepy.vulkan.pipeline.IProcessUnitAdapter;
 
 /**

@@ -1,7 +1,6 @@
 package org.sheepy.vulkan.pipeline.graphic.render.impl;
 
-import static org.lwjgl.vulkan.VK10.VK_SAMPLE_COUNT_1_BIT;
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkPipelineMultisampleStateCreateInfo;
 import org.sheepy.vulkan.pipeline.graphic.render.IMultisampleState;

@@ -5,8 +5,8 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.sheepy.common.api.adapter.impl.AbstractSheepyAdapter;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.execution.compute.ComputeCommandBuffer;
-import org.sheepy.vulkan.model.ComputePipeline;
-import org.sheepy.vulkan.model.Computer;
+import org.sheepy.vulkan.model.process.ComputePipeline;
+import org.sheepy.vulkan.model.process.Computer;
 import org.sheepy.vulkan.pipeline.IProcessUnitAdapter;
 
 public class ComputerAdapter extends AbstractSheepyAdapter

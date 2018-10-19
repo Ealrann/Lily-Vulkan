@@ -44,9 +44,12 @@ open module org.sheepy.vulkan
 	
 	exports org.sheepy.vulkan.model;
 	exports org.sheepy.vulkan.model.impl;
-
 	exports org.sheepy.vulkan.model.enumeration;
 	exports org.sheepy.vulkan.model.enumeration.impl;
+	exports org.sheepy.vulkan.model.process;
+	exports org.sheepy.vulkan.model.process.impl;
+	exports org.sheepy.vulkan.model.resource;
+	exports org.sheepy.vulkan.model.resource.impl;
 	
 	
 	requires org.junit.jupiter.api;

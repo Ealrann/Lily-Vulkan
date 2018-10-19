@@ -20,10 +20,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.common.api.types.SVector2i;
 
-import org.sheepy.vulkan.model.ComputeProcessPool;
-import org.sheepy.vulkan.model.GraphicProcessPool;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanPackage;
+
+import org.sheepy.vulkan.model.process.ComputeProcessPool;
+import org.sheepy.vulkan.model.process.GraphicProcessPool;
 
 /**
  * <!-- begin-user-doc -->

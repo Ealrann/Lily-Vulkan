@@ -2,7 +2,7 @@ package org.sheepy.vulkan.resource;
 
 import org.sheepy.vulkan.adapter.IVulkanAdapter;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
-import org.sheepy.vulkan.model.SizedBuffer;
+import org.sheepy.vulkan.model.resource.SizedBuffer;
 
 public interface ISizedBufferAdapter extends IVulkanAdapter
 {

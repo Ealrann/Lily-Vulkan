@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.vulkan.execution.graphic.GraphicCommandBuffer;
-import org.sheepy.vulkan.model.GraphicsPipeline;
+import org.sheepy.vulkan.model.process.GraphicsPipeline;
 import org.sheepy.vulkan.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.pipeline.graphic.render.IColorBlendState;
 import org.sheepy.vulkan.pipeline.graphic.render.IDepthStencilState;

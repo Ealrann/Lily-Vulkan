@@ -5,13 +5,13 @@ import static org.lwjgl.vulkan.VK10.VK_ACCESS_TRANSFER_READ_BIT;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.allocation.IBasicAllocable;
-import org.sheepy.vulkan.model.ImageBarrier;
-import org.sheepy.vulkan.model.ImagePipeline;
-import org.sheepy.vulkan.model.ImageTransition;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.impl.ImageBarrierImpl;
-import org.sheepy.vulkan.model.impl.ImageTransitionImpl;
+import org.sheepy.vulkan.model.process.ImageBarrier;
+import org.sheepy.vulkan.model.process.ImagePipeline;
+import org.sheepy.vulkan.model.process.ImageTransition;
+import org.sheepy.vulkan.model.process.impl.ImageBarrierImpl;
+import org.sheepy.vulkan.model.process.impl.ImageTransitionImpl;
 import org.sheepy.vulkan.resource.imagebarrier.ImageBarrierExecutor;
 
 public class FinalImagePipelineBarrier implements IBasicAllocable

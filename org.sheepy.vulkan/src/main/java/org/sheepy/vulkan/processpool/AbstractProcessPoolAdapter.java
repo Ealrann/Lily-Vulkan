@@ -8,7 +8,7 @@ import org.sheepy.vulkan.allocation.adapter.impl.AbstractDeepAllocableAdapter;
 import org.sheepy.vulkan.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.execution.ExecutionManager;
 import org.sheepy.vulkan.execution.queue.EQueueType;
-import org.sheepy.vulkan.model.AbstractProcessPool;
+import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.resource.ResourceManager;
 
 public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAdapter

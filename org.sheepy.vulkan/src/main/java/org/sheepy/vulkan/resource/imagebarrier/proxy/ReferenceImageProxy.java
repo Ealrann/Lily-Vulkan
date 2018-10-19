@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.resource.imagebarrier.proxy;
 
-import org.sheepy.vulkan.model.ReferenceImageBarrier;
+import org.sheepy.vulkan.model.process.ReferenceImageBarrier;
 
 public class ReferenceImageProxy implements IImageProxy
 {

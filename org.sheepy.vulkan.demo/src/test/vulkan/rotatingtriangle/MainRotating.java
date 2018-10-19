@@ -1,9 +1,9 @@
 package test.vulkan.rotatingtriangle;
 
 import org.sheepy.vulkan.VulkanApplicationLauncher;
-import org.sheepy.vulkan.model.UniformBuffer;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
+import org.sheepy.vulkan.model.resource.UniformBuffer;
 
 import test.vulkan.common.VulkanDemoWrapperUtil;
 import test.vulkan.mesh.MeshConfiguration;

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
-import org.sheepy.vulkan.model.ModuleResource;
+import org.sheepy.vulkan.model.resource.ModuleResource;
 
 public class ModuleResourceAdapter extends PathResourceAdapter
 {

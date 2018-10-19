@@ -4,9 +4,9 @@ import org.sheepy.vulkan.VulkanApplicationLauncher;
 import org.sheepy.vulkan.adapter.IProcessPoolAdapter;
 import org.sheepy.vulkan.adapter.IVulkanApplicationAdapter;
 import org.sheepy.vulkan.gameoflife.model.ModelFactory;
-import org.sheepy.vulkan.model.ComputeProcessPool;
-import org.sheepy.vulkan.model.GraphicProcessPool;
 import org.sheepy.vulkan.model.VulkanApplication;
+import org.sheepy.vulkan.model.process.ComputeProcessPool;
+import org.sheepy.vulkan.model.process.GraphicProcessPool;
 
 public class GameOfLifeApplication
 {

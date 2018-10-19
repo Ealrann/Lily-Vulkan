@@ -4,7 +4,7 @@ import static org.lwjgl.vulkan.VK10.VK_PIPELINE_BIND_POINT_GRAPHICS;
 
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.execution.graphic.RenderCommandBuffer;
-import org.sheepy.vulkan.model.GraphicProcess;
+import org.sheepy.vulkan.model.process.GraphicProcess;
 import org.sheepy.vulkan.process.AbstractProcessAdapter;
 
 public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandBuffer>

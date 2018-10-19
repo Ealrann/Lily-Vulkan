@@ -3,7 +3,7 @@ package org.sheepy.vulkan.pipeline;
 import org.sheepy.vulkan.adapter.IVulkanAdapter;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.IProcessUnit;
+import org.sheepy.vulkan.model.process.IProcessUnit;
 
 public interface IProcessUnitAdapter<T extends AbstractCommandBuffer>
 		extends IVulkanAdapter

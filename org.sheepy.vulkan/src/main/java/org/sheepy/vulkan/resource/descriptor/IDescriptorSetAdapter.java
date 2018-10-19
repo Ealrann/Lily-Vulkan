@@ -3,7 +3,7 @@ package org.sheepy.vulkan.resource.descriptor;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.allocation.adapter.IFlatAllocableAdapter;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.DescriptorSet;
+import org.sheepy.vulkan.model.resource.DescriptorSet;
 
 public interface IDescriptorSetAdapter extends IFlatAllocableAdapter
 {

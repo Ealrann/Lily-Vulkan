@@ -2,8 +2,8 @@ package org.sheepy.vulkan.pipeline;
 
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.AbstractCompositePipeline;
-import org.sheepy.vulkan.model.AbstractPipeline;
+import org.sheepy.vulkan.model.process.AbstractCompositePipeline;
+import org.sheepy.vulkan.model.process.AbstractPipeline;
 
 @Deprecated
 public abstract class AbstractCompositePipelineAdapter<T extends AbstractCommandBuffer>

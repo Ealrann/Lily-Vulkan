@@ -11,8 +11,8 @@ import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.sheepy.vulkan.allocation.IBasicAllocable;
 import org.sheepy.vulkan.device.LogicalDeviceContext;
-import org.sheepy.vulkan.model.DescriptorSet;
-import org.sheepy.vulkan.model.IDescriptor;
+import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.resource.ResourceManager;
 import org.sheepy.vulkan.util.Logger;
 

@@ -3,10 +3,9 @@
 @GenModel(publicConstructors="true")
 package org.sheepy.vulkan.gameoflife.model
 
-// Game of Life
-import org.sheepy.vulkan.model.IDescriptor
-import org.sheepy.vulkan.model.VulkanBuffer
-import org.sheepy.vulkan.model.Image
+import org.sheepy.vulkan.model.resource.IDescriptor
+import org.sheepy.vulkan.model.resource.VulkanBuffer
+import org.sheepy.vulkan.model.resource.Image
 
 class BoardBuffer extends VulkanBuffer, IDescriptor
 {

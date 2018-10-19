@@ -10,8 +10,8 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPushConstantRange;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.allocation.adapter.impl.AbstractFlatAllocableAdapter;
-import org.sheepy.vulkan.model.PushConstant;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.resource.PushConstant;
 
 public class PushConstantAdapter extends AbstractFlatAllocableAdapter
 {

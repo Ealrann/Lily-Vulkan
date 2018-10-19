@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
-import org.sheepy.vulkan.model.PathResource;
+import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 
 public abstract class PathResourceAdapter extends ResourceAdapter

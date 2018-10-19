@@ -9,8 +9,8 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.allocation.IBasicAllocable;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.LogicalDeviceContext;
-import org.sheepy.vulkan.model.AbstractProcessPool;
-import org.sheepy.vulkan.model.DescriptorSet;
+import org.sheepy.vulkan.model.process.AbstractProcessPool;
+import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
 
 public class ResourceManager extends LogicalDeviceContext implements IBasicAllocable

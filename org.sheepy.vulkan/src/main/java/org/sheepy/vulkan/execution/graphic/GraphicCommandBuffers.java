@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.execution.AbstractCommandBuffers;
-import org.sheepy.vulkan.model.AbstractProcess;
-import org.sheepy.vulkan.model.GraphicProcess;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.process.AbstractProcess;
+import org.sheepy.vulkan.model.process.GraphicProcess;
 import org.sheepy.vulkan.process.graphic.GraphicProcessAdapter;
 import org.sheepy.vulkan.processpool.graphic.GraphicContext;
 

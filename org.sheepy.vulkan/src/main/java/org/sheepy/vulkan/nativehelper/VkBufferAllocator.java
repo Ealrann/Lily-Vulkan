@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferCreateInfo;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.vulkan.model.Buffer;
+import org.sheepy.vulkan.model.resource.Buffer;
 
 public class VkBufferAllocator
 {

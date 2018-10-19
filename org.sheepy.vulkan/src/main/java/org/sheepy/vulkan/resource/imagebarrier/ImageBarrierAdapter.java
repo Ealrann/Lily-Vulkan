@@ -2,7 +2,7 @@ package org.sheepy.vulkan.resource.imagebarrier;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.ImageBarrier;
+import org.sheepy.vulkan.model.process.ImageBarrier;
 import org.sheepy.vulkan.pipeline.PipelineBarrierAdapter;
 
 public class ImageBarrierAdapter extends PipelineBarrierAdapter

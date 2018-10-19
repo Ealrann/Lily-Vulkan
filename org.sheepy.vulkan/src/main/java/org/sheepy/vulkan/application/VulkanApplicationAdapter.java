@@ -5,9 +5,9 @@ import org.sheepy.common.api.adapter.impl.AbstractSheepyAdapter;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.adapter.IVulkanApplicationAdapter;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
-import org.sheepy.vulkan.model.AbstractProcessPool;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.window.IWindowListener;
 import org.sheepy.vulkan.window.Surface;
 

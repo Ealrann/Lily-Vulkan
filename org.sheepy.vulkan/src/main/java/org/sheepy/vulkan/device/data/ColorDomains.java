@@ -12,10 +12,10 @@ import java.util.Set;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkSurfaceFormatKHR;
-import org.sheepy.vulkan.model.ColorDomain;
 import org.sheepy.vulkan.model.enumeration.EColorSpace;
 import org.sheepy.vulkan.model.enumeration.EFormat;
-import org.sheepy.vulkan.model.impl.ColorDomainImpl;
+import org.sheepy.vulkan.model.process.ColorDomain;
+import org.sheepy.vulkan.model.process.impl.ColorDomainImpl;
 import org.sheepy.vulkan.window.Surface;
 
 public class ColorDomains implements Iterable<ColorDomain>

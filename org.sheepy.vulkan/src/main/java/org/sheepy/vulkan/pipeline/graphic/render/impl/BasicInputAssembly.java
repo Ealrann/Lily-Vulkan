@@ -1,7 +1,6 @@
 package org.sheepy.vulkan.pipeline.graphic.render.impl;
 
-import static org.lwjgl.vulkan.VK10.VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkPipelineInputAssemblyStateCreateInfo;
 import org.sheepy.vulkan.pipeline.graphic.render.IInputAssembly;

@@ -8,11 +8,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.vulkan.gameoflife.model.*;
-import org.sheepy.vulkan.model.IDescriptor;
-import org.sheepy.vulkan.model.Image;
-import org.sheepy.vulkan.model.Resource;
-import org.sheepy.vulkan.model.SizedBuffer;
-import org.sheepy.vulkan.model.VulkanBuffer;
+import org.sheepy.vulkan.model.resource.IDescriptor;
+import org.sheepy.vulkan.model.resource.Image;
+import org.sheepy.vulkan.model.resource.Resource;
+import org.sheepy.vulkan.model.resource.SizedBuffer;
+import org.sheepy.vulkan.model.resource.VulkanBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -172,13 +172,13 @@ public class GameOfLifeSwitch
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Buffer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Vulkan Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Buffer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Vulkan Buffer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */

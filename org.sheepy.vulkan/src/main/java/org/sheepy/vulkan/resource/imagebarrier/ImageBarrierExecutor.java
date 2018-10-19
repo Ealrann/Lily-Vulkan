@@ -4,16 +4,16 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
-import org.sheepy.vulkan.model.AbstractImageBarrier;
-import org.sheepy.vulkan.model.Image;
-import org.sheepy.vulkan.model.ImageBarrier;
-import org.sheepy.vulkan.model.ImageTransition;
-import org.sheepy.vulkan.model.ReferenceImageBarrier;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.impl.ImageBarrierImpl;
-import org.sheepy.vulkan.model.impl.ImageTransitionImpl;
-import org.sheepy.vulkan.model.impl.ReferenceImageBarrierImpl;
+import org.sheepy.vulkan.model.process.AbstractImageBarrier;
+import org.sheepy.vulkan.model.process.ImageBarrier;
+import org.sheepy.vulkan.model.process.ImageTransition;
+import org.sheepy.vulkan.model.process.ReferenceImageBarrier;
+import org.sheepy.vulkan.model.process.impl.ImageBarrierImpl;
+import org.sheepy.vulkan.model.process.impl.ImageTransitionImpl;
+import org.sheepy.vulkan.model.process.impl.ReferenceImageBarrierImpl;
+import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.resource.image.ImageUtil;
 import org.sheepy.vulkan.resource.imagebarrier.proxy.IImageProxy;
 
@@ -74,7 +74,7 @@ public class ImageBarrierExecutor
 	public static void execute(	VkCommandBuffer commandBuffer,
 								EPipelineStage srcStage,
 								EPipelineStage dstStage,
-								EImageLayout srcLayout,
+																																																																																																					EImageLayout srcLayout,
 								EImageLayout dstLayout,
 								int srcAccessMask,
 								int dstAccessMask,

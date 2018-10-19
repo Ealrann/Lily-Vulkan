@@ -3,7 +3,7 @@ package org.sheepy.vulkan.pipeline.graphic.render;
 import java.util.List;
 
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.vulkan.model.Shader;
+import org.sheepy.vulkan.model.resource.Shader;
 
 public interface IShaderStage
 {

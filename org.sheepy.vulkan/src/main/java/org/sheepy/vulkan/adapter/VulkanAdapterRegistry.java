@@ -15,6 +15,8 @@ import org.sheepy.common.api.adapter.ISheepyAdapterWrapper;
 import org.sheepy.vulkan.application.LogicalDeviceAdapter;
 import org.sheepy.vulkan.application.VulkanApplicationAdapter;
 import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.pipeline.compute.ComputePipelineAdapter;
 import org.sheepy.vulkan.pipeline.compute.ComputerAdapter;
 import org.sheepy.vulkan.pipeline.graphic.image.ImagePipelineAdapter;
@@ -45,23 +47,23 @@ public class VulkanAdapterRegistry implements ISheepyAdapterRegistry
 	private VulkanAdapterRegistry()
 	{
 		newWrapper(VulkanApplicationAdapter.class, VulkanPackage.Literals.VULKAN_APPLICATION);
-		newWrapper(PushConstantAdapter.class, VulkanPackage.Literals.PUSH_CONSTANT);
-		newWrapper(GraphicProcessPoolAdapter.class, VulkanPackage.Literals.GRAPHIC_PROCESS_POOL);
-		newWrapper(ComputeProcessPoolAdapter.class, VulkanPackage.Literals.COMPUTE_PROCESS_POOL);
-		newWrapper(GraphicProcessAdapter.class, VulkanPackage.Literals.GRAPHIC_PROCESS);
-		newWrapper(ComputeProcessAdapter.class, VulkanPackage.Literals.COMPUTE_PROCESS);
-		newWrapper(ComputePipelineAdapter.class, VulkanPackage.Literals.COMPUTE_PIPELINE);
-		newWrapper(ComputerAdapter.class, VulkanPackage.Literals.COMPUTER);
 		
-		newWrapper(ShaderAdapter.class, VulkanPackage.Literals.SHADER);
-		newWrapper(TextureAdapter.class, VulkanPackage.Literals.TEXTURE);
-		newWrapper(BufferAdapter.class, VulkanPackage.Literals.BUFFER);
-		newWrapper(DepthImageAdapter.class, VulkanPackage.Literals.DEPTH_IMAGE);
-		newWrapper(FileResourceAdapter.class, VulkanPackage.Literals.FILE_RESOURCE);
-		newWrapper(ModuleResourceAdapter.class, VulkanPackage.Literals.MODULE_RESOURCE);
-
-		newWrapper(ImagePipelineAdapter.class, VulkanPackage.Literals.IMAGE_PIPELINE);
-		newWrapper(DescriptorSetAdapter.class, VulkanPackage.Literals.DESCRIPTOR_SET);
+		newWrapper(GraphicProcessPoolAdapter.class, ProcessPackage.Literals.GRAPHIC_PROCESS_POOL);
+		newWrapper(ComputeProcessPoolAdapter.class, ProcessPackage.Literals.COMPUTE_PROCESS_POOL);
+		newWrapper(GraphicProcessAdapter.class, ProcessPackage.Literals.GRAPHIC_PROCESS);
+		newWrapper(ComputeProcessAdapter.class, ProcessPackage.Literals.COMPUTE_PROCESS);
+		newWrapper(ComputePipelineAdapter.class, ProcessPackage.Literals.COMPUTE_PIPELINE);
+		newWrapper(ComputerAdapter.class, ProcessPackage.Literals.COMPUTER);
+		newWrapper(ImagePipelineAdapter.class, ProcessPackage.Literals.IMAGE_PIPELINE);
+		
+		newWrapper(ShaderAdapter.class, ResourcePackage.Literals.SHADER);
+		newWrapper(TextureAdapter.class, ResourcePackage.Literals.TEXTURE);
+		newWrapper(BufferAdapter.class, ResourcePackage.Literals.BUFFER);
+		newWrapper(DepthImageAdapter.class, ResourcePackage.Literals.DEPTH_IMAGE);
+		newWrapper(FileResourceAdapter.class, ResourcePackage.Literals.FILE_RESOURCE);
+		newWrapper(ModuleResourceAdapter.class, ResourcePackage.Literals.MODULE_RESOURCE);
+		newWrapper(PushConstantAdapter.class, ResourcePackage.Literals.PUSH_CONSTANT);
+		newWrapper(DescriptorSetAdapter.class, ResourcePackage.Literals.DESCRIPTOR_SET);
 
 		newWrapper(LogicalDeviceAdapter.class, EcorePackage.Literals.EOBJECT);
 		newWrapper(ResourceManagerAdapter.class, EcorePackage.Literals.EOBJECT);

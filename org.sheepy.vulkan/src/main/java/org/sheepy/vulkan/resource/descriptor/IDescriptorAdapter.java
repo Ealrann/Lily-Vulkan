@@ -6,7 +6,7 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.adapter.IVulkanAdapter;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
-import org.sheepy.vulkan.model.IDescriptor;
+import org.sheepy.vulkan.model.resource.IDescriptor;
 
 public interface IDescriptorAdapter extends IVulkanAdapter
 {

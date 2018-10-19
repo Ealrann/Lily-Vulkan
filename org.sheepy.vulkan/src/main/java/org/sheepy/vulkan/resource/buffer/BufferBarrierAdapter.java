@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.BufferBarrier;
+import org.sheepy.vulkan.model.process.BufferBarrier;
 import org.sheepy.vulkan.pipeline.PipelineBarrierAdapter;
 
 public class BufferBarrierAdapter extends PipelineBarrierAdapter

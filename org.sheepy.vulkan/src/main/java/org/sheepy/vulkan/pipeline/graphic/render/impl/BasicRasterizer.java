@@ -3,7 +3,7 @@ package org.sheepy.vulkan.pipeline.graphic.render.impl;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkPipelineRasterizationStateCreateInfo;
-import org.sheepy.vulkan.model.GraphicConfiguration;
+import org.sheepy.vulkan.model.process.GraphicConfiguration;
 import org.sheepy.vulkan.pipeline.graphic.render.IRasterizer;
 
 public class BasicRasterizer implements IRasterizer

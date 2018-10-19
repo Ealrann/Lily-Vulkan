@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.resource.descriptor;
 
-import org.sheepy.vulkan.model.DescriptorSet;
+import org.sheepy.vulkan.model.resource.DescriptorSet;
 
 public class DescriptorSetInfo
 {

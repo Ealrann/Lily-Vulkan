@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.adapter;
 
-import org.sheepy.vulkan.model.AbstractProcessPool;
+import org.sheepy.vulkan.model.process.AbstractProcessPool;
 
 public interface IVulkanApplicationAdapter extends IVulkanAdapter
 {

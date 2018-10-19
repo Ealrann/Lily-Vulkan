@@ -9,7 +9,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
 import org.sheepy.vulkan.allocation.IBasicAllocable;
-import org.sheepy.vulkan.model.DepthImage;
+import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.resource.image.DepthImageAdapter;
 import org.sheepy.vulkan.util.Logger;
 import org.sheepy.vulkan.view.ImageView;

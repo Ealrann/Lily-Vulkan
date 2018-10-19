@@ -8,7 +8,7 @@ import java.nio.ByteBuffer;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.model.PathResource;
+import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
 import org.sheepy.vulkan.resource.file.FileResourceAdapter;

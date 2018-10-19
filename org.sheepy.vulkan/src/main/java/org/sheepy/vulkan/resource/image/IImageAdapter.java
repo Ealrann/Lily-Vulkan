@@ -1,7 +1,7 @@
 package org.sheepy.vulkan.resource.image;
 
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
-import org.sheepy.vulkan.model.Image;
+import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.resource.ISizedBufferAdapter;
 
 public interface IImageAdapter extends ISizedBufferAdapter

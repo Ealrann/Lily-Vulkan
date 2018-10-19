@@ -9,7 +9,7 @@ import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.queue.EQueueType;
 import org.sheepy.vulkan.execution.queue.VulkanQueue;
-import org.sheepy.vulkan.model.ComputeProcessPool;
+import org.sheepy.vulkan.model.process.ComputeProcessPool;
 import org.sheepy.vulkan.processpool.AbstractProcessPoolAdapter;
 
 public class ComputeProcessPoolAdapter extends AbstractProcessPoolAdapter implements ISignalEmitter

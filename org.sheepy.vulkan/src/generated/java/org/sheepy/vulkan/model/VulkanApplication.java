@@ -8,6 +8,9 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.common.api.types.SVector2i;
 
+import org.sheepy.vulkan.model.process.ComputeProcessPool;
+import org.sheepy.vulkan.model.process.GraphicProcessPool;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Application</b></em>'.
@@ -195,7 +198,7 @@ public interface VulkanApplication extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Compute Pools</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.ComputeProcessPool}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.process.ComputeProcessPool}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Compute Pools</em>' containment reference list isn't clear,

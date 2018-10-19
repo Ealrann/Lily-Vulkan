@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
-import org.sheepy.vulkan.model.FileResource;
+import org.sheepy.vulkan.model.resource.FileResource;
 
 public class FileResourceAdapter extends PathResourceAdapter
 {

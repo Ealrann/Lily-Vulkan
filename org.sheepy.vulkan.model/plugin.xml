@@ -22,4 +22,20 @@
             genModel="src/main/xcore/VulkanEnum.xcore"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Resource -->
+      <package
+            uri="org.sheepy.vulkan.model.resource"
+            class="org.sheepy.vulkan.model.resource.ResourcePackage"
+            genModel="src/main/xcore/Resource.xcore"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Process -->
+      <package
+            uri="org.sheepy.vulkan.model.process"
+            class="org.sheepy.vulkan.model.process.ProcessPackage"
+            genModel="src/main/xcore/Process.xcore"/>
+   </extension>
+
 </plugin>

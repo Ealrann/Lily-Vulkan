@@ -6,8 +6,8 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.device.LogicalDevice;
-import org.sheepy.vulkan.model.Buffer;
-import org.sheepy.vulkan.model.VulkanFactory;
+import org.sheepy.vulkan.model.resource.Buffer;
+import org.sheepy.vulkan.model.resource.impl.BufferImpl;
 
 public class BufferAllocator
 {
@@ -50,7 +50,7 @@ public class BufferAllocator
 													int usage,
 													int properties)
 	{
-		final Buffer buffer = VulkanFactory.eINSTANCE.createBuffer();
+		final Buffer buffer = new BufferImpl();
 		buffer.setSize(size);
 		buffer.setUsage(usage);
 		buffer.setProperties(properties);

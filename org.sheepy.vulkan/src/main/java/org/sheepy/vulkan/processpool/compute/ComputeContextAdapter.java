@@ -1,8 +1,8 @@
 package org.sheepy.vulkan.processpool.compute;
 
 import org.sheepy.common.api.adapter.impl.AbstractSheepyAdapter;
-import org.sheepy.vulkan.model.ComputeProcessPool;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.vulkan.model.process.ComputeProcessPool;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 
 public class ComputeContextAdapter extends AbstractSheepyAdapter implements IComputeContextAdapter
 {
@@ -10,7 +10,7 @@ public class ComputeContextAdapter extends AbstractSheepyAdapter implements ICom
 	public ComputeContext getComputeContext()
 	{
 		var current = target;
-		while (!VulkanPackage.Literals.COMPUTE_PROCESS_POOL.isSuperTypeOf(current.eClass()))
+		while (!ProcessPackage.Literals.COMPUTE_PROCESS_POOL.isSuperTypeOf(current.eClass()))
 		{
 			current = current.eContainer();
 		}

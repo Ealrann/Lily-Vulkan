@@ -4,9 +4,9 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.allocation.adapter.impl.AbstractDeepAllocableAdapter;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.AbstractProcess;
-import org.sheepy.vulkan.model.IProcessUnit;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.process.AbstractProcess;
+import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.pipeline.IProcessUnitAdapter;
 
 public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
