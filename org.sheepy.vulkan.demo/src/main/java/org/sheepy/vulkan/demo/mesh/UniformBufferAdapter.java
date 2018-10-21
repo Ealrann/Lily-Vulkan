@@ -1,4 +1,4 @@
-package test.vulkan.mesh;
+package org.sheepy.vulkan.demo.mesh;
 
 import static org.lwjgl.vulkan.VK10.*;
 

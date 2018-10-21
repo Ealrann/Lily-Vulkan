@@ -1,11 +1,10 @@
-package test.vulkan.triangle;
+package org.sheepy.vulkan.demo.triangle;
 
 import org.sheepy.vulkan.VulkanApplicationLauncher;
+import org.sheepy.vulkan.demo.common.VulkanDemoWrapperUtil;
+import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
+import org.sheepy.vulkan.demo.mesh.MeshModelFactory;
 import org.sheepy.vulkan.model.VulkanApplication;
-
-import test.vulkan.common.VulkanDemoWrapperUtil;
-import test.vulkan.mesh.MeshConfiguration;
-import test.vulkan.mesh.MeshModelFactory;
 
 public class MainTriangle
 {

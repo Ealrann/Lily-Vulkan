@@ -1,4 +1,4 @@
-package test.vulkan.triangle;
+package org.sheepy.vulkan.demo.triangle;
 
 import org.sheepy.vulkan.resource.indexed.IIndexedBufferBuilder;
 import org.sheepy.vulkan.resource.indexed.IndexBufferData;

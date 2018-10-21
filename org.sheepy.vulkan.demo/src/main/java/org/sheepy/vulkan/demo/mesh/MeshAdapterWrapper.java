@@ -1,4 +1,4 @@
-package test.vulkan.mesh;
+package org.sheepy.vulkan.demo.mesh;
 
 import org.sheepy.common.api.adapter.ISheepyAdapter;
 import org.sheepy.common.api.adapter.impl.SheepyAdapterWrapper;

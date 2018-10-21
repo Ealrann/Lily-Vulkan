@@ -1,12 +1,11 @@
-package test.vulkan.common;
+package org.sheepy.vulkan.demo.common;
 
 import org.sheepy.vulkan.adapter.VulkanAdapterRegistry;
+import org.sheepy.vulkan.demo.mesh.MeshAdapterWrapper;
+import org.sheepy.vulkan.demo.mesh.MeshPipelineAdapter;
+import org.sheepy.vulkan.demo.mesh.UniformBufferAdapter;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.resource.indexed.IIndexedBufferBuilder;
-
-import test.vulkan.mesh.MeshAdapterWrapper;
-import test.vulkan.mesh.MeshPipelineAdapter;
-import test.vulkan.mesh.UniformBufferAdapter;
 
 public class VulkanDemoWrapperUtil
 {

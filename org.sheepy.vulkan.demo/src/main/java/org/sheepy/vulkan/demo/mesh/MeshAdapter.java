@@ -1,4 +1,4 @@
-package test.vulkan.mesh;
+package org.sheepy.vulkan.demo.mesh;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;

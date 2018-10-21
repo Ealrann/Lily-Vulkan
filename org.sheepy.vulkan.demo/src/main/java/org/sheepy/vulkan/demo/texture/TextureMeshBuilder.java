@@ -1,4 +1,4 @@
-package test.vulkan.texture;
+package org.sheepy.vulkan.demo.texture;
 
 import org.sheepy.vulkan.resource.indexed.IIndexedBufferBuilder;
 import org.sheepy.vulkan.resource.indexed.IndexBufferData;
