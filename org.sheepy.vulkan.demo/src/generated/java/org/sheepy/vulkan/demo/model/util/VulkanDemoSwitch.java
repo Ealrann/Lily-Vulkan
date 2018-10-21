@@ -2,10 +2,10 @@
  */
 package org.sheepy.vulkan.demo.model.util;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.util.Switch;
 
 import org.sheepy.vulkan.demo.model.*;
 
@@ -31,7 +31,7 @@ import org.sheepy.vulkan.model.resource.VulkanBuffer;
  * @see org.sheepy.vulkan.demo.model.VulkanDemoPackage
  * @generated
  */
-public class VulkanDemoSwitch
+public class VulkanDemoSwitch<T> extends Switch<T>
 {
 	/**
 	 * The cached model package
@@ -56,15 +56,17 @@ public class VulkanDemoSwitch
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @param ePackage the package in question.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	public Object doSwitch(EObject theEObject)
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage)
 	{
-		return doSwitch(theEObject.eClass(), theEObject);
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -74,37 +76,15 @@ public class VulkanDemoSwitch
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(EClass theEClass, EObject theEObject)
-	{
-		if (theEClass.eContainer() == modelPackage)
-		{
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else
-		{
-			List eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch((EClass)eSuperTypes.get(0), theEObject);
-		}
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
-	protected Object doSwitch(int classifierID, EObject theEObject)
+	@Override
+	protected T doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 			case VulkanDemoPackage.MESH_PIPELINE:
 			{
 				MeshPipeline meshPipeline = (MeshPipeline)theEObject;
-				Object result = caseMeshPipeline(meshPipeline);
+				T result = caseMeshPipeline(meshPipeline);
 				if (result == null) result = caseGraphicsPipeline(meshPipeline);
 				if (result == null) result = caseAbstractPipeline(meshPipeline);
 				if (result == null) result = caseIProcessUnit(meshPipeline);
@@ -114,7 +94,7 @@ public class VulkanDemoSwitch
 			case VulkanDemoPackage.MESH_BUFFER:
 			{
 				MeshBuffer meshBuffer = (MeshBuffer)theEObject;
-				Object result = caseMeshBuffer(meshBuffer);
+				T result = caseMeshBuffer(meshBuffer);
 				if (result == null) result = caseIndexedBuffer(meshBuffer);
 				if (result == null) result = caseVulkanBuffer(meshBuffer);
 				if (result == null) result = caseIDescriptor(meshBuffer);
@@ -125,7 +105,7 @@ public class VulkanDemoSwitch
 			case VulkanDemoPackage.UNIFORM_BUFFER:
 			{
 				UniformBuffer uniformBuffer = (UniformBuffer)theEObject;
-				Object result = caseUniformBuffer(uniformBuffer);
+				T result = caseUniformBuffer(uniformBuffer);
 				if (result == null) result = caseVulkanBuffer(uniformBuffer);
 				if (result == null) result = caseIDescriptor(uniformBuffer);
 				if (result == null) result = caseResource(uniformBuffer);
@@ -147,7 +127,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMeshPipeline(MeshPipeline object)
+	public T caseMeshPipeline(MeshPipeline object)
 	{
 		return null;
 	}
@@ -163,7 +143,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMeshBuffer(MeshBuffer object)
+	public T caseMeshBuffer(MeshBuffer object)
 	{
 		return null;
 	}
@@ -179,7 +159,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUniformBuffer(UniformBuffer object)
+	public T caseUniformBuffer(UniformBuffer object)
 	{
 		return null;
 	}
@@ -195,7 +175,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseIProcessUnit(IProcessUnit object)
+	public T caseIProcessUnit(IProcessUnit object)
 	{
 		return null;
 	}
@@ -211,7 +191,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAbstractPipeline(AbstractPipeline object)
+	public T caseAbstractPipeline(AbstractPipeline object)
 	{
 		return null;
 	}
@@ -227,7 +207,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGraphicsPipeline(GraphicsPipeline object)
+	public T caseGraphicsPipeline(GraphicsPipeline object)
 	{
 		return null;
 	}
@@ -243,7 +223,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseResource(Resource object)
+	public T caseResource(Resource object)
 	{
 		return null;
 	}
@@ -259,7 +239,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseVulkanBuffer(VulkanBuffer object)
+	public T caseVulkanBuffer(VulkanBuffer object)
 	{
 		return null;
 	}
@@ -275,7 +255,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseIDescriptor(IDescriptor object)
+	public T caseIDescriptor(IDescriptor object)
 	{
 		return null;
 	}
@@ -291,7 +271,7 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseIndexedBuffer(IndexedBuffer object)
+	public T caseIndexedBuffer(IndexedBuffer object)
 	{
 		return null;
 	}
@@ -307,7 +287,8 @@ public class VulkanDemoSwitch
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Object defaultCase(EObject object)
+	@Override
+	public T defaultCase(EObject object)
 	{
 		return null;
 	}

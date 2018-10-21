@@ -60,6 +60,7 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object object)
 	{
 		if (object == modelPackage)
@@ -79,50 +80,61 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VulkanDemoSwitch modelSwitch =
-		new VulkanDemoSwitch()
+	protected VulkanDemoSwitch<Adapter> modelSwitch =
+		new VulkanDemoSwitch<Adapter>()
 		{
-			public Object caseMeshPipeline(MeshPipeline object)
+			@Override
+			public Adapter caseMeshPipeline(MeshPipeline object)
 			{
 				return createMeshPipelineAdapter();
 			}
-			public Object caseMeshBuffer(MeshBuffer object)
+			@Override
+			public Adapter caseMeshBuffer(MeshBuffer object)
 			{
 				return createMeshBufferAdapter();
 			}
-			public Object caseUniformBuffer(UniformBuffer object)
+			@Override
+			public Adapter caseUniformBuffer(UniformBuffer object)
 			{
 				return createUniformBufferAdapter();
 			}
-			public Object caseIProcessUnit(IProcessUnit object)
+			@Override
+			public Adapter caseIProcessUnit(IProcessUnit object)
 			{
 				return createIProcessUnitAdapter();
 			}
-			public Object caseAbstractPipeline(AbstractPipeline object)
+			@Override
+			public Adapter caseAbstractPipeline(AbstractPipeline object)
 			{
 				return createAbstractPipelineAdapter();
 			}
-			public Object caseGraphicsPipeline(GraphicsPipeline object)
+			@Override
+			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
 			{
 				return createGraphicsPipelineAdapter();
 			}
-			public Object caseResource(Resource object)
+			@Override
+			public Adapter caseResource(Resource object)
 			{
 				return createResourceAdapter();
 			}
-			public Object caseVulkanBuffer(VulkanBuffer object)
+			@Override
+			public Adapter caseVulkanBuffer(VulkanBuffer object)
 			{
 				return createVulkanBufferAdapter();
 			}
-			public Object caseIDescriptor(IDescriptor object)
+			@Override
+			public Adapter caseIDescriptor(IDescriptor object)
 			{
 				return createIDescriptorAdapter();
 			}
-			public Object caseIndexedBuffer(IndexedBuffer object)
+			@Override
+			public Adapter caseIndexedBuffer(IndexedBuffer object)
 			{
 				return createIndexedBufferAdapter();
 			}
-			public Object defaultCase(EObject object)
+			@Override
+			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
 			}
@@ -136,9 +148,10 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return (Adapter)modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 

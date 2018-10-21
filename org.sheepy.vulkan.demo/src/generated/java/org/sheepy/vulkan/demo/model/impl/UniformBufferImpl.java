@@ -33,6 +33,7 @@ public class UniformBufferImpl extends MinimalEObjectImpl.Container implements U
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
 	{
 		return VulkanDemoPackage.Literals.UNIFORM_BUFFER;

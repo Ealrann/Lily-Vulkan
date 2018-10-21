@@ -56,6 +56,7 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
 	{
 		return VulkanDemoPackage.Literals.MESH_BUFFER;
@@ -109,6 +110,7 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -125,6 +127,7 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
@@ -141,6 +144,7 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
 	{
 		switch (featureID)
@@ -157,6 +161,7 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
 	{
 		switch (featureID)

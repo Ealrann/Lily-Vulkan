@@ -17,6 +17,7 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * <ul>
  *   <li>each class,</li>
  *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
@@ -134,6 +135,15 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE_FEATURE_COUNT = ProcessPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Mesh Pipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE_OPERATION_COUNT = ProcessPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.demo.model.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,6 +172,15 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_BUFFER_FEATURE_COUNT = ResourcePackage.INDEXED_BUFFER_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Mesh Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_BUFFER_OPERATION_COUNT = ResourcePackage.INDEXED_BUFFER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.demo.model.impl.UniformBufferImpl <em>Uniform Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -179,6 +198,15 @@ public interface VulkanDemoPackage extends EPackage
 	 * @ordered
 	 */
 	int UNIFORM_BUFFER_FEATURE_COUNT = ResourcePackage.VULKAN_BUFFER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Uniform Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIFORM_BUFFER_OPERATION_COUNT = ResourcePackage.VULKAN_BUFFER_OPERATION_COUNT + 0;
 
 
 	/**
@@ -248,6 +276,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * <ul>
 	 *   <li>each class,</li>
 	 *   <li>each feature of each class,</li>
+	 *   <li>each operation of each class,</li>
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>

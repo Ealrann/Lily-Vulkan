@@ -59,6 +59,7 @@ public class VulkanDemoFactoryImpl extends EFactoryImpl implements VulkanDemoFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass)
 	{
 		switch (eClass.getClassifierID())
@@ -120,6 +121,7 @@ public class VulkanDemoFactoryImpl extends EFactoryImpl implements VulkanDemoFac
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static VulkanDemoPackage getPackage()
 	{
 		return VulkanDemoPackage.eINSTANCE;

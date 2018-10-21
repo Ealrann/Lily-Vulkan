@@ -236,13 +236,17 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
+		// Create type parameters
+
+		// Set bounds for type parameters
+
 		// Add supertypes to classes
 		meshPipelineEClass.getESuperTypes().add(theProcessPackage.getGraphicsPipeline());
 		meshBufferEClass.getESuperTypes().add(theResourcePackage.getIndexedBuffer());
 		uniformBufferEClass.getESuperTypes().add(theResourcePackage.getVulkanBuffer());
 		uniformBufferEClass.getESuperTypes().add(theResourcePackage.getIDescriptor());
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(meshPipelineEClass, MeshPipeline.class, "MeshPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMeshPipeline_Mesh(), this.getMeshBuffer(), null, "mesh", null, 0, 1, MeshPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

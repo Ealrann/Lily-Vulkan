@@ -7,6 +7,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-10
 Export-Package: org.sheepy.vulkan.demo.model,
  org.sheepy.vulkan.demo.model.impl,
  org.sheepy.vulkan.demo.model.util
