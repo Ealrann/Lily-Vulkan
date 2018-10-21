@@ -24,7 +24,7 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.vulkan.demo.model.VulkanDemoFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.demo.model/src/generated/java' modelName='VulkanDemo' prefix='VulkanDemo' publicConstructors='true' basePackage='org.sheepy.vulkan.demo'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.demo.model/src/generated/java' modelName='VulkanDemo' prefix='VulkanDemo' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.vulkan.demo'"
  * @generated
  */
 public interface VulkanDemoPackage extends EPackage
