@@ -1,7 +1,7 @@
 /**
  * 
  */
-open module org.sheepy.vulkan
+module org.sheepy.vulkan
 {
 	requires transitive org.lwjgl;
 	requires transitive org.lwjgl.vulkan;
