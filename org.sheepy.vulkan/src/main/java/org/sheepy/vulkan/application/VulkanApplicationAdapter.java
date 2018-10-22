@@ -42,12 +42,6 @@ public class VulkanApplicationAdapter extends AbstractSheepyAdapter
 	};
 
 	@Override
-	public boolean isSingleton()
-	{
-		return false;
-	}
-
-	@Override
 	public void notifyChanged(Notification notification)
 	{
 		if (listeningResize)
