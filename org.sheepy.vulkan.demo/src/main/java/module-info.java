@@ -1,8 +1,4 @@
 /**
- * 
- */
-/**
- * @author ealrann
  *
  */
 module org.sheepy.vulkan.demo {
