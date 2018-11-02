@@ -19,6 +19,7 @@ public class PhysicalDevice
 	public final VkInstance vkInstance;
 
 	private String name;
+	private int driverVersion;
 	private VkPhysicalDeviceMemoryProperties memProperties;
 	private final Map<Integer, VkFormatProperties> formatProperties = new HashMap<>();
 
@@ -34,6 +35,7 @@ public class PhysicalDevice
 		vkGetPhysicalDeviceProperties(vkPhysicalDevice, deviceProperties);
 
 		name = deviceProperties.deviceNameString();
+		driverVersion = deviceProperties.driverVersion();
 
 		memProperties = VkPhysicalDeviceMemoryProperties.calloc();
 		vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice, memProperties);
@@ -129,5 +131,10 @@ public class PhysicalDevice
 	public String getName()
 	{
 		return name;
+	}
+
+	public int getDriverVersion()
+	{
+		return driverVersion;
 	}
 }

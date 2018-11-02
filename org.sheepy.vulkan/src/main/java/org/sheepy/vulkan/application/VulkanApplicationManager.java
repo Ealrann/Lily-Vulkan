@@ -185,7 +185,10 @@ public class VulkanApplicationManager
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
-		System.out.println("\nGraphic Device : " + physicalDevice.getName());
+		String deviceInfo = String.format("\nGraphic Device: %s (%s)", physicalDevice.getName(),
+				physicalDevice.getDriverVersion());
+		System.out.println(deviceInfo);
+
 		if (debug) physicalDevice.printDeviceProperties();
 	}
 
