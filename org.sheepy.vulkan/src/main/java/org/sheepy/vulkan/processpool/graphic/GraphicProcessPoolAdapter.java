@@ -4,7 +4,9 @@ import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkQueue;
+import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
@@ -13,9 +15,14 @@ import org.sheepy.vulkan.execution.queue.EQueueType;
 import org.sheepy.vulkan.execution.queue.VulkanQueue;
 import org.sheepy.vulkan.model.process.GraphicProcessPool;
 import org.sheepy.vulkan.processpool.AbstractProcessPoolAdapter;
+import org.sheepy.vulkan.util.Logger;
 
 public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implements ISignalEmitter
 {
+	private static final String FAILED_ACQUIRE_NEXT_IMAGE = "Failed to acquire next Image";
+	private static final String FAILED_SUBMIT_GRAPHIC = "Failed to submit graphic command buffer";
+	private static final String FAILED_SUBMIT_PRESENT = "Failed to submit present command buffer";
+	
 	/**
 	 * This is just -1L, but it is nicer as a symbolic constant.
 	 */
@@ -67,6 +74,8 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 				context.swapChainManager.getSwapChain(), UINT64_MAX,
 				imageAvailableSemaphore.getId(), VK_NULL_HANDLE, nextImageArray);
 
+		Logger.check(res, FAILED_ACQUIRE_NEXT_IMAGE);
+
 		if (res == VK_SUCCESS) return nextImageArray[0];
 		else return null;
 	}
@@ -85,16 +94,12 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 	private void submitAndPresentImage(Integer imageIndex)
 	{
 		final VkQueue vkQueue = executionManager.getQueue().vkQueue;
-		if (vkQueueSubmit(vkQueue, context.submission.getSubmitInfo(imageIndex),
-				VK_NULL_HANDLE) != VK_SUCCESS)
-		{
-			System.err.println("failed to submit draw command buffer!");
-		}
+		FrameSubmission submission = context.submission;
+		VkSubmitInfo submitInfo = submission.getSubmitInfo(imageIndex);
+		VkPresentInfoKHR presentInfo = submission.getPresentInfo(imageIndex);
 
-		if (vkQueuePresentKHR(vkQueue, context.submission.getPresentInfo(imageIndex)) != VK_SUCCESS)
-		{
-			System.err.println("failed to submit draw command buffer!");
-		}
+		Logger.check(vkQueueSubmit(vkQueue, submitInfo, VK_NULL_HANDLE), FAILED_SUBMIT_GRAPHIC);
+		Logger.check(vkQueuePresentKHR(vkQueue, presentInfo), FAILED_SUBMIT_PRESENT);
 	}
 
 	@Override

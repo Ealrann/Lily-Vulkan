@@ -30,7 +30,7 @@ public class ShaderAdapter extends ResourceAdapter
 		var resource = shader.getFile();
 		var fileAdapter = PathResourceAdapter.adapt(resource);
 		var shaderCode = fileAdapter.toByteBuffer();
-		
+
 		var moduleCreateInfo = VkShaderModuleCreateInfo.callocStack(stack);
 		moduleCreateInfo.sType(VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO);
 		moduleCreateInfo.pNext(NULL);
@@ -39,14 +39,13 @@ public class ShaderAdapter extends ResourceAdapter
 
 		long[] aShaderModule = new long[1];
 		Logger.check("Failed to create shader module: " + resource.getPath(),
-				() -> vkCreateShaderModule(context.getVkDevice(), moduleCreateInfo, null,
-						aShaderModule));
+				() -> vkCreateShaderModule(context.getVkDevice(), moduleCreateInfo, null,	aShaderModule));
 		shaderModule = aShaderModule[0];
 	}
 
 	/**
 	 * You will be responsible to free this object.
-	 * 
+	 *
 	 * @return
 	 */
 	public void fillInfo(VkPipelineShaderStageCreateInfo info)

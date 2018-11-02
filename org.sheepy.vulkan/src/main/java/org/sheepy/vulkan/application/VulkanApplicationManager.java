@@ -157,7 +157,7 @@ public class VulkanApplicationManager
 
 		final var aInstance = stack.mallocPointer(1);
 		final int err = vkCreateInstance(createInfo, null, aInstance);
-		Logger.check(err, "Failed to create VkInstance: " + VulkanUtils.translateVulkanResult(err));
+		Logger.check(err, "Failed to create VkInstance");
 		final long instance = aInstance.get(0);
 
 		vkInstance = new VkInstance(instance, createInfo);

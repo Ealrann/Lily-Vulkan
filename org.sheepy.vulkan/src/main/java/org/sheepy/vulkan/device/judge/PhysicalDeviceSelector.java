@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.device.judge;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.vkEnumeratePhysicalDevices;
 
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.vulkan.device.PhysicalDevice;
-import org.sheepy.vulkan.util.VulkanUtils;
+import org.sheepy.vulkan.util.Logger;
 import org.sheepy.vulkan.window.Surface;
 
 public class PhysicalDeviceSelector
@@ -61,18 +61,11 @@ public class PhysicalDeviceSelector
 	{
 		pPhysicalDeviceCount = stack.mallocInt(1);
 		int err = vkEnumeratePhysicalDevices(vkInstance, pPhysicalDeviceCount, null);
-		if (err != VK_SUCCESS)
-		{
-			throw new AssertionError("Failed to get number of physical devices: "
-					+ VulkanUtils.translateVulkanResult(err));
-		}
+		Logger.check(err, "Failed to get count of physical devices");
+
 		pPhysicalDevices = stack.mallocPointer(pPhysicalDeviceCount.get(0));
 		err = vkEnumeratePhysicalDevices(vkInstance, pPhysicalDeviceCount, pPhysicalDevices);
-		if (err != VK_SUCCESS)
-		{
-			throw new AssertionError(
-					"Failed to get physical devices: " + VulkanUtils.translateVulkanResult(err));
-		}
+		Logger.check(err, "Failed to get physical devices");
 	}
 
 	private void gatherDevices(MemoryStack stack)

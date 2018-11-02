@@ -109,7 +109,7 @@ public class LogicalDevice
 		createInfo.ppEnabledLayerNames(ppEnabledLayerNames);
 		final PointerBuffer pDevice = stack.callocPointer(1);
 
-		Logger.check("failed to create logical device!",
+		Logger.check("Failed to create logical device",
 				() -> vkCreateDevice(physicalDevice.vkPhysicalDevice, createInfo, null, pDevice));
 
 		final long deviceId = pDevice.get(0);
@@ -130,7 +130,7 @@ public class LogicalDevice
 		queueManager.loadVkQueues(vkDevice);
 
 		capabilities.free();
-		
+
 		capabilities = new Capabilities(physicalDevice.vkPhysicalDevice, surface);
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
@@ -144,9 +144,10 @@ public class LogicalDevice
 		vkDestroyDevice(vkDevice, null);
 	}
 
-	public int waitIdle()
+	public void waitIdle()
 	{
-		return vkDeviceWaitIdle(vkDevice);
+		int res = vkDeviceWaitIdle(vkDevice);
+		Logger.check(res, "Wait idle failed");
 	}
 
 	public VkDevice getVkDevice()

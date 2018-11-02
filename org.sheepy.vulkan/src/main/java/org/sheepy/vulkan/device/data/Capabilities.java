@@ -5,11 +5,11 @@ import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfaceCapabilities
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkSurfaceCapabilitiesKHR;
 import org.sheepy.vulkan.util.Logger;
-import org.sheepy.vulkan.util.VulkanUtils;
 import org.sheepy.vulkan.window.Surface;
 
 public class Capabilities
 {
+	private static final String FAILED_TO_GET_SURFACE_CAPABILITIES = "Failed to get physical device surface capabilities";
 	public final VkSurfaceCapabilitiesKHR vkCapabilities;
 
 	public Capabilities(VkPhysicalDevice device, Surface surface)
@@ -17,9 +17,7 @@ public class Capabilities
 		vkCapabilities = VkSurfaceCapabilitiesKHR.calloc();
 		final var id = surface.id;
 		final var err = vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, id, vkCapabilities);
-		final String errorMessage = "Failed to get physical device surface capabilities: "
-				+ VulkanUtils.translateVulkanResult(err);
-		Logger.check(err, errorMessage);
+		Logger.check(err, FAILED_TO_GET_SURFACE_CAPABILITIES);
 	}
 
 	public void free()

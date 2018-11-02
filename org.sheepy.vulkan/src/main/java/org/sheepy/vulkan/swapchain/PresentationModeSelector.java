@@ -2,19 +2,18 @@ package org.sheepy.vulkan.swapchain;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.KHRSurface.*;
-import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
 import java.nio.IntBuffer;
 
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
-import org.sheepy.vulkan.util.VulkanUtils;
+import org.sheepy.vulkan.util.Logger;
 import org.sheepy.vulkan.window.Surface;
 
 public class PresentationModeSelector
 {
-	private LogicalDevice logicalDevice;
-	private Surface surface;
+	private final LogicalDevice logicalDevice;
+	private final Surface surface;
 
 	public PresentationModeSelector(LogicalDevice logicalDevice, Surface surface)
 	{
@@ -28,21 +27,12 @@ public class PresentationModeSelector
 		int err = vkGetPhysicalDeviceSurfacePresentModesKHR(logicalDevice.getVkPhysicalDevice(),
 				surface.id, pPresentModeCount, null);
 		int presentModeCount = pPresentModeCount.get(0);
-		if (err != VK_SUCCESS)
-		{
-			throw new AssertionError(
-					"Failed to get number of physical device surface presentation modes: "
-							+ VulkanUtils.translateVulkanResult(err));
-		}
+		Logger.check(err, "Failed to get count of physical device surface presentation modes");
 
 		IntBuffer pPresentModes = memAllocInt(presentModeCount);
 		err = vkGetPhysicalDeviceSurfacePresentModesKHR(logicalDevice.getVkPhysicalDevice(),
 				surface.id, pPresentModeCount, pPresentModes);
-		if (err != VK_SUCCESS)
-		{
-			throw new AssertionError("Failed to get physical device surface presentation modes: "
-					+ VulkanUtils.translateVulkanResult(err));
-		}
+		Logger.check(err, "Failed to get physical device surface presentation modes");
 
 		// Try to use mailbox mode. Low latency and non-tearing
 		int swapchainPresentMode = VK_PRESENT_MODE_FIFO_KHR;

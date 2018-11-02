@@ -105,7 +105,7 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 		final var queueManager = context.logicalDevice.queueManager;
 		final var capabilities = context.logicalDevice.getCapabilities();
 		final var vkDevice = context.getVkDevice();
-		
+
 		final VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
 		createInfo.surface(surface.id);
@@ -136,7 +136,7 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 		createInfo.oldSwapchain(VK_NULL_HANDLE);
 
 		final LongBuffer pSwapChain = stack.mallocLong(1);
-		Logger.check("Failed to create swap chain!",
+		Logger.check("Failed to create swap chain",
 				() -> vkCreateSwapchainKHR(vkDevice, createInfo, null, pSwapChain));
 		swapChain = pSwapChain.get(0);
 
@@ -206,9 +206,9 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 		}
 
 		/**
-		 * 
+		 *
 		 * Alloc a new Extent. You will have to manage the free.
-		 * 
+		 *
 		 * @return
 		 */
 		public VkExtent2D allocVkExtent2D()

@@ -11,9 +11,12 @@ import org.sheepy.vulkan.execution.queue.EQueueType;
 import org.sheepy.vulkan.execution.queue.VulkanQueue;
 import org.sheepy.vulkan.model.process.ComputeProcessPool;
 import org.sheepy.vulkan.processpool.AbstractProcessPoolAdapter;
+import org.sheepy.vulkan.util.Logger;
 
 public class ComputeProcessPoolAdapter extends AbstractProcessPoolAdapter implements ISignalEmitter
 {
+	private static final String FAILED_SUBMIT_COMPUTE = "Failed to submit compute command buffer";
+
 	protected ComputeContext context;
 
 	protected int processIndex = 0;
@@ -57,8 +60,9 @@ public class ComputeProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 	{
 		var queue = context.executionManager.getQueue().vkQueue;
 		var submission = context.submission;
+		var submitInfo = submission.getSubmitInfo(processIndex);
 
-		vkQueueSubmit(queue, submission.getSubmitInfo(processIndex), VK_NULL_HANDLE);
+		Logger.check(vkQueueSubmit(queue, submitInfo, VK_NULL_HANDLE), FAILED_SUBMIT_COMPUTE);
 
 		processIndex++;
 		if (processIndex >= processPool.getProcesses().size())
@@ -66,7 +70,7 @@ public class ComputeProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 			processIndex = 0;
 		}
 	}
-	
+
 	@Override
 	public VulkanQueue getQueue()
 	{

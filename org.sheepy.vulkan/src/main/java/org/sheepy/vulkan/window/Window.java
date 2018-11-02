@@ -2,7 +2,6 @@ package org.sheepy.vulkan.window;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFWVulkan.*;
-import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,7 @@ import org.lwjgl.vulkan.VkInstance;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.util.VulkanUtils;
+import org.sheepy.vulkan.util.Logger;
 
 public class Window
 {
@@ -127,12 +127,8 @@ public class Window
 
 	private void createSurface(VkInstance vkInstance, int width, int height)
 	{
-		final int err = glfwCreateWindowSurface(vkInstance, id, null, aSurface);
-		if (err != VK_SUCCESS)
-		{
-			throw new AssertionError(
-					"Failed to create surface: " + VulkanUtils.translateVulkanResult(err));
-		}
+		int err = glfwCreateWindowSurface(vkInstance, id, null, aSurface);
+		Logger.check(err, "Failed to create surface");
 
 		surface = new Surface(aSurface[0], width, height);
 
