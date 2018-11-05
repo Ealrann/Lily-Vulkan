@@ -19,7 +19,6 @@ import org.sheepy.vulkan.util.Logger;
 
 public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implements ISignalEmitter
 {
-	private static final String FAILED_ACQUIRE_NEXT_IMAGE = "Failed to acquire next Image";
 	private static final String FAILED_SUBMIT_GRAPHIC = "Failed to submit graphic command buffer";
 	private static final String FAILED_SUBMIT_PRESENT = "Failed to submit present command buffer";
 	
@@ -73,8 +72,6 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 		final int res = vkAcquireNextImageKHR(context.getVkDevice(),
 				context.swapChainManager.getSwapChain(), UINT64_MAX,
 				imageAvailableSemaphore.getId(), VK_NULL_HANDLE, nextImageArray);
-
-		Logger.check(res, FAILED_ACQUIRE_NEXT_IMAGE);
 
 		if (res == VK_SUCCESS) return nextImageArray[0];
 		else return null;
