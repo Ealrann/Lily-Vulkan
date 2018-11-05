@@ -1,15 +1,15 @@
 package org.sheepy.vulkan.resource;
 
 import org.eclipse.emf.ecore.EObject;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 
 public interface IResourceManagerAdapter extends IVulkanAdapter
 {
-	ResourceManager getResourceManager();
+	ResourceManager getResourceManager(EObject target);
 
 	static IResourceManagerAdapter adapt(EObject object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, IResourceManagerAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, IResourceManagerAdapter.class);
 	}
 }

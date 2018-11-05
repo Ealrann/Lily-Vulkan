@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
@@ -14,6 +15,7 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.execution.SingleTimeCommand;
+import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.BufferUtils;
@@ -33,7 +35,7 @@ public class BoardBufferAdapter extends ResourceAdapter implements IDescriptorAd
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		var executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager();
+		var executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
 		var logicalDevice = executionManager.logicalDevice;
 		var application = ModelUtil.getVulkanApplication(target);
 		var windowSize = application.getSize();
@@ -133,5 +135,11 @@ public class BoardBufferAdapter extends ResourceAdapter implements IDescriptorAd
 	public int getHeight()
 	{
 		return height;
+	}
+
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return GameOfLifePackage.Literals.BOARD_BUFFER == eClass;
 	}
 }

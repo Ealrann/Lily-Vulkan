@@ -1,20 +1,27 @@
 package org.sheepy.vulkan.processpool.compute;
 
-import org.sheepy.common.api.adapter.impl.AbstractSheepyAdapter;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.sheepy.common.api.adapter.impl.AbstractServiceAdapter;
 import org.sheepy.vulkan.model.process.ComputeProcessPool;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
-public class ComputeContextAdapter extends AbstractSheepyAdapter implements IComputeContextAdapter
+public class ComputeContextAdapter extends AbstractServiceAdapter implements IComputeContextAdapter
 {
 	@Override
-	public ComputeContext getComputeContext()
+	public boolean isApplicable(EClass eClass)
 	{
-		var current = target;
-		while (!ProcessPackage.Literals.COMPUTE_PROCESS_POOL.isSuperTypeOf(current.eClass()))
+		return true;
+	}
+	
+	@Override
+	public ComputeContext getComputeContext(EObject target)
+	{
+		while (!ProcessPackage.Literals.COMPUTE_PROCESS_POOL.isSuperTypeOf(target.eClass()))
 		{
-			current = current.eContainer();
+			target = target.eContainer();
 		}
 
-		return ComputeProcessPoolAdapter.adapt((ComputeProcessPool) current).context;
+		return ComputeProcessPoolAdapter.adapt((ComputeProcessPool) target).context;
 	}
 }

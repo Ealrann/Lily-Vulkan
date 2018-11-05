@@ -1,7 +1,7 @@
 package org.sheepy.vulkan.demo.rotatingtriangle;
 
 import org.sheepy.vulkan.VulkanApplicationLauncher;
-import org.sheepy.vulkan.demo.common.VulkanDemoWrapperUtil;
+import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.vulkan.demo.mesh.MeshModelFactory;
 import org.sheepy.vulkan.demo.mesh.UniformBufferAdapter;
@@ -12,8 +12,8 @@ import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 public class MainRotating
 {
-	private static final String VERTEX_SHADER_PATH = "org/sheepy/vulkan/demo/rotatingtriangle/triangle.vert.spv";
-	private static final String FRAGMENT_SHADER_PATH = "org/sheepy/vulkan/demo/rotatingtriangle/triangle.frag.spv";
+	private static final String VERTEX_SHADER_PATH = "org/sheepy/vulkan/demo/rotatingtriangle/rotating.vert.spv";
+	private static final String FRAGMENT_SHADER_PATH = "org/sheepy/vulkan/demo/rotatingtriangle/rotating.frag.spv";
 
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
@@ -30,8 +30,7 @@ public class MainRotating
 
 	public MainRotating()
 	{
-		final var meshBuilder = new TriangleMeshBuilder();
-		VulkanDemoWrapperUtil.registerWrappers(meshBuilder);
+		MeshAdapter.meshBuilder = new TriangleMeshBuilder();
 	}
 
 	public void launch()

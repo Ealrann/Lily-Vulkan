@@ -45,7 +45,7 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 	{
 		super.deepAllocate(stack);
 
-		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext();
+		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
 		final var useDepthBuffer = context.graphicProcessPool.getDepthImage() != null;
 		final var device = context.getVkDevice();
 		final GraphicsPipeline pipeline = (GraphicsPipeline) target;
@@ -91,14 +91,14 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 	@Override
 	public boolean isDirty()
 	{
-		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext();
+		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
 		return context.renderPass.isDirty();
 	}
 
 	@Override
 	public void free()
 	{
-		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext();
+		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
 		final boolean useDepthBuffer = context.graphicProcessPool.getDepthImage() != null;
 		// dynamicState.free();
 		colorBlendState.free();

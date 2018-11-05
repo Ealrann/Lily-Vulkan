@@ -3,8 +3,10 @@ package org.sheepy.vulkan.resource.file;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.eclipse.emf.ecore.EClass;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.ModuleResource;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 public class ModuleResourceAdapter extends PathResourceAdapter
 {
@@ -26,8 +28,14 @@ public class ModuleResourceAdapter extends PathResourceAdapter
 		return null;
 	}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ResourcePackage.Literals.MODULE_RESOURCE == eClass;
+	}
+
 	public static ModuleResourceAdapter adapt(ModuleResource moduleResource)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(moduleResource, ModuleResourceAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(moduleResource, ModuleResourceAdapter.class);
 	}
 }

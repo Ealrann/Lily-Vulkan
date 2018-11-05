@@ -2,10 +2,12 @@ package org.sheepy.vulkan.resource.buffer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.process.BufferBarrier;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.pipeline.PipelineBarrierAdapter;
 
 public class BufferBarrierAdapter extends PipelineBarrierAdapter
@@ -47,5 +49,11 @@ public class BufferBarrierAdapter extends PipelineBarrierAdapter
 	public boolean isDirty()
 	{
 		return false;
+	}
+
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ProcessPackage.Literals.BUFFER_BARRIER == eClass;
 	}
 }

@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.eclipse.emf.ecore.EClass;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.FileResource;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 public class FileResourceAdapter extends PathResourceAdapter
 {
@@ -27,8 +29,14 @@ public class FileResourceAdapter extends PathResourceAdapter
 		return null;
 	}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ResourcePackage.Literals.FILE_RESOURCE == eClass;
+	}
+
 	public static FileResourceAdapter adapt(FileResource fileResource)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(fileResource, FileResourceAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(fileResource, FileResourceAdapter.class);
 	}
 }

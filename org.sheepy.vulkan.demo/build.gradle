@@ -1,6 +1,6 @@
 plugins {
 	id 'java-library'
-//	id 'application'
+	// id 'application'
 }
 
 dependencies {
@@ -10,7 +10,7 @@ dependencies {
 	api project(':org.sheepy.vulkan')
 }
 
-// mainClassName = 'test.vulkan.texture.MainTexture'
+// mainClassName = 'org.sheepy.vulkan.demo.texture.MainTexture'
 
 if (project.hasProperty('javaModule')) {
 	javaModule.name = 'org.sheepy.vulkan.demo'

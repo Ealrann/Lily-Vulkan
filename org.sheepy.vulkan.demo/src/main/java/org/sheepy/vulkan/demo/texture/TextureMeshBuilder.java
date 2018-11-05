@@ -1,14 +1,15 @@
 package org.sheepy.vulkan.demo.texture;
 
+import org.sheepy.vulkan.execution.ExecutionManager;
 import org.sheepy.vulkan.resource.indexed.IIndexedBufferBuilder;
+import org.sheepy.vulkan.resource.indexed.IndexBuffer;
 import org.sheepy.vulkan.resource.indexed.IndexBufferData;
 import org.sheepy.vulkan.resource.texture.TextureVertexDescriptor;
 import org.sheepy.vulkan.resource.texture.TextureVertexDescriptor.TextureVertex;
 
 public class TextureMeshBuilder implements IIndexedBufferBuilder<TextureVertex>
 {
-	@Override
-	public IndexBufferData<TextureVertex> getDatas()
+	private static IndexBufferData<TextureVertex> getDatas()
 	{
 		final TextureVertex[] vertices = new TextureVertex[8];
 		vertices[0] = new TextureVertex(-0.5f, -0.5f, 0f, 1.0f, 0.0f, 0.0f, 1f, 0f);
@@ -29,5 +30,11 @@ public class TextureMeshBuilder implements IIndexedBufferBuilder<TextureVertex>
 				new TextureVertexDescriptor());
 
 		return res;
+	}
+	
+	@Override
+	public IndexBuffer<TextureVertex> build(ExecutionManager executionManager)
+	{
+		return IndexBuffer.alloc(executionManager, getDatas());
 	}
 }

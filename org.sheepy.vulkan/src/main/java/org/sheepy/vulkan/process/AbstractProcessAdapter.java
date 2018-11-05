@@ -1,7 +1,8 @@
 package org.sheepy.vulkan.process;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.allocation.adapter.impl.AbstractDeepAllocableAdapter;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -17,15 +18,10 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	private AbstractProcess process = null;
 
 	@Override
-	protected void load()
+	public void setTarget(Notifier target)
 	{
 		process = (AbstractProcess) target;
-	}
-
-	@Override
-	protected void unload()
-	{
-		process = null;
+		super.setTarget(target);
 	}
 
 	@Override
@@ -51,7 +47,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractProcessAdapter<T> adapt(AbstractProcess object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, AbstractProcessAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractProcessAdapter.class);
 	}
 
 	protected abstract int getBindPoint();

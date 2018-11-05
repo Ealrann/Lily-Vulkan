@@ -4,18 +4,21 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
 
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.IDescriptor;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.resource.IResourceManagerAdapter;
 import org.sheepy.vulkan.util.Logger;
 
@@ -28,25 +31,20 @@ public class DescriptorSetAdapter extends AbstractFlatAllocableAdapter
 	private DescriptorSet descriptorSet = null;
 
 	@Override
-	protected void load()
+	public void setTarget(Notifier target)
 	{
 		descriptorSet = (DescriptorSet) target;
-	}
-
-	@Override
-	protected void unload()
-	{
-		descriptorSet = null;
+		super.setTarget(target);
 	}
 
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var resourceManager = IResourceManagerAdapter.adapt(target).getResourceManager();
-		final var pool = resourceManager.descriptorPool;
-		final var device = pool.getVkDevice();
+		var resourceManager = IResourceManagerAdapter.adapt(target).getResourceManager(target);
+		var pool = resourceManager.descriptorPool;
+		var device = pool.getVkDevice();
 
-		final var layoutBindings = createLayoutBinding(stack);
+		var layoutBindings = createLayoutBinding(stack);
 
 		final var layoutInfo = VkDescriptorSetLayoutCreateInfo.callocStack(stack);
 		layoutInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO);
@@ -134,7 +132,7 @@ public class DescriptorSetAdapter extends AbstractFlatAllocableAdapter
 	@Override
 	public void free()
 	{
-		final var device = ILogicalDeviceAdapter.adapt(target).getVkDevice();
+		final var device = ILogicalDeviceAdapter.adapt(target).getVkDevice(target);
 		vkDestroyDescriptorSetLayout(device, layoutId, null);
 	}
 
@@ -150,8 +148,14 @@ public class DescriptorSetAdapter extends AbstractFlatAllocableAdapter
 		return layoutId;
 	}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ResourcePackage.Literals.DESCRIPTOR_SET == eClass;
+	}
+
 	public static DescriptorSetAdapter adapt(DescriptorSet object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, DescriptorSetAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, DescriptorSetAdapter.class);
 	}
 }

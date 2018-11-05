@@ -2,7 +2,7 @@ package org.sheepy.vulkan.allocation.adapter;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 
 public interface IDeepAllocableAdapter extends IAllocableAdapter
 {
@@ -11,8 +11,8 @@ public interface IDeepAllocableAdapter extends IAllocableAdapter
 	 */
 	void deepAllocate(MemoryStack stack);
 	
-	public static IDeepAllocableAdapter adapt(EObject object)
+	static IDeepAllocableAdapter adapt(EObject object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, IDeepAllocableAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, IDeepAllocableAdapter.class);
 	}
 }

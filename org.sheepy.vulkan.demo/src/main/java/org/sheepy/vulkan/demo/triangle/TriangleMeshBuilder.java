@@ -1,6 +1,8 @@
 package org.sheepy.vulkan.demo.triangle;
 
+import org.sheepy.vulkan.execution.ExecutionManager;
 import org.sheepy.vulkan.resource.indexed.IIndexedBufferBuilder;
+import org.sheepy.vulkan.resource.indexed.IndexBuffer;
 import org.sheepy.vulkan.resource.indexed.IndexBufferData;
 import org.sheepy.vulkan.resource.indexed.IndexBufferDescriptor;
 import org.sheepy.vulkan.resource.indexed.IndexBufferDescriptor.Vertex;
@@ -11,8 +13,7 @@ public class TriangleMeshBuilder implements IIndexedBufferBuilder<Vertex>
 	// {{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
 	// {{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
 	// {{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}}
-	@Override
-	public IndexBufferData<Vertex> getDatas()
+	private static IndexBufferData<Vertex> getDatas()
 	{
 		Vertex[] vertices = new Vertex[4];
 		vertices[0] = new Vertex(-0.5f, -0.5f, 1.0f, 1.0f, 1.0f);
@@ -28,5 +29,11 @@ public class TriangleMeshBuilder implements IIndexedBufferBuilder<Vertex>
 				new IndexBufferDescriptor());
 
 		return res;
+	}
+	
+	@Override
+	public IndexBuffer<Vertex> build(ExecutionManager executionManager)
+	{
+		return IndexBuffer.alloc(executionManager, getDatas());
 	}
 }

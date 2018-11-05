@@ -6,7 +6,6 @@ import org.sheepy.vulkan.model.VulkanPackage;
 
 public class ModelUtil
 {
-
 	public static final VulkanApplication getVulkanApplication(EObject eObject)
 	{
 		while (eObject != null && eObject.eClass() != VulkanPackage.Literals.VULKAN_APPLICATION)

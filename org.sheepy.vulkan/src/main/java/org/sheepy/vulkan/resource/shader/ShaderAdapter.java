@@ -5,12 +5,14 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.lwjgl.vulkan.VkShaderModuleCreateInfo;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.device.ILogicalDeviceAdapter;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.file.PathResourceAdapter;
@@ -39,7 +41,8 @@ public class ShaderAdapter extends ResourceAdapter
 
 		long[] aShaderModule = new long[1];
 		Logger.check("Failed to create shader module: " + resource.getPath(),
-				() -> vkCreateShaderModule(context.getVkDevice(), moduleCreateInfo, null,	aShaderModule));
+				() -> vkCreateShaderModule(context.getVkDevice(target), moduleCreateInfo, null,
+						aShaderModule));
 		shaderModule = aShaderModule[0];
 	}
 
@@ -62,7 +65,7 @@ public class ShaderAdapter extends ResourceAdapter
 	public void free()
 	{
 		var context = ILogicalDeviceAdapter.adapt(target);
-		vkDestroyShaderModule(context.getVkDevice(), shaderModule, null);
+		vkDestroyShaderModule(context.getVkDevice(target), shaderModule, null);
 	}
 
 	public long getShaderModule()
@@ -70,8 +73,14 @@ public class ShaderAdapter extends ResourceAdapter
 		return shaderModule;
 	}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ResourcePackage.Literals.SHADER == eClass;
+	}
+
 	public static ShaderAdapter adapt(Shader shader)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(shader, ShaderAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(shader, ShaderAdapter.class);
 	}
 }

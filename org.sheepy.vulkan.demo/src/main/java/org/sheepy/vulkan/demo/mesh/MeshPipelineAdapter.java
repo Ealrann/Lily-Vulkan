@@ -2,7 +2,9 @@ package org.sheepy.vulkan.demo.mesh;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.eclipse.emf.ecore.EClass;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
+import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.execution.graphic.GraphicCommandBuffer;
 import org.sheepy.vulkan.pipeline.graphic.GraphicsPipelineAdapter;
 import org.sheepy.vulkan.pipeline.graphic.render.IVertexBufferDescriptor;
@@ -43,5 +45,11 @@ public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 		final var meshAdapter = MeshAdapter.adapt(mesh);
 
 		return meshAdapter.getIndexBuffer().getIndexBufferDescriptor();
+	}
+
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return VulkanDemoPackage.Literals.MESH_PIPELINE == eClass;
 	}
 }

@@ -2,14 +2,17 @@ package org.sheepy.vulkan.processpool.compute;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.queue.EQueueType;
 import org.sheepy.vulkan.execution.queue.VulkanQueue;
 import org.sheepy.vulkan.model.process.ComputeProcessPool;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.processpool.AbstractProcessPoolAdapter;
 import org.sheepy.vulkan.util.Logger;
 
@@ -24,9 +27,9 @@ public class ComputeProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 	private ComputeProcessPool processPool = null;
 
 	@Override
-	protected void load()
+	public void setTarget(Notifier target)
 	{
-		super.load();
+		super.setTarget(target);
 		processPool = (ComputeProcessPool) target;
 
 		context = new ComputeContext(executionManager, resourceManager, processPool);
@@ -34,13 +37,13 @@ public class ComputeProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 	}
 
 	@Override
-	protected void unload()
+	public void unsetTarget(Notifier oldTarget)
 	{
 		childAllocables.removeAll(context.getAllocationList());
 		context = null;
 
 		processPool = null;
-		super.unload();
+		super.unsetTarget(oldTarget);
 	}
 
 	@Override
@@ -88,9 +91,15 @@ public class ComputeProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 	{
 		return EQueueType.Compute;
 	}
+	
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ProcessPackage.Literals.COMPUTE_PROCESS_POOL == eClass;
+	}
 
 	public static ComputeProcessPoolAdapter adapt(ComputeProcessPool object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, ComputeProcessPoolAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, ComputeProcessPoolAdapter.class);
 	}
 }

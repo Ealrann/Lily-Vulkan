@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.resource.image;
 
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.resource.ISizedBufferAdapter;
 
@@ -18,6 +18,6 @@ public interface IImageAdapter extends ISizedBufferAdapter
 
 	static IImageAdapter adapt(Image resource)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(resource, IImageAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(resource, IImageAdapter.class);
 	}
 }

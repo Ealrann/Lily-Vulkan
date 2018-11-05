@@ -1,7 +1,7 @@
 package org.sheepy.vulkan.pipeline;
 
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 
@@ -13,6 +13,6 @@ public interface IProcessUnitAdapter<T extends AbstractCommandBuffer>
 	@SuppressWarnings("unchecked")
 	static <T extends AbstractCommandBuffer> IProcessUnitAdapter<T> adapt(IProcessUnit object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, IProcessUnitAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, IProcessUnitAdapter.class);
 	}
 }

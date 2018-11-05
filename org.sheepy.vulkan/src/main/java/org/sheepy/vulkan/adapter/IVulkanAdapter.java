@@ -1,6 +1,14 @@
 package org.sheepy.vulkan.adapter;
 
-import org.sheepy.common.api.adapter.ISheepyAdapter;
+import java.util.Iterator;
+import java.util.ServiceLoader;
 
-public interface IVulkanAdapter extends ISheepyAdapter
-{}
+import org.sheepy.common.api.adapter.IServiceAdapter;
+
+public interface IVulkanAdapter extends IServiceAdapter
+{
+	static Iterator<IVulkanAdapter> getServices()
+	{
+		return ServiceLoader.load(IVulkanAdapter.class).iterator();
+	}
+}

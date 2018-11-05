@@ -1,7 +1,7 @@
 package org.sheepy.vulkan.demo.triangle;
 
 import org.sheepy.vulkan.VulkanApplicationLauncher;
-import org.sheepy.vulkan.demo.common.VulkanDemoWrapperUtil;
+import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.vulkan.demo.mesh.MeshModelFactory;
 import org.sheepy.vulkan.model.VulkanApplication;
@@ -21,8 +21,7 @@ public class MainTriangle
 
 	public MainTriangle()
 	{
-		final var meshBuilder = new TriangleMeshBuilder();
-		VulkanDemoWrapperUtil.registerWrappers(meshBuilder);
+		MeshAdapter.meshBuilder = new TriangleMeshBuilder();
 	}
 
 	public void launch()

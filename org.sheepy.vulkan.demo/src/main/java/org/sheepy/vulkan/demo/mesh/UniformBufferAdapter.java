@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
+import org.eclipse.emf.ecore.EClass;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryStack;
@@ -13,8 +14,9 @@ import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.demo.model.UniformBuffer;
+import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.resource.ResourceAdapter;
@@ -45,7 +47,7 @@ public class UniformBufferAdapter extends ResourceAdapter implements IDescriptor
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager();
+		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
 
 		stagingBuffer = MemoryUtil.memAlloc(SIZE_OF);
 		stagingValues = new float[48];
@@ -138,8 +140,14 @@ public class UniformBufferAdapter extends ResourceAdapter implements IDescriptor
 		return poolSize;
 	}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return VulkanDemoPackage.Literals.UNIFORM_BUFFER == eClass;
+	}
+
 	public static UniformBufferAdapter adapt(UniformBuffer buffer)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(buffer, UniformBufferAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(buffer, UniformBufferAdapter.class);
 	}
 }

@@ -2,9 +2,11 @@ package org.sheepy.vulkan.process.graphic;
 
 import static org.lwjgl.vulkan.VK10.VK_PIPELINE_BIND_POINT_GRAPHICS;
 
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.eclipse.emf.ecore.EClass;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.execution.graphic.RenderCommandBuffer;
 import org.sheepy.vulkan.model.process.GraphicProcess;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.process.AbstractProcessAdapter;
 
 public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandBuffer>
@@ -20,9 +22,15 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	{
 		return false;
 	}
-
+	
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ProcessPackage.Literals.GRAPHIC_PROCESS == eClass;
+	}
+	
 	public static GraphicProcessAdapter adapt(GraphicProcess object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, GraphicProcessAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, GraphicProcessAdapter.class);
 	}
 }

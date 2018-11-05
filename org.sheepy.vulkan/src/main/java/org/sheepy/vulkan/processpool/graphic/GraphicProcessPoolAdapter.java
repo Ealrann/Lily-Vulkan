@@ -3,17 +3,20 @@ package org.sheepy.vulkan.processpool.graphic;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.queue.EQueueType;
 import org.sheepy.vulkan.execution.queue.VulkanQueue;
 import org.sheepy.vulkan.model.process.GraphicProcessPool;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.processpool.AbstractProcessPoolAdapter;
 import org.sheepy.vulkan.util.Logger;
 
@@ -34,9 +37,9 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 	private GraphicProcessPool processPool = null;
 
 	@Override
-	protected void load()
+	public void setTarget(Notifier target)
 	{
-		super.load();
+		super.setTarget(target);
 		this.processPool = (GraphicProcessPool) target;
 
 		context = new GraphicContext(executionManager, resourceManager, processPool);
@@ -44,13 +47,13 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 	}
 
 	@Override
-	protected void unload()
+	public void unsetTarget(Notifier oldTarget)
 	{
 		childAllocables.removeAll(context.getAllocationList());
 		context = null;
 
 		this.processPool = null;
-		super.unload();
+		super.unsetTarget(oldTarget);
 	}
 
 	@Override
@@ -124,10 +127,15 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 	{
 		return EQueueType.Graphic;
 	}
+	
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ProcessPackage.Literals.GRAPHIC_PROCESS_POOL == eClass;
+	}
 
 	public static GraphicProcessPoolAdapter adapt(GraphicProcessPool pool)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(pool, GraphicProcessPoolAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(pool, GraphicProcessPoolAdapter.class);
 	}
-
 }

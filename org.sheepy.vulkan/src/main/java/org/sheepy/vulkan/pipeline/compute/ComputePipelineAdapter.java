@@ -2,14 +2,16 @@ package org.sheepy.vulkan.pipeline.compute;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.execution.compute.ComputeCommandBuffer;
 import org.sheepy.vulkan.model.process.ComputePipeline;
 import org.sheepy.vulkan.model.process.Computer;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.processpool.compute.IComputeContextAdapter;
 import org.sheepy.vulkan.resource.shader.ShaderAdapter;
@@ -29,7 +31,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	{
 		super.deepAllocate(stack);
 
-		var context = IComputeContextAdapter.adapt(target).getComputeContext();
+		var context = IComputeContextAdapter.adapt(target).getComputeContext(target);
 		var device = context.getVkDevice();
 		var computePipeline = (ComputePipeline) target;
 		var computers = computePipeline.getComputers();
@@ -66,7 +68,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	@Override
 	public void free()
 	{
-		final var vkDevice = ILogicalDeviceAdapter.adapt(target).getVkDevice();
+		final var vkDevice = ILogicalDeviceAdapter.adapt(target).getVkDevice(target);
 
 		for (long id : pipelines)
 		{
@@ -120,8 +122,14 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 		return groupCountZ;
 	}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ProcessPackage.Literals.COMPUTE_PIPELINE == eClass;
+	}
+
 	public static ComputePipelineAdapter adapt(ComputePipeline object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, ComputePipelineAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, ComputePipelineAdapter.class);
 	}
 }

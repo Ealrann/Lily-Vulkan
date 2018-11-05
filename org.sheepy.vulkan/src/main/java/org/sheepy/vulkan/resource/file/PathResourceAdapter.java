@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.PathResource;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 
 public abstract class PathResourceAdapter extends ResourceAdapter
@@ -64,8 +66,14 @@ public abstract class PathResourceAdapter extends ResourceAdapter
 	public void free()
 	{}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ResourcePackage.Literals.PATH_RESOURCE == eClass;
+	}
+
 	public static PathResourceAdapter adapt(PathResource pathResource)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(pathResource, PathResourceAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(pathResource, PathResourceAdapter.class);
 	}
 }

@@ -1,8 +1,10 @@
 package org.sheepy.vulkan.resource.imagebarrier;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.process.ImageBarrier;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.pipeline.PipelineBarrierAdapter;
 
 public class ImageBarrierAdapter extends PipelineBarrierAdapter
@@ -33,4 +35,9 @@ public class ImageBarrierAdapter extends PipelineBarrierAdapter
 		return false;
 	}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ProcessPackage.Literals.IMAGE_BARRIER == eClass;
+	}
 }

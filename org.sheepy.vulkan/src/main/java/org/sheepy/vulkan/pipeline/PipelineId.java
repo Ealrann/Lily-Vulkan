@@ -1,11 +1,12 @@
 package org.sheepy.vulkan.pipeline;
 
-import org.sheepy.common.api.adapter.impl.AbstractSheepyAdapter;
+import org.sheepy.common.api.adapter.IStatefullAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractServiceAdapter;
 import org.sheepy.vulkan.execution.graphic.RenderCommandBuffer;
 
 @Deprecated
-public abstract class PipelineId extends AbstractSheepyAdapter
-		implements IProcessUnitAdapter<RenderCommandBuffer>
+public abstract class PipelineId extends AbstractServiceAdapter
+		implements IProcessUnitAdapter<RenderCommandBuffer>, IStatefullAdapter
 {
 	public final long id;
 

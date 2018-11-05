@@ -1,15 +1,15 @@
 package org.sheepy.vulkan.processpool.compute;
 
 import org.eclipse.emf.ecore.EObject;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 
 public interface IComputeContextAdapter extends IVulkanAdapter
 {
-	ComputeContext getComputeContext();
+	ComputeContext getComputeContext(EObject target);
 
 	static IComputeContextAdapter adapt(EObject object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, IComputeContextAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, IComputeContextAdapter.class);
 	}
 }

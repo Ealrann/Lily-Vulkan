@@ -1,18 +1,17 @@
 package org.sheepy.vulkan.pipeline.graphic;
 
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.execution.graphic.GraphicCommandBuffer;
 import org.sheepy.vulkan.model.process.GraphicsPipeline;
 import org.sheepy.vulkan.pipeline.IProcessUnitAdapter;
 
 /**
- * @author ealrann
  *
  */
 public interface IGraphicPipelineAdapter extends IProcessUnitAdapter<GraphicCommandBuffer>
 {
-	public static IGraphicPipelineAdapter adapt(GraphicsPipeline object)
+	static IGraphicPipelineAdapter adapt(GraphicsPipeline object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, IGraphicPipelineAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, IGraphicPipelineAdapter.class);
 	}
 }

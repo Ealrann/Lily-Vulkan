@@ -2,20 +2,31 @@ package org.sheepy.vulkan.pipeline.compute;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.sheepy.common.api.adapter.impl.AbstractSheepyAdapter;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EClass;
+import org.sheepy.common.api.adapter.IStatefullAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractServiceAdapter;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.execution.compute.ComputeCommandBuffer;
 import org.sheepy.vulkan.model.process.ComputePipeline;
 import org.sheepy.vulkan.model.process.Computer;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.pipeline.IProcessUnitAdapter;
 
-public class ComputerAdapter extends AbstractSheepyAdapter
-		implements IProcessUnitAdapter<ComputeCommandBuffer>
+public class ComputerAdapter extends AbstractServiceAdapter
+		implements IProcessUnitAdapter<ComputeCommandBuffer>, IStatefullAdapter
 {
+	private Computer computer = null;
+
+	@Override
+	public void setTarget(Notifier target)
+	{
+		computer = (Computer) target;
+	}
+	
 	@Override
 	public void record(ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
-		var computer = (Computer) target;
 		var computePipeline = (ComputePipeline) computer.eContainer();
 		var index = computePipeline.getComputers().indexOf(computer);
 		var pipelineAdapter = ComputePipelineAdapter.adapt(computePipeline);
@@ -33,6 +44,12 @@ public class ComputerAdapter extends AbstractSheepyAdapter
 
 	public static ComputerAdapter adapt(Computer object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, ComputerAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, ComputerAdapter.class);
+	}
+
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ProcessPackage.Literals.COMPUTER == eClass;
 	}
 }

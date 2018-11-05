@@ -9,14 +9,15 @@ import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.vulkan.util.Logger;
 
-public class BufferAdapter extends ResourceAdapter implements IDescriptorAdapter
+@Deprecated
+public abstract class BufferAdapter extends ResourceAdapter implements IDescriptorAdapter
 {
 	protected int stage = -1;
 	protected int descriptorType = -1;
@@ -28,7 +29,7 @@ public class BufferAdapter extends ResourceAdapter implements IDescriptorAdapter
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var logicalDevice = ILogicalDeviceAdapter.adapt(target).getLogicalDevice();
+		final var logicalDevice = ILogicalDeviceAdapter.adapt(target).getLogicalDevice(target);
 		backendBuffer = new StandaloneBuffer(logicalDevice, (Buffer) target);
 		backendBuffer.allocate(stack);
 		allocated = true;
@@ -131,7 +132,7 @@ public class BufferAdapter extends ResourceAdapter implements IDescriptorAdapter
 
 	public static BufferAdapter adapt(Buffer buffer)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(buffer, BufferAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(buffer, BufferAdapter.class);
 	}
 
 }

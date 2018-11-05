@@ -1,7 +1,7 @@
 package org.sheepy.vulkan.demo.texture;
 
 import org.sheepy.vulkan.VulkanApplicationLauncher;
-import org.sheepy.vulkan.demo.common.VulkanDemoWrapperUtil;
+import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.vulkan.demo.mesh.MeshModelFactory;
 import org.sheepy.vulkan.demo.mesh.UniformBufferAdapter;
@@ -11,9 +11,9 @@ import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 public class MainTexture
 {
-	private static final String IMAGE_PATH = "org/sheepy/vulkan/demo/texture/image_77MJJZ.png";
-	private static final String VERTEX_SHADER_PATH = "org/sheepy/vulkan/demo/texture/triangle.vert.spv";
-	private static final String FRAGMENT_SHADER_PATH = "org/sheepy/vulkan/demo/texture/triangle.frag.spv";
+	private static final String IMAGE_PATH = "image_77MJJZ.png";
+	private static final String VERTEX_SHADER_PATH = "texture.vert.spv";
+	private static final String FRAGMENT_SHADER_PATH = "texture.frag.spv";
 
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
@@ -30,8 +30,7 @@ public class MainTexture
 
 	public MainTexture()
 	{
-		final var meshBuilder = new TextureMeshBuilder();
-		VulkanDemoWrapperUtil.registerWrappers(meshBuilder);
+		MeshAdapter.meshBuilder = new TextureMeshBuilder();
 	}
 
 	public void launch()

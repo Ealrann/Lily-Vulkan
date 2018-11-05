@@ -2,11 +2,13 @@ package org.sheepy.vulkan.pipeline.graphic.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkImageBlit;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.execution.graphic.GraphicCommandBuffer;
 import org.sheepy.vulkan.model.process.ImagePipeline;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.pipeline.graphic.IGraphicPipelineAdapter;
 import org.sheepy.vulkan.processpool.graphic.IGraphicContextAdapter;
@@ -25,7 +27,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	{
 		super.deepAllocate(stack);
 
-		var context = IGraphicContextAdapter.adapt(target).getGraphicContext();
+		var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
 		var extent = context.swapChainManager.getExtent();
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
@@ -81,7 +83,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	@Override
 	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
 	{
-		var context = IGraphicContextAdapter.adapt(target).getGraphicContext();
+		var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
 		var srcImageId = IImageAdapter.adapt(srcImage).getId();
@@ -104,9 +106,15 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	{
 		return false;
 	}
+	
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ProcessPackage.Literals.IMAGE_PIPELINE == eClass;
+	}
 
 	public static ImagePipelineAdapter adapt(ImagePipeline object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, ImagePipelineAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, ImagePipelineAdapter.class);
 	}
 }

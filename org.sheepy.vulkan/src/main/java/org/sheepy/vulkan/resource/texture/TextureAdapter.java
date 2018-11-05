@@ -2,6 +2,7 @@ package org.sheepy.vulkan.resource.texture;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkDescriptorImageInfo;
@@ -11,11 +12,12 @@ import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.execution.SingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Texture;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
@@ -38,7 +40,7 @@ public class TextureAdapter extends ResourceAdapter implements IDescriptorAdapte
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager();
+		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
 		final var logicalDevice = context.getLogicalDevice();
 		final Texture texture = (Texture) target;
 
@@ -235,8 +237,14 @@ public class TextureAdapter extends ResourceAdapter implements IDescriptorAdapte
 		return poolSize;
 	}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ResourcePackage.Literals.TEXTURE == eClass;
+	}
+
 	public static TextureAdapter adapt(Texture texture)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(texture, TextureAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(texture, TextureAdapter.class);
 	}
 }

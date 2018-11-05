@@ -1,48 +1,56 @@
 package org.sheepy.vulkan.application;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.sheepy.common.api.adapter.impl.AbstractSheepyAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractServiceAdapter;
 import org.sheepy.vulkan.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.PhysicalDevice;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanPackage;
 
-public class LogicalDeviceAdapter extends AbstractSheepyAdapter implements ILogicalDeviceAdapter
+public class LogicalDeviceAdapter extends AbstractServiceAdapter
+		implements ILogicalDeviceAdapter
 {
 	@Override
-	public PhysicalDevice getPhysicalDevice()
+	public PhysicalDevice getPhysicalDevice(EObject target)
 	{
-		return retrieveManager().physicalDevice;
+		return retrieveManager(target).physicalDevice;
 	}
 
 	@Override
-	public VkPhysicalDevice getVkPhysicalDevice()
+	public VkPhysicalDevice getVkPhysicalDevice(EObject target)
 	{
-		return retrieveManager().physicalDevice.vkPhysicalDevice;
+		return retrieveManager(target).physicalDevice.vkPhysicalDevice;
 	}
 
 	@Override
-	public LogicalDevice getLogicalDevice()
+	public LogicalDevice getLogicalDevice(EObject target)
 	{
-		return retrieveManager().logicalDevice;
+		return retrieveManager(target).logicalDevice;
 	}
 
 	@Override
-	public VkDevice getVkDevice()
+	public VkDevice getVkDevice(EObject target)
 	{
-		return retrieveManager().logicalDevice.getVkDevice();
+		return retrieveManager(target).logicalDevice.getVkDevice();
 	}
 
-	private VulkanApplicationManager retrieveManager()
+	private static VulkanApplicationManager retrieveManager(EObject target)
 	{
-		var current = target;
-		while (current.eClass() != VulkanPackage.Literals.VULKAN_APPLICATION)
+		while (target.eClass() != VulkanPackage.Literals.VULKAN_APPLICATION)
 		{
-			current = current.eContainer();
+			target = target.eContainer();
 		}
 
-		return VulkanApplicationAdapter.adapt((VulkanApplication) current).manager;
+		return VulkanApplicationAdapter.adapt((VulkanApplication) target).manager;
+	}
+
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return true;
 	}
 }

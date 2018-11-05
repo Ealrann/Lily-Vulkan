@@ -1,35 +1,26 @@
 package org.sheepy.vulkan.demo.mesh;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
+import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.indexed.IIndexedBufferBuilder;
-import org.sheepy.vulkan.resource.indexed.IVertex;
 import org.sheepy.vulkan.resource.indexed.IndexBuffer;
 
-public class MeshAdapter<T extends IVertex> extends ResourceAdapter
+public class MeshAdapter extends ResourceAdapter
 {
-	private final IIndexedBufferBuilder<T> meshBuilder;
+	public static IIndexedBufferBuilder<?> meshBuilder = null;
 
-	private IndexBuffer<T> indexBuffer;
-
-	public MeshAdapter(IIndexedBufferBuilder<T> meshBuilder)
-	{
-		this.meshBuilder = meshBuilder;
-	}
+	private IndexBuffer<?> indexBuffer;
 
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var datas = meshBuilder.getDatas();
-		final var vertices = datas.vertices;
-		final var indices = datas.indices;
-		final var indexDescriptor = datas.indexDescriptor;
-		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager();
-
-		indexBuffer = IndexBuffer.alloc(context, indexDescriptor, vertices, indices);
+		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
+		indexBuffer = meshBuilder.build(context);
 	}
 
 	@Override
@@ -43,8 +34,14 @@ public class MeshAdapter<T extends IVertex> extends ResourceAdapter
 		return indexBuffer;
 	}
 
-	public static MeshAdapter<?> adapt(MeshBuffer mesh)
+	@Override
+	public boolean isApplicable(EClass eClass)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(mesh, MeshAdapter.class);
+		return VulkanDemoPackage.Literals.MESH_BUFFER == eClass;
+	}
+
+	public static MeshAdapter adapt(MeshBuffer mesh)
+	{
+		return ServiceAdapterFactory.INSTANCE.adapt(mesh, MeshAdapter.class);
 	}
 }

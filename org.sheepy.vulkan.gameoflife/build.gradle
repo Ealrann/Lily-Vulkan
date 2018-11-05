@@ -1,6 +1,6 @@
 plugins {
 	id 'java-library'
-//	id 'application'
+	// id 'application'
 }
 
 dependencies {
@@ -10,7 +10,7 @@ dependencies {
 	api project(':org.sheepy.vulkan')
 }
 
-// mainClassName = 'test.vulkan.texture.MainTexture'
+// mainClassName = 'org.sheepy.vulkan.gameoflife.MainGameOfLife'
 
 if (project.hasProperty('javaModule')) {
 	javaModule.name = 'org.sheepy.vulkan.gameoflife'
@@ -20,5 +20,6 @@ sourceSets {
 	main {
 		java.srcDirs = ['src/generated/java',
 			'src/main/java']
+		resources.srcDirs = ['src/main/resources']
 	}
 }

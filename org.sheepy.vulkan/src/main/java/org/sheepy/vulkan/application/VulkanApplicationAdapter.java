@@ -1,17 +1,19 @@
 package org.sheepy.vulkan.application;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.sheepy.common.api.adapter.impl.AbstractSheepyAdapter;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EClass;
+import org.sheepy.common.api.adapter.impl.AbstractServiceAdapter;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.adapter.IVulkanApplicationAdapter;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanPackage;
 import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.window.IWindowListener;
 import org.sheepy.vulkan.window.Surface;
 
-public class VulkanApplicationAdapter extends AbstractSheepyAdapter
+public class VulkanApplicationAdapter extends AbstractServiceAdapter
 		implements IVulkanApplicationAdapter
 {
 	protected VulkanApplication application;
@@ -71,7 +73,7 @@ public class VulkanApplicationAdapter extends AbstractSheepyAdapter
 	}
 
 	@Override
-	protected void load()
+	public void setTarget(Notifier target)
 	{
 		application = (VulkanApplication) target;
 		if (application.isEnabled())
@@ -81,7 +83,7 @@ public class VulkanApplicationAdapter extends AbstractSheepyAdapter
 	}
 
 	@Override
-	protected void unload()
+	public void unsetTarget(Notifier oldTarget)
 	{
 		if (application != null)
 		{
@@ -134,9 +136,15 @@ public class VulkanApplicationAdapter extends AbstractSheepyAdapter
 	{
 		return manager;
 	}
+	
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return VulkanPackage.Literals.VULKAN_APPLICATION == eClass;
+	}
 
 	public static VulkanApplicationAdapter adapt(VulkanApplication application)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(application, VulkanApplicationAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(application, VulkanApplicationAdapter.class);
 	}
 }

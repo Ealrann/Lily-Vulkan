@@ -1,15 +1,15 @@
 package org.sheepy.vulkan.execution;
 
 import org.eclipse.emf.ecore.EObject;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 
 public interface IExecutionManagerAdapter extends IVulkanAdapter
 {
-	ExecutionManager getExecutionManager();
+	ExecutionManager getExecutionManager(EObject target);
 
 	static IExecutionManagerAdapter adapt(EObject object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, IExecutionManagerAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, IExecutionManagerAdapter.class);
 	}
 }

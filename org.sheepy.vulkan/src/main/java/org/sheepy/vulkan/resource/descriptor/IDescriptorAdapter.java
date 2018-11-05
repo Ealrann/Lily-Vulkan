@@ -4,8 +4,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 
 public interface IDescriptorAdapter extends IVulkanAdapter
@@ -21,8 +21,8 @@ public interface IDescriptorAdapter extends IVulkanAdapter
 		return false;
 	}
 
-	public static IDescriptorAdapter adapt(IDescriptor object)
+	static IDescriptorAdapter adapt(IDescriptor object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, IDescriptorAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, IDescriptorAdapter.class);
 	}
 }

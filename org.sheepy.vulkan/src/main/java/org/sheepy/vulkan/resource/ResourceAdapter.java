@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.resource;
 
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.model.resource.Resource;
 
@@ -14,6 +14,6 @@ public abstract class ResourceAdapter extends AbstractFlatAllocableAdapter
 	
 	public static ResourceAdapter adapt(Resource resource)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(resource, ResourceAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(resource, ResourceAdapter.class);
 	}
 }

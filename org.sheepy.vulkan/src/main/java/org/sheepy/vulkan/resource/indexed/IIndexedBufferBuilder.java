@@ -1,6 +1,8 @@
 package org.sheepy.vulkan.resource.indexed;
 
+import org.sheepy.vulkan.execution.ExecutionManager;
+
 public interface IIndexedBufferBuilder<T extends IVertex>
 {
-	IndexBufferData<T> getDatas();
+	IndexBuffer<T> build(ExecutionManager executionManager);
 }

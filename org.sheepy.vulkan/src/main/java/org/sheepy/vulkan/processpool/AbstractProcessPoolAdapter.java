@@ -1,8 +1,9 @@
 package org.sheepy.vulkan.processpool;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.adapter.IProcessPoolAdapter;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.allocation.adapter.IFlatAllocableAdapter;
 import org.sheepy.vulkan.allocation.adapter.impl.AbstractDeepAllocableAdapter;
 import org.sheepy.vulkan.device.ILogicalDeviceAdapter;
@@ -22,11 +23,12 @@ public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAd
 	private boolean dirty = false;
 
 	@Override
-	protected void load()
+	public void setTarget(Notifier target)
 	{
 		processPool = (AbstractProcessPool<?>) target;
 
-		final var logicalDevice = ILogicalDeviceAdapter.adapt(target).getLogicalDevice();
+		final var logicalDevice = ILogicalDeviceAdapter.adapt(processPool)
+				.getLogicalDevice(processPool);
 		final var resetAllowed = processPool.isResetAllowed();
 
 		executionManager = new ExecutionManager(logicalDevice, getQueueType(), resetAllowed);
@@ -36,7 +38,7 @@ public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAd
 	}
 
 	@Override
-	protected void unload()
+	public void unsetTarget(Notifier oldTarget)
 	{
 		childAllocables.remove(resourceManager);
 
@@ -75,13 +77,14 @@ public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAd
 	{
 		this.dirty = dirty;
 	}
+	
+	protected abstract EQueueType getQueueType();
+	
+	@Override
+	public abstract void execute();
 
 	public static AbstractProcessPoolAdapter adapt(AbstractProcessPool<?> object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, AbstractProcessPoolAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractProcessPoolAdapter.class);
 	}
-
-	protected abstract EQueueType getQueueType();
-
-	public abstract void execute();
 }

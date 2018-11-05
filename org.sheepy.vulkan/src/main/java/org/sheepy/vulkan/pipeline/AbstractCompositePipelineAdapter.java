@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.pipeline;
 
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.process.AbstractCompositePipeline;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
@@ -55,7 +55,7 @@ public abstract class AbstractCompositePipelineAdapter<T extends AbstractCommand
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractCompositePipelineAdapter<T> adapt(AbstractCompositePipeline object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object,
+		return ServiceAdapterFactory.INSTANCE.adapt(object,
 				AbstractCompositePipelineAdapter.class);
 	}
 }

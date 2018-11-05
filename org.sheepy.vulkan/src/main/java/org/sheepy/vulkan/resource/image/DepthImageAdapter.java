@@ -2,10 +2,11 @@ package org.sheepy.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.common.api.types.SVector2i;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.PhysicalDevice;
 import org.sheepy.vulkan.execution.ExecutionManager;
@@ -16,6 +17,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.process.impl.ImageTransitionImpl;
 import org.sheepy.vulkan.model.process.impl.ReferenceImageBarrierImpl;
 import org.sheepy.vulkan.model.resource.DepthImage;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.imagebarrier.ImageBarrierExecutor;
 import org.sheepy.vulkan.util.ModelUtil;
@@ -31,7 +33,7 @@ public class DepthImageAdapter extends ResourceAdapter
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager();
+		final var executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
 		depthFormat = findDepthFormat(executionManager.getPhysicalDevice());
 
 		createDepthImage(executionManager.getLogicalDevice());
@@ -141,8 +143,14 @@ public class DepthImageAdapter extends ResourceAdapter
 		return depthFormat;
 	}
 
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ResourcePackage.Literals.DEPTH_IMAGE == eClass;
+	}
+
 	public static DepthImageAdapter adapt(DepthImage resource)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(resource, DepthImageAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(resource, DepthImageAdapter.class);
 	}
 }

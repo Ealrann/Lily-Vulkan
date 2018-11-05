@@ -4,14 +4,17 @@ import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
 import java.nio.ByteBuffer;
 
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPushConstantRange;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.PushConstant;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 public class PushConstantAdapter extends AbstractFlatAllocableAdapter
 {
@@ -20,15 +23,9 @@ public class PushConstantAdapter extends AbstractFlatAllocableAdapter
 	private PushConstant pushConstant;
 
 	@Override
-	protected void load()
+	public void setTarget(Notifier target)
 	{
 		pushConstant = (PushConstant) target;
-	}
-
-	@Override
-	protected void unload()
-	{
-		pushConstant = null;
 	}
 
 	public VkPushConstantRange.Buffer allocRange(MemoryStack stack)
@@ -36,7 +33,8 @@ public class PushConstantAdapter extends AbstractFlatAllocableAdapter
 		final int size = pushConstant.getSize();
 		final EPipelineStage stage = pushConstant.getStage();
 
-		final VkPushConstantRange.Buffer pushConstantRange = VkPushConstantRange.callocStack(1, stack);
+		final VkPushConstantRange.Buffer pushConstantRange = VkPushConstantRange.callocStack(1,
+				stack);
 		pushConstantRange.get(0).set(stage.getValue(), 0, size);
 
 		return pushConstantRange;
@@ -70,9 +68,15 @@ public class PushConstantAdapter extends AbstractFlatAllocableAdapter
 	{
 		return false;
 	}
-	
+
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ResourcePackage.Literals.PUSH_CONSTANT == eClass;
+	}
+
 	public static PushConstantAdapter adapt(PushConstant object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, PushConstantAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, PushConstantAdapter.class);
 	}
 }

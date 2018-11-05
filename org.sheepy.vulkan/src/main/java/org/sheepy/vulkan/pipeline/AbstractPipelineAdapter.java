@@ -4,9 +4,10 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
-import org.sheepy.vulkan.adapter.VulkanAdapterFactoryImpl;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.allocation.adapter.impl.AbstractDeepAllocableAdapter;
 import org.sheepy.vulkan.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
@@ -25,15 +26,10 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	private AbstractPipeline pipeline = null;
 
 	@Override
-	protected void load()
+	public void setTarget(Notifier target)
 	{
 		pipeline = (AbstractPipeline) target;
-	}
-
-	@Override
-	protected void unload()
-	{
-		pipeline = null;
+		super.setTarget(target);
 	}
 
 	@Override
@@ -63,7 +59,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 
 	protected long allocatePipelineLayout(MemoryStack stack)
 	{
-		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice();
+		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice(pipeline);
 		final DescriptorSet descriptorSet = pipeline.getDescriptorSet();
 
 		LongBuffer bDescriptorSet = null;
@@ -106,7 +102,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	@Override
 	public void free()
 	{
-		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice();
+		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice(pipeline);
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);
 
 		pipelineLayout = -1;
@@ -115,7 +111,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractPipelineAdapter<T> adapt(AbstractPipeline object)
 	{
-		return VulkanAdapterFactoryImpl.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
 	}
 
 	public long getLayoutId()
