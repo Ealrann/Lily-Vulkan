@@ -7,7 +7,10 @@ dependencies {
 
 	api 'com.google.guava:guava:24.1-jre'
 
-	api project(':org.sheepy.vulkan')
+	api project(':org.sheepy.vulkan.api')
+	api project(':org.sheepy.vulkan.resource')
+	api project(':org.sheepy.vulkan.process')
+	api project(':org.sheepy.vulkan.process.graphic')
 }
 
 // mainClassName = 'org.sheepy.vulkan.demo.texture.MainTexture'

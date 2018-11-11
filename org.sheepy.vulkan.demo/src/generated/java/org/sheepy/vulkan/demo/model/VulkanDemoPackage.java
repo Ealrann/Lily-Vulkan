@@ -5,9 +5,7 @@ package org.sheepy.vulkan.demo.model;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import org.sheepy.vulkan.model.process.ProcessPackage;
-
+import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -78,7 +76,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PIPELINE__ENABLED = ProcessPackage.GRAPHICS_PIPELINE__ENABLED;
+	int MESH_PIPELINE__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -87,7 +85,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PIPELINE__STAGE = ProcessPackage.GRAPHICS_PIPELINE__STAGE;
+	int MESH_PIPELINE__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
@@ -96,7 +94,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PIPELINE__DESCRIPTOR_SET = ProcessPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
+	int MESH_PIPELINE__DESCRIPTOR_SET = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
@@ -105,7 +103,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PIPELINE__PUSH_CONSTANT = ProcessPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT;
+	int MESH_PIPELINE__PUSH_CONSTANT = GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
@@ -114,7 +112,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PIPELINE__SHADERS = ProcessPackage.GRAPHICS_PIPELINE__SHADERS;
+	int MESH_PIPELINE__SHADERS = GraphicPackage.GRAPHICS_PIPELINE__SHADERS;
 
 	/**
 	 * The feature id for the '<em><b>Mesh</b></em>' reference.
@@ -123,7 +121,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PIPELINE__MESH = ProcessPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
+	int MESH_PIPELINE__MESH = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Mesh Pipeline</em>' class.
@@ -132,7 +130,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PIPELINE_FEATURE_COUNT = ProcessPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
+	int MESH_PIPELINE_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Mesh Pipeline</em>' class.
@@ -141,7 +139,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_PIPELINE_OPERATION_COUNT = ProcessPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
+	int MESH_PIPELINE_OPERATION_COUNT = GraphicPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.demo.model.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.

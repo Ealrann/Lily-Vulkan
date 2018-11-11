@@ -6,19 +6,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
+import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.UniformBuffer;
 import org.sheepy.vulkan.demo.model.VulkanDemoFactory;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-
+import org.sheepy.vulkan.model.VulkanPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
-
 import org.sheepy.vulkan.model.process.ProcessPackage;
-
+import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -100,10 +98,13 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		isInited = true;
 
 		// Initialize simple dependencies
+		GraphicPackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		VulkanPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theVulkanDemoPackage.createPackageContents();
@@ -124,6 +125,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMeshPipeline()
 	{
 		return meshPipelineEClass;
@@ -134,6 +136,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMeshPipeline_Mesh()
 	{
 		return (EReference)meshPipelineEClass.getEStructuralFeatures().get(0);
@@ -144,6 +147,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMeshBuffer()
 	{
 		return meshBufferEClass;
@@ -154,6 +158,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMeshBuffer_Texture()
 	{
 		return (EReference)meshBufferEClass.getEStructuralFeatures().get(0);
@@ -164,6 +169,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUniformBuffer()
 	{
 		return uniformBufferEClass;
@@ -174,6 +180,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VulkanDemoFactory getVulkanDemoFactory()
 	{
 		return (VulkanDemoFactory)getEFactoryInstance();
@@ -233,7 +240,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		GraphicPackage theGraphicPackage = (GraphicPackage)EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
 		// Create type parameters
@@ -241,7 +248,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		meshPipelineEClass.getESuperTypes().add(theProcessPackage.getGraphicsPipeline());
+		meshPipelineEClass.getESuperTypes().add(theGraphicPackage.getGraphicsPipeline());
 		meshBufferEClass.getESuperTypes().add(theResourcePackage.getIndexedBuffer());
 		uniformBufferEClass.getESuperTypes().add(theResourcePackage.getVulkanBuffer());
 		uniformBufferEClass.getESuperTypes().add(theResourcePackage.getIDescriptor());

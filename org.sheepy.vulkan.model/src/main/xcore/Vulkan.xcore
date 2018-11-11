@@ -1,4 +1,4 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/vulkan")
 @GenModel(modelName="Vulkan", prefix="Vulkan")
 @GenModel(publicConstructors="true")
 @GenModel(updateClasspath="false")
@@ -6,8 +6,8 @@
 package org.sheepy.vulkan.model
 
 import org.sheepy.common.model.types.SVector2i
-import org.sheepy.vulkan.model.process.ComputeProcessPool
-import org.sheepy.vulkan.model.process.GraphicProcessPool
+import org.sheepy.vulkan.model.enumeration.EFormat
+import org.sheepy.vulkan.model.enumeration.EColorSpace
 
 class VulkanApplication
 {
@@ -17,6 +17,24 @@ class VulkanApplication
 	boolean debug = "false"
 	String title
 	SVector2i size
-	contains ComputeProcessPool[] computePools
-	contains GraphicProcessPool graphicPool
+	contains IComputeProcessPool[] computePools
+	contains IGraphicProcessPool graphicPool
+}
+
+interface IProcessPool
+{
+}
+
+interface IComputeProcessPool extends IProcessPool
+{
+}
+
+interface IGraphicProcessPool extends IProcessPool
+{
+}
+
+class ColorDomain
+{
+	EFormat format = "B8G8R8A8_UNORM"
+	EColorSpace colorSpace = "SRGB_NONLINEAR_KHR"
 }

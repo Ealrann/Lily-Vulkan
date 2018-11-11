@@ -10,11 +10,9 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.vulkan.demo.model.*;
-
 import org.sheepy.vulkan.model.process.AbstractPipeline;
-import org.sheepy.vulkan.model.process.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
-
+import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
 import org.sheepy.vulkan.model.resource.Resource;
@@ -46,8 +44,7 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 */
 	public VulkanDemoAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = VulkanDemoPackage.eINSTANCE;
 		}
 	}
@@ -63,12 +60,10 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -81,61 +76,49 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected VulkanDemoSwitch<Adapter> modelSwitch =
-		new VulkanDemoSwitch<Adapter>()
-		{
+		new VulkanDemoSwitch<Adapter>() {
 			@Override
-			public Adapter caseMeshPipeline(MeshPipeline object)
-			{
+			public Adapter caseMeshPipeline(MeshPipeline object) {
 				return createMeshPipelineAdapter();
 			}
 			@Override
-			public Adapter caseMeshBuffer(MeshBuffer object)
-			{
+			public Adapter caseMeshBuffer(MeshBuffer object) {
 				return createMeshBufferAdapter();
 			}
 			@Override
-			public Adapter caseUniformBuffer(UniformBuffer object)
-			{
+			public Adapter caseUniformBuffer(UniformBuffer object) {
 				return createUniformBufferAdapter();
 			}
 			@Override
-			public Adapter caseIProcessUnit(IProcessUnit object)
-			{
+			public Adapter caseIProcessUnit(IProcessUnit object) {
 				return createIProcessUnitAdapter();
 			}
 			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object)
-			{
+			public Adapter caseAbstractPipeline(AbstractPipeline object) {
 				return createAbstractPipelineAdapter();
 			}
 			@Override
-			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
-			{
+			public Adapter caseGraphicsPipeline(GraphicsPipeline object) {
 				return createGraphicsPipelineAdapter();
 			}
 			@Override
-			public Adapter caseResource(Resource object)
-			{
+			public Adapter caseResource(Resource object) {
 				return createResourceAdapter();
 			}
 			@Override
-			public Adapter caseVulkanBuffer(VulkanBuffer object)
-			{
+			public Adapter caseVulkanBuffer(VulkanBuffer object) {
 				return createVulkanBufferAdapter();
 			}
 			@Override
-			public Adapter caseIDescriptor(IDescriptor object)
-			{
+			public Adapter caseIDescriptor(IDescriptor object) {
 				return createIDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseIndexedBuffer(IndexedBuffer object)
-			{
+			public Adapter caseIndexedBuffer(IndexedBuffer object) {
 				return createIndexedBufferAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -231,13 +214,13 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.GraphicsPipeline <em>Graphics Pipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.process.GraphicsPipeline
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline
 	 * @generated
 	 */
 	public Adapter createGraphicsPipelineAdapter()

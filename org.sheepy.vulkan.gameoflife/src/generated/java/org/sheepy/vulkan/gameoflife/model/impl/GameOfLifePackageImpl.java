@@ -108,6 +108,7 @@ public class GameOfLifePackageImpl extends EPackageImpl implements GameOfLifePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBoardBuffer()
 	{
 		return boardBufferEClass;
@@ -118,6 +119,7 @@ public class GameOfLifePackageImpl extends EPackageImpl implements GameOfLifePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBoardImage()
 	{
 		return boardImageEClass;
@@ -128,6 +130,7 @@ public class GameOfLifePackageImpl extends EPackageImpl implements GameOfLifePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GameOfLifeFactory getGameOfLifeFactory()
 	{
 		return (GameOfLifeFactory)getEFactoryInstance();

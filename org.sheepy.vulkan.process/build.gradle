@@ -1,0 +1,19 @@
+plugins {
+	id 'java-library'
+}
+
+if (project.hasProperty('javaModule')) {
+	javaModule.name = 'org.sheepy.vulkan.process'
+}
+
+dependencies {
+	api project(':org.sheepy.vulkan.common')
+	api project(':org.sheepy.vulkan.resource')
+}
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/generated/java',
+			'src/main/java']
+	}
+}

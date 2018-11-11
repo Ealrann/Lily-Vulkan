@@ -8,12 +8,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-
-import org.sheepy.vulkan.model.process.impl.GraphicsPipelineImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,14 +64,13 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MeshBuffer getMesh()
 	{
-		if (mesh != null && mesh.eIsProxy())
-		{
+		if (mesh != null && mesh.eIsProxy()) {
 			InternalEObject oldMesh = (InternalEObject)mesh;
 			mesh = (MeshBuffer)eResolveProxy(oldMesh);
-			if (mesh != oldMesh)
-			{
+			if (mesh != oldMesh) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanDemoPackage.MESH_PIPELINE__MESH, oldMesh, mesh));
 			}
@@ -96,6 +93,7 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMesh(MeshBuffer newMesh)
 	{
 		MeshBuffer oldMesh = mesh;
@@ -112,8 +110,7 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanDemoPackage.MESH_PIPELINE__MESH:
 				if (resolve) return getMesh();
 				return basicGetMesh();
@@ -129,8 +126,7 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanDemoPackage.MESH_PIPELINE__MESH:
 				setMesh((MeshBuffer)newValue);
 				return;
@@ -146,8 +142,7 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanDemoPackage.MESH_PIPELINE__MESH:
 				setMesh((MeshBuffer)null);
 				return;
@@ -163,8 +158,7 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VulkanDemoPackage.MESH_PIPELINE__MESH:
 				return mesh != null;
 		}

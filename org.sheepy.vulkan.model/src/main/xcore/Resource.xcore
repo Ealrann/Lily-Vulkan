@@ -1,4 +1,4 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/resource")
 @GenModel(publicConstructors="true")
 @GenModel(updateClasspath="false")
 
@@ -8,6 +8,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage
 import org.sheepy.vulkan.model.enumeration.EPipelineStage
 
 import java.lang.Module
+import org.sheepy.vulkan.model.enumeration.EImageLayout
 
 interface Resource
 {
@@ -82,3 +83,43 @@ class DescriptorSet
 abstract class IndexedBuffer extends VulkanBuffer, IDescriptor
 {
 }
+
+
+abstract class Barrier
+{
+	EPipelineStage srcStage
+	EPipelineStage dstStage
+}
+
+class BufferBarrier extends Barrier
+{
+	refers Buffer buffer
+	int srcAccess
+	int dstAccess
+}
+
+abstract class AbstractImageBarrier extends Barrier
+{
+	contains ImageTransition[] transitions
+}
+
+class ImageBarrier extends AbstractImageBarrier
+{
+	refers Image image
+}
+
+class ReferenceImageBarrier extends AbstractImageBarrier
+{
+	long imageId
+	int mipLevels
+	int imageFormat
+}
+
+class ImageTransition
+{
+	EImageLayout srcLayout
+	EImageLayout dstLayout
+	int srcAccess
+	int dstAccess
+}
+

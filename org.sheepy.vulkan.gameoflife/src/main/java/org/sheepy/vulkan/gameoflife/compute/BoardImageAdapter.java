@@ -9,8 +9,9 @@ import org.lwjgl.vulkan.VkDescriptorImageInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.execution.IExecutionManagerAdapter;
-import org.sheepy.vulkan.execution.SingleTimeCommand;
+import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
+import org.sheepy.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.vulkan.common.util.ModelUtil;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -18,9 +19,8 @@ import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.vulkan.resource.image.IImageAdapter;
 import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.ImageView;
 import org.sheepy.vulkan.resource.image.StandaloneImage;
-import org.sheepy.vulkan.util.ModelUtil;
-import org.sheepy.vulkan.view.ImageView;
 
 public class BoardImageAdapter extends ResourceAdapter implements IImageAdapter, IDescriptorAdapter
 {

@@ -1,0 +1,14 @@
+plugins {
+	id 'java-library'
+}
+
+if (project.hasProperty('javaModule')) {
+	javaModule.name = 'org.sheepy.vulkan.common'
+}
+
+dependencies {
+	api project(':org.sheepy.vulkan.api')
+
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-api:5.1.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.1'
+}

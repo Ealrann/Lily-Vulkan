@@ -1,0 +1,101 @@
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/graphic")
+@GenModel(publicConstructors="true")
+@GenModel(updateClasspath="false")
+
+package org.sheepy.vulkan.model.process.graphic
+
+import org.sheepy.vulkan.model.enumeration.EPresentMode
+import org.sheepy.vulkan.model.enumeration.ECullMode
+import org.sheepy.vulkan.model.enumeration.EFrontFace
+import org.sheepy.vulkan.model.enumeration.EPipelineStage
+import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
+import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
+import org.sheepy.vulkan.model.enumeration.EImageLayout
+import org.sheepy.vulkan.model.enumeration.ESampleCount
+import org.sheepy.vulkan.model.resource.DepthImage
+import org.sheepy.vulkan.model.resource.Image
+import org.sheepy.vulkan.model.resource.Shader
+import org.sheepy.vulkan.model.IGraphicProcessPool
+import org.sheepy.vulkan.model.ColorDomain
+import org.sheepy.vulkan.model.process.AbstractPipeline
+import org.sheepy.vulkan.model.process.IProcessUnit
+import org.sheepy.vulkan.model.process.AbstractProcess
+import org.sheepy.vulkan.model.process.AbstractProcessPool
+import org.sheepy.vulkan.model.process.Configuration
+import org.sheepy.vulkan.model.process.PipelineBarrier
+import org.sheepy.vulkan.model.resource.ImageBarrier
+
+class GraphicConfiguration extends Configuration
+{
+	boolean clearBeforeRender = "true"
+	EPresentMode presentationMode = "MailBox"
+	int swapImageUsage = "16" // EImageUsage.ColorAttachment
+	EPipelineStage frameWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
+	contains ColorDomain colorDomain
+	ECullMode rasterizerCullMode = "BACK_BIT"
+	EFrontFace rasterizerFrontFace = "CLOCKWISE"
+}
+
+class RenderPassInfo
+{
+	contains AttachmentDescription[] attachments
+	contains SubpassDependency[] dependencies
+	int bindPoint = "0"
+}
+
+class SubpassDependency
+{
+	int srcSubpass = "-1"
+	int dstSubpass = "0"
+	EPipelineStage srcStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
+	EPipelineStage dstStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
+	int srcAccessMask = "0"
+	int dstAccessMask = "0"
+}
+
+class AttachmentDescription
+{
+	boolean stencil = "false"
+	ESampleCount samples
+	EAttachmentLoadOp loadOp
+	EAttachmentStoreOp storeOp
+	EAttachmentLoadOp stencilLoadOp
+	EAttachmentStoreOp stencilStoreOp
+	EImageLayout initialLayout
+	EImageLayout finalLayout
+	// For attachment ref
+	EImageLayout refLayout
+}
+
+class GraphicProcessPool extends AbstractProcessPool<GraphicProcess>, IGraphicProcessPool
+{
+	contains GraphicConfiguration configuration
+	contains RenderPassInfo renderPassInfo
+	refers DepthImage depthImage
+}
+
+class GraphicProcess extends AbstractProcess
+{
+}
+
+abstract class GraphicsPipeline extends AbstractPipeline
+{
+	refers Shader[] shaders
+//	refers VulkanBuffer[] buffers
+}
+
+class ImagePipeline extends AbstractPipeline
+{
+	refers Image[1..1] image
+	
+	EPipelineStage imageSrcStage
+	EPipelineStage imageDstStage
+	
+	int imageSrcAccess = "0"
+	int imageDstAccess = "0"
+}
+
+class PipelineImageBarrier extends PipelineBarrier
+{
+	contains ImageBarrier imageBarrier
+}

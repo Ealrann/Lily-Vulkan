@@ -5,9 +5,9 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-import org.sheepy.vulkan.execution.graphic.GraphicCommandBuffer;
-import org.sheepy.vulkan.pipeline.graphic.GraphicsPipelineAdapter;
-import org.sheepy.vulkan.pipeline.graphic.render.IVertexBufferDescriptor;
+import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
+import org.sheepy.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
+import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
 public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 {

@@ -1,7 +1,7 @@
 package org.sheepy.vulkan.demo.triangle;
 
-import org.sheepy.vulkan.execution.ExecutionManager;
-import org.sheepy.vulkan.resource.indexed.IIndexedBufferBuilder;
+import org.sheepy.vulkan.common.execution.ExecutionManager;
+import org.sheepy.vulkan.process.graphic.pipeline.render.IIndexedBufferBuilder;
 import org.sheepy.vulkan.resource.indexed.IndexBuffer;
 import org.sheepy.vulkan.resource.indexed.IndexBufferData;
 import org.sheepy.vulkan.resource.indexed.IndexBufferDescriptor;

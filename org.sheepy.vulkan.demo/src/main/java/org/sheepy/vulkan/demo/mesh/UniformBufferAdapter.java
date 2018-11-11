@@ -15,15 +15,16 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
+import org.sheepy.vulkan.common.util.SizeOf;
 import org.sheepy.vulkan.demo.model.UniformBuffer;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-import org.sheepy.vulkan.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
-import org.sheepy.vulkan.util.SizeOf;
+
 
 public class UniformBufferAdapter extends ResourceAdapter implements IDescriptorAdapter
 {

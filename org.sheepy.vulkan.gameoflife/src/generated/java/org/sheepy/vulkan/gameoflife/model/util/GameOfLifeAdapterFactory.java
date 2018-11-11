@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.sheepy.vulkan.gameoflife.model.*;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
@@ -42,8 +41,7 @@ public class GameOfLifeAdapterFactory extends AdapterFactoryImpl
 	 */
 	public GameOfLifeAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = GameOfLifePackage.eINSTANCE;
 		}
 	}
@@ -59,12 +57,10 @@ public class GameOfLifeAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -77,46 +73,37 @@ public class GameOfLifeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected GameOfLifeSwitch<Adapter> modelSwitch =
-		new GameOfLifeSwitch<Adapter>()
-		{
+		new GameOfLifeSwitch<Adapter>() {
 			@Override
-			public Adapter caseBoardBuffer(BoardBuffer object)
-			{
+			public Adapter caseBoardBuffer(BoardBuffer object) {
 				return createBoardBufferAdapter();
 			}
 			@Override
-			public Adapter caseBoardImage(BoardImage object)
-			{
+			public Adapter caseBoardImage(BoardImage object) {
 				return createBoardImageAdapter();
 			}
 			@Override
-			public Adapter caseResource(Resource object)
-			{
+			public Adapter caseResource(Resource object) {
 				return createResourceAdapter();
 			}
 			@Override
-			public Adapter caseVulkanBuffer(VulkanBuffer object)
-			{
+			public Adapter caseVulkanBuffer(VulkanBuffer object) {
 				return createVulkanBufferAdapter();
 			}
 			@Override
-			public Adapter caseIDescriptor(IDescriptor object)
-			{
+			public Adapter caseIDescriptor(IDescriptor object) {
 				return createIDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseSizedBuffer(SizedBuffer object)
-			{
+			public Adapter caseSizedBuffer(SizedBuffer object) {
 				return createSizedBufferAdapter();
 			}
 			@Override
-			public Adapter caseImage(Image object)
-			{
+			public Adapter caseImage(Image object) {
 				return createImageAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

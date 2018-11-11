@@ -13,15 +13,15 @@ import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.execution.IExecutionManagerAdapter;
-import org.sheepy.vulkan.execution.SingleTimeCommand;
+import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
+import org.sheepy.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.vulkan.common.util.ModelUtil;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.BufferUtils;
 import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
-import org.sheepy.vulkan.util.ModelUtil;
 
 public class BoardBufferAdapter extends ResourceAdapter implements IDescriptorAdapter
 {

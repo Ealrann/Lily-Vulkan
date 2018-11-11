@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.demo.model;
 
-import org.sheepy.vulkan.model.process.GraphicsPipeline;
+import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
  * <!-- begin-user-doc -->

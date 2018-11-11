@@ -33,9 +33,29 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/generated/java</name>
+			<name>src/generated/vulkan</name>
 			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan/src/generated/java</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan.api/src/generated/java</locationURI>
+		</link>
+		<link>
+			<name>src/generated/resource</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan.resource/src/generated/java</locationURI>
+		</link>
+		<link>
+			<name>src/generated/process</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan.process/src/generated/java</locationURI>
+		</link>
+		<link>
+			<name>src/generated/compute</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan.process.compute/src/generated/java</locationURI>
+		</link>
+		<link>
+			<name>src/generated/graphic</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan.process.graphic/src/generated/java</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

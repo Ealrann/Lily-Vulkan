@@ -5,11 +5,11 @@
 
 package org.sheepy.vulkan.demo.model
 
-import org.sheepy.vulkan.model.process.GraphicsPipeline
 import org.sheepy.vulkan.model.resource.IndexedBuffer
 import org.sheepy.vulkan.model.resource.VulkanBuffer
 import org.sheepy.vulkan.model.resource.IDescriptor
 import org.sheepy.vulkan.model.resource.Texture
+import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline
 
 class MeshPipeline extends GraphicsPipeline
 {

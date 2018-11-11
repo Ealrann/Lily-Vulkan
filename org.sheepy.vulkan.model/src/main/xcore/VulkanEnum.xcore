@@ -1,4 +1,4 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/vulkan")
 @GenModel(publicConstructors="true")
 @GenModel(updateClasspath="false")
 

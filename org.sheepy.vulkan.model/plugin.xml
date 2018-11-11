@@ -38,4 +38,20 @@
             genModel="src/main/xcore/Process.xcore"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Compute -->
+      <package
+            uri="org.sheepy.vulkan.model.process.compute"
+            class="org.sheepy.vulkan.model.process.compute.ComputePackage"
+            genModel="src/main/xcore/Compute.xcore"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Graphic -->
+      <package
+            uri="org.sheepy.vulkan.model.process.graphic"
+            class="org.sheepy.vulkan.model.process.graphic.GraphicPackage"
+            genModel="src/main/xcore/Graphic.xcore"/>
+   </extension>
+
 </plugin>

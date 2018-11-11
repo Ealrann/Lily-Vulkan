@@ -1,108 +1,29 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/process")
 @GenModel(publicConstructors="true")
 @GenModel(updateClasspath="false")
 
 package org.sheepy.vulkan.model.process
 
-import org.sheepy.vulkan.model.enumeration.EPresentMode
-import org.sheepy.vulkan.model.enumeration.ECullMode
-import org.sheepy.vulkan.model.enumeration.EFrontFace
-import org.sheepy.vulkan.model.enumeration.EPipelineStage
-import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
-import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
-import org.sheepy.vulkan.model.enumeration.EImageLayout
-import org.sheepy.vulkan.model.enumeration.ESampleCount
-import org.sheepy.vulkan.model.resource.DepthImage
-import org.sheepy.vulkan.model.resource.Image
 import org.sheepy.vulkan.model.resource.PushConstant
-import org.sheepy.vulkan.model.resource.Shader
 import org.sheepy.vulkan.model.resource.Resource
-import org.sheepy.vulkan.model.enumeration.EFormat
-import org.sheepy.vulkan.model.enumeration.EColorSpace
 import org.sheepy.vulkan.model.enumeration.ECommandStage
-import org.sheepy.vulkan.model.resource.Buffer
 import org.sheepy.vulkan.model.resource.DescriptorSet
+import org.sheepy.vulkan.model.IProcessPool
+import org.sheepy.vulkan.model.resource.BufferBarrier
 
 interface Configuration
 {
 }
 
-class GraphicConfiguration extends Configuration
-{
-	boolean clearBeforeRender = "true"
-	EPresentMode presentationMode = "MailBox"
-	int swapImageUsage = "16" // EImageUsage.ColorAttachment
-	EPipelineStage frameWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
-	contains ColorDomain colorDomain
-	ECullMode rasterizerCullMode = "BACK_BIT"
-	EFrontFace rasterizerFrontFace = "CLOCKWISE"
-}
-
-class RenderPassInfo
-{
-	contains AttachmentDescription[] attachments
-	contains SubpassDependency[] dependencies
-	int bindPoint = "0"
-}
-
-class SubpassDependency
-{
-	int srcSubpass = "-1"
-	int dstSubpass = "0"
-	EPipelineStage srcStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
-	EPipelineStage dstStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
-	int srcAccessMask = "0"
-	int dstAccessMask = "0"
-}
-
-class AttachmentDescription
-{
-	boolean stencil = "false"
-	ESampleCount samples
-	EAttachmentLoadOp loadOp
-	EAttachmentStoreOp storeOp
-	EAttachmentLoadOp stencilLoadOp
-	EAttachmentStoreOp stencilStoreOp
-	EImageLayout initialLayout
-	EImageLayout finalLayout
-	// For attachment ref
-	EImageLayout refLayout
-}
-
-class ColorDomain
-{
-	EFormat format = "B8G8R8A8_UNORM"
-	EColorSpace colorSpace = "SRGB_NONLINEAR_KHR"
-}
-
-abstract class AbstractProcessPool<T extends AbstractProcess> {
+abstract class AbstractProcessPool<T extends AbstractProcess> extends IProcessPool {
 	contains T[] processes
 	contains Resource[] resources
 	boolean resetAllowed
 }
 
-class ComputeProcessPool extends AbstractProcessPool<ComputeProcess>
-{
-}
-
-class GraphicProcessPool extends AbstractProcessPool<GraphicProcess>
-{
-	contains GraphicConfiguration configuration
-	contains RenderPassInfo renderPassInfo
-	refers DepthImage depthImage
-}
-
 abstract class AbstractProcess
 {
 	contains IProcessUnit[] units
-}
-
-class GraphicProcess extends AbstractProcess
-{
-}
-
-class ComputeProcess extends AbstractProcess
-{
 }
 
 interface IProcessUnit
@@ -113,40 +34,11 @@ interface IProcessUnit
 
 abstract class PipelineBarrier extends IProcessUnit
 {
-	EPipelineStage srcStage
-	EPipelineStage dstStage
 }
 
-class BufferBarrier extends PipelineBarrier
+class PipelineBufferBarrier extends PipelineBarrier
 {
-	refers Buffer buffer
-	int srcAccess
-	int dstAccess
-}
-
-abstract class AbstractImageBarrier extends PipelineBarrier
-{
-	contains ImageTransition[] transitions
-}
-
-class ImageBarrier extends AbstractImageBarrier
-{
-	refers Image image
-}
-
-class ReferenceImageBarrier extends AbstractImageBarrier
-{
-	long imageId
-	int mipLevels
-	int imageFormat
-}
-
-class ImageTransition
-{
-	EImageLayout srcLayout
-	EImageLayout dstLayout
-	int srcAccess
-	int dstAccess
+	contains BufferBarrier bufferBarrier
 }
 
 abstract class AbstractPipeline extends IProcessUnit
@@ -158,39 +50,4 @@ abstract class AbstractPipeline extends IProcessUnit
 abstract class AbstractCompositePipeline extends AbstractPipeline
 {
 	contains AbstractPipeline[] pipelines
-}
-
-abstract class GraphicsPipeline extends AbstractPipeline
-{
-	refers Shader[] shaders
-//	refers VulkanBuffer[] buffers
-}
-
-class ComputePipeline extends AbstractPipeline
-{
-	contains Computer[] computers
-	
-	int workgroupSizeX = "32"
-	int workgroupSizeY = "32"
-	int workgroupSizeZ = "32"
-	
-	int width
-	int height
-	int depth
-}
-
-class Computer extends IProcessUnit
-{
-	refers Shader shader
-}
-
-class ImagePipeline extends AbstractPipeline
-{
-	refers Image[1..1] image
-	
-	EPipelineStage imageSrcStage
-	EPipelineStage imageDstStage
-	
-	int imageSrcAccess = "0"
-	int imageDstAccess = "0"
 }

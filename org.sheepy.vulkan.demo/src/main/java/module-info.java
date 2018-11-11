@@ -8,7 +8,10 @@ import org.sheepy.vulkan.demo.mesh.UniformBufferAdapter;
  */
 module org.sheepy.vulkan.demo {
 
-	requires transitive org.sheepy.vulkan;
+	requires transitive org.sheepy.vulkan.process.graphic;
+
+	requires org.eclipse.emf.common;
+	requires org.eclipse.emf.ecore;
 
 	requires org.joml;
 

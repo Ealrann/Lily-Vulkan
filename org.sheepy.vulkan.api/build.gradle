@@ -1,0 +1,47 @@
+import org.gradle.internal.os.OperatingSystem
+
+plugins {
+	id 'java-library'
+}
+
+if (project.hasProperty('javaModule')) {
+	javaModule.name = 'org.sheepy.vulkan.api'
+}
+
+switch ( OperatingSystem.current() ) {
+	case OperatingSystem.WINDOWS:
+		project.ext.lwjglNatives = "natives-windows"
+		break
+	case OperatingSystem.LINUX:
+		project.ext.lwjglNatives = "natives-linux"
+		break
+	case OperatingSystem.MAC_OS:
+		project.ext.lwjglNatives = "natives-macos"
+		break
+}
+
+project.ext.lwjglVersion = "3.2.0"
+project.ext.jomlVersion = "1.9.10"
+
+dependencies {
+
+	api project(':org.sheepy.common')
+
+	api "org.joml:joml:${jomlVersion}"
+
+	api "org.lwjgl:lwjgl:$lwjglVersion"
+	api "org.lwjgl:lwjgl-glfw:$lwjglVersion"
+	api "org.lwjgl:lwjgl-stb:$lwjglVersion"
+	api "org.lwjgl:lwjgl-vulkan:$lwjglVersion"
+
+	runtimeOnly "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+}
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/generated/java',
+			'src/main/java']
+	}
+}

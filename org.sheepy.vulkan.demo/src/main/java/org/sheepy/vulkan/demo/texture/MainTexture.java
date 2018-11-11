@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.demo.texture;
 
-import org.sheepy.vulkan.VulkanApplicationLauncher;
+import org.sheepy.vulkan.api.VulkanApplicationLauncher;
 import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.vulkan.demo.mesh.MeshModelFactory;

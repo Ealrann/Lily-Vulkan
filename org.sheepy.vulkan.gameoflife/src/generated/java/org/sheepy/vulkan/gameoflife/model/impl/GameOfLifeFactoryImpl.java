@@ -28,16 +28,13 @@ public class GameOfLifeFactoryImpl extends EFactoryImpl implements GameOfLifeFac
 	 */
 	public static GameOfLifeFactory init()
 	{
-		try
-		{
+		try {
 			GameOfLifeFactory theGameOfLifeFactory = (GameOfLifeFactory)EPackage.Registry.INSTANCE.getEFactory(GameOfLifePackage.eNS_URI);
-			if (theGameOfLifeFactory != null)
-			{
+			if (theGameOfLifeFactory != null) {
 				return theGameOfLifeFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new GameOfLifeFactoryImpl();
@@ -62,8 +59,7 @@ public class GameOfLifeFactoryImpl extends EFactoryImpl implements GameOfLifeFac
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case GameOfLifePackage.BOARD_BUFFER: return createBoardBuffer();
 			case GameOfLifePackage.BOARD_IMAGE: return createBoardImage();
 			default:
@@ -76,6 +72,7 @@ public class GameOfLifeFactoryImpl extends EFactoryImpl implements GameOfLifeFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BoardBuffer createBoardBuffer()
 	{
 		BoardBufferImpl boardBuffer = new BoardBufferImpl();
@@ -87,6 +84,7 @@ public class GameOfLifeFactoryImpl extends EFactoryImpl implements GameOfLifeFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BoardImage createBoardImage()
 	{
 		BoardImageImpl boardImage = new BoardImageImpl();
@@ -98,6 +96,7 @@ public class GameOfLifeFactoryImpl extends EFactoryImpl implements GameOfLifeFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GameOfLifePackage getGameOfLifePackage()
 	{
 		return (GameOfLifePackage)getEPackage();
