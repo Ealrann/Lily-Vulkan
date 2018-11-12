@@ -121,7 +121,8 @@ public enum ECullMode implements Enumerator
 	 * @generated
 	 */
 	private static final ECullMode[] VALUES_ARRAY =
-		new ECullMode[] {
+		new ECullMode[]
+		{
 			NONE,
 			FRONT_BIT,
 			BACK_BIT,
@@ -146,9 +147,11 @@ public enum ECullMode implements Enumerator
 	 */
 	public static ECullMode get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ECullMode result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -165,9 +168,11 @@ public enum ECullMode implements Enumerator
 	 */
 	public static ECullMode getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ECullMode result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -184,7 +189,8 @@ public enum ECullMode implements Enumerator
 	 */
 	public static ECullMode get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case NONE_VALUE: return NONE;
 			case FRONT_BIT_VALUE: return FRONT_BIT;
 			case BACK_BIT_VALUE: return BACK_BIT;

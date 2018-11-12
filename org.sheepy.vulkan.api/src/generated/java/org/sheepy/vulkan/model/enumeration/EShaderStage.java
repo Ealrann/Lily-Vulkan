@@ -217,7 +217,8 @@ public enum EShaderStage implements Enumerator
 	 * @generated
 	 */
 	private static final EShaderStage[] VALUES_ARRAY =
-		new EShaderStage[] {
+		new EShaderStage[]
+		{
 			VERTEX_BIT,
 			TESSELLATION_CONTROL_BIT,
 			TESSELLATION_EVALUATION_BIT,
@@ -246,9 +247,11 @@ public enum EShaderStage implements Enumerator
 	 */
 	public static EShaderStage get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EShaderStage result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -265,9 +268,11 @@ public enum EShaderStage implements Enumerator
 	 */
 	public static EShaderStage getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EShaderStage result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -284,7 +289,8 @@ public enum EShaderStage implements Enumerator
 	 */
 	public static EShaderStage get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case VERTEX_BIT_VALUE: return VERTEX_BIT;
 			case TESSELLATION_CONTROL_BIT_VALUE: return TESSELLATION_CONTROL_BIT;
 			case TESSELLATION_EVALUATION_BIT_VALUE: return TESSELLATION_EVALUATION_BIT;

@@ -49,7 +49,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 */
 	public GraphicSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = GraphicPackage.eINSTANCE;
 		}
 	}
@@ -78,33 +79,39 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case GraphicPackage.GRAPHIC_CONFIGURATION: {
+		switch (classifierID)
+		{
+			case GraphicPackage.GRAPHIC_CONFIGURATION:
+			{
 				GraphicConfiguration graphicConfiguration = (GraphicConfiguration)theEObject;
 				T1 result = caseGraphicConfiguration(graphicConfiguration);
 				if (result == null) result = caseConfiguration(graphicConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.RENDER_PASS_INFO: {
+			case GraphicPackage.RENDER_PASS_INFO:
+			{
 				RenderPassInfo renderPassInfo = (RenderPassInfo)theEObject;
 				T1 result = caseRenderPassInfo(renderPassInfo);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.SUBPASS_DEPENDENCY: {
+			case GraphicPackage.SUBPASS_DEPENDENCY:
+			{
 				SubpassDependency subpassDependency = (SubpassDependency)theEObject;
 				T1 result = caseSubpassDependency(subpassDependency);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.ATTACHMENT_DESCRIPTION: {
+			case GraphicPackage.ATTACHMENT_DESCRIPTION:
+			{
 				AttachmentDescription attachmentDescription = (AttachmentDescription)theEObject;
 				T1 result = caseAttachmentDescription(attachmentDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.GRAPHIC_PROCESS_POOL: {
+			case GraphicPackage.GRAPHIC_PROCESS_POOL:
+			{
 				GraphicProcessPool graphicProcessPool = (GraphicProcessPool)theEObject;
 				T1 result = caseGraphicProcessPool(graphicProcessPool);
 				if (result == null) result = caseAbstractProcessPool(graphicProcessPool);
@@ -113,14 +120,16 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.GRAPHIC_PROCESS: {
+			case GraphicPackage.GRAPHIC_PROCESS:
+			{
 				GraphicProcess graphicProcess = (GraphicProcess)theEObject;
 				T1 result = caseGraphicProcess(graphicProcess);
 				if (result == null) result = caseAbstractProcess(graphicProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.GRAPHICS_PIPELINE: {
+			case GraphicPackage.GRAPHICS_PIPELINE:
+			{
 				GraphicsPipeline graphicsPipeline = (GraphicsPipeline)theEObject;
 				T1 result = caseGraphicsPipeline(graphicsPipeline);
 				if (result == null) result = caseAbstractPipeline(graphicsPipeline);
@@ -128,7 +137,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.IMAGE_PIPELINE: {
+			case GraphicPackage.IMAGE_PIPELINE:
+			{
 				ImagePipeline imagePipeline = (ImagePipeline)theEObject;
 				T1 result = caseImagePipeline(imagePipeline);
 				if (result == null) result = caseAbstractPipeline(imagePipeline);
@@ -136,7 +146,8 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicPackage.PIPELINE_IMAGE_BARRIER: {
+			case GraphicPackage.PIPELINE_IMAGE_BARRIER:
+			{
 				PipelineImageBarrier pipelineImageBarrier = (PipelineImageBarrier)theEObject;
 				T1 result = casePipelineImageBarrier(pipelineImageBarrier);
 				if (result == null) result = casePipelineBarrier(pipelineImageBarrier);

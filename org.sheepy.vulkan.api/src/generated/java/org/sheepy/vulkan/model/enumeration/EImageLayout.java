@@ -265,7 +265,8 @@ public enum EImageLayout implements Enumerator
 	 * @generated
 	 */
 	private static final EImageLayout[] VALUES_ARRAY =
-		new EImageLayout[] {
+		new EImageLayout[]
+		{
 			UNDEFINED,
 			GENERAL,
 			COLOR_ATTACHMENT_OPTIMAL,
@@ -296,9 +297,11 @@ public enum EImageLayout implements Enumerator
 	 */
 	public static EImageLayout get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EImageLayout result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -315,9 +318,11 @@ public enum EImageLayout implements Enumerator
 	 */
 	public static EImageLayout getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EImageLayout result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -334,7 +339,8 @@ public enum EImageLayout implements Enumerator
 	 */
 	public static EImageLayout get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case UNDEFINED_VALUE: return UNDEFINED;
 			case GENERAL_VALUE: return GENERAL;
 			case COLOR_ATTACHMENT_OPTIMAL_VALUE: return COLOR_ATTACHMENT_OPTIMAL;

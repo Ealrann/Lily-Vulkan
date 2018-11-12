@@ -103,7 +103,8 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		PathResource oldFile = file;
 		file = newFile;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__FILE, oldFile, newFile);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -117,7 +118,8 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	 */
 	public void setFile(PathResource newFile)
 	{
-		if (newFile != file) {
+		if (newFile != file)
+		{
 			NotificationChain msgs = null;
 			if (file != null)
 				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
@@ -161,7 +163,8 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.SHADER__FILE:
 				return basicSetFile(null, msgs);
 		}
@@ -176,7 +179,8 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.SHADER__FILE:
 				return getFile();
 			case ResourcePackage.SHADER__STAGE:
@@ -193,7 +197,8 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.SHADER__FILE:
 				setFile((PathResource)newValue);
 				return;
@@ -212,7 +217,8 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.SHADER__FILE:
 				setFile((PathResource)null);
 				return;
@@ -231,7 +237,8 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.SHADER__FILE:
 				return file != null;
 			case ResourcePackage.SHADER__STAGE:

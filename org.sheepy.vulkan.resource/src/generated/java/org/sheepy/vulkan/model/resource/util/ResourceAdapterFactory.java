@@ -37,7 +37,8 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 */
 	public ResourceAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = ResourcePackage.eINSTANCE;
 		}
 	}
@@ -53,10 +54,12 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -69,93 +72,116 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected ResourceSwitch<Adapter> modelSwitch =
-		new ResourceSwitch<Adapter>() {
+		new ResourceSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseResource(Resource object) {
+			public Adapter caseResource(Resource object)
+			{
 				return createResourceAdapter();
 			}
 			@Override
-			public Adapter caseVulkanBuffer(VulkanBuffer object) {
+			public Adapter caseVulkanBuffer(VulkanBuffer object)
+			{
 				return createVulkanBufferAdapter();
 			}
 			@Override
-			public Adapter caseBuffer(Buffer object) {
+			public Adapter caseBuffer(Buffer object)
+			{
 				return createBufferAdapter();
 			}
 			@Override
-			public Adapter caseSizedBuffer(SizedBuffer object) {
+			public Adapter caseSizedBuffer(SizedBuffer object)
+			{
 				return createSizedBufferAdapter();
 			}
 			@Override
-			public Adapter caseImage(Image object) {
+			public Adapter caseImage(Image object)
+			{
 				return createImageAdapter();
 			}
 			@Override
-			public Adapter caseTexture(Texture object) {
+			public Adapter caseTexture(Texture object)
+			{
 				return createTextureAdapter();
 			}
 			@Override
-			public Adapter caseDepthImage(DepthImage object) {
+			public Adapter caseDepthImage(DepthImage object)
+			{
 				return createDepthImageAdapter();
 			}
 			@Override
-			public Adapter casePathResource(PathResource object) {
+			public Adapter casePathResource(PathResource object)
+			{
 				return createPathResourceAdapter();
 			}
 			@Override
-			public Adapter caseFileResource(FileResource object) {
+			public Adapter caseFileResource(FileResource object)
+			{
 				return createFileResourceAdapter();
 			}
 			@Override
-			public Adapter caseModuleResource(ModuleResource object) {
+			public Adapter caseModuleResource(ModuleResource object)
+			{
 				return createModuleResourceAdapter();
 			}
 			@Override
-			public Adapter caseShader(Shader object) {
+			public Adapter caseShader(Shader object)
+			{
 				return createShaderAdapter();
 			}
 			@Override
-			public Adapter casePushConstant(PushConstant object) {
+			public Adapter casePushConstant(PushConstant object)
+			{
 				return createPushConstantAdapter();
 			}
 			@Override
-			public Adapter caseIDescriptor(IDescriptor object) {
+			public Adapter caseIDescriptor(IDescriptor object)
+			{
 				return createIDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseDescriptorSet(DescriptorSet object) {
+			public Adapter caseDescriptorSet(DescriptorSet object)
+			{
 				return createDescriptorSetAdapter();
 			}
 			@Override
-			public Adapter caseIndexedBuffer(IndexedBuffer object) {
+			public Adapter caseIndexedBuffer(IndexedBuffer object)
+			{
 				return createIndexedBufferAdapter();
 			}
 			@Override
-			public Adapter caseBarrier(Barrier object) {
+			public Adapter caseBarrier(Barrier object)
+			{
 				return createBarrierAdapter();
 			}
 			@Override
-			public Adapter caseBufferBarrier(BufferBarrier object) {
+			public Adapter caseBufferBarrier(BufferBarrier object)
+			{
 				return createBufferBarrierAdapter();
 			}
 			@Override
-			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object) {
+			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
+			{
 				return createAbstractImageBarrierAdapter();
 			}
 			@Override
-			public Adapter caseImageBarrier(ImageBarrier object) {
+			public Adapter caseImageBarrier(ImageBarrier object)
+			{
 				return createImageBarrierAdapter();
 			}
 			@Override
-			public Adapter caseReferenceImageBarrier(ReferenceImageBarrier object) {
+			public Adapter caseReferenceImageBarrier(ReferenceImageBarrier object)
+			{
 				return createReferenceImageBarrierAdapter();
 			}
 			@Override
-			public Adapter caseImageTransition(ImageTransition object) {
+			public Adapter caseImageTransition(ImageTransition object)
+			{
 				return createImageTransitionAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

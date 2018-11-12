@@ -108,7 +108,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	public EList<AttachmentDescription> getAttachments()
 	{
-		if (attachments == null) {
+		if (attachments == null)
+		{
 			attachments = new EObjectContainmentEList<AttachmentDescription>(AttachmentDescription.class, this, GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS);
 		}
 		return attachments;
@@ -121,7 +122,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	public EList<SubpassDependency> getDependencies()
 	{
-		if (dependencies == null) {
+		if (dependencies == null)
+		{
 			dependencies = new EObjectContainmentEList<SubpassDependency>(SubpassDependency.class, this, GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES);
 		}
 		return dependencies;
@@ -158,7 +160,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				return ((InternalEList<?>)getAttachments()).basicRemove(otherEnd, msgs);
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
@@ -175,7 +178,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				return getAttachments();
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
@@ -195,7 +199,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				getAttachments().clear();
 				getAttachments().addAll((Collection<? extends AttachmentDescription>)newValue);
@@ -219,7 +224,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				getAttachments().clear();
 				return;
@@ -241,7 +247,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				return attachments != null && !attachments.isEmpty();
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:

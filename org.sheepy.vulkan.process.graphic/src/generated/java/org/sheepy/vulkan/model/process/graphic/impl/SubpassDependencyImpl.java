@@ -321,7 +321,8 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
 				return getSrcSubpass();
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
@@ -346,7 +347,8 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
 				setSrcSubpass((Integer)newValue);
 				return;
@@ -377,7 +379,8 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
 				setSrcSubpass(SRC_SUBPASS_EDEFAULT);
 				return;
@@ -408,7 +411,8 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
 				return srcSubpass != SRC_SUBPASS_EDEFAULT;
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:

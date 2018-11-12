@@ -73,7 +73,8 @@ public enum EFrontFace implements Enumerator
 	 * @generated
 	 */
 	private static final EFrontFace[] VALUES_ARRAY =
-		new EFrontFace[] {
+		new EFrontFace[]
+		{
 			COUNTER_CLOCKWISE,
 			CLOCKWISE,
 		};
@@ -96,9 +97,11 @@ public enum EFrontFace implements Enumerator
 	 */
 	public static EFrontFace get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EFrontFace result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -115,9 +118,11 @@ public enum EFrontFace implements Enumerator
 	 */
 	public static EFrontFace getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EFrontFace result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -134,7 +139,8 @@ public enum EFrontFace implements Enumerator
 	 */
 	public static EFrontFace get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case COUNTER_CLOCKWISE_VALUE: return COUNTER_CLOCKWISE;
 			case CLOCKWISE_VALUE: return CLOCKWISE;
 		}

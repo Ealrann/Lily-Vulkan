@@ -193,7 +193,8 @@ public enum ESampleCount implements Enumerator
 	 * @generated
 	 */
 	private static final ESampleCount[] VALUES_ARRAY =
-		new ESampleCount[] {
+		new ESampleCount[]
+		{
 			SAMPLE_COUNT_1BIT,
 			SAMPLE_COUNT_2BIT,
 			SAMPLE_COUNT_4BIT,
@@ -221,9 +222,11 @@ public enum ESampleCount implements Enumerator
 	 */
 	public static ESampleCount get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ESampleCount result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -240,9 +243,11 @@ public enum ESampleCount implements Enumerator
 	 */
 	public static ESampleCount getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ESampleCount result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -259,7 +264,8 @@ public enum ESampleCount implements Enumerator
 	 */
 	public static ESampleCount get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case SAMPLE_COUNT_1BIT_VALUE: return SAMPLE_COUNT_1BIT;
 			case SAMPLE_COUNT_2BIT_VALUE: return SAMPLE_COUNT_2BIT;
 			case SAMPLE_COUNT_4BIT_VALUE: return SAMPLE_COUNT_4BIT;

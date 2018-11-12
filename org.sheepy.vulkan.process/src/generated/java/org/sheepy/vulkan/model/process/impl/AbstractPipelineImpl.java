@@ -183,7 +183,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		DescriptorSet oldDescriptorSet = descriptorSet;
 		descriptorSet = newDescriptorSet;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET, oldDescriptorSet, newDescriptorSet);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -197,7 +198,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 */
 	public void setDescriptorSet(DescriptorSet newDescriptorSet)
 	{
-		if (newDescriptorSet != descriptorSet) {
+		if (newDescriptorSet != descriptorSet)
+		{
 			NotificationChain msgs = null;
 			if (descriptorSet != null)
 				msgs = ((InternalEObject)descriptorSet).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET, null, msgs);
@@ -229,7 +231,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		PushConstant oldPushConstant = pushConstant;
 		pushConstant = newPushConstant;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, oldPushConstant, newPushConstant);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -243,7 +246,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 */
 	public void setPushConstant(PushConstant newPushConstant)
 	{
-		if (newPushConstant != pushConstant) {
+		if (newPushConstant != pushConstant)
+		{
 			NotificationChain msgs = null;
 			if (pushConstant != null)
 				msgs = ((InternalEObject)pushConstant).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, null, msgs);
@@ -264,7 +268,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				return basicSetDescriptorSet(null, msgs);
 			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
@@ -281,7 +286,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				return isEnabled();
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
@@ -302,7 +308,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
@@ -327,7 +334,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
@@ -352,7 +360,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:

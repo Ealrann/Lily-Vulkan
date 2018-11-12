@@ -4465,7 +4465,8 @@ public enum EFormat implements Enumerator
 	 * @generated
 	 */
 	private static final EFormat[] VALUES_ARRAY =
-		new EFormat[] {
+		new EFormat[]
+		{
 			UNDEFINED,
 			R4G4_UNORM_PACK8,
 			R4G4B4A4_UNORM_PACK16,
@@ -4671,9 +4672,11 @@ public enum EFormat implements Enumerator
 	 */
 	public static EFormat get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EFormat result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -4690,9 +4693,11 @@ public enum EFormat implements Enumerator
 	 */
 	public static EFormat getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EFormat result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -4709,7 +4714,8 @@ public enum EFormat implements Enumerator
 	 */
 	public static EFormat get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case UNDEFINED_VALUE: return UNDEFINED;
 			case R4G4_UNORM_PACK8_VALUE: return R4G4_UNORM_PACK8;
 			case R4G4B4A4_UNORM_PACK16_VALUE: return R4G4B4A4_UNORM_PACK16;

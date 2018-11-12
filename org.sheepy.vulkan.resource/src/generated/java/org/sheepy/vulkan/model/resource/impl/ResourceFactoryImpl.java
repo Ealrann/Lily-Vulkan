@@ -29,13 +29,16 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 */
 	public static ResourceFactory init()
 	{
-		try {
+		try
+		{
 			ResourceFactory theResourceFactory = (ResourceFactory)EPackage.Registry.INSTANCE.getEFactory(ResourcePackage.eNS_URI);
-			if (theResourceFactory != null) {
+			if (theResourceFactory != null)
+			{
 				return theResourceFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ResourceFactoryImpl();
@@ -60,7 +63,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case ResourcePackage.BUFFER: return createBuffer();
 			case ResourcePackage.TEXTURE: return createTexture();
 			case ResourcePackage.DEPTH_IMAGE: return createDepthImage();
@@ -86,7 +90,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case ResourcePackage.JAVA_MODULE:
 				return createJavaModuleFromString(eDataType, initialValue);
 			default:
@@ -102,7 +107,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case ResourcePackage.JAVA_MODULE:
 				return convertJavaModuleToString(eDataType, instanceValue);
 			default:

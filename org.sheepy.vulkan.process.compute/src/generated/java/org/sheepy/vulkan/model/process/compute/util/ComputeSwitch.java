@@ -47,7 +47,8 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 */
 	public ComputeSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = ComputePackage.eINSTANCE;
 		}
 	}
@@ -76,8 +77,10 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case ComputePackage.COMPUTE_PROCESS_POOL: {
+		switch (classifierID)
+		{
+			case ComputePackage.COMPUTE_PROCESS_POOL:
+			{
 				ComputeProcessPool computeProcessPool = (ComputeProcessPool)theEObject;
 				T1 result = caseComputeProcessPool(computeProcessPool);
 				if (result == null) result = caseAbstractProcessPool(computeProcessPool);
@@ -86,14 +89,16 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.COMPUTE_PROCESS: {
+			case ComputePackage.COMPUTE_PROCESS:
+			{
 				ComputeProcess computeProcess = (ComputeProcess)theEObject;
 				T1 result = caseComputeProcess(computeProcess);
 				if (result == null) result = caseAbstractProcess(computeProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.COMPUTE_PIPELINE: {
+			case ComputePackage.COMPUTE_PIPELINE:
+			{
 				ComputePipeline computePipeline = (ComputePipeline)theEObject;
 				T1 result = caseComputePipeline(computePipeline);
 				if (result == null) result = caseAbstractPipeline(computePipeline);
@@ -101,7 +106,8 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.COMPUTER: {
+			case ComputePackage.COMPUTER:
+			{
 				Computer computer = (Computer)theEObject;
 				T1 result = caseComputer(computer);
 				if (result == null) result = caseIProcessUnit(computer);

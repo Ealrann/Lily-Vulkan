@@ -155,10 +155,12 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	 */
 	public Image getImage()
 	{
-		if (image != null && image.eIsProxy()) {
+		if (image != null && image.eIsProxy())
+		{
 			InternalEObject oldImage = (InternalEObject)image;
 			image = (Image)eResolveProxy(oldImage);
-			if (image != oldImage) {
+			if (image != oldImage)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.IMAGE_PIPELINE__IMAGE, oldImage, image));
 			}
@@ -289,7 +291,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE:
 				if (resolve) return getImage();
 				return basicGetImage();
@@ -313,7 +316,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE:
 				setImage((Image)newValue);
 				return;
@@ -341,7 +345,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE:
 				setImage((Image)null);
 				return;
@@ -369,7 +374,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE:
 				return image != null;
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:

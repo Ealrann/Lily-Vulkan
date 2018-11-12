@@ -97,7 +97,8 @@ public enum EAttachmentLoadOp implements Enumerator
 	 * @generated
 	 */
 	private static final EAttachmentLoadOp[] VALUES_ARRAY =
-		new EAttachmentLoadOp[] {
+		new EAttachmentLoadOp[]
+		{
 			LOAD,
 			CLEAR,
 			DONT_CARE,
@@ -121,9 +122,11 @@ public enum EAttachmentLoadOp implements Enumerator
 	 */
 	public static EAttachmentLoadOp get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EAttachmentLoadOp result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -140,9 +143,11 @@ public enum EAttachmentLoadOp implements Enumerator
 	 */
 	public static EAttachmentLoadOp getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EAttachmentLoadOp result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -159,7 +164,8 @@ public enum EAttachmentLoadOp implements Enumerator
 	 */
 	public static EAttachmentLoadOp get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case LOAD_VALUE: return LOAD;
 			case CLEAR_VALUE: return CLEAR;
 			case DONT_CARE_VALUE: return DONT_CARE;

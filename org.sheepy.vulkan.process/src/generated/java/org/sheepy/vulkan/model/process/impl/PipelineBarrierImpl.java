@@ -144,7 +144,8 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
 				return isEnabled();
 			case ProcessPackage.PIPELINE_BARRIER__STAGE:
@@ -161,7 +162,8 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
@@ -180,7 +182,8 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
@@ -199,7 +202,8 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case ProcessPackage.PIPELINE_BARRIER__STAGE:

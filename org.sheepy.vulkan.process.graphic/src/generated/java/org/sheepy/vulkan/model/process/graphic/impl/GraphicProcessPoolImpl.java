@@ -101,7 +101,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	@Override
 	public EList<GraphicProcess> getProcesses()
 	{
-		if (processes == null) {
+		if (processes == null)
+		{
 			processes = new EObjectContainmentEList<GraphicProcess>(GraphicProcess.class, this, GraphicPackage.GRAPHIC_PROCESS_POOL__PROCESSES);
 		}
 		return processes;
@@ -126,7 +127,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	{
 		GraphicConfiguration oldConfiguration = configuration;
 		configuration = newConfiguration;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS_POOL__CONFIGURATION, oldConfiguration, newConfiguration);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -140,7 +142,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	 */
 	public void setConfiguration(GraphicConfiguration newConfiguration)
 	{
-		if (newConfiguration != configuration) {
+		if (newConfiguration != configuration)
+		{
 			NotificationChain msgs = null;
 			if (configuration != null)
 				msgs = ((InternalEObject)configuration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS_POOL__CONFIGURATION, null, msgs);
@@ -172,7 +175,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	{
 		RenderPassInfo oldRenderPassInfo = renderPassInfo;
 		renderPassInfo = newRenderPassInfo;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO, oldRenderPassInfo, newRenderPassInfo);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -186,7 +190,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	 */
 	public void setRenderPassInfo(RenderPassInfo newRenderPassInfo)
 	{
-		if (newRenderPassInfo != renderPassInfo) {
+		if (newRenderPassInfo != renderPassInfo)
+		{
 			NotificationChain msgs = null;
 			if (renderPassInfo != null)
 				msgs = ((InternalEObject)renderPassInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO, null, msgs);
@@ -206,10 +211,12 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	 */
 	public DepthImage getDepthImage()
 	{
-		if (depthImage != null && depthImage.eIsProxy()) {
+		if (depthImage != null && depthImage.eIsProxy())
+		{
 			InternalEObject oldDepthImage = (InternalEObject)depthImage;
 			depthImage = (DepthImage)eResolveProxy(oldDepthImage);
-			if (depthImage != oldDepthImage) {
+			if (depthImage != oldDepthImage)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHIC_PROCESS_POOL__DEPTH_IMAGE, oldDepthImage, depthImage));
 			}
@@ -248,7 +255,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__CONFIGURATION:
 				return basicSetConfiguration(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO:
@@ -265,7 +273,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__CONFIGURATION:
 				return getConfiguration();
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO:
@@ -285,7 +294,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__CONFIGURATION:
 				setConfiguration((GraphicConfiguration)newValue);
 				return;
@@ -307,7 +317,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__CONFIGURATION:
 				setConfiguration((GraphicConfiguration)null);
 				return;
@@ -329,7 +340,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__CONFIGURATION:
 				return configuration != null;
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO:

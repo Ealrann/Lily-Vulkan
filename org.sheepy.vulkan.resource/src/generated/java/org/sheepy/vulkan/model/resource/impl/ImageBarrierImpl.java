@@ -66,10 +66,12 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	 */
 	public Image getImage()
 	{
-		if (image != null && image.eIsProxy()) {
+		if (image != null && image.eIsProxy())
+		{
 			InternalEObject oldImage = (InternalEObject)image;
 			image = (Image)eResolveProxy(oldImage);
-			if (image != oldImage) {
+			if (image != oldImage)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.IMAGE_BARRIER__IMAGE, oldImage, image));
 			}
@@ -108,7 +110,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.IMAGE_BARRIER__IMAGE:
 				if (resolve) return getImage();
 				return basicGetImage();
@@ -124,7 +127,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.IMAGE_BARRIER__IMAGE:
 				setImage((Image)newValue);
 				return;
@@ -140,7 +144,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.IMAGE_BARRIER__IMAGE:
 				setImage((Image)null);
 				return;
@@ -156,7 +161,8 @@ public class ImageBarrierImpl extends AbstractImageBarrierImpl implements ImageB
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.IMAGE_BARRIER__IMAGE:
 				return image != null;
 		}

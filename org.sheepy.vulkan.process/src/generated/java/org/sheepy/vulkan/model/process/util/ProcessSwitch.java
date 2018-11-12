@@ -42,7 +42,8 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 */
 	public ProcessSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = ProcessPackage.eINSTANCE;
 		}
 	}
@@ -71,40 +72,47 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case ProcessPackage.CONFIGURATION: {
+		switch (classifierID)
+		{
+			case ProcessPackage.CONFIGURATION:
+			{
 				Configuration configuration = (Configuration)theEObject;
 				T1 result = caseConfiguration(configuration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.ABSTRACT_PROCESS_POOL: {
+			case ProcessPackage.ABSTRACT_PROCESS_POOL:
+			{
 				AbstractProcessPool<?> abstractProcessPool = (AbstractProcessPool<?>)theEObject;
 				T1 result = caseAbstractProcessPool(abstractProcessPool);
 				if (result == null) result = caseIProcessPool(abstractProcessPool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.ABSTRACT_PROCESS: {
+			case ProcessPackage.ABSTRACT_PROCESS:
+			{
 				AbstractProcess abstractProcess = (AbstractProcess)theEObject;
 				T1 result = caseAbstractProcess(abstractProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.IPROCESS_UNIT: {
+			case ProcessPackage.IPROCESS_UNIT:
+			{
 				IProcessUnit iProcessUnit = (IProcessUnit)theEObject;
 				T1 result = caseIProcessUnit(iProcessUnit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PIPELINE_BARRIER: {
+			case ProcessPackage.PIPELINE_BARRIER:
+			{
 				PipelineBarrier pipelineBarrier = (PipelineBarrier)theEObject;
 				T1 result = casePipelineBarrier(pipelineBarrier);
 				if (result == null) result = caseIProcessUnit(pipelineBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PIPELINE_BUFFER_BARRIER: {
+			case ProcessPackage.PIPELINE_BUFFER_BARRIER:
+			{
 				PipelineBufferBarrier pipelineBufferBarrier = (PipelineBufferBarrier)theEObject;
 				T1 result = casePipelineBufferBarrier(pipelineBufferBarrier);
 				if (result == null) result = casePipelineBarrier(pipelineBufferBarrier);
@@ -112,14 +120,16 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.ABSTRACT_PIPELINE: {
+			case ProcessPackage.ABSTRACT_PIPELINE:
+			{
 				AbstractPipeline abstractPipeline = (AbstractPipeline)theEObject;
 				T1 result = caseAbstractPipeline(abstractPipeline);
 				if (result == null) result = caseIProcessUnit(abstractPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE: {
+			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE:
+			{
 				AbstractCompositePipeline abstractCompositePipeline = (AbstractCompositePipeline)theEObject;
 				T1 result = caseAbstractCompositePipeline(abstractCompositePipeline);
 				if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);

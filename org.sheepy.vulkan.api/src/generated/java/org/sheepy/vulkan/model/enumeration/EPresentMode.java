@@ -121,7 +121,8 @@ public enum EPresentMode implements Enumerator
 	 * @generated
 	 */
 	private static final EPresentMode[] VALUES_ARRAY =
-		new EPresentMode[] {
+		new EPresentMode[]
+		{
 			IMMEDIATE,
 			MAIL_BOX,
 			FIFO,
@@ -146,9 +147,11 @@ public enum EPresentMode implements Enumerator
 	 */
 	public static EPresentMode get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EPresentMode result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -165,9 +168,11 @@ public enum EPresentMode implements Enumerator
 	 */
 	public static EPresentMode getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EPresentMode result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -184,7 +189,8 @@ public enum EPresentMode implements Enumerator
 	 */
 	public static EPresentMode get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case IMMEDIATE_VALUE: return IMMEDIATE;
 			case MAIL_BOX_VALUE: return MAIL_BOX;
 			case FIFO_VALUE: return FIFO;

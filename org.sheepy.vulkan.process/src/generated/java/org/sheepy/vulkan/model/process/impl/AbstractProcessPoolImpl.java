@@ -109,7 +109,8 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	 */
 	public EList<T> getProcesses()
 	{
-		if (processes == null) {
+		if (processes == null)
+		{
 			processes = new EObjectContainmentEList<T>(AbstractProcess.class, this, ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES);
 		}
 		return processes;
@@ -122,7 +123,8 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	 */
 	public EList<Resource> getResources()
 	{
-		if (resources == null) {
+		if (resources == null)
+		{
 			resources = new EObjectContainmentEList<Resource>(Resource.class, this, ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES);
 		}
 		return resources;
@@ -159,7 +161,8 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
 				return ((InternalEList<?>)getProcesses()).basicRemove(otherEnd, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES:
@@ -176,7 +179,8 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
 				return getProcesses();
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES:
@@ -196,7 +200,8 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
 				getProcesses().clear();
 				getProcesses().addAll((Collection<? extends T>)newValue);
@@ -220,7 +225,8 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
 				getProcesses().clear();
 				return;
@@ -242,7 +248,8 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
 				return processes != null && !processes.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES:

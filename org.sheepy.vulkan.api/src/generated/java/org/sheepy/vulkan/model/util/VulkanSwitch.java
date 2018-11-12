@@ -39,7 +39,8 @@ public class VulkanSwitch<T> extends Switch<T>
 	 */
 	public VulkanSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = VulkanPackage.eINSTANCE;
 		}
 	}
@@ -68,34 +69,40 @@ public class VulkanSwitch<T> extends Switch<T>
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case VulkanPackage.VULKAN_APPLICATION: {
+		switch (classifierID)
+		{
+			case VulkanPackage.VULKAN_APPLICATION:
+			{
 				VulkanApplication vulkanApplication = (VulkanApplication)theEObject;
 				T result = caseVulkanApplication(vulkanApplication);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.IPROCESS_POOL: {
+			case VulkanPackage.IPROCESS_POOL:
+			{
 				IProcessPool iProcessPool = (IProcessPool)theEObject;
 				T result = caseIProcessPool(iProcessPool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.ICOMPUTE_PROCESS_POOL: {
+			case VulkanPackage.ICOMPUTE_PROCESS_POOL:
+			{
 				IComputeProcessPool iComputeProcessPool = (IComputeProcessPool)theEObject;
 				T result = caseIComputeProcessPool(iComputeProcessPool);
 				if (result == null) result = caseIProcessPool(iComputeProcessPool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.IGRAPHIC_PROCESS_POOL: {
+			case VulkanPackage.IGRAPHIC_PROCESS_POOL:
+			{
 				IGraphicProcessPool iGraphicProcessPool = (IGraphicProcessPool)theEObject;
 				T result = caseIGraphicProcessPool(iGraphicProcessPool);
 				if (result == null) result = caseIProcessPool(iGraphicProcessPool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.COLOR_DOMAIN: {
+			case VulkanPackage.COLOR_DOMAIN:
+			{
 				ColorDomain colorDomain = (ColorDomain)theEObject;
 				T result = caseColorDomain(colorDomain);
 				if (result == null) result = defaultCase(theEObject);

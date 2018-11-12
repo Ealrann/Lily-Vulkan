@@ -49,7 +49,8 @@ public class ComputeProcessPoolImpl extends AbstractProcessPoolImpl<ComputeProce
 	@Override
 	public EList<ComputeProcess> getProcesses()
 	{
-		if (processes == null) {
+		if (processes == null)
+		{
 			processes = new EObjectContainmentEList<ComputeProcess>(ComputeProcess.class, this, ComputePackage.COMPUTE_PROCESS_POOL__PROCESSES);
 		}
 		return processes;

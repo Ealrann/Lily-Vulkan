@@ -44,7 +44,8 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 */
 	public ComputeAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = ComputePackage.eINSTANCE;
 		}
 	}
@@ -60,10 +61,12 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -76,49 +79,61 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected ComputeSwitch<Adapter> modelSwitch =
-		new ComputeSwitch<Adapter>() {
+		new ComputeSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseComputeProcessPool(ComputeProcessPool object) {
+			public Adapter caseComputeProcessPool(ComputeProcessPool object)
+			{
 				return createComputeProcessPoolAdapter();
 			}
 			@Override
-			public Adapter caseComputeProcess(ComputeProcess object) {
+			public Adapter caseComputeProcess(ComputeProcess object)
+			{
 				return createComputeProcessAdapter();
 			}
 			@Override
-			public Adapter caseComputePipeline(ComputePipeline object) {
+			public Adapter caseComputePipeline(ComputePipeline object)
+			{
 				return createComputePipelineAdapter();
 			}
 			@Override
-			public Adapter caseComputer(Computer object) {
+			public Adapter caseComputer(Computer object)
+			{
 				return createComputerAdapter();
 			}
 			@Override
-			public Adapter caseIProcessPool(IProcessPool object) {
+			public Adapter caseIProcessPool(IProcessPool object)
+			{
 				return createIProcessPoolAdapter();
 			}
 			@Override
-			public <T extends AbstractProcess> Adapter caseAbstractProcessPool(AbstractProcessPool<T> object) {
+			public <T extends AbstractProcess> Adapter caseAbstractProcessPool(AbstractProcessPool<T> object)
+			{
 				return createAbstractProcessPoolAdapter();
 			}
 			@Override
-			public Adapter caseIComputeProcessPool(IComputeProcessPool object) {
+			public Adapter caseIComputeProcessPool(IComputeProcessPool object)
+			{
 				return createIComputeProcessPoolAdapter();
 			}
 			@Override
-			public Adapter caseAbstractProcess(AbstractProcess object) {
+			public Adapter caseAbstractProcess(AbstractProcess object)
+			{
 				return createAbstractProcessAdapter();
 			}
 			@Override
-			public Adapter caseIProcessUnit(IProcessUnit object) {
+			public Adapter caseIProcessUnit(IProcessUnit object)
+			{
 				return createIProcessUnitAdapter();
 			}
 			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object) {
+			public Adapter caseAbstractPipeline(AbstractPipeline object)
+			{
 				return createAbstractPipelineAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

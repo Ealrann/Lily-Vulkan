@@ -29,13 +29,16 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 */
 	public static EnumerationFactory init()
 	{
-		try {
+		try
+		{
 			EnumerationFactory theEnumerationFactory = (EnumerationFactory)EPackage.Registry.INSTANCE.getEFactory(EnumerationPackage.eNS_URI);
-			if (theEnumerationFactory != null) {
+			if (theEnumerationFactory != null)
+			{
 				return theEnumerationFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new EnumerationFactoryImpl();
@@ -60,7 +63,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -74,7 +78,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case EnumerationPackage.EIMAGE_LAYOUT:
 				return createEImageLayoutFromString(eDataType, initialValue);
 			case EnumerationPackage.ECULL_MODE:
@@ -114,7 +119,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
 			case EnumerationPackage.EIMAGE_LAYOUT:
 				return convertEImageLayoutToString(eDataType, instanceValue);
 			case EnumerationPackage.ECULL_MODE:

@@ -186,7 +186,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
 				return getImageId();
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
@@ -205,7 +206,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl implemen
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
 				setImageId((Long)newValue);
 				return;
@@ -227,7 +229,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl implemen
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
 				setImageId(IMAGE_ID_EDEFAULT);
 				return;
@@ -249,7 +252,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl implemen
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
 				return imageId != IMAGE_ID_EDEFAULT;
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:

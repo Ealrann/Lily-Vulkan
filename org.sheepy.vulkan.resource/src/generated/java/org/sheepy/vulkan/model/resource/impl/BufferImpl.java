@@ -187,7 +187,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BUFFER__SIZE:
 				return getSize();
 			case ResourcePackage.BUFFER__USAGE:
@@ -206,7 +207,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BUFFER__SIZE:
 				setSize((Long)newValue);
 				return;
@@ -228,7 +230,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BUFFER__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
@@ -250,7 +253,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BUFFER__SIZE:
 				return size != SIZE_EDEFAULT;
 			case ResourcePackage.BUFFER__USAGE:

@@ -101,7 +101,8 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	{
 		PathResource oldFile = file;
 		file = newFile;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__FILE, oldFile, newFile);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -115,7 +116,8 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	 */
 	public void setFile(PathResource newFile)
 	{
-		if (newFile != file) {
+		if (newFile != file)
+		{
 			NotificationChain msgs = null;
 			if (file != null)
 				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
@@ -159,7 +161,8 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.TEXTURE__FILE:
 				return basicSetFile(null, msgs);
 		}
@@ -174,7 +177,8 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.TEXTURE__FILE:
 				return getFile();
 			case ResourcePackage.TEXTURE__MIPMAP_ENABLED:
@@ -191,7 +195,8 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.TEXTURE__FILE:
 				setFile((PathResource)newValue);
 				return;
@@ -210,7 +215,8 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.TEXTURE__FILE:
 				setFile((PathResource)null);
 				return;
@@ -229,7 +235,8 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.TEXTURE__FILE:
 				return file != null;
 			case ResourcePackage.TEXTURE__MIPMAP_ENABLED:

@@ -200,7 +200,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 */
 	public EList<Computer> getComputers()
 	{
-		if (computers == null) {
+		if (computers == null)
+		{
 			computers = new EObjectContainmentEList<Computer>(Computer.class, this, ComputePackage.COMPUTE_PIPELINE__COMPUTERS);
 		}
 		return computers;
@@ -352,7 +353,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
 				return ((InternalEList<?>)getComputers()).basicRemove(otherEnd, msgs);
 		}
@@ -367,7 +369,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
 				return getComputers();
 			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
@@ -395,7 +398,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
 				getComputers().clear();
 				getComputers().addAll((Collection<? extends Computer>)newValue);
@@ -430,7 +434,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
 				getComputers().clear();
 				return;
@@ -464,7 +469,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
 				return computers != null && !computers.isEmpty();
 			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:

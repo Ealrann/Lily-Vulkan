@@ -145,7 +145,8 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BARRIER__SRC_STAGE:
 				return getSrcStage();
 			case ResourcePackage.BARRIER__DST_STAGE:
@@ -162,7 +163,8 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BARRIER__SRC_STAGE:
 				setSrcStage((EPipelineStage)newValue);
 				return;
@@ -181,7 +183,8 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BARRIER__SRC_STAGE:
 				setSrcStage(SRC_STAGE_EDEFAULT);
 				return;
@@ -200,7 +203,8 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BARRIER__SRC_STAGE:
 				return srcStage != SRC_STAGE_EDEFAULT;
 			case ResourcePackage.BARRIER__DST_STAGE:

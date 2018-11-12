@@ -70,7 +70,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 */
 	public EList<Shader> getShaders()
 	{
-		if (shaders == null) {
+		if (shaders == null)
+		{
 			shaders = new EObjectResolvingEList<Shader>(Shader.class, this, GraphicPackage.GRAPHICS_PIPELINE__SHADERS);
 		}
 		return shaders;
@@ -84,7 +85,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 				return getShaders();
 		}
@@ -100,7 +102,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 				getShaders().clear();
 				getShaders().addAll((Collection<? extends Shader>)newValue);
@@ -117,7 +120,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 				getShaders().clear();
 				return;
@@ -133,7 +137,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 				return shaders != null && !shaders.isEmpty();
 		}

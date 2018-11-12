@@ -28,13 +28,16 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	 */
 	public static ProcessFactory init()
 	{
-		try {
+		try
+		{
 			ProcessFactory theProcessFactory = (ProcessFactory)EPackage.Registry.INSTANCE.getEFactory(ProcessPackage.eNS_URI);
-			if (theProcessFactory != null) {
+			if (theProcessFactory != null)
+			{
 				return theProcessFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ProcessFactoryImpl();
@@ -59,7 +62,8 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case ProcessPackage.PIPELINE_BUFFER_BARRIER: return createPipelineBufferBarrier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");

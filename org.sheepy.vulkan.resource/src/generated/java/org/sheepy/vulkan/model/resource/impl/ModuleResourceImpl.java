@@ -98,7 +98,8 @@ public class ModuleResourceImpl extends PathResourceImpl implements ModuleResour
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.MODULE_RESOURCE__MODULE:
 				return getModule();
 		}
@@ -113,7 +114,8 @@ public class ModuleResourceImpl extends PathResourceImpl implements ModuleResour
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.MODULE_RESOURCE__MODULE:
 				setModule((Module)newValue);
 				return;
@@ -129,7 +131,8 @@ public class ModuleResourceImpl extends PathResourceImpl implements ModuleResour
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.MODULE_RESOURCE__MODULE:
 				setModule(MODULE_EDEFAULT);
 				return;
@@ -145,7 +148,8 @@ public class ModuleResourceImpl extends PathResourceImpl implements ModuleResour
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.MODULE_RESOURCE__MODULE:
 				return MODULE_EDEFAULT == null ? module != null : !MODULE_EDEFAULT.equals(module);
 		}

@@ -49,7 +49,8 @@ public enum EColorSpace implements Enumerator
 	 * @generated
 	 */
 	private static final EColorSpace[] VALUES_ARRAY =
-		new EColorSpace[] {
+		new EColorSpace[]
+		{
 			SRGB_NONLINEAR_KHR,
 		};
 
@@ -71,9 +72,11 @@ public enum EColorSpace implements Enumerator
 	 */
 	public static EColorSpace get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EColorSpace result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -90,9 +93,11 @@ public enum EColorSpace implements Enumerator
 	 */
 	public static EColorSpace getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EColorSpace result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -109,7 +114,8 @@ public enum EColorSpace implements Enumerator
 	 */
 	public static EColorSpace get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case SRGB_NONLINEAR_KHR_VALUE: return SRGB_NONLINEAR_KHR;
 		}
 		return null;

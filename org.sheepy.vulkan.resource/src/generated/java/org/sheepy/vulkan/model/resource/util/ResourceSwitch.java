@@ -40,7 +40,8 @@ public class ResourceSwitch<T> extends Switch<T>
 	 */
 	public ResourceSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = ResourcePackage.eINSTANCE;
 		}
 	}
@@ -69,21 +70,25 @@ public class ResourceSwitch<T> extends Switch<T>
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case ResourcePackage.RESOURCE: {
+		switch (classifierID)
+		{
+			case ResourcePackage.RESOURCE:
+			{
 				Resource resource = (Resource)theEObject;
 				T result = caseResource(resource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.VULKAN_BUFFER: {
+			case ResourcePackage.VULKAN_BUFFER:
+			{
 				VulkanBuffer vulkanBuffer = (VulkanBuffer)theEObject;
 				T result = caseVulkanBuffer(vulkanBuffer);
 				if (result == null) result = caseResource(vulkanBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.BUFFER: {
+			case ResourcePackage.BUFFER:
+			{
 				Buffer buffer = (Buffer)theEObject;
 				T result = caseBuffer(buffer);
 				if (result == null) result = caseVulkanBuffer(buffer);
@@ -91,7 +96,8 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.SIZED_BUFFER: {
+			case ResourcePackage.SIZED_BUFFER:
+			{
 				SizedBuffer sizedBuffer = (SizedBuffer)theEObject;
 				T result = caseSizedBuffer(sizedBuffer);
 				if (result == null) result = caseVulkanBuffer(sizedBuffer);
@@ -99,7 +105,8 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.IMAGE: {
+			case ResourcePackage.IMAGE:
+			{
 				Image image = (Image)theEObject;
 				T result = caseImage(image);
 				if (result == null) result = caseSizedBuffer(image);
@@ -108,7 +115,8 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.TEXTURE: {
+			case ResourcePackage.TEXTURE:
+			{
 				Texture texture = (Texture)theEObject;
 				T result = caseTexture(texture);
 				if (result == null) result = caseVulkanBuffer(texture);
@@ -117,7 +125,8 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.DEPTH_IMAGE: {
+			case ResourcePackage.DEPTH_IMAGE:
+			{
 				DepthImage depthImage = (DepthImage)theEObject;
 				T result = caseDepthImage(depthImage);
 				if (result == null) result = caseVulkanBuffer(depthImage);
@@ -125,14 +134,16 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.PATH_RESOURCE: {
+			case ResourcePackage.PATH_RESOURCE:
+			{
 				PathResource pathResource = (PathResource)theEObject;
 				T result = casePathResource(pathResource);
 				if (result == null) result = caseResource(pathResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.FILE_RESOURCE: {
+			case ResourcePackage.FILE_RESOURCE:
+			{
 				FileResource fileResource = (FileResource)theEObject;
 				T result = caseFileResource(fileResource);
 				if (result == null) result = casePathResource(fileResource);
@@ -140,7 +151,8 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.MODULE_RESOURCE: {
+			case ResourcePackage.MODULE_RESOURCE:
+			{
 				ModuleResource moduleResource = (ModuleResource)theEObject;
 				T result = caseModuleResource(moduleResource);
 				if (result == null) result = casePathResource(moduleResource);
@@ -148,14 +160,16 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.SHADER: {
+			case ResourcePackage.SHADER:
+			{
 				Shader shader = (Shader)theEObject;
 				T result = caseShader(shader);
 				if (result == null) result = caseResource(shader);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.PUSH_CONSTANT: {
+			case ResourcePackage.PUSH_CONSTANT:
+			{
 				PushConstant pushConstant = (PushConstant)theEObject;
 				T result = casePushConstant(pushConstant);
 				if (result == null) result = caseVulkanBuffer(pushConstant);
@@ -163,19 +177,22 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.IDESCRIPTOR: {
+			case ResourcePackage.IDESCRIPTOR:
+			{
 				IDescriptor iDescriptor = (IDescriptor)theEObject;
 				T result = caseIDescriptor(iDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.DESCRIPTOR_SET: {
+			case ResourcePackage.DESCRIPTOR_SET:
+			{
 				DescriptorSet descriptorSet = (DescriptorSet)theEObject;
 				T result = caseDescriptorSet(descriptorSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.INDEXED_BUFFER: {
+			case ResourcePackage.INDEXED_BUFFER:
+			{
 				IndexedBuffer indexedBuffer = (IndexedBuffer)theEObject;
 				T result = caseIndexedBuffer(indexedBuffer);
 				if (result == null) result = caseVulkanBuffer(indexedBuffer);
@@ -184,27 +201,31 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.BARRIER: {
+			case ResourcePackage.BARRIER:
+			{
 				Barrier barrier = (Barrier)theEObject;
 				T result = caseBarrier(barrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.BUFFER_BARRIER: {
+			case ResourcePackage.BUFFER_BARRIER:
+			{
 				BufferBarrier bufferBarrier = (BufferBarrier)theEObject;
 				T result = caseBufferBarrier(bufferBarrier);
 				if (result == null) result = caseBarrier(bufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.ABSTRACT_IMAGE_BARRIER: {
+			case ResourcePackage.ABSTRACT_IMAGE_BARRIER:
+			{
 				AbstractImageBarrier abstractImageBarrier = (AbstractImageBarrier)theEObject;
 				T result = caseAbstractImageBarrier(abstractImageBarrier);
 				if (result == null) result = caseBarrier(abstractImageBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.IMAGE_BARRIER: {
+			case ResourcePackage.IMAGE_BARRIER:
+			{
 				ImageBarrier imageBarrier = (ImageBarrier)theEObject;
 				T result = caseImageBarrier(imageBarrier);
 				if (result == null) result = caseAbstractImageBarrier(imageBarrier);
@@ -212,7 +233,8 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.REFERENCE_IMAGE_BARRIER: {
+			case ResourcePackage.REFERENCE_IMAGE_BARRIER:
+			{
 				ReferenceImageBarrier referenceImageBarrier = (ReferenceImageBarrier)theEObject;
 				T result = caseReferenceImageBarrier(referenceImageBarrier);
 				if (result == null) result = caseAbstractImageBarrier(referenceImageBarrier);
@@ -220,7 +242,8 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.IMAGE_TRANSITION: {
+			case ResourcePackage.IMAGE_TRANSITION:
+			{
 				ImageTransition imageTransition = (ImageTransition)theEObject;
 				T result = caseImageTransition(imageTransition);
 				if (result == null) result = defaultCase(theEObject);

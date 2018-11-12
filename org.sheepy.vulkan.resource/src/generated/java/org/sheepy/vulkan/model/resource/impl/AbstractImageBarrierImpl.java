@@ -71,7 +71,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	 */
 	public EList<ImageTransition> getTransitions()
 	{
-		if (transitions == null) {
+		if (transitions == null)
+		{
 			transitions = new EObjectContainmentEList<ImageTransition>(ImageTransition.class, this, ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
 		}
 		return transitions;
@@ -85,7 +86,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 				return ((InternalEList<?>)getTransitions()).basicRemove(otherEnd, msgs);
 		}
@@ -100,7 +102,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 				return getTransitions();
 		}
@@ -116,7 +119,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 				getTransitions().clear();
 				getTransitions().addAll((Collection<? extends ImageTransition>)newValue);
@@ -133,7 +137,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 				getTransitions().clear();
 				return;
@@ -149,7 +154,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 				return transitions != null && !transitions.isEmpty();
 		}

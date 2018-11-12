@@ -108,10 +108,12 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	 */
 	public Buffer getBuffer()
 	{
-		if (buffer != null && buffer.eIsProxy()) {
+		if (buffer != null && buffer.eIsProxy())
+		{
 			InternalEObject oldBuffer = (InternalEObject)buffer;
 			buffer = (Buffer)eResolveProxy(oldBuffer);
-			if (buffer != oldBuffer) {
+			if (buffer != oldBuffer)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
 			}
@@ -196,7 +198,8 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BUFFER_BARRIER__BUFFER:
 				if (resolve) return getBuffer();
 				return basicGetBuffer();
@@ -216,7 +219,8 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BUFFER_BARRIER__BUFFER:
 				setBuffer((Buffer)newValue);
 				return;
@@ -238,7 +242,8 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BUFFER_BARRIER__BUFFER:
 				setBuffer((Buffer)null);
 				return;
@@ -260,7 +265,8 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.BUFFER_BARRIER__BUFFER:
 				return buffer != null;
 			case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:

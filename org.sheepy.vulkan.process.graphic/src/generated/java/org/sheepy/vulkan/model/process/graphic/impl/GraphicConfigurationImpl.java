@@ -304,7 +304,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	{
 		ColorDomain oldColorDomain = colorDomain;
 		colorDomain = newColorDomain;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, oldColorDomain, newColorDomain);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -318,7 +319,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 */
 	public void setColorDomain(ColorDomain newColorDomain)
 	{
-		if (newColorDomain != colorDomain) {
+		if (newColorDomain != colorDomain)
+		{
 			NotificationChain msgs = null;
 			if (colorDomain != null)
 				msgs = ((InternalEObject)colorDomain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, null, msgs);
@@ -385,7 +387,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 				return basicSetColorDomain(null, msgs);
 		}
@@ -400,7 +403,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 				return isClearBeforeRender();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
@@ -427,7 +431,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 				setClearBeforeRender((Boolean)newValue);
 				return;
@@ -461,7 +466,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 				setClearBeforeRender(CLEAR_BEFORE_RENDER_EDEFAULT);
 				return;
@@ -495,7 +501,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 				return clearBeforeRender != CLEAR_BEFORE_RENDER_EDEFAULT;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:

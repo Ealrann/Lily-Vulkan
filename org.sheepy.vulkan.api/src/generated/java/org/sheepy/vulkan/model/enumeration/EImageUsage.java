@@ -217,7 +217,8 @@ public enum EImageUsage implements Enumerator
 	 * @generated
 	 */
 	private static final EImageUsage[] VALUES_ARRAY =
-		new EImageUsage[] {
+		new EImageUsage[]
+		{
 			TRANSFER_SRC,
 			TRANSFER_DST,
 			SAMPLED,
@@ -246,9 +247,11 @@ public enum EImageUsage implements Enumerator
 	 */
 	public static EImageUsage get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EImageUsage result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -265,9 +268,11 @@ public enum EImageUsage implements Enumerator
 	 */
 	public static EImageUsage getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EImageUsage result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -284,7 +289,8 @@ public enum EImageUsage implements Enumerator
 	 */
 	public static EImageUsage get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case TRANSFER_SRC_VALUE: return TRANSFER_SRC;
 			case TRANSFER_DST_VALUE: return TRANSFER_DST;
 			case SAMPLED_VALUE: return SAMPLED;

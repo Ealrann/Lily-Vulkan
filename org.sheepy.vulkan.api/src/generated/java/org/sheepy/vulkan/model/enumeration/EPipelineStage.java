@@ -433,7 +433,8 @@ public enum EPipelineStage implements Enumerator
 	 * @generated
 	 */
 	private static final EPipelineStage[] VALUES_ARRAY =
-		new EPipelineStage[] {
+		new EPipelineStage[]
+		{
 			TOP_OF_PIPE_BIT,
 			DRAW_INDIRECT_BIT,
 			VERTEX_INPUT_BIT,
@@ -471,9 +472,11 @@ public enum EPipelineStage implements Enumerator
 	 */
 	public static EPipelineStage get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EPipelineStage result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -490,9 +493,11 @@ public enum EPipelineStage implements Enumerator
 	 */
 	public static EPipelineStage getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EPipelineStage result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -509,7 +514,8 @@ public enum EPipelineStage implements Enumerator
 	 */
 	public static EPipelineStage get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case TOP_OF_PIPE_BIT_VALUE: return TOP_OF_PIPE_BIT;
 			case DRAW_INDIRECT_BIT_VALUE: return DRAW_INDIRECT_BIT;
 			case VERTEX_INPUT_BIT_VALUE: return VERTEX_INPUT_BIT;

@@ -73,7 +73,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 */
 	public EList<IProcessUnit> getUnits()
 	{
-		if (units == null) {
+		if (units == null)
+		{
 			units = new EObjectContainmentEList<IProcessUnit>(IProcessUnit.class, this, ProcessPackage.ABSTRACT_PROCESS__UNITS);
 		}
 		return units;
@@ -87,7 +88,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
 		}
@@ -102,7 +104,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				return getUnits();
 		}
@@ -118,7 +121,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				getUnits().clear();
 				getUnits().addAll((Collection<? extends IProcessUnit>)newValue);
@@ -135,7 +139,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				getUnits().clear();
 				return;
@@ -151,7 +156,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				return units != null && !units.isEmpty();
 		}

@@ -152,10 +152,12 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 */
 	public Shader getShader()
 	{
-		if (shader != null && shader.eIsProxy()) {
+		if (shader != null && shader.eIsProxy())
+		{
 			InternalEObject oldShader = (InternalEObject)shader;
 			shader = (Shader)eResolveProxy(oldShader);
-			if (shader != oldShader) {
+			if (shader != oldShader)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTER__SHADER, oldShader, shader));
 			}
@@ -194,7 +196,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTER__ENABLED:
 				return isEnabled();
 			case ComputePackage.COMPUTER__STAGE:
@@ -214,7 +217,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTER__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
@@ -236,7 +240,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTER__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
@@ -258,7 +263,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ComputePackage.COMPUTER__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case ComputePackage.COMPUTER__STAGE:

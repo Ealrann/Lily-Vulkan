@@ -73,7 +73,8 @@ public enum EAttachmentStoreOp implements Enumerator
 	 * @generated
 	 */
 	private static final EAttachmentStoreOp[] VALUES_ARRAY =
-		new EAttachmentStoreOp[] {
+		new EAttachmentStoreOp[]
+		{
 			STORE,
 			DONT_CARE,
 		};
@@ -96,9 +97,11 @@ public enum EAttachmentStoreOp implements Enumerator
 	 */
 	public static EAttachmentStoreOp get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EAttachmentStoreOp result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -115,9 +118,11 @@ public enum EAttachmentStoreOp implements Enumerator
 	 */
 	public static EAttachmentStoreOp getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			EAttachmentStoreOp result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -134,7 +139,8 @@ public enum EAttachmentStoreOp implements Enumerator
 	 */
 	public static EAttachmentStoreOp get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case STORE_VALUE: return STORE;
 			case DONT_CARE_VALUE: return DONT_CARE;
 		}

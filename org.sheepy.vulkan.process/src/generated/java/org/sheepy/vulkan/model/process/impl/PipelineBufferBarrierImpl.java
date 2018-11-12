@@ -80,7 +80,8 @@ public class PipelineBufferBarrierImpl extends PipelineBarrierImpl implements Pi
 	{
 		BufferBarrier oldBufferBarrier = bufferBarrier;
 		bufferBarrier = newBufferBarrier;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER, oldBufferBarrier, newBufferBarrier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -94,7 +95,8 @@ public class PipelineBufferBarrierImpl extends PipelineBarrierImpl implements Pi
 	 */
 	public void setBufferBarrier(BufferBarrier newBufferBarrier)
 	{
-		if (newBufferBarrier != bufferBarrier) {
+		if (newBufferBarrier != bufferBarrier)
+		{
 			NotificationChain msgs = null;
 			if (bufferBarrier != null)
 				msgs = ((InternalEObject)bufferBarrier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER, null, msgs);
@@ -115,7 +117,8 @@ public class PipelineBufferBarrierImpl extends PipelineBarrierImpl implements Pi
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER:
 				return basicSetBufferBarrier(null, msgs);
 		}
@@ -130,7 +133,8 @@ public class PipelineBufferBarrierImpl extends PipelineBarrierImpl implements Pi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER:
 				return getBufferBarrier();
 		}
@@ -145,7 +149,8 @@ public class PipelineBufferBarrierImpl extends PipelineBarrierImpl implements Pi
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER:
 				setBufferBarrier((BufferBarrier)newValue);
 				return;
@@ -161,7 +166,8 @@ public class PipelineBufferBarrierImpl extends PipelineBarrierImpl implements Pi
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER:
 				setBufferBarrier((BufferBarrier)null);
 				return;
@@ -177,7 +183,8 @@ public class PipelineBufferBarrierImpl extends PipelineBarrierImpl implements Pi
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ProcessPackage.PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER:
 				return bufferBarrier != null;
 		}

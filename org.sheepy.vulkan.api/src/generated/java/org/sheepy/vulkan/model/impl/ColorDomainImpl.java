@@ -146,7 +146,8 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.COLOR_DOMAIN__FORMAT:
 				return getFormat();
 			case VulkanPackage.COLOR_DOMAIN__COLOR_SPACE:
@@ -163,7 +164,8 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.COLOR_DOMAIN__FORMAT:
 				setFormat((EFormat)newValue);
 				return;
@@ -182,7 +184,8 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.COLOR_DOMAIN__FORMAT:
 				setFormat(FORMAT_EDEFAULT);
 				return;
@@ -201,7 +204,8 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.COLOR_DOMAIN__FORMAT:
 				return format != FORMAT_EDEFAULT;
 			case VulkanPackage.COLOR_DOMAIN__COLOR_SPACE:

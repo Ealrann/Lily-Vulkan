@@ -82,7 +82,8 @@ public class PipelineImageBarrierImpl extends PipelineBarrierImpl implements Pip
 	{
 		ImageBarrier oldImageBarrier = imageBarrier;
 		imageBarrier = newImageBarrier;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER, oldImageBarrier, newImageBarrier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -96,7 +97,8 @@ public class PipelineImageBarrierImpl extends PipelineBarrierImpl implements Pip
 	 */
 	public void setImageBarrier(ImageBarrier newImageBarrier)
 	{
-		if (newImageBarrier != imageBarrier) {
+		if (newImageBarrier != imageBarrier)
+		{
 			NotificationChain msgs = null;
 			if (imageBarrier != null)
 				msgs = ((InternalEObject)imageBarrier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER, null, msgs);
@@ -117,7 +119,8 @@ public class PipelineImageBarrierImpl extends PipelineBarrierImpl implements Pip
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER:
 				return basicSetImageBarrier(null, msgs);
 		}
@@ -132,7 +135,8 @@ public class PipelineImageBarrierImpl extends PipelineBarrierImpl implements Pip
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER:
 				return getImageBarrier();
 		}
@@ -147,7 +151,8 @@ public class PipelineImageBarrierImpl extends PipelineBarrierImpl implements Pip
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER:
 				setImageBarrier((ImageBarrier)newValue);
 				return;
@@ -163,7 +168,8 @@ public class PipelineImageBarrierImpl extends PipelineBarrierImpl implements Pip
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER:
 				setImageBarrier((ImageBarrier)null);
 				return;
@@ -179,7 +185,8 @@ public class PipelineImageBarrierImpl extends PipelineBarrierImpl implements Pip
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER:
 				return imageBarrier != null;
 		}

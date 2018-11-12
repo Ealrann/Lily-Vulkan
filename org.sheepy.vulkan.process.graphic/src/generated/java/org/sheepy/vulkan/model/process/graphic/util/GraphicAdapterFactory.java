@@ -46,7 +46,8 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 */
 	public GraphicAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = GraphicPackage.eINSTANCE;
 		}
 	}
@@ -62,10 +63,12 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -78,77 +81,96 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected GraphicSwitch<Adapter> modelSwitch =
-		new GraphicSwitch<Adapter>() {
+		new GraphicSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseGraphicConfiguration(GraphicConfiguration object) {
+			public Adapter caseGraphicConfiguration(GraphicConfiguration object)
+			{
 				return createGraphicConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseRenderPassInfo(RenderPassInfo object) {
+			public Adapter caseRenderPassInfo(RenderPassInfo object)
+			{
 				return createRenderPassInfoAdapter();
 			}
 			@Override
-			public Adapter caseSubpassDependency(SubpassDependency object) {
+			public Adapter caseSubpassDependency(SubpassDependency object)
+			{
 				return createSubpassDependencyAdapter();
 			}
 			@Override
-			public Adapter caseAttachmentDescription(AttachmentDescription object) {
+			public Adapter caseAttachmentDescription(AttachmentDescription object)
+			{
 				return createAttachmentDescriptionAdapter();
 			}
 			@Override
-			public Adapter caseGraphicProcessPool(GraphicProcessPool object) {
+			public Adapter caseGraphicProcessPool(GraphicProcessPool object)
+			{
 				return createGraphicProcessPoolAdapter();
 			}
 			@Override
-			public Adapter caseGraphicProcess(GraphicProcess object) {
+			public Adapter caseGraphicProcess(GraphicProcess object)
+			{
 				return createGraphicProcessAdapter();
 			}
 			@Override
-			public Adapter caseGraphicsPipeline(GraphicsPipeline object) {
+			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
+			{
 				return createGraphicsPipelineAdapter();
 			}
 			@Override
-			public Adapter caseImagePipeline(ImagePipeline object) {
+			public Adapter caseImagePipeline(ImagePipeline object)
+			{
 				return createImagePipelineAdapter();
 			}
 			@Override
-			public Adapter casePipelineImageBarrier(PipelineImageBarrier object) {
+			public Adapter casePipelineImageBarrier(PipelineImageBarrier object)
+			{
 				return createPipelineImageBarrierAdapter();
 			}
 			@Override
-			public Adapter caseConfiguration(Configuration object) {
+			public Adapter caseConfiguration(Configuration object)
+			{
 				return createConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseIProcessPool(IProcessPool object) {
+			public Adapter caseIProcessPool(IProcessPool object)
+			{
 				return createIProcessPoolAdapter();
 			}
 			@Override
-			public <T extends AbstractProcess> Adapter caseAbstractProcessPool(AbstractProcessPool<T> object) {
+			public <T extends AbstractProcess> Adapter caseAbstractProcessPool(AbstractProcessPool<T> object)
+			{
 				return createAbstractProcessPoolAdapter();
 			}
 			@Override
-			public Adapter caseIGraphicProcessPool(IGraphicProcessPool object) {
+			public Adapter caseIGraphicProcessPool(IGraphicProcessPool object)
+			{
 				return createIGraphicProcessPoolAdapter();
 			}
 			@Override
-			public Adapter caseAbstractProcess(AbstractProcess object) {
+			public Adapter caseAbstractProcess(AbstractProcess object)
+			{
 				return createAbstractProcessAdapter();
 			}
 			@Override
-			public Adapter caseIProcessUnit(IProcessUnit object) {
+			public Adapter caseIProcessUnit(IProcessUnit object)
+			{
 				return createIProcessUnitAdapter();
 			}
 			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object) {
+			public Adapter caseAbstractPipeline(AbstractPipeline object)
+			{
 				return createAbstractPipelineAdapter();
 			}
 			@Override
-			public Adapter casePipelineBarrier(PipelineBarrier object) {
+			public Adapter casePipelineBarrier(PipelineBarrier object)
+			{
 				return createPipelineBarrierAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

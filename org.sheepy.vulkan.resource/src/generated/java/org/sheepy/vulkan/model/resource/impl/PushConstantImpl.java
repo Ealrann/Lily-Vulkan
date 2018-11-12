@@ -145,7 +145,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.PUSH_CONSTANT__SIZE:
 				return getSize();
 			case ResourcePackage.PUSH_CONSTANT__STAGE:
@@ -162,7 +163,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.PUSH_CONSTANT__SIZE:
 				setSize((Integer)newValue);
 				return;
@@ -181,7 +183,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.PUSH_CONSTANT__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
@@ -200,7 +203,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.PUSH_CONSTANT__SIZE:
 				return size != SIZE_EDEFAULT;
 			case ResourcePackage.PUSH_CONSTANT__STAGE:

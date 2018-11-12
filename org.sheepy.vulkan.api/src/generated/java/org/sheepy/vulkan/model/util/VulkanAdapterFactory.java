@@ -37,7 +37,8 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 */
 	public VulkanAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = VulkanPackage.eINSTANCE;
 		}
 	}
@@ -53,10 +54,12 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -69,29 +72,36 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected VulkanSwitch<Adapter> modelSwitch =
-		new VulkanSwitch<Adapter>() {
+		new VulkanSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseVulkanApplication(VulkanApplication object) {
+			public Adapter caseVulkanApplication(VulkanApplication object)
+			{
 				return createVulkanApplicationAdapter();
 			}
 			@Override
-			public Adapter caseIProcessPool(IProcessPool object) {
+			public Adapter caseIProcessPool(IProcessPool object)
+			{
 				return createIProcessPoolAdapter();
 			}
 			@Override
-			public Adapter caseIComputeProcessPool(IComputeProcessPool object) {
+			public Adapter caseIComputeProcessPool(IComputeProcessPool object)
+			{
 				return createIComputeProcessPoolAdapter();
 			}
 			@Override
-			public Adapter caseIGraphicProcessPool(IGraphicProcessPool object) {
+			public Adapter caseIGraphicProcessPool(IGraphicProcessPool object)
+			{
 				return createIGraphicProcessPoolAdapter();
 			}
 			@Override
-			public Adapter caseColorDomain(ColorDomain object) {
+			public Adapter caseColorDomain(ColorDomain object)
+			{
 				return createColorDomainAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

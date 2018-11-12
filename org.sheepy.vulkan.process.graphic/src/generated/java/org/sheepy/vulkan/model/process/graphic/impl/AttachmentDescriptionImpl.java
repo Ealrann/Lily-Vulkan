@@ -456,7 +456,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL:
 				return isStencil();
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
@@ -487,7 +488,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL:
 				setStencil((Boolean)newValue);
 				return;
@@ -527,7 +529,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL:
 				setStencil(STENCIL_EDEFAULT);
 				return;
@@ -567,7 +570,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL:
 				return stencil != STENCIL_EDEFAULT;
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:

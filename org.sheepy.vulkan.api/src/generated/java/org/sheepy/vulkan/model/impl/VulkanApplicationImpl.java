@@ -353,7 +353,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	public EList<IComputeProcessPool> getComputePools()
 	{
-		if (computePools == null) {
+		if (computePools == null)
+		{
 			computePools = new EObjectContainmentEList<IComputeProcessPool>(IComputeProcessPool.class, this, VulkanPackage.VULKAN_APPLICATION__COMPUTE_POOLS);
 		}
 		return computePools;
@@ -378,7 +379,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	{
 		IGraphicProcessPool oldGraphicPool = graphicPool;
 		graphicPool = newGraphicPool;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL, oldGraphicPool, newGraphicPool);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -392,7 +394,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	public void setGraphicPool(IGraphicProcessPool newGraphicPool)
 	{
-		if (newGraphicPool != graphicPool) {
+		if (newGraphicPool != graphicPool)
+		{
 			NotificationChain msgs = null;
 			if (graphicPool != null)
 				msgs = ((InternalEObject)graphicPool).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL, null, msgs);
@@ -413,7 +416,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_APPLICATION__COMPUTE_POOLS:
 				return ((InternalEList<?>)getComputePools()).basicRemove(otherEnd, msgs);
 			case VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL:
@@ -430,7 +434,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_APPLICATION__ENABLED:
 				return isEnabled();
 			case VulkanPackage.VULKAN_APPLICATION__FULLSCREEN:
@@ -460,7 +465,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 		@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_APPLICATION__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
@@ -498,7 +504,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_APPLICATION__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
@@ -535,7 +542,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanPackage.VULKAN_APPLICATION__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case VulkanPackage.VULKAN_APPLICATION__FULLSCREEN:

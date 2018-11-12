@@ -99,7 +99,8 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.PATH_RESOURCE__PATH:
 				return getPath();
 		}
@@ -114,7 +115,8 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.PATH_RESOURCE__PATH:
 				setPath((String)newValue);
 				return;
@@ -130,7 +132,8 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.PATH_RESOURCE__PATH:
 				setPath(PATH_EDEFAULT);
 				return;
@@ -146,7 +149,8 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.PATH_RESOURCE__PATH:
 				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
 		}

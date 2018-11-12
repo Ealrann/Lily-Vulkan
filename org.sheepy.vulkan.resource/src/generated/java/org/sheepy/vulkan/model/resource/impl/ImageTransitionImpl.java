@@ -232,7 +232,8 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
 				return getSrcLayout();
 			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
@@ -253,7 +254,8 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
 				setSrcLayout((EImageLayout)newValue);
 				return;
@@ -278,7 +280,8 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
 				setSrcLayout(SRC_LAYOUT_EDEFAULT);
 				return;
@@ -303,7 +306,8 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
 				return srcLayout != SRC_LAYOUT_EDEFAULT;
 			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:

@@ -121,7 +121,8 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 */
 	private static final ECommandStage[] VALUES_ARRAY =
-		new ECommandStage[] {
+		new ECommandStage[]
+		{
 			COMPUTE,
 			PRE_RENDER,
 			RENDER,
@@ -146,9 +147,11 @@ public enum ECommandStage implements Enumerator
 	 */
 	public static ECommandStage get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ECommandStage result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -165,9 +168,11 @@ public enum ECommandStage implements Enumerator
 	 */
 	public static ECommandStage getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ECommandStage result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -184,7 +189,8 @@ public enum ECommandStage implements Enumerator
 	 */
 	public static ECommandStage get(int value)
 	{
-		switch (value) {
+		switch (value)
+		{
 			case COMPUTE_VALUE: return COMPUTE;
 		}
 		return null;
