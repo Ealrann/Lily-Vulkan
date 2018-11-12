@@ -12,8 +12,8 @@ import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 public class MainRotating
 {
-	private static final String VERTEX_SHADER_PATH = "org/sheepy/vulkan/demo/rotatingtriangle/rotating.vert.spv";
-	private static final String FRAGMENT_SHADER_PATH = "org/sheepy/vulkan/demo/rotatingtriangle/rotating.frag.spv";
+	private static final String VERTEX_SHADER_PATH = "rotating.vert.spv";
+	private static final String FRAGMENT_SHADER_PATH = "rotating.frag.spv";
 
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;

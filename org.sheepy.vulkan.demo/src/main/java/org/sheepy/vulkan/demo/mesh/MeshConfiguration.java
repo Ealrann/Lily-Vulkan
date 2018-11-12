@@ -4,10 +4,9 @@ import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 public class MeshConfiguration
 {
-
 	public String texturePath = null;
-	public String vertexShaderPath = "org/sheepy/vulkan/demo/triangle/triangle.vert.spv";
-	public String fragmentShaderPath = "org/sheepy/vulkan/demo/triangle/triangle.frag.spv";
+	public String vertexShaderPath = "triangle.vert.spv";
+	public String fragmentShaderPath = "triangle.frag.spv";
 
 	public boolean buildUniformBuffer = false;
 	
