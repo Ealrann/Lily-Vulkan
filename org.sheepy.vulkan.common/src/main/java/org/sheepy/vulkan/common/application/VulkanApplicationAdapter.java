@@ -18,30 +18,9 @@ public class VulkanApplicationAdapter extends AbstractServiceAdapter
 {
 	protected VulkanApplication application;
 	protected VulkanApplicationManager manager;
+	private IWindowListener resizeListener;
 
 	private boolean listeningResize = true;
-
-	private final IWindowListener resizeListener = new IWindowListener()
-	{
-		@Override
-		public void onWindowResize(Surface surface)
-		{
-			listeningResize = false;
-
-			try
-			{
-				SVector2i size = new SVector2i();
-				size.x = surface.width;
-				size.y = surface.height;
-
-				application.setSize(size);
-				manager.resize(surface);
-			} finally
-			{
-				listeningResize = true;
-			}
-		}
-	};
 
 	@Override
 	public void notifyChanged(Notification notification)
@@ -76,6 +55,8 @@ public class VulkanApplicationAdapter extends AbstractServiceAdapter
 	public void setTarget(Notifier target)
 	{
 		application = (VulkanApplication) target;
+		resizeListener = new ResizeListener();
+		
 		if (application.isEnabled())
 		{
 			startVulkanApplication();
@@ -92,6 +73,9 @@ public class VulkanApplicationAdapter extends AbstractServiceAdapter
 				stopVulkanApplication();
 			}
 		}
+
+		resizeListener = null;
+		application = null;
 	}
 
 	private void startVulkanApplication()
@@ -106,6 +90,24 @@ public class VulkanApplicationAdapter extends AbstractServiceAdapter
 	{
 		manager.window.removeListener(resizeListener);
 		manager.stop();
+	}
+
+	private void resize(Surface surface)
+	{
+		listeningResize = false;
+
+		try
+		{
+			SVector2i size = new SVector2i();
+			size.x = surface.width;
+			size.y = surface.height;
+
+			application.setSize(size);
+			manager.resize(surface);
+		} finally
+		{
+			listeningResize = true;
+		}
 	}
 
 	@Override
@@ -146,5 +148,14 @@ public class VulkanApplicationAdapter extends AbstractServiceAdapter
 	public static VulkanApplicationAdapter adapt(VulkanApplication application)
 	{
 		return ServiceAdapterFactory.INSTANCE.adapt(application, VulkanApplicationAdapter.class);
+	}
+
+	class ResizeListener implements IWindowListener
+	{
+		@Override
+		public void onWindowResize(Surface surface)
+		{
+			resize(surface);
+		}
 	}
 }
