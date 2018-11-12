@@ -7,9 +7,10 @@ public class MeshConfiguration
 	public String texturePath = null;
 	public String vertexShaderPath = "triangle.vert.spv";
 	public String fragmentShaderPath = "triangle.frag.spv";
+	public Module module = MeshConfiguration.class.getModule();
 
 	public boolean buildUniformBuffer = false;
-	
+
 	public EFrontFace rasterizerFrontFace = EFrontFace.CLOCKWISE;
 	
 	public final int width;

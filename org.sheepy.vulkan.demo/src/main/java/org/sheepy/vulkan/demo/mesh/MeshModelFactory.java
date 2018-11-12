@@ -52,7 +52,7 @@ public class MeshModelFactory
 	public MeshModelFactory(MeshConfiguration meshConfiguration)
 	{
 		this.meshConfiguration = meshConfiguration;
-		final SVector2i size = new SVector2i(meshConfiguration.width, meshConfiguration.height);
+		var size = new SVector2i(meshConfiguration.width, meshConfiguration.height);
 
 		application.setTitle("Vulkan Triangle");
 		application.setSize(size);
@@ -129,14 +129,14 @@ public class MeshModelFactory
 
 	private GraphicProcessPool newMeshProcessPool()
 	{
-		final Module thisModule = getClass().getModule();
+		var module = meshConfiguration.module;
 
 		final ModuleResource vertexShaderFile = new ModuleResourceImpl();
-		vertexShaderFile.setModule(thisModule);
+		vertexShaderFile.setModule(module);
 		vertexShaderFile.setPath(meshConfiguration.vertexShaderPath);
 
 		final ModuleResource fragmentShaderFile = new ModuleResourceImpl();
-		fragmentShaderFile.setModule(thisModule);
+		fragmentShaderFile.setModule(module);
 		fragmentShaderFile.setPath(meshConfiguration.fragmentShaderPath);
 
 		final Shader vertexShader = new ShaderImpl();
@@ -162,30 +162,30 @@ public class MeshModelFactory
 		processPool.getResources().add(vertexShader);
 		processPool.getResources().add(fragmentShader);
 		processPool.getProcesses().add(graphicProcess);
-		
-		if(meshConfiguration.depth)
+
+		if (meshConfiguration.depth)
 		{
 			final DepthImage depthImage = new DepthImageImpl();
 			processPool.getResources().add(depthImage);
 			processPool.setDepthImage(depthImage);
 		}
-		
-		if(uniformBuffer != null)
+
+		if (uniformBuffer != null)
 		{
 			descriptorSet.getDescriptors().add(uniformBuffer);
 			processPool.getResources().add(uniformBuffer);
 		}
 
-		if(meshConfiguration.texturePath != null)
+		if (meshConfiguration.texturePath != null)
 		{
 			final ModuleResource textureFile = new ModuleResourceImpl();
-			textureFile.setModule(thisModule);
+			textureFile.setModule(module);
 			textureFile.setPath(meshConfiguration.texturePath);
-			
+
 			final var texture = new TextureImpl();
 			texture.setFile(textureFile);
 			texture.setMipmapEnabled(meshConfiguration.mipmap);
-			
+
 			descriptorSet.getDescriptors().add(texture);
 			processPool.getResources().add(texture);
 		}
