@@ -7,7 +7,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
-import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.api.queue.EQueueType;
@@ -24,7 +23,7 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 {
 	private static final String FAILED_SUBMIT_GRAPHIC = "Failed to submit graphic command buffer";
 	private static final String FAILED_SUBMIT_PRESENT = "Failed to submit present command buffer";
-	
+
 	/**
 	 * This is just -1L, but it is nicer as a symbolic constant.
 	 */
@@ -94,13 +93,18 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 
 	private void submitAndPresentImage(Integer imageIndex)
 	{
-		final VkQueue vkQueue = executionManager.getQueue().vkQueue;
+		var queueManager = executionManager.logicalDevice.queueManager;
+		var graphicQueue = queueManager.getGraphicQueue();
+		var presentQueue = queueManager.getPresentQueue();
 		FrameSubmission submission = context.submission;
 		VkSubmitInfo submitInfo = submission.getSubmitInfo(imageIndex);
 		VkPresentInfoKHR presentInfo = submission.getPresentInfo(imageIndex);
 
-		Logger.check(vkQueueSubmit(vkQueue, submitInfo, VK_NULL_HANDLE), FAILED_SUBMIT_GRAPHIC);
-		Logger.check(vkQueuePresentKHR(vkQueue, presentInfo), FAILED_SUBMIT_PRESENT);
+		Logger.check(vkQueueSubmit(graphicQueue.vkQueue, submitInfo, VK_NULL_HANDLE),
+				FAILED_SUBMIT_GRAPHIC);
+		Logger.check(vkQueuePresentKHR(presentQueue.vkQueue, presentInfo), FAILED_SUBMIT_PRESENT);
+
+		presentQueue.waitIdle();
 	}
 
 	@Override
@@ -128,7 +132,7 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 	{
 		return EQueueType.Graphic;
 	}
-	
+
 	@Override
 	public boolean isApplicable(EClass eClass)
 	{
