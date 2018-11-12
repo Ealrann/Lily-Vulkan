@@ -1,5 +1,6 @@
 package org.sheepy.vulkan.demo.triangle;
 
+import org.sheepy.common.api.util.UPSMeter;
 import org.sheepy.vulkan.api.VulkanApplicationLauncher;
 import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
@@ -30,10 +31,12 @@ public class MainTriangle
 		var graphicPool = application.getGraphicPool();
 		final var applicationAdapter = VulkanApplicationLauncher.launch(application);
 
+		UPSMeter meter = new UPSMeter(2000);
 		while (!applicationAdapter.shouldClose())
 		{
 			applicationAdapter.prepare();
 			applicationAdapter.execute(graphicPool);
+			meter.tick();
 		}
 	}
 

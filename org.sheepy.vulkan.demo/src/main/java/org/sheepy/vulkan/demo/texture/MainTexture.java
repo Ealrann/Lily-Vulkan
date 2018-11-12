@@ -1,5 +1,6 @@
 package org.sheepy.vulkan.demo.texture;
 
+import org.sheepy.common.api.util.UPSMeter;
 import org.sheepy.vulkan.api.VulkanApplicationLauncher;
 import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
@@ -43,12 +44,14 @@ public class MainTexture
 		var graphicPool = application.getGraphicPool();
 		var applicationAdapter = VulkanApplicationLauncher.launch(application);
 
+		UPSMeter meter = new UPSMeter(2000);
 		start = System.currentTimeMillis();
 		while (!applicationAdapter.shouldClose())
 		{
 			updateUniformBuffer();
 			applicationAdapter.prepare();
 			applicationAdapter.execute(graphicPool);
+			meter.tick();
 		}
 	}
 
