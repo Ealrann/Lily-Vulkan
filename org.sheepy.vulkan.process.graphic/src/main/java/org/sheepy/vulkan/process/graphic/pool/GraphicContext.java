@@ -19,9 +19,9 @@ public class GraphicContext extends ProcessContext
 	public final GraphicProcessPool graphicProcessPool;
 	
 	public final SwapChainManager swapChainManager;
+	public final ImageViewManager imageViewManager;
 	public final Framebuffers framebuffers;
 	public final RenderPass renderPass;
-	public final ImageViewManager imageViewManager;
 	public final FrameSubmission submission;
 	public final GraphicCommandBuffers commandBuffers;
 
