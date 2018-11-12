@@ -67,10 +67,12 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	@Override
 	public Texture getTexture()
 	{
-		if (texture != null && texture.eIsProxy()) {
+		if (texture != null && texture.eIsProxy())
+		{
 			InternalEObject oldTexture = (InternalEObject)texture;
 			texture = (Texture)eResolveProxy(oldTexture);
-			if (texture != oldTexture) {
+			if (texture != oldTexture)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VulkanDemoPackage.MESH_BUFFER__TEXTURE, oldTexture, texture));
 			}
@@ -110,7 +112,8 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanDemoPackage.MESH_BUFFER__TEXTURE:
 				if (resolve) return getTexture();
 				return basicGetTexture();
@@ -126,7 +129,8 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanDemoPackage.MESH_BUFFER__TEXTURE:
 				setTexture((Texture)newValue);
 				return;
@@ -142,7 +146,8 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanDemoPackage.MESH_BUFFER__TEXTURE:
 				setTexture((Texture)null);
 				return;
@@ -158,7 +163,8 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case VulkanDemoPackage.MESH_BUFFER__TEXTURE:
 				return texture != null;
 		}

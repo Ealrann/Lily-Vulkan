@@ -28,13 +28,16 @@ public class VulkanDemoFactoryImpl extends EFactoryImpl implements VulkanDemoFac
 	 */
 	public static VulkanDemoFactory init()
 	{
-		try {
+		try
+		{
 			VulkanDemoFactory theVulkanDemoFactory = (VulkanDemoFactory)EPackage.Registry.INSTANCE.getEFactory(VulkanDemoPackage.eNS_URI);
-			if (theVulkanDemoFactory != null) {
+			if (theVulkanDemoFactory != null)
+			{
 				return theVulkanDemoFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new VulkanDemoFactoryImpl();
@@ -59,7 +62,8 @@ public class VulkanDemoFactoryImpl extends EFactoryImpl implements VulkanDemoFac
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case VulkanDemoPackage.MESH_PIPELINE: return createMeshPipeline();
 			case VulkanDemoPackage.MESH_BUFFER: return createMeshBuffer();
 			case VulkanDemoPackage.UNIFORM_BUFFER: return createUniformBuffer();

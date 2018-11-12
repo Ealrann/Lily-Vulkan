@@ -44,7 +44,8 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 */
 	public VulkanDemoAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = VulkanDemoPackage.eINSTANCE;
 		}
 	}
@@ -60,10 +61,12 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -76,49 +79,61 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected VulkanDemoSwitch<Adapter> modelSwitch =
-		new VulkanDemoSwitch<Adapter>() {
+		new VulkanDemoSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseMeshPipeline(MeshPipeline object) {
+			public Adapter caseMeshPipeline(MeshPipeline object)
+			{
 				return createMeshPipelineAdapter();
 			}
 			@Override
-			public Adapter caseMeshBuffer(MeshBuffer object) {
+			public Adapter caseMeshBuffer(MeshBuffer object)
+			{
 				return createMeshBufferAdapter();
 			}
 			@Override
-			public Adapter caseUniformBuffer(UniformBuffer object) {
+			public Adapter caseUniformBuffer(UniformBuffer object)
+			{
 				return createUniformBufferAdapter();
 			}
 			@Override
-			public Adapter caseIProcessUnit(IProcessUnit object) {
+			public Adapter caseIProcessUnit(IProcessUnit object)
+			{
 				return createIProcessUnitAdapter();
 			}
 			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object) {
+			public Adapter caseAbstractPipeline(AbstractPipeline object)
+			{
 				return createAbstractPipelineAdapter();
 			}
 			@Override
-			public Adapter caseGraphicsPipeline(GraphicsPipeline object) {
+			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
+			{
 				return createGraphicsPipelineAdapter();
 			}
 			@Override
-			public Adapter caseResource(Resource object) {
+			public Adapter caseResource(Resource object)
+			{
 				return createResourceAdapter();
 			}
 			@Override
-			public Adapter caseVulkanBuffer(VulkanBuffer object) {
+			public Adapter caseVulkanBuffer(VulkanBuffer object)
+			{
 				return createVulkanBufferAdapter();
 			}
 			@Override
-			public Adapter caseIDescriptor(IDescriptor object) {
+			public Adapter caseIDescriptor(IDescriptor object)
+			{
 				return createIDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseIndexedBuffer(IndexedBuffer object) {
+			public Adapter caseIndexedBuffer(IndexedBuffer object)
+			{
 				return createIndexedBufferAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

@@ -47,7 +47,8 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	 */
 	public VulkanDemoSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = VulkanDemoPackage.eINSTANCE;
 		}
 	}
@@ -76,8 +77,10 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case VulkanDemoPackage.MESH_PIPELINE: {
+		switch (classifierID)
+		{
+			case VulkanDemoPackage.MESH_PIPELINE:
+			{
 				MeshPipeline meshPipeline = (MeshPipeline)theEObject;
 				T result = caseMeshPipeline(meshPipeline);
 				if (result == null) result = caseGraphicsPipeline(meshPipeline);
@@ -86,7 +89,8 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanDemoPackage.MESH_BUFFER: {
+			case VulkanDemoPackage.MESH_BUFFER:
+			{
 				MeshBuffer meshBuffer = (MeshBuffer)theEObject;
 				T result = caseMeshBuffer(meshBuffer);
 				if (result == null) result = caseIndexedBuffer(meshBuffer);
@@ -96,7 +100,8 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanDemoPackage.UNIFORM_BUFFER: {
+			case VulkanDemoPackage.UNIFORM_BUFFER:
+			{
 				UniformBuffer uniformBuffer = (UniformBuffer)theEObject;
 				T result = caseUniformBuffer(uniformBuffer);
 				if (result == null) result = caseVulkanBuffer(uniformBuffer);
