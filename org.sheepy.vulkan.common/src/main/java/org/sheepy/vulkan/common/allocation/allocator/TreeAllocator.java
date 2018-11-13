@@ -1,22 +1,25 @@
 package org.sheepy.vulkan.common.allocation.allocator;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
-import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.allocation.allocator.wrapper.EObjectWrapper;
+import org.sheepy.vulkan.common.allocation.allocator.wrapper.AllocableWrapperPool;
 import org.sheepy.vulkan.common.allocation.allocator.wrapper.IAllocableWrapper;
 
 public class TreeAllocator implements IAllocator
 {
 	private final EObject root;
 
-	private final Deque<IAllocableWrapper> gatheredAllocables = new ArrayDeque<>();
+	private final List<IAllocableWrapper> gatheredAllocables = new ArrayList<>();
 
 	private Deque<IAllocableWrapper> course = new ArrayDeque<>();
 	private Deque<IAllocableWrapper> nextCourse = new ArrayDeque<>();
+
+	private AllocableWrapperPool pool = new AllocableWrapperPool();
 
 	public TreeAllocator(EObject root)
 	{
@@ -34,8 +37,8 @@ public class TreeAllocator implements IAllocator
 
 	private void gatherFlatTree(boolean onlyDirty)
 	{
-		gatheredAllocables.clear();
-		nextCourse.add(new EObjectWrapper(root));
+		clean();
+		nextCourse.add(pool.wrap(root));
 		while (nextCourse.isEmpty() == false)
 		{
 			swapCourseQueues();
@@ -43,6 +46,19 @@ public class TreeAllocator implements IAllocator
 			{
 				gatherElement(course.pop(), onlyDirty);
 			}
+		}
+	}
+
+	private void clean()
+	{
+		if (gatheredAllocables.isEmpty() == false)
+		{
+			for (int i = 0; i < gatheredAllocables.size(); i++)
+			{
+				IAllocableWrapper wrapper = gatheredAllocables.get(i);
+				pool.release(wrapper);
+			}
+			gatheredAllocables.clear();
 		}
 	}
 
@@ -55,14 +71,21 @@ public class TreeAllocator implements IAllocator
 
 	private void gatherElement(IAllocableWrapper element, boolean onlyDirty)
 	{
+		boolean gathered = false;
 		if (element.isAllocable())
 		{
 			if (!onlyDirty || element.isDirty())
 			{
-				gatheredAllocables.addLast(element);
+				gatheredAllocables.add(element);
+				gathered = true;
 			}
 		}
-		nextCourse.addAll(element.getChildWrappers());
+		if (gathered == false)
+		{
+			pool.release(element);
+		}
+
+		nextCourse.addAll(element.getChildWrappers(pool));
 	}
 
 	private void flatAllocateGatheredObjects(MemoryStack stack)
@@ -75,11 +98,13 @@ public class TreeAllocator implements IAllocator
 
 	private void deepAllocateGatheredObjects(MemoryStack stack)
 	{
-		while (gatheredAllocables.isEmpty() == false)
+		for (int i = gatheredAllocables.size() - 1; i >= 0; i--)
 		{
-			final IAllocableWrapper wrapper = gatheredAllocables.pollLast();
+			IAllocableWrapper wrapper = gatheredAllocables.get(i);
 			wrapper.deepAllocate(stack);
+			pool.release(wrapper);
 		}
+		gatheredAllocables.clear();
 	}
 
 	@Override
@@ -92,21 +117,21 @@ public class TreeAllocator implements IAllocator
 
 	private void deepFreeAndRemove()
 	{
-		while (gatheredAllocables.isEmpty() == false)
+		for (int i = gatheredAllocables.size() - 1; i >= 0; i--)
 		{
-			final IAllocableWrapper next = gatheredAllocables.peekLast();
-			next.free();
+			IAllocableWrapper wrapper = gatheredAllocables.get(i);
+			wrapper.free();
+			pool.release(wrapper);
 		}
+		gatheredAllocables.clear();
 	}
 
 	private void deepFree()
 	{
-		final Iterator<IAllocableWrapper> it = gatheredAllocables.descendingIterator();
-		
-		while (it.hasNext())
+		for (int i = gatheredAllocables.size() - 1; i > 0; i--)
 		{
-			final IAllocableWrapper next = it.next();
-			next.free();
+			IAllocableWrapper wrapper = gatheredAllocables.get(i);
+			wrapper.free();
 		}
 	}
 

@@ -12,9 +12,12 @@ import org.sheepy.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
 
 public class EObjectWrapper implements IAllocableWrapper
 {
-	private final EObject eo;
+	private EObject eo;
 
-	public EObjectWrapper(EObject eo)
+	EObjectWrapper()
+	{}
+
+	public void set(EObject eo)
 	{
 		this.eo = eo;
 	}
@@ -67,21 +70,25 @@ public class EObjectWrapper implements IAllocableWrapper
 	}
 
 	@Override
-	public List<IAllocableWrapper> getChildWrappers()
+	public List<IAllocableWrapper> getChildWrappers(AllocableWrapperPool pool)
 	{
 		final List<IAllocableWrapper> res = new ArrayList<>();
 		final var adapter = getAdapter();
 
-		for (final EObject child : eo.eContents())
+		List<EObject> eContents = eo.eContents();
+		for (int i = 0; i < eContents.size(); i++)
 		{
-			res.add(new EObjectWrapper(child));
+			final EObject child = eContents.get(i);
+			res.add(pool.wrap(child));
 		}
-		
+
 		if (adapter != null)
 		{
-			for (final IBasicAllocable allocable : adapter.getChildAllocables())
+			List<IBasicAllocable> childAllocables = adapter.getChildAllocables();
+			for (int i = 0; i < childAllocables.size(); i++)
 			{
-				res.add(new AllocableWrapper(allocable));
+				final IBasicAllocable allocable = childAllocables.get(i);
+				res.add(pool.wrap(allocable));
 			}
 		}
 

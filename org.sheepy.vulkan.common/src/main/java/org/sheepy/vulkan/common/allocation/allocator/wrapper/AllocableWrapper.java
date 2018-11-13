@@ -8,9 +8,12 @@ import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 
 public class AllocableWrapper implements IAllocableWrapper
 {
-	private final IBasicAllocable allocable;
+	private IBasicAllocable allocable;
 
-	public AllocableWrapper(IBasicAllocable allocable)
+	AllocableWrapper()
+	{}
+
+	public void set(IBasicAllocable allocable)
 	{
 		this.allocable = allocable;
 	}
@@ -44,13 +47,13 @@ public class AllocableWrapper implements IAllocableWrapper
 	}
 
 	@Override
-	public List<IAllocableWrapper> getChildWrappers()
+	public List<IAllocableWrapper> getChildWrappers(AllocableWrapperPool pool)
 	{
 		final List<IAllocableWrapper> res = new ArrayList<>();
 
 		for (final IBasicAllocable childAllocable : allocable.getChildAllocables())
 		{
-			res.add(new AllocableWrapper(childAllocable));
+			res.add(pool.wrap(childAllocable));
 		}
 
 		return res;
