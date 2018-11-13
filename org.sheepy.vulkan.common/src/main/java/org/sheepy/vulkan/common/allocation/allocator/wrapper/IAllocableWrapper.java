@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.common.allocation.allocator.wrapper;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.common.allocation.IAllocable;
@@ -13,5 +13,5 @@ public interface IAllocableWrapper extends IAllocable
 
 	boolean isAllocable();
 
-	List<IAllocableWrapper> getChildWrappers(AllocableWrapperPool pool);
+	void gatherChildWrappers(AllocableWrapperPool pool, Collection<IAllocableWrapper> gatherIn);
 }

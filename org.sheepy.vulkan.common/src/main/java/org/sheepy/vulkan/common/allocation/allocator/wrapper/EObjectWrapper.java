@@ -1,11 +1,10 @@
 package org.sheepy.vulkan.common.allocation.allocator.wrapper;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.allocation.adapter.IAllocableAdapter;
 import org.sheepy.vulkan.common.allocation.adapter.IDeepAllocableAdapter;
 import org.sheepy.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
@@ -13,6 +12,7 @@ import org.sheepy.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
 public class EObjectWrapper implements IAllocableWrapper
 {
 	private EObject eo;
+	private IAllocableAdapter adapter;
 
 	EObjectWrapper()
 	{}
@@ -20,39 +20,30 @@ public class EObjectWrapper implements IAllocableWrapper
 	public void set(EObject eo)
 	{
 		this.eo = eo;
+		adapter = IAllocableAdapter.adapt(eo);
 	}
 
 	@Override
 	public void free()
 	{
-		final var adapter = getAdapter();
 		adapter.free();
-	}
-
-	private IAllocableAdapter getAdapter()
-	{
-		final var adapter = IAllocableAdapter.adapt(eo);
-		return adapter;
 	}
 
 	@Override
 	public boolean isDirty()
 	{
-		final var adapter = getAdapter();
 		return adapter.isDirty();
 	}
 
 	@Override
 	public boolean isAllocable()
 	{
-		final var adapter = getAdapter();
 		return adapter != null;
 	}
 
 	@Override
 	public void deepAllocate(MemoryStack stack)
 	{
-		final var adapter = getAdapter();
 		if (adapter instanceof IDeepAllocableAdapter)
 		{
 			((IDeepAllocableAdapter) adapter).deepAllocate(stack);
@@ -62,7 +53,6 @@ public class EObjectWrapper implements IAllocableWrapper
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var adapter = getAdapter();
 		if (adapter instanceof IFlatAllocableAdapter)
 		{
 			((IFlatAllocableAdapter) adapter).flatAllocate(stack);
@@ -70,28 +60,55 @@ public class EObjectWrapper implements IAllocableWrapper
 	}
 
 	@Override
-	public List<IAllocableWrapper> getChildWrappers(AllocableWrapperPool pool)
+	public void gatherChildWrappers(AllocableWrapperPool pool,
+									Collection<IAllocableWrapper> gatherIn)
 	{
-		final List<IAllocableWrapper> res = new ArrayList<>();
-		final var adapter = getAdapter();
+		gatherChildEObjects(pool, gatherIn);
+		gatherChildAllocables(pool, gatherIn);
+	}
 
-		List<EObject> eContents = eo.eContents();
-		for (int i = 0; i < eContents.size(); i++)
-		{
-			final EObject child = eContents.get(i);
-			res.add(pool.wrap(child));
-		}
-
+	private void gatherChildAllocables(	AllocableWrapperPool pool,
+										Collection<IAllocableWrapper> gatherIn)
+	{
 		if (adapter != null)
 		{
-			List<IBasicAllocable> childAllocables = adapter.getChildAllocables();
+			var childAllocables = adapter.getChildAllocables();
 			for (int i = 0; i < childAllocables.size(); i++)
 			{
-				final IBasicAllocable allocable = childAllocables.get(i);
-				res.add(pool.wrap(allocable));
+				var allocable = childAllocables.get(i);
+				gatherIn.add(pool.wrap(allocable));
 			}
 		}
+	}
 
-		return res;
+	@SuppressWarnings("unchecked")
+	private void gatherChildEObjects(	AllocableWrapperPool pool,
+										Collection<IAllocableWrapper> gatherIn)
+	{
+		var containments = eo.eClass().getEAllContainments();
+		for (int i = 0; i < containments.size(); i++)
+		{
+			var eReference = containments.get(i);
+			if (eReference.isMany())
+			{
+				var values = (List<EObject>) eo.eGet(eReference);
+				for (int j = 0; j < values.size(); j++)
+				{
+					EObject value = values.get(j);
+					if (value != null)
+					{
+						gatherIn.add(pool.wrap(value));
+					}
+				}
+			}
+			else
+			{
+				var value = (EObject) eo.eGet(eReference);
+				if (value != null)
+				{
+					gatherIn.add(pool.wrap(value));
+				}
+			}
+		}
 	}
 }

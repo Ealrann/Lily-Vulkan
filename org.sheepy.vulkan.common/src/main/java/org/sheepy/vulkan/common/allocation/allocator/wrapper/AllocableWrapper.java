@@ -1,7 +1,6 @@
 package org.sheepy.vulkan.common.allocation.allocator.wrapper;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
@@ -47,15 +46,14 @@ public class AllocableWrapper implements IAllocableWrapper
 	}
 
 	@Override
-	public List<IAllocableWrapper> getChildWrappers(AllocableWrapperPool pool)
+	public void gatherChildWrappers(AllocableWrapperPool pool,
+									Collection<IAllocableWrapper> gatherIn)
 	{
-		final List<IAllocableWrapper> res = new ArrayList<>();
-
-		for (final IBasicAllocable childAllocable : allocable.getChildAllocables())
+		var children = allocable.getChildAllocables();
+		for (int i = 0; i < children.size(); i++)
 		{
-			res.add(pool.wrap(childAllocable));
+			var childAllocable = children.get(i);
+			gatherIn.add(pool.wrap(childAllocable));
 		}
-
-		return res;
 	}
 }

@@ -11,8 +11,6 @@ import org.sheepy.vulkan.common.allocation.IBasicAllocable;
  * 
  * Doit couvrir le cas des enfants (getChildAllocables()) pour etre utilisable
  * 
- * @author ealrann
- *
  */
 @Deprecated
 public class AllocationList implements IAllocator

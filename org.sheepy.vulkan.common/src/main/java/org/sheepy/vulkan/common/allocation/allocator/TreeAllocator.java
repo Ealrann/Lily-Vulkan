@@ -80,12 +80,13 @@ public class TreeAllocator implements IAllocator
 				gathered = true;
 			}
 		}
+
+		element.gatherChildWrappers(pool, nextCourse);
+
 		if (gathered == false)
 		{
 			pool.release(element);
 		}
-
-		nextCourse.addAll(element.getChildWrappers(pool));
 	}
 
 	private void flatAllocateGatheredObjects(MemoryStack stack)
