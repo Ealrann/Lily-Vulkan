@@ -2,11 +2,11 @@ package org.sheepy.vulkan.process.graphic.pool;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.impl.AbstractServiceAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractAdapter;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcessPool;
 
-public class GraphicContextAdapter extends AbstractServiceAdapter implements IGraphicContextAdapter
+public class GraphicContextAdapter extends AbstractAdapter implements IGraphicContextAdapter
 {
 	@Override
 	public boolean isApplicable(EClass eClass)

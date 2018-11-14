@@ -4,14 +4,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.sheepy.common.api.adapter.impl.AbstractServiceAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractAdapter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanPackage;
 
-public class LogicalDeviceAdapter extends AbstractServiceAdapter
+public class LogicalDeviceAdapter extends AbstractAdapter
 		implements ILogicalDeviceAdapter
 {
 	@Override

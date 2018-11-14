@@ -2,13 +2,13 @@ package org.sheepy.vulkan.process.pool;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.impl.AbstractServiceAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractAdapter;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
-public class ExecutionManagerAdapter extends AbstractServiceAdapter
+public class ExecutionManagerAdapter extends AbstractAdapter
 		implements IExecutionManagerAdapter
 {
 	@Override

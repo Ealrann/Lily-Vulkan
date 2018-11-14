@@ -1,4 +1,4 @@
-import org.sheepy.common.api.adapter.IServiceAdapter;
+import org.sheepy.common.api.adapter.ISingletonAdapter;
 import org.sheepy.vulkan.process.graphic.pipeline.image.ImagePipelineAdapter;
 import org.sheepy.vulkan.process.graphic.pool.GraphicContextAdapter;
 import org.sheepy.vulkan.process.graphic.pool.GraphicProcessPoolAdapter;
@@ -23,6 +23,6 @@ module org.sheepy.vulkan.process.graphic
 	exports org.sheepy.vulkan.model.process.graphic.impl;
 	exports org.sheepy.vulkan.model.process.graphic.util;
 
-	provides IServiceAdapter with GraphicProcessPoolAdapter, GraphicProcessAdapter,
+	provides ISingletonAdapter with GraphicProcessPoolAdapter, GraphicProcessAdapter,
 			ImagePipelineAdapter, GraphicContextAdapter;
 }

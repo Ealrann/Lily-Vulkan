@@ -1,4 +1,4 @@
-import org.sheepy.common.api.adapter.IServiceAdapter;
+import org.sheepy.common.api.adapter.ISingletonAdapter;
 import org.sheepy.vulkan.common.application.LogicalDeviceAdapter;
 import org.sheepy.vulkan.common.application.VulkanApplicationAdapter;
 
@@ -22,6 +22,6 @@ module org.sheepy.vulkan.common
 	exports org.sheepy.vulkan.common.window;
 	exports org.sheepy.vulkan.common.util;
 
-	provides IServiceAdapter
+	provides ISingletonAdapter
 			with LogicalDeviceAdapter, VulkanApplicationAdapter;
 }

@@ -2,13 +2,13 @@ package org.sheepy.vulkan.process.pool;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.impl.AbstractServiceAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractAdapter;
 import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.resource.IResourceManagerAdapter;
 import org.sheepy.vulkan.resource.ResourceManager;
 
-public class ResourceManagerAdapter extends AbstractServiceAdapter implements IResourceManagerAdapter
+public class ResourceManagerAdapter extends AbstractAdapter implements IResourceManagerAdapter
 {
 	@Override
 	public ResourceManager getResourceManager(EObject target)

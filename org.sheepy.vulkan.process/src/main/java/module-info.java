@@ -1,4 +1,4 @@
-import org.sheepy.common.api.adapter.IServiceAdapter;
+import org.sheepy.common.api.adapter.ISingletonAdapter;
 import org.sheepy.vulkan.process.pool.ExecutionManagerAdapter;
 import org.sheepy.vulkan.process.pool.ResourceManagerAdapter;
 
@@ -20,6 +20,6 @@ module org.sheepy.vulkan.process
 	exports org.sheepy.vulkan.model.process.impl;
 	exports org.sheepy.vulkan.model.process.util;
 
-	provides IServiceAdapter
+	provides ISingletonAdapter
 			with ExecutionManagerAdapter, ResourceManagerAdapter;
 }
