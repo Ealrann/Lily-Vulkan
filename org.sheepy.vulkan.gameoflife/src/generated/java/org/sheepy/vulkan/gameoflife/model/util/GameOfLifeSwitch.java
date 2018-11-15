@@ -44,7 +44,8 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	 */
 	public GameOfLifeSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = GameOfLifePackage.eINSTANCE;
 		}
 	}
@@ -73,8 +74,10 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case GameOfLifePackage.BOARD_BUFFER: {
+		switch (classifierID)
+		{
+			case GameOfLifePackage.BOARD_BUFFER:
+			{
 				BoardBuffer boardBuffer = (BoardBuffer)theEObject;
 				T result = caseBoardBuffer(boardBuffer);
 				if (result == null) result = caseVulkanBuffer(boardBuffer);
@@ -83,7 +86,8 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GameOfLifePackage.BOARD_IMAGE: {
+			case GameOfLifePackage.BOARD_IMAGE:
+			{
 				BoardImage boardImage = (BoardImage)theEObject;
 				T result = caseBoardImage(boardImage);
 				if (result == null) result = caseImage(boardImage);

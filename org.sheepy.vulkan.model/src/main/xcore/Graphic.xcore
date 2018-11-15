@@ -18,7 +18,6 @@ import org.sheepy.vulkan.model.resource.Shader
 import org.sheepy.vulkan.model.IGraphicProcessPool
 import org.sheepy.vulkan.model.ColorDomain
 import org.sheepy.vulkan.model.process.AbstractPipeline
-import org.sheepy.vulkan.model.process.IProcessUnit
 import org.sheepy.vulkan.model.process.AbstractProcess
 import org.sheepy.vulkan.model.process.AbstractProcessPool
 import org.sheepy.vulkan.model.process.Configuration
