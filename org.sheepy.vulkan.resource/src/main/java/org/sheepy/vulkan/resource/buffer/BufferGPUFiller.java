@@ -24,7 +24,7 @@ public class BufferGPUFiller
 		this.targetBufferId = targetBufferId;
 	}
 
-	public void fill(ByteBuffer sourceBuffer, int byteSize)
+	public void fill(ByteBuffer sourceBuffer, long byteSize)
 	{
 		createStagingBuffer(sourceBuffer, byteSize);
 
@@ -45,7 +45,7 @@ public class BufferGPUFiller
 		stc.execute();
 	}
 
-	public void createStagingBuffer(ByteBuffer sourceBuffer, int byteSize)
+	private void createStagingBuffer(ByteBuffer sourceBuffer, long byteSize)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 		final var logicalDevice = context.logicalDevice;
@@ -53,7 +53,7 @@ public class BufferGPUFiller
 				usage, sourceBuffer);
 	}
 
-	public void fillBuffer(VkCommandBuffer commandBuffer, int byteSize)
+	private void fillBuffer(VkCommandBuffer commandBuffer, long byteSize)
 	{
 		final var stagingBufferId = stagingBuffer.getId();
 
