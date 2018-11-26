@@ -2,15 +2,19 @@
  */
 package org.sheepy.vulkan.model.process.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import org.sheepy.vulkan.model.process.AbstractPipeline;
@@ -18,6 +22,9 @@ import org.sheepy.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
+import org.sheepy.vulkan.model.resource.Resource;
+import org.sheepy.vulkan.model.resource.ResourceContainer;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +36,7 @@ import org.sheepy.vulkan.model.resource.PushConstant;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#getResources <em>Resources</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSet <em>Descriptor Set</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#getPushConstant <em>Push Constant</em>}</li>
  * </ul>
@@ -76,6 +84,16 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResources()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Resource> resources;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorSet() <em>Descriptor Set</em>}' containment reference.
@@ -162,6 +180,20 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__STAGE, oldStage, stage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Resource> getResources()
+	{
+		if (resources == null)
+		{
+			resources = new EObjectContainmentEList<Resource>(Resource.class, this, ProcessPackage.ABSTRACT_PIPELINE__RESOURCES);
+		}
+		return resources;
 	}
 
 	/**
@@ -270,6 +302,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		switch (featureID)
 		{
+			case ProcessPackage.ABSTRACT_PIPELINE__RESOURCES:
+				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				return basicSetDescriptorSet(null, msgs);
 			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
@@ -292,6 +326,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 				return isEnabled();
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				return getStage();
+			case ProcessPackage.ABSTRACT_PIPELINE__RESOURCES:
+				return getResources();
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				return getDescriptorSet();
 			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
@@ -305,6 +341,7 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -315,6 +352,10 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				setStage((ECommandStage)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PIPELINE__RESOURCES:
+				getResources().clear();
+				getResources().addAll((Collection<? extends Resource>)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				setDescriptorSet((DescriptorSet)newValue);
@@ -342,6 +383,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				setStage(STAGE_EDEFAULT);
 				return;
+			case ProcessPackage.ABSTRACT_PIPELINE__RESOURCES:
+				getResources().clear();
+				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				setDescriptorSet((DescriptorSet)null);
 				return;
@@ -366,12 +410,52 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 				return enabled != ENABLED_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				return stage != STAGE_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PIPELINE__RESOURCES:
+				return resources != null && !resources.isEmpty();
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				return descriptorSet != null;
 			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
 				return pushConstant != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == ResourceContainer.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case ProcessPackage.ABSTRACT_PIPELINE__RESOURCES: return ResourcePackage.RESOURCE_CONTAINER__RESOURCES;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == ResourceContainer.class)
+		{
+			switch (baseFeatureID)
+			{
+				case ResourcePackage.RESOURCE_CONTAINER__RESOURCES: return ProcessPackage.ABSTRACT_PIPELINE__RESOURCES;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

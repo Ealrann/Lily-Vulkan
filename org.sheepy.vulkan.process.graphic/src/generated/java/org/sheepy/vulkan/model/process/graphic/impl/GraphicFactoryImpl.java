@@ -70,6 +70,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			case GraphicPackage.ATTACHMENT_DESCRIPTION: return createAttachmentDescription();
 			case GraphicPackage.GRAPHIC_PROCESS_POOL: return createGraphicProcessPool();
 			case GraphicPackage.GRAPHIC_PROCESS: return createGraphicProcess();
+			case GraphicPackage.VIEWPORT_STATE: return createViewportState();
+			case GraphicPackage.VIEWPORT: return createViewport();
+			case GraphicPackage.SCISSOR: return createScissor();
+			case GraphicPackage.RASTERIZER: return createRasterizer();
 			case GraphicPackage.IMAGE_PIPELINE: return createImagePipeline();
 			case GraphicPackage.PIPELINE_IMAGE_BARRIER: return createPipelineImageBarrier();
 			default:
@@ -141,6 +145,50 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicProcessImpl graphicProcess = new GraphicProcessImpl();
 		return graphicProcess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ViewportState createViewportState()
+	{
+		ViewportStateImpl viewportState = new ViewportStateImpl();
+		return viewportState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Viewport createViewport()
+	{
+		ViewportImpl viewport = new ViewportImpl();
+		return viewport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Scissor createScissor()
+	{
+		ScissorImpl scissor = new ScissorImpl();
+		return scissor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Rasterizer createRasterizer()
+	{
+		RasterizerImpl rasterizer = new RasterizerImpl();
+		return rasterizer;
 	}
 
 	/**

@@ -54,4 +54,12 @@
             genModel="src/main/xcore/Graphic.xcore"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gui -->
+      <package
+            uri="org.sheepy.vulkan.model.gui"
+            class="org.sheepy.vulkan.model.gui.GuiPackage"
+            genModel="src/main/xcore/Gui.xcore"/>
+   </extension>
+
 </plugin>

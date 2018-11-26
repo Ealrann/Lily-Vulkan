@@ -1,7 +1,7 @@
 package org.sheepy.vulkan.demo.texture;
 
 import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.process.graphic.pipeline.render.IIndexedBufferBuilder;
+import org.sheepy.vulkan.demo.mesh.IIndexedBufferBuilder;
 import org.sheepy.vulkan.resource.indexed.IndexBuffer;
 import org.sheepy.vulkan.resource.indexed.IndexBufferData;
 import org.sheepy.vulkan.resource.texture.TextureVertexDescriptor;

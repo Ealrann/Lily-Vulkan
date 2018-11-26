@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.vulkan.model.IProcessPool;
 
 import org.sheepy.vulkan.model.process.*;
+import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,6 +87,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				AbstractProcessPool<?> abstractProcessPool = (AbstractProcessPool<?>)theEObject;
 				T1 result = caseAbstractProcessPool(abstractProcessPool);
 				if (result == null) result = caseIProcessPool(abstractProcessPool);
+				if (result == null) result = caseResourceContainer(abstractProcessPool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -125,6 +127,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				AbstractPipeline abstractPipeline = (AbstractPipeline)theEObject;
 				T1 result = caseAbstractPipeline(abstractPipeline);
 				if (result == null) result = caseIProcessUnit(abstractPipeline);
+				if (result == null) result = caseResourceContainer(abstractPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -134,6 +137,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				T1 result = caseAbstractCompositePipeline(abstractCompositePipeline);
 				if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);
 				if (result == null) result = caseIProcessUnit(abstractCompositePipeline);
+				if (result == null) result = caseResourceContainer(abstractCompositePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -281,6 +285,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIProcessPool(IProcessPool object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseResourceContainer(ResourceContainer object)
 	{
 		return null;
 	}

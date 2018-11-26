@@ -4,6 +4,7 @@ package org.sheepy.vulkan.model.process;
 
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
+import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +23,7 @@ import org.sheepy.vulkan.model.resource.PushConstant;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractPipeline extends IProcessUnit
+public interface AbstractPipeline extends IProcessUnit, ResourceContainer
 {
 	/**
 	 * Returns the value of the '<em><b>Descriptor Set</b></em>' containment reference.

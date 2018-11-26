@@ -6,7 +6,6 @@ import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-import org.sheepy.vulkan.process.graphic.pipeline.render.IIndexedBufferBuilder;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.indexed.IndexBuffer;
 

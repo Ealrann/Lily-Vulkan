@@ -16,6 +16,7 @@ import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
 import org.sheepy.vulkan.model.resource.Resource;
+import org.sheepy.vulkan.model.resource.ResourceContainer;
 import org.sheepy.vulkan.model.resource.VulkanBuffer;
 
 /**
@@ -100,6 +101,11 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIProcessUnit(IProcessUnit object)
 			{
 				return createIProcessUnitAdapter();
+			}
+			@Override
+			public Adapter caseResourceContainer(ResourceContainer object)
+			{
+				return createResourceContainerAdapter();
 			}
 			@Override
 			public Adapter caseAbstractPipeline(AbstractPipeline object)
@@ -209,6 +215,21 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIProcessUnitAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ResourceContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.ResourceContainer
+	 * @generated
+	 */
+	public Adapter createResourceContainerAdapter()
 	{
 		return null;
 	}

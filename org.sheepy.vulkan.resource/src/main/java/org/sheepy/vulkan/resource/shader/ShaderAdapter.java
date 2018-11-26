@@ -1,6 +1,5 @@
 package org.sheepy.vulkan.resource.shader;
 
-import static org.lwjgl.system.MemoryUtil.NULL;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
@@ -9,10 +8,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.lwjgl.vulkan.VkShaderModuleCreateInfo;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
-import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.resource.ResourceAdapter;
@@ -22,8 +19,8 @@ public class ShaderAdapter extends ResourceAdapter
 {
 	private static ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memUTF8("main");
 
-	private long shaderModule;
-
+	private ShaderBackend shaderBackend;
+	
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
@@ -33,17 +30,9 @@ public class ShaderAdapter extends ResourceAdapter
 		var fileAdapter = PathResourceAdapter.adapt(resource);
 		var shaderCode = fileAdapter.toByteBuffer();
 
-		var moduleCreateInfo = VkShaderModuleCreateInfo.callocStack(stack);
-		moduleCreateInfo.sType(VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO);
-		moduleCreateInfo.pNext(NULL);
-		moduleCreateInfo.pCode(shaderCode);
-		moduleCreateInfo.flags(0);
-
-		long[] aShaderModule = new long[1];
-		Logger.check("Failed to create shader module: " + resource.getPath(),
-				() -> vkCreateShaderModule(context.getVkDevice(target), moduleCreateInfo, null,
-						aShaderModule));
-		shaderModule = aShaderModule[0];
+		shaderBackend = new ShaderBackend(context.getVkDevice(target), shaderCode);
+		shaderBackend.allocate(stack);
+		
 	}
 
 	/**
@@ -57,20 +46,19 @@ public class ShaderAdapter extends ResourceAdapter
 
 		info.sType(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO);
 		info.stage(shader.getStage().getValue());
-		info.module(shaderModule);
+		info.module(getShaderModule());
 		info.pName(MAIN_FUNCTION_NAME);
 	}
 
 	@Override
 	public void free()
 	{
-		var context = ILogicalDeviceAdapter.adapt(target);
-		vkDestroyShaderModule(context.getVkDevice(target), shaderModule, null);
+		shaderBackend.free();
 	}
 
 	public long getShaderModule()
 	{
-		return shaderModule;
+		return shaderBackend.getId();
 	}
 
 	@Override

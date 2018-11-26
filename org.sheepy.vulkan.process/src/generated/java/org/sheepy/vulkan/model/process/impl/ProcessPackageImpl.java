@@ -200,19 +200,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractProcessPool_Resources()
-	{
-		return (EReference)abstractProcessPoolEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getAbstractProcessPool_ResetAllowed()
 	{
-		return (EAttribute)abstractProcessPoolEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)abstractProcessPoolEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -379,7 +369,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		abstractProcessPoolEClass = createEClass(ABSTRACT_PROCESS_POOL);
 		createEReference(abstractProcessPoolEClass, ABSTRACT_PROCESS_POOL__PROCESSES);
-		createEReference(abstractProcessPoolEClass, ABSTRACT_PROCESS_POOL__RESOURCES);
 		createEAttribute(abstractProcessPoolEClass, ABSTRACT_PROCESS_POOL__RESET_ALLOWED);
 
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
@@ -441,9 +430,11 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Add supertypes to classes
 		abstractProcessPoolEClass.getESuperTypes().add(theVulkanPackage.getIProcessPool());
+		abstractProcessPoolEClass.getESuperTypes().add(theResourcePackage.getResourceContainer());
 		pipelineBarrierEClass.getESuperTypes().add(this.getIProcessUnit());
 		pipelineBufferBarrierEClass.getESuperTypes().add(this.getPipelineBarrier());
 		abstractPipelineEClass.getESuperTypes().add(this.getIProcessUnit());
+		abstractPipelineEClass.getESuperTypes().add(theResourcePackage.getResourceContainer());
 		abstractCompositePipelineEClass.getESuperTypes().add(this.getAbstractPipeline());
 
 		// Initialize classes, features, and operations; add parameters
@@ -452,7 +443,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEClass(abstractProcessPoolEClass, AbstractProcessPool.class, "AbstractProcessPool", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(abstractProcessPoolEClass_T);
 		initEReference(getAbstractProcessPool_Processes(), g1, null, "processes", null, 0, -1, AbstractProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcessPool_Resources(), theResourcePackage.getResource(), null, "resources", null, 0, -1, AbstractProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcessPool_ResetAllowed(), theEcorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -13,7 +13,6 @@ module org.sheepy.vulkan.process.graphic
 
 	exports org.sheepy.vulkan.process.graphic.execution;
 	exports org.sheepy.vulkan.process.graphic.pipeline;
-	exports org.sheepy.vulkan.process.graphic.pipeline.render;
 	exports org.sheepy.vulkan.process.graphic.pool;
 	exports org.sheepy.vulkan.process.graphic.process;
 	exports org.sheepy.vulkan.process.graphic.swapchain;

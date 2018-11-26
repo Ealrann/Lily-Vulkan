@@ -23,6 +23,8 @@ import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.vulkan.model.resource.Resource;
+import org.sheepy.vulkan.model.resource.ResourceContainer;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,8 +34,8 @@ import org.sheepy.vulkan.model.resource.Resource;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl#getProcesses <em>Processes</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl#getProcesses <em>Processes</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  * </ul>
  *
@@ -41,16 +43,6 @@ import org.sheepy.vulkan.model.resource.Resource;
  */
 public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends MinimalEObjectImpl.Container implements AbstractProcessPool<T>
 {
-	/**
-	 * The cached value of the '{@link #getProcesses() <em>Processes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProcesses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<T> processes;
-
 	/**
 	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -60,6 +52,16 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	 * @ordered
 	 */
 	protected EList<Resource> resources;
+
+	/**
+	 * The cached value of the '{@link #getProcesses() <em>Processes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProcesses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<T> processes;
 
 	/**
 	 * The default value of the '{@link #isResetAllowed() <em>Reset Allowed</em>}' attribute.
@@ -163,10 +165,10 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
-				return ((InternalEList<?>)getProcesses()).basicRemove(otherEnd, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES:
 				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
+				return ((InternalEList<?>)getProcesses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -181,10 +183,10 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
-				return getProcesses();
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES:
 				return getResources();
+			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
+				return getProcesses();
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESET_ALLOWED:
 				return isResetAllowed();
 		}
@@ -202,13 +204,13 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
-				getProcesses().clear();
-				getProcesses().addAll((Collection<? extends T>)newValue);
-				return;
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES:
 				getResources().clear();
 				getResources().addAll((Collection<? extends Resource>)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
+				getProcesses().clear();
+				getProcesses().addAll((Collection<? extends T>)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESET_ALLOWED:
 				setResetAllowed((Boolean)newValue);
@@ -227,11 +229,11 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
-				getProcesses().clear();
-				return;
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES:
 				getResources().clear();
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
+				getProcesses().clear();
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESET_ALLOWED:
 				setResetAllowed(RESET_ALLOWED_EDEFAULT);
@@ -250,14 +252,52 @@ public abstract class AbstractProcessPoolImpl<T extends AbstractProcess> extends
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
-				return processes != null && !processes.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES:
 				return resources != null && !resources.isEmpty();
+			case ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES:
+				return processes != null && !processes.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS_POOL__RESET_ALLOWED:
 				return resetAllowed != RESET_ALLOWED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == ResourceContainer.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES: return ResourcePackage.RESOURCE_CONTAINER__RESOURCES;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == ResourceContainer.class)
+		{
+			switch (baseFeatureID)
+			{
+				case ResourcePackage.RESOURCE_CONTAINER__RESOURCES: return ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

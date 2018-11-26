@@ -19,6 +19,7 @@ import org.sheepy.vulkan.model.process.Configuration;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.graphic.*;
+import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -119,6 +120,26 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createGraphicsPipelineAdapter();
 			}
 			@Override
+			public Adapter caseViewportState(ViewportState object)
+			{
+				return createViewportStateAdapter();
+			}
+			@Override
+			public Adapter caseViewport(Viewport object)
+			{
+				return createViewportAdapter();
+			}
+			@Override
+			public Adapter caseScissor(Scissor object)
+			{
+				return createScissorAdapter();
+			}
+			@Override
+			public Adapter caseRasterizer(Rasterizer object)
+			{
+				return createRasterizerAdapter();
+			}
+			@Override
 			public Adapter caseImagePipeline(ImagePipeline object)
 			{
 				return createImagePipelineAdapter();
@@ -137,6 +158,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIProcessPool(IProcessPool object)
 			{
 				return createIProcessPoolAdapter();
+			}
+			@Override
+			public Adapter caseResourceContainer(ResourceContainer object)
+			{
+				return createResourceContainerAdapter();
 			}
 			@Override
 			public <T extends AbstractProcess> Adapter caseAbstractProcessPool(AbstractProcessPool<T> object)
@@ -296,6 +322,66 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.ViewportState
+	 * @generated
+	 */
+	public Adapter createViewportStateAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.Viewport <em>Viewport</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.Viewport
+	 * @generated
+	 */
+	public Adapter createViewportAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.Scissor <em>Scissor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.Scissor
+	 * @generated
+	 */
+	public Adapter createScissorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer <em>Rasterizer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer
+	 * @generated
+	 */
+	public Adapter createRasterizerAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline <em>Image Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -351,6 +437,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIProcessPoolAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ResourceContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.ResourceContainer
+	 * @generated
+	 */
+	public Adapter createResourceContainerAdapter()
 	{
 		return null;
 	}

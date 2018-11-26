@@ -12,7 +12,7 @@ import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.vulkan.process.graphic.pipeline.render.VkSubpassDependencyAllocator;
+import org.sheepy.vulkan.process.graphic.pipeline.VkSubpassDependencyAllocator;
 import org.sheepy.vulkan.resource.image.DepthImageAdapter;
 
 public class RenderPass implements IBasicAllocable

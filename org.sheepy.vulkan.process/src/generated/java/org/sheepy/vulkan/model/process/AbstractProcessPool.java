@@ -5,8 +5,7 @@ package org.sheepy.vulkan.model.process;
 import org.eclipse.emf.common.util.EList;
 
 import org.sheepy.vulkan.model.IProcessPool;
-
-import org.sheepy.vulkan.model.resource.Resource;
+import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +17,6 @@ import org.sheepy.vulkan.model.resource.Resource;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.AbstractProcessPool#getProcesses <em>Processes</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.AbstractProcessPool#getResources <em>Resources</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.AbstractProcessPool#isResetAllowed <em>Reset Allowed</em>}</li>
  * </ul>
  *
@@ -26,7 +24,7 @@ import org.sheepy.vulkan.model.resource.Resource;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractProcessPool<T extends AbstractProcess> extends IProcessPool
+public interface AbstractProcessPool<T extends AbstractProcess> extends IProcessPool, ResourceContainer
 {
 	/**
 	 * Returns the value of the '<em><b>Processes</b></em>' containment reference list.
@@ -42,22 +40,6 @@ public interface AbstractProcessPool<T extends AbstractProcess> extends IProcess
 	 * @generated
 	 */
 	EList<T> getProcesses();
-
-	/**
-	 * Returns the value of the '<em><b>Resources</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.resource.Resource}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Resources</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Resources</em>' containment reference list.
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractProcessPool_Resources()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Resource> getResources();
 
 	/**
 	 * Returns the value of the '<em><b>Reset Allowed</b></em>' attribute.

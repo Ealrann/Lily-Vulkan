@@ -115,8 +115,8 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		// Initialize simple dependencies
 		ProcessPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
-		EcorePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 

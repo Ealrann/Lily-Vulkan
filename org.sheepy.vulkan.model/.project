@@ -57,5 +57,10 @@
 			<type>2</type>
 			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan.process.graphic/src/generated/java</locationURI>
 		</link>
+		<link>
+			<name>src/generated/gui</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan.gui/src/generated/java</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>

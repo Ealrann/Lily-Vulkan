@@ -25,6 +25,11 @@ class Buffer extends VulkanBuffer
 	int properties
 }
 
+interface ResourceContainer
+{
+	contains Resource[] resources
+}
+
 interface SizedBuffer extends VulkanBuffer
 {
 }

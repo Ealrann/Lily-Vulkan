@@ -28,8 +28,12 @@ import org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.ViewportStateImpl;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.ModuleResource;
@@ -69,12 +73,11 @@ public class MeshModelFactory
 
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setColorDomain(new ColorDomainImpl());
-		configuration.setRasterizerFrontFace(meshConfiguration.rasterizerFrontFace);
 
 		final GraphicProcessPool meshProcessPool = newMeshProcessPool();
 		meshProcessPool.setConfiguration(configuration);
 		meshProcessPool.setRenderPassInfo(newInfo());
-
+		
 		application.setGraphicPool(meshProcessPool);
 	}
 
@@ -149,10 +152,20 @@ public class MeshModelFactory
 
 		final DescriptorSet descriptorSet = new DescriptorSetImpl();
 
+		
+		var rasterizer = new RasterizerImpl();
+		rasterizer.setFrontFace(meshConfiguration.rasterizerFrontFace);
+		
+		var viewportState = new ViewportStateImpl();
+		viewportState.getViewports().add(new ViewportImpl());
+		viewportState.getScissors().add(new ScissorImpl());
+		
 		final MeshPipeline graphicPipeline = new MeshPipelineImpl();
 		graphicPipeline.getShaders().add(vertexShader);
 		graphicPipeline.getShaders().add(fragmentShader);
 		graphicPipeline.setMesh(meshBuffer);
+		graphicPipeline.setRasterizer(rasterizer);
+		graphicPipeline.setViewportState(viewportState);
 
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
 		graphicProcess.getUnits().add(graphicPipeline);

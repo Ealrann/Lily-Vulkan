@@ -3,9 +3,6 @@
 package org.sheepy.vulkan.model.process.graphic;
 
 import org.sheepy.vulkan.model.ColorDomain;
-
-import org.sheepy.vulkan.model.enumeration.ECullMode;
-import org.sheepy.vulkan.model.enumeration.EFrontFace;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
@@ -25,8 +22,6 @@ import org.sheepy.vulkan.model.process.Configuration;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsage <em>Swap Image Usage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getFrameWaitStage <em>Frame Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain <em>Color Domain</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRasterizerCullMode <em>Rasterizer Cull Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRasterizerFrontFace <em>Rasterizer Front Face</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration()
@@ -174,65 +169,5 @@ public interface GraphicConfiguration extends Configuration
 	 * @generated
 	 */
 	void setColorDomain(ColorDomain value);
-
-	/**
-	 * Returns the value of the '<em><b>Rasterizer Cull Mode</b></em>' attribute.
-	 * The default value is <code>"BACK_BIT"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECullMode}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Rasterizer Cull Mode</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rasterizer Cull Mode</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECullMode
-	 * @see #setRasterizerCullMode(ECullMode)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_RasterizerCullMode()
-	 * @model default="BACK_BIT" unique="false"
-	 * @generated
-	 */
-	ECullMode getRasterizerCullMode();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRasterizerCullMode <em>Rasterizer Cull Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rasterizer Cull Mode</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECullMode
-	 * @see #getRasterizerCullMode()
-	 * @generated
-	 */
-	void setRasterizerCullMode(ECullMode value);
-
-	/**
-	 * Returns the value of the '<em><b>Rasterizer Front Face</b></em>' attribute.
-	 * The default value is <code>"CLOCKWISE"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFrontFace}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Rasterizer Front Face</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rasterizer Front Face</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EFrontFace
-	 * @see #setRasterizerFrontFace(EFrontFace)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_RasterizerFrontFace()
-	 * @model default="CLOCKWISE" unique="false"
-	 * @generated
-	 */
-	EFrontFace getRasterizerFrontFace();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRasterizerFrontFace <em>Rasterizer Front Face</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rasterizer Front Face</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EFrontFace
-	 * @see #getRasterizerFrontFace()
-	 * @generated
-	 */
-	void setRasterizerFrontFace(EFrontFace value);
 
 } // GraphicConfiguration

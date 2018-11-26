@@ -18,6 +18,8 @@ import org.sheepy.vulkan.model.resource.Shader;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getShaders <em>Shaders</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState <em>Viewport State</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline()
@@ -41,5 +43,57 @@ public interface GraphicsPipeline extends AbstractPipeline
 	 * @generated
 	 */
 	EList<Shader> getShaders();
+
+	/**
+	 * Returns the value of the '<em><b>Viewport State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Viewport State</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Viewport State</em>' containment reference.
+	 * @see #setViewportState(ViewportState)
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_ViewportState()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ViewportState getViewportState();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState <em>Viewport State</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Viewport State</em>' containment reference.
+	 * @see #getViewportState()
+	 * @generated
+	 */
+	void setViewportState(ViewportState value);
+
+	/**
+	 * Returns the value of the '<em><b>Rasterizer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Rasterizer</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Rasterizer</em>' containment reference.
+	 * @see #setRasterizer(Rasterizer)
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_Rasterizer()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Rasterizer getRasterizer();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Rasterizer</em>' containment reference.
+	 * @see #getRasterizer()
+	 * @generated
+	 */
+	void setRasterizer(Rasterizer value);
 
 } // GraphicsPipeline

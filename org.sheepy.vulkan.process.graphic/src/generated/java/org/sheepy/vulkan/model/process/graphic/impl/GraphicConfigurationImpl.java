@@ -12,9 +12,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.vulkan.model.ColorDomain;
-
-import org.sheepy.vulkan.model.enumeration.ECullMode;
-import org.sheepy.vulkan.model.enumeration.EFrontFace;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
@@ -34,8 +31,6 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSwapImageUsage <em>Swap Image Usage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getFrameWaitStage <em>Frame Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getColorDomain <em>Color Domain</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getRasterizerCullMode <em>Rasterizer Cull Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getRasterizerFrontFace <em>Rasterizer Front Face</em>}</li>
  * </ul>
  *
  * @generated
@@ -131,46 +126,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected ColorDomain colorDomain;
-
-	/**
-	 * The default value of the '{@link #getRasterizerCullMode() <em>Rasterizer Cull Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRasterizerCullMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ECullMode RASTERIZER_CULL_MODE_EDEFAULT = ECullMode.BACK_BIT;
-
-	/**
-	 * The cached value of the '{@link #getRasterizerCullMode() <em>Rasterizer Cull Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRasterizerCullMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected ECullMode rasterizerCullMode = RASTERIZER_CULL_MODE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getRasterizerFrontFace() <em>Rasterizer Front Face</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRasterizerFrontFace()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EFrontFace RASTERIZER_FRONT_FACE_EDEFAULT = EFrontFace.CLOCKWISE;
-
-	/**
-	 * The cached value of the '{@link #getRasterizerFrontFace() <em>Rasterizer Front Face</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRasterizerFrontFace()
-	 * @generated
-	 * @ordered
-	 */
-	protected EFrontFace rasterizerFrontFace = RASTERIZER_FRONT_FACE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -338,52 +293,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ECullMode getRasterizerCullMode()
-	{
-		return rasterizerCullMode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRasterizerCullMode(ECullMode newRasterizerCullMode)
-	{
-		ECullMode oldRasterizerCullMode = rasterizerCullMode;
-		rasterizerCullMode = newRasterizerCullMode == null ? RASTERIZER_CULL_MODE_EDEFAULT : newRasterizerCullMode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_CULL_MODE, oldRasterizerCullMode, rasterizerCullMode));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EFrontFace getRasterizerFrontFace()
-	{
-		return rasterizerFrontFace;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRasterizerFrontFace(EFrontFace newRasterizerFrontFace)
-	{
-		EFrontFace oldRasterizerFrontFace = rasterizerFrontFace;
-		rasterizerFrontFace = newRasterizerFrontFace == null ? RASTERIZER_FRONT_FACE_EDEFAULT : newRasterizerFrontFace;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_FRONT_FACE, oldRasterizerFrontFace, rasterizerFrontFace));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -415,10 +324,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return getFrameWaitStage();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 				return getColorDomain();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_CULL_MODE:
-				return getRasterizerCullMode();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_FRONT_FACE:
-				return getRasterizerFrontFace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -447,12 +352,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 				setColorDomain((ColorDomain)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_CULL_MODE:
-				setRasterizerCullMode((ECullMode)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_FRONT_FACE:
-				setRasterizerFrontFace((EFrontFace)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -483,12 +382,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 				setColorDomain((ColorDomain)null);
 				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_CULL_MODE:
-				setRasterizerCullMode(RASTERIZER_CULL_MODE_EDEFAULT);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_FRONT_FACE:
-				setRasterizerFrontFace(RASTERIZER_FRONT_FACE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -513,10 +406,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return frameWaitStage != FRAME_WAIT_STAGE_EDEFAULT;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 				return colorDomain != null;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_CULL_MODE:
-				return rasterizerCullMode != RASTERIZER_CULL_MODE_EDEFAULT;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__RASTERIZER_FRONT_FACE:
-				return rasterizerFrontFace != RASTERIZER_FRONT_FACE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -540,10 +429,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 		result.append(swapImageUsage);
 		result.append(", frameWaitStage: ");
 		result.append(frameWaitStage);
-		result.append(", rasterizerCullMode: ");
-		result.append(rasterizerCullMode);
-		result.append(", rasterizerFrontFace: ");
-		result.append(rasterizerFrontFace);
 		result.append(')');
 		return result.toString();
 	}

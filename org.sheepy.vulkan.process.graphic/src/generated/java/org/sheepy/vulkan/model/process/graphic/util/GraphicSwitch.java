@@ -17,6 +17,7 @@ import org.sheepy.vulkan.model.process.Configuration;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.graphic.*;
+import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -117,6 +118,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseAbstractProcessPool(graphicProcessPool);
 				if (result == null) result = caseIGraphicProcessPool(graphicProcessPool);
 				if (result == null) result = caseIProcessPool(graphicProcessPool);
+				if (result == null) result = caseResourceContainer(graphicProcessPool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -134,6 +136,35 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseGraphicsPipeline(graphicsPipeline);
 				if (result == null) result = caseAbstractPipeline(graphicsPipeline);
 				if (result == null) result = caseIProcessUnit(graphicsPipeline);
+				if (result == null) result = caseResourceContainer(graphicsPipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.VIEWPORT_STATE:
+			{
+				ViewportState viewportState = (ViewportState)theEObject;
+				T1 result = caseViewportState(viewportState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.VIEWPORT:
+			{
+				Viewport viewport = (Viewport)theEObject;
+				T1 result = caseViewport(viewport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.SCISSOR:
+			{
+				Scissor scissor = (Scissor)theEObject;
+				T1 result = caseScissor(scissor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.RASTERIZER:
+			{
+				Rasterizer rasterizer = (Rasterizer)theEObject;
+				T1 result = caseRasterizer(rasterizer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -143,6 +174,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseImagePipeline(imagePipeline);
 				if (result == null) result = caseAbstractPipeline(imagePipeline);
 				if (result == null) result = caseIProcessUnit(imagePipeline);
+				if (result == null) result = caseResourceContainer(imagePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -272,6 +304,70 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Viewport State</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Viewport State</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseViewportState(ViewportState object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Viewport</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Viewport</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseViewport(Viewport object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Scissor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Scissor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseScissor(Scissor object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rasterizer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rasterizer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseRasterizer(Rasterizer object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Image Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -331,6 +427,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIProcessPool(IProcessPool object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseResourceContainer(ResourceContainer object)
 	{
 		return null;
 	}

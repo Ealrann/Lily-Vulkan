@@ -7,6 +7,7 @@ include ':org.sheepy.vulkan.resource'
 include ':org.sheepy.vulkan.process'
 include ':org.sheepy.vulkan.process.compute'
 include ':org.sheepy.vulkan.process.graphic'
+include ':org.sheepy.vulkan.gui'
 include ':org.sheepy.vulkan.demo'
 include ':org.sheepy.vulkan.gameoflife'
 

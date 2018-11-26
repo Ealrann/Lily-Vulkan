@@ -23,6 +23,7 @@ import org.sheepy.vulkan.model.process.AbstractProcessPool
 import org.sheepy.vulkan.model.process.Configuration
 import org.sheepy.vulkan.model.process.PipelineBarrier
 import org.sheepy.vulkan.model.resource.ImageBarrier
+import org.sheepy.common.model.types.SVector2i
 
 class GraphicConfiguration extends Configuration
 {
@@ -31,8 +32,6 @@ class GraphicConfiguration extends Configuration
 	int swapImageUsage = "16" // EImageUsage.ColorAttachment
 	EPipelineStage frameWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
 	contains ColorDomain colorDomain
-	ECullMode rasterizerCullMode = "BACK_BIT"
-	EFrontFace rasterizerFrontFace = "CLOCKWISE"
 }
 
 class RenderPassInfo
@@ -81,6 +80,44 @@ abstract class GraphicsPipeline extends AbstractPipeline
 {
 	refers Shader[] shaders
 //	refers VulkanBuffer[] buffers
+
+	contains ViewportState viewportState
+	contains Rasterizer rasterizer
+}
+
+class ViewportState
+{
+	contains Viewport[] viewports
+	contains Scissor[] scissors
+}
+
+class Viewport
+{
+	SVector2i offset = "0, 0"
+	
+	// If null, will use the swapchain image size
+	SVector2i extent
+	
+	int minDepth = "0"
+	int maxDepth = "1"
+}
+
+class Scissor
+{
+	SVector2i offset = "0, 0"
+	
+	// If null, will use the swapchain image size
+	SVector2i extent
+}
+
+class Rasterizer
+{
+	ECullMode cullMode = "BACK_BIT"
+	EFrontFace frontFace = "CLOCKWISE"
+	int lineWidth = "1"
+	boolean depthClampEnable = "false"
+	boolean discardEnable = "false"
+	boolean depthBiasEnable = "false"
 }
 
 class ImagePipeline extends AbstractPipeline

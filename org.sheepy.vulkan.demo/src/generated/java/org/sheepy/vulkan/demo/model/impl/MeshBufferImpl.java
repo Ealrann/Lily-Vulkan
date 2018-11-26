@@ -95,7 +95,6 @@ public class MeshBufferImpl extends IndexedBufferImpl implements MeshBuffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTexture(Texture newTexture)
 	{
 		Texture oldTexture = texture;

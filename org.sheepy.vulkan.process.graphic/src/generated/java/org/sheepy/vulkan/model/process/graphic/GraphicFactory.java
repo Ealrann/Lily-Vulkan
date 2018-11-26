@@ -77,6 +77,42 @@ public interface GraphicFactory extends EFactory
 	GraphicProcess createGraphicProcess();
 
 	/**
+	 * Returns a new object of class '<em>Viewport State</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Viewport State</em>'.
+	 * @generated
+	 */
+	ViewportState createViewportState();
+
+	/**
+	 * Returns a new object of class '<em>Viewport</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Viewport</em>'.
+	 * @generated
+	 */
+	Viewport createViewport();
+
+	/**
+	 * Returns a new object of class '<em>Scissor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Scissor</em>'.
+	 * @generated
+	 */
+	Scissor createScissor();
+
+	/**
+	 * Returns a new object of class '<em>Rasterizer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rasterizer</em>'.
+	 * @generated
+	 */
+	Rasterizer createRasterizer();
+
+	/**
 	 * Returns a new object of class '<em>Image Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

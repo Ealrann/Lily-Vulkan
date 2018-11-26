@@ -116,31 +116,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_CONFIGURATION__COLOR_DOMAIN = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Rasterizer Cull Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_CONFIGURATION__RASTERIZER_CULL_MODE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Rasterizer Front Face</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_CONFIGURATION__RASTERIZER_FRONT_FACE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 6;
-
-	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION_FEATURE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 7;
+	int GRAPHIC_CONFIGURATION_FEATURE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Configuration</em>' class.
@@ -408,15 +390,6 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS_POOL = 4;
 
 	/**
-	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_POOL__PROCESSES = ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES;
-
-	/**
 	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -424,6 +397,15 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHIC_PROCESS_POOL__RESOURCES = ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES;
+
+	/**
+	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS_POOL__PROCESSES = ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
@@ -545,6 +527,15 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__RESOURCES = ProcessPackage.ABSTRACT_PIPELINE__RESOURCES;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -572,13 +563,31 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__SHADERS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__VIEWPORT_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 1;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -590,6 +599,244 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportStateImpl <em>Viewport State</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.ViewportStateImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
+	 * @generated
+	 */
+	int VIEWPORT_STATE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Viewports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT_STATE__VIEWPORTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Scissors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT_STATE__SCISSORS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Viewport State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT_STATE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Viewport State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT_STATE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl <em>Viewport</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
+	 * @generated
+	 */
+	int VIEWPORT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT__OFFSET = 0;
+
+	/**
+	 * The feature id for the '<em><b>Extent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT__EXTENT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Min Depth</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT__MIN_DEPTH = 2;
+
+	/**
+	 * The feature id for the '<em><b>Max Depth</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT__MAX_DEPTH = 3;
+
+	/**
+	 * The number of structural features of the '<em>Viewport</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Viewport</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEWPORT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl <em>Scissor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
+	 * @generated
+	 */
+	int SCISSOR = 9;
+
+	/**
+	 * The feature id for the '<em><b>Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCISSOR__OFFSET = 0;
+
+	/**
+	 * The feature id for the '<em><b>Extent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCISSOR__EXTENT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Scissor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCISSOR_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Scissor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCISSOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl <em>Rasterizer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
+	 * @generated
+	 */
+	int RASTERIZER = 10;
+
+	/**
+	 * The feature id for the '<em><b>Cull Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER__CULL_MODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Front Face</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER__FRONT_FACE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Line Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER__LINE_WIDTH = 2;
+
+	/**
+	 * The feature id for the '<em><b>Depth Clamp Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER__DEPTH_CLAMP_ENABLE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Discard Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER__DISCARD_ENABLE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Depth Bias Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER__DEPTH_BIAS_ENABLE = 5;
+
+	/**
+	 * The number of structural features of the '<em>Rasterizer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER_FEATURE_COUNT = 6;
+
+	/**
+	 * The number of operations of the '<em>Rasterizer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl <em>Image Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -597,7 +844,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 	 * @generated
 	 */
-	int IMAGE_PIPELINE = 7;
+	int IMAGE_PIPELINE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -616,6 +863,15 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int IMAGE_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_PIPELINE__RESOURCES = ProcessPackage.ABSTRACT_PIPELINE__RESOURCES;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
@@ -707,7 +963,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getPipelineImageBarrier()
 	 * @generated
 	 */
-	int PIPELINE_IMAGE_BARRIER = 8;
+	int PIPELINE_IMAGE_BARRIER = 12;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -819,28 +1075,6 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EReference getGraphicConfiguration_ColorDomain();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRasterizerCullMode <em>Rasterizer Cull Mode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Rasterizer Cull Mode</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRasterizerCullMode()
-	 * @see #getGraphicConfiguration()
-	 * @generated
-	 */
-	EAttribute getGraphicConfiguration_RasterizerCullMode();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRasterizerFrontFace <em>Rasterizer Front Face</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Rasterizer Front Face</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRasterizerFrontFace()
-	 * @see #getGraphicConfiguration()
-	 * @generated
-	 */
-	EAttribute getGraphicConfiguration_RasterizerFrontFace();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo <em>Render Pass Info</em>}'.
@@ -1145,6 +1379,222 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicsPipeline_Shaders();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState <em>Viewport State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Viewport State</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_ViewportState();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Rasterizer</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_Rasterizer();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Viewport State</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ViewportState
+	 * @generated
+	 */
+	EClass getViewportState();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.ViewportState#getViewports <em>Viewports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Viewports</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ViewportState#getViewports()
+	 * @see #getViewportState()
+	 * @generated
+	 */
+	EReference getViewportState_Viewports();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.ViewportState#getScissors <em>Scissors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Scissors</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ViewportState#getScissors()
+	 * @see #getViewportState()
+	 * @generated
+	 */
+	EReference getViewportState_Scissors();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.Viewport <em>Viewport</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Viewport</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Viewport
+	 * @generated
+	 */
+	EClass getViewport();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Viewport#getOffset <em>Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offset</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Viewport#getOffset()
+	 * @see #getViewport()
+	 * @generated
+	 */
+	EAttribute getViewport_Offset();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Viewport#getExtent <em>Extent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extent</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Viewport#getExtent()
+	 * @see #getViewport()
+	 * @generated
+	 */
+	EAttribute getViewport_Extent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Viewport#getMinDepth <em>Min Depth</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Depth</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Viewport#getMinDepth()
+	 * @see #getViewport()
+	 * @generated
+	 */
+	EAttribute getViewport_MinDepth();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Viewport#getMaxDepth <em>Max Depth</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Depth</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Viewport#getMaxDepth()
+	 * @see #getViewport()
+	 * @generated
+	 */
+	EAttribute getViewport_MaxDepth();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.Scissor <em>Scissor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Scissor</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Scissor
+	 * @generated
+	 */
+	EClass getScissor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Scissor#getOffset <em>Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offset</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Scissor#getOffset()
+	 * @see #getScissor()
+	 * @generated
+	 */
+	EAttribute getScissor_Offset();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Scissor#getExtent <em>Extent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extent</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Scissor#getExtent()
+	 * @see #getScissor()
+	 * @generated
+	 */
+	EAttribute getScissor_Extent();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer <em>Rasterizer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Rasterizer</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer
+	 * @generated
+	 */
+	EClass getRasterizer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getCullMode <em>Cull Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Cull Mode</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#getCullMode()
+	 * @see #getRasterizer()
+	 * @generated
+	 */
+	EAttribute getRasterizer_CullMode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getFrontFace <em>Front Face</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Front Face</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#getFrontFace()
+	 * @see #getRasterizer()
+	 * @generated
+	 */
+	EAttribute getRasterizer_FrontFace();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getLineWidth <em>Line Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Line Width</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#getLineWidth()
+	 * @see #getRasterizer()
+	 * @generated
+	 */
+	EAttribute getRasterizer_LineWidth();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable <em>Depth Clamp Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Depth Clamp Enable</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable()
+	 * @see #getRasterizer()
+	 * @generated
+	 */
+	EAttribute getRasterizer_DepthClampEnable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDiscardEnable <em>Discard Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Discard Enable</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#isDiscardEnable()
+	 * @see #getRasterizer()
+	 * @generated
+	 */
+	EAttribute getRasterizer_DiscardEnable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable <em>Depth Bias Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Depth Bias Enable</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable()
+	 * @see #getRasterizer()
+	 * @generated
+	 */
+	EAttribute getRasterizer_DepthBiasEnable();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline <em>Image Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1303,22 +1753,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference GRAPHIC_CONFIGURATION__COLOR_DOMAIN = eINSTANCE.getGraphicConfiguration_ColorDomain();
-
-		/**
-		 * The meta object literal for the '<em><b>Rasterizer Cull Mode</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GRAPHIC_CONFIGURATION__RASTERIZER_CULL_MODE = eINSTANCE.getGraphicConfiguration_RasterizerCullMode();
-
-		/**
-		 * The meta object literal for the '<em><b>Rasterizer Front Face</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GRAPHIC_CONFIGURATION__RASTERIZER_FRONT_FACE = eINSTANCE.getGraphicConfiguration_RasterizerFrontFace();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
@@ -1555,6 +1989,174 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference GRAPHICS_PIPELINE__SHADERS = eINSTANCE.getGraphicsPipeline_Shaders();
+
+		/**
+		 * The meta object literal for the '<em><b>Viewport State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__VIEWPORT_STATE = eINSTANCE.getGraphicsPipeline_ViewportState();
+
+		/**
+		 * The meta object literal for the '<em><b>Rasterizer</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__RASTERIZER = eINSTANCE.getGraphicsPipeline_Rasterizer();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportStateImpl <em>Viewport State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.ViewportStateImpl
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
+		 * @generated
+		 */
+		EClass VIEWPORT_STATE = eINSTANCE.getViewportState();
+
+		/**
+		 * The meta object literal for the '<em><b>Viewports</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VIEWPORT_STATE__VIEWPORTS = eINSTANCE.getViewportState_Viewports();
+
+		/**
+		 * The meta object literal for the '<em><b>Scissors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VIEWPORT_STATE__SCISSORS = eINSTANCE.getViewportState_Scissors();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl <em>Viewport</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
+		 * @generated
+		 */
+		EClass VIEWPORT = eINSTANCE.getViewport();
+
+		/**
+		 * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIEWPORT__OFFSET = eINSTANCE.getViewport_Offset();
+
+		/**
+		 * The meta object literal for the '<em><b>Extent</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIEWPORT__EXTENT = eINSTANCE.getViewport_Extent();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Depth</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIEWPORT__MIN_DEPTH = eINSTANCE.getViewport_MinDepth();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Depth</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIEWPORT__MAX_DEPTH = eINSTANCE.getViewport_MaxDepth();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl <em>Scissor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
+		 * @generated
+		 */
+		EClass SCISSOR = eINSTANCE.getScissor();
+
+		/**
+		 * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SCISSOR__OFFSET = eINSTANCE.getScissor_Offset();
+
+		/**
+		 * The meta object literal for the '<em><b>Extent</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SCISSOR__EXTENT = eINSTANCE.getScissor_Extent();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl <em>Rasterizer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
+		 * @generated
+		 */
+		EClass RASTERIZER = eINSTANCE.getRasterizer();
+
+		/**
+		 * The meta object literal for the '<em><b>Cull Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RASTERIZER__CULL_MODE = eINSTANCE.getRasterizer_CullMode();
+
+		/**
+		 * The meta object literal for the '<em><b>Front Face</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RASTERIZER__FRONT_FACE = eINSTANCE.getRasterizer_FrontFace();
+
+		/**
+		 * The meta object literal for the '<em><b>Line Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RASTERIZER__LINE_WIDTH = eINSTANCE.getRasterizer_LineWidth();
+
+		/**
+		 * The meta object literal for the '<em><b>Depth Clamp Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RASTERIZER__DEPTH_CLAMP_ENABLE = eINSTANCE.getRasterizer_DepthClampEnable();
+
+		/**
+		 * The meta object literal for the '<em><b>Discard Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RASTERIZER__DISCARD_ENABLE = eINSTANCE.getRasterizer_DiscardEnable();
+
+		/**
+		 * The meta object literal for the '<em><b>Depth Bias Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RASTERIZER__DEPTH_BIAS_ENABLE = eINSTANCE.getRasterizer_DepthBiasEnable();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl <em>Image Pipeline</em>}' class.

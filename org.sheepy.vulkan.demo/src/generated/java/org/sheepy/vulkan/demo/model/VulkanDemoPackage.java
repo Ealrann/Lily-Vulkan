@@ -88,6 +88,15 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__RESOURCES = GraphicPackage.GRAPHICS_PIPELINE__RESOURCES;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,6 +122,24 @@ public interface VulkanDemoPackage extends EPackage
 	 * @ordered
 	 */
 	int MESH_PIPELINE__SHADERS = GraphicPackage.GRAPHICS_PIPELINE__SHADERS;
+
+	/**
+	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__VIEWPORT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE;
+
+	/**
+	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__RASTERIZER = GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER;
 
 	/**
 	 * The feature id for the '<em><b>Mesh</b></em>' reference.

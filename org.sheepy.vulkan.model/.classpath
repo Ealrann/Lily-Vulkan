@@ -12,5 +12,6 @@
 	<classpathentry kind="src" path="src/generated/process"/>
 	<classpathentry kind="src" path="src/generated/compute"/>
 	<classpathentry kind="src" path="src/generated/graphic"/>
+	<classpathentry kind="src" path="src/generated/gui"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

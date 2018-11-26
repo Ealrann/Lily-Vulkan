@@ -7,20 +7,13 @@ import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
-import org.sheepy.vulkan.process.graphic.pipeline.render.IColorBlendState;
-import org.sheepy.vulkan.process.graphic.pipeline.render.IDepthStencilState;
-import org.sheepy.vulkan.process.graphic.pipeline.render.IInputAssembly;
-import org.sheepy.vulkan.process.graphic.pipeline.render.IMultisampleState;
-import org.sheepy.vulkan.process.graphic.pipeline.render.IRasterizer;
-import org.sheepy.vulkan.process.graphic.pipeline.render.IShaderStage;
-import org.sheepy.vulkan.process.graphic.pipeline.render.IViewportState;
-import org.sheepy.vulkan.process.graphic.pipeline.render.impl.BasicColorBlendState;
-import org.sheepy.vulkan.process.graphic.pipeline.render.impl.BasicDepthStencilState;
-import org.sheepy.vulkan.process.graphic.pipeline.render.impl.BasicInputAssembly;
-import org.sheepy.vulkan.process.graphic.pipeline.render.impl.BasicMultisampleState;
-import org.sheepy.vulkan.process.graphic.pipeline.render.impl.BasicRasterizer;
-import org.sheepy.vulkan.process.graphic.pipeline.render.impl.BasicShaderStage;
-import org.sheepy.vulkan.process.graphic.pipeline.render.impl.BasicViewportState;
+import org.sheepy.vulkan.process.graphic.pipeline.builder.ColorBlendBuilder;
+import org.sheepy.vulkan.process.graphic.pipeline.builder.DepthStencilBuilder;
+import org.sheepy.vulkan.process.graphic.pipeline.builder.InputAssemblyBuilder;
+import org.sheepy.vulkan.process.graphic.pipeline.builder.MultisampleBuilder;
+import org.sheepy.vulkan.process.graphic.pipeline.builder.RasterizerBuilder;
+import org.sheepy.vulkan.process.graphic.pipeline.builder.ShaderStageBuilder;
+import org.sheepy.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
 import org.sheepy.vulkan.process.graphic.pool.IGraphicContextAdapter;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
@@ -28,13 +21,13 @@ import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
 		implements IGraphicPipelineAdapter
 {
-	public final IShaderStage shaderStage = new BasicShaderStage();
-	public final IInputAssembly inputAssembly = new BasicInputAssembly();
-	public final IViewportState viewportState = new BasicViewportState();
-	public final IRasterizer rasterizer = new BasicRasterizer();
-	public final IDepthStencilState depthStencilState = new BasicDepthStencilState();
-	public final IMultisampleState multisampleState = new BasicMultisampleState();
-	public final IColorBlendState colorBlendState = new BasicColorBlendState();
+	private final ShaderStageBuilder shaderStageBuilder = new ShaderStageBuilder();
+	private final InputAssemblyBuilder inputAssemblyBuilder = new InputAssemblyBuilder();
+	private final ViewportStateBuilder viewportStateBuilder = new ViewportStateBuilder();
+	private final RasterizerBuilder rasterizerBuilder = new RasterizerBuilder();
+	private final DepthStencilBuilder depthStencilBuidler = new DepthStencilBuilder();
+	private final MultisampleBuilder multisampleBuilder = new MultisampleBuilder();
+	private final ColorBlendBuilder colorBlendBuilder = new ColorBlendBuilder();
 
 	public IVertexBufferDescriptor<?> vertexInputState = null;
 
@@ -49,6 +42,7 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 		final var useDepthBuffer = context.graphicProcessPool.getDepthImage() != null;
 		final var device = context.getVkDevice();
 		final GraphicsPipeline pipeline = (GraphicsPipeline) target;
+		var swapchain = context.swapChainManager;
 
 		vertexInputState = getVertexBufferDescriptor();
 
@@ -56,15 +50,27 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 		// -----------------------
 		final var pipelineInfo = VkGraphicsPipelineCreateInfo.callocStack(1, stack);
 		pipelineInfo.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
-		pipelineInfo.pStages(shaderStage.allocShaderStageInfo(pipeline.getShaders()));
+		pipelineInfo.pStages(shaderStageBuilder.allocShaderStageInfo(pipeline.getShaders()));
 		pipelineInfo.pVertexInputState(vertexInputState.allocCreateInfo());
-		pipelineInfo.pInputAssemblyState(inputAssembly.allocCreateInfo());
-		pipelineInfo.pViewportState(viewportState.allocCreateInfo(context.swapChainManager));
-		pipelineInfo.pRasterizationState(rasterizer.allocCreateInfo(context.configuration));
-		pipelineInfo.pMultisampleState(multisampleState.allocCreateInfo());
+		pipelineInfo.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo());
+
+		var viewportState = pipeline.getViewportState();
+		if (viewportState != null)
+		{
+			var allocCreateInfo = viewportStateBuilder.allocCreateInfo(swapchain, viewportState);
+			pipelineInfo.pViewportState(allocCreateInfo);
+		}
+
+		var rasterizer = pipeline.getRasterizer();
+		if (rasterizer != null)
+		{
+			pipelineInfo.pRasterizationState(rasterizerBuilder.allocCreateInfo(rasterizer));
+		}
+
+		pipelineInfo.pMultisampleState(multisampleBuilder.allocCreateInfo());
 		if (useDepthBuffer == true)
-			pipelineInfo.pDepthStencilState(depthStencilState.allocCreateInfo());
-		pipelineInfo.pColorBlendState(colorBlendState.allocCreateInfo());
+			pipelineInfo.pDepthStencilState(depthStencilBuidler.allocCreateInfo());
+		pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo());
 		// pipelineInfo.pDynamicState(dynamicState.allocDynamicStateCreateInfo());
 		pipelineInfo.layout(pipelineLayout);
 		pipelineInfo.renderPass(context.renderPass.getId());
@@ -78,14 +84,14 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 		id = aId[0];
 
 		// dynamicState.freeDynamicStateCreateInfo();
-		colorBlendState.freeColorBlendStateCreateInfo();
-		multisampleState.freeMultisampleStateCreateInfo();
-		rasterizer.freeRasterizationStateCreateInfo();
-		viewportState.freeViewportStateCreateInfo();
-		inputAssembly.freeInputAssemblyStateCreateInfo();
+		colorBlendBuilder.freeColorBlendStateCreateInfo();
+		multisampleBuilder.freeMultisampleStateCreateInfo();
+		rasterizerBuilder.freeRasterizationStateCreateInfo();
+		viewportStateBuilder.freeViewportStateCreateInfo();
+		inputAssemblyBuilder.freeInputAssemblyStateCreateInfo();
 		vertexInputState.freeInputStateCreateInfo();
-		shaderStage.freeShaderStageInfo();
-		if (useDepthBuffer == true) depthStencilState.freeDepthStencilStateCreateInfo();
+		shaderStageBuilder.freeShaderStageInfo();
+		if (useDepthBuffer == true) depthStencilBuidler.freeDepthStencilStateCreateInfo();
 	}
 
 	@Override
@@ -98,17 +104,8 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 	@Override
 	public void free()
 	{
-		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
-		final boolean useDepthBuffer = context.graphicProcessPool.getDepthImage() != null;
 		// dynamicState.free();
-		colorBlendState.free();
-		if (useDepthBuffer == true) depthStencilState.free();
-		multisampleState.free();
-		rasterizer.free();
-		viewportState.free();
-		inputAssembly.free();
 		vertexInputState.free();
-		shaderStage.free();
 
 		super.free();
 	}
