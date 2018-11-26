@@ -47,6 +47,26 @@ enum EAttachmentLoadOp
 	DONT_CARE = 2
 }
 
+enum ELogicOp
+{
+	CLEAR         = 0
+	AND           = 1
+	AND_REVERSE   = 2
+	COPY          = 3
+	AND_INVERTED  = 4
+	NO_OP         = 5
+	XOR           = 6
+	OR            = 7
+	NOR           = 8
+	EQUIVALENT    = 9
+	INVERT        = 10
+	OR_REVERSE    = 11
+	COPY_INVERTED = 12
+	OR_INVERTED   = 13
+	NAND          = 14
+	SET           = 15
+}
+
 enum EAttachmentStoreOp
 {
 	STORE     = 0
@@ -63,6 +83,38 @@ enum EShaderStage
 	COMPUTE_BIT                 = 32
 	ALL_GRAPHICS                = 31
 	ALL                         = 2147483647
+}
+
+enum EBlendFactor
+{
+	ZERO                     = 0
+	ONE                      = 1
+	SRC_COLOR                = 2
+	ONE_MINUS_SRC_COLOR      = 3
+	DST_COLOR                = 4
+	ONE_MINUS_DST_COLOR      = 5
+	SRC_ALPHA                = 6
+	ONE_MINUS_SRC_ALPHA      = 7
+	DST_ALPHA                = 8
+	ONE_MINUS_DST_ALPHA      = 9
+	CONSTANT_COLOR           = 10
+	ONE_MINUS_CONSTANT_COLOR = 11
+	CONSTANT_ALPHA           = 12
+	ONE_MINUS_CONSTANT_ALPHA = 13
+	SRC_ALPHA_SATURATE       = 14
+	SRC1_COLOR               = 15
+	ONE_MINUS_SRC1_COLOR     = 16
+	SRC1_ALPHA               = 17
+	ONE_MINUS_SRC1_ALPHA     = 18
+}
+
+enum EBlendOp
+{
+	ADD              = 0
+	SUBTRACT         = 1
+	REVERSE_SUBTRACT = 2
+	MIN              = 3
+	MAX              = 4
 }
 
 enum EPipelineStage
@@ -286,6 +338,13 @@ enum EPresentMode
 	MailBox = 1
 	Fifo = 2
 	FifoRelaxed = 3
+}
+
+enum EPolygonMode
+{
+        FILL  = 0
+        LINE  = 1
+        POINT = 2
 }
 
 enum EImageUsage

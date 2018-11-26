@@ -70,6 +70,8 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			case GraphicPackage.ATTACHMENT_DESCRIPTION: return createAttachmentDescription();
 			case GraphicPackage.GRAPHIC_PROCESS_POOL: return createGraphicProcessPool();
 			case GraphicPackage.GRAPHIC_PROCESS: return createGraphicProcess();
+			case GraphicPackage.COLOR_BLEND: return createColorBlend();
+			case GraphicPackage.COLOR_BLEND_ATTACHMENT: return createColorBlendAttachment();
 			case GraphicPackage.VIEWPORT_STATE: return createViewportState();
 			case GraphicPackage.VIEWPORT: return createViewport();
 			case GraphicPackage.SCISSOR: return createScissor();
@@ -145,6 +147,28 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicProcessImpl graphicProcess = new GraphicProcessImpl();
 		return graphicProcess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ColorBlend createColorBlend()
+	{
+		ColorBlendImpl colorBlend = new ColorBlendImpl();
+		return colorBlend;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ColorBlendAttachment createColorBlendAttachment()
+	{
+		ColorBlendAttachmentImpl colorBlendAttachment = new ColorBlendAttachmentImpl();
+		return colorBlendAttachment;
 	}
 
 	/**

@@ -24,6 +24,10 @@ import org.sheepy.vulkan.model.process.Configuration
 import org.sheepy.vulkan.model.process.PipelineBarrier
 import org.sheepy.vulkan.model.resource.ImageBarrier
 import org.sheepy.common.model.types.SVector2i
+import org.sheepy.vulkan.model.enumeration.EPolygonMode
+import org.sheepy.vulkan.model.enumeration.ELogicOp
+import org.sheepy.vulkan.model.enumeration.EBlendFactor
+import org.sheepy.vulkan.model.enumeration.EBlendOp
 
 class GraphicConfiguration extends Configuration
 {
@@ -83,6 +87,37 @@ abstract class GraphicsPipeline extends AbstractPipeline
 
 	contains ViewportState viewportState
 	contains Rasterizer rasterizer
+	contains ColorBlend colorBlend
+}
+
+class ColorBlend
+{
+	contains ColorBlendAttachment[] attachments
+	
+	boolean logicOpEnable = "false"
+	
+	ELogicOp logicOp = "COPY"
+	
+	int blendConstant0 = "0"
+	int blendConstant1 = "0"
+	int blendConstant2 = "0"
+	int blendConstant3 = "1"
+}
+
+class ColorBlendAttachment
+{
+	boolean blendEnable = "false"
+	boolean redComponentEnable = "true"
+	boolean greenComponentEnable = "true"
+	boolean blueComponentEnable = "true"
+	boolean alphaComponentEnable = "true"
+	
+	EBlendFactor srcColor = "ONE"
+	EBlendFactor dstColor = "ZERO"
+	EBlendFactor srcAlpha = "ONE"
+	EBlendFactor dstAlpha = "ZERO"
+	EBlendOp colorBlendOp = "ADD"
+	EBlendOp alphaBlendOp = "ADD"
 }
 
 class ViewportState
@@ -114,6 +149,7 @@ class Rasterizer
 {
 	ECullMode cullMode = "BACK_BIT"
 	EFrontFace frontFace = "CLOCKWISE"
+	EPolygonMode polygonMode = "FILL"
 	int lineWidth = "1"
 	boolean depthClampEnable = "false"
 	boolean discardEnable = "false"

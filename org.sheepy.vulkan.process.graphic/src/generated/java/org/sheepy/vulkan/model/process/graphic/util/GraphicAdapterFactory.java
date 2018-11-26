@@ -120,6 +120,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createGraphicsPipelineAdapter();
 			}
 			@Override
+			public Adapter caseColorBlend(ColorBlend object)
+			{
+				return createColorBlendAdapter();
+			}
+			@Override
+			public Adapter caseColorBlendAttachment(ColorBlendAttachment object)
+			{
+				return createColorBlendAttachmentAdapter();
+			}
+			@Override
 			public Adapter caseViewportState(ViewportState object)
 			{
 				return createViewportStateAdapter();
@@ -317,6 +327,36 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGraphicsPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend <em>Color Blend</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend
+	 * @generated
+	 */
+	public Adapter createColorBlendAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment <em>Color Blend Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment
+	 * @generated
+	 */
+	public Adapter createColorBlendAttachmentAdapter()
 	{
 		return null;
 	}

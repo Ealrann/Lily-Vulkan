@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
+import org.sheepy.vulkan.model.enumeration.EPolygonMode;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.Rasterizer;
 
@@ -25,6 +26,7 @@ import org.sheepy.vulkan.model.process.graphic.Rasterizer;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#getCullMode <em>Cull Mode</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#getFrontFace <em>Front Face</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#getPolygonMode <em>Polygon Mode</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#getLineWidth <em>Line Width</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#isDepthClampEnable <em>Depth Clamp Enable</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#isDiscardEnable <em>Discard Enable</em>}</li>
@@ -74,6 +76,26 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	 * @ordered
 	 */
 	protected EFrontFace frontFace = FRONT_FACE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPolygonMode() <em>Polygon Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPolygonMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EPolygonMode POLYGON_MODE_EDEFAULT = EPolygonMode.FILL; // TODO The default value literal "FILL" is not valid.
+
+	/**
+	 * The cached value of the '{@link #getPolygonMode() <em>Polygon Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPolygonMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected EPolygonMode polygonMode = POLYGON_MODE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLineWidth() <em>Line Width</em>}' attribute.
@@ -227,6 +249,29 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EPolygonMode getPolygonMode()
+	{
+		return polygonMode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPolygonMode(EPolygonMode newPolygonMode)
+	{
+		EPolygonMode oldPolygonMode = polygonMode;
+		polygonMode = newPolygonMode == null ? POLYGON_MODE_EDEFAULT : newPolygonMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.RASTERIZER__POLYGON_MODE, oldPolygonMode, polygonMode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getLineWidth()
 	{
 		return lineWidth;
@@ -328,6 +373,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 				return getCullMode();
 			case GraphicPackage.RASTERIZER__FRONT_FACE:
 				return getFrontFace();
+			case GraphicPackage.RASTERIZER__POLYGON_MODE:
+				return getPolygonMode();
 			case GraphicPackage.RASTERIZER__LINE_WIDTH:
 				return getLineWidth();
 			case GraphicPackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
@@ -355,6 +402,9 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 				return;
 			case GraphicPackage.RASTERIZER__FRONT_FACE:
 				setFrontFace((EFrontFace)newValue);
+				return;
+			case GraphicPackage.RASTERIZER__POLYGON_MODE:
+				setPolygonMode((EPolygonMode)newValue);
 				return;
 			case GraphicPackage.RASTERIZER__LINE_WIDTH:
 				setLineWidth((Integer)newValue);
@@ -388,6 +438,9 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 			case GraphicPackage.RASTERIZER__FRONT_FACE:
 				setFrontFace(FRONT_FACE_EDEFAULT);
 				return;
+			case GraphicPackage.RASTERIZER__POLYGON_MODE:
+				setPolygonMode(POLYGON_MODE_EDEFAULT);
+				return;
 			case GraphicPackage.RASTERIZER__LINE_WIDTH:
 				setLineWidth(LINE_WIDTH_EDEFAULT);
 				return;
@@ -418,6 +471,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 				return cullMode != CULL_MODE_EDEFAULT;
 			case GraphicPackage.RASTERIZER__FRONT_FACE:
 				return frontFace != FRONT_FACE_EDEFAULT;
+			case GraphicPackage.RASTERIZER__POLYGON_MODE:
+				return polygonMode != POLYGON_MODE_EDEFAULT;
 			case GraphicPackage.RASTERIZER__LINE_WIDTH:
 				return lineWidth != LINE_WIDTH_EDEFAULT;
 			case GraphicPackage.RASTERIZER__DEPTH_CLAMP_ENABLE:
@@ -445,6 +500,8 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 		result.append(cullMode);
 		result.append(", frontFace: ");
 		result.append(frontFace);
+		result.append(", polygonMode: ");
+		result.append(polygonMode);
 		result.append(", lineWidth: ");
 		result.append(lineWidth);
 		result.append(", depthClampEnable: ");

@@ -144,6 +144,15 @@ public interface GuiPackage extends EPackage
 	int GUI_PIPELINE__RASTERIZER = GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER;
 
 	/**
+	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_PIPELINE__COLOR_BLEND = GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND;
+
+	/**
 	 * The feature id for the '<em><b>Windows</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

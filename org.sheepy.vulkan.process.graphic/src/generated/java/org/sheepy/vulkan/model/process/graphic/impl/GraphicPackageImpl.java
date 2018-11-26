@@ -19,6 +19,8 @@ import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.vulkan.model.process.graphic.ColorBlend;
+import org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
@@ -92,6 +94,20 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass graphicsPipelineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass colorBlendEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass colorBlendAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -571,6 +587,216 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGraphicsPipeline_ColorBlend()
+	{
+		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getColorBlend()
+	{
+		return colorBlendEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getColorBlend_Attachments()
+	{
+		return (EReference)colorBlendEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlend_LogicOpEnable()
+	{
+		return (EAttribute)colorBlendEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlend_LogicOp()
+	{
+		return (EAttribute)colorBlendEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlend_BlendConstant0()
+	{
+		return (EAttribute)colorBlendEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlend_BlendConstant1()
+	{
+		return (EAttribute)colorBlendEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlend_BlendConstant2()
+	{
+		return (EAttribute)colorBlendEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlend_BlendConstant3()
+	{
+		return (EAttribute)colorBlendEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getColorBlendAttachment()
+	{
+		return colorBlendAttachmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_BlendEnable()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_RedComponentEnable()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_GreenComponentEnable()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_BlueComponentEnable()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_AlphaComponentEnable()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_SrcColor()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_DstColor()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_SrcAlpha()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_DstAlpha()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_ColorBlendOp()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorBlendAttachment_AlphaBlendOp()
+	{
+		return (EAttribute)colorBlendAttachmentEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getViewportState()
 	{
 		return viewportStateEClass;
@@ -711,7 +937,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRasterizer_LineWidth()
+	public EAttribute getRasterizer_PolygonMode()
 	{
 		return (EAttribute)rasterizerEClass.getEStructuralFeatures().get(2);
 	}
@@ -721,7 +947,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRasterizer_DepthClampEnable()
+	public EAttribute getRasterizer_LineWidth()
 	{
 		return (EAttribute)rasterizerEClass.getEStructuralFeatures().get(3);
 	}
@@ -731,7 +957,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRasterizer_DiscardEnable()
+	public EAttribute getRasterizer_DepthClampEnable()
 	{
 		return (EAttribute)rasterizerEClass.getEStructuralFeatures().get(4);
 	}
@@ -741,9 +967,19 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRasterizer_DepthBiasEnable()
+	public EAttribute getRasterizer_DiscardEnable()
 	{
 		return (EAttribute)rasterizerEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRasterizer_DepthBiasEnable()
+	{
+		return (EAttribute)rasterizerEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -898,6 +1134,29 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__SHADERS);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VIEWPORT_STATE);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__RASTERIZER);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__COLOR_BLEND);
+
+		colorBlendEClass = createEClass(COLOR_BLEND);
+		createEReference(colorBlendEClass, COLOR_BLEND__ATTACHMENTS);
+		createEAttribute(colorBlendEClass, COLOR_BLEND__LOGIC_OP_ENABLE);
+		createEAttribute(colorBlendEClass, COLOR_BLEND__LOGIC_OP);
+		createEAttribute(colorBlendEClass, COLOR_BLEND__BLEND_CONSTANT0);
+		createEAttribute(colorBlendEClass, COLOR_BLEND__BLEND_CONSTANT1);
+		createEAttribute(colorBlendEClass, COLOR_BLEND__BLEND_CONSTANT2);
+		createEAttribute(colorBlendEClass, COLOR_BLEND__BLEND_CONSTANT3);
+
+		colorBlendAttachmentEClass = createEClass(COLOR_BLEND_ATTACHMENT);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__BLEND_ENABLE);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__SRC_COLOR);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__DST_COLOR);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__SRC_ALPHA);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__DST_ALPHA);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP);
 
 		viewportStateEClass = createEClass(VIEWPORT_STATE);
 		createEReference(viewportStateEClass, VIEWPORT_STATE__VIEWPORTS);
@@ -916,6 +1175,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		rasterizerEClass = createEClass(RASTERIZER);
 		createEAttribute(rasterizerEClass, RASTERIZER__CULL_MODE);
 		createEAttribute(rasterizerEClass, RASTERIZER__FRONT_FACE);
+		createEAttribute(rasterizerEClass, RASTERIZER__POLYGON_MODE);
 		createEAttribute(rasterizerEClass, RASTERIZER__LINE_WIDTH);
 		createEAttribute(rasterizerEClass, RASTERIZER__DEPTH_CLAMP_ENABLE);
 		createEAttribute(rasterizerEClass, RASTERIZER__DISCARD_ENABLE);
@@ -1024,6 +1284,29 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getGraphicsPipeline_Shaders(), theResourcePackage.getShader(), null, "shaders", null, 0, -1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicsPipeline_ViewportState(), this.getViewportState(), null, "viewportState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicsPipeline_Rasterizer(), this.getRasterizer(), null, "rasterizer", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_ColorBlend(), this.getColorBlend(), null, "colorBlend", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(colorBlendEClass, ColorBlend.class, "ColorBlend", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getColorBlend_Attachments(), this.getColorBlendAttachment(), null, "attachments", null, 0, -1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_LogicOpEnable(), theEcorePackage.getEBoolean(), "logicOpEnable", "false", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_LogicOp(), theEnumerationPackage.getELogicOp(), "logicOp", "COPY", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_BlendConstant0(), theEcorePackage.getEInt(), "blendConstant0", "0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_BlendConstant1(), theEcorePackage.getEInt(), "blendConstant1", "0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_BlendConstant2(), theEcorePackage.getEInt(), "blendConstant2", "0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlend_BlendConstant3(), theEcorePackage.getEInt(), "blendConstant3", "1", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(colorBlendAttachmentEClass, ColorBlendAttachment.class, "ColorBlendAttachment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getColorBlendAttachment_BlendEnable(), theEcorePackage.getEBoolean(), "blendEnable", "false", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_RedComponentEnable(), theEcorePackage.getEBoolean(), "redComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_GreenComponentEnable(), theEcorePackage.getEBoolean(), "greenComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_BlueComponentEnable(), theEcorePackage.getEBoolean(), "blueComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_AlphaComponentEnable(), theEcorePackage.getEBoolean(), "alphaComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_SrcColor(), theEnumerationPackage.getEBlendFactor(), "srcColor", "ONE", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_DstColor(), theEnumerationPackage.getEBlendFactor(), "dstColor", "ZERO", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_SrcAlpha(), theEnumerationPackage.getEBlendFactor(), "srcAlpha", "ONE", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_DstAlpha(), theEnumerationPackage.getEBlendFactor(), "dstAlpha", "ZERO", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_ColorBlendOp(), theEnumerationPackage.getEBlendOp(), "colorBlendOp", "ADD", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_AlphaBlendOp(), theEnumerationPackage.getEBlendOp(), "alphaBlendOp", "ADD", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(viewportStateEClass, ViewportState.class, "ViewportState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getViewportState_Viewports(), this.getViewport(), null, "viewports", null, 0, -1, ViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1042,6 +1325,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEClass(rasterizerEClass, Rasterizer.class, "Rasterizer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRasterizer_CullMode(), theEnumerationPackage.getECullMode(), "cullMode", "BACK_BIT", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRasterizer_FrontFace(), theEnumerationPackage.getEFrontFace(), "frontFace", "CLOCKWISE", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRasterizer_PolygonMode(), theEnumerationPackage.getEPolygonMode(), "polygonMode", "FILL", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRasterizer_LineWidth(), theEcorePackage.getEInt(), "lineWidth", "1", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRasterizer_DepthClampEnable(), theEcorePackage.getEBoolean(), "depthClampEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRasterizer_DiscardEnable(), theEcorePackage.getEBoolean(), "discardEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

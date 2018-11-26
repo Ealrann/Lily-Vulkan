@@ -581,13 +581,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__COLOR_BLEND = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -599,6 +608,224 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl <em>Color Blend</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
+	 * @generated
+	 */
+	int COLOR_BLEND = 7;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND__ATTACHMENTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Logic Op Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND__LOGIC_OP_ENABLE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Logic Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND__LOGIC_OP = 2;
+
+	/**
+	 * The feature id for the '<em><b>Blend Constant0</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND__BLEND_CONSTANT0 = 3;
+
+	/**
+	 * The feature id for the '<em><b>Blend Constant1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND__BLEND_CONSTANT1 = 4;
+
+	/**
+	 * The feature id for the '<em><b>Blend Constant2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND__BLEND_CONSTANT2 = 5;
+
+	/**
+	 * The feature id for the '<em><b>Blend Constant3</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND__BLEND_CONSTANT3 = 6;
+
+	/**
+	 * The number of structural features of the '<em>Color Blend</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_FEATURE_COUNT = 7;
+
+	/**
+	 * The number of operations of the '<em>Color Blend</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl <em>Color Blend Attachment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
+	 * @generated
+	 */
+	int COLOR_BLEND_ATTACHMENT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Blend Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__BLEND_ENABLE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Red Component Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Green Component Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Blue Component Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Alpha Component Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Src Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__SRC_COLOR = 5;
+
+	/**
+	 * The feature id for the '<em><b>Dst Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__DST_COLOR = 6;
+
+	/**
+	 * The feature id for the '<em><b>Src Alpha</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__SRC_ALPHA = 7;
+
+	/**
+	 * The feature id for the '<em><b>Dst Alpha</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__DST_ALPHA = 8;
+
+	/**
+	 * The feature id for the '<em><b>Color Blend Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP = 9;
+
+	/**
+	 * The feature id for the '<em><b>Alpha Blend Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP = 10;
+
+	/**
+	 * The number of structural features of the '<em>Color Blend Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT_FEATURE_COUNT = 11;
+
+	/**
+	 * The number of operations of the '<em>Color Blend Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportStateImpl <em>Viewport State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -606,7 +833,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
 	 * @generated
 	 */
-	int VIEWPORT_STATE = 7;
+	int VIEWPORT_STATE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Viewports</b></em>' containment reference list.
@@ -652,7 +879,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
 	 * @generated
 	 */
-	int VIEWPORT = 8;
+	int VIEWPORT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -716,7 +943,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
 	 * @generated
 	 */
-	int SCISSOR = 9;
+	int SCISSOR = 11;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -762,7 +989,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
 	 * @generated
 	 */
-	int RASTERIZER = 10;
+	int RASTERIZER = 12;
 
 	/**
 	 * The feature id for the '<em><b>Cull Mode</b></em>' attribute.
@@ -783,13 +1010,22 @@ public interface GraphicPackage extends EPackage
 	int RASTERIZER__FRONT_FACE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Polygon Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RASTERIZER__POLYGON_MODE = 2;
+
+	/**
 	 * The feature id for the '<em><b>Line Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RASTERIZER__LINE_WIDTH = 2;
+	int RASTERIZER__LINE_WIDTH = 3;
 
 	/**
 	 * The feature id for the '<em><b>Depth Clamp Enable</b></em>' attribute.
@@ -798,7 +1034,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RASTERIZER__DEPTH_CLAMP_ENABLE = 3;
+	int RASTERIZER__DEPTH_CLAMP_ENABLE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Discard Enable</b></em>' attribute.
@@ -807,7 +1043,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RASTERIZER__DISCARD_ENABLE = 4;
+	int RASTERIZER__DISCARD_ENABLE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Depth Bias Enable</b></em>' attribute.
@@ -816,7 +1052,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RASTERIZER__DEPTH_BIAS_ENABLE = 5;
+	int RASTERIZER__DEPTH_BIAS_ENABLE = 6;
 
 	/**
 	 * The number of structural features of the '<em>Rasterizer</em>' class.
@@ -825,7 +1061,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RASTERIZER_FEATURE_COUNT = 6;
+	int RASTERIZER_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Rasterizer</em>' class.
@@ -844,7 +1080,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 	 * @generated
 	 */
-	int IMAGE_PIPELINE = 11;
+	int IMAGE_PIPELINE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -963,7 +1199,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getPipelineImageBarrier()
 	 * @generated
 	 */
-	int PIPELINE_IMAGE_BARRIER = 12;
+	int PIPELINE_IMAGE_BARRIER = 14;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1401,6 +1637,235 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicsPipeline_Rasterizer();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Color Blend</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_ColorBlend();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend <em>Color Blend</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Color Blend</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend
+	 * @generated
+	 */
+	EClass getColorBlend();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getAttachments <em>Attachments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attachments</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getAttachments()
+	 * @see #getColorBlend()
+	 * @generated
+	 */
+	EReference getColorBlend_Attachments();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#isLogicOpEnable <em>Logic Op Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Logic Op Enable</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#isLogicOpEnable()
+	 * @see #getColorBlend()
+	 * @generated
+	 */
+	EAttribute getColorBlend_LogicOpEnable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getLogicOp <em>Logic Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Logic Op</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getLogicOp()
+	 * @see #getColorBlend()
+	 * @generated
+	 */
+	EAttribute getColorBlend_LogicOp();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant0 <em>Blend Constant0</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Blend Constant0</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant0()
+	 * @see #getColorBlend()
+	 * @generated
+	 */
+	EAttribute getColorBlend_BlendConstant0();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant1 <em>Blend Constant1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Blend Constant1</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant1()
+	 * @see #getColorBlend()
+	 * @generated
+	 */
+	EAttribute getColorBlend_BlendConstant1();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant2 <em>Blend Constant2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Blend Constant2</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant2()
+	 * @see #getColorBlend()
+	 * @generated
+	 */
+	EAttribute getColorBlend_BlendConstant2();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant3 <em>Blend Constant3</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Blend Constant3</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant3()
+	 * @see #getColorBlend()
+	 * @generated
+	 */
+	EAttribute getColorBlend_BlendConstant3();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment <em>Color Blend Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Color Blend Attachment</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment
+	 * @generated
+	 */
+	EClass getColorBlendAttachment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isBlendEnable <em>Blend Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Blend Enable</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isBlendEnable()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_BlendEnable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isRedComponentEnable <em>Red Component Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Red Component Enable</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isRedComponentEnable()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_RedComponentEnable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isGreenComponentEnable <em>Green Component Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Green Component Enable</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isGreenComponentEnable()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_GreenComponentEnable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isBlueComponentEnable <em>Blue Component Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Blue Component Enable</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isBlueComponentEnable()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_BlueComponentEnable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isAlphaComponentEnable <em>Alpha Component Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alpha Component Enable</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isAlphaComponentEnable()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_AlphaComponentEnable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getSrcColor <em>Src Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Src Color</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getSrcColor()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_SrcColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getDstColor <em>Dst Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dst Color</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getDstColor()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_DstColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getSrcAlpha <em>Src Alpha</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Src Alpha</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getSrcAlpha()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_SrcAlpha();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getDstAlpha <em>Dst Alpha</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dst Alpha</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getDstAlpha()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_DstAlpha();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getColorBlendOp <em>Color Blend Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Color Blend Op</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getColorBlendOp()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_ColorBlendOp();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getAlphaBlendOp <em>Alpha Blend Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alpha Blend Op</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getAlphaBlendOp()
+	 * @see #getColorBlendAttachment()
+	 * @generated
+	 */
+	EAttribute getColorBlendAttachment_AlphaBlendOp();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1549,6 +2014,17 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getRasterizer_FrontFace();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getPolygonMode <em>Polygon Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Polygon Mode</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#getPolygonMode()
+	 * @see #getRasterizer()
+	 * @generated
+	 */
+	EAttribute getRasterizer_PolygonMode();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getLineWidth <em>Line Width</em>}'.
@@ -2007,6 +2483,178 @@ public interface GraphicPackage extends EPackage
 		EReference GRAPHICS_PIPELINE__RASTERIZER = eINSTANCE.getGraphicsPipeline_Rasterizer();
 
 		/**
+		 * The meta object literal for the '<em><b>Color Blend</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__COLOR_BLEND = eINSTANCE.getGraphicsPipeline_ColorBlend();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl <em>Color Blend</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
+		 * @generated
+		 */
+		EClass COLOR_BLEND = eINSTANCE.getColorBlend();
+
+		/**
+		 * The meta object literal for the '<em><b>Attachments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLOR_BLEND__ATTACHMENTS = eINSTANCE.getColorBlend_Attachments();
+
+		/**
+		 * The meta object literal for the '<em><b>Logic Op Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND__LOGIC_OP_ENABLE = eINSTANCE.getColorBlend_LogicOpEnable();
+
+		/**
+		 * The meta object literal for the '<em><b>Logic Op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND__LOGIC_OP = eINSTANCE.getColorBlend_LogicOp();
+
+		/**
+		 * The meta object literal for the '<em><b>Blend Constant0</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND__BLEND_CONSTANT0 = eINSTANCE.getColorBlend_BlendConstant0();
+
+		/**
+		 * The meta object literal for the '<em><b>Blend Constant1</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND__BLEND_CONSTANT1 = eINSTANCE.getColorBlend_BlendConstant1();
+
+		/**
+		 * The meta object literal for the '<em><b>Blend Constant2</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND__BLEND_CONSTANT2 = eINSTANCE.getColorBlend_BlendConstant2();
+
+		/**
+		 * The meta object literal for the '<em><b>Blend Constant3</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND__BLEND_CONSTANT3 = eINSTANCE.getColorBlend_BlendConstant3();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl <em>Color Blend Attachment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
+		 * @generated
+		 */
+		EClass COLOR_BLEND_ATTACHMENT = eINSTANCE.getColorBlendAttachment();
+
+		/**
+		 * The meta object literal for the '<em><b>Blend Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__BLEND_ENABLE = eINSTANCE.getColorBlendAttachment_BlendEnable();
+
+		/**
+		 * The meta object literal for the '<em><b>Red Component Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE = eINSTANCE.getColorBlendAttachment_RedComponentEnable();
+
+		/**
+		 * The meta object literal for the '<em><b>Green Component Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE = eINSTANCE.getColorBlendAttachment_GreenComponentEnable();
+
+		/**
+		 * The meta object literal for the '<em><b>Blue Component Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE = eINSTANCE.getColorBlendAttachment_BlueComponentEnable();
+
+		/**
+		 * The meta object literal for the '<em><b>Alpha Component Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE = eINSTANCE.getColorBlendAttachment_AlphaComponentEnable();
+
+		/**
+		 * The meta object literal for the '<em><b>Src Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__SRC_COLOR = eINSTANCE.getColorBlendAttachment_SrcColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Dst Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__DST_COLOR = eINSTANCE.getColorBlendAttachment_DstColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Src Alpha</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__SRC_ALPHA = eINSTANCE.getColorBlendAttachment_SrcAlpha();
+
+		/**
+		 * The meta object literal for the '<em><b>Dst Alpha</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__DST_ALPHA = eINSTANCE.getColorBlendAttachment_DstAlpha();
+
+		/**
+		 * The meta object literal for the '<em><b>Color Blend Op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP = eINSTANCE.getColorBlendAttachment_ColorBlendOp();
+
+		/**
+		 * The meta object literal for the '<em><b>Alpha Blend Op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP = eINSTANCE.getColorBlendAttachment_AlphaBlendOp();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportStateImpl <em>Viewport State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2125,6 +2773,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute RASTERIZER__FRONT_FACE = eINSTANCE.getRasterizer_FrontFace();
+
+		/**
+		 * The meta object literal for the '<em><b>Polygon Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RASTERIZER__POLYGON_MODE = eINSTANCE.getRasterizer_PolygonMode();
 
 		/**
 		 * The meta object literal for the '<em><b>Line Width</b></em>' attribute feature.

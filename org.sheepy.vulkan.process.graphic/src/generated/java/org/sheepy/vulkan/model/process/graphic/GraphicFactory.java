@@ -77,6 +77,24 @@ public interface GraphicFactory extends EFactory
 	GraphicProcess createGraphicProcess();
 
 	/**
+	 * Returns a new object of class '<em>Color Blend</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Color Blend</em>'.
+	 * @generated
+	 */
+	ColorBlend createColorBlend();
+
+	/**
+	 * Returns a new object of class '<em>Color Blend Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Color Blend Attachment</em>'.
+	 * @generated
+	 */
+	ColorBlendAttachment createColorBlendAttachment();
+
+	/**
 	 * Returns a new object of class '<em>Viewport State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

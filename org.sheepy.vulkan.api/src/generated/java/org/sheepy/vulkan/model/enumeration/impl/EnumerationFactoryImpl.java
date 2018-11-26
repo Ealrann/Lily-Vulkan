@@ -90,10 +90,16 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return createECommandStageFromString(eDataType, initialValue);
 			case EnumerationPackage.EATTACHMENT_LOAD_OP:
 				return createEAttachmentLoadOpFromString(eDataType, initialValue);
+			case EnumerationPackage.ELOGIC_OP:
+				return createELogicOpFromString(eDataType, initialValue);
 			case EnumerationPackage.EATTACHMENT_STORE_OP:
 				return createEAttachmentStoreOpFromString(eDataType, initialValue);
 			case EnumerationPackage.ESHADER_STAGE:
 				return createEShaderStageFromString(eDataType, initialValue);
+			case EnumerationPackage.EBLEND_FACTOR:
+				return createEBlendFactorFromString(eDataType, initialValue);
+			case EnumerationPackage.EBLEND_OP:
+				return createEBlendOpFromString(eDataType, initialValue);
 			case EnumerationPackage.EPIPELINE_STAGE:
 				return createEPipelineStageFromString(eDataType, initialValue);
 			case EnumerationPackage.ECOLOR_SPACE:
@@ -102,6 +108,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return createEFormatFromString(eDataType, initialValue);
 			case EnumerationPackage.EPRESENT_MODE:
 				return createEPresentModeFromString(eDataType, initialValue);
+			case EnumerationPackage.EPOLYGON_MODE:
+				return createEPolygonModeFromString(eDataType, initialValue);
 			case EnumerationPackage.EIMAGE_USAGE:
 				return createEImageUsageFromString(eDataType, initialValue);
 			case EnumerationPackage.ESAMPLE_COUNT:
@@ -131,10 +139,16 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return convertECommandStageToString(eDataType, instanceValue);
 			case EnumerationPackage.EATTACHMENT_LOAD_OP:
 				return convertEAttachmentLoadOpToString(eDataType, instanceValue);
+			case EnumerationPackage.ELOGIC_OP:
+				return convertELogicOpToString(eDataType, instanceValue);
 			case EnumerationPackage.EATTACHMENT_STORE_OP:
 				return convertEAttachmentStoreOpToString(eDataType, instanceValue);
 			case EnumerationPackage.ESHADER_STAGE:
 				return convertEShaderStageToString(eDataType, instanceValue);
+			case EnumerationPackage.EBLEND_FACTOR:
+				return convertEBlendFactorToString(eDataType, instanceValue);
+			case EnumerationPackage.EBLEND_OP:
+				return convertEBlendOpToString(eDataType, instanceValue);
 			case EnumerationPackage.EPIPELINE_STAGE:
 				return convertEPipelineStageToString(eDataType, instanceValue);
 			case EnumerationPackage.ECOLOR_SPACE:
@@ -143,6 +157,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return convertEFormatToString(eDataType, instanceValue);
 			case EnumerationPackage.EPRESENT_MODE:
 				return convertEPresentModeToString(eDataType, instanceValue);
+			case EnumerationPackage.EPOLYGON_MODE:
+				return convertEPolygonModeToString(eDataType, instanceValue);
 			case EnumerationPackage.EIMAGE_USAGE:
 				return convertEImageUsageToString(eDataType, instanceValue);
 			case EnumerationPackage.ESAMPLE_COUNT:
@@ -267,6 +283,28 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ELogicOp createELogicOpFromString(EDataType eDataType, String initialValue)
+	{
+		ELogicOp result = ELogicOp.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertELogicOpToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttachmentStoreOp createEAttachmentStoreOpFromString(EDataType eDataType, String initialValue)
 	{
 		EAttachmentStoreOp result = EAttachmentStoreOp.get(initialValue);
@@ -302,6 +340,50 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertEShaderStageToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EBlendFactor createEBlendFactorFromString(EDataType eDataType, String initialValue)
+	{
+		EBlendFactor result = EBlendFactor.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEBlendFactorToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EBlendOp createEBlendOpFromString(EDataType eDataType, String initialValue)
+	{
+		EBlendOp result = EBlendOp.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEBlendOpToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
@@ -390,6 +472,28 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertEPresentModeToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EPolygonMode createEPolygonModeFromString(EDataType eDataType, String initialValue)
+	{
+		EPolygonMode result = EPolygonMode.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEPolygonModeToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

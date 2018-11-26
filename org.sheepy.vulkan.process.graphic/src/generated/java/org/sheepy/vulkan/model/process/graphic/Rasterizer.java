@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.vulkan.model.enumeration.ECullMode;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
+import org.sheepy.vulkan.model.enumeration.EPolygonMode;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +19,7 @@ import org.sheepy.vulkan.model.enumeration.EFrontFace;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getCullMode <em>Cull Mode</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getFrontFace <em>Front Face</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getPolygonMode <em>Polygon Mode</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getLineWidth <em>Line Width</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable <em>Depth Clamp Enable</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDiscardEnable <em>Discard Enable</em>}</li>
@@ -89,6 +91,36 @@ public interface Rasterizer extends EObject
 	 * @generated
 	 */
 	void setFrontFace(EFrontFace value);
+
+	/**
+	 * Returns the value of the '<em><b>Polygon Mode</b></em>' attribute.
+	 * The default value is <code>"FILL"</code>.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPolygonMode}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Polygon Mode</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Polygon Mode</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPolygonMode
+	 * @see #setPolygonMode(EPolygonMode)
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRasterizer_PolygonMode()
+	 * @model default="FILL" unique="false"
+	 * @generated
+	 */
+	EPolygonMode getPolygonMode();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getPolygonMode <em>Polygon Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Polygon Mode</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EPolygonMode
+	 * @see #getPolygonMode()
+	 * @generated
+	 */
+	void setPolygonMode(EPolygonMode value);
 
 	/**
 	 * Returns the value of the '<em><b>Line Width</b></em>' attribute.

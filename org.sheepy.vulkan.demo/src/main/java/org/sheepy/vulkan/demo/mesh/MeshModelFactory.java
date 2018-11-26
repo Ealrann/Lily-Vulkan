@@ -25,6 +25,8 @@ import org.sheepy.vulkan.model.process.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 import org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl;
@@ -160,12 +162,16 @@ public class MeshModelFactory
 		viewportState.getViewports().add(new ViewportImpl());
 		viewportState.getScissors().add(new ScissorImpl());
 		
+		var colorBlend = new ColorBlendImpl();
+		colorBlend.getAttachments().add(new ColorBlendAttachmentImpl());
+		
 		final MeshPipeline graphicPipeline = new MeshPipelineImpl();
 		graphicPipeline.getShaders().add(vertexShader);
 		graphicPipeline.getShaders().add(fragmentShader);
 		graphicPipeline.setMesh(meshBuffer);
 		graphicPipeline.setRasterizer(rasterizer);
 		graphicPipeline.setViewportState(viewportState);
+		graphicPipeline.setColorBlend(colorBlend);
 
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
 		graphicProcess.getUnits().add(graphicPipeline);

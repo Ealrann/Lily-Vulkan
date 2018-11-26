@@ -15,7 +15,7 @@ public class RasterizerBuilder
 		rasterizerInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO);
 		rasterizerInfo.depthClampEnable(rasterizer.isDepthClampEnable());
 		rasterizerInfo.rasterizerDiscardEnable(rasterizer.isDiscardEnable());
-		rasterizerInfo.polygonMode(VK_POLYGON_MODE_FILL);
+		rasterizerInfo.polygonMode(rasterizer.getPolygonMode().getValue());
 		rasterizerInfo.lineWidth(rasterizer.getLineWidth());
 		rasterizerInfo.cullMode(rasterizer.getCullMode().getValue());
 		rasterizerInfo.frontFace(rasterizer.getFrontFace().getValue());

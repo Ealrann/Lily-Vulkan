@@ -4,36 +4,46 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkPipelineColorBlendAttachmentState;
 import org.lwjgl.vulkan.VkPipelineColorBlendStateCreateInfo;
+import org.sheepy.vulkan.model.process.graphic.ColorBlend;
+import org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment;
 
 public class ColorBlendBuilder
 {
 	private VkPipelineColorBlendStateCreateInfo colorBlending;
-	private VkPipelineColorBlendAttachmentState.Buffer colorBlendAttachment;
+	private VkPipelineColorBlendAttachmentState.Buffer colorBlendAttachments;
 
-	public VkPipelineColorBlendStateCreateInfo allocCreateInfo()
+	public VkPipelineColorBlendStateCreateInfo allocCreateInfo(ColorBlend colorBlend)
 	{
-		colorBlendAttachment = VkPipelineColorBlendAttachmentState.calloc(1);
-		colorBlendAttachment.colorWriteMask(VK_COLOR_COMPONENT_R_BIT
-				| VK_COLOR_COMPONENT_G_BIT
-				| VK_COLOR_COMPONENT_B_BIT
-				| VK_COLOR_COMPONENT_A_BIT);
-		colorBlendAttachment.blendEnable(false);
-		colorBlendAttachment.srcColorBlendFactor(VK_BLEND_FACTOR_ONE); // Optional
-		colorBlendAttachment.dstColorBlendFactor(VK_BLEND_FACTOR_ZERO); // Optional
-		colorBlendAttachment.colorBlendOp(VK_BLEND_OP_ADD); // Optional
-		colorBlendAttachment.srcAlphaBlendFactor(VK_BLEND_FACTOR_ONE); // Optional
-		colorBlendAttachment.dstAlphaBlendFactor(VK_BLEND_FACTOR_ZERO); // Optional
-		colorBlendAttachment.alphaBlendOp(VK_BLEND_OP_ADD); // Optional
+		colorBlendAttachments = VkPipelineColorBlendAttachmentState
+				.calloc(colorBlend.getAttachments().size());
+		for (ColorBlendAttachment attachement : colorBlend.getAttachments())
+		{
+			int writeMask = 0;
+			if (attachement.isRedComponentEnable()) writeMask |= VK_COLOR_COMPONENT_R_BIT;
+			if (attachement.isGreenComponentEnable()) writeMask |= VK_COLOR_COMPONENT_G_BIT;
+			if (attachement.isBlueComponentEnable()) writeMask |= VK_COLOR_COMPONENT_B_BIT;
+			if (attachement.isAlphaComponentEnable()) writeMask |= VK_COLOR_COMPONENT_A_BIT;
+
+			colorBlendAttachments.colorWriteMask(writeMask);
+			colorBlendAttachments.blendEnable(attachement.isBlendEnable());
+			
+			colorBlendAttachments.srcColorBlendFactor(attachement.getSrcColor().getValue());
+			colorBlendAttachments.dstColorBlendFactor(attachement.getDstColor().getValue());
+			colorBlendAttachments.colorBlendOp(attachement.getColorBlendOp().getValue());
+			colorBlendAttachments.srcAlphaBlendFactor(attachement.getSrcAlpha().getValue());
+			colorBlendAttachments.dstAlphaBlendFactor(attachement.getDstAlpha().getValue());
+			colorBlendAttachments.alphaBlendOp(attachement.getAlphaBlendOp().getValue());
+		}
 
 		colorBlending = VkPipelineColorBlendStateCreateInfo.calloc();
 		colorBlending.sType(VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO);
-		colorBlending.logicOpEnable(false);
-		colorBlending.logicOp(VK_LOGIC_OP_COPY); // Optional
-		colorBlending.pAttachments(colorBlendAttachment);
-		colorBlending.blendConstants(0, 0f);
-		colorBlending.blendConstants(1, 0f);
-		colorBlending.blendConstants(2, 0f);
-		colorBlending.blendConstants(3, 1f);
+		colorBlending.logicOpEnable(colorBlend.isLogicOpEnable());
+		colorBlending.logicOp(colorBlend.getLogicOp().getValue());
+		colorBlending.pAttachments(colorBlendAttachments);
+		colorBlending.blendConstants(0, colorBlend.getBlendConstant0());
+		colorBlending.blendConstants(1, colorBlend.getBlendConstant1());
+		colorBlending.blendConstants(2, colorBlend.getBlendConstant2());
+		colorBlending.blendConstants(3, colorBlend.getBlendConstant3());
 
 		return colorBlending;
 	}
@@ -41,6 +51,6 @@ public class ColorBlendBuilder
 	public void freeColorBlendStateCreateInfo()
 	{
 		colorBlending.free();
-		colorBlendAttachment.free();
+		colorBlendAttachments.free();
 	}
 }

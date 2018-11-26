@@ -20,6 +20,7 @@ import org.sheepy.vulkan.model.resource.Shader;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getShaders <em>Shaders</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState <em>Viewport State</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline()
@@ -95,5 +96,31 @@ public interface GraphicsPipeline extends AbstractPipeline
 	 * @generated
 	 */
 	void setRasterizer(Rasterizer value);
+
+	/**
+	 * Returns the value of the '<em><b>Color Blend</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Color Blend</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Color Blend</em>' containment reference.
+	 * @see #setColorBlend(ColorBlend)
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_ColorBlend()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ColorBlend getColorBlend();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Color Blend</em>' containment reference.
+	 * @see #getColorBlend()
+	 * @generated
+	 */
+	void setColorBlend(ColorBlend value);
 
 } // GraphicsPipeline

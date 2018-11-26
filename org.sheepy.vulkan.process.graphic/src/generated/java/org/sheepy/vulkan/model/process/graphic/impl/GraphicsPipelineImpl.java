@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.sheepy.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 
@@ -34,6 +35,7 @@ import org.sheepy.vulkan.model.resource.Shader;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getShaders <em>Shaders</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getViewportState <em>Viewport State</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getRasterizer <em>Rasterizer</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getColorBlend <em>Color Blend</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,6 +71,16 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * @ordered
 	 */
 	protected Rasterizer rasterizer;
+
+	/**
+	 * The cached value of the '{@link #getColorBlend() <em>Color Blend</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getColorBlend()
+	 * @generated
+	 * @ordered
+	 */
+	protected ColorBlend colorBlend;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,6 +218,54 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ColorBlend getColorBlend()
+	{
+		return colorBlend;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetColorBlend(ColorBlend newColorBlend, NotificationChain msgs)
+	{
+		ColorBlend oldColorBlend = colorBlend;
+		colorBlend = newColorBlend;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, oldColorBlend, newColorBlend);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setColorBlend(ColorBlend newColorBlend)
+	{
+		if (newColorBlend != colorBlend)
+		{
+			NotificationChain msgs = null;
+			if (colorBlend != null)
+				msgs = ((InternalEObject)colorBlend).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
+			if (newColorBlend != null)
+				msgs = ((InternalEObject)newColorBlend).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
+			msgs = basicSetColorBlend(newColorBlend, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, newColorBlend, newColorBlend));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -215,6 +275,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return basicSetViewportState(null, msgs);
 			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
 				return basicSetRasterizer(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				return basicSetColorBlend(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -235,6 +297,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return getViewportState();
 			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
 				return getRasterizer();
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				return getColorBlend();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -260,6 +324,9 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
 				setRasterizer((Rasterizer)newValue);
 				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				setColorBlend((ColorBlend)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -283,6 +350,9 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
 				setRasterizer((Rasterizer)null);
 				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				setColorBlend((ColorBlend)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -303,6 +373,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return viewportState != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
 				return rasterizer != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+				return colorBlend != null;
 		}
 		return super.eIsSet(featureID);
 	}

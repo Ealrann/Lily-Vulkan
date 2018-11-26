@@ -9,6 +9,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
+import org.sheepy.vulkan.model.enumeration.EBlendFactor;
+import org.sheepy.vulkan.model.enumeration.EBlendOp;
 import org.sheepy.vulkan.model.enumeration.EColorSpace;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
@@ -16,7 +18,9 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
+import org.sheepy.vulkan.model.enumeration.ELogicOp;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EPolygonMode;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -71,6 +75,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum eLogicOpEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum eAttachmentStoreOpEEnum = null;
 
 	/**
@@ -79,6 +90,20 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eShaderStageEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eBlendFactorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eBlendOpEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,6 +132,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum ePresentModeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum ePolygonModeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -240,6 +272,16 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getELogicOp()
+	{
+		return eLogicOpEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getEAttachmentStoreOp()
 	{
 		return eAttachmentStoreOpEEnum;
@@ -253,6 +295,26 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	public EEnum getEShaderStage()
 	{
 		return eShaderStageEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getEBlendFactor()
+	{
+		return eBlendFactorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getEBlendOp()
+	{
+		return eBlendOpEEnum;
 	}
 
 	/**
@@ -293,6 +355,16 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	public EEnum getEPresentMode()
 	{
 		return ePresentModeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getEPolygonMode()
+	{
+		return ePolygonModeEEnum;
 	}
 
 	/**
@@ -350,12 +422,16 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		eFrontFaceEEnum = createEEnum(EFRONT_FACE);
 		eCommandStageEEnum = createEEnum(ECOMMAND_STAGE);
 		eAttachmentLoadOpEEnum = createEEnum(EATTACHMENT_LOAD_OP);
+		eLogicOpEEnum = createEEnum(ELOGIC_OP);
 		eAttachmentStoreOpEEnum = createEEnum(EATTACHMENT_STORE_OP);
 		eShaderStageEEnum = createEEnum(ESHADER_STAGE);
+		eBlendFactorEEnum = createEEnum(EBLEND_FACTOR);
+		eBlendOpEEnum = createEEnum(EBLEND_OP);
 		ePipelineStageEEnum = createEEnum(EPIPELINE_STAGE);
 		eColorSpaceEEnum = createEEnum(ECOLOR_SPACE);
 		eFormatEEnum = createEEnum(EFORMAT);
 		ePresentModeEEnum = createEEnum(EPRESENT_MODE);
+		ePolygonModeEEnum = createEEnum(EPOLYGON_MODE);
 		eImageUsageEEnum = createEEnum(EIMAGE_USAGE);
 		eSampleCountEEnum = createEEnum(ESAMPLE_COUNT);
 	}
@@ -418,6 +494,24 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eAttachmentLoadOpEEnum, EAttachmentLoadOp.CLEAR);
 		addEEnumLiteral(eAttachmentLoadOpEEnum, EAttachmentLoadOp.DONT_CARE);
 
+		initEEnum(eLogicOpEEnum, ELogicOp.class, "ELogicOp");
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.CLEAR);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.AND);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.AND_REVERSE);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.COPY);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.AND_INVERTED);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.NO_OP);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.XOR);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.OR);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.NOR);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.EQUIVALENT);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.INVERT);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.OR_REVERSE);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.COPY_INVERTED);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.OR_INVERTED);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.NAND);
+		addEEnumLiteral(eLogicOpEEnum, ELogicOp.SET);
+
 		initEEnum(eAttachmentStoreOpEEnum, EAttachmentStoreOp.class, "EAttachmentStoreOp");
 		addEEnumLiteral(eAttachmentStoreOpEEnum, EAttachmentStoreOp.STORE);
 		addEEnumLiteral(eAttachmentStoreOpEEnum, EAttachmentStoreOp.DONT_CARE);
@@ -431,6 +525,34 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eShaderStageEEnum, EShaderStage.COMPUTE_BIT);
 		addEEnumLiteral(eShaderStageEEnum, EShaderStage.ALL_GRAPHICS);
 		addEEnumLiteral(eShaderStageEEnum, EShaderStage.ALL);
+
+		initEEnum(eBlendFactorEEnum, EBlendFactor.class, "EBlendFactor");
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ZERO);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.SRC_COLOR);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_SRC_COLOR);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.DST_COLOR);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_DST_COLOR);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.SRC_ALPHA);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_SRC_ALPHA);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.DST_ALPHA);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_DST_ALPHA);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.CONSTANT_COLOR);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_CONSTANT_COLOR);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.CONSTANT_ALPHA);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_CONSTANT_ALPHA);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.SRC_ALPHA_SATURATE);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.SRC1_COLOR);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_SRC1_COLOR);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.SRC1_ALPHA);
+		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_SRC1_ALPHA);
+
+		initEEnum(eBlendOpEEnum, EBlendOp.class, "EBlendOp");
+		addEEnumLiteral(eBlendOpEEnum, EBlendOp.ADD);
+		addEEnumLiteral(eBlendOpEEnum, EBlendOp.SUBTRACT);
+		addEEnumLiteral(eBlendOpEEnum, EBlendOp.REVERSE_SUBTRACT);
+		addEEnumLiteral(eBlendOpEEnum, EBlendOp.MIN);
+		addEEnumLiteral(eBlendOpEEnum, EBlendOp.MAX);
 
 		initEEnum(ePipelineStageEEnum, EPipelineStage.class, "EPipelineStage");
 		addEEnumLiteral(ePipelineStageEEnum, EPipelineStage.TOP_OF_PIPE_BIT);
@@ -646,6 +768,11 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(ePresentModeEEnum, EPresentMode.MAIL_BOX);
 		addEEnumLiteral(ePresentModeEEnum, EPresentMode.FIFO);
 		addEEnumLiteral(ePresentModeEEnum, EPresentMode.FIFO_RELAXED);
+
+		initEEnum(ePolygonModeEEnum, EPolygonMode.class, "EPolygonMode");
+		addEEnumLiteral(ePolygonModeEEnum, EPolygonMode.FILL);
+		addEEnumLiteral(ePolygonModeEEnum, EPolygonMode.LINE);
+		addEEnumLiteral(ePolygonModeEEnum, EPolygonMode.POINT);
 
 		initEEnum(eImageUsageEEnum, EImageUsage.class, "EImageUsage");
 		addEEnumLiteral(eImageUsageEEnum, EImageUsage.TRANSFER_SRC);

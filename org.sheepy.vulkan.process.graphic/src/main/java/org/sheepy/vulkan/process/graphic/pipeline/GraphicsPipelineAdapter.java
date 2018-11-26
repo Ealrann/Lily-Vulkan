@@ -70,7 +70,12 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 		pipelineInfo.pMultisampleState(multisampleBuilder.allocCreateInfo());
 		if (useDepthBuffer == true)
 			pipelineInfo.pDepthStencilState(depthStencilBuidler.allocCreateInfo());
-		pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo());
+
+		var colorBlend = pipeline.getColorBlend();
+		if (colorBlend != null)
+		{
+			pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo(colorBlend));
+		}
 		// pipelineInfo.pDynamicState(dynamicState.allocDynamicStateCreateInfo());
 		pipelineInfo.layout(pipelineLayout);
 		pipelineInfo.renderPass(context.renderPass.getId());
