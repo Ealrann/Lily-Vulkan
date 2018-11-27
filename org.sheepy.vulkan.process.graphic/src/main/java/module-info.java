@@ -10,6 +10,7 @@ import org.sheepy.vulkan.process.graphic.process.GraphicProcessAdapter;
 module org.sheepy.vulkan.process.graphic
 {
 	requires transitive org.sheepy.vulkan.process;
+	requires transitive org.sheepy.vulkan.resource;
 
 	exports org.sheepy.vulkan.process.graphic.execution;
 	exports org.sheepy.vulkan.process.graphic.pipeline;

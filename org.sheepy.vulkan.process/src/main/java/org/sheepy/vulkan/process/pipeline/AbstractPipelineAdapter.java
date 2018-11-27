@@ -16,7 +16,6 @@ import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.resource.buffer.PushConstantAdapter;
-import org.sheepy.vulkan.resource.descriptor.BasicDescriptorSetAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
 
 public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
@@ -66,11 +65,9 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		LongBuffer bDescriptorSet = null;
 		if (descriptorSet != null)
 		{
-			final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
-			if(adapter.getDescriptors().isEmpty() == false)
+			final var descriptorSetAdapter = IDescriptorSetAdapter.adapt(descriptorSet);
+			if(descriptorSetAdapter.getDescriptors().isEmpty() == false)
 			{
-				final var descriptorSetAdapter = BasicDescriptorSetAdapter.adapt(descriptorSet);
-	
 				// Create Pipeline Layout
 				// -----------------------
 				bDescriptorSet = stack.mallocLong(1);

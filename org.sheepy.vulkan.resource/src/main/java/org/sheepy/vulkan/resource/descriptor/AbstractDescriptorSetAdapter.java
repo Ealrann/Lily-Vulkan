@@ -17,7 +17,6 @@ import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.resource.IResourceManagerAdapter;
 
 public abstract class AbstractDescriptorSetAdapter extends AbstractFlatAllocableAdapter
@@ -77,10 +76,9 @@ public abstract class AbstractDescriptorSetAdapter extends AbstractFlatAllocable
 		final var layoutBindings = VkDescriptorSetLayoutBinding.callocStack(size, stack);
 
 		int index = 0;
-		for (final IDescriptor provider : descriptors)
+		for (final IVkDescriptor descriptor : descriptors)
 		{
-			final var adapter = IDescriptorAdapter.adapt(provider);
-			final var layoutBinding = adapter.allocLayoutBinding(stack);
+			final var layoutBinding = descriptor.allocLayoutBinding(stack);
 			layoutBinding.binding(index++);
 			layoutBindings.put(layoutBinding);
 		}
@@ -95,10 +93,9 @@ public abstract class AbstractDescriptorSetAdapter extends AbstractFlatAllocable
 				.callocStack(descriptors.size(), stack);
 		int index = 0;
 
-		for (final IDescriptor descriptor : descriptors)
+		for (final IVkDescriptor descriptor : descriptors)
 		{
-			final var adapter = IDescriptorAdapter.adapt(descriptor);
-			final VkWriteDescriptorSet allocWriteDescriptor = adapter.allocWriteDescriptor(stack);
+			var allocWriteDescriptor = descriptor.allocWriteDescriptor(stack);
 			allocWriteDescriptor.dstSet(descriptorSetId);
 			allocWriteDescriptor.dstBinding(index++);
 			descriptorWrites.put(allocWriteDescriptor);

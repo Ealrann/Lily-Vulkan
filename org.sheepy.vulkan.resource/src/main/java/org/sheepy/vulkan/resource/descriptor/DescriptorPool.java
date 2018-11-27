@@ -13,7 +13,6 @@ import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.device.LogicalDeviceContext;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.resource.ResourceManager;
 
 public class DescriptorPool extends LogicalDeviceContext implements IBasicAllocable
@@ -47,10 +46,9 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 			for (final DescriptorSet descriptorSet : descriptorSets)
 			{
 				final var descriptorSetAdapter = IDescriptorSetAdapter.adapt(descriptorSet);
-				for (final IDescriptor descriptor : descriptorSetAdapter.getDescriptors())
+				for (final IVkDescriptor descriptor : descriptorSetAdapter.getDescriptors())
 				{
-					final var adapter = IDescriptorAdapter.adapt(descriptor);
-					poolSizes.put(adapter.allocPoolSize(stack));
+					poolSizes.put(descriptor.allocPoolSize(stack));
 				}
 			}
 			poolSizes.flip();
@@ -79,7 +77,7 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 	{
 		for (final DescriptorSet descriptorSet : descriptorSets)
 		{
-			final var adapter = BasicDescriptorSetAdapter.adapt(descriptorSet);
+			final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
 			adapter.free();
 		}
 		vkDestroyDescriptorPool(resourceManager.getVkDevice(), id, null);

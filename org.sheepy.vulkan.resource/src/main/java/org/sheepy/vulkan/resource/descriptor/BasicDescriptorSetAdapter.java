@@ -1,5 +1,6 @@
 package org.sheepy.vulkan.resource.descriptor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -10,10 +11,21 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 public class BasicDescriptorSetAdapter extends AbstractDescriptorSetAdapter
 {
+	private List<IVkDescriptor> vkDescriptors = null;
+
 	@Override
-	public List<IDescriptor> getDescriptors()
+	public List<IVkDescriptor> getDescriptors()
 	{
-		return ((BasicDescriptorSet) descriptorSet).getDescriptors();
+		if (vkDescriptors == null)
+		{
+			vkDescriptors = new ArrayList<>();
+			var descriptors = ((BasicDescriptorSet) descriptorSet).getDescriptors();
+			for(IDescriptor descriptor : descriptors)
+			{
+				vkDescriptors.add(IDescriptorAdapter.adapt(descriptor));
+			}
+		}
+		return vkDescriptors;
 	}
 
 	@Override

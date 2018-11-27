@@ -41,7 +41,6 @@ class PipelineBufferBarrier extends PipelineBarrier
 
 interface IPipeline extends IProcessUnit
 {
-	
 }
 
 abstract class AbstractPipeline extends IPipeline, ResourceContainer
