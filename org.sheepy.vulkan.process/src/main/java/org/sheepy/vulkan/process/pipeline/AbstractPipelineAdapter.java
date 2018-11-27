@@ -11,11 +11,12 @@ import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractDeepAllocableAdapter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.resource.buffer.PushConstantAdapter;
-import org.sheepy.vulkan.resource.descriptor.DescriptorSetAdapter;
+import org.sheepy.vulkan.resource.descriptor.BasicDescriptorSetAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
 
 public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
@@ -63,15 +64,19 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		final DescriptorSet descriptorSet = pipeline.getDescriptorSet();
 
 		LongBuffer bDescriptorSet = null;
-		if (descriptorSet != null && descriptorSet.getDescriptors().isEmpty() == false)
+		if (descriptorSet != null)
 		{
-			final var descriptorSetAdapter = DescriptorSetAdapter.adapt(descriptorSet);
-
-			// Create Pipeline Layout
-			// -----------------------
-			bDescriptorSet = stack.mallocLong(1);
-			bDescriptorSet.put(descriptorSetAdapter.getLayoutId());
-			bDescriptorSet.flip();
+			final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
+			if(adapter.getDescriptors().isEmpty() == false)
+			{
+				final var descriptorSetAdapter = BasicDescriptorSetAdapter.adapt(descriptorSet);
+	
+				// Create Pipeline Layout
+				// -----------------------
+				bDescriptorSet = stack.mallocLong(1);
+				bDescriptorSet.put(descriptorSetAdapter.getLayoutId());
+				bDescriptorSet.flip();
+			}
 		}
 
 		// Create compute pipeline
@@ -82,10 +87,8 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 
 		allocPushConstant(stack, info);
 
-		if (vkCreatePipelineLayout(vkDevice, info, null, aLayout) != VK_SUCCESS)
-		{
-			throw new AssertionError("Failed to create compute pipeline layout!");
-		}
+		Logger.check("Failed to create compute pipeline layout",
+				() -> vkCreatePipelineLayout(vkDevice, info, null, aLayout));
 		return aLayout[0];
 	}
 

@@ -6,9 +6,9 @@ package org.sheepy.vulkan.model.process
 import org.sheepy.vulkan.model.IProcessPool
 import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.vulkan.model.resource.BufferBarrier
-import org.sheepy.vulkan.model.resource.DescriptorSet
 import org.sheepy.vulkan.model.resource.PushConstant
 import org.sheepy.vulkan.model.resource.ResourceContainer
+import org.sheepy.vulkan.model.resource.DescriptorSet
 
 interface Configuration
 {

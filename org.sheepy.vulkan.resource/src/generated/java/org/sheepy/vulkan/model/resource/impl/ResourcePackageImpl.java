@@ -13,12 +13,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
+import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
 import org.sheepy.vulkan.model.resource.Barrier;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.BufferBarrier;
 import org.sheepy.vulkan.model.resource.DepthImage;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.FileResource;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
@@ -150,6 +151,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass descriptorSetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass basicDescriptorSetEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -549,9 +557,19 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDescriptorSet_Descriptors()
+	public EClass getBasicDescriptorSet()
 	{
-		return (EReference)descriptorSetEClass.getEStructuralFeatures().get(0);
+		return basicDescriptorSetEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBasicDescriptorSet_Descriptors()
+	{
+		return (EReference)basicDescriptorSetEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -845,7 +863,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		iDescriptorEClass = createEClass(IDESCRIPTOR);
 
 		descriptorSetEClass = createEClass(DESCRIPTOR_SET);
-		createEReference(descriptorSetEClass, DESCRIPTOR_SET__DESCRIPTORS);
+
+		basicDescriptorSetEClass = createEClass(BASIC_DESCRIPTOR_SET);
+		createEReference(basicDescriptorSetEClass, BASIC_DESCRIPTOR_SET__DESCRIPTORS);
 
 		indexedBufferEClass = createEClass(INDEXED_BUFFER);
 
@@ -924,6 +944,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		moduleResourceEClass.getESuperTypes().add(this.getPathResource());
 		shaderEClass.getESuperTypes().add(this.getResource());
 		pushConstantEClass.getESuperTypes().add(this.getVulkanBuffer());
+		basicDescriptorSetEClass.getESuperTypes().add(this.getDescriptorSet());
 		indexedBufferEClass.getESuperTypes().add(this.getVulkanBuffer());
 		indexedBufferEClass.getESuperTypes().add(this.getIDescriptor());
 		bufferBarrierEClass.getESuperTypes().add(this.getBarrier());
@@ -972,8 +993,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDescriptorSet_Descriptors(), this.getIDescriptor(), null, "descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(basicDescriptorSetEClass, BasicDescriptorSet.class, "BasicDescriptorSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBasicDescriptorSet_Descriptors(), this.getIDescriptor(), null, "descriptors", null, 1, -1, BasicDescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(indexedBufferEClass, IndexedBuffer.class, "IndexedBuffer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

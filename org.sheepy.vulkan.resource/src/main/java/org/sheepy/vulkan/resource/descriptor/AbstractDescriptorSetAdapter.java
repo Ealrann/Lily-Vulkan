@@ -5,7 +5,6 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.LongBuffer;
 
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
@@ -19,16 +18,15 @@ import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.IDescriptor;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.resource.IResourceManagerAdapter;
 
-public class DescriptorSetAdapter extends AbstractFlatAllocableAdapter
+public abstract class AbstractDescriptorSetAdapter extends AbstractFlatAllocableAdapter
 		implements IDescriptorSetAdapter
 {
 	private long descriptorSetId;
 	private long layoutId;
 
-	private DescriptorSet descriptorSet = null;
+	protected DescriptorSet descriptorSet = null;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -74,7 +72,7 @@ public class DescriptorSetAdapter extends AbstractFlatAllocableAdapter
 
 	private VkDescriptorSetLayoutBinding.Buffer createLayoutBinding(MemoryStack stack)
 	{
-		final var descriptors = descriptorSet.getDescriptors();
+		final var descriptors = getDescriptors();
 		final int size = descriptors.size();
 		final var layoutBindings = VkDescriptorSetLayoutBinding.callocStack(size, stack);
 
@@ -92,11 +90,12 @@ public class DescriptorSetAdapter extends AbstractFlatAllocableAdapter
 
 	private void updateDescriptorSet(MemoryStack stack, DescriptorPool pool)
 	{
+		final var descriptors = getDescriptors();
 		final VkWriteDescriptorSet.Buffer descriptorWrites = VkWriteDescriptorSet
-				.callocStack(descriptorSet.getDescriptors().size(), stack);
+				.callocStack(descriptors.size(), stack);
 		int index = 0;
 
-		for (final IDescriptor descriptor : descriptorSet.getDescriptors())
+		for (final IDescriptor descriptor : descriptors)
 		{
 			final var adapter = IDescriptorAdapter.adapt(descriptor);
 			final VkWriteDescriptorSet allocWriteDescriptor = adapter.allocWriteDescriptor(stack);
@@ -148,14 +147,8 @@ public class DescriptorSetAdapter extends AbstractFlatAllocableAdapter
 		return layoutId;
 	}
 
-	@Override
-	public boolean isApplicable(EClass eClass)
+	public static AbstractDescriptorSetAdapter adapt(DescriptorSet object)
 	{
-		return ResourcePackage.Literals.DESCRIPTOR_SET == eClass;
-	}
-
-	public static DescriptorSetAdapter adapt(DescriptorSet object)
-	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, DescriptorSetAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractDescriptorSetAdapter.class);
 	}
 }

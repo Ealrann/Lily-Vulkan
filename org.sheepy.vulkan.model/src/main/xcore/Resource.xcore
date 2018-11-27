@@ -80,7 +80,11 @@ interface IDescriptor
 {
 }
 
-class DescriptorSet
+interface DescriptorSet
+{	
+}
+
+class BasicDescriptorSet extends DescriptorSet
 {
 	refers IDescriptor[1..*] descriptors
 }

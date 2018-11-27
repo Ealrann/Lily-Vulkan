@@ -37,15 +37,17 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 		descriptorSets = List.copyOf(resourceManager.getDescriptorLists());
 		for (final DescriptorSet descriptorSet : descriptorSets)
 		{
-			poolSize += descriptorSet.getDescriptors().size();
+			final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
+			poolSize += adapter.getDescriptors().size();
 		}
 
 		if (poolSize > 0)
 		{
 			final var poolSizes = VkDescriptorPoolSize.callocStack(poolSize);
-			for (final DescriptorSet list : descriptorSets)
+			for (final DescriptorSet descriptorSet : descriptorSets)
 			{
-				for (final IDescriptor descriptor : list.getDescriptors())
+				final var descriptorSetAdapter = IDescriptorSetAdapter.adapt(descriptorSet);
+				for (final IDescriptor descriptor : descriptorSetAdapter.getDescriptors())
 				{
 					final var adapter = IDescriptorAdapter.adapt(descriptor);
 					poolSizes.put(adapter.allocPoolSize(stack));
@@ -75,14 +77,13 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 	@Override
 	public void free()
 	{
-		final List<DescriptorSet> descriptorLists = resourceManager.getDescriptorLists();
-		for (final DescriptorSet descriptorList : descriptorLists)
+		for (final DescriptorSet descriptorSet : descriptorSets)
 		{
-			final var adapter = DescriptorSetAdapter.adapt(descriptorList);
+			final var adapter = BasicDescriptorSetAdapter.adapt(descriptorSet);
 			adapter.free();
 		}
 		vkDestroyDescriptorPool(resourceManager.getVkDevice(), id, null);
-
+		
 		descriptorSets = null;
 	}
 
@@ -102,7 +103,7 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 
 		for (final DescriptorSet descriptorList : descriptorSets)
 		{
-			final var adapter = DescriptorSetAdapter.adapt(descriptorList);
+			final var adapter = IDescriptorSetAdapter.adapt(descriptorList);
 			bDescriptorSet.put(adapter.getLayoutId());
 		}
 

@@ -4,8 +4,8 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
 
 public class DescriptorSetInfo
 {
-	private DescriptorSet descriptorSet;
-	private int index;
+	private final DescriptorSet descriptorSet;
+	private final int index;
 
 	public DescriptorSetInfo(DescriptorSet descriptorSet, int index)
 	{

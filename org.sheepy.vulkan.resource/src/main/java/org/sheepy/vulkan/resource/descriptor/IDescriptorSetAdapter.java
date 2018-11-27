@@ -1,9 +1,12 @@
 package org.sheepy.vulkan.resource.descriptor;
 
+import java.util.List;
+
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.model.resource.IDescriptor;
 
 public interface IDescriptorSetAdapter extends IFlatAllocableAdapter
 {
@@ -14,6 +17,8 @@ public interface IDescriptorSetAdapter extends IFlatAllocableAdapter
 	long getId();
 
 	long getLayoutId();
+
+	List<IDescriptor> getDescriptors();
 
 	static IDescriptorSetAdapter adapt(DescriptorSet object)
 	{

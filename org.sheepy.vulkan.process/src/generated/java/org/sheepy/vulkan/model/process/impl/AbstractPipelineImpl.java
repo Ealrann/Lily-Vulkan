@@ -19,7 +19,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.model.resource.Resource;

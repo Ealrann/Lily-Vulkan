@@ -38,11 +38,10 @@ import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.ModuleResource;
 import org.sheepy.vulkan.model.resource.Shader;
-import org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl;
+import org.sheepy.vulkan.model.resource.impl.BasicDescriptorSetImpl;
 import org.sheepy.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.vulkan.model.resource.impl.ShaderImpl;
 
@@ -194,7 +193,7 @@ public class ModelFactory
 
 	private ComputePipeline createPipeline(Computer computer, IDescriptor... descriptors)
 	{
-		final DescriptorSet descriptorSet = new DescriptorSetImpl();
+		var descriptorSet = new BasicDescriptorSetImpl();
 		for (IDescriptor descriptor : descriptors)
 		{
 			descriptorSet.getDescriptors().add(descriptor);

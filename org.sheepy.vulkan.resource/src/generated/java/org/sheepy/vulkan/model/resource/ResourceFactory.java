@@ -86,13 +86,13 @@ public interface ResourceFactory extends EFactory
 	PushConstant createPushConstant();
 
 	/**
-	 * Returns a new object of class '<em>Descriptor Set</em>'.
+	 * Returns a new object of class '<em>Basic Descriptor Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Descriptor Set</em>'.
+	 * @return a new object of class '<em>Basic Descriptor Set</em>'.
 	 * @generated
 	 */
-	DescriptorSet createDescriptorSet();
+	BasicDescriptorSet createBasicDescriptorSet();
 
 	/**
 	 * Returns a new object of class '<em>Buffer Barrier</em>'.

@@ -578,23 +578,14 @@ public interface ResourcePackage extends EPackage
 	int IDESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.DescriptorSet <em>Descriptor Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl
+	 * @see org.sheepy.vulkan.model.resource.DescriptorSet
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
 	int DESCRIPTOR_SET = 14;
-
-	/**
-	 * The feature id for the '<em><b>Descriptors</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR_SET__DESCRIPTORS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Descriptor Set</em>' class.
@@ -603,7 +594,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIPTOR_SET_FEATURE_COUNT = 1;
+	int DESCRIPTOR_SET_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of operations of the '<em>Descriptor Set</em>' class.
@@ -615,6 +606,43 @@ public interface ResourcePackage extends EPackage
 	int DESCRIPTOR_SET_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.BasicDescriptorSetImpl <em>Basic Descriptor Set</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.resource.impl.BasicDescriptorSetImpl
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBasicDescriptorSet()
+	 * @generated
+	 */
+	int BASIC_DESCRIPTOR_SET = 15;
+
+	/**
+	 * The feature id for the '<em><b>Descriptors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_DESCRIPTOR_SET__DESCRIPTORS = DESCRIPTOR_SET_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Basic Descriptor Set</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_DESCRIPTOR_SET_FEATURE_COUNT = DESCRIPTOR_SET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Basic Descriptor Set</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_DESCRIPTOR_SET_OPERATION_COUNT = DESCRIPTOR_SET_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.IndexedBufferImpl <em>Indexed Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -622,7 +650,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIndexedBuffer()
 	 * @generated
 	 */
-	int INDEXED_BUFFER = 15;
+	int INDEXED_BUFFER = 16;
 
 	/**
 	 * The number of structural features of the '<em>Indexed Buffer</em>' class.
@@ -650,7 +678,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
 	 * @generated
 	 */
-	int BARRIER = 16;
+	int BARRIER = 17;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -696,7 +724,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 17;
+	int BUFFER_BARRIER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -769,7 +797,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
 	 * @generated
 	 */
-	int ABSTRACT_IMAGE_BARRIER = 18;
+	int ABSTRACT_IMAGE_BARRIER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -824,7 +852,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 19;
+	int IMAGE_BARRIER = 20;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -888,7 +916,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
 	 * @generated
 	 */
-	int REFERENCE_IMAGE_BARRIER = 20;
+	int REFERENCE_IMAGE_BARRIER = 21;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -970,7 +998,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
 	 * @generated
 	 */
-	int IMAGE_TRANSITION = 21;
+	int IMAGE_TRANSITION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Src Layout</b></em>' attribute.
@@ -1034,7 +1062,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 22;
+	int JAVA_MODULE = 23;
 
 
 	/**
@@ -1320,15 +1348,25 @@ public interface ResourcePackage extends EPackage
 	EClass getDescriptorSet();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.resource.DescriptorSet#getDescriptors <em>Descriptors</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.BasicDescriptorSet <em>Basic Descriptor Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Basic Descriptor Set</em>'.
+	 * @see org.sheepy.vulkan.model.resource.BasicDescriptorSet
+	 * @generated
+	 */
+	EClass getBasicDescriptorSet();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.resource.BasicDescriptorSet#getDescriptors <em>Descriptors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Descriptors</em>'.
-	 * @see org.sheepy.vulkan.model.resource.DescriptorSet#getDescriptors()
-	 * @see #getDescriptorSet()
+	 * @see org.sheepy.vulkan.model.resource.BasicDescriptorSet#getDescriptors()
+	 * @see #getBasicDescriptorSet()
 	 * @generated
 	 */
-	EReference getDescriptorSet_Descriptors();
+	EReference getBasicDescriptorSet_Descriptors();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.IndexedBuffer <em>Indexed Buffer</em>}'.
@@ -1826,14 +1864,24 @@ public interface ResourcePackage extends EPackage
 		EClass IDESCRIPTOR = eINSTANCE.getIDescriptor();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.DescriptorSet <em>Descriptor Set</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl
+		 * @see org.sheepy.vulkan.model.resource.DescriptorSet
 		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 		 * @generated
 		 */
 		EClass DESCRIPTOR_SET = eINSTANCE.getDescriptorSet();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.BasicDescriptorSetImpl <em>Basic Descriptor Set</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.resource.impl.BasicDescriptorSetImpl
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBasicDescriptorSet()
+		 * @generated
+		 */
+		EClass BASIC_DESCRIPTOR_SET = eINSTANCE.getBasicDescriptorSet();
 
 		/**
 		 * The meta object literal for the '<em><b>Descriptors</b></em>' reference list feature.
@@ -1841,7 +1889,7 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DESCRIPTOR_SET__DESCRIPTORS = eINSTANCE.getDescriptorSet_Descriptors();
+		EReference BASIC_DESCRIPTOR_SET__DESCRIPTORS = eINSTANCE.getBasicDescriptorSet_Descriptors();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.IndexedBufferImpl <em>Indexed Buffer</em>}' class.

@@ -16,7 +16,7 @@ public class ResourceManager extends LogicalDeviceContext implements IBasicAlloc
 	public final IProcessPool processPool;
 
 	public final DescriptorPool descriptorPool;
-	
+
 	private List<DescriptorSet> descriptorSets = null;
 
 	public ResourceManager(LogicalDevice logicalDevice, IProcessPool processPool)
@@ -39,7 +39,7 @@ public class ResourceManager extends LogicalDeviceContext implements IBasicAlloc
 		descriptorPool.free();
 		descriptorSets = null;
 	}
-	
+
 	@Override
 	public boolean isDirty()
 	{

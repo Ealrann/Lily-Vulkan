@@ -6,13 +6,10 @@ package org.sheepy.vulkan.model.gui
 
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline
 import org.sheepy.common.model.types.SVector2i
-import org.sheepy.vulkan.model.resource.PathResource
 
 class GUIPipeline extends GraphicsPipeline
 {
 	contains Window[] windows
-	
-	contains PathResource font
 }
 
 class Window

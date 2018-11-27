@@ -171,16 +171,6 @@ public class GuiPackageImpl extends EPackageImpl implements GuiPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGUIPipeline_Font()
-	{
-		return (EReference)guiPipelineEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getWindow()
 	{
 		return windowEClass;
@@ -298,7 +288,6 @@ public class GuiPackageImpl extends EPackageImpl implements GuiPackage
 		// Create classes and their features
 		guiPipelineEClass = createEClass(GUI_PIPELINE);
 		createEReference(guiPipelineEClass, GUI_PIPELINE__WINDOWS);
-		createEReference(guiPipelineEClass, GUI_PIPELINE__FONT);
 
 		windowEClass = createEClass(WINDOW);
 		createEReference(windowEClass, WINDOW__WIDGETS);
@@ -340,7 +329,6 @@ public class GuiPackageImpl extends EPackageImpl implements GuiPackage
 
 		// Obtain other dependent packages
 		GraphicPackage theGraphicPackage = (GraphicPackage)EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
@@ -356,7 +344,6 @@ public class GuiPackageImpl extends EPackageImpl implements GuiPackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(guiPipelineEClass, GUIPipeline.class, "GUIPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGUIPipeline_Windows(), this.getWindow(), null, "windows", null, 0, -1, GUIPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGUIPipeline_Font(), theResourcePackage.getPathResource(), null, "font", null, 0, 1, GUIPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(windowEClass, Window.class, "Window", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWindow_Widgets(), this.getWidget(), null, "widgets", null, 0, -1, Window.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

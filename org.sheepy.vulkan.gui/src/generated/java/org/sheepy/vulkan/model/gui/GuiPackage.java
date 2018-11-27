@@ -171,22 +171,13 @@ public interface GuiPackage extends EPackage
 	int GUI_PIPELINE__WINDOWS = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Font</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_PIPELINE__FONT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>GUI Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_PIPELINE_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 2;
+	int GUI_PIPELINE_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>GUI Pipeline</em>' class.
@@ -380,17 +371,6 @@ public interface GuiPackage extends EPackage
 	EReference getGUIPipeline_Windows();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.gui.GUIPipeline#getFont <em>Font</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Font</em>'.
-	 * @see org.sheepy.vulkan.model.gui.GUIPipeline#getFont()
-	 * @see #getGUIPipeline()
-	 * @generated
-	 */
-	EReference getGUIPipeline_Font();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.gui.Window <em>Window</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -524,13 +504,6 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EReference GUI_PIPELINE__WINDOWS = eINSTANCE.getGUIPipeline_Windows();
-		/**
-		 * The meta object literal for the '<em><b>Font</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GUI_PIPELINE__FONT = eINSTANCE.getGUIPipeline_Font();
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.gui.impl.WindowImpl <em>Window</em>}' class.
 		 * <!-- begin-user-doc -->

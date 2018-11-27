@@ -150,6 +150,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createDescriptorSetAdapter();
 			}
 			@Override
+			public Adapter caseBasicDescriptorSet(BasicDescriptorSet object)
+			{
+				return createBasicDescriptorSetAdapter();
+			}
+			@Override
 			public Adapter caseIndexedBuffer(IndexedBuffer object)
 			{
 				return createIndexedBufferAdapter();
@@ -427,6 +432,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDescriptorSetAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.BasicDescriptorSet <em>Basic Descriptor Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.BasicDescriptorSet
+	 * @generated
+	 */
+	public Adapter createBasicDescriptorSetAdapter()
 	{
 		return null;
 	}

@@ -72,7 +72,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.MODULE_RESOURCE: return createModuleResource();
 			case ResourcePackage.SHADER: return createShader();
 			case ResourcePackage.PUSH_CONSTANT: return createPushConstant();
-			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
+			case ResourcePackage.BASIC_DESCRIPTOR_SET: return createBasicDescriptorSet();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER: return createReferenceImageBarrier();
@@ -198,10 +198,10 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescriptorSet createDescriptorSet()
+	public BasicDescriptorSet createBasicDescriptorSet()
 	{
-		DescriptorSetImpl descriptorSet = new DescriptorSetImpl();
-		return descriptorSet;
+		BasicDescriptorSetImpl basicDescriptorSet = new BasicDescriptorSetImpl();
+		return basicDescriptorSet;
 	}
 
 	/**
