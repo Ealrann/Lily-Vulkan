@@ -14,6 +14,7 @@ import org.sheepy.vulkan.model.enumeration.EBlendOp;
 import org.sheepy.vulkan.model.enumeration.EColorSpace;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
+import org.sheepy.vulkan.model.enumeration.EDynamicState;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -97,6 +98,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eBlendFactorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eDynamicStateEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -312,6 +320,16 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getEDynamicState()
+	{
+		return eDynamicStateEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getEBlendOp()
 	{
 		return eBlendOpEEnum;
@@ -426,6 +444,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		eAttachmentStoreOpEEnum = createEEnum(EATTACHMENT_STORE_OP);
 		eShaderStageEEnum = createEEnum(ESHADER_STAGE);
 		eBlendFactorEEnum = createEEnum(EBLEND_FACTOR);
+		eDynamicStateEEnum = createEEnum(EDYNAMIC_STATE);
 		eBlendOpEEnum = createEEnum(EBLEND_OP);
 		ePipelineStageEEnum = createEEnum(EPIPELINE_STAGE);
 		eColorSpaceEEnum = createEEnum(ECOLOR_SPACE);
@@ -546,6 +565,17 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_SRC1_COLOR);
 		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.SRC1_ALPHA);
 		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ONE_MINUS_SRC1_ALPHA);
+
+		initEEnum(eDynamicStateEEnum, EDynamicState.class, "EDynamicState");
+		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.VIEWPORT);
+		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.SCISSOR);
+		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.LINE_WIDTH);
+		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.DEPTH_BIAS);
+		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.BLEND_CONSTANTS);
+		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.DEPTH_BOUNDS);
+		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.STENCIL_COMPARE_MASK);
+		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.STENCIL_WRITE_MASK);
+		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.STENCIL_REFERENCE);
 
 		initEEnum(eBlendOpEEnum, EBlendOp.class, "EBlendOp");
 		addEEnumLiteral(eBlendOpEEnum, EBlendOp.ADD);

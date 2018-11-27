@@ -28,6 +28,7 @@ import org.sheepy.vulkan.model.enumeration.EPolygonMode
 import org.sheepy.vulkan.model.enumeration.ELogicOp
 import org.sheepy.vulkan.model.enumeration.EBlendFactor
 import org.sheepy.vulkan.model.enumeration.EBlendOp
+import org.sheepy.vulkan.model.enumeration.EDynamicState
 
 class GraphicConfiguration extends Configuration
 {
@@ -83,11 +84,16 @@ class GraphicProcess extends AbstractProcess
 abstract class GraphicsPipeline extends AbstractPipeline
 {
 	refers Shader[] shaders
-//	refers VulkanBuffer[] buffers
 
 	contains ViewportState viewportState
 	contains Rasterizer rasterizer
 	contains ColorBlend colorBlend
+	contains DynamicState dynamicState
+}
+
+class DynamicState
+{
+	EDynamicState[] states
 }
 
 class ColorBlend
@@ -120,10 +126,20 @@ class ColorBlendAttachment
 	EBlendOp alphaBlendOp = "ADD"
 }
 
-class ViewportState
+interface ViewportState
+{
+}
+
+class StaticViewportState extends ViewportState
 {
 	contains Viewport[] viewports
 	contains Scissor[] scissors
+}
+
+class DynamicViewportState extends ViewportState
+{
+	int viewportCount
+	int scissorCount
 }
 
 class Viewport

@@ -77,6 +77,15 @@ public interface GraphicFactory extends EFactory
 	GraphicProcess createGraphicProcess();
 
 	/**
+	 * Returns a new object of class '<em>Dynamic State</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dynamic State</em>'.
+	 * @generated
+	 */
+	DynamicState createDynamicState();
+
+	/**
 	 * Returns a new object of class '<em>Color Blend</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,13 +104,22 @@ public interface GraphicFactory extends EFactory
 	ColorBlendAttachment createColorBlendAttachment();
 
 	/**
-	 * Returns a new object of class '<em>Viewport State</em>'.
+	 * Returns a new object of class '<em>Static Viewport State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Viewport State</em>'.
+	 * @return a new object of class '<em>Static Viewport State</em>'.
 	 * @generated
 	 */
-	ViewportState createViewportState();
+	StaticViewportState createStaticViewportState();
+
+	/**
+	 * Returns a new object of class '<em>Dynamic Viewport State</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dynamic Viewport State</em>'.
+	 * @generated
+	 */
+	DynamicViewportState createDynamicViewportState();
 
 	/**
 	 * Returns a new object of class '<em>Viewport</em>'.

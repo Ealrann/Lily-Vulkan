@@ -140,6 +140,13 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GraphicPackage.DYNAMIC_STATE:
+			{
+				DynamicState dynamicState = (DynamicState)theEObject;
+				T1 result = caseDynamicState(dynamicState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GraphicPackage.COLOR_BLEND:
 			{
 				ColorBlend colorBlend = (ColorBlend)theEObject;
@@ -158,6 +165,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			{
 				ViewportState viewportState = (ViewportState)theEObject;
 				T1 result = caseViewportState(viewportState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.STATIC_VIEWPORT_STATE:
+			{
+				StaticViewportState staticViewportState = (StaticViewportState)theEObject;
+				T1 result = caseStaticViewportState(staticViewportState);
+				if (result == null) result = caseViewportState(staticViewportState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.DYNAMIC_VIEWPORT_STATE:
+			{
+				DynamicViewportState dynamicViewportState = (DynamicViewportState)theEObject;
+				T1 result = caseDynamicViewportState(dynamicViewportState);
+				if (result == null) result = caseViewportState(dynamicViewportState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -318,6 +341,22 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic State</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic State</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseDynamicState(DynamicState object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Color Blend</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -361,6 +400,38 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseViewportState(ViewportState object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Static Viewport State</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Static Viewport State</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseStaticViewportState(StaticViewportState object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Viewport State</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic Viewport State</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseDynamicViewportState(DynamicViewportState object)
 	{
 		return null;
 	}

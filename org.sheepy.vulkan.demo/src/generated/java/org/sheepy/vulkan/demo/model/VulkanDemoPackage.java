@@ -151,6 +151,15 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE__COLOR_BLEND = GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND;
 
 	/**
+	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__DYNAMIC_STATE = GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE;
+
+	/**
 	 * The feature id for the '<em><b>Mesh</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

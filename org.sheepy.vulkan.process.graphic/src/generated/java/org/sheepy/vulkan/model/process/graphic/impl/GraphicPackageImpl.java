@@ -21,6 +21,8 @@ import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment;
+import org.sheepy.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.vulkan.model.process.graphic.DynamicViewportState;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
@@ -32,6 +34,7 @@ import org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier;
 import org.sheepy.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.vulkan.model.process.graphic.Scissor;
+import org.sheepy.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 
 import org.sheepy.vulkan.model.process.graphic.Viewport;
@@ -100,6 +103,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass dynamicStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass colorBlendEClass = null;
 
 	/**
@@ -115,6 +125,20 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass viewportStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass staticViewportStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dynamicViewportStateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -597,6 +621,36 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGraphicsPipeline_DynamicState()
+	{
+		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDynamicState()
+	{
+		return dynamicStateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDynamicState_States()
+	{
+		return (EAttribute)dynamicStateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getColorBlend()
 	{
 		return colorBlendEClass;
@@ -807,9 +861,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getViewportState_Viewports()
+	public EClass getStaticViewportState()
 	{
-		return (EReference)viewportStateEClass.getEStructuralFeatures().get(0);
+		return staticViewportStateEClass;
 	}
 
 	/**
@@ -817,9 +871,49 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getViewportState_Scissors()
+	public EReference getStaticViewportState_Viewports()
 	{
-		return (EReference)viewportStateEClass.getEStructuralFeatures().get(1);
+		return (EReference)staticViewportStateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStaticViewportState_Scissors()
+	{
+		return (EReference)staticViewportStateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDynamicViewportState()
+	{
+		return dynamicViewportStateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDynamicViewportState_ViewportCount()
+	{
+		return (EAttribute)dynamicViewportStateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDynamicViewportState_ScissorCount()
+	{
+		return (EAttribute)dynamicViewportStateEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1135,6 +1229,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VIEWPORT_STATE);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__RASTERIZER);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__COLOR_BLEND);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__DYNAMIC_STATE);
+
+		dynamicStateEClass = createEClass(DYNAMIC_STATE);
+		createEAttribute(dynamicStateEClass, DYNAMIC_STATE__STATES);
 
 		colorBlendEClass = createEClass(COLOR_BLEND);
 		createEReference(colorBlendEClass, COLOR_BLEND__ATTACHMENTS);
@@ -1159,8 +1257,14 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP);
 
 		viewportStateEClass = createEClass(VIEWPORT_STATE);
-		createEReference(viewportStateEClass, VIEWPORT_STATE__VIEWPORTS);
-		createEReference(viewportStateEClass, VIEWPORT_STATE__SCISSORS);
+
+		staticViewportStateEClass = createEClass(STATIC_VIEWPORT_STATE);
+		createEReference(staticViewportStateEClass, STATIC_VIEWPORT_STATE__VIEWPORTS);
+		createEReference(staticViewportStateEClass, STATIC_VIEWPORT_STATE__SCISSORS);
+
+		dynamicViewportStateEClass = createEClass(DYNAMIC_VIEWPORT_STATE);
+		createEAttribute(dynamicViewportStateEClass, DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT);
+		createEAttribute(dynamicViewportStateEClass, DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT);
 
 		viewportEClass = createEClass(VIEWPORT);
 		createEAttribute(viewportEClass, VIEWPORT__OFFSET);
@@ -1238,6 +1342,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		graphicProcessPoolEClass.getEGenericSuperTypes().add(g1);
 		graphicProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
 		graphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
+		staticViewportStateEClass.getESuperTypes().add(this.getViewportState());
+		dynamicViewportStateEClass.getESuperTypes().add(this.getViewportState());
 		imagePipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
 		pipelineImageBarrierEClass.getESuperTypes().add(theProcessPackage.getPipelineBarrier());
 
@@ -1285,6 +1391,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getGraphicsPipeline_ViewportState(), this.getViewportState(), null, "viewportState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicsPipeline_Rasterizer(), this.getRasterizer(), null, "rasterizer", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicsPipeline_ColorBlend(), this.getColorBlend(), null, "colorBlend", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_DynamicState(), this.getDynamicState(), null, "dynamicState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dynamicStateEClass, DynamicState.class, "DynamicState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDynamicState_States(), theEnumerationPackage.getEDynamicState(), "states", null, 0, -1, DynamicState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(colorBlendEClass, ColorBlend.class, "ColorBlend", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getColorBlend_Attachments(), this.getColorBlendAttachment(), null, "attachments", null, 0, -1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1308,9 +1418,15 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getColorBlendAttachment_ColorBlendOp(), theEnumerationPackage.getEBlendOp(), "colorBlendOp", "ADD", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorBlendAttachment_AlphaBlendOp(), theEnumerationPackage.getEBlendOp(), "alphaBlendOp", "ADD", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(viewportStateEClass, ViewportState.class, "ViewportState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getViewportState_Viewports(), this.getViewport(), null, "viewports", null, 0, -1, ViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getViewportState_Scissors(), this.getScissor(), null, "scissors", null, 0, -1, ViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(viewportStateEClass, ViewportState.class, "ViewportState", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(staticViewportStateEClass, StaticViewportState.class, "StaticViewportState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStaticViewportState_Viewports(), this.getViewport(), null, "viewports", null, 0, -1, StaticViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStaticViewportState_Scissors(), this.getScissor(), null, "scissors", null, 0, -1, StaticViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dynamicViewportStateEClass, DynamicViewportState.class, "DynamicViewportState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDynamicViewportState_ViewportCount(), theEcorePackage.getEInt(), "viewportCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDynamicViewportState_ScissorCount(), theEcorePackage.getEInt(), "scissorCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(viewportEClass, Viewport.class, "Viewport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getViewport_Offset(), theTypesPackage.getSVector2i(), "offset", "0, 0", 0, 1, Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

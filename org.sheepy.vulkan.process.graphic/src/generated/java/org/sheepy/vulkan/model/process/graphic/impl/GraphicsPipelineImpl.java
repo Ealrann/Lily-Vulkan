@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.sheepy.vulkan.model.process.graphic.ColorBlend;
+import org.sheepy.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 
@@ -36,6 +37,7 @@ import org.sheepy.vulkan.model.resource.Shader;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getViewportState <em>Viewport State</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getRasterizer <em>Rasterizer</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getColorBlend <em>Color Blend</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDynamicState <em>Dynamic State</em>}</li>
  * </ul>
  *
  * @generated
@@ -81,6 +83,16 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * @ordered
 	 */
 	protected ColorBlend colorBlend;
+
+	/**
+	 * The cached value of the '{@link #getDynamicState() <em>Dynamic State</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDynamicState()
+	 * @generated
+	 * @ordered
+	 */
+	protected DynamicState dynamicState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -266,6 +278,54 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DynamicState getDynamicState()
+	{
+		return dynamicState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDynamicState(DynamicState newDynamicState, NotificationChain msgs)
+	{
+		DynamicState oldDynamicState = dynamicState;
+		dynamicState = newDynamicState;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, oldDynamicState, newDynamicState);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDynamicState(DynamicState newDynamicState)
+	{
+		if (newDynamicState != dynamicState)
+		{
+			NotificationChain msgs = null;
+			if (dynamicState != null)
+				msgs = ((InternalEObject)dynamicState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
+			if (newDynamicState != null)
+				msgs = ((InternalEObject)newDynamicState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
+			msgs = basicSetDynamicState(newDynamicState, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, newDynamicState, newDynamicState));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -277,6 +337,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return basicSetRasterizer(null, msgs);
 			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
 				return basicSetColorBlend(null, msgs);
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				return basicSetDynamicState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -299,6 +361,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return getRasterizer();
 			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
 				return getColorBlend();
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				return getDynamicState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -327,6 +391,9 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
 				setColorBlend((ColorBlend)newValue);
 				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				setDynamicState((DynamicState)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -353,6 +420,9 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
 				setColorBlend((ColorBlend)null);
 				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				setDynamicState((DynamicState)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -375,6 +445,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return rasterizer != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
 				return colorBlend != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+				return dynamicState != null;
 		}
 		return super.eIsSet(featureID);
 	}

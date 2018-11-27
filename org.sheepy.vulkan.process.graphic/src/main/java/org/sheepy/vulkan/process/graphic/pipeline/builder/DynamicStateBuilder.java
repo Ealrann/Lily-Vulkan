@@ -6,29 +6,44 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineDynamicStateCreateInfo;
+import org.sheepy.vulkan.model.enumeration.EDynamicState;
+import org.sheepy.vulkan.model.process.graphic.DynamicState;
 
 public class DynamicStateBuilder
 {
-	private VkPipelineDynamicStateCreateInfo dynamicState;
+	private VkPipelineDynamicStateCreateInfo vkDynamicState;
 	private IntBuffer dynamicStates;
 
-	public VkPipelineDynamicStateCreateInfo allocDynamicStateCreateInfo()
+	private boolean allocated = false;
+
+	public VkPipelineDynamicStateCreateInfo allocCreateInfo(DynamicState dynamicState)
 	{
-		dynamicStates = MemoryUtil.memAllocInt(2);
-		dynamicStates.put(VK_DYNAMIC_STATE_VIEWPORT);
-		dynamicStates.put(VK_DYNAMIC_STATE_LINE_WIDTH);
+		dynamicStates = MemoryUtil.memAllocInt(dynamicState.getStates().size());
+		for (EDynamicState state : dynamicState.getStates())
+		{
+			dynamicStates.put(state.getValue());
+			dynamicStates.get();
+		}
 		dynamicStates.flip();
 
-		dynamicState = VkPipelineDynamicStateCreateInfo.malloc();
-		dynamicState.sType(VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO);
-		dynamicState.pDynamicStates(dynamicStates);
+		vkDynamicState = VkPipelineDynamicStateCreateInfo.malloc();
+		vkDynamicState.sType(VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO);
+		vkDynamicState.pDynamicStates(dynamicStates);
+		vkDynamicState.pNext(VK_NULL_HANDLE);
+		vkDynamicState.flags(0);
 
-		return dynamicState;
+		allocated = true;
+
+		return vkDynamicState;
 	}
 
 	public void freeDynamicStateCreateInfo()
 	{
-		dynamicState.free();
-		MemoryUtil.memFree(dynamicStates);
+		if (allocated == true)
+		{
+			vkDynamicState.free();
+			MemoryUtil.memFree(dynamicStates);
+			allocated = false;
+		}
 	}
 }

@@ -33,9 +33,9 @@ import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.StaticViewportStateImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl;
-import org.sheepy.vulkan.model.process.graphic.impl.ViewportStateImpl;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.ModuleResource;
@@ -158,7 +158,7 @@ public class MeshModelFactory
 		var rasterizer = new RasterizerImpl();
 		rasterizer.setFrontFace(meshConfiguration.rasterizerFrontFace);
 		
-		var viewportState = new ViewportStateImpl();
+		var viewportState = new StaticViewportStateImpl();
 		viewportState.getViewports().add(new ViewportImpl());
 		viewportState.getScissors().add(new ScissorImpl());
 		

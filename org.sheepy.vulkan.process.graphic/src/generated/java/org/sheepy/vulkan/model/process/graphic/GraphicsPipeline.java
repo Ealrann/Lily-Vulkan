@@ -21,6 +21,7 @@ import org.sheepy.vulkan.model.resource.Shader;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState <em>Viewport State</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline()
@@ -122,5 +123,31 @@ public interface GraphicsPipeline extends AbstractPipeline
 	 * @generated
 	 */
 	void setColorBlend(ColorBlend value);
+
+	/**
+	 * Returns the value of the '<em><b>Dynamic State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dynamic State</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dynamic State</em>' containment reference.
+	 * @see #setDynamicState(DynamicState)
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_DynamicState()
+	 * @model containment="true"
+	 * @generated
+	 */
+	DynamicState getDynamicState();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dynamic State</em>' containment reference.
+	 * @see #getDynamicState()
+	 * @generated
+	 */
+	void setDynamicState(DynamicState value);
 
 } // GraphicsPipeline

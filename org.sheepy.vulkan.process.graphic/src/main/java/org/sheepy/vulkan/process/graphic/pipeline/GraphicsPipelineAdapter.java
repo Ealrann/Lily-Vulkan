@@ -9,6 +9,7 @@ import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.ColorBlendBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.DepthStencilBuilder;
+import org.sheepy.vulkan.process.graphic.pipeline.builder.DynamicStateBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.InputAssemblyBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.MultisampleBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.RasterizerBuilder;
@@ -21,13 +22,14 @@ import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
 		implements IGraphicPipelineAdapter
 {
-	private final ShaderStageBuilder shaderStageBuilder = new ShaderStageBuilder();
-	private final InputAssemblyBuilder inputAssemblyBuilder = new InputAssemblyBuilder();
-	private final ViewportStateBuilder viewportStateBuilder = new ViewportStateBuilder();
-	private final RasterizerBuilder rasterizerBuilder = new RasterizerBuilder();
-	private final DepthStencilBuilder depthStencilBuidler = new DepthStencilBuilder();
-	private final MultisampleBuilder multisampleBuilder = new MultisampleBuilder();
-	private final ColorBlendBuilder colorBlendBuilder = new ColorBlendBuilder();
+	private ShaderStageBuilder shaderStageBuilder;
+	private InputAssemblyBuilder inputAssemblyBuilder;
+	private ViewportStateBuilder viewportStateBuilder;
+	private RasterizerBuilder rasterizerBuilder;
+	private DepthStencilBuilder depthStencilBuidler;
+	private MultisampleBuilder multisampleBuilder;
+	private ColorBlendBuilder colorBlendBuilder;
+	private DynamicStateBuilder dynamicStateBuilder;
 
 	public IVertexBufferDescriptor<?> vertexInputState = null;
 
@@ -37,6 +39,8 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 	public void deepAllocate(MemoryStack stack)
 	{
 		super.deepAllocate(stack);
+		
+		createBuilders();    
 
 		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
 		final var useDepthBuffer = context.graphicProcessPool.getDepthImage() != null;
@@ -76,7 +80,13 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 		{
 			pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo(colorBlend));
 		}
-		// pipelineInfo.pDynamicState(dynamicState.allocDynamicStateCreateInfo());
+		
+		var dynamicState = pipeline.getDynamicState();
+		if(dynamicState != null)
+		{
+			pipelineInfo.pDynamicState(dynamicStateBuilder.allocCreateInfo(dynamicState));
+		}
+		
 		pipelineInfo.layout(pipelineLayout);
 		pipelineInfo.renderPass(context.renderPass.getId());
 		pipelineInfo.subpass(0);
@@ -88,7 +98,7 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 				() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, pipelineInfo, null, aId));
 		id = aId[0];
 
-		// dynamicState.freeDynamicStateCreateInfo();
+		dynamicStateBuilder.freeDynamicStateCreateInfo();
 		colorBlendBuilder.freeColorBlendStateCreateInfo();
 		multisampleBuilder.freeMultisampleStateCreateInfo();
 		rasterizerBuilder.freeRasterizationStateCreateInfo();
@@ -97,6 +107,18 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 		vertexInputState.freeInputStateCreateInfo();
 		shaderStageBuilder.freeShaderStageInfo();
 		if (useDepthBuffer == true) depthStencilBuidler.freeDepthStencilStateCreateInfo();
+	}
+
+	private void createBuilders()
+	{
+		shaderStageBuilder = new ShaderStageBuilder();       
+		inputAssemblyBuilder = new InputAssemblyBuilder(); 
+		viewportStateBuilder = new ViewportStateBuilder(); 
+		rasterizerBuilder = new RasterizerBuilder();          
+		depthStencilBuidler = new DepthStencilBuilder();    
+		multisampleBuilder = new MultisampleBuilder();       
+		colorBlendBuilder = new ColorBlendBuilder();          
+		dynamicStateBuilder = new DynamicStateBuilder();
 	}
 
 	@Override
@@ -109,7 +131,6 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 	@Override
 	public void free()
 	{
-		// dynamicState.free();
 		vertexInputState.free();
 
 		super.free();

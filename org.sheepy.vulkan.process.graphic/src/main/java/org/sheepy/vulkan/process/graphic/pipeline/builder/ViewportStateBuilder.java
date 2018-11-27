@@ -6,7 +6,9 @@ import org.lwjgl.vulkan.VkPipelineViewportStateCreateInfo;
 import org.lwjgl.vulkan.VkRect2D;
 import org.lwjgl.vulkan.VkViewport;
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.vulkan.model.process.graphic.DynamicViewportState;
 import org.sheepy.vulkan.model.process.graphic.Scissor;
+import org.sheepy.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.vulkan.model.process.graphic.Viewport;
 import org.sheepy.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
@@ -18,9 +20,34 @@ public class ViewportStateBuilder
 	private VkPipelineViewportStateCreateInfo viewportState;
 	private VkViewport.Buffer viewports;
 	private VkRect2D.Buffer scissors;
-
+	
 	public VkPipelineViewportStateCreateInfo allocCreateInfo(	SwapChainManager swapChainManager,
-																ViewportState state)
+																ViewportState vState)
+	{
+		viewportState = VkPipelineViewportStateCreateInfo.calloc();
+		viewportState.sType(VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO);
+
+		if (vState instanceof StaticViewportState)
+		{
+			var state = (StaticViewportState) vState;
+			fillStaticStateInfo(swapChainManager, state);
+		}
+		else if(vState instanceof DynamicViewportState)
+		{
+			var state = (DynamicViewportState) vState;
+			fillDynamicStateInfo(state);
+		}
+
+		return viewportState;
+	}
+
+	private void fillDynamicStateInfo(DynamicViewportState state)
+	{
+		viewportState.scissorCount(state.getScissorCount());
+		viewportState.viewportCount(state.getViewportCount());
+	}
+
+	private void fillStaticStateInfo(SwapChainManager swapChainManager, StaticViewportState state)
 	{
 		// Viewports and scissors
 		Extent2D swapExtent = swapChainManager.getExtent();
@@ -70,12 +97,8 @@ public class ViewportStateBuilder
 		}
 		scissors.flip();
 
-		viewportState = VkPipelineViewportStateCreateInfo.calloc();
-		viewportState.sType(VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO);
 		viewportState.pViewports(viewports);
 		viewportState.pScissors(scissors);
-
-		return viewportState;
 	}
 
 	public void freeViewportStateCreateInfo()

@@ -146,6 +146,16 @@ public interface EnumerationPackage extends EPackage
 	int EBLEND_FACTOR = 8;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EDynamicState <em>EDynamic State</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.enumeration.EDynamicState
+	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEDynamicState()
+	 * @generated
+	 */
+	int EDYNAMIC_STATE = 9;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EBlendOp <em>EBlend Op</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,7 +163,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBlendOp()
 	 * @generated
 	 */
-	int EBLEND_OP = 9;
+	int EBLEND_OP = 10;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}' enum.
@@ -163,7 +173,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPipelineStage()
 	 * @generated
 	 */
-	int EPIPELINE_STAGE = 10;
+	int EPIPELINE_STAGE = 11;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}' enum.
@@ -173,7 +183,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEColorSpace()
 	 * @generated
 	 */
-	int ECOLOR_SPACE = 11;
+	int ECOLOR_SPACE = 12;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EFormat <em>EFormat</em>}' enum.
@@ -183,7 +193,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFormat()
 	 * @generated
 	 */
-	int EFORMAT = 12;
+	int EFORMAT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}' enum.
@@ -193,7 +203,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPresentMode()
 	 * @generated
 	 */
-	int EPRESENT_MODE = 13;
+	int EPRESENT_MODE = 14;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPolygonMode <em>EPolygon Mode</em>}' enum.
@@ -203,7 +213,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPolygonMode()
 	 * @generated
 	 */
-	int EPOLYGON_MODE = 14;
+	int EPOLYGON_MODE = 15;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}' enum.
@@ -213,7 +223,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageUsage()
 	 * @generated
 	 */
-	int EIMAGE_USAGE = 15;
+	int EIMAGE_USAGE = 16;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.
@@ -223,7 +233,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESampleCount()
 	 * @generated
 	 */
-	int ESAMPLE_COUNT = 16;
+	int ESAMPLE_COUNT = 17;
 
 
 	/**
@@ -315,6 +325,16 @@ public interface EnumerationPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getEBlendFactor();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EDynamicState <em>EDynamic State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EDynamic State</em>'.
+	 * @see org.sheepy.vulkan.model.enumeration.EDynamicState
+	 * @generated
+	 */
+	EEnum getEDynamicState();
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EBlendOp <em>EBlend Op</em>}'.
@@ -508,6 +528,16 @@ public interface EnumerationPackage extends EPackage
 		 * @generated
 		 */
 		EEnum EBLEND_FACTOR = eINSTANCE.getEBlendFactor();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EDynamicState <em>EDynamic State</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.enumeration.EDynamicState
+		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEDynamicState()
+		 * @generated
+		 */
+		EEnum EDYNAMIC_STATE = eINSTANCE.getEDynamicState();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EBlendOp <em>EBlend Op</em>}' enum.

@@ -70,9 +70,11 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			case GraphicPackage.ATTACHMENT_DESCRIPTION: return createAttachmentDescription();
 			case GraphicPackage.GRAPHIC_PROCESS_POOL: return createGraphicProcessPool();
 			case GraphicPackage.GRAPHIC_PROCESS: return createGraphicProcess();
+			case GraphicPackage.DYNAMIC_STATE: return createDynamicState();
 			case GraphicPackage.COLOR_BLEND: return createColorBlend();
 			case GraphicPackage.COLOR_BLEND_ATTACHMENT: return createColorBlendAttachment();
-			case GraphicPackage.VIEWPORT_STATE: return createViewportState();
+			case GraphicPackage.STATIC_VIEWPORT_STATE: return createStaticViewportState();
+			case GraphicPackage.DYNAMIC_VIEWPORT_STATE: return createDynamicViewportState();
 			case GraphicPackage.VIEWPORT: return createViewport();
 			case GraphicPackage.SCISSOR: return createScissor();
 			case GraphicPackage.RASTERIZER: return createRasterizer();
@@ -154,6 +156,17 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DynamicState createDynamicState()
+	{
+		DynamicStateImpl dynamicState = new DynamicStateImpl();
+		return dynamicState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ColorBlend createColorBlend()
 	{
 		ColorBlendImpl colorBlend = new ColorBlendImpl();
@@ -176,10 +189,21 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ViewportState createViewportState()
+	public StaticViewportState createStaticViewportState()
 	{
-		ViewportStateImpl viewportState = new ViewportStateImpl();
-		return viewportState;
+		StaticViewportStateImpl staticViewportState = new StaticViewportStateImpl();
+		return staticViewportState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DynamicViewportState createDynamicViewportState()
+	{
+		DynamicViewportStateImpl dynamicViewportState = new DynamicViewportStateImpl();
+		return dynamicViewportState;
 	}
 
 	/**

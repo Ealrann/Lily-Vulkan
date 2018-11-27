@@ -98,6 +98,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return createEShaderStageFromString(eDataType, initialValue);
 			case EnumerationPackage.EBLEND_FACTOR:
 				return createEBlendFactorFromString(eDataType, initialValue);
+			case EnumerationPackage.EDYNAMIC_STATE:
+				return createEDynamicStateFromString(eDataType, initialValue);
 			case EnumerationPackage.EBLEND_OP:
 				return createEBlendOpFromString(eDataType, initialValue);
 			case EnumerationPackage.EPIPELINE_STAGE:
@@ -147,6 +149,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return convertEShaderStageToString(eDataType, instanceValue);
 			case EnumerationPackage.EBLEND_FACTOR:
 				return convertEBlendFactorToString(eDataType, instanceValue);
+			case EnumerationPackage.EDYNAMIC_STATE:
+				return convertEDynamicStateToString(eDataType, instanceValue);
 			case EnumerationPackage.EBLEND_OP:
 				return convertEBlendOpToString(eDataType, instanceValue);
 			case EnumerationPackage.EPIPELINE_STAGE:
@@ -362,6 +366,28 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertEBlendFactorToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDynamicState createEDynamicStateFromString(EDataType eDataType, String initialValue)
+	{
+		EDynamicState result = EDynamicState.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEDynamicStateToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
