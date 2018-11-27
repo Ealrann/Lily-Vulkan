@@ -71,7 +71,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.FILE_RESOURCE: return createFileResource();
 			case ResourcePackage.MODULE_RESOURCE: return createModuleResource();
 			case ResourcePackage.SHADER: return createShader();
-			case ResourcePackage.PUSH_CONSTANT: return createPushConstant();
 			case ResourcePackage.BASIC_DESCRIPTOR_SET: return createBasicDescriptorSet();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
@@ -180,17 +179,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		ShaderImpl shader = new ShaderImpl();
 		return shader;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PushConstant createPushConstant()
-	{
-		PushConstantImpl pushConstant = new PushConstantImpl();
-		return pushConstant;
 	}
 
 	/**

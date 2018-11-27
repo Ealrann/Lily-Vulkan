@@ -1,5 +1,4 @@
 import org.sheepy.common.api.adapter.ISingletonAdapter;
-import org.sheepy.vulkan.resource.buffer.PushConstantAdapter;
 import org.sheepy.vulkan.resource.descriptor.BasicDescriptorSetAdapter;
 import org.sheepy.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.vulkan.resource.file.ModuleResourceAdapter;
@@ -29,5 +28,5 @@ module org.sheepy.vulkan.resource
 	exports org.sheepy.vulkan.model.resource.util;
 
 	provides ISingletonAdapter with ShaderAdapter, TextureAdapter, DepthImageAdapter,
-			FileResourceAdapter, ModuleResourceAdapter, PushConstantAdapter, BasicDescriptorSetAdapter;
+			FileResourceAdapter, ModuleResourceAdapter, BasicDescriptorSetAdapter;
 }

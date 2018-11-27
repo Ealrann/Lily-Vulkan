@@ -16,11 +16,11 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
-public class PushConstantAdapter extends AbstractFlatAllocableAdapter
+public abstract class AbstractPushConstantAdapter extends AbstractFlatAllocableAdapter
 {
 	public ByteBuffer buffer;
 
-	private PushConstant pushConstant;
+	protected PushConstant pushConstant;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -30,8 +30,8 @@ public class PushConstantAdapter extends AbstractFlatAllocableAdapter
 
 	public VkPushConstantRange.Buffer allocRange(MemoryStack stack)
 	{
-		final int size = pushConstant.getSize();
-		final EPipelineStage stage = pushConstant.getStage();
+		final int size = getSize();
+		final EPipelineStage stage = getStage();
 
 		final VkPushConstantRange.Buffer pushConstantRange = VkPushConstantRange.callocStack(1,
 				stack);
@@ -43,17 +43,13 @@ public class PushConstantAdapter extends AbstractFlatAllocableAdapter
 	public void pushConstants(VkCommandBuffer commandBuffer, long pipelineLayout)
 	{
 		updateBuffer();
-		final EPipelineStage stage = pushConstant.getStage();
+		final EPipelineStage stage = getStage();
 		vkCmdPushConstants(commandBuffer, pipelineLayout, stage.getValue(), 0, buffer);
 	}
-
-	protected void updateBuffer()
-	{}
-
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final int size = pushConstant.getSize();
+		final int size = getSize();
 		buffer = MemoryUtil.memAlloc(size);
 	}
 
@@ -75,8 +71,15 @@ public class PushConstantAdapter extends AbstractFlatAllocableAdapter
 		return ResourcePackage.Literals.PUSH_CONSTANT == eClass;
 	}
 
-	public static PushConstantAdapter adapt(PushConstant object)
+	public static AbstractPushConstantAdapter adapt(PushConstant object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, PushConstantAdapter.class);
+		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractPushConstantAdapter.class);
 	}
+
+	protected abstract void updateBuffer();
+	
+	protected abstract int getSize();
+	
+	protected abstract EPipelineStage getStage();
+
 }

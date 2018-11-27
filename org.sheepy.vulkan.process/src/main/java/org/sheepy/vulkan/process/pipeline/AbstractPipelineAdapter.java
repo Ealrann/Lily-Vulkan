@@ -15,7 +15,7 @@ import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
-import org.sheepy.vulkan.resource.buffer.PushConstantAdapter;
+import org.sheepy.vulkan.resource.buffer.AbstractPushConstantAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
 
 public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
@@ -45,7 +45,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		final var pushConstant = getPushConstant();
 		if (pushConstant != null)
 		{
-			final var pushConstantAdapter = PushConstantAdapter.adapt(pushConstant);
+			final var pushConstantAdapter = AbstractPushConstantAdapter.adapt(pushConstant);
 			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 			pushConstantAdapter.pushConstants(vkCommandBuffer, pipelineLayout);
 		}
@@ -94,7 +94,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		var pushConstant = getPushConstant();
 		if (pushConstant != null)
 		{
-			final var adapter = PushConstantAdapter.adapt(pushConstant);
+			final var adapter = AbstractPushConstantAdapter.adapt(pushConstant);
 			info.pPushConstantRanges(adapter.allocRange(stack));
 		}
 	}

@@ -70,10 +70,8 @@ class Shader extends Resource
 	EShaderStage stage
 }
 
-class PushConstant extends VulkanBuffer
+abstract class PushConstant extends VulkanBuffer
 {
-	int size
-	EPipelineStage stage
 }
 
 interface IDescriptor

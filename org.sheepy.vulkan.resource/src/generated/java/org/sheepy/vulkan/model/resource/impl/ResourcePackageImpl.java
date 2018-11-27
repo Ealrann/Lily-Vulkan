@@ -517,26 +517,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPushConstant_Size()
-	{
-		return (EAttribute)pushConstantEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPushConstant_Stage()
-	{
-		return (EAttribute)pushConstantEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getIDescriptor()
 	{
 		return iDescriptorEClass;
@@ -857,8 +837,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(shaderEClass, SHADER__STAGE);
 
 		pushConstantEClass = createEClass(PUSH_CONSTANT);
-		createEAttribute(pushConstantEClass, PUSH_CONSTANT__SIZE);
-		createEAttribute(pushConstantEClass, PUSH_CONSTANT__STAGE);
 
 		iDescriptorEClass = createEClass(IDESCRIPTOR);
 
@@ -987,9 +965,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getShader_File(), this.getPathResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPushConstant_Size(), theEcorePackage.getEInt(), "size", null, 0, 1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPushConstant_Stage(), theEnumerationPackage.getEPipelineStage(), "stage", null, 0, 1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

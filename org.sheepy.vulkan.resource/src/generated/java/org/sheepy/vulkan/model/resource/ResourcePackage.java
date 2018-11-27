@@ -514,31 +514,13 @@ public interface ResourcePackage extends EPackage
 	int PUSH_CONSTANT = 12;
 
 	/**
-	 * The feature id for the '<em><b>Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUSH_CONSTANT__SIZE = VULKAN_BUFFER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUSH_CONSTANT__STAGE = VULKAN_BUFFER_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Push Constant</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT_FEATURE_COUNT = VULKAN_BUFFER_FEATURE_COUNT + 2;
+	int PUSH_CONSTANT_FEATURE_COUNT = VULKAN_BUFFER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Push Constant</em>' class.
@@ -1306,28 +1288,6 @@ public interface ResourcePackage extends EPackage
 	EClass getPushConstant();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.PushConstant#getSize <em>Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see org.sheepy.vulkan.model.resource.PushConstant#getSize()
-	 * @see #getPushConstant()
-	 * @generated
-	 */
-	EAttribute getPushConstant_Size();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.PushConstant#getStage <em>Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.vulkan.model.resource.PushConstant#getStage()
-	 * @see #getPushConstant()
-	 * @generated
-	 */
-	EAttribute getPushConstant_Stage();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1836,22 +1796,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EClass PUSH_CONSTANT = eINSTANCE.getPushConstant();
-
-		/**
-		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PUSH_CONSTANT__SIZE = eINSTANCE.getPushConstant_Size();
-
-		/**
-		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PUSH_CONSTANT__STAGE = eINSTANCE.getPushConstant_Stage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.
