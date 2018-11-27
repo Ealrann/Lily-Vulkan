@@ -11,8 +11,10 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.vulkan.demo.model.*;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
+import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
 import org.sheepy.vulkan.model.resource.Resource;
@@ -103,6 +105,11 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 				return createIProcessUnitAdapter();
 			}
 			@Override
+			public Adapter caseIPipeline(IPipeline object)
+			{
+				return createIPipelineAdapter();
+			}
+			@Override
 			public Adapter caseResourceContainer(ResourceContainer object)
 			{
 				return createResourceContainerAdapter();
@@ -111,6 +118,11 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseAbstractPipeline(AbstractPipeline object)
 			{
 				return createAbstractPipelineAdapter();
+			}
+			@Override
+			public Adapter caseIGraphicsPipeline(IGraphicsPipeline object)
+			{
+				return createIGraphicsPipelineAdapter();
 			}
 			@Override
 			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
@@ -220,6 +232,21 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.IPipeline
+	 * @generated
+	 */
+	public Adapter createIPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ResourceContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -245,6 +272,21 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAbstractPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline
+	 * @generated
+	 */
+	public Adapter createIGraphicsPipelineAdapter()
 	{
 		return null;
 	}

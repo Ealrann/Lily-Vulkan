@@ -122,12 +122,21 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ProcessPackage.IPIPELINE:
+			{
+				IPipeline iPipeline = (IPipeline)theEObject;
+				T1 result = caseIPipeline(iPipeline);
+				if (result == null) result = caseIProcessUnit(iPipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ProcessPackage.ABSTRACT_PIPELINE:
 			{
 				AbstractPipeline abstractPipeline = (AbstractPipeline)theEObject;
 				T1 result = caseAbstractPipeline(abstractPipeline);
-				if (result == null) result = caseIProcessUnit(abstractPipeline);
+				if (result == null) result = caseIPipeline(abstractPipeline);
 				if (result == null) result = caseResourceContainer(abstractPipeline);
+				if (result == null) result = caseIProcessUnit(abstractPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -136,8 +145,9 @@ public class ProcessSwitch<T1> extends Switch<T1>
 				AbstractCompositePipeline abstractCompositePipeline = (AbstractCompositePipeline)theEObject;
 				T1 result = caseAbstractCompositePipeline(abstractCompositePipeline);
 				if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);
-				if (result == null) result = caseIProcessUnit(abstractCompositePipeline);
+				if (result == null) result = caseIPipeline(abstractCompositePipeline);
 				if (result == null) result = caseResourceContainer(abstractCompositePipeline);
+				if (result == null) result = caseIProcessUnit(abstractCompositePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -237,6 +247,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 casePipelineBufferBarrier(PipelineBufferBarrier object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIPipeline(IPipeline object)
 	{
 		return null;
 	}

@@ -9,8 +9,10 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.sheepy.vulkan.demo.model.*;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
+import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
 import org.sheepy.vulkan.model.resource.Resource;
@@ -86,8 +88,10 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 				T result = caseMeshPipeline(meshPipeline);
 				if (result == null) result = caseGraphicsPipeline(meshPipeline);
 				if (result == null) result = caseAbstractPipeline(meshPipeline);
-				if (result == null) result = caseIProcessUnit(meshPipeline);
+				if (result == null) result = caseIGraphicsPipeline(meshPipeline);
+				if (result == null) result = caseIPipeline(meshPipeline);
 				if (result == null) result = caseResourceContainer(meshPipeline);
+				if (result == null) result = caseIProcessUnit(meshPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -181,6 +185,22 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIPipeline(IPipeline object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -208,6 +228,22 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractPipeline(AbstractPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IGraphics Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IGraphics Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIGraphicsPipeline(IGraphicsPipeline object)
 	{
 		return null;
 	}

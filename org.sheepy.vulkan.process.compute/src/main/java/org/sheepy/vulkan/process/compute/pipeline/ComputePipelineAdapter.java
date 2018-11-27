@@ -12,6 +12,8 @@ import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.Computer;
+import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.vulkan.process.compute.pool.IComputeContextAdapter;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
@@ -120,6 +122,18 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	public int getGroupCountZ()
 	{
 		return groupCountZ;
+	}
+
+	@Override
+	protected PushConstant getPushConstant()
+	{
+		return ((ComputePipeline) target).getPushConstant();
+	}
+
+	@Override
+	protected DescriptorSet getDescriptorSet()
+	{
+		return ((ComputePipeline) target).getDescriptorSet();
 	}
 
 	@Override

@@ -16,6 +16,7 @@ import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.model.process.Configuration;
+import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.graphic.*;
@@ -115,6 +116,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createGraphicProcessAdapter();
 			}
 			@Override
+			public Adapter caseIGraphicsPipeline(IGraphicsPipeline object)
+			{
+				return createIGraphicsPipelineAdapter();
+			}
+			@Override
 			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
 			{
 				return createGraphicsPipelineAdapter();
@@ -208,6 +214,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIProcessUnit(IProcessUnit object)
 			{
 				return createIProcessUnitAdapter();
+			}
+			@Override
+			public Adapter caseIPipeline(IPipeline object)
+			{
+				return createIPipelineAdapter();
 			}
 			@Override
 			public Adapter caseAbstractPipeline(AbstractPipeline object)
@@ -327,6 +338,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGraphicProcessAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline
+	 * @generated
+	 */
+	public Adapter createIGraphicsPipelineAdapter()
 	{
 		return null;
 	}
@@ -612,6 +638,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIProcessUnitAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.IPipeline
+	 * @generated
+	 */
+	public Adapter createIPipelineAdapter()
 	{
 		return null;
 	}

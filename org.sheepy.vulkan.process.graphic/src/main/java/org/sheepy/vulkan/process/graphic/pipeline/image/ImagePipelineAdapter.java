@@ -8,14 +8,14 @@ import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
-import org.sheepy.vulkan.process.graphic.pipeline.IGraphicPipelineAdapter;
 import org.sheepy.vulkan.process.graphic.pool.IGraphicContextAdapter;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.resource.image.IImageAdapter;
 
 public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
-		implements IGraphicPipelineAdapter
 {
 	private VkImageBlit.Buffer region;
 
@@ -116,5 +116,17 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	public static ImagePipelineAdapter adapt(ImagePipeline object)
 	{
 		return ServiceAdapterFactory.INSTANCE.adapt(object, ImagePipelineAdapter.class);
+	}
+
+	@Override
+	protected PushConstant getPushConstant()
+	{
+		return ((ImagePipeline) target).getPushConstant();
+	}
+
+	@Override
+	protected DescriptorSet getDescriptorSet()
+	{
+		return ((ImagePipeline) target).getDescriptorSet();
 	}
 }

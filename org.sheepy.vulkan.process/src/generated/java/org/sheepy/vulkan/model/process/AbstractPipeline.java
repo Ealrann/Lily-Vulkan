@@ -23,7 +23,7 @@ import org.sheepy.vulkan.model.resource.ResourceContainer;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractPipeline extends IProcessUnit, ResourceContainer
+public interface AbstractPipeline extends IPipeline, ResourceContainer
 {
 	/**
 	 * Returns the value of the '<em><b>Descriptor Set</b></em>' containment reference.

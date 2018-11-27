@@ -5,11 +5,13 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
+import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
-import org.sheepy.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
+import org.sheepy.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
-public class MeshPipelineAdapter extends GraphicsPipelineAdapter
+public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 {
 	@Override
 	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
@@ -45,6 +47,18 @@ public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 		final var meshAdapter = MeshAdapter.adapt(mesh);
 
 		return meshAdapter.getIndexBuffer().getIndexBufferDescriptor();
+	}
+
+	@Override
+	protected PushConstant getPushConstant()
+	{
+		return ((MeshPipeline) target).getPushConstant();
+	}
+
+	@Override
+	protected DescriptorSet getDescriptorSet()
+	{
+		return ((MeshPipeline) target).getDescriptorSet();
 	}
 
 	@Override

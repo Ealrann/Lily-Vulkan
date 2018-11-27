@@ -15,6 +15,7 @@ import org.sheepy.vulkan.model.IProcessPool;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.AbstractProcessPool;
+import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.compute.*;
 import org.sheepy.vulkan.model.resource.ResourceContainer;
@@ -131,6 +132,11 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIProcessUnit(IProcessUnit object)
 			{
 				return createIProcessUnitAdapter();
+			}
+			@Override
+			public Adapter caseIPipeline(IPipeline object)
+			{
+				return createIPipelineAdapter();
 			}
 			@Override
 			public Adapter caseAbstractPipeline(AbstractPipeline object)
@@ -305,6 +311,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIProcessUnitAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.IPipeline
+	 * @generated
+	 */
+	public Adapter createIPipelineAdapter()
 	{
 		return null;
 	}

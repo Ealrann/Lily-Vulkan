@@ -10,9 +10,11 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.vulkan.model.gui.*;
 
 import org.sheepy.vulkan.model.process.AbstractPipeline;
+import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
@@ -84,8 +86,10 @@ public class GuiSwitch<T> extends Switch<T>
 				T result = caseGUIPipeline(guiPipeline);
 				if (result == null) result = caseGraphicsPipeline(guiPipeline);
 				if (result == null) result = caseAbstractPipeline(guiPipeline);
-				if (result == null) result = caseIProcessUnit(guiPipeline);
+				if (result == null) result = caseIGraphicsPipeline(guiPipeline);
+				if (result == null) result = caseIPipeline(guiPipeline);
 				if (result == null) result = caseResourceContainer(guiPipeline);
+				if (result == null) result = caseIProcessUnit(guiPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -220,6 +224,22 @@ public class GuiSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIPipeline(IPipeline object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -247,6 +267,22 @@ public class GuiSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractPipeline(AbstractPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IGraphics Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IGraphics Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIGraphicsPipeline(IGraphicsPipeline object)
 	{
 		return null;
 	}

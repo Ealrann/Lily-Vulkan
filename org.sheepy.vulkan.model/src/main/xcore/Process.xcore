@@ -39,7 +39,12 @@ class PipelineBufferBarrier extends PipelineBarrier
 	contains BufferBarrier bufferBarrier
 }
 
-abstract class AbstractPipeline extends IProcessUnit, ResourceContainer
+interface IPipeline extends IProcessUnit
+{
+	
+}
+
+abstract class AbstractPipeline extends IPipeline, ResourceContainer
 {
 	contains DescriptorSet descriptorSet
 	contains PushConstant pushConstant

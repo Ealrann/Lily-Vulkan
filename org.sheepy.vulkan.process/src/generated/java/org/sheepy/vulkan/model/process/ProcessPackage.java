@@ -328,14 +328,14 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_BUFFER_BARRIER_OPERATION_COUNT = PIPELINE_BARRIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
+	 * @see org.sheepy.vulkan.model.process.IPipeline
+	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 6;
+	int IPIPELINE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -344,7 +344,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__ENABLED = IPROCESS_UNIT__ENABLED;
+	int IPIPELINE__ENABLED = IPROCESS_UNIT__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -353,7 +353,53 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__STAGE = IPROCESS_UNIT__STAGE;
+	int IPIPELINE__STAGE = IPROCESS_UNIT__STAGE;
+
+	/**
+	 * The number of structural features of the '<em>IPipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_FEATURE_COUNT = IPROCESS_UNIT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>IPipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_OPERATION_COUNT = IPROCESS_UNIT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl
+	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
+	 * @generated
+	 */
+	int ABSTRACT_PIPELINE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PIPELINE__ENABLED = IPIPELINE__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PIPELINE__STAGE = IPIPELINE__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
@@ -362,7 +408,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__RESOURCES = IPROCESS_UNIT_FEATURE_COUNT + 0;
+	int ABSTRACT_PIPELINE__RESOURCES = IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
@@ -371,7 +417,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPROCESS_UNIT_FEATURE_COUNT + 1;
+	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
@@ -380,7 +426,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__PUSH_CONSTANT = IPROCESS_UNIT_FEATURE_COUNT + 2;
+	int ABSTRACT_PIPELINE__PUSH_CONSTANT = IPIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
@@ -389,7 +435,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPROCESS_UNIT_FEATURE_COUNT + 3;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Abstract Pipeline</em>' class.
@@ -398,7 +444,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_OPERATION_COUNT = IPROCESS_UNIT_OPERATION_COUNT + 0;
+	int ABSTRACT_PIPELINE_OPERATION_COUNT = IPIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractCompositePipelineImpl <em>Abstract Composite Pipeline</em>}' class.
@@ -408,7 +454,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
 	 * @generated
 	 */
-	int ABSTRACT_COMPOSITE_PIPELINE = 7;
+	int ABSTRACT_COMPOSITE_PIPELINE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -610,6 +656,16 @@ public interface ProcessPackage extends EPackage
 	EReference getPipelineBufferBarrier_BufferBarrier();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IPipeline</em>'.
+	 * @see org.sheepy.vulkan.model.process.IPipeline
+	 * @generated
+	 */
+	EClass getIPipeline();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -793,6 +849,16 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER = eINSTANCE.getPipelineBufferBarrier_BufferBarrier();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.IPipeline
+		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
+		 * @generated
+		 */
+		EClass IPIPELINE = eINSTANCE.getIPipeline();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.

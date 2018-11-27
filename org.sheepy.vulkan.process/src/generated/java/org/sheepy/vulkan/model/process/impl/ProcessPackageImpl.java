@@ -23,6 +23,7 @@ import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.model.process.Configuration;
+import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.PipelineBufferBarrier;
@@ -80,6 +81,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass pipelineBufferBarrierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iPipelineEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -290,6 +298,16 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getIPipeline()
+	{
+		return iPipelineEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAbstractPipeline()
 	{
 		return abstractPipelineEClass;
@@ -383,6 +401,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		pipelineBufferBarrierEClass = createEClass(PIPELINE_BUFFER_BARRIER);
 		createEReference(pipelineBufferBarrierEClass, PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER);
 
+		iPipelineEClass = createEClass(IPIPELINE);
+
 		abstractPipelineEClass = createEClass(ABSTRACT_PIPELINE);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__DESCRIPTOR_SET);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__PUSH_CONSTANT);
@@ -433,7 +453,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		abstractProcessPoolEClass.getESuperTypes().add(theResourcePackage.getResourceContainer());
 		pipelineBarrierEClass.getESuperTypes().add(this.getIProcessUnit());
 		pipelineBufferBarrierEClass.getESuperTypes().add(this.getPipelineBarrier());
-		abstractPipelineEClass.getESuperTypes().add(this.getIProcessUnit());
+		iPipelineEClass.getESuperTypes().add(this.getIProcessUnit());
+		abstractPipelineEClass.getESuperTypes().add(this.getIPipeline());
 		abstractPipelineEClass.getESuperTypes().add(theResourcePackage.getResourceContainer());
 		abstractCompositePipelineEClass.getESuperTypes().add(this.getAbstractPipeline());
 
@@ -456,6 +477,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(pipelineBufferBarrierEClass, PipelineBufferBarrier.class, "PipelineBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPipelineBufferBarrier_BufferBarrier(), theResourcePackage.getBufferBarrier(), null, "bufferBarrier", null, 0, 1, PipelineBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iPipelineEClass, IPipeline.class, "IPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(abstractPipelineEClass, AbstractPipeline.class, "AbstractPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractPipeline_DescriptorSet(), theResourcePackage.getDescriptorSet(), null, "descriptorSet", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

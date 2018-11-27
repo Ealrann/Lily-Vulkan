@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.ColorBlendBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.DepthStencilBuilder;
@@ -19,8 +19,7 @@ import org.sheepy.vulkan.process.graphic.pool.IGraphicContextAdapter;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
-public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
-		implements IGraphicPipelineAdapter
+public abstract class AbstractGraphicsPipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
 {
 	private ShaderStageBuilder shaderStageBuilder;
 	private InputAssemblyBuilder inputAssemblyBuilder;
@@ -45,7 +44,7 @@ public abstract class GraphicsPipelineAdapter extends AbstractPipelineAdapter<Gr
 		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
 		final var useDepthBuffer = context.graphicProcessPool.getDepthImage() != null;
 		final var device = context.getVkDevice();
-		final GraphicsPipeline pipeline = (GraphicsPipeline) target;
+		final var pipeline = (IGraphicsPipeline) target;
 		var swapchain = context.swapChainManager;
 
 		vertexInputState = getVertexBufferDescriptor();

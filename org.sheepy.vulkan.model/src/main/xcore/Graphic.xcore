@@ -29,6 +29,7 @@ import org.sheepy.vulkan.model.enumeration.ELogicOp
 import org.sheepy.vulkan.model.enumeration.EBlendFactor
 import org.sheepy.vulkan.model.enumeration.EBlendOp
 import org.sheepy.vulkan.model.enumeration.EDynamicState
+import org.sheepy.vulkan.model.process.IPipeline
 
 class GraphicConfiguration extends Configuration
 {
@@ -81,7 +82,7 @@ class GraphicProcess extends AbstractProcess
 {
 }
 
-abstract class GraphicsPipeline extends AbstractPipeline
+interface IGraphicsPipeline extends IPipeline
 {
 	refers Shader[] shaders
 
@@ -89,6 +90,10 @@ abstract class GraphicsPipeline extends AbstractPipeline
 	contains Rasterizer rasterizer
 	contains ColorBlend colorBlend
 	contains DynamicState dynamicState
+}
+
+abstract class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
+{
 }
 
 class DynamicState

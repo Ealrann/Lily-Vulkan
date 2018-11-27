@@ -12,7 +12,7 @@ import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractDeepAllocableAda
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.process.AbstractPipeline;
+import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.resource.buffer.PushConstantAdapter;
@@ -24,26 +24,26 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 {
 	protected long pipelineLayout = -1;
 
-	private AbstractPipeline pipeline = null;
+	private IPipeline pipeline = null;
 
 	@Override
 	public void setTarget(Notifier target)
 	{
-		pipeline = (AbstractPipeline) target;
+		pipeline = (IPipeline) target;
 		super.setTarget(target);
 	}
 
 	@Override
 	public void record(T commandBuffer, int bindPoint)
 	{
-		final DescriptorSet descriptorSet = pipeline.getDescriptorSet();
+		final DescriptorSet descriptorSet = getDescriptorSet();
 		if (descriptorSet != null)
 		{
 			final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
 			adapter.bindDescriptorSet(commandBuffer, bindPoint, pipelineLayout);
 		}
 
-		final var pushConstant = pipeline.getPushConstant();
+		final var pushConstant = getPushConstant();
 		if (pushConstant != null)
 		{
 			final var pushConstantAdapter = PushConstantAdapter.adapt(pushConstant);
@@ -61,7 +61,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	protected long allocatePipelineLayout(MemoryStack stack)
 	{
 		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice(pipeline);
-		final DescriptorSet descriptorSet = pipeline.getDescriptorSet();
+		final DescriptorSet descriptorSet = getDescriptorSet();
 
 		LongBuffer bDescriptorSet = null;
 		if (descriptorSet != null)
@@ -94,7 +94,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 
 	private void allocPushConstant(MemoryStack stack, VkPipelineLayoutCreateInfo info)
 	{
-		final PushConstant pushConstant = pipeline.getPushConstant();
+		var pushConstant = getPushConstant();
 		if (pushConstant != null)
 		{
 			final var adapter = PushConstantAdapter.adapt(pushConstant);
@@ -111,14 +111,18 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		pipelineLayout = -1;
 	}
 
-	@SuppressWarnings("unchecked")
-	public static <T extends AbstractCommandBuffer> AbstractPipelineAdapter<T> adapt(AbstractPipeline object)
-	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
-	}
-
 	public long getLayoutId()
 	{
 		return pipelineLayout;
+	}
+	
+	protected abstract PushConstant getPushConstant();
+	
+	protected abstract DescriptorSet getDescriptorSet();
+	
+	@SuppressWarnings("unchecked")
+	public static <T extends AbstractCommandBuffer> AbstractPipelineAdapter<T> adapt(IPipeline object)
+	{
+		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
 	}
 }
