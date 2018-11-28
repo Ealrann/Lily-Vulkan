@@ -13,6 +13,6 @@ package org.sheepy.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface DepthImage extends VulkanBuffer
+public interface DepthImage extends BasicResource
 {
 } // DepthImage

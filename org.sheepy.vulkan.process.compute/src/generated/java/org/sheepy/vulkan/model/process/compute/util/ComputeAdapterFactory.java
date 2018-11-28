@@ -20,8 +20,6 @@ import org.sheepy.vulkan.model.process.IProcessUnit;
 
 import org.sheepy.vulkan.model.process.compute.*;
 
-import org.sheepy.vulkan.model.resource.ResourceContainer;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
@@ -109,11 +107,6 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIProcessPool(IProcessPool object)
 			{
 				return createIProcessPoolAdapter();
-			}
-			@Override
-			public Adapter caseResourceContainer(ResourceContainer object)
-			{
-				return createResourceContainerAdapter();
 			}
 			@Override
 			public <T extends AbstractProcess> Adapter caseAbstractProcessPool(AbstractProcessPool<T> object)
@@ -238,21 +231,6 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIProcessPoolAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ResourceContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.ResourceContainer
-	 * @generated
-	 */
-	public Adapter createResourceContainerAdapter()
 	{
 		return null;
 	}

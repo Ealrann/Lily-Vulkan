@@ -23,7 +23,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 {
 	protected long pipelineLayout = -1;
 
-	private IPipeline pipeline = null;
+	protected IPipeline pipeline = null;
 
 	@Override
 	public void setTarget(Notifier target)

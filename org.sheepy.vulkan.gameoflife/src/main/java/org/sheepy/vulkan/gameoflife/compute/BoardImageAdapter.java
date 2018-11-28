@@ -15,14 +15,14 @@ import org.sheepy.vulkan.common.util.ModelUtil;
 import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.resource.ResourceAdapter;
+import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.vulkan.resource.image.IImageAdapter;
 import org.sheepy.vulkan.resource.image.ImageInfo;
 import org.sheepy.vulkan.resource.image.ImageView;
 import org.sheepy.vulkan.resource.image.StandaloneImage;
 
-public class BoardImageAdapter extends ResourceAdapter implements IImageAdapter, IDescriptorAdapter
+public class BoardImageAdapter extends PipelineResourceAdapter implements IImageAdapter, IDescriptorAdapter
 {
 	private StandaloneImage image;
 	private ImageView imageView;

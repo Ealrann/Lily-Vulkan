@@ -99,13 +99,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS_POOL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_POOL__RESOURCES = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 0;
+	int ABSTRACT_PROCESS_POOL__DESCRIPTOR_SETS = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
@@ -117,13 +117,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS_POOL__PROCESSES = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS_POOL__RESOURCES = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_POOL__RESET_ALLOWED = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 2;
+	int ABSTRACT_PROCESS_POOL__RESET_ALLOWED = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Process Pool</em>' class.
@@ -132,7 +141,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_POOL_FEATURE_COUNT = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 3;
+	int ABSTRACT_PROCESS_POOL_FEATURE_COUNT = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Abstract Process Pool</em>' class.
@@ -402,22 +411,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__STAGE = IPIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__RESOURCES = IPIPELINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 1;
+	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
@@ -426,7 +426,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__PUSH_CONSTANT = IPIPELINE_FEATURE_COUNT + 2;
+	int ABSTRACT_PIPELINE__PUSH_CONSTANT = IPIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
@@ -435,7 +435,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 3;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Abstract Pipeline</em>' class.
@@ -475,16 +475,7 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_COMPOSITE_PIPELINE__STAGE = ABSTRACT_PIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__RESOURCES = ABSTRACT_PIPELINE__RESOURCES;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -550,6 +541,17 @@ public interface ProcessPackage extends EPackage
 	EClass getAbstractProcessPool();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcessPool#getDescriptorSets <em>Descriptor Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Descriptor Sets</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractProcessPool#getDescriptorSets()
+	 * @see #getAbstractProcessPool()
+	 * @generated
+	 */
+	EReference getAbstractProcessPool_DescriptorSets();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcessPool#getProcesses <em>Processes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -559,6 +561,17 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractProcessPool_Processes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcessPool#getResources <em>Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Resources</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractProcessPool#getResources()
+	 * @see #getAbstractProcessPool()
+	 * @generated
+	 */
+	EReference getAbstractProcessPool_Resources();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.AbstractProcessPool#isResetAllowed <em>Reset Allowed</em>}'.
@@ -676,10 +689,10 @@ public interface ProcessPackage extends EPackage
 	EClass getAbstractPipeline();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Descriptor Set</em>'.
+	 * @return the meta object for the reference '<em>Descriptor Set</em>'.
 	 * @see org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet()
 	 * @see #getAbstractPipeline()
 	 * @generated
@@ -763,12 +776,28 @@ public interface ProcessPackage extends EPackage
 		EClass ABSTRACT_PROCESS_POOL = eINSTANCE.getAbstractProcessPool();
 
 		/**
+		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS_POOL__DESCRIPTOR_SETS = eINSTANCE.getAbstractProcessPool_DescriptorSets();
+
+		/**
 		 * The meta object literal for the '<em><b>Processes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ABSTRACT_PROCESS_POOL__PROCESSES = eINSTANCE.getAbstractProcessPool_Processes();
+
+		/**
+		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS_POOL__RESOURCES = eINSTANCE.getAbstractProcessPool_Resources();
 
 		/**
 		 * The meta object literal for the '<em><b>Reset Allowed</b></em>' attribute feature.
@@ -871,7 +900,7 @@ public interface ProcessPackage extends EPackage
 		EClass ABSTRACT_PIPELINE = eINSTANCE.getAbstractPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Descriptor Set</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Descriptor Set</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

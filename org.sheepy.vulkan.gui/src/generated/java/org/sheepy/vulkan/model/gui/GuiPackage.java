@@ -90,16 +90,7 @@ public interface GuiPackage extends EPackage
 	int GUI_PIPELINE__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_PIPELINE__RESOURCES = GraphicPackage.GRAPHICS_PIPELINE__RESOURCES;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

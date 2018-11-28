@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+
 import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 

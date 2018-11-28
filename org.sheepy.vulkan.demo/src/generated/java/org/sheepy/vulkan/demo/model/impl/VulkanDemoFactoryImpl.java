@@ -89,7 +89,6 @@ public class VulkanDemoFactoryImpl extends EFactoryImpl implements VulkanDemoFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public MeshBuffer createMeshBuffer()
 	{
 		MeshBufferImpl meshBuffer = new MeshBufferImpl();

@@ -52,7 +52,7 @@ public class ModelFactory
 
 	public final VulkanApplication application = new VulkanApplicationImpl();
 	public final GraphicProcessPool imageProcessPool;
-	public final ComputeProcessPool computeProcessPool;
+	public ComputeProcessPool computeProcessPool;
 	private BoardImage boardImage;
 
 	public ModelFactory(int width, int height)
@@ -72,7 +72,7 @@ public class ModelFactory
 		configuration.setFrameWaitStage(EPipelineStage.TRANSFER_BIT);
 		configuration.setSwapImageUsage(swapImageUsage);
 
-		computeProcessPool = newComputeProcessPool();
+		createComputeProcessPool();
 		application.getComputePools().add(computeProcessPool);
 
 		imageProcessPool = newImageProcessPool();
@@ -130,8 +130,9 @@ public class ModelFactory
 		return processPool;
 	}
 
-	private ComputeProcessPool newComputeProcessPool()
+	private void createComputeProcessPool()
 	{
+		computeProcessPool = new ComputeProcessPoolImpl();
 		final Module thisModule = getClass().getModule();
 
 		final ModuleResource lifeShaderFile = new ModuleResourceImpl();
@@ -169,16 +170,13 @@ public class ModelFactory
 		ComputeProcess process1 = createProcess(lifePipeline1, pixelPipeline1);
 		ComputeProcess process2 = createProcess(lifePipeline2, pixelPipeline2);
 
-		ComputeProcessPool res = new ComputeProcessPoolImpl();
-		res.getProcesses().add(process1);
-		res.getProcesses().add(process2);
-		res.getResources().add(lifeShader);
-		res.getResources().add(life2pixelShader);
-		res.getResources().add(boardBuffer1);
-		res.getResources().add(boardBuffer2);
-		res.getResources().add(boardImage);
-
-		return res;
+		computeProcessPool.getProcesses().add(process1);
+		computeProcessPool.getProcesses().add(process2);
+		computeProcessPool.getResources().add(lifeShader);
+		computeProcessPool.getResources().add(life2pixelShader);
+		computeProcessPool.getResources().add(boardBuffer1);
+		computeProcessPool.getResources().add(boardBuffer2);
+		computeProcessPool.getResources().add(boardImage);
 	}
 
 	private static ComputeProcess createProcess(ComputePipeline... pipelines)
@@ -201,6 +199,7 @@ public class ModelFactory
 
 		ComputePipeline res = new ComputePipelineImpl();
 		res.getComputers().add(computer);
+		computeProcessPool.getDescriptorSets().add(descriptorSet);
 		res.setDescriptorSet(descriptorSet);
 		res.setStage(ECommandStage.COMPUTE);
 

@@ -3,7 +3,7 @@ package org.sheepy.vulkan.common.application;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.impl.AbstractAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.api.adapter.IVulkanApplicationAdapter;
@@ -13,7 +13,7 @@ import org.sheepy.vulkan.model.IProcessPool;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanPackage;
 
-public class VulkanApplicationAdapter extends AbstractAdapter
+public class VulkanApplicationAdapter extends AbstractSingletonAdapter
 		implements IVulkanApplicationAdapter
 {
 	protected VulkanApplication application;

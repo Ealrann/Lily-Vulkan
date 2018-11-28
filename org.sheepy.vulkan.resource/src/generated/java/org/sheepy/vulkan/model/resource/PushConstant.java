@@ -2,6 +2,7 @@
  */
 package org.sheepy.vulkan.model.resource;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Push Constant</b></em>'.
@@ -12,7 +13,6 @@ package org.sheepy.vulkan.model.resource;
  * @model abstract="true"
  * @generated
  */
-public interface PushConstant extends VulkanBuffer
+public interface PushConstant extends PipelineResource
 {
-
 } // PushConstant

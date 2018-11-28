@@ -37,7 +37,6 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * @ordered
 	 */
 	protected MeshBuffer mesh;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +63,6 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public MeshBuffer getMesh()
 	{
 		if (mesh != null && mesh.eIsProxy())
@@ -95,7 +93,6 @@ public class MeshPipelineImpl extends GraphicsPipelineImpl implements MeshPipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMesh(MeshBuffer newMesh)
 	{
 		MeshBuffer oldMesh = mesh;

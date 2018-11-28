@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.vulkan.gameoflife.model.*;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
+import org.sheepy.vulkan.model.resource.PipelineResource;
 import org.sheepy.vulkan.model.resource.Resource;
 import org.sheepy.vulkan.model.resource.SizedBuffer;
-import org.sheepy.vulkan.model.resource.VulkanBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,19 +89,19 @@ public class GameOfLifeAdapterFactory extends AdapterFactoryImpl
 				return createBoardImageAdapter();
 			}
 			@Override
+			public Adapter caseIDescriptor(IDescriptor object)
+			{
+				return createIDescriptorAdapter();
+			}
+			@Override
 			public Adapter caseResource(Resource object)
 			{
 				return createResourceAdapter();
 			}
 			@Override
-			public Adapter caseVulkanBuffer(VulkanBuffer object)
+			public Adapter casePipelineResource(PipelineResource object)
 			{
-				return createVulkanBufferAdapter();
-			}
-			@Override
-			public Adapter caseIDescriptor(IDescriptor object)
-			{
-				return createIDescriptorAdapter();
+				return createPipelineResourceAdapter();
 			}
 			@Override
 			public Adapter caseSizedBuffer(SizedBuffer object)
@@ -166,6 +166,21 @@ public class GameOfLifeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.IDescriptor
+	 * @generated
+	 */
+	public Adapter createIDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Resource <em>Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -181,31 +196,16 @@ public class GameOfLifeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.VulkanBuffer <em>Vulkan Buffer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.VulkanBuffer
+	 * @see org.sheepy.vulkan.model.resource.PipelineResource
 	 * @generated
 	 */
-	public Adapter createVulkanBufferAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.IDescriptor
-	 * @generated
-	 */
-	public Adapter createIDescriptorAdapter()
+	public Adapter createPipelineResourceAdapter()
 	{
 		return null;
 	}

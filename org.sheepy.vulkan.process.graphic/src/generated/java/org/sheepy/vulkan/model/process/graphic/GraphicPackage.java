@@ -390,13 +390,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS_POOL = 4;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_POOL__RESOURCES = ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES;
+	int GRAPHIC_PROCESS_POOL__DESCRIPTOR_SETS = ProcessPackage.ABSTRACT_PROCESS_POOL__DESCRIPTOR_SETS;
 
 	/**
 	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
@@ -406,6 +406,15 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHIC_PROCESS_POOL__PROCESSES = ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS_POOL__RESOURCES = ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
@@ -435,7 +444,7 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO = ProcessPackage.ABSTRACT_PROCESS_POOL_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Depth Image</b></em>' reference.
+	 * The feature id for the '<em><b>Depth Image</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -618,16 +627,7 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__RESOURCES = ProcessPackage.ABSTRACT_PIPELINE__RESOURCES;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1312,16 +1312,7 @@ public interface GraphicPackage extends EPackage
 	int IMAGE_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_PIPELINE__RESOURCES = ProcessPackage.ABSTRACT_PIPELINE__RESOURCES;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1784,10 +1775,10 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicProcessPool_RenderPassInfo();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getDepthImage <em>Depth Image</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getDepthImage <em>Depth Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Depth Image</em>'.
+	 * @return the meta object for the containment reference '<em>Depth Image</em>'.
 	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getDepthImage()
 	 * @see #getGraphicProcessPool()
 	 * @generated
@@ -2726,7 +2717,7 @@ public interface GraphicPackage extends EPackage
 		EReference GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO = eINSTANCE.getGraphicProcessPool_RenderPassInfo();
 
 		/**
-		 * The meta object literal for the '<em><b>Depth Image</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Depth Image</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

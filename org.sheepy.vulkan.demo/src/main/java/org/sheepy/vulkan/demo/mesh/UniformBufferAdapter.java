@@ -16,17 +16,17 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
+import org.sheepy.vulkan.common.util.ModelUtil;
 import org.sheepy.vulkan.common.util.SizeOf;
 import org.sheepy.vulkan.demo.model.UniformBuffer;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-import org.sheepy.vulkan.model.VulkanApplication;
-import org.sheepy.vulkan.resource.ResourceAdapter;
+import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 
 
-public class UniformBufferAdapter extends ResourceAdapter implements IDescriptorAdapter
+public class UniformBufferAdapter extends PipelineResourceAdapter implements IDescriptorAdapter
 {
 	private static final Vector3f UP_AXIS = new Vector3f(0f, 0f, 1f);
 	private static final Vector3f AXIS = new Vector3f(0f, 0f, 1f);
@@ -71,7 +71,7 @@ public class UniformBufferAdapter extends ResourceAdapter implements IDescriptor
 	public void update(float time)
 	{
 		final var uniformBuffer = (UniformBuffer) target;
-		final var application = (VulkanApplication) uniformBuffer.eContainer().eContainer();
+		final var application = ModelUtil.getVulkanApplication(uniformBuffer);
 		final var size = application.getSize();
 
 		model.identity().rotate(time * -RADIANS_90, AXIS);

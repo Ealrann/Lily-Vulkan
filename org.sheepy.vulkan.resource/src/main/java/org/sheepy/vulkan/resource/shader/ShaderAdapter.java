@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.resource.shader;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 
 import java.nio.ByteBuffer;
 
@@ -9,13 +9,13 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Shader;
-import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.file.PathResourceAdapter;
 
-public class ShaderAdapter extends ResourceAdapter
+public class ShaderAdapter extends AbstractFlatAllocableAdapter
 {
 	private static ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memUTF8("main");
 
@@ -28,11 +28,10 @@ public class ShaderAdapter extends ResourceAdapter
 		var shader = (Shader) target;
 		var resource = shader.getFile();
 		var fileAdapter = PathResourceAdapter.adapt(resource);
-		var shaderCode = fileAdapter.toByteBuffer();
+		var shaderCode = fileAdapter.toByteBuffer(resource);
 
 		shaderBackend = new ShaderBackend(context.getVkDevice(target), shaderCode);
 		shaderBackend.allocate(stack);
-		
 	}
 
 	/**
@@ -59,6 +58,12 @@ public class ShaderAdapter extends ResourceAdapter
 	public long getShaderModule()
 	{
 		return shaderBackend.getId();
+	}
+	
+	@Override
+	public boolean isDirty()
+	{
+		return false;
 	}
 
 	@Override

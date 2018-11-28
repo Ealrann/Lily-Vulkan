@@ -18,7 +18,6 @@ import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.graphic.*;
-import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -119,7 +118,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseAbstractProcessPool(graphicProcessPool);
 				if (result == null) result = caseIGraphicProcessPool(graphicProcessPool);
 				if (result == null) result = caseIProcessPool(graphicProcessPool);
-				if (result == null) result = caseResourceContainer(graphicProcessPool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,7 +145,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseAbstractPipeline(graphicsPipeline);
 				if (result == null) result = caseIGraphicsPipeline(graphicsPipeline);
 				if (result == null) result = caseIPipeline(graphicsPipeline);
-				if (result == null) result = caseResourceContainer(graphicsPipeline);
 				if (result == null) result = caseIProcessUnit(graphicsPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -223,7 +220,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 				T1 result = caseImagePipeline(imagePipeline);
 				if (result == null) result = caseAbstractPipeline(imagePipeline);
 				if (result == null) result = caseIPipeline(imagePipeline);
-				if (result == null) result = caseResourceContainer(imagePipeline);
 				if (result == null) result = caseIProcessUnit(imagePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -573,22 +569,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIProcessPool(IProcessPool object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseResourceContainer(ResourceContainer object)
 	{
 		return null;
 	}

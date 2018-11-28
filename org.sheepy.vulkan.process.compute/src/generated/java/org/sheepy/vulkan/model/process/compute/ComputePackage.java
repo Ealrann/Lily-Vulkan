@@ -70,13 +70,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS_POOL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS_POOL__RESOURCES = ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES;
+	int COMPUTE_PROCESS_POOL__DESCRIPTOR_SETS = ProcessPackage.ABSTRACT_PROCESS_POOL__DESCRIPTOR_SETS;
 
 	/**
 	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
@@ -86,6 +86,15 @@ public interface ComputePackage extends EPackage
 	 * @ordered
 	 */
 	int COMPUTE_PROCESS_POOL__PROCESSES = ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS_POOL__RESOURCES = ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
@@ -180,16 +189,7 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__RESOURCES = ProcessPackage.ABSTRACT_PIPELINE__RESOURCES;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

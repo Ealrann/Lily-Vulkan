@@ -9,9 +9,9 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.vulkan.gameoflife.model.*;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
+import org.sheepy.vulkan.model.resource.PipelineResource;
 import org.sheepy.vulkan.model.resource.Resource;
 import org.sheepy.vulkan.model.resource.SizedBuffer;
-import org.sheepy.vulkan.model.resource.VulkanBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,7 +80,7 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 			{
 				BoardBuffer boardBuffer = (BoardBuffer)theEObject;
 				T result = caseBoardBuffer(boardBuffer);
-				if (result == null) result = caseVulkanBuffer(boardBuffer);
+				if (result == null) result = casePipelineResource(boardBuffer);
 				if (result == null) result = caseIDescriptor(boardBuffer);
 				if (result == null) result = caseResource(boardBuffer);
 				if (result == null) result = defaultCase(theEObject);
@@ -91,9 +91,9 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 				BoardImage boardImage = (BoardImage)theEObject;
 				T result = caseBoardImage(boardImage);
 				if (result == null) result = caseImage(boardImage);
-				if (result == null) result = caseIDescriptor(boardImage);
 				if (result == null) result = caseSizedBuffer(boardImage);
-				if (result == null) result = caseVulkanBuffer(boardImage);
+				if (result == null) result = casePipelineResource(boardImage);
+				if (result == null) result = caseIDescriptor(boardImage);
 				if (result == null) result = caseResource(boardImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -135,6 +135,22 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIDescriptor(IDescriptor object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -151,33 +167,17 @@ public class GameOfLifeSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vulkan Buffer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vulkan Buffer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pipeline Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVulkanBuffer(VulkanBuffer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIDescriptor(IDescriptor object)
+	public T casePipelineResource(PipelineResource object)
 	{
 		return null;
 	}

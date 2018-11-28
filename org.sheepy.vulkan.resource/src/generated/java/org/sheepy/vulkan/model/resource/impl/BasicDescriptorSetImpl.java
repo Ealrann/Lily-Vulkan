@@ -3,20 +3,18 @@
 package org.sheepy.vulkan.model.resource.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Descriptor Set</b></em>'.
+ * An implementation of the model object '<em><b>Basic Descriptor Set</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -142,4 +140,4 @@ public class BasicDescriptorSetImpl extends MinimalEObjectImpl.Container impleme
 		return super.eIsSet(featureID);
 	}
 
-} //DescriptorSetImpl
+} //BasicDescriptorSetImpl

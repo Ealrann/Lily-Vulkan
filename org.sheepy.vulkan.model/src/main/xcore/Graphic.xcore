@@ -12,7 +12,6 @@ import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
 import org.sheepy.vulkan.model.enumeration.EImageLayout
 import org.sheepy.vulkan.model.enumeration.ESampleCount
-import org.sheepy.vulkan.model.resource.DepthImage
 import org.sheepy.vulkan.model.resource.Image
 import org.sheepy.vulkan.model.resource.Shader
 import org.sheepy.vulkan.model.IGraphicProcessPool
@@ -30,6 +29,7 @@ import org.sheepy.vulkan.model.enumeration.EBlendFactor
 import org.sheepy.vulkan.model.enumeration.EBlendOp
 import org.sheepy.vulkan.model.enumeration.EDynamicState
 import org.sheepy.vulkan.model.process.IPipeline
+import org.sheepy.vulkan.model.resource.DepthImage
 
 class GraphicConfiguration extends Configuration
 {
@@ -75,7 +75,7 @@ class GraphicProcessPool extends AbstractProcessPool<GraphicProcess>, IGraphicPr
 {
 	contains GraphicConfiguration configuration
 	contains RenderPassInfo renderPassInfo
-	refers DepthImage depthImage
+	contains DepthImage depthImage
 }
 
 class GraphicProcess extends AbstractProcess

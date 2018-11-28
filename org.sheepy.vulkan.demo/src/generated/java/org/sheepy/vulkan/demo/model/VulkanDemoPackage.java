@@ -88,16 +88,7 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE__RESOURCES = GraphicPackage.GRAPHICS_PIPELINE__RESOURCES;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -240,7 +231,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNIFORM_BUFFER_FEATURE_COUNT = ResourcePackage.VULKAN_BUFFER_FEATURE_COUNT + 0;
+	int UNIFORM_BUFFER_FEATURE_COUNT = ResourcePackage.PIPELINE_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Uniform Buffer</em>' class.
@@ -249,7 +240,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNIFORM_BUFFER_OPERATION_COUNT = ResourcePackage.VULKAN_BUFFER_OPERATION_COUNT + 0;
+	int UNIFORM_BUFFER_OPERATION_COUNT = ResourcePackage.PIPELINE_RESOURCE_OPERATION_COUNT + 0;
 
 
 	/**

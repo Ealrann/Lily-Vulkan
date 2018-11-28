@@ -20,7 +20,7 @@ package org.sheepy.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface Texture extends VulkanBuffer, IDescriptor
+public interface Texture extends PipelineResource
 {
 	/**
 	 * Returns the value of the '<em><b>File</b></em>' containment reference.

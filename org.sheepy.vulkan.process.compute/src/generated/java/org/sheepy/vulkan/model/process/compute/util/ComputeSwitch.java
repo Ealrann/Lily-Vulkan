@@ -18,8 +18,6 @@ import org.sheepy.vulkan.model.process.IProcessUnit;
 
 import org.sheepy.vulkan.model.process.compute.*;
 
-import org.sheepy.vulkan.model.resource.ResourceContainer;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
@@ -90,7 +88,6 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = caseAbstractProcessPool(computeProcessPool);
 				if (result == null) result = caseIComputeProcessPool(computeProcessPool);
 				if (result == null) result = caseIProcessPool(computeProcessPool);
-				if (result == null) result = caseResourceContainer(computeProcessPool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -108,7 +105,6 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				T1 result = caseComputePipeline(computePipeline);
 				if (result == null) result = caseAbstractPipeline(computePipeline);
 				if (result == null) result = caseIPipeline(computePipeline);
-				if (result == null) result = caseResourceContainer(computePipeline);
 				if (result == null) result = caseIProcessUnit(computePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -201,22 +197,6 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseIProcessPool(IProcessPool object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseResourceContainer(ResourceContainer object)
 	{
 		return null;
 	}

@@ -21,7 +21,6 @@ import org.sheepy.vulkan.model.process.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 
 import org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl;
-
 import org.sheepy.vulkan.model.resource.DepthImage;
 
 /**
@@ -62,7 +61,7 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	protected RenderPassInfo renderPassInfo;
 
 	/**
-	 * The cached value of the '{@link #getDepthImage() <em>Depth Image</em>}' reference.
+	 * The cached value of the '{@link #getDepthImage() <em>Depth Image</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDepthImage()
@@ -211,16 +210,6 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	 */
 	public DepthImage getDepthImage()
 	{
-		if (depthImage != null && depthImage.eIsProxy())
-		{
-			InternalEObject oldDepthImage = (InternalEObject)depthImage;
-			depthImage = (DepthImage)eResolveProxy(oldDepthImage);
-			if (depthImage != oldDepthImage)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.GRAPHIC_PROCESS_POOL__DEPTH_IMAGE, oldDepthImage, depthImage));
-			}
-		}
 		return depthImage;
 	}
 
@@ -229,9 +218,16 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DepthImage basicGetDepthImage()
+	public NotificationChain basicSetDepthImage(DepthImage newDepthImage, NotificationChain msgs)
 	{
-		return depthImage;
+		DepthImage oldDepthImage = depthImage;
+		depthImage = newDepthImage;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS_POOL__DEPTH_IMAGE, oldDepthImage, newDepthImage);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -241,10 +237,18 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 	 */
 	public void setDepthImage(DepthImage newDepthImage)
 	{
-		DepthImage oldDepthImage = depthImage;
-		depthImage = newDepthImage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS_POOL__DEPTH_IMAGE, oldDepthImage, depthImage));
+		if (newDepthImage != depthImage)
+		{
+			NotificationChain msgs = null;
+			if (depthImage != null)
+				msgs = ((InternalEObject)depthImage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS_POOL__DEPTH_IMAGE, null, msgs);
+			if (newDepthImage != null)
+				msgs = ((InternalEObject)newDepthImage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS_POOL__DEPTH_IMAGE, null, msgs);
+			msgs = basicSetDepthImage(newDepthImage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS_POOL__DEPTH_IMAGE, newDepthImage, newDepthImage));
 	}
 
 	/**
@@ -261,6 +265,8 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 				return basicSetConfiguration(null, msgs);
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO:
 				return basicSetRenderPassInfo(null, msgs);
+			case GraphicPackage.GRAPHIC_PROCESS_POOL__DEPTH_IMAGE:
+				return basicSetDepthImage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -280,8 +286,7 @@ public class GraphicProcessPoolImpl extends AbstractProcessPoolImpl<GraphicProce
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO:
 				return getRenderPassInfo();
 			case GraphicPackage.GRAPHIC_PROCESS_POOL__DEPTH_IMAGE:
-				if (resolve) return getDepthImage();
-				return basicGetDepthImage();
+				return getDepthImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

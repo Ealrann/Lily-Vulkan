@@ -10,27 +10,27 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import java.lang.Module
 import org.sheepy.vulkan.model.enumeration.EImageLayout
 
+
 interface Resource
 {
 }
 
-interface VulkanBuffer extends Resource
+interface BasicResource extends Resource
 {
 }
 
-class Buffer extends VulkanBuffer
+interface PipelineResource extends IDescriptor, Resource
+{
+}
+
+class Buffer extends PipelineResource
 {
 	long size
 	int usage
 	int properties
 }
 
-interface ResourceContainer
-{
-	contains Resource[] resources
-}
-
-interface SizedBuffer extends VulkanBuffer
+interface SizedBuffer extends PipelineResource
 {
 }
 
@@ -38,39 +38,15 @@ abstract class Image extends SizedBuffer
 {
 }
 
-class Texture extends VulkanBuffer, IDescriptor
+class Texture extends PipelineResource
 {
 	contains PathResource file
 	boolean mipmapEnabled = "false"
 }
 
-class DepthImage extends VulkanBuffer
-{
-}
-
-abstract class PathResource extends Resource
-{
-	String path
-}
-
-class FileResource extends PathResource
-{
-}
-
-class ModuleResource extends PathResource
-{
-	JavaModule module
-}
-
 type JavaModule wraps Module
 
-class Shader extends Resource
-{
-	contains PathResource file
-	EShaderStage stage
-}
-
-abstract class PushConstant extends VulkanBuffer
+abstract class PushConstant extends PipelineResource
 {
 }
 
@@ -86,11 +62,6 @@ class BasicDescriptorSet extends DescriptorSet
 {
 	refers IDescriptor[1..*] descriptors
 }
-
-abstract class IndexedBuffer extends VulkanBuffer, IDescriptor
-{
-}
-
 
 abstract class Barrier
 {
@@ -130,3 +101,33 @@ class ImageTransition
 	int dstAccess
 }
 
+// ---------------------
+// Non pipeline resource: Vulkan doesn't need a descriptor for them
+
+class Shader extends BasicResource
+{
+	contains PathResource file
+	EShaderStage stage
+}
+
+abstract class IndexedBuffer extends BasicResource
+{
+}
+
+class DepthImage extends BasicResource
+{
+}
+
+abstract class PathResource extends BasicResource
+{
+	String path
+}
+
+class FileResource extends PathResource
+{
+}
+
+class ModuleResource extends PathResource
+{
+	JavaModule module
+}

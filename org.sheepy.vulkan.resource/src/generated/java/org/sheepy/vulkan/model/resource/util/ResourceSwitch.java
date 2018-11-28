@@ -79,11 +79,20 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.VULKAN_BUFFER:
+			case ResourcePackage.BASIC_RESOURCE:
 			{
-				VulkanBuffer vulkanBuffer = (VulkanBuffer)theEObject;
-				T result = caseVulkanBuffer(vulkanBuffer);
-				if (result == null) result = caseResource(vulkanBuffer);
+				BasicResource basicResource = (BasicResource)theEObject;
+				T result = caseBasicResource(basicResource);
+				if (result == null) result = caseResource(basicResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.PIPELINE_RESOURCE:
+			{
+				PipelineResource pipelineResource = (PipelineResource)theEObject;
+				T result = casePipelineResource(pipelineResource);
+				if (result == null) result = caseIDescriptor(pipelineResource);
+				if (result == null) result = caseResource(pipelineResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -91,15 +100,9 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				Buffer buffer = (Buffer)theEObject;
 				T result = caseBuffer(buffer);
-				if (result == null) result = caseVulkanBuffer(buffer);
+				if (result == null) result = casePipelineResource(buffer);
+				if (result == null) result = caseIDescriptor(buffer);
 				if (result == null) result = caseResource(buffer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.RESOURCE_CONTAINER:
-			{
-				ResourceContainer resourceContainer = (ResourceContainer)theEObject;
-				T result = caseResourceContainer(resourceContainer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,7 +110,8 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				SizedBuffer sizedBuffer = (SizedBuffer)theEObject;
 				T result = caseSizedBuffer(sizedBuffer);
-				if (result == null) result = caseVulkanBuffer(sizedBuffer);
+				if (result == null) result = casePipelineResource(sizedBuffer);
+				if (result == null) result = caseIDescriptor(sizedBuffer);
 				if (result == null) result = caseResource(sizedBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -117,7 +121,8 @@ public class ResourceSwitch<T> extends Switch<T>
 				Image image = (Image)theEObject;
 				T result = caseImage(image);
 				if (result == null) result = caseSizedBuffer(image);
-				if (result == null) result = caseVulkanBuffer(image);
+				if (result == null) result = casePipelineResource(image);
+				if (result == null) result = caseIDescriptor(image);
 				if (result == null) result = caseResource(image);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -126,52 +131,9 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				Texture texture = (Texture)theEObject;
 				T result = caseTexture(texture);
-				if (result == null) result = caseVulkanBuffer(texture);
+				if (result == null) result = casePipelineResource(texture);
 				if (result == null) result = caseIDescriptor(texture);
 				if (result == null) result = caseResource(texture);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.DEPTH_IMAGE:
-			{
-				DepthImage depthImage = (DepthImage)theEObject;
-				T result = caseDepthImage(depthImage);
-				if (result == null) result = caseVulkanBuffer(depthImage);
-				if (result == null) result = caseResource(depthImage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.PATH_RESOURCE:
-			{
-				PathResource pathResource = (PathResource)theEObject;
-				T result = casePathResource(pathResource);
-				if (result == null) result = caseResource(pathResource);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.FILE_RESOURCE:
-			{
-				FileResource fileResource = (FileResource)theEObject;
-				T result = caseFileResource(fileResource);
-				if (result == null) result = casePathResource(fileResource);
-				if (result == null) result = caseResource(fileResource);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.MODULE_RESOURCE:
-			{
-				ModuleResource moduleResource = (ModuleResource)theEObject;
-				T result = caseModuleResource(moduleResource);
-				if (result == null) result = casePathResource(moduleResource);
-				if (result == null) result = caseResource(moduleResource);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.SHADER:
-			{
-				Shader shader = (Shader)theEObject;
-				T result = caseShader(shader);
-				if (result == null) result = caseResource(shader);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -179,7 +141,8 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				PushConstant pushConstant = (PushConstant)theEObject;
 				T result = casePushConstant(pushConstant);
-				if (result == null) result = caseVulkanBuffer(pushConstant);
+				if (result == null) result = casePipelineResource(pushConstant);
+				if (result == null) result = caseIDescriptor(pushConstant);
 				if (result == null) result = caseResource(pushConstant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -203,16 +166,6 @@ public class ResourceSwitch<T> extends Switch<T>
 				BasicDescriptorSet basicDescriptorSet = (BasicDescriptorSet)theEObject;
 				T result = caseBasicDescriptorSet(basicDescriptorSet);
 				if (result == null) result = caseDescriptorSet(basicDescriptorSet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.INDEXED_BUFFER:
-			{
-				IndexedBuffer indexedBuffer = (IndexedBuffer)theEObject;
-				T result = caseIndexedBuffer(indexedBuffer);
-				if (result == null) result = caseVulkanBuffer(indexedBuffer);
-				if (result == null) result = caseIDescriptor(indexedBuffer);
-				if (result == null) result = caseResource(indexedBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -264,6 +217,62 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ResourcePackage.SHADER:
+			{
+				Shader shader = (Shader)theEObject;
+				T result = caseShader(shader);
+				if (result == null) result = caseBasicResource(shader);
+				if (result == null) result = caseResource(shader);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.INDEXED_BUFFER:
+			{
+				IndexedBuffer indexedBuffer = (IndexedBuffer)theEObject;
+				T result = caseIndexedBuffer(indexedBuffer);
+				if (result == null) result = caseBasicResource(indexedBuffer);
+				if (result == null) result = caseResource(indexedBuffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.DEPTH_IMAGE:
+			{
+				DepthImage depthImage = (DepthImage)theEObject;
+				T result = caseDepthImage(depthImage);
+				if (result == null) result = caseBasicResource(depthImage);
+				if (result == null) result = caseResource(depthImage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.PATH_RESOURCE:
+			{
+				PathResource pathResource = (PathResource)theEObject;
+				T result = casePathResource(pathResource);
+				if (result == null) result = caseBasicResource(pathResource);
+				if (result == null) result = caseResource(pathResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.FILE_RESOURCE:
+			{
+				FileResource fileResource = (FileResource)theEObject;
+				T result = caseFileResource(fileResource);
+				if (result == null) result = casePathResource(fileResource);
+				if (result == null) result = caseBasicResource(fileResource);
+				if (result == null) result = caseResource(fileResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.MODULE_RESOURCE:
+			{
+				ModuleResource moduleResource = (ModuleResource)theEObject;
+				T result = caseModuleResource(moduleResource);
+				if (result == null) result = casePathResource(moduleResource);
+				if (result == null) result = caseBasicResource(moduleResource);
+				if (result == null) result = caseResource(moduleResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -285,17 +294,33 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vulkan Buffer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Basic Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vulkan Buffer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Basic Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVulkanBuffer(VulkanBuffer object)
+	public T caseBasicResource(BasicResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pipeline Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePipelineResource(PipelineResource object)
 	{
 		return null;
 	}
@@ -312,22 +337,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseBuffer(Buffer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceContainer(ResourceContainer object)
 	{
 		return null;
 	}
@@ -376,86 +385,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseTexture(Texture object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Depth Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Depth Image</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDepthImage(DepthImage object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Path Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Path Resource</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePathResource(PathResource object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>File Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>File Resource</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFileResource(FileResource object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Module Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Module Resource</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModuleResource(ModuleResource object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Shader</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Shader</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseShader(Shader object)
 	{
 		return null;
 	}
@@ -520,22 +449,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseBasicDescriptorSet(BasicDescriptorSet object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIndexedBuffer(IndexedBuffer object)
 	{
 		return null;
 	}
@@ -632,6 +545,102 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImageTransition(ImageTransition object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shader</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shader</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShader(Shader object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIndexedBuffer(IndexedBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Depth Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Depth Image</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDepthImage(DepthImage object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Path Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Path Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePathResource(PathResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileResource(FileResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Module Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Module Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModuleResource(ModuleResource object)
 	{
 		return null;
 	}

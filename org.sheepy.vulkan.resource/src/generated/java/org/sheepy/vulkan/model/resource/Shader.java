@@ -21,7 +21,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * @model
  * @generated
  */
-public interface Shader extends Resource
+public interface Shader extends BasicResource
 {
 	/**
 	 * Returns the value of the '<em><b>File</b></em>' containment reference.

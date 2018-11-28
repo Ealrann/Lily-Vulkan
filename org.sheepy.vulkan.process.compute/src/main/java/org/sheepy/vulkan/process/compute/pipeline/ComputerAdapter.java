@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.common.api.adapter.IStatefullAdapter;
-import org.sheepy.common.api.adapter.impl.AbstractAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
@@ -13,7 +13,7 @@ import org.sheepy.vulkan.model.process.compute.Computer;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.vulkan.process.pipeline.IProcessUnitAdapter;
 
-public class ComputerAdapter extends AbstractAdapter
+public class ComputerAdapter extends AbstractSingletonAdapter
 		implements IProcessUnitAdapter<ComputeCommandBuffer>, IStatefullAdapter
 {
 	private Computer computer = null;

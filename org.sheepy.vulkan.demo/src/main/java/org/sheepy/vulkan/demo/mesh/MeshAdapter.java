@@ -3,13 +3,13 @@ package org.sheepy.vulkan.demo.mesh;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.indexed.IndexBuffer;
 
-public class MeshAdapter extends ResourceAdapter
+public class MeshAdapter extends AbstractFlatAllocableAdapter
 {
 	public static IIndexedBufferBuilder<?> meshBuilder = null;
 
@@ -31,6 +31,12 @@ public class MeshAdapter extends ResourceAdapter
 	public IndexBuffer<?> getIndexBuffer()
 	{
 		return indexBuffer;
+	}
+
+	@Override
+	public boolean isDirty()
+	{
+		return false;
 	}
 
 	@Override

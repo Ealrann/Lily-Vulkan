@@ -11,6 +11,7 @@ module org.sheepy.vulkan.process.graphic
 {
 	requires transitive org.sheepy.vulkan.process;
 	requires transitive org.sheepy.vulkan.resource;
+	requires transitive org.sheepy.vulkan.api;
 
 	exports org.sheepy.vulkan.process.graphic.execution;
 	exports org.sheepy.vulkan.process.graphic.pipeline;

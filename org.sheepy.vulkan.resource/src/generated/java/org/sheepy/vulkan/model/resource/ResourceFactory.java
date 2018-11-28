@@ -41,42 +41,6 @@ public interface ResourceFactory extends EFactory
 	Texture createTexture();
 
 	/**
-	 * Returns a new object of class '<em>Depth Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Depth Image</em>'.
-	 * @generated
-	 */
-	DepthImage createDepthImage();
-
-	/**
-	 * Returns a new object of class '<em>File Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>File Resource</em>'.
-	 * @generated
-	 */
-	FileResource createFileResource();
-
-	/**
-	 * Returns a new object of class '<em>Module Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Module Resource</em>'.
-	 * @generated
-	 */
-	ModuleResource createModuleResource();
-
-	/**
-	 * Returns a new object of class '<em>Shader</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Shader</em>'.
-	 * @generated
-	 */
-	Shader createShader();
-
-	/**
 	 * Returns a new object of class '<em>Basic Descriptor Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,6 +84,42 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	ImageTransition createImageTransition();
+
+	/**
+	 * Returns a new object of class '<em>Shader</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Shader</em>'.
+	 * @generated
+	 */
+	Shader createShader();
+
+	/**
+	 * Returns a new object of class '<em>Depth Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Depth Image</em>'.
+	 * @generated
+	 */
+	DepthImage createDepthImage();
+
+	/**
+	 * Returns a new object of class '<em>File Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File Resource</em>'.
+	 * @generated
+	 */
+	FileResource createFileResource();
+
+	/**
+	 * Returns a new object of class '<em>Module Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Module Resource</em>'.
+	 * @generated
+	 */
+	ModuleResource createModuleResource();
 
 	/**
 	 * Returns the package supported by this factory.

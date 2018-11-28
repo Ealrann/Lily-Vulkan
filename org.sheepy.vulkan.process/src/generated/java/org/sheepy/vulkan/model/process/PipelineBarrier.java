@@ -2,6 +2,7 @@
  */
 package org.sheepy.vulkan.model.process;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Pipeline Barrier</b></em>'.
@@ -14,5 +15,4 @@ package org.sheepy.vulkan.model.process;
  */
 public interface PipelineBarrier extends IProcessUnit
 {
-
 } // PipelineBarrier

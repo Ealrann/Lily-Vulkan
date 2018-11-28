@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.process.graphic;
 import org.sheepy.vulkan.model.IGraphicProcessPool;
 
 import org.sheepy.vulkan.model.process.AbstractProcessPool;
-
 import org.sheepy.vulkan.model.resource.DepthImage;
 
 /**
@@ -81,26 +80,26 @@ public interface GraphicProcessPool extends AbstractProcessPool<GraphicProcess>,
 	void setRenderPassInfo(RenderPassInfo value);
 
 	/**
-	 * Returns the value of the '<em><b>Depth Image</b></em>' reference.
+	 * Returns the value of the '<em><b>Depth Image</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Depth Image</em>' reference isn't clear,
+	 * If the meaning of the '<em>Depth Image</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Depth Image</em>' reference.
+	 * @return the value of the '<em>Depth Image</em>' containment reference.
 	 * @see #setDepthImage(DepthImage)
 	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicProcessPool_DepthImage()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	DepthImage getDepthImage();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getDepthImage <em>Depth Image</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getDepthImage <em>Depth Image</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Depth Image</em>' reference.
+	 * @param value the new value of the '<em>Depth Image</em>' containment reference.
 	 * @see #getDepthImage()
 	 * @generated
 	 */

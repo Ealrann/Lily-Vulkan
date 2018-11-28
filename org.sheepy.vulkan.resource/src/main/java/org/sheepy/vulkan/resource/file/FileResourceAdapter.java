@@ -8,15 +8,16 @@ import java.io.InputStream;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.FileResource;
+import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 public class FileResourceAdapter extends PathResourceAdapter
 {
 	@Override
-	protected InputStream getInputStream()
+	protected InputStream getInputStream(PathResource resource)
 	{
-		final var resource = (FileResource) target;
-		final var file = new File(resource.getPath());
+		final var fileResource = (FileResource) resource;
+		final var file = new File(fileResource.getPath());
 
 		try
 		{

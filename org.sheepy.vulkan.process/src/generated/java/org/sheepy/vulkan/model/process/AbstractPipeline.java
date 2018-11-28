@@ -4,7 +4,6 @@ package org.sheepy.vulkan.model.process;
 
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
-import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,29 +22,29 @@ import org.sheepy.vulkan.model.resource.ResourceContainer;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractPipeline extends IPipeline, ResourceContainer
+public interface AbstractPipeline extends IPipeline
 {
 	/**
-	 * Returns the value of the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Descriptor Set</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Descriptor Set</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor Set</em>' containment reference.
+	 * @return the value of the '<em>Descriptor Set</em>' reference.
 	 * @see #setDescriptorSet(DescriptorSet)
 	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline_DescriptorSet()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	DescriptorSet getDescriptorSet();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor Set</em>' containment reference.
+	 * @param value the new value of the '<em>Descriptor Set</em>' reference.
 	 * @see #getDescriptorSet()
 	 * @generated
 	 */

@@ -13,6 +13,6 @@ package org.sheepy.vulkan.model.resource;
  * @model abstract="true"
  * @generated
  */
-public interface IndexedBuffer extends VulkanBuffer, IDescriptor
+public interface IndexedBuffer extends BasicResource
 {
 } // IndexedBuffer

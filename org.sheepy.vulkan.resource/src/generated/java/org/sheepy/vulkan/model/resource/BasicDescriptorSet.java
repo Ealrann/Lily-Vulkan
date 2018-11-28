@@ -6,7 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Descriptor Set</b></em>'.
+ * A representation of the model object '<em><b>Basic Descriptor Set</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -38,4 +38,4 @@ public interface BasicDescriptorSet extends DescriptorSet
 	 */
 	EList<IDescriptor> getDescriptors();
 
-} // DescriptorSet
+} // BasicDescriptorSet

@@ -3,6 +3,7 @@ package org.sheepy.vulkan.resource.descriptor;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
@@ -19,7 +20,7 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 {
 	private final ResourceManager resourceManager;
 
-	private List<DescriptorSet> descriptorSets = null;
+	private List<IDescriptorSetAdapter> descriptorSetAdapters = null;
 
 	private long id;
 
@@ -33,20 +34,22 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 	public void allocate(MemoryStack stack)
 	{
 		int poolSize = 0;
-		descriptorSets = List.copyOf(resourceManager.getDescriptorLists());
+		var descriptorSets = resourceManager.getDescriptorLists();
+		descriptorSetAdapters = new ArrayList<>();
 		for (final DescriptorSet descriptorSet : descriptorSets)
 		{
 			final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
+			descriptorSetAdapters.add(adapter);
 			poolSize += adapter.getDescriptors().size();
 		}
+		descriptorSetAdapters = List.copyOf(descriptorSetAdapters);
 
 		if (poolSize > 0)
 		{
 			final var poolSizes = VkDescriptorPoolSize.callocStack(poolSize);
-			for (final DescriptorSet descriptorSet : descriptorSets)
+			for (var descriptorSetAdapter : descriptorSetAdapters)
 			{
-				final var descriptorSetAdapter = IDescriptorSetAdapter.adapt(descriptorSet);
-				for (final IVkDescriptor descriptor : descriptorSetAdapter.getDescriptors())
+				for (var descriptor : descriptorSetAdapter.getDescriptors())
 				{
 					poolSizes.put(descriptor.allocPoolSize(stack));
 				}
@@ -56,13 +59,21 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 			final var poolInfo = VkDescriptorPoolCreateInfo.callocStack();
 			poolInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO);
 			poolInfo.pPoolSizes(poolSizes);
-			poolInfo.maxSets(descriptorSets.size());
+			poolInfo.maxSets(descriptorSetAdapters.size());
 
 			final var vkDevice = resourceManager.getVkDevice();
 			final long[] aDescriptor = new long[1];
 			Logger.check("Failed to create descriptor pool!",
 					() -> vkCreateDescriptorPool(vkDevice, poolInfo, null, aDescriptor));
 			id = aDescriptor[0];
+		}
+
+		for (var descriptorSetAdapter : descriptorSetAdapters)
+		{
+			if (descriptorSetAdapter.getDescriptors().isEmpty() == false)
+			{
+				descriptorSetAdapter.allocate(stack);
+			}
 		}
 	}
 
@@ -75,14 +86,13 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 	@Override
 	public void free()
 	{
-		for (final DescriptorSet descriptorSet : descriptorSets)
+		for (var descriptorSetAdapter : descriptorSetAdapters)
 		{
-			final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
-			adapter.free();
+			descriptorSetAdapter.free();
 		}
+		descriptorSetAdapters = null;
+
 		vkDestroyDescriptorPool(resourceManager.getVkDevice(), id, null);
-		
-		descriptorSets = null;
 	}
 
 	public long getId()
@@ -90,19 +100,13 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 		return id;
 	}
 
-	public DescriptorSet getDescriptorSet(int index)
-	{
-		return descriptorSets.get(index);
-	}
-
 	public LongBuffer allocLayoutBuffer()
 	{
-		final LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorSets.size());
+		LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorSetAdapters.size());
 
-		for (final DescriptorSet descriptorList : descriptorSets)
+		for (var descriptorSetAdapter : descriptorSetAdapters)
 		{
-			final var adapter = IDescriptorSetAdapter.adapt(descriptorList);
-			bDescriptorSet.put(adapter.getLayoutId());
+			bDescriptorSet.put(descriptorSetAdapter.getLayoutId());
 		}
 
 		bDescriptorSet.flip();

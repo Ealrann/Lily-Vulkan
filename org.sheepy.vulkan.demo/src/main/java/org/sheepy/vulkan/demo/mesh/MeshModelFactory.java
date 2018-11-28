@@ -36,7 +36,6 @@ import org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.StaticViewportStateImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl;
-import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.ModuleResource;
 import org.sheepy.vulkan.model.resource.Shader;
@@ -152,7 +151,7 @@ public class MeshModelFactory
 		fragmentShader.setFile(fragmentShaderFile);
 		fragmentShader.setStage(EShaderStage.FRAGMENT_BIT);
 
-		final BasicDescriptorSet descriptorSet = new BasicDescriptorSetImpl();
+		var descriptorSet = new BasicDescriptorSetImpl();
 
 		
 		var rasterizer = new RasterizerImpl();
@@ -181,6 +180,7 @@ public class MeshModelFactory
 		processPool.getResources().add(vertexShader);
 		processPool.getResources().add(fragmentShader);
 		processPool.getProcesses().add(graphicProcess);
+		processPool.getDescriptorSets().add(descriptorSet);
 
 		if (meshConfiguration.depth)
 		{
@@ -210,7 +210,9 @@ public class MeshModelFactory
 		}
 
 		if (descriptorSet.getDescriptors().isEmpty() == false)
+		{
 			graphicPipeline.setDescriptorSet(descriptorSet);
+		}
 
 		return processPool;
 	}

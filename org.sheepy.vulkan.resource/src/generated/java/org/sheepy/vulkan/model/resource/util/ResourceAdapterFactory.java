@@ -80,19 +80,19 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createResourceAdapter();
 			}
 			@Override
-			public Adapter caseVulkanBuffer(VulkanBuffer object)
+			public Adapter caseBasicResource(BasicResource object)
 			{
-				return createVulkanBufferAdapter();
+				return createBasicResourceAdapter();
+			}
+			@Override
+			public Adapter casePipelineResource(PipelineResource object)
+			{
+				return createPipelineResourceAdapter();
 			}
 			@Override
 			public Adapter caseBuffer(Buffer object)
 			{
 				return createBufferAdapter();
-			}
-			@Override
-			public Adapter caseResourceContainer(ResourceContainer object)
-			{
-				return createResourceContainerAdapter();
 			}
 			@Override
 			public Adapter caseSizedBuffer(SizedBuffer object)
@@ -108,31 +108,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseTexture(Texture object)
 			{
 				return createTextureAdapter();
-			}
-			@Override
-			public Adapter caseDepthImage(DepthImage object)
-			{
-				return createDepthImageAdapter();
-			}
-			@Override
-			public Adapter casePathResource(PathResource object)
-			{
-				return createPathResourceAdapter();
-			}
-			@Override
-			public Adapter caseFileResource(FileResource object)
-			{
-				return createFileResourceAdapter();
-			}
-			@Override
-			public Adapter caseModuleResource(ModuleResource object)
-			{
-				return createModuleResourceAdapter();
-			}
-			@Override
-			public Adapter caseShader(Shader object)
-			{
-				return createShaderAdapter();
 			}
 			@Override
 			public Adapter casePushConstant(PushConstant object)
@@ -153,11 +128,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseBasicDescriptorSet(BasicDescriptorSet object)
 			{
 				return createBasicDescriptorSetAdapter();
-			}
-			@Override
-			public Adapter caseIndexedBuffer(IndexedBuffer object)
-			{
-				return createIndexedBufferAdapter();
 			}
 			@Override
 			public Adapter caseBarrier(Barrier object)
@@ -188,6 +158,36 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseImageTransition(ImageTransition object)
 			{
 				return createImageTransitionAdapter();
+			}
+			@Override
+			public Adapter caseShader(Shader object)
+			{
+				return createShaderAdapter();
+			}
+			@Override
+			public Adapter caseIndexedBuffer(IndexedBuffer object)
+			{
+				return createIndexedBufferAdapter();
+			}
+			@Override
+			public Adapter caseDepthImage(DepthImage object)
+			{
+				return createDepthImageAdapter();
+			}
+			@Override
+			public Adapter casePathResource(PathResource object)
+			{
+				return createPathResourceAdapter();
+			}
+			@Override
+			public Adapter caseFileResource(FileResource object)
+			{
+				return createFileResourceAdapter();
+			}
+			@Override
+			public Adapter caseModuleResource(ModuleResource object)
+			{
+				return createModuleResourceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -227,16 +227,31 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.VulkanBuffer <em>Vulkan Buffer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.VulkanBuffer
+	 * @see org.sheepy.vulkan.model.resource.BasicResource
 	 * @generated
 	 */
-	public Adapter createVulkanBufferAdapter()
+	public Adapter createBasicResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.PipelineResource
+	 * @generated
+	 */
+	public Adapter createPipelineResourceAdapter()
 	{
 		return null;
 	}
@@ -252,21 +267,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBufferAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ResourceContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.ResourceContainer
-	 * @generated
-	 */
-	public Adapter createResourceContainerAdapter()
 	{
 		return null;
 	}
@@ -312,81 +312,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createTextureAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.DepthImage <em>Depth Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.DepthImage
-	 * @generated
-	 */
-	public Adapter createDepthImageAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.PathResource <em>Path Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.PathResource
-	 * @generated
-	 */
-	public Adapter createPathResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.FileResource <em>File Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.FileResource
-	 * @generated
-	 */
-	public Adapter createFileResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ModuleResource <em>Module Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.ModuleResource
-	 * @generated
-	 */
-	public Adapter createModuleResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Shader <em>Shader</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.Shader
-	 * @generated
-	 */
-	public Adapter createShaderAdapter()
 	{
 		return null;
 	}
@@ -447,21 +372,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBasicDescriptorSetAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.IndexedBuffer <em>Indexed Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.IndexedBuffer
-	 * @generated
-	 */
-	public Adapter createIndexedBufferAdapter()
 	{
 		return null;
 	}
@@ -552,6 +462,96 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createImageTransitionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Shader <em>Shader</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.Shader
+	 * @generated
+	 */
+	public Adapter createShaderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.IndexedBuffer <em>Indexed Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.IndexedBuffer
+	 * @generated
+	 */
+	public Adapter createIndexedBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.DepthImage <em>Depth Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.DepthImage
+	 * @generated
+	 */
+	public Adapter createDepthImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.PathResource <em>Path Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.PathResource
+	 * @generated
+	 */
+	public Adapter createPathResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.FileResource <em>File Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.FileResource
+	 * @generated
+	 */
+	public Adapter createFileResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ModuleResource <em>Module Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.ModuleResource
+	 * @generated
+	 */
+	public Adapter createModuleResourceAdapter()
 	{
 		return null;
 	}

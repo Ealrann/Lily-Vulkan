@@ -136,7 +136,6 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getMeshPipeline_Mesh()
 	{
 		return (EReference)meshPipelineEClass.getEStructuralFeatures().get(0);
@@ -147,7 +146,6 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getMeshBuffer()
 	{
 		return meshBufferEClass;
@@ -158,7 +156,6 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getMeshBuffer_Texture()
 	{
 		return (EReference)meshBufferEClass.getEStructuralFeatures().get(0);
@@ -250,8 +247,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		// Add supertypes to classes
 		meshPipelineEClass.getESuperTypes().add(theGraphicPackage.getGraphicsPipeline());
 		meshBufferEClass.getESuperTypes().add(theResourcePackage.getIndexedBuffer());
-		uniformBufferEClass.getESuperTypes().add(theResourcePackage.getVulkanBuffer());
-		uniformBufferEClass.getESuperTypes().add(theResourcePackage.getIDescriptor());
+		uniformBufferEClass.getESuperTypes().add(theResourcePackage.getPipelineResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(meshPipelineEClass, MeshPipeline.class, "MeshPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

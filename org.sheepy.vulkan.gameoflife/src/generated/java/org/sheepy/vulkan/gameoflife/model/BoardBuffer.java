@@ -2,8 +2,7 @@
  */
 package org.sheepy.vulkan.gameoflife.model;
 
-import org.sheepy.vulkan.model.resource.IDescriptor;
-import org.sheepy.vulkan.model.resource.VulkanBuffer;
+import org.sheepy.vulkan.model.resource.PipelineResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +14,6 @@ import org.sheepy.vulkan.model.resource.VulkanBuffer;
  * @model
  * @generated
  */
-public interface BoardBuffer extends VulkanBuffer, IDescriptor
+public interface BoardBuffer extends PipelineResource
 {
 } // BoardBuffer

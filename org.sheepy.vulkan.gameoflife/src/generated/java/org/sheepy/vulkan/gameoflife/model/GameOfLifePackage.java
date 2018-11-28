@@ -73,7 +73,7 @@ public interface GameOfLifePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOARD_BUFFER_FEATURE_COUNT = ResourcePackage.VULKAN_BUFFER_FEATURE_COUNT + 0;
+	int BOARD_BUFFER_FEATURE_COUNT = ResourcePackage.PIPELINE_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Board Buffer</em>' class.
@@ -82,7 +82,7 @@ public interface GameOfLifePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOARD_BUFFER_OPERATION_COUNT = ResourcePackage.VULKAN_BUFFER_OPERATION_COUNT + 0;
+	int BOARD_BUFFER_OPERATION_COUNT = ResourcePackage.PIPELINE_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.gameoflife.model.impl.BoardImageImpl <em>Board Image</em>}' class.

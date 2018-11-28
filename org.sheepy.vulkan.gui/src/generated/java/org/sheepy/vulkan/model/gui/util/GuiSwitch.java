@@ -15,7 +15,6 @@ import org.sheepy.vulkan.model.process.IProcessUnit;
 
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
-import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,7 +87,6 @@ public class GuiSwitch<T> extends Switch<T>
 				if (result == null) result = caseAbstractPipeline(guiPipeline);
 				if (result == null) result = caseIGraphicsPipeline(guiPipeline);
 				if (result == null) result = caseIPipeline(guiPipeline);
-				if (result == null) result = caseResourceContainer(guiPipeline);
 				if (result == null) result = caseIProcessUnit(guiPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -235,22 +233,6 @@ public class GuiSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIPipeline(IPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceContainer(ResourceContainer object)
 	{
 		return null;
 	}

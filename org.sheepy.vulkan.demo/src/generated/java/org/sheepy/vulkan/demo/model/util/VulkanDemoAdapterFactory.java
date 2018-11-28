@@ -15,11 +15,11 @@ import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
+import org.sheepy.vulkan.model.resource.BasicResource;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
+import org.sheepy.vulkan.model.resource.PipelineResource;
 import org.sheepy.vulkan.model.resource.Resource;
-import org.sheepy.vulkan.model.resource.ResourceContainer;
-import org.sheepy.vulkan.model.resource.VulkanBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,11 +110,6 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 				return createIPipelineAdapter();
 			}
 			@Override
-			public Adapter caseResourceContainer(ResourceContainer object)
-			{
-				return createResourceContainerAdapter();
-			}
-			@Override
 			public Adapter caseAbstractPipeline(AbstractPipeline object)
 			{
 				return createAbstractPipelineAdapter();
@@ -135,9 +130,14 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 				return createResourceAdapter();
 			}
 			@Override
-			public Adapter caseVulkanBuffer(VulkanBuffer object)
+			public Adapter caseBasicResource(BasicResource object)
 			{
-				return createVulkanBufferAdapter();
+				return createBasicResourceAdapter();
+			}
+			@Override
+			public Adapter caseIndexedBuffer(IndexedBuffer object)
+			{
+				return createIndexedBufferAdapter();
 			}
 			@Override
 			public Adapter caseIDescriptor(IDescriptor object)
@@ -145,9 +145,9 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 				return createIDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseIndexedBuffer(IndexedBuffer object)
+			public Adapter casePipelineResource(PipelineResource object)
 			{
-				return createIndexedBufferAdapter();
+				return createPipelineResourceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -247,21 +247,6 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ResourceContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.ResourceContainer
-	 * @generated
-	 */
-	public Adapter createResourceContainerAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -307,6 +292,36 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.IDescriptor
+	 * @generated
+	 */
+	public Adapter createIDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.PipelineResource
+	 * @generated
+	 */
+	public Adapter createPipelineResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Resource <em>Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -322,31 +337,16 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.VulkanBuffer <em>Vulkan Buffer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.VulkanBuffer
+	 * @see org.sheepy.vulkan.model.resource.BasicResource
 	 * @generated
 	 */
-	public Adapter createVulkanBufferAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.IDescriptor
-	 * @generated
-	 */
-	public Adapter createIDescriptorAdapter()
+	public Adapter createBasicResourceAdapter()
 	{
 		return null;
 	}

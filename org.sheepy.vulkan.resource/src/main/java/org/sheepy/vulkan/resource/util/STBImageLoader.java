@@ -30,7 +30,7 @@ public class STBImageLoader
 	{
 		final var path = resource.getPath();
 		final var fileAdapter = FileResourceAdapter.adapt(resource);
-		final ByteBuffer bufferedRessource = fileAdapter.toByteBuffer();
+		final ByteBuffer bufferedRessource = fileAdapter.toByteBuffer(resource);
 
 		if (bufferedRessource == null)
 		{

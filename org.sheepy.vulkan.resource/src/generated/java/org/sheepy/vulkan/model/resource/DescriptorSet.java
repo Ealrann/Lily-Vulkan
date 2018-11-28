@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Abstract Descriptor Set</b></em>'.
+ * A representation of the model object '<em><b>Descriptor Set</b></em>'.
  * <!-- end-user-doc -->
  *
  *
@@ -16,4 +16,4 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DescriptorSet extends EObject
 {
-} // AbstractDescriptorSet
+} // DescriptorSet

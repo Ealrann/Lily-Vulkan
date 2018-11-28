@@ -23,7 +23,6 @@ import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl;
-
 import org.sheepy.vulkan.model.resource.Shader;
 
 /**

@@ -7,6 +7,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
@@ -19,10 +20,9 @@ import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
-import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
 
-public class DepthImageAdapter extends ResourceAdapter
+public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 {
 	private StandaloneImage depthImageBackend;
 	private ImageView depthImageView;

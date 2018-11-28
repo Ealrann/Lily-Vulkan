@@ -193,8 +193,7 @@ public class GameOfLifePackageImpl extends EPackageImpl implements GameOfLifePac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		boardBufferEClass.getESuperTypes().add(theResourcePackage.getVulkanBuffer());
-		boardBufferEClass.getESuperTypes().add(theResourcePackage.getIDescriptor());
+		boardBufferEClass.getESuperTypes().add(theResourcePackage.getPipelineResource());
 		boardImageEClass.getESuperTypes().add(theResourcePackage.getImage());
 		boardImageEClass.getESuperTypes().add(theResourcePackage.getIDescriptor());
 

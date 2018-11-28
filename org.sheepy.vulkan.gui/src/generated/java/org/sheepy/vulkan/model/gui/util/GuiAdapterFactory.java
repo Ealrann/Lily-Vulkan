@@ -17,7 +17,6 @@ import org.sheepy.vulkan.model.process.IProcessUnit;
 
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
-import org.sheepy.vulkan.model.resource.ResourceContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,11 +115,6 @@ public class GuiAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIPipeline(IPipeline object)
 			{
 				return createIPipelineAdapter();
-			}
-			@Override
-			public Adapter caseResourceContainer(ResourceContainer object)
-			{
-				return createResourceContainerAdapter();
 			}
 			@Override
 			public Adapter caseAbstractPipeline(AbstractPipeline object)
@@ -260,21 +254,6 @@ public class GuiAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ResourceContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.ResourceContainer
-	 * @generated
-	 */
-	public Adapter createResourceContainerAdapter()
 	{
 		return null;
 	}

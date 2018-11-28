@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
+
 import org.sheepy.vulkan.model.resource.ImageTransition;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 

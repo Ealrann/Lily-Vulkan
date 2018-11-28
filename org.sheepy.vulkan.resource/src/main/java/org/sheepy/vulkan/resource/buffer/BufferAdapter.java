@@ -13,11 +13,11 @@ import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.resource.Buffer;
-import org.sheepy.vulkan.resource.ResourceAdapter;
+import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 
 @Deprecated
-public abstract class BufferAdapter extends ResourceAdapter implements IDescriptorAdapter
+public abstract class BufferAdapter extends PipelineResourceAdapter implements IDescriptorAdapter
 {
 	protected int stage = -1;
 	protected int descriptorType = -1;

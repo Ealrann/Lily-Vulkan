@@ -13,6 +13,6 @@ package org.sheepy.vulkan.model.resource;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface SizedBuffer extends VulkanBuffer
+public interface SizedBuffer extends PipelineResource
 {
 } // SizedBuffer

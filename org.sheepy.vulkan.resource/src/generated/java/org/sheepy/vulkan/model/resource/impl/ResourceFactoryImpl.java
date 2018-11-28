@@ -67,15 +67,15 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 		{
 			case ResourcePackage.BUFFER: return createBuffer();
 			case ResourcePackage.TEXTURE: return createTexture();
-			case ResourcePackage.DEPTH_IMAGE: return createDepthImage();
-			case ResourcePackage.FILE_RESOURCE: return createFileResource();
-			case ResourcePackage.MODULE_RESOURCE: return createModuleResource();
-			case ResourcePackage.SHADER: return createShader();
 			case ResourcePackage.BASIC_DESCRIPTOR_SET: return createBasicDescriptorSet();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER: return createReferenceImageBarrier();
 			case ResourcePackage.IMAGE_TRANSITION: return createImageTransition();
+			case ResourcePackage.SHADER: return createShader();
+			case ResourcePackage.DEPTH_IMAGE: return createDepthImage();
+			case ResourcePackage.FILE_RESOURCE: return createFileResource();
+			case ResourcePackage.MODULE_RESOURCE: return createModuleResource();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -142,50 +142,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DepthImage createDepthImage()
-	{
-		DepthImageImpl depthImage = new DepthImageImpl();
-		return depthImage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FileResource createFileResource()
-	{
-		FileResourceImpl fileResource = new FileResourceImpl();
-		return fileResource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModuleResource createModuleResource()
-	{
-		ModuleResourceImpl moduleResource = new ModuleResourceImpl();
-		return moduleResource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Shader createShader()
-	{
-		ShaderImpl shader = new ShaderImpl();
-		return shader;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BasicDescriptorSet createBasicDescriptorSet()
 	{
 		BasicDescriptorSetImpl basicDescriptorSet = new BasicDescriptorSetImpl();
@@ -234,6 +190,50 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		ImageTransitionImpl imageTransition = new ImageTransitionImpl();
 		return imageTransition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Shader createShader()
+	{
+		ShaderImpl shader = new ShaderImpl();
+		return shader;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DepthImage createDepthImage()
+	{
+		DepthImageImpl depthImage = new DepthImageImpl();
+		return depthImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileResource createFileResource()
+	{
+		FileResourceImpl fileResource = new FileResourceImpl();
+		return fileResource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModuleResource createModuleResource()
+	{
+		ModuleResourceImpl moduleResource = new ModuleResourceImpl();
+		return moduleResource;
 	}
 
 	/**

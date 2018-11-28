@@ -2,8 +2,7 @@
  */
 package org.sheepy.vulkan.demo.model;
 
-import org.sheepy.vulkan.model.resource.IDescriptor;
-import org.sheepy.vulkan.model.resource.VulkanBuffer;
+import org.sheepy.vulkan.model.resource.PipelineResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +14,6 @@ import org.sheepy.vulkan.model.resource.VulkanBuffer;
  * @model
  * @generated
  */
-public interface UniformBuffer extends VulkanBuffer, IDescriptor
+public interface UniformBuffer extends PipelineResource
 {
 } // UniformBuffer

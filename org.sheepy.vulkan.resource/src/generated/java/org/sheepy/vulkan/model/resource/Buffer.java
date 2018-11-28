@@ -21,7 +21,7 @@ package org.sheepy.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface Buffer extends VulkanBuffer
+public interface Buffer extends PipelineResource
 {
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

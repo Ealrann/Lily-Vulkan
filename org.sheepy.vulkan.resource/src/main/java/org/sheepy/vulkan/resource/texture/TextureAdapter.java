@@ -19,7 +19,7 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Texture;
-import org.sheepy.vulkan.resource.ResourceAdapter;
+import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.vulkan.resource.image.ImageInfo;
@@ -27,7 +27,7 @@ import org.sheepy.vulkan.resource.image.ImageView;
 import org.sheepy.vulkan.resource.image.StandaloneImage;
 import org.sheepy.vulkan.resource.util.STBImageLoader;
 
-public class TextureAdapter extends ResourceAdapter implements IDescriptorAdapter
+public class TextureAdapter extends PipelineResourceAdapter implements IDescriptorAdapter
 {
 	private StandaloneImage imageBackend;
 	private ImageView imageView;

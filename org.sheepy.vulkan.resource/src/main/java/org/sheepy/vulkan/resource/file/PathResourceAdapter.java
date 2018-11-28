@@ -5,24 +5,22 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 import org.eclipse.emf.ecore.EClass;
-import org.lwjgl.system.MemoryStack;
+import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.resource.ResourceAdapter;
 
-public abstract class PathResourceAdapter extends ResourceAdapter
+public abstract class PathResourceAdapter extends AbstractSingletonAdapter implements IVulkanAdapter
 {
-	private int initialBufferSize = 1024;
-
-	public ByteBuffer toByteBuffer()
+	public ByteBuffer toByteBuffer(PathResource resource)
 	{
 		ByteBuffer buffer = null;
 		InputStream inputStream = null;
 
 		try
 		{
-			inputStream = getInputStream();
+			inputStream = getInputStream(resource);
 			final byte[] byteArray = inputStream.readAllBytes();
 
 			buffer = ByteBuffer.allocateDirect(byteArray.length);
@@ -46,25 +44,7 @@ public abstract class PathResourceAdapter extends ResourceAdapter
 		return buffer;
 	}
 
-	abstract protected InputStream getInputStream();
-
-	public int getInitialBufferSize()
-	{
-		return initialBufferSize;
-	}
-
-	public void setInitialBufferSize(int initialBufferSize)
-	{
-		this.initialBufferSize = initialBufferSize;
-	}
-
-	@Override
-	public void flatAllocate(MemoryStack stack)
-	{}
-
-	@Override
-	public void free()
-	{}
+	abstract protected InputStream getInputStream(PathResource resource);
 
 	@Override
 	public boolean isApplicable(EClass eClass)

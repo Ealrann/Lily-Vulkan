@@ -126,11 +126,11 @@ public class GuiPackageImpl extends EPackageImpl implements GuiPackage
 		// Initialize simple dependencies
 		GraphicPackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
+		ResourcePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theGuiPackage.createPackageContents();

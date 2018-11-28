@@ -7,15 +7,18 @@ import org.sheepy.vulkan.model.IProcessPool
 import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.vulkan.model.resource.BufferBarrier
 import org.sheepy.vulkan.model.resource.PushConstant
-import org.sheepy.vulkan.model.resource.ResourceContainer
 import org.sheepy.vulkan.model.resource.DescriptorSet
+import org.sheepy.vulkan.model.resource.Resource
 
 interface Configuration
 {
 }
 
-abstract class AbstractProcessPool<T extends AbstractProcess> extends IProcessPool, ResourceContainer {
+abstract class AbstractProcessPool<T extends AbstractProcess> extends IProcessPool
+{
+	contains DescriptorSet[] descriptorSets
 	contains T[] processes
+	contains Resource[] resources
 	boolean resetAllowed
 }
 
@@ -43,9 +46,9 @@ interface IPipeline extends IProcessUnit
 {
 }
 
-abstract class AbstractPipeline extends IPipeline, ResourceContainer
+abstract class AbstractPipeline extends IPipeline
 {
-	contains DescriptorSet descriptorSet
+	refers DescriptorSet descriptorSet
 	contains PushConstant pushConstant
 }
 

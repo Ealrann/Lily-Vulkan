@@ -6,10 +6,9 @@
 package org.sheepy.vulkan.demo.model
 
 import org.sheepy.vulkan.model.resource.IndexedBuffer
-import org.sheepy.vulkan.model.resource.VulkanBuffer
-import org.sheepy.vulkan.model.resource.IDescriptor
 import org.sheepy.vulkan.model.resource.Texture
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline
+import org.sheepy.vulkan.model.resource.PipelineResource
 
 class MeshPipeline extends GraphicsPipeline
 {
@@ -21,6 +20,6 @@ class MeshBuffer extends IndexedBuffer
 	refers Texture texture
 }
 
-class UniformBuffer extends VulkanBuffer, IDescriptor
+class UniformBuffer extends PipelineResource
 {
 }

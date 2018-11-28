@@ -6,17 +6,18 @@ import java.io.InputStream;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.ModuleResource;
+import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 public class ModuleResourceAdapter extends PathResourceAdapter
 {
 	@Override
-	protected InputStream getInputStream()
+	protected InputStream getInputStream(PathResource resource)
 	{
-		final var resource = (ModuleResource) target;
+		final var moduleResource = (ModuleResource) resource;
 
-		final var path = resource.getPath();
-		final var module = resource.getModule();
+		final var path = moduleResource.getPath();
+		final var module = moduleResource.getModule();
 
 		try
 		{

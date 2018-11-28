@@ -11,15 +11,15 @@ import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.resource.IResourceManagerAdapter;
 
-public abstract class AbstractDescriptorSetAdapter extends AbstractFlatAllocableAdapter
+public abstract class AbstractDescriptorSetAdapter extends AbstractStatefullAdapter
 		implements IDescriptorSetAdapter
 {
 	private long descriptorSetId;
@@ -35,7 +35,7 @@ public abstract class AbstractDescriptorSetAdapter extends AbstractFlatAllocable
 	}
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack)
 	{
 		var resourceManager = IResourceManagerAdapter.adapt(target).getResourceManager(target);
 		var pool = resourceManager.descriptorPool;
