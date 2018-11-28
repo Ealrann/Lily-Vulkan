@@ -6,9 +6,9 @@ import org.sheepy.vulkan.resource.ISizedBufferAdapter;
 
 public interface IImageAdapter extends ISizedBufferAdapter
 {
-	long getId();
+	int getWidth();
 
-	long getSize();
+	int getHeight();
 
 	long getMemoryId();
 	

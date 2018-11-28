@@ -64,21 +64,9 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ProcessPackage.PIPELINE_BUFFER_BARRIER: return createPipelineBufferBarrier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PipelineBufferBarrier createPipelineBufferBarrier()
-	{
-		PipelineBufferBarrierImpl pipelineBufferBarrier = new PipelineBufferBarrierImpl();
-		return pipelineBufferBarrier;
 	}
 
 	/**

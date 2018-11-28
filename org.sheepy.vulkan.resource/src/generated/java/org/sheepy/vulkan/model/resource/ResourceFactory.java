@@ -23,15 +23,6 @@ public interface ResourceFactory extends EFactory
 	ResourceFactory eINSTANCE = org.sheepy.vulkan.model.resource.impl.ResourceFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Buffer</em>'.
-	 * @generated
-	 */
-	Buffer createBuffer();
-
-	/**
 	 * Returns a new object of class '<em>Texture</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48,15 +39,6 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	BasicDescriptorSet createBasicDescriptorSet();
-
-	/**
-	 * Returns a new object of class '<em>Buffer Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Buffer Barrier</em>'.
-	 * @generated
-	 */
-	BufferBarrier createBufferBarrier();
 
 	/**
 	 * Returns a new object of class '<em>Image Barrier</em>'.

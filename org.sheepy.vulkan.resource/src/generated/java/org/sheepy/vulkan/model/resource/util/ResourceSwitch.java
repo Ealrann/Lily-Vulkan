@@ -96,16 +96,6 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.BUFFER:
-			{
-				Buffer buffer = (Buffer)theEObject;
-				T result = caseBuffer(buffer);
-				if (result == null) result = casePipelineResource(buffer);
-				if (result == null) result = caseIDescriptor(buffer);
-				if (result == null) result = caseResource(buffer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ResourcePackage.SIZED_BUFFER:
 			{
 				SizedBuffer sizedBuffer = (SizedBuffer)theEObject;
@@ -173,14 +163,6 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				Barrier barrier = (Barrier)theEObject;
 				T result = caseBarrier(barrier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.BUFFER_BARRIER:
-			{
-				BufferBarrier bufferBarrier = (BufferBarrier)theEObject;
-				T result = caseBufferBarrier(bufferBarrier);
-				if (result == null) result = caseBarrier(bufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -326,22 +308,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Buffer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBuffer(Buffer object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Sized Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -465,22 +431,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseBarrier(Barrier object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Buffer Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Buffer Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBufferBarrier(BufferBarrier object)
 	{
 		return null;
 	}

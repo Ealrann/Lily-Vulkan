@@ -15,7 +15,7 @@ public class BufferGPUFiller
 	private final long targetBufferId;
 	private final MemoryStack stack;
 
-	private StandaloneBuffer stagingBuffer;
+	private BufferBackend stagingBuffer;
 
 	public BufferGPUFiller(MemoryStack stack, ExecutionManager context, long targetBufferId)
 	{

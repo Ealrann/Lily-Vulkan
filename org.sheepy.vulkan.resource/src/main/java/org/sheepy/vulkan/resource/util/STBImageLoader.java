@@ -10,7 +10,7 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
+import org.sheepy.vulkan.resource.buffer.BufferBackend;
 import org.sheepy.vulkan.resource.file.FileResourceAdapter;
 
 public class STBImageLoader
@@ -19,7 +19,7 @@ public class STBImageLoader
 
 	private int width;
 	private int height;
-	private StandaloneBuffer buffer;
+	private BufferBackend buffer;
 
 	public STBImageLoader(LogicalDevice logicalDevice)
 	{
@@ -69,7 +69,7 @@ public class STBImageLoader
 		return height;
 	}
 
-	public StandaloneBuffer getBuffer()
+	public BufferBackend getBuffer()
 	{
 		return buffer;
 	}

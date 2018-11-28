@@ -20,11 +20,11 @@ import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.vulkan.resource.image.IImageAdapter;
 import org.sheepy.vulkan.resource.image.ImageInfo;
 import org.sheepy.vulkan.resource.image.ImageView;
-import org.sheepy.vulkan.resource.image.StandaloneImage;
+import org.sheepy.vulkan.resource.image.ImageBackend;
 
 public class BoardImageAdapter extends PipelineResourceAdapter implements IImageAdapter, IDescriptorAdapter
 {
-	private StandaloneImage image;
+	private ImageBackend image;
 	private ImageView imageView;
 	private ImageInfo imageInfo;
 	private final int imageFormat = VK_FORMAT_R8G8B8A8_UNORM;
@@ -45,7 +45,7 @@ public class BoardImageAdapter extends PipelineResourceAdapter implements IImage
 		imageInfo.setUsage(VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_STORAGE_BIT);
 		imageInfo.setProperties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		image = new StandaloneImage(executionManager.logicalDevice, imageInfo);
+		image = new ImageBackend(executionManager.logicalDevice, imageInfo);
 		image.allocate(stack);
 
 		SingleTimeCommand stc = new SingleTimeCommand(executionManager)
@@ -124,12 +124,6 @@ public class BoardImageAdapter extends PipelineResourceAdapter implements IImage
 	public int getHeight()
 	{
 		return imageInfo.getHeight();
-	}
-
-	@Override
-	public int getDepth()
-	{
-		return 0;
 	}
 
 	@Override

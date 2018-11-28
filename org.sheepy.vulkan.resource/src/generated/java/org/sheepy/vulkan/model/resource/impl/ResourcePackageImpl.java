@@ -17,8 +17,6 @@ import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
 import org.sheepy.vulkan.model.resource.Barrier;
 import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.BasicResource;
-import org.sheepy.vulkan.model.resource.Buffer;
-import org.sheepy.vulkan.model.resource.BufferBarrier;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.FileResource;
@@ -67,13 +65,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass pipelineResourceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass bufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,13 +121,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass barrierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass bufferBarrierEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -317,46 +301,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBuffer()
-	{
-		return bufferEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBuffer_Size()
-	{
-		return (EAttribute)bufferEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBuffer_Usage()
-	{
-		return (EAttribute)bufferEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBuffer_Properties()
-	{
-		return (EAttribute)bufferEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSizedBuffer()
 	{
 		return sizedBufferEClass;
@@ -480,46 +424,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getBarrier_DstStage()
 	{
 		return (EAttribute)barrierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBufferBarrier()
-	{
-		return bufferBarrierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBufferBarrier_Buffer()
-	{
-		return (EReference)bufferBarrierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBufferBarrier_SrcAccess()
-	{
-		return (EAttribute)bufferBarrierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBufferBarrier_DstAccess()
-	{
-		return (EAttribute)bufferBarrierEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -798,11 +702,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		pipelineResourceEClass = createEClass(PIPELINE_RESOURCE);
 
-		bufferEClass = createEClass(BUFFER);
-		createEAttribute(bufferEClass, BUFFER__SIZE);
-		createEAttribute(bufferEClass, BUFFER__USAGE);
-		createEAttribute(bufferEClass, BUFFER__PROPERTIES);
-
 		sizedBufferEClass = createEClass(SIZED_BUFFER);
 
 		imageEClass = createEClass(IMAGE);
@@ -823,11 +722,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		barrierEClass = createEClass(BARRIER);
 		createEAttribute(barrierEClass, BARRIER__SRC_STAGE);
 		createEAttribute(barrierEClass, BARRIER__DST_STAGE);
-
-		bufferBarrierEClass = createEClass(BUFFER_BARRIER);
-		createEReference(bufferBarrierEClass, BUFFER_BARRIER__BUFFER);
-		createEAttribute(bufferBarrierEClass, BUFFER_BARRIER__SRC_ACCESS);
-		createEAttribute(bufferBarrierEClass, BUFFER_BARRIER__DST_ACCESS);
 
 		abstractImageBarrierEClass = createEClass(ABSTRACT_IMAGE_BARRIER);
 		createEReference(abstractImageBarrierEClass, ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
@@ -902,13 +796,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		basicResourceEClass.getESuperTypes().add(this.getResource());
 		pipelineResourceEClass.getESuperTypes().add(this.getIDescriptor());
 		pipelineResourceEClass.getESuperTypes().add(this.getResource());
-		bufferEClass.getESuperTypes().add(this.getPipelineResource());
 		sizedBufferEClass.getESuperTypes().add(this.getPipelineResource());
 		imageEClass.getESuperTypes().add(this.getSizedBuffer());
 		textureEClass.getESuperTypes().add(this.getPipelineResource());
 		pushConstantEClass.getESuperTypes().add(this.getPipelineResource());
 		basicDescriptorSetEClass.getESuperTypes().add(this.getDescriptorSet());
-		bufferBarrierEClass.getESuperTypes().add(this.getBarrier());
 		abstractImageBarrierEClass.getESuperTypes().add(this.getBarrier());
 		imageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
 		referenceImageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
@@ -925,11 +817,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pipelineResourceEClass, PipelineResource.class, "PipelineResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_Usage(), theEcorePackage.getEInt(), "usage", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_Properties(), theEcorePackage.getEInt(), "properties", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sizedBufferEClass, SizedBuffer.class, "SizedBuffer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -951,11 +838,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBarrier_SrcStage(), theEnumerationPackage.getEPipelineStage(), "srcStage", null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(), "dstStage", null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(bufferBarrierEClass, BufferBarrier.class, "BufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBufferBarrier_Buffer(), this.getBuffer(), null, "buffer", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferBarrier_SrcAccess(), theEcorePackage.getEInt(), "srcAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferBarrier_DstAccess(), theEcorePackage.getEInt(), "dstAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractImageBarrierEClass, AbstractImageBarrier.class, "AbstractImageBarrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractImageBarrier_Transitions(), this.getImageTransition(), null, "transitions", null, 0, -1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

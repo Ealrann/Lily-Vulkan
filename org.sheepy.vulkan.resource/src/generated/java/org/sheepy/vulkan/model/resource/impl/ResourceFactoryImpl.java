@@ -65,10 +65,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ResourcePackage.BUFFER: return createBuffer();
 			case ResourcePackage.TEXTURE: return createTexture();
 			case ResourcePackage.BASIC_DESCRIPTOR_SET: return createBasicDescriptorSet();
-			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER: return createReferenceImageBarrier();
 			case ResourcePackage.IMAGE_TRANSITION: return createImageTransition();
@@ -120,17 +118,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Buffer createBuffer()
-	{
-		BufferImpl buffer = new BufferImpl();
-		return buffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Texture createTexture()
 	{
 		TextureImpl texture = new TextureImpl();
@@ -146,17 +133,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		BasicDescriptorSetImpl basicDescriptorSet = new BasicDescriptorSetImpl();
 		return basicDescriptorSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BufferBarrier createBufferBarrier()
-	{
-		BufferBarrierImpl bufferBarrier = new BufferBarrierImpl();
-		return bufferBarrier;
 	}
 
 	/**

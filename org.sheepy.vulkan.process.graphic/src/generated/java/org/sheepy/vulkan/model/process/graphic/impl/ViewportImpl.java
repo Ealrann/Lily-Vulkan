@@ -3,14 +3,17 @@
 package org.sheepy.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.common.api.types.SVector2i;
+
 import org.sheepy.common.model.types.TypesFactory;
 import org.sheepy.common.model.types.TypesPackage;
+
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.Viewport;
 
@@ -41,6 +44,7 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * @ordered
 	 */
 	protected static final SVector2i OFFSET_EDEFAULT = (SVector2i)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getSVector2i(), "0, 0");
+
 	/**
 	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,6 +54,7 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * @ordered
 	 */
 	protected SVector2i offset = OFFSET_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getExtent() <em>Extent</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -59,6 +64,7 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * @ordered
 	 */
 	protected static final SVector2i EXTENT_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getExtent() <em>Extent</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -68,6 +74,7 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * @ordered
 	 */
 	protected SVector2i extent = EXTENT_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getMinDepth() <em>Min Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -77,6 +84,7 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * @ordered
 	 */
 	protected static final int MIN_DEPTH_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getMinDepth() <em>Min Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -86,6 +94,7 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * @ordered
 	 */
 	protected int minDepth = MIN_DEPTH_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getMaxDepth() <em>Max Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -95,6 +104,7 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * @ordered
 	 */
 	protected static final int MAX_DEPTH_EDEFAULT = 1;
+
 	/**
 	 * The cached value of the '{@link #getMaxDepth() <em>Max Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->

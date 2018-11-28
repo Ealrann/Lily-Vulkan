@@ -23,12 +23,12 @@ interface PipelineResource extends IDescriptor, Resource
 {
 }
 
-class Buffer extends PipelineResource
-{
-	long size
-	int usage
-	int properties
-}
+//class Buffer extends PipelineResource
+//{
+//	long size
+//	int usage
+//	int properties
+//}
 
 interface SizedBuffer extends PipelineResource
 {
@@ -69,12 +69,12 @@ abstract class Barrier
 	EPipelineStage dstStage
 }
 
-class BufferBarrier extends Barrier
-{
-	refers Buffer buffer
-	int srcAccess
-	int dstAccess
-}
+//class BufferBarrier extends Barrier
+//{
+//	refers Buffer buffer
+//	int srcAccess
+//	int dstAccess
+//}
 
 abstract class AbstractImageBarrier extends Barrier
 {

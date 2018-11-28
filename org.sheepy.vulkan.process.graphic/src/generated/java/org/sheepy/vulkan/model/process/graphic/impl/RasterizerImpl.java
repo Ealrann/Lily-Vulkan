@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.vulkan.model.enumeration.ECullMode;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
-
 import org.sheepy.vulkan.model.enumeration.EPolygonMode;
+
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.Rasterizer;
 
@@ -85,7 +85,7 @@ public class RasterizerImpl extends MinimalEObjectImpl.Container implements Rast
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EPolygonMode POLYGON_MODE_EDEFAULT = EPolygonMode.FILL; // TODO The default value literal "FILL" is not valid.
+	protected static final EPolygonMode POLYGON_MODE_EDEFAULT = EPolygonMode.FILL;
 
 	/**
 	 * The cached value of the '{@link #getPolygonMode() <em>Polygon Mode</em>}' attribute.

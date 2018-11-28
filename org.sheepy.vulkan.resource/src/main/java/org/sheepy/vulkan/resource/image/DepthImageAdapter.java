@@ -24,7 +24,7 @@ import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
 
 public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 {
-	private StandaloneImage depthImageBackend;
+	private ImageBackend depthImageBackend;
 	private ImageView depthImageView;
 	private int depthFormat;
 	private SVector2i size;
@@ -70,7 +70,7 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 		depthImageInfo.setUsage(VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT);
 		depthImageInfo.setProperties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		depthImageBackend = new StandaloneImage(logicalDevice, depthImageInfo);
+		depthImageBackend = new ImageBackend(logicalDevice, depthImageInfo);
 	}
 
 	private void layoutTransitionOfDepthImage(ExecutionManager context)

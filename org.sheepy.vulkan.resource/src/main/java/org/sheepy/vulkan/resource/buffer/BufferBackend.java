@@ -9,43 +9,41 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.resource.nativehelper.VkBufferAllocator;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryInfo;
 
-public class StandaloneBuffer
+public class BufferBackend
 {
 	private final LogicalDevice logicalDevice;
 
-	private final Buffer buffer;
+	private final BufferInfo bufferInfo;
 	
 	private long bufferId;
 	private long bufferMemoryId;
 
-	public StandaloneBuffer(LogicalDevice logicalDevice, Buffer buffer)
+	public BufferBackend(LogicalDevice logicalDevice, BufferInfo bufferInfo)
 	{
 		this.logicalDevice = logicalDevice;
-		this.buffer = buffer;
+		this.bufferInfo = bufferInfo;
 	}
 
 	public void allocate(MemoryStack stack)
 	{
-		bufferId = VkBufferAllocator.allocate(stack, logicalDevice.getVkDevice(), buffer);
+		bufferId = VkBufferAllocator.allocate(stack, logicalDevice.getVkDevice(), bufferInfo);
 
-		final var memoryInfo = allocateMemory(stack, logicalDevice, buffer);
+		final var memoryInfo = allocateMemory(stack, logicalDevice);
 		bufferMemoryId = memoryInfo.id;
 
 		vkBindBufferMemory(logicalDevice.getVkDevice(), bufferId, bufferMemoryId, 0);
 
 		// System.out.println(Long.toHexString(bufferMemoryId));
-
 	}
 
-	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice, Buffer buffer)
+	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		final var properties = buffer.getProperties();
+		final var properties = bufferInfo.properties;
 		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, bufferId, properties);
 		return VkMemoryAllocator.allocateFromBuffer(stack, allocationInfo);
 	}
@@ -60,9 +58,9 @@ public class StandaloneBuffer
 	{
 		final var device = logicalDevice.getVkDevice();
 		final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-		vkMapMemory(device, bufferMemoryId, 0, buffer.getSize(), 0, pBuffer);
+		vkMapMemory(device, bufferMemoryId, 0, bufferInfo.size, 0, pBuffer);
 		final long data = pBuffer.get(0);
-		MemoryUtil.memCopy(memAddress(byteBuffer), data, buffer.getSize());
+		MemoryUtil.memCopy(memAddress(byteBuffer), data, bufferInfo.size);
 		vkUnmapMemory(device, bufferMemoryId);
 		MemoryUtil.memFree(pBuffer);
 	}

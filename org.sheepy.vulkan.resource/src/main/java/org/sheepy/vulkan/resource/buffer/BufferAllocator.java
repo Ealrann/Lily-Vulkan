@@ -7,8 +7,6 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.model.resource.Buffer;
-import org.sheepy.vulkan.model.resource.impl.BufferImpl;
 
 public class BufferAllocator
 {
@@ -17,14 +15,14 @@ public class BufferAllocator
 	public static final int HOST_VISIBLE = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT
 			| VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
 
-	public static StandaloneBuffer allocateGPUBufferAndFill(MemoryStack stack,
+	public static BufferBackend allocateGPUBufferAndFill(MemoryStack stack,
 															ExecutionManager executionManager,
 															long size,
 															int usage,
 															ByteBuffer fillWith)
 	{
 		final var logicalDevice = executionManager.logicalDevice;
-		StandaloneBuffer res = allocateGPUBuffer(stack, logicalDevice, size, usage);
+		BufferBackend res = allocateGPUBuffer(stack, logicalDevice, size, usage);
 
 		BufferGPUFiller filler = new BufferGPUFiller(stack, executionManager, res.getId());
 		filler.fill(fillWith, size);
@@ -32,7 +30,7 @@ public class BufferAllocator
 		return res;
 	}
 
-	public static StandaloneBuffer allocateGPUBuffer(	MemoryStack stack,
+	public static BufferBackend allocateGPUBuffer(	MemoryStack stack,
 														LogicalDevice logicalDevice,
 														long size,
 														int usage)
@@ -40,7 +38,7 @@ public class BufferAllocator
 		return allocateBuffer(stack, logicalDevice, size, usage, DEVICE_LOCAL);
 	}
 
-	public static StandaloneBuffer allocateCPUBuffer(	MemoryStack stack,
+	public static BufferBackend allocateCPUBuffer(	MemoryStack stack,
 														LogicalDevice logicalDevice,
 														long size,
 														int usage)
@@ -48,7 +46,7 @@ public class BufferAllocator
 		return allocateBuffer(stack, logicalDevice, size, usage, HOST_VISIBLE);
 	}
 
-	public static StandaloneBuffer allocateCPUBufferAndFill(MemoryStack stack,
+	public static BufferBackend allocateCPUBufferAndFill(MemoryStack stack,
 															LogicalDevice logicalDevice,
 															long size,
 															int usage,
@@ -60,18 +58,18 @@ public class BufferAllocator
 		return res;
 	}
 
-	public static StandaloneBuffer allocateBuffer(	MemoryStack stack,
+	public static BufferBackend allocateBuffer(	MemoryStack stack,
 													LogicalDevice logicalDevice,
 													long size,
 													int usage,
 													int properties)
 	{
-		final Buffer buffer = new BufferImpl();
-		buffer.setSize(size);
-		buffer.setUsage(usage);
-		buffer.setProperties(properties);
+		final BufferInfo bufferInfo = new BufferInfo();
+		bufferInfo.size = size;
+		bufferInfo.usage = usage;
+		bufferInfo.properties = properties;
 
-		final var res = new StandaloneBuffer(logicalDevice, buffer);
+		final var res = new BufferBackend(logicalDevice, bufferInfo);
 		res.allocate(stack);
 
 		return res;

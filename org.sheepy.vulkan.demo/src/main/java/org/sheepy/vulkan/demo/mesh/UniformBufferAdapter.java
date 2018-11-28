@@ -22,7 +22,7 @@ import org.sheepy.vulkan.demo.model.UniformBuffer;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
+import org.sheepy.vulkan.resource.buffer.BufferBackend;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 
 
@@ -41,7 +41,7 @@ public class UniformBufferAdapter extends PipelineResourceAdapter implements IDe
 	private final Matrix4f view = new Matrix4f();
 	private final Matrix4f proj = new Matrix4f();
 
-	private StandaloneBuffer buffer;
+	private BufferBackend buffer;
 	private ByteBuffer stagingBuffer;
 	private float[] stagingValues;
 

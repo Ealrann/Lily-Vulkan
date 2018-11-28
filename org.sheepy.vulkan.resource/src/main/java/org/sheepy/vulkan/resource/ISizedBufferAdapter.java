@@ -6,11 +6,9 @@ import org.sheepy.vulkan.model.resource.SizedBuffer;
 
 public interface ISizedBufferAdapter extends IVulkanAdapter
 {
-	int getWidth();
-
-	int getHeight();
-
-	int getDepth();
+	long getId();
+	
+	long getSize();
 
 	static ISizedBufferAdapter adapt(SizedBuffer object)
 	{

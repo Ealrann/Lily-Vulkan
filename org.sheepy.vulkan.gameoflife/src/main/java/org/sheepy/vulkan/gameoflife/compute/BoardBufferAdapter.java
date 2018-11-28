@@ -20,14 +20,14 @@ import org.sheepy.vulkan.gameoflife.model.GameOfLifePackage;
 import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.BufferUtils;
-import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
+import org.sheepy.vulkan.resource.buffer.BufferBackend;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 
 public class BoardBufferAdapter extends PipelineResourceAdapter implements IDescriptorAdapter
 {
 	private int width;
 	private int height;
-	private StandaloneBuffer buffer;
+	private BufferBackend buffer;
 
 	private Board board;
 	private int sizeBuffer;

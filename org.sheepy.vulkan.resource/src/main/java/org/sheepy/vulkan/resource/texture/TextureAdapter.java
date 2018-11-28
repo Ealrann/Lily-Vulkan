@@ -20,16 +20,16 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Texture;
 import org.sheepy.vulkan.resource.PipelineResourceAdapter;
-import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
+import org.sheepy.vulkan.resource.buffer.BufferBackend;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.vulkan.resource.image.ImageInfo;
 import org.sheepy.vulkan.resource.image.ImageView;
-import org.sheepy.vulkan.resource.image.StandaloneImage;
+import org.sheepy.vulkan.resource.image.ImageBackend;
 import org.sheepy.vulkan.resource.util.STBImageLoader;
 
 public class TextureAdapter extends PipelineResourceAdapter implements IDescriptorAdapter
 {
-	private StandaloneImage imageBackend;
+	private ImageBackend imageBackend;
 	private ImageView imageView;
 	private Sampler sampler;
 
@@ -47,7 +47,7 @@ public class TextureAdapter extends PipelineResourceAdapter implements IDescript
 		final var imageLoader = new STBImageLoader(logicalDevice);
 		imageLoader.load(stack, texture.getFile());
 
-		final StandaloneBuffer buffer = imageLoader.getBuffer();
+		final BufferBackend buffer = imageLoader.getBuffer();
 		width = imageLoader.getWidth();
 		height = imageLoader.getHeight();
 		mipLevels = 1;
@@ -65,7 +65,7 @@ public class TextureAdapter extends PipelineResourceAdapter implements IDescript
 				| VK_IMAGE_USAGE_SAMPLED_BIT);
 		imageInfo.setProperties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		imageBackend = new StandaloneImage(logicalDevice, imageInfo);
+		imageBackend = new ImageBackend(logicalDevice, imageInfo);
 		imageBackend.allocate(stack);
 		final var imageId = imageBackend.getId();
 

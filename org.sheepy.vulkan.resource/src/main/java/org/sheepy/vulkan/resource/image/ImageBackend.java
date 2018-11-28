@@ -14,7 +14,7 @@ import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryInfo;
 
-public class StandaloneImage
+public class ImageBackend
 {
 	private final LogicalDevice logicalDevice;
 
@@ -24,7 +24,7 @@ public class StandaloneImage
 	protected long imageMemoryId;
 	protected long size;
 
-	public StandaloneImage(LogicalDevice logicalDevice, ImageInfo info)
+	public ImageBackend(LogicalDevice logicalDevice, ImageInfo info)
 	{
 		this.logicalDevice = logicalDevice;
 		this.info = info;

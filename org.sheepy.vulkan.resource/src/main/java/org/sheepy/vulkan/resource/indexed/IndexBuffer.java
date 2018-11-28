@@ -10,7 +10,7 @@ import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
-import org.sheepy.vulkan.resource.buffer.StandaloneBuffer;
+import org.sheepy.vulkan.resource.buffer.BufferBackend;
 
 public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 {
@@ -19,8 +19,8 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 	private final int vertexSize;
 	private final int indiceSize;
 
-	private StandaloneBuffer vertexBuffer;
-	private StandaloneBuffer indexBuffer;
+	private BufferBackend vertexBuffer;
+	private BufferBackend indexBuffer;
 
 	private int vertexCount;
 	private int indexCount;

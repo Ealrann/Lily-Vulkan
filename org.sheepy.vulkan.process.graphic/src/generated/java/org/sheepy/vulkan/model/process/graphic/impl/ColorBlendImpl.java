@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.vulkan.model.enumeration.ELogicOp;
+
 import org.sheepy.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
@@ -63,6 +64,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected static final boolean LOGIC_OP_ENABLE_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isLogicOpEnable() <em>Logic Op Enable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,6 +74,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected boolean logicOpEnable = LOGIC_OP_ENABLE_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getLogicOp() <em>Logic Op</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,6 +84,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected static final ELogicOp LOGIC_OP_EDEFAULT = ELogicOp.COPY;
+
 	/**
 	 * The cached value of the '{@link #getLogicOp() <em>Logic Op</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -90,6 +94,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected ELogicOp logicOp = LOGIC_OP_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getBlendConstant0() <em>Blend Constant0</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,6 +104,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected static final int BLEND_CONSTANT0_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getBlendConstant0() <em>Blend Constant0</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -108,6 +114,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected int blendConstant0 = BLEND_CONSTANT0_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getBlendConstant1() <em>Blend Constant1</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,6 +124,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected static final int BLEND_CONSTANT1_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getBlendConstant1() <em>Blend Constant1</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -126,6 +134,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected int blendConstant1 = BLEND_CONSTANT1_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getBlendConstant2() <em>Blend Constant2</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -135,6 +144,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected static final int BLEND_CONSTANT2_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getBlendConstant2() <em>Blend Constant2</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -144,6 +154,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected int blendConstant2 = BLEND_CONSTANT2_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getBlendConstant3() <em>Blend Constant3</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -153,6 +164,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * @ordered
 	 */
 	protected static final int BLEND_CONSTANT3_EDEFAULT = 1;
+
 	/**
 	 * The cached value of the '{@link #getBlendConstant3() <em>Blend Constant3</em>}' attribute.
 	 * <!-- begin-user-doc -->

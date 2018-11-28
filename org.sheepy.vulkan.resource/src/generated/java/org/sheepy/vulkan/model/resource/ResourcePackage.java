@@ -123,7 +123,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
 	 * @generated
 	 */
-	int IDESCRIPTOR = 8;
+	int IDESCRIPTOR = 7;
 
 	/**
 	 * The number of structural features of the '<em>IDescriptor</em>' class.
@@ -172,61 +172,6 @@ public interface ResourcePackage extends EPackage
 	int PIPELINE_RESOURCE_OPERATION_COUNT = IDESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.BufferImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBuffer()
-	 * @generated
-	 */
-	int BUFFER = 3;
-
-	/**
-	 * The feature id for the '<em><b>Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER__SIZE = PIPELINE_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Usage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER__USAGE = PIPELINE_RESOURCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER__PROPERTIES = PIPELINE_RESOURCE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_FEATURE_COUNT = PIPELINE_RESOURCE_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_OPERATION_COUNT = PIPELINE_RESOURCE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.SizedBuffer <em>Sized Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -234,7 +179,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSizedBuffer()
 	 * @generated
 	 */
-	int SIZED_BUFFER = 4;
+	int SIZED_BUFFER = 3;
 
 	/**
 	 * The number of structural features of the '<em>Sized Buffer</em>' class.
@@ -262,7 +207,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImage()
 	 * @generated
 	 */
-	int IMAGE = 5;
+	int IMAGE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Image</em>' class.
@@ -290,7 +235,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
 	 * @generated
 	 */
-	int TEXTURE = 6;
+	int TEXTURE = 5;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
@@ -336,7 +281,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPushConstant()
 	 * @generated
 	 */
-	int PUSH_CONSTANT = 7;
+	int PUSH_CONSTANT = 6;
 
 	/**
 	 * The number of structural features of the '<em>Push Constant</em>' class.
@@ -364,7 +309,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 9;
+	int DESCRIPTOR_SET = 8;
 
 	/**
 	 * The number of structural features of the '<em>Descriptor Set</em>' class.
@@ -392,7 +337,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBasicDescriptorSet()
 	 * @generated
 	 */
-	int BASIC_DESCRIPTOR_SET = 10;
+	int BASIC_DESCRIPTOR_SET = 9;
 
 	/**
 	 * The feature id for the '<em><b>Descriptors</b></em>' reference list.
@@ -429,7 +374,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
 	 * @generated
 	 */
-	int BARRIER = 11;
+	int BARRIER = 10;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -468,79 +413,6 @@ public interface ResourcePackage extends EPackage
 	int BARRIER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
-	 * @generated
-	 */
-	int BUFFER_BARRIER = 12;
-
-	/**
-	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__SRC_STAGE = BARRIER__SRC_STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__DST_STAGE = BARRIER__DST_STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__BUFFER = BARRIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Src Access</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__SRC_ACCESS = BARRIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Dst Access</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__DST_ACCESS = BARRIER_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Buffer Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER_FEATURE_COUNT = BARRIER_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Buffer Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER_OPERATION_COUNT = BARRIER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -548,7 +420,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
 	 * @generated
 	 */
-	int ABSTRACT_IMAGE_BARRIER = 13;
+	int ABSTRACT_IMAGE_BARRIER = 11;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -603,7 +475,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 14;
+	int IMAGE_BARRIER = 12;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -667,7 +539,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
 	 * @generated
 	 */
-	int REFERENCE_IMAGE_BARRIER = 15;
+	int REFERENCE_IMAGE_BARRIER = 13;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -749,7 +621,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
 	 * @generated
 	 */
-	int IMAGE_TRANSITION = 16;
+	int IMAGE_TRANSITION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Src Layout</b></em>' attribute.
@@ -813,7 +685,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 17;
+	int SHADER = 15;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
@@ -859,7 +731,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIndexedBuffer()
 	 * @generated
 	 */
-	int INDEXED_BUFFER = 18;
+	int INDEXED_BUFFER = 16;
 
 	/**
 	 * The number of structural features of the '<em>Indexed Buffer</em>' class.
@@ -887,7 +759,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDepthImage()
 	 * @generated
 	 */
-	int DEPTH_IMAGE = 19;
+	int DEPTH_IMAGE = 17;
 
 	/**
 	 * The number of structural features of the '<em>Depth Image</em>' class.
@@ -915,7 +787,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 20;
+	int PATH_RESOURCE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -952,7 +824,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 21;
+	int FILE_RESOURCE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -989,7 +861,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 22;
+	int MODULE_RESOURCE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -1035,7 +907,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 23;
+	int JAVA_MODULE = 21;
 
 
 	/**
@@ -1067,49 +939,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EClass getPipelineResource();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Buffer <em>Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer
-	 * @generated
-	 */
-	EClass getBuffer();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#getSize <em>Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#getSize()
-	 * @see #getBuffer()
-	 * @generated
-	 */
-	EAttribute getBuffer_Size();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#getUsage <em>Usage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Usage</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#getUsage()
-	 * @see #getBuffer()
-	 * @generated
-	 */
-	EAttribute getBuffer_Usage();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#getProperties <em>Properties</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Properties</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#getProperties()
-	 * @see #getBuffer()
-	 * @generated
-	 */
-	EAttribute getBuffer_Properties();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.SizedBuffer <em>Sized Buffer</em>}'.
@@ -1245,49 +1074,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getBarrier_DstStage();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.BufferBarrier <em>Buffer Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Buffer Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.resource.BufferBarrier
-	 * @generated
-	 */
-	EClass getBufferBarrier();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.resource.BufferBarrier#getBuffer <em>Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.resource.BufferBarrier#getBuffer()
-	 * @see #getBufferBarrier()
-	 * @generated
-	 */
-	EReference getBufferBarrier_Buffer();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.BufferBarrier#getSrcAccess <em>Src Access</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src Access</em>'.
-	 * @see org.sheepy.vulkan.model.resource.BufferBarrier#getSrcAccess()
-	 * @see #getBufferBarrier()
-	 * @generated
-	 */
-	EAttribute getBufferBarrier_SrcAccess();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.BufferBarrier#getDstAccess <em>Dst Access</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dst Access</em>'.
-	 * @see org.sheepy.vulkan.model.resource.BufferBarrier#getDstAccess()
-	 * @see #getBufferBarrier()
-	 * @generated
-	 */
-	EAttribute getBufferBarrier_DstAccess();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.AbstractImageBarrier <em>Abstract Image Barrier</em>}'.
@@ -1598,40 +1384,6 @@ public interface ResourcePackage extends EPackage
 		EClass PIPELINE_RESOURCE = eINSTANCE.getPipelineResource();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.BufferImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBuffer()
-		 * @generated
-		 */
-		EClass BUFFER = eINSTANCE.getBuffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER__SIZE = eINSTANCE.getBuffer_Size();
-
-		/**
-		 * The meta object literal for the '<em><b>Usage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER__USAGE = eINSTANCE.getBuffer_Usage();
-
-		/**
-		 * The meta object literal for the '<em><b>Properties</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER__PROPERTIES = eINSTANCE.getBuffer_Properties();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.SizedBuffer <em>Sized Buffer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1750,40 +1502,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BARRIER__DST_STAGE = eINSTANCE.getBarrier_DstStage();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
-		 * @generated
-		 */
-		EClass BUFFER_BARRIER = eINSTANCE.getBufferBarrier();
-
-		/**
-		 * The meta object literal for the '<em><b>Buffer</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BUFFER_BARRIER__BUFFER = eINSTANCE.getBufferBarrier_Buffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Src Access</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER_BARRIER__SRC_ACCESS = eINSTANCE.getBufferBarrier_SrcAccess();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Access</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER_BARRIER__DST_ACCESS = eINSTANCE.getBufferBarrier_DstAccess();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.

@@ -3,6 +3,7 @@
 package org.sheepy.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.sheepy.common.api.types.SVector2i;
 
 /**
@@ -26,7 +27,6 @@ import org.sheepy.common.api.types.SVector2i;
  */
 public interface Viewport extends EObject
 {
-
 	/**
 	 * Returns the value of the '<em><b>Offset</b></em>' attribute.
 	 * The default value is <code>"0, 0"</code>.
@@ -133,4 +133,5 @@ public interface Viewport extends EObject
 	 * @generated
 	 */
 	void setMaxDepth(int value);
+
 } // Viewport
