@@ -15,6 +15,12 @@ module org.sheepy.vulkan.process.compute
 	exports org.sheepy.vulkan.model.process.compute;
 	exports org.sheepy.vulkan.model.process.compute.impl;
 	exports org.sheepy.vulkan.model.process.compute.util;
+	
+
+	exports org.sheepy.vulkan.process.compute.execution;
+	exports org.sheepy.vulkan.process.compute.pipeline;
+	exports org.sheepy.vulkan.process.compute.pool;
+	exports org.sheepy.vulkan.process.compute.process;
 
 	provides ISingletonAdapter with ComputeProcessPoolAdapter, ComputeProcessAdapter,
 			ComputePipelineAdapter, ComputerAdapter, ComputeContextAdapter;

@@ -2,6 +2,7 @@ package org.sheepy.vulkan.process.compute.pipeline;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
@@ -21,12 +22,22 @@ import org.sheepy.vulkan.resource.shader.ShaderAdapter;
 
 public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeCommandBuffer>
 {
+	protected boolean dirty = false;
+
 	private int groupCountX;
 	private int groupCountY;
 	private int groupCountZ;
 
-	private boolean dirty = false;
 	private long[] pipelines;
+
+	protected ComputePipeline pipeline;
+
+	@Override
+	public void setTarget(Notifier target)
+	{
+		pipeline = (ComputePipeline) target;
+		super.setTarget(target);
+	}
 
 	@Override
 	public void deepAllocate(MemoryStack stack)
@@ -35,18 +46,17 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 		var context = IComputeContextAdapter.adapt(target).getComputeContext(target);
 		var device = context.getVkDevice();
-		var computePipeline = (ComputePipeline) target;
-		var computers = computePipeline.getComputers();
+		var computers = pipeline.getComputers();
 		int size = computers.size();
 
 		var pipelineCreateInfos = VkComputePipelineCreateInfo.callocStack(size, stack);
 		var shaderInfo = VkPipelineShaderStageCreateInfo.calloc();
-		
+
 		for (Computer computer : computers)
 		{
 			var shader = computer.getShader();
 			var shaderAdapter = ShaderAdapter.adapt(shader);
-			
+
 			shaderAdapter.fillInfo(shaderInfo);
 
 			var pipelineCreateInfo = pipelineCreateInfos.get();
@@ -55,16 +65,16 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 			pipelineCreateInfo.layout(pipelineLayout);
 		}
 		shaderInfo.free();
-		
+
 		pipelineCreateInfos.flip();
 
 		pipelines = new long[size];
 		Logger.check("Failed to create compute pipeline!",
 				() -> vkCreateComputePipelines(device, 0, pipelineCreateInfos, null, pipelines));
 
-		groupCountX = (int) Math.ceil((float) computePipeline.getWidth() / computePipeline.getWorkgroupSizeX());
-		groupCountY = (int) Math.ceil((float) computePipeline.getHeight() / computePipeline.getWorkgroupSizeY());
-		groupCountZ = (int) Math.ceil((float) computePipeline.getDepth() / computePipeline.getWorkgroupSizeZ());
+		groupCountX = (int) Math.ceil((float) pipeline.getWidth() / pipeline.getWorkgroupSizeX());
+		groupCountY = (int) Math.ceil((float) pipeline.getHeight() / pipeline.getWorkgroupSizeY());
+		groupCountZ = (int) Math.ceil((float) pipeline.getDepth() / pipeline.getWorkgroupSizeZ());
 	}
 
 	@Override
@@ -89,17 +99,20 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	public void record(ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
 		super.record(commandBuffer, bindPoint);
-		
-		var computePipeline = (ComputePipeline) target;
 
-		if (computePipeline.isEnabled())
+		if (pipeline.isEnabled())
 		{
-			for (final Computer computer : computePipeline.getComputers())
-			{
-				final var adapter = ComputerAdapter.adapt(computer);
-				adapter.record(commandBuffer, bindPoint);
-			}
+			recordComputers(commandBuffer, bindPoint);
 			dirty = false;
+		}
+	}
+
+	protected void recordComputers(ComputeCommandBuffer commandBuffer, int bindPoint)
+	{
+		for (final Computer computer : pipeline.getComputers())
+		{
+			final var adapter = ComputerAdapter.adapt(computer);
+			adapter.record(commandBuffer, bindPoint);
 		}
 	}
 
@@ -108,7 +121,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	{
 		return dirty;
 	}
-	
+
 	public int getGroupCountX()
 	{
 		return groupCountX;

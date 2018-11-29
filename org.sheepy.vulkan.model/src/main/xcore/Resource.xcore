@@ -85,12 +85,12 @@ abstract class Barrier
 	EPipelineStage dstStage
 }
 
-//class BufferBarrier extends Barrier
-//{
-//	refers Buffer buffer
-//	int srcAccess
-//	int dstAccess
-//}
+class BufferBarrier extends Barrier
+{
+	refers Buffer buffer
+	int srcAccess
+	int dstAccess
+}
 
 abstract class AbstractImageBarrier extends Barrier
 {

@@ -52,7 +52,8 @@ public class ComputeProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 		super.deepAllocate(stack);
 		recordCommands();
 	}
-
+	
+	@Override
 	public void recordCommands()
 	{
 		context.commandBuffers.recordCommands();

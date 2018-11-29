@@ -135,6 +135,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createBarrierAdapter();
 			}
 			@Override
+			public Adapter caseBufferBarrier(BufferBarrier object)
+			{
+				return createBufferBarrierAdapter();
+			}
+			@Override
 			public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
 			{
 				return createAbstractImageBarrierAdapter();
@@ -382,6 +387,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBarrierAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.BufferBarrier <em>Buffer Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.BufferBarrier
+	 * @generated
+	 */
+	public Adapter createBufferBarrierAdapter()
 	{
 		return null;
 	}
