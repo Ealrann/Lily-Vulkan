@@ -4,8 +4,8 @@ import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfaceCapabilities
 
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkSurfaceCapabilitiesKHR;
+import org.sheepy.vulkan.api.window.Surface;
 import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.common.window.Surface;
 
 public class Capabilities
 {

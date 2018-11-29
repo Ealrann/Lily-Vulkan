@@ -8,7 +8,7 @@ import java.nio.IntBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkQueueFamilyProperties;
-import org.sheepy.vulkan.common.window.Surface;
+import org.sheepy.vulkan.api.window.Surface;
 
 public class QueueFinder
 {

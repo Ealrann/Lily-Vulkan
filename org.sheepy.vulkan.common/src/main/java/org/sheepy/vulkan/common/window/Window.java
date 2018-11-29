@@ -12,10 +12,13 @@ import org.lwjgl.glfw.GLFWMouseButtonCallback;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.vulkan.api.window.IWindow;
+import org.sheepy.vulkan.api.window.IWindowListener;
+import org.sheepy.vulkan.api.window.Surface;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.VulkanApplication;
 
-public class Window
+public class Window implements IWindow
 {
 	private final VulkanApplication application;
 
@@ -60,11 +63,13 @@ public class Window
 		glfwSetWindowSizeCallback(id, callback);
 	}
 
+	@Override
 	public void setMouseButtonCallback(GLFWMouseButtonCallback callback)
 	{
 		glfwSetMouseButtonCallback(id, callback);
 	}
 
+	@Override
 	public void setKeyCallback(GLFWKeyCallback callback)
 	{
 		glfwSetKeyCallback(id, callback);
@@ -74,6 +79,7 @@ public class Window
 	private final double[] cursorPositionY = new double[1];
 	private final double[] cursorPosition = new double[2];
 
+	@Override
 	public double[] getCursorPosition()
 	{
 		// The elegance itself
@@ -83,11 +89,13 @@ public class Window
 		return cursorPosition;
 	}
 
+	@Override
 	public void addListener(IWindowListener listener)
 	{
 		listeners.add(listener);
 	}
 
+	@Override
 	public void removeListener(IWindowListener listener)
 	{
 		listeners.remove(listener);
@@ -106,6 +114,7 @@ public class Window
 		return id;
 	}
 
+	@Override
 	public Surface getSurface()
 	{
 		return surface;

@@ -23,7 +23,7 @@ import org.lwjgl.vulkan.VkQueueFamilyProperties;
 import org.lwjgl.vulkan.VkQueueFamilyProperties.Buffer;
 import org.sheepy.vulkan.api.queue.EQueueType;
 import org.sheepy.vulkan.api.queue.VulkanQueue;
-import org.sheepy.vulkan.common.window.Surface;
+import org.sheepy.vulkan.api.window.Surface;
 
 public class QueueManager implements Iterable<Integer>
 {

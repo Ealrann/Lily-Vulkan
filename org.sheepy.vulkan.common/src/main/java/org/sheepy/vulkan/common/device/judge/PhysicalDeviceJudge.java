@@ -11,10 +11,10 @@ import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.lwjgl.vulkan.VkPhysicalDeviceProperties;
+import org.sheepy.vulkan.api.window.Surface;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.device.data.ColorDomains;
 import org.sheepy.vulkan.common.device.data.PresentModes;
-import org.sheepy.vulkan.common.window.Surface;
 
 public class PhysicalDeviceJudge
 {

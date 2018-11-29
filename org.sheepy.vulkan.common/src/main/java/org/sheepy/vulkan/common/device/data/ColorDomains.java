@@ -12,7 +12,7 @@ import java.util.Set;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkSurfaceFormatKHR;
-import org.sheepy.vulkan.common.window.Surface;
+import org.sheepy.vulkan.api.window.Surface;
 import org.sheepy.vulkan.model.ColorDomain;
 import org.sheepy.vulkan.model.enumeration.EColorSpace;
 import org.sheepy.vulkan.model.enumeration.EFormat;

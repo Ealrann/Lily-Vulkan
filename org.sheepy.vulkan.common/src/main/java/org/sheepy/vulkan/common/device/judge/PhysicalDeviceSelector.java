@@ -12,9 +12,9 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
+import org.sheepy.vulkan.api.window.Surface;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.common.window.Surface;
 
 public class PhysicalDeviceSelector
 {

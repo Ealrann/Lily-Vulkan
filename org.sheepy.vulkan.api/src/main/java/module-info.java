@@ -19,6 +19,7 @@ module org.sheepy.vulkan.api
 	exports org.sheepy.vulkan.api;
 	exports org.sheepy.vulkan.api.adapter;
 	exports org.sheepy.vulkan.api.queue;
+	exports org.sheepy.vulkan.api.window;
 
 	exports org.sheepy.vulkan.model;
 	exports org.sheepy.vulkan.model.impl;

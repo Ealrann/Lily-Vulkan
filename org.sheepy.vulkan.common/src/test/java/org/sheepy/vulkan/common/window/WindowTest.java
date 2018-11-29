@@ -11,12 +11,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.api.VulkanApplicationLauncher;
+import org.sheepy.vulkan.api.window.IWindowListener;
+import org.sheepy.vulkan.api.window.Surface;
 import org.sheepy.vulkan.common.application.VulkanApplicationAdapter;
 import org.sheepy.vulkan.common.application.VulkanApplicationUtil;
 import org.sheepy.vulkan.common.test.BasicModelFactory;
 import org.sheepy.vulkan.common.test.TestUtils;
-import org.sheepy.vulkan.common.window.IWindowListener;
-import org.sheepy.vulkan.common.window.Surface;
 import org.sheepy.vulkan.model.VulkanApplication;
 
 public class WindowTest

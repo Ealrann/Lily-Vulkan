@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.window;
+package org.sheepy.vulkan.api.window;
 
 public class Surface
 {
