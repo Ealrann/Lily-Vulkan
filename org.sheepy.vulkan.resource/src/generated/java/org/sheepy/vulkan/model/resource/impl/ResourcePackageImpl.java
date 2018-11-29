@@ -17,12 +17,14 @@ import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
 import org.sheepy.vulkan.model.resource.Barrier;
 import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.BasicResource;
+import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.FileResource;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.ImageBarrier;
+import org.sheepy.vulkan.model.resource.ImageLayout;
 import org.sheepy.vulkan.model.resource.ImageTransition;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
 import org.sheepy.vulkan.model.resource.ModuleResource;
@@ -34,7 +36,6 @@ import org.sheepy.vulkan.model.resource.Resource;
 import org.sheepy.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Shader;
-import org.sheepy.vulkan.model.resource.SizedBuffer;
 import org.sheepy.vulkan.model.resource.Texture;
 
 /**
@@ -71,7 +72,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass sizedBufferEClass = null;
+	private EClass bufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,6 +80,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass imageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass imageLayoutEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -301,9 +309,39 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSizedBuffer()
+	public EClass getBuffer()
 	{
-		return sizedBufferEClass;
+		return bufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBuffer_Size()
+	{
+		return (EAttribute)bufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBuffer_Usage()
+	{
+		return (EAttribute)bufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBuffer_Properties()
+	{
+		return (EAttribute)bufferEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -314,6 +352,126 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EClass getImage()
 	{
 		return imageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_Width()
+	{
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_Height()
+	{
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_Format()
+	{
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_Usage()
+	{
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_Properties()
+	{
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_Tiling()
+	{
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_MipLevels()
+	{
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getImage_InitialLayout()
+	{
+		return (EReference)imageEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getImageLayout()
+	{
+		return imageLayoutEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImageLayout_Stage()
+	{
+		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImageLayout_Layout()
+	{
+		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImageLayout_Access()
+	{
+		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -364,6 +522,26 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EClass getIDescriptor()
 	{
 		return iDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIDescriptor_DescriptorType()
+	{
+		return (EAttribute)iDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIDescriptor_ShaderStages()
+	{
+		return (EAttribute)iDescriptorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -702,9 +880,25 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		pipelineResourceEClass = createEClass(PIPELINE_RESOURCE);
 
-		sizedBufferEClass = createEClass(SIZED_BUFFER);
+		bufferEClass = createEClass(BUFFER);
+		createEAttribute(bufferEClass, BUFFER__SIZE);
+		createEAttribute(bufferEClass, BUFFER__USAGE);
+		createEAttribute(bufferEClass, BUFFER__PROPERTIES);
 
 		imageEClass = createEClass(IMAGE);
+		createEAttribute(imageEClass, IMAGE__WIDTH);
+		createEAttribute(imageEClass, IMAGE__HEIGHT);
+		createEAttribute(imageEClass, IMAGE__FORMAT);
+		createEAttribute(imageEClass, IMAGE__USAGE);
+		createEAttribute(imageEClass, IMAGE__PROPERTIES);
+		createEAttribute(imageEClass, IMAGE__TILING);
+		createEAttribute(imageEClass, IMAGE__MIP_LEVELS);
+		createEReference(imageEClass, IMAGE__INITIAL_LAYOUT);
+
+		imageLayoutEClass = createEClass(IMAGE_LAYOUT);
+		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__STAGE);
+		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__LAYOUT);
+		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__ACCESS);
 
 		textureEClass = createEClass(TEXTURE);
 		createEReference(textureEClass, TEXTURE__FILE);
@@ -713,6 +907,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		pushConstantEClass = createEClass(PUSH_CONSTANT);
 
 		iDescriptorEClass = createEClass(IDESCRIPTOR);
+		createEAttribute(iDescriptorEClass, IDESCRIPTOR__DESCRIPTOR_TYPE);
+		createEAttribute(iDescriptorEClass, IDESCRIPTOR__SHADER_STAGES);
 
 		descriptorSetEClass = createEClass(DESCRIPTOR_SET);
 
@@ -796,8 +992,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		basicResourceEClass.getESuperTypes().add(this.getResource());
 		pipelineResourceEClass.getESuperTypes().add(this.getIDescriptor());
 		pipelineResourceEClass.getESuperTypes().add(this.getResource());
-		sizedBufferEClass.getESuperTypes().add(this.getPipelineResource());
-		imageEClass.getESuperTypes().add(this.getSizedBuffer());
+		bufferEClass.getESuperTypes().add(this.getPipelineResource());
+		imageEClass.getESuperTypes().add(this.getPipelineResource());
 		textureEClass.getESuperTypes().add(this.getPipelineResource());
 		pushConstantEClass.getESuperTypes().add(this.getPipelineResource());
 		basicDescriptorSetEClass.getESuperTypes().add(this.getDescriptorSet());
@@ -818,9 +1014,25 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(pipelineResourceEClass, PipelineResource.class, "PipelineResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(sizedBufferEClass, SizedBuffer.class, "SizedBuffer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_Usage(), theEcorePackage.getEInt(), "usage", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_Properties(), theEcorePackage.getEInt(), "properties", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(imageEClass, Image.class, "Image", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImage_Width(), theEcorePackage.getEInt(), "width", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Height(), theEcorePackage.getEInt(), "height", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Format(), theEnumerationPackage.getEFormat(), "format", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Usage(), theEcorePackage.getEInt(), "usage", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Properties(), theEcorePackage.getEInt(), "properties", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Tiling(), theEcorePackage.getEInt(), "tiling", "0", 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_MipLevels(), theEcorePackage.getEInt(), "mipLevels", "1", 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImage_InitialLayout(), this.getImageLayout(), null, "initialLayout", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImageLayout_Stage(), theEnumerationPackage.getEPipelineStage(), "stage", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_Layout(), theEnumerationPackage.getEImageLayout(), "layout", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_Access(), theEcorePackage.getEInt(), "access", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textureEClass, Texture.class, "Texture", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTexture_File(), this.getPathResource(), null, "file", null, 0, 1, Texture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -829,6 +1041,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(), "descriptorType", null, 0, 1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(), "shaderStages", null, 0, -1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

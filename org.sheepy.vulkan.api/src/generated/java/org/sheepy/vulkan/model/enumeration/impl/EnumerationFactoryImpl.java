@@ -84,6 +84,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return createEImageLayoutFromString(eDataType, initialValue);
 			case EnumerationPackage.ECULL_MODE:
 				return createECullModeFromString(eDataType, initialValue);
+			case EnumerationPackage.EDESCRIPTOR_TYPE:
+				return createEDescriptorTypeFromString(eDataType, initialValue);
 			case EnumerationPackage.EFRONT_FACE:
 				return createEFrontFaceFromString(eDataType, initialValue);
 			case EnumerationPackage.ECOMMAND_STAGE:
@@ -135,6 +137,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return convertEImageLayoutToString(eDataType, instanceValue);
 			case EnumerationPackage.ECULL_MODE:
 				return convertECullModeToString(eDataType, instanceValue);
+			case EnumerationPackage.EDESCRIPTOR_TYPE:
+				return convertEDescriptorTypeToString(eDataType, instanceValue);
 			case EnumerationPackage.EFRONT_FACE:
 				return convertEFrontFaceToString(eDataType, instanceValue);
 			case EnumerationPackage.ECOMMAND_STAGE:
@@ -212,6 +216,28 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertECullModeToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDescriptorType createEDescriptorTypeFromString(EDataType eDataType, String initialValue)
+	{
+		EDescriptorType result = EDescriptorType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEDescriptorTypeToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

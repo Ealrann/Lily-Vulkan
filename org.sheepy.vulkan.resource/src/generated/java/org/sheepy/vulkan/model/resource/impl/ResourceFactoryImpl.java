@@ -65,6 +65,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eClass.getClassifierID())
 		{
+			case ResourcePackage.BUFFER: return createBuffer();
+			case ResourcePackage.IMAGE: return createImage();
+			case ResourcePackage.IMAGE_LAYOUT: return createImageLayout();
 			case ResourcePackage.TEXTURE: return createTexture();
 			case ResourcePackage.BASIC_DESCRIPTOR_SET: return createBasicDescriptorSet();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
@@ -111,6 +114,39 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Buffer createBuffer()
+	{
+		BufferImpl buffer = new BufferImpl();
+		return buffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Image createImage()
+	{
+		ImageImpl image = new ImageImpl();
+		return image;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImageLayout createImageLayout()
+	{
+		ImageLayoutImpl imageLayout = new ImageLayoutImpl();
+		return imageLayout;
 	}
 
 	/**

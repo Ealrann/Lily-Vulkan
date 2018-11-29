@@ -21,15 +21,15 @@ public class VkImageAllocator
 
 		imageInfo.sType(VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO);
 		imageInfo.imageType(VK_IMAGE_TYPE_2D);
-		imageInfo.extent().width(info.getWidth());
-		imageInfo.extent().height(info.getHeight());
+		imageInfo.extent().width(info.width);
+		imageInfo.extent().height(info.height);
 		imageInfo.extent().depth(1);
-		imageInfo.mipLevels(info.getMipLevels());
+		imageInfo.mipLevels(info.mipLevels);
 		imageInfo.arrayLayers(1);
-		imageInfo.format(info.getFormat());
-		imageInfo.tiling(info.getTiling());
+		imageInfo.format(info.format);
+		imageInfo.tiling(info.tiling);
 		imageInfo.initialLayout(VK_IMAGE_LAYOUT_UNDEFINED);
-		imageInfo.usage(info.getUsage());
+		imageInfo.usage(info.usage);
 		imageInfo.sharingMode(VK_SHARING_MODE_EXCLUSIVE);
 		imageInfo.samples(VK_SAMPLE_COUNT_1_BIT);
 		imageInfo.flags(0); // Optional

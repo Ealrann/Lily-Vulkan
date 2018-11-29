@@ -1,7 +1,7 @@
 package org.sheepy.vulkan.resource.image.barrier.proxy;
 
 import org.sheepy.vulkan.model.resource.ImageBarrier;
-import org.sheepy.vulkan.resource.image.IImageAdapter;
+import org.sheepy.vulkan.resource.image.ImageAdapter;
 
 public class ImageProxy implements IImageProxy
 {
@@ -15,21 +15,19 @@ public class ImageProxy implements IImageProxy
 	@Override
 	public int getFormat()
 	{
-		var adapter = IImageAdapter.adapt(barrier.getImage());
-		return adapter.getFormat();
+		return barrier.getImage().getFormat().getValue();
 	}
 
 	@Override
 	public int getMipLevels()
 	{
-		var adapter = IImageAdapter.adapt(barrier.getImage());
-		return adapter.getMipLevels();
+		return barrier.getImage().getMipLevels();
 	}
 
 	@Override
 	public long getId()
 	{
-		var adapter = IImageAdapter.adapt(barrier.getImage());
+		var adapter = ImageAdapter.adapt(barrier.getImage());
 		return adapter.getId();
 	}
 

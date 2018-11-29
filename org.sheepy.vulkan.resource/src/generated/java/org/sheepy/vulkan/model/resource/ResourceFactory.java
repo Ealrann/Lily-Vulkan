@@ -23,6 +23,33 @@ public interface ResourceFactory extends EFactory
 	ResourceFactory eINSTANCE = org.sheepy.vulkan.model.resource.impl.ResourceFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Buffer</em>'.
+	 * @generated
+	 */
+	Buffer createBuffer();
+
+	/**
+	 * Returns a new object of class '<em>Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image</em>'.
+	 * @generated
+	 */
+	Image createImage();
+
+	/**
+	 * Returns a new object of class '<em>Image Layout</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Layout</em>'.
+	 * @generated
+	 */
+	ImageLayout createImageLayout();
+
+	/**
 	 * Returns a new object of class '<em>Texture</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

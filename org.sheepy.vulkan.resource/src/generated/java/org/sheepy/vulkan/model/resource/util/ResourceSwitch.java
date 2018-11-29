@@ -96,13 +96,13 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.SIZED_BUFFER:
+			case ResourcePackage.BUFFER:
 			{
-				SizedBuffer sizedBuffer = (SizedBuffer)theEObject;
-				T result = caseSizedBuffer(sizedBuffer);
-				if (result == null) result = casePipelineResource(sizedBuffer);
-				if (result == null) result = caseIDescriptor(sizedBuffer);
-				if (result == null) result = caseResource(sizedBuffer);
+				Buffer buffer = (Buffer)theEObject;
+				T result = caseBuffer(buffer);
+				if (result == null) result = casePipelineResource(buffer);
+				if (result == null) result = caseIDescriptor(buffer);
+				if (result == null) result = caseResource(buffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -110,10 +110,16 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				Image image = (Image)theEObject;
 				T result = caseImage(image);
-				if (result == null) result = caseSizedBuffer(image);
 				if (result == null) result = casePipelineResource(image);
 				if (result == null) result = caseIDescriptor(image);
 				if (result == null) result = caseResource(image);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.IMAGE_LAYOUT:
+			{
+				ImageLayout imageLayout = (ImageLayout)theEObject;
+				T result = caseImageLayout(imageLayout);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -308,17 +314,17 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Sized Buffer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Sized Buffer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSizedBuffer(SizedBuffer object)
+	public T caseBuffer(Buffer object)
 	{
 		return null;
 	}
@@ -335,6 +341,22 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImage(Image object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image Layout</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image Layout</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImageLayout(ImageLayout object)
 	{
 		return null;
 	}

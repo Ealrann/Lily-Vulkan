@@ -225,6 +225,24 @@ public interface VulkanDemoPackage extends EPackage
 	int UNIFORM_BUFFER = 2;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIFORM_BUFFER__DESCRIPTOR_TYPE = ResourcePackage.PIPELINE_RESOURCE__DESCRIPTOR_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIFORM_BUFFER__SHADER_STAGES = ResourcePackage.PIPELINE_RESOURCE__SHADER_STAGES;
+
+	/**
 	 * The number of structural features of the '<em>Uniform Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

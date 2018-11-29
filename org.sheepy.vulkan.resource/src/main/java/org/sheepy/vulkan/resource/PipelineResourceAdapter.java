@@ -8,10 +8,12 @@ import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
 public abstract class PipelineResourceAdapter extends AbstractFlatAllocableAdapter
 		implements IDescriptorAdapter
 {
+	protected boolean dirty = false;
+	
 	@Override
 	public boolean isDirty()
 	{
-		return false;
+		return dirty;
 	}
 	
 	public static PipelineResourceAdapter adapt(Resource resource)

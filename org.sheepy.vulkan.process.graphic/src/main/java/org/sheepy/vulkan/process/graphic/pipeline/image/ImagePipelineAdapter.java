@@ -13,7 +13,7 @@ import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.pool.IGraphicContextAdapter;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
-import org.sheepy.vulkan.resource.image.IImageAdapter;
+import org.sheepy.vulkan.resource.image.ImageAdapter;
 
 public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
 {
@@ -31,7 +31,6 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		var extent = context.swapChainManager.getExtent();
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
-		var imageAdapter = IImageAdapter.adapt(srcImage);
 
 		region = VkImageBlit.calloc(1);
 		region.srcSubresource().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
@@ -41,8 +40,8 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		region.srcOffsets(0).x(0);
 		region.srcOffsets(0).y(0);
 		region.srcOffsets(0).z(0);
-		region.srcOffsets(1).x(imageAdapter.getWidth());
-		region.srcOffsets(1).y(imageAdapter.getHeight());
+		region.srcOffsets(1).x(srcImage.getWidth());
+		region.srcOffsets(1).y(srcImage.getHeight());
 		region.srcOffsets(1).z(1);
 		region.dstSubresource().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
 		region.dstSubresource().mipLevel(0);
@@ -86,7 +85,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
-		var srcImageId = IImageAdapter.adapt(srcImage).getId();
+		var srcImageId = ImageAdapter.adapt(srcImage).getId();
 		var dstImageView = context.imageViewManager.getImageView(commandBuffer.index);
 		var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 

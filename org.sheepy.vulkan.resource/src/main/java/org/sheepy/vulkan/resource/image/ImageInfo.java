@@ -1,83 +1,42 @@
 package org.sheepy.vulkan.resource.image;
 
+import org.sheepy.vulkan.model.resource.Image;
+
 public class ImageInfo
 {
-	public int width;
-	public int height;
-	public int format;
-	public int mipLevels = 1;
-	public int usage;
-	public int tiling = 0;
-	public int properties;
+	public final int width;
+	public final int height;
+	public final int format;
+	public final int usage;
+	public final int properties;
+	public final int tiling;
+	public final int mipLevels;
 
-	public int getWidth()
+	public ImageInfo(Image image)
 	{
-		return width;
+		this(image.getWidth(), image.getHeight(), image.getFormat().getValue(), image.getUsage(),
+				image.getProperties(), image.getTiling(), image.getMipLevels());
 	}
 
-	public void setWidth(int width)
+	public ImageInfo(int width, int height, int format, int usage, int properties)
+	{
+		this(width, height, format, usage, properties, 0, 1);
+	}
+
+	public ImageInfo(	int width,
+						int height,
+						int format,
+						int usage,
+						int properties,
+						int tiling,
+						int mipLevels)
 	{
 		this.width = width;
-	}
-
-	public int getHeight()
-	{
-		return height;
-	}
-
-	public void setHeight(int height)
-	{
 		this.height = height;
-	}
-
-	public int getFormat()
-	{
-		return format;
-	}
-
-	public void setFormat(int format)
-	{
 		this.format = format;
-	}
-
-	public int getMipLevels()
-	{
-		return mipLevels;
-	}
-
-	public void setMipLevels(int mipLevels)
-	{
+		this.usage = usage;
+		this.properties = properties;
+		this.tiling = tiling;
 		this.mipLevels = mipLevels;
 	}
-
-	public int getUsage()
-	{
-		return usage;
-	}
-
-	public void setUsage(int usage)
-	{
-		this.usage = usage;
-	}
-
-	public int getTiling()
-	{
-		return tiling;
-	}
-
-	public void setTiling(int tiling)
-	{
-		this.tiling = tiling;
-	}
-
-	public int getProperties()
-	{
-		return properties;
-	}
-
-	public void setProperties(int properties)
-	{
-		this.properties = properties;
-	}
-
 }

@@ -5,12 +5,10 @@ package org.sheepy.vulkan.model.resource.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -20,27 +18,27 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
-import org.sheepy.vulkan.model.resource.PathResource;
+import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.Texture;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Texture</b></em>'.
+ * An implementation of the model object '<em><b>Buffer</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.TextureImpl#getDescriptorType <em>Descriptor Type</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.TextureImpl#getShaderStages <em>Shader Stages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.TextureImpl#getFile <em>File</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.TextureImpl#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getDescriptorType <em>Descriptor Type</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getShaderStages <em>Shader Stages</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getUsage <em>Usage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
+public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 {
 	/**
 	 * The default value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
@@ -73,41 +71,71 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	protected EList<EShaderStage> shaderStages;
 
 	/**
-	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
+	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFile()
+	 * @see #getSize()
 	 * @generated
 	 * @ordered
 	 */
-	protected PathResource file;
+	protected static final long SIZE_EDEFAULT = 0L;
 
 	/**
-	 * The default value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.
+	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMipmapEnabled()
+	 * @see #getSize()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean MIPMAP_ENABLED_EDEFAULT = false;
+	protected long size = SIZE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.
+	 * The default value of the '{@link #getUsage() <em>Usage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMipmapEnabled()
+	 * @see #getUsage()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean mipmapEnabled = MIPMAP_ENABLED_EDEFAULT;
+	protected static final int USAGE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getUsage() <em>Usage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected int usage = USAGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int PROPERTIES_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected int properties = PROPERTIES_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TextureImpl()
+	public BufferImpl()
 	{
 		super();
 	}
@@ -120,7 +148,7 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.TEXTURE;
+		return ResourcePackage.Literals.BUFFER;
 	}
 
 	/**
@@ -143,7 +171,7 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 		EDescriptorType oldDescriptorType = descriptorType;
 		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
 	}
 
 	/**
@@ -155,7 +183,7 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.TEXTURE__SHADER_STAGES);
+			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.BUFFER__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -165,9 +193,9 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathResource getFile()
+	public long getSize()
 	{
-		return file;
+		return size;
 	}
 
 	/**
@@ -175,16 +203,12 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFile(PathResource newFile, NotificationChain msgs)
+	public void setSize(long newSize)
 	{
-		PathResource oldFile = file;
-		file = newFile;
+		long oldSize = size;
+		size = newSize;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__FILE, oldFile, newFile);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__SIZE, oldSize, size));
 	}
 
 	/**
@@ -192,20 +216,9 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFile(PathResource newFile)
+	public int getUsage()
 	{
-		if (newFile != file)
-		{
-			NotificationChain msgs = null;
-			if (file != null)
-				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
-			if (newFile != null)
-				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
-			msgs = basicSetFile(newFile, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__FILE, newFile, newFile));
+		return usage;
 	}
 
 	/**
@@ -213,22 +226,12 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isMipmapEnabled()
+	public void setUsage(int newUsage)
 	{
-		return mipmapEnabled;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMipmapEnabled(boolean newMipmapEnabled)
-	{
-		boolean oldMipmapEnabled = mipmapEnabled;
-		mipmapEnabled = newMipmapEnabled;
+		int oldUsage = usage;
+		usage = newUsage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__MIPMAP_ENABLED, oldMipmapEnabled, mipmapEnabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__USAGE, oldUsage, usage));
 	}
 
 	/**
@@ -236,15 +239,22 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public int getProperties()
 	{
-		switch (featureID)
-		{
-			case ResourcePackage.TEXTURE__FILE:
-				return basicSetFile(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return properties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProperties(int newProperties)
+	{
+		int oldProperties = properties;
+		properties = newProperties;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__PROPERTIES, oldProperties, properties));
 	}
 
 	/**
@@ -257,14 +267,16 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__DESCRIPTOR_TYPE:
+			case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
 				return getDescriptorType();
-			case ResourcePackage.TEXTURE__SHADER_STAGES:
+			case ResourcePackage.BUFFER__SHADER_STAGES:
 				return getShaderStages();
-			case ResourcePackage.TEXTURE__FILE:
-				return getFile();
-			case ResourcePackage.TEXTURE__MIPMAP_ENABLED:
-				return isMipmapEnabled();
+			case ResourcePackage.BUFFER__SIZE:
+				return getSize();
+			case ResourcePackage.BUFFER__USAGE:
+				return getUsage();
+			case ResourcePackage.BUFFER__PROPERTIES:
+				return getProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -280,18 +292,21 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__DESCRIPTOR_TYPE:
+			case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
 				setDescriptorType((EDescriptorType)newValue);
 				return;
-			case ResourcePackage.TEXTURE__SHADER_STAGES:
+			case ResourcePackage.BUFFER__SHADER_STAGES:
 				getShaderStages().clear();
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
-			case ResourcePackage.TEXTURE__FILE:
-				setFile((PathResource)newValue);
+			case ResourcePackage.BUFFER__SIZE:
+				setSize((Long)newValue);
 				return;
-			case ResourcePackage.TEXTURE__MIPMAP_ENABLED:
-				setMipmapEnabled((Boolean)newValue);
+			case ResourcePackage.BUFFER__USAGE:
+				setUsage((Integer)newValue);
+				return;
+			case ResourcePackage.BUFFER__PROPERTIES:
+				setProperties((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -307,17 +322,20 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__DESCRIPTOR_TYPE:
+			case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
 				setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
 				return;
-			case ResourcePackage.TEXTURE__SHADER_STAGES:
+			case ResourcePackage.BUFFER__SHADER_STAGES:
 				getShaderStages().clear();
 				return;
-			case ResourcePackage.TEXTURE__FILE:
-				setFile((PathResource)null);
+			case ResourcePackage.BUFFER__SIZE:
+				setSize(SIZE_EDEFAULT);
 				return;
-			case ResourcePackage.TEXTURE__MIPMAP_ENABLED:
-				setMipmapEnabled(MIPMAP_ENABLED_EDEFAULT);
+			case ResourcePackage.BUFFER__USAGE:
+				setUsage(USAGE_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__PROPERTIES:
+				setProperties(PROPERTIES_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -333,14 +351,16 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__DESCRIPTOR_TYPE:
+			case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
 				return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-			case ResourcePackage.TEXTURE__SHADER_STAGES:
+			case ResourcePackage.BUFFER__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.TEXTURE__FILE:
-				return file != null;
-			case ResourcePackage.TEXTURE__MIPMAP_ENABLED:
-				return mipmapEnabled != MIPMAP_ENABLED_EDEFAULT;
+			case ResourcePackage.BUFFER__SIZE:
+				return size != SIZE_EDEFAULT;
+			case ResourcePackage.BUFFER__USAGE:
+				return usage != USAGE_EDEFAULT;
+			case ResourcePackage.BUFFER__PROPERTIES:
+				return properties != PROPERTIES_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -360,10 +380,14 @@ public class TextureImpl extends MinimalEObjectImpl.Container implements Texture
 		result.append(descriptorType);
 		result.append(", shaderStages: ");
 		result.append(shaderStages);
-		result.append(", mipmapEnabled: ");
-		result.append(mipmapEnabled);
+		result.append(", size: ");
+		result.append(size);
+		result.append(", usage: ");
+		result.append(usage);
+		result.append(", properties: ");
+		result.append(properties);
 		result.append(')');
 		return result.toString();
 	}
 
-} //TextureImpl
+} //BufferImpl

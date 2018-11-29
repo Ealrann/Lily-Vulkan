@@ -1,5 +1,7 @@
 package org.sheepy.vulkan.gameoflife.compute;
 
+import org.sheepy.common.api.types.SVector2i;
+
 public class Board
 {
 	private final int width;
@@ -49,9 +51,9 @@ public class Board
 		return values;
 	}
 	
-	public static Board createTestBoard(int width, int height)
+	public static Board createTestBoard(SVector2i size)
 	{
-		Board board = new Board(width, height);
+		Board board = new Board(size.x, size.y);
 
 		// Create little spaceshift
 		board.activate(0, 200);

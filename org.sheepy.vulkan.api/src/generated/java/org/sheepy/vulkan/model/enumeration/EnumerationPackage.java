@@ -76,6 +76,16 @@ public interface EnumerationPackage extends EPackage
 	int ECULL_MODE = 1;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EDescriptorType <em>EDescriptor Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.enumeration.EDescriptorType
+	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEDescriptorType()
+	 * @generated
+	 */
+	int EDESCRIPTOR_TYPE = 2;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,7 +93,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFrontFace()
 	 * @generated
 	 */
-	int EFRONT_FACE = 2;
+	int EFRONT_FACE = 3;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ECommandStage <em>ECommand Stage</em>}' enum.
@@ -93,7 +103,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECommandStage()
 	 * @generated
 	 */
-	int ECOMMAND_STAGE = 3;
+	int ECOMMAND_STAGE = 4;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp <em>EAttachment Load Op</em>}' enum.
@@ -103,7 +113,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentLoadOp()
 	 * @generated
 	 */
-	int EATTACHMENT_LOAD_OP = 4;
+	int EATTACHMENT_LOAD_OP = 5;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ELogicOp <em>ELogic Op</em>}' enum.
@@ -113,7 +123,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getELogicOp()
 	 * @generated
 	 */
-	int ELOGIC_OP = 5;
+	int ELOGIC_OP = 6;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp <em>EAttachment Store Op</em>}' enum.
@@ -123,7 +133,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentStoreOp()
 	 * @generated
 	 */
-	int EATTACHMENT_STORE_OP = 6;
+	int EATTACHMENT_STORE_OP = 7;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EShaderStage <em>EShader Stage</em>}' enum.
@@ -133,7 +143,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEShaderStage()
 	 * @generated
 	 */
-	int ESHADER_STAGE = 7;
+	int ESHADER_STAGE = 8;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EBlendFactor <em>EBlend Factor</em>}' enum.
@@ -143,7 +153,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBlendFactor()
 	 * @generated
 	 */
-	int EBLEND_FACTOR = 8;
+	int EBLEND_FACTOR = 9;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EDynamicState <em>EDynamic State</em>}' enum.
@@ -153,7 +163,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEDynamicState()
 	 * @generated
 	 */
-	int EDYNAMIC_STATE = 9;
+	int EDYNAMIC_STATE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EBlendOp <em>EBlend Op</em>}' enum.
@@ -163,7 +173,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBlendOp()
 	 * @generated
 	 */
-	int EBLEND_OP = 10;
+	int EBLEND_OP = 11;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}' enum.
@@ -173,7 +183,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPipelineStage()
 	 * @generated
 	 */
-	int EPIPELINE_STAGE = 11;
+	int EPIPELINE_STAGE = 12;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}' enum.
@@ -183,7 +193,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEColorSpace()
 	 * @generated
 	 */
-	int ECOLOR_SPACE = 12;
+	int ECOLOR_SPACE = 13;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EFormat <em>EFormat</em>}' enum.
@@ -193,7 +203,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFormat()
 	 * @generated
 	 */
-	int EFORMAT = 13;
+	int EFORMAT = 14;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}' enum.
@@ -203,7 +213,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPresentMode()
 	 * @generated
 	 */
-	int EPRESENT_MODE = 14;
+	int EPRESENT_MODE = 15;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPolygonMode <em>EPolygon Mode</em>}' enum.
@@ -213,7 +223,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPolygonMode()
 	 * @generated
 	 */
-	int EPOLYGON_MODE = 15;
+	int EPOLYGON_MODE = 16;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}' enum.
@@ -223,7 +233,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageUsage()
 	 * @generated
 	 */
-	int EIMAGE_USAGE = 16;
+	int EIMAGE_USAGE = 17;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.
@@ -233,7 +243,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESampleCount()
 	 * @generated
 	 */
-	int ESAMPLE_COUNT = 17;
+	int ESAMPLE_COUNT = 18;
 
 
 	/**
@@ -255,6 +265,16 @@ public interface EnumerationPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getECullMode();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EDescriptorType <em>EDescriptor Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EDescriptor Type</em>'.
+	 * @see org.sheepy.vulkan.model.enumeration.EDescriptorType
+	 * @generated
+	 */
+	EEnum getEDescriptorType();
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}'.
@@ -458,6 +478,16 @@ public interface EnumerationPackage extends EPackage
 		 * @generated
 		 */
 		EEnum ECULL_MODE = eINSTANCE.getECullMode();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EDescriptorType <em>EDescriptor Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.enumeration.EDescriptorType
+		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEDescriptorType()
+		 * @generated
+		 */
+		EEnum EDESCRIPTOR_TYPE = eINSTANCE.getEDescriptorType();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}' enum.

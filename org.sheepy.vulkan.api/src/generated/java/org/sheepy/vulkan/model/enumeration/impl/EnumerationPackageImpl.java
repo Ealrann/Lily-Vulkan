@@ -14,6 +14,7 @@ import org.sheepy.vulkan.model.enumeration.EBlendOp;
 import org.sheepy.vulkan.model.enumeration.EColorSpace;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
+import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EDynamicState;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
@@ -49,6 +50,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eCullModeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eDescriptorTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -250,6 +258,16 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getEDescriptorType()
+	{
+		return eDescriptorTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getEFrontFace()
 	{
 		return eFrontFaceEEnum;
@@ -437,6 +455,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		// Create enums
 		eImageLayoutEEnum = createEEnum(EIMAGE_LAYOUT);
 		eCullModeEEnum = createEEnum(ECULL_MODE);
+		eDescriptorTypeEEnum = createEEnum(EDESCRIPTOR_TYPE);
 		eFrontFaceEEnum = createEEnum(EFRONT_FACE);
 		eCommandStageEEnum = createEEnum(ECOMMAND_STAGE);
 		eAttachmentLoadOpEEnum = createEEnum(EATTACHMENT_LOAD_OP);
@@ -497,6 +516,19 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eCullModeEEnum, ECullMode.FRONT_BIT);
 		addEEnumLiteral(eCullModeEEnum, ECullMode.BACK_BIT);
 		addEEnumLiteral(eCullModeEEnum, ECullMode.FRONT_AND_BACK);
+
+		initEEnum(eDescriptorTypeEEnum, EDescriptorType.class, "EDescriptorType");
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.SAMPLER);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.COMBINED_IMAGE_SAMPLER);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.SAMPLED_IMAGE);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.STORAGE_IMAGE);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.UNIFORM_TEXEL_BUFFER);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.STORAGE_TEXEL_BUFFER);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.UNIFORM_BUFFER);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.STORAGE_BUFFER);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.UNIFORM_BUFFER_DYNAMIC);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.STORAGE_BUFFER_DYNAMIC);
+		addEEnumLiteral(eDescriptorTypeEEnum, EDescriptorType.INPUT_ATTACHMENT);
 
 		initEEnum(eFrontFaceEEnum, EFrontFace.class, "EFrontFace");
 		addEEnumLiteral(eFrontFaceEEnum, EFrontFace.COUNTER_CLOCKWISE);

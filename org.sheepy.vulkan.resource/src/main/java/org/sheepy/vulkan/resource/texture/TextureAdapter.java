@@ -22,9 +22,9 @@ import org.sheepy.vulkan.model.resource.Texture;
 import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.BufferBackend;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
+import org.sheepy.vulkan.resource.image.ImageBackend;
 import org.sheepy.vulkan.resource.image.ImageInfo;
 import org.sheepy.vulkan.resource.image.ImageView;
-import org.sheepy.vulkan.resource.image.ImageBackend;
 import org.sheepy.vulkan.resource.util.STBImageLoader;
 
 public class TextureAdapter extends PipelineResourceAdapter implements IDescriptorAdapter
@@ -50,20 +50,16 @@ public class TextureAdapter extends PipelineResourceAdapter implements IDescript
 		final BufferBackend buffer = imageLoader.getBuffer();
 		width = imageLoader.getWidth();
 		height = imageLoader.getHeight();
+		int format = VK_FORMAT_R8G8B8A8_UNORM;
+		int usage = VK_IMAGE_USAGE_TRANSFER_SRC_BIT
+				| VK_IMAGE_USAGE_TRANSFER_DST_BIT
+				| VK_IMAGE_USAGE_SAMPLED_BIT;
 		mipLevels = 1;
 		if (texture.isMipmapEnabled())
 			mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
 
-		final ImageInfo imageInfo = new ImageInfo();
-		imageInfo.setWidth(width);
-		imageInfo.setHeight(height);
-		imageInfo.setFormat(VK_FORMAT_R8G8B8A8_UNORM);
-		imageInfo.setMipLevels(mipLevels);
-		imageInfo.setTiling(VK_IMAGE_TILING_OPTIMAL);
-		imageInfo.setUsage(VK_IMAGE_USAGE_TRANSFER_SRC_BIT
-				| VK_IMAGE_USAGE_TRANSFER_DST_BIT
-				| VK_IMAGE_USAGE_SAMPLED_BIT);
-		imageInfo.setProperties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		final ImageInfo imageInfo = new ImageInfo(width, height, format, usage,
+				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, VK_IMAGE_TILING_OPTIMAL, mipLevels);
 
 		imageBackend = new ImageBackend(logicalDevice, imageInfo);
 		imageBackend.allocate(stack);
@@ -72,7 +68,7 @@ public class TextureAdapter extends PipelineResourceAdapter implements IDescript
 		imageView = new ImageView(logicalDevice.getVkDevice());
 		sampler = new Sampler(logicalDevice, true);
 
-		imageView.load(imageId, mipLevels, VK_FORMAT_R8G8B8A8_UNORM, VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView.load(imageId, mipLevels, format, VK_IMAGE_ASPECT_COLOR_BIT);
 		sampler.load(0, mipLevels);
 
 		final SingleTimeCommand stc = new SingleTimeCommand(context)

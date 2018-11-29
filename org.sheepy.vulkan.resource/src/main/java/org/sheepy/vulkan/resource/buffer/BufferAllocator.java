@@ -64,11 +64,7 @@ public class BufferAllocator
 													int usage,
 													int properties)
 	{
-		final BufferInfo bufferInfo = new BufferInfo();
-		bufferInfo.size = size;
-		bufferInfo.usage = usage;
-		bufferInfo.properties = properties;
-
+		final var bufferInfo = new BufferInfo(size, usage, properties);
 		final var res = new BufferBackend(logicalDevice, bufferInfo);
 		res.allocate(stack);
 

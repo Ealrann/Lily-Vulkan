@@ -3,8 +3,7 @@ package org.sheepy.vulkan.gameoflife.model;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.common.api.types.SVector2i;
-import org.sheepy.vulkan.gameoflife.model.impl.BoardBufferImpl;
-import org.sheepy.vulkan.gameoflife.model.impl.BoardImageImpl;
+import org.sheepy.vulkan.gameoflife.compute.Board;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -38,7 +37,9 @@ import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
+import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.IDescriptor;
+import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.ModuleResource;
 import org.sheepy.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.resource.impl.BasicDescriptorSetImpl;
@@ -53,11 +54,12 @@ public class ModelFactory
 	public final VulkanApplication application = new VulkanApplicationImpl();
 	public final GraphicProcessPool imageProcessPool;
 	public ComputeProcessPool computeProcessPool;
-	private BoardImage boardImage;
+	private Image boardImage;
+	private final SVector2i size;
 
 	public ModelFactory(int width, int height)
 	{
-		final SVector2i size = new SVector2i(width, height);
+		size = new SVector2i(width, height);
 
 		application.setTitle("Vulkan - Game of Life");
 		application.setSize(size);
@@ -151,9 +153,10 @@ public class ModelFactory
 		life2pixelShader.setFile(life2pixelShaderFile);
 		life2pixelShader.setStage(EShaderStage.COMPUTE_BIT);
 
-		BoardBuffer boardBuffer1 = new BoardBufferImpl();
-		BoardBuffer boardBuffer2 = new BoardBufferImpl();
-		boardImage = new BoardImageImpl();
+		Board board = Board.createTestBoard(size);
+		Buffer boardBuffer1 = BoardBufferFactory.createBoardBuffer(board);
+		Buffer boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
+		boardImage = BoardImageFactory.createBoardImage(size);
 
 		Computer lifeComputer1 = createComputer(lifeShader);
 		Computer pixelComputer1 = createComputer(life2pixelShader);

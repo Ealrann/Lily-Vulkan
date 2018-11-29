@@ -43,15 +43,15 @@ public class ImageBackend
 
 	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		final var properties = info.getProperties();
+		final var properties = info.properties;
 		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, imageId, properties);
 		return VkMemoryAllocator.allocateFromImage(stack, allocationInfo);
 	}
 
 	public void fillWithBuffer(VkCommandBuffer commandBuffer, long bufferId)
 	{
-		final int width = info.getWidth();
-		final int height = info.getHeight();
+		final int width = info.width;
+		final int height = info.height;
 
 		final VkBufferImageCopy.Buffer region = VkBufferImageCopy.calloc(1);
 		region.bufferOffset(0);
@@ -79,7 +79,7 @@ public class ImageBackend
 										int dstAccessMask)
 	{
 		ImageBarrierExecutor.execute(commandBuffer, srcStage, dstStage, srcLayout, dstLayout,
-				srcAccessMask, dstAccessMask, imageId, info.getFormat(), info.getMipLevels());
+				srcAccessMask, dstAccessMask, imageId, info.format, info.mipLevels);
 	}
 
 	public void free()

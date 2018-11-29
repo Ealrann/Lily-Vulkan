@@ -9,6 +9,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage
 
 import java.lang.Module
 import org.sheepy.vulkan.model.enumeration.EImageLayout
+import org.sheepy.vulkan.model.enumeration.EDescriptorType
+import org.sheepy.vulkan.model.enumeration.EFormat
 
 
 interface Resource
@@ -23,19 +25,31 @@ interface PipelineResource extends IDescriptor, Resource
 {
 }
 
-//class Buffer extends PipelineResource
-//{
-//	long size
-//	int usage
-//	int properties
-//}
-
-interface SizedBuffer extends PipelineResource
+class Buffer extends PipelineResource
 {
+	long size
+	int usage
+	int properties
 }
 
-abstract class Image extends SizedBuffer
+class Image extends PipelineResource
 {
+	int width
+	int height
+	EFormat format
+	int usage
+	int properties
+	int tiling = "0"
+	int mipLevels = "1"
+	
+	contains ImageLayout initialLayout
+}
+
+class ImageLayout
+{
+	EPipelineStage stage
+	EImageLayout layout
+	int access
 }
 
 class Texture extends PipelineResource
@@ -52,6 +66,8 @@ abstract class PushConstant extends PipelineResource
 
 interface IDescriptor
 {
+	EDescriptorType descriptorType
+	EShaderStage[] shaderStages
 }
 
 interface DescriptorSet

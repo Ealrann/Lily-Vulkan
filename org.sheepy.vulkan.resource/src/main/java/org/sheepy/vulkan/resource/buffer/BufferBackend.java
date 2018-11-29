@@ -64,6 +64,11 @@ public class BufferBackend
 		vkUnmapMemory(device, bufferMemoryId);
 		MemoryUtil.memFree(pBuffer);
 	}
+	
+	public BufferInfo getInfos()
+	{
+		return bufferInfo;
+	}
 
 	public long getId()
 	{

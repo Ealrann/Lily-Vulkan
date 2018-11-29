@@ -14,11 +14,3 @@ dependencies {
 if (project.hasProperty('javaModule')) {
 	javaModule.name = 'org.sheepy.vulkan.gameoflife'
 }
-
-sourceSets {
-	main {
-		java.srcDirs = ['src/generated/java',
-			'src/main/java']
-		resources.srcDirs = ['src/main/resources']
-	}
-}

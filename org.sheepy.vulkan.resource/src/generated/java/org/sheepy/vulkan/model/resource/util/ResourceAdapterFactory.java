@@ -90,14 +90,19 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createPipelineResourceAdapter();
 			}
 			@Override
-			public Adapter caseSizedBuffer(SizedBuffer object)
+			public Adapter caseBuffer(Buffer object)
 			{
-				return createSizedBufferAdapter();
+				return createBufferAdapter();
 			}
 			@Override
 			public Adapter caseImage(Image object)
 			{
 				return createImageAdapter();
+			}
+			@Override
+			public Adapter caseImageLayout(ImageLayout object)
+			{
+				return createImageLayoutAdapter();
 			}
 			@Override
 			public Adapter caseTexture(Texture object)
@@ -247,16 +252,16 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.SizedBuffer <em>Sized Buffer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Buffer <em>Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.SizedBuffer
+	 * @see org.sheepy.vulkan.model.resource.Buffer
 	 * @generated
 	 */
-	public Adapter createSizedBufferAdapter()
+	public Adapter createBufferAdapter()
 	{
 		return null;
 	}
@@ -272,6 +277,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ImageLayout <em>Image Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.ImageLayout
+	 * @generated
+	 */
+	public Adapter createImageLayoutAdapter()
 	{
 		return null;
 	}

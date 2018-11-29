@@ -32,7 +32,8 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
+		final var executionManager = IExecutionManagerAdapter.adapt(target)
+				.getExecutionManager(target);
 		depthFormat = findDepthFormat(executionManager.getPhysicalDevice());
 
 		createDepthImage(executionManager.getLogicalDevice());
@@ -56,19 +57,13 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 
 	private void createDepthImage(LogicalDevice logicalDevice)
 	{
-		final var vulkanApp = ModelUtil.getVulkanApplication(target);
+		var vulkanApp = ModelUtil.getVulkanApplication(target);
 		size = vulkanApp.getSize();
-		final int width = size.getX();
-		final int height = size.getY();
-
-		final ImageInfo depthImageInfo = new ImageInfo();
-		depthImageInfo.setWidth(width);
-		depthImageInfo.setHeight(height);
-		depthImageInfo.setFormat(depthFormat);
-		depthImageInfo.setMipLevels(1);
-		depthImageInfo.setTiling(VK_IMAGE_TILING_OPTIMAL);
-		depthImageInfo.setUsage(VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT);
-		depthImageInfo.setProperties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		int width = size.getX();
+		int height = size.getY();
+		int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+		var depthImageInfo = new ImageInfo(width, height, depthFormat, usage,
+				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
 		depthImageBackend = new ImageBackend(logicalDevice, depthImageInfo);
 	}
@@ -76,7 +71,7 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 	private void layoutTransitionOfDepthImage(ExecutionManager context)
 	{
 		final var barrier = new ReferenceImageBarrierImpl();
-		barrier.setImageId(getDepthImageId());
+		barrier.setImageId(depthImageBackend.getId());
 		barrier.setMipLevels(1);
 		barrier.setImageFormat(depthFormat);
 		barrier.setSrcStage(EPipelineStage.TOP_OF_PIPE_BIT);
