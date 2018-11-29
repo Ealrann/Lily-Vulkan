@@ -188,22 +188,13 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_BUFFER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Texture</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_BUFFER__TEXTURE = ResourcePackage.INDEXED_BUFFER_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Mesh Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_BUFFER_FEATURE_COUNT = ResourcePackage.INDEXED_BUFFER_FEATURE_COUNT + 1;
+	int MESH_BUFFER_FEATURE_COUNT = ResourcePackage.INDEXED_BUFFER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Mesh Buffer</em>' class.
@@ -213,53 +204,6 @@ public interface VulkanDemoPackage extends EPackage
 	 * @ordered
 	 */
 	int MESH_BUFFER_OPERATION_COUNT = ResourcePackage.INDEXED_BUFFER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.demo.model.impl.UniformBufferImpl <em>Uniform Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.demo.model.impl.UniformBufferImpl
-	 * @see org.sheepy.vulkan.demo.model.impl.VulkanDemoPackageImpl#getUniformBuffer()
-	 * @generated
-	 */
-	int UNIFORM_BUFFER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIFORM_BUFFER__DESCRIPTOR_TYPE = ResourcePackage.PIPELINE_RESOURCE__DESCRIPTOR_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIFORM_BUFFER__SHADER_STAGES = ResourcePackage.PIPELINE_RESOURCE__SHADER_STAGES;
-
-	/**
-	 * The number of structural features of the '<em>Uniform Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIFORM_BUFFER_FEATURE_COUNT = ResourcePackage.PIPELINE_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Uniform Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIFORM_BUFFER_OPERATION_COUNT = ResourcePackage.PIPELINE_RESOURCE_OPERATION_COUNT + 0;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.demo.model.MeshPipeline <em>Mesh Pipeline</em>}'.
@@ -291,27 +235,6 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 */
 	EClass getMeshBuffer();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.demo.model.MeshBuffer#getTexture <em>Texture</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Texture</em>'.
-	 * @see org.sheepy.vulkan.demo.model.MeshBuffer#getTexture()
-	 * @see #getMeshBuffer()
-	 * @generated
-	 */
-	EReference getMeshBuffer_Texture();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.demo.model.UniformBuffer <em>Uniform Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Uniform Buffer</em>'.
-	 * @see org.sheepy.vulkan.demo.model.UniformBuffer
-	 * @generated
-	 */
-	EClass getUniformBuffer();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -364,24 +287,6 @@ public interface VulkanDemoPackage extends EPackage
 		 * @generated
 		 */
 		EClass MESH_BUFFER = eINSTANCE.getMeshBuffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Texture</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MESH_BUFFER__TEXTURE = eINSTANCE.getMeshBuffer_Texture();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.demo.model.impl.UniformBufferImpl <em>Uniform Buffer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.demo.model.impl.UniformBufferImpl
-		 * @see org.sheepy.vulkan.demo.model.impl.VulkanDemoPackageImpl#getUniformBuffer()
-		 * @generated
-		 */
-		EClass UNIFORM_BUFFER = eINSTANCE.getUniformBuffer();
 
 	}
 

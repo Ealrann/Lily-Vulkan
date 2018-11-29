@@ -5,10 +5,8 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
-import org.sheepy.vulkan.demo.model.UniformBuffer;
 import org.sheepy.vulkan.demo.model.impl.MeshBufferImpl;
 import org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl;
-import org.sheepy.vulkan.demo.model.impl.UniformBufferImpl;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -52,7 +50,7 @@ public class MeshModelFactory
 	public final VulkanApplication application = new VulkanApplicationImpl();
 	public final MeshBuffer meshBuffer = new MeshBufferImpl();
 
-	public final UniformBuffer uniformBuffer;
+	public final UniformBufferManager uniformBufferManager = new UniformBufferManager();
 
 	public MeshModelFactory(MeshConfiguration meshConfiguration)
 	{
@@ -62,15 +60,6 @@ public class MeshModelFactory
 		application.setTitle("Vulkan Triangle");
 		application.setSize(size);
 		application.setDebug(true);
-
-		if (meshConfiguration.buildUniformBuffer == true)
-		{
-			uniformBuffer = new UniformBufferImpl();
-		}
-		else
-		{
-			uniformBuffer = null;
-		}
 
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setColorDomain(new ColorDomainImpl());
@@ -189,8 +178,9 @@ public class MeshModelFactory
 			processPool.setDepthImage(depthImage);
 		}
 
-		if (uniformBuffer != null)
+		if (meshConfiguration.buildUniformBuffer == true)
 		{
+			var uniformBuffer = uniformBufferManager.buffer;
 			descriptorSet.getDescriptors().add(uniformBuffer);
 			processPool.getResources().add(uniformBuffer);
 		}

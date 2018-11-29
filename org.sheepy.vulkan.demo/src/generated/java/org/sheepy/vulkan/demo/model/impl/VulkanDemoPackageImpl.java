@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
-import org.sheepy.vulkan.demo.model.UniformBuffer;
 import org.sheepy.vulkan.demo.model.VulkanDemoFactory;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.model.VulkanPackage;
@@ -40,13 +39,6 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * @generated
 	 */
 	private EClass meshBufferEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass uniformBufferEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -156,27 +148,6 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMeshBuffer_Texture()
-	{
-		return (EReference)meshBufferEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUniformBuffer()
-	{
-		return uniformBufferEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public VulkanDemoFactory getVulkanDemoFactory()
 	{
@@ -207,9 +178,6 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		createEReference(meshPipelineEClass, MESH_PIPELINE__MESH);
 
 		meshBufferEClass = createEClass(MESH_BUFFER);
-		createEReference(meshBufferEClass, MESH_BUFFER__TEXTURE);
-
-		uniformBufferEClass = createEClass(UNIFORM_BUFFER);
 	}
 
 	/**
@@ -247,16 +215,12 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		// Add supertypes to classes
 		meshPipelineEClass.getESuperTypes().add(theGraphicPackage.getGraphicsPipeline());
 		meshBufferEClass.getESuperTypes().add(theResourcePackage.getIndexedBuffer());
-		uniformBufferEClass.getESuperTypes().add(theResourcePackage.getPipelineResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(meshPipelineEClass, MeshPipeline.class, "MeshPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMeshPipeline_Mesh(), this.getMeshBuffer(), null, "mesh", null, 0, 1, MeshPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(meshBufferEClass, MeshBuffer.class, "MeshBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMeshBuffer_Texture(), theResourcePackage.getTexture(), null, "texture", null, 0, 1, MeshBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(uniformBufferEClass, UniformBuffer.class, "UniformBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

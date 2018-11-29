@@ -5,8 +5,7 @@ import org.sheepy.vulkan.api.VulkanApplicationLauncher;
 import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.vulkan.demo.mesh.MeshModelFactory;
-import org.sheepy.vulkan.demo.mesh.UniformBufferAdapter;
-import org.sheepy.vulkan.demo.model.UniformBuffer;
+import org.sheepy.vulkan.demo.mesh.UniformBufferManager;
 import org.sheepy.vulkan.demo.triangle.TriangleMeshBuilder;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
@@ -20,7 +19,7 @@ public class MainRotating
 	private static final int HEIGHT = 600;
 
 	private VulkanApplication application;
-	private UniformBuffer ubo;
+	private UniformBufferManager uniformBufferManager;
 	private long start;
 
 	public static void main(String[] args)
@@ -39,7 +38,7 @@ public class MainRotating
 		final var modelFactory = buildModelFactory();
 
 		application = modelFactory.application;
-		ubo = modelFactory.uniformBuffer;
+		uniformBufferManager = modelFactory.uniformBufferManager;
 
 		var graphicPool = application.getGraphicPool();
 		var applicationAdapter = VulkanApplicationLauncher.launch(application);
@@ -60,7 +59,7 @@ public class MainRotating
 		final long current = System.currentTimeMillis();
 		final float progress = (current - start) / 1000f;
 
-		UniformBufferAdapter.adapt(ubo).update(progress);
+		uniformBufferManager.update(progress);
 	}
 
 	private static MeshModelFactory buildModelFactory()

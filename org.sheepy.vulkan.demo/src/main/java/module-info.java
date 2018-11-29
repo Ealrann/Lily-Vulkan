@@ -1,7 +1,6 @@
 import org.sheepy.common.api.adapter.ISingletonAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshPipelineAdapter;
-import org.sheepy.vulkan.demo.mesh.UniformBufferAdapter;
 
 /**
  *
@@ -19,6 +18,6 @@ module org.sheepy.vulkan.demo {
 	exports org.sheepy.vulkan.demo.model;
 	exports org.sheepy.vulkan.demo.model.impl;
 	
-	provides ISingletonAdapter with MeshAdapter, MeshPipelineAdapter, UniformBufferAdapter;
+	provides ISingletonAdapter with MeshAdapter, MeshPipelineAdapter;
 }
 

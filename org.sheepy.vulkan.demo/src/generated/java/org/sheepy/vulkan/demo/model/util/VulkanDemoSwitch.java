@@ -14,9 +14,7 @@ import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.resource.BasicResource;
-import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
-import org.sheepy.vulkan.model.resource.PipelineResource;
 import org.sheepy.vulkan.model.resource.Resource;
 
 /**
@@ -104,16 +102,6 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanDemoPackage.UNIFORM_BUFFER:
-			{
-				UniformBuffer uniformBuffer = (UniformBuffer)theEObject;
-				T result = caseUniformBuffer(uniformBuffer);
-				if (result == null) result = casePipelineResource(uniformBuffer);
-				if (result == null) result = caseIDescriptor(uniformBuffer);
-				if (result == null) result = caseResource(uniformBuffer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -146,22 +134,6 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseMeshBuffer(MeshBuffer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Uniform Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Uniform Buffer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUniformBuffer(UniformBuffer object)
 	{
 		return null;
 	}
@@ -242,38 +214,6 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseGraphicsPipeline(GraphicsPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIDescriptor(IDescriptor object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pipeline Resource</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePipelineResource(PipelineResource object)
 	{
 		return null;
 	}

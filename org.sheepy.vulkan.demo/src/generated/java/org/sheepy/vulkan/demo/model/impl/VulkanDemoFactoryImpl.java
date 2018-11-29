@@ -66,7 +66,6 @@ public class VulkanDemoFactoryImpl extends EFactoryImpl implements VulkanDemoFac
 		{
 			case VulkanDemoPackage.MESH_PIPELINE: return createMeshPipeline();
 			case VulkanDemoPackage.MESH_BUFFER: return createMeshBuffer();
-			case VulkanDemoPackage.UNIFORM_BUFFER: return createUniformBuffer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,18 +92,6 @@ public class VulkanDemoFactoryImpl extends EFactoryImpl implements VulkanDemoFac
 	{
 		MeshBufferImpl meshBuffer = new MeshBufferImpl();
 		return meshBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public UniformBuffer createUniformBuffer()
-	{
-		UniformBufferImpl uniformBuffer = new UniformBufferImpl();
-		return uniformBuffer;
 	}
 
 	/**

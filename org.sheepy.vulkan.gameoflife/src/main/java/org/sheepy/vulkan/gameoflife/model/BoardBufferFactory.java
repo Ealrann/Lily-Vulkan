@@ -31,7 +31,6 @@ public class BoardBufferFactory
 		res.setSize(byteSize);
 		res.setUsage(usage);
 		res.setProperties(BufferAllocator.DEVICE_LOCAL);
-		
 		res.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
 		res.getShaderStages().add(EShaderStage.COMPUTE_BIT);
 
