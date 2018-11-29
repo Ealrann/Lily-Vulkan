@@ -74,7 +74,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
 				ImageLayout initialLayout = image.getInitialLayout();
-				imageBackend.transitionImageLayout(commandBuffer, EPipelineStage.TRANSFER_BIT,
+				imageBackend.transitionImageLayout(commandBuffer, EPipelineStage.BOTTOM_OF_PIPE_BIT,
 						initialLayout.getStage(), EImageLayout.UNDEFINED, initialLayout.getLayout(),
 						0, initialLayout.getAccess());
 			}
