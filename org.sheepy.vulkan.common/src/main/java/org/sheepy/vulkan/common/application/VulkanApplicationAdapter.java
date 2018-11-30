@@ -110,9 +110,15 @@ public class VulkanApplicationAdapter extends AbstractSingletonAdapter
 			listeningResize = true;
 		}
 	}
+	
+	@Override
+	public void pollEvents()
+	{
+		manager.pollEvents();
+	}
 
 	@Override
-	public void prepare()
+	public void preparePools()
 	{
 		manager.prepare();
 	}

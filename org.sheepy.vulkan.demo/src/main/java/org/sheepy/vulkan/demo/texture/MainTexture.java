@@ -48,7 +48,7 @@ public class MainTexture
 		while (!applicationAdapter.shouldClose())
 		{
 			updateUniformBuffer();
-			applicationAdapter.prepare();
+			applicationAdapter.preparePools();
 			applicationAdapter.execute(graphicPool);
 			meter.tick();
 		}

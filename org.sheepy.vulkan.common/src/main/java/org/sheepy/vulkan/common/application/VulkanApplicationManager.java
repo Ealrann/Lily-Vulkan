@@ -101,11 +101,14 @@ public class VulkanApplicationManager
 		cleanup();
 		window.close();
 	}
+	
+	public void pollEvents()
+	{
+		Window.pollEvents();
+	}
 
 	public void prepare()
 	{
-		Window.pollEvents();
-
 		boolean needRecord = false;
 
 		if (allocator.isDirty())
@@ -118,6 +121,16 @@ public class VulkanApplicationManager
 			needRecord = true;
 		}
 
+		for (final IComputeProcessPool computePool : application.getComputePools())
+		{
+			final var computePoolAdapter = IProcessPoolAdapter.adapt(computePool);
+
+			if (needRecord || computePoolAdapter.isRecordNeeded())
+			{
+				computePoolAdapter.recordCommands();
+			}
+		}
+
 		final var graphicPool = application.getGraphicPool();
 		if (graphicPool != null)
 		{
@@ -126,16 +139,6 @@ public class VulkanApplicationManager
 			if (needRecord || graphicPoolAdapter.isRecordNeeded())
 			{
 				graphicPoolAdapter.recordCommands();
-			}
-		}
-
-		for (final IComputeProcessPool computePool : application.getComputePools())
-		{
-			final var computePoolAdapter = IProcessPoolAdapter.adapt(computePool);
-
-			if (needRecord || computePoolAdapter.isRecordNeeded())
-			{
-				computePoolAdapter.recordCommands();
 			}
 		}
 	}

@@ -8,7 +8,9 @@ public interface IVulkanApplicationAdapter extends IVulkanAdapter, IStatefullAda
 {
 	void close();
 	
-	void prepare();
+	void pollEvents();
+
+	void preparePools();
 	
 	void execute(IProcessPool processPool);
 	
