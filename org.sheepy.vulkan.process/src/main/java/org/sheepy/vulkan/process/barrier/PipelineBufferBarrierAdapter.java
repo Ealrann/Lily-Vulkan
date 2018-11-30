@@ -53,6 +53,10 @@ public class PipelineBufferBarrierAdapter extends PipelineBarrierAdapter
 	}
 
 	@Override
+	public void setRecordNeeded(boolean value)
+	{}
+
+	@Override
 	public boolean isApplicable(EClass eClass)
 	{
 		return ProcessPackage.Literals.PIPELINE_BUFFER_BARRIER == eClass;

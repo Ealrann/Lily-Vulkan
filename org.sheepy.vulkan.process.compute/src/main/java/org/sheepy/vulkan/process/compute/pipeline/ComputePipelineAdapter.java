@@ -96,8 +96,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	@Override
 	public void record(ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
-		super.record(commandBuffer, bindPoint);
-
+		recordDescriptors(commandBuffer, bindPoint);
 		recordComputers(commandBuffer, bindPoint);
 	}
 

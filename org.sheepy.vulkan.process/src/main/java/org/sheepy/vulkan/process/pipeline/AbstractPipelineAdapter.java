@@ -53,6 +53,11 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	@Override
 	public void record(T commandBuffer, int bindPoint)
 	{
+		recordDescriptors(commandBuffer, bindPoint);
+	}
+
+	protected void recordDescriptors(T commandBuffer, int bindPoint)
+	{
 		final DescriptorSet descriptorSet = getDescriptorSet();
 		if (descriptorSet != null)
 		{
@@ -67,8 +72,6 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 			pushConstantAdapter.pushConstants(vkCommandBuffer, pipelineLayout);
 		}
-
-		super.record(commandBuffer, bindPoint);
 	}
 
 	@Override

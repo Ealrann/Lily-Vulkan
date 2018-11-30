@@ -37,6 +37,10 @@ public class PipelineImageBarrierAdapter extends PipelineBarrierAdapter
 	}
 
 	@Override
+	public void setRecordNeeded(boolean value)
+	{}
+
+	@Override
 	public boolean isApplicable(EClass eClass)
 	{
 		return GraphicPackage.Literals.PIPELINE_IMAGE_BARRIER == eClass;

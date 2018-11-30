@@ -42,11 +42,12 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	{
 		for (final IProcessUnit unit : process.getUnits())
 		{
+			final IProcessUnitAdapter<T> adapter = IProcessUnitAdapter.adapt(unit);
 			if (unit.isEnabled() && unit.getStage() == stage)
 			{
-				final IProcessUnitAdapter<T> adapter = IProcessUnitAdapter.adapt(unit);
 				adapter.record(commandBuffer, bindPoint);
 			}
+			adapter.setRecordNeeded(false);
 		}
 	}
 

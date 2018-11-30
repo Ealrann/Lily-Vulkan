@@ -23,7 +23,7 @@ public class ComputerAdapter extends AbstractSingletonAdapter
 	{
 		computer = (Computer) target;
 	}
-	
+
 	@Override
 	public void record(ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
@@ -41,12 +41,16 @@ public class ComputerAdapter extends AbstractSingletonAdapter
 
 		vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCountX, groupCountY, groupCountZ);
 	}
-	
+
 	@Override
 	public boolean isRecordNeeded()
 	{
 		return false;
 	}
+
+	@Override
+	public void setRecordNeeded(boolean value)
+	{}
 
 	public static ComputerAdapter adapt(Computer object)
 	{

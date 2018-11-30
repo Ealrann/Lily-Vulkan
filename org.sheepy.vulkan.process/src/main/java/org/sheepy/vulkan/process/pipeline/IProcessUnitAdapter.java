@@ -9,6 +9,7 @@ public interface IProcessUnitAdapter<T extends AbstractCommandBuffer>
 		extends IVulkanAdapter
 {
 	boolean isRecordNeeded();
+	void setRecordNeeded(boolean value);
 	
 	void record(T commandBuffer, int bindPoint);
 

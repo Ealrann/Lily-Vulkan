@@ -19,11 +19,11 @@ public abstract class AbstractProcessUnitAdapter<T extends AbstractCommandBuffer
 			recordNeeded = true;
 		}
 	}
-
+	
 	@Override
-	public void record(T commandBuffer, int bindPoint)
+	public void setRecordNeeded(boolean value)
 	{
-		recordNeeded = false;
+		recordNeeded = value;
 	}
 
 	@Override
