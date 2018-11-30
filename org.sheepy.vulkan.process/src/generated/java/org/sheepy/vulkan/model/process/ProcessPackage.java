@@ -282,6 +282,61 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_BARRIER_OPERATION_COUNT = IPROCESS_UNIT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.PipelineBufferBarrierImpl <em>Pipeline Buffer Barrier</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.impl.PipelineBufferBarrierImpl
+	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBufferBarrier()
+	 * @generated
+	 */
+	int PIPELINE_BUFFER_BARRIER = 5;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_BUFFER_BARRIER__ENABLED = PIPELINE_BARRIER__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_BUFFER_BARRIER__STAGE = PIPELINE_BARRIER__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Buffer Barrier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER = PIPELINE_BARRIER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Pipeline Buffer Barrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_BUFFER_BARRIER_FEATURE_COUNT = PIPELINE_BARRIER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Pipeline Buffer Barrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_BUFFER_BARRIER_OPERATION_COUNT = PIPELINE_BARRIER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -289,7 +344,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
 	 * @generated
 	 */
-	int IPIPELINE = 5;
+	int IPIPELINE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -335,7 +390,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 6;
+	int ABSTRACT_PIPELINE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -399,7 +454,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
 	 * @generated
 	 */
-	int ABSTRACT_COMPOSITE_PIPELINE = 7;
+	int ABSTRACT_COMPOSITE_PIPELINE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -593,6 +648,27 @@ public interface ProcessPackage extends EPackage
 	EClass getPipelineBarrier();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.PipelineBufferBarrier <em>Pipeline Buffer Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pipeline Buffer Barrier</em>'.
+	 * @see org.sheepy.vulkan.model.process.PipelineBufferBarrier
+	 * @generated
+	 */
+	EClass getPipelineBufferBarrier();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.PipelineBufferBarrier#getBufferBarrier <em>Buffer Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Buffer Barrier</em>'.
+	 * @see org.sheepy.vulkan.model.process.PipelineBufferBarrier#getBufferBarrier()
+	 * @see #getPipelineBufferBarrier()
+	 * @generated
+	 */
+	EReference getPipelineBufferBarrier_BufferBarrier();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -784,6 +860,24 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EClass PIPELINE_BARRIER = eINSTANCE.getPipelineBarrier();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.PipelineBufferBarrierImpl <em>Pipeline Buffer Barrier</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.impl.PipelineBufferBarrierImpl
+		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBufferBarrier()
+		 * @generated
+		 */
+		EClass PIPELINE_BUFFER_BARRIER = eINSTANCE.getPipelineBufferBarrier();
+
+		/**
+		 * The meta object literal for the '<em><b>Buffer Barrier</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER = eINSTANCE.getPipelineBufferBarrier_BufferBarrier();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.

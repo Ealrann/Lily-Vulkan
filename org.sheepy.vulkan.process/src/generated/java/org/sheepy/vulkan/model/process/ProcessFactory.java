@@ -23,6 +23,15 @@ public interface ProcessFactory extends EFactory
 	ProcessFactory eINSTANCE = org.sheepy.vulkan.model.process.impl.ProcessFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Pipeline Buffer Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pipeline Buffer Barrier</em>'.
+	 * @generated
+	 */
+	PipelineBufferBarrier createPipelineBufferBarrier();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

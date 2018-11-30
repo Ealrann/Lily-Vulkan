@@ -8,6 +8,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.vulkan.model.resource.PushConstant
 import org.sheepy.vulkan.model.resource.DescriptorSet
 import org.sheepy.vulkan.model.resource.Resource
+import org.sheepy.vulkan.model.resource.BufferBarrier
 
 interface Configuration
 {
@@ -36,10 +37,10 @@ abstract class PipelineBarrier extends IProcessUnit
 {
 }
 
-//class PipelineBufferBarrier extends PipelineBarrier
-//{
-//	contains BufferBarrier bufferBarrier
-//}
+class PipelineBufferBarrier extends PipelineBarrier
+{
+	contains BufferBarrier bufferBarrier
+}
 
 interface IPipeline extends IProcessUnit
 {
