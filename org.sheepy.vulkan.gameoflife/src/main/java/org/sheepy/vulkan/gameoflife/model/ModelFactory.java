@@ -180,6 +180,7 @@ public class ModelFactory
 		computeProcessPool.getResources().add(boardBuffer1);
 		computeProcessPool.getResources().add(boardBuffer2);
 		computeProcessPool.getResources().add(boardImage);
+		computeProcessPool.setResetAllowed(true);
 	}
 
 	private static ComputeProcess createProcess(ComputePipeline... pipelines)
