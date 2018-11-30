@@ -119,7 +119,6 @@ public class ImageAdapter extends PipelineResourceAdapter
 	@Override
 	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
 	{
-
 		VkDescriptorImageInfo.Buffer imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
 		imageInfo.imageLayout(VK_IMAGE_LAYOUT_GENERAL);
 		imageInfo.imageView(imageView.getId());
