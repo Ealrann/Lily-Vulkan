@@ -16,10 +16,12 @@ import org.sheepy.vulkan.process.graphic.pipeline.builder.RasterizerBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.ShaderStageBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
 import org.sheepy.vulkan.process.graphic.pool.IGraphicContextAdapter;
+import org.sheepy.vulkan.process.graphic.pool.RenderPass;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
-public abstract class AbstractGraphicsPipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
+public abstract class AbstractGraphicsPipelineAdapter
+		extends AbstractPipelineAdapter<GraphicCommandBuffer>
 {
 	private ShaderStageBuilder shaderStageBuilder;
 	private InputAssemblyBuilder inputAssemblyBuilder;
@@ -30,7 +32,8 @@ public abstract class AbstractGraphicsPipelineAdapter extends AbstractPipelineAd
 	private ColorBlendBuilder colorBlendBuilder;
 	private DynamicStateBuilder dynamicStateBuilder;
 
-	public IVertexBufferDescriptor<?> vertexInputState = null;
+	private RenderPass renderPass;
+	private IVertexBufferDescriptor<?> vertexInputState = null;
 
 	protected long id = -1;
 
@@ -38,14 +41,17 @@ public abstract class AbstractGraphicsPipelineAdapter extends AbstractPipelineAd
 	public void deepAllocate(MemoryStack stack)
 	{
 		super.deepAllocate(stack);
-		
-		createBuilders();    
+
+		createBuilders();
 
 		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
 		final var useDepthBuffer = context.graphicProcessPool.getDepthImage() != null;
 		final var device = context.getVkDevice();
 		final var pipeline = (IGraphicsPipeline) target;
 		var swapchain = context.swapChainManager;
+
+		renderPass = context.renderPass;
+		dependencies.add(renderPass);
 
 		vertexInputState = getVertexBufferDescriptor();
 
@@ -79,13 +85,13 @@ public abstract class AbstractGraphicsPipelineAdapter extends AbstractPipelineAd
 		{
 			pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo(colorBlend));
 		}
-		
+
 		var dynamicState = pipeline.getDynamicState();
-		if(dynamicState != null)
+		if (dynamicState != null)
 		{
 			pipelineInfo.pDynamicState(dynamicStateBuilder.allocCreateInfo(dynamicState));
 		}
-		
+
 		pipelineInfo.layout(pipelineLayout);
 		pipelineInfo.renderPass(context.renderPass.getId());
 		pipelineInfo.subpass(0);
@@ -110,27 +116,22 @@ public abstract class AbstractGraphicsPipelineAdapter extends AbstractPipelineAd
 
 	private void createBuilders()
 	{
-		shaderStageBuilder = new ShaderStageBuilder();       
-		inputAssemblyBuilder = new InputAssemblyBuilder(); 
-		viewportStateBuilder = new ViewportStateBuilder(); 
-		rasterizerBuilder = new RasterizerBuilder();          
-		depthStencilBuidler = new DepthStencilBuilder();    
-		multisampleBuilder = new MultisampleBuilder();       
-		colorBlendBuilder = new ColorBlendBuilder();          
+		shaderStageBuilder = new ShaderStageBuilder();
+		inputAssemblyBuilder = new InputAssemblyBuilder();
+		viewportStateBuilder = new ViewportStateBuilder();
+		rasterizerBuilder = new RasterizerBuilder();
+		depthStencilBuidler = new DepthStencilBuilder();
+		multisampleBuilder = new MultisampleBuilder();
+		colorBlendBuilder = new ColorBlendBuilder();
 		dynamicStateBuilder = new DynamicStateBuilder();
-	}
-
-	@Override
-	public boolean isDirty()
-	{
-		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
-		return context.renderPass.isDirty();
 	}
 
 	@Override
 	public void free()
 	{
 		vertexInputState.free();
+
+		dependencies.remove(renderPass);
 
 		super.free();
 	}

@@ -26,14 +26,14 @@ public class BufferAdapter extends PipelineResourceAdapter
 
 	private IBufferLoader loader = null;
 	private ExecutionManager executionManager;
-	
+
 	@Override
 	public void setTarget(Notifier target)
 	{
 		this.buffer = (Buffer) target;
 		super.setTarget(target);
 	}
-	
+
 	public void setLoader(IBufferLoader loader)
 	{
 		this.loader = loader;
@@ -45,18 +45,18 @@ public class BufferAdapter extends PipelineResourceAdapter
 		executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
 		var logicalDevice = executionManager.logicalDevice;
 		var info = new BufferInfo(buffer);
-		
+
 		bufferBackend = new BufferBackend(logicalDevice, info);
 		bufferBackend.allocate(stack);
-		
+
 		load();
-		
+
 		dirty = false;
 	}
-	
+
 	public void load()
 	{
-		if(loader != null)
+		if (loader != null)
 		{
 			loader.load(executionManager, bufferBackend);
 		}
@@ -88,11 +88,11 @@ public class BufferAdapter extends PipelineResourceAdapter
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
 		int stages = 0;
-		for(EShaderStage stage : buffer.getShaderStages())
+		for (EShaderStage stage : buffer.getShaderStages())
 		{
 			stages |= stage.getValue();
 		}
-		
+
 		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(buffer.getDescriptorType().getValue());
 		res.descriptorCount(getDescriptorCount());
@@ -145,7 +145,7 @@ public class BufferAdapter extends PipelineResourceAdapter
 	{
 		return ServiceAdapterFactory.INSTANCE.adapt(buffer, BufferAdapter.class);
 	}
-	
+
 	@Override
 	public boolean isApplicable(EClass eClass)
 	{

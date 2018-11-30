@@ -9,13 +9,13 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Shader;
+import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.file.PathResourceAdapter;
 
-public class ShaderAdapter extends AbstractFlatAllocableAdapter
+public class ShaderAdapter extends ResourceAdapter
 {
 	private static ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memUTF8("main");
 

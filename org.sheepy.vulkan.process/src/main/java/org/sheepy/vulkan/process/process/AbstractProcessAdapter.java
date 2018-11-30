@@ -36,7 +36,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	{
 		for (final IProcessUnit unit : process.getUnits())
 		{
-			if (unit.getStage() == stage)
+			if (unit.isEnabled() && unit.getStage() == stage)
 			{
 				final IProcessUnitAdapter<T> adapter = IProcessUnitAdapter.adapt(unit);
 				adapter.record(commandBuffer, bindPoint);

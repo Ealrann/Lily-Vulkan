@@ -3,16 +3,21 @@ package org.sheepy.vulkan.process.pipeline;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.vulkan.common.allocation.IAllocable;
 import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractDeepAllocableAdapter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.IPipeline;
+import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.resource.buffer.AbstractPushConstantAdapter;
@@ -25,11 +30,37 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 
 	protected IPipeline pipeline = null;
 
+	protected boolean dirty = false;
+
+	protected List<IAllocable> dependencies = new ArrayList<>();
+
+	@Override
+	public void notifyChanged(Notification notification)
+	{
+		if (notification.getFeature() == ProcessPackage.Literals.IPROCESS_UNIT__ENABLED)
+		{
+			dirty = true;
+		}
+	}
+
 	@Override
 	public void setTarget(Notifier target)
 	{
 		pipeline = (IPipeline) target;
 		super.setTarget(target);
+	}
+
+	@Override
+	public final boolean isDirty()
+	{
+		for (IAllocable dependency : dependencies)
+		{
+			if (dependency.isDirty())
+			{
+				return true;
+			}
+		}
+		return dirty;
 	}
 
 	@Override
@@ -49,6 +80,8 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 			pushConstantAdapter.pushConstants(vkCommandBuffer, pipelineLayout);
 		}
+
+		dirty = false;
 	}
 
 	@Override
@@ -66,7 +99,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		if (descriptorSet != null)
 		{
 			final var descriptorSetAdapter = IDescriptorSetAdapter.adapt(descriptorSet);
-			if(descriptorSetAdapter.getDescriptors().isEmpty() == false)
+			if (descriptorSetAdapter.getDescriptors().isEmpty() == false)
 			{
 				// Create Pipeline Layout
 				// -----------------------
@@ -105,6 +138,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice(pipeline);
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);
 
+		dependencies.clear();
 		pipelineLayout = -1;
 	}
 
@@ -112,11 +146,11 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	{
 		return pipelineLayout;
 	}
-	
+
 	protected abstract PushConstant getPushConstant();
-	
+
 	protected abstract DescriptorSet getDescriptorSet();
-	
+
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractPipelineAdapter<T> adapt(IPipeline object)
 	{

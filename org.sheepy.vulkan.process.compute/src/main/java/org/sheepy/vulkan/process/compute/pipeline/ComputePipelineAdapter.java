@@ -22,8 +22,6 @@ import org.sheepy.vulkan.resource.shader.ShaderAdapter;
 
 public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeCommandBuffer>
 {
-	protected boolean dirty = false;
-
 	private int groupCountX;
 	private int groupCountY;
 	private int groupCountZ;
@@ -100,11 +98,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	{
 		super.record(commandBuffer, bindPoint);
 
-		if (pipeline.isEnabled())
-		{
-			recordComputers(commandBuffer, bindPoint);
-			dirty = false;
-		}
+		recordComputers(commandBuffer, bindPoint);
 	}
 
 	protected void recordComputers(ComputeCommandBuffer commandBuffer, int bindPoint)
@@ -114,12 +108,6 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 			final var adapter = ComputerAdapter.adapt(computer);
 			adapter.record(commandBuffer, bindPoint);
 		}
-	}
-
-	@Override
-	public boolean isDirty()
-	{
-		return dirty;
 	}
 
 	public int getGroupCountX()

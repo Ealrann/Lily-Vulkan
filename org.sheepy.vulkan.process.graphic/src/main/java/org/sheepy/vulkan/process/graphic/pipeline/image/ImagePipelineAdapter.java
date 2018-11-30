@@ -12,6 +12,7 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.pool.IGraphicContextAdapter;
+import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.resource.image.ImageAdapter;
 
@@ -21,6 +22,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 
 	private InitialImagePipelineBarrier[] initialBarriers;
 	private FinalImagePipelineBarrier finalBarrier;
+	private SwapChainManager swapChainManager;
 
 	@Override
 	public void deepAllocate(MemoryStack stack)
@@ -31,6 +33,9 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		var extent = context.swapChainManager.getExtent();
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
+		
+		swapChainManager = context.swapChainManager;
+		dependencies.add(swapChainManager);
 
 		region = VkImageBlit.calloc(1);
 		region.srcSubresource().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
@@ -74,6 +79,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		{
 			initialBarriers[i].free();
 		}
+		
 		finalBarrier.free();
 		region.free();
 		super.free();
@@ -98,12 +104,6 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 				bltDstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region, VK_FILTER_NEAREST);
 
 		finalBarrier.execute(vkCommandBuffer);
-	}
-
-	@Override
-	public boolean isDirty()
-	{
-		return false;
 	}
 	
 	@Override
