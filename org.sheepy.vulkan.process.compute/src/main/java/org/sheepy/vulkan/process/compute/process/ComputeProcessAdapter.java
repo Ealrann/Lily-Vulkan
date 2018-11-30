@@ -20,12 +20,6 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	{
 		return VK_PIPELINE_BIND_POINT_COMPUTE;
 	}
-
-	@Override
-	public boolean isDirty()
-	{
-		return false;
-	}
 	
 	@Override
 	public boolean isApplicable(EClass eClass)

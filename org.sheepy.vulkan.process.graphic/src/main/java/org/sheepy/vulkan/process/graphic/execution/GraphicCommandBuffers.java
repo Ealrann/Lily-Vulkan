@@ -83,8 +83,8 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
-		return context.framebuffers.isDirty();
+		return context.framebuffers.isAllocationDirty();
 	}
 }

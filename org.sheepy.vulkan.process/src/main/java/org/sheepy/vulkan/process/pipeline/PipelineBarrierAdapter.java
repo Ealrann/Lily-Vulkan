@@ -6,5 +6,9 @@ import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 public abstract class PipelineBarrierAdapter extends AbstractDeepAllocableAdapter
 		implements IProcessUnitAdapter<AbstractCommandBuffer>
 {
-
+	@Override
+	public boolean isAllocationDirty()
+	{
+		return false;
+	}
 }

@@ -7,7 +7,7 @@ public interface IAllocable
 {
 	void free();
 	
-	boolean isDirty();
+	boolean isAllocationDirty();
 	
 	default List<IBasicAllocable> getChildAllocables()
 	{

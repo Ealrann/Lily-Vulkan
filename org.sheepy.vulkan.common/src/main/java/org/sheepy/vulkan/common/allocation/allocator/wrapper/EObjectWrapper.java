@@ -30,9 +30,9 @@ public class EObjectWrapper implements IAllocableWrapper
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
-		return adapter.isDirty();
+		return adapter.isAllocationDirty();
 	}
 
 	@Override

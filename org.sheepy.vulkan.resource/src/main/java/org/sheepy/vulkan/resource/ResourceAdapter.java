@@ -9,7 +9,7 @@ public abstract class ResourceAdapter extends AbstractFlatAllocableAdapter
 	protected boolean dirty = false;
 	
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
 		return dirty;
 	}

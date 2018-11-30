@@ -35,7 +35,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		var srcImage = pipeline.getImage();
 		
 		swapChainManager = context.swapChainManager;
-		dependencies.add(swapChainManager);
+		allocationDependencies.add(swapChainManager);
 
 		region = VkImageBlit.calloc(1);
 		region.srcSubresource().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
@@ -127,5 +127,11 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	protected DescriptorSet getDescriptorSet()
 	{
 		return ((ImagePipeline) target).getDescriptorSet();
+	}
+
+	@Override
+	public boolean isRecordNeeded()
+	{
+		return false;
 	}
 }

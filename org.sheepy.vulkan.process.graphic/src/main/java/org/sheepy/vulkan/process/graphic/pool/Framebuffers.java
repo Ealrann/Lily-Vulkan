@@ -105,8 +105,8 @@ public class Framebuffers implements IBasicAllocable
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
-		return context.swapChainManager.isDirty() || context.imageViewManager.isDirty();
+		return context.swapChainManager.isAllocationDirty() || context.imageViewManager.isAllocationDirty();
 	}
 }

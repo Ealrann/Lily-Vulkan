@@ -51,7 +51,7 @@ public abstract class AbstractGraphicsPipelineAdapter
 		var swapchain = context.swapChainManager;
 
 		renderPass = context.renderPass;
-		dependencies.add(renderPass);
+		allocationDependencies.add(renderPass);
 
 		vertexInputState = getVertexBufferDescriptor();
 
@@ -131,7 +131,7 @@ public abstract class AbstractGraphicsPipelineAdapter
 	{
 		vertexInputState.free();
 
-		dependencies.remove(renderPass);
+		allocationDependencies.remove(renderPass);
 
 		super.free();
 	}

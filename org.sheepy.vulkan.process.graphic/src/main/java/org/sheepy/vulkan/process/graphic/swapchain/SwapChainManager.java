@@ -176,7 +176,7 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
 		return dirty;
 	}

@@ -8,6 +8,8 @@ import org.sheepy.vulkan.model.process.IProcessUnit;
 public interface IProcessUnitAdapter<T extends AbstractCommandBuffer>
 		extends IVulkanAdapter
 {
+	boolean isRecordNeeded();
+	
 	void record(T commandBuffer, int bindPoint);
 
 	@SuppressWarnings("unchecked")
@@ -15,4 +17,5 @@ public interface IProcessUnitAdapter<T extends AbstractCommandBuffer>
 	{
 		return ServiceAdapterFactory.INSTANCE.adapt(object, IProcessUnitAdapter.class);
 	}
+
 }

@@ -102,6 +102,7 @@ public class GraphicProcessPoolAdapter extends AbstractProcessPoolAdapter implem
 
 		Logger.check(vkQueueSubmit(graphicQueue.vkQueue, submitInfo, VK_NULL_HANDLE),
 				FAILED_SUBMIT_GRAPHIC);
+		
 		Logger.check(vkQueuePresentKHR(presentQueue.vkQueue, presentInfo), FAILED_SUBMIT_PRESENT);
 
 		presentQueue.waitIdle();

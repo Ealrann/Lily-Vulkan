@@ -41,7 +41,7 @@ public class ResourceManager extends LogicalDeviceContext implements IBasicAlloc
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
 		return false;
 	}

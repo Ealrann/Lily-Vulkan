@@ -40,9 +40,9 @@ public class AllocableWrapper implements IAllocableWrapper
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
-		return allocable.isDirty();
+		return allocable.isAllocationDirty();
 	}
 
 	@Override

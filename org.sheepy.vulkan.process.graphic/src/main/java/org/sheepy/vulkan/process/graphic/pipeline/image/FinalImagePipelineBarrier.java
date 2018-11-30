@@ -67,7 +67,7 @@ public class FinalImagePipelineBarrier implements IBasicAllocable
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
 		return false;
 	}

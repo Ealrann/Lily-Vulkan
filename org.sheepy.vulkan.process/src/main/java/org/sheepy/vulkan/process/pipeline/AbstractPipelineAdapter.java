@@ -6,42 +6,28 @@ import java.nio.LongBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.common.allocation.IAllocable;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractDeepAllocableAdapter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.IPipeline;
-import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.resource.buffer.AbstractPushConstantAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
 
 public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
-		extends AbstractDeepAllocableAdapter implements IProcessUnitAdapter<T>
+		extends AbstractProcessUnitAdapter<T>
 {
 	protected long pipelineLayout = -1;
 
 	protected IPipeline pipeline = null;
 
-	protected boolean dirty = false;
-
-	protected List<IAllocable> dependencies = new ArrayList<>();
-
-	@Override
-	public void notifyChanged(Notification notification)
-	{
-		if (notification.getFeature() == ProcessPackage.Literals.IPROCESS_UNIT__ENABLED)
-		{
-			dirty = true;
-		}
-	}
+	protected List<IAllocable> allocationDependencies = new ArrayList<>();
 
 	@Override
 	public void setTarget(Notifier target)
@@ -51,16 +37,17 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
-	public final boolean isDirty()
+	public final boolean isAllocationDirty()
 	{
-		for (IAllocable dependency : dependencies)
+		for (IAllocable dependency : allocationDependencies)
 		{
-			if (dependency.isDirty())
+			if (dependency.isAllocationDirty())
 			{
 				return true;
 			}
 		}
-		return dirty;
+
+		return false;
 	}
 
 	@Override
@@ -81,7 +68,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 			pushConstantAdapter.pushConstants(vkCommandBuffer, pipelineLayout);
 		}
 
-		dirty = false;
+		super.record(commandBuffer, bindPoint);
 	}
 
 	@Override
@@ -138,7 +125,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice(pipeline);
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);
 
-		dependencies.clear();
+		allocationDependencies.clear();
 		pipelineLayout = -1;
 	}
 

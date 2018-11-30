@@ -19,7 +19,7 @@ public class TreeAllocator implements IAllocator
 	private Deque<IAllocableWrapper> course = new ArrayDeque<>();
 	private Deque<IAllocableWrapper> nextCourse = new ArrayDeque<>();
 
-	private AllocableWrapperPool pool = new AllocableWrapperPool();
+	private final AllocableWrapperPool pool = new AllocableWrapperPool();
 
 	public TreeAllocator(EObject root)
 	{
@@ -74,7 +74,7 @@ public class TreeAllocator implements IAllocator
 		boolean gathered = false;
 		if (element.isAllocable())
 		{
-			if (!onlyDirty || element.isDirty())
+			if (!onlyDirty || element.isAllocationDirty())
 			{
 				gatheredAllocables.add(element);
 				gathered = true;

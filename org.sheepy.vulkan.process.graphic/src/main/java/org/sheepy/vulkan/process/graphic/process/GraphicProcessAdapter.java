@@ -16,12 +16,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	{
 		return VK_PIPELINE_BIND_POINT_GRAPHICS;
 	}
-
-	@Override
-	public boolean isDirty()
-	{
-		return false;
-	}
 	
 	@Override
 	public boolean isApplicable(EClass eClass)

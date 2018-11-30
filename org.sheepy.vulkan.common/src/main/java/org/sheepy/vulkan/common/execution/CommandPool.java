@@ -43,7 +43,7 @@ public class CommandPool implements IBasicAllocable
 	}
 	
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
 		return false;
 	}

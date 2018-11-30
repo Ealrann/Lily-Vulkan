@@ -9,7 +9,10 @@ import org.sheepy.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
 import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractDeepAllocableAdapter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
+import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.AbstractProcessPool;
+import org.sheepy.vulkan.model.process.IProcessUnit;
+import org.sheepy.vulkan.process.pipeline.IProcessUnitAdapter;
 import org.sheepy.vulkan.resource.ResourceManager;
 
 public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAdapter
@@ -19,8 +22,6 @@ public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAd
 
 	protected ExecutionManager executionManager;
 	protected ResourceManager resourceManager;
-
-	private boolean dirty = false;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -38,6 +39,25 @@ public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAd
 	}
 
 	@Override
+	public boolean isRecordNeeded()
+	{
+		boolean res = false;
+		PROCESS_LOOP: for (AbstractProcess process : processPool.getProcesses())
+		{
+			for (IProcessUnit unit : process.getUnits())
+			{
+				var adapter = IProcessUnitAdapter.adapt(unit);
+				if (adapter.isRecordNeeded())
+				{
+					res = true;
+					break PROCESS_LOOP;
+				}
+			}
+		}
+		return res;
+	}
+
+	@Override
 	public void unsetTarget(Notifier oldTarget)
 	{
 		childAllocables.remove(resourceManager);
@@ -49,9 +69,7 @@ public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAd
 
 	@Override
 	public void deepAllocate(MemoryStack stack)
-	{
-		dirty = false;
-	}
+	{}
 
 	@Override
 	public void flatAllocate(MemoryStack stack)
@@ -68,14 +86,9 @@ public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAd
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
-		return dirty;
-	}
-
-	public void setDirty(boolean dirty)
-	{
-		this.dirty = dirty;
+		return false;
 	}
 
 	protected abstract EQueueType getQueueType();

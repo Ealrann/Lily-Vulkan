@@ -156,8 +156,8 @@ public class RenderPass implements IBasicAllocable
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
-		return context.swapChainManager.isDirty();
+		return context.swapChainManager.isAllocationDirty();
 	}
 }

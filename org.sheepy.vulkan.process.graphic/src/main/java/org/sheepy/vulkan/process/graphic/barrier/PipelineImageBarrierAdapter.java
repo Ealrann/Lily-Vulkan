@@ -29,9 +29,9 @@ public class PipelineImageBarrierAdapter extends PipelineBarrierAdapter
 	{
 		barrierExecutor.execute(commandBuffer.getVkCommandBuffer());
 	}
-
+	
 	@Override
-	public boolean isDirty()
+	public boolean isRecordNeeded()
 	{
 		return false;
 	}

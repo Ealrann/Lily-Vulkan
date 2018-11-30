@@ -41,6 +41,12 @@ public class ComputerAdapter extends AbstractSingletonAdapter
 
 		vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCountX, groupCountY, groupCountZ);
 	}
+	
+	@Override
+	public boolean isRecordNeeded()
+	{
+		return false;
+	}
 
 	public static ComputerAdapter adapt(Computer object)
 	{

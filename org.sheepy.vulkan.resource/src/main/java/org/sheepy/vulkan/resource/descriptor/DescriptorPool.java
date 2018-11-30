@@ -78,9 +78,9 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
-		return resourceManager.isDirty();
+		return resourceManager.isAllocationDirty();
 	}
 
 	@Override

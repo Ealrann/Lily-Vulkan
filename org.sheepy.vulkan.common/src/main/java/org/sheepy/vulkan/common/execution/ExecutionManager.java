@@ -46,7 +46,7 @@ public class ExecutionManager extends LogicalDeviceContext implements IBasicAllo
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
 		return false;
 	}

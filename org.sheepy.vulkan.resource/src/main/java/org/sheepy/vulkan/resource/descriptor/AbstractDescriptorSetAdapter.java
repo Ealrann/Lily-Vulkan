@@ -133,7 +133,7 @@ public abstract class AbstractDescriptorSetAdapter extends AbstractStatefullAdap
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
 		return false;
 	}

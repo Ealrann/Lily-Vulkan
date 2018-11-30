@@ -8,6 +8,8 @@ public interface IProcessPoolAdapter extends IVulkanAdapter
 {
 	VulkanQueue getQueue();
 
+	boolean isRecordNeeded();
+	
 	void recordCommands();
 
 	void execute();

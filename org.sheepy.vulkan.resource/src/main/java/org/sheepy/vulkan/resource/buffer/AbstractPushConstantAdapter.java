@@ -11,12 +11,12 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPushConstantRange;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.resource.ResourceAdapter;
 
-public abstract class AbstractPushConstantAdapter extends AbstractFlatAllocableAdapter
+public abstract class AbstractPushConstantAdapter extends ResourceAdapter
 {
 	public ByteBuffer buffer;
 
@@ -57,12 +57,6 @@ public abstract class AbstractPushConstantAdapter extends AbstractFlatAllocableA
 	public void free()
 	{
 		MemoryUtil.memFree(buffer);
-	}
-
-	@Override
-	public boolean isDirty()
-	{
-		return false;
 	}
 
 	@Override

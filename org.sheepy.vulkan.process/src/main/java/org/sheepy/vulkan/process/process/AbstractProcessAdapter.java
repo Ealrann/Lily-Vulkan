@@ -25,6 +25,12 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
+	public final boolean isAllocationDirty()
+	{
+		return false;
+	}
+
+	@Override
 	public void deepAllocate(MemoryStack stack)
 	{}
 

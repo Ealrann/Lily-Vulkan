@@ -97,8 +97,8 @@ public class ProcessSubmission implements ISignalEmitter, IBasicAllocable
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
-		return commandBuffers.isDirty();
+		return commandBuffers.isAllocationDirty();
 	}
 }

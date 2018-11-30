@@ -59,12 +59,6 @@ public class ShaderAdapter extends ResourceAdapter
 	{
 		return shaderBackend.getId();
 	}
-	
-	@Override
-	public boolean isDirty()
-	{
-		return false;
-	}
 
 	@Override
 	public boolean isApplicable(EClass eClass)

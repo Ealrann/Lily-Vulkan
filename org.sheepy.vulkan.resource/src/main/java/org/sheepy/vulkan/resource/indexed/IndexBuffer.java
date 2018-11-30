@@ -156,7 +156,7 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
 		return false;
 	}
