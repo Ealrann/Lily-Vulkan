@@ -2,6 +2,8 @@
  */
 package org.sheepy.vulkan.model.resource;
 
+import java.nio.ByteBuffer;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +17,8 @@ package org.sheepy.vulkan.model.resource;
  *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#isChangeable <em>Changeable</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getData <em>Data</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer()
@@ -100,5 +104,58 @@ public interface Buffer extends PipelineResource
 	 * @generated
 	 */
 	void setProperties(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Changeable</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Changeable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Changeable</em>' attribute.
+	 * @see #setChangeable(boolean)
+	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_Changeable()
+	 * @model default="false" unique="false"
+	 * @generated
+	 */
+	boolean isChangeable();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Buffer#isChangeable <em>Changeable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Changeable</em>' attribute.
+	 * @see #isChangeable()
+	 * @generated
+	 */
+	void setChangeable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Data</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data</em>' attribute.
+	 * @see #setData(ByteBuffer)
+	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_Data()
+	 * @model unique="false" dataType="org.sheepy.vulkan.model.resource.ByteBuffer"
+	 * @generated
+	 */
+	ByteBuffer getData();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Buffer#getData <em>Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data</em>' attribute.
+	 * @see #getData()
+	 * @generated
+	 */
+	void setData(ByteBuffer value);
 
 } // Buffer

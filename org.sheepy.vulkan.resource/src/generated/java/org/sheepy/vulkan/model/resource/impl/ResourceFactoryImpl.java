@@ -2,6 +2,7 @@
  */
 package org.sheepy.vulkan.model.resource.impl;
 
+import java.nio.ByteBuffer;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -93,6 +94,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
+			case ResourcePackage.BYTE_BUFFER:
+				return createByteBufferFromString(eDataType, initialValue);
 			case ResourcePackage.JAVA_MODULE:
 				return createJavaModuleFromString(eDataType, initialValue);
 			default:
@@ -110,6 +113,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
+			case ResourcePackage.BYTE_BUFFER:
+				return convertByteBufferToString(eDataType, instanceValue);
 			case ResourcePackage.JAVA_MODULE:
 				return convertJavaModuleToString(eDataType, instanceValue);
 			default:
@@ -258,6 +263,26 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		ModuleResourceImpl moduleResource = new ModuleResourceImpl();
 		return moduleResource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ByteBuffer createByteBufferFromString(EDataType eDataType, String initialValue)
+	{
+		return (ByteBuffer)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertByteBufferToString(EDataType eDataType, Object instanceValue)
+	{
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

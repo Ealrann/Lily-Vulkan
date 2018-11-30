@@ -11,6 +11,7 @@ import java.lang.Module
 import org.sheepy.vulkan.model.enumeration.EImageLayout
 import org.sheepy.vulkan.model.enumeration.EDescriptorType
 import org.sheepy.vulkan.model.enumeration.EFormat
+import java.nio.ByteBuffer
 
 
 interface Resource
@@ -30,7 +31,12 @@ class Buffer extends PipelineResource
 	long size
 	int usage
 	int properties
+	boolean changeable = "false"
+	
+	ByteBuffer data
 }
+
+type ByteBuffer wraps ByteBuffer
 
 class Image extends PipelineResource
 {

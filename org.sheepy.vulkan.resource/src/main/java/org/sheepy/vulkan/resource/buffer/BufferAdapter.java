@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.resource.buffer;
 
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 
@@ -12,6 +12,7 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -21,10 +22,13 @@ import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 
 public class BufferAdapter extends PipelineResourceAdapter
 {
+	private final int STAGING_USAGE = VK_BUFFER_USAGE_TRANSFER_DST_BIT
+			| VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
+
 	private BufferBackend bufferBackend;
+	private BufferBackend stagingBuffer;
 	private Buffer buffer;
 
-	private IBufferLoader loader = null;
 	private ExecutionManager executionManager;
 
 	@Override
@@ -32,11 +36,6 @@ public class BufferAdapter extends PipelineResourceAdapter
 	{
 		this.buffer = (Buffer) target;
 		super.setTarget(target);
-	}
-
-	public void setLoader(IBufferLoader loader)
-	{
-		this.loader = loader;
 	}
 
 	@Override
@@ -49,16 +48,64 @@ public class BufferAdapter extends PipelineResourceAdapter
 		bufferBackend = new BufferBackend(logicalDevice, info);
 		bufferBackend.allocate(stack);
 
-		load();
+		if (buffer.isChangeable() && bufferBackend.isGPU())
+		{
+			allocateStagingBuffer(stack, logicalDevice, info);
+		}
+
+		ByteBuffer data = buffer.getData();
+		if (data != null)
+		{
+			if (bufferBackend.isGPU() == false)
+			{
+				bufferBackend.pushDataToCPU(data);
+			}
+			else
+			{
+				if (stagingBuffer != null)
+				{
+					bufferBackend.pushDataToGPU(executionManager, stagingBuffer);
+				}
+				else
+				{
+					bufferBackend.pushDataToGPU(stack, executionManager, data);
+				}
+			}
+		}
 
 		dirty = false;
 	}
 
-	public void load()
+	private void allocateStagingBuffer(	MemoryStack stack,
+										LogicalDevice logicalDevice,
+										BufferInfo info)
 	{
-		if (loader != null)
+		if (buffer.getData() != null)
 		{
-			loader.load(executionManager, bufferBackend);
+			stagingBuffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice,
+					info.size, STAGING_USAGE, buffer.getData());
+		}
+		else
+		{
+			stagingBuffer = BufferAllocator.allocateCPUBuffer(stack, logicalDevice, info.size,
+					STAGING_USAGE);
+		}
+	}
+
+	public void pushData(ByteBuffer data)
+	{
+		if (bufferBackend.isGPU())
+		{
+			if (buffer.isChangeable() == false)
+			{
+				new AssertionError("Unchangeable GPU Buffer.").printStackTrace();
+			}
+
+			bufferBackend.pushDataToGPU(executionManager, stagingBuffer);
+		}
+		else
+		{
+			bufferBackend.pushDataToCPU(data);
 		}
 	}
 
@@ -77,11 +124,6 @@ public class BufferAdapter extends PipelineResourceAdapter
 	public long getMemoryId()
 	{
 		return bufferBackend.getMemoryId();
-	}
-
-	public void fillWithBuffer(ByteBuffer byteBuffer)
-	{
-		bufferBackend.fillWithBuffer(byteBuffer);
 	}
 
 	@Override
@@ -150,10 +192,5 @@ public class BufferAdapter extends PipelineResourceAdapter
 	public boolean isApplicable(EClass eClass)
 	{
 		return ResourcePackage.Literals.BUFFER == eClass;
-	}
-
-	public static interface IBufferLoader
-	{
-		void load(ExecutionManager executionManager, BufferBackend backendBuffer);
 	}
 }

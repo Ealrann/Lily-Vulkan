@@ -263,13 +263,31 @@ public interface ResourcePackage extends EPackage
 	int BUFFER__PROPERTIES = PIPELINE_RESOURCE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Changeable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER__CHANGEABLE = PIPELINE_RESOURCE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER__DATA = PIPELINE_RESOURCE_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_FEATURE_COUNT = PIPELINE_RESOURCE_FEATURE_COUNT + 3;
+	int BUFFER_FEATURE_COUNT = PIPELINE_RESOURCE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Buffer</em>' class.
@@ -1235,6 +1253,16 @@ public interface ResourcePackage extends EPackage
 	int MODULE_RESOURCE_OPERATION_COUNT = PATH_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '<em>Byte Buffer</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.nio.ByteBuffer
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
+	 * @generated
+	 */
+	int BYTE_BUFFER = 23;
+
+	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1242,7 +1270,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 23;
+	int JAVA_MODULE = 24;
 
 
 	/**
@@ -1317,6 +1345,28 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getBuffer_Properties();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#isChangeable <em>Changeable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Changeable</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Buffer#isChangeable()
+	 * @see #getBuffer()
+	 * @generated
+	 */
+	EAttribute getBuffer_Changeable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Buffer#getData()
+	 * @see #getBuffer()
+	 * @generated
+	 */
+	EAttribute getBuffer_Data();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Image <em>Image</em>}'.
@@ -1883,6 +1933,17 @@ public interface ResourcePackage extends EPackage
 	EAttribute getModuleResource_Module();
 
 	/**
+	 * Returns the meta object for data type '{@link java.nio.ByteBuffer <em>Byte Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Byte Buffer</em>'.
+	 * @see java.nio.ByteBuffer
+	 * @model instanceClass="java.nio.ByteBuffer"
+	 * @generated
+	 */
+	EDataType getByteBuffer();
+
+	/**
 	 * Returns the meta object for data type '{@link java.lang.Module <em>Java Module</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1980,6 +2041,22 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BUFFER__PROPERTIES = eINSTANCE.getBuffer_Properties();
+
+		/**
+		 * The meta object literal for the '<em><b>Changeable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER__CHANGEABLE = eINSTANCE.getBuffer_Changeable();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER__DATA = eINSTANCE.getBuffer_Data();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
@@ -2442,6 +2519,16 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute MODULE_RESOURCE__MODULE = eINSTANCE.getModuleResource_Module();
+
+		/**
+		 * The meta object literal for the '<em>Byte Buffer</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.nio.ByteBuffer
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
+		 * @generated
+		 */
+		EDataType BYTE_BUFFER = eINSTANCE.getByteBuffer();
 
 		/**
 		 * The meta object literal for the '<em>Java Module</em>' data type.

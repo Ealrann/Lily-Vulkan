@@ -53,7 +53,7 @@ public class BufferAllocator
 															ByteBuffer fillWith)
 	{
 		final var res = allocateBuffer(stack, logicalDevice, size, usage, HOST_VISIBLE);
-		res.fillWithBuffer(fillWith);
+		res.pushDataToCPU(fillWith);
 
 		return res;
 	}

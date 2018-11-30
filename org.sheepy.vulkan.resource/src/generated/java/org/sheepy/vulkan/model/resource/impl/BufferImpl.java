@@ -2,6 +2,7 @@
  */
 package org.sheepy.vulkan.model.resource.impl;
 
+import java.nio.ByteBuffer;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -34,6 +35,8 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#isChangeable <em>Changeable</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -129,6 +132,46 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	 * @ordered
 	 */
 	protected int properties = PROPERTIES_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isChangeable() <em>Changeable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChangeable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHANGEABLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChangeable() <em>Changeable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChangeable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean changeable = CHANGEABLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getData()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ByteBuffer DATA_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getData() <em>Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getData()
+	 * @generated
+	 * @ordered
+	 */
+	protected ByteBuffer data = DATA_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -262,6 +305,52 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isChangeable()
+	{
+		return changeable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setChangeable(boolean newChangeable)
+	{
+		boolean oldChangeable = changeable;
+		changeable = newChangeable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__CHANGEABLE, oldChangeable, changeable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ByteBuffer getData()
+	{
+		return data;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setData(ByteBuffer newData)
+	{
+		ByteBuffer oldData = data;
+		data = newData;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__DATA, oldData, data));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
@@ -277,6 +366,10 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 				return getUsage();
 			case ResourcePackage.BUFFER__PROPERTIES:
 				return getProperties();
+			case ResourcePackage.BUFFER__CHANGEABLE:
+				return isChangeable();
+			case ResourcePackage.BUFFER__DATA:
+				return getData();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -308,6 +401,12 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 			case ResourcePackage.BUFFER__PROPERTIES:
 				setProperties((Integer)newValue);
 				return;
+			case ResourcePackage.BUFFER__CHANGEABLE:
+				setChangeable((Boolean)newValue);
+				return;
+			case ResourcePackage.BUFFER__DATA:
+				setData((ByteBuffer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -337,6 +436,12 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 			case ResourcePackage.BUFFER__PROPERTIES:
 				setProperties(PROPERTIES_EDEFAULT);
 				return;
+			case ResourcePackage.BUFFER__CHANGEABLE:
+				setChangeable(CHANGEABLE_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__DATA:
+				setData(DATA_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -361,6 +466,10 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 				return usage != USAGE_EDEFAULT;
 			case ResourcePackage.BUFFER__PROPERTIES:
 				return properties != PROPERTIES_EDEFAULT;
+			case ResourcePackage.BUFFER__CHANGEABLE:
+				return changeable != CHANGEABLE_EDEFAULT;
+			case ResourcePackage.BUFFER__DATA:
+				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -386,6 +495,10 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 		result.append(usage);
 		result.append(", properties: ");
 		result.append(properties);
+		result.append(", changeable: ");
+		result.append(changeable);
+		result.append(", data: ");
+		result.append(data);
 		result.append(')');
 		return result.toString();
 	}

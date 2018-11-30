@@ -53,9 +53,10 @@ public class UniformBufferManager
 
 		res.setSize(SIZE_OF);
 		res.setUsage(VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT);
-		res.setProperties(BufferAllocator.DEVICE_LOCAL);
+		res.setProperties(BufferAllocator.HOST_VISIBLE);
 		res.setDescriptorType(EDescriptorType.UNIFORM_BUFFER);
 		res.getShaderStages().add(EShaderStage.VERTEX_BIT);
+		res.setChangeable(true);
 
 		stagingBuffer = MemoryUtil.memAlloc(SIZE_OF);
 		stagingValues = new float[48];
@@ -84,7 +85,7 @@ public class UniformBufferManager
 
 		updateStagingBuffer();
 
-		adapter.fillWithBuffer(stagingBuffer);
+		adapter.pushData(stagingBuffer);
 	}
 
 	private void updateStagingBuffer()
