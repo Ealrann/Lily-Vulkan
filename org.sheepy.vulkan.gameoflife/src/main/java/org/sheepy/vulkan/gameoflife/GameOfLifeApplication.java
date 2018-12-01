@@ -47,6 +47,7 @@ public class GameOfLifeApplication
 
 	private void step(IVulkanApplicationAdapter adapter)
 	{
+		adapter.pollEvents();
 		adapter.preparePools();
 
 		while (nextRenderDate > System.currentTimeMillis())

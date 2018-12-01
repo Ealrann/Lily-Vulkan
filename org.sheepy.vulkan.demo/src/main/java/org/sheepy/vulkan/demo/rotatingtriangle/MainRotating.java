@@ -48,6 +48,7 @@ public class MainRotating
 		while (!applicationAdapter.shouldClose())
 		{
 			updateUniformBuffer();
+			applicationAdapter.pollEvents();
 			applicationAdapter.preparePools();
 			applicationAdapter.execute(graphicPool);
 			meter.tick();

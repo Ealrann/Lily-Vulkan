@@ -34,6 +34,7 @@ public class MainTriangle
 		UPSMeter meter = new UPSMeter(2000);
 		while (!applicationAdapter.shouldClose())
 		{
+			applicationAdapter.pollEvents();
 			applicationAdapter.preparePools();
 			applicationAdapter.execute(graphicPool);
 			meter.tick();
