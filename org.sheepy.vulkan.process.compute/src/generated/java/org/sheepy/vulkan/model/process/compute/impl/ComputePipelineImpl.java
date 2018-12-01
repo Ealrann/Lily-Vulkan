@@ -3,22 +3,17 @@
 package org.sheepy.vulkan.model.process.compute.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
-import org.sheepy.vulkan.model.process.compute.Computer;
+import org.sheepy.vulkan.model.process.compute.IComputer;
 import org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl;
 
 /**
@@ -29,7 +24,7 @@ import org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getComputers <em>Computers</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeX <em>Workgroup Size X</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeY <em>Workgroup Size Y</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeZ <em>Workgroup Size Z</em>}</li>
@@ -43,15 +38,14 @@ import org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl;
 public class ComputePipelineImpl extends AbstractPipelineImpl implements ComputePipeline
 {
 	/**
-	 * The cached value of the '{@link #getComputers() <em>Computers</em>}' containment reference list.
+	 * The cached value of the '{@link #getUnits() <em>Units</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getComputers()
+	 * @see #getUnits()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Computer> computers;
-
+	protected EList<IComputer> units;
 	/**
 	 * The default value of the '{@link #getWorkgroupSizeX() <em>Workgroup Size X</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,7 +55,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int WORKGROUP_SIZE_X_EDEFAULT = 32;
-
 	/**
 	 * The cached value of the '{@link #getWorkgroupSizeX() <em>Workgroup Size X</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -71,7 +64,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int workgroupSizeX = WORKGROUP_SIZE_X_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getWorkgroupSizeY() <em>Workgroup Size Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,7 +73,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int WORKGROUP_SIZE_Y_EDEFAULT = 32;
-
 	/**
 	 * The cached value of the '{@link #getWorkgroupSizeY() <em>Workgroup Size Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -91,7 +82,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int workgroupSizeY = WORKGROUP_SIZE_Y_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getWorkgroupSizeZ() <em>Workgroup Size Z</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -101,7 +91,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int WORKGROUP_SIZE_Z_EDEFAULT = 32;
-
 	/**
 	 * The cached value of the '{@link #getWorkgroupSizeZ() <em>Workgroup Size Z</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -111,7 +100,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int workgroupSizeZ = WORKGROUP_SIZE_Z_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -121,7 +109,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int WIDTH_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -131,7 +118,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int width = WIDTH_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -141,7 +127,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int HEIGHT_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -151,7 +136,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int height = HEIGHT_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getDepth() <em>Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -161,7 +145,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected static final int DEPTH_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getDepth() <em>Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -171,7 +154,6 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * @ordered
 	 */
 	protected int depth = DEPTH_EDEFAULT;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,13 +180,13 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Computer> getComputers()
+	public EList<IComputer> getUnits()
 	{
-		if (computers == null)
+		if (units == null)
 		{
-			computers = new EObjectContainmentEList<Computer>(Computer.class, this, ComputePackage.COMPUTE_PIPELINE__COMPUTERS);
+			units = new EObjectContainmentEList<IComputer>(IComputer.class, this, ComputePackage.COMPUTE_PIPELINE__UNITS);
 		}
-		return computers;
+		return units;
 	}
 
 	/**
@@ -355,8 +337,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
-				return ((InternalEList<?>)getComputers()).basicRemove(otherEnd, msgs);
+			case ComputePackage.COMPUTE_PIPELINE__UNITS:
+				return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -371,8 +353,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
-				return getComputers();
+			case ComputePackage.COMPUTE_PIPELINE__UNITS:
+				return getUnits();
 			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
 				return getWorkgroupSizeX();
 			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
@@ -400,9 +382,9 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
-				getComputers().clear();
-				getComputers().addAll((Collection<? extends Computer>)newValue);
+			case ComputePackage.COMPUTE_PIPELINE__UNITS:
+				getUnits().clear();
+				getUnits().addAll((Collection<? extends IComputer>)newValue);
 				return;
 			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
 				setWorkgroupSizeX((Integer)newValue);
@@ -436,8 +418,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
-				getComputers().clear();
+			case ComputePackage.COMPUTE_PIPELINE__UNITS:
+				getUnits().clear();
 				return;
 			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
 				setWorkgroupSizeX(WORKGROUP_SIZE_X_EDEFAULT);
@@ -471,8 +453,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_PIPELINE__COMPUTERS:
-				return computers != null && !computers.isEmpty();
+			case ComputePackage.COMPUTE_PIPELINE__UNITS:
+				return units != null && !units.isEmpty();
 			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
 				return workgroupSizeX != WORKGROUP_SIZE_X_EDEFAULT;
 			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:

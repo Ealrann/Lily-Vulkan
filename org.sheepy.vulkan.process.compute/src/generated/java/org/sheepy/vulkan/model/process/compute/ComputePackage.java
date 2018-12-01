@@ -207,13 +207,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__PUSH_CONSTANT = ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT;
 
 	/**
-	 * The feature id for the '<em><b>Computers</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__COMPUTERS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
+	int COMPUTE_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Workgroup Size X</b></em>' attribute.
@@ -288,6 +288,34 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.compute.IComputer <em>IComputer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.compute.IComputer
+	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getIComputer()
+	 * @generated
+	 */
+	int ICOMPUTER = 3;
+
+	/**
+	 * The number of structural features of the '<em>IComputer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMPUTER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IComputer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMPUTER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -295,25 +323,7 @@ public interface ComputePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputer()
 	 * @generated
 	 */
-	int COMPUTER = 3;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTER__ENABLED = ProcessPackage.IPROCESS_UNIT__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTER__STAGE = ProcessPackage.IPROCESS_UNIT__STAGE;
+	int COMPUTER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Shader</b></em>' reference.
@@ -322,7 +332,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER__SHADER = ProcessPackage.IPROCESS_UNIT_FEATURE_COUNT + 0;
+	int COMPUTER__SHADER = ICOMPUTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Computer</em>' class.
@@ -331,7 +341,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER_FEATURE_COUNT = ProcessPackage.IPROCESS_UNIT_FEATURE_COUNT + 1;
+	int COMPUTER_FEATURE_COUNT = ICOMPUTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Computer</em>' class.
@@ -340,8 +350,44 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER_OPERATION_COUNT = ProcessPackage.IPROCESS_UNIT_OPERATION_COUNT + 0;
+	int COMPUTER_OPERATION_COUNT = ICOMPUTER_OPERATION_COUNT + 0;
 
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputerBufferBarrierImpl <em>Computer Buffer Barrier</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputerBufferBarrierImpl
+	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputerBufferBarrier()
+	 * @generated
+	 */
+	int COMPUTER_BUFFER_BARRIER = 5;
+
+	/**
+	 * The feature id for the '<em><b>Buffer Barrier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTER_BUFFER_BARRIER__BUFFER_BARRIER = ICOMPUTER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Computer Buffer Barrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTER_BUFFER_BARRIER_FEATURE_COUNT = ICOMPUTER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Computer Buffer Barrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTER_BUFFER_BARRIER_OPERATION_COUNT = ICOMPUTER_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.ComputeProcessPool <em>Process Pool</em>}'.
@@ -374,15 +420,15 @@ public interface ComputePackage extends EPackage
 	EClass getComputePipeline();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getComputers <em>Computers</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getUnits <em>Units</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Computers</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePipeline#getComputers()
+	 * @return the meta object for the containment reference list '<em>Units</em>'.
+	 * @see org.sheepy.vulkan.model.process.compute.ComputePipeline#getUnits()
 	 * @see #getComputePipeline()
 	 * @generated
 	 */
-	EReference getComputePipeline_Computers();
+	EReference getComputePipeline_Units();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX <em>Workgroup Size X</em>}'.
@@ -451,6 +497,16 @@ public interface ComputePackage extends EPackage
 	EAttribute getComputePipeline_Depth();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.IComputer <em>IComputer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IComputer</em>'.
+	 * @see org.sheepy.vulkan.model.process.compute.IComputer
+	 * @generated
+	 */
+	EClass getIComputer();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.Computer <em>Computer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -470,6 +526,27 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 */
 	EReference getComputer_Shader();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.ComputerBufferBarrier <em>Computer Buffer Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Computer Buffer Barrier</em>'.
+	 * @see org.sheepy.vulkan.model.process.compute.ComputerBufferBarrier
+	 * @generated
+	 */
+	EClass getComputerBufferBarrier();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.compute.ComputerBufferBarrier#getBufferBarrier <em>Buffer Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Buffer Barrier</em>'.
+	 * @see org.sheepy.vulkan.model.process.compute.ComputerBufferBarrier#getBufferBarrier()
+	 * @see #getComputerBufferBarrier()
+	 * @generated
+	 */
+	EReference getComputerBufferBarrier_BufferBarrier();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -526,12 +603,12 @@ public interface ComputePackage extends EPackage
 		EClass COMPUTE_PIPELINE = eINSTANCE.getComputePipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Computers</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Units</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPUTE_PIPELINE__COMPUTERS = eINSTANCE.getComputePipeline_Computers();
+		EReference COMPUTE_PIPELINE__UNITS = eINSTANCE.getComputePipeline_Units();
 
 		/**
 		 * The meta object literal for the '<em><b>Workgroup Size X</b></em>' attribute feature.
@@ -582,6 +659,16 @@ public interface ComputePackage extends EPackage
 		EAttribute COMPUTE_PIPELINE__DEPTH = eINSTANCE.getComputePipeline_Depth();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.compute.IComputer <em>IComputer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.compute.IComputer
+		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getIComputer()
+		 * @generated
+		 */
+		EClass ICOMPUTER = eINSTANCE.getIComputer();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -598,6 +685,24 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EReference COMPUTER__SHADER = eINSTANCE.getComputer_Shader();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputerBufferBarrierImpl <em>Computer Buffer Barrier</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputerBufferBarrierImpl
+		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputerBufferBarrier()
+		 * @generated
+		 */
+		EClass COMPUTER_BUFFER_BARRIER = eINSTANCE.getComputerBufferBarrier();
+
+		/**
+		 * The meta object literal for the '<em><b>Buffer Barrier</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTER_BUFFER_BARRIER__BUFFER_BARRIER = eINSTANCE.getComputerBufferBarrier_BufferBarrier();
 
 	}
 

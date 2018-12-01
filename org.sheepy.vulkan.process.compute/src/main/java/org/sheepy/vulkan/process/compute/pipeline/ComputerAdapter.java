@@ -14,9 +14,10 @@ import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.vulkan.process.pipeline.IProcessUnitAdapter;
 
 public class ComputerAdapter extends AbstractSingletonAdapter
-		implements IProcessUnitAdapter<ComputeCommandBuffer>, IStatefullAdapter
+		implements IProcessUnitAdapter<ComputeCommandBuffer>, IStatefullAdapter, IComputerAdapter
 {
 	private Computer computer = null;
+	private int index;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -28,7 +29,6 @@ public class ComputerAdapter extends AbstractSingletonAdapter
 	public void record(ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
 		var computePipeline = (ComputePipeline) computer.eContainer();
-		var index = computePipeline.getComputers().indexOf(computer);
 		var pipelineAdapter = ComputePipelineAdapter.adapt(computePipeline);
 
 		var groupCountX = pipelineAdapter.getGroupCountX();
@@ -40,6 +40,11 @@ public class ComputerAdapter extends AbstractSingletonAdapter
 		vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), bindPoint, id);
 
 		vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCountX, groupCountY, groupCountZ);
+	}
+	
+	public void setIndex(int index)
+	{
+		this.index = index;
 	}
 
 	@Override

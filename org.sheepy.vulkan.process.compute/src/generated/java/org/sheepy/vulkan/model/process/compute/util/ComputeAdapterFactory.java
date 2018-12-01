@@ -99,9 +99,19 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 				return createComputePipelineAdapter();
 			}
 			@Override
+			public Adapter caseIComputer(IComputer object)
+			{
+				return createIComputerAdapter();
+			}
+			@Override
 			public Adapter caseComputer(Computer object)
 			{
 				return createComputerAdapter();
+			}
+			@Override
+			public Adapter caseComputerBufferBarrier(ComputerBufferBarrier object)
+			{
+				return createComputerBufferBarrierAdapter();
 			}
 			@Override
 			public Adapter caseIProcessPool(IProcessPool object)
@@ -206,6 +216,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.compute.IComputer <em>IComputer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.compute.IComputer
+	 * @generated
+	 */
+	public Adapter createIComputerAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.compute.Computer <em>Computer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -216,6 +241,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createComputerAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.compute.ComputerBufferBarrier <em>Computer Buffer Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.compute.ComputerBufferBarrier
+	 * @generated
+	 */
+	public Adapter createComputerBufferBarrierAdapter()
 	{
 		return null;
 	}

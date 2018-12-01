@@ -109,11 +109,26 @@ public class ComputeSwitch<T1> extends Switch<T1>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ComputePackage.ICOMPUTER:
+			{
+				IComputer iComputer = (IComputer)theEObject;
+				T1 result = caseIComputer(iComputer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ComputePackage.COMPUTER:
 			{
 				Computer computer = (Computer)theEObject;
 				T1 result = caseComputer(computer);
-				if (result == null) result = caseIProcessUnit(computer);
+				if (result == null) result = caseIComputer(computer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ComputePackage.COMPUTER_BUFFER_BARRIER:
+			{
+				ComputerBufferBarrier computerBufferBarrier = (ComputerBufferBarrier)theEObject;
+				T1 result = caseComputerBufferBarrier(computerBufferBarrier);
+				if (result == null) result = caseIComputer(computerBufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -170,6 +185,22 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IComputer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IComputer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIComputer(IComputer object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Computer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -181,6 +212,22 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseComputer(Computer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Computer Buffer Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Computer Buffer Barrier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseComputerBufferBarrier(ComputerBufferBarrier object)
 	{
 		return null;
 	}

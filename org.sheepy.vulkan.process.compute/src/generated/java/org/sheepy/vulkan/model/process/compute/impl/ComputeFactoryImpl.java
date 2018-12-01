@@ -68,6 +68,7 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 			case ComputePackage.COMPUTE_PROCESS: return createComputeProcess();
 			case ComputePackage.COMPUTE_PIPELINE: return createComputePipeline();
 			case ComputePackage.COMPUTER: return createComputer();
+			case ComputePackage.COMPUTER_BUFFER_BARRIER: return createComputerBufferBarrier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -115,6 +116,17 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	{
 		ComputerImpl computer = new ComputerImpl();
 		return computer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComputerBufferBarrier createComputerBufferBarrier()
+	{
+		ComputerBufferBarrierImpl computerBufferBarrier = new ComputerBufferBarrierImpl();
+		return computerBufferBarrier;
 	}
 
 	/**

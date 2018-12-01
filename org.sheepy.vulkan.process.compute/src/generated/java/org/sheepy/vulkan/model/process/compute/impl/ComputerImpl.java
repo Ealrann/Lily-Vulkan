@@ -3,16 +3,13 @@
 package org.sheepy.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.Computer;
-
 import org.sheepy.vulkan.model.resource.Shader;
 
 /**
@@ -23,8 +20,6 @@ import org.sheepy.vulkan.model.resource.Shader;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputerImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputerImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputerImpl#getShader <em>Shader</em>}</li>
  * </ul>
  *
@@ -32,42 +27,6 @@ import org.sheepy.vulkan.model.resource.Shader;
  */
 public class ComputerImpl extends MinimalEObjectImpl.Container implements Computer
 {
-	/**
-	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isEnabled()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean ENABLED_EDEFAULT = true;
-	/**
-	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isEnabled()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean enabled = ENABLED_EDEFAULT;
-	/**
-	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.RENDER;
-	/**
-	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected ECommandStage stage = STAGE_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getShader() <em>Shader</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -97,52 +56,6 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	protected EClass eStaticClass()
 	{
 		return ComputePackage.Literals.COMPUTER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isEnabled()
-	{
-		return enabled;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEnabled(boolean newEnabled)
-	{
-		boolean oldEnabled = enabled;
-		enabled = newEnabled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__ENABLED, oldEnabled, enabled));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ECommandStage getStage()
-	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStage(ECommandStage newStage)
-	{
-		ECommandStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -198,10 +111,6 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__ENABLED:
-				return isEnabled();
-			case ComputePackage.COMPUTER__STAGE:
-				return getStage();
 			case ComputePackage.COMPUTER__SHADER:
 				if (resolve) return getShader();
 				return basicGetShader();
@@ -219,12 +128,6 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__ENABLED:
-				setEnabled((Boolean)newValue);
-				return;
-			case ComputePackage.COMPUTER__STAGE:
-				setStage((ECommandStage)newValue);
-				return;
 			case ComputePackage.COMPUTER__SHADER:
 				setShader((Shader)newValue);
 				return;
@@ -242,12 +145,6 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__ENABLED:
-				setEnabled(ENABLED_EDEFAULT);
-				return;
-			case ComputePackage.COMPUTER__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
 			case ComputePackage.COMPUTER__SHADER:
 				setShader((Shader)null);
 				return;
@@ -265,33 +162,10 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__ENABLED:
-				return enabled != ENABLED_EDEFAULT;
-			case ComputePackage.COMPUTER__STAGE:
-				return stage != STAGE_EDEFAULT;
 			case ComputePackage.COMPUTER__SHADER:
 				return shader != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (enabled: ");
-		result.append(enabled);
-		result.append(", stage: ");
-		result.append(stage);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ComputerImpl

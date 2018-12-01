@@ -4,12 +4,12 @@
 
 package org.sheepy.vulkan.model.process.compute
 
-import org.sheepy.vulkan.model.resource.Shader
 import org.sheepy.vulkan.model.IComputeProcessPool
+import org.sheepy.vulkan.model.process.AbstractPipeline
 import org.sheepy.vulkan.model.process.AbstractProcess
 import org.sheepy.vulkan.model.process.AbstractProcessPool
-import org.sheepy.vulkan.model.process.AbstractPipeline
-import org.sheepy.vulkan.model.process.IProcessUnit
+import org.sheepy.vulkan.model.resource.Shader
+import org.sheepy.vulkan.model.resource.BufferBarrier
 
 class ComputeProcessPool extends AbstractProcessPool<ComputeProcess>, IComputeProcessPool
 {
@@ -21,7 +21,7 @@ class ComputeProcess extends AbstractProcess
 
 class ComputePipeline extends AbstractPipeline
 {
-	contains Computer[] computers
+	contains IComputer[] units
 	
 	int workgroupSizeX = "32"
 	int workgroupSizeY = "32"
@@ -32,7 +32,16 @@ class ComputePipeline extends AbstractPipeline
 	int depth
 }
 
-class Computer extends IProcessUnit
+interface IComputer
+{
+}
+
+class Computer extends IComputer
 {
 	refers Shader shader
+}
+
+class ComputerBufferBarrier extends IComputer
+{
+	contains BufferBarrier bufferBarrier
 }

@@ -19,6 +19,7 @@ import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.model.process.compute.ComputeProcessPool;
 import org.sheepy.vulkan.model.process.compute.Computer;
+import org.sheepy.vulkan.model.process.compute.IComputer;
 import org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl;
 import org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl;
 import org.sheepy.vulkan.model.process.compute.impl.ComputeProcessPoolImpl;
@@ -193,7 +194,7 @@ public class ModelFactory
 		return process;
 	}
 
-	private ComputePipeline createPipeline(Computer computer, IDescriptor... descriptors)
+	private ComputePipeline createPipeline(IComputer computer, IDescriptor... descriptors)
 	{
 		var descriptorSet = new BasicDescriptorSetImpl();
 		for (IDescriptor descriptor : descriptors)
@@ -202,7 +203,7 @@ public class ModelFactory
 		}
 
 		ComputePipeline res = new ComputePipelineImpl();
-		res.getComputers().add(computer);
+		res.getUnits().add(computer);
 		computeProcessPool.getDescriptorSets().add(descriptorSet);
 		res.setDescriptorSet(descriptorSet);
 		res.setStage(ECommandStage.COMPUTE);
@@ -218,7 +219,6 @@ public class ModelFactory
 	{
 		Computer res = new ComputerImpl();
 		res.setShader(shader);
-		res.setStage(ECommandStage.COMPUTE);
 		return res;
 	}
 }

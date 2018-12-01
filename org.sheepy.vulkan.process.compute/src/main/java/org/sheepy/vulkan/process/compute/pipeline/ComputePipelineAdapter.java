@@ -13,6 +13,7 @@ import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.Computer;
+import org.sheepy.vulkan.model.process.compute.IComputer;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
@@ -44,23 +45,41 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 		var context = IComputeContextAdapter.adapt(target).getComputeContext(target);
 		var device = context.getVkDevice();
-		var computers = pipeline.getComputers();
-		int size = computers.size();
+		var units = pipeline.getUnits();
+		int size = 0;
+
+		for (IComputer unit : units)
+		{
+			if (unit instanceof Computer)
+			{
+				size++;
+			}
+		}
 
 		var pipelineCreateInfos = VkComputePipelineCreateInfo.callocStack(size, stack);
 		var shaderInfo = VkPipelineShaderStageCreateInfo.calloc();
 
-		for (Computer computer : computers)
+		int index = 0;
+		for (IComputer unit : units)
 		{
-			var shader = computer.getShader();
-			var shaderAdapter = ShaderAdapter.adapt(shader);
+			if (unit instanceof Computer)
+			{
+				var computer = (Computer) unit;
+				var shader = computer.getShader();
+				var shaderAdapter = ShaderAdapter.adapt(shader);
 
-			shaderAdapter.fillInfo(shaderInfo);
+				shaderAdapter.fillInfo(shaderInfo);
 
-			var pipelineCreateInfo = pipelineCreateInfos.get();
-			pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
-			pipelineCreateInfo.stage(shaderInfo);
-			pipelineCreateInfo.layout(pipelineLayout);
+				final var adapter = ComputerAdapter.adapt(computer);
+
+				adapter.setIndex(index);
+				index++;
+
+				var pipelineCreateInfo = pipelineCreateInfos.get();
+				pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
+				pipelineCreateInfo.stage(shaderInfo);
+				pipelineCreateInfo.layout(pipelineLayout);
+			}
 		}
 		shaderInfo.free();
 
@@ -102,9 +121,9 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 	protected void recordComputers(ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
-		for (final Computer computer : pipeline.getComputers())
+		for (final IComputer computer : pipeline.getUnits())
 		{
-			final var adapter = ComputerAdapter.adapt(computer);
+			final var adapter = IComputerAdapter.adapt(computer);
 			adapter.record(commandBuffer, bindPoint);
 		}
 	}
