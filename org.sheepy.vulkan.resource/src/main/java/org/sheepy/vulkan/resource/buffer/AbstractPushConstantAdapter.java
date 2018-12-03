@@ -46,6 +46,7 @@ public abstract class AbstractPushConstantAdapter extends ResourceAdapter
 		final EPipelineStage stage = getStage();
 		vkCmdPushConstants(commandBuffer, pipelineLayout, stage.getValue(), 0, buffer);
 	}
+	
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{

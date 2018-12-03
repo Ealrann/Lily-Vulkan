@@ -649,6 +649,16 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGraphicsPipeline_Resources()
+	{
+		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDynamicState()
 	{
 		return dynamicStateEClass;
@@ -1250,6 +1260,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(iGraphicsPipelineEClass, IGRAPHICS_PIPELINE__DYNAMIC_STATE);
 
 		graphicsPipelineEClass = createEClass(GRAPHICS_PIPELINE);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__RESOURCES);
 
 		dynamicStateEClass = createEClass(DYNAMIC_STATE);
 		createEAttribute(dynamicStateEClass, DYNAMIC_STATE__STATES);
@@ -1416,6 +1427,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getIGraphicsPipeline_DynamicState(), this.getDynamicState(), null, "dynamicState", null, 0, 1, IGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphicsPipelineEClass, GraphicsPipeline.class, "GraphicsPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGraphicsPipeline_Resources(), theResourcePackage.getResource(), null, "resources", null, 0, -1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dynamicStateEClass, DynamicState.class, "DynamicState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDynamicState_States(), theEnumerationPackage.getEDynamicState(), "states", null, 0, -1, DynamicState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

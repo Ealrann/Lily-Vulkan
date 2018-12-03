@@ -690,13 +690,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__RESOURCES = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -1871,6 +1880,17 @@ public interface GraphicPackage extends EPackage
 	EClass getGraphicsPipeline();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getResources <em>Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Resources</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getResources()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_Resources();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.DynamicState <em>Dynamic State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2793,6 +2813,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass GRAPHICS_PIPELINE = eINSTANCE.getGraphicsPipeline();
+
+		/**
+		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__RESOURCES = eINSTANCE.getGraphicsPipeline_Resources();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.

@@ -30,6 +30,7 @@ import org.sheepy.vulkan.model.enumeration.EBlendOp
 import org.sheepy.vulkan.model.enumeration.EDynamicState
 import org.sheepy.vulkan.model.process.IPipeline
 import org.sheepy.vulkan.model.resource.DepthImage
+import org.sheepy.vulkan.model.resource.Resource
 
 class GraphicConfiguration extends Configuration
 {
@@ -94,6 +95,7 @@ interface IGraphicsPipeline extends IPipeline
 
 abstract class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 {
+	contains Resource[] resources
 }
 
 class DynamicState
