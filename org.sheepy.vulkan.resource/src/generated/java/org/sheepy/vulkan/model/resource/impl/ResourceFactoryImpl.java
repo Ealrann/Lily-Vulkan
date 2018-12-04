@@ -69,7 +69,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.BUFFER: return createBuffer();
 			case ResourcePackage.IMAGE: return createImage();
 			case ResourcePackage.IMAGE_LAYOUT: return createImageLayout();
+			case ResourcePackage.FONT: return createFont();
 			case ResourcePackage.TEXTURE: return createTexture();
+			case ResourcePackage.SAMPLER: return createSampler();
 			case ResourcePackage.BASIC_DESCRIPTOR_SET: return createBasicDescriptorSet();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
@@ -160,10 +162,32 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Font createFont()
+	{
+		FontImpl font = new FontImpl();
+		return font;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Texture createTexture()
 	{
 		TextureImpl texture = new TextureImpl();
 		return texture;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Sampler createSampler()
+	{
+		SamplerImpl sampler = new SamplerImpl();
+		return sampler;
 	}
 
 	/**

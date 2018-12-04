@@ -8,24 +8,24 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.sheepy.vulkan.model.resource.Font;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.Texture;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Texture</b></em>'.
+ * An implementation of the model object '<em><b>Font</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.TextureImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.FontImpl#getFile <em>File</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TextureImpl extends AbstractTextureImpl implements Texture
+public class FontImpl extends SampledResourceImpl implements Font
 {
 	/**
 	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
@@ -42,7 +42,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TextureImpl()
+	public FontImpl()
 	{
 		super();
 	}
@@ -55,7 +55,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.TEXTURE;
+		return ResourcePackage.Literals.FONT;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 		file = newFile;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__FILE, oldFile, newFile);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT__FILE, oldFile, newFile);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -96,14 +96,14 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 		{
 			NotificationChain msgs = null;
 			if (file != null)
-				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
+				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FONT__FILE, null, msgs);
 			if (newFile != null)
-				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.TEXTURE__FILE, null, msgs);
+				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FONT__FILE, null, msgs);
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.TEXTURE__FILE, newFile, newFile));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT__FILE, newFile, newFile));
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT__FILE:
 				return basicSetFile(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -132,7 +132,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT__FILE:
 				return getFile();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -149,7 +149,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT__FILE:
 				setFile((PathResource)newValue);
 				return;
 		}
@@ -166,7 +166,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT__FILE:
 				setFile((PathResource)null);
 				return;
 		}
@@ -183,10 +183,10 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.TEXTURE__FILE:
+			case ResourcePackage.FONT__FILE:
 				return file != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //TextureImpl
+} //FontImpl

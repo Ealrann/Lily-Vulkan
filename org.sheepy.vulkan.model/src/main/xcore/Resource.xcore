@@ -12,6 +12,10 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout
 import org.sheepy.vulkan.model.enumeration.EDescriptorType
 import org.sheepy.vulkan.model.enumeration.EFormat
 import java.nio.ByteBuffer
+import org.sheepy.vulkan.model.enumeration.EFilter
+import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
+import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
+import org.sheepy.vulkan.model.enumeration.EBorderColor
 
 
 interface Resource
@@ -58,10 +62,43 @@ class ImageLayout
 	int access
 }
 
-class Texture extends PipelineResource
+abstract class SampledResource extends PipelineResource
+{
+	contains Sampler sampler
+}
+
+class Font extends SampledResource
 {
 	contains PathResource file
+}
+
+abstract class AbstractTexture extends SampledResource
+{
 	boolean mipmapEnabled = "false"
+}
+
+class Texture extends AbstractTexture
+{
+	contains PathResource file
+}
+
+class Sampler
+{
+	EFilter minFilter = "NEAREST"
+	EFilter magFilter = "NEAREST"
+	ESamplerMipmapMode mipmapMode = "NEAREST"
+	ESamplerAddressMode addressMode = "REPEAT"
+	EBorderColor borderColor = "INT_OPAQUE_BLACK"
+	
+	boolean anisotropyEnabled = "false"
+	boolean unnormalizedCoordinates = "false"
+	boolean compareEnable = "false"
+	
+	float lodBias = "0"
+	int minLod = "0"
+	int maxLod = "1"
+	
+	float maxAnisotropy = "1"
 }
 
 type JavaModule wraps Module

@@ -123,13 +123,54 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ResourcePackage.SAMPLED_RESOURCE:
+			{
+				SampledResource sampledResource = (SampledResource)theEObject;
+				T result = caseSampledResource(sampledResource);
+				if (result == null) result = casePipelineResource(sampledResource);
+				if (result == null) result = caseIDescriptor(sampledResource);
+				if (result == null) result = caseResource(sampledResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.FONT:
+			{
+				Font font = (Font)theEObject;
+				T result = caseFont(font);
+				if (result == null) result = caseSampledResource(font);
+				if (result == null) result = casePipelineResource(font);
+				if (result == null) result = caseIDescriptor(font);
+				if (result == null) result = caseResource(font);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.ABSTRACT_TEXTURE:
+			{
+				AbstractTexture abstractTexture = (AbstractTexture)theEObject;
+				T result = caseAbstractTexture(abstractTexture);
+				if (result == null) result = caseSampledResource(abstractTexture);
+				if (result == null) result = casePipelineResource(abstractTexture);
+				if (result == null) result = caseIDescriptor(abstractTexture);
+				if (result == null) result = caseResource(abstractTexture);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ResourcePackage.TEXTURE:
 			{
 				Texture texture = (Texture)theEObject;
 				T result = caseTexture(texture);
+				if (result == null) result = caseAbstractTexture(texture);
+				if (result == null) result = caseSampledResource(texture);
 				if (result == null) result = casePipelineResource(texture);
 				if (result == null) result = caseIDescriptor(texture);
 				if (result == null) result = caseResource(texture);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.SAMPLER:
+			{
+				Sampler sampler = (Sampler)theEObject;
+				T result = caseSampler(sampler);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -370,6 +411,54 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sampled Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sampled Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSampledResource(SampledResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Font</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Font</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFont(Font object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Texture</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Texture</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractTexture(AbstractTexture object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Texture</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -381,6 +470,22 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseTexture(Texture object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sampler</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sampler</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSampler(Sampler object)
 	{
 		return null;
 	}

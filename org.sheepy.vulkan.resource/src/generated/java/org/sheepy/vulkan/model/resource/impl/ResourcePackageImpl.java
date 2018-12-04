@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
+import org.sheepy.vulkan.model.resource.AbstractTexture;
 import org.sheepy.vulkan.model.resource.Barrier;
 import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.BasicResource;
@@ -23,6 +24,7 @@ import org.sheepy.vulkan.model.resource.BufferBarrier;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.FileResource;
+import org.sheepy.vulkan.model.resource.Font;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.ImageBarrier;
@@ -37,6 +39,8 @@ import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.vulkan.model.resource.Resource;
 import org.sheepy.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.resource.SampledResource;
+import org.sheepy.vulkan.model.resource.Sampler;
 import org.sheepy.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.resource.Texture;
 
@@ -95,7 +99,35 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass sampledResourceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fontEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractTextureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass textureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass samplerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -515,6 +547,66 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSampledResource()
+	{
+		return sampledResourceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSampledResource_Sampler()
+	{
+		return (EReference)sampledResourceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFont()
+	{
+		return fontEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFont_File()
+	{
+		return (EReference)fontEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAbstractTexture()
+	{
+		return abstractTextureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractTexture_MipmapEnabled()
+	{
+		return (EAttribute)abstractTextureEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTexture()
 	{
 		return textureEClass;
@@ -535,9 +627,129 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTexture_MipmapEnabled()
+	public EClass getSampler()
 	{
-		return (EAttribute)textureEClass.getEStructuralFeatures().get(1);
+		return samplerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_MinFilter()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_MagFilter()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_MipmapMode()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_AddressMode()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_BorderColor()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_AnisotropyEnabled()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_UnnormalizedCoordinates()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_CompareEnable()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_LodBias()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_MinLod()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_MaxLod()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSampler_MaxAnisotropy()
+	{
+		return (EAttribute)samplerEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -988,9 +1200,31 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__LAYOUT);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__ACCESS);
 
+		sampledResourceEClass = createEClass(SAMPLED_RESOURCE);
+		createEReference(sampledResourceEClass, SAMPLED_RESOURCE__SAMPLER);
+
+		fontEClass = createEClass(FONT);
+		createEReference(fontEClass, FONT__FILE);
+
+		abstractTextureEClass = createEClass(ABSTRACT_TEXTURE);
+		createEAttribute(abstractTextureEClass, ABSTRACT_TEXTURE__MIPMAP_ENABLED);
+
 		textureEClass = createEClass(TEXTURE);
 		createEReference(textureEClass, TEXTURE__FILE);
-		createEAttribute(textureEClass, TEXTURE__MIPMAP_ENABLED);
+
+		samplerEClass = createEClass(SAMPLER);
+		createEAttribute(samplerEClass, SAMPLER__MIN_FILTER);
+		createEAttribute(samplerEClass, SAMPLER__MAG_FILTER);
+		createEAttribute(samplerEClass, SAMPLER__MIPMAP_MODE);
+		createEAttribute(samplerEClass, SAMPLER__ADDRESS_MODE);
+		createEAttribute(samplerEClass, SAMPLER__BORDER_COLOR);
+		createEAttribute(samplerEClass, SAMPLER__ANISOTROPY_ENABLED);
+		createEAttribute(samplerEClass, SAMPLER__UNNORMALIZED_COORDINATES);
+		createEAttribute(samplerEClass, SAMPLER__COMPARE_ENABLE);
+		createEAttribute(samplerEClass, SAMPLER__LOD_BIAS);
+		createEAttribute(samplerEClass, SAMPLER__MIN_LOD);
+		createEAttribute(samplerEClass, SAMPLER__MAX_LOD);
+		createEAttribute(samplerEClass, SAMPLER__MAX_ANISOTROPY);
 
 		pushConstantEClass = createEClass(PUSH_CONSTANT);
 
@@ -1088,7 +1322,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		pipelineResourceEClass.getESuperTypes().add(this.getResource());
 		bufferEClass.getESuperTypes().add(this.getPipelineResource());
 		imageEClass.getESuperTypes().add(this.getPipelineResource());
-		textureEClass.getESuperTypes().add(this.getPipelineResource());
+		sampledResourceEClass.getESuperTypes().add(this.getPipelineResource());
+		fontEClass.getESuperTypes().add(this.getSampledResource());
+		abstractTextureEClass.getESuperTypes().add(this.getSampledResource());
+		textureEClass.getESuperTypes().add(this.getAbstractTexture());
 		pushConstantEClass.getESuperTypes().add(this.getPipelineResource());
 		basicDescriptorSetEClass.getESuperTypes().add(this.getDescriptorSet());
 		bufferBarrierEClass.getESuperTypes().add(this.getBarrier());
@@ -1131,9 +1368,31 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getImageLayout_Layout(), theEnumerationPackage.getEImageLayout(), "layout", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageLayout_Access(), theEcorePackage.getEInt(), "access", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(sampledResourceEClass, SampledResource.class, "SampledResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSampledResource_Sampler(), this.getSampler(), null, "sampler", null, 0, 1, SampledResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(fontEClass, Font.class, "Font", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFont_File(), this.getPathResource(), null, "file", null, 0, 1, Font.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(abstractTextureEClass, AbstractTexture.class, "AbstractTexture", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractTexture_MipmapEnabled(), theEcorePackage.getEBoolean(), "mipmapEnabled", "false", 0, 1, AbstractTexture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(textureEClass, Texture.class, "Texture", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTexture_File(), this.getPathResource(), null, "file", null, 0, 1, Texture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTexture_MipmapEnabled(), theEcorePackage.getEBoolean(), "mipmapEnabled", "false", 0, 1, Texture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(samplerEClass, Sampler.class, "Sampler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSampler_MinFilter(), theEnumerationPackage.getEFilter(), "minFilter", "NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MagFilter(), theEnumerationPackage.getEFilter(), "magFilter", "NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MipmapMode(), theEnumerationPackage.getESamplerMipmapMode(), "mipmapMode", "NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_AddressMode(), theEnumerationPackage.getESamplerAddressMode(), "addressMode", "REPEAT", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_BorderColor(), theEnumerationPackage.getEBorderColor(), "borderColor", "INT_OPAQUE_BLACK", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_AnisotropyEnabled(), theEcorePackage.getEBoolean(), "anisotropyEnabled", "false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_UnnormalizedCoordinates(), theEcorePackage.getEBoolean(), "unnormalizedCoordinates", "false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_CompareEnable(), theEcorePackage.getEBoolean(), "compareEnable", "false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_LodBias(), theEcorePackage.getEFloat(), "lodBias", "0", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MinLod(), theEcorePackage.getEInt(), "minLod", "0", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MaxLod(), theEcorePackage.getEInt(), "maxLod", "1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MaxAnisotropy(), theEcorePackage.getEFloat(), "maxAnisotropy", "1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

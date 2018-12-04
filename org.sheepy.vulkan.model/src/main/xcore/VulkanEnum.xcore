@@ -47,6 +47,16 @@ enum EFrontFace
     CLOCKWISE         = 1
 }
 
+enum EBorderColor
+{
+	FLOAT_TRANSPARENT_BLACK = 0
+	INT_TRANSPARENT_BLACK   = 1
+	FLOAT_OPAQUE_BLACK      = 2
+	INT_OPAQUE_BLACK        = 3
+	FLOAT_OPAQUE_WHITE      = 4
+	INT_OPAQUE_WHITE        = 5
+}
+
 enum ECommandStage
 {
 	Compute
@@ -98,6 +108,26 @@ enum EShaderStage
 	COMPUTE_BIT                 = 32
 	ALL_GRAPHICS                = 31
 	ALL                         = 2147483647
+}
+
+enum EFilter 
+{
+	NEAREST = 0
+	LINEAR  = 1
+}
+
+enum ESamplerMipmapMode
+{
+	NEAREST = 0
+	LINEAR  = 1
+}
+
+enum ESamplerAddressMode
+{
+	REPEAT          = 0
+	MIRRORED_REPEAT = 1
+	CLAMP_TO_EDGE   = 2
+	CLAMP_TO_BORDER = 3
 }
 
 enum EBlendFactor

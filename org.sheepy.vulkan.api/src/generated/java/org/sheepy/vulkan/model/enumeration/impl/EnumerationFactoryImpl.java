@@ -88,6 +88,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return createEDescriptorTypeFromString(eDataType, initialValue);
 			case EnumerationPackage.EFRONT_FACE:
 				return createEFrontFaceFromString(eDataType, initialValue);
+			case EnumerationPackage.EBORDER_COLOR:
+				return createEBorderColorFromString(eDataType, initialValue);
 			case EnumerationPackage.ECOMMAND_STAGE:
 				return createECommandStageFromString(eDataType, initialValue);
 			case EnumerationPackage.EATTACHMENT_LOAD_OP:
@@ -98,6 +100,12 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return createEAttachmentStoreOpFromString(eDataType, initialValue);
 			case EnumerationPackage.ESHADER_STAGE:
 				return createEShaderStageFromString(eDataType, initialValue);
+			case EnumerationPackage.EFILTER:
+				return createEFilterFromString(eDataType, initialValue);
+			case EnumerationPackage.ESAMPLER_MIPMAP_MODE:
+				return createESamplerMipmapModeFromString(eDataType, initialValue);
+			case EnumerationPackage.ESAMPLER_ADDRESS_MODE:
+				return createESamplerAddressModeFromString(eDataType, initialValue);
 			case EnumerationPackage.EBLEND_FACTOR:
 				return createEBlendFactorFromString(eDataType, initialValue);
 			case EnumerationPackage.EDYNAMIC_STATE:
@@ -141,6 +149,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return convertEDescriptorTypeToString(eDataType, instanceValue);
 			case EnumerationPackage.EFRONT_FACE:
 				return convertEFrontFaceToString(eDataType, instanceValue);
+			case EnumerationPackage.EBORDER_COLOR:
+				return convertEBorderColorToString(eDataType, instanceValue);
 			case EnumerationPackage.ECOMMAND_STAGE:
 				return convertECommandStageToString(eDataType, instanceValue);
 			case EnumerationPackage.EATTACHMENT_LOAD_OP:
@@ -151,6 +161,12 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return convertEAttachmentStoreOpToString(eDataType, instanceValue);
 			case EnumerationPackage.ESHADER_STAGE:
 				return convertEShaderStageToString(eDataType, instanceValue);
+			case EnumerationPackage.EFILTER:
+				return convertEFilterToString(eDataType, instanceValue);
+			case EnumerationPackage.ESAMPLER_MIPMAP_MODE:
+				return convertESamplerMipmapModeToString(eDataType, instanceValue);
+			case EnumerationPackage.ESAMPLER_ADDRESS_MODE:
+				return convertESamplerAddressModeToString(eDataType, instanceValue);
 			case EnumerationPackage.EBLEND_FACTOR:
 				return convertEBlendFactorToString(eDataType, instanceValue);
 			case EnumerationPackage.EDYNAMIC_STATE:
@@ -269,6 +285,28 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EBorderColor createEBorderColorFromString(EDataType eDataType, String initialValue)
+	{
+		EBorderColor result = EBorderColor.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEBorderColorToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ECommandStage createECommandStageFromString(EDataType eDataType, String initialValue)
 	{
 		ECommandStage result = ECommandStage.get(initialValue);
@@ -370,6 +408,72 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertEShaderStageToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EFilter createEFilterFromString(EDataType eDataType, String initialValue)
+	{
+		EFilter result = EFilter.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEFilterToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ESamplerMipmapMode createESamplerMipmapModeFromString(EDataType eDataType, String initialValue)
+	{
+		ESamplerMipmapMode result = ESamplerMipmapMode.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertESamplerMipmapModeToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ESamplerAddressMode createESamplerAddressModeFromString(EDataType eDataType, String initialValue)
+	{
+		ESamplerAddressMode result = ESamplerAddressMode.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertESamplerAddressModeToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

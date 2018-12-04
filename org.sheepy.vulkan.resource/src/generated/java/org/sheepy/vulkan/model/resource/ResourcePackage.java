@@ -123,7 +123,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
 	 * @generated
 	 */
-	int IDESCRIPTOR = 8;
+	int IDESCRIPTOR = 12;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -472,14 +472,14 @@ public interface ResourcePackage extends EPackage
 	int IMAGE_LAYOUT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.SampledResourceImpl <em>Sampled Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.TextureImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
+	 * @see org.sheepy.vulkan.model.resource.impl.SampledResourceImpl
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampledResource()
 	 * @generated
 	 */
-	int TEXTURE = 6;
+	int SAMPLED_RESOURCE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -488,7 +488,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE__DESCRIPTOR_TYPE = PIPELINE_RESOURCE__DESCRIPTOR_TYPE;
+	int SAMPLED_RESOURCE__DESCRIPTOR_TYPE = PIPELINE_RESOURCE__DESCRIPTOR_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
@@ -497,7 +497,71 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE__SHADER_STAGES = PIPELINE_RESOURCE__SHADER_STAGES;
+	int SAMPLED_RESOURCE__SHADER_STAGES = PIPELINE_RESOURCE__SHADER_STAGES;
+
+	/**
+	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLED_RESOURCE__SAMPLER = PIPELINE_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Sampled Resource</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLED_RESOURCE_FEATURE_COUNT = PIPELINE_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Sampled Resource</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLED_RESOURCE_OPERATION_COUNT = PIPELINE_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.resource.impl.FontImpl
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
+	 * @generated
+	 */
+	int FONT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT__DESCRIPTOR_TYPE = SAMPLED_RESOURCE__DESCRIPTOR_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT__SHADER_STAGES = SAMPLED_RESOURCE__SHADER_STAGES;
+
+	/**
+	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT__SAMPLER = SAMPLED_RESOURCE__SAMPLER;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
@@ -506,7 +570,62 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE__FILE = PIPELINE_RESOURCE_FEATURE_COUNT + 0;
+	int FONT__FILE = SAMPLED_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Font</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_FEATURE_COUNT = SAMPLED_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Font</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_OPERATION_COUNT = SAMPLED_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
+	 * @generated
+	 */
+	int ABSTRACT_TEXTURE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TEXTURE__DESCRIPTOR_TYPE = SAMPLED_RESOURCE__DESCRIPTOR_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TEXTURE__SHADER_STAGES = SAMPLED_RESOURCE__SHADER_STAGES;
+
+	/**
+	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TEXTURE__SAMPLER = SAMPLED_RESOURCE__SAMPLER;
 
 	/**
 	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
@@ -515,7 +634,80 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE__MIPMAP_ENABLED = PIPELINE_RESOURCE_FEATURE_COUNT + 1;
+	int ABSTRACT_TEXTURE__MIPMAP_ENABLED = SAMPLED_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Abstract Texture</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TEXTURE_FEATURE_COUNT = SAMPLED_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Abstract Texture</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TEXTURE_OPERATION_COUNT = SAMPLED_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.resource.impl.TextureImpl
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
+	 * @generated
+	 */
+	int TEXTURE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE__DESCRIPTOR_TYPE = ABSTRACT_TEXTURE__DESCRIPTOR_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE__SHADER_STAGES = ABSTRACT_TEXTURE__SHADER_STAGES;
+
+	/**
+	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE__SAMPLER = ABSTRACT_TEXTURE__SAMPLER;
+
+	/**
+	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE__MIPMAP_ENABLED = ABSTRACT_TEXTURE__MIPMAP_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE__FILE = ABSTRACT_TEXTURE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Texture</em>' class.
@@ -524,7 +716,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE_FEATURE_COUNT = PIPELINE_RESOURCE_FEATURE_COUNT + 2;
+	int TEXTURE_FEATURE_COUNT = ABSTRACT_TEXTURE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Texture</em>' class.
@@ -533,7 +725,143 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEXTURE_OPERATION_COUNT = PIPELINE_RESOURCE_OPERATION_COUNT + 0;
+	int TEXTURE_OPERATION_COUNT = ABSTRACT_TEXTURE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.resource.impl.SamplerImpl
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
+	 * @generated
+	 */
+	int SAMPLER = 10;
+
+	/**
+	 * The feature id for the '<em><b>Min Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MIN_FILTER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Mag Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MAG_FILTER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Mipmap Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MIPMAP_MODE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Address Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__ADDRESS_MODE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__BORDER_COLOR = 4;
+
+	/**
+	 * The feature id for the '<em><b>Anisotropy Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__ANISOTROPY_ENABLED = 5;
+
+	/**
+	 * The feature id for the '<em><b>Unnormalized Coordinates</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__UNNORMALIZED_COORDINATES = 6;
+
+	/**
+	 * The feature id for the '<em><b>Compare Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__COMPARE_ENABLE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Lod Bias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__LOD_BIAS = 8;
+
+	/**
+	 * The feature id for the '<em><b>Min Lod</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MIN_LOD = 9;
+
+	/**
+	 * The feature id for the '<em><b>Max Lod</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MAX_LOD = 10;
+
+	/**
+	 * The feature id for the '<em><b>Max Anisotropy</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER__MAX_ANISOTROPY = 11;
+
+	/**
+	 * The number of structural features of the '<em>Sampler</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER_FEATURE_COUNT = 12;
+
+	/**
+	 * The number of operations of the '<em>Sampler</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLER_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl <em>Push Constant</em>}' class.
@@ -543,7 +871,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPushConstant()
 	 * @generated
 	 */
-	int PUSH_CONSTANT = 7;
+	int PUSH_CONSTANT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -589,7 +917,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 9;
+	int DESCRIPTOR_SET = 13;
 
 	/**
 	 * The number of structural features of the '<em>Descriptor Set</em>' class.
@@ -617,7 +945,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBasicDescriptorSet()
 	 * @generated
 	 */
-	int BASIC_DESCRIPTOR_SET = 10;
+	int BASIC_DESCRIPTOR_SET = 14;
 
 	/**
 	 * The feature id for the '<em><b>Descriptors</b></em>' reference list.
@@ -654,7 +982,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
 	 * @generated
 	 */
-	int BARRIER = 11;
+	int BARRIER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -700,7 +1028,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 12;
+	int BUFFER_BARRIER = 16;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -773,7 +1101,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
 	 * @generated
 	 */
-	int ABSTRACT_IMAGE_BARRIER = 13;
+	int ABSTRACT_IMAGE_BARRIER = 17;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -828,7 +1156,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 14;
+	int IMAGE_BARRIER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -892,7 +1220,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
 	 * @generated
 	 */
-	int REFERENCE_IMAGE_BARRIER = 15;
+	int REFERENCE_IMAGE_BARRIER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -974,7 +1302,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
 	 * @generated
 	 */
-	int IMAGE_TRANSITION = 16;
+	int IMAGE_TRANSITION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Src Layout</b></em>' attribute.
@@ -1038,7 +1366,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 17;
+	int SHADER = 21;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
@@ -1084,7 +1412,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIndexedBuffer()
 	 * @generated
 	 */
-	int INDEXED_BUFFER = 18;
+	int INDEXED_BUFFER = 22;
 
 	/**
 	 * The number of structural features of the '<em>Indexed Buffer</em>' class.
@@ -1112,7 +1440,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDepthImage()
 	 * @generated
 	 */
-	int DEPTH_IMAGE = 19;
+	int DEPTH_IMAGE = 23;
 
 	/**
 	 * The number of structural features of the '<em>Depth Image</em>' class.
@@ -1140,7 +1468,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 20;
+	int PATH_RESOURCE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -1177,7 +1505,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 21;
+	int FILE_RESOURCE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -1214,7 +1542,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 22;
+	int MODULE_RESOURCE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -1260,7 +1588,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 23;
+	int BYTE_BUFFER = 27;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -1270,7 +1598,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 24;
+	int JAVA_MODULE = 28;
 
 
 	/**
@@ -1510,6 +1838,69 @@ public interface ResourcePackage extends EPackage
 	EAttribute getImageLayout_Access();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.SampledResource <em>Sampled Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sampled Resource</em>'.
+	 * @see org.sheepy.vulkan.model.resource.SampledResource
+	 * @generated
+	 */
+	EClass getSampledResource();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.resource.SampledResource#getSampler <em>Sampler</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Sampler</em>'.
+	 * @see org.sheepy.vulkan.model.resource.SampledResource#getSampler()
+	 * @see #getSampledResource()
+	 * @generated
+	 */
+	EReference getSampledResource_Sampler();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Font <em>Font</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Font</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Font
+	 * @generated
+	 */
+	EClass getFont();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.resource.Font#getFile <em>File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>File</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Font#getFile()
+	 * @see #getFont()
+	 * @generated
+	 */
+	EReference getFont_File();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.AbstractTexture <em>Abstract Texture</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Abstract Texture</em>'.
+	 * @see org.sheepy.vulkan.model.resource.AbstractTexture
+	 * @generated
+	 */
+	EClass getAbstractTexture();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.AbstractTexture#isMipmapEnabled <em>Mipmap Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mipmap Enabled</em>'.
+	 * @see org.sheepy.vulkan.model.resource.AbstractTexture#isMipmapEnabled()
+	 * @see #getAbstractTexture()
+	 * @generated
+	 */
+	EAttribute getAbstractTexture_MipmapEnabled();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Texture <em>Texture</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1531,15 +1922,146 @@ public interface ResourcePackage extends EPackage
 	EReference getTexture_File();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Texture#isMipmapEnabled <em>Mipmap Enabled</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Sampler <em>Sampler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mipmap Enabled</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Texture#isMipmapEnabled()
-	 * @see #getTexture()
+	 * @return the meta object for class '<em>Sampler</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler
 	 * @generated
 	 */
-	EAttribute getTexture_MipmapEnabled();
+	EClass getSampler();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMinFilter <em>Min Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Filter</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#getMinFilter()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_MinFilter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMagFilter <em>Mag Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mag Filter</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#getMagFilter()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_MagFilter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMipmapMode <em>Mipmap Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mipmap Mode</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#getMipmapMode()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_MipmapMode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getAddressMode <em>Address Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Address Mode</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#getAddressMode()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_AddressMode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getBorderColor <em>Border Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border Color</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#getBorderColor()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_BorderColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#isAnisotropyEnabled <em>Anisotropy Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Anisotropy Enabled</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#isAnisotropyEnabled()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_AnisotropyEnabled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#isUnnormalizedCoordinates <em>Unnormalized Coordinates</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unnormalized Coordinates</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#isUnnormalizedCoordinates()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_UnnormalizedCoordinates();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#isCompareEnable <em>Compare Enable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Compare Enable</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#isCompareEnable()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_CompareEnable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getLodBias <em>Lod Bias</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Lod Bias</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#getLodBias()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_LodBias();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMinLod <em>Min Lod</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Lod</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#getMinLod()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_MinLod();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMaxLod <em>Max Lod</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Lod</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#getMaxLod()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_MaxLod();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMaxAnisotropy <em>Max Anisotropy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Anisotropy</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Sampler#getMaxAnisotropy()
+	 * @see #getSampler()
+	 * @generated
+	 */
+	EAttribute getSampler_MaxAnisotropy();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.PushConstant <em>Push Constant</em>}'.
@@ -2167,6 +2689,60 @@ public interface ResourcePackage extends EPackage
 		EAttribute IMAGE_LAYOUT__ACCESS = eINSTANCE.getImageLayout_Access();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.SampledResourceImpl <em>Sampled Resource</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.resource.impl.SampledResourceImpl
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampledResource()
+		 * @generated
+		 */
+		EClass SAMPLED_RESOURCE = eINSTANCE.getSampledResource();
+
+		/**
+		 * The meta object literal for the '<em><b>Sampler</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SAMPLED_RESOURCE__SAMPLER = eINSTANCE.getSampledResource_Sampler();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.resource.impl.FontImpl
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
+		 * @generated
+		 */
+		EClass FONT = eINSTANCE.getFont();
+
+		/**
+		 * The meta object literal for the '<em><b>File</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FONT__FILE = eINSTANCE.getFont_File();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
+		 * @generated
+		 */
+		EClass ABSTRACT_TEXTURE = eINSTANCE.getAbstractTexture();
+
+		/**
+		 * The meta object literal for the '<em><b>Mipmap Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_TEXTURE__MIPMAP_ENABLED = eINSTANCE.getAbstractTexture_MipmapEnabled();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2185,12 +2761,110 @@ public interface ResourcePackage extends EPackage
 		EReference TEXTURE__FILE = eINSTANCE.getTexture_File();
 
 		/**
-		 * The meta object literal for the '<em><b>Mipmap Enabled</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.resource.impl.SamplerImpl
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
+		 * @generated
+		 */
+		EClass SAMPLER = eINSTANCE.getSampler();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Filter</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TEXTURE__MIPMAP_ENABLED = eINSTANCE.getTexture_MipmapEnabled();
+		EAttribute SAMPLER__MIN_FILTER = eINSTANCE.getSampler_MinFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Mag Filter</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__MAG_FILTER = eINSTANCE.getSampler_MagFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Mipmap Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__MIPMAP_MODE = eINSTANCE.getSampler_MipmapMode();
+
+		/**
+		 * The meta object literal for the '<em><b>Address Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__ADDRESS_MODE = eINSTANCE.getSampler_AddressMode();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__BORDER_COLOR = eINSTANCE.getSampler_BorderColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Anisotropy Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__ANISOTROPY_ENABLED = eINSTANCE.getSampler_AnisotropyEnabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Unnormalized Coordinates</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__UNNORMALIZED_COORDINATES = eINSTANCE.getSampler_UnnormalizedCoordinates();
+
+		/**
+		 * The meta object literal for the '<em><b>Compare Enable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__COMPARE_ENABLE = eINSTANCE.getSampler_CompareEnable();
+
+		/**
+		 * The meta object literal for the '<em><b>Lod Bias</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__LOD_BIAS = eINSTANCE.getSampler_LodBias();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Lod</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__MIN_LOD = eINSTANCE.getSampler_MinLod();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Lod</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__MAX_LOD = eINSTANCE.getSampler_MaxLod();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Anisotropy</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SAMPLER__MAX_ANISOTROPY = eINSTANCE.getSampler_MaxAnisotropy();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl <em>Push Constant</em>}' class.

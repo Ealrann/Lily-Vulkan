@@ -11,11 +11,13 @@ import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EBlendFactor;
 import org.sheepy.vulkan.model.enumeration.EBlendOp;
+import org.sheepy.vulkan.model.enumeration.EBorderColor;
 import org.sheepy.vulkan.model.enumeration.EColorSpace;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EDynamicState;
+import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -25,6 +27,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EPolygonMode;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
+import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode;
+import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.enumeration.EnumerationFactory;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -70,6 +74,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum eBorderColorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum eCommandStageEEnum = null;
 
 	/**
@@ -99,6 +110,27 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eShaderStageEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eFilterEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eSamplerMipmapModeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eSamplerAddressModeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -278,6 +310,16 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getEBorderColor()
+	{
+		return eBorderColorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getECommandStage()
 	{
 		return eCommandStageEEnum;
@@ -321,6 +363,36 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	public EEnum getEShaderStage()
 	{
 		return eShaderStageEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getEFilter()
+	{
+		return eFilterEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getESamplerMipmapMode()
+	{
+		return eSamplerMipmapModeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getESamplerAddressMode()
+	{
+		return eSamplerAddressModeEEnum;
 	}
 
 	/**
@@ -457,11 +529,15 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		eCullModeEEnum = createEEnum(ECULL_MODE);
 		eDescriptorTypeEEnum = createEEnum(EDESCRIPTOR_TYPE);
 		eFrontFaceEEnum = createEEnum(EFRONT_FACE);
+		eBorderColorEEnum = createEEnum(EBORDER_COLOR);
 		eCommandStageEEnum = createEEnum(ECOMMAND_STAGE);
 		eAttachmentLoadOpEEnum = createEEnum(EATTACHMENT_LOAD_OP);
 		eLogicOpEEnum = createEEnum(ELOGIC_OP);
 		eAttachmentStoreOpEEnum = createEEnum(EATTACHMENT_STORE_OP);
 		eShaderStageEEnum = createEEnum(ESHADER_STAGE);
+		eFilterEEnum = createEEnum(EFILTER);
+		eSamplerMipmapModeEEnum = createEEnum(ESAMPLER_MIPMAP_MODE);
+		eSamplerAddressModeEEnum = createEEnum(ESAMPLER_ADDRESS_MODE);
 		eBlendFactorEEnum = createEEnum(EBLEND_FACTOR);
 		eDynamicStateEEnum = createEEnum(EDYNAMIC_STATE);
 		eBlendOpEEnum = createEEnum(EBLEND_OP);
@@ -534,6 +610,14 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eFrontFaceEEnum, EFrontFace.COUNTER_CLOCKWISE);
 		addEEnumLiteral(eFrontFaceEEnum, EFrontFace.CLOCKWISE);
 
+		initEEnum(eBorderColorEEnum, EBorderColor.class, "EBorderColor");
+		addEEnumLiteral(eBorderColorEEnum, EBorderColor.FLOAT_TRANSPARENT_BLACK);
+		addEEnumLiteral(eBorderColorEEnum, EBorderColor.INT_TRANSPARENT_BLACK);
+		addEEnumLiteral(eBorderColorEEnum, EBorderColor.FLOAT_OPAQUE_BLACK);
+		addEEnumLiteral(eBorderColorEEnum, EBorderColor.INT_OPAQUE_BLACK);
+		addEEnumLiteral(eBorderColorEEnum, EBorderColor.FLOAT_OPAQUE_WHITE);
+		addEEnumLiteral(eBorderColorEEnum, EBorderColor.INT_OPAQUE_WHITE);
+
 		initEEnum(eCommandStageEEnum, ECommandStage.class, "ECommandStage");
 		addEEnumLiteral(eCommandStageEEnum, ECommandStage.COMPUTE);
 		addEEnumLiteral(eCommandStageEEnum, ECommandStage.PRE_RENDER);
@@ -576,6 +660,20 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eShaderStageEEnum, EShaderStage.COMPUTE_BIT);
 		addEEnumLiteral(eShaderStageEEnum, EShaderStage.ALL_GRAPHICS);
 		addEEnumLiteral(eShaderStageEEnum, EShaderStage.ALL);
+
+		initEEnum(eFilterEEnum, EFilter.class, "EFilter");
+		addEEnumLiteral(eFilterEEnum, EFilter.NEAREST);
+		addEEnumLiteral(eFilterEEnum, EFilter.LINEAR);
+
+		initEEnum(eSamplerMipmapModeEEnum, ESamplerMipmapMode.class, "ESamplerMipmapMode");
+		addEEnumLiteral(eSamplerMipmapModeEEnum, ESamplerMipmapMode.NEAREST);
+		addEEnumLiteral(eSamplerMipmapModeEEnum, ESamplerMipmapMode.LINEAR);
+
+		initEEnum(eSamplerAddressModeEEnum, ESamplerAddressMode.class, "ESamplerAddressMode");
+		addEEnumLiteral(eSamplerAddressModeEEnum, ESamplerAddressMode.REPEAT);
+		addEEnumLiteral(eSamplerAddressModeEEnum, ESamplerAddressMode.MIRRORED_REPEAT);
+		addEEnumLiteral(eSamplerAddressModeEEnum, ESamplerAddressMode.CLAMP_TO_EDGE);
+		addEEnumLiteral(eSamplerAddressModeEEnum, ESamplerAddressMode.CLAMP_TO_BORDER);
 
 		initEEnum(eBlendFactorEEnum, EBlendFactor.class, "EBlendFactor");
 		addEEnumLiteral(eBlendFactorEEnum, EBlendFactor.ZERO);

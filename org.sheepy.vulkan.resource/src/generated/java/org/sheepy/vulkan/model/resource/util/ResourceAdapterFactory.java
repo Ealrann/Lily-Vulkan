@@ -105,9 +105,29 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createImageLayoutAdapter();
 			}
 			@Override
+			public Adapter caseSampledResource(SampledResource object)
+			{
+				return createSampledResourceAdapter();
+			}
+			@Override
+			public Adapter caseFont(Font object)
+			{
+				return createFontAdapter();
+			}
+			@Override
+			public Adapter caseAbstractTexture(AbstractTexture object)
+			{
+				return createAbstractTextureAdapter();
+			}
+			@Override
 			public Adapter caseTexture(Texture object)
 			{
 				return createTextureAdapter();
+			}
+			@Override
+			public Adapter caseSampler(Sampler object)
+			{
+				return createSamplerAdapter();
 			}
 			@Override
 			public Adapter casePushConstant(PushConstant object)
@@ -302,6 +322,51 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.SampledResource <em>Sampled Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.SampledResource
+	 * @generated
+	 */
+	public Adapter createSampledResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Font <em>Font</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.Font
+	 * @generated
+	 */
+	public Adapter createFontAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.AbstractTexture <em>Abstract Texture</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.AbstractTexture
+	 * @generated
+	 */
+	public Adapter createAbstractTextureAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Texture <em>Texture</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -312,6 +377,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createTextureAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Sampler <em>Sampler</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.Sampler
+	 * @generated
+	 */
+	public Adapter createSamplerAdapter()
 	{
 		return null;
 	}

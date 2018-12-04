@@ -50,6 +50,15 @@ public interface ResourceFactory extends EFactory
 	ImageLayout createImageLayout();
 
 	/**
+	 * Returns a new object of class '<em>Font</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Font</em>'.
+	 * @generated
+	 */
+	Font createFont();
+
+	/**
 	 * Returns a new object of class '<em>Texture</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,6 +66,15 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	Texture createTexture();
+
+	/**
+	 * Returns a new object of class '<em>Sampler</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sampler</em>'.
+	 * @generated
+	 */
+	Sampler createSampler();
 
 	/**
 	 * Returns a new object of class '<em>Basic Descriptor Set</em>'.
