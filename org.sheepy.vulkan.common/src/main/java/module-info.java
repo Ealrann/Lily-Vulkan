@@ -22,6 +22,9 @@ module org.sheepy.vulkan.common
 	exports org.sheepy.vulkan.common.window;
 	exports org.sheepy.vulkan.common.util;
 
+
+	opens org.sheepy.vulkan.common.application;
+	
 	provides ISingletonAdapter
 			with LogicalDeviceAdapter, VulkanApplicationAdapter;
 }

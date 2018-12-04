@@ -24,6 +24,9 @@ module org.sheepy.vulkan.process.graphic
 	exports org.sheepy.vulkan.model.process.graphic.impl;
 	exports org.sheepy.vulkan.model.process.graphic.util;
 
+
+	opens org.sheepy.vulkan.process.graphic.pipeline.image;
+	
 	provides ISingletonAdapter with GraphicProcessPoolAdapter, GraphicProcessAdapter,
 			ImagePipelineAdapter, GraphicContextAdapter;
 }
