@@ -69,9 +69,9 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 	}
 
 	@Deprecated
-	public ComputeCommandBuffer getCommandBuffer(ComputeProcess computerPool)
+	public ComputeCommandBuffer getCommandBuffer(ComputeProcess process)
 	{
-		return mapBuffers.get(computerPool);
+		return mapBuffers.get(process);
 	}
 	
 	@Override

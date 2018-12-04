@@ -36,7 +36,7 @@ public class ComputeContext extends ProcessContext
 		buildAllocationList();
 	}
 
-	public void buildAllocationList()
+	private void buildAllocationList()
 	{
 		var tmpList = new ArrayList<IBasicAllocable>();
 

@@ -26,6 +26,7 @@ public abstract class AbstractProcessPoolAdapter extends AbstractDeepAllocableAd
 	@Override
 	public void setTarget(Notifier target)
 	{
+		super.setTarget(target);
 		processPool = (AbstractProcessPool<?>) target;
 
 		final var logicalDevice = ILogicalDeviceAdapter.adapt(processPool)

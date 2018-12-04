@@ -46,7 +46,7 @@ public abstract class AbstractCommandBuffers<CB extends ICommandBuffer>
 		allocInfo.commandBufferCount(size);
 
 		final PointerBuffer pCommandBuffers = MemoryUtil.memAllocPointer(size);
-		Logger.check("Failed to allocate command buffers!",
+		Logger.check("Failed to allocate command buffers",
 				() -> vkAllocateCommandBuffers(device, allocInfo, pCommandBuffers));
 
 		for (int i = 0; i < size; i++)
