@@ -13,6 +13,7 @@ package org.sheepy.vulkan.model.resource;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.resource.Font#getFile <em>File</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.Font#getHeight <em>Height</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.resource.ResourcePackage#getFont()
@@ -46,5 +47,31 @@ public interface Font extends SampledResource
 	 * @generated
 	 */
 	void setFile(PathResource value);
+
+	/**
+	 * Returns the value of the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Height</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Height</em>' attribute.
+	 * @see #setHeight(int)
+	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getFont_Height()
+	 * @model unique="false"
+	 * @generated
+	 */
+	int getHeight();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Font#getHeight <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Height</em>' attribute.
+	 * @see #getHeight()
+	 * @generated
+	 */
+	void setHeight(int value);
 
 } // Font

@@ -7,13 +7,9 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkDescriptorImageInfo;
-import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
-import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.common.execution.SingleTimeCommand;
@@ -23,66 +19,48 @@ import org.sheepy.vulkan.model.resource.AbstractTexture;
 import org.sheepy.vulkan.model.resource.Sampler;
 import org.sheepy.vulkan.model.resource.Texture;
 import org.sheepy.vulkan.model.resource.impl.SamplerImpl;
-import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.BufferBackend;
-import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
+import org.sheepy.vulkan.resource.image.AbstractSampledResourceAdapter;
 import org.sheepy.vulkan.resource.image.ImageBackend;
-import org.sheepy.vulkan.resource.image.ImageInfo;
-import org.sheepy.vulkan.resource.image.ImageView;
 
-public abstract class AbstractTextureAdapter extends PipelineResourceAdapter
-		implements IDescriptorAdapter
+public abstract class AbstractTextureAdapter extends AbstractSampledResourceAdapter
 {
-	private ImageBackend imageBackend;
-	private ImageView imageView;
-	private VkSampler sampler;
-
 	private int mipLevels;
-	private int width;
-	private int height;
 
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
-		final var logicalDevice = context.getLogicalDevice();
 		final AbstractTexture texture = (Texture) target;
 		Sampler samplerInfos = texture.getSampler();
-
 		if (samplerInfos == null)
 		{
 			samplerInfos = new SamplerImpl();
+			texture.setSampler(samplerInfos);
 		}
 
-		var data = allocDataBuffer();
-		width = getWidth();
-		height = getHeight();
-		int size = width * height * 4;
-
-		int format = VK_FORMAT_R8G8B8A8_UNORM;
-		int usage = VK_IMAGE_USAGE_TRANSFER_SRC_BIT
-				| VK_IMAGE_USAGE_TRANSFER_DST_BIT
-				| VK_IMAGE_USAGE_SAMPLED_BIT;
+		int width = getWidth();
+		int height = getHeight();
 		mipLevels = 1;
 		if (texture.isMipmapEnabled())
 			mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
 		samplerInfos.setMaxLod(Math.max(mipLevels, samplerInfos.getMaxLod()));
 
-		final ImageInfo imageInfo = new ImageInfo(width, height, format, usage,
-				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, VK_IMAGE_TILING_OPTIMAL, mipLevels);
+		super.flatAllocate(stack);
+	}
 
-		imageBackend = new ImageBackend(logicalDevice, imageInfo);
-		imageBackend.allocate(stack);
-		final var imageId = imageBackend.getId();
-
-		imageView = new ImageView(logicalDevice.getVkDevice());
-		sampler = new VkSampler(logicalDevice, samplerInfos);
-
-		imageView.load(imageId, mipLevels, format, VK_IMAGE_ASPECT_COLOR_BIT);
-		sampler.load();
-
+	@Override
+	protected void loadImage(MemoryStack stack, ImageBackend imageBackend)
+	{
+		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
+		final var logicalDevice = context.getLogicalDevice();
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
+		int width = getWidth();
+		int height = getHeight();
+
+		var data = allocDataBuffer();
+		int size = width * height * 4;
+
 		final BufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice,
 				size, stagingUsage, data);
 
@@ -97,12 +75,32 @@ public abstract class AbstractTextureAdapter extends PipelineResourceAdapter
 
 				imageBackend.fillWithBuffer(commandBuffer, buffer.getId());
 
-				generateMipmaps(commandBuffer, imageId);
+				generateMipmaps(commandBuffer, imageBackend.getId());
 			}
 		};
 		stc.execute();
 
 		MemoryUtil.memFree(data);
+	}
+
+	@Override
+	protected int getFormat()
+	{
+		return VK_FORMAT_R8G8B8A8_UNORM;
+	}
+
+	@Override
+	protected int getUsage()
+	{
+		return VK_IMAGE_USAGE_TRANSFER_SRC_BIT
+				| VK_IMAGE_USAGE_TRANSFER_DST_BIT
+				| VK_IMAGE_USAGE_SAMPLED_BIT;
+	}
+
+	@Override
+	protected int getMipLevels()
+	{
+		return mipLevels;
 	}
 
 	public static int log2nlz(int bits)
@@ -123,8 +121,8 @@ public abstract class AbstractTextureAdapter extends PipelineResourceAdapter
 		barrier.subresourceRange().layerCount(1);
 		barrier.subresourceRange().levelCount(1);
 
-		int mipWidth = width;
-		int mipHeight = height;
+		int mipWidth = getWidth();
+		int mipHeight = getHeight();
 
 		for (int i = 1; i < mipLevels; i++)
 		{
@@ -186,74 +184,10 @@ public abstract class AbstractTextureAdapter extends PipelineResourceAdapter
 		barrier.free();
 	}
 
-	public VkSampler getSampler()
-	{
-		return sampler;
-	}
-
-	public long getImageId()
-	{
-		return imageBackend.getId();
-	}
-
-	public long getImageViewId()
-	{
-		return imageView.getId();
-	}
-
-	@Override
-	public void free()
-	{
-		sampler.free();
-		imageView.free();
-		imageBackend.free();
-	}
-
-	@Override
-	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
-	{
-		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
-		res.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		res.descriptorCount(1);
-		res.stageFlags(VK_SHADER_STAGE_FRAGMENT_BIT);
-		return res;
-	}
-
-	@Override
-	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
-	{
-		final VkDescriptorImageInfo.Buffer imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
-		imageInfo.imageLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-		imageInfo.imageView(getImageViewId());
-		imageInfo.sampler(getSampler().getId());
-
-		final VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
-		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
-		descriptorWrite.dstArrayElement(0);
-		descriptorWrite.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		descriptorWrite.pBufferInfo(null);
-		descriptorWrite.pImageInfo(imageInfo);
-		descriptorWrite.pTexelBufferView(null); // Optional
-		return descriptorWrite;
-	}
-
-	@Override
-	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
-	{
-		final VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
-		poolSize.type(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		poolSize.descriptorCount(1);
-		return poolSize;
-	}
-
 	public static AbstractTextureAdapter adapt(AbstractTexture texture)
 	{
 		return ServiceAdapterFactory.INSTANCE.adapt(texture, AbstractTextureAdapter.class);
 	}
 
 	protected abstract ByteBuffer allocDataBuffer();
-
-	protected abstract int getWidth();
-
-	protected abstract int getHeight();
 }

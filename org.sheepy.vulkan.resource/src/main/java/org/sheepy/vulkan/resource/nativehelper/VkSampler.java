@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.texture;
+package org.sheepy.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 

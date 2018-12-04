@@ -21,6 +21,7 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.FontImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.FontImpl#getHeight <em>Height</em>}</li>
  * </ul>
  *
  * @generated
@@ -36,6 +37,25 @@ public class FontImpl extends SampledResourceImpl implements Font
 	 * @ordered
 	 */
 	protected PathResource file;
+
+	/**
+	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int HEIGHT_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected int height = HEIGHT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,6 +131,29 @@ public class FontImpl extends SampledResourceImpl implements Font
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getHeight()
+	{
+		return height;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHeight(int newHeight)
+	{
+		int oldHeight = height;
+		height = newHeight;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT__HEIGHT, oldHeight, height));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -134,6 +177,8 @@ public class FontImpl extends SampledResourceImpl implements Font
 		{
 			case ResourcePackage.FONT__FILE:
 				return getFile();
+			case ResourcePackage.FONT__HEIGHT:
+				return getHeight();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,6 +197,9 @@ public class FontImpl extends SampledResourceImpl implements Font
 			case ResourcePackage.FONT__FILE:
 				setFile((PathResource)newValue);
 				return;
+			case ResourcePackage.FONT__HEIGHT:
+				setHeight((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -169,6 +217,9 @@ public class FontImpl extends SampledResourceImpl implements Font
 			case ResourcePackage.FONT__FILE:
 				setFile((PathResource)null);
 				return;
+			case ResourcePackage.FONT__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -185,8 +236,27 @@ public class FontImpl extends SampledResourceImpl implements Font
 		{
 			case ResourcePackage.FONT__FILE:
 				return file != null;
+			case ResourcePackage.FONT__HEIGHT:
+				return height != HEIGHT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (height: ");
+		result.append(height);
+		result.append(')');
+		return result.toString();
 	}
 
 } //FontImpl

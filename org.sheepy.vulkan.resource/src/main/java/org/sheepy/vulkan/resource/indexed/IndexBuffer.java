@@ -150,6 +150,16 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 		return indexBuffer.getId();
 	}
 
+	public long getVertexBufferMemoryId()
+	{
+		return vertexBuffer.getMemoryId();
+	}
+
+	public long getIndexBufferMemoryId()
+	{
+		return indexBuffer.getMemoryId();
+	}
+
 	public int indexCount()
 	{
 		return indexCount;

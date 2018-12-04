@@ -573,13 +573,22 @@ public interface ResourcePackage extends EPackage
 	int FONT__FILE = SAMPLED_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT__HEIGHT = SAMPLED_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Font</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FONT_FEATURE_COUNT = SAMPLED_RESOURCE_FEATURE_COUNT + 1;
+	int FONT_FEATURE_COUNT = SAMPLED_RESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Font</em>' class.
@@ -1880,6 +1889,17 @@ public interface ResourcePackage extends EPackage
 	EReference getFont_File();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Font#getHeight <em>Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Font#getHeight()
+	 * @see #getFont()
+	 * @generated
+	 */
+	EAttribute getFont_Height();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.AbstractTexture <em>Abstract Texture</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2723,6 +2743,14 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference FONT__FILE = eINSTANCE.getFont_File();
+
+		/**
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FONT__HEIGHT = eINSTANCE.getFont_Height();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.

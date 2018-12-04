@@ -70,6 +70,8 @@ abstract class SampledResource extends PipelineResource
 class Font extends SampledResource
 {
 	contains PathResource file
+	
+	int height
 }
 
 abstract class AbstractTexture extends SampledResource
