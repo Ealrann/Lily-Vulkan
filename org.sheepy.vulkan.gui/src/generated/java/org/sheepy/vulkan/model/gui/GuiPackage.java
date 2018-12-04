@@ -6,8 +6,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EReference;
+
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 
 /**
@@ -188,7 +188,6 @@ public interface GuiPackage extends EPackage
 	 */
 	int GUI_PIPELINE_OPERATION_COUNT = GraphicPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
 
-
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.gui.impl.WindowImpl <em>Window</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -234,7 +233,6 @@ public interface GuiPackage extends EPackage
 	 * @ordered
 	 */
 	int WINDOW_OPERATION_COUNT = 0;
-
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.gui.impl.WidgetImpl <em>Widget</em>}' class.
@@ -300,7 +298,6 @@ public interface GuiPackage extends EPackage
 	 * @ordered
 	 */
 	int TEXT_OPERATION_COUNT = WIDGET_OPERATION_COUNT + 0;
-
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.gui.impl.ButtonImpl <em>Button</em>}' class.
@@ -497,6 +494,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EClass GUI_PIPELINE = eINSTANCE.getGUIPipeline();
+
 		/**
 		 * The meta object literal for the '<em><b>Windows</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -504,6 +502,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EReference GUI_PIPELINE__WINDOWS = eINSTANCE.getGUIPipeline_Windows();
+
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.gui.impl.WindowImpl <em>Window</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -513,6 +512,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EClass WINDOW = eINSTANCE.getWindow();
+
 		/**
 		 * The meta object literal for the '<em><b>Widgets</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -520,6 +520,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EReference WINDOW__WIDGETS = eINSTANCE.getWindow_Widgets();
+
 		/**
 		 * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -527,6 +528,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute WINDOW__POSITION = eINSTANCE.getWindow_Position();
+
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.gui.impl.WidgetImpl <em>Widget</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -536,6 +538,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EClass WIDGET = eINSTANCE.getWidget();
+
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.gui.impl.TextImpl <em>Text</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -545,6 +548,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EClass TEXT = eINSTANCE.getText();
+
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -552,6 +556,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute TEXT__VALUE = eINSTANCE.getText_Value();
+
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.gui.impl.ButtonImpl <em>Button</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -561,6 +566,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EClass BUTTON = eINSTANCE.getButton();
+
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -568,6 +574,7 @@ public interface GuiPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BUTTON__NAME = eINSTANCE.getButton_Name();
+
 		/**
 		 * The meta object literal for the '<em><b>On Click</b></em>' operation.
 		 * <!-- begin-user-doc -->

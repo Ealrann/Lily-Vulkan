@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.process;
 import org.eclipse.emf.common.util.EList;
 
 import org.sheepy.vulkan.model.IProcessPool;
+
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.Resource;
 
@@ -34,7 +35,7 @@ public interface AbstractProcessPool<T extends AbstractProcess> extends IProcess
 	 * The list contents are of type {@link org.sheepy.vulkan.model.resource.DescriptorSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Descriptor Sets</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Descriptor Sets</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

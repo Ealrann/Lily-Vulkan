@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -27,6 +28,7 @@ public enum ECullMode implements Enumerator
 	 * @ordered
 	 */
 	NONE(0, "NONE", "NONE"),
+
 	/**
 	 * The '<em><b>FRONT BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -36,6 +38,7 @@ public enum ECullMode implements Enumerator
 	 * @ordered
 	 */
 	FRONT_BIT(1, "FRONT_BIT", "FRONT_BIT"),
+
 	/**
 	 * The '<em><b>BACK BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -45,6 +48,7 @@ public enum ECullMode implements Enumerator
 	 * @ordered
 	 */
 	BACK_BIT(2, "BACK_BIT", "BACK_BIT"),
+
 	/**
 	 * The '<em><b>FRONT AND BACK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -54,6 +58,7 @@ public enum ECullMode implements Enumerator
 	 * @ordered
 	 */
 	FRONT_AND_BACK(3, "FRONT_AND_BACK", "FRONT_AND_BACK");
+
 	/**
 	 * The '<em><b>NONE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -274,4 +279,5 @@ public enum ECullMode implements Enumerator
 	{
 		return literal;
 	}
-}
+	
+} //ECullMode

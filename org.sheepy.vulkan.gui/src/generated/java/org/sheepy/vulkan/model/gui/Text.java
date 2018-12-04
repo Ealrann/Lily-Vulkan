@@ -2,6 +2,7 @@
  */
 package org.sheepy.vulkan.model.gui;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Text</b></em>'.
@@ -20,7 +21,6 @@ package org.sheepy.vulkan.model.gui;
  */
 public interface Text extends Widget
 {
-
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,4 +46,5 @@ public interface Text extends Widget
 	 * @generated
 	 */
 	void setValue(String value);
+
 } // Text

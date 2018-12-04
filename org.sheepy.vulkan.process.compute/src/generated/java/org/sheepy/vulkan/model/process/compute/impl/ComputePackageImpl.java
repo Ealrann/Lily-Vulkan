@@ -18,6 +18,7 @@ import org.sheepy.vulkan.model.VulkanPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.process.ProcessPackage;
+
 import org.sheepy.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
@@ -26,6 +27,7 @@ import org.sheepy.vulkan.model.process.compute.ComputeProcessPool;
 import org.sheepy.vulkan.model.process.compute.Computer;
 import org.sheepy.vulkan.model.process.compute.ComputerBufferBarrier;
 import org.sheepy.vulkan.model.process.compute.IComputer;
+
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**

@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
 /**
@@ -388,6 +389,7 @@ public interface ComputePackage extends EPackage
 	 * @ordered
 	 */
 	int COMPUTER_BUFFER_BARRIER_OPERATION_COUNT = ICOMPUTER_OPERATION_COUNT + 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.ComputeProcessPool <em>Process Pool</em>}'.

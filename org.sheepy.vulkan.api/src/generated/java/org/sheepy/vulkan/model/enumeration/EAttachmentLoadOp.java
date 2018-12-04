@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -27,6 +28,7 @@ public enum EAttachmentLoadOp implements Enumerator
 	 * @ordered
 	 */
 	LOAD(0, "LOAD", "LOAD"),
+
 	/**
 	 * The '<em><b>CLEAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -36,6 +38,7 @@ public enum EAttachmentLoadOp implements Enumerator
 	 * @ordered
 	 */
 	CLEAR(1, "CLEAR", "CLEAR"),
+
 	/**
 	 * The '<em><b>DONT CARE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -45,6 +48,7 @@ public enum EAttachmentLoadOp implements Enumerator
 	 * @ordered
 	 */
 	DONT_CARE(2, "DONT_CARE", "DONT_CARE");
+
 	/**
 	 * The '<em><b>LOAD</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -248,4 +252,5 @@ public enum EAttachmentLoadOp implements Enumerator
 	{
 		return literal;
 	}
-}
+	
+} //EAttachmentLoadOp

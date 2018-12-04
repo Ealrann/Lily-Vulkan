@@ -4,10 +4,12 @@ package org.sheepy.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.sheepy.vulkan.model.resource.Font;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
@@ -47,6 +49,7 @@ public class FontImpl extends SampledResourceImpl implements Font
 	 * @ordered
 	 */
 	protected static final int HEIGHT_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -188,7 +191,6 @@ public class FontImpl extends SampledResourceImpl implements Font
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{

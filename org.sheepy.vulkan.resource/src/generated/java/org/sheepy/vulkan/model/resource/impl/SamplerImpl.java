@@ -13,6 +13,7 @@ import org.sheepy.vulkan.model.enumeration.EBorderColor;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode;
 import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode;
+
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Sampler;
 
@@ -130,7 +131,7 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EBorderColor BORDER_COLOR_EDEFAULT = EBorderColor.INT_OPAQUE_BLACK; // TODO The default value literal "INT_OPAQUE_BLACK" is not valid.
+	protected static final EBorderColor BORDER_COLOR_EDEFAULT = EBorderColor.INT_OPAQUE_BLACK;
 
 	/**
 	 * The cached value of the '{@link #getBorderColor() <em>Border Color</em>}' attribute.

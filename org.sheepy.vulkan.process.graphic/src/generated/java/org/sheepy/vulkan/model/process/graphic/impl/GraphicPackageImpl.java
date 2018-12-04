@@ -18,6 +18,7 @@ import org.sheepy.vulkan.model.VulkanPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.process.ProcessPackage;
+
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment;
@@ -37,9 +38,9 @@ import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.vulkan.model.process.graphic.Scissor;
 import org.sheepy.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
-
 import org.sheepy.vulkan.model.process.graphic.Viewport;
 import org.sheepy.vulkan.model.process.graphic.ViewportState;
+
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**

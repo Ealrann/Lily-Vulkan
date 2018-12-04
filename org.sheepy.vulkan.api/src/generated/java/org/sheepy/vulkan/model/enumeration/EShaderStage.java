@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -27,6 +28,7 @@ public enum EShaderStage implements Enumerator
 	 * @ordered
 	 */
 	VERTEX_BIT(1, "VERTEX_BIT", "VERTEX_BIT"),
+
 	/**
 	 * The '<em><b>TESSELLATION CONTROL BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -36,6 +38,7 @@ public enum EShaderStage implements Enumerator
 	 * @ordered
 	 */
 	TESSELLATION_CONTROL_BIT(2, "TESSELLATION_CONTROL_BIT", "TESSELLATION_CONTROL_BIT"),
+
 	/**
 	 * The '<em><b>TESSELLATION EVALUATION BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -45,6 +48,7 @@ public enum EShaderStage implements Enumerator
 	 * @ordered
 	 */
 	TESSELLATION_EVALUATION_BIT(4, "TESSELLATION_EVALUATION_BIT", "TESSELLATION_EVALUATION_BIT"),
+
 	/**
 	 * The '<em><b>GEOMETRY BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -54,6 +58,7 @@ public enum EShaderStage implements Enumerator
 	 * @ordered
 	 */
 	GEOMETRY_BIT(8, "GEOMETRY_BIT", "GEOMETRY_BIT"),
+
 	/**
 	 * The '<em><b>FRAGMENT BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -63,6 +68,7 @@ public enum EShaderStage implements Enumerator
 	 * @ordered
 	 */
 	FRAGMENT_BIT(16, "FRAGMENT_BIT", "FRAGMENT_BIT"),
+
 	/**
 	 * The '<em><b>COMPUTE BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -72,6 +78,7 @@ public enum EShaderStage implements Enumerator
 	 * @ordered
 	 */
 	COMPUTE_BIT(32, "COMPUTE_BIT", "COMPUTE_BIT"),
+
 	/**
 	 * The '<em><b>ALL GRAPHICS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -81,6 +88,7 @@ public enum EShaderStage implements Enumerator
 	 * @ordered
 	 */
 	ALL_GRAPHICS(31, "ALL_GRAPHICS", "ALL_GRAPHICS"),
+
 	/**
 	 * The '<em><b>ALL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -90,6 +98,7 @@ public enum EShaderStage implements Enumerator
 	 * @ordered
 	 */
 	ALL(2147483647, "ALL", "ALL");
+
 	/**
 	 * The '<em><b>VERTEX BIT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -378,4 +387,5 @@ public enum EShaderStage implements Enumerator
 	{
 		return literal;
 	}
-}
+	
+} //EShaderStage

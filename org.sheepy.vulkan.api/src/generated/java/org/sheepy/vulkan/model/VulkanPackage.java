@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EReference;
  * <ul>
  *   <li>each class,</li>
  *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
@@ -148,7 +149,6 @@ public interface VulkanPackage extends EPackage
 	 */
 	int VULKAN_APPLICATION_FEATURE_COUNT = 8;
 
-
 	/**
 	 * The number of operations of the '<em>Application</em>' class.
 	 * <!-- begin-user-doc -->
@@ -157,7 +157,6 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int VULKAN_APPLICATION_OPERATION_COUNT = 0;
-
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}' class.
@@ -242,7 +241,6 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int IGRAPHIC_PROCESS_POOL_OPERATION_COUNT = IPROCESS_POOL_OPERATION_COUNT + 0;
-
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
@@ -466,6 +464,7 @@ public interface VulkanPackage extends EPackage
 	 * <ul>
 	 *   <li>each class,</li>
 	 *   <li>each feature of each class,</li>
+	 *   <li>each operation of each class,</li>
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>

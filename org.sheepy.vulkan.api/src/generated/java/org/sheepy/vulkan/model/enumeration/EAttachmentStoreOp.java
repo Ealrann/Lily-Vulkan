@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -27,6 +28,7 @@ public enum EAttachmentStoreOp implements Enumerator
 	 * @ordered
 	 */
 	STORE(0, "STORE", "STORE"),
+
 	/**
 	 * The '<em><b>DONT CARE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -36,6 +38,7 @@ public enum EAttachmentStoreOp implements Enumerator
 	 * @ordered
 	 */
 	DONT_CARE(1, "DONT_CARE", "DONT_CARE");
+
 	/**
 	 * The '<em><b>STORE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -222,4 +225,5 @@ public enum EAttachmentStoreOp implements Enumerator
 	{
 		return literal;
 	}
-}
+	
+} //EAttachmentStoreOp

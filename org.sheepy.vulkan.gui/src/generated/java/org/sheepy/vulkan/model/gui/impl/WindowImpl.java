@@ -3,18 +3,23 @@
 package org.sheepy.vulkan.model.gui.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.common.api.types.SVector2i;
+
 import org.sheepy.vulkan.model.gui.GuiPackage;
 import org.sheepy.vulkan.model.gui.Widget;
 import org.sheepy.vulkan.model.gui.Window;
@@ -54,6 +59,7 @@ public class WindowImpl extends MinimalEObjectImpl.Container implements Window
 	 * @ordered
 	 */
 	protected static final SVector2i POSITION_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute.
 	 * <!-- begin-user-doc -->

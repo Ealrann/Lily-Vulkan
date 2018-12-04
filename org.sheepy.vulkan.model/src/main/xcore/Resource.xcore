@@ -1,22 +1,18 @@
 @GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/resource")
 @GenModel(publicConstructors="true")
 @GenModel(updateClasspath="false")
-
 package org.sheepy.vulkan.model.resource
 
-import org.sheepy.vulkan.model.enumeration.EShaderStage
-import org.sheepy.vulkan.model.enumeration.EPipelineStage
-
-import java.lang.Module
-import org.sheepy.vulkan.model.enumeration.EImageLayout
-import org.sheepy.vulkan.model.enumeration.EDescriptorType
-import org.sheepy.vulkan.model.enumeration.EFormat
 import java.nio.ByteBuffer
-import org.sheepy.vulkan.model.enumeration.EFilter
-import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
-import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 import org.sheepy.vulkan.model.enumeration.EBorderColor
-
+import org.sheepy.vulkan.model.enumeration.EDescriptorType
+import org.sheepy.vulkan.model.enumeration.EFilter
+import org.sheepy.vulkan.model.enumeration.EFormat
+import org.sheepy.vulkan.model.enumeration.EImageLayout
+import org.sheepy.vulkan.model.enumeration.EPipelineStage
+import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
+import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
+import org.sheepy.vulkan.model.enumeration.EShaderStage
 
 interface Resource
 {
@@ -36,7 +32,6 @@ class Buffer extends PipelineResource
 	int usage
 	int properties
 	boolean changeable = "false"
-	
 	ByteBuffer data
 }
 
@@ -51,7 +46,6 @@ class Image extends PipelineResource
 	int properties
 	int tiling = "0"
 	int mipLevels = "1"
-	
 	contains ImageLayout initialLayout
 }
 
@@ -70,7 +64,6 @@ abstract class SampledResource extends PipelineResource
 class Font extends SampledResource
 {
 	contains PathResource file
-	
 	int height
 }
 
@@ -91,15 +84,12 @@ class Sampler
 	ESamplerMipmapMode mipmapMode = "NEAREST"
 	ESamplerAddressMode addressMode = "REPEAT"
 	EBorderColor borderColor = "INT_OPAQUE_BLACK"
-	
 	boolean anisotropyEnabled = "false"
 	boolean unnormalizedCoordinates = "false"
 	boolean compareEnable = "false"
-	
 	float lodBias = "0"
 	int minLod = "0"
 	int maxLod = "1"
-	
 	float maxAnisotropy = "1"
 }
 
@@ -116,7 +106,7 @@ interface IDescriptor
 }
 
 interface DescriptorSet
-{	
+{
 }
 
 class BasicDescriptorSet extends DescriptorSet
@@ -164,7 +154,6 @@ class ImageTransition
 
 // ---------------------
 // Non pipeline resource: Vulkan doesn't need a descriptor for them
-
 class Shader extends BasicResource
 {
 	contains PathResource file

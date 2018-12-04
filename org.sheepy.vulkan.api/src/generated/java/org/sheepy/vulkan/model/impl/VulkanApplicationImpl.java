@@ -462,7 +462,7 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-		@Override
+	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)

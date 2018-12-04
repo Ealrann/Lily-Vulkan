@@ -3,6 +3,7 @@
 package org.sheepy.vulkan.model.gui;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 
 /**
@@ -23,7 +24,6 @@ import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
  */
 public interface GUIPipeline extends GraphicsPipeline
 {
-
 	/**
 	 * Returns the value of the '<em><b>Windows</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.vulkan.model.gui.Window}.
@@ -39,4 +39,5 @@ public interface GUIPipeline extends GraphicsPipeline
 	 * @generated
 	 */
 	EList<Window> getWindows();
+
 } // GUIPipeline

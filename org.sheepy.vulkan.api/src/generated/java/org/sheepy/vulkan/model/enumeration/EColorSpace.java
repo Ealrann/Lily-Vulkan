@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -27,6 +28,7 @@ public enum EColorSpace implements Enumerator
 	 * @ordered
 	 */
 	SRGB_NONLINEAR_KHR(0, "SRGB_NONLINEAR_KHR", "SRGB_NONLINEAR_KHR");
+
 	/**
 	 * The '<em><b>SRGB NONLINEAR KHR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -196,4 +198,5 @@ public enum EColorSpace implements Enumerator
 	{
 		return literal;
 	}
-}
+	
+} //EColorSpace

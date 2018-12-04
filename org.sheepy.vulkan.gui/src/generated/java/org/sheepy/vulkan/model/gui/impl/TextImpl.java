@@ -3,9 +3,11 @@
 package org.sheepy.vulkan.model.gui.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.sheepy.vulkan.model.gui.GuiPackage;
 import org.sheepy.vulkan.model.gui.Text;
 
@@ -33,6 +35,7 @@ public class TextImpl extends WidgetImpl implements Text
 	 * @ordered
 	 */
 	protected static final String VALUE_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->

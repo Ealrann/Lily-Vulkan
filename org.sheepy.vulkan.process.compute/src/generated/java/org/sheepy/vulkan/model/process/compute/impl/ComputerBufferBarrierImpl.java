@@ -3,8 +3,8 @@
 package org.sheepy.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -40,6 +40,7 @@ public class ComputerBufferBarrierImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected BufferBarrier bufferBarrier;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

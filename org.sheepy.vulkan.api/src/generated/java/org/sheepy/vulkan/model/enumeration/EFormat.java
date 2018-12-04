@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -27,6 +28,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	UNDEFINED(0, "UNDEFINED", "UNDEFINED"),
+
 	/**
 	 * The '<em><b>R4G4 UNORM PACK8</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -36,6 +38,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R4G4_UNORM_PACK8(1, "R4G4_UNORM_PACK8", "R4G4_UNORM_PACK8"),
+
 	/**
 	 * The '<em><b>R4G4B4A4 UNORM PACK16</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -45,6 +48,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R4G4B4A4_UNORM_PACK16(2, "R4G4B4A4_UNORM_PACK16", "R4G4B4A4_UNORM_PACK16"),
+
 	/**
 	 * The '<em><b>B4G4R4A4 UNORM PACK16</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -54,6 +58,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B4G4R4A4_UNORM_PACK16(3, "B4G4R4A4_UNORM_PACK16", "B4G4R4A4_UNORM_PACK16"),
+
 	/**
 	 * The '<em><b>R5G6B5 UNORM PACK16</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -63,6 +68,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R5G6B5_UNORM_PACK16(4, "R5G6B5_UNORM_PACK16", "R5G6B5_UNORM_PACK16"),
+
 	/**
 	 * The '<em><b>B5G6R5 UNORM PACK16</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -72,6 +78,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B5G6R5_UNORM_PACK16(5, "B5G6R5_UNORM_PACK16", "B5G6R5_UNORM_PACK16"),
+
 	/**
 	 * The '<em><b>R5G5B5A1 UNORM PACK16</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -81,6 +88,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R5G5B5A1_UNORM_PACK16(6, "R5G5B5A1_UNORM_PACK16", "R5G5B5A1_UNORM_PACK16"),
+
 	/**
 	 * The '<em><b>B5G5R5A1 UNORM PACK16</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -90,6 +98,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B5G5R5A1_UNORM_PACK16(7, "B5G5R5A1_UNORM_PACK16", "B5G5R5A1_UNORM_PACK16"),
+
 	/**
 	 * The '<em><b>A1R5G5B5 UNORM PACK16</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -99,6 +108,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A1R5G5B5_UNORM_PACK16(8, "A1R5G5B5_UNORM_PACK16", "A1R5G5B5_UNORM_PACK16"),
+
 	/**
 	 * The '<em><b>R8 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -108,6 +118,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8_UNORM(9, "R8_UNORM", "R8_UNORM"),
+
 	/**
 	 * The '<em><b>R8 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -117,6 +128,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8_SNORM(10, "R8_SNORM", "R8_SNORM"),
+
 	/**
 	 * The '<em><b>R8 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -126,6 +138,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8_USCALED(11, "R8_USCALED", "R8_USCALED"),
+
 	/**
 	 * The '<em><b>R8 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -135,6 +148,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8_SSCALED(12, "R8_SSCALED", "R8_SSCALED"),
+
 	/**
 	 * The '<em><b>R8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -144,6 +158,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8_UINT(13, "R8_UINT", "R8_UINT"),
+
 	/**
 	 * The '<em><b>R8 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -153,6 +168,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8_SINT(14, "R8_SINT", "R8_SINT"),
+
 	/**
 	 * The '<em><b>R8 SRGB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -162,6 +178,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8_SRGB(15, "R8_SRGB", "R8_SRGB"),
+
 	/**
 	 * The '<em><b>R8G8 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -171,6 +188,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8_UNORM(16, "R8G8_UNORM", "R8G8_UNORM"),
+
 	/**
 	 * The '<em><b>R8G8 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -180,6 +198,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8_SNORM(17, "R8G8_SNORM", "R8G8_SNORM"),
+
 	/**
 	 * The '<em><b>R8G8 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -189,6 +208,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8_USCALED(18, "R8G8_USCALED", "R8G8_USCALED"),
+
 	/**
 	 * The '<em><b>R8G8 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -198,6 +218,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8_SSCALED(19, "R8G8_SSCALED", "R8G8_SSCALED"),
+
 	/**
 	 * The '<em><b>R8G8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -207,6 +228,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8_UINT(20, "R8G8_UINT", "R8G8_UINT"),
+
 	/**
 	 * The '<em><b>R8G8 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -216,6 +238,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8_SINT(21, "R8G8_SINT", "R8G8_SINT"),
+
 	/**
 	 * The '<em><b>R8G8 SRGB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -225,6 +248,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8_SRGB(22, "R8G8_SRGB", "R8G8_SRGB"),
+
 	/**
 	 * The '<em><b>R8G8B8 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -234,6 +258,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8_UNORM(23, "R8G8B8_UNORM", "R8G8B8_UNORM"),
+
 	/**
 	 * The '<em><b>R8G8B8 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -243,6 +268,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8_SNORM(24, "R8G8B8_SNORM", "R8G8B8_SNORM"),
+
 	/**
 	 * The '<em><b>R8G8B8 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -252,6 +278,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8_USCALED(25, "R8G8B8_USCALED", "R8G8B8_USCALED"),
+
 	/**
 	 * The '<em><b>R8G8B8 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -261,6 +288,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8_SSCALED(26, "R8G8B8_SSCALED", "R8G8B8_SSCALED"),
+
 	/**
 	 * The '<em><b>R8G8B8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -270,6 +298,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8_UINT(27, "R8G8B8_UINT", "R8G8B8_UINT"),
+
 	/**
 	 * The '<em><b>R8G8B8 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -279,6 +308,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8_SINT(28, "R8G8B8_SINT", "R8G8B8_SINT"),
+
 	/**
 	 * The '<em><b>R8G8B8 SRGB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -288,6 +318,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8_SRGB(29, "R8G8B8_SRGB", "R8G8B8_SRGB"),
+
 	/**
 	 * The '<em><b>B8G8R8 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -297,6 +328,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8_UNORM(30, "B8G8R8_UNORM", "B8G8R8_UNORM"),
+
 	/**
 	 * The '<em><b>B8G8R8 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -306,6 +338,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8_SNORM(31, "B8G8R8_SNORM", "B8G8R8_SNORM"),
+
 	/**
 	 * The '<em><b>B8G8R8 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -315,6 +348,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8_USCALED(32, "B8G8R8_USCALED", "B8G8R8_USCALED"),
+
 	/**
 	 * The '<em><b>B8G8R8 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -324,6 +358,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8_SSCALED(33, "B8G8R8_SSCALED", "B8G8R8_SSCALED"),
+
 	/**
 	 * The '<em><b>B8G8R8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -333,6 +368,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8_UINT(34, "B8G8R8_UINT", "B8G8R8_UINT"),
+
 	/**
 	 * The '<em><b>B8G8R8 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -342,6 +378,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8_SINT(35, "B8G8R8_SINT", "B8G8R8_SINT"),
+
 	/**
 	 * The '<em><b>B8G8R8 SRGB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -351,6 +388,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8_SRGB(36, "B8G8R8_SRGB", "B8G8R8_SRGB"),
+
 	/**
 	 * The '<em><b>R8G8B8A8 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -360,6 +398,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8A8_UNORM(37, "R8G8B8A8_UNORM", "R8G8B8A8_UNORM"),
+
 	/**
 	 * The '<em><b>R8G8B8A8 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -369,6 +408,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8A8_SNORM(38, "R8G8B8A8_SNORM", "R8G8B8A8_SNORM"),
+
 	/**
 	 * The '<em><b>R8G8B8A8 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -378,6 +418,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8A8_USCALED(39, "R8G8B8A8_USCALED", "R8G8B8A8_USCALED"),
+
 	/**
 	 * The '<em><b>R8G8B8A8 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -387,6 +428,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8A8_SSCALED(40, "R8G8B8A8_SSCALED", "R8G8B8A8_SSCALED"),
+
 	/**
 	 * The '<em><b>R8G8B8A8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -396,6 +438,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8A8_UINT(41, "R8G8B8A8_UINT", "R8G8B8A8_UINT"),
+
 	/**
 	 * The '<em><b>R8G8B8A8 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -405,6 +448,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8A8_SINT(42, "R8G8B8A8_SINT", "R8G8B8A8_SINT"),
+
 	/**
 	 * The '<em><b>R8G8B8A8 SRGB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -414,6 +458,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R8G8B8A8_SRGB(43, "R8G8B8A8_SRGB", "R8G8B8A8_SRGB"),
+
 	/**
 	 * The '<em><b>B8G8R8A8 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -423,6 +468,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8A8_UNORM(44, "B8G8R8A8_UNORM", "B8G8R8A8_UNORM"),
+
 	/**
 	 * The '<em><b>B8G8R8A8 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -432,6 +478,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8A8_SNORM(45, "B8G8R8A8_SNORM", "B8G8R8A8_SNORM"),
+
 	/**
 	 * The '<em><b>B8G8R8A8 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -441,6 +488,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8A8_USCALED(46, "B8G8R8A8_USCALED", "B8G8R8A8_USCALED"),
+
 	/**
 	 * The '<em><b>B8G8R8A8 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -450,6 +498,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8A8_SSCALED(47, "B8G8R8A8_SSCALED", "B8G8R8A8_SSCALED"),
+
 	/**
 	 * The '<em><b>B8G8R8A8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -459,6 +508,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8A8_UINT(48, "B8G8R8A8_UINT", "B8G8R8A8_UINT"),
+
 	/**
 	 * The '<em><b>B8G8R8A8 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -468,6 +518,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8A8_SINT(49, "B8G8R8A8_SINT", "B8G8R8A8_SINT"),
+
 	/**
 	 * The '<em><b>B8G8R8A8 SRGB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -477,6 +528,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B8G8R8A8_SRGB(50, "B8G8R8A8_SRGB", "B8G8R8A8_SRGB"),
+
 	/**
 	 * The '<em><b>A8B8G8R8 UNORM PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -486,6 +538,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A8B8G8R8_UNORM_PACK32(51, "A8B8G8R8_UNORM_PACK32", "A8B8G8R8_UNORM_PACK32"),
+
 	/**
 	 * The '<em><b>A8B8G8R8 SNORM PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -495,6 +548,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A8B8G8R8_SNORM_PACK32(52, "A8B8G8R8_SNORM_PACK32", "A8B8G8R8_SNORM_PACK32"),
+
 	/**
 	 * The '<em><b>A8B8G8R8 USCALED PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -504,6 +558,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A8B8G8R8_USCALED_PACK32(53, "A8B8G8R8_USCALED_PACK32", "A8B8G8R8_USCALED_PACK32"),
+
 	/**
 	 * The '<em><b>A8B8G8R8 SSCALED PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -513,6 +568,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A8B8G8R8_SSCALED_PACK32(54, "A8B8G8R8_SSCALED_PACK32", "A8B8G8R8_SSCALED_PACK32"),
+
 	/**
 	 * The '<em><b>A8B8G8R8 UINT PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -522,6 +578,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A8B8G8R8_UINT_PACK32(55, "A8B8G8R8_UINT_PACK32", "A8B8G8R8_UINT_PACK32"),
+
 	/**
 	 * The '<em><b>A8B8G8R8 SINT PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -531,6 +588,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A8B8G8R8_SINT_PACK32(56, "A8B8G8R8_SINT_PACK32", "A8B8G8R8_SINT_PACK32"),
+
 	/**
 	 * The '<em><b>A8B8G8R8 SRGB PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -540,6 +598,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A8B8G8R8_SRGB_PACK32(57, "A8B8G8R8_SRGB_PACK32", "A8B8G8R8_SRGB_PACK32"),
+
 	/**
 	 * The '<em><b>A2R10G10B10 UNORM PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -549,6 +608,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2R10G10B10_UNORM_PACK32(58, "A2R10G10B10_UNORM_PACK32", "A2R10G10B10_UNORM_PACK32"),
+
 	/**
 	 * The '<em><b>A2R10G10B10 SNORM PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -558,6 +618,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2R10G10B10_SNORM_PACK32(59, "A2R10G10B10_SNORM_PACK32", "A2R10G10B10_SNORM_PACK32"),
+
 	/**
 	 * The '<em><b>A2R10G10B10 USCALED PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -567,6 +628,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2R10G10B10_USCALED_PACK32(60, "A2R10G10B10_USCALED_PACK32", "A2R10G10B10_USCALED_PACK32"),
+
 	/**
 	 * The '<em><b>A2R10G10B10 SSCALED PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -576,6 +638,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2R10G10B10_SSCALED_PACK32(61, "A2R10G10B10_SSCALED_PACK32", "A2R10G10B10_SSCALED_PACK32"),
+
 	/**
 	 * The '<em><b>A2R10G10B10 UINT PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -585,6 +648,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2R10G10B10_UINT_PACK32(62, "A2R10G10B10_UINT_PACK32", "A2R10G10B10_UINT_PACK32"),
+
 	/**
 	 * The '<em><b>A2R10G10B10 SINT PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -594,6 +658,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2R10G10B10_SINT_PACK32(63, "A2R10G10B10_SINT_PACK32", "A2R10G10B10_SINT_PACK32"),
+
 	/**
 	 * The '<em><b>A2B10G10R10 UNORM PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -603,6 +668,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2B10G10R10_UNORM_PACK32(64, "A2B10G10R10_UNORM_PACK32", "A2B10G10R10_UNORM_PACK32"),
+
 	/**
 	 * The '<em><b>A2B10G10R10 SNORM PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -612,6 +678,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2B10G10R10_SNORM_PACK32(65, "A2B10G10R10_SNORM_PACK32", "A2B10G10R10_SNORM_PACK32"),
+
 	/**
 	 * The '<em><b>A2B10G10R10 USCALED PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -621,6 +688,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2B10G10R10_USCALED_PACK32(66, "A2B10G10R10_USCALED_PACK32", "A2B10G10R10_USCALED_PACK32"),
+
 	/**
 	 * The '<em><b>A2B10G10R10 SSCALED PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -630,6 +698,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2B10G10R10_SSCALED_PACK32(67, "A2B10G10R10_SSCALED_PACK32", "A2B10G10R10_SSCALED_PACK32"),
+
 	/**
 	 * The '<em><b>A2B10G10R10 UINT PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -639,6 +708,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2B10G10R10_UINT_PACK32(68, "A2B10G10R10_UINT_PACK32", "A2B10G10R10_UINT_PACK32"),
+
 	/**
 	 * The '<em><b>A2B10G10R10 SINT PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -648,6 +718,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	A2B10G10R10_SINT_PACK32(69, "A2B10G10R10_SINT_PACK32", "A2B10G10R10_SINT_PACK32"),
+
 	/**
 	 * The '<em><b>R16 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -657,6 +728,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16_UNORM(70, "R16_UNORM", "R16_UNORM"),
+
 	/**
 	 * The '<em><b>R16 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -666,6 +738,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16_SNORM(71, "R16_SNORM", "R16_SNORM"),
+
 	/**
 	 * The '<em><b>R16 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -675,6 +748,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16_USCALED(72, "R16_USCALED", "R16_USCALED"),
+
 	/**
 	 * The '<em><b>R16 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -684,6 +758,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16_SSCALED(73, "R16_SSCALED", "R16_SSCALED"),
+
 	/**
 	 * The '<em><b>R16 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -693,6 +768,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16_UINT(74, "R16_UINT", "R16_UINT"),
+
 	/**
 	 * The '<em><b>R16 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -702,6 +778,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16_SINT(75, "R16_SINT", "R16_SINT"),
+
 	/**
 	 * The '<em><b>R16 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -711,6 +788,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16_SFLOAT(76, "R16_SFLOAT", "R16_SFLOAT"),
+
 	/**
 	 * The '<em><b>R16G16 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -720,6 +798,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16_UNORM(77, "R16G16_UNORM", "R16G16_UNORM"),
+
 	/**
 	 * The '<em><b>R16G16 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -729,6 +808,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16_SNORM(78, "R16G16_SNORM", "R16G16_SNORM"),
+
 	/**
 	 * The '<em><b>R16G16 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -738,6 +818,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16_USCALED(79, "R16G16_USCALED", "R16G16_USCALED"),
+
 	/**
 	 * The '<em><b>R16G16 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -747,6 +828,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16_SSCALED(80, "R16G16_SSCALED", "R16G16_SSCALED"),
+
 	/**
 	 * The '<em><b>R16G16 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -756,6 +838,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16_UINT(81, "R16G16_UINT", "R16G16_UINT"),
+
 	/**
 	 * The '<em><b>R16G16 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -765,6 +848,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16_SINT(82, "R16G16_SINT", "R16G16_SINT"),
+
 	/**
 	 * The '<em><b>R16G16 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -774,6 +858,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16_SFLOAT(83, "R16G16_SFLOAT", "R16G16_SFLOAT"),
+
 	/**
 	 * The '<em><b>R16G16B16 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -783,6 +868,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16_UNORM(84, "R16G16B16_UNORM", "R16G16B16_UNORM"),
+
 	/**
 	 * The '<em><b>R16G16B16 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -792,6 +878,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16_SNORM(85, "R16G16B16_SNORM", "R16G16B16_SNORM"),
+
 	/**
 	 * The '<em><b>R16G16B16 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -801,6 +888,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16_USCALED(86, "R16G16B16_USCALED", "R16G16B16_USCALED"),
+
 	/**
 	 * The '<em><b>R16G16B16 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -810,6 +898,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16_SSCALED(87, "R16G16B16_SSCALED", "R16G16B16_SSCALED"),
+
 	/**
 	 * The '<em><b>R16G16B16 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -819,6 +908,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16_UINT(88, "R16G16B16_UINT", "R16G16B16_UINT"),
+
 	/**
 	 * The '<em><b>R16G16B16 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -828,6 +918,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16_SINT(89, "R16G16B16_SINT", "R16G16B16_SINT"),
+
 	/**
 	 * The '<em><b>R16G16B16 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -837,6 +928,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16_SFLOAT(90, "R16G16B16_SFLOAT", "R16G16B16_SFLOAT"),
+
 	/**
 	 * The '<em><b>R16G16B16A16 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -846,6 +938,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16A16_UNORM(91, "R16G16B16A16_UNORM", "R16G16B16A16_UNORM"),
+
 	/**
 	 * The '<em><b>R16G16B16A16 SNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -855,6 +948,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16A16_SNORM(92, "R16G16B16A16_SNORM", "R16G16B16A16_SNORM"),
+
 	/**
 	 * The '<em><b>R16G16B16A16 USCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -864,6 +958,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16A16_USCALED(93, "R16G16B16A16_USCALED", "R16G16B16A16_USCALED"),
+
 	/**
 	 * The '<em><b>R16G16B16A16 SSCALED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -873,6 +968,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16A16_SSCALED(94, "R16G16B16A16_SSCALED", "R16G16B16A16_SSCALED"),
+
 	/**
 	 * The '<em><b>R16G16B16A16 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -882,6 +978,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16A16_UINT(95, "R16G16B16A16_UINT", "R16G16B16A16_UINT"),
+
 	/**
 	 * The '<em><b>R16G16B16A16 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -891,6 +988,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16A16_SINT(96, "R16G16B16A16_SINT", "R16G16B16A16_SINT"),
+
 	/**
 	 * The '<em><b>R16G16B16A16 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -900,6 +998,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R16G16B16A16_SFLOAT(97, "R16G16B16A16_SFLOAT", "R16G16B16A16_SFLOAT"),
+
 	/**
 	 * The '<em><b>R32 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -909,6 +1008,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32_UINT(98, "R32_UINT", "R32_UINT"),
+
 	/**
 	 * The '<em><b>R32 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -918,6 +1018,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32_SINT(99, "R32_SINT", "R32_SINT"),
+
 	/**
 	 * The '<em><b>R32 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -927,6 +1028,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32_SFLOAT(100, "R32_SFLOAT", "R32_SFLOAT"),
+
 	/**
 	 * The '<em><b>R32G32 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -936,6 +1038,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32G32_UINT(101, "R32G32_UINT", "R32G32_UINT"),
+
 	/**
 	 * The '<em><b>R32G32 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -945,6 +1048,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32G32_SINT(102, "R32G32_SINT", "R32G32_SINT"),
+
 	/**
 	 * The '<em><b>R32G32 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -954,6 +1058,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32G32_SFLOAT(103, "R32G32_SFLOAT", "R32G32_SFLOAT"),
+
 	/**
 	 * The '<em><b>R32G32B32 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -963,6 +1068,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32G32B32_UINT(104, "R32G32B32_UINT", "R32G32B32_UINT"),
+
 	/**
 	 * The '<em><b>R32G32B32 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -972,6 +1078,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32G32B32_SINT(105, "R32G32B32_SINT", "R32G32B32_SINT"),
+
 	/**
 	 * The '<em><b>R32G32B32 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -981,6 +1088,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32G32B32_SFLOAT(106, "R32G32B32_SFLOAT", "R32G32B32_SFLOAT"),
+
 	/**
 	 * The '<em><b>R32G32B32A32 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -990,6 +1098,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32G32B32A32_UINT(107, "R32G32B32A32_UINT", "R32G32B32A32_UINT"),
+
 	/**
 	 * The '<em><b>R32G32B32A32 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -999,6 +1108,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32G32B32A32_SINT(108, "R32G32B32A32_SINT", "R32G32B32A32_SINT"),
+
 	/**
 	 * The '<em><b>R32G32B32A32 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1008,6 +1118,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R32G32B32A32_SFLOAT(109, "R32G32B32A32_SFLOAT", "R32G32B32A32_SFLOAT"),
+
 	/**
 	 * The '<em><b>R64 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1017,6 +1128,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64_UINT(110, "R64_UINT", "R64_UINT"),
+
 	/**
 	 * The '<em><b>R64 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1026,6 +1138,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64_SINT(111, "R64_SINT", "R64_SINT"),
+
 	/**
 	 * The '<em><b>R64 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1035,6 +1148,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64_SFLOAT(112, "R64_SFLOAT", "R64_SFLOAT"),
+
 	/**
 	 * The '<em><b>R64G64 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1044,6 +1158,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64G64_UINT(113, "R64G64_UINT", "R64G64_UINT"),
+
 	/**
 	 * The '<em><b>R64G64 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1053,6 +1168,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64G64_SINT(114, "R64G64_SINT", "R64G64_SINT"),
+
 	/**
 	 * The '<em><b>R64G64 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1062,6 +1178,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64G64_SFLOAT(115, "R64G64_SFLOAT", "R64G64_SFLOAT"),
+
 	/**
 	 * The '<em><b>R64G64B64 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1071,6 +1188,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64G64B64_UINT(116, "R64G64B64_UINT", "R64G64B64_UINT"),
+
 	/**
 	 * The '<em><b>R64G64B64 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1080,6 +1198,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64G64B64_SINT(117, "R64G64B64_SINT", "R64G64B64_SINT"),
+
 	/**
 	 * The '<em><b>R64G64B64 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1089,6 +1208,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64G64B64_SFLOAT(118, "R64G64B64_SFLOAT", "R64G64B64_SFLOAT"),
+
 	/**
 	 * The '<em><b>R64G64B64A64 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1098,6 +1218,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64G64B64A64_UINT(119, "R64G64B64A64_UINT", "R64G64B64A64_UINT"),
+
 	/**
 	 * The '<em><b>R64G64B64A64 SINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1107,6 +1228,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64G64B64A64_SINT(120, "R64G64B64A64_SINT", "R64G64B64A64_SINT"),
+
 	/**
 	 * The '<em><b>R64G64B64A64 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1116,6 +1238,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	R64G64B64A64_SFLOAT(121, "R64G64B64A64_SFLOAT", "R64G64B64A64_SFLOAT"),
+
 	/**
 	 * The '<em><b>B10G11R11 UFLOAT PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1125,6 +1248,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	B10G11R11_UFLOAT_PACK32(122, "B10G11R11_UFLOAT_PACK32", "B10G11R11_UFLOAT_PACK32"),
+
 	/**
 	 * The '<em><b>E5B9G9R9 UFLOAT PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1134,6 +1258,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	E5B9G9R9_UFLOAT_PACK32(123, "E5B9G9R9_UFLOAT_PACK32", "E5B9G9R9_UFLOAT_PACK32"),
+
 	/**
 	 * The '<em><b>D16 UNORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1143,6 +1268,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	D16_UNORM(124, "D16_UNORM", "D16_UNORM"),
+
 	/**
 	 * The '<em><b>X8 D24 UNORM PACK32</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1152,6 +1278,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	X8_D24_UNORM_PACK32(125, "X8_D24_UNORM_PACK32", "X8_D24_UNORM_PACK32"),
+
 	/**
 	 * The '<em><b>D32 SFLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1161,6 +1288,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	D32_SFLOAT(126, "D32_SFLOAT", "D32_SFLOAT"),
+
 	/**
 	 * The '<em><b>S8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1170,6 +1298,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	S8_UINT(127, "S8_UINT", "S8_UINT"),
+
 	/**
 	 * The '<em><b>D16 UNORM S8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1179,6 +1308,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	D16_UNORM_S8_UINT(128, "D16_UNORM_S8_UINT", "D16_UNORM_S8_UINT"),
+
 	/**
 	 * The '<em><b>D24 UNORM S8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1188,6 +1318,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	D24_UNORM_S8_UINT(129, "D24_UNORM_S8_UINT", "D24_UNORM_S8_UINT"),
+
 	/**
 	 * The '<em><b>D32 SFLOAT S8 UINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1197,6 +1328,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	D32_SFLOAT_S8_UINT(130, "D32_SFLOAT_S8_UINT", "D32_SFLOAT_S8_UINT"),
+
 	/**
 	 * The '<em><b>BC1 RGB UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1206,6 +1338,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC1_RGB_UNORM_BLOCK(131, "BC1_RGB_UNORM_BLOCK", "BC1_RGB_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>BC1 RGB SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1215,6 +1348,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC1_RGB_SRGB_BLOCK(132, "BC1_RGB_SRGB_BLOCK", "BC1_RGB_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>BC1 RGBA UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1224,6 +1358,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC1_RGBA_UNORM_BLOCK(133, "BC1_RGBA_UNORM_BLOCK", "BC1_RGBA_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>BC1 RGBA SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1233,6 +1368,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC1_RGBA_SRGB_BLOCK(134, "BC1_RGBA_SRGB_BLOCK", "BC1_RGBA_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>BC2 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1242,6 +1378,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC2_UNORM_BLOCK(135, "BC2_UNORM_BLOCK", "BC2_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>BC2 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1251,6 +1388,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC2_SRGB_BLOCK(136, "BC2_SRGB_BLOCK", "BC2_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>BC3 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1260,6 +1398,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC3_UNORM_BLOCK(137, "BC3_UNORM_BLOCK", "BC3_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>BC3 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1269,6 +1408,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC3_SRGB_BLOCK(138, "BC3_SRGB_BLOCK", "BC3_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>BC4 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1278,6 +1418,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC4_UNORM_BLOCK(139, "BC4_UNORM_BLOCK", "BC4_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>BC4 SNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1287,6 +1428,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC4_SNORM_BLOCK(140, "BC4_SNORM_BLOCK", "BC4_SNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>BC5 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1296,6 +1438,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC5_UNORM_BLOCK(141, "BC5_UNORM_BLOCK", "BC5_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>BC5 SNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1305,6 +1448,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC5_SNORM_BLOCK(142, "BC5_SNORM_BLOCK", "BC5_SNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>BC6H UFLOAT BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1314,6 +1458,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC6H_UFLOAT_BLOCK(143, "BC6H_UFLOAT_BLOCK", "BC6H_UFLOAT_BLOCK"),
+
 	/**
 	 * The '<em><b>BC6H SFLOAT BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1323,6 +1468,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC6H_SFLOAT_BLOCK(144, "BC6H_SFLOAT_BLOCK", "BC6H_SFLOAT_BLOCK"),
+
 	/**
 	 * The '<em><b>BC7 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1332,6 +1478,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC7_UNORM_BLOCK(145, "BC7_UNORM_BLOCK", "BC7_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>BC7 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1341,6 +1488,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	BC7_SRGB_BLOCK(146, "BC7_SRGB_BLOCK", "BC7_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ETC2 R8G8B8 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1350,6 +1498,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ETC2_R8G8B8_UNORM_BLOCK(147, "ETC2_R8G8B8_UNORM_BLOCK", "ETC2_R8G8B8_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ETC2 R8G8B8 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1359,6 +1508,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ETC2_R8G8B8_SRGB_BLOCK(148, "ETC2_R8G8B8_SRGB_BLOCK", "ETC2_R8G8B8_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ETC2 R8G8B8A1 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1368,6 +1518,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ETC2_R8G8B8A1_UNORM_BLOCK(149, "ETC2_R8G8B8A1_UNORM_BLOCK", "ETC2_R8G8B8A1_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ETC2 R8G8B8A1 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1377,6 +1528,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ETC2_R8G8B8A1_SRGB_BLOCK(150, "ETC2_R8G8B8A1_SRGB_BLOCK", "ETC2_R8G8B8A1_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ETC2 R8G8B8A8 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1386,6 +1538,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ETC2_R8G8B8A8_UNORM_BLOCK(151, "ETC2_R8G8B8A8_UNORM_BLOCK", "ETC2_R8G8B8A8_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ETC2 R8G8B8A8 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1395,6 +1548,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ETC2_R8G8B8A8_SRGB_BLOCK(152, "ETC2_R8G8B8A8_SRGB_BLOCK", "ETC2_R8G8B8A8_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>EAC R11 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1404,6 +1558,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	EAC_R11_UNORM_BLOCK(153, "EAC_R11_UNORM_BLOCK", "EAC_R11_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>EAC R11 SNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1413,6 +1568,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	EAC_R11_SNORM_BLOCK(154, "EAC_R11_SNORM_BLOCK", "EAC_R11_SNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>EAC R11G11 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1422,6 +1578,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	EAC_R11G11_UNORM_BLOCK(155, "EAC_R11G11_UNORM_BLOCK", "EAC_R11G11_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>EAC R11G11 SNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1431,6 +1588,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	EAC_R11G11_SNORM_BLOCK(156, "EAC_R11G11_SNORM_BLOCK", "EAC_R11G11_SNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 4x4 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1440,6 +1598,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_4X4_UNORM_BLOCK(157, "ASTC_4x4_UNORM_BLOCK", "ASTC_4x4_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 4x4 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1449,6 +1608,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_4X4_SRGB_BLOCK(158, "ASTC_4x4_SRGB_BLOCK", "ASTC_4x4_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 5x4 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1458,6 +1618,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_5X4_UNORM_BLOCK(159, "ASTC_5x4_UNORM_BLOCK", "ASTC_5x4_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 5x4 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1467,6 +1628,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_5X4_SRGB_BLOCK(160, "ASTC_5x4_SRGB_BLOCK", "ASTC_5x4_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 5x5 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1476,6 +1638,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_5X5_UNORM_BLOCK(161, "ASTC_5x5_UNORM_BLOCK", "ASTC_5x5_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 5x5 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1485,6 +1648,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_5X5_SRGB_BLOCK(162, "ASTC_5x5_SRGB_BLOCK", "ASTC_5x5_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 6x5 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1494,6 +1658,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_6X5_UNORM_BLOCK(163, "ASTC_6x5_UNORM_BLOCK", "ASTC_6x5_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 6x5 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1503,6 +1668,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_6X5_SRGB_BLOCK(164, "ASTC_6x5_SRGB_BLOCK", "ASTC_6x5_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 6x6 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1512,6 +1678,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_6X6_UNORM_BLOCK(165, "ASTC_6x6_UNORM_BLOCK", "ASTC_6x6_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 6x6 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1521,6 +1688,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_6X6_SRGB_BLOCK(166, "ASTC_6x6_SRGB_BLOCK", "ASTC_6x6_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 8x5 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1530,6 +1698,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_8X5_UNORM_BLOCK(167, "ASTC_8x5_UNORM_BLOCK", "ASTC_8x5_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 8x5 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1539,6 +1708,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_8X5_SRGB_BLOCK(168, "ASTC_8x5_SRGB_BLOCK", "ASTC_8x5_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 8x6 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1548,6 +1718,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_8X6_UNORM_BLOCK(169, "ASTC_8x6_UNORM_BLOCK", "ASTC_8x6_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 8x6 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1557,6 +1728,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_8X6_SRGB_BLOCK(170, "ASTC_8x6_SRGB_BLOCK", "ASTC_8x6_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 8x8 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1566,6 +1738,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_8X8_UNORM_BLOCK(171, "ASTC_8x8_UNORM_BLOCK", "ASTC_8x8_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 8x8 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1575,6 +1748,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_8X8_SRGB_BLOCK(172, "ASTC_8x8_SRGB_BLOCK", "ASTC_8x8_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 10x5 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1584,6 +1758,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_10X5_UNORM_BLOCK(173, "ASTC_10x5_UNORM_BLOCK", "ASTC_10x5_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 10x5 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1593,6 +1768,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_10X5_SRGB_BLOCK(174, "ASTC_10x5_SRGB_BLOCK", "ASTC_10x5_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 10x6 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1602,6 +1778,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_10X6_UNORM_BLOCK(175, "ASTC_10x6_UNORM_BLOCK", "ASTC_10x6_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 10x6 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1611,6 +1788,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_10X6_SRGB_BLOCK(176, "ASTC_10x6_SRGB_BLOCK", "ASTC_10x6_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 10x8 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1620,6 +1798,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_10X8_UNORM_BLOCK(177, "ASTC_10x8_UNORM_BLOCK", "ASTC_10x8_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 10x8 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1629,6 +1808,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_10X8_SRGB_BLOCK(178, "ASTC_10x8_SRGB_BLOCK", "ASTC_10x8_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 10x10 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1638,6 +1818,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_10X10_UNORM_BLOCK(179, "ASTC_10x10_UNORM_BLOCK", "ASTC_10x10_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 10x10 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1647,6 +1828,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_10X10_SRGB_BLOCK(180, "ASTC_10x10_SRGB_BLOCK", "ASTC_10x10_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 12x10 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1656,6 +1838,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_12X10_UNORM_BLOCK(181, "ASTC_12x10_UNORM_BLOCK", "ASTC_12x10_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 12x10 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1665,6 +1848,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_12X10_SRGB_BLOCK(182, "ASTC_12x10_SRGB_BLOCK", "ASTC_12x10_SRGB_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 12x12 UNORM BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1674,6 +1858,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_12X12_UNORM_BLOCK(183, "ASTC_12x12_UNORM_BLOCK", "ASTC_12x12_UNORM_BLOCK"),
+
 	/**
 	 * The '<em><b>ASTC 12x12 SRGB BLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -1683,6 +1868,7 @@ public enum EFormat implements Enumerator
 	 * @ordered
 	 */
 	ASTC_12X12_SRGB_BLOCK(184, "ASTC_12x12_SRGB_BLOCK", "ASTC_12x12_SRGB_BLOCK");
+
 	/**
 	 * The '<em><b>UNDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -4980,4 +5166,5 @@ public enum EFormat implements Enumerator
 	{
 		return literal;
 	}
-}
+	
+} //EFormat

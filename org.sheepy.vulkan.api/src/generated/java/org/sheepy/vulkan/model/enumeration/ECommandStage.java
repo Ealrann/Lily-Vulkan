@@ -5,6 +5,7 @@ package org.sheepy.vulkan.model.enumeration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -27,6 +28,7 @@ public enum ECommandStage implements Enumerator
 	 * @ordered
 	 */
 	COMPUTE(0, "Compute", "Compute"),
+
 	/**
 	 * The '<em><b>Pre Render</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -36,6 +38,7 @@ public enum ECommandStage implements Enumerator
 	 * @ordered
 	 */
 	PRE_RENDER(0, "PreRender", "PreRender"),
+
 	/**
 	 * The '<em><b>Render</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -45,6 +48,7 @@ public enum ECommandStage implements Enumerator
 	 * @ordered
 	 */
 	RENDER(0, "Render", "Render"),
+
 	/**
 	 * The '<em><b>Post Render</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -54,6 +58,7 @@ public enum ECommandStage implements Enumerator
 	 * @ordered
 	 */
 	POST_RENDER(0, "PostRender", "PostRender");
+
 	/**
 	 * The '<em><b>Compute</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -271,4 +276,5 @@ public enum ECommandStage implements Enumerator
 	{
 		return literal;
 	}
-}
+	
+} //ECommandStage

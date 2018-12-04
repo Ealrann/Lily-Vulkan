@@ -3,7 +3,9 @@
 package org.sheepy.vulkan.model.gui;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.sheepy.common.api.types.SVector2i;
 
 /**
@@ -25,7 +27,6 @@ import org.sheepy.common.api.types.SVector2i;
  */
 public interface Window extends EObject
 {
-
 	/**
 	 * Returns the value of the '<em><b>Widgets</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.vulkan.model.gui.Widget}.
@@ -67,4 +68,5 @@ public interface Window extends EObject
 	 * @generated
 	 */
 	void setPosition(SVector2i value);
+
 } // Window

@@ -3,11 +3,15 @@
 package org.sheepy.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.model.process.compute.ComputeProcessPool;
+
 import org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl;
 
 /**

@@ -19,6 +19,7 @@ import org.sheepy.vulkan.model.IProcessPool;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanFactory;
 import org.sheepy.vulkan.model.VulkanPackage;
+
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 /**
@@ -42,12 +43,14 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass iProcessPoolEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass iComputeProcessPoolEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

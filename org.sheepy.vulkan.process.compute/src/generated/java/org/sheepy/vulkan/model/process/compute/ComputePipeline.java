@@ -3,6 +3,7 @@
 package org.sheepy.vulkan.model.process.compute;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 
 /**

@@ -3,6 +3,7 @@
 package org.sheepy.vulkan.model.resource.impl;
 
 import java.nio.ByteBuffer;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;

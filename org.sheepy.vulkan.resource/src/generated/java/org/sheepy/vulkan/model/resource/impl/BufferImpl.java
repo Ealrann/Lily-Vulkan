@@ -3,6 +3,7 @@
 package org.sheepy.vulkan.model.resource.impl;
 
 import java.nio.ByteBuffer;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;

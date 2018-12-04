@@ -4,7 +4,6 @@ package org.sheepy.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Buffer</b></em>'.

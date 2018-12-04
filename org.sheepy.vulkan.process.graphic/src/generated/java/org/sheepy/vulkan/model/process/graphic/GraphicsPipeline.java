@@ -3,7 +3,9 @@
 package org.sheepy.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.vulkan.model.process.AbstractPipeline;
+
 import org.sheepy.vulkan.model.resource.Resource;
 
 /**
@@ -24,7 +26,6 @@ import org.sheepy.vulkan.model.resource.Resource;
  */
 public interface GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 {
-
 	/**
 	 * Returns the value of the '<em><b>Resources</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.vulkan.model.resource.Resource}.

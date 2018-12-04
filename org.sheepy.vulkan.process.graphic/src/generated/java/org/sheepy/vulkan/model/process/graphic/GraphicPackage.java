@@ -1401,7 +1401,6 @@ public interface GraphicPackage extends EPackage
 	 */
 	int IMAGE_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
-
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.PipelineImageBarrierImpl <em>Pipeline Image Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
