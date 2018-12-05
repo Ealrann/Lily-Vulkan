@@ -85,6 +85,21 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 				return createVulkanEngineAdapter();
 			}
 			@Override
+			public Adapter caseIEnginePart(IEnginePart object)
+			{
+				return createIEnginePartAdapter();
+			}
+			@Override
+			public Adapter caseSharedResources(SharedResources object)
+			{
+				return createSharedResourcesAdapter();
+			}
+			@Override
+			public Adapter caseIResource(IResource object)
+			{
+				return createIResourceAdapter();
+			}
+			@Override
 			public Adapter caseIProcess(IProcess object)
 			{
 				return createIProcessAdapter();
@@ -142,6 +157,51 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createVulkanEngineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IEnginePart <em>IEngine Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.IEnginePart
+	 * @generated
+	 */
+	public Adapter createIEnginePartAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.SharedResources <em>Shared Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.SharedResources
+	 * @generated
+	 */
+	public Adapter createSharedResourcesAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IResource <em>IResource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.IResource
+	 * @generated
+	 */
+	public Adapter createIResourceAdapter()
 	{
 		return null;
 	}

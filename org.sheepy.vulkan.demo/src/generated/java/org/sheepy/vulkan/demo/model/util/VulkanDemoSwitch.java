@@ -8,13 +8,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.sheepy.vulkan.demo.model.*;
+import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.resource.BasicResource;
-import org.sheepy.vulkan.model.resource.IResource;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
 
 /**

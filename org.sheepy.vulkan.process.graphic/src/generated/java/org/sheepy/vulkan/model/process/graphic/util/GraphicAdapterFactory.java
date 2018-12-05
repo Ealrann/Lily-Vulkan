@@ -8,16 +8,14 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.vulkan.model.IEnginePart;
 import org.sheepy.vulkan.model.IProcess;
-
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.Configuration;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
-
 import org.sheepy.vulkan.model.process.graphic.*;
 
 /**
@@ -177,6 +175,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseConfiguration(Configuration object)
 			{
 				return createConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseIEnginePart(IEnginePart object)
+			{
+				return createIEnginePartAdapter();
 			}
 			@Override
 			public Adapter caseIProcess(IProcess object)
@@ -511,6 +514,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IEnginePart <em>IEngine Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.IEnginePart
+	 * @generated
+	 */
+	public Adapter createIEnginePartAdapter()
 	{
 		return null;
 	}

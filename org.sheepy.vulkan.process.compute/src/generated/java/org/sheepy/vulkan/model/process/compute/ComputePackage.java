@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
 /**
@@ -71,6 +70,24 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__ENABLED = ProcessPackage.ABSTRACT_PROCESS__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__RESOURCES = ProcessPackage.ABSTRACT_PROCESS__RESOURCES;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,15 +104,6 @@ public interface ComputePackage extends EPackage
 	 * @ordered
 	 */
 	int COMPUTE_PROCESS__UNITS = ProcessPackage.ABSTRACT_PROCESS__UNITS;
-
-	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS__RESOURCES = ProcessPackage.ABSTRACT_PROCESS__RESOURCES;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.

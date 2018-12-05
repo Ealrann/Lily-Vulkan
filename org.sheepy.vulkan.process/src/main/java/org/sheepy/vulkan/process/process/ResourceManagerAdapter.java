@@ -14,7 +14,7 @@ public class ResourceManagerAdapter extends AbstractSingletonAdapter
 	@Override
 	public ResourceManager getResourceManager(EObject target)
 	{
-		var current = target;
+		EObject current = target;
 		while (!ProcessPackage.Literals.ABSTRACT_PROCESS.isSuperTypeOf(current.eClass()))
 		{
 			current = current.eContainer();

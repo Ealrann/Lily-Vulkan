@@ -6,16 +6,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
+import org.sheepy.vulkan.model.IEnginePart;
 import org.sheepy.vulkan.model.IProcess;
-
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.Configuration;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
-
 import org.sheepy.vulkan.model.process.graphic.*;
 
 /**
@@ -116,6 +114,7 @@ public class GraphicSwitch<T> extends Switch<T>
 				T result = caseGraphicProcess(graphicProcess);
 				if (result == null) result = caseAbstractProcess(graphicProcess);
 				if (result == null) result = caseIProcess(graphicProcess);
+				if (result == null) result = caseIEnginePart(graphicProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -527,6 +526,22 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseConfiguration(Configuration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIEnginePart(IEnginePart object)
 	{
 		return null;
 	}

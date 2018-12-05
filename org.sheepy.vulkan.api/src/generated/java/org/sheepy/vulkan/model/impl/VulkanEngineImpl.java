@@ -4,6 +4,7 @@ package org.sheepy.vulkan.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,12 +12,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.vulkan.model.IProcess;
+import org.sheepy.vulkan.model.SharedResources;
 import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanPackage;
 
@@ -28,6 +31,7 @@ import org.sheepy.vulkan.model.VulkanPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl#getSharedResources <em>Shared Resources</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl#getProcesses <em>Processes</em>}</li>
  * </ul>
  *
@@ -35,6 +39,15 @@ import org.sheepy.vulkan.model.VulkanPackage;
  */
 public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements VulkanEngine
 {
+	/**
+	 * The cached value of the '{@link #getSharedResources() <em>Shared Resources</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSharedResources()
+	 * @generated
+	 * @ordered
+	 */
+	protected SharedResources sharedResources;
 	/**
 	 * The cached value of the '{@link #getProcesses() <em>Processes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -71,6 +84,54 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SharedResources getSharedResources()
+	{
+		return sharedResources;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSharedResources(SharedResources newSharedResources, NotificationChain msgs)
+	{
+		SharedResources oldSharedResources = sharedResources;
+		sharedResources = newSharedResources;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES, oldSharedResources, newSharedResources);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSharedResources(SharedResources newSharedResources)
+	{
+		if (newSharedResources != sharedResources)
+		{
+			NotificationChain msgs = null;
+			if (sharedResources != null)
+				msgs = ((InternalEObject)sharedResources).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES, null, msgs);
+			if (newSharedResources != null)
+				msgs = ((InternalEObject)newSharedResources).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES, null, msgs);
+			msgs = basicSetSharedResources(newSharedResources, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES, newSharedResources, newSharedResources));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<IProcess> getProcesses()
 	{
 		if (processes == null)
@@ -90,6 +151,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
+			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
+				return basicSetSharedResources(null, msgs);
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 				return ((InternalEList<?>)getProcesses()).basicRemove(otherEnd, msgs);
 		}
@@ -106,6 +169,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
+			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
+				return getSharedResources();
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 				return getProcesses();
 		}
@@ -123,6 +188,9 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
+			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
+				setSharedResources((SharedResources)newValue);
+				return;
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 				getProcesses().clear();
 				getProcesses().addAll((Collection<? extends IProcess>)newValue);
@@ -141,6 +209,9 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
+			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
+				setSharedResources((SharedResources)null);
+				return;
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 				getProcesses().clear();
 				return;
@@ -158,6 +229,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
+			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
+				return sharedResources != null;
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 				return processes != null && !processes.isEmpty();
 		}

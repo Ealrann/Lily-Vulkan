@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.resource.*;
 
 /**
@@ -71,13 +72,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-			case ResourcePackage.IRESOURCE:
-			{
-				IResource iResource = (IResource)theEObject;
-				T result = caseIResource(iResource);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ResourcePackage.BASIC_RESOURCE:
 			{
 				BasicResource basicResource = (BasicResource)theEObject;
@@ -311,22 +305,6 @@ public class ResourceSwitch<T> extends Switch<T>
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IResource</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IResource</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIResource(IResource object)
-	{
-		return null;
 	}
 
 	/**
@@ -741,6 +719,22 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseModuleResource(ModuleResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IResource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IResource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIResource(IResource object)
 	{
 		return null;
 	}

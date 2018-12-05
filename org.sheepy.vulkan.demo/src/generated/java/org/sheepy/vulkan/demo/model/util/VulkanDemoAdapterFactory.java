@@ -10,13 +10,13 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.vulkan.demo.model.*;
+import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.resource.BasicResource;
-import org.sheepy.vulkan.model.resource.IResource;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
 
 /**
@@ -260,13 +260,13 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.IResource <em>IResource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IResource <em>IResource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.IResource
+	 * @see org.sheepy.vulkan.model.IResource
 	 * @generated
 	 */
 	public Adapter createIResourceAdapter()

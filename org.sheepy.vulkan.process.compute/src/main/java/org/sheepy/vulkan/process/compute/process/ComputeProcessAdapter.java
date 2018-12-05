@@ -59,7 +59,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	public void execute()
 	{
 		checkAllocation();
-		
+
 		var queue = context.executionManager.getQueue().vkQueue;
 		var submission = context.submission;
 		var submitInfo = submission.getSubmitInfo(0);

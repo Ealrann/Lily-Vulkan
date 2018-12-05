@@ -17,13 +17,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.IResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,9 +32,10 @@ import org.sheepy.vulkan.model.resource.IResource;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getResources <em>Resources</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getUnits <em>Units</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getResources <em>Resources</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  * </ul>
  *
@@ -43,6 +43,36 @@ import org.sheepy.vulkan.model.resource.IResource;
  */
 public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container implements AbstractProcess
 {
+	/**
+	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ENABLED_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean enabled = ENABLED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResources()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IResource> resources;
+
 	/**
 	 * The cached value of the '{@link #getDescriptorSets() <em>Descriptor Sets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -62,16 +92,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @ordered
 	 */
 	protected EList<IProcessUnit> units;
-
-	/**
-	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResources()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<IResource> resources;
 
 	/**
 	 * The default value of the '{@link #isResetAllowed() <em>Reset Allowed</em>}' attribute.
@@ -119,6 +139,43 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEnabled(boolean newEnabled)
+	{
+		boolean oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__ENABLED, oldEnabled, enabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<IResource> getResources()
+	{
+		if (resources == null)
+		{
+			resources = new EObjectContainmentEList<IResource>(IResource.class, this, ProcessPackage.ABSTRACT_PROCESS__RESOURCES);
+		}
+		return resources;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<DescriptorSet> getDescriptorSets()
 	{
 		if (descriptorSets == null)
@@ -140,20 +197,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 			units = new EObjectContainmentEList<IProcessUnit>(IProcessUnit.class, this, ProcessPackage.ABSTRACT_PROCESS__UNITS);
 		}
 		return units;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<IResource> getResources()
-	{
-		if (resources == null)
-		{
-			resources = new EObjectContainmentEList<IResource>(IResource.class, this, ProcessPackage.ABSTRACT_PROCESS__RESOURCES);
-		}
-		return resources;
 	}
 
 	/**
@@ -189,12 +232,12 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
+				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				return ((InternalEList<?>)getDescriptorSets()).basicRemove(otherEnd, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -209,12 +252,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
+			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+				return isEnabled();
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
+				return getResources();
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				return getDescriptorSets();
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				return getUnits();
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				return getResources();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return isResetAllowed();
 		}
@@ -232,6 +277,13 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
+			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
+				getResources().clear();
+				getResources().addAll((Collection<? extends IResource>)newValue);
+				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				getDescriptorSets().clear();
 				getDescriptorSets().addAll((Collection<? extends DescriptorSet>)newValue);
@@ -239,10 +291,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				getUnits().clear();
 				getUnits().addAll((Collection<? extends IProcessUnit>)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				getResources().clear();
-				getResources().addAll((Collection<? extends IResource>)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed((Boolean)newValue);
@@ -261,14 +309,17 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
+			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
+				getResources().clear();
+				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				getDescriptorSets().clear();
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				getUnits().clear();
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				getResources().clear();
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed(RESET_ALLOWED_EDEFAULT);
@@ -287,12 +338,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
+			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
+				return resources != null && !resources.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				return descriptorSets != null && !descriptorSets.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				return units != null && !units.isEmpty();
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				return resources != null && !resources.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return resetAllowed != RESET_ALLOWED_EDEFAULT;
 		}
@@ -310,7 +363,9 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (resetAllowed: ");
+		result.append(" (enabled: ");
+		result.append(enabled);
+		result.append(", resetAllowed: ");
 		result.append(resetAllowed);
 		result.append(')');
 		return result.toString();

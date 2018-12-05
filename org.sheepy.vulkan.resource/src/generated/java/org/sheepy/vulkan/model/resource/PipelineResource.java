@@ -2,6 +2,8 @@
  */
 package org.sheepy.vulkan.model.resource;
 
+import org.sheepy.vulkan.model.IResource;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Pipeline Resource</b></em>'.

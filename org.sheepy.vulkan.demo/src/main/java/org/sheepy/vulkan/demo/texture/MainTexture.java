@@ -43,7 +43,7 @@ public class MainTexture
 		final var applicationAdapter = VulkanApplicationLauncher.launch(application);
 		final var processAdapter = IProcessAdapter.adapt(graphicProcess);
 
-		processAdapter.allocateProcess();
+		processAdapter.allocatePart();
 		
 		UPSMeter meter = new UPSMeter(2000);
 		start = System.currentTimeMillis();
@@ -58,7 +58,7 @@ public class MainTexture
 			meter.tick();
 		}
 
-		processAdapter.freeProcess();
+		processAdapter.freePart();
 	}
 
 	private void updateUniformBuffer()

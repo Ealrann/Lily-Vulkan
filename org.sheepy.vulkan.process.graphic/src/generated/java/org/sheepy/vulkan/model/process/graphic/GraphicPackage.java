@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
 /**
@@ -390,6 +389,24 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__ENABLED = ProcessPackage.ABSTRACT_PROCESS__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__RESOURCES = ProcessPackage.ABSTRACT_PROCESS__RESOURCES;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -406,15 +423,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHIC_PROCESS__UNITS = ProcessPackage.ABSTRACT_PROCESS__UNITS;
-
-	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__RESOURCES = ProcessPackage.ABSTRACT_PROCESS__RESOURCES;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.

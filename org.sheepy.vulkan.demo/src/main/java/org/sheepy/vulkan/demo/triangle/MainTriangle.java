@@ -35,7 +35,7 @@ public class MainTriangle
 		final var applicationAdapter = VulkanApplicationLauncher.launch(application);
 		final var processAdapter = IProcessAdapter.adapt(graphicProcess);
 		
-		processAdapter.allocateProcess();
+		processAdapter.allocatePart();
 
 		UPSMeter meter = new UPSMeter(2000);
 		
@@ -48,7 +48,7 @@ public class MainTriangle
 			meter.tick();
 		}
 		
-		processAdapter.freeProcess();
+		processAdapter.freePart();
 	}
 
 	private void buildApplication()

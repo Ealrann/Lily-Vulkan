@@ -8,13 +8,13 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.vulkan.model.resource.BufferBarrier
 import org.sheepy.vulkan.model.resource.DescriptorSet
 import org.sheepy.vulkan.model.resource.PushConstant
-import org.sheepy.vulkan.model.resource.IResource
+import org.sheepy.vulkan.model.IResource
 
 abstract class AbstractProcess extends IProcess
 {
+	contains IResource[] resources
 	contains DescriptorSet[] descriptorSets
 	contains IProcessUnit[] units
-	contains IResource[] resources
 	boolean resetAllowed
 }
 

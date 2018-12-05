@@ -160,13 +160,22 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Shared Resources</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE__SHARED_RESOURCES = 0;
+
+	/**
 	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE__PROCESSES = 0;
+	int VULKAN_ENGINE__PROCESSES = 1;
 
 	/**
 	 * The number of structural features of the '<em>Engine</em>' class.
@@ -175,7 +184,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE_FEATURE_COUNT = 1;
+	int VULKAN_ENGINE_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Engine</em>' class.
@@ -187,6 +196,99 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.IEnginePart <em>IEngine Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.IEnginePart
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIEnginePart()
+	 * @generated
+	 */
+	int IENGINE_PART = 2;
+
+	/**
+	 * The number of structural features of the '<em>IEngine Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENGINE_PART_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IEngine Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENGINE_PART_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.SharedResourcesImpl <em>Shared Resources</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.impl.SharedResourcesImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getSharedResources()
+	 * @generated
+	 */
+	int SHARED_RESOURCES = 3;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHARED_RESOURCES__RESOURCES = IENGINE_PART_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Shared Resources</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHARED_RESOURCES_FEATURE_COUNT = IENGINE_PART_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Shared Resources</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHARED_RESOURCES_OPERATION_COUNT = IENGINE_PART_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.IResource <em>IResource</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.IResource
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIResource()
+	 * @generated
+	 */
+	int IRESOURCE = 4;
+
+	/**
+	 * The number of structural features of the '<em>IResource</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IRESOURCE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IResource</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IRESOURCE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,7 +296,16 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcess()
 	 * @generated
 	 */
-	int IPROCESS = 2;
+	int IPROCESS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS__ENABLED = IENGINE_PART_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>IProcess</em>' class.
@@ -203,7 +314,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS_FEATURE_COUNT = 0;
+	int IPROCESS_FEATURE_COUNT = IENGINE_PART_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>IProcess</em>' class.
@@ -212,7 +323,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS_OPERATION_COUNT = 0;
+	int IPROCESS_OPERATION_COUNT = IENGINE_PART_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
@@ -222,7 +333,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getColorDomain()
 	 * @generated
 	 */
-	int COLOR_DOMAIN = 3;
+	int COLOR_DOMAIN = 6;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -359,6 +470,17 @@ public interface VulkanPackage extends EPackage
 	EClass getVulkanEngine();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.VulkanEngine#getSharedResources <em>Shared Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Shared Resources</em>'.
+	 * @see org.sheepy.vulkan.model.VulkanEngine#getSharedResources()
+	 * @see #getVulkanEngine()
+	 * @generated
+	 */
+	EReference getVulkanEngine_SharedResources();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.VulkanEngine#getProcesses <em>Processes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -370,6 +492,47 @@ public interface VulkanPackage extends EPackage
 	EReference getVulkanEngine_Processes();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IEnginePart <em>IEngine Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IEngine Part</em>'.
+	 * @see org.sheepy.vulkan.model.IEnginePart
+	 * @generated
+	 */
+	EClass getIEnginePart();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.SharedResources <em>Shared Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Shared Resources</em>'.
+	 * @see org.sheepy.vulkan.model.SharedResources
+	 * @generated
+	 */
+	EClass getSharedResources();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.SharedResources#getResources <em>Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Resources</em>'.
+	 * @see org.sheepy.vulkan.model.SharedResources#getResources()
+	 * @see #getSharedResources()
+	 * @generated
+	 */
+	EReference getSharedResources_Resources();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IResource <em>IResource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IResource</em>'.
+	 * @see org.sheepy.vulkan.model.IResource
+	 * @generated
+	 */
+	EClass getIResource();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -378,6 +541,17 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	EClass getIProcess();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.IProcess#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.sheepy.vulkan.model.IProcess#isEnabled()
+	 * @see #getIProcess()
+	 * @generated
+	 */
+	EAttribute getIProcess_Enabled();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.ColorDomain <em>Color Domain</em>}'.
@@ -512,12 +686,58 @@ public interface VulkanPackage extends EPackage
 		EClass VULKAN_ENGINE = eINSTANCE.getVulkanEngine();
 
 		/**
+		 * The meta object literal for the '<em><b>Shared Resources</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VULKAN_ENGINE__SHARED_RESOURCES = eINSTANCE.getVulkanEngine_SharedResources();
+
+		/**
 		 * The meta object literal for the '<em><b>Processes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference VULKAN_ENGINE__PROCESSES = eINSTANCE.getVulkanEngine_Processes();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IEnginePart <em>IEngine Part</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.IEnginePart
+		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIEnginePart()
+		 * @generated
+		 */
+		EClass IENGINE_PART = eINSTANCE.getIEnginePart();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.SharedResourcesImpl <em>Shared Resources</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.impl.SharedResourcesImpl
+		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getSharedResources()
+		 * @generated
+		 */
+		EClass SHARED_RESOURCES = eINSTANCE.getSharedResources();
+
+		/**
+		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHARED_RESOURCES__RESOURCES = eINSTANCE.getSharedResources_Resources();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IResource <em>IResource</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.IResource
+		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIResource()
+		 * @generated
+		 */
+		EClass IRESOURCE = eINSTANCE.getIResource();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}' class.
@@ -528,6 +748,14 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EClass IPROCESS = eINSTANCE.getIProcess();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IPROCESS__ENABLED = eINSTANCE.getIProcess_Enabled();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.

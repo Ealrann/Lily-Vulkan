@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.vulkan.model;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getIResource()
+ * @see org.sheepy.vulkan.model.VulkanPackage#getIResource()
  * @model interface="true" abstract="true"
  * @generated
  */

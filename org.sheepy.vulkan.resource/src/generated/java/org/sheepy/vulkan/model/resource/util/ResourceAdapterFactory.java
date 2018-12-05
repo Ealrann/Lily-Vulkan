@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.resource.*;
 
 /**
@@ -73,11 +74,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	protected ResourceSwitch<Adapter> modelSwitch =
 		new ResourceSwitch<Adapter>()
 		{
-			@Override
-			public Adapter caseIResource(IResource object)
-			{
-				return createIResourceAdapter();
-			}
 			@Override
 			public Adapter caseBasicResource(BasicResource object)
 			{
@@ -207,6 +203,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseModuleResource(ModuleResource object)
 			{
 				return createModuleResourceAdapter();
+			}
+			@Override
+			public Adapter caseIResource(IResource object)
+			{
+				return createIResourceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -621,13 +622,13 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.IResource <em>IResource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IResource <em>IResource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.IResource
+	 * @see org.sheepy.vulkan.model.IResource
 	 * @generated
 	 */
 	public Adapter createIResourceAdapter()

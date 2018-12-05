@@ -22,11 +22,26 @@ class VulkanApplication
 
 class VulkanEngine
 {
+	contains SharedResources sharedResources
 	contains IProcess[] processes
 }
 
-interface IProcess
+interface IEnginePart
 {
+}
+
+class SharedResources extends IEnginePart
+{
+	contains IResource[] resources
+}
+
+interface IResource
+{
+}
+
+interface IProcess extends IEnginePart
+{
+	boolean enabled = "true"
 }
 
 class ColorDomain

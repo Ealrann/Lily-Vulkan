@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.sheepy.common.model.types.TypesPackage;
+import org.sheepy.vulkan.model.VulkanPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
@@ -26,7 +28,6 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.FileResource;
 import org.sheepy.vulkan.model.resource.Font;
 import org.sheepy.vulkan.model.resource.IDescriptor;
-import org.sheepy.vulkan.model.resource.IResource;
 import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.ImageBarrier;
 import org.sheepy.vulkan.model.resource.ImageLayout;
@@ -52,13 +53,6 @@ import org.sheepy.vulkan.model.resource.Texture;
  */
 public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iResourceEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -305,8 +299,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		VulkanPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theResourcePackage.createPackageContents();
@@ -320,16 +316,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ResourcePackage.eNS_URI, theResourcePackage);
 		return theResourcePackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getIResource()
-	{
-		return iResourceEClass;
 	}
 
 	/**
@@ -1182,8 +1168,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		isCreated = true;
 
 		// Create classes and their features
-		iResourceEClass = createEClass(IRESOURCE);
-
 		basicResourceEClass = createEClass(BASIC_RESOURCE);
 
 		pipelineResourceEClass = createEClass(PIPELINE_RESOURCE);
@@ -1320,6 +1304,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
@@ -1328,9 +1313,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		basicResourceEClass.getESuperTypes().add(this.getIResource());
+		basicResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		pipelineResourceEClass.getESuperTypes().add(this.getIDescriptor());
-		pipelineResourceEClass.getESuperTypes().add(this.getIResource());
+		pipelineResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getPipelineResource());
 		imageEClass.getESuperTypes().add(this.getPipelineResource());
 		sampledResourceEClass.getESuperTypes().add(this.getPipelineResource());
@@ -1351,8 +1336,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		moduleResourceEClass.getESuperTypes().add(this.getPathResource());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(iResourceEClass, IResource.class, "IResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pipelineResourceEClass, PipelineResource.class, "PipelineResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

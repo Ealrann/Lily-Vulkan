@@ -69,7 +69,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	public void execute()
 	{
 		checkAllocation();
-		
+
 		final Integer imageIndex = acquireNextImage();
 
 		if (imageIndex != null)

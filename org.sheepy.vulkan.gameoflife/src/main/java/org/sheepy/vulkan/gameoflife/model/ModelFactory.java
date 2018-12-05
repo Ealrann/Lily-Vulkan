@@ -4,6 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.gameoflife.compute.Board;
+import org.sheepy.vulkan.model.SharedResources;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
@@ -15,6 +16,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.impl.ColorDomainImpl;
+import org.sheepy.vulkan.model.impl.SharedResourcesImpl;
 import org.sheepy.vulkan.model.impl.VulkanApplicationImpl;
 import org.sheepy.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
@@ -55,6 +57,7 @@ public class ModelFactory
 	public final GraphicProcess imageProcess;
 	public ComputeProcess computeProcess1;
 	public ComputeProcess computeProcess2;
+	public SharedResources sharedResources = new SharedResourcesImpl();
 	private Image boardImage;
 	private final SVector2i size;
 
@@ -65,7 +68,7 @@ public class ModelFactory
 		application.setTitle("Vulkan - Game of Life");
 		application.setSize(size);
 		application.setDebug(true);
-		
+
 		application.setEngine(engine);
 
 		int swapImageUsage = EImageUsage.TRANSFER_DST.getValue()
@@ -86,6 +89,7 @@ public class ModelFactory
 		engine.getProcesses().add(computeProcess1);
 		engine.getProcesses().add(computeProcess2);
 		engine.getProcesses().add(imageProcess);
+		engine.setSharedResources(sharedResources);
 	}
 
 	private static RenderPassInfo newInfo()
@@ -167,29 +171,35 @@ public class ModelFactory
 		Computer lifeComputer2 = createComputer(lifeShader);
 		Computer pixelComputer2 = createComputer(life2pixelShader);
 
-		ComputePipeline lifePipeline1 = createPipeline(computeProcess1, lifeComputer1, boardBuffer1, boardBuffer2);
-		ComputePipeline lifePipeline2 = createPipeline(computeProcess2, lifeComputer2, boardBuffer2, boardBuffer1);
+		ComputePipeline lifePipeline1 = createPipeline(computeProcess1, lifeComputer1, boardBuffer1,
+				boardBuffer2);
+		ComputePipeline lifePipeline2 = createPipeline(computeProcess2, lifeComputer2, boardBuffer2,
+				boardBuffer1);
 
-		ComputePipeline pixelPipeline1 = createPipeline(computeProcess1, pixelComputer1, boardBuffer2, boardImage);
-		ComputePipeline pixelPipeline2 = createPipeline(computeProcess2, pixelComputer2, boardBuffer1, boardImage);
+		ComputePipeline pixelPipeline1 = createPipeline(computeProcess1, pixelComputer1,
+				boardBuffer2, boardImage);
+		ComputePipeline pixelPipeline2 = createPipeline(computeProcess2, pixelComputer2,
+				boardBuffer1, boardImage);
 
 		computeProcess1.getUnits().add(lifePipeline1);
 		computeProcess1.getUnits().add(pixelPipeline1);
 
 		computeProcess2.getUnits().add(lifePipeline2);
 		computeProcess2.getUnits().add(pixelPipeline2);
-		
-		computeProcess1.getResources().add(lifeShader);
-		computeProcess1.getResources().add(life2pixelShader);
-		computeProcess1.getResources().add(boardBuffer1);
-		computeProcess1.getResources().add(boardBuffer2);
-		computeProcess1.getResources().add(boardImage);
-		
+
+		sharedResources.getResources().add(lifeShader);
+		sharedResources.getResources().add(life2pixelShader);
+		sharedResources.getResources().add(boardBuffer1);
+		sharedResources.getResources().add(boardBuffer2);
+		sharedResources.getResources().add(boardImage);
+
 		computeProcess1.setResetAllowed(true);
 		computeProcess2.setResetAllowed(true);
 	}
 
-	private ComputePipeline createPipeline(ComputeProcess process, IComputer computer, IDescriptor... descriptors)
+	private ComputePipeline createPipeline(	ComputeProcess process,
+											IComputer computer,
+											IDescriptor... descriptors)
 	{
 		var descriptorSet = new BasicDescriptorSetImpl();
 		for (IDescriptor descriptor : descriptors)
@@ -206,7 +216,7 @@ public class ModelFactory
 		res.setWidth(application.getSize().getX());
 		res.setHeight(application.getSize().getY());
 		res.setDepth(1);
-		
+
 		return res;
 	}
 

@@ -7,13 +7,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.api.adapter.IProcessAdapter;
-import org.sheepy.vulkan.api.queue.EQueueType;
 import org.sheepy.vulkan.common.allocation.adapter.IDeepAllocableAdapter;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
-import org.sheepy.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
+import org.sheepy.vulkan.common.device.LogicalDevice;
+import org.sheepy.vulkan.common.engine.AbstractEnginePartAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.IProcessUnit;
@@ -21,32 +19,25 @@ import org.sheepy.vulkan.process.pipeline.IProcessUnitAdapter;
 import org.sheepy.vulkan.resource.ResourceManager;
 
 public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
-		extends AbstractFlatAllocableAdapter implements IProcessAdapter, IDeepAllocableAdapter
+		extends AbstractEnginePartAdapter implements IDeepAllocableAdapter, IProcessAdapter
 {
-	private static final String UNALLOCATED_PROCESS = "Process not allocated";
-
 	private final int bindPoint = getBindPoint();
 
-	protected ExecutionManager executionManager;
 	protected ResourceManager resourceManager;
 
 	private AbstractProcess process = null;
-	private TreeAllocator allocator;
 
 	@Override
 	public void setTarget(Notifier target)
 	{
-		super.setTarget(target);
 		process = (AbstractProcess) target;
-		allocator = new TreeAllocator(process);
+		LogicalDevice logicalDevice = ILogicalDeviceAdapter.adapt(process)
+				.getLogicalDevice(process);
 
-		var logicalDevice = ILogicalDeviceAdapter.adapt(process).getLogicalDevice(process);
-		boolean resetAllowed = process.isResetAllowed();
-
-		executionManager = new ExecutionManager(logicalDevice, getQueueType(), resetAllowed);
 		resourceManager = new ResourceManager(logicalDevice, process);
 
 		childAllocables.add(resourceManager);
+		super.setTarget(target);
 	}
 
 	@Override
@@ -56,47 +47,13 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 		process = null;
 		resourceManager = null;
-		executionManager = null;
-	}
-
-	@Override
-	public void allocateProcess()
-	{
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			allocator.allocate(stack);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void freeProcess()
-	{
-		executionManager.getQueue().waitIdle();
-		allocator.free();
-	}
-	
-	@Override
-	public void free()
-	{
-		executionManager.free();
+		super.unsetTarget(oldTarget);
 	}
 
 	@Override
 	public void deepAllocate(MemoryStack stack)
 	{
 		recordCommands();
-	}
-
-	@Override
-	public void flatAllocate(MemoryStack stack)
-	{
-		// ExecutionManager is high-priority. we allocate it directly here (before the allocation of
-		// resources)
-		executionManager.allocate(stack);
 	}
 
 	@Override
@@ -141,6 +98,12 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
+	protected boolean isResetAllowed()
+	{
+		return process.isResetAllowed();
+	}
+
+	@Override
 	public final boolean isAllocationDirty()
 	{
 		return false;
@@ -163,17 +126,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		}
 	}
 
-	protected void checkAllocation() throws AssertionError
-	{
-		if (allocator.isAllocated() == false)
-		{
-			throw new AssertionError(UNALLOCATED_PROCESS);
-		}
-	}
-
 	protected abstract void recordCommands();
-
-	protected abstract EQueueType getQueueType();
 
 	protected abstract int getBindPoint();
 

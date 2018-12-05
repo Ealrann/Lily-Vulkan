@@ -26,7 +26,6 @@ import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.PipelineBufferBarrier;
 import org.sheepy.vulkan.model.process.ProcessFactory;
 import org.sheepy.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -178,7 +177,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractProcess_DescriptorSets()
+	public EReference getAbstractProcess_Resources()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(0);
 	}
@@ -188,7 +187,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractProcess_Units()
+	public EReference getAbstractProcess_DescriptorSets()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(1);
 	}
@@ -198,7 +197,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractProcess_Resources()
+	public EReference getAbstractProcess_Units()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(2);
 	}
@@ -374,9 +373,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Create classes and their features
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__RESOURCES);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SETS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__UNITS);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__RESOURCES);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 
 		iProcessUnitEClass = createEClass(IPROCESS_UNIT);
@@ -444,9 +443,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractProcess_Resources(), theVulkanPackage.getIResource(), null, "resources", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_DescriptorSets(), theResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_Units(), this.getIProcessUnit(), null, "units", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_Resources(), theResourcePackage.getIResource(), null, "resources", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_ResetAllowed(), theEcorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iProcessUnitEClass, IProcessUnit.class, "IProcessUnit", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

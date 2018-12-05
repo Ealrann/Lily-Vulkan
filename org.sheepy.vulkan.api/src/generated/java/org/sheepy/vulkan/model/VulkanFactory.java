@@ -41,6 +41,15 @@ public interface VulkanFactory extends EFactory
 	VulkanEngine createVulkanEngine();
 
 	/**
+	 * Returns a new object of class '<em>Shared Resources</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Shared Resources</em>'.
+	 * @generated
+	 */
+	SharedResources createSharedResources();
+
+	/**
 	 * Returns a new object of class '<em>Color Domain</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

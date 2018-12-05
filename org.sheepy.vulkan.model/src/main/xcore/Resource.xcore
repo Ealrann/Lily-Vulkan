@@ -4,6 +4,7 @@
 package org.sheepy.vulkan.model.resource
 
 import java.nio.ByteBuffer
+import org.sheepy.vulkan.model.IResource
 import org.sheepy.vulkan.model.enumeration.EBorderColor
 import org.sheepy.vulkan.model.enumeration.EDescriptorType
 import org.sheepy.vulkan.model.enumeration.EFilter
@@ -13,10 +14,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
 import org.sheepy.vulkan.model.enumeration.EShaderStage
-
-interface IResource
-{
-}
 
 interface BasicResource extends IResource
 {

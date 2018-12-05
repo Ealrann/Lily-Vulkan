@@ -13,7 +13,10 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.sheepy.common.model.types.TypesPackage;
 
 import org.sheepy.vulkan.model.ColorDomain;
+import org.sheepy.vulkan.model.IEnginePart;
 import org.sheepy.vulkan.model.IProcess;
+import org.sheepy.vulkan.model.IResource;
+import org.sheepy.vulkan.model.SharedResources;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanFactory;
@@ -42,6 +45,27 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass vulkanEngineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iEnginePartEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sharedResourcesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iResourceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,9 +244,59 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVulkanEngine_Processes()
+	public EReference getVulkanEngine_SharedResources()
 	{
 		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVulkanEngine_Processes()
+	{
+		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIEnginePart()
+	{
+		return iEnginePartEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSharedResources()
+	{
+		return sharedResourcesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSharedResources_Resources()
+	{
+		return (EReference)sharedResourcesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIResource()
+	{
+		return iResourceEClass;
 	}
 
 	/**
@@ -233,6 +307,16 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	public EClass getIProcess()
 	{
 		return iProcessEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIProcess_Enabled()
+	{
+		return (EAttribute)iProcessEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -305,9 +389,18 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		createEReference(vulkanApplicationEClass, VULKAN_APPLICATION__ENGINE);
 
 		vulkanEngineEClass = createEClass(VULKAN_ENGINE);
+		createEReference(vulkanEngineEClass, VULKAN_ENGINE__SHARED_RESOURCES);
 		createEReference(vulkanEngineEClass, VULKAN_ENGINE__PROCESSES);
 
+		iEnginePartEClass = createEClass(IENGINE_PART);
+
+		sharedResourcesEClass = createEClass(SHARED_RESOURCES);
+		createEReference(sharedResourcesEClass, SHARED_RESOURCES__RESOURCES);
+
+		iResourceEClass = createEClass(IRESOURCE);
+
 		iProcessEClass = createEClass(IPROCESS);
+		createEAttribute(iProcessEClass, IPROCESS__ENABLED);
 
 		colorDomainEClass = createEClass(COLOR_DOMAIN);
 		createEAttribute(colorDomainEClass, COLOR_DOMAIN__FORMAT);
@@ -348,6 +441,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		sharedResourcesEClass.getESuperTypes().add(this.getIEnginePart());
+		iProcessEClass.getESuperTypes().add(this.getIEnginePart());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(vulkanApplicationEClass, VulkanApplication.class, "VulkanApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -360,9 +455,18 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEReference(getVulkanApplication_Engine(), this.getVulkanEngine(), null, "engine", null, 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVulkanEngine_SharedResources(), this.getSharedResources(), null, "sharedResources", null, 0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVulkanEngine_Processes(), this.getIProcess(), null, "processes", null, 0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(iEnginePartEClass, IEnginePart.class, "IEnginePart", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(sharedResourcesEClass, SharedResources.class, "SharedResources", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSharedResources_Resources(), this.getIResource(), null, "resources", null, 0, -1, SharedResources.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iResourceEClass, IResource.class, "IResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(iProcessEClass, IProcess.class, "IProcess", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIProcess_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(colorDomainEClass, ColorDomain.class, "ColorDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getColorDomain_Format(), theEnumerationPackage.getEFormat(), "format", "B8G8R8A8_UNORM", 0, 1, ColorDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

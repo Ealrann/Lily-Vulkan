@@ -86,10 +86,33 @@ public class VulkanSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanPackage.IENGINE_PART:
+			{
+				IEnginePart iEnginePart = (IEnginePart)theEObject;
+				T result = caseIEnginePart(iEnginePart);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.SHARED_RESOURCES:
+			{
+				SharedResources sharedResources = (SharedResources)theEObject;
+				T result = caseSharedResources(sharedResources);
+				if (result == null) result = caseIEnginePart(sharedResources);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VulkanPackage.IRESOURCE:
+			{
+				IResource iResource = (IResource)theEObject;
+				T result = caseIResource(iResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case VulkanPackage.IPROCESS:
 			{
 				IProcess iProcess = (IProcess)theEObject;
 				T result = caseIProcess(iProcess);
+				if (result == null) result = caseIEnginePart(iProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -132,6 +155,54 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseVulkanEngine(VulkanEngine object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIEnginePart(IEnginePart object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shared Resources</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shared Resources</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSharedResources(SharedResources object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IResource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IResource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIResource(IResource object)
 	{
 		return null;
 	}

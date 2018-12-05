@@ -66,6 +66,7 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 		{
 			case VulkanPackage.VULKAN_APPLICATION: return createVulkanApplication();
 			case VulkanPackage.VULKAN_ENGINE: return createVulkanEngine();
+			case VulkanPackage.SHARED_RESOURCES: return createSharedResources();
 			case VulkanPackage.COLOR_DOMAIN: return createColorDomain();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -92,6 +93,17 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	{
 		VulkanEngineImpl vulkanEngine = new VulkanEngineImpl();
 		return vulkanEngine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SharedResources createSharedResources()
+	{
+		SharedResourcesImpl sharedResources = new SharedResourcesImpl();
+		return sharedResources;
 	}
 
 	/**
