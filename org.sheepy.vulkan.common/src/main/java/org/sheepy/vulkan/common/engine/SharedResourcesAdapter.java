@@ -1,9 +1,8 @@
-package org.sheepy.vulkan.process.process;
+package org.sheepy.vulkan.common.engine;
 
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.api.queue.EQueueType;
-import org.sheepy.vulkan.common.engine.AbstractEnginePartAdapter;
 import org.sheepy.vulkan.model.SharedResources;
 import org.sheepy.vulkan.model.VulkanPackage;
 

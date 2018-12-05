@@ -1,7 +1,6 @@
 package org.sheepy.vulkan.gameoflife;
 
 import org.sheepy.vulkan.api.VulkanApplicationLauncher;
-import org.sheepy.vulkan.api.adapter.IEnginePartAdapter;
 import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanApplicationAdapter;
 import org.sheepy.vulkan.api.window.IWindow;
@@ -21,7 +20,6 @@ public class GameOfLifeApplication
 	private final ModelFactory factory;
 	private final IProcessAdapter[] computeProcessAdapters = new IProcessAdapter[2];
 	private IProcessAdapter imageProcessAdapter;
-	private IEnginePartAdapter sharedResourceAdapter;
 	private int currentComputePoolIndex = 0;
 
 	public GameOfLifeApplication(int width, int height)
@@ -36,29 +34,21 @@ public class GameOfLifeApplication
 		var applicationAdapter = VulkanApplicationLauncher.launch(application);
 		computeProcessAdapters[0] = IProcessAdapter.adapt(factory.computeProcess1);
 		computeProcessAdapters[1] = IProcessAdapter.adapt(factory.computeProcess2);
-		sharedResourceAdapter = IEnginePartAdapter.adapt(factory.sharedResources);
 		GraphicProcess imageProcess = factory.imageProcess;
 		imageProcessAdapter = IProcessAdapter.adapt(imageProcess);
-		
-		
+
 		stopCountDate = System.currentTimeMillis() + 3000;
 		nextRenderDate = System.currentTimeMillis() + FRAME_TIME_STEP_MS;
 
-		sharedResourceAdapter.allocatePart();
-		computeProcessAdapters[0].allocatePart();
-		computeProcessAdapters[1].allocatePart();
-		imageProcessAdapter.allocatePart();
-		
+		applicationAdapter.allocate();
+
 		IWindow window = applicationAdapter.getWindow();
 		while (!window.shouldClose())
 		{
 			step(applicationAdapter);
 		}
 
-		imageProcessAdapter.freePart();
-		computeProcessAdapters[1].freePart();
-		computeProcessAdapters[0].freePart();
-		sharedResourceAdapter.freePart();
+		applicationAdapter.free();
 	}
 
 	private void executeComputePool()
@@ -78,7 +68,7 @@ public class GameOfLifeApplication
 		adapter.pollEvents();
 		computeProcessAdapters[0].prepare();
 		computeProcessAdapters[1].prepare();
-		
+
 		while (nextRenderDate > System.currentTimeMillis())
 		{
 			executeComputePool();

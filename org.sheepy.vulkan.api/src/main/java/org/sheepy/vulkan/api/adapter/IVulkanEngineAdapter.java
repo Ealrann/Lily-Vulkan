@@ -9,6 +9,8 @@ public interface IVulkanEngineAdapter extends IVulkanAdapter
 	void start();
 	void stop();
 	void pollEvents();
+	void allocate();
+	void free();
 	IWindow getWindow();
 
 	static IVulkanEngineAdapter adapt(VulkanEngine engine)

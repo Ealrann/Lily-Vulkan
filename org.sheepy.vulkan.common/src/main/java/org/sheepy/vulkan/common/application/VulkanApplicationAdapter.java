@@ -76,6 +76,18 @@ public class VulkanApplicationAdapter extends AbstractStatefullAdapter
 	{
 		engineAdapter.stop();
 	}
+	
+	@Override
+	public void allocate()
+	{
+		engineAdapter.allocate();
+	}
+	
+	@Override
+	public void free()
+	{
+		engineAdapter.free();
+	}
 
 	@Override
 	public void pollEvents()

@@ -21,6 +21,7 @@ import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.vulkan.api.adapter.IEnginePartAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
 import org.sheepy.vulkan.api.window.IWindowListener;
 import org.sheepy.vulkan.api.window.Surface;
@@ -30,6 +31,7 @@ import org.sheepy.vulkan.common.device.judge.PhysicalDeviceSelector;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.common.util.VulkanUtils;
 import org.sheepy.vulkan.common.window.Window;
+import org.sheepy.vulkan.model.IProcess;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanPackage;
@@ -145,6 +147,40 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 		window.removeListener(resizeListener);
 		cleanup();
 		window.close();
+	}
+
+	@Override
+	public void allocate()
+	{
+		var sharedResources = engine.getSharedResources();
+		if (sharedResources != null)
+		{
+			var adapter = IEnginePartAdapter.adapt(sharedResources);
+			adapter.allocatePart();
+		}
+		
+		for(IProcess process : engine.getProcesses())
+		{
+			var adapter = IEnginePartAdapter.adapt(process);
+			adapter.allocatePart();
+		}
+	}
+
+	@Override
+	public void free()
+	{
+		var sharedResources = engine.getSharedResources();
+		if (sharedResources != null)
+		{
+			var adapter = IEnginePartAdapter.adapt(sharedResources);
+			adapter.freePart();
+		}
+		
+		for(IProcess process : engine.getProcesses())
+		{
+			var adapter = IEnginePartAdapter.adapt(process);
+			adapter.freePart();
+		}
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 import org.sheepy.common.api.adapter.ISingletonAdapter;
 import org.sheepy.vulkan.process.barrier.PipelineBufferBarrierAdapter;
 import org.sheepy.vulkan.process.process.ResourceManagerAdapter;
-import org.sheepy.vulkan.process.process.SharedResourcesAdapter;
 
 /**
  * 
@@ -20,6 +19,5 @@ module org.sheepy.vulkan.process
 	exports org.sheepy.vulkan.model.process.impl;
 	exports org.sheepy.vulkan.model.process.util;
 
-	provides ISingletonAdapter with PipelineBufferBarrierAdapter,
-			ResourceManagerAdapter, SharedResourcesAdapter;
+	provides ISingletonAdapter with PipelineBufferBarrierAdapter, ResourceManagerAdapter;
 }
