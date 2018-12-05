@@ -68,7 +68,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			case GraphicPackage.RENDER_PASS_INFO: return createRenderPassInfo();
 			case GraphicPackage.SUBPASS_DEPENDENCY: return createSubpassDependency();
 			case GraphicPackage.ATTACHMENT_DESCRIPTION: return createAttachmentDescription();
-			case GraphicPackage.GRAPHIC_PROCESS_POOL: return createGraphicProcessPool();
 			case GraphicPackage.GRAPHIC_PROCESS: return createGraphicProcess();
 			case GraphicPackage.DYNAMIC_STATE: return createDynamicState();
 			case GraphicPackage.COLOR_BLEND: return createColorBlend();
@@ -127,17 +126,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		AttachmentDescriptionImpl attachmentDescription = new AttachmentDescriptionImpl();
 		return attachmentDescription;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GraphicProcessPool createGraphicProcessPool()
-	{
-		GraphicProcessPoolImpl graphicProcessPool = new GraphicProcessPoolImpl();
-		return graphicProcessPool;
 	}
 
 	/**

@@ -14,9 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.vulkan.model.process.graphic.DynamicState;
@@ -28,7 +26,6 @@ import org.sheepy.vulkan.model.process.graphic.ViewportState;
 
 import org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl;
 
-import org.sheepy.vulkan.model.resource.Resource;
 import org.sheepy.vulkan.model.resource.Shader;
 
 /**
@@ -44,7 +41,6 @@ import org.sheepy.vulkan.model.resource.Shader;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getRasterizer <em>Rasterizer</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDynamicState <em>Dynamic State</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getResources <em>Resources</em>}</li>
  * </ul>
  *
  * @generated
@@ -100,16 +96,6 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * @ordered
 	 */
 	protected DynamicState dynamicState;
-
-	/**
-	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResources()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Resource> resources;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -343,20 +329,6 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Resource> getResources()
-	{
-		if (resources == null)
-		{
-			resources = new EObjectContainmentEList<Resource>(Resource.class, this, GraphicPackage.GRAPHICS_PIPELINE__RESOURCES);
-		}
-		return resources;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -370,8 +342,6 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return basicSetColorBlend(null, msgs);
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				return basicSetDynamicState(null, msgs);
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCES:
-				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -396,8 +366,6 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return getColorBlend();
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				return getDynamicState();
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCES:
-				return getResources();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -429,10 +397,6 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				setDynamicState((DynamicState)newValue);
 				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCES:
-				getResources().clear();
-				getResources().addAll((Collection<? extends Resource>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -462,9 +426,6 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				setDynamicState((DynamicState)null);
 				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCES:
-				getResources().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -489,8 +450,6 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return colorBlend != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				return dynamicState != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__RESOURCES:
-				return resources != null && !resources.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -8,6 +8,7 @@ import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.impl.MeshBufferImpl;
 import org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl;
 import org.sheepy.vulkan.model.VulkanApplication;
+import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -16,10 +17,10 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.impl.ColorDomainImpl;
 import org.sheepy.vulkan.model.impl.VulkanApplicationImpl;
+import org.sheepy.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.vulkan.model.process.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 import org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl;
@@ -27,7 +28,6 @@ import org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl;
-import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl;
@@ -48,7 +48,9 @@ public class MeshModelFactory
 	private final MeshConfiguration meshConfiguration;
 
 	public final VulkanApplication application = new VulkanApplicationImpl();
+	public final VulkanEngine engine = new VulkanEngineImpl();
 	public final MeshBuffer meshBuffer = new MeshBufferImpl();
+	public final GraphicProcess graphicProcess;
 
 	public final UniformBufferManager uniformBufferManager = new UniformBufferManager();
 
@@ -60,15 +62,17 @@ public class MeshModelFactory
 		application.setTitle("Vulkan Triangle");
 		application.setSize(size);
 		application.setDebug(true);
+		
+		application.setEngine(engine);
 
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setColorDomain(new ColorDomainImpl());
 
-		final GraphicProcessPool meshProcessPool = newMeshProcessPool();
-		meshProcessPool.setConfiguration(configuration);
-		meshProcessPool.setRenderPassInfo(newInfo());
-		
-		application.setGraphicPool(meshProcessPool);
+		graphicProcess = newMeshProcess();
+		graphicProcess.setConfiguration(configuration);
+		graphicProcess.setRenderPassInfo(newInfo());
+
+		engine.getProcesses().add(graphicProcess);
 	}
 
 	private RenderPassInfo newInfo()
@@ -120,7 +124,7 @@ public class MeshModelFactory
 		return renderPass;
 	}
 
-	private GraphicProcessPool newMeshProcessPool()
+	private GraphicProcess newMeshProcess()
 	{
 		var module = meshConfiguration.module;
 
@@ -162,27 +166,24 @@ public class MeshModelFactory
 		graphicPipeline.setColorBlend(colorBlend);
 
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
+		graphicProcess.getResources().add(meshBuffer);
+		graphicProcess.getResources().add(vertexShader);
+		graphicProcess.getResources().add(fragmentShader);
 		graphicProcess.getUnits().add(graphicPipeline);
-
-		final GraphicProcessPool processPool = new GraphicProcessPoolImpl();
-		processPool.getResources().add(meshBuffer);
-		processPool.getResources().add(vertexShader);
-		processPool.getResources().add(fragmentShader);
-		processPool.getProcesses().add(graphicProcess);
-		processPool.getDescriptorSets().add(descriptorSet);
+		graphicProcess.getDescriptorSets().add(descriptorSet);
 
 		if (meshConfiguration.depth)
 		{
 			final DepthImage depthImage = new DepthImageImpl();
-			processPool.getResources().add(depthImage);
-			processPool.setDepthImage(depthImage);
+			graphicProcess.getResources().add(depthImage);
+			graphicProcess.setDepthImage(depthImage);
 		}
 
 		if (meshConfiguration.buildUniformBuffer == true)
 		{
 			var uniformBuffer = uniformBufferManager.buffer;
 			descriptorSet.getDescriptors().add(uniformBuffer);
-			processPool.getResources().add(uniformBuffer);
+			graphicProcess.getResources().add(uniformBuffer);
 		}
 
 		if (meshConfiguration.texturePath != null)
@@ -196,7 +197,7 @@ public class MeshModelFactory
 			texture.setMipmapEnabled(meshConfiguration.mipmap);
 
 			descriptorSet.getDescriptors().add(texture);
-			processPool.getResources().add(texture);
+			graphicProcess.getResources().add(texture);
 		}
 
 		if (descriptorSet.getDescriptors().isEmpty() == false)
@@ -204,6 +205,6 @@ public class MeshModelFactory
 			graphicPipeline.setDescriptorSet(descriptorSet);
 		}
 
-		return processPool;
+		return graphicProcess;
 	}
 }

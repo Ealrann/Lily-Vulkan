@@ -1,15 +1,9 @@
 package org.sheepy.vulkan.common.allocation.allocator;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 
-public interface IAllocator
+public interface IAllocator extends IBasicAllocable
 {
-
-	void allocate(MemoryStack stack);
-
-	void free();
-	
-	boolean isDirty();
-	
 	void reloadDirtyElements(MemoryStack stack);
 }

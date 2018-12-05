@@ -9,7 +9,7 @@ public class BasicModelFactory
 	public static String TITLE = "Vulkan Test Application";
 	public static int WIDTH = 400;
 	public static int HEIGHT = 400;
-	
+
 	private final String title;
 	private final int width;
 	private final int height;
@@ -18,7 +18,7 @@ public class BasicModelFactory
 	{
 		this(TITLE, WIDTH, HEIGHT);
 	}
-	
+
 	public BasicModelFactory(String title, int width, int height)
 	{
 		this.title = title;
@@ -33,7 +33,9 @@ public class BasicModelFactory
 		vulkanApplication.setTitle(title);
 		vulkanApplication.setSize(new SVector2i(width, height));
 		vulkanApplication.setDebug(true);
-		
+
+		vulkanApplication.setEngine(VulkanFactory.eINSTANCE.createVulkanEngine());
+
 		return vulkanApplication;
 	}
 }

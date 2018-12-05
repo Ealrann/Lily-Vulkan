@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.gameoflife.compute.Board;
 import org.sheepy.vulkan.model.VulkanApplication;
+import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -15,26 +16,23 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.impl.ColorDomainImpl;
 import org.sheepy.vulkan.model.impl.VulkanApplicationImpl;
+import org.sheepy.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.vulkan.model.process.compute.ComputeProcessPool;
 import org.sheepy.vulkan.model.process.compute.Computer;
 import org.sheepy.vulkan.model.process.compute.IComputer;
 import org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl;
 import org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl;
-import org.sheepy.vulkan.model.process.compute.impl.ComputeProcessPoolImpl;
 import org.sheepy.vulkan.model.process.compute.impl.ComputerImpl;
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.vulkan.model.process.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 import org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl;
-import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
@@ -53,9 +51,10 @@ public class ModelFactory
 	private static final String SHADER_LIFE2PIXEL = "life2pixel.comp.spv";
 
 	public final VulkanApplication application = new VulkanApplicationImpl();
-	public final GraphicProcessPool imageProcessPool;
-	public ComputeProcessPool computeProcessPool1;
-	public ComputeProcessPool computeProcessPool2;
+	public final VulkanEngine engine = new VulkanEngineImpl();
+	public final GraphicProcess imageProcess;
+	public ComputeProcess computeProcess1;
+	public ComputeProcess computeProcess2;
 	private Image boardImage;
 	private final SVector2i size;
 
@@ -66,6 +65,8 @@ public class ModelFactory
 		application.setTitle("Vulkan - Game of Life");
 		application.setSize(size);
 		application.setDebug(true);
+		
+		application.setEngine(engine);
 
 		int swapImageUsage = EImageUsage.TRANSFER_DST.getValue()
 				| EImageUsage.COLOR_ATTACHMENT.getValue();
@@ -77,13 +78,14 @@ public class ModelFactory
 		configuration.setSwapImageUsage(swapImageUsage);
 
 		createComputeProcessPool();
-		application.getComputePools().add(computeProcessPool1);
-		application.getComputePools().add(computeProcessPool2);
 
-		imageProcessPool = newImageProcessPool();
-		imageProcessPool.setConfiguration(configuration);
-		imageProcessPool.setRenderPassInfo(newInfo());
-		application.setGraphicPool(imageProcessPool);
+		imageProcess = newImageProcess();
+		imageProcess.setConfiguration(configuration);
+		imageProcess.setRenderPassInfo(newInfo());
+
+		engine.getProcesses().add(computeProcess1);
+		engine.getProcesses().add(computeProcess2);
+		engine.getProcesses().add(imageProcess);
 	}
 
 	private static RenderPassInfo newInfo()
@@ -116,7 +118,7 @@ public class ModelFactory
 		return renderPass;
 	}
 
-	private GraphicProcessPool newImageProcessPool()
+	private GraphicProcess newImageProcess()
 	{
 		final ImagePipeline imagePipeline = new ImagePipelineImpl();
 		imagePipeline.setImageSrcStage(EPipelineStage.COMPUTE_SHADER_BIT);
@@ -129,16 +131,13 @@ public class ModelFactory
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
 		graphicProcess.getUnits().add(imagePipeline);
 
-		final GraphicProcessPool processPool = new GraphicProcessPoolImpl();
-		processPool.getProcesses().add(graphicProcess);
-
-		return processPool;
+		return graphicProcess;
 	}
 
 	private void createComputeProcessPool()
 	{
-		computeProcessPool1 = new ComputeProcessPoolImpl();
-		computeProcessPool2 = new ComputeProcessPoolImpl();
+		computeProcess1 = new ComputeProcessImpl();
+		computeProcess2 = new ComputeProcessImpl();
 		final Module thisModule = getClass().getModule();
 
 		final ModuleResource lifeShaderFile = new ModuleResourceImpl();
@@ -168,37 +167,29 @@ public class ModelFactory
 		Computer lifeComputer2 = createComputer(lifeShader);
 		Computer pixelComputer2 = createComputer(life2pixelShader);
 
-		ComputePipeline lifePipeline1 = createPipeline(computeProcessPool1, lifeComputer1, boardBuffer1, boardBuffer2);
-		ComputePipeline lifePipeline2 = createPipeline(computeProcessPool2, lifeComputer2, boardBuffer2, boardBuffer1);
+		ComputePipeline lifePipeline1 = createPipeline(computeProcess1, lifeComputer1, boardBuffer1, boardBuffer2);
+		ComputePipeline lifePipeline2 = createPipeline(computeProcess2, lifeComputer2, boardBuffer2, boardBuffer1);
 
-		ComputePipeline pixelPipeline1 = createPipeline(computeProcessPool1, pixelComputer1, boardBuffer2, boardImage);
-		ComputePipeline pixelPipeline2 = createPipeline(computeProcessPool2, pixelComputer2, boardBuffer1, boardImage);
+		ComputePipeline pixelPipeline1 = createPipeline(computeProcess1, pixelComputer1, boardBuffer2, boardImage);
+		ComputePipeline pixelPipeline2 = createPipeline(computeProcess2, pixelComputer2, boardBuffer1, boardImage);
 
-		ComputeProcess process1 = createProcess(lifePipeline1, pixelPipeline1);
-		ComputeProcess process2 = createProcess(lifePipeline2, pixelPipeline2);
+		computeProcess1.getUnits().add(lifePipeline1);
+		computeProcess1.getUnits().add(pixelPipeline1);
 
-		computeProcessPool1.getProcesses().add(process1);
-		computeProcessPool2.getProcesses().add(process2);
-		computeProcessPool1.getResources().add(lifeShader);
-		computeProcessPool1.getResources().add(life2pixelShader);
-		computeProcessPool1.getResources().add(boardBuffer1);
-		computeProcessPool1.getResources().add(boardBuffer2);
-		computeProcessPool1.getResources().add(boardImage);
-		computeProcessPool1.setResetAllowed(true);
-		computeProcessPool2.setResetAllowed(true);
+		computeProcess2.getUnits().add(lifePipeline2);
+		computeProcess2.getUnits().add(pixelPipeline2);
+		
+		computeProcess1.getResources().add(lifeShader);
+		computeProcess1.getResources().add(life2pixelShader);
+		computeProcess1.getResources().add(boardBuffer1);
+		computeProcess1.getResources().add(boardBuffer2);
+		computeProcess1.getResources().add(boardImage);
+		
+		computeProcess1.setResetAllowed(true);
+		computeProcess2.setResetAllowed(true);
 	}
 
-	private static ComputeProcess createProcess(ComputePipeline... pipelines)
-	{
-		ComputeProcess process = new ComputeProcessImpl();
-		for (ComputePipeline pipeline : pipelines)
-		{
-			process.getUnits().add(pipeline);
-		}
-		return process;
-	}
-
-	private ComputePipeline createPipeline(ComputeProcessPool processPool, IComputer computer, IDescriptor... descriptors)
+	private ComputePipeline createPipeline(ComputeProcess process, IComputer computer, IDescriptor... descriptors)
 	{
 		var descriptorSet = new BasicDescriptorSetImpl();
 		for (IDescriptor descriptor : descriptors)
@@ -208,7 +199,7 @@ public class ModelFactory
 
 		ComputePipeline res = new ComputePipelineImpl();
 		res.getUnits().add(computer);
-		processPool.getDescriptorSets().add(descriptorSet);
+		process.getDescriptorSets().add(descriptorSet);
 		res.setDescriptorSet(descriptorSet);
 		res.setStage(ECommandStage.COMPUTE);
 

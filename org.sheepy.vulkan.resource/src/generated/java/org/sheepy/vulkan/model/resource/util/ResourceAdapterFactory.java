@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.sheepy.vulkan.model.resource.*;
 
 /**
@@ -75,9 +74,9 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		new ResourceSwitch<Adapter>()
 		{
 			@Override
-			public Adapter caseResource(Resource object)
+			public Adapter caseIResource(IResource object)
 			{
-				return createResourceAdapter();
+				return createIResourceAdapter();
 			}
 			@Override
 			public Adapter caseBasicResource(BasicResource object)
@@ -230,21 +229,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Resource <em>Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.Resource
-	 * @generated
-	 */
-	public Adapter createResourceAdapter()
-	{
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -632,6 +616,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createModuleResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.IResource <em>IResource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.IResource
+	 * @generated
+	 */
+	public Adapter createIResourceAdapter()
 	{
 		return null;
 	}

@@ -14,8 +14,8 @@ import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.resource.BasicResource;
+import org.sheepy.vulkan.model.resource.IResource;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
-import org.sheepy.vulkan.model.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
@@ -98,7 +98,7 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 				T result = caseMeshBuffer(meshBuffer);
 				if (result == null) result = caseIndexedBuffer(meshBuffer);
 				if (result == null) result = caseBasicResource(meshBuffer);
-				if (result == null) result = caseResource(meshBuffer);
+				if (result == null) result = caseIResource(meshBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -219,17 +219,17 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resource</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IResource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resource</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IResource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseResource(Resource object)
+	public T caseIResource(IResource object)
 	{
 		return null;
 	}

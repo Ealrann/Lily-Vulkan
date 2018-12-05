@@ -5,13 +5,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.IStatefullAdapter;
-import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.allocation.adapter.IAllocableAdapter;
 
-public abstract class AbstractAllocableAdapter extends AbstractSingletonAdapter
-		implements IAllocableAdapter, IStatefullAdapter
+public abstract class AbstractAllocableAdapter extends AbstractStatefullAdapter
+		implements IAllocableAdapter
 {
 	protected List<IBasicAllocable> childAllocables = new ArrayList<>();
 	

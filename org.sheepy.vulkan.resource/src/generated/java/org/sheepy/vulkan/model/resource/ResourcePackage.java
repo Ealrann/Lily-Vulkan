@@ -60,32 +60,32 @@ public interface ResourcePackage extends EPackage
 	ResourcePackage eINSTANCE = org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.Resource <em>Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.IResource <em>IResource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.Resource
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getResource()
+	 * @see org.sheepy.vulkan.model.resource.IResource
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIResource()
 	 * @generated
 	 */
-	int RESOURCE = 0;
+	int IRESOURCE = 0;
 
 	/**
-	 * The number of structural features of the '<em>Resource</em>' class.
+	 * The number of structural features of the '<em>IResource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_FEATURE_COUNT = 0;
+	int IRESOURCE_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Resource</em>' class.
+	 * The number of operations of the '<em>IResource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_OPERATION_COUNT = 0;
+	int IRESOURCE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.BasicResource <em>Basic Resource</em>}' class.
@@ -104,7 +104,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_RESOURCE_FEATURE_COUNT = RESOURCE_FEATURE_COUNT + 0;
+	int BASIC_RESOURCE_FEATURE_COUNT = IRESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Basic Resource</em>' class.
@@ -113,7 +113,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_RESOURCE_OPERATION_COUNT = RESOURCE_OPERATION_COUNT + 0;
+	int BASIC_RESOURCE_OPERATION_COUNT = IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.
@@ -1611,14 +1611,14 @@ public interface ResourcePackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Resource <em>Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.IResource <em>IResource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Resource</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Resource
+	 * @return the meta object for class '<em>IResource</em>'.
+	 * @see org.sheepy.vulkan.model.resource.IResource
 	 * @generated
 	 */
-	EClass getResource();
+	EClass getIResource();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -2521,14 +2521,14 @@ public interface ResourcePackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.Resource <em>Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.IResource <em>IResource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.Resource
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getResource()
+		 * @see org.sheepy.vulkan.model.resource.IResource
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIResource()
 		 * @generated
 		 */
-		EClass RESOURCE = eINSTANCE.getResource();
+		EClass IRESOURCE = eINSTANCE.getIResource();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.BasicResource <em>Basic Resource</em>}' class.

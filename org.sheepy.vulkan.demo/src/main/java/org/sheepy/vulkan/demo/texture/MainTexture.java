@@ -2,12 +2,14 @@ package org.sheepy.vulkan.demo.texture;
 
 import org.sheepy.common.api.util.UPSMeter;
 import org.sheepy.vulkan.api.VulkanApplicationLauncher;
+import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.vulkan.demo.mesh.MeshModelFactory;
 import org.sheepy.vulkan.demo.mesh.UniformBufferManager;
 import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
+import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 
 public class MainTexture
 {
@@ -19,6 +21,7 @@ public class MainTexture
 	private static final int HEIGHT = 600;
 
 	private VulkanApplication application;
+	private GraphicProcess graphicProcess;
 	private UniformBufferManager uniformBufferManager;
 	private long start;
 
@@ -35,24 +38,27 @@ public class MainTexture
 
 	public void launch()
 	{
-		final var modelFactory = buildModelFactory();
+		buildApplication();
+		
+		final var applicationAdapter = VulkanApplicationLauncher.launch(application);
+		final var processAdapter = IProcessAdapter.adapt(graphicProcess);
 
-		application = modelFactory.application;
-		uniformBufferManager = modelFactory.uniformBufferManager;
-
-		var graphicPool = application.getGraphicPool();
-		var applicationAdapter = VulkanApplicationLauncher.launch(application);
-
+		processAdapter.allocateProcess();
+		
 		UPSMeter meter = new UPSMeter(2000);
 		start = System.currentTimeMillis();
-		while (!applicationAdapter.shouldClose())
+		
+		var window = applicationAdapter.getWindow();
+		while (!window.shouldClose())
 		{
 			updateUniformBuffer();
 			applicationAdapter.pollEvents();
-			applicationAdapter.preparePools();
-			applicationAdapter.execute(graphicPool);
+			processAdapter.prepare();
+			processAdapter.execute();
 			meter.tick();
 		}
+
+		processAdapter.freeProcess();
 	}
 
 	private void updateUniformBuffer()
@@ -63,10 +69,9 @@ public class MainTexture
 		uniformBufferManager.update(progress);
 	}
 
-	private static MeshModelFactory buildModelFactory()
+	private void buildApplication()
 	{
 		final var meshConfiguration = new MeshConfiguration(WIDTH, HEIGHT, true);
-
 		meshConfiguration.buildUniformBuffer = true;
 		meshConfiguration.vertexShaderPath = VERTEX_SHADER_PATH;
 		meshConfiguration.fragmentShaderPath = FRAGMENT_SHADER_PATH;
@@ -74,6 +79,8 @@ public class MainTexture
 		meshConfiguration.texturePath = IMAGE_PATH;
 
 		final var modelFactory = new MeshModelFactory(meshConfiguration);
-		return modelFactory;
+		application = modelFactory.application;
+		graphicProcess = modelFactory.graphicProcess;
+		uniformBufferManager = modelFactory.uniformBufferManager;
 	}
 }

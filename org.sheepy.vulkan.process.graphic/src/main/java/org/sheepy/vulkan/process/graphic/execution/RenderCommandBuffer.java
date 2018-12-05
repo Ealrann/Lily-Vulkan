@@ -4,7 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
-import org.sheepy.vulkan.process.graphic.pool.GraphicContext;
+import org.sheepy.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager.Extent2D;
 
 public class RenderCommandBuffer extends GraphicCommandBuffer
@@ -39,7 +39,7 @@ public class RenderCommandBuffer extends GraphicCommandBuffer
 	public void startRenderPass()
 	{
 		final var configuration = context.configuration;
-		final var useDepthBuffer = context.graphicProcessPool.getDepthImage() != null;
+		final var useDepthBuffer = context.graphicProcess.getDepthImage() != null;
 
 		// Start Render Pass
 		VkClearValue.Buffer clearValues = null;

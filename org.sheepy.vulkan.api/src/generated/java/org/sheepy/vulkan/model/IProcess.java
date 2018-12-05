@@ -6,14 +6,14 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>IProcess Pool</b></em>'.
+ * A representation of the model object '<em><b>IProcess</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.VulkanPackage#getIProcessPool()
+ * @see org.sheepy.vulkan.model.VulkanPackage#getIProcess()
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IProcessPool extends EObject
+public interface IProcess extends EObject
 {
-} // IProcessPool
+} // IProcess

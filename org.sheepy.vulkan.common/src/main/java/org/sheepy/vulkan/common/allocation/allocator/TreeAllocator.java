@@ -20,6 +20,8 @@ public class TreeAllocator implements IAllocator
 	private Deque<IAllocableWrapper> nextCourse = new ArrayDeque<>();
 
 	private final AllocableWrapperPool pool = new AllocableWrapperPool();
+	
+	private boolean isAllocated = false;
 
 	public TreeAllocator(EObject root)
 	{
@@ -33,6 +35,8 @@ public class TreeAllocator implements IAllocator
 
 		flatAllocateGatheredObjects(stack);
 		deepAllocateGatheredObjects(stack);
+		
+		isAllocated = true;
 	}
 
 	private void gatherFlatTree(boolean onlyDirty)
@@ -137,7 +141,7 @@ public class TreeAllocator implements IAllocator
 	}
 
 	@Override
-	public boolean isDirty()
+	public boolean isAllocationDirty()
 	{
 		gatherFlatTree(true);
 		return gatheredAllocables.isEmpty() == false;
@@ -150,5 +154,10 @@ public class TreeAllocator implements IAllocator
 
 		flatAllocateGatheredObjects(stack);
 		deepAllocateGatheredObjects(stack);
+	}
+
+	public boolean isAllocated()
+	{
+		return isAllocated;
 	}
 }

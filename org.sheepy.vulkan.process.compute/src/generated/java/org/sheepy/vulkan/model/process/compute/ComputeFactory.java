@@ -23,15 +23,6 @@ public interface ComputeFactory extends EFactory
 	ComputeFactory eINSTANCE = org.sheepy.vulkan.model.process.compute.impl.ComputeFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Process Pool</em>'.
-	 * @generated
-	 */
-	ComputeProcessPool createComputeProcessPool();
-
-	/**
 	 * Returns a new object of class '<em>Process</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

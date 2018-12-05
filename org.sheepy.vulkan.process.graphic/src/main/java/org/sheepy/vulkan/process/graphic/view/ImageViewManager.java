@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
-import org.sheepy.vulkan.process.graphic.pool.GraphicContext;
+import org.sheepy.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.vulkan.resource.image.ImageView;
 
 public class ImageViewManager implements IBasicAllocable

@@ -5,6 +5,8 @@ import org.lwjgl.glfw.GLFWMouseButtonCallback;
 
 public interface IWindow
 {
+	boolean shouldClose();
+	
 	void setMouseButtonCallback(GLFWMouseButtonCallback callback);
 
 	void setKeyCallback(GLFWKeyCallback callback);
@@ -16,4 +18,6 @@ public interface IWindow
 	void removeListener(IWindowListener listener);
 
 	Surface getSurface();
+	
+	long getId();
 }

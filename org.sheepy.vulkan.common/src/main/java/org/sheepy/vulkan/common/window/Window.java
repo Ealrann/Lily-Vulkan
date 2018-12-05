@@ -109,6 +109,7 @@ public class Window implements IWindow
 		}
 	}
 
+	@Override
 	public long getId()
 	{
 		return id;
@@ -126,6 +127,7 @@ public class Window implements IWindow
 		glfwTerminate();
 	}
 
+	@Override
 	public boolean shouldClose()
 	{
 		return glfwWindowShouldClose(id);

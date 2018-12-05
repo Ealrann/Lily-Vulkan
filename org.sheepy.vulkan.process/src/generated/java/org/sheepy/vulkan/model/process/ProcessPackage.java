@@ -61,42 +61,14 @@ public interface ProcessPackage extends EPackage
 	ProcessPackage eINSTANCE = org.sheepy.vulkan.model.process.impl.ProcessPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl <em>Abstract Process</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.Configuration
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
+	 * @see org.sheepy.vulkan.model.process.impl.AbstractProcessImpl
+	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractProcess()
 	 * @generated
 	 */
-	int CONFIGURATION = 0;
-
-	/**
-	 * The number of structural features of the '<em>Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl <em>Abstract Process Pool</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractProcessPool()
-	 * @generated
-	 */
-	int ABSTRACT_PROCESS_POOL = 1;
+	int ABSTRACT_PROCESS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -105,62 +77,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_POOL__DESCRIPTOR_SETS = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS_POOL__PROCESSES = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS_POOL__RESOURCES = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS_POOL__RESET_ALLOWED = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Process Pool</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS_POOL_FEATURE_COUNT = VulkanPackage.IPROCESS_POOL_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Abstract Process Pool</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS_POOL_OPERATION_COUNT = VulkanPackage.IPROCESS_POOL_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl <em>Abstract Process</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.AbstractProcessImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractProcess()
-	 * @generated
-	 */
-	int ABSTRACT_PROCESS = 2;
+	int ABSTRACT_PROCESS__DESCRIPTOR_SETS = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
@@ -169,7 +86,25 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__UNITS = 0;
+	int ABSTRACT_PROCESS__UNITS = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS__RESOURCES = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Process</em>' class.
@@ -178,7 +113,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_FEATURE_COUNT = 1;
+	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Abstract Process</em>' class.
@@ -187,7 +122,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_OPERATION_COUNT = 0;
+	int ABSTRACT_PROCESS_OPERATION_COUNT = VulkanPackage.IPROCESS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}' class.
@@ -197,7 +132,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIProcessUnit()
 	 * @generated
 	 */
-	int IPROCESS_UNIT = 3;
+	int IPROCESS_UNIT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -236,6 +171,34 @@ public interface ProcessPackage extends EPackage
 	int IPROCESS_UNIT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.Configuration
+	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
+	 * @generated
+	 */
+	int CONFIGURATION = 2;
+
+	/**
+	 * The number of structural features of the '<em>Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -243,7 +206,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
 	 * @generated
 	 */
-	int PIPELINE_BARRIER = 4;
+	int PIPELINE_BARRIER = 3;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -289,7 +252,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBufferBarrier()
 	 * @generated
 	 */
-	int PIPELINE_BUFFER_BARRIER = 5;
+	int PIPELINE_BUFFER_BARRIER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -344,7 +307,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
 	 * @generated
 	 */
-	int IPIPELINE = 6;
+	int IPIPELINE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -390,7 +353,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 7;
+	int ABSTRACT_PIPELINE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -454,7 +417,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
 	 * @generated
 	 */
-	int ABSTRACT_COMPOSITE_PIPELINE = 8;
+	int ABSTRACT_COMPOSITE_PIPELINE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -521,70 +484,6 @@ public interface ProcessPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Configuration</em>'.
-	 * @see org.sheepy.vulkan.model.process.Configuration
-	 * @generated
-	 */
-	EClass getConfiguration();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.AbstractProcessPool <em>Abstract Process Pool</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Process Pool</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcessPool
-	 * @generated
-	 */
-	EClass getAbstractProcessPool();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcessPool#getDescriptorSets <em>Descriptor Sets</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Descriptor Sets</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcessPool#getDescriptorSets()
-	 * @see #getAbstractProcessPool()
-	 * @generated
-	 */
-	EReference getAbstractProcessPool_DescriptorSets();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcessPool#getProcesses <em>Processes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Processes</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcessPool#getProcesses()
-	 * @see #getAbstractProcessPool()
-	 * @generated
-	 */
-	EReference getAbstractProcessPool_Processes();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcessPool#getResources <em>Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Resources</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcessPool#getResources()
-	 * @see #getAbstractProcessPool()
-	 * @generated
-	 */
-	EReference getAbstractProcessPool_Resources();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.AbstractProcessPool#isResetAllowed <em>Reset Allowed</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Reset Allowed</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcessPool#isResetAllowed()
-	 * @see #getAbstractProcessPool()
-	 * @generated
-	 */
-	EAttribute getAbstractProcessPool_ResetAllowed();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -593,6 +492,17 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EClass getAbstractProcess();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Descriptor Sets</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getDescriptorSets()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EReference getAbstractProcess_DescriptorSets();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getUnits <em>Units</em>}'.
@@ -604,6 +514,28 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractProcess_Units();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getResources <em>Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Resources</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getResources()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EReference getAbstractProcess_Resources();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reset Allowed</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractProcess#isResetAllowed()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EAttribute getAbstractProcess_ResetAllowed();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}'.
@@ -636,6 +568,16 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getIProcessUnit_Stage();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configuration</em>'.
+	 * @see org.sheepy.vulkan.model.process.Configuration
+	 * @generated
+	 */
+	EClass getConfiguration();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.PipelineBarrier <em>Pipeline Barrier</em>}'.
@@ -756,58 +698,6 @@ public interface ProcessPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.Configuration
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
-		 * @generated
-		 */
-		EClass CONFIGURATION = eINSTANCE.getConfiguration();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl <em>Abstract Process Pool</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.impl.AbstractProcessPoolImpl
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractProcessPool()
-		 * @generated
-		 */
-		EClass ABSTRACT_PROCESS_POOL = eINSTANCE.getAbstractProcessPool();
-
-		/**
-		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS_POOL__DESCRIPTOR_SETS = eINSTANCE.getAbstractProcessPool_DescriptorSets();
-
-		/**
-		 * The meta object literal for the '<em><b>Processes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS_POOL__PROCESSES = eINSTANCE.getAbstractProcessPool_Processes();
-
-		/**
-		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS_POOL__RESOURCES = eINSTANCE.getAbstractProcessPool_Resources();
-
-		/**
-		 * The meta object literal for the '<em><b>Reset Allowed</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_PROCESS_POOL__RESET_ALLOWED = eINSTANCE.getAbstractProcessPool_ResetAllowed();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl <em>Abstract Process</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -818,12 +708,36 @@ public interface ProcessPackage extends EPackage
 		EClass ABSTRACT_PROCESS = eINSTANCE.getAbstractProcess();
 
 		/**
+		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS__DESCRIPTOR_SETS = eINSTANCE.getAbstractProcess_DescriptorSets();
+
+		/**
 		 * The meta object literal for the '<em><b>Units</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ABSTRACT_PROCESS__UNITS = eINSTANCE.getAbstractProcess_Units();
+
+		/**
+		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS__RESOURCES = eINSTANCE.getAbstractProcess_Resources();
+
+		/**
+		 * The meta object literal for the '<em><b>Reset Allowed</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_PROCESS__RESET_ALLOWED = eINSTANCE.getAbstractProcess_ResetAllowed();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}' class.
@@ -850,6 +764,16 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute IPROCESS_UNIT__STAGE = eINSTANCE.getIProcessUnit_Stage();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.Configuration
+		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
+		 * @generated
+		 */
+		EClass CONFIGURATION = eINSTANCE.getConfiguration();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.

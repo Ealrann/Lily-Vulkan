@@ -14,15 +14,15 @@ import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
 import org.sheepy.vulkan.model.enumeration.EShaderStage
 
-interface Resource
+interface IResource
 {
 }
 
-interface BasicResource extends Resource
+interface BasicResource extends IResource
 {
 }
 
-interface PipelineResource extends IDescriptor, Resource
+interface PipelineResource extends IDescriptor, IResource
 {
 }
 

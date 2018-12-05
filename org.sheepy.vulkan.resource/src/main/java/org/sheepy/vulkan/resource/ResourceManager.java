@@ -7,22 +7,22 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.device.LogicalDeviceContext;
-import org.sheepy.vulkan.model.IProcessPool;
+import org.sheepy.vulkan.model.IProcess;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
 
 public class ResourceManager extends LogicalDeviceContext implements IBasicAllocable
 {
-	public final IProcessPool processPool;
+	public final IProcess process;
 
 	public final DescriptorPool descriptorPool;
 
 	private List<DescriptorSet> descriptorSets = null;
 
-	public ResourceManager(LogicalDevice logicalDevice, IProcessPool processPool)
+	public ResourceManager(LogicalDevice logicalDevice, IProcess process)
 	{
 		super(logicalDevice);
-		this.processPool = processPool;
+		this.process = process;
 		descriptorPool = new DescriptorPool(this);
 	}
 
@@ -49,7 +49,7 @@ public class ResourceManager extends LogicalDeviceContext implements IBasicAlloc
 	private void gatherDescriptorLists()
 	{
 		descriptorSets = new ArrayList<>();
-		var treeIterator = processPool.eAllContents();
+		var treeIterator = process.eAllContents();
 		while (treeIterator.hasNext())
 		{
 			var eObject = treeIterator.next();

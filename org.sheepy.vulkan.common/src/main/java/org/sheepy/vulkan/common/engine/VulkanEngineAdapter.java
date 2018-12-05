@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.application;
+package org.sheepy.vulkan.common.engine;
 
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.memUTF8;
@@ -8,25 +8,33 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkApplicationInfo;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
-import org.sheepy.vulkan.api.adapter.IProcessPoolAdapter;
+import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
+import org.sheepy.vulkan.api.window.IWindowListener;
 import org.sheepy.vulkan.api.window.Surface;
-import org.sheepy.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.device.judge.PhysicalDeviceSelector;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.common.util.VulkanUtils;
 import org.sheepy.vulkan.common.window.Window;
-import org.sheepy.vulkan.model.IComputeProcessPool;
-import org.sheepy.vulkan.model.IProcessPool;
 import org.sheepy.vulkan.model.VulkanApplication;
+import org.sheepy.vulkan.model.VulkanEngine;
+import org.sheepy.vulkan.model.VulkanPackage;
 
-public class VulkanApplicationManager
+public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVulkanEngineAdapter
 {
 	private static final ByteBuffer[] LAYERS_TO_ENABLE = {
 			memUTF8("VK_LAYER_LUNARG_standard_validation")
@@ -36,7 +44,7 @@ public class VulkanApplicationManager
 			VK_KHR_SWAPCHAIN_EXTENSION_NAME
 	};
 
-	protected final boolean debug;
+	protected boolean debug;
 
 	protected VkInstance vkInstance;
 	protected PhysicalDevice physicalDevice;
@@ -46,15 +54,43 @@ public class VulkanApplicationManager
 	private PointerBuffer ppEnabledLayerNames = null;
 
 	protected VulkanApplication application;
+	protected VulkanEngine engine;
 	protected Window window;
-	private final TreeAllocator allocator;
-
-	public VulkanApplicationManager(VulkanApplication application)
+	private boolean listeningResize = true;
+	private final IWindowListener resizeListener = new IWindowListener()
 	{
-		this.application = application;
+		@Override
+		public void onWindowResize(Surface surface)
+		{
+			resize(surface);
+		}
+	};
 
+	private final Adapter applicationAdapter = new AdapterImpl()
+	{
+		@Override
+		public void notifyChanged(Notification notification)
+		{
+			if (listeningResize)
+			{
+				if (notification.getFeature() == VulkanPackage.Literals.VULKAN_APPLICATION__SIZE)
+				{
+					SVector2i newSize = (SVector2i) notification.getNewValue();
+					window.setSize(newSize.x, newSize.y);
+				}
+			}
+		}
+	};
+
+	@Override
+	public void setTarget(Notifier target)
+	{
+		super.setTarget(target);
+
+		engine = (VulkanEngine) target;
+		application = (VulkanApplication) engine.eContainer();
+		application.eAdapters().add(applicationAdapter);
 		debug = application.isDebug();
-		allocator = new TreeAllocator(application);
 
 		if (debug)
 		{
@@ -65,7 +101,8 @@ public class VulkanApplicationManager
 		}
 	}
 
-	public LogicalDevice initLogicalDevice()
+	@Override
+	public void start()
 	{
 		try (MemoryStack stack = stackPush())
 		{
@@ -74,79 +111,46 @@ public class VulkanApplicationManager
 			window.open(vkInstance);
 			pickPhysicalDevice(stack);
 			createLogicalDevice(stack);
-		}
 
-		return logicalDevice;
+			window.addListener(resizeListener);
+		}
 	}
 
-	public void loadPipelinePool()
+	private void resize(Surface surface)
 	{
-		try (MemoryStack stack = stackPush())
+		listeningResize = false;
+
+		try
 		{
-			allocator.allocate(stack);
+			SVector2i size = new SVector2i();
+			size.x = surface.width;
+			size.y = surface.height;
+
+			application.setSize(size);
+			logicalDevice.recreateQueues(surface);
+		} finally
+		{
+			listeningResize = true;
 		}
 	}
 
-	public void resize(Surface surface)
-	{
-		logicalDevice.recreateQueues(surface);
-	}
-
+	@Override
 	public void stop()
 	{
 		if (logicalDevice != null)
 		{
 			logicalDevice.waitIdle();
 		}
+
+		window.removeListener(resizeListener);
 		cleanup();
 		window.close();
 	}
-	
+
+	@Override
 	public void pollEvents()
 	{
 		Window.pollEvents();
-	}
-
-	public void prepare()
-	{
-		boolean needRecord = false;
-
-		if (allocator.isDirty())
-		{
-			try (MemoryStack stack = stackPush())
-			{
-				allocator.reloadDirtyElements(stack);
-			}
-
-			needRecord = true;
-		}
-
-		for (final IComputeProcessPool computePool : application.getComputePools())
-		{
-			final var computePoolAdapter = IProcessPoolAdapter.adapt(computePool);
-
-			if (needRecord || computePoolAdapter.isRecordNeeded())
-			{
-				computePoolAdapter.recordCommands();
-			}
-		}
-
-		final var graphicPool = application.getGraphicPool();
-		if (graphicPool != null)
-		{
-			final var graphicPoolAdapter = IProcessPoolAdapter.adapt(graphicPool);
-
-			if (needRecord || graphicPoolAdapter.isRecordNeeded())
-			{
-				graphicPoolAdapter.recordCommands();
-			}
-		}
-	}
-
-	public static void execute(IProcessPool processPool)
-	{
-		var poolAdapter = IProcessPoolAdapter.adapt(processPool);
-		poolAdapter.execute();
 	}
 
 	private void createInstance(MemoryStack stack)
@@ -211,7 +215,6 @@ public class VulkanApplicationManager
 
 	private void cleanup()
 	{
-		allocator.free();
 		logicalDevice.free();
 
 		if (debug)
@@ -227,8 +230,25 @@ public class VulkanApplicationManager
 		return logicalDevice;
 	}
 
+	@Override
 	public Window getWindow()
 	{
 		return window;
+	}
+
+	public PhysicalDevice getPhysicalDevice()
+	{
+		return physicalDevice;
+	}
+
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return VulkanPackage.Literals.VULKAN_ENGINE == eClass;
+	}
+
+	public static VulkanEngineAdapter adapt(VulkanEngine engine)
+	{
+		return ServiceAdapterFactory.INSTANCE.adapt(engine, VulkanEngineAdapter.class);
 	}
 }

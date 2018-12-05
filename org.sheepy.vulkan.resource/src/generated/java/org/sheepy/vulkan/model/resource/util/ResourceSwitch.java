@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.sheepy.vulkan.model.resource.*;
 
 /**
@@ -72,10 +71,10 @@ public class ResourceSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-			case ResourcePackage.RESOURCE:
+			case ResourcePackage.IRESOURCE:
 			{
-				Resource resource = (Resource)theEObject;
-				T result = caseResource(resource);
+				IResource iResource = (IResource)theEObject;
+				T result = caseIResource(iResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -83,7 +82,7 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				BasicResource basicResource = (BasicResource)theEObject;
 				T result = caseBasicResource(basicResource);
-				if (result == null) result = caseResource(basicResource);
+				if (result == null) result = caseIResource(basicResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -92,7 +91,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				PipelineResource pipelineResource = (PipelineResource)theEObject;
 				T result = casePipelineResource(pipelineResource);
 				if (result == null) result = caseIDescriptor(pipelineResource);
-				if (result == null) result = caseResource(pipelineResource);
+				if (result == null) result = caseIResource(pipelineResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,7 +101,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				T result = caseBuffer(buffer);
 				if (result == null) result = casePipelineResource(buffer);
 				if (result == null) result = caseIDescriptor(buffer);
-				if (result == null) result = caseResource(buffer);
+				if (result == null) result = caseIResource(buffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,7 +111,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				T result = caseImage(image);
 				if (result == null) result = casePipelineResource(image);
 				if (result == null) result = caseIDescriptor(image);
-				if (result == null) result = caseResource(image);
+				if (result == null) result = caseIResource(image);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,7 +128,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				T result = caseSampledResource(sampledResource);
 				if (result == null) result = casePipelineResource(sampledResource);
 				if (result == null) result = caseIDescriptor(sampledResource);
-				if (result == null) result = caseResource(sampledResource);
+				if (result == null) result = caseIResource(sampledResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,7 +139,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = caseSampledResource(font);
 				if (result == null) result = casePipelineResource(font);
 				if (result == null) result = caseIDescriptor(font);
-				if (result == null) result = caseResource(font);
+				if (result == null) result = caseIResource(font);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -151,7 +150,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = caseSampledResource(abstractTexture);
 				if (result == null) result = casePipelineResource(abstractTexture);
 				if (result == null) result = caseIDescriptor(abstractTexture);
-				if (result == null) result = caseResource(abstractTexture);
+				if (result == null) result = caseIResource(abstractTexture);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -163,7 +162,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = caseSampledResource(texture);
 				if (result == null) result = casePipelineResource(texture);
 				if (result == null) result = caseIDescriptor(texture);
-				if (result == null) result = caseResource(texture);
+				if (result == null) result = caseIResource(texture);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -180,7 +179,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				T result = casePushConstant(pushConstant);
 				if (result == null) result = casePipelineResource(pushConstant);
 				if (result == null) result = caseIDescriptor(pushConstant);
-				if (result == null) result = caseResource(pushConstant);
+				if (result == null) result = caseIResource(pushConstant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -259,7 +258,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				Shader shader = (Shader)theEObject;
 				T result = caseShader(shader);
 				if (result == null) result = caseBasicResource(shader);
-				if (result == null) result = caseResource(shader);
+				if (result == null) result = caseIResource(shader);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -268,7 +267,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				IndexedBuffer indexedBuffer = (IndexedBuffer)theEObject;
 				T result = caseIndexedBuffer(indexedBuffer);
 				if (result == null) result = caseBasicResource(indexedBuffer);
-				if (result == null) result = caseResource(indexedBuffer);
+				if (result == null) result = caseIResource(indexedBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -277,7 +276,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				DepthImage depthImage = (DepthImage)theEObject;
 				T result = caseDepthImage(depthImage);
 				if (result == null) result = caseBasicResource(depthImage);
-				if (result == null) result = caseResource(depthImage);
+				if (result == null) result = caseIResource(depthImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -286,7 +285,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				PathResource pathResource = (PathResource)theEObject;
 				T result = casePathResource(pathResource);
 				if (result == null) result = caseBasicResource(pathResource);
-				if (result == null) result = caseResource(pathResource);
+				if (result == null) result = caseIResource(pathResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -296,7 +295,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				T result = caseFileResource(fileResource);
 				if (result == null) result = casePathResource(fileResource);
 				if (result == null) result = caseBasicResource(fileResource);
-				if (result == null) result = caseResource(fileResource);
+				if (result == null) result = caseIResource(fileResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -306,7 +305,7 @@ public class ResourceSwitch<T> extends Switch<T>
 				T result = caseModuleResource(moduleResource);
 				if (result == null) result = casePathResource(moduleResource);
 				if (result == null) result = caseBasicResource(moduleResource);
-				if (result == null) result = caseResource(moduleResource);
+				if (result == null) result = caseIResource(moduleResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -315,17 +314,17 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resource</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IResource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resource</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IResource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseResource(Resource object)
+	public T caseIResource(IResource object)
 	{
 		return null;
 	}

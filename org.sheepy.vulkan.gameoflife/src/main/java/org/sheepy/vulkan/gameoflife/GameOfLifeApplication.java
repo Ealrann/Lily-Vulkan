@@ -1,11 +1,12 @@
 package org.sheepy.vulkan.gameoflife;
 
 import org.sheepy.vulkan.api.VulkanApplicationLauncher;
-import org.sheepy.vulkan.api.adapter.IProcessPoolAdapter;
+import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanApplicationAdapter;
+import org.sheepy.vulkan.api.window.IWindow;
 import org.sheepy.vulkan.gameoflife.model.ModelFactory;
 import org.sheepy.vulkan.model.VulkanApplication;
-import org.sheepy.vulkan.model.process.graphic.GraphicProcessPool;
+import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 
 public class GameOfLifeApplication
 {
@@ -18,8 +19,8 @@ public class GameOfLifeApplication
 	private boolean countFrameEnabled = true;
 	private final ModelFactory factory;
 	private int currentComputePoolIndex = 0;
-	private final IProcessPoolAdapter[] computePoolAdapters = new IProcessPoolAdapter[2];
-	private IProcessPoolAdapter renderProcessPoolAdapter;
+	private final IProcessAdapter[] computeProcessAdapters = new IProcessAdapter[2];
+	private IProcessAdapter imageProcessAdapter;
 
 	public GameOfLifeApplication(int width, int height)
 	{
@@ -31,23 +32,32 @@ public class GameOfLifeApplication
 		VulkanApplication application = factory.application;
 
 		var applicationAdapter = VulkanApplicationLauncher.launch(application);
-		computePoolAdapters[0] = IProcessPoolAdapter.adapt(factory.computeProcessPool1);
-		computePoolAdapters[1] = IProcessPoolAdapter.adapt(factory.computeProcessPool2);
-		GraphicProcessPool imageProcessPool = factory.imageProcessPool;
-		renderProcessPoolAdapter = IProcessPoolAdapter.adapt(imageProcessPool);
+		computeProcessAdapters[0] = IProcessAdapter.adapt(factory.computeProcess1);
+		computeProcessAdapters[1] = IProcessAdapter.adapt(factory.computeProcess2);
+		GraphicProcess imageProcess = factory.imageProcess;
+		imageProcessAdapter = IProcessAdapter.adapt(imageProcess);
 
 		stopCountDate = System.currentTimeMillis() + 3000;
 		nextRenderDate = System.currentTimeMillis() + FRAME_TIME_STEP_MS;
 
-		while (!applicationAdapter.shouldClose())
+		computeProcessAdapters[0].allocateProcess();
+		computeProcessAdapters[1].allocateProcess();
+		imageProcessAdapter.allocateProcess();
+		
+		IWindow window = applicationAdapter.getWindow();
+		while (!window.shouldClose())
 		{
 			step(applicationAdapter);
 		}
+
+		imageProcessAdapter.freeProcess();
+		computeProcessAdapters[1].freeProcess();
+		computeProcessAdapters[0].freeProcess();
 	}
 
 	private void executeComputePool()
 	{
-		var currentPoolAdapter = computePoolAdapters[currentComputePoolIndex];
+		var currentPoolAdapter = computeProcessAdapters[currentComputePoolIndex];
 		currentPoolAdapter.execute();
 		currentPoolAdapter.getQueue().waitIdle();
 		currentComputePoolIndex++;
@@ -60,8 +70,9 @@ public class GameOfLifeApplication
 	private void step(IVulkanApplicationAdapter adapter)
 	{
 		adapter.pollEvents();
-		adapter.preparePools();
-
+		computeProcessAdapters[0].prepare();
+		computeProcessAdapters[1].prepare();
+		
 		while (nextRenderDate > System.currentTimeMillis())
 		{
 			executeComputePool();
@@ -82,6 +93,7 @@ public class GameOfLifeApplication
 
 		nextRenderDate = System.currentTimeMillis() + FRAME_TIME_STEP_MS;
 
-		renderProcessPoolAdapter.execute();
+		imageProcessAdapter.prepare();
+		imageProcessAdapter.execute();
 	}
 }

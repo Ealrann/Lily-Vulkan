@@ -7,12 +7,10 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.sheepy.vulkan.model.IComputeProcessPool;
-import org.sheepy.vulkan.model.IProcessPool;
+import org.sheepy.vulkan.model.IProcess;
 
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 
@@ -31,7 +29,7 @@ import org.sheepy.vulkan.model.process.compute.*;
  * @see org.sheepy.vulkan.model.process.compute.ComputePackage
  * @generated
  */
-public class ComputeSwitch<T1> extends Switch<T1>
+public class ComputeSwitch<T> extends Switch<T>
 {
 	/**
 	 * The cached model package
@@ -77,32 +75,23 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	protected T1 doSwitch(int classifierID, EObject theEObject)
+	protected T doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
-			case ComputePackage.COMPUTE_PROCESS_POOL:
-			{
-				ComputeProcessPool computeProcessPool = (ComputeProcessPool)theEObject;
-				T1 result = caseComputeProcessPool(computeProcessPool);
-				if (result == null) result = caseAbstractProcessPool(computeProcessPool);
-				if (result == null) result = caseIComputeProcessPool(computeProcessPool);
-				if (result == null) result = caseIProcessPool(computeProcessPool);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ComputePackage.COMPUTE_PROCESS:
 			{
 				ComputeProcess computeProcess = (ComputeProcess)theEObject;
-				T1 result = caseComputeProcess(computeProcess);
+				T result = caseComputeProcess(computeProcess);
 				if (result == null) result = caseAbstractProcess(computeProcess);
+				if (result == null) result = caseIProcess(computeProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ComputePackage.COMPUTE_PIPELINE:
 			{
 				ComputePipeline computePipeline = (ComputePipeline)theEObject;
-				T1 result = caseComputePipeline(computePipeline);
+				T result = caseComputePipeline(computePipeline);
 				if (result == null) result = caseAbstractPipeline(computePipeline);
 				if (result == null) result = caseIPipeline(computePipeline);
 				if (result == null) result = caseIProcessUnit(computePipeline);
@@ -112,14 +101,14 @@ public class ComputeSwitch<T1> extends Switch<T1>
 			case ComputePackage.ICOMPUTER:
 			{
 				IComputer iComputer = (IComputer)theEObject;
-				T1 result = caseIComputer(iComputer);
+				T result = caseIComputer(iComputer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ComputePackage.COMPUTER:
 			{
 				Computer computer = (Computer)theEObject;
-				T1 result = caseComputer(computer);
+				T result = caseComputer(computer);
 				if (result == null) result = caseIComputer(computer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -127,29 +116,13 @@ public class ComputeSwitch<T1> extends Switch<T1>
 			case ComputePackage.COMPUTER_BUFFER_BARRIER:
 			{
 				ComputerBufferBarrier computerBufferBarrier = (ComputerBufferBarrier)theEObject;
-				T1 result = caseComputerBufferBarrier(computerBufferBarrier);
+				T result = caseComputerBufferBarrier(computerBufferBarrier);
 				if (result == null) result = caseIComputer(computerBufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Process Pool</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseComputeProcessPool(ComputeProcessPool object)
-	{
-		return null;
 	}
 
 	/**
@@ -163,7 +136,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseComputeProcess(ComputeProcess object)
+	public T caseComputeProcess(ComputeProcess object)
 	{
 		return null;
 	}
@@ -179,7 +152,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseComputePipeline(ComputePipeline object)
+	public T caseComputePipeline(ComputePipeline object)
 	{
 		return null;
 	}
@@ -195,7 +168,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIComputer(IComputer object)
+	public T caseIComputer(IComputer object)
 	{
 		return null;
 	}
@@ -211,7 +184,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseComputer(Computer object)
+	public T caseComputer(Computer object)
 	{
 		return null;
 	}
@@ -227,55 +200,23 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseComputerBufferBarrier(ComputerBufferBarrier object)
+	public T caseComputerBufferBarrier(ComputerBufferBarrier object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Pool</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IProcess</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Pool</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IProcess</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIProcessPool(IProcessPool object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Process Pool</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T extends AbstractProcess> T1 caseAbstractProcessPool(AbstractProcessPool<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ICompute Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ICompute Process Pool</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIComputeProcessPool(IComputeProcessPool object)
+	public T caseIProcess(IProcess object)
 	{
 		return null;
 	}
@@ -291,7 +232,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractProcess(AbstractProcess object)
+	public T caseAbstractProcess(AbstractProcess object)
 	{
 		return null;
 	}
@@ -307,7 +248,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIProcessUnit(IProcessUnit object)
+	public T caseIProcessUnit(IProcessUnit object)
 	{
 		return null;
 	}
@@ -323,7 +264,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPipeline(IPipeline object)
+	public T caseIPipeline(IPipeline object)
 	{
 		return null;
 	}
@@ -339,7 +280,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractPipeline(AbstractPipeline object)
+	public T caseAbstractPipeline(AbstractPipeline object)
 	{
 		return null;
 	}
@@ -356,7 +297,7 @@ public class ComputeSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	public T1 defaultCase(EObject object)
+	public T defaultCase(EObject object)
 	{
 		return null;
 	}

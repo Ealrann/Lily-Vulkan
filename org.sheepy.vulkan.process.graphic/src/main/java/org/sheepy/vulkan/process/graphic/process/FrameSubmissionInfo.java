@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.graphic.pool;
+package org.sheepy.vulkan.process.graphic.process;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.KHRSwapchain.VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
@@ -14,7 +14,7 @@ import org.sheepy.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
-import org.sheepy.vulkan.process.pool.SubmissionInfo;
+import org.sheepy.vulkan.process.process.SubmissionInfo;
 
 public class FrameSubmissionInfo extends SubmissionInfo
 {

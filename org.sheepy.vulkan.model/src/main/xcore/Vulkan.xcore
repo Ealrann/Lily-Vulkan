@@ -17,19 +17,15 @@ class VulkanApplication
 	boolean debug = "false"
 	String title
 	SVector2i size
-	contains IComputeProcessPool[] computePools
-	contains IGraphicProcessPool graphicPool
+	contains VulkanEngine engine
 }
 
-interface IProcessPool
+class VulkanEngine
 {
+	contains IProcess[] processes
 }
 
-interface IComputeProcessPool extends IProcessPool
-{
-}
-
-interface IGraphicProcessPool extends IProcessPool
+interface IProcess
 {
 }
 

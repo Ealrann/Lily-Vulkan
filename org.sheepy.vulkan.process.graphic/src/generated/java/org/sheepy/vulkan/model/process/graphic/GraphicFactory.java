@@ -59,15 +59,6 @@ public interface GraphicFactory extends EFactory
 	AttachmentDescription createAttachmentDescription();
 
 	/**
-	 * Returns a new object of class '<em>Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Process Pool</em>'.
-	 * @generated
-	 */
-	GraphicProcessPool createGraphicProcessPool();
-
-	/**
 	 * Returns a new object of class '<em>Process</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -13,10 +13,9 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.sheepy.common.model.types.TypesPackage;
 
 import org.sheepy.vulkan.model.ColorDomain;
-import org.sheepy.vulkan.model.IComputeProcessPool;
-import org.sheepy.vulkan.model.IGraphicProcessPool;
-import org.sheepy.vulkan.model.IProcessPool;
+import org.sheepy.vulkan.model.IProcess;
 import org.sheepy.vulkan.model.VulkanApplication;
+import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanFactory;
 import org.sheepy.vulkan.model.VulkanPackage;
 
@@ -42,21 +41,14 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iProcessPoolEClass = null;
+	private EClass vulkanEngineEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iComputeProcessPoolEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iGraphicProcessPoolEClass = null;
+	private EClass iProcessEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -208,7 +200,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVulkanApplication_ComputePools()
+	public EReference getVulkanApplication_Engine()
 	{
 		return (EReference)vulkanApplicationEClass.getEStructuralFeatures().get(6);
 	}
@@ -218,9 +210,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVulkanApplication_GraphicPool()
+	public EClass getVulkanEngine()
 	{
-		return (EReference)vulkanApplicationEClass.getEStructuralFeatures().get(7);
+		return vulkanEngineEClass;
 	}
 
 	/**
@@ -228,9 +220,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIProcessPool()
+	public EReference getVulkanEngine_Processes()
 	{
-		return iProcessPoolEClass;
+		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -238,19 +230,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIComputeProcessPool()
+	public EClass getIProcess()
 	{
-		return iComputeProcessPoolEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getIGraphicProcessPool()
-	{
-		return iGraphicProcessPoolEClass;
+		return iProcessEClass;
 	}
 
 	/**
@@ -320,14 +302,12 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		createEAttribute(vulkanApplicationEClass, VULKAN_APPLICATION__DEBUG);
 		createEAttribute(vulkanApplicationEClass, VULKAN_APPLICATION__TITLE);
 		createEAttribute(vulkanApplicationEClass, VULKAN_APPLICATION__SIZE);
-		createEReference(vulkanApplicationEClass, VULKAN_APPLICATION__COMPUTE_POOLS);
-		createEReference(vulkanApplicationEClass, VULKAN_APPLICATION__GRAPHIC_POOL);
+		createEReference(vulkanApplicationEClass, VULKAN_APPLICATION__ENGINE);
 
-		iProcessPoolEClass = createEClass(IPROCESS_POOL);
+		vulkanEngineEClass = createEClass(VULKAN_ENGINE);
+		createEReference(vulkanEngineEClass, VULKAN_ENGINE__PROCESSES);
 
-		iComputeProcessPoolEClass = createEClass(ICOMPUTE_PROCESS_POOL);
-
-		iGraphicProcessPoolEClass = createEClass(IGRAPHIC_PROCESS_POOL);
+		iProcessEClass = createEClass(IPROCESS);
 
 		colorDomainEClass = createEClass(COLOR_DOMAIN);
 		createEAttribute(colorDomainEClass, COLOR_DOMAIN__FORMAT);
@@ -368,8 +348,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		iComputeProcessPoolEClass.getESuperTypes().add(this.getIProcessPool());
-		iGraphicProcessPoolEClass.getESuperTypes().add(this.getIProcessPool());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(vulkanApplicationEClass, VulkanApplication.class, "VulkanApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -379,14 +357,12 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEAttribute(getVulkanApplication_Debug(), theEcorePackage.getEBoolean(), "debug", "false", 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVulkanApplication_Title(), theEcorePackage.getEString(), "title", null, 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVulkanApplication_Size(), theTypesPackage.getSVector2i(), "size", null, 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVulkanApplication_ComputePools(), this.getIComputeProcessPool(), null, "computePools", null, 0, -1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVulkanApplication_GraphicPool(), this.getIGraphicProcessPool(), null, "graphicPool", null, 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVulkanApplication_Engine(), this.getVulkanEngine(), null, "engine", null, 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iProcessPoolEClass, IProcessPool.class, "IProcessPool", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVulkanEngine_Processes(), this.getIProcess(), null, "processes", null, 0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iComputeProcessPoolEClass, IComputeProcessPool.class, "IComputeProcessPool", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(iGraphicProcessPoolEClass, IGraphicProcessPool.class, "IGraphicProcessPool", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(iProcessEClass, IProcess.class, "IProcess", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(colorDomainEClass, ColorDomain.class, "ColorDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getColorDomain_Format(), theEnumerationPackage.getEFormat(), "format", "B8G8R8A8_UNORM", 0, 1, ColorDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

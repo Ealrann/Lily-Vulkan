@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.compute.pool;
+package org.sheepy.vulkan.process.compute.process;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,15 +7,15 @@ import java.util.List;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.process.compute.ComputeProcessPool;
+import org.sheepy.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffers;
-import org.sheepy.vulkan.process.pool.ProcessContext;
-import org.sheepy.vulkan.process.pool.ProcessSubmission;
+import org.sheepy.vulkan.process.process.ProcessContext;
+import org.sheepy.vulkan.process.process.ProcessSubmission;
 import org.sheepy.vulkan.resource.ResourceManager;
 
 public class ComputeContext extends ProcessContext
 {
-	public final ComputeProcessPool computeProcessPool;
+	public final ComputeProcess computeProcess;
 
 	public final ComputeCommandBuffers commandBuffers;
 	public final ProcessSubmission submission;
@@ -24,10 +24,10 @@ public class ComputeContext extends ProcessContext
 
 	public ComputeContext(	ExecutionManager executionManager,
 							ResourceManager resourceManager,
-							ComputeProcessPool computeProcessPool)
+							ComputeProcess computeProcess)
 	{
 		super(executionManager, resourceManager);
-		this.computeProcessPool = computeProcessPool;
+		this.computeProcess = computeProcess;
 		
 		commandBuffers = new ComputeCommandBuffers(this);
 		submission = new ProcessSubmission(logicalDevice, commandBuffers, Collections.emptyList(),

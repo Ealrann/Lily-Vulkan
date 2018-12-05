@@ -4,10 +4,8 @@ package org.sheepy.vulkan.model.process.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -21,7 +19,6 @@ import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.process.AbstractCompositePipeline;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.model.process.Configuration;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
@@ -45,20 +42,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass configurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass abstractProcessPoolEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass abstractProcessEClass = null;
 
 	/**
@@ -67,6 +50,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass iProcessUnitEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass configurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -178,66 +168,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConfiguration()
-	{
-		return configurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAbstractProcessPool()
-	{
-		return abstractProcessPoolEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractProcessPool_DescriptorSets()
-	{
-		return (EReference)abstractProcessPoolEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractProcessPool_Processes()
-	{
-		return (EReference)abstractProcessPoolEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractProcessPool_Resources()
-	{
-		return (EReference)abstractProcessPoolEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAbstractProcessPool_ResetAllowed()
-	{
-		return (EAttribute)abstractProcessPoolEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getAbstractProcess()
 	{
 		return abstractProcessEClass;
@@ -248,9 +178,39 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractProcess_Units()
+	public EReference getAbstractProcess_DescriptorSets()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAbstractProcess_Units()
+	{
+		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAbstractProcess_Resources()
+	{
+		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractProcess_ResetAllowed()
+	{
+		return (EAttribute)abstractProcessEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -281,6 +241,16 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EAttribute getIProcessUnit_Stage()
 	{
 		return (EAttribute)iProcessUnitEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConfiguration()
+	{
+		return configurationEClass;
 	}
 
 	/**
@@ -403,20 +373,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		isCreated = true;
 
 		// Create classes and their features
-		configurationEClass = createEClass(CONFIGURATION);
-
-		abstractProcessPoolEClass = createEClass(ABSTRACT_PROCESS_POOL);
-		createEReference(abstractProcessPoolEClass, ABSTRACT_PROCESS_POOL__DESCRIPTOR_SETS);
-		createEReference(abstractProcessPoolEClass, ABSTRACT_PROCESS_POOL__PROCESSES);
-		createEReference(abstractProcessPoolEClass, ABSTRACT_PROCESS_POOL__RESOURCES);
-		createEAttribute(abstractProcessPoolEClass, ABSTRACT_PROCESS_POOL__RESET_ALLOWED);
-
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SETS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__UNITS);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__RESOURCES);
+		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 
 		iProcessUnitEClass = createEClass(IPROCESS_UNIT);
 		createEAttribute(iProcessUnitEClass, IPROCESS_UNIT__ENABLED);
 		createEAttribute(iProcessUnitEClass, IPROCESS_UNIT__STAGE);
+
+		configurationEClass = createEClass(CONFIGURATION);
 
 		pipelineBarrierEClass = createEClass(PIPELINE_BARRIER);
 
@@ -464,14 +431,11 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Create type parameters
-		ETypeParameter abstractProcessPoolEClass_T = addETypeParameter(abstractProcessPoolEClass, "T");
 
 		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(this.getAbstractProcess());
-		abstractProcessPoolEClass_T.getEBounds().add(g1);
 
 		// Add supertypes to classes
-		abstractProcessPoolEClass.getESuperTypes().add(theVulkanPackage.getIProcessPool());
+		abstractProcessEClass.getESuperTypes().add(theVulkanPackage.getIProcess());
 		pipelineBarrierEClass.getESuperTypes().add(this.getIProcessUnit());
 		pipelineBufferBarrierEClass.getESuperTypes().add(this.getPipelineBarrier());
 		iPipelineEClass.getESuperTypes().add(this.getIProcessUnit());
@@ -479,21 +443,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		abstractCompositePipelineEClass.getESuperTypes().add(this.getAbstractPipeline());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(abstractProcessPoolEClass, AbstractProcessPool.class, "AbstractProcessPool", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractProcessPool_DescriptorSets(), theResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 0, -1, AbstractProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(abstractProcessPoolEClass_T);
-		initEReference(getAbstractProcessPool_Processes(), g1, null, "processes", null, 0, -1, AbstractProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcessPool_Resources(), theResourcePackage.getResource(), null, "resources", null, 0, -1, AbstractProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAbstractProcessPool_ResetAllowed(), theEcorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractProcess_DescriptorSets(), theResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_Units(), this.getIProcessUnit(), null, "units", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_Resources(), theResourcePackage.getIResource(), null, "resources", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractProcess_ResetAllowed(), theEcorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iProcessUnitEClass, IProcessUnit.class, "IProcessUnit", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIProcessUnit_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcessUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIProcessUnit_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Render", 0, 1, IProcessUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

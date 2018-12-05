@@ -61,14 +61,14 @@ public interface ComputePackage extends EPackage
 	ComputePackage eINSTANCE = org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputeProcessPoolImpl <em>Process Pool</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl <em>Process</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputeProcessPoolImpl
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeProcessPool()
+	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl
+	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeProcess()
 	 * @generated
 	 */
-	int COMPUTE_PROCESS_POOL = 0;
+	int COMPUTE_PROCESS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -77,62 +77,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS_POOL__DESCRIPTOR_SETS = ProcessPackage.ABSTRACT_PROCESS_POOL__DESCRIPTOR_SETS;
-
-	/**
-	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS_POOL__PROCESSES = ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES;
-
-	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS_POOL__RESOURCES = ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES;
-
-	/**
-	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS_POOL__RESET_ALLOWED = ProcessPackage.ABSTRACT_PROCESS_POOL__RESET_ALLOWED;
-
-	/**
-	 * The number of structural features of the '<em>Process Pool</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS_POOL_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_POOL_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Process Pool</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS_POOL_OPERATION_COUNT = ProcessPackage.ABSTRACT_PROCESS_POOL_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl <em>Process</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeProcess()
-	 * @generated
-	 */
-	int COMPUTE_PROCESS = 1;
+	int COMPUTE_PROCESS__DESCRIPTOR_SETS = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
@@ -142,6 +87,24 @@ public interface ComputePackage extends EPackage
 	 * @ordered
 	 */
 	int COMPUTE_PROCESS__UNITS = ProcessPackage.ABSTRACT_PROCESS__UNITS;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__RESOURCES = ProcessPackage.ABSTRACT_PROCESS__RESOURCES;
+
+	/**
+	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__RESET_ALLOWED = ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -169,7 +132,7 @@ public interface ComputePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputePipeline()
 	 * @generated
 	 */
-	int COMPUTE_PIPELINE = 2;
+	int COMPUTE_PIPELINE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -296,7 +259,7 @@ public interface ComputePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getIComputer()
 	 * @generated
 	 */
-	int ICOMPUTER = 3;
+	int ICOMPUTER = 2;
 
 	/**
 	 * The number of structural features of the '<em>IComputer</em>' class.
@@ -324,7 +287,7 @@ public interface ComputePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputer()
 	 * @generated
 	 */
-	int COMPUTER = 4;
+	int COMPUTER = 3;
 
 	/**
 	 * The feature id for the '<em><b>Shader</b></em>' reference.
@@ -361,7 +324,7 @@ public interface ComputePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputerBufferBarrier()
 	 * @generated
 	 */
-	int COMPUTER_BUFFER_BARRIER = 5;
+	int COMPUTER_BUFFER_BARRIER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Buffer Barrier</b></em>' containment reference.
@@ -390,16 +353,6 @@ public interface ComputePackage extends EPackage
 	 */
 	int COMPUTER_BUFFER_BARRIER_OPERATION_COUNT = ICOMPUTER_OPERATION_COUNT + 0;
 
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.ComputeProcessPool <em>Process Pool</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Process Pool</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputeProcessPool
-	 * @generated
-	 */
-	EClass getComputeProcessPool();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.
@@ -574,16 +527,6 @@ public interface ComputePackage extends EPackage
 	 */
 	interface Literals
 	{
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputeProcessPoolImpl <em>Process Pool</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputeProcessPoolImpl
-		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeProcessPool()
-		 * @generated
-		 */
-		EClass COMPUTE_PROCESS_POOL = eINSTANCE.getComputeProcessPool();
-
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl <em>Process</em>}' class.
 		 * <!-- begin-user-doc -->

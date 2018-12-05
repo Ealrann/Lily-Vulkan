@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.graphic.pool;
+package org.sheepy.vulkan.process.graphic.process;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -30,7 +30,7 @@ public class Framebuffers implements IBasicAllocable
 	{
 		var vkDevice = context.getVkDevice();
 		var imageViews = context.imageViewManager.getImageViews();
-		var depthImage = context.graphicProcessPool.getDepthImage();
+		var depthImage = context.graphicProcess.getDepthImage();
 		var aFramebufferId = new long[1];
 		var adapter = depthImage != null ? DepthImageAdapter.adapt(depthImage) : null;
 		var depthImageViewId = adapter != null ? adapter.getDepthImageViewId() : -1;

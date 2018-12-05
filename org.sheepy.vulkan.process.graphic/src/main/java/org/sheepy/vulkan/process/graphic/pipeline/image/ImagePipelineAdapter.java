@@ -11,7 +11,7 @@ import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
-import org.sheepy.vulkan.process.graphic.pool.IGraphicContextAdapter;
+import org.sheepy.vulkan.process.graphic.process.IGraphicContextAdapter;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.resource.image.ImageAdapter;

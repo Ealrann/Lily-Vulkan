@@ -1,36 +1,32 @@
 @GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/graphic")
 @GenModel(publicConstructors="true")
 @GenModel(updateClasspath="false")
-
 package org.sheepy.vulkan.model.process.graphic
 
-import org.sheepy.vulkan.model.enumeration.EPresentMode
-import org.sheepy.vulkan.model.enumeration.ECullMode
-import org.sheepy.vulkan.model.enumeration.EFrontFace
-import org.sheepy.vulkan.model.enumeration.EPipelineStage
+import org.sheepy.common.model.types.SVector2i
+import org.sheepy.vulkan.model.ColorDomain
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
-import org.sheepy.vulkan.model.enumeration.EImageLayout
-import org.sheepy.vulkan.model.enumeration.ESampleCount
-import org.sheepy.vulkan.model.resource.Image
-import org.sheepy.vulkan.model.resource.Shader
-import org.sheepy.vulkan.model.IGraphicProcessPool
-import org.sheepy.vulkan.model.ColorDomain
-import org.sheepy.vulkan.model.process.AbstractPipeline
-import org.sheepy.vulkan.model.process.AbstractProcess
-import org.sheepy.vulkan.model.process.AbstractProcessPool
-import org.sheepy.vulkan.model.process.Configuration
-import org.sheepy.vulkan.model.process.PipelineBarrier
-import org.sheepy.vulkan.model.resource.ImageBarrier
-import org.sheepy.common.model.types.SVector2i
-import org.sheepy.vulkan.model.enumeration.EPolygonMode
-import org.sheepy.vulkan.model.enumeration.ELogicOp
 import org.sheepy.vulkan.model.enumeration.EBlendFactor
 import org.sheepy.vulkan.model.enumeration.EBlendOp
+import org.sheepy.vulkan.model.enumeration.ECullMode
 import org.sheepy.vulkan.model.enumeration.EDynamicState
+import org.sheepy.vulkan.model.enumeration.EFrontFace
+import org.sheepy.vulkan.model.enumeration.EImageLayout
+import org.sheepy.vulkan.model.enumeration.ELogicOp
+import org.sheepy.vulkan.model.enumeration.EPipelineStage
+import org.sheepy.vulkan.model.enumeration.EPolygonMode
+import org.sheepy.vulkan.model.enumeration.EPresentMode
+import org.sheepy.vulkan.model.enumeration.ESampleCount
+import org.sheepy.vulkan.model.process.AbstractPipeline
+import org.sheepy.vulkan.model.process.AbstractProcess
+import org.sheepy.vulkan.model.process.Configuration
 import org.sheepy.vulkan.model.process.IPipeline
+import org.sheepy.vulkan.model.process.PipelineBarrier
 import org.sheepy.vulkan.model.resource.DepthImage
-import org.sheepy.vulkan.model.resource.Resource
+import org.sheepy.vulkan.model.resource.Image
+import org.sheepy.vulkan.model.resource.ImageBarrier
+import org.sheepy.vulkan.model.resource.Shader
 
 class GraphicConfiguration extends Configuration
 {
@@ -72,21 +68,16 @@ class AttachmentDescription
 	EImageLayout refLayout
 }
 
-class GraphicProcessPool extends AbstractProcessPool<GraphicProcess>, IGraphicProcessPool
+class GraphicProcess extends AbstractProcess
 {
 	contains GraphicConfiguration configuration
 	contains RenderPassInfo renderPassInfo
 	contains DepthImage depthImage
 }
 
-class GraphicProcess extends AbstractProcess
-{
-}
-
 interface IGraphicsPipeline extends IPipeline
 {
 	refers Shader[] shaders
-
 	contains ViewportState viewportState
 	contains Rasterizer rasterizer
 	contains ColorBlend colorBlend
@@ -95,7 +86,6 @@ interface IGraphicsPipeline extends IPipeline
 
 abstract class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 {
-	contains Resource[] resources
 }
 
 class DynamicState
@@ -106,11 +96,8 @@ class DynamicState
 class ColorBlend
 {
 	contains ColorBlendAttachment[] attachments
-	
 	boolean logicOpEnable = "false"
-	
 	ELogicOp logicOp = "COPY"
-	
 	int blendConstant0 = "0"
 	int blendConstant1 = "0"
 	int blendConstant2 = "0"
@@ -124,7 +111,6 @@ class ColorBlendAttachment
 	boolean greenComponentEnable = "true"
 	boolean blueComponentEnable = "true"
 	boolean alphaComponentEnable = "true"
-	
 	EBlendFactor srcColor = "ONE"
 	EBlendFactor dstColor = "ZERO"
 	EBlendFactor srcAlpha = "ONE"
@@ -152,10 +138,8 @@ class DynamicViewportState extends ViewportState
 class Viewport
 {
 	SVector2i offset = "0, 0"
-	
 	// If null, will use the swapchain image size
 	SVector2i extent
-	
 	int minDepth = "0"
 	int maxDepth = "1"
 }
@@ -163,7 +147,6 @@ class Viewport
 class Scissor
 {
 	SVector2i offset = "0, 0"
-	
 	// If null, will use the swapchain image size
 	SVector2i extent
 }
@@ -182,10 +165,8 @@ class Rasterizer
 class ImagePipeline extends AbstractPipeline
 {
 	refers Image[1..1] image
-	
 	EPipelineStage imageSrcStage
 	EPipelineStage imageDstStage
-	
 	int imageSrcAccess = "0"
 	int imageDstAccess = "0"
 }

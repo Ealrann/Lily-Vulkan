@@ -380,14 +380,14 @@ public interface GraphicPackage extends EPackage
 	int ATTACHMENT_DESCRIPTION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl <em>Process Pool</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcessPool()
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
 	 * @generated
 	 */
-	int GRAPHIC_PROCESS_POOL = 4;
+	int GRAPHIC_PROCESS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -396,89 +396,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_POOL__DESCRIPTOR_SETS = ProcessPackage.ABSTRACT_PROCESS_POOL__DESCRIPTOR_SETS;
-
-	/**
-	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_POOL__PROCESSES = ProcessPackage.ABSTRACT_PROCESS_POOL__PROCESSES;
-
-	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_POOL__RESOURCES = ProcessPackage.ABSTRACT_PROCESS_POOL__RESOURCES;
-
-	/**
-	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_POOL__RESET_ALLOWED = ProcessPackage.ABSTRACT_PROCESS_POOL__RESET_ALLOWED;
-
-	/**
-	 * The feature id for the '<em><b>Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_POOL__CONFIGURATION = ProcessPackage.ABSTRACT_PROCESS_POOL_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Render Pass Info</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO = ProcessPackage.ABSTRACT_PROCESS_POOL_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Depth Image</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_POOL__DEPTH_IMAGE = ProcessPackage.ABSTRACT_PROCESS_POOL_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Process Pool</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_POOL_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_POOL_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Process Pool</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_POOL_OPERATION_COUNT = ProcessPackage.ABSTRACT_PROCESS_POOL_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
-	 * @generated
-	 */
-	int GRAPHIC_PROCESS = 5;
+	int GRAPHIC_PROCESS__DESCRIPTOR_SETS = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
@@ -490,13 +408,58 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__UNITS = ProcessPackage.ABSTRACT_PROCESS__UNITS;
 
 	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__RESOURCES = ProcessPackage.ABSTRACT_PROCESS__RESOURCES;
+
+	/**
+	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__RESET_ALLOWED = ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED;
+
+	/**
+	 * The feature id for the '<em><b>Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__CONFIGURATION = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Render Pass Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__RENDER_PASS_INFO = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Depth Image</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__DEPTH_IMAGE = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
+	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -515,7 +478,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
 	 * @generated
 	 */
-	int IGRAPHICS_PIPELINE = 6;
+	int IGRAPHICS_PIPELINE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -606,7 +569,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 	 * @generated
 	 */
-	int GRAPHICS_PIPELINE = 7;
+	int GRAPHICS_PIPELINE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -690,22 +653,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__RESOURCES = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 6;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -724,7 +678,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
 	 * @generated
 	 */
-	int DYNAMIC_STATE = 8;
+	int DYNAMIC_STATE = 7;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' attribute list.
@@ -761,7 +715,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
 	 * @generated
 	 */
-	int COLOR_BLEND = 9;
+	int COLOR_BLEND = 8;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' containment reference list.
@@ -852,7 +806,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
 	 * @generated
 	 */
-	int COLOR_BLEND_ATTACHMENT = 10;
+	int COLOR_BLEND_ATTACHMENT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Blend Enable</b></em>' attribute.
@@ -979,7 +933,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
 	 * @generated
 	 */
-	int VIEWPORT_STATE = 11;
+	int VIEWPORT_STATE = 10;
 
 	/**
 	 * The number of structural features of the '<em>Viewport State</em>' class.
@@ -1007,7 +961,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
 	 * @generated
 	 */
-	int STATIC_VIEWPORT_STATE = 12;
+	int STATIC_VIEWPORT_STATE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Viewports</b></em>' containment reference list.
@@ -1053,7 +1007,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
 	 * @generated
 	 */
-	int DYNAMIC_VIEWPORT_STATE = 13;
+	int DYNAMIC_VIEWPORT_STATE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Viewport Count</b></em>' attribute.
@@ -1099,7 +1053,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
 	 * @generated
 	 */
-	int VIEWPORT = 14;
+	int VIEWPORT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1163,7 +1117,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
 	 * @generated
 	 */
-	int SCISSOR = 15;
+	int SCISSOR = 14;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1209,7 +1163,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
 	 * @generated
 	 */
-	int RASTERIZER = 16;
+	int RASTERIZER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Cull Mode</b></em>' attribute.
@@ -1300,7 +1254,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 	 * @generated
 	 */
-	int IMAGE_PIPELINE = 17;
+	int IMAGE_PIPELINE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1409,7 +1363,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getPipelineImageBarrier()
 	 * @generated
 	 */
-	int PIPELINE_IMAGE_BARRIER = 18;
+	int PIPELINE_IMAGE_BARRIER = 17;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1751,49 +1705,6 @@ public interface GraphicPackage extends EPackage
 	EAttribute getAttachmentDescription_RefLayout();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcessPool <em>Process Pool</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Process Pool</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcessPool
-	 * @generated
-	 */
-	EClass getGraphicProcessPool();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getConfiguration <em>Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Configuration</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getConfiguration()
-	 * @see #getGraphicProcessPool()
-	 * @generated
-	 */
-	EReference getGraphicProcessPool_Configuration();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getRenderPassInfo <em>Render Pass Info</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Render Pass Info</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getRenderPassInfo()
-	 * @see #getGraphicProcessPool()
-	 * @generated
-	 */
-	EReference getGraphicProcessPool_RenderPassInfo();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getDepthImage <em>Depth Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Depth Image</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcessPool#getDepthImage()
-	 * @see #getGraphicProcessPool()
-	 * @generated
-	 */
-	EReference getGraphicProcessPool_DepthImage();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess <em>Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1802,6 +1713,39 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EClass getGraphicProcess();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Configuration</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcess#getConfiguration()
+	 * @see #getGraphicProcess()
+	 * @generated
+	 */
+	EReference getGraphicProcess_Configuration();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo <em>Render Pass Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Render Pass Info</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo()
+	 * @see #getGraphicProcess()
+	 * @generated
+	 */
+	EReference getGraphicProcess_RenderPassInfo();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getDepthImage <em>Depth Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Depth Image</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcess#getDepthImage()
+	 * @see #getGraphicProcess()
+	 * @generated
+	 */
+	EReference getGraphicProcess_DepthImage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}'.
@@ -1877,17 +1821,6 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EClass getGraphicsPipeline();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getResources <em>Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Resources</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getResources()
-	 * @see #getGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getGraphicsPipeline_Resources();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.DynamicState <em>Dynamic State</em>}'.
@@ -2710,40 +2643,6 @@ public interface GraphicPackage extends EPackage
 		EAttribute ATTACHMENT_DESCRIPTION__REF_LAYOUT = eINSTANCE.getAttachmentDescription_RefLayout();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl <em>Process Pool</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessPoolImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcessPool()
-		 * @generated
-		 */
-		EClass GRAPHIC_PROCESS_POOL = eINSTANCE.getGraphicProcessPool();
-
-		/**
-		 * The meta object literal for the '<em><b>Configuration</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GRAPHIC_PROCESS_POOL__CONFIGURATION = eINSTANCE.getGraphicProcessPool_Configuration();
-
-		/**
-		 * The meta object literal for the '<em><b>Render Pass Info</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO = eINSTANCE.getGraphicProcessPool_RenderPassInfo();
-
-		/**
-		 * The meta object literal for the '<em><b>Depth Image</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GRAPHIC_PROCESS_POOL__DEPTH_IMAGE = eINSTANCE.getGraphicProcessPool_DepthImage();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2752,6 +2651,30 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass GRAPHIC_PROCESS = eINSTANCE.getGraphicProcess();
+
+		/**
+		 * The meta object literal for the '<em><b>Configuration</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHIC_PROCESS__CONFIGURATION = eINSTANCE.getGraphicProcess_Configuration();
+
+		/**
+		 * The meta object literal for the '<em><b>Render Pass Info</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHIC_PROCESS__RENDER_PASS_INFO = eINSTANCE.getGraphicProcess_RenderPassInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Depth Image</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHIC_PROCESS__DEPTH_IMAGE = eINSTANCE.getGraphicProcess_DepthImage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}' class.
@@ -2812,14 +2735,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass GRAPHICS_PIPELINE = eINSTANCE.getGraphicsPipeline();
-
-		/**
-		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GRAPHICS_PIPELINE__RESOURCES = eINSTANCE.getGraphicsPipeline_Resources();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.

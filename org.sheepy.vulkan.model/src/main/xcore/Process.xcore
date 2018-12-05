@@ -3,34 +3,29 @@
 @GenModel(updateClasspath="false")
 package org.sheepy.vulkan.model.process
 
-import org.sheepy.vulkan.model.IProcessPool
+import org.sheepy.vulkan.model.IProcess
 import org.sheepy.vulkan.model.enumeration.ECommandStage
-import org.sheepy.vulkan.model.resource.PushConstant
-import org.sheepy.vulkan.model.resource.DescriptorSet
-import org.sheepy.vulkan.model.resource.Resource
 import org.sheepy.vulkan.model.resource.BufferBarrier
+import org.sheepy.vulkan.model.resource.DescriptorSet
+import org.sheepy.vulkan.model.resource.PushConstant
+import org.sheepy.vulkan.model.resource.IResource
 
-interface Configuration
-{
-}
-
-abstract class AbstractProcessPool<T extends AbstractProcess> extends IProcessPool
+abstract class AbstractProcess extends IProcess
 {
 	contains DescriptorSet[] descriptorSets
-	contains T[] processes
-	contains Resource[] resources
-	boolean resetAllowed
-}
-
-abstract class AbstractProcess
-{
 	contains IProcessUnit[] units
+	contains IResource[] resources
+	boolean resetAllowed
 }
 
 interface IProcessUnit
 {
 	boolean enabled = "true"
 	ECommandStage stage = "Render"
+}
+
+interface Configuration
+{
 }
 
 abstract class PipelineBarrier extends IProcessUnit

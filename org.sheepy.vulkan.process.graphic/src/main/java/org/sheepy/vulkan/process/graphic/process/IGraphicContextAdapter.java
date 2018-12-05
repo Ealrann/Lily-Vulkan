@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.graphic.pool;
+package org.sheepy.vulkan.process.graphic.process;
 
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;

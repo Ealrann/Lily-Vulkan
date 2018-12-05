@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.graphic.pool;
+package org.sheepy.vulkan.process.graphic.process;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,17 +6,17 @@ import java.util.List;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
-import org.sheepy.vulkan.model.process.graphic.GraphicProcessPool;
+import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
 import org.sheepy.vulkan.process.graphic.view.ImageViewManager;
-import org.sheepy.vulkan.process.pool.ProcessContext;
+import org.sheepy.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.resource.ResourceManager;
 
 public class GraphicContext extends ProcessContext
 {
 	public final GraphicConfiguration configuration;
-	public final GraphicProcessPool graphicProcessPool;
+	public final GraphicProcess graphicProcess;
 	
 	public final SwapChainManager swapChainManager;
 	public final ImageViewManager imageViewManager;
@@ -29,12 +29,12 @@ public class GraphicContext extends ProcessContext
 
 	public GraphicContext(	ExecutionManager executionManager,
 							ResourceManager resourceManager,
-							GraphicProcessPool graphicProcessPool)
+							GraphicProcess graphicProcess)
 	{
 		super(executionManager, resourceManager);
 
-		this.graphicProcessPool = graphicProcessPool;
-		this.configuration = graphicProcessPool.getConfiguration();
+		this.graphicProcess = graphicProcess;
+		this.configuration = graphicProcess.getConfiguration();
 
 		swapChainManager = new SwapChainManager(this);
 		framebuffers = new Framebuffers(this);
@@ -42,8 +42,8 @@ public class GraphicContext extends ProcessContext
 		imageViewManager = new ImageViewManager(this);
 		commandBuffers = new GraphicCommandBuffers(this);
 
-		final var poolAdapter = GraphicProcessPoolAdapter.adapt(graphicProcessPool);
-		submission = new FrameSubmission(this, List.of(poolAdapter));
+		final var processAdapter = GraphicProcessAdapter.adapt(graphicProcess);
+		submission = new FrameSubmission(this, List.of(processAdapter));
 
 		buildAllocationList();
 	}

@@ -123,22 +123,13 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_APPLICATION__SIZE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Compute Pools</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Engine</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_APPLICATION__COMPUTE_POOLS = 6;
-
-	/**
-	 * The feature id for the '<em><b>Graphic Pool</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_APPLICATION__GRAPHIC_POOL = 7;
+	int VULKAN_APPLICATION__ENGINE = 6;
 
 	/**
 	 * The number of structural features of the '<em>Application</em>' class.
@@ -147,7 +138,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_APPLICATION_FEATURE_COUNT = 8;
+	int VULKAN_APPLICATION_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Application</em>' class.
@@ -159,88 +150,69 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_APPLICATION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl <em>Engine</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.IProcessPool
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcessPool()
+	 * @see org.sheepy.vulkan.model.impl.VulkanEngineImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanEngine()
 	 * @generated
 	 */
-	int IPROCESS_POOL = 1;
+	int VULKAN_ENGINE = 1;
 
 	/**
-	 * The number of structural features of the '<em>IProcess Pool</em>' class.
+	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS_POOL_FEATURE_COUNT = 0;
+	int VULKAN_ENGINE__PROCESSES = 0;
 
 	/**
-	 * The number of operations of the '<em>IProcess Pool</em>' class.
+	 * The number of structural features of the '<em>Engine</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS_POOL_OPERATION_COUNT = 0;
+	int VULKAN_ENGINE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.IComputeProcessPool
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIComputeProcessPool()
-	 * @generated
-	 */
-	int ICOMPUTE_PROCESS_POOL = 2;
-
-	/**
-	 * The number of structural features of the '<em>ICompute Process Pool</em>' class.
+	 * The number of operations of the '<em>Engine</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ICOMPUTE_PROCESS_POOL_FEATURE_COUNT = IPROCESS_POOL_FEATURE_COUNT + 0;
+	int VULKAN_ENGINE_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>ICompute Process Pool</em>' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.IProcess
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcess()
+	 * @generated
+	 */
+	int IPROCESS = 2;
+
+	/**
+	 * The number of structural features of the '<em>IProcess</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ICOMPUTE_PROCESS_POOL_OPERATION_COUNT = IPROCESS_POOL_OPERATION_COUNT + 0;
+	int IPROCESS_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.IGraphicProcessPool
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIGraphicProcessPool()
-	 * @generated
-	 */
-	int IGRAPHIC_PROCESS_POOL = 3;
-
-	/**
-	 * The number of structural features of the '<em>IGraphic Process Pool</em>' class.
+	 * The number of operations of the '<em>IProcess</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IGRAPHIC_PROCESS_POOL_FEATURE_COUNT = IPROCESS_POOL_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>IGraphic Process Pool</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHIC_PROCESS_POOL_OPERATION_COUNT = IPROCESS_POOL_OPERATION_COUNT + 0;
+	int IPROCESS_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
@@ -250,7 +222,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getColorDomain()
 	 * @generated
 	 */
-	int COLOR_DOMAIN = 4;
+	int COLOR_DOMAIN = 3;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -366,56 +338,46 @@ public interface VulkanPackage extends EPackage
 	EAttribute getVulkanApplication_Size();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.VulkanApplication#getComputePools <em>Compute Pools</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.VulkanApplication#getEngine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Compute Pools</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#getComputePools()
+	 * @return the meta object for the containment reference '<em>Engine</em>'.
+	 * @see org.sheepy.vulkan.model.VulkanApplication#getEngine()
 	 * @see #getVulkanApplication()
 	 * @generated
 	 */
-	EReference getVulkanApplication_ComputePools();
+	EReference getVulkanApplication_Engine();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.VulkanApplication#getGraphicPool <em>Graphic Pool</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.VulkanEngine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Graphic Pool</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#getGraphicPool()
-	 * @see #getVulkanApplication()
+	 * @return the meta object for class '<em>Engine</em>'.
+	 * @see org.sheepy.vulkan.model.VulkanEngine
 	 * @generated
 	 */
-	EReference getVulkanApplication_GraphicPool();
+	EClass getVulkanEngine();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.VulkanEngine#getProcesses <em>Processes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IProcess Pool</em>'.
-	 * @see org.sheepy.vulkan.model.IProcessPool
+	 * @return the meta object for the containment reference list '<em>Processes</em>'.
+	 * @see org.sheepy.vulkan.model.VulkanEngine#getProcesses()
+	 * @see #getVulkanEngine()
 	 * @generated
 	 */
-	EClass getIProcessPool();
+	EReference getVulkanEngine_Processes();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>ICompute Process Pool</em>'.
-	 * @see org.sheepy.vulkan.model.IComputeProcessPool
+	 * @return the meta object for class '<em>IProcess</em>'.
+	 * @see org.sheepy.vulkan.model.IProcess
 	 * @generated
 	 */
-	EClass getIComputeProcessPool();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IGraphic Process Pool</em>'.
-	 * @see org.sheepy.vulkan.model.IGraphicProcessPool
-	 * @generated
-	 */
-	EClass getIGraphicProcessPool();
+	EClass getIProcess();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.ColorDomain <em>Color Domain</em>}'.
@@ -532,50 +494,40 @@ public interface VulkanPackage extends EPackage
 		EAttribute VULKAN_APPLICATION__SIZE = eINSTANCE.getVulkanApplication_Size();
 
 		/**
-		 * The meta object literal for the '<em><b>Compute Pools</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Engine</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VULKAN_APPLICATION__COMPUTE_POOLS = eINSTANCE.getVulkanApplication_ComputePools();
+		EReference VULKAN_APPLICATION__ENGINE = eINSTANCE.getVulkanApplication_Engine();
 
 		/**
-		 * The meta object literal for the '<em><b>Graphic Pool</b></em>' containment reference feature.
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl <em>Engine</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.impl.VulkanEngineImpl
+		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanEngine()
 		 * @generated
 		 */
-		EReference VULKAN_APPLICATION__GRAPHIC_POOL = eINSTANCE.getVulkanApplication_GraphicPool();
+		EClass VULKAN_ENGINE = eINSTANCE.getVulkanEngine();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}' class.
+		 * The meta object literal for the '<em><b>Processes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.IProcessPool
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcessPool()
 		 * @generated
 		 */
-		EClass IPROCESS_POOL = eINSTANCE.getIProcessPool();
+		EReference VULKAN_ENGINE__PROCESSES = eINSTANCE.getVulkanEngine_Processes();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.IComputeProcessPool
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIComputeProcessPool()
+		 * @see org.sheepy.vulkan.model.IProcess
+		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcess()
 		 * @generated
 		 */
-		EClass ICOMPUTE_PROCESS_POOL = eINSTANCE.getIComputeProcessPool();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.IGraphicProcessPool
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIGraphicProcessPool()
-		 * @generated
-		 */
-		EClass IGRAPHIC_PROCESS_POOL = eINSTANCE.getIGraphicProcessPool();
+		EClass IPROCESS = eINSTANCE.getIProcess();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.

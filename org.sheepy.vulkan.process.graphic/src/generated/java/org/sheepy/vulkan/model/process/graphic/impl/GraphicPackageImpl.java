@@ -4,7 +4,6 @@ package org.sheepy.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -28,7 +27,6 @@ import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.vulkan.model.process.graphic.GraphicProcessPool;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
@@ -78,13 +76,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass attachmentDescriptionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass graphicProcessPoolEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -530,49 +521,39 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGraphicProcessPool()
-	{
-		return graphicProcessPoolEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGraphicProcessPool_Configuration()
-	{
-		return (EReference)graphicProcessPoolEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGraphicProcessPool_RenderPassInfo()
-	{
-		return (EReference)graphicProcessPoolEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGraphicProcessPool_DepthImage()
-	{
-		return (EReference)graphicProcessPoolEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getGraphicProcess()
 	{
 		return graphicProcessEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphicProcess_Configuration()
+	{
+		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphicProcess_RenderPassInfo()
+	{
+		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphicProcess_DepthImage()
+	{
+		return (EReference)graphicProcessEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -643,16 +624,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	public EClass getGraphicsPipeline()
 	{
 		return graphicsPipelineEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGraphicsPipeline_Resources()
-	{
-		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1246,12 +1217,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(attachmentDescriptionEClass, ATTACHMENT_DESCRIPTION__FINAL_LAYOUT);
 		createEAttribute(attachmentDescriptionEClass, ATTACHMENT_DESCRIPTION__REF_LAYOUT);
 
-		graphicProcessPoolEClass = createEClass(GRAPHIC_PROCESS_POOL);
-		createEReference(graphicProcessPoolEClass, GRAPHIC_PROCESS_POOL__CONFIGURATION);
-		createEReference(graphicProcessPoolEClass, GRAPHIC_PROCESS_POOL__RENDER_PASS_INFO);
-		createEReference(graphicProcessPoolEClass, GRAPHIC_PROCESS_POOL__DEPTH_IMAGE);
-
 		graphicProcessEClass = createEClass(GRAPHIC_PROCESS);
+		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__CONFIGURATION);
+		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__RENDER_PASS_INFO);
+		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__DEPTH_IMAGE);
 
 		iGraphicsPipelineEClass = createEClass(IGRAPHICS_PIPELINE);
 		createEReference(iGraphicsPipelineEClass, IGRAPHICS_PIPELINE__SHADERS);
@@ -1261,7 +1230,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(iGraphicsPipelineEClass, IGRAPHICS_PIPELINE__DYNAMIC_STATE);
 
 		graphicsPipelineEClass = createEClass(GRAPHICS_PIPELINE);
-		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__RESOURCES);
 
 		dynamicStateEClass = createEClass(DYNAMIC_STATE);
 		createEAttribute(dynamicStateEClass, DYNAMIC_STATE__STATES);
@@ -1366,12 +1334,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		// Add supertypes to classes
 		graphicConfigurationEClass.getESuperTypes().add(theProcessPackage.getConfiguration());
-		EGenericType g1 = createEGenericType(theProcessPackage.getAbstractProcessPool());
-		EGenericType g2 = createEGenericType(this.getGraphicProcess());
-		g1.getETypeArguments().add(g2);
-		graphicProcessPoolEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theVulkanPackage.getIGraphicProcessPool());
-		graphicProcessPoolEClass.getEGenericSuperTypes().add(g1);
 		graphicProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
 		iGraphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
 		graphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
@@ -1413,12 +1375,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getAttachmentDescription_FinalLayout(), theEnumerationPackage.getEImageLayout(), "finalLayout", null, 0, 1, AttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttachmentDescription_RefLayout(), theEnumerationPackage.getEImageLayout(), "refLayout", null, 0, 1, AttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(graphicProcessPoolEClass, GraphicProcessPool.class, "GraphicProcessPool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGraphicProcessPool_Configuration(), this.getGraphicConfiguration(), null, "configuration", null, 0, 1, GraphicProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicProcessPool_RenderPassInfo(), this.getRenderPassInfo(), null, "renderPassInfo", null, 0, 1, GraphicProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicProcessPool_DepthImage(), theResourcePackage.getDepthImage(), null, "depthImage", null, 0, 1, GraphicProcessPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(graphicProcessEClass, GraphicProcess.class, "GraphicProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGraphicProcess_Configuration(), this.getGraphicConfiguration(), null, "configuration", null, 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicProcess_RenderPassInfo(), this.getRenderPassInfo(), null, "renderPassInfo", null, 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicProcess_DepthImage(), theResourcePackage.getDepthImage(), null, "depthImage", null, 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iGraphicsPipelineEClass, IGraphicsPipeline.class, "IGraphicsPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIGraphicsPipeline_Shaders(), theResourcePackage.getShader(), null, "shaders", null, 0, -1, IGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1428,7 +1388,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getIGraphicsPipeline_DynamicState(), this.getDynamicState(), null, "dynamicState", null, 0, 1, IGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphicsPipelineEClass, GraphicsPipeline.class, "GraphicsPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGraphicsPipeline_Resources(), theResourcePackage.getResource(), null, "resources", null, 0, -1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dynamicStateEClass, DynamicState.class, "DynamicState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDynamicState_States(), theEnumerationPackage.getEDynamicState(), "states", null, 0, -1, DynamicState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

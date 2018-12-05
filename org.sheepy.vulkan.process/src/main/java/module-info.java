@@ -1,7 +1,7 @@
 import org.sheepy.common.api.adapter.ISingletonAdapter;
 import org.sheepy.vulkan.process.barrier.PipelineBufferBarrierAdapter;
-import org.sheepy.vulkan.process.pool.ExecutionManagerAdapter;
-import org.sheepy.vulkan.process.pool.ResourceManagerAdapter;
+import org.sheepy.vulkan.process.process.ExecutionManagerAdapter;
+import org.sheepy.vulkan.process.process.ResourceManagerAdapter;
 
 /**
  * 
@@ -14,7 +14,6 @@ module org.sheepy.vulkan.process
 	exports org.sheepy.vulkan.process.barrier;
 	exports org.sheepy.vulkan.process.execution;
 	exports org.sheepy.vulkan.process.pipeline;
-	exports org.sheepy.vulkan.process.pool;
 	exports org.sheepy.vulkan.process.process;
 
 	exports org.sheepy.vulkan.model.process;

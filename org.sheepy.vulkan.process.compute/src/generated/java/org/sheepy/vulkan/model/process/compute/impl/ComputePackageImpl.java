@@ -4,7 +4,6 @@ package org.sheepy.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -23,7 +22,6 @@ import org.sheepy.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.vulkan.model.process.compute.ComputeProcessPool;
 import org.sheepy.vulkan.model.process.compute.Computer;
 import org.sheepy.vulkan.model.process.compute.ComputerBufferBarrier;
 import org.sheepy.vulkan.model.process.compute.IComputer;
@@ -38,13 +36,6 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  */
 public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass computeProcessPoolEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,16 +140,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ComputePackage.eNS_URI, theComputePackage);
 		return theComputePackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getComputeProcessPool()
-	{
-		return computeProcessPoolEClass;
 	}
 
 	/**
@@ -331,8 +312,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		isCreated = true;
 
 		// Create classes and their features
-		computeProcessPoolEClass = createEClass(COMPUTE_PROCESS_POOL);
-
 		computeProcessEClass = createEClass(COMPUTE_PROCESS);
 
 		computePipelineEClass = createEClass(COMPUTE_PIPELINE);
@@ -379,7 +358,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 
 		// Obtain other dependent packages
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
-		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
@@ -388,20 +366,12 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		EGenericType g1 = createEGenericType(theProcessPackage.getAbstractProcessPool());
-		EGenericType g2 = createEGenericType(this.getComputeProcess());
-		g1.getETypeArguments().add(g2);
-		computeProcessPoolEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theVulkanPackage.getIComputeProcessPool());
-		computeProcessPoolEClass.getEGenericSuperTypes().add(g1);
 		computeProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
 		computePipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
 		computerEClass.getESuperTypes().add(this.getIComputer());
 		computerBufferBarrierEClass.getESuperTypes().add(this.getIComputer());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(computeProcessPoolEClass, ComputeProcessPool.class, "ComputeProcessPool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(computePipelineEClass, ComputePipeline.class, "ComputePipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

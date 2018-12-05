@@ -79,26 +79,17 @@ public class VulkanSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.IPROCESS_POOL:
+			case VulkanPackage.VULKAN_ENGINE:
 			{
-				IProcessPool iProcessPool = (IProcessPool)theEObject;
-				T result = caseIProcessPool(iProcessPool);
+				VulkanEngine vulkanEngine = (VulkanEngine)theEObject;
+				T result = caseVulkanEngine(vulkanEngine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VulkanPackage.ICOMPUTE_PROCESS_POOL:
+			case VulkanPackage.IPROCESS:
 			{
-				IComputeProcessPool iComputeProcessPool = (IComputeProcessPool)theEObject;
-				T result = caseIComputeProcessPool(iComputeProcessPool);
-				if (result == null) result = caseIProcessPool(iComputeProcessPool);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.IGRAPHIC_PROCESS_POOL:
-			{
-				IGraphicProcessPool iGraphicProcessPool = (IGraphicProcessPool)theEObject;
-				T result = caseIGraphicProcessPool(iGraphicProcessPool);
-				if (result == null) result = caseIProcessPool(iGraphicProcessPool);
+				IProcess iProcess = (IProcess)theEObject;
+				T result = caseIProcess(iProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -130,49 +121,33 @@ public class VulkanSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Pool</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Engine</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Pool</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Engine</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIProcessPool(IProcessPool object)
+	public T caseVulkanEngine(VulkanEngine object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ICompute Process Pool</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IProcess</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ICompute Process Pool</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IProcess</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIComputeProcessPool(IComputeProcessPool object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IGraphic Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IGraphic Process Pool</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIGraphicProcessPool(IGraphicProcessPool object)
+	public T caseIProcess(IProcess object)
 	{
 		return null;
 	}

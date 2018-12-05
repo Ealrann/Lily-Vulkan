@@ -21,7 +21,7 @@ import org.sheepy.vulkan.common.util.VulkanBufferUtils;
 import org.sheepy.vulkan.model.ColorDomain;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
-import org.sheepy.vulkan.process.graphic.pool.GraphicContext;
+import org.sheepy.vulkan.process.graphic.process.GraphicContext;
 
 public class SwapChainManager implements IBasicAllocable, IQueueManagerListener, IWindowListener
 {

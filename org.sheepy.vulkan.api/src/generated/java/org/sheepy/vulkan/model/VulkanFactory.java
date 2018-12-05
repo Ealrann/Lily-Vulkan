@@ -32,6 +32,15 @@ public interface VulkanFactory extends EFactory
 	VulkanApplication createVulkanApplication();
 
 	/**
+	 * Returns a new object of class '<em>Engine</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Engine</em>'.
+	 * @generated
+	 */
+	VulkanEngine createVulkanEngine();
+
+	/**
 	 * Returns a new object of class '<em>Color Domain</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.graphic.pool;
+package org.sheepy.vulkan.process.graphic.process;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -32,7 +32,7 @@ public class RenderPass implements IBasicAllocable
 	@Override
 	public void allocate(MemoryStack stack)
 	{
-		final var renderPassInfo = context.graphicProcessPool.getRenderPassInfo();
+		final var renderPassInfo = context.graphicProcess.getRenderPassInfo();
 		final var attachmentCount = renderPassInfo.getAttachments().size();
 		final var attachments = VkAttachmentDescription.callocStack(attachmentCount, stack);
 		final int colorAttachmentCount = countColorAttachments(renderPassInfo);
@@ -134,7 +134,7 @@ public class RenderPass implements IBasicAllocable
 	{
 		if (attachmentDescription.isStencil())
 		{
-			var depthImage = context.graphicProcessPool.getDepthImage();
+			var depthImage = context.graphicProcess.getDepthImage();
 			var adapter = DepthImageAdapter.adapt(depthImage);
 			return adapter.getDepthImageFormat();
 		}

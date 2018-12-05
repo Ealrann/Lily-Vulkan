@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.graphic.pool;
+package org.sheepy.vulkan.process.graphic.process;
 
 import java.util.Collection;
 
@@ -8,8 +8,8 @@ import org.sheepy.vulkan.common.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.process.pool.ProcessSubmission;
-import org.sheepy.vulkan.process.pool.SubmissionInfo;
+import org.sheepy.vulkan.process.process.ProcessSubmission;
+import org.sheepy.vulkan.process.process.SubmissionInfo;
 
 public class FrameSubmission extends ProcessSubmission
 {

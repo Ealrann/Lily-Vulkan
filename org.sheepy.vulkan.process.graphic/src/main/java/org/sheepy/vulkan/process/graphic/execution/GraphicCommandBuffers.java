@@ -5,10 +5,8 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.vulkan.process.execution.AbstractCommandBuffers;
-import org.sheepy.vulkan.process.graphic.pool.GraphicContext;
+import org.sheepy.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.vulkan.process.graphic.process.GraphicProcessAdapter;
 
 public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandBuffer>
@@ -52,31 +50,16 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 
 			commandBuffer.startCommand();
 
-			final List<GraphicProcessAdapter> adapters = new ArrayList<>();
-
-			for (final AbstractProcess graphicProcess : context.graphicProcessPool.getProcesses())
-			{
-				adapters.add(GraphicProcessAdapter.adapt((GraphicProcess) graphicProcess));
-			}
-
-			for (final GraphicProcessAdapter adapter : adapters)
-			{
-				adapter.recordCommand(commandBuffer, ECommandStage.PRE_RENDER);
-			}
+			var adapter = GraphicProcessAdapter.adapt(context.graphicProcess);
+			adapter.recordCommand(commandBuffer, ECommandStage.PRE_RENDER);
 
 			commandBuffer.startRenderPass();
 
-			for (final GraphicProcessAdapter adapter : adapters)
-			{
-				adapter.recordCommand(commandBuffer, ECommandStage.RENDER);
-			}
+			adapter.recordCommand(commandBuffer, ECommandStage.RENDER);
 
 			commandBuffer.endRenderPass();
 
-			for (final GraphicProcessAdapter adapter : adapters)
-			{
-				adapter.recordCommand(commandBuffer, ECommandStage.POST_RENDER);
-			}
+			adapter.recordCommand(commandBuffer, ECommandStage.POST_RENDER);
 
 			commandBuffer.endCommand();
 		}

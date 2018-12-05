@@ -1,19 +1,12 @@
 @GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/compute")
 @GenModel(publicConstructors="true")
 @GenModel(updateClasspath="false")
-
 package org.sheepy.vulkan.model.process.compute
 
-import org.sheepy.vulkan.model.IComputeProcessPool
 import org.sheepy.vulkan.model.process.AbstractPipeline
 import org.sheepy.vulkan.model.process.AbstractProcess
-import org.sheepy.vulkan.model.process.AbstractProcessPool
-import org.sheepy.vulkan.model.resource.Shader
 import org.sheepy.vulkan.model.resource.BufferBarrier
-
-class ComputeProcessPool extends AbstractProcessPool<ComputeProcess>, IComputeProcessPool
-{
-}
+import org.sheepy.vulkan.model.resource.Shader
 
 class ComputeProcess extends AbstractProcess
 {
@@ -22,11 +15,9 @@ class ComputeProcess extends AbstractProcess
 class ComputePipeline extends AbstractPipeline
 {
 	contains IComputer[] units
-	
 	int workgroupSizeX = "32"
 	int workgroupSizeY = "32"
 	int workgroupSizeZ = "32"
-	
 	int width
 	int height
 	int depth

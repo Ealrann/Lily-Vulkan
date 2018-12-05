@@ -2,8 +2,6 @@
  */
 package org.sheepy.vulkan.model;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 import org.sheepy.common.api.types.SVector2i;
@@ -23,8 +21,7 @@ import org.sheepy.common.api.types.SVector2i;
  *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#isDebug <em>Debug</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#getTitle <em>Title</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#getComputePools <em>Compute Pools</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#getGraphicPool <em>Graphic Pool</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#getEngine <em>Engine</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication()
@@ -194,45 +191,29 @@ public interface VulkanApplication extends EObject
 	void setSize(SVector2i value);
 
 	/**
-	 * Returns the value of the '<em><b>Compute Pools</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.IComputeProcessPool}.
+	 * Returns the value of the '<em><b>Engine</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Compute Pools</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Engine</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Compute Pools</em>' containment reference list.
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_ComputePools()
+	 * @return the value of the '<em>Engine</em>' containment reference.
+	 * @see #setEngine(VulkanEngine)
+	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_Engine()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IComputeProcessPool> getComputePools();
+	VulkanEngine getEngine();
 
 	/**
-	 * Returns the value of the '<em><b>Graphic Pool</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Graphic Pool</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Graphic Pool</em>' containment reference.
-	 * @see #setGraphicPool(IGraphicProcessPool)
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_GraphicPool()
-	 * @model containment="true"
-	 * @generated
-	 */
-	IGraphicProcessPool getGraphicPool();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanApplication#getGraphicPool <em>Graphic Pool</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanApplication#getEngine <em>Engine</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Graphic Pool</em>' containment reference.
-	 * @see #getGraphicPool()
+	 * @param value the new value of the '<em>Engine</em>' containment reference.
+	 * @see #getEngine()
 	 * @generated
 	 */
-	void setGraphicPool(IGraphicProcessPool value);
+	void setEngine(VulkanEngine value);
 
 } // VulkanApplication

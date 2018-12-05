@@ -80,19 +80,14 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 				return createVulkanApplicationAdapter();
 			}
 			@Override
-			public Adapter caseIProcessPool(IProcessPool object)
+			public Adapter caseVulkanEngine(VulkanEngine object)
 			{
-				return createIProcessPoolAdapter();
+				return createVulkanEngineAdapter();
 			}
 			@Override
-			public Adapter caseIComputeProcessPool(IComputeProcessPool object)
+			public Adapter caseIProcess(IProcess object)
 			{
-				return createIComputeProcessPoolAdapter();
-			}
-			@Override
-			public Adapter caseIGraphicProcessPool(IGraphicProcessPool object)
-			{
-				return createIGraphicProcessPoolAdapter();
+				return createIProcessAdapter();
 			}
 			@Override
 			public Adapter caseColorDomain(ColorDomain object)
@@ -137,46 +132,31 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.VulkanEngine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.IProcessPool
+	 * @see org.sheepy.vulkan.model.VulkanEngine
 	 * @generated
 	 */
-	public Adapter createIProcessPoolAdapter()
+	public Adapter createVulkanEngineAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.IComputeProcessPool
+	 * @see org.sheepy.vulkan.model.IProcess
 	 * @generated
 	 */
-	public Adapter createIComputeProcessPoolAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.IGraphicProcessPool
-	 * @generated
-	 */
-	public Adapter createIGraphicProcessPoolAdapter()
+	public Adapter createIProcessAdapter()
 	{
 		return null;
 	}

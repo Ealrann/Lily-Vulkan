@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
@@ -27,6 +26,7 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.FileResource;
 import org.sheepy.vulkan.model.resource.Font;
 import org.sheepy.vulkan.model.resource.IDescriptor;
+import org.sheepy.vulkan.model.resource.IResource;
 import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.ImageBarrier;
 import org.sheepy.vulkan.model.resource.ImageLayout;
@@ -37,7 +37,6 @@ import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.PipelineResource;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
-import org.sheepy.vulkan.model.resource.Resource;
 import org.sheepy.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.SampledResource;
@@ -58,7 +57,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass resourceEClass = null;
+	private EClass iResourceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -328,9 +327,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getResource()
+	public EClass getIResource()
 	{
-		return resourceEClass;
+		return iResourceEClass;
 	}
 
 	/**
@@ -1183,7 +1182,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		isCreated = true;
 
 		// Create classes and their features
-		resourceEClass = createEClass(RESOURCE);
+		iResourceEClass = createEClass(IRESOURCE);
 
 		basicResourceEClass = createEClass(BASIC_RESOURCE);
 
@@ -1329,9 +1328,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		basicResourceEClass.getESuperTypes().add(this.getResource());
+		basicResourceEClass.getESuperTypes().add(this.getIResource());
 		pipelineResourceEClass.getESuperTypes().add(this.getIDescriptor());
-		pipelineResourceEClass.getESuperTypes().add(this.getResource());
+		pipelineResourceEClass.getESuperTypes().add(this.getIResource());
 		bufferEClass.getESuperTypes().add(this.getPipelineResource());
 		imageEClass.getESuperTypes().add(this.getPipelineResource());
 		sampledResourceEClass.getESuperTypes().add(this.getPipelineResource());
@@ -1352,7 +1351,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		moduleResourceEClass.getESuperTypes().add(this.getPathResource());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(resourceEClass, Resource.class, "Resource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(iResourceEClass, IResource.class, "IResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

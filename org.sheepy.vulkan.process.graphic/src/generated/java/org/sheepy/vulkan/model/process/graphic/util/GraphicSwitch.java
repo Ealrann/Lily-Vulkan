@@ -7,12 +7,10 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.sheepy.vulkan.model.IGraphicProcessPool;
-import org.sheepy.vulkan.model.IProcessPool;
+import org.sheepy.vulkan.model.IProcess;
 
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.model.process.Configuration;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
@@ -33,7 +31,7 @@ import org.sheepy.vulkan.model.process.graphic.*;
  * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage
  * @generated
  */
-public class GraphicSwitch<T1> extends Switch<T1>
+public class GraphicSwitch<T> extends Switch<T>
 {
 	/**
 	 * The cached model package
@@ -79,14 +77,14 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	protected T1 doSwitch(int classifierID, EObject theEObject)
+	protected T doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION:
 			{
 				GraphicConfiguration graphicConfiguration = (GraphicConfiguration)theEObject;
-				T1 result = caseGraphicConfiguration(graphicConfiguration);
+				T result = caseGraphicConfiguration(graphicConfiguration);
 				if (result == null) result = caseConfiguration(graphicConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -94,46 +92,37 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			case GraphicPackage.RENDER_PASS_INFO:
 			{
 				RenderPassInfo renderPassInfo = (RenderPassInfo)theEObject;
-				T1 result = caseRenderPassInfo(renderPassInfo);
+				T result = caseRenderPassInfo(renderPassInfo);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.SUBPASS_DEPENDENCY:
 			{
 				SubpassDependency subpassDependency = (SubpassDependency)theEObject;
-				T1 result = caseSubpassDependency(subpassDependency);
+				T result = caseSubpassDependency(subpassDependency);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.ATTACHMENT_DESCRIPTION:
 			{
 				AttachmentDescription attachmentDescription = (AttachmentDescription)theEObject;
-				T1 result = caseAttachmentDescription(attachmentDescription);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.GRAPHIC_PROCESS_POOL:
-			{
-				GraphicProcessPool graphicProcessPool = (GraphicProcessPool)theEObject;
-				T1 result = caseGraphicProcessPool(graphicProcessPool);
-				if (result == null) result = caseAbstractProcessPool(graphicProcessPool);
-				if (result == null) result = caseIGraphicProcessPool(graphicProcessPool);
-				if (result == null) result = caseIProcessPool(graphicProcessPool);
+				T result = caseAttachmentDescription(attachmentDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.GRAPHIC_PROCESS:
 			{
 				GraphicProcess graphicProcess = (GraphicProcess)theEObject;
-				T1 result = caseGraphicProcess(graphicProcess);
+				T result = caseGraphicProcess(graphicProcess);
 				if (result == null) result = caseAbstractProcess(graphicProcess);
+				if (result == null) result = caseIProcess(graphicProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.IGRAPHICS_PIPELINE:
 			{
 				IGraphicsPipeline iGraphicsPipeline = (IGraphicsPipeline)theEObject;
-				T1 result = caseIGraphicsPipeline(iGraphicsPipeline);
+				T result = caseIGraphicsPipeline(iGraphicsPipeline);
 				if (result == null) result = caseIPipeline(iGraphicsPipeline);
 				if (result == null) result = caseIProcessUnit(iGraphicsPipeline);
 				if (result == null) result = defaultCase(theEObject);
@@ -142,7 +131,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			case GraphicPackage.GRAPHICS_PIPELINE:
 			{
 				GraphicsPipeline graphicsPipeline = (GraphicsPipeline)theEObject;
-				T1 result = caseGraphicsPipeline(graphicsPipeline);
+				T result = caseGraphicsPipeline(graphicsPipeline);
 				if (result == null) result = caseAbstractPipeline(graphicsPipeline);
 				if (result == null) result = caseIGraphicsPipeline(graphicsPipeline);
 				if (result == null) result = caseIPipeline(graphicsPipeline);
@@ -153,35 +142,35 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			case GraphicPackage.DYNAMIC_STATE:
 			{
 				DynamicState dynamicState = (DynamicState)theEObject;
-				T1 result = caseDynamicState(dynamicState);
+				T result = caseDynamicState(dynamicState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.COLOR_BLEND:
 			{
 				ColorBlend colorBlend = (ColorBlend)theEObject;
-				T1 result = caseColorBlend(colorBlend);
+				T result = caseColorBlend(colorBlend);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.COLOR_BLEND_ATTACHMENT:
 			{
 				ColorBlendAttachment colorBlendAttachment = (ColorBlendAttachment)theEObject;
-				T1 result = caseColorBlendAttachment(colorBlendAttachment);
+				T result = caseColorBlendAttachment(colorBlendAttachment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.VIEWPORT_STATE:
 			{
 				ViewportState viewportState = (ViewportState)theEObject;
-				T1 result = caseViewportState(viewportState);
+				T result = caseViewportState(viewportState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.STATIC_VIEWPORT_STATE:
 			{
 				StaticViewportState staticViewportState = (StaticViewportState)theEObject;
-				T1 result = caseStaticViewportState(staticViewportState);
+				T result = caseStaticViewportState(staticViewportState);
 				if (result == null) result = caseViewportState(staticViewportState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -189,7 +178,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			case GraphicPackage.DYNAMIC_VIEWPORT_STATE:
 			{
 				DynamicViewportState dynamicViewportState = (DynamicViewportState)theEObject;
-				T1 result = caseDynamicViewportState(dynamicViewportState);
+				T result = caseDynamicViewportState(dynamicViewportState);
 				if (result == null) result = caseViewportState(dynamicViewportState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -197,28 +186,28 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			case GraphicPackage.VIEWPORT:
 			{
 				Viewport viewport = (Viewport)theEObject;
-				T1 result = caseViewport(viewport);
+				T result = caseViewport(viewport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.SCISSOR:
 			{
 				Scissor scissor = (Scissor)theEObject;
-				T1 result = caseScissor(scissor);
+				T result = caseScissor(scissor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.RASTERIZER:
 			{
 				Rasterizer rasterizer = (Rasterizer)theEObject;
-				T1 result = caseRasterizer(rasterizer);
+				T result = caseRasterizer(rasterizer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GraphicPackage.IMAGE_PIPELINE:
 			{
 				ImagePipeline imagePipeline = (ImagePipeline)theEObject;
-				T1 result = caseImagePipeline(imagePipeline);
+				T result = caseImagePipeline(imagePipeline);
 				if (result == null) result = caseAbstractPipeline(imagePipeline);
 				if (result == null) result = caseIPipeline(imagePipeline);
 				if (result == null) result = caseIProcessUnit(imagePipeline);
@@ -228,7 +217,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			case GraphicPackage.PIPELINE_IMAGE_BARRIER:
 			{
 				PipelineImageBarrier pipelineImageBarrier = (PipelineImageBarrier)theEObject;
-				T1 result = casePipelineImageBarrier(pipelineImageBarrier);
+				T result = casePipelineImageBarrier(pipelineImageBarrier);
 				if (result == null) result = casePipelineBarrier(pipelineImageBarrier);
 				if (result == null) result = caseIProcessUnit(pipelineImageBarrier);
 				if (result == null) result = defaultCase(theEObject);
@@ -249,7 +238,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseGraphicConfiguration(GraphicConfiguration object)
+	public T caseGraphicConfiguration(GraphicConfiguration object)
 	{
 		return null;
 	}
@@ -265,7 +254,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseRenderPassInfo(RenderPassInfo object)
+	public T caseRenderPassInfo(RenderPassInfo object)
 	{
 		return null;
 	}
@@ -281,7 +270,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSubpassDependency(SubpassDependency object)
+	public T caseSubpassDependency(SubpassDependency object)
 	{
 		return null;
 	}
@@ -297,23 +286,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAttachmentDescription(AttachmentDescription object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Process Pool</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseGraphicProcessPool(GraphicProcessPool object)
+	public T caseAttachmentDescription(AttachmentDescription object)
 	{
 		return null;
 	}
@@ -329,7 +302,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseGraphicProcess(GraphicProcess object)
+	public T caseGraphicProcess(GraphicProcess object)
 	{
 		return null;
 	}
@@ -345,7 +318,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIGraphicsPipeline(IGraphicsPipeline object)
+	public T caseIGraphicsPipeline(IGraphicsPipeline object)
 	{
 		return null;
 	}
@@ -361,7 +334,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseGraphicsPipeline(GraphicsPipeline object)
+	public T caseGraphicsPipeline(GraphicsPipeline object)
 	{
 		return null;
 	}
@@ -377,7 +350,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDynamicState(DynamicState object)
+	public T caseDynamicState(DynamicState object)
 	{
 		return null;
 	}
@@ -393,7 +366,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseColorBlend(ColorBlend object)
+	public T caseColorBlend(ColorBlend object)
 	{
 		return null;
 	}
@@ -409,7 +382,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseColorBlendAttachment(ColorBlendAttachment object)
+	public T caseColorBlendAttachment(ColorBlendAttachment object)
 	{
 		return null;
 	}
@@ -425,7 +398,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseViewportState(ViewportState object)
+	public T caseViewportState(ViewportState object)
 	{
 		return null;
 	}
@@ -441,7 +414,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseStaticViewportState(StaticViewportState object)
+	public T caseStaticViewportState(StaticViewportState object)
 	{
 		return null;
 	}
@@ -457,7 +430,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDynamicViewportState(DynamicViewportState object)
+	public T caseDynamicViewportState(DynamicViewportState object)
 	{
 		return null;
 	}
@@ -473,7 +446,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseViewport(Viewport object)
+	public T caseViewport(Viewport object)
 	{
 		return null;
 	}
@@ -489,7 +462,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseScissor(Scissor object)
+	public T caseScissor(Scissor object)
 	{
 		return null;
 	}
@@ -505,7 +478,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseRasterizer(Rasterizer object)
+	public T caseRasterizer(Rasterizer object)
 	{
 		return null;
 	}
@@ -521,7 +494,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseImagePipeline(ImagePipeline object)
+	public T caseImagePipeline(ImagePipeline object)
 	{
 		return null;
 	}
@@ -537,7 +510,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePipelineImageBarrier(PipelineImageBarrier object)
+	public T casePipelineImageBarrier(PipelineImageBarrier object)
 	{
 		return null;
 	}
@@ -553,55 +526,23 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseConfiguration(Configuration object)
+	public T caseConfiguration(Configuration object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Pool</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IProcess</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Pool</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IProcess</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIProcessPool(IProcessPool object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Process Pool</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T extends AbstractProcess> T1 caseAbstractProcessPool(AbstractProcessPool<T> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IGraphic Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IGraphic Process Pool</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIGraphicProcessPool(IGraphicProcessPool object)
+	public T caseIProcess(IProcess object)
 	{
 		return null;
 	}
@@ -617,7 +558,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractProcess(AbstractProcess object)
+	public T caseAbstractProcess(AbstractProcess object)
 	{
 		return null;
 	}
@@ -633,7 +574,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIProcessUnit(IProcessUnit object)
+	public T caseIProcessUnit(IProcessUnit object)
 	{
 		return null;
 	}
@@ -649,7 +590,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPipeline(IPipeline object)
+	public T caseIPipeline(IPipeline object)
 	{
 		return null;
 	}
@@ -665,7 +606,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractPipeline(AbstractPipeline object)
+	public T caseAbstractPipeline(AbstractPipeline object)
 	{
 		return null;
 	}
@@ -681,7 +622,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePipelineBarrier(PipelineBarrier object)
+	public T casePipelineBarrier(PipelineBarrier object)
 	{
 		return null;
 	}
@@ -698,7 +639,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	public T1 defaultCase(EObject object)
+	public T defaultCase(EObject object)
 	{
 		return null;
 	}

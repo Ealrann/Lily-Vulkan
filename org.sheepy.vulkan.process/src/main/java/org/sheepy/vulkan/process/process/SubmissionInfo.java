@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.pool;
+package org.sheepy.vulkan.process.process;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_SUBMIT_INFO;

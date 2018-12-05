@@ -8,7 +8,7 @@ import java.util.Map;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.vulkan.process.compute.pool.ComputeContext;
+import org.sheepy.vulkan.process.compute.process.ComputeContext;
 import org.sheepy.vulkan.process.compute.process.ComputeProcessAdapter;
 import org.sheepy.vulkan.process.execution.AbstractCommandBuffers;
 
@@ -31,41 +31,30 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 		List<ComputeCommandBuffer> res = new ArrayList<>();
 
 		long commandPoolId = context.executionManager.commandPool.getId();
-		var processPool = context.computeProcessPool;
-		var processes = processPool.getProcesses();
+		var process = context.computeProcess;
 
 		// Command Pool Buffers
 		// ------------------
-		long[] commandBufferIds = allocCommandBuffers(commandPoolId, processes.size());
+		long[] commandBufferIds = allocCommandBuffers(commandPoolId, 1);
 
-		for (int i = 0; i < processes.size(); i++)
-		{
-			ComputeProcess computeProcess = processes.get(i);
-			long commandBufferId = commandBufferIds[i];
-			var commandBuffer = new ComputeCommandBuffer(context.logicalDevice, commandBufferId);
+		long commandBufferId = commandBufferIds[0];
+		var commandBuffer = new ComputeCommandBuffer(context.logicalDevice, commandBufferId);
 
-			res.add(commandBuffer);
-			mapBuffers.put(computeProcess, commandBuffer);
-		}
+		res.add(commandBuffer);
+		mapBuffers.put(process, commandBuffer);
 
 		return res;
 	}
 
 	public void recordCommands()
 	{
-		var processPool = context.computeProcessPool;
-		var processes = processPool.getProcesses();
-		
-		for (int i = 0; i < processes.size(); i++)
-		{
-			var process = processes.get(i);
-			var commandBuffer = mapBuffers.get(process);
-			var processAdapter = ComputeProcessAdapter.adapt(process);
+		var process = context.computeProcess;
+		var commandBuffer = mapBuffers.get(process);
+		var processAdapter = ComputeProcessAdapter.adapt(process);
 
-			commandBuffer.start();
-			processAdapter.recordCommand(commandBuffer, ECommandStage.COMPUTE);
-			commandBuffer.end();
-		}
+		commandBuffer.start();
+		processAdapter.recordCommand(commandBuffer, ECommandStage.COMPUTE);
+		commandBuffer.end();
 	}
 
 	@Deprecated
@@ -73,7 +62,7 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 	{
 		return mapBuffers.get(process);
 	}
-	
+
 	@Override
 	public boolean isAllocationDirty()
 	{

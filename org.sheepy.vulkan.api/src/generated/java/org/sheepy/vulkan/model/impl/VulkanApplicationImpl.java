@@ -2,12 +2,8 @@
  */
 package org.sheepy.vulkan.model.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -15,14 +11,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.sheepy.common.api.types.SVector2i;
 
-import org.sheepy.vulkan.model.IComputeProcessPool;
-import org.sheepy.vulkan.model.IGraphicProcessPool;
 import org.sheepy.vulkan.model.VulkanApplication;
+import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanPackage;
 
 /**
@@ -39,8 +31,7 @@ import org.sheepy.vulkan.model.VulkanPackage;
  *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#isDebug <em>Debug</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#getComputePools <em>Compute Pools</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#getGraphicPool <em>Graphic Pool</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#getEngine <em>Engine</em>}</li>
  * </ul>
  *
  * @generated
@@ -168,24 +159,14 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	protected SVector2i size = SIZE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getComputePools() <em>Compute Pools</em>}' containment reference list.
+	 * The cached value of the '{@link #getEngine() <em>Engine</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getComputePools()
+	 * @see #getEngine()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IComputeProcessPool> computePools;
-
-	/**
-	 * The cached value of the '{@link #getGraphicPool() <em>Graphic Pool</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGraphicPool()
-	 * @generated
-	 * @ordered
-	 */
-	protected IGraphicProcessPool graphicPool;
+	protected VulkanEngine engine;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -351,13 +332,9 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IComputeProcessPool> getComputePools()
+	public VulkanEngine getEngine()
 	{
-		if (computePools == null)
-		{
-			computePools = new EObjectContainmentEList<IComputeProcessPool>(IComputeProcessPool.class, this, VulkanPackage.VULKAN_APPLICATION__COMPUTE_POOLS);
-		}
-		return computePools;
+		return engine;
 	}
 
 	/**
@@ -365,23 +342,13 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IGraphicProcessPool getGraphicPool()
+	public NotificationChain basicSetEngine(VulkanEngine newEngine, NotificationChain msgs)
 	{
-		return graphicPool;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGraphicPool(IGraphicProcessPool newGraphicPool, NotificationChain msgs)
-	{
-		IGraphicProcessPool oldGraphicPool = graphicPool;
-		graphicPool = newGraphicPool;
+		VulkanEngine oldEngine = engine;
+		engine = newEngine;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL, oldGraphicPool, newGraphicPool);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_APPLICATION__ENGINE, oldEngine, newEngine);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -392,20 +359,20 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGraphicPool(IGraphicProcessPool newGraphicPool)
+	public void setEngine(VulkanEngine newEngine)
 	{
-		if (newGraphicPool != graphicPool)
+		if (newEngine != engine)
 		{
 			NotificationChain msgs = null;
-			if (graphicPool != null)
-				msgs = ((InternalEObject)graphicPool).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL, null, msgs);
-			if (newGraphicPool != null)
-				msgs = ((InternalEObject)newGraphicPool).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL, null, msgs);
-			msgs = basicSetGraphicPool(newGraphicPool, msgs);
+			if (engine != null)
+				msgs = ((InternalEObject)engine).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_APPLICATION__ENGINE, null, msgs);
+			if (newEngine != null)
+				msgs = ((InternalEObject)newEngine).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VulkanPackage.VULKAN_APPLICATION__ENGINE, null, msgs);
+			msgs = basicSetEngine(newEngine, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL, newGraphicPool, newGraphicPool));
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_APPLICATION__ENGINE, newEngine, newEngine));
 	}
 
 	/**
@@ -418,10 +385,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.VULKAN_APPLICATION__COMPUTE_POOLS:
-				return ((InternalEList<?>)getComputePools()).basicRemove(otherEnd, msgs);
-			case VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL:
-				return basicSetGraphicPool(null, msgs);
+			case VulkanPackage.VULKAN_APPLICATION__ENGINE:
+				return basicSetEngine(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -448,10 +413,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 				return getTitle();
 			case VulkanPackage.VULKAN_APPLICATION__SIZE:
 				return getSize();
-			case VulkanPackage.VULKAN_APPLICATION__COMPUTE_POOLS:
-				return getComputePools();
-			case VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL:
-				return getGraphicPool();
+			case VulkanPackage.VULKAN_APPLICATION__ENGINE:
+				return getEngine();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -461,7 +424,6 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -485,12 +447,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 			case VulkanPackage.VULKAN_APPLICATION__SIZE:
 				setSize((SVector2i)newValue);
 				return;
-			case VulkanPackage.VULKAN_APPLICATION__COMPUTE_POOLS:
-				getComputePools().clear();
-				getComputePools().addAll((Collection<? extends IComputeProcessPool>)newValue);
-				return;
-			case VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL:
-				setGraphicPool((IGraphicProcessPool)newValue);
+			case VulkanPackage.VULKAN_APPLICATION__ENGINE:
+				setEngine((VulkanEngine)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -524,11 +482,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 			case VulkanPackage.VULKAN_APPLICATION__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
-			case VulkanPackage.VULKAN_APPLICATION__COMPUTE_POOLS:
-				getComputePools().clear();
-				return;
-			case VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL:
-				setGraphicPool((IGraphicProcessPool)null);
+			case VulkanPackage.VULKAN_APPLICATION__ENGINE:
+				setEngine((VulkanEngine)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -556,10 +511,8 @@ public class VulkanApplicationImpl extends MinimalEObjectImpl.Container implemen
 				return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
 			case VulkanPackage.VULKAN_APPLICATION__SIZE:
 				return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
-			case VulkanPackage.VULKAN_APPLICATION__COMPUTE_POOLS:
-				return computePools != null && !computePools.isEmpty();
-			case VulkanPackage.VULKAN_APPLICATION__GRAPHIC_POOL:
-				return graphicPool != null;
+			case VulkanPackage.VULKAN_APPLICATION__ENGINE:
+				return engine != null;
 		}
 		return super.eIsSet(featureID);
 	}

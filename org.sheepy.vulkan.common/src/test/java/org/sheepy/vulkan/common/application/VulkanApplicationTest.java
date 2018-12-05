@@ -29,7 +29,7 @@ public class VulkanApplicationTest
 		application.setEnabled(false);
 
 		applicationAdapter = (VulkanApplicationAdapter) VulkanApplicationLauncher
-				.launch(TestUtils.newBasicApplication());
+				.launch(application);
 
 		assertEquals(null, VulkanApplicationUtil.getWindow(application));
 

@@ -9,12 +9,10 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.sheepy.vulkan.model.IGraphicProcessPool;
-import org.sheepy.vulkan.model.IProcessPool;
+import org.sheepy.vulkan.model.IProcess;
 
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.AbstractProcessPool;
 import org.sheepy.vulkan.model.process.Configuration;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
@@ -106,11 +104,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createAttachmentDescriptionAdapter();
 			}
 			@Override
-			public Adapter caseGraphicProcessPool(GraphicProcessPool object)
-			{
-				return createGraphicProcessPoolAdapter();
-			}
-			@Override
 			public Adapter caseGraphicProcess(GraphicProcess object)
 			{
 				return createGraphicProcessAdapter();
@@ -186,19 +179,9 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseIProcessPool(IProcessPool object)
+			public Adapter caseIProcess(IProcess object)
 			{
-				return createIProcessPoolAdapter();
-			}
-			@Override
-			public <T extends AbstractProcess> Adapter caseAbstractProcessPool(AbstractProcessPool<T> object)
-			{
-				return createAbstractProcessPoolAdapter();
-			}
-			@Override
-			public Adapter caseIGraphicProcessPool(IGraphicProcessPool object)
-			{
-				return createIGraphicProcessPoolAdapter();
+				return createIProcessAdapter();
 			}
 			@Override
 			public Adapter caseAbstractProcess(AbstractProcess object)
@@ -303,21 +286,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAttachmentDescriptionAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcessPool <em>Process Pool</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcessPool
-	 * @generated
-	 */
-	public Adapter createGraphicProcessPoolAdapter()
 	{
 		return null;
 	}
@@ -548,46 +516,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.IProcessPool
+	 * @see org.sheepy.vulkan.model.IProcess
 	 * @generated
 	 */
-	public Adapter createIProcessPoolAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.AbstractProcessPool <em>Abstract Process Pool</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcessPool
-	 * @generated
-	 */
-	public Adapter createAbstractProcessPoolAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.IGraphicProcessPool
-	 * @generated
-	 */
-	public Adapter createIGraphicProcessPoolAdapter()
+	public Adapter createIProcessAdapter()
 	{
 		return null;
 	}

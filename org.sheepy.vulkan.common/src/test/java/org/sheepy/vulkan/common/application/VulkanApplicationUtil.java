@@ -1,22 +1,22 @@
 package org.sheepy.vulkan.common.application;
 
-import org.sheepy.vulkan.common.window.Window;
+import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
+import org.sheepy.vulkan.api.window.IWindow;
 import org.sheepy.vulkan.model.VulkanApplication;
 
 public class VulkanApplicationUtil
 {
-	public static VulkanApplicationManager getApplicationManager(VulkanApplication application)
+	public static IVulkanEngineAdapter getEngineAdapter(VulkanApplication application)
 	{
-		var adapter = VulkanApplicationAdapter.adapt(application);
-		return adapter.getManager();
+		return IVulkanEngineAdapter.adapt(application.getEngine());
 	}
 
-	public static Window getWindow(VulkanApplication application)
+	public static IWindow getWindow(VulkanApplication application)
 	{
-		var manager = getApplicationManager(application);
-		if (manager != null)
+		var engineAdapter = getEngineAdapter(application);
+		if (engineAdapter != null)
 		{
-			return manager.window;
+			return engineAdapter.getWindow();
 		}
 		else
 		{

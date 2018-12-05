@@ -1,6 +1,7 @@
 import org.sheepy.common.api.adapter.ISingletonAdapter;
 import org.sheepy.vulkan.common.application.LogicalDeviceAdapter;
 import org.sheepy.vulkan.common.application.VulkanApplicationAdapter;
+import org.sheepy.vulkan.common.engine.VulkanEngineAdapter;
 
 /**
  * 
@@ -8,7 +9,7 @@ import org.sheepy.vulkan.common.application.VulkanApplicationAdapter;
 module org.sheepy.vulkan.common
 {
 	requires transitive org.sheepy.vulkan.api;
-	
+
 	exports org.sheepy.vulkan.common.allocation;
 	exports org.sheepy.vulkan.common.allocation.adapter;
 	exports org.sheepy.vulkan.common.allocation.adapter.impl;
@@ -24,7 +25,8 @@ module org.sheepy.vulkan.common
 
 
 	opens org.sheepy.vulkan.common.application;
+	opens org.sheepy.vulkan.common.engine;
 	
 	provides ISingletonAdapter
-			with LogicalDeviceAdapter, VulkanApplicationAdapter;
+			with LogicalDeviceAdapter, VulkanApplicationAdapter, VulkanEngineAdapter;
 }

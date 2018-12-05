@@ -17,7 +17,7 @@ import org.sheepy.vulkan.model.process.compute.IComputer;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
-import org.sheepy.vulkan.process.compute.pool.IComputeContextAdapter;
+import org.sheepy.vulkan.process.compute.process.IComputeContextAdapter;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.resource.shader.ShaderAdapter;
 

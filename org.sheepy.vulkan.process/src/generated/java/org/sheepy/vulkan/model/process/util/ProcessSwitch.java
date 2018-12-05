@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.sheepy.vulkan.model.IProcessPool;
+import org.sheepy.vulkan.model.IProcess;
 
 import org.sheepy.vulkan.model.process.*;
 
@@ -24,7 +24,7 @@ import org.sheepy.vulkan.model.process.*;
  * @see org.sheepy.vulkan.model.process.ProcessPackage
  * @generated
  */
-public class ProcessSwitch<T1> extends Switch<T1>
+public class ProcessSwitch<T> extends Switch<T>
 {
 	/**
 	 * The cached model package
@@ -70,43 +70,36 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	protected T1 doSwitch(int classifierID, EObject theEObject)
+	protected T doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
-			case ProcessPackage.CONFIGURATION:
-			{
-				Configuration configuration = (Configuration)theEObject;
-				T1 result = caseConfiguration(configuration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.ABSTRACT_PROCESS_POOL:
-			{
-				AbstractProcessPool<?> abstractProcessPool = (AbstractProcessPool<?>)theEObject;
-				T1 result = caseAbstractProcessPool(abstractProcessPool);
-				if (result == null) result = caseIProcessPool(abstractProcessPool);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ProcessPackage.ABSTRACT_PROCESS:
 			{
 				AbstractProcess abstractProcess = (AbstractProcess)theEObject;
-				T1 result = caseAbstractProcess(abstractProcess);
+				T result = caseAbstractProcess(abstractProcess);
+				if (result == null) result = caseIProcess(abstractProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ProcessPackage.IPROCESS_UNIT:
 			{
 				IProcessUnit iProcessUnit = (IProcessUnit)theEObject;
-				T1 result = caseIProcessUnit(iProcessUnit);
+				T result = caseIProcessUnit(iProcessUnit);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.CONFIGURATION:
+			{
+				Configuration configuration = (Configuration)theEObject;
+				T result = caseConfiguration(configuration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ProcessPackage.PIPELINE_BARRIER:
 			{
 				PipelineBarrier pipelineBarrier = (PipelineBarrier)theEObject;
-				T1 result = casePipelineBarrier(pipelineBarrier);
+				T result = casePipelineBarrier(pipelineBarrier);
 				if (result == null) result = caseIProcessUnit(pipelineBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -114,7 +107,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			case ProcessPackage.PIPELINE_BUFFER_BARRIER:
 			{
 				PipelineBufferBarrier pipelineBufferBarrier = (PipelineBufferBarrier)theEObject;
-				T1 result = casePipelineBufferBarrier(pipelineBufferBarrier);
+				T result = casePipelineBufferBarrier(pipelineBufferBarrier);
 				if (result == null) result = casePipelineBarrier(pipelineBufferBarrier);
 				if (result == null) result = caseIProcessUnit(pipelineBufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
@@ -123,7 +116,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			case ProcessPackage.IPIPELINE:
 			{
 				IPipeline iPipeline = (IPipeline)theEObject;
-				T1 result = caseIPipeline(iPipeline);
+				T result = caseIPipeline(iPipeline);
 				if (result == null) result = caseIProcessUnit(iPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -131,7 +124,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			case ProcessPackage.ABSTRACT_PIPELINE:
 			{
 				AbstractPipeline abstractPipeline = (AbstractPipeline)theEObject;
-				T1 result = caseAbstractPipeline(abstractPipeline);
+				T result = caseAbstractPipeline(abstractPipeline);
 				if (result == null) result = caseIPipeline(abstractPipeline);
 				if (result == null) result = caseIProcessUnit(abstractPipeline);
 				if (result == null) result = defaultCase(theEObject);
@@ -140,7 +133,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE:
 			{
 				AbstractCompositePipeline abstractCompositePipeline = (AbstractCompositePipeline)theEObject;
-				T1 result = caseAbstractCompositePipeline(abstractCompositePipeline);
+				T result = caseAbstractCompositePipeline(abstractCompositePipeline);
 				if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);
 				if (result == null) result = caseIPipeline(abstractCompositePipeline);
 				if (result == null) result = caseIProcessUnit(abstractCompositePipeline);
@@ -149,38 +142,6 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseConfiguration(Configuration object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Process Pool</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Process Pool</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T extends AbstractProcess> T1 caseAbstractProcessPool(AbstractProcessPool<T> object)
-	{
-		return null;
 	}
 
 	/**
@@ -194,7 +155,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractProcess(AbstractProcess object)
+	public T caseAbstractProcess(AbstractProcess object)
 	{
 		return null;
 	}
@@ -210,7 +171,23 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIProcessUnit(IProcessUnit object)
+	public T caseIProcessUnit(IProcessUnit object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfiguration(Configuration object)
 	{
 		return null;
 	}
@@ -226,7 +203,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePipelineBarrier(PipelineBarrier object)
+	public T casePipelineBarrier(PipelineBarrier object)
 	{
 		return null;
 	}
@@ -242,7 +219,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePipelineBufferBarrier(PipelineBufferBarrier object)
+	public T casePipelineBufferBarrier(PipelineBufferBarrier object)
 	{
 		return null;
 	}
@@ -258,7 +235,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIPipeline(IPipeline object)
+	public T caseIPipeline(IPipeline object)
 	{
 		return null;
 	}
@@ -274,7 +251,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractPipeline(AbstractPipeline object)
+	public T caseAbstractPipeline(AbstractPipeline object)
 	{
 		return null;
 	}
@@ -290,23 +267,23 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractCompositePipeline(AbstractCompositePipeline object)
+	public T caseAbstractCompositePipeline(AbstractCompositePipeline object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Pool</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IProcess</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Pool</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IProcess</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIProcessPool(IProcessPool object)
+	public T caseIProcess(IProcess object)
 	{
 		return null;
 	}
@@ -323,7 +300,7 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	public T1 defaultCase(EObject object)
+	public T defaultCase(EObject object)
 	{
 		return null;
 	}

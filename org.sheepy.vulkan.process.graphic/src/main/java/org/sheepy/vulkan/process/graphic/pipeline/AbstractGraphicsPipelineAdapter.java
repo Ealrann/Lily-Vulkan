@@ -15,8 +15,8 @@ import org.sheepy.vulkan.process.graphic.pipeline.builder.MultisampleBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.RasterizerBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.ShaderStageBuilder;
 import org.sheepy.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
-import org.sheepy.vulkan.process.graphic.pool.IGraphicContextAdapter;
-import org.sheepy.vulkan.process.graphic.pool.RenderPass;
+import org.sheepy.vulkan.process.graphic.process.IGraphicContextAdapter;
+import org.sheepy.vulkan.process.graphic.process.RenderPass;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
@@ -45,7 +45,7 @@ public abstract class AbstractGraphicsPipelineAdapter
 		createBuilders();
 
 		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
-		final var useDepthBuffer = context.graphicProcessPool.getDepthImage() != null;
+		final var useDepthBuffer = context.graphicProcess.getDepthImage() != null;
 		final var device = context.getVkDevice();
 		final var pipeline = (IGraphicsPipeline) target;
 		var swapchain = context.swapChainManager;
