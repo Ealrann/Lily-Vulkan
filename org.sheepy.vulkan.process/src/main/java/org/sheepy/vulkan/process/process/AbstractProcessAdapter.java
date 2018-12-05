@@ -130,9 +130,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 	protected abstract int getBindPoint();
 
-	@Override
-	public abstract void execute();
-
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractProcessAdapter<T> adapt(AbstractProcess object)
 	{
