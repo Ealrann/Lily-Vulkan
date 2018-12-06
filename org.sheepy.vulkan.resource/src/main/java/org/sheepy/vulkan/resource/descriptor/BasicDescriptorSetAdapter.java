@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
@@ -20,7 +20,7 @@ public class BasicDescriptorSetAdapter extends AbstractDescriptorSetAdapter
 		{
 			vkDescriptors = new ArrayList<>();
 			var descriptors = ((BasicDescriptorSet) descriptorSet).getDescriptors();
-			for(IDescriptor descriptor : descriptors)
+			for (IDescriptor descriptor : descriptors)
 			{
 				vkDescriptors.add(IDescriptorAdapter.adapt(descriptor));
 			}
@@ -36,6 +36,6 @@ public class BasicDescriptorSetAdapter extends AbstractDescriptorSetAdapter
 
 	public static BasicDescriptorSetAdapter adapt(BasicDescriptorSet object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, BasicDescriptorSetAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, BasicDescriptorSetAdapter.class);
 	}
 }

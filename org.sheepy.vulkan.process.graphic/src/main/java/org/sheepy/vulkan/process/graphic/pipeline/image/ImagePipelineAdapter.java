@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkImageBlit;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
@@ -33,7 +33,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		var extent = context.swapChainManager.getExtent();
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
-		
+
 		swapChainManager = context.swapChainManager;
 		allocationDependencies.add(swapChainManager);
 
@@ -79,7 +79,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		{
 			initialBarriers[i].free();
 		}
-		
+
 		finalBarrier.free();
 		region.free();
 		super.free();
@@ -105,17 +105,6 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 
 		finalBarrier.execute(vkCommandBuffer);
 	}
-	
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return GraphicPackage.Literals.IMAGE_PIPELINE == eClass;
-	}
-
-	public static ImagePipelineAdapter adapt(ImagePipeline object)
-	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, ImagePipelineAdapter.class);
-	}
 
 	@Override
 	protected PushConstant getPushConstant()
@@ -133,5 +122,16 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	public boolean isRecordNeeded()
 	{
 		return false;
+	}
+
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return GraphicPackage.Literals.IMAGE_PIPELINE == eClass;
+	}
+
+	public static ImagePipelineAdapter adapt(ImagePipeline object)
+	{
+		return IServiceAdapterFactory.INSTANCE.adapt(object, ImagePipelineAdapter.class);
 	}
 }

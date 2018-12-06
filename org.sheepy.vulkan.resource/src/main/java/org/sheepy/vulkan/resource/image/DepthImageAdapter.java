@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
@@ -145,6 +145,6 @@ public class DepthImageAdapter extends ResourceAdapter
 
 	public static DepthImageAdapter adapt(DepthImage resource)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(resource, DepthImageAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(resource, DepthImageAdapter.class);
 	}
 }

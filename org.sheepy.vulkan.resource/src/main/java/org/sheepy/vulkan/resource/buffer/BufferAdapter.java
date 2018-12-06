@@ -11,7 +11,7 @@ import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
@@ -185,7 +185,7 @@ public class BufferAdapter extends PipelineResourceAdapter
 
 	public static BufferAdapter adapt(Buffer buffer)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(buffer, BufferAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(buffer, BufferAdapter.class);
 	}
 
 	@Override

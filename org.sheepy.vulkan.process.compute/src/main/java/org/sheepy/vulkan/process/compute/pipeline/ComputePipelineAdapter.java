@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
@@ -163,6 +163,6 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 	public static ComputePipelineAdapter adapt(ComputePipeline object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, ComputePipelineAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, ComputePipelineAdapter.class);
 	}
 }

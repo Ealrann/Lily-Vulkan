@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.ModuleResource;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
@@ -37,6 +37,6 @@ public class ModuleResourceAdapter extends PathResourceAdapter
 
 	public static ModuleResourceAdapter adapt(ModuleResource moduleResource)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(moduleResource, ModuleResourceAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(moduleResource, ModuleResourceAdapter.class);
 	}
 }

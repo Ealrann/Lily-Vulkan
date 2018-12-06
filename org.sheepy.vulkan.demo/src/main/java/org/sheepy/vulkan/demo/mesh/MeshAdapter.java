@@ -2,7 +2,7 @@ package org.sheepy.vulkan.demo.mesh;
 
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
@@ -47,6 +47,6 @@ public class MeshAdapter extends AbstractFlatAllocableAdapter
 
 	public static MeshAdapter adapt(MeshBuffer mesh)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(mesh, MeshAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(mesh, MeshAdapter.class);
 	}
 }

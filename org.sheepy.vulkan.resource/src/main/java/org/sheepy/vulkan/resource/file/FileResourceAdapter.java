@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.FileResource;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
@@ -38,6 +38,6 @@ public class FileResourceAdapter extends PathResourceAdapter
 
 	public static FileResourceAdapter adapt(FileResource fileResource)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(fileResource, FileResourceAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(fileResource, FileResourceAdapter.class);
 	}
 }

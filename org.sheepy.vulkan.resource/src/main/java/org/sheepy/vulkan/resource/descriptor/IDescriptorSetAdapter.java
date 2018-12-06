@@ -2,7 +2,7 @@ package org.sheepy.vulkan.resource.descriptor;
 
 import java.util.List;
 
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
@@ -22,6 +22,6 @@ public interface IDescriptorSetAdapter extends IVulkanAdapter, IBasicAllocable
 
 	static IDescriptorSetAdapter adapt(DescriptorSet object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, IDescriptorSetAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, IDescriptorSetAdapter.class);
 	}
 }

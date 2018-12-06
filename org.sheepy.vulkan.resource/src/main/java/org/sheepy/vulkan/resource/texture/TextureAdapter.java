@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Texture;
 import org.sheepy.vulkan.resource.util.STBImageLoader;
@@ -55,6 +55,6 @@ public class TextureAdapter extends AbstractTextureAdapter
 
 	public static TextureAdapter adapt(Texture texture)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(texture, TextureAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(texture, TextureAdapter.class);
 	}
 }

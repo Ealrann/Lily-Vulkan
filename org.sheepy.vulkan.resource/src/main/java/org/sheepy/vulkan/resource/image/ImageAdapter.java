@@ -10,7 +10,7 @@ import org.lwjgl.vulkan.VkDescriptorImageInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.common.execution.SingleTimeCommand;
@@ -152,11 +152,6 @@ public class ImageAdapter extends PipelineResourceAdapter
 		return imageBackend.getMemoryId();
 	}
 
-	public static ImageAdapter adapt(Image image)
-	{
-		return ServiceAdapterFactory.INSTANCE.adapt(image, ImageAdapter.class);
-	}
-
 	@Override
 	public boolean isApplicable(EClass eClass)
 	{
@@ -166,5 +161,10 @@ public class ImageAdapter extends PipelineResourceAdapter
 	public static interface IImageLoader
 	{
 		void load(ExecutionManager executionManager, ImageBackend backendBuffer);
+	}
+
+	public static ImageAdapter adapt(Image image)
+	{
+		return IServiceAdapterFactory.INSTANCE.adapt(image, ImageAdapter.class);
 	}
 }

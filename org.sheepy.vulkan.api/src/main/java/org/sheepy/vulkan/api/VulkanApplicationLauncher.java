@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.api;
 
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.adapter.IVulkanApplicationAdapter;
 import org.sheepy.vulkan.model.VulkanApplication;
 
@@ -10,6 +10,6 @@ public class VulkanApplicationLauncher
 
 	public static final IVulkanApplicationAdapter launch(VulkanApplication application)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(application, ADAPTER_CLASSIFIER);
+		return IServiceAdapterFactory.INSTANCE.adapt(application, ADAPTER_CLASSIFIER);
 	}
 }

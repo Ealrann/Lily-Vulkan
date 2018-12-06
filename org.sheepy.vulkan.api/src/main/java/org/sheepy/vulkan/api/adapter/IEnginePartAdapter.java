@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.api.adapter;
 
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.IEnginePart;
 
 public interface IEnginePartAdapter extends IVulkanAdapter
@@ -10,6 +10,6 @@ public interface IEnginePartAdapter extends IVulkanAdapter
 
 	static IEnginePartAdapter adapt(IEnginePart part)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(part, IEnginePartAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(part, IEnginePartAdapter.class);
 	}
 }

@@ -18,8 +18,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkApplicationInfo;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.api.adapter.IEnginePartAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
@@ -158,8 +158,8 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 			var adapter = IEnginePartAdapter.adapt(sharedResources);
 			adapter.allocatePart();
 		}
-		
-		for(IProcess process : engine.getProcesses())
+
+		for (IProcess process : engine.getProcesses())
 		{
 			var adapter = IEnginePartAdapter.adapt(process);
 			adapter.allocatePart();
@@ -175,8 +175,8 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 			var adapter = IEnginePartAdapter.adapt(sharedResources);
 			adapter.freePart();
 		}
-		
-		for(IProcess process : engine.getProcesses())
+
+		for (IProcess process : engine.getProcesses())
 		{
 			var adapter = IEnginePartAdapter.adapt(process);
 			adapter.freePart();
@@ -285,6 +285,6 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 
 	public static VulkanEngineAdapter adapt(VulkanEngine engine)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(engine, VulkanEngineAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(engine, VulkanEngineAdapter.class);
 	}
 }

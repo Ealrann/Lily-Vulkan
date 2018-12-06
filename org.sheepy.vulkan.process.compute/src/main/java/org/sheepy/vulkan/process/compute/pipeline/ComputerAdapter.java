@@ -4,9 +4,9 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.IStatefullAdapter;
 import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.Computer;
@@ -41,7 +41,7 @@ public class ComputerAdapter extends AbstractSingletonAdapter
 
 		vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCountX, groupCountY, groupCountZ);
 	}
-	
+
 	public void setIndex(int index)
 	{
 		this.index = index;
@@ -59,7 +59,7 @@ public class ComputerAdapter extends AbstractSingletonAdapter
 
 	public static ComputerAdapter adapt(Computer object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, ComputerAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, ComputerAdapter.class);
 	}
 
 	@Override

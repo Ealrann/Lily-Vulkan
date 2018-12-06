@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Shader;
@@ -20,7 +20,7 @@ public class ShaderAdapter extends ResourceAdapter
 	private static ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memUTF8("main");
 
 	private ShaderBackend shaderBackend;
-	
+
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
@@ -68,6 +68,6 @@ public class ShaderAdapter extends ResourceAdapter
 
 	public static ShaderAdapter adapt(Shader shader)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(shader, ShaderAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(shader, ShaderAdapter.class);
 	}
 }

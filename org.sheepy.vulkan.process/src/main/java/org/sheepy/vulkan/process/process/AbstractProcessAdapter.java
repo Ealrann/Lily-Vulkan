@@ -5,7 +5,7 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.common.allocation.adapter.IDeepAllocableAdapter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
@@ -133,6 +133,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractProcessAdapter<T> adapt(AbstractProcess object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractProcessAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, AbstractProcessAdapter.class);
 	}
 }

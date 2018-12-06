@@ -3,8 +3,8 @@ package org.sheepy.vulkan.common.engine;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.IStatefullAdapter;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.api.adapter.IEnginePartAdapter;
 import org.sheepy.vulkan.api.queue.EQueueType;
 import org.sheepy.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
@@ -103,6 +103,6 @@ public abstract class AbstractEnginePartAdapter extends AbstractAllocableAdapter
 
 	public static AbstractEnginePartAdapter adapt(IEnginePart object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractEnginePartAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, AbstractEnginePartAdapter.class);
 	}
 }

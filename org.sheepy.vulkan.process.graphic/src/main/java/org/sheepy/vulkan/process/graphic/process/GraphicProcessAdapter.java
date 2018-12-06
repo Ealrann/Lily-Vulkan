@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.queue.EQueueType;
 import org.sheepy.vulkan.api.queue.VulkanQueue;
 import org.sheepy.vulkan.common.concurrent.ISignalEmitter;
@@ -145,6 +145,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 
 	public static GraphicProcessAdapter adapt(GraphicProcess object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, GraphicProcessAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, GraphicProcessAdapter.class);
 	}
 }

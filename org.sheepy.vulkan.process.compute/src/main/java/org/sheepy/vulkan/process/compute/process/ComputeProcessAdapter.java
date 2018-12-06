@@ -4,7 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.queue.EQueueType;
 import org.sheepy.vulkan.api.queue.VulkanQueue;
 import org.sheepy.vulkan.common.allocation.adapter.IDeepAllocableAdapter;
@@ -99,6 +99,6 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 
 	public static ComputeProcessAdapter adapt(ComputeProcess object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, ComputeProcessAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, ComputeProcessAdapter.class);
 	}
 }

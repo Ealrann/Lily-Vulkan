@@ -11,8 +11,8 @@ import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.util.Logger;
@@ -146,6 +146,6 @@ public abstract class AbstractDescriptorSetAdapter extends AbstractStatefullAdap
 
 	public static AbstractDescriptorSetAdapter adapt(DescriptorSet object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractDescriptorSetAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, AbstractDescriptorSetAdapter.class);
 	}
 }

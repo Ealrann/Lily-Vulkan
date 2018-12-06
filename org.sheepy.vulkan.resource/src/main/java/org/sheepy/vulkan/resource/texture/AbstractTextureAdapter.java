@@ -10,7 +10,7 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -186,7 +186,7 @@ public abstract class AbstractTextureAdapter extends AbstractSampledResourceAdap
 
 	public static AbstractTextureAdapter adapt(AbstractTexture texture)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(texture, AbstractTextureAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(texture, AbstractTextureAdapter.class);
 	}
 
 	protected abstract ByteBuffer allocDataBuffer();

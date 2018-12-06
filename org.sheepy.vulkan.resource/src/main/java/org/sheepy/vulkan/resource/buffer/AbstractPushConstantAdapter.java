@@ -10,7 +10,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPushConstantRange;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
@@ -68,7 +68,7 @@ public abstract class AbstractPushConstantAdapter extends ResourceAdapter
 
 	public static AbstractPushConstantAdapter adapt(PushConstant object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractPushConstantAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, AbstractPushConstantAdapter.class);
 	}
 
 	protected abstract void updateBuffer();

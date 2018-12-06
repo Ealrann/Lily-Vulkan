@@ -1,7 +1,7 @@
 package org.sheepy.vulkan.common.engine;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.queue.EQueueType;
 import org.sheepy.vulkan.model.SharedResources;
 import org.sheepy.vulkan.model.VulkanPackage;
@@ -14,11 +14,6 @@ public class SharedResourcesAdapter extends AbstractEnginePartAdapter
 		return VulkanPackage.Literals.SHARED_RESOURCES == eClass;
 	}
 
-	public static SharedResourcesAdapter adapt(SharedResources object)
-	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, SharedResourcesAdapter.class);
-	}
-
 	@Override
 	protected boolean isResetAllowed()
 	{
@@ -29,5 +24,10 @@ public class SharedResourcesAdapter extends AbstractEnginePartAdapter
 	protected EQueueType getQueueType()
 	{
 		return EQueueType.Graphic;
+	}
+
+	public static SharedResourcesAdapter adapt(SharedResources object)
+	{
+		return IServiceAdapterFactory.INSTANCE.adapt(object, SharedResourcesAdapter.class);
 	}
 }

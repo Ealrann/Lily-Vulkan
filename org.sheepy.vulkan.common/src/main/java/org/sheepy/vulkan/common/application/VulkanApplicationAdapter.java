@@ -3,13 +3,13 @@ package org.sheepy.vulkan.common.application;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
 import org.sheepy.vulkan.api.adapter.IVulkanApplicationAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
 import org.sheepy.vulkan.api.window.IWindow;
-import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanApplication;
+import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanPackage;
 
 public class VulkanApplicationAdapter extends AbstractStatefullAdapter
@@ -37,7 +37,7 @@ public class VulkanApplicationAdapter extends AbstractStatefullAdapter
 			}
 		}
 	}
-	
+
 	@Override
 	public void setTarget(Notifier target)
 	{
@@ -46,6 +46,8 @@ public class VulkanApplicationAdapter extends AbstractStatefullAdapter
 		VulkanEngine engine = application.getEngine();
 		engineAdapter = IVulkanEngineAdapter.adapt(engine);
 
+		IServiceAdapterFactory.INSTANCE.setupRootForAutoAdapters(application);
+		
 		if (application.isEnabled())
 		{
 			startVulkanApplication();
@@ -76,13 +78,13 @@ public class VulkanApplicationAdapter extends AbstractStatefullAdapter
 	{
 		engineAdapter.stop();
 	}
-	
+
 	@Override
 	public void allocate()
 	{
 		engineAdapter.allocate();
 	}
-	
+
 	@Override
 	public void free()
 	{
@@ -115,7 +117,7 @@ public class VulkanApplicationAdapter extends AbstractStatefullAdapter
 
 	public static VulkanApplicationAdapter adapt(VulkanApplication application)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(application, VulkanApplicationAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(application, VulkanApplicationAdapter.class);
 	}
 
 }

@@ -13,7 +13,7 @@ import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -111,12 +111,12 @@ public abstract class FontAdapter extends AbstractSampledResourceAdapter
 		}
 		return texture;
 	}
-	
+
 	public float getDescent()
 	{
 		return descent;
 	}
-	
+
 	public STBTTFontinfo getFontInfo()
 	{
 		return fontInfo;
@@ -137,7 +137,7 @@ public abstract class FontAdapter extends AbstractSampledResourceAdapter
 	{
 		return BUFFER_WIDTH;
 	}
-	
+
 	@Override
 	protected int getHeight()
 	{
@@ -166,6 +166,6 @@ public abstract class FontAdapter extends AbstractSampledResourceAdapter
 
 	public static FontAdapter adapt(Font font)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(font, FontAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(font, FontAdapter.class);
 	}
 }

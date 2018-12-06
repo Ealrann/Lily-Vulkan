@@ -9,7 +9,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
-import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
+import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.allocation.IAllocable;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
@@ -144,6 +144,6 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractPipelineAdapter<T> adapt(IPipeline object)
 	{
-		return ServiceAdapterFactory.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
 	}
 }
