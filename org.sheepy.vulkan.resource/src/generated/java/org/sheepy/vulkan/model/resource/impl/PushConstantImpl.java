@@ -2,22 +2,13 @@
  */
 package org.sheepy.vulkan.model.resource.impl;
 
-import java.util.Collection;
-
+import java.nio.ByteBuffer;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
-
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
@@ -29,43 +20,53 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl#getDescriptorType <em>Descriptor Type</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl#getShaderStages <em>Shader Stages</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl#getData <em>Data</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class PushConstantImpl extends MinimalEObjectImpl.Container implements PushConstant
+public class PushConstantImpl extends MinimalEObjectImpl.Container implements PushConstant
 {
 	/**
-	 * The default value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
+	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescriptorType()
+	 * @see #getData()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EDescriptorType DESCRIPTOR_TYPE_EDEFAULT = EDescriptorType.SAMPLER;
+	protected static final ByteBuffer DATA_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
+	 * The cached value of the '{@link #getData() <em>Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescriptorType()
+	 * @see #getData()
 	 * @generated
 	 * @ordered
 	 */
-	protected EDescriptorType descriptorType = DESCRIPTOR_TYPE_EDEFAULT;
+	protected ByteBuffer data = DATA_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getShaderStages() <em>Shader Stages</em>}' attribute list.
+	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getShaderStages()
+	 * @see #getStage()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<EShaderStage> shaderStages;
+	protected static final EShaderStage STAGE_EDEFAULT = EShaderStage.VERTEX_BIT;
+
+	/**
+	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EShaderStage stage = STAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -93,9 +94,9 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDescriptorType getDescriptorType()
+	public ByteBuffer getData()
 	{
-		return descriptorType;
+		return data;
 	}
 
 	/**
@@ -103,12 +104,12 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDescriptorType(EDescriptorType newDescriptorType)
+	public void setData(ByteBuffer newData)
 	{
-		EDescriptorType oldDescriptorType = descriptorType;
-		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
+		ByteBuffer oldData = data;
+		data = newData;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_CONSTANT__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_CONSTANT__DATA, oldData, data));
 	}
 
 	/**
@@ -116,13 +117,22 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EShaderStage> getShaderStages()
+	public EShaderStage getStage()
 	{
-		if (shaderStages == null)
-		{
-			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.PUSH_CONSTANT__SHADER_STAGES);
-		}
-		return shaderStages;
+		return stage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStage(EShaderStage newStage)
+	{
+		EShaderStage oldStage = stage;
+		stage = newStage == null ? STAGE_EDEFAULT : newStage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_CONSTANT__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -135,10 +145,10 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_CONSTANT__DESCRIPTOR_TYPE:
-				return getDescriptorType();
-			case ResourcePackage.PUSH_CONSTANT__SHADER_STAGES:
-				return getShaderStages();
+			case ResourcePackage.PUSH_CONSTANT__DATA:
+				return getData();
+			case ResourcePackage.PUSH_CONSTANT__STAGE:
+				return getStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -154,12 +164,11 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_CONSTANT__DESCRIPTOR_TYPE:
-				setDescriptorType((EDescriptorType)newValue);
+			case ResourcePackage.PUSH_CONSTANT__DATA:
+				setData((ByteBuffer)newValue);
 				return;
-			case ResourcePackage.PUSH_CONSTANT__SHADER_STAGES:
-				getShaderStages().clear();
-				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
+			case ResourcePackage.PUSH_CONSTANT__STAGE:
+				setStage((EShaderStage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -175,11 +184,11 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_CONSTANT__DESCRIPTOR_TYPE:
-				setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
+			case ResourcePackage.PUSH_CONSTANT__DATA:
+				setData(DATA_EDEFAULT);
 				return;
-			case ResourcePackage.PUSH_CONSTANT__SHADER_STAGES:
-				getShaderStages().clear();
+			case ResourcePackage.PUSH_CONSTANT__STAGE:
+				setStage(STAGE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -195,10 +204,10 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_CONSTANT__DESCRIPTOR_TYPE:
-				return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-			case ResourcePackage.PUSH_CONSTANT__SHADER_STAGES:
-				return shaderStages != null && !shaderStages.isEmpty();
+			case ResourcePackage.PUSH_CONSTANT__DATA:
+				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
+			case ResourcePackage.PUSH_CONSTANT__STAGE:
+				return stage != STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -214,10 +223,10 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (descriptorType: ");
-		result.append(descriptorType);
-		result.append(", shaderStages: ");
-		result.append(shaderStages);
+		result.append(" (data: ");
+		result.append(data);
+		result.append(", stage: ");
+		result.append(stage);
 		result.append(')');
 		return result.toString();
 	}

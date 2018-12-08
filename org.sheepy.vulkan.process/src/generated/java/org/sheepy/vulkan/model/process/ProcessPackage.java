@@ -392,7 +392,7 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
+	 * The feature id for the '<em><b>Push Constant</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -456,7 +456,7 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_COMPOSITE_PIPELINE__DESCRIPTOR_SET = ABSTRACT_PIPELINE__DESCRIPTOR_SET;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
+	 * The feature id for the '<em><b>Push Constant</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -651,10 +651,10 @@ public interface ProcessPackage extends EPackage
 	EReference getAbstractPipeline_DescriptorSet();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getPushConstant <em>Push Constant</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getPushConstant <em>Push Constant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Push Constant</em>'.
+	 * @return the meta object for the reference '<em>Push Constant</em>'.
 	 * @see org.sheepy.vulkan.model.process.AbstractPipeline#getPushConstant()
 	 * @see #getAbstractPipeline()
 	 * @generated
@@ -841,7 +841,7 @@ public interface ProcessPackage extends EPackage
 		EReference ABSTRACT_PIPELINE__DESCRIPTOR_SET = eINSTANCE.getAbstractPipeline_DescriptorSet();
 
 		/**
-		 * The meta object literal for the '<em><b>Push Constant</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Push Constant</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

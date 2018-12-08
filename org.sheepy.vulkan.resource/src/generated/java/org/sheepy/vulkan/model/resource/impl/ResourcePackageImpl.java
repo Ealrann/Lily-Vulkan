@@ -763,6 +763,26 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPushConstant_Data()
+	{
+		return (EAttribute)pushConstantEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPushConstant_Stage()
+	{
+		return (EAttribute)pushConstantEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIDescriptor()
 	{
 		return iDescriptorEClass;
@@ -1222,6 +1242,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(samplerEClass, SAMPLER__MAX_ANISOTROPY);
 
 		pushConstantEClass = createEClass(PUSH_CONSTANT);
+		createEAttribute(pushConstantEClass, PUSH_CONSTANT__DATA);
+		createEAttribute(pushConstantEClass, PUSH_CONSTANT__STAGE);
 
 		iDescriptorEClass = createEClass(IDESCRIPTOR);
 		createEAttribute(iDescriptorEClass, IDESCRIPTOR__DESCRIPTOR_TYPE);
@@ -1322,7 +1344,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		fontEClass.getESuperTypes().add(this.getSampledResource());
 		abstractTextureEClass.getESuperTypes().add(this.getSampledResource());
 		textureEClass.getESuperTypes().add(this.getAbstractTexture());
-		pushConstantEClass.getESuperTypes().add(this.getPipelineResource());
+		pushConstantEClass.getESuperTypes().add(this.getBasicResource());
 		basicDescriptorSetEClass.getESuperTypes().add(this.getDescriptorSet());
 		bufferBarrierEClass.getESuperTypes().add(this.getBarrier());
 		abstractImageBarrierEClass.getESuperTypes().add(this.getBarrier());
@@ -1389,7 +1411,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getSampler_MaxLod(), theEcorePackage.getEInt(), "maxLod", "1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSampler_MaxAnisotropy(), theEcorePackage.getEFloat(), "maxAnisotropy", "1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPushConstant_Data(), this.getByteBuffer(), "data", null, 0, 1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPushConstant_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(), "descriptorType", null, 0, 1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

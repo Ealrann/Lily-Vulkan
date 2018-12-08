@@ -51,26 +51,26 @@ public interface AbstractPipeline extends IPipeline
 	void setDescriptorSet(DescriptorSet value);
 
 	/**
-	 * Returns the value of the '<em><b>Push Constant</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Push Constant</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Push Constant</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Push Constant</em>' containment reference.
+	 * @return the value of the '<em>Push Constant</em>' reference.
 	 * @see #setPushConstant(PushConstant)
 	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline_PushConstant()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	PushConstant getPushConstant();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getPushConstant <em>Push Constant</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getPushConstant <em>Push Constant</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Push Constant</em>' containment reference.
+	 * @param value the new value of the '<em>Push Constant</em>' reference.
 	 * @see #getPushConstant()
 	 * @generated
 	 */

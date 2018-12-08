@@ -44,7 +44,7 @@ interface IPipeline extends IProcessUnit
 abstract class AbstractPipeline extends IPipeline
 {
 	refers DescriptorSet descriptorSet
-	contains PushConstant pushConstant
+	refers PushConstant pushConstant
 }
 
 abstract class AbstractCompositePipeline extends AbstractPipeline

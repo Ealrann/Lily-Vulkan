@@ -171,8 +171,7 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				PushConstant pushConstant = (PushConstant)theEObject;
 				T result = casePushConstant(pushConstant);
-				if (result == null) result = casePipelineResource(pushConstant);
-				if (result == null) result = caseIDescriptor(pushConstant);
+				if (result == null) result = caseBasicResource(pushConstant);
 				if (result == null) result = caseIResource(pushConstant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

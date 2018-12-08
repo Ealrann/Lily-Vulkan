@@ -3,8 +3,6 @@
 package org.sheepy.vulkan.model.process.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -88,7 +86,7 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	protected DescriptorSet descriptorSet;
 
 	/**
-	 * The cached value of the '{@link #getPushConstant() <em>Push Constant</em>}' containment reference.
+	 * The cached value of the '{@link #getPushConstant() <em>Push Constant</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPushConstant()
@@ -214,6 +212,16 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 */
 	public PushConstant getPushConstant()
 	{
+		if (pushConstant != null && pushConstant.eIsProxy())
+		{
+			InternalEObject oldPushConstant = (InternalEObject)pushConstant;
+			pushConstant = (PushConstant)eResolveProxy(oldPushConstant);
+			if (pushConstant != oldPushConstant)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, oldPushConstant, pushConstant));
+			}
+		}
 		return pushConstant;
 	}
 
@@ -222,16 +230,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPushConstant(PushConstant newPushConstant, NotificationChain msgs)
+	public PushConstant basicGetPushConstant()
 	{
-		PushConstant oldPushConstant = pushConstant;
-		pushConstant = newPushConstant;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, oldPushConstant, newPushConstant);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		return pushConstant;
 	}
 
 	/**
@@ -241,34 +242,10 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 */
 	public void setPushConstant(PushConstant newPushConstant)
 	{
-		if (newPushConstant != pushConstant)
-		{
-			NotificationChain msgs = null;
-			if (pushConstant != null)
-				msgs = ((InternalEObject)pushConstant).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, null, msgs);
-			if (newPushConstant != null)
-				msgs = ((InternalEObject)newPushConstant).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, null, msgs);
-			msgs = basicSetPushConstant(newPushConstant, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, newPushConstant, newPushConstant));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
-				return basicSetPushConstant(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		PushConstant oldPushConstant = pushConstant;
+		pushConstant = newPushConstant;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, oldPushConstant, pushConstant));
 	}
 
 	/**
@@ -289,7 +266,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 				if (resolve) return getDescriptorSet();
 				return basicGetDescriptorSet();
 			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
-				return getPushConstant();
+				if (resolve) return getPushConstant();
+				return basicGetPushConstant();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

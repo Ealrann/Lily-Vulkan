@@ -2,25 +2,35 @@ package org.sheepy.vulkan.resource.buffer;
 
 import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
-import java.nio.ByteBuffer;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPushConstantRange;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.resource.ResourceAdapter;
 
-public abstract class AbstractPushConstantAdapter extends ResourceAdapter
+public class PushConstantAdapter extends AbstractStatefullAdapter implements IVulkanAdapter
 {
-	public ByteBuffer buffer;
-
 	protected PushConstant pushConstant;
+
+	protected boolean needPush = true;
+
+	@Override
+	public void notifyChanged(Notification notification)
+	{
+		super.notifyChanged(notification);
+
+		if (notification.getFeature() == ResourcePackage.Literals.PUSH_CONSTANT__DATA)
+		{
+			needPush = true;
+		}
+	}
 
 	@Override
 	public void setTarget(Notifier target)
@@ -30,8 +40,8 @@ public abstract class AbstractPushConstantAdapter extends ResourceAdapter
 
 	public VkPushConstantRange.Buffer allocRange(MemoryStack stack)
 	{
-		final int size = getSize();
-		final EPipelineStage stage = getStage();
+		final int size = pushConstant.getData().capacity();
+		final EShaderStage stage = pushConstant.getStage();
 
 		final VkPushConstantRange.Buffer pushConstantRange = VkPushConstantRange.callocStack(1,
 				stack);
@@ -42,22 +52,15 @@ public abstract class AbstractPushConstantAdapter extends ResourceAdapter
 
 	public void pushConstants(VkCommandBuffer commandBuffer, long pipelineLayout)
 	{
-		updateBuffer();
-		final EPipelineStage stage = getStage();
-		vkCmdPushConstants(commandBuffer, pipelineLayout, stage.getValue(), 0, buffer);
-	}
-	
-	@Override
-	public void flatAllocate(MemoryStack stack)
-	{
-		final int size = getSize();
-		buffer = MemoryUtil.memAlloc(size);
+		final EShaderStage stage = pushConstant.getStage();
+		vkCmdPushConstants(commandBuffer, pipelineLayout, stage.getValue(), 0,
+				pushConstant.getData());
+		needPush = false;
 	}
 
-	@Override
-	public void free()
+	public boolean needRecord()
 	{
-		MemoryUtil.memFree(buffer);
+		return needPush;
 	}
 
 	@Override
@@ -66,15 +69,8 @@ public abstract class AbstractPushConstantAdapter extends ResourceAdapter
 		return ResourcePackage.Literals.PUSH_CONSTANT == eClass;
 	}
 
-	public static AbstractPushConstantAdapter adapt(PushConstant object)
+	public static PushConstantAdapter adapt(PushConstant object)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(object, AbstractPushConstantAdapter.class);
+		return IServiceAdapterFactory.INSTANCE.adapt(object, PushConstantAdapter.class);
 	}
-
-	protected abstract void updateBuffer();
-	
-	protected abstract int getSize();
-	
-	protected abstract EPipelineStage getStage();
-
 }

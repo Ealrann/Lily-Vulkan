@@ -17,7 +17,7 @@ import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.PushConstant;
-import org.sheepy.vulkan.resource.buffer.AbstractPushConstantAdapter;
+import org.sheepy.vulkan.resource.buffer.PushConstantAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
 
 public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
@@ -39,15 +39,36 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	@Override
 	public final boolean isAllocationDirty()
 	{
+		boolean res = false;
+
 		for (IAllocable dependency : allocationDependencies)
 		{
 			if (dependency.isAllocationDirty())
 			{
-				return true;
+				res = true;
+				break;
 			}
 		}
 
-		return false;
+		return res;
+	}
+
+	@Override
+	public boolean isRecordNeeded()
+	{
+		boolean res = super.isRecordNeeded();
+
+		if (res == false)
+		{
+			PushConstant pushConstant = getPushConstant();
+			if (pushConstant != null)
+			{
+				var pushAdapter = PushConstantAdapter.adapt(pushConstant);
+				res |= pushAdapter.needRecord();
+			}
+		}
+
+		return res;
 	}
 
 	@Override
@@ -68,7 +89,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		final var pushConstant = getPushConstant();
 		if (pushConstant != null)
 		{
-			final var pushConstantAdapter = AbstractPushConstantAdapter.adapt(pushConstant);
+			final var pushConstantAdapter = PushConstantAdapter.adapt(pushConstant);
 			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 			pushConstantAdapter.pushConstants(vkCommandBuffer, pipelineLayout);
 		}
@@ -117,7 +138,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		var pushConstant = getPushConstant();
 		if (pushConstant != null)
 		{
-			final var adapter = AbstractPushConstantAdapter.adapt(pushConstant);
+			final var adapter = PushConstantAdapter.adapt(pushConstant);
 			info.pPushConstantRanges(adapter.allocRange(stack));
 		}
 	}

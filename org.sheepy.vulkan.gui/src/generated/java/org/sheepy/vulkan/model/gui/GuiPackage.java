@@ -99,7 +99,7 @@ public interface GuiPackage extends EPackage
 	int GUI_PIPELINE__DESCRIPTOR_SET = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
+	 * The feature id for the '<em><b>Push Constant</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

@@ -92,8 +92,10 @@ class Sampler
 
 type JavaModule wraps Module
 
-abstract class PushConstant extends PipelineResource
+class PushConstant extends BasicResource
 {
+	ByteBuffer data
+	EShaderStage stage
 }
 
 interface IDescriptor

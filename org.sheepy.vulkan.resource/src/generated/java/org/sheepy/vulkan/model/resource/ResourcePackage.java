@@ -856,22 +856,22 @@ public interface ResourcePackage extends EPackage
 	int PUSH_CONSTANT = 10;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT__DESCRIPTOR_TYPE = PIPELINE_RESOURCE__DESCRIPTOR_TYPE;
+	int PUSH_CONSTANT__DATA = BASIC_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT__SHADER_STAGES = PIPELINE_RESOURCE__SHADER_STAGES;
+	int PUSH_CONSTANT__STAGE = BASIC_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Push Constant</em>' class.
@@ -880,7 +880,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT_FEATURE_COUNT = PIPELINE_RESOURCE_FEATURE_COUNT + 0;
+	int PUSH_CONSTANT_FEATURE_COUNT = BASIC_RESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Push Constant</em>' class.
@@ -889,7 +889,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT_OPERATION_COUNT = PIPELINE_RESOURCE_OPERATION_COUNT + 0;
+	int PUSH_CONSTANT_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.DescriptorSet <em>Descriptor Set</em>}' class.
@@ -2057,6 +2057,28 @@ public interface ResourcePackage extends EPackage
 	EClass getPushConstant();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.PushConstant#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.sheepy.vulkan.model.resource.PushConstant#getData()
+	 * @see #getPushConstant()
+	 * @generated
+	 */
+	EAttribute getPushConstant_Data();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.PushConstant#getStage <em>Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage</em>'.
+	 * @see org.sheepy.vulkan.model.resource.PushConstant#getStage()
+	 * @see #getPushConstant()
+	 * @generated
+	 */
+	EAttribute getPushConstant_Stage();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2856,6 +2878,22 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EClass PUSH_CONSTANT = eINSTANCE.getPushConstant();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PUSH_CONSTANT__DATA = eINSTANCE.getPushConstant_Data();
+
+		/**
+		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PUSH_CONSTANT__STAGE = eINSTANCE.getPushConstant_Stage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.
