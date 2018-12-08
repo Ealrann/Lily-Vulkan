@@ -133,7 +133,7 @@ public class TreeAllocator implements IAllocator
 
 	private void deepFree()
 	{
-		for (int i = gatheredAllocables.size() - 1; i > 0; i--)
+		for (int i = gatheredAllocables.size() - 1; i >= 0; i--)
 		{
 			IAllocableWrapper wrapper = gatheredAllocables.get(i);
 			wrapper.free();
