@@ -5,8 +5,8 @@ package org.sheepy.vulkan.model.process;
 import org.eclipse.emf.common.util.EList;
 
 import org.sheepy.vulkan.model.IProcess;
-
 import org.sheepy.vulkan.model.IResource;
+
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 
 /**

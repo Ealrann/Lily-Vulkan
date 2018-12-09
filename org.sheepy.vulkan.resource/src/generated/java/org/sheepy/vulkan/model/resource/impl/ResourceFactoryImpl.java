@@ -73,7 +73,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.FONT: return createFont();
 			case ResourcePackage.TEXTURE: return createTexture();
 			case ResourcePackage.SAMPLER: return createSampler();
-			case ResourcePackage.PUSH_CONSTANT: return createPushConstant();
+			case ResourcePackage.CONSTANTS: return createConstants();
 			case ResourcePackage.BASIC_DESCRIPTOR_SET: return createBasicDescriptorSet();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
@@ -197,10 +197,10 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushConstant createPushConstant()
+	public Constants createConstants()
 	{
-		PushConstantImpl pushConstant = new PushConstantImpl();
-		return pushConstant;
+		ConstantsImpl constants = new ConstantsImpl();
+		return constants;
 	}
 
 	/**

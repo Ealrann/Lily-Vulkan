@@ -355,6 +355,34 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE_OPERATION_COUNT = IPROCESS_UNIT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.IPipelineUnit
+	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
+	 * @generated
+	 */
+	int IPIPELINE_UNIT = 6;
+
+	/**
+	 * The number of structural features of the '<em>IPipeline Unit</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_UNIT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IPipeline Unit</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_UNIT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -362,7 +390,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 6;
+	int ABSTRACT_PIPELINE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -383,22 +411,31 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__STAGE = IPIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PIPELINE__UNITS = IPIPELINE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 0;
+	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' reference.
+	 * The feature id for the '<em><b>Constants</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__PUSH_CONSTANT = IPIPELINE_FEATURE_COUNT + 1;
+	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
@@ -407,7 +444,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 2;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Abstract Pipeline</em>' class.
@@ -426,7 +463,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
 	 * @generated
 	 */
-	int ABSTRACT_COMPOSITE_PIPELINE = 7;
+	int ABSTRACT_COMPOSITE_PIPELINE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -447,6 +484,15 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_COMPOSITE_PIPELINE__STAGE = ABSTRACT_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_COMPOSITE_PIPELINE__UNITS = ABSTRACT_PIPELINE__UNITS;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -456,13 +502,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_COMPOSITE_PIPELINE__DESCRIPTOR_SET = ABSTRACT_PIPELINE__DESCRIPTOR_SET;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' reference.
+	 * The feature id for the '<em><b>Constants</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__PUSH_CONSTANT = ABSTRACT_PIPELINE__PUSH_CONSTANT;
+	int ABSTRACT_COMPOSITE_PIPELINE__CONSTANTS = ABSTRACT_PIPELINE__CONSTANTS;
 
 	/**
 	 * The feature id for the '<em><b>Pipelines</b></em>' containment reference list.
@@ -490,6 +536,34 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_COMPOSITE_PIPELINE_OPERATION_COUNT = ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.impl.PushConstantImpl
+	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
+	 * @generated
+	 */
+	int PUSH_CONSTANT = 9;
+
+	/**
+	 * The number of structural features of the '<em>Push Constant</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT_FEATURE_COUNT = IPIPELINE_UNIT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Push Constant</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT_OPERATION_COUNT = IPIPELINE_UNIT_OPERATION_COUNT + 0;
 
 
 	/**
@@ -630,6 +704,16 @@ public interface ProcessPackage extends EPackage
 	EClass getIPipeline();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IPipeline Unit</em>'.
+	 * @see org.sheepy.vulkan.model.process.IPipelineUnit
+	 * @generated
+	 */
+	EClass getIPipelineUnit();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -638,6 +722,17 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EClass getAbstractPipeline();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getUnits <em>Units</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Units</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractPipeline#getUnits()
+	 * @see #getAbstractPipeline()
+	 * @generated
+	 */
+	EReference getAbstractPipeline_Units();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
@@ -651,15 +746,15 @@ public interface ProcessPackage extends EPackage
 	EReference getAbstractPipeline_DescriptorSet();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getPushConstant <em>Push Constant</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Push Constant</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractPipeline#getPushConstant()
+	 * @return the meta object for the reference '<em>Constants</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractPipeline#getConstants()
 	 * @see #getAbstractPipeline()
 	 * @generated
 	 */
-	EReference getAbstractPipeline_PushConstant();
+	EReference getAbstractPipeline_Constants();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.AbstractCompositePipeline <em>Abstract Composite Pipeline</em>}'.
@@ -681,6 +776,16 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractCompositePipeline_Pipelines();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.PushConstant <em>Push Constant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Push Constant</em>'.
+	 * @see org.sheepy.vulkan.model.process.PushConstant
+	 * @generated
+	 */
+	EClass getPushConstant();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -823,6 +928,16 @@ public interface ProcessPackage extends EPackage
 		EClass IPIPELINE = eINSTANCE.getIPipeline();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.IPipelineUnit
+		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
+		 * @generated
+		 */
+		EClass IPIPELINE_UNIT = eINSTANCE.getIPipelineUnit();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -833,6 +948,14 @@ public interface ProcessPackage extends EPackage
 		EClass ABSTRACT_PIPELINE = eINSTANCE.getAbstractPipeline();
 
 		/**
+		 * The meta object literal for the '<em><b>Units</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PIPELINE__UNITS = eINSTANCE.getAbstractPipeline_Units();
+
+		/**
 		 * The meta object literal for the '<em><b>Descriptor Set</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -841,12 +964,12 @@ public interface ProcessPackage extends EPackage
 		EReference ABSTRACT_PIPELINE__DESCRIPTOR_SET = eINSTANCE.getAbstractPipeline_DescriptorSet();
 
 		/**
-		 * The meta object literal for the '<em><b>Push Constant</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Constants</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PIPELINE__PUSH_CONSTANT = eINSTANCE.getAbstractPipeline_PushConstant();
+		EReference ABSTRACT_PIPELINE__CONSTANTS = eINSTANCE.getAbstractPipeline_Constants();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.AbstractCompositePipelineImpl <em>Abstract Composite Pipeline</em>}' class.
@@ -865,6 +988,16 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference ABSTRACT_COMPOSITE_PIPELINE__PIPELINES = eINSTANCE.getAbstractCompositePipeline_Pipelines();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.impl.PushConstantImpl
+		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
+		 * @generated
+		 */
+		EClass PUSH_CONSTANT = eINSTANCE.getPushConstant();
 
 	}
 

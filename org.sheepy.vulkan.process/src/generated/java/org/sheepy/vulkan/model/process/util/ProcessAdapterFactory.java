@@ -108,6 +108,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createIPipelineAdapter();
 			}
 			@Override
+			public Adapter caseIPipelineUnit(IPipelineUnit object)
+			{
+				return createIPipelineUnitAdapter();
+			}
+			@Override
 			public Adapter caseAbstractPipeline(AbstractPipeline object)
 			{
 				return createAbstractPipelineAdapter();
@@ -116,6 +121,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseAbstractCompositePipeline(AbstractCompositePipeline object)
 			{
 				return createAbstractCompositePipelineAdapter();
+			}
+			@Override
+			public Adapter casePushConstant(PushConstant object)
+			{
+				return createPushConstantAdapter();
 			}
 			@Override
 			public Adapter caseIEnginePart(IEnginePart object)
@@ -240,6 +250,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.IPipelineUnit
+	 * @generated
+	 */
+	public Adapter createIPipelineUnitAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -265,6 +290,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAbstractCompositePipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.PushConstant <em>Push Constant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.PushConstant
+	 * @generated
+	 */
+	public Adapter createPushConstantAdapter()
 	{
 		return null;
 	}

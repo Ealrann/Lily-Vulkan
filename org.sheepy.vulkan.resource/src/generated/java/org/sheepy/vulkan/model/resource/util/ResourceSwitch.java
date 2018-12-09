@@ -6,7 +6,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.sheepy.vulkan.model.IResource;
+
 import org.sheepy.vulkan.model.resource.*;
 
 /**
@@ -167,12 +169,22 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.PUSH_CONSTANT:
+			case ResourcePackage.ABSTRACT_CONSTANTS:
 			{
-				PushConstant pushConstant = (PushConstant)theEObject;
-				T result = casePushConstant(pushConstant);
-				if (result == null) result = caseBasicResource(pushConstant);
-				if (result == null) result = caseIResource(pushConstant);
+				AbstractConstants abstractConstants = (AbstractConstants)theEObject;
+				T result = caseAbstractConstants(abstractConstants);
+				if (result == null) result = caseBasicResource(abstractConstants);
+				if (result == null) result = caseIResource(abstractConstants);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.CONSTANTS:
+			{
+				Constants constants = (Constants)theEObject;
+				T result = caseConstants(constants);
+				if (result == null) result = caseAbstractConstants(constants);
+				if (result == null) result = caseBasicResource(constants);
+				if (result == null) result = caseIResource(constants);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -467,17 +479,33 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Push Constant</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Constants</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Push Constant</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Constants</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePushConstant(PushConstant object)
+	public T caseAbstractConstants(AbstractConstants object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constants</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constants</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstants(Constants object)
 	{
 		return null;
 	}

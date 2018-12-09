@@ -23,8 +23,6 @@ import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.model.process.compute.Computer;
-import org.sheepy.vulkan.model.process.compute.ComputerBufferBarrier;
-import org.sheepy.vulkan.model.process.compute.IComputer;
 
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
@@ -55,21 +53,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iComputerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass computerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass computerBufferBarrierEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -167,19 +151,9 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComputePipeline_Units()
-	{
-		return (EReference)computePipelineEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getComputePipeline_WorkgroupSizeX()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -189,7 +163,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 */
 	public EAttribute getComputePipeline_WorkgroupSizeY()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -199,7 +173,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 */
 	public EAttribute getComputePipeline_WorkgroupSizeZ()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -209,7 +183,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 */
 	public EAttribute getComputePipeline_Width()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -219,7 +193,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 */
 	public EAttribute getComputePipeline_Height()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -229,17 +203,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 */
 	public EAttribute getComputePipeline_Depth()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getIComputer()
-	{
-		return iComputerEClass;
+		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -260,26 +224,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	public EReference getComputer_Shader()
 	{
 		return (EReference)computerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getComputerBufferBarrier()
-	{
-		return computerBufferBarrierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getComputerBufferBarrier_BufferBarrier()
-	{
-		return (EReference)computerBufferBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -315,7 +259,6 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		computeProcessEClass = createEClass(COMPUTE_PROCESS);
 
 		computePipelineEClass = createEClass(COMPUTE_PIPELINE);
-		createEReference(computePipelineEClass, COMPUTE_PIPELINE__UNITS);
 		createEAttribute(computePipelineEClass, COMPUTE_PIPELINE__WORKGROUP_SIZE_X);
 		createEAttribute(computePipelineEClass, COMPUTE_PIPELINE__WORKGROUP_SIZE_Y);
 		createEAttribute(computePipelineEClass, COMPUTE_PIPELINE__WORKGROUP_SIZE_Z);
@@ -323,13 +266,8 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		createEAttribute(computePipelineEClass, COMPUTE_PIPELINE__HEIGHT);
 		createEAttribute(computePipelineEClass, COMPUTE_PIPELINE__DEPTH);
 
-		iComputerEClass = createEClass(ICOMPUTER);
-
 		computerEClass = createEClass(COMPUTER);
 		createEReference(computerEClass, COMPUTER__SHADER);
-
-		computerBufferBarrierEClass = createEClass(COMPUTER_BUFFER_BARRIER);
-		createEReference(computerBufferBarrierEClass, COMPUTER_BUFFER_BARRIER__BUFFER_BARRIER);
 	}
 
 	/**
@@ -368,14 +306,12 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		// Add supertypes to classes
 		computeProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
 		computePipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
-		computerEClass.getESuperTypes().add(this.getIComputer());
-		computerBufferBarrierEClass.getESuperTypes().add(this.getIComputer());
+		computerEClass.getESuperTypes().add(theProcessPackage.getIPipelineUnit());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(computePipelineEClass, ComputePipeline.class, "ComputePipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputePipeline_Units(), this.getIComputer(), null, "units", null, 0, -1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComputePipeline_WorkgroupSizeX(), theEcorePackage.getEInt(), "workgroupSizeX", "32", 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComputePipeline_WorkgroupSizeY(), theEcorePackage.getEInt(), "workgroupSizeY", "32", 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComputePipeline_WorkgroupSizeZ(), theEcorePackage.getEInt(), "workgroupSizeZ", "32", 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -383,13 +319,8 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		initEAttribute(getComputePipeline_Height(), theEcorePackage.getEInt(), "height", null, 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComputePipeline_Depth(), theEcorePackage.getEInt(), "depth", null, 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iComputerEClass, IComputer.class, "IComputer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(computerEClass, Computer.class, "Computer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComputer_Shader(), theResourcePackage.getShader(), null, "shader", null, 0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(computerBufferBarrierEClass, ComputerBufferBarrier.class, "ComputerBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputerBufferBarrier_BufferBarrier(), theResourcePackage.getBufferBarrier(), null, "bufferBarrier", null, 0, 1, ComputerBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -2,8 +2,10 @@
  */
 package org.sheepy.vulkan.model.process;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.PushConstant;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,8 +16,9 @@ import org.sheepy.vulkan.model.resource.PushConstant;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.vulkan.model.process.AbstractPipeline#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.AbstractPipeline#getPushConstant <em>Push Constant</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline()
@@ -24,6 +27,22 @@ import org.sheepy.vulkan.model.resource.PushConstant;
  */
 public interface AbstractPipeline extends IPipeline
 {
+	/**
+	 * Returns the value of the '<em><b>Units</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.process.IPipelineUnit}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Units</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Units</em>' containment reference list.
+	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline_Units()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<IPipelineUnit> getUnits();
+
 	/**
 	 * Returns the value of the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -51,29 +70,29 @@ public interface AbstractPipeline extends IPipeline
 	void setDescriptorSet(DescriptorSet value);
 
 	/**
-	 * Returns the value of the '<em><b>Push Constant</b></em>' reference.
+	 * Returns the value of the '<em><b>Constants</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Push Constant</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Constants</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Push Constant</em>' reference.
-	 * @see #setPushConstant(PushConstant)
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline_PushConstant()
+	 * @return the value of the '<em>Constants</em>' reference.
+	 * @see #setConstants(AbstractConstants)
+	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline_Constants()
 	 * @model
 	 * @generated
 	 */
-	PushConstant getPushConstant();
+	AbstractConstants getConstants();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getPushConstant <em>Push Constant</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Push Constant</em>' reference.
-	 * @see #getPushConstant()
+	 * @param value the new value of the '<em>Constants</em>' reference.
+	 * @see #getConstants()
 	 * @generated
 	 */
-	void setPushConstant(PushConstant value);
+	void setConstants(AbstractConstants value);
 
 } // AbstractPipeline

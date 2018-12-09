@@ -3,30 +3,30 @@
 package org.sheepy.vulkan.model.resource.impl;
 
 import java.nio.ByteBuffer;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.model.resource.PushConstant;
+
+import org.sheepy.vulkan.model.resource.Constants;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Push Constant</b></em>'.
+ * An implementation of the model object '<em><b>Constants</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl#getData <em>Data</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.ConstantsImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PushConstantImpl extends MinimalEObjectImpl.Container implements PushConstant
+public class ConstantsImpl extends AbstractConstantsImpl implements Constants
 {
 	/**
 	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
@@ -49,31 +49,11 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	protected ByteBuffer data = DATA_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EShaderStage STAGE_EDEFAULT = EShaderStage.VERTEX_BIT;
-
-	/**
-	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EShaderStage stage = STAGE_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushConstantImpl()
+	public ConstantsImpl()
 	{
 		super();
 	}
@@ -86,7 +66,7 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.PUSH_CONSTANT;
+		return ResourcePackage.Literals.CONSTANTS;
 	}
 
 	/**
@@ -109,30 +89,7 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 		ByteBuffer oldData = data;
 		data = newData;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_CONSTANT__DATA, oldData, data));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EShaderStage getStage()
-	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStage(EShaderStage newStage)
-	{
-		EShaderStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PUSH_CONSTANT__STAGE, oldStage, stage));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANTS__DATA, oldData, data));
 	}
 
 	/**
@@ -145,10 +102,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_CONSTANT__DATA:
+			case ResourcePackage.CONSTANTS__DATA:
 				return getData();
-			case ResourcePackage.PUSH_CONSTANT__STAGE:
-				return getStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -158,17 +113,13 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_CONSTANT__DATA:
+			case ResourcePackage.CONSTANTS__DATA:
 				setData((ByteBuffer)newValue);
-				return;
-			case ResourcePackage.PUSH_CONSTANT__STAGE:
-				setStage((EShaderStage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -184,11 +135,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_CONSTANT__DATA:
+			case ResourcePackage.CONSTANTS__DATA:
 				setData(DATA_EDEFAULT);
-				return;
-			case ResourcePackage.PUSH_CONSTANT__STAGE:
-				setStage(STAGE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -204,10 +152,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PUSH_CONSTANT__DATA:
+			case ResourcePackage.CONSTANTS__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
-			case ResourcePackage.PUSH_CONSTANT__STAGE:
-				return stage != STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -225,10 +171,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (data: ");
 		result.append(data);
-		result.append(", stage: ");
-		result.append(stage);
 		result.append(')');
 		return result.toString();
 	}
 
-} //PushConstantImpl
+} //ConstantsImpl

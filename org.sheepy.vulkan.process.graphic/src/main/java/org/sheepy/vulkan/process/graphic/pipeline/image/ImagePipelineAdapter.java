@@ -8,8 +8,8 @@ import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.process.IGraphicContextAdapter;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
@@ -107,9 +107,9 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	}
 
 	@Override
-	protected PushConstant getPushConstant()
+	protected AbstractConstants getConstants()
 	{
-		return ((ImagePipeline) target).getPushConstant();
+		return ((ImagePipeline) target).getConstants();
 	}
 
 	@Override

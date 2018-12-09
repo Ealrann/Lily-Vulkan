@@ -3,8 +3,10 @@
 package org.sheepy.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
+
 import org.sheepy.vulkan.model.process.impl.AbstractProcessImpl;
 
 /**

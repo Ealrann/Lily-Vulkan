@@ -2,8 +2,6 @@
  */
 package org.sheepy.vulkan.model.process.compute;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 
 /**
@@ -15,7 +13,6 @@ import org.sheepy.vulkan.model.process.AbstractPipeline;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX <em>Workgroup Size X</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY <em>Workgroup Size Y</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ <em>Workgroup Size Z</em>}</li>
@@ -30,22 +27,6 @@ import org.sheepy.vulkan.model.process.AbstractPipeline;
  */
 public interface ComputePipeline extends AbstractPipeline
 {
-	/**
-	 * Returns the value of the '<em><b>Units</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.process.compute.IComputer}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Units</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Units</em>' containment reference list.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputePipeline_Units()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<IComputer> getUnits();
-
 	/**
 	 * Returns the value of the '<em><b>Workgroup Size X</b></em>' attribute.
 	 * The default value is <code>"32"</code>.

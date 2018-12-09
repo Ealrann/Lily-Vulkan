@@ -10,15 +10,16 @@ import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.util.Logger;
+import org.sheepy.vulkan.model.process.IPipelineUnit;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.Computer;
-import org.sheepy.vulkan.model.process.compute.IComputer;
+import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.vulkan.process.compute.process.IComputeContextAdapter;
 import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
+import org.sheepy.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.vulkan.resource.shader.ShaderAdapter;
 
 public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeCommandBuffer>
@@ -48,7 +49,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 		var units = pipeline.getUnits();
 		int size = 0;
 
-		for (IComputer unit : units)
+		for (IPipelineUnit unit : units)
 		{
 			if (unit instanceof Computer)
 			{
@@ -60,7 +61,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 		var shaderInfo = VkPipelineShaderStageCreateInfo.calloc();
 
 		int index = 0;
-		for (IComputer unit : units)
+		for (IPipelineUnit unit : units)
 		{
 			if (unit instanceof Computer)
 			{
@@ -121,9 +122,9 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 	protected void recordComputers(ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
-		for (final IComputer computer : pipeline.getUnits())
+		for (final IPipelineUnit computer : pipeline.getUnits())
 		{
-			final var adapter = IComputerAdapter.adapt(computer);
+			final var adapter = IPipelineUnitAdapter.adapt(computer);
 			adapter.record(commandBuffer, bindPoint);
 		}
 	}
@@ -144,9 +145,9 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	}
 
 	@Override
-	protected PushConstant getPushConstant()
+	protected AbstractConstants getConstants()
 	{
-		return ((ComputePipeline) target).getPushConstant();
+		return ((ComputePipeline) target).getConstants();
 	}
 
 	@Override

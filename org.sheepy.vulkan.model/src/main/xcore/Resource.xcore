@@ -92,10 +92,14 @@ class Sampler
 
 type JavaModule wraps Module
 
-class PushConstant extends BasicResource
+abstract class AbstractConstants extends BasicResource
+{
+	EShaderStage stage
+}
+
+class Constants extends AbstractConstants
 {
 	ByteBuffer data
-	EShaderStage stage
 }
 
 interface IDescriptor

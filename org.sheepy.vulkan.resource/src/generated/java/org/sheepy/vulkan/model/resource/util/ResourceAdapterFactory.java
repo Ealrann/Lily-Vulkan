@@ -8,7 +8,9 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.sheepy.vulkan.model.IResource;
+
 import org.sheepy.vulkan.model.resource.*;
 
 /**
@@ -125,9 +127,14 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createSamplerAdapter();
 			}
 			@Override
-			public Adapter casePushConstant(PushConstant object)
+			public Adapter caseAbstractConstants(AbstractConstants object)
 			{
-				return createPushConstantAdapter();
+				return createAbstractConstantsAdapter();
+			}
+			@Override
+			public Adapter caseConstants(Constants object)
+			{
+				return createConstantsAdapter();
 			}
 			@Override
 			public Adapter caseIDescriptor(IDescriptor object)
@@ -382,16 +389,31 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.PushConstant <em>Push Constant</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.AbstractConstants <em>Abstract Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.PushConstant
+	 * @see org.sheepy.vulkan.model.resource.AbstractConstants
 	 * @generated
 	 */
-	public Adapter createPushConstantAdapter()
+	public Adapter createAbstractConstantsAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Constants <em>Constants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.Constants
+	 * @generated
+	 */
+	public Adapter createConstantsAdapter()
 	{
 		return null;
 	}

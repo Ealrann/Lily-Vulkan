@@ -13,6 +13,6 @@ package org.sheepy.vulkan.model.process;
  * @model abstract="true"
  * @generated
  */
-public interface PipelineBarrier extends IProcessUnit
+public interface PipelineBarrier extends IProcessUnit, IPipelineUnit
 {
 } // PipelineBarrier

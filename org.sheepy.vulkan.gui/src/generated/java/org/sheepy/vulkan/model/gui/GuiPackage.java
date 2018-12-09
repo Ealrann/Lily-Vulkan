@@ -90,6 +90,15 @@ public interface GuiPackage extends EPackage
 	int GUI_PIPELINE__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_PIPELINE__UNITS = GraphicPackage.GRAPHICS_PIPELINE__UNITS;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -99,13 +108,13 @@ public interface GuiPackage extends EPackage
 	int GUI_PIPELINE__DESCRIPTOR_SET = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' reference.
+	 * The feature id for the '<em><b>Constants</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_PIPELINE__PUSH_CONSTANT = GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT;
+	int GUI_PIPELINE__CONSTANTS = GraphicPackage.GRAPHICS_PIPELINE__CONSTANTS;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.

@@ -5,8 +5,8 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
+import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
@@ -50,9 +50,9 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	protected PushConstant getPushConstant()
+	protected AbstractConstants getConstants()
 	{
-		return ((MeshPipeline) target).getPushConstant();
+		return ((MeshPipeline) target).getConstants();
 	}
 
 	@Override

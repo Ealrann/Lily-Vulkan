@@ -19,10 +19,10 @@ import org.sheepy.vulkan.model.impl.ColorDomainImpl;
 import org.sheepy.vulkan.model.impl.SharedResourcesImpl;
 import org.sheepy.vulkan.model.impl.VulkanApplicationImpl;
 import org.sheepy.vulkan.model.impl.VulkanEngineImpl;
+import org.sheepy.vulkan.model.process.IPipelineUnit;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.model.process.compute.Computer;
-import org.sheepy.vulkan.model.process.compute.IComputer;
 import org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl;
 import org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl;
 import org.sheepy.vulkan.model.process.compute.impl.ComputerImpl;
@@ -198,7 +198,7 @@ public class ModelFactory
 	}
 
 	private ComputePipeline createPipeline(	ComputeProcess process,
-											IComputer computer,
+											IPipelineUnit computer,
 											IDescriptor... descriptors)
 	{
 		var descriptorSet = new BasicDescriptorSetImpl();

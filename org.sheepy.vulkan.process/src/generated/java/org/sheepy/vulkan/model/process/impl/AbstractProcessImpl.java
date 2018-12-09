@@ -17,7 +17,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.vulkan.model.IResource;
+
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.ProcessPackage;

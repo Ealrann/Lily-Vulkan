@@ -2,20 +2,30 @@
  */
 package org.sheepy.vulkan.model.process.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 import org.sheepy.vulkan.model.process.AbstractPipeline;
+import org.sheepy.vulkan.model.process.IPipelineUnit;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
+import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.PushConstant;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,8 +37,9 @@ import org.sheepy.vulkan.model.resource.PushConstant;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSet <em>Descriptor Set</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#getPushConstant <em>Push Constant</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl#getConstants <em>Constants</em>}</li>
  * </ul>
  *
  * @generated
@@ -76,6 +87,16 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getUnits() <em>Units</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnits()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IPipelineUnit> units;
+
+	/**
 	 * The cached value of the '{@link #getDescriptorSet() <em>Descriptor Set</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,14 +107,14 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	protected DescriptorSet descriptorSet;
 
 	/**
-	 * The cached value of the '{@link #getPushConstant() <em>Push Constant</em>}' reference.
+	 * The cached value of the '{@link #getConstants() <em>Constants</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPushConstant()
+	 * @see #getConstants()
 	 * @generated
 	 * @ordered
 	 */
-	protected PushConstant pushConstant;
+	protected AbstractConstants constants;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -167,6 +188,20 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<IPipelineUnit> getUnits()
+	{
+		if (units == null)
+		{
+			units = new EObjectContainmentEList<IPipelineUnit>(IPipelineUnit.class, this, ProcessPackage.ABSTRACT_PIPELINE__UNITS);
+		}
+		return units;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DescriptorSet getDescriptorSet()
 	{
 		if (descriptorSet != null && descriptorSet.eIsProxy())
@@ -210,19 +245,19 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushConstant getPushConstant()
+	public AbstractConstants getConstants()
 	{
-		if (pushConstant != null && pushConstant.eIsProxy())
+		if (constants != null && constants.eIsProxy())
 		{
-			InternalEObject oldPushConstant = (InternalEObject)pushConstant;
-			pushConstant = (PushConstant)eResolveProxy(oldPushConstant);
-			if (pushConstant != oldPushConstant)
+			InternalEObject oldConstants = (InternalEObject)constants;
+			constants = (AbstractConstants)eResolveProxy(oldConstants);
+			if (constants != oldConstants)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, oldPushConstant, pushConstant));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS, oldConstants, constants));
 			}
 		}
-		return pushConstant;
+		return constants;
 	}
 
 	/**
@@ -230,9 +265,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushConstant basicGetPushConstant()
+	public AbstractConstants basicGetConstants()
 	{
-		return pushConstant;
+		return constants;
 	}
 
 	/**
@@ -240,12 +275,28 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPushConstant(PushConstant newPushConstant)
+	public void setConstants(AbstractConstants newConstants)
 	{
-		PushConstant oldPushConstant = pushConstant;
-		pushConstant = newPushConstant;
+		AbstractConstants oldConstants = constants;
+		constants = newConstants;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT, oldPushConstant, pushConstant));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS, oldConstants, constants));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+				return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -262,12 +313,14 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 				return isEnabled();
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				return getStage();
+			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+				return getUnits();
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				if (resolve) return getDescriptorSet();
 				return basicGetDescriptorSet();
-			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
-				if (resolve) return getPushConstant();
-				return basicGetPushConstant();
+			case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
+				if (resolve) return getConstants();
+				return basicGetConstants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -277,6 +330,7 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -288,11 +342,15 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				setStage((ECommandStage)newValue);
 				return;
+			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+				getUnits().clear();
+				getUnits().addAll((Collection<? extends IPipelineUnit>)newValue);
+				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				setDescriptorSet((DescriptorSet)newValue);
 				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
-				setPushConstant((PushConstant)newValue);
+			case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
+				setConstants((AbstractConstants)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -314,11 +372,14 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				setStage(STAGE_EDEFAULT);
 				return;
+			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+				getUnits().clear();
+				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				setDescriptorSet((DescriptorSet)null);
 				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
-				setPushConstant((PushConstant)null);
+			case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
+				setConstants((AbstractConstants)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -338,10 +399,12 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 				return enabled != ENABLED_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				return stage != STAGE_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+				return units != null && !units.isEmpty();
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 				return descriptorSet != null;
-			case ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT:
-				return pushConstant != null;
+			case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
+				return constants != null;
 		}
 		return super.eIsSet(featureID);
 	}

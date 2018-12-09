@@ -6,12 +6,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.sheepy.vulkan.model.IEnginePart;
 import org.sheepy.vulkan.model.IProcess;
+
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.IPipeline;
+import org.sheepy.vulkan.model.process.IPipelineUnit;
 import org.sheepy.vulkan.model.process.IProcessUnit;
+
 import org.sheepy.vulkan.model.process.compute.*;
 
 /**
@@ -97,26 +101,11 @@ public class ComputeSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputePackage.ICOMPUTER:
-			{
-				IComputer iComputer = (IComputer)theEObject;
-				T result = caseIComputer(iComputer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ComputePackage.COMPUTER:
 			{
 				Computer computer = (Computer)theEObject;
 				T result = caseComputer(computer);
-				if (result == null) result = caseIComputer(computer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ComputePackage.COMPUTER_BUFFER_BARRIER:
-			{
-				ComputerBufferBarrier computerBufferBarrier = (ComputerBufferBarrier)theEObject;
-				T result = caseComputerBufferBarrier(computerBufferBarrier);
-				if (result == null) result = caseIComputer(computerBufferBarrier);
+				if (result == null) result = caseIPipelineUnit(computer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,22 +146,6 @@ public class ComputeSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IComputer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IComputer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIComputer(IComputer object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Computer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -184,22 +157,6 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseComputer(Computer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Computer Buffer Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Computer Buffer Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseComputerBufferBarrier(ComputerBufferBarrier object)
 	{
 		return null;
 	}
@@ -296,6 +253,22 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractPipeline(AbstractPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIPipelineUnit(IPipelineUnit object)
 	{
 		return null;
 	}

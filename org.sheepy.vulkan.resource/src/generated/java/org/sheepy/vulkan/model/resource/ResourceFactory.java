@@ -77,13 +77,13 @@ public interface ResourceFactory extends EFactory
 	Sampler createSampler();
 
 	/**
-	 * Returns a new object of class '<em>Push Constant</em>'.
+	 * Returns a new object of class '<em>Constants</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Push Constant</em>'.
+	 * @return a new object of class '<em>Constants</em>'.
 	 * @generated
 	 */
-	PushConstant createPushConstant();
+	Constants createConstants();
 
 	/**
 	 * Returns a new object of class '<em>Basic Descriptor Set</em>'.

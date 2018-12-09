@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
 /**
@@ -598,6 +599,15 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE__UNITS;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -607,13 +617,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__DESCRIPTOR_SET = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' reference.
+	 * The feature id for the '<em><b>Constants</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__PUSH_CONSTANT = ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT;
+	int GRAPHICS_PIPELINE__CONSTANTS = ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
@@ -1283,6 +1293,15 @@ public interface GraphicPackage extends EPackage
 	int IMAGE_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE__UNITS;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,13 +1311,13 @@ public interface GraphicPackage extends EPackage
 	int IMAGE_PIPELINE__DESCRIPTOR_SET = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' reference.
+	 * The feature id for the '<em><b>Constants</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_PIPELINE__PUSH_CONSTANT = ProcessPackage.ABSTRACT_PIPELINE__PUSH_CONSTANT;
+	int IMAGE_PIPELINE__CONSTANTS = ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS;
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' reference.

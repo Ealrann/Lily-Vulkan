@@ -2,6 +2,8 @@
  */
 package org.sheepy.vulkan.model.process.compute;
 
+import org.sheepy.vulkan.model.process.IPipelineUnit;
+
 import org.sheepy.vulkan.model.resource.Shader;
 
 /**
@@ -20,7 +22,7 @@ import org.sheepy.vulkan.model.resource.Shader;
  * @model
  * @generated
  */
-public interface Computer extends IComputer
+public interface Computer extends IPipelineUnit
 {
 	/**
 	 * Returns the value of the '<em><b>Shader</b></em>' reference.

@@ -32,6 +32,15 @@ public interface ProcessFactory extends EFactory
 	PipelineBufferBarrier createPipelineBufferBarrier();
 
 	/**
+	 * Returns a new object of class '<em>Push Constant</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Push Constant</em>'.
+	 * @generated
+	 */
+	PushConstant createPushConstant();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

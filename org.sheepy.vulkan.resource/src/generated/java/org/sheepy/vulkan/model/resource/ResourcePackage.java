@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.sheepy.vulkan.model.VulkanPackage;
 
 /**
@@ -96,7 +97,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
 	 * @generated
 	 */
-	int IDESCRIPTOR = 11;
+	int IDESCRIPTOR = 12;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -846,23 +847,14 @@ public interface ResourcePackage extends EPackage
 	int SAMPLER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl <em>Push Constant</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractConstantsImpl <em>Abstract Constants</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.PushConstantImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPushConstant()
+	 * @see org.sheepy.vulkan.model.resource.impl.AbstractConstantsImpl
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractConstants()
 	 * @generated
 	 */
-	int PUSH_CONSTANT = 10;
-
-	/**
-	 * The feature id for the '<em><b>Data</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUSH_CONSTANT__DATA = BASIC_RESOURCE_FEATURE_COUNT + 0;
+	int ABSTRACT_CONSTANTS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -871,25 +863,71 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT__STAGE = BASIC_RESOURCE_FEATURE_COUNT + 1;
+	int ABSTRACT_CONSTANTS__STAGE = BASIC_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Push Constant</em>' class.
+	 * The number of structural features of the '<em>Abstract Constants</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT_FEATURE_COUNT = BASIC_RESOURCE_FEATURE_COUNT + 2;
+	int ABSTRACT_CONSTANTS_FEATURE_COUNT = BASIC_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Push Constant</em>' class.
+	 * The number of operations of the '<em>Abstract Constants</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
+	int ABSTRACT_CONSTANTS_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.resource.impl.ConstantsImpl
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getConstants()
+	 * @generated
+	 */
+	int CONSTANTS = 11;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANTS__STAGE = ABSTRACT_CONSTANTS__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANTS__DATA = ABSTRACT_CONSTANTS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Constants</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANTS_FEATURE_COUNT = ABSTRACT_CONSTANTS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Constants</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANTS_OPERATION_COUNT = ABSTRACT_CONSTANTS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.DescriptorSet <em>Descriptor Set</em>}' class.
@@ -899,7 +937,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 12;
+	int DESCRIPTOR_SET = 13;
 
 	/**
 	 * The number of structural features of the '<em>Descriptor Set</em>' class.
@@ -927,7 +965,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBasicDescriptorSet()
 	 * @generated
 	 */
-	int BASIC_DESCRIPTOR_SET = 13;
+	int BASIC_DESCRIPTOR_SET = 14;
 
 	/**
 	 * The feature id for the '<em><b>Descriptors</b></em>' reference list.
@@ -964,7 +1002,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
 	 * @generated
 	 */
-	int BARRIER = 14;
+	int BARRIER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -1010,7 +1048,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 15;
+	int BUFFER_BARRIER = 16;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -1083,7 +1121,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
 	 * @generated
 	 */
-	int ABSTRACT_IMAGE_BARRIER = 16;
+	int ABSTRACT_IMAGE_BARRIER = 17;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -1138,7 +1176,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 17;
+	int IMAGE_BARRIER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -1202,7 +1240,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
 	 * @generated
 	 */
-	int REFERENCE_IMAGE_BARRIER = 18;
+	int REFERENCE_IMAGE_BARRIER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -1284,7 +1322,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
 	 * @generated
 	 */
-	int IMAGE_TRANSITION = 19;
+	int IMAGE_TRANSITION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Src Layout</b></em>' attribute.
@@ -1348,7 +1386,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 20;
+	int SHADER = 21;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
@@ -1394,7 +1432,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIndexedBuffer()
 	 * @generated
 	 */
-	int INDEXED_BUFFER = 21;
+	int INDEXED_BUFFER = 22;
 
 	/**
 	 * The number of structural features of the '<em>Indexed Buffer</em>' class.
@@ -1422,7 +1460,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDepthImage()
 	 * @generated
 	 */
-	int DEPTH_IMAGE = 22;
+	int DEPTH_IMAGE = 23;
 
 	/**
 	 * The number of structural features of the '<em>Depth Image</em>' class.
@@ -1450,7 +1488,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 23;
+	int PATH_RESOURCE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -1487,7 +1525,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 24;
+	int FILE_RESOURCE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -1524,7 +1562,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 25;
+	int MODULE_RESOURCE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -1570,7 +1608,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 26;
+	int BYTE_BUFFER = 27;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -1580,7 +1618,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 27;
+	int JAVA_MODULE = 28;
 
 
 	/**
@@ -2047,36 +2085,46 @@ public interface ResourcePackage extends EPackage
 	EAttribute getSampler_MaxAnisotropy();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.PushConstant <em>Push Constant</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.AbstractConstants <em>Abstract Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Push Constant</em>'.
-	 * @see org.sheepy.vulkan.model.resource.PushConstant
+	 * @return the meta object for class '<em>Abstract Constants</em>'.
+	 * @see org.sheepy.vulkan.model.resource.AbstractConstants
 	 * @generated
 	 */
-	EClass getPushConstant();
+	EClass getAbstractConstants();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.PushConstant#getData <em>Data</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data</em>'.
-	 * @see org.sheepy.vulkan.model.resource.PushConstant#getData()
-	 * @see #getPushConstant()
-	 * @generated
-	 */
-	EAttribute getPushConstant_Data();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.PushConstant#getStage <em>Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.AbstractConstants#getStage <em>Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.vulkan.model.resource.PushConstant#getStage()
-	 * @see #getPushConstant()
+	 * @see org.sheepy.vulkan.model.resource.AbstractConstants#getStage()
+	 * @see #getAbstractConstants()
 	 * @generated
 	 */
-	EAttribute getPushConstant_Stage();
+	EAttribute getAbstractConstants_Stage();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Constants <em>Constants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constants</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Constants
+	 * @generated
+	 */
+	EClass getConstants();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Constants#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Constants#getData()
+	 * @see #getConstants()
+	 * @generated
+	 */
+	EAttribute getConstants_Data();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
@@ -2870,22 +2918,14 @@ public interface ResourcePackage extends EPackage
 		EAttribute SAMPLER__MAX_ANISOTROPY = eINSTANCE.getSampler_MaxAnisotropy();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.PushConstantImpl <em>Push Constant</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractConstantsImpl <em>Abstract Constants</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.PushConstantImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPushConstant()
+		 * @see org.sheepy.vulkan.model.resource.impl.AbstractConstantsImpl
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractConstants()
 		 * @generated
 		 */
-		EClass PUSH_CONSTANT = eINSTANCE.getPushConstant();
-
-		/**
-		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PUSH_CONSTANT__DATA = eINSTANCE.getPushConstant_Data();
+		EClass ABSTRACT_CONSTANTS = eINSTANCE.getAbstractConstants();
 
 		/**
 		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
@@ -2893,7 +2933,25 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PUSH_CONSTANT__STAGE = eINSTANCE.getPushConstant_Stage();
+		EAttribute ABSTRACT_CONSTANTS__STAGE = eINSTANCE.getAbstractConstants_Stage();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.resource.impl.ConstantsImpl
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getConstants()
+		 * @generated
+		 */
+		EClass CONSTANTS = eINSTANCE.getConstants();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTANTS__DATA = eINSTANCE.getConstants_Data();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.

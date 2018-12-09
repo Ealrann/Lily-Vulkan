@@ -15,9 +15,9 @@ import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.IPipeline;
+import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.PushConstant;
-import org.sheepy.vulkan.resource.buffer.PushConstantAdapter;
+import org.sheepy.vulkan.resource.buffer.AbstractConstantsAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
 
 public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
@@ -60,10 +60,10 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 
 		if (res == false)
 		{
-			PushConstant pushConstant = getPushConstant();
+			var pushConstant = getConstants();
 			if (pushConstant != null)
 			{
-				var pushAdapter = PushConstantAdapter.adapt(pushConstant);
+				var pushAdapter = AbstractConstantsAdapter.adapt(pushConstant);
 				res |= pushAdapter.needRecord();
 			}
 		}
@@ -84,14 +84,6 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		{
 			final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
 			adapter.bindDescriptorSet(commandBuffer, bindPoint, pipelineLayout);
-		}
-
-		final var pushConstant = getPushConstant();
-		if (pushConstant != null)
-		{
-			final var pushConstantAdapter = PushConstantAdapter.adapt(pushConstant);
-			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-			pushConstantAdapter.pushConstants(vkCommandBuffer, pipelineLayout);
 		}
 	}
 
@@ -135,10 +127,10 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 
 	private void allocPushConstant(MemoryStack stack, VkPipelineLayoutCreateInfo info)
 	{
-		var pushConstant = getPushConstant();
-		if (pushConstant != null)
+		var constants = getConstants();
+		if (constants != null)
 		{
-			final var adapter = PushConstantAdapter.adapt(pushConstant);
+			final var adapter = AbstractConstantsAdapter.adapt(constants);
 			info.pPushConstantRanges(adapter.allocRange(stack));
 		}
 	}
@@ -158,7 +150,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		return pipelineLayout;
 	}
 
-	protected abstract PushConstant getPushConstant();
+	protected abstract AbstractConstants getConstants();
 
 	protected abstract DescriptorSet getDescriptorSet();
 

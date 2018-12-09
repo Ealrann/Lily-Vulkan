@@ -9,11 +9,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
+
 import org.sheepy.vulkan.model.process.impl.AbstractProcessImpl;
+
 import org.sheepy.vulkan.model.resource.DepthImage;
 
 /**

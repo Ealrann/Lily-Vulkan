@@ -12,10 +12,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.sheepy.common.model.types.TypesPackage;
+
 import org.sheepy.vulkan.model.VulkanPackage;
+
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
+import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
 import org.sheepy.vulkan.model.resource.AbstractTexture;
 import org.sheepy.vulkan.model.resource.Barrier;
@@ -23,6 +27,7 @@ import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.BasicResource;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.BufferBarrier;
+import org.sheepy.vulkan.model.resource.Constants;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.model.resource.FileResource;
@@ -36,7 +41,6 @@ import org.sheepy.vulkan.model.resource.IndexedBuffer;
 import org.sheepy.vulkan.model.resource.ModuleResource;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.PipelineResource;
-import org.sheepy.vulkan.model.resource.PushConstant;
 import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
@@ -128,7 +132,14 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pushConstantEClass = null;
+	private EClass abstractConstantsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass constantsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -753,9 +764,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPushConstant()
+	public EClass getAbstractConstants()
 	{
-		return pushConstantEClass;
+		return abstractConstantsEClass;
 	}
 
 	/**
@@ -763,9 +774,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPushConstant_Data()
+	public EAttribute getAbstractConstants_Stage()
 	{
-		return (EAttribute)pushConstantEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)abstractConstantsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -773,9 +784,19 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPushConstant_Stage()
+	public EClass getConstants()
 	{
-		return (EAttribute)pushConstantEClass.getEStructuralFeatures().get(1);
+		return constantsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConstants_Data()
+	{
+		return (EAttribute)constantsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1241,9 +1262,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(samplerEClass, SAMPLER__MAX_LOD);
 		createEAttribute(samplerEClass, SAMPLER__MAX_ANISOTROPY);
 
-		pushConstantEClass = createEClass(PUSH_CONSTANT);
-		createEAttribute(pushConstantEClass, PUSH_CONSTANT__DATA);
-		createEAttribute(pushConstantEClass, PUSH_CONSTANT__STAGE);
+		abstractConstantsEClass = createEClass(ABSTRACT_CONSTANTS);
+		createEAttribute(abstractConstantsEClass, ABSTRACT_CONSTANTS__STAGE);
+
+		constantsEClass = createEClass(CONSTANTS);
+		createEAttribute(constantsEClass, CONSTANTS__DATA);
 
 		iDescriptorEClass = createEClass(IDESCRIPTOR);
 		createEAttribute(iDescriptorEClass, IDESCRIPTOR__DESCRIPTOR_TYPE);
@@ -1344,7 +1367,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		fontEClass.getESuperTypes().add(this.getSampledResource());
 		abstractTextureEClass.getESuperTypes().add(this.getSampledResource());
 		textureEClass.getESuperTypes().add(this.getAbstractTexture());
-		pushConstantEClass.getESuperTypes().add(this.getBasicResource());
+		abstractConstantsEClass.getESuperTypes().add(this.getBasicResource());
+		constantsEClass.getESuperTypes().add(this.getAbstractConstants());
 		basicDescriptorSetEClass.getESuperTypes().add(this.getDescriptorSet());
 		bufferBarrierEClass.getESuperTypes().add(this.getBarrier());
 		abstractImageBarrierEClass.getESuperTypes().add(this.getBarrier());
@@ -1411,9 +1435,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getSampler_MaxLod(), theEcorePackage.getEInt(), "maxLod", "1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSampler_MaxAnisotropy(), theEcorePackage.getEFloat(), "maxAnisotropy", "1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPushConstant_Data(), this.getByteBuffer(), "data", null, 0, 1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPushConstant_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractConstantsEClass, AbstractConstants.class, "AbstractConstants", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractConstants_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, AbstractConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(constantsEClass, Constants.class, "Constants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConstants_Data(), this.getByteBuffer(), "data", null, 0, 1, Constants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(), "descriptorType", null, 0, 1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

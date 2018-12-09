@@ -103,6 +103,7 @@ public class ProcessSwitch<T> extends Switch<T>
 				PipelineBarrier pipelineBarrier = (PipelineBarrier)theEObject;
 				T result = casePipelineBarrier(pipelineBarrier);
 				if (result == null) result = caseIProcessUnit(pipelineBarrier);
+				if (result == null) result = caseIPipelineUnit(pipelineBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,6 +113,7 @@ public class ProcessSwitch<T> extends Switch<T>
 				T result = casePipelineBufferBarrier(pipelineBufferBarrier);
 				if (result == null) result = casePipelineBarrier(pipelineBufferBarrier);
 				if (result == null) result = caseIProcessUnit(pipelineBufferBarrier);
+				if (result == null) result = caseIPipelineUnit(pipelineBufferBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -120,6 +122,13 @@ public class ProcessSwitch<T> extends Switch<T>
 				IPipeline iPipeline = (IPipeline)theEObject;
 				T result = caseIPipeline(iPipeline);
 				if (result == null) result = caseIProcessUnit(iPipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.IPIPELINE_UNIT:
+			{
+				IPipelineUnit iPipelineUnit = (IPipelineUnit)theEObject;
+				T result = caseIPipelineUnit(iPipelineUnit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -139,6 +148,14 @@ public class ProcessSwitch<T> extends Switch<T>
 				if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);
 				if (result == null) result = caseIPipeline(abstractCompositePipeline);
 				if (result == null) result = caseIProcessUnit(abstractCompositePipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.PUSH_CONSTANT:
+			{
+				PushConstant pushConstant = (PushConstant)theEObject;
+				T result = casePushConstant(pushConstant);
+				if (result == null) result = caseIPipelineUnit(pushConstant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -243,6 +260,22 @@ public class ProcessSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIPipelineUnit(IPipelineUnit object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -270,6 +303,22 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractCompositePipeline(AbstractCompositePipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Push Constant</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Push Constant</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePushConstant(PushConstant object)
 	{
 		return null;
 	}

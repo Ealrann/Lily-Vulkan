@@ -5,7 +5,7 @@ package org.sheepy.vulkan.model.process.compute
 
 import org.sheepy.vulkan.model.process.AbstractPipeline
 import org.sheepy.vulkan.model.process.AbstractProcess
-import org.sheepy.vulkan.model.resource.BufferBarrier
+import org.sheepy.vulkan.model.process.IPipelineUnit
 import org.sheepy.vulkan.model.resource.Shader
 
 class ComputeProcess extends AbstractProcess
@@ -14,7 +14,6 @@ class ComputeProcess extends AbstractProcess
 
 class ComputePipeline extends AbstractPipeline
 {
-	contains IComputer[] units
 	int workgroupSizeX = "32"
 	int workgroupSizeY = "32"
 	int workgroupSizeZ = "32"
@@ -23,16 +22,7 @@ class ComputePipeline extends AbstractPipeline
 	int depth
 }
 
-interface IComputer
-{
-}
-
-class Computer extends IComputer
+class Computer extends IPipelineUnit
 {
 	refers Shader shader
-}
-
-class ComputerBufferBarrier extends IComputer
-{
-	contains BufferBarrier bufferBarrier
 }

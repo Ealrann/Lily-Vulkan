@@ -9,50 +9,52 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.sheepy.vulkan.model.resource.PathResource;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
+
+import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Path Resource</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Constants</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.PathResourceImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.AbstractConstantsImpl#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class PathResourceImpl extends MinimalEObjectImpl.Container implements PathResource
+public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container implements AbstractConstants
 {
 	/**
-	 * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
+	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPath()
+	 * @see #getStage()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PATH_EDEFAULT = null;
+	protected static final EShaderStage STAGE_EDEFAULT = EShaderStage.VERTEX_BIT;
 
 	/**
-	 * The cached value of the '{@link #getPath() <em>Path</em>}' attribute.
+	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPath()
+	 * @see #getStage()
 	 * @generated
 	 * @ordered
 	 */
-	protected String path = PATH_EDEFAULT;
+	protected EShaderStage stage = STAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathResourceImpl()
+	public AbstractConstantsImpl()
 	{
 		super();
 	}
@@ -65,7 +67,7 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.PATH_RESOURCE;
+		return ResourcePackage.Literals.ABSTRACT_CONSTANTS;
 	}
 
 	/**
@@ -73,9 +75,9 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPath()
+	public EShaderStage getStage()
 	{
-		return path;
+		return stage;
 	}
 
 	/**
@@ -83,12 +85,12 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPath(String newPath)
+	public void setStage(EShaderStage newStage)
 	{
-		String oldPath = path;
-		path = newPath;
+		EShaderStage oldStage = stage;
+		stage = newStage == null ? STAGE_EDEFAULT : newStage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.PATH_RESOURCE__PATH, oldPath, path));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.ABSTRACT_CONSTANTS__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -101,8 +103,8 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PATH_RESOURCE__PATH:
-				return getPath();
+			case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+				return getStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -117,8 +119,8 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PATH_RESOURCE__PATH:
-				setPath((String)newValue);
+			case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+				setStage((EShaderStage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,8 +136,8 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PATH_RESOURCE__PATH:
-				setPath(PATH_EDEFAULT);
+			case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+				setStage(STAGE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -151,8 +153,8 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.PATH_RESOURCE__PATH:
-				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
+			case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+				return stage != STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -168,10 +170,10 @@ public abstract class PathResourceImpl extends MinimalEObjectImpl.Container impl
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (path: ");
-		result.append(path);
+		result.append(" (stage: ");
+		result.append(stage);
 		result.append(')');
 		return result.toString();
 	}
 
-} //PathResourceImpl
+} //AbstractConstantsImpl
