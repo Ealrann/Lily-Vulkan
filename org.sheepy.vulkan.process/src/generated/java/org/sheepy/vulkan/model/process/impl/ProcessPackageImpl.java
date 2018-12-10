@@ -438,12 +438,12 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		iPipelineEClass = createEClass(IPIPELINE);
 
-		iPipelineUnitEClass = createEClass(IPIPELINE_UNIT);
-
 		abstractPipelineEClass = createEClass(ABSTRACT_PIPELINE);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__UNITS);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__DESCRIPTOR_SET);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__CONSTANTS);
+
+		iPipelineUnitEClass = createEClass(IPIPELINE_UNIT);
 
 		abstractCompositePipelineEClass = createEClass(ABSTRACT_COMPOSITE_PIPELINE);
 		createEReference(abstractCompositePipelineEClass, ABSTRACT_COMPOSITE_PIPELINE__PIPELINES);
@@ -515,12 +515,12 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(iPipelineEClass, IPipeline.class, "IPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(iPipelineUnitEClass, IPipelineUnit.class, "IPipelineUnit", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(abstractPipelineEClass, AbstractPipeline.class, "AbstractPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractPipeline_Units(), this.getIPipelineUnit(), null, "units", null, 0, -1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractPipeline_DescriptorSet(), theResourcePackage.getDescriptorSet(), null, "descriptorSet", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractPipeline_Constants(), theResourcePackage.getAbstractConstants(), null, "constants", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iPipelineUnitEClass, IPipelineUnit.class, "IPipelineUnit", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(abstractCompositePipelineEClass, AbstractCompositePipeline.class, "AbstractCompositePipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractCompositePipeline_Pipelines(), this.getAbstractPipeline(), null, "pipelines", null, 0, -1, AbstractCompositePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

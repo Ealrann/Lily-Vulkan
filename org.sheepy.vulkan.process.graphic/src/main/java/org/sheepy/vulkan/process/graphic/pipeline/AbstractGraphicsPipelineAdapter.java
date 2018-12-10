@@ -1,140 +1,43 @@
 package org.sheepy.vulkan.process.graphic.pipeline;
 
-import static org.lwjgl.vulkan.VK10.*;
+import java.util.List;
 
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
-import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
-import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
-import org.sheepy.vulkan.process.graphic.pipeline.builder.ColorBlendBuilder;
-import org.sheepy.vulkan.process.graphic.pipeline.builder.DepthStencilBuilder;
-import org.sheepy.vulkan.process.graphic.pipeline.builder.DynamicStateBuilder;
-import org.sheepy.vulkan.process.graphic.pipeline.builder.InputAssemblyBuilder;
-import org.sheepy.vulkan.process.graphic.pipeline.builder.MultisampleBuilder;
-import org.sheepy.vulkan.process.graphic.pipeline.builder.RasterizerBuilder;
-import org.sheepy.vulkan.process.graphic.pipeline.builder.ShaderStageBuilder;
-import org.sheepy.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
-import org.sheepy.vulkan.process.graphic.process.IGraphicContextAdapter;
-import org.sheepy.vulkan.process.graphic.process.RenderPass;
-import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
-import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
+import org.sheepy.vulkan.model.process.graphic.ColorBlend;
+import org.sheepy.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.vulkan.model.process.graphic.Rasterizer;
+import org.sheepy.vulkan.model.process.graphic.ViewportState;
+import org.sheepy.vulkan.model.resource.Shader;
 
-public abstract class AbstractGraphicsPipelineAdapter
-		extends AbstractPipelineAdapter<GraphicCommandBuffer>
+public abstract class AbstractGraphicsPipelineAdapter extends IGraphicsPipelineAdapter
 {
-	private ShaderStageBuilder shaderStageBuilder;
-	private InputAssemblyBuilder inputAssemblyBuilder;
-	private ViewportStateBuilder viewportStateBuilder;
-	private RasterizerBuilder rasterizerBuilder;
-	private DepthStencilBuilder depthStencilBuidler;
-	private MultisampleBuilder multisampleBuilder;
-	private ColorBlendBuilder colorBlendBuilder;
-	private DynamicStateBuilder dynamicStateBuilder;
-
-	private RenderPass renderPass;
-	private IVertexBufferDescriptor<?> vertexInputState = null;
-
-	protected long id = -1;
-
 	@Override
-	public void deepAllocate(MemoryStack stack)
+	protected List<Shader> getShaders()
 	{
-		super.deepAllocate(stack);
-
-		createBuilders();
-
-		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
-		final var useDepthBuffer = context.graphicProcess.getDepthImage() != null;
-		final var device = context.getVkDevice();
-		final var pipeline = (IGraphicsPipeline) target;
-		var swapchain = context.swapChainManager;
-
-		renderPass = context.renderPass;
-		allocationDependencies.add(renderPass);
-
-		vertexInputState = getVertexBufferDescriptor();
-
-		// Create Pipeline
-		// -----------------------
-		final var pipelineInfo = VkGraphicsPipelineCreateInfo.callocStack(1, stack);
-		pipelineInfo.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
-		pipelineInfo.pStages(shaderStageBuilder.allocShaderStageInfo(pipeline.getShaders()));
-		pipelineInfo.pVertexInputState(vertexInputState.allocCreateInfo());
-		pipelineInfo.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo());
-
-		var viewportState = pipeline.getViewportState();
-		if (viewportState != null)
-		{
-			var allocCreateInfo = viewportStateBuilder.allocCreateInfo(swapchain, viewportState);
-			pipelineInfo.pViewportState(allocCreateInfo);
-		}
-
-		var rasterizer = pipeline.getRasterizer();
-		if (rasterizer != null)
-		{
-			pipelineInfo.pRasterizationState(rasterizerBuilder.allocCreateInfo(rasterizer));
-		}
-
-		pipelineInfo.pMultisampleState(multisampleBuilder.allocCreateInfo());
-		if (useDepthBuffer == true)
-			pipelineInfo.pDepthStencilState(depthStencilBuidler.allocCreateInfo());
-
-		var colorBlend = pipeline.getColorBlend();
-		if (colorBlend != null)
-		{
-			pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo(colorBlend));
-		}
-
-		var dynamicState = pipeline.getDynamicState();
-		if (dynamicState != null)
-		{
-			pipelineInfo.pDynamicState(dynamicStateBuilder.allocCreateInfo(dynamicState));
-		}
-
-		pipelineInfo.layout(pipelineLayout);
-		pipelineInfo.renderPass(context.renderPass.getId());
-		pipelineInfo.subpass(0);
-		pipelineInfo.basePipelineHandle(VK_NULL_HANDLE); // Optional
-		pipelineInfo.basePipelineIndex(-1); // Optional
-
-		final long[] aId = new long[1];
-		Logger.check("Failed to create graphics pipeline!",
-				() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, pipelineInfo, null, aId));
-		id = aId[0];
-
-		dynamicStateBuilder.freeDynamicStateCreateInfo();
-		colorBlendBuilder.freeColorBlendStateCreateInfo();
-		multisampleBuilder.freeMultisampleStateCreateInfo();
-		rasterizerBuilder.freeRasterizationStateCreateInfo();
-		viewportStateBuilder.freeViewportStateCreateInfo();
-		inputAssemblyBuilder.freeInputAssemblyStateCreateInfo();
-		vertexInputState.freeInputStateCreateInfo();
-		shaderStageBuilder.freeShaderStageInfo();
-		if (useDepthBuffer == true) depthStencilBuidler.freeDepthStencilStateCreateInfo();
-	}
-
-	private void createBuilders()
-	{
-		shaderStageBuilder = new ShaderStageBuilder();
-		inputAssemblyBuilder = new InputAssemblyBuilder();
-		viewportStateBuilder = new ViewportStateBuilder();
-		rasterizerBuilder = new RasterizerBuilder();
-		depthStencilBuidler = new DepthStencilBuilder();
-		multisampleBuilder = new MultisampleBuilder();
-		colorBlendBuilder = new ColorBlendBuilder();
-		dynamicStateBuilder = new DynamicStateBuilder();
+		return ((GraphicsPipeline) pipeline).getShaders();
 	}
 
 	@Override
-	public void free()
+	protected ViewportState getViewportState()
 	{
-		vertexInputState.free();
-
-		allocationDependencies.remove(renderPass);
-
-		super.free();
+		return ((GraphicsPipeline) pipeline).getViewportState();
 	}
 
-	abstract protected IVertexBufferDescriptor<?> getVertexBufferDescriptor();
+	@Override
+	protected Rasterizer getRasterizer()
+	{
+		return ((GraphicsPipeline) pipeline).getRasterizer();
+	}
+
+	@Override
+	protected ColorBlend getColorBlend()
+	{
+		return ((GraphicsPipeline) pipeline).getColorBlend();
+	}
+
+	@Override
+	protected DynamicState getDynamicState()
+	{
+		return ((GraphicsPipeline) pipeline).getDynamicState();
+	}
 }

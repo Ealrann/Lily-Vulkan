@@ -77,15 +77,15 @@ class GraphicProcess extends AbstractProcess
 
 interface IGraphicsPipeline extends IPipeline
 {
+}
+
+abstract class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
+{
 	refers Shader[] shaders
 	contains ViewportState viewportState
 	contains Rasterizer rasterizer
 	contains ColorBlend colorBlend
 	contains DynamicState dynamicState
-}
-
-abstract class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
-{
 }
 
 class DynamicState

@@ -18,11 +18,11 @@ import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.vulkan.process.compute.process.IComputeContextAdapter;
-import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
+import org.sheepy.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.vulkan.resource.shader.ShaderAdapter;
 
-public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeCommandBuffer>
+public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffer>
 {
 	private int groupCountX;
 	private int groupCountY;

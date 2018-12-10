@@ -108,14 +108,14 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createIPipelineAdapter();
 			}
 			@Override
-			public Adapter caseIPipelineUnit(IPipelineUnit object)
-			{
-				return createIPipelineUnitAdapter();
-			}
-			@Override
 			public Adapter caseAbstractPipeline(AbstractPipeline object)
 			{
 				return createAbstractPipelineAdapter();
+			}
+			@Override
+			public Adapter caseIPipelineUnit(IPipelineUnit object)
+			{
+				return createIPipelineUnitAdapter();
 			}
 			@Override
 			public Adapter caseAbstractCompositePipeline(AbstractCompositePipeline object)

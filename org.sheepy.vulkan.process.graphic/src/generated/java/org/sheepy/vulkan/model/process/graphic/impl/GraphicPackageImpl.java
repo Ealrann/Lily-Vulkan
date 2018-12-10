@@ -571,59 +571,59 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIGraphicsPipeline_Shaders()
-	{
-		return (EReference)iGraphicsPipelineEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIGraphicsPipeline_ViewportState()
-	{
-		return (EReference)iGraphicsPipelineEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIGraphicsPipeline_Rasterizer()
-	{
-		return (EReference)iGraphicsPipelineEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIGraphicsPipeline_ColorBlend()
-	{
-		return (EReference)iGraphicsPipelineEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIGraphicsPipeline_DynamicState()
-	{
-		return (EReference)iGraphicsPipelineEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getGraphicsPipeline()
 	{
 		return graphicsPipelineEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphicsPipeline_Shaders()
+	{
+		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphicsPipeline_ViewportState()
+	{
+		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphicsPipeline_Rasterizer()
+	{
+		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphicsPipeline_ColorBlend()
+	{
+		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphicsPipeline_DynamicState()
+	{
+		return (EReference)graphicsPipelineEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1223,13 +1223,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__DEPTH_IMAGE);
 
 		iGraphicsPipelineEClass = createEClass(IGRAPHICS_PIPELINE);
-		createEReference(iGraphicsPipelineEClass, IGRAPHICS_PIPELINE__SHADERS);
-		createEReference(iGraphicsPipelineEClass, IGRAPHICS_PIPELINE__VIEWPORT_STATE);
-		createEReference(iGraphicsPipelineEClass, IGRAPHICS_PIPELINE__RASTERIZER);
-		createEReference(iGraphicsPipelineEClass, IGRAPHICS_PIPELINE__COLOR_BLEND);
-		createEReference(iGraphicsPipelineEClass, IGRAPHICS_PIPELINE__DYNAMIC_STATE);
 
 		graphicsPipelineEClass = createEClass(GRAPHICS_PIPELINE);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__SHADERS);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VIEWPORT_STATE);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__RASTERIZER);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__COLOR_BLEND);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__DYNAMIC_STATE);
 
 		dynamicStateEClass = createEClass(DYNAMIC_STATE);
 		createEAttribute(dynamicStateEClass, DYNAMIC_STATE__STATES);
@@ -1381,13 +1381,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getGraphicProcess_DepthImage(), theResourcePackage.getDepthImage(), null, "depthImage", null, 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iGraphicsPipelineEClass, IGraphicsPipeline.class, "IGraphicsPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIGraphicsPipeline_Shaders(), theResourcePackage.getShader(), null, "shaders", null, 0, -1, IGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIGraphicsPipeline_ViewportState(), this.getViewportState(), null, "viewportState", null, 0, 1, IGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIGraphicsPipeline_Rasterizer(), this.getRasterizer(), null, "rasterizer", null, 0, 1, IGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIGraphicsPipeline_ColorBlend(), this.getColorBlend(), null, "colorBlend", null, 0, 1, IGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIGraphicsPipeline_DynamicState(), this.getDynamicState(), null, "dynamicState", null, 0, 1, IGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphicsPipelineEClass, GraphicsPipeline.class, "GraphicsPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGraphicsPipeline_Shaders(), theResourcePackage.getShader(), null, "shaders", null, 0, -1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_ViewportState(), this.getViewportState(), null, "viewportState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_Rasterizer(), this.getRasterizer(), null, "rasterizer", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_ColorBlend(), this.getColorBlend(), null, "colorBlend", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_DynamicState(), this.getDynamicState(), null, "dynamicState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dynamicStateEClass, DynamicState.class, "DynamicState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDynamicState_States(), theEnumerationPackage.getEDynamicState(), "states", null, 0, -1, DynamicState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

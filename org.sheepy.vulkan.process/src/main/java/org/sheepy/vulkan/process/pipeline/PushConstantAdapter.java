@@ -18,7 +18,7 @@ public class PushConstantAdapter extends AbstractStatefullAdapter implements
 	public void record(AbstractCommandBuffer commandBuffer, int bindPoint)
 	{
 		IPipeline pipeline = (IPipeline) target.eContainer();
-		AbstractPipelineAdapter<?> adapter = AbstractPipelineAdapter.adapt(pipeline);
+		IPipelineAdapter<?> adapter = IPipelineAdapter.adapt(pipeline);
 		final var constants = adapter.getConstants();
 		if (constants != null)
 		{

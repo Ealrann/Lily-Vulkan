@@ -125,19 +125,19 @@ public class ProcessSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.IPIPELINE_UNIT:
-			{
-				IPipelineUnit iPipelineUnit = (IPipelineUnit)theEObject;
-				T result = caseIPipelineUnit(iPipelineUnit);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ProcessPackage.ABSTRACT_PIPELINE:
 			{
 				AbstractPipeline abstractPipeline = (AbstractPipeline)theEObject;
 				T result = caseAbstractPipeline(abstractPipeline);
 				if (result == null) result = caseIPipeline(abstractPipeline);
 				if (result == null) result = caseIProcessUnit(abstractPipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.IPIPELINE_UNIT:
+			{
+				IPipelineUnit iPipelineUnit = (IPipelineUnit)theEObject;
+				T result = caseIPipelineUnit(iPipelineUnit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -362,25 +362,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
 	 * @generated
 	 */
-	int IPIPELINE_UNIT = 6;
-
-	/**
-	 * The number of structural features of the '<em>IPipeline Unit</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE_UNIT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>IPipeline Unit</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE_UNIT_OPERATION_COUNT = 0;
+	int IPIPELINE_UNIT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
@@ -390,7 +372,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 7;
+	int ABSTRACT_PIPELINE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -454,6 +436,24 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_PIPELINE_OPERATION_COUNT = IPIPELINE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>IPipeline Unit</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_UNIT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IPipeline Unit</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_UNIT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractCompositePipelineImpl <em>Abstract Composite Pipeline</em>}' class.

@@ -41,15 +41,15 @@ interface IPipeline extends IProcessUnit
 {
 }
 
-interface IPipelineUnit
-{
-}
-
 abstract class AbstractPipeline extends IPipeline
 {
 	contains IPipelineUnit[] units
 	refers DescriptorSet descriptorSet
 	refers AbstractConstants constants
+}
+
+interface IPipelineUnit
+{
 }
 
 abstract class AbstractCompositePipeline extends AbstractPipeline

@@ -508,58 +508,13 @@ public interface GraphicPackage extends EPackage
 	int IGRAPHICS_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__SHADERS = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__VIEWPORT_STATE = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__COLOR_BLEND = ProcessPackage.IPIPELINE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.IPIPELINE_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>IGraphics Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IGRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 5;
+	int IGRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>IGraphics Pipeline</em>' class.
@@ -1785,61 +1740,6 @@ public interface GraphicPackage extends EPackage
 	EClass getIGraphicsPipeline();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getShaders <em>Shaders</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Shaders</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getShaders()
-	 * @see #getIGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getIGraphicsPipeline_Shaders();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getViewportState <em>Viewport State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Viewport State</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getViewportState()
-	 * @see #getIGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getIGraphicsPipeline_ViewportState();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getRasterizer <em>Rasterizer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Rasterizer</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getRasterizer()
-	 * @see #getIGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getIGraphicsPipeline_Rasterizer();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getColorBlend <em>Color Blend</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Color Blend</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getColorBlend()
-	 * @see #getIGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getIGraphicsPipeline_ColorBlend();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getDynamicState <em>Dynamic State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Dynamic State</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline#getDynamicState()
-	 * @see #getIGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getIGraphicsPipeline_DynamicState();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1848,6 +1748,61 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EClass getGraphicsPipeline();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getShaders <em>Shaders</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Shaders</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getShaders()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_Shaders();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState <em>Viewport State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Viewport State</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_ViewportState();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Rasterizer</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_Rasterizer();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Color Blend</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_ColorBlend();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Dynamic State</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_DynamicState();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.DynamicState <em>Dynamic State</em>}'.
@@ -2714,46 +2669,6 @@ public interface GraphicPackage extends EPackage
 		EClass IGRAPHICS_PIPELINE = eINSTANCE.getIGraphicsPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Shaders</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IGRAPHICS_PIPELINE__SHADERS = eINSTANCE.getIGraphicsPipeline_Shaders();
-
-		/**
-		 * The meta object literal for the '<em><b>Viewport State</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IGRAPHICS_PIPELINE__VIEWPORT_STATE = eINSTANCE.getIGraphicsPipeline_ViewportState();
-
-		/**
-		 * The meta object literal for the '<em><b>Rasterizer</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IGRAPHICS_PIPELINE__RASTERIZER = eINSTANCE.getIGraphicsPipeline_Rasterizer();
-
-		/**
-		 * The meta object literal for the '<em><b>Color Blend</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IGRAPHICS_PIPELINE__COLOR_BLEND = eINSTANCE.getIGraphicsPipeline_ColorBlend();
-
-		/**
-		 * The meta object literal for the '<em><b>Dynamic State</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IGRAPHICS_PIPELINE__DYNAMIC_STATE = eINSTANCE.getIGraphicsPipeline_DynamicState();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2762,6 +2677,46 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass GRAPHICS_PIPELINE = eINSTANCE.getGraphicsPipeline();
+
+		/**
+		 * The meta object literal for the '<em><b>Shaders</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__SHADERS = eINSTANCE.getGraphicsPipeline_Shaders();
+
+		/**
+		 * The meta object literal for the '<em><b>Viewport State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__VIEWPORT_STATE = eINSTANCE.getGraphicsPipeline_ViewportState();
+
+		/**
+		 * The meta object literal for the '<em><b>Rasterizer</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__RASTERIZER = eINSTANCE.getGraphicsPipeline_Rasterizer();
+
+		/**
+		 * The meta object literal for the '<em><b>Color Blend</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__COLOR_BLEND = eINSTANCE.getGraphicsPipeline_ColorBlend();
+
+		/**
+		 * The meta object literal for the '<em><b>Dynamic State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__DYNAMIC_STATE = eINSTANCE.getGraphicsPipeline_DynamicState();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.

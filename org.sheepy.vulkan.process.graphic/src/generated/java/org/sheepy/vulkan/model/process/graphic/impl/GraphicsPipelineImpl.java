@@ -20,7 +20,6 @@ import org.sheepy.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.vulkan.model.process.graphic.ViewportState;
 
@@ -116,20 +115,6 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	protected EClass eStaticClass()
 	{
 		return GraphicPackage.Literals.GRAPHICS_PIPELINE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Shader> getShaders()
-	{
-		if (shaders == null)
-		{
-			shaders = new EObjectResolvingEList<Shader>(Shader.class, this, GraphicPackage.GRAPHICS_PIPELINE__SHADERS);
-		}
-		return shaders;
 	}
 
 	/**
@@ -329,6 +314,20 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Shader> getShaders()
+	{
+		if (shaders == null)
+		{
+			shaders = new EObjectResolvingEList<Shader>(Shader.class, this, GraphicPackage.GRAPHICS_PIPELINE__SHADERS);
+		}
+		return shaders;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -452,52 +451,6 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return dynamicState != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == IGraphicsPipeline.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case GraphicPackage.GRAPHICS_PIPELINE__SHADERS: return GraphicPackage.IGRAPHICS_PIPELINE__SHADERS;
-				case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE: return GraphicPackage.IGRAPHICS_PIPELINE__VIEWPORT_STATE;
-				case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER: return GraphicPackage.IGRAPHICS_PIPELINE__RASTERIZER;
-				case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND: return GraphicPackage.IGRAPHICS_PIPELINE__COLOR_BLEND;
-				case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE: return GraphicPackage.IGRAPHICS_PIPELINE__DYNAMIC_STATE;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == IGraphicsPipeline.class)
-		{
-			switch (baseFeatureID)
-			{
-				case GraphicPackage.IGRAPHICS_PIPELINE__SHADERS: return GraphicPackage.GRAPHICS_PIPELINE__SHADERS;
-				case GraphicPackage.IGRAPHICS_PIPELINE__VIEWPORT_STATE: return GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE;
-				case GraphicPackage.IGRAPHICS_PIPELINE__RASTERIZER: return GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER;
-				case GraphicPackage.IGRAPHICS_PIPELINE__COLOR_BLEND: return GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND;
-				case GraphicPackage.IGRAPHICS_PIPELINE__DYNAMIC_STATE: return GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //GraphicsPipelineImpl

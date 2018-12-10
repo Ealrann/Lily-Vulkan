@@ -19,7 +19,7 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		super.record(commandBuffer, bindPoint);
 
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-		final var meshPipeline = (MeshPipeline) target;
+		final var meshPipeline = (MeshPipeline) pipeline;
 		final var mesh = meshPipeline.getMesh();
 		final var meshAdapter = MeshAdapter.adapt(mesh);
 
@@ -42,7 +42,7 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	@Override
 	protected IVertexBufferDescriptor<?> getVertexBufferDescriptor()
 	{
-		final var meshPipeline = (MeshPipeline) target;
+		final var meshPipeline = (MeshPipeline) pipeline;
 		final var mesh = meshPipeline.getMesh();
 		final var meshAdapter = MeshAdapter.adapt(mesh);
 
@@ -52,13 +52,13 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	@Override
 	protected AbstractConstants getConstants()
 	{
-		return ((MeshPipeline) target).getConstants();
+		return ((MeshPipeline) pipeline).getConstants();
 	}
 
 	@Override
 	protected DescriptorSet getDescriptorSet()
 	{
-		return ((MeshPipeline) target).getDescriptorSet();
+		return ((MeshPipeline) pipeline).getDescriptorSet();
 	}
 
 	@Override

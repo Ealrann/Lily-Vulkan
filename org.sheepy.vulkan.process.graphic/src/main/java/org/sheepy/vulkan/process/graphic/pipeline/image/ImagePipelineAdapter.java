@@ -13,10 +13,10 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.process.IGraphicContextAdapter;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
-import org.sheepy.vulkan.process.pipeline.AbstractPipelineAdapter;
+import org.sheepy.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.vulkan.resource.image.ImageAdapter;
 
-public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
+public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 {
 	private VkImageBlit.Buffer region;
 
