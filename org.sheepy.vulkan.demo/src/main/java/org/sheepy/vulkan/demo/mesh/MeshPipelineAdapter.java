@@ -35,12 +35,13 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 				0
 		};
 
+		vkCmdBindPipeline(vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, id);
+		
 		if (meshPipeline.getDescriptorSet() != null)
 		{
 			bindDescriptor(commandBuffer, bindPoint, 0);
 		}
 
-		vkCmdBindPipeline(vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, id);
 		vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
 		vkCmdBindIndexBuffer(vkCommandBuffer, indexBufferId, 0, VK_INDEX_TYPE_UINT32);
 		vkCmdDrawIndexed(vkCommandBuffer, indexBuffer.indexCount(), 1, 0, 0, 0);
