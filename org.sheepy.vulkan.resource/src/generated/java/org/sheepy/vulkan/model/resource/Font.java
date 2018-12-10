@@ -20,7 +20,7 @@ package org.sheepy.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface Font extends SampledResource
+public interface Font extends SampledImage
 {
 	/**
 	 * Returns the value of the '<em><b>File</b></em>' containment reference.

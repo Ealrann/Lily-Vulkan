@@ -102,9 +102,9 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createImageLayoutAdapter();
 			}
 			@Override
-			public Adapter caseSampledResource(SampledResource object)
+			public Adapter caseSampledImage(SampledImage object)
 			{
-				return createSampledResourceAdapter();
+				return createSampledImageAdapter();
 			}
 			@Override
 			public Adapter caseFont(Font object)
@@ -314,16 +314,16 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.SampledResource <em>Sampled Resource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.SampledResource
+	 * @see org.sheepy.vulkan.model.resource.SampledImage
 	 * @generated
 	 */
-	public Adapter createSampledResourceAdapter()
+	public Adapter createSampledImageAdapter()
 	{
 		return null;
 	}

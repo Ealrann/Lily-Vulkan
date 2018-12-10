@@ -21,12 +21,14 @@ import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.ImageLayout;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.resource.PipelineResourceAdapter;
+import org.sheepy.vulkan.resource.nativehelper.VkImage;
+import org.sheepy.vulkan.resource.nativehelper.VkImageView;
 
 public class ImageAdapter extends PipelineResourceAdapter
 {
-	private ImageBackend imageBackend;
+	private VkImage imageBackend;
 	private Image image;
-	private ImageView imageView;
+	private VkImageView imageView;
 
 	private IImageLoader loader = null;
 	private ExecutionManager executionManager;
@@ -50,7 +52,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 		var logicalDevice = executionManager.logicalDevice;
 		var info = new ImageInfo(image);
 
-		imageBackend = new ImageBackend(logicalDevice, info);
+		imageBackend = new VkImage(logicalDevice, info);
 		imageBackend.allocate(stack);
 
 		if (image.getInitialLayout() != null)
@@ -58,8 +60,8 @@ public class ImageAdapter extends PipelineResourceAdapter
 			initialTransition();
 		}
 
-		imageView = new ImageView(executionManager.logicalDevice.getVkDevice());
-		imageView.load(imageBackend.getId(), 1, info.format, VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView = new VkImageView(executionManager.logicalDevice.getVkDevice());
+		imageView.allocate(imageBackend.getId(), 1, info.format, VK_IMAGE_ASPECT_COLOR_BIT);
 
 		load();
 
@@ -160,7 +162,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 
 	public static interface IImageLoader
 	{
-		void load(ExecutionManager executionManager, ImageBackend backendBuffer);
+		void load(ExecutionManager executionManager, VkImage backendBuffer);
 	}
 
 	public static ImageAdapter adapt(Image image)

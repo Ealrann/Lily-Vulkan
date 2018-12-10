@@ -12,14 +12,14 @@ package org.sheepy.vulkan.model.resource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.SampledResource#getSampler <em>Sampler</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.SampledImage#getSampler <em>Sampler</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getSampledResource()
+ * @see org.sheepy.vulkan.model.resource.ResourcePackage#getSampledImage()
  * @model abstract="true"
  * @generated
  */
-public interface SampledResource extends PipelineResource
+public interface SampledImage extends PipelineResource
 {
 	/**
 	 * Returns the value of the '<em><b>Sampler</b></em>' containment reference.
@@ -31,14 +31,14 @@ public interface SampledResource extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sampler</em>' containment reference.
 	 * @see #setSampler(Sampler)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getSampledResource_Sampler()
+	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getSampledImage_Sampler()
 	 * @model containment="true"
 	 * @generated
 	 */
 	Sampler getSampler();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.SampledResource#getSampler <em>Sampler</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.SampledImage#getSampler <em>Sampler</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Sampler</em>' containment reference.

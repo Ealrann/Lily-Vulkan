@@ -8,7 +8,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.process.graphic.process.GraphicContext;
-import org.sheepy.vulkan.resource.image.ImageView;
+import org.sheepy.vulkan.resource.nativehelper.VkImageView;
 
 public class ImageViewManager implements IBasicAllocable
 {
@@ -16,7 +16,7 @@ public class ImageViewManager implements IBasicAllocable
 
 	private final GraphicContext context;
 
-	private List<ImageView> imageViews = null;
+	private List<VkImageView> imageViews = null;
 
 	public ImageViewManager(GraphicContext context)
 	{
@@ -34,19 +34,19 @@ public class ImageViewManager implements IBasicAllocable
 		imageViews = new ArrayList<>(swapImages.size());
 		for (long imageId : swapImages)
 		{
-			var imageView = ImageView.alloc(device, imageId, colorFormat, IMAGE_ASPECT);
+			var imageView = VkImageView.alloc(device, imageId, colorFormat, IMAGE_ASPECT);
 			imageViews.add(imageView);
 		}
 
 		imageViews = List.copyOf(imageViews);
 	}
 
-	public List<ImageView> getImageViews()
+	public List<VkImageView> getImageViews()
 	{
 		return imageViews;
 	}
 
-	public ImageView getImageView(int index)
+	public VkImageView getImageView(int index)
 	{
 		return imageViews.get(index);
 	}
@@ -54,7 +54,7 @@ public class ImageViewManager implements IBasicAllocable
 	@Override
 	public void free()
 	{
-		for (final ImageView view : imageViews)
+		for (final VkImageView view : imageViews)
 		{
 			view.free();
 		}

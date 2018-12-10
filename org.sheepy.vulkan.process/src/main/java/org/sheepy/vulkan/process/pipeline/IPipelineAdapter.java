@@ -16,9 +16,8 @@ import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.resource.buffer.AbstractConstantsAdapter;
-import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
+import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public abstract class IPipelineAdapter<T extends AbstractCommandBuffer>
 		extends AbstractProcessUnitAdapter<T>
@@ -28,6 +27,8 @@ public abstract class IPipelineAdapter<T extends AbstractCommandBuffer>
 	protected IPipeline pipeline = null;
 
 	protected List<IAllocable> allocationDependencies = new ArrayList<>();
+
+	private List<IVkDescriptorSet> descriptorSets;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -72,22 +73,6 @@ public abstract class IPipelineAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
-	public void record(T commandBuffer, int bindPoint)
-	{
-		recordDescriptors(commandBuffer, bindPoint);
-	}
-
-	protected void recordDescriptors(T commandBuffer, int bindPoint)
-	{
-		final DescriptorSet descriptorSet = getDescriptorSet();
-		if (descriptorSet != null)
-		{
-			final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
-			adapter.bindDescriptorSet(commandBuffer, bindPoint, pipelineLayout);
-		}
-	}
-
-	@Override
 	public void deepAllocate(MemoryStack stack)
 	{
 		pipelineLayout = allocatePipelineLayout(stack);
@@ -96,20 +81,22 @@ public abstract class IPipelineAdapter<T extends AbstractCommandBuffer>
 	protected long allocatePipelineLayout(MemoryStack stack)
 	{
 		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice(pipeline);
-		final DescriptorSet descriptorSet = getDescriptorSet();
+		descriptorSets = List.copyOf(getDescriptorSets());
 
 		LongBuffer bDescriptorSet = null;
-		if (descriptorSet != null)
+		if (descriptorSets.isEmpty() == false)
 		{
-			final var descriptorSetAdapter = IDescriptorSetAdapter.adapt(descriptorSet);
-			if (descriptorSetAdapter.getDescriptors().isEmpty() == false)
+			bDescriptorSet = stack.mallocLong(descriptorSets.size());
+			for (IVkDescriptorSet vkDescriptorSet : descriptorSets)
 			{
-				// Create Pipeline Layout
-				// -----------------------
-				bDescriptorSet = stack.mallocLong(1);
-				bDescriptorSet.put(descriptorSetAdapter.getLayoutId());
-				bDescriptorSet.flip();
+				if (vkDescriptorSet.getDescriptors().isEmpty() == false)
+				{
+					// Create Pipeline Layout
+					// -----------------------
+					bDescriptorSet.put(vkDescriptorSet.getLayoutId());
+				}
 			}
+			bDescriptorSet.flip();
 		}
 
 		// Create compute pipeline
@@ -143,16 +130,23 @@ public abstract class IPipelineAdapter<T extends AbstractCommandBuffer>
 
 		allocationDependencies.clear();
 		pipelineLayout = -1;
+		descriptorSets = null;
 	}
 
 	public long getLayoutId()
 	{
 		return pipelineLayout;
 	}
+	
+	public void bindDescriptor(T commandBuffer, int bindPoint, int descriptorSetIndex)
+	{
+		IVkDescriptorSet descriptorSet = descriptorSets.get(descriptorSetIndex);
+		descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, getLayoutId());
+	}
 
 	protected abstract AbstractConstants getConstants();
 
-	protected abstract DescriptorSet getDescriptorSet();
+	protected abstract List<IVkDescriptorSet> getDescriptorSets();
 
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> IPipelineAdapter<T> adapt(IPipeline object)

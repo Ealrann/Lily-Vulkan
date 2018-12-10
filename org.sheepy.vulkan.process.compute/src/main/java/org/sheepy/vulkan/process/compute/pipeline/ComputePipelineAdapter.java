@@ -2,6 +2,9 @@ package org.sheepy.vulkan.process.compute.pipeline;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
@@ -15,11 +18,12 @@ import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.vulkan.model.process.compute.Computer;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.vulkan.process.compute.process.IComputeContextAdapter;
 import org.sheepy.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.vulkan.process.pipeline.IPipelineUnitAdapter;
+import org.sheepy.vulkan.resource.descriptor.AbstractDescriptorSetAdapter;
+import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.resource.shader.ShaderAdapter;
 
 public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffer>
@@ -116,7 +120,7 @@ public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffe
 	@Override
 	public void record(ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
-		recordDescriptors(commandBuffer, bindPoint);
+		bindDescriptor(commandBuffer, bindPoint, 0);
 		recordComputers(commandBuffer, bindPoint);
 	}
 
@@ -151,9 +155,16 @@ public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffe
 	}
 
 	@Override
-	protected DescriptorSet getDescriptorSet()
+	protected List<IVkDescriptorSet> getDescriptorSets()
 	{
-		return ((ComputePipeline) target).getDescriptorSet();
+		List<IVkDescriptorSet> res = new ArrayList<>();
+		var ds = pipeline.getDescriptorSet();
+		if (ds != null)
+		{
+			var adapter = AbstractDescriptorSetAdapter.adapt(ds);
+			res.add(adapter);
+		}
+		return res;
 	}
 
 	@Override

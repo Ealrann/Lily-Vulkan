@@ -7,9 +7,8 @@ import org.sheepy.vulkan.demo.mesh.MeshPipelineAdapter;
  */
 module org.sheepy.vulkan.demo {
 
-	requires transitive org.sheepy.vulkan.api;
-	requires transitive org.sheepy.vulkan.process.graphic;
 	requires transitive org.sheepy.vulkan.resource;
+	requires transitive org.sheepy.vulkan.process.graphic;
 
 	requires org.joml;
 

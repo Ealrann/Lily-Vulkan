@@ -14,13 +14,13 @@ import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl;
 import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
-import org.sheepy.vulkan.resource.image.ImageView;
 import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
+import org.sheepy.vulkan.resource.nativehelper.VkImageView;
 
 public class InitialImagePipelineBarrier implements IBasicAllocable
 {
 	private final ImagePipeline pipeline;
-	private final ImageView view;
+	private final VkImageView view;
 
 	private ImageBarrier sourceBarrier = null;
 	private ReferenceImageBarrier targetBarrier = null;
@@ -28,7 +28,7 @@ public class InitialImagePipelineBarrier implements IBasicAllocable
 	private final ImageBarrierExecutor sourceExecutor = new ImageBarrierExecutor();
 	private final ImageBarrierExecutor targetExecutor = new ImageBarrierExecutor();
 
-	public InitialImagePipelineBarrier(ImagePipeline pipeline, ImageView view)
+	public InitialImagePipelineBarrier(ImagePipeline pipeline, VkImageView view)
 	{
 		this.pipeline = pipeline;
 		this.view = view;

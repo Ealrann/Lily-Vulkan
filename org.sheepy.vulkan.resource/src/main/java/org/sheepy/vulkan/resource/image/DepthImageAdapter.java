@@ -21,11 +21,13 @@ import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
 import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
+import org.sheepy.vulkan.resource.nativehelper.VkImage;
+import org.sheepy.vulkan.resource.nativehelper.VkImageView;
 
 public class DepthImageAdapter extends ResourceAdapter
 {
-	private ImageBackend depthImageBackend;
-	private ImageView depthImageView;
+	private VkImage depthImageBackend;
+	private VkImageView depthImageView;
 	private int depthFormat;
 	private SVector2i size;
 
@@ -46,8 +48,9 @@ public class DepthImageAdapter extends ResourceAdapter
 
 	private void createAndAllocateImageView(LogicalDevice logicalDevice)
 	{
-		depthImageView = new ImageView(logicalDevice.getVkDevice());
-		depthImageView.load(depthImageBackend.getId(), 1, depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT);
+		depthImageView = new VkImageView(logicalDevice.getVkDevice());
+		depthImageView.allocate(depthImageBackend.getId(), 1, depthFormat,
+				VK_IMAGE_ASPECT_DEPTH_BIT);
 	}
 
 	private void allocateDepthImage(MemoryStack stack)
@@ -65,7 +68,7 @@ public class DepthImageAdapter extends ResourceAdapter
 		var depthImageInfo = new ImageInfo(width, height, depthFormat, usage,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		depthImageBackend = new ImageBackend(logicalDevice, depthImageInfo);
+		depthImageBackend = new VkImage(logicalDevice, depthImageInfo);
 	}
 
 	private void layoutTransitionOfDepthImage(ExecutionManager context)

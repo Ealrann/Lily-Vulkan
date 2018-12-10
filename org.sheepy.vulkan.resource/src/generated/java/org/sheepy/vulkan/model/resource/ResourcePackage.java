@@ -446,14 +446,14 @@ public interface ResourcePackage extends EPackage
 	int IMAGE_LAYOUT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.SampledResourceImpl <em>Sampled Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.SampledResourceImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampledResource()
+	 * @see org.sheepy.vulkan.model.resource.impl.SampledImageImpl
+	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
 	 * @generated
 	 */
-	int SAMPLED_RESOURCE = 5;
+	int SAMPLED_IMAGE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -462,7 +462,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_RESOURCE__DESCRIPTOR_TYPE = PIPELINE_RESOURCE__DESCRIPTOR_TYPE;
+	int SAMPLED_IMAGE__DESCRIPTOR_TYPE = PIPELINE_RESOURCE__DESCRIPTOR_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
@@ -471,7 +471,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_RESOURCE__SHADER_STAGES = PIPELINE_RESOURCE__SHADER_STAGES;
+	int SAMPLED_IMAGE__SHADER_STAGES = PIPELINE_RESOURCE__SHADER_STAGES;
 
 	/**
 	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
@@ -480,25 +480,25 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_RESOURCE__SAMPLER = PIPELINE_RESOURCE_FEATURE_COUNT + 0;
+	int SAMPLED_IMAGE__SAMPLER = PIPELINE_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Sampled Resource</em>' class.
+	 * The number of structural features of the '<em>Sampled Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_RESOURCE_FEATURE_COUNT = PIPELINE_RESOURCE_FEATURE_COUNT + 1;
+	int SAMPLED_IMAGE_FEATURE_COUNT = PIPELINE_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Sampled Resource</em>' class.
+	 * The number of operations of the '<em>Sampled Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_RESOURCE_OPERATION_COUNT = PIPELINE_RESOURCE_OPERATION_COUNT + 0;
+	int SAMPLED_IMAGE_OPERATION_COUNT = PIPELINE_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
@@ -517,7 +517,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT__DESCRIPTOR_TYPE = SAMPLED_RESOURCE__DESCRIPTOR_TYPE;
+	int FONT__DESCRIPTOR_TYPE = SAMPLED_IMAGE__DESCRIPTOR_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
@@ -526,7 +526,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT__SHADER_STAGES = SAMPLED_RESOURCE__SHADER_STAGES;
+	int FONT__SHADER_STAGES = SAMPLED_IMAGE__SHADER_STAGES;
 
 	/**
 	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
@@ -535,7 +535,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT__SAMPLER = SAMPLED_RESOURCE__SAMPLER;
+	int FONT__SAMPLER = SAMPLED_IMAGE__SAMPLER;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' containment reference.
@@ -544,7 +544,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT__FILE = SAMPLED_RESOURCE_FEATURE_COUNT + 0;
+	int FONT__FILE = SAMPLED_IMAGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -553,7 +553,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT__HEIGHT = SAMPLED_RESOURCE_FEATURE_COUNT + 1;
+	int FONT__HEIGHT = SAMPLED_IMAGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Font</em>' class.
@@ -562,7 +562,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT_FEATURE_COUNT = SAMPLED_RESOURCE_FEATURE_COUNT + 2;
+	int FONT_FEATURE_COUNT = SAMPLED_IMAGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Font</em>' class.
@@ -571,7 +571,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FONT_OPERATION_COUNT = SAMPLED_RESOURCE_OPERATION_COUNT + 0;
+	int FONT_OPERATION_COUNT = SAMPLED_IMAGE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
@@ -590,7 +590,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TEXTURE__DESCRIPTOR_TYPE = SAMPLED_RESOURCE__DESCRIPTOR_TYPE;
+	int ABSTRACT_TEXTURE__DESCRIPTOR_TYPE = SAMPLED_IMAGE__DESCRIPTOR_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
@@ -599,7 +599,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TEXTURE__SHADER_STAGES = SAMPLED_RESOURCE__SHADER_STAGES;
+	int ABSTRACT_TEXTURE__SHADER_STAGES = SAMPLED_IMAGE__SHADER_STAGES;
 
 	/**
 	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
@@ -608,7 +608,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TEXTURE__SAMPLER = SAMPLED_RESOURCE__SAMPLER;
+	int ABSTRACT_TEXTURE__SAMPLER = SAMPLED_IMAGE__SAMPLER;
 
 	/**
 	 * The feature id for the '<em><b>Mipmap Enabled</b></em>' attribute.
@@ -617,7 +617,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TEXTURE__MIPMAP_ENABLED = SAMPLED_RESOURCE_FEATURE_COUNT + 0;
+	int ABSTRACT_TEXTURE__MIPMAP_ENABLED = SAMPLED_IMAGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Texture</em>' class.
@@ -626,7 +626,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TEXTURE_FEATURE_COUNT = SAMPLED_RESOURCE_FEATURE_COUNT + 1;
+	int ABSTRACT_TEXTURE_FEATURE_COUNT = SAMPLED_IMAGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Abstract Texture</em>' class.
@@ -635,7 +635,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TEXTURE_OPERATION_COUNT = SAMPLED_RESOURCE_OPERATION_COUNT + 0;
+	int ABSTRACT_TEXTURE_OPERATION_COUNT = SAMPLED_IMAGE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
@@ -1848,25 +1848,25 @@ public interface ResourcePackage extends EPackage
 	EAttribute getImageLayout_Access();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.SampledResource <em>Sampled Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Sampled Resource</em>'.
-	 * @see org.sheepy.vulkan.model.resource.SampledResource
+	 * @return the meta object for class '<em>Sampled Image</em>'.
+	 * @see org.sheepy.vulkan.model.resource.SampledImage
 	 * @generated
 	 */
-	EClass getSampledResource();
+	EClass getSampledImage();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.resource.SampledResource#getSampler <em>Sampler</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.resource.SampledImage#getSampler <em>Sampler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Sampler</em>'.
-	 * @see org.sheepy.vulkan.model.resource.SampledResource#getSampler()
-	 * @see #getSampledResource()
+	 * @see org.sheepy.vulkan.model.resource.SampledImage#getSampler()
+	 * @see #getSampledImage()
 	 * @generated
 	 */
-	EReference getSampledResource_Sampler();
+	EReference getSampledImage_Sampler();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Font <em>Font</em>}'.
@@ -2732,14 +2732,14 @@ public interface ResourcePackage extends EPackage
 		EAttribute IMAGE_LAYOUT__ACCESS = eINSTANCE.getImageLayout_Access();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.SampledResourceImpl <em>Sampled Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.SampledResourceImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampledResource()
+		 * @see org.sheepy.vulkan.model.resource.impl.SampledImageImpl
+		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
 		 * @generated
 		 */
-		EClass SAMPLED_RESOURCE = eINSTANCE.getSampledResource();
+		EClass SAMPLED_IMAGE = eINSTANCE.getSampledImage();
 
 		/**
 		 * The meta object literal for the '<em><b>Sampler</b></em>' containment reference feature.
@@ -2747,7 +2747,7 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SAMPLED_RESOURCE__SAMPLER = eINSTANCE.getSampledResource_Sampler();
+		EReference SAMPLED_IMAGE__SAMPLER = eINSTANCE.getSampledImage_Sampler();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.

@@ -28,7 +28,7 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public class FontImpl extends SampledResourceImpl implements Font
+public class FontImpl extends SampledImageImpl implements Font
 {
 	/**
 	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.

@@ -19,7 +19,7 @@ package org.sheepy.vulkan.model.resource;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractTexture extends SampledResource
+public interface AbstractTexture extends SampledImage
 {
 	/**
 	 * Returns the value of the '<em><b>Mipmap Enabled</b></em>' attribute.

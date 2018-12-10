@@ -2,13 +2,17 @@ package org.sheepy.vulkan.demo.mesh;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
+import org.sheepy.vulkan.resource.descriptor.AbstractDescriptorSetAdapter;
+import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
 public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
@@ -16,8 +20,6 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	@Override
 	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
 	{
-		super.record(commandBuffer, bindPoint);
-
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 		final var meshPipeline = (MeshPipeline) pipeline;
 		final var mesh = meshPipeline.getMesh();
@@ -32,6 +34,11 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		final long[] offsets = {
 				0
 		};
+
+		if (meshPipeline.getDescriptorSet() != null)
+		{
+			bindDescriptor(commandBuffer, bindPoint, 0);
+		}
 
 		vkCmdBindPipeline(vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, id);
 		vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
@@ -56,9 +63,17 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	protected DescriptorSet getDescriptorSet()
+	protected List<IVkDescriptorSet> getDescriptorSets()
 	{
-		return ((MeshPipeline) pipeline).getDescriptorSet();
+		List<IVkDescriptorSet> res = new ArrayList<>();
+		final var meshPipeline = (MeshPipeline) pipeline;
+		var ds = meshPipeline.getDescriptorSet();
+		if (ds != null)
+		{
+			var adapter = AbstractDescriptorSetAdapter.adapt(ds);
+			res.add(adapter);
+		}
+		return res;
 	}
 
 	@Override

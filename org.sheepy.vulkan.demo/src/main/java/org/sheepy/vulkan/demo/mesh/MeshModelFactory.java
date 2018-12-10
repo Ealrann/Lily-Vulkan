@@ -170,7 +170,6 @@ public class MeshModelFactory
 		graphicProcess.getResources().add(vertexShader);
 		graphicProcess.getResources().add(fragmentShader);
 		graphicProcess.getUnits().add(graphicPipeline);
-		graphicProcess.getDescriptorSets().add(descriptorSet);
 
 		if (meshConfiguration.depth)
 		{
@@ -203,6 +202,7 @@ public class MeshModelFactory
 		if (descriptorSet.getDescriptors().isEmpty() == false)
 		{
 			graphicPipeline.setDescriptorSet(descriptorSet);
+			graphicProcess.getDescriptorSets().add(descriptorSet);
 		}
 
 		return graphicProcess;

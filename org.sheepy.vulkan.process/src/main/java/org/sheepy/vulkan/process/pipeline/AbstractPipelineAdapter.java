@@ -1,10 +1,13 @@
 package org.sheepy.vulkan.process.pipeline;
 
+import java.util.List;
+
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.vulkan.resource.descriptor.AbstractDescriptorSetAdapter;
+import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		extends IPipelineAdapter<T>
@@ -16,9 +19,12 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
-	protected DescriptorSet getDescriptorSet()
+	protected List<IVkDescriptorSet> getDescriptorSets()
 	{
-		return ((AbstractPipeline) pipeline).getDescriptorSet();
+		var descriptorSet = ((AbstractPipeline) pipeline).getDescriptorSet();
+		var adapter = AbstractDescriptorSetAdapter.adapt(descriptorSet);
+
+		return List.of(adapter);
 	}
 
 	@SuppressWarnings("unchecked")

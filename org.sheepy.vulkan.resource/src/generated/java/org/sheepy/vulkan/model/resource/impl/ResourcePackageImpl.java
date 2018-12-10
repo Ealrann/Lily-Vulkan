@@ -44,7 +44,7 @@ import org.sheepy.vulkan.model.resource.PipelineResource;
 import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.SampledResource;
+import org.sheepy.vulkan.model.resource.SampledImage;
 import org.sheepy.vulkan.model.resource.Sampler;
 import org.sheepy.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.resource.Texture;
@@ -97,7 +97,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass sampledResourceEClass = null;
+	private EClass sampledImageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -544,9 +544,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSampledResource()
+	public EClass getSampledImage()
 	{
-		return sampledResourceEClass;
+		return sampledImageEClass;
 	}
 
 	/**
@@ -554,9 +554,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSampledResource_Sampler()
+	public EReference getSampledImage_Sampler()
 	{
-		return (EReference)sampledResourceEClass.getEStructuralFeatures().get(0);
+		return (EReference)sampledImageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1235,8 +1235,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__LAYOUT);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__ACCESS);
 
-		sampledResourceEClass = createEClass(SAMPLED_RESOURCE);
-		createEReference(sampledResourceEClass, SAMPLED_RESOURCE__SAMPLER);
+		sampledImageEClass = createEClass(SAMPLED_IMAGE);
+		createEReference(sampledImageEClass, SAMPLED_IMAGE__SAMPLER);
 
 		fontEClass = createEClass(FONT);
 		createEReference(fontEClass, FONT__FILE);
@@ -1363,9 +1363,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		pipelineResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getPipelineResource());
 		imageEClass.getESuperTypes().add(this.getPipelineResource());
-		sampledResourceEClass.getESuperTypes().add(this.getPipelineResource());
-		fontEClass.getESuperTypes().add(this.getSampledResource());
-		abstractTextureEClass.getESuperTypes().add(this.getSampledResource());
+		sampledImageEClass.getESuperTypes().add(this.getPipelineResource());
+		fontEClass.getESuperTypes().add(this.getSampledImage());
+		abstractTextureEClass.getESuperTypes().add(this.getSampledImage());
 		textureEClass.getESuperTypes().add(this.getAbstractTexture());
 		abstractConstantsEClass.getESuperTypes().add(this.getBasicResource());
 		constantsEClass.getESuperTypes().add(this.getAbstractConstants());
@@ -1408,8 +1408,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getImageLayout_Layout(), theEnumerationPackage.getEImageLayout(), "layout", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageLayout_Access(), theEcorePackage.getEInt(), "access", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sampledResourceEClass, SampledResource.class, "SampledResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSampledResource_Sampler(), this.getSampler(), null, "sampler", null, 0, 1, SampledResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSampledImage_Sampler(), this.getSampler(), null, "sampler", null, 0, 1, SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fontEClass, Font.class, "Font", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFont_File(), this.getPathResource(), null, "file", null, 0, 1, Font.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

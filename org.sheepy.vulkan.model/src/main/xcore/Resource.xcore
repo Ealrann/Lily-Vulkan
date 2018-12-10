@@ -53,18 +53,18 @@ class ImageLayout
 	int access
 }
 
-abstract class SampledResource extends PipelineResource
+abstract class SampledImage extends PipelineResource
 {
 	contains Sampler sampler
 }
 
-class Font extends SampledResource
+class Font extends SampledImage
 {
 	contains PathResource file
 	int height
 }
 
-abstract class AbstractTexture extends SampledResource
+abstract class AbstractTexture extends SampledImage
 {
 	boolean mipmapEnabled = "false"
 }

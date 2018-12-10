@@ -11,21 +11,13 @@ import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
-import org.sheepy.vulkan.common.execution.SingleTimeCommand;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.Font;
-import org.sheepy.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.vulkan.resource.buffer.BufferBackend;
 import org.sheepy.vulkan.resource.file.FileResourceAdapter;
-import org.sheepy.vulkan.resource.image.AbstractSampledResourceAdapter;
-import org.sheepy.vulkan.resource.image.ImageBackend;
+import org.sheepy.vulkan.resource.image.AbstractSampledImageAdapter;
+import org.sheepy.vulkan.resource.image.ImageInfo;
 
-public abstract class FontAdapter extends AbstractSampledResourceAdapter
+public abstract class FontAdapter extends AbstractSampledImageAdapter
 {
 	public static final int BUFFER_WIDTH = 1024;
 	public static final int BUFFER_HEIGHT = 1024;
@@ -36,40 +28,15 @@ public abstract class FontAdapter extends AbstractSampledResourceAdapter
 	private float scale;
 
 	@Override
-	protected void loadImage(MemoryStack stack, ImageBackend imageBackend)
+	protected ByteBuffer allocDataBuffer(MemoryStack stack)
 	{
-		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
-		final var logicalDevice = context.getLogicalDevice();
 		final var font = (Font) target;
 
 		final var file = font.getFile();
 		final var fileAdapter = FileResourceAdapter.adapt(file);
 		final ByteBuffer bufferedRessource = fileAdapter.toByteBuffer(file);
 
-		ByteBuffer fontTexture = allocateFontTexture(stack, bufferedRessource, font.getHeight());
-		memFree(bufferedRessource);
-
-		int size = BUFFER_WIDTH * BUFFER_HEIGHT * 4;
-
-		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-		final BufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice,
-				size, stagingUsage, fontTexture);
-
-		final SingleTimeCommand stc = new SingleTimeCommand(context)
-		{
-			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
-			{
-				imageBackend.transitionImageLayout(commandBuffer, EPipelineStage.TOP_OF_PIPE_BIT,
-						EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,
-						EImageLayout.TRANSFER_DST_OPTIMAL, 0, VK_ACCESS_TRANSFER_WRITE_BIT);
-
-				imageBackend.fillWithBuffer(commandBuffer, buffer.getId());
-			}
-		};
-		stc.execute();
-
-		MemoryUtil.memFree(fontTexture);
+		return allocateFontTexture(stack, bufferedRessource, font.getHeight());
 	}
 
 	public ByteBuffer allocateFontTexture(MemoryStack stack, ByteBuffer ttf, int fontHeight)
@@ -133,35 +100,13 @@ public abstract class FontAdapter extends AbstractSampledResourceAdapter
 	}
 
 	@Override
-	protected int getWidth()
+	protected ImageInfo getImageInfo()
 	{
-		return BUFFER_WIDTH;
-	}
-
-	@Override
-	protected int getHeight()
-	{
-		return BUFFER_HEIGHT;
-	}
-
-	@Override
-	protected int getFormat()
-	{
-		return VK_FORMAT_R8G8B8A8_UNORM;
-	}
-
-	@Override
-	protected int getUsage()
-	{
-		return VK_IMAGE_USAGE_TRANSFER_SRC_BIT
-				| VK_IMAGE_USAGE_TRANSFER_DST_BIT
-				| VK_IMAGE_USAGE_SAMPLED_BIT;
-	}
-
-	@Override
-	protected int getMipLevels()
-	{
-		return 1;
+		return new ImageInfo(BUFFER_WIDTH, BUFFER_HEIGHT, VK_FORMAT_R8G8B8A8_UNORM,
+				VK_IMAGE_USAGE_TRANSFER_SRC_BIT
+						| VK_IMAGE_USAGE_TRANSFER_DST_BIT
+						| VK_IMAGE_USAGE_SAMPLED_BIT,
+				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, VK_IMAGE_TILING_OPTIMAL, 1);
 	}
 
 	public static FontAdapter adapt(Font font)

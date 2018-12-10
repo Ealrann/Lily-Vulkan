@@ -30,7 +30,7 @@ public class TextureAdapter extends AbstractTextureAdapter
 	}
 
 	@Override
-	protected ByteBuffer allocDataBuffer()
+	protected ByteBuffer allocDataBuffer(MemoryStack stack)
 	{
 		return imageLoader.getBuffer();
 	}

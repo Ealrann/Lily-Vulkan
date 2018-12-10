@@ -24,7 +24,7 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public abstract class AbstractTextureImpl extends SampledResourceImpl implements AbstractTexture
+public abstract class AbstractTextureImpl extends SampledImageImpl implements AbstractTexture
 {
 	/**
 	 * The default value of the '{@link #isMipmapEnabled() <em>Mipmap Enabled</em>}' attribute.

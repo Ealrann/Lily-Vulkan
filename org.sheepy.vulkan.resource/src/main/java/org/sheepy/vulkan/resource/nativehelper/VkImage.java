@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.image;
+package org.sheepy.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -8,13 +8,12 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.resource.image.ImageInfo;
 import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
-import org.sheepy.vulkan.resource.nativehelper.VkImageAllocator;
-import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryInfo;
 
-public class ImageBackend
+public class VkImage
 {
 	private final LogicalDevice logicalDevice;
 
@@ -24,7 +23,7 @@ public class ImageBackend
 	protected long imageMemoryId;
 	protected long size;
 
-	public ImageBackend(LogicalDevice logicalDevice, ImageInfo info)
+	public VkImage(LogicalDevice logicalDevice, ImageInfo info)
 	{
 		this.logicalDevice = logicalDevice;
 		this.info = info;

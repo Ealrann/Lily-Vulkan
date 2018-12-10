@@ -2,6 +2,8 @@ package org.sheepy.vulkan.process.graphic.pipeline.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkImageBlit;
@@ -9,11 +11,11 @@ import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.process.IGraphicContextAdapter;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
 import org.sheepy.vulkan.process.pipeline.IPipelineAdapter;
+import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.resource.image.ImageAdapter;
 
 public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
@@ -113,9 +115,9 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 	}
 
 	@Override
-	protected DescriptorSet getDescriptorSet()
+	protected List<IVkDescriptorSet> getDescriptorSets()
 	{
-		return ((ImagePipeline) target).getDescriptorSet();
+		return List.of();
 	}
 
 	@Override

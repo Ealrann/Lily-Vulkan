@@ -70,10 +70,7 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 
 		for (var descriptorSetAdapter : descriptorSetAdapters)
 		{
-			if (descriptorSetAdapter.getDescriptors().isEmpty() == false)
-			{
-				descriptorSetAdapter.allocate(stack);
-			}
+			descriptorSetAdapter.allocate(stack);
 		}
 	}
 

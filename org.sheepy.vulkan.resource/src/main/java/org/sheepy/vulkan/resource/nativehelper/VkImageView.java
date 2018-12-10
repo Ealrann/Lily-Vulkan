@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.image;
+package org.sheepy.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -6,7 +6,7 @@ import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkImageViewCreateInfo;
 import org.sheepy.vulkan.common.util.Logger;
 
-public class ImageView
+public class VkImageView
 {
 	private final VkDevice device;
 	private long imageId;
@@ -14,22 +14,22 @@ public class ImageView
 
 	private long imageViewId = -1;
 
-	public static ImageView alloc(	VkDevice device,
+	public static VkImageView alloc(	VkDevice device,
 									long imageId,
 									int format,
 									int aspectMask)
 	{
-		ImageView res = new ImageView(device);
-		res.load(imageId, 1, format, aspectMask);
+		VkImageView res = new VkImageView(device);
+		res.allocate(imageId, 1, format, aspectMask);
 		return res;
 	}
 
-	public ImageView(VkDevice device)
+	public VkImageView(VkDevice device)
 	{
 		this.device = device;
 	}
 
-	public void load(long imageId, int levelCount, int format, int aspectMask)
+	public void allocate(long imageId, int levelCount, int format, int aspectMask)
 	{
 		this.imageId = imageId;
 		this.imageFormat = format;
@@ -57,15 +57,15 @@ public class ImageView
 		createInfo.free();
 	}
 
-	public long getId()
-	{
-		return imageViewId;
-	}
-
 	public void free()
 	{
 		vkDestroyImageView(device, imageViewId, null);
 		imageViewId = -1;
+	}
+
+	public long getId()
+	{
+		return imageViewId;
 	}
 
 	public long getImageId()

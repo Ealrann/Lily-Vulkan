@@ -12,7 +12,7 @@ import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.resource.image.DepthImageAdapter;
-import org.sheepy.vulkan.resource.image.ImageView;
+import org.sheepy.vulkan.resource.nativehelper.VkImageView;
 
 public class Framebuffers implements IBasicAllocable
 {
@@ -39,7 +39,7 @@ public class Framebuffers implements IBasicAllocable
 		var createInfo = allocCreateInfo(stack, attachments);
 
 		framebuffersIds = new ArrayList<>(imageViews.size());
-		for (final ImageView imageView : imageViews)
+		for (final VkImageView imageView : imageViews)
 		{
 			fillAttachements(attachments, imageView.getId(), depthImageViewId);
 

@@ -21,7 +21,7 @@ import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.SampledResource;
+import org.sheepy.vulkan.model.resource.SampledImage;
 import org.sheepy.vulkan.model.resource.Sampler;
 
 /**
@@ -32,14 +32,14 @@ import org.sheepy.vulkan.model.resource.Sampler;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledResourceImpl#getDescriptorType <em>Descriptor Type</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledResourceImpl#getShaderStages <em>Shader Stages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledResourceImpl#getSampler <em>Sampler</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl#getDescriptorType <em>Descriptor Type</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl#getShaderStages <em>Shader Stages</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl#getSampler <em>Sampler</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container implements SampledResource
+public abstract class SampledImageImpl extends MinimalEObjectImpl.Container implements SampledImage
 {
 	/**
 	 * The default value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
@@ -86,7 +86,7 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SampledResourceImpl()
+	public SampledImageImpl()
 	{
 		super();
 	}
@@ -99,7 +99,7 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.SAMPLED_RESOURCE;
+		return ResourcePackage.Literals.SAMPLED_IMAGE;
 	}
 
 	/**
@@ -122,7 +122,7 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 		EDescriptorType oldDescriptorType = descriptorType;
 		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_RESOURCE__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
 	}
 
 	/**
@@ -134,7 +134,7 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.SAMPLED_RESOURCE__SHADER_STAGES);
+			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -160,7 +160,7 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 		sampler = newSampler;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_RESOURCE__SAMPLER, oldSampler, newSampler);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__SAMPLER, oldSampler, newSampler);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -177,14 +177,14 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 		{
 			NotificationChain msgs = null;
 			if (sampler != null)
-				msgs = ((InternalEObject)sampler).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_RESOURCE__SAMPLER, null, msgs);
+				msgs = ((InternalEObject)sampler).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
 			if (newSampler != null)
-				msgs = ((InternalEObject)newSampler).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_RESOURCE__SAMPLER, null, msgs);
+				msgs = ((InternalEObject)newSampler).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
 			msgs = basicSetSampler(newSampler, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_RESOURCE__SAMPLER, newSampler, newSampler));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__SAMPLER, newSampler, newSampler));
 	}
 
 	/**
@@ -197,7 +197,7 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_RESOURCE__SAMPLER:
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return basicSetSampler(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -213,11 +213,11 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_RESOURCE__DESCRIPTOR_TYPE:
+			case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
 				return getDescriptorType();
-			case ResourcePackage.SAMPLED_RESOURCE__SHADER_STAGES:
+			case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
 				return getShaderStages();
-			case ResourcePackage.SAMPLED_RESOURCE__SAMPLER:
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return getSampler();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -234,14 +234,14 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_RESOURCE__DESCRIPTOR_TYPE:
+			case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
 				setDescriptorType((EDescriptorType)newValue);
 				return;
-			case ResourcePackage.SAMPLED_RESOURCE__SHADER_STAGES:
+			case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
 				getShaderStages().clear();
 				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
 				return;
-			case ResourcePackage.SAMPLED_RESOURCE__SAMPLER:
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((Sampler)newValue);
 				return;
 		}
@@ -258,13 +258,13 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_RESOURCE__DESCRIPTOR_TYPE:
+			case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
 				setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
 				return;
-			case ResourcePackage.SAMPLED_RESOURCE__SHADER_STAGES:
+			case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
 				getShaderStages().clear();
 				return;
-			case ResourcePackage.SAMPLED_RESOURCE__SAMPLER:
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				setSampler((Sampler)null);
 				return;
 		}
@@ -281,11 +281,11 @@ public abstract class SampledResourceImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_RESOURCE__DESCRIPTOR_TYPE:
+			case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
 				return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-			case ResourcePackage.SAMPLED_RESOURCE__SHADER_STAGES:
+			case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
 				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.SAMPLED_RESOURCE__SAMPLER:
+			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 				return sampler != null;
 		}
 		return super.eIsSet(featureID);
