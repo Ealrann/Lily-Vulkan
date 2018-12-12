@@ -12,7 +12,6 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -46,9 +45,9 @@ public class ImageAdapter extends PipelineResourceAdapter
 	}
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, ExecutionManager executionManager)
 	{
-		executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
+		this.executionManager = executionManager;
 		var logicalDevice = executionManager.logicalDevice;
 		var info = new ImageInfo(image);
 
@@ -64,8 +63,6 @@ public class ImageAdapter extends PipelineResourceAdapter
 		imageView.allocate(imageBackend.getId(), 1, info.format, VK_IMAGE_ASPECT_COLOR_BIT);
 
 		load();
-
-		dirty = false;
 	}
 
 	private void initialTransition()

@@ -9,9 +9,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
+import org.sheepy.vulkan.process.descriptor.AbstractDescriptorSetAdapter;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
-import org.sheepy.vulkan.resource.descriptor.AbstractDescriptorSetAdapter;
 import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
@@ -35,7 +35,7 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 				0
 		};
 
-		vkCmdBindPipeline(vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, id);
+		vkCmdBindPipeline(vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineId);
 		
 		if (meshPipeline.getDescriptorSet() != null)
 		{
@@ -64,7 +64,7 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	protected List<IVkDescriptorSet> getDescriptorSets()
+	public List<IVkDescriptorSet> getDescriptorSets()
 	{
 		List<IVkDescriptorSet> res = new ArrayList<>();
 		final var meshPipeline = (MeshPipeline) pipeline;

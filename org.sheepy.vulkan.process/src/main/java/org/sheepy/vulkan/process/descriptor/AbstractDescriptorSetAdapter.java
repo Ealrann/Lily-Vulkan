@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.descriptor;
+package org.sheepy.vulkan.process.descriptor;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
@@ -6,14 +6,14 @@ import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.resource.IResourceManagerAdapter;
+import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
+import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.vulkan.resource.nativehelper.VkDescriptorSet;
 
 public abstract class AbstractDescriptorSetAdapter extends AbstractStatefullAdapter
 		implements IDescriptorSetAdapter
 {
 	protected VkDescriptorSet vkDescriptorSet;
-
 	protected DescriptorSet descriptorSet = null;
 
 	@Override
@@ -24,13 +24,10 @@ public abstract class AbstractDescriptorSetAdapter extends AbstractStatefullAdap
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, DescriptorPool pool)
 	{
-		var resourceManager = IResourceManagerAdapter.adapt(target).getResourceManager(target);
-		var pool = resourceManager.descriptorPool;
-
-		vkDescriptorSet = new VkDescriptorSet(pool, getDescriptors());
-		vkDescriptorSet.allocate(stack);
+		vkDescriptorSet = new VkDescriptorSet(getDescriptors());
+		vkDescriptorSet.allocate(stack, pool);
 	}
 
 	@Override
@@ -58,12 +55,6 @@ public abstract class AbstractDescriptorSetAdapter extends AbstractStatefullAdap
 	{
 		vkDescriptorSet.free();
 		vkDescriptorSet = null;
-	}
-
-	@Override
-	public boolean isAllocationDirty()
-	{
-		return false;
 	}
 
 	public static AbstractDescriptorSetAdapter adapt(DescriptorSet object)

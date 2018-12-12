@@ -40,10 +40,10 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public void setTarget(Notifier target)
 	{
-		super.setTarget(target);
 		this.process = (GraphicProcess) target;
+		super.setTarget(target);
 
-		context = new GraphicContext(executionManager, resourceManager, process);
+		context = new GraphicContext(executionManager, descriptorPool, process);
 		childAllocables.addAll(context.getAllocationList());
 	}
 

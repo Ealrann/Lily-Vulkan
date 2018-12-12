@@ -2,10 +2,9 @@ package org.sheepy.vulkan.resource.descriptor;
 
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 
-public interface IDescriptorSetAdapter extends IVulkanAdapter, IBasicAllocable, IVkDescriptorSet
+public interface IDescriptorSetAdapter extends IVulkanAdapter, IVkDescriptorSet
 {
 	static IDescriptorSetAdapter adapt(DescriptorSet object)
 	{

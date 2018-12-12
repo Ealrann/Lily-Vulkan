@@ -20,9 +20,9 @@ import org.sheepy.vulkan.model.process.compute.Computer;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.vulkan.process.compute.process.IComputeContextAdapter;
+import org.sheepy.vulkan.process.descriptor.AbstractDescriptorSetAdapter;
 import org.sheepy.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.vulkan.process.pipeline.IPipelineUnitAdapter;
-import org.sheepy.vulkan.resource.descriptor.AbstractDescriptorSetAdapter;
 import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.resource.shader.ShaderAdapter;
 
@@ -48,7 +48,7 @@ public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffe
 	{
 		super.deepAllocate(stack);
 
-		var context = IComputeContextAdapter.adapt(target).getComputeContext(target);
+		var context = IComputeContextAdapter.adapt(target).getContext(target);
 		var device = context.getVkDevice();
 		var units = pipeline.getUnits();
 		int size = 0;
@@ -155,7 +155,7 @@ public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffe
 	}
 
 	@Override
-	protected List<IVkDescriptorSet> getDescriptorSets()
+	public List<IVkDescriptorSet> getDescriptorSets()
 	{
 		List<IVkDescriptorSet> res = new ArrayList<>();
 		var ds = pipeline.getDescriptorSet();

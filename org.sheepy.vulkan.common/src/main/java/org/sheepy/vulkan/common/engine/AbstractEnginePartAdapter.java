@@ -1,7 +1,11 @@
 package org.sheepy.vulkan.common.engine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.IStatefullAdapter;
@@ -13,7 +17,11 @@ import org.sheepy.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
+import org.sheepy.vulkan.common.execution.IResourceAllocable;
+import org.sheepy.vulkan.common.execution.IResourceAllocableAdapter;
+import org.sheepy.vulkan.common.execution.ResourceAllocator;
 import org.sheepy.vulkan.model.IEnginePart;
+import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.VulkanPackage;
 
 public abstract class AbstractEnginePartAdapter extends AbstractAllocableAdapter
@@ -35,6 +43,29 @@ public abstract class AbstractEnginePartAdapter extends AbstractAllocableAdapter
 				.getLogicalDevice(enginePart);
 
 		executionManager = new ExecutionManager(logicalDevice, getQueueType(), isResetAllowed());
+
+		var resourceAllocator = new ResourceAllocator(executionManager, gatherResources());
+		childAllocables.add(resourceAllocator);
+	}
+
+	protected List<IResourceAllocable> gatherResources()
+	{
+		List<IResourceAllocable> resources = new ArrayList<>();
+
+		for (EObject child : target.eContents())
+		{
+			if (child instanceof IResource)
+			{
+				IResource resource = (IResource) child;
+				var adapter = IResourceAllocableAdapter.adapt(resource);
+				if (adapter != null)
+				{
+					resources.add(adapter);
+				}
+			}
+		}
+
+		return resources;
 	}
 
 	@Override

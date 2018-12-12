@@ -2,6 +2,7 @@ package org.sheepy.vulkan.resource.texture;
 
 import java.nio.ByteBuffer;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
@@ -17,7 +18,7 @@ public class TextureAdapter extends AbstractTextureAdapter
 	private final STBImageLoader imageLoader = new STBImageLoader();
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void setTarget(Notifier target)
 	{
 		final Texture texture = (Texture) target;
 
@@ -25,8 +26,8 @@ public class TextureAdapter extends AbstractTextureAdapter
 
 		width = imageLoader.getWidth();
 		height = imageLoader.getHeight();
-
-		super.flatAllocate(stack);
+		
+		super.setTarget(target);
 	}
 
 	@Override

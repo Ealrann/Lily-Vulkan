@@ -2,12 +2,13 @@ package org.sheepy.vulkan.resource.image;
 
 import java.nio.ByteBuffer;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
+import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.model.resource.SampledImage;
 import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
@@ -19,20 +20,27 @@ public abstract class AbstractSampledImageAdapter extends PipelineResourceAdapte
 	protected VkTexture vkTexture;
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void setTarget(Notifier target)
 	{
-		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
-		final var logicalDevice = context.getLogicalDevice();
+		super.setTarget(target);
+
 		final var resource = (SampledImage) target;
 		final var samplerInfo = resource.getSampler();
 		final var imageInfo = getImageInfo();
 
+		vkTexture = new VkTexture(imageInfo, samplerInfo);
+	}
+
+	@Override
+	public void allocate(MemoryStack stack, ExecutionManager executionManager)
+	{
+		final var logicalDevice = executionManager.getLogicalDevice();
+
 		ByteBuffer allocDataBuffer = allocDataBuffer(stack);
 
-		vkTexture = new VkTexture(logicalDevice, imageInfo, samplerInfo);
-		vkTexture.allocate(stack);
-		vkTexture.loadImage(stack, context, allocDataBuffer);
-		
+		vkTexture.allocate(stack, logicalDevice);
+		vkTexture.loadImage(stack, executionManager, allocDataBuffer);
+
 		MemoryUtil.memFree(allocDataBuffer);
 	}
 

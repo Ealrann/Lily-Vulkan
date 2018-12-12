@@ -2,7 +2,7 @@ package org.sheepy.vulkan.resource.texture;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.lwjgl.system.MemoryStack;
+import org.eclipse.emf.common.notify.Notifier;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.AbstractTexture;
 import org.sheepy.vulkan.model.resource.Sampler;
@@ -19,9 +19,9 @@ public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 	protected VkTexture vkTexture;
 
 	private ImageInfo info;
-
+	
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void setTarget(Notifier target)
 	{
 		final AbstractTexture texture = (Texture) target;
 		Sampler samplerInfos = texture.getSampler();
@@ -45,8 +45,8 @@ public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 
 		info = new ImageInfo(width, height, format, usage, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
 				VK_IMAGE_TILING_OPTIMAL, mipLevels);
-
-		super.flatAllocate(stack);
+		
+		super.setTarget(target);
 	}
 
 	@Override

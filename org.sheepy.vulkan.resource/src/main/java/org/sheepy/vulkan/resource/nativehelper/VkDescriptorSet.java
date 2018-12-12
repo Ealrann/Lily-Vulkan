@@ -21,17 +21,18 @@ public class VkDescriptorSet implements IVkDescriptorSet
 {
 	private long descriptorSetId;
 	private long layoutId;
-	private final DescriptorPool pool;
+	private DescriptorPool pool;
 	private final List<IVkDescriptor> descriptors;
 
-	public VkDescriptorSet(DescriptorPool pool, List<IVkDescriptor> descriptors)
+	public VkDescriptorSet(List<IVkDescriptor> descriptors)
 	{
 		this.descriptors = List.copyOf(descriptors);
-		this.pool = pool;
 	}
-
-	public void allocate(MemoryStack stack)
+	
+	@Override
+	public void allocate(MemoryStack stack, DescriptorPool pool)
 	{
+		this.pool = pool;
 		var device = pool.getVkDevice();
 		var layoutBindings = createLayoutBinding(stack);
 
@@ -61,6 +62,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		updateDescriptorSet(stack);
 	}
 
+	@Override
 	public void free()
 	{
 		var device = pool.getVkDevice();
@@ -132,5 +134,4 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	{
 		return descriptors;
 	}
-
 }

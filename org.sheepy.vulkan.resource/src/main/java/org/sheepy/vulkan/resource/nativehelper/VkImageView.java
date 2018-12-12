@@ -14,10 +14,7 @@ public class VkImageView
 
 	private long imageViewId = -1;
 
-	public static VkImageView alloc(	VkDevice device,
-									long imageId,
-									int format,
-									int aspectMask)
+	public static VkImageView alloc(VkDevice device, long imageId, int format, int aspectMask)
 	{
 		VkImageView res = new VkImageView(device);
 		res.allocate(imageId, 1, format, aspectMask);

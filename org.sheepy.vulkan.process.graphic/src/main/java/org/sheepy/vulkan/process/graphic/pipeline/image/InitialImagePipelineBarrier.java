@@ -39,7 +39,7 @@ public class InitialImagePipelineBarrier implements IBasicAllocable
 	{
 		allocateInitialSourceBarrier();
 		allocateInitialTargetBarrier();
-		
+
 		sourceExecutor.allocate(sourceBarrier);
 		targetExecutor.allocate(targetBarrier);
 	}
@@ -49,11 +49,11 @@ public class InitialImagePipelineBarrier implements IBasicAllocable
 	{
 		sourceExecutor.free();
 		targetExecutor.free();
-		
+
 		sourceBarrier = null;
 		targetBarrier = null;
 	}
-	
+
 	public void execute(VkCommandBuffer commandBuffer)
 	{
 		sourceExecutor.execute(commandBuffer);
@@ -74,7 +74,7 @@ public class InitialImagePipelineBarrier implements IBasicAllocable
 		transition.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
 		transition.setSrcAccess(pipeline.getImageSrcAccess());
 		transition.setDstAccess(VK_ACCESS_TRANSFER_READ_BIT);
-		
+
 		sourceBarrier.getTransitions().add(transition);
 	}
 
@@ -92,7 +92,7 @@ public class InitialImagePipelineBarrier implements IBasicAllocable
 		transition.setDstLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
 		transition.setSrcAccess(0);
 		transition.setDstAccess(VK_ACCESS_TRANSFER_WRITE_BIT);
-		
+
 		targetBarrier.getTransitions().add(transition);
 	}
 

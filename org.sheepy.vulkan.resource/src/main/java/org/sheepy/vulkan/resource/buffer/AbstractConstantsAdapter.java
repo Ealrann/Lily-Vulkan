@@ -1,17 +1,13 @@
 package org.sheepy.vulkan.resource.buffer;
 
-import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
-
 import java.nio.ByteBuffer;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkPushConstantRange;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
 
 public abstract class AbstractConstantsAdapter extends AbstractStatefullAdapter

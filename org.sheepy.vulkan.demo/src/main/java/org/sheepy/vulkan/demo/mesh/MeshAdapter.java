@@ -3,23 +3,22 @@ package org.sheepy.vulkan.demo.mesh;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
-import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
+import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
+import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.indexed.IndexBuffer;
 
-public class MeshAdapter extends AbstractFlatAllocableAdapter
+public class MeshAdapter extends ResourceAdapter
 {
 	public static IIndexedBufferBuilder<?> meshBuilder = null;
 
 	private IndexBuffer<?> indexBuffer;
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, ExecutionManager executionManager)
 	{
-		final var context = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
-		indexBuffer = meshBuilder.build(context);
+		indexBuffer = meshBuilder.build(executionManager);
 	}
 
 	@Override

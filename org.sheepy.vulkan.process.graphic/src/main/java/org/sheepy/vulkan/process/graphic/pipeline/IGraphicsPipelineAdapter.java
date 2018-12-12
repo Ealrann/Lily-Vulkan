@@ -40,7 +40,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 	private RenderPass renderPass;
 	private IVertexBufferDescriptor<?> vertexInputState = null;
 
-	protected long id = -1;
+	protected long pipelineId = -1;
 
 	@Override
 	public void deepAllocate(MemoryStack stack)
@@ -49,7 +49,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 
 		createBuilders();
 
-		final var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
+		final var context = IGraphicContextAdapter.adapt(target).getContext(target);
 		final var useDepthBuffer = context.graphicProcess.getDepthImage() != null;
 		final var device = context.getVkDevice();
 		var swapchain = context.swapChainManager;
@@ -105,7 +105,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 		final long[] aId = new long[1];
 		Logger.check("Failed to create graphics pipeline!",
 				() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, pipelineInfo, null, aId));
-		id = aId[0];
+		pipelineId = aId[0];
 
 		dynamicStateBuilder.freeDynamicStateCreateInfo();
 		colorBlendBuilder.freeColorBlendStateCreateInfo();

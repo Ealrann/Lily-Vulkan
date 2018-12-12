@@ -1,7 +1,7 @@
 import org.sheepy.common.api.adapter.ISingletonAdapter;
 import org.sheepy.vulkan.process.barrier.PipelineBufferBarrierAdapter;
+import org.sheepy.vulkan.process.descriptor.BasicDescriptorSetAdapter;
 import org.sheepy.vulkan.process.pipeline.PushConstantAdapter;
-import org.sheepy.vulkan.process.process.ResourceManagerAdapter;
 
 /**
  * 
@@ -12,6 +12,7 @@ module org.sheepy.vulkan.process
 	requires transitive org.sheepy.vulkan.resource;
 
 	exports org.sheepy.vulkan.process.barrier;
+	exports org.sheepy.vulkan.process.descriptor;
 	exports org.sheepy.vulkan.process.execution;
 	exports org.sheepy.vulkan.process.pipeline;
 	exports org.sheepy.vulkan.process.process;
@@ -21,5 +22,5 @@ module org.sheepy.vulkan.process
 	exports org.sheepy.vulkan.model.process.util;
 
 	provides ISingletonAdapter
-			with PipelineBufferBarrierAdapter, ResourceManagerAdapter, PushConstantAdapter;
+			with PipelineBufferBarrierAdapter, PushConstantAdapter, BasicDescriptorSetAdapter;
 }

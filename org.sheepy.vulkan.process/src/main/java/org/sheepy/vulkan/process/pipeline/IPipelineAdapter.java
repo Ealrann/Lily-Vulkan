@@ -13,6 +13,7 @@ import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.allocation.IAllocable;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
@@ -137,16 +138,22 @@ public abstract class IPipelineAdapter<T extends AbstractCommandBuffer>
 	{
 		return pipelineLayout;
 	}
-	
+
 	public void bindDescriptor(T commandBuffer, int bindPoint, int descriptorSetIndex)
 	{
 		IVkDescriptorSet descriptorSet = descriptorSets.get(descriptorSetIndex);
 		descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, getLayoutId());
 	}
 
+	@SuppressWarnings("static-method")
+	public List<IResourceAllocable> getResources()
+	{
+		return List.of();
+	}
+
 	protected abstract AbstractConstants getConstants();
 
-	protected abstract List<IVkDescriptorSet> getDescriptorSets();
+	public abstract List<IVkDescriptorSet> getDescriptorSets();
 
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> IPipelineAdapter<T> adapt(IPipeline object)

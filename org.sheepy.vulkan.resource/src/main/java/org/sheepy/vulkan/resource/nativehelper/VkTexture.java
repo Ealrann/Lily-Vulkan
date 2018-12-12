@@ -27,17 +27,16 @@ import org.sheepy.vulkan.resource.image.ImageInfo;
 
 public class VkTexture implements IVkDescriptor
 {
-	private final LogicalDevice logicalDevice;
 	private final Sampler samplerInfo;
 	private final ImageInfo imageInfo;
 
+	private LogicalDevice logicalDevice;
 	private VkImage image;
 	private VkImageView imageView;
 	private VkSampler sampler;
 
-	public VkTexture(LogicalDevice logicalDevice, ImageInfo imageInfo, Sampler samplerInfo)
+	public VkTexture(ImageInfo imageInfo, Sampler samplerInfo)
 	{
-		this.logicalDevice = logicalDevice;
 		this.imageInfo = new ImageInfo(imageInfo.width, imageInfo.height, imageInfo.format,
 				imageInfo.usage | VK_IMAGE_USAGE_SAMPLED_BIT, imageInfo.properties,
 				imageInfo.tiling, imageInfo.mipLevels);
@@ -52,8 +51,9 @@ public class VkTexture implements IVkDescriptor
 		}
 	}
 
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, LogicalDevice logicalDevice)
 	{
+		this.logicalDevice = logicalDevice;
 		image = new VkImage(logicalDevice, imageInfo);
 		image.allocate(stack);
 		final var imageId = image.getId();

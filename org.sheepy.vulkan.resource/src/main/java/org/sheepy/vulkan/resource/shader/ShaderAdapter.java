@@ -9,7 +9,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
+import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.resource.ResourceAdapter;
@@ -22,15 +22,15 @@ public class ShaderAdapter extends ResourceAdapter
 	private ShaderBackend shaderBackend;
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, ExecutionManager executionManager)
 	{
-		var context = ILogicalDeviceAdapter.adapt(target);
+		var vkDevice = executionManager.logicalDevice.getVkDevice();
 		var shader = (Shader) target;
 		var resource = shader.getFile();
 		var fileAdapter = PathResourceAdapter.adapt(resource);
 		var shaderCode = fileAdapter.toByteBuffer(resource);
 
-		shaderBackend = new ShaderBackend(context.getVkDevice(target), shaderCode);
+		shaderBackend = new ShaderBackend(vkDevice, shaderCode);
 		shaderBackend.allocate(stack);
 	}
 

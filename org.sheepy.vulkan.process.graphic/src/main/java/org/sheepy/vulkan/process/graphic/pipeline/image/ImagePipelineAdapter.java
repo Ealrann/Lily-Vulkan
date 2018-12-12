@@ -23,7 +23,7 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 	private VkImageBlit.Buffer region;
 
 	private InitialImagePipelineBarrier[] initialBarriers;
-	private FinalImagePipelineBarrier finalBarrier;
+	private FinalImagePipelineBarrier[] finalBarriers;
 	private SwapChainManager swapChainManager;
 
 	@Override
@@ -31,7 +31,7 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 	{
 		super.deepAllocate(stack);
 
-		var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
+		var context = IGraphicContextAdapter.adapt(target).getContext(target);
 		var extent = context.swapChainManager.getExtent();
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
@@ -69,9 +69,13 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 			initialBarriers[i] = new InitialImagePipelineBarrier(pipeline, dstImageView);
 			initialBarriers[i].allocate(stack);
 		}
-
-		finalBarrier = new FinalImagePipelineBarrier(pipeline);
-		finalBarrier.allocate(stack);
+		finalBarriers = new FinalImagePipelineBarrier[size];
+		for (int i = 0; i < size; i++)
+		{
+			var dstImageView = context.imageViewManager.getImageView(i);
+			finalBarriers[i] = new FinalImagePipelineBarrier(pipeline, dstImageView);
+			finalBarriers[i].allocate(stack);
+		}
 	}
 
 	@Override
@@ -80,9 +84,9 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 		for (int i = 0; i < initialBarriers.length; i++)
 		{
 			initialBarriers[i].free();
+			finalBarriers[i].free();
 		}
 
-		finalBarrier.free();
 		region.free();
 		super.free();
 	}
@@ -90,7 +94,7 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 	@Override
 	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
 	{
-		var context = IGraphicContextAdapter.adapt(target).getGraphicContext(target);
+		var context = IGraphicContextAdapter.adapt(target).getContext(target);
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
 		var srcImageId = ImageAdapter.adapt(srcImage).getId();
@@ -105,7 +109,7 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 		vkCmdBlitImage(vkCommandBuffer, bltSrcImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
 				bltDstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region, VK_FILTER_NEAREST);
 
-		finalBarrier.execute(vkCommandBuffer);
+		finalBarriers[commandBuffer.index].execute(vkCommandBuffer);
 	}
 
 	@Override
@@ -115,7 +119,7 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 	}
 
 	@Override
-	protected List<IVkDescriptorSet> getDescriptorSets()
+	public List<IVkDescriptorSet> getDescriptorSets()
 	{
 		return List.of();
 	}

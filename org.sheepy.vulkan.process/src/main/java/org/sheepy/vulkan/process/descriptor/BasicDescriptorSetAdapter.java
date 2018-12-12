@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.descriptor;
+package org.sheepy.vulkan.process.descriptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,8 @@ import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
+import org.sheepy.vulkan.resource.descriptor.IVkDescriptor;
 
 public class BasicDescriptorSetAdapter extends AbstractDescriptorSetAdapter
 {

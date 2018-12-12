@@ -11,13 +11,13 @@ import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
 import org.sheepy.vulkan.process.graphic.view.ImageViewManager;
 import org.sheepy.vulkan.process.process.ProcessContext;
-import org.sheepy.vulkan.resource.ResourceManager;
+import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
 
 public class GraphicContext extends ProcessContext
 {
 	public final GraphicConfiguration configuration;
 	public final GraphicProcess graphicProcess;
-	
+
 	public final SwapChainManager swapChainManager;
 	public final ImageViewManager imageViewManager;
 	public final Framebuffers framebuffers;
@@ -28,10 +28,10 @@ public class GraphicContext extends ProcessContext
 	private List<IBasicAllocable> allocationList;
 
 	public GraphicContext(	ExecutionManager executionManager,
-							ResourceManager resourceManager,
+							DescriptorPool descriptorPool,
 							GraphicProcess graphicProcess)
 	{
-		super(executionManager, resourceManager);
+		super(executionManager, descriptorPool);
 
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
@@ -58,7 +58,7 @@ public class GraphicContext extends ProcessContext
 		tmpList.add(framebuffers);
 		tmpList.add(commandBuffers);
 		tmpList.add(submission);
-		
+
 		allocationList = List.copyOf(tmpList);
 	}
 

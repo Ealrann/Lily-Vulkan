@@ -6,7 +6,7 @@ import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.resource.descriptor.AbstractDescriptorSetAdapter;
+import org.sheepy.vulkan.process.descriptor.AbstractDescriptorSetAdapter;
 import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
@@ -19,7 +19,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
-	protected List<IVkDescriptorSet> getDescriptorSets()
+	public List<IVkDescriptorSet> getDescriptorSets()
 	{
 		var descriptorSet = ((AbstractPipeline) pipeline).getDescriptorSet();
 		var adapter = AbstractDescriptorSetAdapter.adapt(descriptorSet);

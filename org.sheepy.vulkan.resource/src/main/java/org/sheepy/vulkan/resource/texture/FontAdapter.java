@@ -7,17 +7,19 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
+import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.model.resource.Font;
+import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.vulkan.resource.image.AbstractSampledImageAdapter;
 import org.sheepy.vulkan.resource.image.ImageInfo;
 
-public abstract class FontAdapter extends AbstractSampledImageAdapter
+public class FontAdapter extends AbstractSampledImageAdapter
 {
 	public static final int BUFFER_WIDTH = 1024;
 	public static final int BUFFER_HEIGHT = 1024;
@@ -112,5 +114,11 @@ public abstract class FontAdapter extends AbstractSampledImageAdapter
 	public static FontAdapter adapt(Font font)
 	{
 		return IServiceAdapterFactory.INSTANCE.adapt(font, FontAdapter.class);
+	}
+
+	@Override
+	public boolean isApplicable(EClass eClass)
+	{
+		return ResourcePackage.Literals.FONT == eClass;
 	}
 }

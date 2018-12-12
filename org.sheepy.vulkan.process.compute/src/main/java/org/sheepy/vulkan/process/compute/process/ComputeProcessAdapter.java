@@ -35,7 +35,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 		super.setTarget(target);
 		process = (ComputeProcess) target;
 
-		context = new ComputeContext(executionManager, resourceManager, process);
+		context = new ComputeContext(executionManager, descriptorPool, process);
 		childAllocables.addAll(context.getAllocationList());
 	}
 

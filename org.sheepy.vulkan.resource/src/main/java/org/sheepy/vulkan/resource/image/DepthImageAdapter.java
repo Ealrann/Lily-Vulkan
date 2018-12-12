@@ -7,6 +7,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
@@ -19,12 +20,11 @@ import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
-import org.sheepy.vulkan.resource.ResourceAdapter;
 import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
 import org.sheepy.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.vulkan.resource.nativehelper.VkImageView;
 
-public class DepthImageAdapter extends ResourceAdapter
+public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 {
 	private VkImage depthImageBackend;
 	private VkImageView depthImageView;
@@ -34,8 +34,7 @@ public class DepthImageAdapter extends ResourceAdapter
 	@Override
 	public void flatAllocate(MemoryStack stack)
 	{
-		final var executionManager = IExecutionManagerAdapter.adapt(target)
-				.getExecutionManager(target);
+		var executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
 		depthFormat = findDepthFormat(executionManager.getPhysicalDevice());
 
 		createDepthImage(executionManager.getLogicalDevice());

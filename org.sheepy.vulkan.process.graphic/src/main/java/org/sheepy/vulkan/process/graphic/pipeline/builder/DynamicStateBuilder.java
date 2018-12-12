@@ -22,7 +22,6 @@ public class DynamicStateBuilder
 		for (EDynamicState state : dynamicState.getStates())
 		{
 			dynamicStates.put(state.getValue());
-			dynamicStates.get();
 		}
 		dynamicStates.flip();
 

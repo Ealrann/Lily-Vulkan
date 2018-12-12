@@ -14,7 +14,6 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
@@ -39,9 +38,8 @@ public class BufferAdapter extends PipelineResourceAdapter
 	}
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, ExecutionManager executionManager)
 	{
-		executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
 		var logicalDevice = executionManager.logicalDevice;
 		var info = new BufferInfo(buffer);
 
@@ -72,8 +70,6 @@ public class BufferAdapter extends PipelineResourceAdapter
 				}
 			}
 		}
-
-		dirty = false;
 	}
 
 	private void allocateStagingBuffer(	MemoryStack stack,

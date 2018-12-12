@@ -2,6 +2,9 @@ package org.sheepy.vulkan.process.process;
 
 import static org.lwjgl.system.MemoryStack.stackPush;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
@@ -12,41 +15,75 @@ import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.engine.AbstractEnginePartAdapter;
 import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.process.AbstractProcess;
+import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IProcessUnit;
+import org.sheepy.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.vulkan.process.pipeline.IProcessUnitAdapter;
-import org.sheepy.vulkan.resource.ResourceManager;
+import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
+import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		extends AbstractEnginePartAdapter implements IDeepAllocableAdapter, IProcessAdapter
 {
 	private final int bindPoint = getBindPoint();
 
-	protected ResourceManager resourceManager;
+	protected DescriptorPool descriptorPool;
 
 	private AbstractProcess process = null;
 
 	@Override
 	public void setTarget(Notifier target)
 	{
+		super.setTarget(target);
 		process = (AbstractProcess) target;
 		LogicalDevice logicalDevice = ILogicalDeviceAdapter.adapt(process)
 				.getLogicalDevice(process);
 
-		resourceManager = new ResourceManager(logicalDevice, process);
+		descriptorPool = new DescriptorPool(logicalDevice, gatherDescriptorLists());
 
-		childAllocables.add(resourceManager);
-		super.setTarget(target);
+		childAllocables.add(descriptorPool);
+	}
+
+	@Override
+	protected List<IResourceAllocable> gatherResources()
+	{
+		List<IResourceAllocable> resources = super.gatherResources();
+		for (IProcessUnit unit : ((AbstractProcess) target).getUnits())
+		{
+			if (unit instanceof IPipeline)
+			{
+				var adapter = IPipelineAdapter.adapt((IPipeline) unit);
+				resources.addAll(adapter.getResources());
+			}
+		}
+		return resources;
+	}
+
+	private List<IVkDescriptorSet> gatherDescriptorLists()
+	{
+		List<IVkDescriptorSet> res = new ArrayList<>();
+		for (EObject eo : process.eContents())
+		{
+			if (eo instanceof IPipeline)
+			{
+				var adapter = IPipelineAdapter.adapt((IPipeline) eo);
+				res.addAll(adapter.getDescriptorSets());
+			}
+
+		}
+		return res;
 	}
 
 	@Override
 	public void unsetTarget(Notifier oldTarget)
 	{
-		childAllocables.remove(resourceManager);
+		childAllocables.clear();
 
 		process = null;
-		resourceManager = null;
+		descriptorPool = null;
 		super.unsetTarget(oldTarget);
 	}
 
@@ -100,7 +137,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	@Override
 	protected boolean isResetAllowed()
 	{
-		return process.isResetAllowed();
+		return ((AbstractProcess) target).isResetAllowed();
 	}
 
 	@Override

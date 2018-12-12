@@ -2,11 +2,12 @@ package org.sheepy.vulkan.process.graphic.process;
 
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.vulkan.process.process.IContextAdapter;
 
-public interface IGraphicContextAdapter extends IVulkanAdapter
+public interface IGraphicContextAdapter extends IContextAdapter<GraphicContext>
 {
-	GraphicContext getGraphicContext(EObject target);
+	@Override
+	GraphicContext getContext(EObject target);
 
 	static IGraphicContextAdapter adapt(EObject object)
 	{

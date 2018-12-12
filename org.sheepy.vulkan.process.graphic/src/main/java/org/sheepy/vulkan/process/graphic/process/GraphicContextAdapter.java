@@ -16,7 +16,7 @@ public class GraphicContextAdapter extends AbstractSingletonAdapter
 	}
 
 	@Override
-	public GraphicContext getGraphicContext(EObject target)
+	public GraphicContext getContext(EObject target)
 	{
 		var current = target;
 		while (!GraphicPackage.Literals.GRAPHIC_PROCESS.isSuperTypeOf(current.eClass()))

@@ -20,7 +20,7 @@ public class ViewportStateBuilder
 	private VkPipelineViewportStateCreateInfo viewportState;
 	private VkViewport.Buffer viewports;
 	private VkRect2D.Buffer scissors;
-	
+
 	public VkPipelineViewportStateCreateInfo allocCreateInfo(	SwapChainManager swapChainManager,
 																ViewportState vState)
 	{
@@ -32,7 +32,7 @@ public class ViewportStateBuilder
 			var state = (StaticViewportState) vState;
 			fillStaticStateInfo(swapChainManager, state);
 		}
-		else if(vState instanceof DynamicViewportState)
+		else if (vState instanceof DynamicViewportState)
 		{
 			var state = (DynamicViewportState) vState;
 			fillDynamicStateInfo(state);
@@ -104,7 +104,10 @@ public class ViewportStateBuilder
 	public void freeViewportStateCreateInfo()
 	{
 		viewportState.free();
-		scissors.free();
-		viewports.free();
+
+		if (scissors != null) scissors.free();
+		if (viewports != null) viewports.free();
+		scissors = null;
+		viewports = null;
 	}
 }

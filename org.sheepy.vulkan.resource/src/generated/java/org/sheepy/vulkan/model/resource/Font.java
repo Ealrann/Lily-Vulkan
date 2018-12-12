@@ -50,6 +50,7 @@ public interface Font extends SampledImage
 
 	/**
 	 * Returns the value of the '<em><b>Height</b></em>' attribute.
+	 * The default value is <code>"18"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Height</em>' attribute isn't clear,
@@ -59,7 +60,7 @@ public interface Font extends SampledImage
 	 * @return the value of the '<em>Height</em>' attribute.
 	 * @see #setHeight(int)
 	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getFont_Height()
-	 * @model unique="false"
+	 * @model default="18" unique="false"
 	 * @generated
 	 */
 	int getHeight();

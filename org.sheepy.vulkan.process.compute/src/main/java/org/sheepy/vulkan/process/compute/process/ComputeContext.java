@@ -11,7 +11,7 @@ import org.sheepy.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffers;
 import org.sheepy.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.process.process.ProcessSubmission;
-import org.sheepy.vulkan.resource.ResourceManager;
+import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
 
 public class ComputeContext extends ProcessContext
 {
@@ -23,12 +23,12 @@ public class ComputeContext extends ProcessContext
 	private List<IBasicAllocable> allocationList;
 
 	public ComputeContext(	ExecutionManager executionManager,
-							ResourceManager resourceManager,
+							DescriptorPool descriptorPool,
 							ComputeProcess computeProcess)
 	{
-		super(executionManager, resourceManager);
+		super(executionManager, descriptorPool);
 		this.computeProcess = computeProcess;
-		
+
 		commandBuffers = new ComputeCommandBuffers(this);
 		submission = new ProcessSubmission(logicalDevice, commandBuffers, Collections.emptyList(),
 				EPipelineStage.COMPUTE_SHADER_BIT);
