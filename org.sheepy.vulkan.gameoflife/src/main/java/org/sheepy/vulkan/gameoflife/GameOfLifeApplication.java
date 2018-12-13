@@ -1,11 +1,11 @@
 package org.sheepy.vulkan.gameoflife;
 
-import org.sheepy.vulkan.api.VulkanApplicationLauncher;
+import org.sheepy.common.api.application.ApplicationLauncher;
+import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.api.adapter.IProcessAdapter;
-import org.sheepy.vulkan.api.adapter.IVulkanApplicationAdapter;
+import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
 import org.sheepy.vulkan.api.window.IWindow;
 import org.sheepy.vulkan.gameoflife.model.ModelFactory;
-import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 
 public class GameOfLifeApplication
@@ -29,9 +29,10 @@ public class GameOfLifeApplication
 
 	public void launch()
 	{
-		VulkanApplication application = factory.application;
+		Application application = factory.application;
+		ApplicationLauncher.launch(application);
 
-		var applicationAdapter = VulkanApplicationLauncher.launch(application);
+		var engineAdapter = IVulkanEngineAdapter.adapt(factory.engine);
 		computeProcessAdapters[0] = IProcessAdapter.adapt(factory.computeProcess1);
 		computeProcessAdapters[1] = IProcessAdapter.adapt(factory.computeProcess2);
 		GraphicProcess imageProcess = factory.imageProcess;
@@ -40,15 +41,15 @@ public class GameOfLifeApplication
 		stopCountDate = System.currentTimeMillis() + 3000;
 		nextRenderDate = System.currentTimeMillis() + FRAME_TIME_STEP_MS;
 
-		applicationAdapter.allocate();
+		engineAdapter.allocate();
 
-		IWindow window = applicationAdapter.getWindow();
+		IWindow window = engineAdapter.getWindow();
 		while (!window.shouldClose())
 		{
-			step(applicationAdapter);
+			step(engineAdapter);
 		}
 
-		applicationAdapter.free();
+		engineAdapter.free();
 	}
 
 	private void executeComputePool()
@@ -63,7 +64,7 @@ public class GameOfLifeApplication
 		}
 	}
 
-	private void step(IVulkanApplicationAdapter adapter)
+	private void step(IVulkanEngineAdapter adapter)
 	{
 		adapter.pollEvents();
 		computeProcessAdapters[0].prepare();

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.common.model.application.ApplicationPackage;
 import org.sheepy.common.model.types.TypesPackage;
 
 import org.sheepy.vulkan.model.VulkanPackage;
@@ -231,6 +232,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		VulkanPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theGraphicPackage.createPackageContents();

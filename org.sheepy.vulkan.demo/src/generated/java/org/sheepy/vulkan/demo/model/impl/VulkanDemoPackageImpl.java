@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.sheepy.common.model.application.ApplicationPackage;
 import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
@@ -97,6 +98,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theVulkanDemoPackage.createPackageContents();

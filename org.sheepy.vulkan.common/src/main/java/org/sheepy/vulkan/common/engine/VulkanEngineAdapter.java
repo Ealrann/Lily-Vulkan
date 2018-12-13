@@ -21,6 +21,8 @@ import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.common.model.application.Application;
+import org.sheepy.common.model.application.ApplicationPackage;
 import org.sheepy.vulkan.api.adapter.IEnginePartAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
 import org.sheepy.vulkan.api.window.IWindowListener;
@@ -32,7 +34,6 @@ import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.common.util.VulkanUtils;
 import org.sheepy.vulkan.common.window.Window;
 import org.sheepy.vulkan.model.IProcess;
-import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanPackage;
 
@@ -55,7 +56,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames = null;
 
-	protected VulkanApplication application;
+	protected Application application;
 	protected VulkanEngine engine;
 	protected Window window;
 	private boolean listeningResize = true;
@@ -75,7 +76,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 		{
 			if (listeningResize)
 			{
-				if (notification.getFeature() == VulkanPackage.Literals.VULKAN_APPLICATION__SIZE)
+				if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__SIZE)
 				{
 					SVector2i newSize = (SVector2i) notification.getNewValue();
 					window.setSize(newSize.x, newSize.y);
@@ -85,12 +86,32 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 	};
 
 	@Override
+	public void notifyChanged(Notification notification)
+	{
+		if (notification.getFeature() == VulkanPackage.Literals.VULKAN_ENGINE__ENABLED)
+		{
+			if (engine != null
+					&& notification.getNewBooleanValue() != notification.getOldBooleanValue())
+			{
+				if (engine.isEnabled())
+				{
+					start();
+				}
+				else
+				{
+					stop();
+				}
+			}
+		}
+	}
+
+	@Override
 	public void setTarget(Notifier target)
 	{
 		super.setTarget(target);
 
 		engine = (VulkanEngine) target;
-		application = (VulkanApplication) engine.eContainer();
+		application = (Application) engine.eContainer();
 		application.eAdapters().add(applicationAdapter);
 		debug = application.isDebug();
 
@@ -101,6 +122,27 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 				loadLayerNames(stack);
 			}
 		}
+
+		if (engine.isEnabled())
+		{
+			start();
+		}
+	}
+
+	@Override
+	public void unsetTarget(Notifier oldTarget)
+	{
+		if (engine != null)
+		{
+			if (engine.isEnabled())
+			{
+				stop();
+			}
+		}
+
+		engine = null;
+		application = null;
+		super.unsetTarget(oldTarget);
 	}
 
 	@Override

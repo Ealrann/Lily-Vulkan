@@ -1,7 +1,8 @@
 package org.sheepy.vulkan.common.test;
 
 import org.sheepy.common.api.types.SVector2i;
-import org.sheepy.vulkan.model.VulkanApplication;
+import org.sheepy.common.model.application.Application;
+import org.sheepy.common.model.application.ApplicationFactory;
 import org.sheepy.vulkan.model.VulkanFactory;
 
 public class BasicModelFactory
@@ -26,16 +27,16 @@ public class BasicModelFactory
 		this.height = height;
 	}
 
-	public VulkanApplication createBasicModel()
+	public Application createBasicModel()
 	{
-		final var vulkanApplication = VulkanFactory.eINSTANCE.createVulkanApplication();
+		final var application = ApplicationFactory.eINSTANCE.createApplication();
 
-		vulkanApplication.setTitle(title);
-		vulkanApplication.setSize(new SVector2i(width, height));
-		vulkanApplication.setDebug(true);
+		application.setTitle(title);
+		application.setSize(new SVector2i(width, height));
+		application.setDebug(true);
 
-		vulkanApplication.setEngine(VulkanFactory.eINSTANCE.createVulkanEngine());
+		application.getEngines().add(VulkanFactory.eINSTANCE.createVulkanEngine());
 
-		return vulkanApplication;
+		return application;
 	}
 }

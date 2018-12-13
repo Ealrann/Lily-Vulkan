@@ -31,6 +31,7 @@ import org.sheepy.vulkan.model.VulkanPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl#getSharedResources <em>Shared Resources</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl#getProcesses <em>Processes</em>}</li>
  * </ul>
@@ -39,6 +40,24 @@ import org.sheepy.vulkan.model.VulkanPackage;
  */
 public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements VulkanEngine
 {
+	/**
+	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ENABLED_EDEFAULT = true;
+	/**
+	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean enabled = ENABLED_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getSharedResources() <em>Shared Resources</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -77,6 +96,29 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	protected EClass eStaticClass()
 	{
 		return VulkanPackage.Literals.VULKAN_ENGINE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEnabled(boolean newEnabled)
+	{
+		boolean oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.VULKAN_ENGINE__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -169,6 +211,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
+			case VulkanPackage.VULKAN_ENGINE__ENABLED:
+				return isEnabled();
 			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
 				return getSharedResources();
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
@@ -188,6 +232,9 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
+			case VulkanPackage.VULKAN_ENGINE__ENABLED:
+				setEnabled((Boolean)newValue);
+				return;
 			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
 				setSharedResources((SharedResources)newValue);
 				return;
@@ -209,6 +256,9 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
+			case VulkanPackage.VULKAN_ENGINE__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
 			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
 				setSharedResources((SharedResources)null);
 				return;
@@ -229,12 +279,31 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	{
 		switch (featureID)
 		{
+			case VulkanPackage.VULKAN_ENGINE__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
 			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
 				return sharedResources != null;
 			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 				return processes != null && !processes.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (enabled: ");
+		result.append(enabled);
+		result.append(')');
+		return result.toString();
 	}
 
 } //VulkanEngineImpl

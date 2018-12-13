@@ -12,22 +12,22 @@ import org.lwjgl.glfw.GLFWMouseButtonCallback;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.api.window.IWindow;
 import org.sheepy.vulkan.api.window.IWindowListener;
 import org.sheepy.vulkan.api.window.Surface;
 import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.VulkanApplication;
 
 public class Window implements IWindow
 {
-	private final VulkanApplication application;
+	private final Application application;
 
 	private final List<IWindowListener> listeners = new ArrayList<>();
 
 	private long id;
 	private Surface surface;
 
-	public Window(VulkanApplication application)
+	public Window(Application application)
 	{
 		this.application = application;
 		load();

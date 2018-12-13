@@ -23,15 +23,6 @@ public interface VulkanFactory extends EFactory
 	VulkanFactory eINSTANCE = org.sheepy.vulkan.model.impl.VulkanFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Application</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Application</em>'.
-	 * @generated
-	 */
-	VulkanApplication createVulkanApplication();
-
-	/**
 	 * Returns a new object of class '<em>Engine</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

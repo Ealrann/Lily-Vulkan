@@ -9,9 +9,9 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.common.util.ModelUtil;
 import org.sheepy.vulkan.common.util.SizeOf;
-import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.Buffer;
@@ -39,7 +39,7 @@ public class UniformBufferManager
 	private ByteBuffer stagingBuffer;
 	private float[] stagingValues;
 	private final BufferAdapter adapter;
-	private VulkanApplication application;
+	private Application application;
 
 	public UniformBufferManager()
 	{

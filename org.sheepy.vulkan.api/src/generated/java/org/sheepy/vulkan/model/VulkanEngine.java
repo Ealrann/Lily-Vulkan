@@ -3,8 +3,7 @@
 package org.sheepy.vulkan.model;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.common.model.application.IEngine;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.vulkan.model.VulkanEngine#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.VulkanEngine#getSharedResources <em>Shared Resources</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.VulkanEngine#getProcesses <em>Processes</em>}</li>
  * </ul>
@@ -23,8 +23,35 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface VulkanEngine extends EObject
+public interface VulkanEngine extends IEngine
 {
+	/**
+	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enabled</em>' attribute.
+	 * @see #setEnabled(boolean)
+	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanEngine_Enabled()
+	 * @model default="true" unique="false"
+	 * @generated
+	 */
+	boolean isEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanEngine#isEnabled <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enabled</em>' attribute.
+	 * @see #isEnabled()
+	 * @generated
+	 */
+	void setEnabled(boolean value);
+
 	/**
 	 * Returns the value of the '<em><b>Shared Resources</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

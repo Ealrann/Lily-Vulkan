@@ -9,15 +9,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
+import org.sheepy.common.model.application.ApplicationPackage;
 import org.sheepy.common.model.types.TypesPackage;
-
 import org.sheepy.vulkan.model.ColorDomain;
 import org.sheepy.vulkan.model.IEnginePart;
 import org.sheepy.vulkan.model.IProcess;
 import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.SharedResources;
-import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanFactory;
 import org.sheepy.vulkan.model.VulkanPackage;
@@ -32,13 +30,6 @@ import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
  */
 public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass vulkanApplicationEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -131,9 +122,10 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		ApplicationPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theVulkanPackage.createPackageContents();
@@ -154,86 +146,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVulkanApplication()
-	{
-		return vulkanApplicationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVulkanApplication_Enabled()
-	{
-		return (EAttribute)vulkanApplicationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVulkanApplication_Fullscreen()
-	{
-		return (EAttribute)vulkanApplicationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVulkanApplication_Resizeable()
-	{
-		return (EAttribute)vulkanApplicationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVulkanApplication_Debug()
-	{
-		return (EAttribute)vulkanApplicationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVulkanApplication_Title()
-	{
-		return (EAttribute)vulkanApplicationEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVulkanApplication_Size()
-	{
-		return (EAttribute)vulkanApplicationEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVulkanApplication_Engine()
-	{
-		return (EReference)vulkanApplicationEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getVulkanEngine()
 	{
 		return vulkanEngineEClass;
@@ -244,9 +156,19 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVulkanEngine_Enabled()
+	{
+		return (EAttribute)vulkanEngineEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getVulkanEngine_SharedResources()
 	{
-		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(0);
+		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -256,7 +178,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 */
 	public EReference getVulkanEngine_Processes()
 	{
-		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(1);
+		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -379,16 +301,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		isCreated = true;
 
 		// Create classes and their features
-		vulkanApplicationEClass = createEClass(VULKAN_APPLICATION);
-		createEAttribute(vulkanApplicationEClass, VULKAN_APPLICATION__ENABLED);
-		createEAttribute(vulkanApplicationEClass, VULKAN_APPLICATION__FULLSCREEN);
-		createEAttribute(vulkanApplicationEClass, VULKAN_APPLICATION__RESIZEABLE);
-		createEAttribute(vulkanApplicationEClass, VULKAN_APPLICATION__DEBUG);
-		createEAttribute(vulkanApplicationEClass, VULKAN_APPLICATION__TITLE);
-		createEAttribute(vulkanApplicationEClass, VULKAN_APPLICATION__SIZE);
-		createEReference(vulkanApplicationEClass, VULKAN_APPLICATION__ENGINE);
-
 		vulkanEngineEClass = createEClass(VULKAN_ENGINE);
+		createEAttribute(vulkanEngineEClass, VULKAN_ENGINE__ENABLED);
 		createEReference(vulkanEngineEClass, VULKAN_ENGINE__SHARED_RESOURCES);
 		createEReference(vulkanEngineEClass, VULKAN_ENGINE__PROCESSES);
 
@@ -432,8 +346,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		ApplicationPackage theApplicationPackage = (ApplicationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplicationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Create type parameters
@@ -441,20 +355,13 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		vulkanEngineEClass.getESuperTypes().add(theApplicationPackage.getIEngine());
 		sharedResourcesEClass.getESuperTypes().add(this.getIEnginePart());
 		iProcessEClass.getESuperTypes().add(this.getIEnginePart());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(vulkanApplicationEClass, VulkanApplication.class, "VulkanApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVulkanApplication_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVulkanApplication_Fullscreen(), theEcorePackage.getEBoolean(), "fullscreen", "false", 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVulkanApplication_Resizeable(), theEcorePackage.getEBoolean(), "resizeable", "false", 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVulkanApplication_Debug(), theEcorePackage.getEBoolean(), "debug", "false", 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVulkanApplication_Title(), theEcorePackage.getEString(), "title", null, 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVulkanApplication_Size(), theTypesPackage.getSVector2i(), "size", null, 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVulkanApplication_Engine(), this.getVulkanEngine(), null, "engine", null, 0, 1, VulkanApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVulkanEngine_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVulkanEngine_SharedResources(), this.getSharedResources(), null, "sharedResources", null, 0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVulkanEngine_Processes(), this.getIProcess(), null, "processes", null, 0, -1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

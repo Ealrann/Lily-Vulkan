@@ -16,7 +16,6 @@ module org.sheepy.vulkan.api
 	requires org.lwjgl.glfw.natives;
 	requires org.lwjgl.stb.natives;
 
-	exports org.sheepy.vulkan.api;
 	exports org.sheepy.vulkan.api.adapter;
 	exports org.sheepy.vulkan.api.queue;
 	exports org.sheepy.vulkan.api.window;

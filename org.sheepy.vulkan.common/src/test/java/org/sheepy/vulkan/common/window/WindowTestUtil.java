@@ -3,12 +3,12 @@ package org.sheepy.vulkan.common.window;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.lwjgl.glfw.GLFW.glfwGetWindowSize;
 
+import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.common.application.VulkanApplicationUtil;
-import org.sheepy.vulkan.model.VulkanApplication;
 
 public class WindowTestUtil
 {
-	public static void checkWindowSize(	VulkanApplication application,
+	public static void checkWindowSize(	Application application,
 										int expectedWidth,
 										int expectedHeight)
 	{

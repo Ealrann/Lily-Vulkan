@@ -3,9 +3,10 @@ package org.sheepy.vulkan.gameoflife.model;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.common.model.application.Application;
+import org.sheepy.common.model.application.impl.ApplicationImpl;
 import org.sheepy.vulkan.gameoflife.compute.Board;
 import org.sheepy.vulkan.model.SharedResources;
-import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -17,7 +18,6 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.impl.ColorDomainImpl;
 import org.sheepy.vulkan.model.impl.SharedResourcesImpl;
-import org.sheepy.vulkan.model.impl.VulkanApplicationImpl;
 import org.sheepy.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.vulkan.model.process.IPipelineUnit;
 import org.sheepy.vulkan.model.process.compute.ComputePipeline;
@@ -52,7 +52,7 @@ public class ModelFactory
 	private static final String SHADER_LIFE = "life.comp.spv";
 	private static final String SHADER_LIFE2PIXEL = "life2pixel.comp.spv";
 
-	public final VulkanApplication application = new VulkanApplicationImpl();
+	public final Application application = new ApplicationImpl();
 	public final VulkanEngine engine = new VulkanEngineImpl();
 	public final GraphicProcess imageProcess;
 	public ComputeProcess computeProcess1;
@@ -68,8 +68,7 @@ public class ModelFactory
 		application.setTitle("Vulkan - Game of Life");
 		application.setSize(size);
 		application.setDebug(true);
-
-		application.setEngine(engine);
+		application.getEngines().add(engine);
 
 		int swapImageUsage = EImageUsage.TRANSFER_DST.getValue()
 				| EImageUsage.COLOR_ATTACHMENT.getValue();
@@ -102,7 +101,7 @@ public class ModelFactory
 		colorAttachment.setStoreOp(EAttachmentStoreOp.STORE);
 		colorAttachment.setStencilLoadOp(EAttachmentLoadOp.DONT_CARE);
 		colorAttachment.setStencilStoreOp(EAttachmentStoreOp.DONT_CARE);
-		colorAttachment.setInitialLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
+		colorAttachment.setInitialLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
 		colorAttachment.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
 		colorAttachment.setRefLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
 

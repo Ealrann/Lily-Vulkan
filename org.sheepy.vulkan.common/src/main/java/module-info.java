@@ -1,6 +1,5 @@
 import org.sheepy.common.api.adapter.ISingletonAdapter;
 import org.sheepy.vulkan.common.application.LogicalDeviceAdapter;
-import org.sheepy.vulkan.common.application.VulkanApplicationAdapter;
 import org.sheepy.vulkan.common.engine.ExecutionManagerAdapter;
 import org.sheepy.vulkan.common.engine.SharedResourcesAdapter;
 import org.sheepy.vulkan.common.engine.VulkanEngineAdapter;
@@ -28,6 +27,6 @@ module org.sheepy.vulkan.common
 
 	opens org.sheepy.vulkan.common.application;
 
-	provides ISingletonAdapter with LogicalDeviceAdapter, VulkanApplicationAdapter,
-			VulkanEngineAdapter, ExecutionManagerAdapter, SharedResourcesAdapter;
+	provides ISingletonAdapter with LogicalDeviceAdapter, VulkanEngineAdapter,
+			ExecutionManagerAdapter, SharedResourcesAdapter;
 }

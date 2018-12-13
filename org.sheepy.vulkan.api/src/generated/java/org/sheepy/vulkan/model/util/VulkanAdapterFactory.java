@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.common.model.application.IEngine;
 import org.sheepy.vulkan.model.*;
 
 /**
@@ -75,11 +76,6 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 		new VulkanSwitch<Adapter>()
 		{
 			@Override
-			public Adapter caseVulkanApplication(VulkanApplication object)
-			{
-				return createVulkanApplicationAdapter();
-			}
-			@Override
 			public Adapter caseVulkanEngine(VulkanEngine object)
 			{
 				return createVulkanEngineAdapter();
@@ -110,6 +106,11 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 				return createColorDomainAdapter();
 			}
 			@Override
+			public Adapter caseIEngine(IEngine object)
+			{
+				return createIEngineAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -130,21 +131,6 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.VulkanApplication <em>Application</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.VulkanApplication
-	 * @generated
-	 */
-	public Adapter createVulkanApplicationAdapter()
-	{
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.VulkanEngine <em>Engine</em>}'.
@@ -232,6 +218,21 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createColorDomainAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.common.model.application.IEngine <em>IEngine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.common.model.application.IEngine
+	 * @generated
+	 */
+	public Adapter createIEngineAdapter()
 	{
 		return null;
 	}

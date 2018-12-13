@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.sheepy.common.model.application.ApplicationPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,14 +60,14 @@ public interface VulkanPackage extends EPackage
 	VulkanPackage eINSTANCE = org.sheepy.vulkan.model.impl.VulkanPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl <em>Application</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl <em>Engine</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.VulkanApplicationImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanApplication()
+	 * @see org.sheepy.vulkan.model.impl.VulkanEngineImpl
+	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanEngine()
 	 * @generated
 	 */
-	int VULKAN_APPLICATION = 0;
+	int VULKAN_ENGINE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -75,89 +76,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_APPLICATION__ENABLED = 0;
-
-	/**
-	 * The feature id for the '<em><b>Fullscreen</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_APPLICATION__FULLSCREEN = 1;
-
-	/**
-	 * The feature id for the '<em><b>Resizeable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_APPLICATION__RESIZEABLE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Debug</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_APPLICATION__DEBUG = 3;
-
-	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_APPLICATION__TITLE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_APPLICATION__SIZE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Engine</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_APPLICATION__ENGINE = 6;
-
-	/**
-	 * The number of structural features of the '<em>Application</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_APPLICATION_FEATURE_COUNT = 7;
-
-	/**
-	 * The number of operations of the '<em>Application</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_APPLICATION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl <em>Engine</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.VulkanEngineImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanEngine()
-	 * @generated
-	 */
-	int VULKAN_ENGINE = 1;
+	int VULKAN_ENGINE__ENABLED = ApplicationPackage.IENGINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Shared Resources</b></em>' containment reference.
@@ -166,7 +85,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE__SHARED_RESOURCES = 0;
+	int VULKAN_ENGINE__SHARED_RESOURCES = ApplicationPackage.IENGINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
@@ -175,7 +94,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE__PROCESSES = 1;
+	int VULKAN_ENGINE__PROCESSES = ApplicationPackage.IENGINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Engine</em>' class.
@@ -184,7 +103,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE_FEATURE_COUNT = 2;
+	int VULKAN_ENGINE_FEATURE_COUNT = ApplicationPackage.IENGINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Engine</em>' class.
@@ -193,7 +112,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE_OPERATION_COUNT = 0;
+	int VULKAN_ENGINE_OPERATION_COUNT = ApplicationPackage.IENGINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.IEnginePart <em>IEngine Part</em>}' class.
@@ -203,7 +122,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIEnginePart()
 	 * @generated
 	 */
-	int IENGINE_PART = 2;
+	int IENGINE_PART = 1;
 
 	/**
 	 * The number of structural features of the '<em>IEngine Part</em>' class.
@@ -231,7 +150,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getSharedResources()
 	 * @generated
 	 */
-	int SHARED_RESOURCES = 3;
+	int SHARED_RESOURCES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
@@ -268,7 +187,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIResource()
 	 * @generated
 	 */
-	int IRESOURCE = 4;
+	int IRESOURCE = 3;
 
 	/**
 	 * The number of structural features of the '<em>IResource</em>' class.
@@ -296,7 +215,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcess()
 	 * @generated
 	 */
-	int IPROCESS = 5;
+	int IPROCESS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -333,7 +252,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getColorDomain()
 	 * @generated
 	 */
-	int COLOR_DOMAIN = 6;
+	int COLOR_DOMAIN = 5;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -373,93 +292,6 @@ public interface VulkanPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.VulkanApplication <em>Application</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Application</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication
-	 * @generated
-	 */
-	EClass getVulkanApplication();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#isEnabled <em>Enabled</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#isEnabled()
-	 * @see #getVulkanApplication()
-	 * @generated
-	 */
-	EAttribute getVulkanApplication_Enabled();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#isFullscreen <em>Fullscreen</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Fullscreen</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#isFullscreen()
-	 * @see #getVulkanApplication()
-	 * @generated
-	 */
-	EAttribute getVulkanApplication_Fullscreen();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#isResizeable <em>Resizeable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Resizeable</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#isResizeable()
-	 * @see #getVulkanApplication()
-	 * @generated
-	 */
-	EAttribute getVulkanApplication_Resizeable();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#isDebug <em>Debug</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Debug</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#isDebug()
-	 * @see #getVulkanApplication()
-	 * @generated
-	 */
-	EAttribute getVulkanApplication_Debug();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#getTitle <em>Title</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Title</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#getTitle()
-	 * @see #getVulkanApplication()
-	 * @generated
-	 */
-	EAttribute getVulkanApplication_Title();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#getSize <em>Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#getSize()
-	 * @see #getVulkanApplication()
-	 * @generated
-	 */
-	EAttribute getVulkanApplication_Size();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.VulkanApplication#getEngine <em>Engine</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Engine</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#getEngine()
-	 * @see #getVulkanApplication()
-	 * @generated
-	 */
-	EReference getVulkanApplication_Engine();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.VulkanEngine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -468,6 +300,17 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	EClass getVulkanEngine();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanEngine#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.sheepy.vulkan.model.VulkanEngine#isEnabled()
+	 * @see #getVulkanEngine()
+	 * @generated
+	 */
+	EAttribute getVulkanEngine_Enabled();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.VulkanEngine#getSharedResources <em>Shared Resources</em>}'.
@@ -610,72 +453,6 @@ public interface VulkanPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl <em>Application</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.impl.VulkanApplicationImpl
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanApplication()
-		 * @generated
-		 */
-		EClass VULKAN_APPLICATION = eINSTANCE.getVulkanApplication();
-
-		/**
-		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VULKAN_APPLICATION__ENABLED = eINSTANCE.getVulkanApplication_Enabled();
-
-		/**
-		 * The meta object literal for the '<em><b>Fullscreen</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VULKAN_APPLICATION__FULLSCREEN = eINSTANCE.getVulkanApplication_Fullscreen();
-
-		/**
-		 * The meta object literal for the '<em><b>Resizeable</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VULKAN_APPLICATION__RESIZEABLE = eINSTANCE.getVulkanApplication_Resizeable();
-
-		/**
-		 * The meta object literal for the '<em><b>Debug</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VULKAN_APPLICATION__DEBUG = eINSTANCE.getVulkanApplication_Debug();
-
-		/**
-		 * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VULKAN_APPLICATION__TITLE = eINSTANCE.getVulkanApplication_Title();
-
-		/**
-		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VULKAN_APPLICATION__SIZE = eINSTANCE.getVulkanApplication_Size();
-
-		/**
-		 * The meta object literal for the '<em><b>Engine</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VULKAN_APPLICATION__ENGINE = eINSTANCE.getVulkanApplication_Engine();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl <em>Engine</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -684,6 +461,14 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EClass VULKAN_ENGINE = eINSTANCE.getVulkanEngine();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VULKAN_ENGINE__ENABLED = eINSTANCE.getVulkanEngine_Enabled();
 
 		/**
 		 * The meta object literal for the '<em><b>Shared Resources</b></em>' containment reference feature.

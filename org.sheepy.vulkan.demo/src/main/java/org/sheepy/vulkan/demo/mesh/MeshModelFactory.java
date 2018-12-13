@@ -3,11 +3,12 @@ package org.sheepy.vulkan.demo.mesh;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.common.model.application.Application;
+import org.sheepy.common.model.application.impl.ApplicationImpl;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.impl.MeshBufferImpl;
 import org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl;
-import org.sheepy.vulkan.model.VulkanApplication;
 import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -16,7 +17,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.impl.ColorDomainImpl;
-import org.sheepy.vulkan.model.impl.VulkanApplicationImpl;
 import org.sheepy.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
@@ -47,7 +47,7 @@ public class MeshModelFactory
 {
 	private final MeshConfiguration meshConfiguration;
 
-	public final VulkanApplication application = new VulkanApplicationImpl();
+	public final Application application = new ApplicationImpl();
 	public final VulkanEngine engine = new VulkanEngineImpl();
 	public final MeshBuffer meshBuffer = new MeshBufferImpl();
 	public final GraphicProcess graphicProcess;
@@ -62,8 +62,8 @@ public class MeshModelFactory
 		application.setTitle("Vulkan Triangle");
 		application.setSize(size);
 		application.setDebug(true);
-		
-		application.setEngine(engine);
+
+		application.getEngines().add(engine);
 
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setColorDomain(new ColorDomainImpl());
@@ -146,17 +146,16 @@ public class MeshModelFactory
 
 		var descriptorSet = new BasicDescriptorSetImpl();
 
-		
 		var rasterizer = new RasterizerImpl();
 		rasterizer.setFrontFace(meshConfiguration.rasterizerFrontFace);
-		
+
 		var viewportState = new StaticViewportStateImpl();
 		viewportState.getViewports().add(new ViewportImpl());
 		viewportState.getScissors().add(new ScissorImpl());
-		
+
 		var colorBlend = new ColorBlendImpl();
 		colorBlend.getAttachments().add(new ColorBlendAttachmentImpl());
-		
+
 		final MeshPipeline graphicPipeline = new MeshPipelineImpl();
 		graphicPipeline.getShaders().add(vertexShader);
 		graphicPipeline.getShaders().add(fragmentShader);

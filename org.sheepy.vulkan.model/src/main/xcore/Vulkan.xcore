@@ -5,23 +5,14 @@
 
 package org.sheepy.vulkan.model
 
-import org.sheepy.common.model.types.SVector2i
-import org.sheepy.vulkan.model.enumeration.EFormat
 import org.sheepy.vulkan.model.enumeration.EColorSpace
+import org.sheepy.vulkan.model.enumeration.EFormat
+import org.sheepy.common.model.application.IEngine
 
-class VulkanApplication
+class VulkanEngine extends IEngine
 {
 	boolean enabled = "true"
-	boolean fullscreen = "false"
-	boolean resizeable = "false"
-	boolean debug = "false"
-	String title
-	SVector2i size
-	contains VulkanEngine engine
-}
-
-class VulkanEngine
-{
+	
 	contains SharedResources sharedResources
 	contains IProcess[] processes
 }

@@ -20,13 +20,10 @@ switch ( OperatingSystem.current() ) {
 		break
 }
 
-project.ext.lwjglVersion = "3.2.0"
-project.ext.jomlVersion = "1.9.10"
-
 dependencies {
 
 	api project(':org.sheepy.common')
-
+	
 	api "org.joml:joml:${jomlVersion}"
 
 	api "org.lwjgl:lwjgl:$lwjglVersion"

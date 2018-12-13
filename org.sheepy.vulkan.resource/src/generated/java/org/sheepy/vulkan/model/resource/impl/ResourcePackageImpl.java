@@ -12,9 +12,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
+import org.sheepy.common.model.application.ApplicationPackage;
 import org.sheepy.common.model.types.TypesPackage;
-
 import org.sheepy.vulkan.model.VulkanPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -313,6 +312,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		VulkanPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects

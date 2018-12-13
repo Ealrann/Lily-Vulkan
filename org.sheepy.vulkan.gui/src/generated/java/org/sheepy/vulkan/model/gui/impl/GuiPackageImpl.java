@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.common.model.application.ApplicationPackage;
 import org.sheepy.common.model.types.TypesPackage;
 
 import org.sheepy.vulkan.model.VulkanPackage;
@@ -131,6 +132,7 @@ public class GuiPackageImpl extends EPackageImpl implements GuiPackage
 		EnumerationPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theGuiPackage.createPackageContents();

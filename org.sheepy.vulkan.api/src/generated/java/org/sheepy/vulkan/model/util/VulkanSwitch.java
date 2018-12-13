@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.sheepy.common.model.application.IEngine;
 import org.sheepy.vulkan.model.*;
 
 /**
@@ -72,17 +73,11 @@ public class VulkanSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-			case VulkanPackage.VULKAN_APPLICATION:
-			{
-				VulkanApplication vulkanApplication = (VulkanApplication)theEObject;
-				T result = caseVulkanApplication(vulkanApplication);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case VulkanPackage.VULKAN_ENGINE:
 			{
 				VulkanEngine vulkanEngine = (VulkanEngine)theEObject;
 				T result = caseVulkanEngine(vulkanEngine);
+				if (result == null) result = caseIEngine(vulkanEngine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -125,22 +120,6 @@ public class VulkanSwitch<T> extends Switch<T>
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Application</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Application</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVulkanApplication(VulkanApplication object)
-	{
-		return null;
 	}
 
 	/**
@@ -235,6 +214,22 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseColorDomain(ColorDomain object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IEngine</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IEngine</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIEngine(IEngine object)
 	{
 		return null;
 	}

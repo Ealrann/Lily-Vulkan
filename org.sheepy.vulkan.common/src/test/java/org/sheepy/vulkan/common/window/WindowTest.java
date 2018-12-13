@@ -9,33 +9,31 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.sheepy.common.api.application.ApplicationLauncher;
 import org.sheepy.common.api.types.SVector2i;
-import org.sheepy.vulkan.api.VulkanApplicationLauncher;
+import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.api.window.IWindowListener;
 import org.sheepy.vulkan.api.window.Surface;
-import org.sheepy.vulkan.common.application.VulkanApplicationAdapter;
 import org.sheepy.vulkan.common.application.VulkanApplicationUtil;
 import org.sheepy.vulkan.common.test.BasicModelFactory;
 import org.sheepy.vulkan.common.test.TestUtils;
-import org.sheepy.vulkan.model.VulkanApplication;
 
 public class WindowTest
 {
-	private VulkanApplicationAdapter applicationAdapter = null;
-	private VulkanApplication application;
+	private Application application;
 
 	@BeforeEach
 	public void init()
 	{
 		application = TestUtils.newBasicApplication();
-		applicationAdapter = (VulkanApplicationAdapter) VulkanApplicationLauncher
-				.launch(application);
+		ApplicationLauncher.launch(application);
 	}
 
 	@AfterEach
 	public void clean()
 	{
-		applicationAdapter.close();
+		ApplicationLauncher.close(application);
+		application = null;
 	}
 
 	@Test
