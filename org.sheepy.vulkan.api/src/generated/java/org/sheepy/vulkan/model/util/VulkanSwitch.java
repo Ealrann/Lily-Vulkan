@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.sheepy.common.model.application.IEngine;
+import org.sheepy.common.model.inference.IInferenceObject;
+import org.sheepy.common.model.root.LObject;
 import org.sheepy.vulkan.model.*;
 
 /**
@@ -78,6 +80,8 @@ public class VulkanSwitch<T> extends Switch<T>
 				VulkanEngine vulkanEngine = (VulkanEngine)theEObject;
 				T result = caseVulkanEngine(vulkanEngine);
 				if (result == null) result = caseIEngine(vulkanEngine);
+				if (result == null) result = caseLObject(vulkanEngine);
+				if (result == null) result = caseIInferenceObject(vulkanEngine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -214,6 +218,38 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseColorDomain(ColorDomain object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIInferenceObject(IInferenceObject object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>LObject</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>LObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLObject(LObject object)
 	{
 		return null;
 	}

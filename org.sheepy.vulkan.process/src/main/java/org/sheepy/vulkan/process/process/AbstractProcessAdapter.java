@@ -110,8 +110,18 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 			needRecord = true;
 		}
 
+		for (EObject child : process.eContents())
+		{
+			if (child instanceof IProcessUnit)
+			{
+				var adapter = IProcessUnitAdapter.adapt((IProcessUnit) child);
+				adapter.prepare();
+			}
+		}
+
 		if (needRecord || isRecordNeeded())
 		{
+			executionManager.getQueue().waitIdle();
 			recordCommands();
 		}
 	}

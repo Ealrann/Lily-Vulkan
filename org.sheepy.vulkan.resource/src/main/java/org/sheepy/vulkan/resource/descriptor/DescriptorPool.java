@@ -81,6 +81,7 @@ public class DescriptorPool extends LogicalDeviceContext implements IBasicAlloca
 		descriptorSets = null;
 
 		vkDestroyDescriptorPool(getVkDevice(), id, null);
+		id = -1;
 	}
 
 	public long getId()

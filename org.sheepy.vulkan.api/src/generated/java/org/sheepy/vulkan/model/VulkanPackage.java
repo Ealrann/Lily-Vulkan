@@ -70,6 +70,15 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE__CONTENT_OBJECTS = ApplicationPackage.IENGINE__CONTENT_OBJECTS;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -104,6 +113,51 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int VULKAN_ENGINE_FEATURE_COUNT = ApplicationPackage.IENGINE_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE___LINFERENCE_OBJECT = ApplicationPackage.IENGINE___LINFERENCE_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE___CREATE_CONTAINMENT_ELIST__ECLASS = ApplicationPackage.IENGINE___CREATE_CONTAINMENT_ELIST__ECLASS;
+
+	/**
+	 * The operation id for the '<em>LContents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE___LCONTENTS = ApplicationPackage.IENGINE___LCONTENTS;
+
+	/**
+	 * The operation id for the '<em>LParent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE___LPARENT = ApplicationPackage.IENGINE___LPARENT;
+
+	/**
+	 * The operation id for the '<em>LAll Units</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE___LALL_UNITS = ApplicationPackage.IENGINE___LALL_UNITS;
 
 	/**
 	 * The number of operations of the '<em>Engine</em>' class.

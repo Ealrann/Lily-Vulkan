@@ -44,6 +44,7 @@ public class PhysicalDevice
 	public void free()
 	{
 		memProperties.free();
+		memProperties = null;
 
 		for (final VkFormatProperties value : formatProperties.values())
 		{

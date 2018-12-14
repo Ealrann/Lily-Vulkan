@@ -57,6 +57,6 @@ public class VkSemaphore
 	public void free(LogicalDevice logicalDevice)
 	{
 		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphoreId, null);
-		semaphoreId = 0;
+		semaphoreId = -1;
 	}
 }

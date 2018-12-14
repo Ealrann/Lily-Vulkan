@@ -141,7 +141,10 @@ public class LogicalDevice
 	public void free()
 	{
 		capabilities.free();
+		capabilities = null;
+		
 		vkDestroyDevice(vkDevice, null);
+		vkDevice = null;
 	}
 
 	public void waitIdle()

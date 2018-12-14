@@ -7,7 +7,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.sheepy.common.model.action.ActionPackage;
 import org.sheepy.common.model.application.ApplicationPackage;
+import org.sheepy.common.model.inference.InferencePackage;
+import org.sheepy.common.model.root.RootPackage;
 import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.demo.model.MeshBuffer;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
@@ -99,6 +102,9 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		EnumerationPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
+		RootPackage.eINSTANCE.eClass();
+		InferencePackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theVulkanDemoPackage.createPackageContents();
@@ -130,6 +136,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMeshPipeline_Mesh()
 	{
 		return (EReference)meshPipelineEClass.getEStructuralFeatures().get(0);
@@ -140,6 +147,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMeshBuffer()
 	{
 		return meshBufferEClass;

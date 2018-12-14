@@ -12,8 +12,11 @@ include ':org.sheepy.vulkan.demo'
 include ':org.sheepy.vulkan.gameoflife'
 
 // Common
-include ':org.sheepy.common'
-project(':org.sheepy.common').projectDir = new File(settingsDir, 'Sheepy/org.sheepy.common')
+include ':org.sheepy.common.api'
+project(':org.sheepy.common.api').projectDir = new File(settingsDir, 'Sheepy/org.sheepy.common.api')
+
+include ':org.sheepy.common.impl'
+project(':org.sheepy.common.impl').projectDir = new File(settingsDir, 'Sheepy/org.sheepy.common.impl')
 
 // EMF
 include 'org.eclipse.emf.common'

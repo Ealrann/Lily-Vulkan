@@ -9,7 +9,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.sheepy.common.model.action.ActionPackage;
 import org.sheepy.common.model.application.ApplicationPackage;
+import org.sheepy.common.model.inference.InferencePackage;
+import org.sheepy.common.model.root.RootPackage;
 import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.model.ColorDomain;
 import org.sheepy.vulkan.model.IEnginePart;
@@ -123,9 +126,12 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		// Initialize simple dependencies
 		ApplicationPackage.eINSTANCE.eClass();
+		RootPackage.eINSTANCE.eClass();
+		InferencePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theVulkanPackage.createPackageContents();

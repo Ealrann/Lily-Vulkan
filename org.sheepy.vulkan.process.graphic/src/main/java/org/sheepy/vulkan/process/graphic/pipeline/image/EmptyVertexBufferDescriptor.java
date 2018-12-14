@@ -61,6 +61,10 @@ public class EmptyVertexBufferDescriptor implements IVertexBufferDescriptor<Vert
 		vertexInputInfo.free();
 		allocBindingDescription.free();
 		getgetAttributeDescriptions.free();
+		
+		vertexInputInfo = null;
+		allocBindingDescription = null;
+		getgetAttributeDescriptions = null;
 	}
 
 	@Override

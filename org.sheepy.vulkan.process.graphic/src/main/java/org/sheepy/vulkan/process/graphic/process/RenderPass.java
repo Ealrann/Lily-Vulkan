@@ -148,6 +148,7 @@ public class RenderPass implements IBasicAllocable
 	public void free()
 	{
 		vkDestroyRenderPass(context.getVkDevice(), renderPass, null);
+		renderPass = -1;
 	}
 
 	public long getId()

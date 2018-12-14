@@ -86,8 +86,13 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 			initialBarriers[i].free();
 			finalBarriers[i].free();
 		}
-
+		
+		initialBarriers = null;
+		finalBarriers = null;
+		
 		region.free();
+		region = null;
+		
 		super.free();
 	}
 

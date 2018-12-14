@@ -40,6 +40,7 @@ public class ShaderBackend
 	public void free()
 	{
 		vkDestroyShaderModule(vkDevice, shaderId, null);
+		shaderId = -1;
 	}
 
 	public long getId()

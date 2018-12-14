@@ -91,6 +91,7 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 		vkDestroySwapchainKHR(context.getVkDevice(), swapChain, null);
 		MemoryUtil.memFree(indices);
 		swapChainImages = null;
+		indices = null;
 	}
 
 	private void loadSurface(Surface surface)

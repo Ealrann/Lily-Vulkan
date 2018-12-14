@@ -62,5 +62,6 @@ public class VkSampler
 	public void free()
 	{
 		vkDestroySampler(logicalDevice.getVkDevice(), samplerId, null);
+		samplerId = -1;
 	}
 }

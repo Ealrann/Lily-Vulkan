@@ -67,6 +67,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	{
 		var device = pool.getVkDevice();
 		vkDestroyDescriptorSetLayout(device, layoutId, null);
+		layoutId = -1;
 	}
 
 	private VkDescriptorSetLayoutBinding.Buffer createLayoutBinding(MemoryStack stack)

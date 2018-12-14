@@ -187,6 +187,10 @@ public class VkTexture implements IVkDescriptor
 		sampler.free();
 		imageView.free();
 		image.free();
+		
+		sampler = null;
+		imageView = null;
+		image = null;
 	}
 
 	@Override

@@ -59,7 +59,7 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 
 	private void createDepthImage(LogicalDevice logicalDevice)
 	{
-		var vulkanApp = ModelUtil.getVulkanApplication(target);
+		var vulkanApp = ModelUtil.getApplication(target);
 		size = vulkanApp.getSize();
 		int width = size.getX();
 		int height = size.getY();
@@ -119,7 +119,7 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 	@Override
 	public boolean isAllocationDirty()
 	{
-		var application = ModelUtil.getVulkanApplication(target);
+		var application = ModelUtil.getApplication(target);
 
 		return size != application.getSize();
 	}

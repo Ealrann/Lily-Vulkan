@@ -10,6 +10,9 @@ public interface IProcessUnitAdapter<T extends AbstractCommandBuffer> extends IV
 	boolean isRecordNeeded();
 	void setRecordNeeded(boolean value);
 
+	default void prepare()
+	{}
+
 	void record(T commandBuffer, int bindPoint);
 
 	@SuppressWarnings("unchecked")
@@ -17,5 +20,4 @@ public interface IProcessUnitAdapter<T extends AbstractCommandBuffer> extends IV
 	{
 		return IServiceAdapterFactory.INSTANCE.adapt(object, IProcessUnitAdapter.class);
 	}
-
 }

@@ -53,6 +53,7 @@ public class ShaderAdapter extends ResourceAdapter
 	public void free()
 	{
 		shaderBackend.free();
+		shaderBackend = null;
 	}
 
 	public long getShaderModule()

@@ -68,7 +68,7 @@ public class UniformBufferManager
 	{
 		if (application == null)
 		{
-			application = ModelUtil.getVulkanApplication(buffer);
+			application = ModelUtil.getApplication(buffer);
 		}
 		SVector2i size = application.getSize();
 

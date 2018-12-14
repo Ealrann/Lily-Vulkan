@@ -22,7 +22,7 @@ switch ( OperatingSystem.current() ) {
 
 dependencies {
 
-	api project(':org.sheepy.common')
+	api project(':org.sheepy.common.api')
 	
 	api "org.joml:joml:${jomlVersion}"
 

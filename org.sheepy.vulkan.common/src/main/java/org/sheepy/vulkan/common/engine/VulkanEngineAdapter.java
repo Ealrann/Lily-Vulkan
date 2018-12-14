@@ -228,7 +228,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 	@Override
 	public void pollEvents()
 	{
-		Window.pollEvents();
+		window.pollEvents();
 	}
 
 	private void createInstance(MemoryStack stack)
@@ -298,9 +298,11 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 		if (debug)
 		{
 			vkDestroyDebugReportCallbackEXT(vkInstance, debugCallbackHandle, null);
+			debugCallbackHandle = -1;
 		}
 
 		vkDestroyInstance(vkInstance, null);
+		vkInstance = null;
 	}
 
 	public LogicalDevice getLogicalDevice()

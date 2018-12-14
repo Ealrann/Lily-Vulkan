@@ -108,6 +108,8 @@ public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffe
 		{
 			vkDestroyPipeline(vkDevice, id, null);
 		}
+		
+		pipelines = null;
 
 		super.free();
 	}

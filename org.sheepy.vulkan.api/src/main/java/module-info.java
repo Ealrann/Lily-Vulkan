@@ -1,17 +1,14 @@
-/**
- * 
- */
 module org.sheepy.vulkan.api
 {
-	requires transitive org.sheepy.common;
-	
+	requires transitive org.sheepy.common.api;
+
 	requires transitive org.lwjgl;
 	requires transitive org.lwjgl.vulkan;
 	requires transitive org.lwjgl.glfw;
 	requires transitive org.lwjgl.stb;
 
 	requires transitive org.joml;
-	
+
 	requires org.lwjgl.natives;
 	requires org.lwjgl.glfw.natives;
 	requires org.lwjgl.stb.natives;

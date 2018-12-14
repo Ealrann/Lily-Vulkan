@@ -40,6 +40,7 @@ public class ImageBarrierExecutor
 	public void free()
 	{
 		barrierInfos.free();
+		barrierInfos = null;
 	}
 
 	public void execute(VkCommandBuffer commandBuffer)

@@ -55,6 +55,9 @@ public class BufferBackend
 	{
 		vkDestroyBuffer(logicalDevice.getVkDevice(), bufferId, null);
 		vkFreeMemory(logicalDevice.getVkDevice(), bufferMemoryId, null);
+		
+		bufferId = -1;
+		bufferMemoryId = -1;
 	}
 
 	public void pushData(MemoryStack stack, ExecutionManager executionManager, ByteBuffer data)

@@ -85,6 +85,8 @@ public class VkImage
 	{
 		vkDestroyImage(logicalDevice.getVkDevice(), imageId, null);
 		vkFreeMemory(logicalDevice.getVkDevice(), imageMemoryId, null);
+		imageId = -1;
+		imageMemoryId = -1;
 	}
 
 	public long getId()

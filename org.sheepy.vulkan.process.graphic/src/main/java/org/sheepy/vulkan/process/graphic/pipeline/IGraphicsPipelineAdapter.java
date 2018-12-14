@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.graphic.ColorBlend;
@@ -41,6 +42,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 	private IVertexBufferDescriptor<?> vertexInputState = null;
 
 	protected long pipelineId = -1;
+	private VkDevice device;
 
 	@Override
 	public void deepAllocate(MemoryStack stack)
@@ -51,7 +53,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 
 		final var context = IGraphicContextAdapter.adapt(target).getContext(target);
 		final var useDepthBuffer = context.graphicProcess.getDepthImage() != null;
-		final var device = context.getVkDevice();
+		device = context.getVkDevice();
 		var swapchain = context.swapChainManager;
 
 		renderPass = context.renderPass;
@@ -106,7 +108,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 		Logger.check("Failed to create graphics pipeline!",
 				() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, pipelineInfo, null, aId));
 		pipelineId = aId[0];
-
+		
 		dynamicStateBuilder.freeDynamicStateCreateInfo();
 		colorBlendBuilder.freeColorBlendStateCreateInfo();
 		multisampleBuilder.freeMultisampleStateCreateInfo();
@@ -136,6 +138,9 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 		vertexInputState.free();
 
 		allocationDependencies.remove(renderPass);
+		
+		vkDestroyPipeline(device, pipelineId, null);
+		pipelineId = -1;
 
 		super.free();
 	}

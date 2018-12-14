@@ -13,11 +13,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sheepy.common.model.root.impl.LObjectImpl;
 import org.sheepy.vulkan.model.IProcess;
 import org.sheepy.vulkan.model.SharedResources;
 import org.sheepy.vulkan.model.VulkanEngine;
@@ -38,7 +37,7 @@ import org.sheepy.vulkan.model.VulkanPackage;
  *
  * @generated
  */
-public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements VulkanEngine
+public class VulkanEngineImpl extends LObjectImpl implements VulkanEngine
 {
 	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
@@ -103,6 +102,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEnabled()
 	{
 		return enabled;
@@ -113,6 +113,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnabled(boolean newEnabled)
 	{
 		boolean oldEnabled = enabled;
@@ -126,6 +127,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SharedResources getSharedResources()
 	{
 		return sharedResources;
@@ -153,6 +155,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSharedResources(SharedResources newSharedResources)
 	{
 		if (newSharedResources != sharedResources)
@@ -174,6 +177,7 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<IProcess> getProcesses()
 	{
 		if (processes == null)
