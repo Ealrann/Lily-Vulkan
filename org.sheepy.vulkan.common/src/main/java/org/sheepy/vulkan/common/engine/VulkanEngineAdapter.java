@@ -13,11 +13,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkApplicationInfo;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
+import org.sheepy.common.api.adapter.IAutoAdapter;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.common.api.types.SVector2i;
@@ -37,7 +39,8 @@ import org.sheepy.vulkan.model.IProcess;
 import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanPackage;
 
-public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVulkanEngineAdapter
+public class VulkanEngineAdapter extends AbstractStatefullAdapter
+		implements IVulkanEngineAdapter, IAutoAdapter
 {
 	private static final ByteBuffer[] LAYERS_TO_ENABLE = {
 			memUTF8("VK_LAYER_LUNARG_standard_validation")
@@ -144,6 +147,14 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter implements IVu
 		application = null;
 		super.unsetTarget(oldTarget);
 	}
+
+	@Override
+	public void load(EObject target)
+	{}
+
+	@Override
+	public void dispose(EObject target)
+	{}
 
 	@Override
 	public void start()
