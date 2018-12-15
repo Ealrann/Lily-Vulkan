@@ -1,6 +1,7 @@
 module org.sheepy.vulkan.api
 {
 	requires transitive org.sheepy.common.api;
+	requires org.sheepy.common.impl;
 
 	requires transitive org.lwjgl;
 	requires transitive org.lwjgl.vulkan;
