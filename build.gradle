@@ -21,7 +21,7 @@ repositories {
 
 
 project.ext.jomlVersion = "1.9.12"
-project.ext.lwjglVersion = "3.2.0"
+project.ext.lwjglVersion = "3.2.1"
 
 subprojects {
 
