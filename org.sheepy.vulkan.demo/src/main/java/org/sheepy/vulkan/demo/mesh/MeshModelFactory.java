@@ -61,7 +61,7 @@ public class MeshModelFactory
 
 		application.setTitle("Vulkan Triangle");
 		application.setSize(size);
-		application.setDebug(true);
+		application.setDebug(false);
 
 		application.getEngines().add(engine);
 
