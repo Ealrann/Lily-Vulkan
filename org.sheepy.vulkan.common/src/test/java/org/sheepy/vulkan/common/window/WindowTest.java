@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.sheepy.common.api.application.ApplicationLauncher;
+import org.sheepy.common.api.cadence.ICadencer;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.api.window.IWindowListener;
@@ -20,19 +20,20 @@ import org.sheepy.vulkan.common.test.TestUtils;
 
 public class WindowTest
 {
+	ICadencer cadencer = ICadencer.INSTANCE;
 	private Application application;
 
 	@BeforeEach
 	public void init()
 	{
 		application = TestUtils.newBasicApplication();
-		ApplicationLauncher.launch(application);
+		cadencer.start(application);
 	}
 
 	@AfterEach
 	public void clean()
 	{
-		ApplicationLauncher.close(application);
+		cadencer.stop();
 		application = null;
 	}
 

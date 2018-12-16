@@ -1,5 +1,9 @@
 package org.sheepy.vulkan.gameoflife;
 
+import org.sheepy.common.api.cadence.ICadencer;
+import org.sheepy.common.api.cadence.IMainLoop;
+import org.sheepy.vulkan.gameoflife.model.ModelFactory;
+
 public class MainGameOfLife
 {
 	public static final int WIDTH = 800;
@@ -7,14 +11,8 @@ public class MainGameOfLife
 
 	public static void main(String[] args)
 	{
-		GameOfLifeApplication app = new GameOfLifeApplication(WIDTH, HEIGHT);
-
-		try
-		{
-			app.launch();
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+		ModelFactory factory = new ModelFactory(WIDTH, HEIGHT);
+		((MainLoop) IMainLoop.INSTANCE).factory = factory;
+		ICadencer.INSTANCE.start(factory.application);
 	}
 }

@@ -10,7 +10,6 @@ import java.nio.ByteBuffer;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -109,10 +108,8 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	}
 
 	@Override
-	public void setTarget(Notifier target)
+	public void load(EObject target)
 	{
-		super.setTarget(target);
-
 		engine = (VulkanEngine) target;
 		application = (Application) engine.eContainer();
 		application.eAdapters().add(applicationAdapter);
@@ -133,7 +130,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	}
 
 	@Override
-	public void unsetTarget(Notifier oldTarget)
+	public void dispose(EObject target)
 	{
 		if (engine != null)
 		{
@@ -145,16 +142,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 
 		engine = null;
 		application = null;
-		super.unsetTarget(oldTarget);
 	}
-
-	@Override
-	public void load(EObject target)
-	{}
-
-	@Override
-	public void dispose(EObject target)
-	{}
 
 	@Override
 	public void start()

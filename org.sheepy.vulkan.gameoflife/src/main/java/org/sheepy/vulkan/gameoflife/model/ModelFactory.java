@@ -67,7 +67,7 @@ public class ModelFactory
 
 		application.setTitle("Vulkan - Game of Life");
 		application.setSize(size);
-		application.setDebug(true);
+		application.setDebug(false);
 		application.getEngines().add(engine);
 
 		int swapImageUsage = EImageUsage.TRANSFER_DST.getValue()

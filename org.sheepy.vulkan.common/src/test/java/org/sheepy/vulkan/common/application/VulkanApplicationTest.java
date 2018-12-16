@@ -3,20 +3,30 @@ package org.sheepy.vulkan.common.application;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import org.sheepy.common.api.application.ApplicationLauncher;
+import org.sheepy.common.api.cadence.ICadencer;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.common.test.TestUtils;
 
 public class VulkanApplicationTest
 {
+	ICadencer cadencer = ICadencer.INSTANCE;
+
 	@Test
 	public void testNewWindow()
 	{
 		Application application = TestUtils.newBasicApplication();
 
-		ApplicationLauncher.launch(application);
+		cadencer.start(application);
 
-		ApplicationLauncher.close(application);
+		try
+		{
+			Thread.sleep(100);
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		
+		cadencer.stop();
 	}
 
 	@Test
@@ -26,14 +36,30 @@ public class VulkanApplicationTest
 		var engine = VulkanApplicationUtil.getEngine(application);
 		engine.setEnabled(false);
 
-		ApplicationLauncher.launch(application);
+		cadencer.start(application);
 
+		try
+		{
+			Thread.sleep(100);
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		
 		assertEquals(null, VulkanApplicationUtil.getWindow(application));
 
 		engine.setEnabled(true);
 
+		try
+		{
+			Thread.sleep(100);
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+
 		assertNotEquals(null, VulkanApplicationUtil.getWindow(application));
 
-		ApplicationLauncher.close(application);
+		cadencer.stop();
 	}
 }

@@ -10,18 +10,11 @@ public class MeshConfiguration
 	public Module module = MeshConfiguration.class.getModule();
 
 	public boolean buildUniformBuffer = false;
+	public boolean depth = false;
 
 	public EFrontFace rasterizerFrontFace = EFrontFace.CLOCKWISE;
-	
-	public final int width;
-	public final int height;
-	public final boolean depth;
-	public boolean mipmap = false;
 
-	public MeshConfiguration(int width, int height, boolean depth)
-	{
-		this.width = width;
-		this.height = height;
-		this.depth = depth;
-	}
+	public int width = 800;
+	public int height = 600;
+	public boolean mipmap = false;
 }

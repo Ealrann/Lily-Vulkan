@@ -52,7 +52,7 @@ public class MeshModelFactory
 	public final MeshBuffer meshBuffer = new MeshBufferImpl();
 	public final GraphicProcess graphicProcess;
 
-	public final UniformBufferManager uniformBufferManager = new UniformBufferManager();
+	public UniformBufferManager uniformBufferManager = null;
 
 	public MeshModelFactory(MeshConfiguration meshConfiguration)
 	{
@@ -179,6 +179,7 @@ public class MeshModelFactory
 
 		if (meshConfiguration.buildUniformBuffer == true)
 		{
+			uniformBufferManager = new UniformBufferManager();
 			var uniformBuffer = uniformBufferManager.buffer;
 			descriptorSet.getDescriptors().add(uniformBuffer);
 			graphicProcess.getResources().add(uniformBuffer);
