@@ -1,4 +1,4 @@
-import org.sheepy.common.api.adapter.ISingletonAdapter;
+import org.sheepy.common.api.adapter.IAdapter;
 import org.sheepy.vulkan.process.compute.pipeline.ComputePipelineAdapter;
 import org.sheepy.vulkan.process.compute.pipeline.ComputerAdapter;
 import org.sheepy.vulkan.process.compute.process.ComputeContextAdapter;
@@ -19,6 +19,6 @@ module org.sheepy.vulkan.process.compute
 	exports org.sheepy.vulkan.process.compute.pipeline;
 	exports org.sheepy.vulkan.process.compute.process;
 
-	provides ISingletonAdapter with ComputeProcessAdapter, ComputePipelineAdapter, ComputerAdapter,
+	provides IAdapter with ComputeProcessAdapter, ComputePipelineAdapter, ComputerAdapter,
 			ComputeContextAdapter;
 }

@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.demo.triangle;
 
-import org.sheepy.common.api.cadence.ICadencer;
+import org.sheepy.common.api.application.ApplicationLauncher;
 import org.sheepy.common.api.cadence.IMainLoop;
 import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
@@ -18,6 +18,6 @@ public class MainTriangle
 
 		((MeshMainLoop) IMainLoop.INSTANCE).factory = modelFactory;
 
-		ICadencer.INSTANCE.start(modelFactory.application);
+		ApplicationLauncher.launch(modelFactory.application);
 	}
 }

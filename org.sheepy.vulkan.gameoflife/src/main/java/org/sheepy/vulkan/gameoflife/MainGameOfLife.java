@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.gameoflife;
 
-import org.sheepy.common.api.cadence.ICadencer;
+import org.sheepy.common.api.application.ApplicationLauncher;
 import org.sheepy.common.api.cadence.IMainLoop;
 import org.sheepy.vulkan.gameoflife.model.ModelFactory;
 
@@ -13,6 +13,6 @@ public class MainGameOfLife
 	{
 		ModelFactory factory = new ModelFactory(WIDTH, HEIGHT);
 		((MainLoop) IMainLoop.INSTANCE).factory = factory;
-		ICadencer.INSTANCE.start(factory.application);
+		ApplicationLauncher.launch(factory.application);
 	}
 }

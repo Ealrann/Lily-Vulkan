@@ -1,4 +1,4 @@
-import org.sheepy.common.api.adapter.ISingletonAdapter;
+import org.sheepy.common.api.adapter.IAdapter;
 import org.sheepy.common.api.cadence.IMainLoop;
 import org.sheepy.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.vulkan.demo.mesh.MeshMainLoop;
@@ -21,6 +21,6 @@ module org.sheepy.vulkan.demo {
 	exports org.sheepy.vulkan.demo.model.impl;
 	
 	provides IMainLoop with MeshMainLoop;
-	provides ISingletonAdapter with MeshAdapter, MeshPipelineAdapter;
+	provides IAdapter with MeshAdapter, MeshPipelineAdapter;
 }
 

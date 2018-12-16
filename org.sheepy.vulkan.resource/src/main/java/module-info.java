@@ -1,4 +1,4 @@
-import org.sheepy.common.api.adapter.ISingletonAdapter;
+import org.sheepy.common.api.adapter.IAdapter;
 import org.sheepy.vulkan.resource.buffer.BufferAdapter;
 import org.sheepy.vulkan.resource.buffer.ConstantsAdapter;
 import org.sheepy.vulkan.resource.file.FileResourceAdapter;
@@ -31,7 +31,7 @@ module org.sheepy.vulkan.resource
 	exports org.sheepy.vulkan.resource.texture;
 	exports org.sheepy.vulkan.resource.shader;
 
-	provides ISingletonAdapter
+	provides IAdapter
 			with ShaderAdapter, BufferAdapter, ImageAdapter, TextureAdapter, DepthImageAdapter,
 			FileResourceAdapter, ModuleResourceAdapter, ConstantsAdapter, FontAdapter;
 }
