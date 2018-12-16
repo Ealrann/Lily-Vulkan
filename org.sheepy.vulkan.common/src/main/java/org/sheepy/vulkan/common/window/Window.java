@@ -9,7 +9,6 @@ import java.util.List;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
-import org.sheepy.common.api.types.SVector2f;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.api.window.IWindow;
@@ -21,7 +20,6 @@ public class Window implements IWindow
 {
 	private final Application application;
 
-	private final SVector2f cursorPosition = new SVector2f();
 	private final List<IWindowListener> listeners = new ArrayList<>();
 
 	private long id;
@@ -61,12 +59,6 @@ public class Window implements IWindow
 			}
 		};
 		glfwSetWindowSizeCallback(id, callback);
-	}
-
-	@Override
-	public SVector2f getCursorPosition()
-	{
-		return cursorPosition;
 	}
 
 	@Override
@@ -128,18 +120,6 @@ public class Window implements IWindow
 	public static PointerBuffer getRequiredInstanceExtensions()
 	{
 		return glfwGetRequiredInstanceExtensions();
-	}
-
-	private final double[] cursorPositionX = new double[1];
-	private final double[] cursorPositionY = new double[1];
-	public void pollEvents()
-	{
-		glfwPollEvents();
-		
-		// The elegance itself
-		glfwGetCursorPos(id, cursorPositionX, cursorPositionY);
-		cursorPosition.x = (float) cursorPositionX[0];
-		cursorPosition.y = (float) cursorPositionY[0];
 	}
 
 	public void setSize(int x, int y)

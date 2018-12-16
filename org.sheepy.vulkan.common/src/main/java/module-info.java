@@ -21,12 +21,13 @@ module org.sheepy.vulkan.common
 	exports org.sheepy.vulkan.common.device.data;
 	exports org.sheepy.vulkan.common.execution;
 	exports org.sheepy.vulkan.common.engine;
+	exports org.sheepy.vulkan.common.input;
 	exports org.sheepy.vulkan.common.queue;
 	exports org.sheepy.vulkan.common.window;
 	exports org.sheepy.vulkan.common.util;
 
 	opens org.sheepy.vulkan.common.application;
 
-	provides IAdapter with LogicalDeviceAdapter, VulkanEngineAdapter,
-			ExecutionManagerAdapter, SharedResourcesAdapter;
+	provides IAdapter with LogicalDeviceAdapter, VulkanEngineAdapter, ExecutionManagerAdapter,
+			SharedResourcesAdapter;
 }

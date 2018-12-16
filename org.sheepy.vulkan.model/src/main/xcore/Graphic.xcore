@@ -79,6 +79,10 @@ interface IGraphicsPipeline extends IPipeline
 {
 }
 
+interface IGUIPipeline extends IGraphicsPipeline
+{
+}
+
 abstract class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 {
 	refers Shader[] shaders

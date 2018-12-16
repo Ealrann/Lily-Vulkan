@@ -131,6 +131,16 @@ public class GraphicSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GraphicPackage.IGUI_PIPELINE:
+			{
+				IGUIPipeline iguiPipeline = (IGUIPipeline)theEObject;
+				T result = caseIGUIPipeline(iguiPipeline);
+				if (result == null) result = caseIGraphicsPipeline(iguiPipeline);
+				if (result == null) result = caseIPipeline(iguiPipeline);
+				if (result == null) result = caseIProcessUnit(iguiPipeline);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GraphicPackage.GRAPHICS_PIPELINE:
 			{
 				GraphicsPipeline graphicsPipeline = (GraphicsPipeline)theEObject;
@@ -323,6 +333,22 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIGraphicsPipeline(IGraphicsPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IGUI Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IGUI Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIGUIPipeline(IGUIPipeline object)
 	{
 		return null;
 	}

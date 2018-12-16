@@ -32,6 +32,7 @@ import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.vulkan.model.process.graphic.IGUIPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier;
@@ -94,6 +95,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass iGraphicsPipelineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iguiPipelineEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -572,6 +580,16 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	public EClass getIGraphicsPipeline()
 	{
 		return iGraphicsPipelineEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIGUIPipeline()
+	{
+		return iguiPipelineEClass;
 	}
 
 	/**
@@ -1232,6 +1250,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		iGraphicsPipelineEClass = createEClass(IGRAPHICS_PIPELINE);
 
+		iguiPipelineEClass = createEClass(IGUI_PIPELINE);
+
 		graphicsPipelineEClass = createEClass(GRAPHICS_PIPELINE);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__SHADERS);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VIEWPORT_STATE);
@@ -1344,6 +1364,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		graphicConfigurationEClass.getESuperTypes().add(theProcessPackage.getConfiguration());
 		graphicProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
 		iGraphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
+		iguiPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
 		graphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
 		graphicsPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
 		staticViewportStateEClass.getESuperTypes().add(this.getViewportState());
@@ -1389,6 +1410,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getGraphicProcess_DepthImage(), theResourcePackage.getDepthImage(), null, "depthImage", null, 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iGraphicsPipelineEClass, IGraphicsPipeline.class, "IGraphicsPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(iguiPipelineEClass, IGUIPipeline.class, "IGUIPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(graphicsPipelineEClass, GraphicsPipeline.class, "GraphicsPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphicsPipeline_Shaders(), theResourcePackage.getShader(), null, "shaders", null, 0, -1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

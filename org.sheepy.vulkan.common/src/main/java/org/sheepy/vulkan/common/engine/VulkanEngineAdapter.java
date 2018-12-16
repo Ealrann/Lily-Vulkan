@@ -21,6 +21,7 @@ import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.common.api.adapter.IAutoAdapter;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.common.api.input.IInputManager;
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.common.model.application.ApplicationPackage;
@@ -31,6 +32,7 @@ import org.sheepy.vulkan.api.window.Surface;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.device.judge.PhysicalDeviceSelector;
+import org.sheepy.vulkan.common.input.VulkanInputManager;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.common.util.VulkanUtils;
 import org.sheepy.vulkan.common.window.Window;
@@ -57,6 +59,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames = null;
+	private VulkanInputManager inputManager;
 
 	protected Application application;
 	protected VulkanEngine engine;
@@ -152,6 +155,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			window = new Window(application);
 			createInstance(stack);
 			window.open(vkInstance);
+			inputManager = new VulkanInputManager(window.getId());
 			pickPhysicalDevice(stack);
 			createLogicalDevice(stack);
 
@@ -222,12 +226,6 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			var adapter = IEnginePartAdapter.adapt(process);
 			adapter.freePart();
 		}
-	}
-
-	@Override
-	public void pollEvents()
-	{
-		window.pollEvents();
 	}
 
 	private void createInstance(MemoryStack stack)
@@ -329,5 +327,11 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	public static VulkanEngineAdapter adapt(VulkanEngine engine)
 	{
 		return IServiceAdapterFactory.INSTANCE.adapt(engine, VulkanEngineAdapter.class);
+	}
+
+	@Override
+	public IInputManager getInputManager()
+	{
+		return inputManager;
 	}
 }

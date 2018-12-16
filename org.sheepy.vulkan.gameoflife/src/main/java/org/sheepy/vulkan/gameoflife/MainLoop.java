@@ -46,7 +46,6 @@ public class MainLoop implements IMainLoop
 	@Override
 	public void step(Application application)
 	{
-		engineAdapter.pollEvents();
 		computeProcessAdapters[0].prepare();
 		computeProcessAdapters[1].prepare();
 

@@ -116,6 +116,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createIGraphicsPipelineAdapter();
 			}
 			@Override
+			public Adapter caseIGUIPipeline(IGUIPipeline object)
+			{
+				return createIGUIPipelineAdapter();
+			}
+			@Override
 			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
 			{
 				return createGraphicsPipelineAdapter();
@@ -328,6 +333,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIGraphicsPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.IGUIPipeline
+	 * @generated
+	 */
+	public Adapter createIGUIPipelineAdapter()
 	{
 		return null;
 	}

@@ -40,7 +40,6 @@ public class MeshMainLoop implements IMainLoop
 	public void step(Application application)
 	{
 		updateUniformBuffer();
-		engineAdapter.pollEvents();
 		processAdapter.prepare();
 		processAdapter.execute();
 		meter.tick();

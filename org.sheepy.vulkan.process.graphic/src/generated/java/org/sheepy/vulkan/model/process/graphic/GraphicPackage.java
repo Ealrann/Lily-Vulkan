@@ -526,6 +526,52 @@ public interface GraphicPackage extends EPackage
 	int IGRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.IPIPELINE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.IGUIPipeline
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
+	 * @generated
+	 */
+	int IGUI_PIPELINE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUI_PIPELINE__ENABLED = IGRAPHICS_PIPELINE__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUI_PIPELINE__STAGE = IGRAPHICS_PIPELINE__STAGE;
+
+	/**
+	 * The number of structural features of the '<em>IGUI Pipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUI_PIPELINE_FEATURE_COUNT = IGRAPHICS_PIPELINE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>IGUI Pipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUI_PIPELINE_OPERATION_COUNT = IGRAPHICS_PIPELINE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -533,7 +579,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 	 * @generated
 	 */
-	int GRAPHICS_PIPELINE = 6;
+	int GRAPHICS_PIPELINE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -651,7 +697,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
 	 * @generated
 	 */
-	int DYNAMIC_STATE = 7;
+	int DYNAMIC_STATE = 8;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' attribute list.
@@ -688,7 +734,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
 	 * @generated
 	 */
-	int COLOR_BLEND = 8;
+	int COLOR_BLEND = 9;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' containment reference list.
@@ -779,7 +825,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
 	 * @generated
 	 */
-	int COLOR_BLEND_ATTACHMENT = 9;
+	int COLOR_BLEND_ATTACHMENT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Blend Enable</b></em>' attribute.
@@ -906,7 +952,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
 	 * @generated
 	 */
-	int VIEWPORT_STATE = 10;
+	int VIEWPORT_STATE = 11;
 
 	/**
 	 * The number of structural features of the '<em>Viewport State</em>' class.
@@ -934,7 +980,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
 	 * @generated
 	 */
-	int STATIC_VIEWPORT_STATE = 11;
+	int STATIC_VIEWPORT_STATE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Viewports</b></em>' containment reference list.
@@ -980,7 +1026,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
 	 * @generated
 	 */
-	int DYNAMIC_VIEWPORT_STATE = 12;
+	int DYNAMIC_VIEWPORT_STATE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Viewport Count</b></em>' attribute.
@@ -1026,7 +1072,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
 	 * @generated
 	 */
-	int VIEWPORT = 13;
+	int VIEWPORT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1090,7 +1136,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
 	 * @generated
 	 */
-	int SCISSOR = 14;
+	int SCISSOR = 15;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1136,7 +1182,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
 	 * @generated
 	 */
-	int RASTERIZER = 15;
+	int RASTERIZER = 16;
 
 	/**
 	 * The feature id for the '<em><b>Cull Mode</b></em>' attribute.
@@ -1227,7 +1273,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 	 * @generated
 	 */
-	int IMAGE_PIPELINE = 16;
+	int IMAGE_PIPELINE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1345,7 +1391,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getPipelineImageBarrier()
 	 * @generated
 	 */
-	int PIPELINE_IMAGE_BARRIER = 17;
+	int PIPELINE_IMAGE_BARRIER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1738,6 +1784,16 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EClass getIGraphicsPipeline();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IGUI Pipeline</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.IGUIPipeline
+	 * @generated
+	 */
+	EClass getIGUIPipeline();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
@@ -2667,6 +2723,16 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass IGRAPHICS_PIPELINE = eINSTANCE.getIGraphicsPipeline();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.IGUIPipeline
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
+		 * @generated
+		 */
+		EClass IGUI_PIPELINE = eINSTANCE.getIGUIPipeline();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
