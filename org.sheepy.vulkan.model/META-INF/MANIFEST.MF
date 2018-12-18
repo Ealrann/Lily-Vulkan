@@ -11,6 +11,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.sheepy.vulkan.model,
  org.sheepy.vulkan.model.enumeration,
  org.sheepy.vulkan.model.enumeration.impl,
+ org.sheepy.vulkan.model.enumeration.util,
  org.sheepy.vulkan.model.impl,
  org.sheepy.vulkan.model.process,
  org.sheepy.vulkan.model.process.compute,
@@ -29,6 +30,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.ecore.xcore.lib,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.sheepy.common.model;bundle-version="0.1.0";visibility:=reexport,
  org.sheepy.vulkan.model;visibility:=reexport
 Eclipse-LazyStart: true

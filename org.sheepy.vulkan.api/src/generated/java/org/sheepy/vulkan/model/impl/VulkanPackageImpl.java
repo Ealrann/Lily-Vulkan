@@ -9,11 +9,17 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.sheepy.common.model.action.ActionPackage;
+
 import org.sheepy.common.model.application.ApplicationPackage;
+
 import org.sheepy.common.model.inference.InferencePackage;
+
 import org.sheepy.common.model.root.RootPackage;
+
 import org.sheepy.common.model.types.TypesPackage;
+
 import org.sheepy.vulkan.model.ColorDomain;
 import org.sheepy.vulkan.model.IEnginePart;
 import org.sheepy.vulkan.model.IProcess;
@@ -129,8 +135,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
-		EnumerationPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
+		EnumerationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -152,6 +158,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVulkanEngine()
 	{
 		return vulkanEngineEClass;
@@ -162,6 +169,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVulkanEngine_Enabled()
 	{
 		return (EAttribute)vulkanEngineEClass.getEStructuralFeatures().get(0);
@@ -172,6 +180,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVulkanEngine_SharedResources()
 	{
 		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(1);
@@ -182,6 +191,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVulkanEngine_Processes()
 	{
 		return (EReference)vulkanEngineEClass.getEStructuralFeatures().get(2);
@@ -192,6 +202,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIEnginePart()
 	{
 		return iEnginePartEClass;
@@ -202,6 +213,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSharedResources()
 	{
 		return sharedResourcesEClass;
@@ -212,6 +224,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSharedResources_Resources()
 	{
 		return (EReference)sharedResourcesEClass.getEStructuralFeatures().get(0);
@@ -222,6 +235,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIResource()
 	{
 		return iResourceEClass;
@@ -232,6 +246,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIProcess()
 	{
 		return iProcessEClass;
@@ -242,6 +257,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIProcess_Enabled()
 	{
 		return (EAttribute)iProcessEClass.getEStructuralFeatures().get(0);
@@ -252,6 +268,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getColorDomain()
 	{
 		return colorDomainEClass;
@@ -262,6 +279,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColorDomain_Format()
 	{
 		return (EAttribute)colorDomainEClass.getEStructuralFeatures().get(0);
@@ -272,6 +290,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColorDomain_ColorSpace()
 	{
 		return (EAttribute)colorDomainEClass.getEStructuralFeatures().get(1);
@@ -282,6 +301,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VulkanFactory getVulkanFactory()
 	{
 		return (VulkanFactory)getEFactoryInstance();
@@ -354,6 +374,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		// Obtain other dependent packages
 		ApplicationPackage theApplicationPackage = (ApplicationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplicationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		RootPackage theRootPackage = (RootPackage)EPackage.Registry.INSTANCE.getEPackage(RootPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Create type parameters
@@ -362,8 +384,11 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		// Add supertypes to classes
 		vulkanEngineEClass.getESuperTypes().add(theApplicationPackage.getIEngine());
+		iEnginePartEClass.getESuperTypes().add(theRootPackage.getLObject());
 		sharedResourcesEClass.getESuperTypes().add(this.getIEnginePart());
+		iResourceEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iProcessEClass.getESuperTypes().add(this.getIEnginePart());
+		iProcessEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

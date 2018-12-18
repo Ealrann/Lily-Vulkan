@@ -4,7 +4,6 @@ import org.sheepy.common.api.cadence.IMainLoop;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
-import org.sheepy.vulkan.api.window.IWindow;
 import org.sheepy.vulkan.gameoflife.model.ModelFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 
@@ -14,8 +13,6 @@ public class MainLoop implements IMainLoop
 	private static final int FRAME_TIME_STEP_MS = (int) ((1f / TARGET_FPS) * 1000);
 
 	private IVulkanEngineAdapter engineAdapter;
-
-	private IWindow window;
 
 	private long nextRenderDate = 0;
 	private int countFrame = 0;
@@ -39,8 +36,6 @@ public class MainLoop implements IMainLoop
 		nextRenderDate = System.currentTimeMillis() + FRAME_TIME_STEP_MS;
 
 		engineAdapter.allocate();
-
-		window = engineAdapter.getWindow();
 	}
 
 	@Override
@@ -84,17 +79,4 @@ public class MainLoop implements IMainLoop
 			currentComputePoolIndex = 0;
 		}
 	}
-
-	@Override
-	public void dispose(Application application)
-	{
-		engineAdapter.free();
-	}
-
-	@Override
-	public boolean shouldClose()
-	{
-		return window.shouldClose();
-	}
-
 }

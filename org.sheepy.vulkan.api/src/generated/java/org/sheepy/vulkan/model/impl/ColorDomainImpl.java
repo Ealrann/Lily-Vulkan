@@ -97,6 +97,7 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EFormat getFormat()
 	{
 		return format;
@@ -107,6 +108,7 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFormat(EFormat newFormat)
 	{
 		EFormat oldFormat = format;
@@ -120,6 +122,7 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EColorSpace getColorSpace()
 	{
 		return colorSpace;
@@ -130,6 +133,7 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setColorSpace(EColorSpace newColorSpace)
 	{
 		EColorSpace oldColorSpace = colorSpace;

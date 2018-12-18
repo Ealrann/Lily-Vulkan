@@ -1,5 +1,7 @@
 package org.sheepy.vulkan.resource.image;
 
+import org.eclipse.emf.common.util.EList;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.resource.Image;
 
 public class ImageInfo
@@ -14,8 +16,19 @@ public class ImageInfo
 
 	public ImageInfo(Image image)
 	{
-		this(image.getWidth(), image.getHeight(), image.getFormat().getValue(), image.getUsage(),
-				image.getProperties(), image.getTiling(), image.getMipLevels());
+		this(image.getWidth(), image.getHeight(), image.getFormat().getValue(),
+				convertUsage(image.getUsages()), image.getProperties(), image.getTiling(),
+				image.getMipLevels());
+	}
+
+	private static int convertUsage(EList<EImageUsage> usages)
+	{
+		int res = 0;
+		for (EImageUsage usage : usages)
+		{
+			res |= usage.getValue();
+		}
+		return res;
 	}
 
 	public ImageInfo(int width, int height, int format, int usage, int properties)

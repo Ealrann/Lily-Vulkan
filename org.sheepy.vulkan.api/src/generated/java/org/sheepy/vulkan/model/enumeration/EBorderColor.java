@@ -297,6 +297,7 @@ public enum EBorderColor implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getValue()
 	{
 	  return value;
@@ -307,6 +308,7 @@ public enum EBorderColor implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 	  return name;
@@ -317,6 +319,7 @@ public enum EBorderColor implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLiteral()
 	{
 	  return literal;

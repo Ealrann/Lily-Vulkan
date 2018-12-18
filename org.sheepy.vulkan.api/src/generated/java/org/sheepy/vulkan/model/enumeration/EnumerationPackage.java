@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.vulkan.model.enumeration.EnumerationFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/vulkan' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' basePackage='org.sheepy.vulkan.model'"
  * @generated
  */
 public interface EnumerationPackage extends EPackage
@@ -277,6 +277,26 @@ public interface EnumerationPackage extends EPackage
 	int EIMAGE_USAGE = 21;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EBufferUsage <em>EBuffer Usage</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
+	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBufferUsage()
+	 * @generated
+	 */
+	int EBUFFER_USAGE = 22;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EMemoryProperty <em>EMemory Property</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.enumeration.EMemoryProperty
+	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEMemoryProperty()
+	 * @generated
+	 */
+	int EMEMORY_PROPERTY = 23;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -284,7 +304,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESampleCount()
 	 * @generated
 	 */
-	int ESAMPLE_COUNT = 22;
+	int ESAMPLE_COUNT = 24;
 
 
 	/**
@@ -506,6 +526,26 @@ public interface EnumerationPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getEImageUsage();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EBufferUsage <em>EBuffer Usage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EBuffer Usage</em>'.
+	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
+	 * @generated
+	 */
+	EEnum getEBufferUsage();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EMemoryProperty <em>EMemory Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EMemory Property</em>'.
+	 * @see org.sheepy.vulkan.model.enumeration.EMemoryProperty
+	 * @generated
+	 */
+	EEnum getEMemoryProperty();
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}'.
@@ -760,6 +800,26 @@ public interface EnumerationPackage extends EPackage
 		 * @generated
 		 */
 		EEnum EIMAGE_USAGE = eINSTANCE.getEImageUsage();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EBufferUsage <em>EBuffer Usage</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
+		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBufferUsage()
+		 * @generated
+		 */
+		EEnum EBUFFER_USAGE = eINSTANCE.getEBufferUsage();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EMemoryProperty <em>EMemory Property</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.enumeration.EMemoryProperty
+		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEMemoryProperty()
+		 * @generated
+		 */
+		EEnum EMEMORY_PROPERTY = eINSTANCE.getEMemoryProperty();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.

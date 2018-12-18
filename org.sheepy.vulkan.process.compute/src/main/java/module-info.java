@@ -11,10 +11,6 @@ module org.sheepy.vulkan.process.compute
 {
 	requires transitive org.sheepy.vulkan.process;
 
-	exports org.sheepy.vulkan.model.process.compute;
-	exports org.sheepy.vulkan.model.process.compute.impl;
-	exports org.sheepy.vulkan.model.process.compute.util;
-
 	exports org.sheepy.vulkan.process.compute.execution;
 	exports org.sheepy.vulkan.process.compute.pipeline;
 	exports org.sheepy.vulkan.process.compute.process;

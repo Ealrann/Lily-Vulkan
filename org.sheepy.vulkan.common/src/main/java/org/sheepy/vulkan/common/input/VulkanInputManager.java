@@ -1,7 +1,6 @@
 package org.sheepy.vulkan.common.input;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.system.MemoryStack.stackPush;
 
 import java.nio.DoubleBuffer;
 import java.util.ArrayList;
@@ -16,11 +15,16 @@ import org.sheepy.common.api.input.event.MouseButtonEvent;
 import org.sheepy.common.api.input.event.MouseLocationEvent;
 import org.sheepy.common.api.input.event.ScrollEvent;
 import org.sheepy.common.api.types.SVector2f;
+import org.sheepy.common.model.application.Application;
 import org.sheepy.common.model.types.EKeyState;
 import org.sheepy.common.model.types.EMouseButton;
+import org.sheepy.vulkan.common.window.Window;
 
 public class VulkanInputManager implements IInputManager
 {
+	private final Application application;
+	private final Window window;
+
 	private final SVector2f cursorPosition = new SVector2f();
 	private final double[] cursorPositionX = new double[1];
 	private final double[] cursorPositionY = new double[1];
@@ -31,27 +35,22 @@ public class VulkanInputManager implements IInputManager
 
 	private IInputCatcher catcher;
 
-	private long windowId;
-
-	public VulkanInputManager(long windowId)
+	public VulkanInputManager(Application application, Window window)
 	{
-		this.windowId = windowId;
+		this.application = application;
+		this.window = window;
 		setupInputCallbacks();
 	}
-	
+
 	@Override
 	public SVector2f getMouseLocation()
 	{
 		return cursorPosition;
 	}
 
-	public void configure(long windowId)
-	{
-		this.windowId = windowId;
-	}
-
 	public void setupInputCallbacks()
 	{
+		var windowId = window.getId();
 		glfwSetScrollCallback(windowId, (window, xoffset, yoffset) -> {
 			events.add(new ScrollEvent((float) xoffset, (float) yoffset));
 		});
@@ -64,7 +63,7 @@ public class VulkanInputManager implements IInputManager
 		glfwSetCursorPosCallback(windowId, (window, xpos, ypos) -> events
 				.add(new MouseLocationEvent((float) xpos, (float) ypos)));
 		glfwSetMouseButtonCallback(windowId, (window, button, action, mods) -> {
-			try (MemoryStack stack = stackPush())
+			try (MemoryStack stack = MemoryStack.stackPush())
 			{
 				DoubleBuffer cx = stack.mallocDouble(1);
 				DoubleBuffer cy = stack.mallocDouble(1);
@@ -99,7 +98,7 @@ public class VulkanInputManager implements IInputManager
 		glfwPollEvents();
 
 		// The elegance itself
-		glfwGetCursorPos(windowId, cursorPositionX, cursorPositionY);
+		glfwGetCursorPos(window.getId(), cursorPositionX, cursorPositionY);
 		cursorPosition.x = (float) cursorPositionX[0];
 		cursorPosition.y = (float) cursorPositionY[0];
 
@@ -117,6 +116,11 @@ public class VulkanInputManager implements IInputManager
 		}
 
 		fireEvents();
+		
+		if(window.shouldClose())
+		{
+			application.setRun(false);
+		}
 	}
 
 	public void fireEvents()

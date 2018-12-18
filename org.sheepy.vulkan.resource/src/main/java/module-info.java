@@ -16,10 +16,6 @@ module org.sheepy.vulkan.resource
 {
 	requires transitive org.sheepy.vulkan.common;
 
-	exports org.sheepy.vulkan.model.resource;
-	exports org.sheepy.vulkan.model.resource.impl;
-	exports org.sheepy.vulkan.model.resource.util;
-
 	exports org.sheepy.vulkan.resource;
 	exports org.sheepy.vulkan.resource.buffer;
 	exports org.sheepy.vulkan.resource.descriptor;

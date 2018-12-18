@@ -77,6 +77,7 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VulkanEngine createVulkanEngine()
 	{
 		VulkanEngineImpl vulkanEngine = new VulkanEngineImpl();
@@ -88,6 +89,7 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SharedResources createSharedResources()
 	{
 		SharedResourcesImpl sharedResources = new SharedResourcesImpl();
@@ -99,6 +101,7 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ColorDomain createColorDomain()
 	{
 		ColorDomainImpl colorDomain = new ColorDomainImpl();
@@ -110,6 +113,7 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VulkanPackage getVulkanPackage()
 	{
 		return (VulkanPackage)getEPackage();

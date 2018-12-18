@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.common.model.types.LNamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IResource extends EObject
+public interface IResource extends LNamedElement
 {
 } // IResource

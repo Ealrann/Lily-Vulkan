@@ -17,10 +17,6 @@ module org.sheepy.vulkan.process
 	exports org.sheepy.vulkan.process.pipeline;
 	exports org.sheepy.vulkan.process.process;
 
-	exports org.sheepy.vulkan.model.process;
-	exports org.sheepy.vulkan.model.process.impl;
-	exports org.sheepy.vulkan.model.process.util;
-
 	provides IAdapter
 			with PipelineBufferBarrierAdapter, PushConstantAdapter, BasicDescriptorSetAdapter;
 }

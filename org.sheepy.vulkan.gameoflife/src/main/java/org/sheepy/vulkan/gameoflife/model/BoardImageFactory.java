@@ -6,6 +6,7 @@ import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.Image;
@@ -31,7 +32,8 @@ public class BoardImageFactory
 		res.setFormat(IMAGE_FORMAT);
 		res.setMipLevels(1);
 		res.setTiling(VK_IMAGE_TILING_OPTIMAL);
-		res.setUsage(VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_STORAGE_BIT);
+		res.getUsages().add(EImageUsage.TRANSFER_SRC);
+		res.getUsages().add(EImageUsage.STORAGE);
 		res.setProperties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
 		res.setDescriptorType(EDescriptorType.STORAGE_IMAGE);

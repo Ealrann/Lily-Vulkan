@@ -90,6 +90,8 @@ public class VkTexture implements IVkDescriptor
 			}
 		};
 		stc.execute();
+		
+		buffer.free();
 	}
 	
 	private void generateMipmaps(VkCommandBuffer commandBuffer, long image)

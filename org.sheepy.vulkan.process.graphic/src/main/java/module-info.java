@@ -18,10 +18,6 @@ module org.sheepy.vulkan.process.graphic
 	exports org.sheepy.vulkan.process.graphic.swapchain;
 	exports org.sheepy.vulkan.process.graphic.view;
 
-	exports org.sheepy.vulkan.model.process.graphic;
-	exports org.sheepy.vulkan.model.process.graphic.impl;
-	exports org.sheepy.vulkan.model.process.graphic.util;
-
 	opens org.sheepy.vulkan.process.graphic.pipeline.image;
 
 	provides IAdapter

@@ -52,6 +52,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	};
 
 	protected boolean debug;
+	boolean allocated = false;
 
 	protected VkInstance vkInstance;
 	protected PhysicalDevice physicalDevice;
@@ -143,6 +144,8 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			}
 		}
 
+		application.eAdapters().remove(applicationAdapter);
+
 		engine = null;
 		application = null;
 	}
@@ -155,7 +158,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			window = new Window(application);
 			createInstance(stack);
 			window.open(vkInstance);
-			inputManager = new VulkanInputManager(window.getId());
+			inputManager = new VulkanInputManager(application, window);
 			pickPhysicalDevice(stack);
 			createLogicalDevice(stack);
 
@@ -184,6 +187,11 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	@Override
 	public void stop()
 	{
+		if(allocated == true)
+		{
+			free();
+		}
+		
 		if (logicalDevice != null)
 		{
 			logicalDevice.waitIdle();
@@ -193,7 +201,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		cleanup();
 		window.close();
 	}
-
+	
 	@Override
 	public void allocate()
 	{
@@ -209,6 +217,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			var adapter = IEnginePartAdapter.adapt(process);
 			adapter.allocatePart();
 		}
+		allocated = true;
 	}
 
 	@Override
@@ -226,6 +235,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			var adapter = IEnginePartAdapter.adapt(process);
 			adapter.freePart();
 		}
+		allocated = false;
 	}
 
 	private void createInstance(MemoryStack stack)

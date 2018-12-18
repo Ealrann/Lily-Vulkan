@@ -110,6 +110,13 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	}
 
 	@Override
+	public void free()
+	{
+		super.free();
+		imageAvailableSemaphore.free(context.getLogicalDevice());
+	}
+
+	@Override
 	public VulkanQueue getQueue()
 	{
 		return context.executionManager.getQueue();

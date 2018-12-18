@@ -20,5 +20,7 @@ project(':org.sheepy.common.impl').projectDir = new File(settingsDir, 'Sheepy/or
 // EMF
 include 'org.eclipse.emf.common'
 include 'org.eclipse.emf.ecore'
+include 'org.eclipse.emf.ecore.xmi'
 project(':org.eclipse.emf.common').projectDir = new File(settingsDir, 'Sheepy/EMF/org.eclipse.emf.common')
 project(':org.eclipse.emf.ecore').projectDir = new File(settingsDir, 'Sheepy/EMF/org.eclipse.emf.ecore')
+project(':org.eclipse.emf.ecore.xmi').projectDir = new File(settingsDir, 'Sheepy/EMF/org.eclipse.emf.ecore.xmi')

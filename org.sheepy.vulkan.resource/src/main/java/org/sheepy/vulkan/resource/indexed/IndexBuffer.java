@@ -120,6 +120,7 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 	public void free()
 	{
 		indexBuffer.free();
+		vertexBuffer.free();
 
 		allocated = false;
 	}

@@ -6,7 +6,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.sheepy.common.model.application.ApplicationPackage;
+
+import org.sheepy.common.model.root.RootPackage;
+import org.sheepy.common.model.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +26,7 @@ import org.sheepy.common.model.application.ApplicationPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.vulkan.model.VulkanFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/vulkan' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.vulkan'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' basePackage='org.sheepy.vulkan'"
  * @generated
  */
 public interface VulkanPackage extends EPackage
@@ -151,13 +155,13 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE___LPARENT = ApplicationPackage.IENGINE___LPARENT;
 
 	/**
-	 * The operation id for the '<em>LAll Units</em>' operation.
+	 * The operation id for the '<em>LAll Contents</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE___LALL_UNITS = ApplicationPackage.IENGINE___LALL_UNITS;
+	int VULKAN_ENGINE___LALL_CONTENTS = ApplicationPackage.IENGINE___LALL_CONTENTS;
 
 	/**
 	 * The number of operations of the '<em>Engine</em>' class.
@@ -179,13 +183,67 @@ public interface VulkanPackage extends EPackage
 	int IENGINE_PART = 1;
 
 	/**
+	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENGINE_PART__CONTENT_OBJECTS = RootPackage.LOBJECT__CONTENT_OBJECTS;
+
+	/**
 	 * The number of structural features of the '<em>IEngine Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IENGINE_PART_FEATURE_COUNT = 0;
+	int IENGINE_PART_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENGINE_PART___LINFERENCE_OBJECT = RootPackage.LOBJECT___LINFERENCE_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENGINE_PART___CREATE_CONTAINMENT_ELIST__ECLASS = RootPackage.LOBJECT___CREATE_CONTAINMENT_ELIST__ECLASS;
+
+	/**
+	 * The operation id for the '<em>LContents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENGINE_PART___LCONTENTS = RootPackage.LOBJECT___LCONTENTS;
+
+	/**
+	 * The operation id for the '<em>LParent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENGINE_PART___LPARENT = RootPackage.LOBJECT___LPARENT;
+
+	/**
+	 * The operation id for the '<em>LAll Contents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENGINE_PART___LALL_CONTENTS = RootPackage.LOBJECT___LALL_CONTENTS;
 
 	/**
 	 * The number of operations of the '<em>IEngine Part</em>' class.
@@ -194,7 +252,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IENGINE_PART_OPERATION_COUNT = 0;
+	int IENGINE_PART_OPERATION_COUNT = RootPackage.LOBJECT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.SharedResourcesImpl <em>Shared Resources</em>}' class.
@@ -205,6 +263,15 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	int SHARED_RESOURCES = 2;
+
+	/**
+	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHARED_RESOURCES__CONTENT_OBJECTS = IENGINE_PART__CONTENT_OBJECTS;
 
 	/**
 	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
@@ -223,6 +290,51 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int SHARED_RESOURCES_FEATURE_COUNT = IENGINE_PART_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHARED_RESOURCES___LINFERENCE_OBJECT = IENGINE_PART___LINFERENCE_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHARED_RESOURCES___CREATE_CONTAINMENT_ELIST__ECLASS = IENGINE_PART___CREATE_CONTAINMENT_ELIST__ECLASS;
+
+	/**
+	 * The operation id for the '<em>LContents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHARED_RESOURCES___LCONTENTS = IENGINE_PART___LCONTENTS;
+
+	/**
+	 * The operation id for the '<em>LParent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHARED_RESOURCES___LPARENT = IENGINE_PART___LPARENT;
+
+	/**
+	 * The operation id for the '<em>LAll Contents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHARED_RESOURCES___LALL_CONTENTS = IENGINE_PART___LALL_CONTENTS;
 
 	/**
 	 * The number of operations of the '<em>Shared Resources</em>' class.
@@ -244,13 +356,22 @@ public interface VulkanPackage extends EPackage
 	int IRESOURCE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IRESOURCE__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
+
+	/**
 	 * The number of structural features of the '<em>IResource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IRESOURCE_FEATURE_COUNT = 0;
+	int IRESOURCE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>IResource</em>' class.
@@ -259,7 +380,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IRESOURCE_OPERATION_COUNT = 0;
+	int IRESOURCE_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}' class.
@@ -272,13 +393,31 @@ public interface VulkanPackage extends EPackage
 	int IPROCESS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS__CONTENT_OBJECTS = IENGINE_PART__CONTENT_OBJECTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS__NAME = IENGINE_PART_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS__ENABLED = IENGINE_PART_FEATURE_COUNT + 0;
+	int IPROCESS__ENABLED = IENGINE_PART_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>IProcess</em>' class.
@@ -287,7 +426,52 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS_FEATURE_COUNT = IENGINE_PART_FEATURE_COUNT + 1;
+	int IPROCESS_FEATURE_COUNT = IENGINE_PART_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS___LINFERENCE_OBJECT = IENGINE_PART___LINFERENCE_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS___CREATE_CONTAINMENT_ELIST__ECLASS = IENGINE_PART___CREATE_CONTAINMENT_ELIST__ECLASS;
+
+	/**
+	 * The operation id for the '<em>LContents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS___LCONTENTS = IENGINE_PART___LCONTENTS;
+
+	/**
+	 * The operation id for the '<em>LParent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS___LPARENT = IENGINE_PART___LPARENT;
+
+	/**
+	 * The operation id for the '<em>LAll Contents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS___LALL_CONTENTS = IENGINE_PART___LALL_CONTENTS;
 
 	/**
 	 * The number of operations of the '<em>IProcess</em>' class.

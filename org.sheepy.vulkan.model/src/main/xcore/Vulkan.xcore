@@ -1,13 +1,16 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/vulkan")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java")
 @GenModel(modelName="Vulkan", prefix="Vulkan")
-@GenModel(publicConstructors="true")
-@GenModel(updateClasspath="false")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
 
 package org.sheepy.vulkan.model
 
 import org.sheepy.vulkan.model.enumeration.EColorSpace
 import org.sheepy.vulkan.model.enumeration.EFormat
 import org.sheepy.common.model.application.IEngine
+import org.sheepy.common.model.root.LObject
+import org.sheepy.common.model.types.LNamedElement
 
 class VulkanEngine extends IEngine
 {
@@ -17,7 +20,7 @@ class VulkanEngine extends IEngine
 	contains IProcess[] processes
 }
 
-interface IEnginePart
+interface IEnginePart extends LObject
 {
 }
 
@@ -26,11 +29,11 @@ class SharedResources extends IEnginePart
 	contains IResource[] resources
 }
 
-interface IResource
+interface IResource extends LNamedElement
 {
 }
 
-interface IProcess extends IEnginePart
+interface IProcess extends IEnginePart, LNamedElement
 {
 	boolean enabled = "true"
 }

@@ -1,6 +1,8 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/process")
-@GenModel(publicConstructors="true")
-@GenModel(updateClasspath="false")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+
 package org.sheepy.vulkan.model.process
 
 import org.sheepy.vulkan.model.IProcess
@@ -9,6 +11,8 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.vulkan.model.resource.AbstractConstants
 import org.sheepy.vulkan.model.resource.BufferBarrier
 import org.sheepy.vulkan.model.resource.DescriptorSet
+import org.sheepy.common.model.root.LObject
+import org.sheepy.common.model.types.LNamedElement
 
 abstract class AbstractProcess extends IProcess
 {
@@ -18,7 +22,7 @@ abstract class AbstractProcess extends IProcess
 	boolean resetAllowed
 }
 
-interface IProcessUnit
+interface IProcessUnit extends LObject
 {
 	boolean enabled = "true"
 	ECommandStage stage = "Render"
@@ -37,7 +41,7 @@ class PipelineBufferBarrier extends PipelineBarrier
 	contains BufferBarrier bufferBarrier
 }
 
-interface IPipeline extends IProcessUnit
+interface IPipeline extends IProcessUnit, LNamedElement
 {
 }
 
@@ -48,7 +52,7 @@ abstract class AbstractPipeline extends IPipeline
 	refers AbstractConstants constants
 }
 
-interface IPipelineUnit
+interface IPipelineUnit extends LNamedElement
 {
 }
 

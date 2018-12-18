@@ -4,17 +4,12 @@ import org.sheepy.common.api.cadence.IMainLoop;
 import org.sheepy.common.api.util.UPSMeter;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.api.adapter.IProcessAdapter;
-import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
-import org.sheepy.vulkan.api.window.IWindow;
 
 public class MeshMainLoop implements IMainLoop
 {
 	public MeshModelFactory factory;
 
-	private IVulkanEngineAdapter engineAdapter;
 	private IProcessAdapter processAdapter;
-
-	private IWindow window;
 
 	private UPSMeter meter;
 	private long start = 0;
@@ -22,18 +17,13 @@ public class MeshMainLoop implements IMainLoop
 	@Override
 	public void load(Application application)
 	{
-		var engine = factory.engine;
 		var graphicProcess = factory.graphicProcess;
 
-		engineAdapter = IVulkanEngineAdapter.adapt(engine);
 		processAdapter = IProcessAdapter.adapt(graphicProcess);
-
 		processAdapter.allocatePart();
 
 		meter = new UPSMeter(2000);
 		start = System.currentTimeMillis();
-
-		window = engineAdapter.getWindow();
 	}
 
 	@Override
@@ -55,17 +45,4 @@ public class MeshMainLoop implements IMainLoop
 			factory.uniformBufferManager.update(progress);
 		}
 	}
-
-	@Override
-	public void dispose(Application application)
-	{
-		processAdapter.freePart();
-	}
-
-	@Override
-	public boolean shouldClose()
-	{
-		return window.shouldClose();
-	}
-
 }

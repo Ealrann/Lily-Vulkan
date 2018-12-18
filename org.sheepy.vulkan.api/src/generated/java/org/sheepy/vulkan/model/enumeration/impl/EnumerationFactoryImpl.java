@@ -124,6 +124,10 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return createEPolygonModeFromString(eDataType, initialValue);
 			case EnumerationPackage.EIMAGE_USAGE:
 				return createEImageUsageFromString(eDataType, initialValue);
+			case EnumerationPackage.EBUFFER_USAGE:
+				return createEBufferUsageFromString(eDataType, initialValue);
+			case EnumerationPackage.EMEMORY_PROPERTY:
+				return createEMemoryPropertyFromString(eDataType, initialValue);
 			case EnumerationPackage.ESAMPLE_COUNT:
 				return createESampleCountFromString(eDataType, initialValue);
 			default:
@@ -185,6 +189,10 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return convertEPolygonModeToString(eDataType, instanceValue);
 			case EnumerationPackage.EIMAGE_USAGE:
 				return convertEImageUsageToString(eDataType, instanceValue);
+			case EnumerationPackage.EBUFFER_USAGE:
+				return convertEBufferUsageToString(eDataType, instanceValue);
+			case EnumerationPackage.EMEMORY_PROPERTY:
+				return convertEMemoryPropertyToString(eDataType, instanceValue);
 			case EnumerationPackage.ESAMPLE_COUNT:
 				return convertESampleCountToString(eDataType, instanceValue);
 			default:
@@ -681,6 +689,50 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EBufferUsage createEBufferUsageFromString(EDataType eDataType, String initialValue)
+	{
+		EBufferUsage result = EBufferUsage.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEBufferUsageToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EMemoryProperty createEMemoryPropertyFromString(EDataType eDataType, String initialValue)
+	{
+		EMemoryProperty result = EMemoryProperty.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEMemoryPropertyToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ESampleCount createESampleCountFromString(EDataType eDataType, String initialValue)
 	{
 		ESampleCount result = ESampleCount.get(initialValue);
@@ -703,6 +755,7 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EnumerationPackage getEnumerationPackage()
 	{
 		return (EnumerationPackage)getEPackage();

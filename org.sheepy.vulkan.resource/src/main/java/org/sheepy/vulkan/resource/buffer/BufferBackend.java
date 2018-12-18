@@ -40,7 +40,6 @@ public class BufferBackend
 		bufferMemoryId = memoryInfo.id;
 
 		vkBindBufferMemory(logicalDevice.getVkDevice(), bufferId, bufferMemoryId, 0);
-
 		// System.out.println(Long.toHexString(bufferMemoryId));
 	}
 
@@ -55,7 +54,7 @@ public class BufferBackend
 	{
 		vkDestroyBuffer(logicalDevice.getVkDevice(), bufferId, null);
 		vkFreeMemory(logicalDevice.getVkDevice(), bufferMemoryId, null);
-		
+
 		bufferId = -1;
 		bufferMemoryId = -1;
 	}

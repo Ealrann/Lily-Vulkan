@@ -1,10 +1,8 @@
 package org.sheepy.vulkan.common.window;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantLock;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,8 +50,6 @@ public class WindowTest
 		int newWidth = random.nextInt(500) + 1;
 		int newHeight = random.nextInt(500) + 1;
 
-		var lock = new ReentrantLock();
-		lock.lock();
 		var window = VulkanApplicationUtil.getWindow(application);
 		window.addListener(new IWindowListener()
 		{
@@ -62,22 +58,9 @@ public class WindowTest
 			{
 				assertEquals(newWidth, surface.width);
 				assertEquals(newHeight, surface.height);
-				lock.unlock();
 			}
 		});
 
 		application.setSize(new SVector2i(newWidth, newHeight));
-
-		try
-		{
-			var locked = lock.tryLock(1, TimeUnit.SECONDS);
-			if (!locked)
-			{
-				fail("Window resize too long (or something wrong with the listener?)");
-			}
-		} catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
 	}
 }

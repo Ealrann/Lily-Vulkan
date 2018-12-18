@@ -1,6 +1,8 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/resource")
-@GenModel(publicConstructors="true")
-@GenModel(updateClasspath="false")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+
 package org.sheepy.vulkan.model.resource
 
 import java.nio.ByteBuffer
@@ -14,6 +16,9 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
 import org.sheepy.vulkan.model.enumeration.EShaderStage
+import org.sheepy.vulkan.model.enumeration.EImageUsage
+import org.sheepy.vulkan.model.enumeration.EMemoryProperty
+import org.sheepy.vulkan.model.enumeration.EBufferUsage
 
 interface BasicResource extends IResource
 {
@@ -26,8 +31,8 @@ interface PipelineResource extends IDescriptor, IResource
 class Buffer extends PipelineResource
 {
 	long size
-	int usage
-	int properties
+	EBufferUsage[] usages
+	EMemoryProperty[] properties
 	boolean changeable = "false"
 	ByteBuffer data
 }
@@ -39,7 +44,7 @@ class Image extends PipelineResource
 	int width
 	int height
 	EFormat format
-	int usage
+	EImageUsage[] usages
 	int properties
 	int tiling = "0"
 	int mipLevels = "1"

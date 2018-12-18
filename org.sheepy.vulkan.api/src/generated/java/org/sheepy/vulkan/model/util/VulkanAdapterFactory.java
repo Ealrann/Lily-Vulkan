@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.common.model.application.IEngine;
 import org.sheepy.common.model.inference.IInferenceObject;
 import org.sheepy.common.model.root.LObject;
+
+import org.sheepy.common.model.types.LNamedElement;
 import org.sheepy.vulkan.model.*;
 
 /**
@@ -121,6 +123,11 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIEngine(IEngine object)
 			{
 				return createIEngineAdapter();
+			}
+			@Override
+			public Adapter caseLNamedElement(LNamedElement object)
+			{
+				return createLNamedElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -275,6 +282,21 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIEngineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.common.model.types.LNamedElement <em>LNamed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.common.model.types.LNamedElement
+	 * @generated
+	 */
+	public Adapter createLNamedElementAdapter()
 	{
 		return null;
 	}

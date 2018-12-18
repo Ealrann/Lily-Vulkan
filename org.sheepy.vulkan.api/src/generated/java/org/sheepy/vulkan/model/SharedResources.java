@@ -4,7 +4,6 @@ package org.sheepy.vulkan.model;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Shared Resources</b></em>'.
@@ -23,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface SharedResources extends IEnginePart
 {
-
 	/**
 	 * Returns the value of the '<em><b>Resources</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.vulkan.model.IResource}.
@@ -39,4 +37,5 @@ public interface SharedResources extends IEnginePart
 	 * @generated
 	 */
 	EList<IResource> getResources();
+
 } // SharedResources

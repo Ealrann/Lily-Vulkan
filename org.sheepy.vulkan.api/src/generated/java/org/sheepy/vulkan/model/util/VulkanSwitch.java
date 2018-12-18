@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.common.model.application.IEngine;
 import org.sheepy.common.model.inference.IInferenceObject;
 import org.sheepy.common.model.root.LObject;
+
+import org.sheepy.common.model.types.LNamedElement;
 import org.sheepy.vulkan.model.*;
 
 /**
@@ -89,6 +91,8 @@ public class VulkanSwitch<T> extends Switch<T>
 			{
 				IEnginePart iEnginePart = (IEnginePart)theEObject;
 				T result = caseIEnginePart(iEnginePart);
+				if (result == null) result = caseLObject(iEnginePart);
+				if (result == null) result = caseIInferenceObject(iEnginePart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -97,6 +101,8 @@ public class VulkanSwitch<T> extends Switch<T>
 				SharedResources sharedResources = (SharedResources)theEObject;
 				T result = caseSharedResources(sharedResources);
 				if (result == null) result = caseIEnginePart(sharedResources);
+				if (result == null) result = caseLObject(sharedResources);
+				if (result == null) result = caseIInferenceObject(sharedResources);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,6 +110,7 @@ public class VulkanSwitch<T> extends Switch<T>
 			{
 				IResource iResource = (IResource)theEObject;
 				T result = caseIResource(iResource);
+				if (result == null) result = caseLNamedElement(iResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,6 +119,9 @@ public class VulkanSwitch<T> extends Switch<T>
 				IProcess iProcess = (IProcess)theEObject;
 				T result = caseIProcess(iProcess);
 				if (result == null) result = caseIEnginePart(iProcess);
+				if (result == null) result = caseLNamedElement(iProcess);
+				if (result == null) result = caseLObject(iProcess);
+				if (result == null) result = caseIInferenceObject(iProcess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -266,6 +276,22 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIEngine(IEngine object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLNamedElement(LNamedElement object)
 	{
 		return null;
 	}

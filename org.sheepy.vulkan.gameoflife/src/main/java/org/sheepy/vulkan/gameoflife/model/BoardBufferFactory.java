@@ -1,14 +1,13 @@
 package org.sheepy.vulkan.gameoflife.model;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.gameoflife.compute.Board;
+import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.impl.BufferImpl;
-import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 
 public class BoardBufferFactory
 {
@@ -18,13 +17,12 @@ public class BoardBufferFactory
 
 		int size = board.getWidth() * board.getHeight();
 		int byteSize = size * Integer.BYTES;
-		int usage = VK_BUFFER_USAGE_STORAGE_BUFFER_BIT
-				| VK_BUFFER_USAGE_TRANSFER_SRC_BIT
-				| VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 
 		res.setSize(byteSize);
-		res.setUsage(usage);
-		res.setProperties(BufferAllocator.DEVICE_LOCAL);
+		res.getUsages().add(EBufferUsage.STORAGE_BUFFER_BIT);
+		res.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
+		res.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
+		res.getProperties().add(EMemoryProperty.DEVICE_LOCAL_BIT);
 		res.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
 		res.getShaderStages().add(EShaderStage.COMPUTE_BIT);
 

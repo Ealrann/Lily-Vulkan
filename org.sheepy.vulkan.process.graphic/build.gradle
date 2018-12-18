@@ -2,17 +2,6 @@ plugins {
 	id 'java-library'
 }
 
-if (project.hasProperty('javaModule')) {
-	javaModule.name = 'org.sheepy.vulkan.process.graphic'
-}
-
 dependencies {
 	api project(':org.sheepy.vulkan.process')
-}
-
-sourceSets {
-	main {
-		java.srcDirs = ['src/generated/java',
-			'src/main/java']
-	}
 }

@@ -1,6 +1,8 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/graphic")
-@GenModel(publicConstructors="true")
-@GenModel(updateClasspath="false")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+
 package org.sheepy.vulkan.model.process.graphic
 
 import org.sheepy.common.model.types.SVector2i

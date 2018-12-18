@@ -2,7 +2,7 @@
  */
 package org.sheepy.vulkan.model;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.common.model.root.LObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IEnginePart extends EObject
+public interface IEnginePart extends LObject
 {
-
 } // IEnginePart

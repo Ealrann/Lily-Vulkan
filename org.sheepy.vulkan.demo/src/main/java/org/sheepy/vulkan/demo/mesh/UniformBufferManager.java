@@ -1,7 +1,5 @@
 package org.sheepy.vulkan.demo.mesh;
 
-import static org.lwjgl.vulkan.VK10.VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
-
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
@@ -12,12 +10,13 @@ import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.common.util.ModelUtil;
 import org.sheepy.vulkan.common.util.SizeOf;
+import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.impl.BufferImpl;
 import org.sheepy.vulkan.resource.buffer.BufferAdapter;
-import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 
 public class UniformBufferManager
 {
@@ -52,8 +51,9 @@ public class UniformBufferManager
 		Buffer res = new BufferImpl();
 
 		res.setSize(SIZE_OF);
-		res.setUsage(VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT);
-		res.setProperties(BufferAllocator.HOST_VISIBLE);
+		res.getUsages().add(EBufferUsage.UNIFORM_BUFFER_BIT);
+		res.getProperties().add(EMemoryProperty.HOST_VISIBLE_BIT);
+		res.getProperties().add(EMemoryProperty.HOST_COHERENT_BIT);
 		res.setDescriptorType(EDescriptorType.UNIFORM_BUFFER);
 		res.getShaderStages().add(EShaderStage.VERTEX_BIT);
 		res.setChangeable(true);

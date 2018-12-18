@@ -2,6 +2,9 @@
  */
 package org.sheepy.vulkan.model;
 
+import org.sheepy.common.model.types.LNamedElement;
+
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IProcess</b></em>'.
@@ -18,9 +21,8 @@ package org.sheepy.vulkan.model;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IProcess extends IEnginePart
+public interface IProcess extends IEnginePart, LNamedElement
 {
-
 	/**
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
@@ -47,4 +49,5 @@ public interface IProcess extends IEnginePart
 	 * @generated
 	 */
 	void setEnabled(boolean value);
+
 } // IProcess

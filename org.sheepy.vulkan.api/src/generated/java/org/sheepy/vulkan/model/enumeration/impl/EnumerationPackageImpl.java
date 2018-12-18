@@ -12,6 +12,7 @@ import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EBlendFactor;
 import org.sheepy.vulkan.model.enumeration.EBlendOp;
 import org.sheepy.vulkan.model.enumeration.EBorderColor;
+import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EColorSpace;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
@@ -23,6 +24,7 @@ import org.sheepy.vulkan.model.enumeration.EFrontFace;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.ELogicOp;
+import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EPolygonMode;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
@@ -200,6 +202,20 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum eBufferUsageEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eMemoryPropertyEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum eSampleCountEEnum = null;
 
 	/**
@@ -270,6 +286,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEImageLayout()
 	{
 		return eImageLayoutEEnum;
@@ -280,6 +297,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getECullMode()
 	{
 		return eCullModeEEnum;
@@ -290,6 +308,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEDescriptorType()
 	{
 		return eDescriptorTypeEEnum;
@@ -300,6 +319,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEFrontFace()
 	{
 		return eFrontFaceEEnum;
@@ -310,6 +330,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEBorderColor()
 	{
 		return eBorderColorEEnum;
@@ -320,6 +341,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getECommandStage()
 	{
 		return eCommandStageEEnum;
@@ -330,6 +352,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEAttachmentLoadOp()
 	{
 		return eAttachmentLoadOpEEnum;
@@ -340,6 +363,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getELogicOp()
 	{
 		return eLogicOpEEnum;
@@ -350,6 +374,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEAttachmentStoreOp()
 	{
 		return eAttachmentStoreOpEEnum;
@@ -360,6 +385,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEShaderStage()
 	{
 		return eShaderStageEEnum;
@@ -370,6 +396,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEFilter()
 	{
 		return eFilterEEnum;
@@ -380,6 +407,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getESamplerMipmapMode()
 	{
 		return eSamplerMipmapModeEEnum;
@@ -390,6 +418,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getESamplerAddressMode()
 	{
 		return eSamplerAddressModeEEnum;
@@ -400,6 +429,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEBlendFactor()
 	{
 		return eBlendFactorEEnum;
@@ -410,6 +440,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEDynamicState()
 	{
 		return eDynamicStateEEnum;
@@ -420,6 +451,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEBlendOp()
 	{
 		return eBlendOpEEnum;
@@ -430,6 +462,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEPipelineStage()
 	{
 		return ePipelineStageEEnum;
@@ -440,6 +473,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEColorSpace()
 	{
 		return eColorSpaceEEnum;
@@ -450,6 +484,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEFormat()
 	{
 		return eFormatEEnum;
@@ -460,6 +495,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEPresentMode()
 	{
 		return ePresentModeEEnum;
@@ -470,6 +506,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEPolygonMode()
 	{
 		return ePolygonModeEEnum;
@@ -480,6 +517,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEImageUsage()
 	{
 		return eImageUsageEEnum;
@@ -490,6 +528,29 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EEnum getEBufferUsage()
+	{
+		return eBufferUsageEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getEMemoryProperty()
+	{
+		return eMemoryPropertyEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getESampleCount()
 	{
 		return eSampleCountEEnum;
@@ -500,6 +561,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EnumerationFactory getEnumerationFactory()
 	{
 		return (EnumerationFactory)getEFactoryInstance();
@@ -547,6 +609,8 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		ePresentModeEEnum = createEEnum(EPRESENT_MODE);
 		ePolygonModeEEnum = createEEnum(EPOLYGON_MODE);
 		eImageUsageEEnum = createEEnum(EIMAGE_USAGE);
+		eBufferUsageEEnum = createEEnum(EBUFFER_USAGE);
+		eMemoryPropertyEEnum = createEEnum(EMEMORY_PROPERTY);
 		eSampleCountEEnum = createEEnum(ESAMPLE_COUNT);
 	}
 
@@ -943,6 +1007,24 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eImageUsageEEnum, EImageUsage.DEPTH_STENCIL_ATTACHMENT);
 		addEEnumLiteral(eImageUsageEEnum, EImageUsage.TRANSIENT_ATTACHMENT);
 		addEEnumLiteral(eImageUsageEEnum, EImageUsage.INPUT_ATTACHEMENT);
+
+		initEEnum(eBufferUsageEEnum, EBufferUsage.class, "EBufferUsage");
+		addEEnumLiteral(eBufferUsageEEnum, EBufferUsage.TRANSFER_SRC_BIT);
+		addEEnumLiteral(eBufferUsageEEnum, EBufferUsage.TRANSFER_DST_BIT);
+		addEEnumLiteral(eBufferUsageEEnum, EBufferUsage.UNIFORM_TEXEL_BUFFER_BIT);
+		addEEnumLiteral(eBufferUsageEEnum, EBufferUsage.STORAGE_TEXEL_BUFFER_BIT);
+		addEEnumLiteral(eBufferUsageEEnum, EBufferUsage.UNIFORM_BUFFER_BIT);
+		addEEnumLiteral(eBufferUsageEEnum, EBufferUsage.STORAGE_BUFFER_BIT);
+		addEEnumLiteral(eBufferUsageEEnum, EBufferUsage.INDEX_BUFFER_BIT);
+		addEEnumLiteral(eBufferUsageEEnum, EBufferUsage.VERTEX_BUFFER_BIT);
+		addEEnumLiteral(eBufferUsageEEnum, EBufferUsage.INDIRECT_BUFFER_BIT);
+
+		initEEnum(eMemoryPropertyEEnum, EMemoryProperty.class, "EMemoryProperty");
+		addEEnumLiteral(eMemoryPropertyEEnum, EMemoryProperty.DEVICE_LOCAL_BIT);
+		addEEnumLiteral(eMemoryPropertyEEnum, EMemoryProperty.HOST_VISIBLE_BIT);
+		addEEnumLiteral(eMemoryPropertyEEnum, EMemoryProperty.HOST_COHERENT_BIT);
+		addEEnumLiteral(eMemoryPropertyEEnum, EMemoryProperty.HOST_CACHED_BIT);
+		addEEnumLiteral(eMemoryPropertyEEnum, EMemoryProperty.LAZILY_ALLOCATED_BIT);
 
 		initEEnum(eSampleCountEEnum, ESampleCount.class, "ESampleCount");
 		addEEnumLiteral(eSampleCountEEnum, ESampleCount.SAMPLE_COUNT_1BIT);
