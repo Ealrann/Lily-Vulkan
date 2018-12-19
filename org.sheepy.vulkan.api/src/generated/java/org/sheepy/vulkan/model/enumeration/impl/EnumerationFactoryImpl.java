@@ -112,6 +112,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return createEDynamicStateFromString(eDataType, initialValue);
 			case EnumerationPackage.EBLEND_OP:
 				return createEBlendOpFromString(eDataType, initialValue);
+			case EnumerationPackage.EACCESS:
+				return createEAccessFromString(eDataType, initialValue);
 			case EnumerationPackage.EPIPELINE_STAGE:
 				return createEPipelineStageFromString(eDataType, initialValue);
 			case EnumerationPackage.ECOLOR_SPACE:
@@ -177,6 +179,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 				return convertEDynamicStateToString(eDataType, instanceValue);
 			case EnumerationPackage.EBLEND_OP:
 				return convertEBlendOpToString(eDataType, instanceValue);
+			case EnumerationPackage.EACCESS:
+				return convertEAccessToString(eDataType, instanceValue);
 			case EnumerationPackage.EPIPELINE_STAGE:
 				return convertEPipelineStageToString(eDataType, instanceValue);
 			case EnumerationPackage.ECOLOR_SPACE:
@@ -548,6 +552,28 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertEBlendOpToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAccess createEAccessFromString(EDataType eDataType, String initialValue)
+	{
+		EAccess result = EAccess.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEAccessToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

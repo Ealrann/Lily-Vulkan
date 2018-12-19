@@ -156,6 +156,11 @@ public class TextureItemProvider extends AbstractTextureItemProvider
 			(createChildParameter
 				(ResourcePackage.Literals.TEXTURE__FILE,
 				 ResourceFactory.eINSTANCE.createModuleResource()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.TEXTURE__FILE,
+				 ResourceFactory.eINSTANCE.createStringModuleResource()));
 	}
 
 }

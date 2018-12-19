@@ -19,7 +19,7 @@ package org.sheepy.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface ModuleResource extends PathResource
+public interface ModuleResource extends AbstractModuleResource
 {
 	/**
 	 * Returns the value of the '<em><b>Module</b></em>' attribute.

@@ -8,50 +8,50 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.vulkan.model.resource.ModuleResource;
+import org.sheepy.vulkan.model.resource.StringModuleResource;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Module Resource</b></em>'.
+ * An implementation of the model object '<em><b>Named Module Resource</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ModuleResourceImpl#getModule <em>Module</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.StringModuleResourceImpl#getModuleName <em>Module Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ModuleResourceImpl extends AbstractModuleResourceImpl implements ModuleResource
+public class StringModuleResourceImpl extends AbstractModuleResourceImpl implements StringModuleResource
 {
 	/**
-	 * The default value of the '{@link #getModule() <em>Module</em>}' attribute.
+	 * The default value of the '{@link #getModuleName() <em>Module Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModule()
+	 * @see #getModuleName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Module MODULE_EDEFAULT = null;
+	protected static final String MODULE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getModule() <em>Module</em>}' attribute.
+	 * The cached value of the '{@link #getModuleName() <em>Module Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModule()
+	 * @see #getModuleName()
 	 * @generated
 	 * @ordered
 	 */
-	protected Module module = MODULE_EDEFAULT;
+	protected String moduleName = MODULE_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModuleResourceImpl()
+	public StringModuleResourceImpl()
 	{
 		super();
 	}
@@ -64,7 +64,7 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.MODULE_RESOURCE;
+		return ResourcePackage.Literals.STRING_MODULE_RESOURCE;
 	}
 
 	/**
@@ -73,9 +73,9 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	 * @generated
 	 */
 	@Override
-	public Module getModule()
+	public String getModuleName()
 	{
-		return module;
+		return moduleName;
 	}
 
 	/**
@@ -84,12 +84,12 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	 * @generated
 	 */
 	@Override
-	public void setModule(Module newModule)
+	public void setModuleName(String newModuleName)
 	{
-		Module oldModule = module;
-		module = newModule;
+		String oldModuleName = moduleName;
+		moduleName = newModuleName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.MODULE_RESOURCE__MODULE, oldModule, module));
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME, oldModuleName, moduleName));
 	}
 
 	/**
@@ -102,8 +102,8 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.MODULE_RESOURCE__MODULE:
-				return getModule();
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				return getModuleName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,8 +118,8 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.MODULE_RESOURCE__MODULE:
-				setModule((Module)newValue);
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				setModuleName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,8 +135,8 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.MODULE_RESOURCE__MODULE:
-				setModule(MODULE_EDEFAULT);
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				setModuleName(MODULE_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -152,8 +152,8 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.MODULE_RESOURCE__MODULE:
-				return MODULE_EDEFAULT == null ? module != null : !MODULE_EDEFAULT.equals(module);
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				return MODULE_NAME_EDEFAULT == null ? moduleName != null : !MODULE_NAME_EDEFAULT.equals(moduleName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -169,10 +169,10 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (module: ");
-		result.append(module);
+		result.append(" (moduleName: ");
+		result.append(moduleName);
 		result.append(')');
 		return result.toString();
 	}
 
-} //ModuleResourceImpl
+} //NamedModuleResourceImpl

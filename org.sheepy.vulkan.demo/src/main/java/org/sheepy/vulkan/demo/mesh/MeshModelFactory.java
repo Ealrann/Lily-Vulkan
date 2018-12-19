@@ -37,8 +37,8 @@ import org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.ModuleResource;
 import org.sheepy.vulkan.model.resource.Shader;
-import org.sheepy.vulkan.model.resource.impl.BasicDescriptorSetImpl;
 import org.sheepy.vulkan.model.resource.impl.DepthImageImpl;
+import org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl;
 import org.sheepy.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.vulkan.model.resource.impl.ShaderImpl;
 import org.sheepy.vulkan.model.resource.impl.TextureImpl;
@@ -144,7 +144,7 @@ public class MeshModelFactory
 		fragmentShader.setFile(fragmentShaderFile);
 		fragmentShader.setStage(EShaderStage.FRAGMENT_BIT);
 
-		var descriptorSet = new BasicDescriptorSetImpl();
+		var descriptorSet = new DescriptorSetImpl();
 
 		var rasterizer = new RasterizerImpl();
 		rasterizer.setFrontFace(meshConfiguration.rasterizerFrontFace);

@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EBlendFactor;
@@ -154,6 +155,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eBlendOpEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eAccessEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -463,6 +471,17 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	@Override
+	public EEnum getEAccess()
+	{
+		return eAccessEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEPipelineStage()
 	{
 		return ePipelineStageEEnum;
@@ -603,6 +622,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		eBlendFactorEEnum = createEEnum(EBLEND_FACTOR);
 		eDynamicStateEEnum = createEEnum(EDYNAMIC_STATE);
 		eBlendOpEEnum = createEEnum(EBLEND_OP);
+		eAccessEEnum = createEEnum(EACCESS);
 		ePipelineStageEEnum = createEEnum(EPIPELINE_STAGE);
 		eColorSpaceEEnum = createEEnum(ECOLOR_SPACE);
 		eFormatEEnum = createEEnum(EFORMAT);
@@ -777,6 +797,25 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eBlendOpEEnum, EBlendOp.REVERSE_SUBTRACT);
 		addEEnumLiteral(eBlendOpEEnum, EBlendOp.MIN);
 		addEEnumLiteral(eBlendOpEEnum, EBlendOp.MAX);
+
+		initEEnum(eAccessEEnum, EAccess.class, "EAccess");
+		addEEnumLiteral(eAccessEEnum, EAccess.INDIRECT_COMMAND_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.INDEX_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.UNIFORM_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.INPUT_ATTACHMENT_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.SHADER_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.SHADER_WRITE_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.COLOR_ATTACHMENT_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.COLOR_ATTACHMENT_WRITE_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.TRANSFER_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.TRANSFER_WRITE_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.HOST_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.HOST_WRITE_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.MEMORY_READ_BIT);
+		addEEnumLiteral(eAccessEEnum, EAccess.MEMORY_WRITE_BIT);
 
 		initEEnum(ePipelineStageEEnum, EPipelineStage.class, "EPipelineStage");
 		addEEnumLiteral(ePipelineStageEEnum, EPipelineStage.TOP_OF_PIPE_BIT);

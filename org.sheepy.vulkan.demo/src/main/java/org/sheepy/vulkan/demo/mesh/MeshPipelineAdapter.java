@@ -9,9 +9,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.process.descriptor.AbstractDescriptorSetAdapter;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
+import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
@@ -71,7 +71,7 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		var ds = meshPipeline.getDescriptorSet();
 		if (ds != null)
 		{
-			var adapter = AbstractDescriptorSetAdapter.adapt(ds);
+			var adapter = IDescriptorSetAdapter.adapt(ds);
 			res.add(adapter);
 		}
 		return res;

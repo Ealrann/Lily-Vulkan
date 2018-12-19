@@ -148,11 +148,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createDescriptorSetAdapter();
 			}
 			@Override
-			public Adapter caseBasicDescriptorSet(BasicDescriptorSet object)
-			{
-				return createBasicDescriptorSetAdapter();
-			}
-			@Override
 			public Adapter caseBarrier(Barrier object)
 			{
 				return createBarrierAdapter();
@@ -208,9 +203,19 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 				return createFileResourceAdapter();
 			}
 			@Override
+			public Adapter caseAbstractModuleResource(AbstractModuleResource object)
+			{
+				return createAbstractModuleResourceAdapter();
+			}
+			@Override
 			public Adapter caseModuleResource(ModuleResource object)
 			{
 				return createModuleResourceAdapter();
+			}
+			@Override
+			public Adapter caseStringModuleResource(StringModuleResource object)
+			{
+				return createStringModuleResourceAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -455,21 +460,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.BasicDescriptorSet <em>Basic Descriptor Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.resource.BasicDescriptorSet
-	 * @generated
-	 */
-	public Adapter createBasicDescriptorSetAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.Barrier <em>Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -635,6 +625,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.AbstractModuleResource <em>Abstract Module Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.AbstractModuleResource
+	 * @generated
+	 */
+	public Adapter createAbstractModuleResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.ModuleResource <em>Module Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -645,6 +650,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createModuleResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.resource.StringModuleResource <em>String Module Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.resource.StringModuleResource
+	 * @generated
+	 */
+	public Adapter createStringModuleResourceAdapter()
 	{
 		return null;
 	}

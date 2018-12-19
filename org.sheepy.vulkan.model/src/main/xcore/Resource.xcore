@@ -7,18 +7,20 @@ package org.sheepy.vulkan.model.resource
 
 import java.nio.ByteBuffer
 import org.sheepy.vulkan.model.IResource
+import org.sheepy.vulkan.model.enumeration.EAccess
 import org.sheepy.vulkan.model.enumeration.EBorderColor
+import org.sheepy.vulkan.model.enumeration.EBufferUsage
 import org.sheepy.vulkan.model.enumeration.EDescriptorType
 import org.sheepy.vulkan.model.enumeration.EFilter
 import org.sheepy.vulkan.model.enumeration.EFormat
 import org.sheepy.vulkan.model.enumeration.EImageLayout
+import org.sheepy.vulkan.model.enumeration.EImageUsage
+import org.sheepy.vulkan.model.enumeration.EMemoryProperty
 import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
 import org.sheepy.vulkan.model.enumeration.EShaderStage
-import org.sheepy.vulkan.model.enumeration.EImageUsage
-import org.sheepy.vulkan.model.enumeration.EMemoryProperty
-import org.sheepy.vulkan.model.enumeration.EBufferUsage
+import org.sheepy.common.model.types.LNamedElement
 
 interface BasicResource extends IResource
 {
@@ -113,11 +115,7 @@ interface IDescriptor
 	EShaderStage[] shaderStages
 }
 
-interface DescriptorSet
-{
-}
-
-class BasicDescriptorSet extends DescriptorSet
+class DescriptorSet extends LNamedElement
 {
 	refers IDescriptor[1..*] descriptors
 }
@@ -131,8 +129,8 @@ abstract class Barrier
 class BufferBarrier extends Barrier
 {
 	refers Buffer buffer
-	int srcAccess
-	int dstAccess
+	EAccess srcAccess
+	EAccess dstAccess
 }
 
 abstract class AbstractImageBarrier extends Barrier
@@ -185,7 +183,15 @@ class FileResource extends PathResource
 {
 }
 
-class ModuleResource extends PathResource
+abstract class AbstractModuleResource extends PathResource
+{}
+
+class ModuleResource extends AbstractModuleResource
 {
 	JavaModule module
+}
+
+class StringModuleResource extends AbstractModuleResource
+{
+	String moduleName
 }

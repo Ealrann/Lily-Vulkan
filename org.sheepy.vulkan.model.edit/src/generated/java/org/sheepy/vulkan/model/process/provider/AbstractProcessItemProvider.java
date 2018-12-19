@@ -280,8 +280,13 @@ public class AbstractProcessItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
+				 ResourceFactory.eINSTANCE.createStringModuleResource()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SETS,
-				 ResourceFactory.eINSTANCE.createBasicDescriptorSet()));
+				 ResourceFactory.eINSTANCE.createDescriptorSet()));
 
 		newChildDescriptors.add
 			(createChildParameter

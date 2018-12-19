@@ -43,7 +43,7 @@ import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
 import org.sheepy.vulkan.model.resource.ModuleResource;
 import org.sheepy.vulkan.model.resource.Shader;
-import org.sheepy.vulkan.model.resource.impl.BasicDescriptorSetImpl;
+import org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl;
 import org.sheepy.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.vulkan.model.resource.impl.ShaderImpl;
 
@@ -200,7 +200,7 @@ public class ModelFactory
 											IPipelineUnit computer,
 											IDescriptor... descriptors)
 	{
-		var descriptorSet = new BasicDescriptorSetImpl();
+		var descriptorSet = new DescriptorSetImpl();
 		for (IDescriptor descriptor : descriptors)
 		{
 			descriptorSet.getDescriptors().add(descriptor);

@@ -210,14 +210,7 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				DescriptorSet descriptorSet = (DescriptorSet)theEObject;
 				T result = caseDescriptorSet(descriptorSet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ResourcePackage.BASIC_DESCRIPTOR_SET:
-			{
-				BasicDescriptorSet basicDescriptorSet = (BasicDescriptorSet)theEObject;
-				T result = caseBasicDescriptorSet(basicDescriptorSet);
-				if (result == null) result = caseDescriptorSet(basicDescriptorSet);
+				if (result == null) result = caseLNamedElement(descriptorSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -320,14 +313,38 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ResourcePackage.ABSTRACT_MODULE_RESOURCE:
+			{
+				AbstractModuleResource abstractModuleResource = (AbstractModuleResource)theEObject;
+				T result = caseAbstractModuleResource(abstractModuleResource);
+				if (result == null) result = casePathResource(abstractModuleResource);
+				if (result == null) result = caseBasicResource(abstractModuleResource);
+				if (result == null) result = caseIResource(abstractModuleResource);
+				if (result == null) result = caseLNamedElement(abstractModuleResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ResourcePackage.MODULE_RESOURCE:
 			{
 				ModuleResource moduleResource = (ModuleResource)theEObject;
 				T result = caseModuleResource(moduleResource);
+				if (result == null) result = caseAbstractModuleResource(moduleResource);
 				if (result == null) result = casePathResource(moduleResource);
 				if (result == null) result = caseBasicResource(moduleResource);
 				if (result == null) result = caseIResource(moduleResource);
 				if (result == null) result = caseLNamedElement(moduleResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ResourcePackage.STRING_MODULE_RESOURCE:
+			{
+				StringModuleResource stringModuleResource = (StringModuleResource)theEObject;
+				T result = caseStringModuleResource(stringModuleResource);
+				if (result == null) result = caseAbstractModuleResource(stringModuleResource);
+				if (result == null) result = casePathResource(stringModuleResource);
+				if (result == null) result = caseBasicResource(stringModuleResource);
+				if (result == null) result = caseIResource(stringModuleResource);
+				if (result == null) result = caseLNamedElement(stringModuleResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -560,22 +577,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Basic Descriptor Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Basic Descriptor Set</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBasicDescriptorSet(BasicDescriptorSet object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Barrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -752,6 +753,22 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Module Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Module Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractModuleResource(AbstractModuleResource object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Module Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -763,6 +780,22 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseModuleResource(ModuleResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>String Module Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>String Module Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStringModuleResource(StringModuleResource object)
 	{
 		return null;
 	}

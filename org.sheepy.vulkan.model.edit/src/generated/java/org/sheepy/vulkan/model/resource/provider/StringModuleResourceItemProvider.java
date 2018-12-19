@@ -9,34 +9,21 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.vulkan.model.resource.StringModuleResource;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.resource.BasicDescriptorSet} object.
+ * This is the item provider adapter for a {@link org.sheepy.vulkan.model.resource.StringModuleResource} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BasicDescriptorSetItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class StringModuleResourceItemProvider extends AbstractModuleResourceItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -44,7 +31,7 @@ public class BasicDescriptorSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BasicDescriptorSetItemProvider(AdapterFactory adapterFactory)
+	public StringModuleResourceItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -62,36 +49,36 @@ public class BasicDescriptorSetItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addDescriptorsPropertyDescriptor(object);
+			addModuleNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Descriptors feature.
+	 * This adds a property descriptor for the Module Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptorsPropertyDescriptor(Object object)
+	protected void addModuleNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_BasicDescriptorSet_descriptors_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BasicDescriptorSet_descriptors_feature", "_UI_BasicDescriptorSet_type"),
-				 ResourcePackage.Literals.BASIC_DESCRIPTOR_SET__DESCRIPTORS,
+				 getString("_UI_StringModuleResource_moduleName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StringModuleResource_moduleName_feature", "_UI_StringModuleResource_type"),
+				 ResourcePackage.Literals.STRING_MODULE_RESOURCE__MODULE_NAME,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns BasicDescriptorSet.gif.
+	 * This returns StringModuleResource.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -99,7 +86,7 @@ public class BasicDescriptorSetItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BasicDescriptorSet"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StringModuleResource"));
 	}
 
 	/**
@@ -111,7 +98,10 @@ public class BasicDescriptorSetItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_BasicDescriptorSet_type");
+		String label = ((StringModuleResource)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_StringModuleResource_type") :
+			getString("_UI_StringModuleResource_type") + " " + label;
 	}
 
 
@@ -126,6 +116,13 @@ public class BasicDescriptorSetItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(StringModuleResource.class))
+		{
+			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -140,18 +137,6 @@ public class BasicDescriptorSetItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator()
-	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

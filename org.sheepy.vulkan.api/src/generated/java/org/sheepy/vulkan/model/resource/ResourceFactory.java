@@ -86,13 +86,13 @@ public interface ResourceFactory extends EFactory
 	Constants createConstants();
 
 	/**
-	 * Returns a new object of class '<em>Basic Descriptor Set</em>'.
+	 * Returns a new object of class '<em>Descriptor Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Basic Descriptor Set</em>'.
+	 * @return a new object of class '<em>Descriptor Set</em>'.
 	 * @generated
 	 */
-	BasicDescriptorSet createBasicDescriptorSet();
+	DescriptorSet createDescriptorSet();
 
 	/**
 	 * Returns a new object of class '<em>Buffer Barrier</em>'.
@@ -165,6 +165,15 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	ModuleResource createModuleResource();
+
+	/**
+	 * Returns a new object of class '<em>String Module Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String Module Resource</em>'.
+	 * @generated
+	 */
+	StringModuleResource createStringModuleResource();
 
 	/**
 	 * Returns the package supported by this factory.

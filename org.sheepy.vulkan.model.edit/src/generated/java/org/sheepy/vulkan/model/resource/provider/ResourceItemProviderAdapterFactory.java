@@ -276,28 +276,28 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.BasicDescriptorSet} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.DescriptorSet} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BasicDescriptorSetItemProvider basicDescriptorSetItemProvider;
+	protected DescriptorSetItemProvider descriptorSetItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.BasicDescriptorSet}.
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.DescriptorSet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBasicDescriptorSetAdapter()
+	public Adapter createDescriptorSetAdapter()
 	{
-		if (basicDescriptorSetItemProvider == null)
+		if (descriptorSetItemProvider == null)
 		{
-			basicDescriptorSetItemProvider = new BasicDescriptorSetItemProvider(this);
+			descriptorSetItemProvider = new DescriptorSetItemProvider(this);
 		}
 
-		return basicDescriptorSetItemProvider;
+		return descriptorSetItemProvider;
 	}
 
 	/**
@@ -501,6 +501,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.StringModuleResource} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StringModuleResourceItemProvider stringModuleResourceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.StringModuleResource}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStringModuleResourceAdapter()
+	{
+		if (stringModuleResourceItemProvider == null)
+		{
+			stringModuleResourceItemProvider = new StringModuleResourceItemProvider(this);
+		}
+
+		return stringModuleResourceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -654,7 +679,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 		if (textureItemProvider != null) textureItemProvider.dispose();
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
 		if (constantsItemProvider != null) constantsItemProvider.dispose();
-		if (basicDescriptorSetItemProvider != null) basicDescriptorSetItemProvider.dispose();
+		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
 		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();
 		if (imageBarrierItemProvider != null) imageBarrierItemProvider.dispose();
 		if (referenceImageBarrierItemProvider != null) referenceImageBarrierItemProvider.dispose();
@@ -663,6 +688,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 		if (depthImageItemProvider != null) depthImageItemProvider.dispose();
 		if (fileResourceItemProvider != null) fileResourceItemProvider.dispose();
 		if (moduleResourceItemProvider != null) moduleResourceItemProvider.dispose();
+		if (stringModuleResourceItemProvider != null) stringModuleResourceItemProvider.dispose();
 	}
 
 	/**
@@ -760,6 +786,11 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 					(createChildParameter
 						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
 						 ResourceFactory.eINSTANCE.createModuleResource()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						 ResourceFactory.eINSTANCE.createStringModuleResource()));
 
 				return null;
 			}

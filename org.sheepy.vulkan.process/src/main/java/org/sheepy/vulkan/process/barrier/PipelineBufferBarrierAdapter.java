@@ -25,8 +25,8 @@ public class PipelineBufferBarrierAdapter extends PipelineBarrierAdapter
 		barrierInfo = VkBufferMemoryBarrier.calloc(1);
 		barrierInfo.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
 		barrierInfo.buffer(bufferAdapter.getId());
-		barrierInfo.srcAccessMask(barrier.getSrcAccess());
-		barrierInfo.dstAccessMask(barrier.getDstAccess());
+		barrierInfo.srcAccessMask(barrier.getSrcAccess().getValue());
+		barrierInfo.dstAccessMask(barrier.getDstAccess().getValue());
 		barrierInfo.offset(0);
 		barrierInfo.size(VK_WHOLE_SIZE);
 	}

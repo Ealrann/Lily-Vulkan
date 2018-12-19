@@ -20,9 +20,9 @@ import org.sheepy.vulkan.model.process.compute.Computer;
 import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.vulkan.process.compute.process.IComputeContextAdapter;
-import org.sheepy.vulkan.process.descriptor.AbstractDescriptorSetAdapter;
 import org.sheepy.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.vulkan.process.pipeline.IPipelineUnitAdapter;
+import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.resource.shader.ShaderAdapter;
 
@@ -108,7 +108,7 @@ public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffe
 		{
 			vkDestroyPipeline(vkDevice, id, null);
 		}
-		
+
 		pipelines = null;
 
 		super.free();
@@ -163,7 +163,7 @@ public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffe
 		var ds = pipeline.getDescriptorSet();
 		if (ds != null)
 		{
-			var adapter = AbstractDescriptorSetAdapter.adapt(ds);
+			var adapter = IDescriptorSetAdapter.adapt(ds);
 			res.add(adapter);
 		}
 		return res;

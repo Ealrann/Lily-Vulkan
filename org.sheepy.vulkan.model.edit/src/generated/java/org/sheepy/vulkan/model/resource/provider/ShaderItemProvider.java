@@ -228,6 +228,11 @@ public class ShaderItemProvider
 			(createChildParameter
 				(ResourcePackage.Literals.SHADER__FILE,
 				 ResourceFactory.eINSTANCE.createModuleResource()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ResourcePackage.Literals.SHADER__FILE,
+				 ResourceFactory.eINSTANCE.createStringModuleResource()));
 	}
 
 	/**

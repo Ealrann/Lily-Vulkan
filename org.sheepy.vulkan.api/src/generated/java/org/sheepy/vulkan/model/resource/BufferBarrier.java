@@ -2,6 +2,8 @@
  */
 package org.sheepy.vulkan.model.resource;
 
+import org.sheepy.vulkan.model.enumeration.EAccess;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -51,6 +53,7 @@ public interface BufferBarrier extends Barrier
 
 	/**
 	 * Returns the value of the '<em><b>Src Access</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Src Access</em>' attribute isn't clear,
@@ -58,25 +61,28 @@ public interface BufferBarrier extends Barrier
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Access</em>' attribute.
-	 * @see #setSrcAccess(int)
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see #setSrcAccess(EAccess)
 	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBufferBarrier_SrcAccess()
 	 * @model unique="false"
 	 * @generated
 	 */
-	int getSrcAccess();
+	EAccess getSrcAccess();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.BufferBarrier#getSrcAccess <em>Src Access</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Src Access</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see #getSrcAccess()
 	 * @generated
 	 */
-	void setSrcAccess(int value);
+	void setSrcAccess(EAccess value);
 
 	/**
 	 * Returns the value of the '<em><b>Dst Access</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dst Access</em>' attribute isn't clear,
@@ -84,21 +90,23 @@ public interface BufferBarrier extends Barrier
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Access</em>' attribute.
-	 * @see #setDstAccess(int)
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see #setDstAccess(EAccess)
 	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBufferBarrier_DstAccess()
 	 * @model unique="false"
 	 * @generated
 	 */
-	int getDstAccess();
+	EAccess getDstAccess();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.BufferBarrier#getDstAccess <em>Dst Access</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dst Access</em>' attribute.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see #getDstAccess()
 	 * @generated
 	 */
-	void setDstAccess(int value);
+	void setDstAccess(EAccess value);
 
 } // BufferBarrier

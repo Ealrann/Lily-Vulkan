@@ -29,9 +29,9 @@ import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
+import org.sheepy.vulkan.model.resource.AbstractModuleResource;
 import org.sheepy.vulkan.model.resource.AbstractTexture;
 import org.sheepy.vulkan.model.resource.Barrier;
-import org.sheepy.vulkan.model.resource.BasicDescriptorSet;
 import org.sheepy.vulkan.model.resource.BasicResource;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.BufferBarrier;
@@ -47,6 +47,7 @@ import org.sheepy.vulkan.model.resource.ImageLayout;
 import org.sheepy.vulkan.model.resource.ImageTransition;
 import org.sheepy.vulkan.model.resource.IndexedBuffer;
 import org.sheepy.vulkan.model.resource.ModuleResource;
+import org.sheepy.vulkan.model.resource.StringModuleResource;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.model.resource.PipelineResource;
 import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
@@ -168,13 +169,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass basicDescriptorSetEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass barrierEClass = null;
 
 	/**
@@ -252,7 +246,21 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass abstractModuleResourceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass moduleResourceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringModuleResourceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -908,20 +916,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getBasicDescriptorSet()
+	public EReference getDescriptorSet_Descriptors()
 	{
-		return basicDescriptorSetEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getBasicDescriptorSet_Descriptors()
-	{
-		return (EReference)basicDescriptorSetEClass.getEStructuralFeatures().get(0);
+		return (EReference)descriptorSetEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1238,6 +1235,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getAbstractModuleResource()
+	{
+		return abstractModuleResourceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getModuleResource()
 	{
 		return moduleResourceEClass;
@@ -1252,6 +1260,28 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getModuleResource_Module()
 	{
 		return (EAttribute)moduleResourceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStringModuleResource()
+	{
+		return stringModuleResourceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getStringModuleResource_ModuleName()
+	{
+		return (EAttribute)stringModuleResourceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1371,9 +1401,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(iDescriptorEClass, IDESCRIPTOR__SHADER_STAGES);
 
 		descriptorSetEClass = createEClass(DESCRIPTOR_SET);
-
-		basicDescriptorSetEClass = createEClass(BASIC_DESCRIPTOR_SET);
-		createEReference(basicDescriptorSetEClass, BASIC_DESCRIPTOR_SET__DESCRIPTORS);
+		createEReference(descriptorSetEClass, DESCRIPTOR_SET__DESCRIPTORS);
 
 		barrierEClass = createEClass(BARRIER);
 		createEAttribute(barrierEClass, BARRIER__SRC_STAGE);
@@ -1414,8 +1442,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		fileResourceEClass = createEClass(FILE_RESOURCE);
 
+		abstractModuleResourceEClass = createEClass(ABSTRACT_MODULE_RESOURCE);
+
 		moduleResourceEClass = createEClass(MODULE_RESOURCE);
 		createEAttribute(moduleResourceEClass, MODULE_RESOURCE__MODULE);
+
+		stringModuleResourceEClass = createEClass(STRING_MODULE_RESOURCE);
+		createEAttribute(stringModuleResourceEClass, STRING_MODULE_RESOURCE__MODULE_NAME);
 
 		// Create data types
 		byteBufferEDataType = createEDataType(BYTE_BUFFER);
@@ -1450,6 +1483,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1467,7 +1501,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		textureEClass.getESuperTypes().add(this.getAbstractTexture());
 		abstractConstantsEClass.getESuperTypes().add(this.getBasicResource());
 		constantsEClass.getESuperTypes().add(this.getAbstractConstants());
-		basicDescriptorSetEClass.getESuperTypes().add(this.getDescriptorSet());
+		descriptorSetEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferBarrierEClass.getESuperTypes().add(this.getBarrier());
 		abstractImageBarrierEClass.getESuperTypes().add(this.getBarrier());
 		imageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
@@ -1477,7 +1511,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		depthImageEClass.getESuperTypes().add(this.getBasicResource());
 		pathResourceEClass.getESuperTypes().add(this.getBasicResource());
 		fileResourceEClass.getESuperTypes().add(this.getPathResource());
-		moduleResourceEClass.getESuperTypes().add(this.getPathResource());
+		abstractModuleResourceEClass.getESuperTypes().add(this.getPathResource());
+		moduleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
+		stringModuleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1543,10 +1579,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getIDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(), "descriptorType", null, 0, 1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(), "shaderStages", null, 0, -1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(basicDescriptorSetEClass, BasicDescriptorSet.class, "BasicDescriptorSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBasicDescriptorSet_Descriptors(), this.getIDescriptor(), null, "descriptors", null, 1, -1, BasicDescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDescriptorSet_Descriptors(), this.getIDescriptor(), null, "descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBarrier_SrcStage(), theEnumerationPackage.getEPipelineStage(), "srcStage", null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1554,8 +1588,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(bufferBarrierEClass, BufferBarrier.class, "BufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferBarrier_Buffer(), this.getBuffer(), null, "buffer", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferBarrier_SrcAccess(), theEcorePackage.getEInt(), "srcAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferBarrier_DstAccess(), theEcorePackage.getEInt(), "dstAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferBarrier_SrcAccess(), theEnumerationPackage.getEAccess(), "srcAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferBarrier_DstAccess(), theEnumerationPackage.getEAccess(), "dstAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractImageBarrierEClass, AbstractImageBarrier.class, "AbstractImageBarrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractImageBarrier_Transitions(), this.getImageTransition(), null, "transitions", null, 0, -1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1587,8 +1621,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(fileResourceEClass, FileResource.class, "FileResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(abstractModuleResourceEClass, AbstractModuleResource.class, "AbstractModuleResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(moduleResourceEClass, ModuleResource.class, "ModuleResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModuleResource_Module(), this.getJavaModule(), "module", null, 0, 1, ModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stringModuleResourceEClass, StringModuleResource.class, "StringModuleResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringModuleResource_ModuleName(), theEcorePackage.getEString(), "moduleName", null, 0, 1, StringModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(byteBufferEDataType, ByteBuffer.class, "ByteBuffer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

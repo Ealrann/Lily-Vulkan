@@ -74,7 +74,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.TEXTURE: return createTexture();
 			case ResourcePackage.SAMPLER: return createSampler();
 			case ResourcePackage.CONSTANTS: return createConstants();
-			case ResourcePackage.BASIC_DESCRIPTOR_SET: return createBasicDescriptorSet();
+			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
 			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
 			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
 			case ResourcePackage.REFERENCE_IMAGE_BARRIER: return createReferenceImageBarrier();
@@ -83,6 +83,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			case ResourcePackage.DEPTH_IMAGE: return createDepthImage();
 			case ResourcePackage.FILE_RESOURCE: return createFileResource();
 			case ResourcePackage.MODULE_RESOURCE: return createModuleResource();
+			case ResourcePackage.STRING_MODULE_RESOURCE: return createStringModuleResource();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -216,10 +217,10 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
-	public BasicDescriptorSet createBasicDescriptorSet()
+	public DescriptorSet createDescriptorSet()
 	{
-		BasicDescriptorSetImpl basicDescriptorSet = new BasicDescriptorSetImpl();
-		return basicDescriptorSet;
+		DescriptorSetImpl descriptorSet = new DescriptorSetImpl();
+		return descriptorSet;
 	}
 
 	/**
@@ -316,6 +317,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		ModuleResourceImpl moduleResource = new ModuleResourceImpl();
 		return moduleResource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StringModuleResource createStringModuleResource()
+	{
+		StringModuleResourceImpl stringModuleResource = new StringModuleResourceImpl();
+		return stringModuleResource;
 	}
 
 	/**

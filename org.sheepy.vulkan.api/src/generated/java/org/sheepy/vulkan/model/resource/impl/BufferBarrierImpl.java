@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.BufferBarrier;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
@@ -48,7 +49,7 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SRC_ACCESS_EDEFAULT = 0;
+	protected static final EAccess SRC_ACCESS_EDEFAULT = EAccess.INDIRECT_COMMAND_READ_BIT;
 
 	/**
 	 * The cached value of the '{@link #getSrcAccess() <em>Src Access</em>}' attribute.
@@ -58,7 +59,7 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	 * @generated
 	 * @ordered
 	 */
-	protected int srcAccess = SRC_ACCESS_EDEFAULT;
+	protected EAccess srcAccess = SRC_ACCESS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDstAccess() <em>Dst Access</em>}' attribute.
@@ -68,7 +69,7 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int DST_ACCESS_EDEFAULT = 0;
+	protected static final EAccess DST_ACCESS_EDEFAULT = EAccess.INDIRECT_COMMAND_READ_BIT;
 
 	/**
 	 * The cached value of the '{@link #getDstAccess() <em>Dst Access</em>}' attribute.
@@ -78,7 +79,7 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	 * @generated
 	 * @ordered
 	 */
-	protected int dstAccess = DST_ACCESS_EDEFAULT;
+	protected EAccess dstAccess = DST_ACCESS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,7 +153,7 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	 * @generated
 	 */
 	@Override
-	public int getSrcAccess()
+	public EAccess getSrcAccess()
 	{
 		return srcAccess;
 	}
@@ -163,10 +164,10 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	 * @generated
 	 */
 	@Override
-	public void setSrcAccess(int newSrcAccess)
+	public void setSrcAccess(EAccess newSrcAccess)
 	{
-		int oldSrcAccess = srcAccess;
-		srcAccess = newSrcAccess;
+		EAccess oldSrcAccess = srcAccess;
+		srcAccess = newSrcAccess == null ? SRC_ACCESS_EDEFAULT : newSrcAccess;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_BARRIER__SRC_ACCESS, oldSrcAccess, srcAccess));
 	}
@@ -177,7 +178,7 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	 * @generated
 	 */
 	@Override
-	public int getDstAccess()
+	public EAccess getDstAccess()
 	{
 		return dstAccess;
 	}
@@ -188,10 +189,10 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	 * @generated
 	 */
 	@Override
-	public void setDstAccess(int newDstAccess)
+	public void setDstAccess(EAccess newDstAccess)
 	{
-		int oldDstAccess = dstAccess;
-		dstAccess = newDstAccess;
+		EAccess oldDstAccess = dstAccess;
+		dstAccess = newDstAccess == null ? DST_ACCESS_EDEFAULT : newDstAccess;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_BARRIER__DST_ACCESS, oldDstAccess, dstAccess));
 	}
@@ -231,10 +232,10 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 				setBuffer((Buffer)newValue);
 				return;
 			case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
-				setSrcAccess((Integer)newValue);
+				setSrcAccess((EAccess)newValue);
 				return;
 			case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
-				setDstAccess((Integer)newValue);
+				setDstAccess((EAccess)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
