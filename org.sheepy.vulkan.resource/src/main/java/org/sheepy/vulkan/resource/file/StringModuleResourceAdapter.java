@@ -13,8 +13,8 @@ public class StringModuleResourceAdapter extends AbstractModuleResourceAdapter
 	protected Module getModule(AbstractModuleResource resource)
 	{
 		String moduleName = ((StringModuleResource) resource).getModuleName();
-		Module res = null;
-		throw new AssertionError("TODO, resolve module from name");
+		Module res = ModuleLayer.boot().findModule(moduleName).orElse(null);
+		return res;
 	}
 
 	@Override
