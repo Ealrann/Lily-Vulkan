@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.demo.mesh;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_SUBPASS_EXTERNAL;
 
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.common.model.application.Application;
@@ -10,6 +10,7 @@ import org.sheepy.vulkan.demo.model.MeshPipeline;
 import org.sheepy.vulkan.demo.model.impl.MeshBufferImpl;
 import org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl;
 import org.sheepy.vulkan.model.VulkanEngine;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -115,9 +116,8 @@ public class MeshModelFactory
 		dependency.setDstSubpass(0);
 		dependency.setSrcStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
 		dependency.setDstStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
-		dependency.setSrcAccessMask(0);
-		dependency.setDstAccessMask(
-				VK_ACCESS_COLOR_ATTACHMENT_READ_BIT | VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT);
+		dependency.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
+		dependency.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_WRITE_BIT);
 
 		renderPass.getDependencies().add(dependency);
 

@@ -19,6 +19,7 @@ import org.sheepy.vulkan.common.queue.IQueueManagerListener;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.common.util.VulkanBufferUtils;
 import org.sheepy.vulkan.model.ColorDomain;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.process.graphic.process.GraphicContext;
@@ -62,9 +63,23 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 
 		final var logicalDevice = context.logicalDevice;
 		final var capabilities = logicalDevice.getCapabilities();
-		swapImageUsage = configuration.getSwapImageUsage();
 		colorDomain = configuration.getColorDomain();
 		desiredMode = configuration.getPresentationMode();
+
+		swapImageUsage = 0;
+
+		var usages = configuration.getSwapImageUsages();
+		if (usages.isEmpty() == false)
+		{
+			for (EImageUsage usage : usages)
+			{
+				swapImageUsage |= usage.getValue();
+			}
+		}
+		else
+		{
+			swapImageUsage = EImageUsage.COLOR_ATTACHMENT_VALUE;
+		}
 
 		if (logicalDevice.isColorDomainAvaillable(colorDomain) == false)
 		{

@@ -8,6 +8,7 @@ import org.sheepy.common.model.application.impl.ApplicationImpl;
 import org.sheepy.vulkan.gameoflife.compute.Board;
 import org.sheepy.vulkan.model.SharedResources;
 import org.sheepy.vulkan.model.VulkanEngine;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -70,14 +71,12 @@ public class ModelFactory
 		application.setDebug(false);
 		application.getEngines().add(engine);
 
-		int swapImageUsage = EImageUsage.TRANSFER_DST.getValue()
-				| EImageUsage.COLOR_ATTACHMENT.getValue();
-
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setColorDomain(new ColorDomainImpl());
 		configuration.setClearBeforeRender(false);
 		configuration.setFrameWaitStage(EPipelineStage.TRANSFER_BIT);
-		configuration.setSwapImageUsage(swapImageUsage);
+		configuration.getSwapImageUsages().add(EImageUsage.TRANSFER_DST);
+		configuration.getSwapImageUsages().add(EImageUsage.COLOR_ATTACHMENT);
 
 		createComputeProcessPool();
 
@@ -112,9 +111,9 @@ public class ModelFactory
 		dependencyExt.setDstSubpass(0);
 		dependencyExt.setSrcStageMask(EPipelineStage.TRANSFER_BIT);
 		dependencyExt.setDstStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
-		dependencyExt.setSrcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
-		dependencyExt.setDstAccessMask(
-				VK_ACCESS_COLOR_ATTACHMENT_READ_BIT | VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT);
+		dependencyExt.getSrcAccesses().add(EAccess.TRANSFER_WRITE_BIT);
+		dependencyExt.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
+		dependencyExt.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_WRITE_BIT);
 
 		renderPass.getDependencies().add(dependencyExt);
 

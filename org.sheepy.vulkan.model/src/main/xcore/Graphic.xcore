@@ -29,12 +29,14 @@ import org.sheepy.vulkan.model.resource.DepthImage
 import org.sheepy.vulkan.model.resource.Image
 import org.sheepy.vulkan.model.resource.ImageBarrier
 import org.sheepy.vulkan.model.resource.Shader
+import org.sheepy.vulkan.model.enumeration.EImageUsage
+import org.sheepy.vulkan.model.enumeration.EAccess
 
 class GraphicConfiguration extends Configuration
 {
 	boolean clearBeforeRender = "true"
 	EPresentMode presentationMode = "MailBox"
-	int swapImageUsage = "16" // EImageUsage.ColorAttachment
+	EImageUsage[] swapImageUsages
 	EPipelineStage frameWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
 	contains ColorDomain colorDomain
 }
@@ -52,8 +54,8 @@ class SubpassDependency
 	int dstSubpass = "0"
 	EPipelineStage srcStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
 	EPipelineStage dstStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
-	int srcAccessMask = "0"
-	int dstAccessMask = "0"
+	EAccess[] srcAccesses
+	EAccess[] dstAccesses
 }
 
 class AttachmentDescription

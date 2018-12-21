@@ -89,13 +89,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_CONFIGURATION__PRESENTATION_MODE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Swap Image Usage</b></em>' attribute.
+	 * The feature id for the '<em><b>Swap Image Usages</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 2;
+	int GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Frame Wait Stage</b></em>' attribute.
@@ -235,22 +235,22 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS_DEPENDENCY__DST_STAGE_MASK = 3;
 
 	/**
-	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute.
+	 * The feature id for the '<em><b>Src Accesses</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_DEPENDENCY__SRC_ACCESS_MASK = 4;
+	int SUBPASS_DEPENDENCY__SRC_ACCESSES = 4;
 
 	/**
-	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute.
+	 * The feature id for the '<em><b>Dst Accesses</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPASS_DEPENDENCY__DST_ACCESS_MASK = 5;
+	int SUBPASS_DEPENDENCY__DST_ACCESSES = 5;
 
 	/**
 	 * The number of structural features of the '<em>Subpass Dependency</em>' class.
@@ -1850,15 +1850,15 @@ public interface GraphicPackage extends EPackage
 	EAttribute getGraphicConfiguration_PresentationMode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsage <em>Swap Image Usage</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Swap Image Usage</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsage()
+	 * @return the meta object for the attribute list '<em>Swap Image Usages</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
-	EAttribute getGraphicConfiguration_SwapImageUsage();
+	EAttribute getGraphicConfiguration_SwapImageUsages();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getFrameWaitStage <em>Frame Wait Stage</em>}'.
@@ -1980,26 +1980,26 @@ public interface GraphicPackage extends EPackage
 	EAttribute getSubpassDependency_DstStageMask();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcAccessMask <em>Src Access Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcAccesses <em>Src Accesses</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src Access Mask</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcAccessMask()
+	 * @return the meta object for the attribute list '<em>Src Accesses</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcAccesses()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
-	EAttribute getSubpassDependency_SrcAccessMask();
+	EAttribute getSubpassDependency_SrcAccesses();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstAccessMask <em>Dst Access Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstAccesses <em>Dst Accesses</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dst Access Mask</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstAccessMask()
+	 * @return the meta object for the attribute list '<em>Dst Accesses</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstAccesses()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
-	EAttribute getSubpassDependency_DstAccessMask();
+	EAttribute getSubpassDependency_DstAccesses();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription <em>Attachment Description</em>}'.
@@ -2861,12 +2861,12 @@ public interface GraphicPackage extends EPackage
 		EAttribute GRAPHIC_CONFIGURATION__PRESENTATION_MODE = eINSTANCE.getGraphicConfiguration_PresentationMode();
 
 		/**
-		 * The meta object literal for the '<em><b>Swap Image Usage</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Swap Image Usages</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGE = eINSTANCE.getGraphicConfiguration_SwapImageUsage();
+		EAttribute GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES = eINSTANCE.getGraphicConfiguration_SwapImageUsages();
 
 		/**
 		 * The meta object literal for the '<em><b>Frame Wait Stage</b></em>' attribute feature.
@@ -2961,20 +2961,20 @@ public interface GraphicPackage extends EPackage
 		EAttribute SUBPASS_DEPENDENCY__DST_STAGE_MASK = eINSTANCE.getSubpassDependency_DstStageMask();
 
 		/**
-		 * The meta object literal for the '<em><b>Src Access Mask</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Src Accesses</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SUBPASS_DEPENDENCY__SRC_ACCESS_MASK = eINSTANCE.getSubpassDependency_SrcAccessMask();
+		EAttribute SUBPASS_DEPENDENCY__SRC_ACCESSES = eINSTANCE.getSubpassDependency_SrcAccesses();
 
 		/**
-		 * The meta object literal for the '<em><b>Dst Access Mask</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Dst Accesses</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SUBPASS_DEPENDENCY__DST_ACCESS_MASK = eINSTANCE.getSubpassDependency_DstAccessMask();
+		EAttribute SUBPASS_DEPENDENCY__DST_ACCESSES = eINSTANCE.getSubpassDependency_DstAccesses();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl <em>Attachment Description</em>}' class.

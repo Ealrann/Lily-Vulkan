@@ -69,8 +69,8 @@ public class SubpassDependencyItemProvider
 			addDstSubpassPropertyDescriptor(object);
 			addSrcStageMaskPropertyDescriptor(object);
 			addDstStageMaskPropertyDescriptor(object);
-			addSrcAccessMaskPropertyDescriptor(object);
-			addDstAccessMaskPropertyDescriptor(object);
+			addSrcAccessesPropertyDescriptor(object);
+			addDstAccessesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -168,47 +168,47 @@ public class SubpassDependencyItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Src Access Mask feature.
+	 * This adds a property descriptor for the Src Accesses feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSrcAccessMaskPropertyDescriptor(Object object)
+	protected void addSrcAccessesPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SubpassDependency_srcAccessMask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_srcAccessMask_feature", "_UI_SubpassDependency_type"),
-				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__SRC_ACCESS_MASK,
+				 getString("_UI_SubpassDependency_srcAccesses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_srcAccesses_feature", "_UI_SubpassDependency_type"),
+				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__SRC_ACCESSES,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Dst Access Mask feature.
+	 * This adds a property descriptor for the Dst Accesses feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDstAccessMaskPropertyDescriptor(Object object)
+	protected void addDstAccessesPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SubpassDependency_dstAccessMask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_dstAccessMask_feature", "_UI_SubpassDependency_type"),
-				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__DST_ACCESS_MASK,
+				 getString("_UI_SubpassDependency_dstAccesses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubpassDependency_dstAccesses_feature", "_UI_SubpassDependency_type"),
+				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__DST_ACCESSES,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -257,8 +257,8 @@ public class SubpassDependencyItemProvider
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
-			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESS_MASK:
-			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESS_MASK:
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

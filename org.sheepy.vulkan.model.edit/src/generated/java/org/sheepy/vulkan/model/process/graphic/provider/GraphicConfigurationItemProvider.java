@@ -71,7 +71,7 @@ public class GraphicConfigurationItemProvider
 
 			addClearBeforeRenderPropertyDescriptor(object);
 			addPresentationModePropertyDescriptor(object);
-			addSwapImageUsagePropertyDescriptor(object);
+			addSwapImageUsagesPropertyDescriptor(object);
 			addFrameWaitStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -124,24 +124,24 @@ public class GraphicConfigurationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Swap Image Usage feature.
+	 * This adds a property descriptor for the Swap Image Usages feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSwapImageUsagePropertyDescriptor(Object object)
+	protected void addSwapImageUsagesPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_swapImageUsage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_swapImageUsage_feature", "_UI_GraphicConfiguration_type"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGE,
+				 getString("_UI_GraphicConfiguration_swapImageUsages_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_swapImageUsages_feature", "_UI_GraphicConfiguration_type"),
+				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -244,7 +244,7 @@ public class GraphicConfigurationItemProvider
 		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGE:
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

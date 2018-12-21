@@ -2,8 +2,10 @@
  */
 package org.sheepy.vulkan.model.process.graphic;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -19,8 +21,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstSubpass <em>Dst Subpass</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask <em>Src Stage Mask</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstStageMask <em>Dst Stage Mask</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcAccessMask <em>Src Access Mask</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstAccessMask <em>Dst Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcAccesses <em>Src Accesses</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstAccesses <em>Dst Accesses</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency()
@@ -144,57 +146,39 @@ public interface SubpassDependency extends EObject
 	void setDstStageMask(EPipelineStage value);
 
 	/**
-	 * Returns the value of the '<em><b>Src Access Mask</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * Returns the value of the '<em><b>Src Accesses</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Src Access Mask</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Src Accesses</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Src Access Mask</em>' attribute.
-	 * @see #setSrcAccessMask(int)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_SrcAccessMask()
-	 * @model default="0" unique="false"
+	 * @return the value of the '<em>Src Accesses</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_SrcAccesses()
+	 * @model unique="false"
 	 * @generated
 	 */
-	int getSrcAccessMask();
+	EList<EAccess> getSrcAccesses();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcAccessMask <em>Src Access Mask</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Src Access Mask</em>' attribute.
-	 * @see #getSrcAccessMask()
-	 * @generated
-	 */
-	void setSrcAccessMask(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Dst Access Mask</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * Returns the value of the '<em><b>Dst Accesses</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dst Access Mask</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Dst Accesses</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dst Access Mask</em>' attribute.
-	 * @see #setDstAccessMask(int)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_DstAccessMask()
-	 * @model default="0" unique="false"
+	 * @return the value of the '<em>Dst Accesses</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_DstAccesses()
+	 * @model unique="false"
 	 * @generated
 	 */
-	int getDstAccessMask();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstAccessMask <em>Dst Access Mask</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dst Access Mask</em>' attribute.
-	 * @see #getDstAccessMask()
-	 * @generated
-	 */
-	void setDstAccessMask(int value);
+	EList<EAccess> getDstAccesses();
 
 } // SubpassDependency

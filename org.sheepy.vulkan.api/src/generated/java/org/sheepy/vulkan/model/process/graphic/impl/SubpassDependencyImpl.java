@@ -2,13 +2,17 @@
  */
 package org.sheepy.vulkan.model.process.graphic.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
@@ -26,8 +30,8 @@ import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl#getDstSubpass <em>Dst Subpass</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl#getSrcStageMask <em>Src Stage Mask</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl#getDstStageMask <em>Dst Stage Mask</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl#getSrcAccessMask <em>Src Access Mask</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl#getDstAccessMask <em>Dst Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl#getSrcAccesses <em>Src Accesses</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl#getDstAccesses <em>Dst Accesses</em>}</li>
  * </ul>
  *
  * @generated
@@ -115,44 +119,24 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	protected EPipelineStage dstStageMask = DST_STAGE_MASK_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSrcAccessMask() <em>Src Access Mask</em>}' attribute.
+	 * The cached value of the '{@link #getSrcAccesses() <em>Src Accesses</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSrcAccessMask()
+	 * @see #getSrcAccesses()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SRC_ACCESS_MASK_EDEFAULT = 0;
+	protected EList<EAccess> srcAccesses;
 
 	/**
-	 * The cached value of the '{@link #getSrcAccessMask() <em>Src Access Mask</em>}' attribute.
+	 * The cached value of the '{@link #getDstAccesses() <em>Dst Accesses</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSrcAccessMask()
+	 * @see #getDstAccesses()
 	 * @generated
 	 * @ordered
 	 */
-	protected int srcAccessMask = SRC_ACCESS_MASK_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDstAccessMask() <em>Dst Access Mask</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDstAccessMask()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int DST_ACCESS_MASK_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getDstAccessMask() <em>Dst Access Mask</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDstAccessMask()
-	 * @generated
-	 * @ordered
-	 */
-	protected int dstAccessMask = DST_ACCESS_MASK_EDEFAULT;
+	protected EList<EAccess> dstAccesses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -281,9 +265,13 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public int getSrcAccessMask()
+	public EList<EAccess> getSrcAccesses()
 	{
-		return srcAccessMask;
+		if (srcAccesses == null)
+		{
+			srcAccesses = new EDataTypeEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES);
+		}
+		return srcAccesses;
 	}
 
 	/**
@@ -292,37 +280,13 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void setSrcAccessMask(int newSrcAccessMask)
+	public EList<EAccess> getDstAccesses()
 	{
-		int oldSrcAccessMask = srcAccessMask;
-		srcAccessMask = newSrcAccessMask;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESS_MASK, oldSrcAccessMask, srcAccessMask));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getDstAccessMask()
-	{
-		return dstAccessMask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDstAccessMask(int newDstAccessMask)
-	{
-		int oldDstAccessMask = dstAccessMask;
-		dstAccessMask = newDstAccessMask;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESS_MASK, oldDstAccessMask, dstAccessMask));
+		if (dstAccesses == null)
+		{
+			dstAccesses = new EDataTypeEList<EAccess>(EAccess.class, this, GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES);
+		}
+		return dstAccesses;
 	}
 
 	/**
@@ -343,10 +307,10 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 				return getSrcStageMask();
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
 				return getDstStageMask();
-			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESS_MASK:
-				return getSrcAccessMask();
-			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESS_MASK:
-				return getDstAccessMask();
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+				return getSrcAccesses();
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
+				return getDstAccesses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -356,6 +320,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -373,11 +338,13 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
 				setDstStageMask((EPipelineStage)newValue);
 				return;
-			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESS_MASK:
-				setSrcAccessMask((Integer)newValue);
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+				getSrcAccesses().clear();
+				getSrcAccesses().addAll((Collection<? extends EAccess>)newValue);
 				return;
-			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESS_MASK:
-				setDstAccessMask((Integer)newValue);
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
+				getDstAccesses().clear();
+				getDstAccesses().addAll((Collection<? extends EAccess>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -405,11 +372,11 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
 				setDstStageMask(DST_STAGE_MASK_EDEFAULT);
 				return;
-			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESS_MASK:
-				setSrcAccessMask(SRC_ACCESS_MASK_EDEFAULT);
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+				getSrcAccesses().clear();
 				return;
-			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESS_MASK:
-				setDstAccessMask(DST_ACCESS_MASK_EDEFAULT);
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
+				getDstAccesses().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -433,10 +400,10 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 				return srcStageMask != SRC_STAGE_MASK_EDEFAULT;
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
 				return dstStageMask != DST_STAGE_MASK_EDEFAULT;
-			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESS_MASK:
-				return srcAccessMask != SRC_ACCESS_MASK_EDEFAULT;
-			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESS_MASK:
-				return dstAccessMask != DST_ACCESS_MASK_EDEFAULT;
+			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
+				return srcAccesses != null && !srcAccesses.isEmpty();
+			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:
+				return dstAccesses != null && !dstAccesses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -460,10 +427,10 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 		result.append(srcStageMask);
 		result.append(", dstStageMask: ");
 		result.append(dstStageMask);
-		result.append(", srcAccessMask: ");
-		result.append(srcAccessMask);
-		result.append(", dstAccessMask: ");
-		result.append(dstAccessMask);
+		result.append(", srcAccesses: ");
+		result.append(srcAccesses);
+		result.append(", dstAccesses: ");
+		result.append(dstAccesses);
 		result.append(')');
 		return result.toString();
 	}

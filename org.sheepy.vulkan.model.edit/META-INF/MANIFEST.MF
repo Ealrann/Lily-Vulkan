@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.sheepy.vulkan.model.edit;singleton:=true
 Automatic-Module-Name: org.sheepy.vulkan.model.edit
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.sheepy.vulkan.model.process.provider.ProcessEditPlugin$Implementation
+Bundle-Activator: org.sheepy.vulkan.model.process.graphic.provider.GraphicEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-11

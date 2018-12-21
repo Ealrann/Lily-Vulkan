@@ -2,8 +2,10 @@
  */
 package org.sheepy.vulkan.model.process.graphic;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.vulkan.model.ColorDomain;
 
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
@@ -20,7 +22,7 @@ import org.sheepy.vulkan.model.process.Configuration;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode <em>Presentation Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsage <em>Swap Image Usage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getFrameWaitStage <em>Frame Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain <em>Color Domain</em>}</li>
  * </ul>
@@ -89,31 +91,22 @@ public interface GraphicConfiguration extends Configuration
 	void setPresentationMode(EPresentMode value);
 
 	/**
-	 * Returns the value of the '<em><b>Swap Image Usage</b></em>' attribute.
-	 * The default value is <code>"16"</code>.
+	 * Returns the value of the '<em><b>Swap Image Usages</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Swap Image Usage</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Swap Image Usages</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Swap Image Usage</em>' attribute.
-	 * @see #setSwapImageUsage(int)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_SwapImageUsage()
-	 * @model default="16" unique="false"
+	 * @return the value of the '<em>Swap Image Usages</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EImageUsage
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_SwapImageUsages()
+	 * @model unique="false"
 	 * @generated
 	 */
-	int getSwapImageUsage();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsage <em>Swap Image Usage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Swap Image Usage</em>' attribute.
-	 * @see #getSwapImageUsage()
-	 * @generated
-	 */
-	void setSwapImageUsage(int value);
+	EList<EImageUsage> getSwapImageUsages();
 
 	/**
 	 * Returns the value of the '<em><b>Frame Wait Stage</b></em>' attribute.

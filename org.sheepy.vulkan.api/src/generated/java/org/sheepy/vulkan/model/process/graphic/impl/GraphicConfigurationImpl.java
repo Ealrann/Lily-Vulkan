@@ -2,17 +2,21 @@
  */
 package org.sheepy.vulkan.model.process.graphic.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.sheepy.vulkan.model.ColorDomain;
 
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
@@ -29,7 +33,7 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getPresentationMode <em>Presentation Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSwapImageUsage <em>Swap Image Usage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSwapImageUsages <em>Swap Image Usages</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getFrameWaitStage <em>Frame Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getColorDomain <em>Color Domain</em>}</li>
  * </ul>
@@ -79,24 +83,14 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	protected EPresentMode presentationMode = PRESENTATION_MODE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSwapImageUsage() <em>Swap Image Usage</em>}' attribute.
+	 * The cached value of the '{@link #getSwapImageUsages() <em>Swap Image Usages</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSwapImageUsage()
+	 * @see #getSwapImageUsages()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SWAP_IMAGE_USAGE_EDEFAULT = 16;
-
-	/**
-	 * The cached value of the '{@link #getSwapImageUsage() <em>Swap Image Usage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSwapImageUsage()
-	 * @generated
-	 * @ordered
-	 */
-	protected int swapImageUsage = SWAP_IMAGE_USAGE_EDEFAULT;
+	protected EList<EImageUsage> swapImageUsages;
 
 	/**
 	 * The default value of the '{@link #getFrameWaitStage() <em>Frame Wait Stage</em>}' attribute.
@@ -205,23 +199,13 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public int getSwapImageUsage()
+	public EList<EImageUsage> getSwapImageUsages()
 	{
-		return swapImageUsage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSwapImageUsage(int newSwapImageUsage)
-	{
-		int oldSwapImageUsage = swapImageUsage;
-		swapImageUsage = newSwapImageUsage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGE, oldSwapImageUsage, swapImageUsage));
+		if (swapImageUsages == null)
+		{
+			swapImageUsages = new EDataTypeEList<EImageUsage>(EImageUsage.class, this, GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES);
+		}
+		return swapImageUsages;
 	}
 
 	/**
@@ -329,8 +313,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return isClearBeforeRender();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
 				return getPresentationMode();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGE:
-				return getSwapImageUsage();
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
+				return getSwapImageUsages();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE:
 				return getFrameWaitStage();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
@@ -344,6 +328,7 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -355,8 +340,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
 				setPresentationMode((EPresentMode)newValue);
 				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGE:
-				setSwapImageUsage((Integer)newValue);
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
+				getSwapImageUsages().clear();
+				getSwapImageUsages().addAll((Collection<? extends EImageUsage>)newValue);
 				return;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE:
 				setFrameWaitStage((EPipelineStage)newValue);
@@ -384,8 +370,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
 				setPresentationMode(PRESENTATION_MODE_EDEFAULT);
 				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGE:
-				setSwapImageUsage(SWAP_IMAGE_USAGE_EDEFAULT);
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
+				getSwapImageUsages().clear();
 				return;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE:
 				setFrameWaitStage(FRAME_WAIT_STAGE_EDEFAULT);
@@ -411,8 +397,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return clearBeforeRender != CLEAR_BEFORE_RENDER_EDEFAULT;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
 				return presentationMode != PRESENTATION_MODE_EDEFAULT;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGE:
-				return swapImageUsage != SWAP_IMAGE_USAGE_EDEFAULT;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
+				return swapImageUsages != null && !swapImageUsages.isEmpty();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE:
 				return frameWaitStage != FRAME_WAIT_STAGE_EDEFAULT;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
@@ -436,8 +422,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 		result.append(clearBeforeRender);
 		result.append(", presentationMode: ");
 		result.append(presentationMode);
-		result.append(", swapImageUsage: ");
-		result.append(swapImageUsage);
+		result.append(", swapImageUsages: ");
+		result.append(swapImageUsages);
 		result.append(", frameWaitStage: ");
 		result.append(frameWaitStage);
 		result.append(')');
