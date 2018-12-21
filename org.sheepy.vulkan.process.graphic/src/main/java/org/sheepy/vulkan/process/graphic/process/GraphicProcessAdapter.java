@@ -147,7 +147,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public boolean isApplicable(EClass eClass)
 	{
-		return GraphicPackage.Literals.GRAPHIC_PROCESS == eClass;
+		return GraphicPackage.Literals.GRAPHIC_PROCESS.isSuperTypeOf(eClass);
 	}
 
 	public static GraphicProcessAdapter adapt(GraphicProcess object)
