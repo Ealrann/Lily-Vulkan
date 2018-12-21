@@ -94,7 +94,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public boolean isApplicable(EClass eClass)
 	{
-		return ComputePackage.Literals.COMPUTE_PROCESS == eClass;
+		return ComputePackage.Literals.COMPUTE_PROCESS.isSuperTypeOf(eClass);
 	}
 
 	public static ComputeProcessAdapter adapt(ComputeProcess object)
