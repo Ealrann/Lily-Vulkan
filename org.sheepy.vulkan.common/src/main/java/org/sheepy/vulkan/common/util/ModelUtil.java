@@ -8,7 +8,8 @@ public class ModelUtil
 {
 	public static final Application getApplication(EObject eObject)
 	{
-		while (eObject != null && eObject.eClass() != ApplicationPackage.Literals.APPLICATION)
+		while (eObject != null
+				&& ApplicationPackage.Literals.APPLICATION.isInstance(eObject) == false)
 		{
 			eObject = eObject.eContainer();
 		}
