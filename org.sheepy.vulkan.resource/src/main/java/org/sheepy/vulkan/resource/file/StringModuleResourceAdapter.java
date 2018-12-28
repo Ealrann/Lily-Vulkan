@@ -20,7 +20,7 @@ public class StringModuleResourceAdapter extends AbstractModuleResourceAdapter
 	@Override
 	public boolean isApplicable(EClass eClass)
 	{
-		return ResourcePackage.Literals.MODULE_RESOURCE == eClass;
+		return ResourcePackage.Literals.STRING_MODULE_RESOURCE == eClass;
 	}
 
 	public static StringModuleResourceAdapter adapt(ModuleResource moduleResource)
