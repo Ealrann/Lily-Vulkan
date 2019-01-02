@@ -8,12 +8,9 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.sheepy.common.api.types.SVector2i;
-
 import org.sheepy.common.model.types.TypesFactory;
 import org.sheepy.common.model.types.TypesPackage;
-
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.Viewport;
 

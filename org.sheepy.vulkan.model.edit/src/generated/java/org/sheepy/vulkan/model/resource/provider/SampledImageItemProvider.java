@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.resource.ResourcePackage;

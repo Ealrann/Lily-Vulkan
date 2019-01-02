@@ -3,16 +3,12 @@
 package org.sheepy.vulkan.model.resource.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.sheepy.vulkan.model.resource.DescriptorSet;
@@ -44,7 +40,6 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,7 +49,6 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getDescriptors() <em>Descriptors</em>}' reference list.
 	 * <!-- begin-user-doc -->

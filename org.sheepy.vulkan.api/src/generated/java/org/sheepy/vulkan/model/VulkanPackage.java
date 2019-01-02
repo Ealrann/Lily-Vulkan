@@ -6,9 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.sheepy.common.model.application.ApplicationPackage;
-
 import org.sheepy.common.model.root.RootPackage;
 import org.sheepy.common.model.types.TypesPackage;
 

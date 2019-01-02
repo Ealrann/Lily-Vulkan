@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.common.model.application.IEngine;
 import org.sheepy.common.model.inference.IInferenceObject;
 import org.sheepy.common.model.root.LObject;
-
 import org.sheepy.common.model.types.LNamedElement;
 import org.sheepy.vulkan.model.*;
 

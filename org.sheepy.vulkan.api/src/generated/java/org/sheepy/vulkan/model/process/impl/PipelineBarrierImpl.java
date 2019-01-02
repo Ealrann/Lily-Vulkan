@@ -3,36 +3,26 @@
 package org.sheepy.vulkan.model.process.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EContentsEList;
-
 import org.sheepy.common.api.util.LTreeIterator;
 import org.sheepy.common.model.inference.IInferenceObject;
 import org.sheepy.common.model.root.LObject;
-
 import org.sheepy.common.model.root.RootPackage.Literals;
-
 import org.sheepy.common.model.types.LNamedElement;
 import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-
 import org.sheepy.vulkan.model.process.IPipelineUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.ProcessPackage;

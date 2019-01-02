@@ -9,17 +9,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.sheepy.common.model.action.ActionPackage;
-
 import org.sheepy.common.model.application.ApplicationPackage;
-
 import org.sheepy.common.model.inference.InferencePackage;
-
 import org.sheepy.common.model.root.RootPackage;
-
 import org.sheepy.common.model.types.TypesPackage;
-
 import org.sheepy.vulkan.model.ColorDomain;
 import org.sheepy.vulkan.model.IEnginePart;
 import org.sheepy.vulkan.model.IProcess;

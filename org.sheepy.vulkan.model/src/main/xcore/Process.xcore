@@ -2,6 +2,7 @@
 @GenModel(editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java")
 @GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
 @GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+@GenModel(updateClasspath="false")
 
 package org.sheepy.vulkan.model.process
 

@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.common.model.application.IEngine;
 import org.sheepy.common.model.inference.IInferenceObject;
 import org.sheepy.common.model.root.LObject;
-
 import org.sheepy.common.model.types.LNamedElement;
 import org.sheepy.vulkan.model.*;
 

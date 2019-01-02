@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-
 import org.sheepy.common.model.types.LNamedElement;
 import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.model.IResource;

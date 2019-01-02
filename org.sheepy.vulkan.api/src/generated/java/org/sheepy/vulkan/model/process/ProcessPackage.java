@@ -6,9 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.sheepy.common.model.root.RootPackage;
-
 import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.model.VulkanPackage;
 
@@ -26,7 +24,7 @@ import org.sheepy.vulkan.model.VulkanPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.vulkan.model.process.ProcessFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' basePackage='org.sheepy.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.vulkan.model'"
  * @generated
  */
 public interface ProcessPackage extends EPackage

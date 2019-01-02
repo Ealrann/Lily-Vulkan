@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.Computer;
 

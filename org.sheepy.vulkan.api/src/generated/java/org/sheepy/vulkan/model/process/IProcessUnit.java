@@ -3,7 +3,6 @@
 package org.sheepy.vulkan.model.process;
 
 import org.sheepy.common.model.root.LObject;
-
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
