@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 import org.eclipse.emf.ecore.EClass;
+import org.lwjgl.system.MemoryUtil;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
@@ -23,7 +24,7 @@ public abstract class PathResourceAdapter extends AbstractSingletonAdapter imple
 			inputStream = getInputStream(resource);
 			final byte[] byteArray = inputStream.readAllBytes();
 
-			buffer = ByteBuffer.allocateDirect(byteArray.length);
+			buffer = MemoryUtil.memAlloc(byteArray.length); 
 
 			buffer.put(byteArray);
 			buffer.flip();
