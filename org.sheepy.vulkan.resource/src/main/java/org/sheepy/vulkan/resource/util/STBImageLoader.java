@@ -5,6 +5,7 @@ import static org.lwjgl.stb.STBImage.STBI_rgb_alpha;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.stb.STBImage;
+import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.model.resource.PathResource;
 import org.sheepy.vulkan.resource.file.FileResourceAdapter;
 
@@ -30,11 +31,12 @@ public class STBImageLoader
 		final int[] texChannels = new int[1];
 		pixels = STBImage.stbi_load_from_memory(bufferedRessource, texWidth, texHeight, texChannels,
 				STBI_rgb_alpha);
+		MemoryUtil.memFree(bufferedRessource);
 		if (pixels == null)
 		{
 			System.err.println(("Problem with file: " + path));
-			throw new AssertionError(
-					"Failed to load texture image: " + STBImage.stbi_failure_reason());
+			String failure_reason = STBImage.stbi_failure_reason();
+			throw new AssertionError("Failed to load texture image: " + failure_reason);
 		}
 		width = texWidth[0];
 		height = texHeight[0];

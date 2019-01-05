@@ -4,9 +4,6 @@ import org.sheepy.vulkan.common.engine.ExecutionManagerAdapter;
 import org.sheepy.vulkan.common.engine.SharedResourcesAdapter;
 import org.sheepy.vulkan.common.engine.VulkanEngineAdapter;
 
-/**
- * 
- */
 module org.sheepy.vulkan.common
 {
 	requires transitive org.sheepy.vulkan.api;
@@ -23,8 +20,8 @@ module org.sheepy.vulkan.common
 	exports org.sheepy.vulkan.common.engine;
 	exports org.sheepy.vulkan.common.input;
 	exports org.sheepy.vulkan.common.queue;
-	exports org.sheepy.vulkan.common.window;
 	exports org.sheepy.vulkan.common.util;
+	exports org.sheepy.vulkan.common.window;
 
 	opens org.sheepy.vulkan.common.application;
 

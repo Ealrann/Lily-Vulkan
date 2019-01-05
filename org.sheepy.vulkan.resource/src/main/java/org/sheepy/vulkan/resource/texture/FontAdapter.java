@@ -12,7 +12,9 @@ import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
+import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.model.resource.Font;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.resource.file.FileResourceAdapter;
@@ -28,15 +30,34 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	private STBTTPackedchar.Buffer cdata;
 	private float descent;
 	private float scale;
+	private ByteBuffer bufferedRessource;
 
 	@Override
-	protected ByteBuffer allocDataBuffer(MemoryStack stack)
+	public void allocate(MemoryStack stack, ExecutionManager executionManager)
 	{
 		final var font = (Font) target;
 
 		final var file = font.getFile();
 		final var fileAdapter = FileResourceAdapter.adapt(file);
-		final ByteBuffer bufferedRessource = fileAdapter.toByteBuffer(file);
+		bufferedRessource = fileAdapter.toByteBuffer(file);
+
+		super.allocate(stack, executionManager);
+	}
+
+	@Override
+	public void free()
+	{
+		super.free();
+
+		fontInfo.free();
+		cdata.free();
+		MemoryUtil.memFree(bufferedRessource);
+	}
+
+	@Override
+	protected ByteBuffer allocDataBuffer(MemoryStack stack)
+	{
+		final var font = (Font) target;
 
 		return allocateFontTexture(stack, bufferedRessource, font.getHeight());
 	}
@@ -71,6 +92,9 @@ public class FontAdapter extends AbstractSampledImageAdapter
 				texture.putInt((bitmap.get(i) << 24) | 0x00FFFFFF);
 			}
 			texture.flip();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
 		} finally
 		{
 			if (bitmap != null)

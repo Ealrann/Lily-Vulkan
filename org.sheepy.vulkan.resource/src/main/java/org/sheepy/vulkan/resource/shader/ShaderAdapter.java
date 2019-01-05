@@ -13,7 +13,6 @@ import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.resource.ResourceAdapter;
-import org.sheepy.vulkan.resource.file.PathResourceAdapter;
 
 public class ShaderAdapter extends ResourceAdapter
 {
@@ -27,10 +26,8 @@ public class ShaderAdapter extends ResourceAdapter
 		var vkDevice = executionManager.logicalDevice.getVkDevice();
 		var shader = (Shader) target;
 		var resource = shader.getFile();
-		var fileAdapter = PathResourceAdapter.adapt(resource);
-		var shaderCode = fileAdapter.toByteBuffer(resource);
 
-		shaderBackend = new ShaderBackend(vkDevice, shaderCode);
+		shaderBackend = new ShaderBackend(vkDevice, resource);
 		shaderBackend.allocate(stack);
 	}
 
