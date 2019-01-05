@@ -97,7 +97,7 @@ public class VulkanInputManager implements IInputManager
 
 		glfwPollEvents();
 
-		// The elegance itself
+		// The elegance itself (nonono)
 		glfwGetCursorPos(window.getId(), cursorPositionX, cursorPositionY);
 		cursorPosition.x = (float) cursorPositionX[0];
 		cursorPosition.y = (float) cursorPositionY[0];
@@ -109,7 +109,7 @@ public class VulkanInputManager implements IInputManager
 				fireEvent(event, catcher);
 			}
 
-			if (catcher.hasCaughtInputs())
+			if (catcher.hasCaughtInputs(events))
 			{
 				dropInputEvents();
 			}
