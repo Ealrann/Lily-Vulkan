@@ -32,10 +32,12 @@ dependencies {
 	api "org.lwjgl:lwjgl-glfw:$lwjglVersion"
 	api "org.lwjgl:lwjgl-stb:$lwjglVersion"
 	api "org.lwjgl:lwjgl-vulkan:$lwjglVersion"
+	api "org.lwjgl:lwjgl-jemalloc:$lwjglVersion"
 
 	implementation "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
 	implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
 	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+	implementation "org.lwjgl:lwjgl-jemalloc:$lwjglVersion:$lwjglNatives"
 }
 
 sourceSets {
