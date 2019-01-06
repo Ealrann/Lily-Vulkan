@@ -7,14 +7,12 @@ module org.sheepy.vulkan.api
 	requires transitive org.lwjgl.vulkan;
 	requires transitive org.lwjgl.glfw;
 	requires transitive org.lwjgl.stb;
-	requires transitive org.lwjgl.jemalloc;
 
 	requires transitive org.joml;
 
 	requires org.lwjgl.natives;
 	requires org.lwjgl.glfw.natives;
 	requires org.lwjgl.stb.natives;
-	requires org.lwjgl.jemalloc.natives;
 
 	exports org.sheepy.vulkan.api.adapter;
 	exports org.sheepy.vulkan.api.queue;
