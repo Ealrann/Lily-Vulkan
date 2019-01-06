@@ -16,7 +16,7 @@ import org.sheepy.vulkan.resource.ResourceAdapter;
 
 public class ShaderAdapter extends ResourceAdapter
 {
-	private static ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memUTF8("main");
+	private static ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memASCII("main");
 
 	private ShaderBackend shaderBackend;
 

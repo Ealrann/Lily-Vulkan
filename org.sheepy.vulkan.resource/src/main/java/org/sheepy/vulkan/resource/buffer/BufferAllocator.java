@@ -15,7 +15,7 @@ public class BufferAllocator
 	public static final int HOST_VISIBLE = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT
 			| VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
 
-	public static BufferBackend allocateGPUBufferAndFill(MemoryStack stack,
+	public static BufferBackend allocateGPUBufferAndFill(	MemoryStack stack,
 															ExecutionManager executionManager,
 															long size,
 															int usage,
@@ -31,22 +31,22 @@ public class BufferAllocator
 	}
 
 	public static BufferBackend allocateGPUBuffer(	MemoryStack stack,
-														LogicalDevice logicalDevice,
-														long size,
-														int usage)
+													LogicalDevice logicalDevice,
+													long size,
+													int usage)
 	{
 		return allocateBuffer(stack, logicalDevice, size, usage, DEVICE_LOCAL);
 	}
 
 	public static BufferBackend allocateCPUBuffer(	MemoryStack stack,
-														LogicalDevice logicalDevice,
-														long size,
-														int usage)
+													LogicalDevice logicalDevice,
+													long size,
+													int usage)
 	{
 		return allocateBuffer(stack, logicalDevice, size, usage, HOST_VISIBLE);
 	}
 
-	public static BufferBackend allocateCPUBufferAndFill(MemoryStack stack,
+	public static BufferBackend allocateCPUBufferAndFill(	MemoryStack stack,
 															LogicalDevice logicalDevice,
 															long size,
 															int usage,
@@ -59,10 +59,10 @@ public class BufferAllocator
 	}
 
 	public static BufferBackend allocateBuffer(	MemoryStack stack,
-													LogicalDevice logicalDevice,
-													long size,
-													int usage,
-													int properties)
+												LogicalDevice logicalDevice,
+												long size,
+												int usage,
+												int properties)
 	{
 		final var bufferInfo = new BufferInfo(size, usage, properties);
 		final var res = new BufferBackend(logicalDevice, bufferInfo);

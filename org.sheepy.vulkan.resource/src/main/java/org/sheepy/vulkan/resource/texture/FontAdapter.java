@@ -15,6 +15,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
+import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.resource.Font;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.resource.file.FileResourceAdapter;
@@ -82,7 +83,10 @@ public class FontAdapter extends AbstractSampledImageAdapter
 			STBTTPackContext pc = STBTTPackContext.mallocStack(stack);
 			stbtt_PackBegin(pc, bitmap, BUFFER_WIDTH, BUFFER_HEIGHT, 0, 1, NULL);
 			stbtt_PackSetOversampling(pc, 4, 4);
-			stbtt_PackFontRange(pc, ttf, 0, fontHeight, 32, cdata);
+			if (stbtt_PackFontRange(pc, ttf, 0, fontHeight, 32, cdata) == false)
+			{
+				Logger.log("Fail to pack the font");
+			}
 			stbtt_PackEnd(pc);
 
 			// Convert R8 to RGBA8

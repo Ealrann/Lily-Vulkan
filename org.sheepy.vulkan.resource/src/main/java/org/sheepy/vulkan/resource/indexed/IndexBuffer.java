@@ -9,8 +9,8 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
 import org.sheepy.vulkan.resource.buffer.BufferBackend;
+import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
 
 public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 {
@@ -169,5 +169,15 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 	public boolean isAllocationDirty()
 	{
 		return false;
+	}
+
+	public BufferBackend getVertexBuffer()
+	{
+		return vertexBuffer;
+	}
+
+	public BufferBackend getIndexBuffer()
+	{
+		return indexBuffer;
 	}
 }
