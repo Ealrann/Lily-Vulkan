@@ -82,4 +82,10 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	{
 		return VulkanDemoPackage.Literals.MESH_PIPELINE == eClass;
 	}
+
+	@Override
+	protected int getSubpass()
+	{
+		return 0;
+	}
 }

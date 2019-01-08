@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
@@ -54,6 +55,7 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 			super.getPropertyDescriptors(object);
 
 			addShadersPropertyDescriptor(object);
+			addSubpassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -77,6 +79,29 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Subpass feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSubpassPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GraphicsPipeline_subpass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_subpass_feature", "_UI_GraphicsPipeline_type"),
+				 GraphicPackage.Literals.GRAPHICS_PIPELINE__SUBPASS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -147,6 +172,9 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 
 		switch (notification.getFeatureID(GraphicsPipeline.class))
 		{
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
 			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
 			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:

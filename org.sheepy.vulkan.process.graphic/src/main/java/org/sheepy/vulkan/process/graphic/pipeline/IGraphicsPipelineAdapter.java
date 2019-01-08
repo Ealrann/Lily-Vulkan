@@ -68,6 +68,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 		pipelineInfo.pStages(shaderStageBuilder.allocShaderStageInfo(getShaders()));
 		pipelineInfo.pVertexInputState(vertexInputState.allocCreateInfo());
 		pipelineInfo.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo());
+		pipelineInfo.subpass(getSubpass());
 
 		var viewportState = getViewportState();
 		if (viewportState != null)
@@ -150,6 +151,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 	protected abstract Rasterizer getRasterizer();
 	protected abstract ColorBlend getColorBlend();
 	protected abstract DynamicState getDynamicState();
+	protected abstract int getSubpass();
 
 	abstract protected IVertexBufferDescriptor<?> getVertexBufferDescriptor();
 }

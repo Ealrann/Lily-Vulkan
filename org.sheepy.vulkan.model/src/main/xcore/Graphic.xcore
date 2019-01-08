@@ -38,7 +38,7 @@ class GraphicConfiguration extends Configuration
 	boolean clearBeforeRender = "true"
 	EPresentMode presentationMode = "MailBox"
 	EImageUsage[] swapImageUsages
-	
+
 	@GenModel(propertyDescription="The stage on which we should wait until acquire the next image")
 	EPipelineStage acquireWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
 	contains ColorDomain colorDomain
@@ -113,6 +113,7 @@ abstract class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 	contains Rasterizer rasterizer
 	contains ColorBlend colorBlend
 	contains DynamicState dynamicState
+	int subpass = "0"
 }
 
 class DynamicState

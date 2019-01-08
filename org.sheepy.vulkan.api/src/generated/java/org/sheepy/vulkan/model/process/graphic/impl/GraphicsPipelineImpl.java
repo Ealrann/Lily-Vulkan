@@ -40,6 +40,7 @@ import org.sheepy.vulkan.model.resource.Shader;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getRasterizer <em>Rasterizer</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDynamicState <em>Dynamic State</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getSubpass <em>Subpass</em>}</li>
  * </ul>
  *
  * @generated
@@ -95,6 +96,26 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * @ordered
 	 */
 	protected DynamicState dynamicState;
+
+	/**
+	 * The default value of the '{@link #getSubpass() <em>Subpass</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubpass()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int SUBPASS_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getSubpass() <em>Subpass</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubpass()
+	 * @generated
+	 * @ordered
+	 */
+	protected int subpass = SUBPASS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -338,6 +359,31 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * @generated
 	 */
 	@Override
+	public int getSubpass()
+	{
+		return subpass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSubpass(int newSubpass)
+	{
+		int oldSubpass = subpass;
+		subpass = newSubpass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__SUBPASS, oldSubpass, subpass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -374,6 +420,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return getColorBlend();
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				return getDynamicState();
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				return getSubpass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -405,6 +453,9 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				setDynamicState((DynamicState)newValue);
 				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				setSubpass((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -434,6 +485,9 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				setDynamicState((DynamicState)null);
 				return;
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				setSubpass(SUBPASS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -458,8 +512,27 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 				return colorBlend != null;
 			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 				return dynamicState != null;
+			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+				return subpass != SUBPASS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (subpass: ");
+		result.append(subpass);
+		result.append(')');
+		return result.toString();
 	}
 
 } //GraphicsPipelineImpl

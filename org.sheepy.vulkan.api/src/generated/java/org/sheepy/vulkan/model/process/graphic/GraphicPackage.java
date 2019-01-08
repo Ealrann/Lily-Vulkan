@@ -1080,13 +1080,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__SUBPASS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -2525,6 +2534,17 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicsPipeline_DynamicState();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Subpass</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getSubpass()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EAttribute getGraphicsPipeline_Subpass();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.DynamicState <em>Dynamic State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3517,6 +3537,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference GRAPHICS_PIPELINE__DYNAMIC_STATE = eINSTANCE.getGraphicsPipeline_DynamicState();
+
+		/**
+		 * The meta object literal for the '<em><b>Subpass</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GRAPHICS_PIPELINE__SUBPASS = eINSTANCE.getGraphicsPipeline_Subpass();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.
