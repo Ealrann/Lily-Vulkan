@@ -98,13 +98,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Frame Wait Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Acquire Wait Stage</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 3;
+	int GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Color Domain</b></em>' containment reference.
@@ -153,13 +153,22 @@ public interface GraphicPackage extends EPackage
 	int RENDER_PASS_INFO__ATTACHMENTS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Subpasses</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_PASS_INFO__SUBPASSES = 1;
+
+	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PASS_INFO__DEPENDENCIES = 1;
+	int RENDER_PASS_INFO__DEPENDENCIES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Bind Point</b></em>' attribute.
@@ -168,7 +177,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PASS_INFO__BIND_POINT = 2;
+	int RENDER_PASS_INFO__BIND_POINT = 3;
 
 	/**
 	 * The number of structural features of the '<em>Render Pass Info</em>' class.
@@ -177,7 +186,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_PASS_INFO_FEATURE_COUNT = 3;
+	int RENDER_PASS_INFO_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Render Pass Info</em>' class.
@@ -189,6 +198,98 @@ public interface GraphicPackage extends EPackage
 	int RENDER_PASS_INFO_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpass()
+	 * @generated
+	 */
+	int SUBPASS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Refs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS__REFS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Subpass</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Subpass</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPASS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl <em>Attachement Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
+	 * @generated
+	 */
+	int ATTACHEMENT_REF = 3;
+
+	/**
+	 * The feature id for the '<em><b>Attachement</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHEMENT_REF__ATTACHEMENT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHEMENT_REF__LAYOUT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Attachement Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHEMENT_REF_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Attachement Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHEMENT_REF_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,10 +297,10 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpassDependency()
 	 * @generated
 	 */
-	int SUBPASS_DEPENDENCY = 2;
+	int SUBPASS_DEPENDENCY = 4;
 
 	/**
-	 * The feature id for the '<em><b>Src Subpass</b></em>' attribute.
+	 * The feature id for the '<em><b>Src Subpass</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -208,7 +309,7 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS_DEPENDENCY__SRC_SUBPASS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Dst Subpass</b></em>' attribute.
+	 * The feature id for the '<em><b>Dst Subpass</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -278,16 +379,16 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentDescription()
 	 * @generated
 	 */
-	int ATTACHMENT_DESCRIPTION = 3;
+	int ATTACHMENT_DESCRIPTION = 5;
 
 	/**
-	 * The feature id for the '<em><b>Stencil</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION__STENCIL = 0;
+	int ATTACHMENT_DESCRIPTION__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Samples</b></em>' attribute.
@@ -353,22 +454,13 @@ public interface GraphicPackage extends EPackage
 	int ATTACHMENT_DESCRIPTION__FINAL_LAYOUT = 7;
 
 	/**
-	 * The feature id for the '<em><b>Ref Layout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT_DESCRIPTION__REF_LAYOUT = 8;
-
-	/**
 	 * The number of structural features of the '<em>Attachment Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION_FEATURE_COUNT = 9;
+	int ATTACHMENT_DESCRIPTION_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Attachment Description</em>' class.
@@ -380,6 +472,115 @@ public interface GraphicPackage extends EPackage
 	int ATTACHMENT_DESCRIPTION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl <em>Depth Attachment Description</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl
+	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthAttachmentDescription()
+	 * @generated
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION__NAME = ATTACHMENT_DESCRIPTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Samples</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION__SAMPLES = ATTACHMENT_DESCRIPTION__SAMPLES;
+
+	/**
+	 * The feature id for the '<em><b>Load Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION__LOAD_OP = ATTACHMENT_DESCRIPTION__LOAD_OP;
+
+	/**
+	 * The feature id for the '<em><b>Store Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION__STORE_OP = ATTACHMENT_DESCRIPTION__STORE_OP;
+
+	/**
+	 * The feature id for the '<em><b>Stencil Load Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP = ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP;
+
+	/**
+	 * The feature id for the '<em><b>Stencil Store Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP = ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP;
+
+	/**
+	 * The feature id for the '<em><b>Initial Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT = ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Final Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION__FINAL_LAYOUT = ATTACHMENT_DESCRIPTION__FINAL_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Depth Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE = ATTACHMENT_DESCRIPTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Depth Attachment Description</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION_FEATURE_COUNT = ATTACHMENT_DESCRIPTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Depth Attachment Description</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_ATTACHMENT_DESCRIPTION_OPERATION_COUNT = ATTACHMENT_DESCRIPTION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -387,7 +588,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
 	 * @generated
 	 */
-	int GRAPHIC_PROCESS = 4;
+	int GRAPHIC_PROCESS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -550,7 +751,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
 	 * @generated
 	 */
-	int IGRAPHICS_PIPELINE = 5;
+	int IGRAPHICS_PIPELINE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -659,7 +860,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
 	 * @generated
 	 */
-	int IGUI_PIPELINE = 6;
+	int IGUI_PIPELINE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -768,7 +969,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 	 * @generated
 	 */
-	int GRAPHICS_PIPELINE = 7;
+	int GRAPHICS_PIPELINE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -949,7 +1150,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
 	 * @generated
 	 */
-	int DYNAMIC_STATE = 8;
+	int DYNAMIC_STATE = 11;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' attribute list.
@@ -986,7 +1187,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
 	 * @generated
 	 */
-	int COLOR_BLEND = 9;
+	int COLOR_BLEND = 12;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' containment reference list.
@@ -1077,7 +1278,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
 	 * @generated
 	 */
-	int COLOR_BLEND_ATTACHMENT = 10;
+	int COLOR_BLEND_ATTACHMENT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Blend Enable</b></em>' attribute.
@@ -1204,7 +1405,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
 	 * @generated
 	 */
-	int VIEWPORT_STATE = 11;
+	int VIEWPORT_STATE = 14;
 
 	/**
 	 * The number of structural features of the '<em>Viewport State</em>' class.
@@ -1232,7 +1433,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
 	 * @generated
 	 */
-	int STATIC_VIEWPORT_STATE = 12;
+	int STATIC_VIEWPORT_STATE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Viewports</b></em>' containment reference list.
@@ -1278,7 +1479,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
 	 * @generated
 	 */
-	int DYNAMIC_VIEWPORT_STATE = 13;
+	int DYNAMIC_VIEWPORT_STATE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Viewport Count</b></em>' attribute.
@@ -1324,7 +1525,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
 	 * @generated
 	 */
-	int VIEWPORT = 14;
+	int VIEWPORT = 17;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1388,7 +1589,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
 	 * @generated
 	 */
-	int SCISSOR = 15;
+	int SCISSOR = 18;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1434,7 +1635,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
 	 * @generated
 	 */
-	int RASTERIZER = 16;
+	int RASTERIZER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Cull Mode</b></em>' attribute.
@@ -1525,7 +1726,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 	 * @generated
 	 */
-	int IMAGE_PIPELINE = 17;
+	int IMAGE_PIPELINE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -1706,7 +1907,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getPipelineImageBarrier()
 	 * @generated
 	 */
-	int PIPELINE_IMAGE_BARRIER = 18;
+	int PIPELINE_IMAGE_BARRIER = 21;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -1861,15 +2062,15 @@ public interface GraphicPackage extends EPackage
 	EAttribute getGraphicConfiguration_SwapImageUsages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getFrameWaitStage <em>Frame Wait Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage <em>Acquire Wait Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Frame Wait Stage</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getFrameWaitStage()
+	 * @return the meta object for the attribute '<em>Acquire Wait Stage</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
-	EAttribute getGraphicConfiguration_FrameWaitStage();
+	EAttribute getGraphicConfiguration_AcquireWaitStage();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain <em>Color Domain</em>}'.
@@ -1904,6 +2105,17 @@ public interface GraphicPackage extends EPackage
 	EReference getRenderPassInfo_Attachments();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getSubpasses <em>Subpasses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Subpasses</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getSubpasses()
+	 * @see #getRenderPassInfo()
+	 * @generated
+	 */
+	EReference getRenderPassInfo_Subpasses();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1926,6 +2138,70 @@ public interface GraphicPackage extends EPackage
 	EAttribute getRenderPassInfo_BindPoint();
 
 	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.Subpass <em>Subpass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Subpass</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Subpass
+	 * @generated
+	 */
+	EClass getSubpass();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Subpass#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Subpass#getName()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EAttribute getSubpass_Name();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.Subpass#getRefs <em>Refs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Refs</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.Subpass#getRefs()
+	 * @see #getSubpass()
+	 * @generated
+	 */
+	EReference getSubpass_Refs();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.AttachementRef <em>Attachement Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attachement Ref</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.AttachementRef
+	 * @generated
+	 */
+	EClass getAttachementRef();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.AttachementRef#getAttachement <em>Attachement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Attachement</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.AttachementRef#getAttachement()
+	 * @see #getAttachementRef()
+	 * @generated
+	 */
+	EReference getAttachementRef_Attachement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachementRef#getLayout <em>Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Layout</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.AttachementRef#getLayout()
+	 * @see #getAttachementRef()
+	 * @generated
+	 */
+	EAttribute getAttachementRef_Layout();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency <em>Subpass Dependency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1936,26 +2212,26 @@ public interface GraphicPackage extends EPackage
 	EClass getSubpassDependency();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass <em>Src Subpass</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass <em>Src Subpass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src Subpass</em>'.
+	 * @return the meta object for the reference '<em>Src Subpass</em>'.
 	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
-	EAttribute getSubpassDependency_SrcSubpass();
+	EReference getSubpassDependency_SrcSubpass();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstSubpass <em>Dst Subpass</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstSubpass <em>Dst Subpass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dst Subpass</em>'.
+	 * @return the meta object for the reference '<em>Dst Subpass</em>'.
 	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstSubpass()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
-	EAttribute getSubpassDependency_DstSubpass();
+	EReference getSubpassDependency_DstSubpass();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask <em>Src Stage Mask</em>}'.
@@ -2012,15 +2288,15 @@ public interface GraphicPackage extends EPackage
 	EClass getAttachmentDescription();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#isStencil <em>Stencil</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stencil</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#isStencil()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getName()
 	 * @see #getAttachmentDescription()
 	 * @generated
 	 */
-	EAttribute getAttachmentDescription_Stencil();
+	EAttribute getAttachmentDescription_Name();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getSamples <em>Samples</em>}'.
@@ -2100,15 +2376,25 @@ public interface GraphicPackage extends EPackage
 	EAttribute getAttachmentDescription_FinalLayout();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getRefLayout <em>Ref Layout</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription <em>Depth Attachment Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Ref Layout</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getRefLayout()
-	 * @see #getAttachmentDescription()
+	 * @return the meta object for class '<em>Depth Attachment Description</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription
 	 * @generated
 	 */
-	EAttribute getAttachmentDescription_RefLayout();
+	EClass getDepthAttachmentDescription();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage <em>Depth Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Depth Image</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage()
+	 * @see #getDepthAttachmentDescription()
+	 * @generated
+	 */
+	EReference getDepthAttachmentDescription_DepthImage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess <em>Process</em>}'.
@@ -2869,12 +3155,12 @@ public interface GraphicPackage extends EPackage
 		EAttribute GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES = eINSTANCE.getGraphicConfiguration_SwapImageUsages();
 
 		/**
-		 * The meta object literal for the '<em><b>Frame Wait Stage</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Acquire Wait Stage</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE = eINSTANCE.getGraphicConfiguration_FrameWaitStage();
+		EAttribute GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = eINSTANCE.getGraphicConfiguration_AcquireWaitStage();
 
 		/**
 		 * The meta object literal for the '<em><b>Color Domain</b></em>' containment reference feature.
@@ -2903,6 +3189,14 @@ public interface GraphicPackage extends EPackage
 		EReference RENDER_PASS_INFO__ATTACHMENTS = eINSTANCE.getRenderPassInfo_Attachments();
 
 		/**
+		 * The meta object literal for the '<em><b>Subpasses</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RENDER_PASS_INFO__SUBPASSES = eINSTANCE.getRenderPassInfo_Subpasses();
+
+		/**
 		 * The meta object literal for the '<em><b>Dependencies</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2919,6 +3213,58 @@ public interface GraphicPackage extends EPackage
 		EAttribute RENDER_PASS_INFO__BIND_POINT = eINSTANCE.getRenderPassInfo_BindPoint();
 
 		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpass()
+		 * @generated
+		 */
+		EClass SUBPASS = eINSTANCE.getSubpass();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBPASS__NAME = eINSTANCE.getSubpass_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Refs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUBPASS__REFS = eINSTANCE.getSubpass_Refs();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl <em>Attachement Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
+		 * @generated
+		 */
+		EClass ATTACHEMENT_REF = eINSTANCE.getAttachementRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Attachement</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACHEMENT_REF__ATTACHEMENT = eINSTANCE.getAttachementRef_Attachement();
+
+		/**
+		 * The meta object literal for the '<em><b>Layout</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTACHEMENT_REF__LAYOUT = eINSTANCE.getAttachementRef_Layout();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2929,20 +3275,20 @@ public interface GraphicPackage extends EPackage
 		EClass SUBPASS_DEPENDENCY = eINSTANCE.getSubpassDependency();
 
 		/**
-		 * The meta object literal for the '<em><b>Src Subpass</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Src Subpass</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SUBPASS_DEPENDENCY__SRC_SUBPASS = eINSTANCE.getSubpassDependency_SrcSubpass();
+		EReference SUBPASS_DEPENDENCY__SRC_SUBPASS = eINSTANCE.getSubpassDependency_SrcSubpass();
 
 		/**
-		 * The meta object literal for the '<em><b>Dst Subpass</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Dst Subpass</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SUBPASS_DEPENDENCY__DST_SUBPASS = eINSTANCE.getSubpassDependency_DstSubpass();
+		EReference SUBPASS_DEPENDENCY__DST_SUBPASS = eINSTANCE.getSubpassDependency_DstSubpass();
 
 		/**
 		 * The meta object literal for the '<em><b>Src Stage Mask</b></em>' attribute feature.
@@ -2987,12 +3333,12 @@ public interface GraphicPackage extends EPackage
 		EClass ATTACHMENT_DESCRIPTION = eINSTANCE.getAttachmentDescription();
 
 		/**
-		 * The meta object literal for the '<em><b>Stencil</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTACHMENT_DESCRIPTION__STENCIL = eINSTANCE.getAttachmentDescription_Stencil();
+		EAttribute ATTACHMENT_DESCRIPTION__NAME = eINSTANCE.getAttachmentDescription_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Samples</b></em>' attribute feature.
@@ -3051,12 +3397,22 @@ public interface GraphicPackage extends EPackage
 		EAttribute ATTACHMENT_DESCRIPTION__FINAL_LAYOUT = eINSTANCE.getAttachmentDescription_FinalLayout();
 
 		/**
-		 * The meta object literal for the '<em><b>Ref Layout</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl <em>Depth Attachment Description</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl
+		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthAttachmentDescription()
+		 * @generated
+		 */
+		EClass DEPTH_ATTACHMENT_DESCRIPTION = eINSTANCE.getDepthAttachmentDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Depth Image</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTACHMENT_DESCRIPTION__REF_LAYOUT = eINSTANCE.getAttachmentDescription_RefLayout();
+		EReference DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE = eINSTANCE.getDepthAttachmentDescription_DepthImage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.

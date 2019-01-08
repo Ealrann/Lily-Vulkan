@@ -9,6 +9,9 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.common.model.inference.IInferenceObject;
+import org.sheepy.common.model.root.LObject;
+import org.sheepy.common.model.types.LNamedElement;
 import org.sheepy.vulkan.demo.model.*;
 import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
@@ -93,9 +96,24 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 				return createMeshBufferAdapter();
 			}
 			@Override
+			public Adapter caseIInferenceObject(IInferenceObject object)
+			{
+				return createIInferenceObjectAdapter();
+			}
+			@Override
+			public Adapter caseLObject(LObject object)
+			{
+				return createLObjectAdapter();
+			}
+			@Override
 			public Adapter caseIProcessUnit(IProcessUnit object)
 			{
 				return createIProcessUnitAdapter();
+			}
+			@Override
+			public Adapter caseLNamedElement(LNamedElement object)
+			{
+				return createLNamedElementAdapter();
 			}
 			@Override
 			public Adapter caseIPipeline(IPipeline object)
@@ -185,6 +203,36 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.common.model.inference.IInferenceObject <em>IInference Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.common.model.inference.IInferenceObject
+	 * @generated
+	 */
+	public Adapter createIInferenceObjectAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.common.model.root.LObject <em>LObject</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.common.model.root.LObject
+	 * @generated
+	 */
+	public Adapter createLObjectAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -195,6 +243,21 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIProcessUnitAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.common.model.types.LNamedElement <em>LNamed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.common.model.types.LNamedElement
+	 * @generated
+	 */
+	public Adapter createLNamedElementAdapter()
 	{
 		return null;
 	}

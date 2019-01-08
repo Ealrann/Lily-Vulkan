@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getAttachments <em>Attachments</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getSubpasses <em>Subpasses</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getBindPoint <em>Bind Point</em>}</li>
  * </ul>
@@ -41,6 +42,22 @@ public interface RenderPassInfo extends EObject
 	 * @generated
 	 */
 	EList<AttachmentDescription> getAttachments();
+
+	/**
+	 * Returns the value of the '<em><b>Subpasses</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.process.graphic.Subpass}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Subpasses</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Subpasses</em>' containment reference list.
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRenderPassInfo_Subpasses()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Subpass> getSubpasses();
 
 	/**
 	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.

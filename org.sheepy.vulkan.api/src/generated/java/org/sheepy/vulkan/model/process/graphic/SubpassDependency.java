@@ -32,58 +32,56 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 public interface SubpassDependency extends EObject
 {
 	/**
-	 * Returns the value of the '<em><b>Src Subpass</b></em>' attribute.
-	 * The default value is <code>"-1"</code>.
+	 * Returns the value of the '<em><b>Src Subpass</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Src Subpass</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Src Subpass</em>' attribute.
-	 * @see #setSrcSubpass(int)
+	 * @return the value of the '<em>Src Subpass</em>' reference.
+	 * @see #setSrcSubpass(Subpass)
 	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_SrcSubpass()
-	 * @model default="-1" unique="false"
+	 * @model
 	 * @generated
 	 */
-	int getSrcSubpass();
+	Subpass getSrcSubpass();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass <em>Src Subpass</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass <em>Src Subpass</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Src Subpass</em>' attribute.
+	 * @param value the new value of the '<em>Src Subpass</em>' reference.
 	 * @see #getSrcSubpass()
 	 * @generated
 	 */
-	void setSrcSubpass(int value);
+	void setSrcSubpass(Subpass value);
 
 	/**
-	 * Returns the value of the '<em><b>Dst Subpass</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * Returns the value of the '<em><b>Dst Subpass</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dst Subpass</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dst Subpass</em>' attribute.
-	 * @see #setDstSubpass(int)
+	 * @return the value of the '<em>Dst Subpass</em>' reference.
+	 * @see #setDstSubpass(Subpass)
 	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_DstSubpass()
-	 * @model default="0" unique="false"
+	 * @model
 	 * @generated
 	 */
-	int getDstSubpass();
+	Subpass getDstSubpass();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstSubpass <em>Dst Subpass</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstSubpass <em>Dst Subpass</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dst Subpass</em>' attribute.
+	 * @param value the new value of the '<em>Dst Subpass</em>' reference.
 	 * @see #getDstSubpass()
 	 * @generated
 	 */
-	void setDstSubpass(int value);
+	void setDstSubpass(Subpass value);
 
 	/**
 	 * Returns the value of the '<em><b>Src Stage Mask</b></em>' attribute.

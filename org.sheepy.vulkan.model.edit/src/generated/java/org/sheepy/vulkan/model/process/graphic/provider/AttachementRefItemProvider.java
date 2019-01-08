@@ -11,8 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -25,17 +23,18 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+
+import org.sheepy.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo} object.
+ * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.graphic.AttachementRef} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RenderPassInfoItemProvider 
+public class AttachementRefItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +49,7 @@ public class RenderPassInfoItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RenderPassInfoItemProvider(AdapterFactory adapterFactory)
+	public AttachementRefItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -68,71 +67,60 @@ public class RenderPassInfoItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addBindPointPropertyDescriptor(object);
+			addAttachementPropertyDescriptor(object);
+			addLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Bind Point feature.
+	 * This adds a property descriptor for the Attachement feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBindPointPropertyDescriptor(Object object)
+	protected void addAttachementPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_RenderPassInfo_bindPoint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RenderPassInfo_bindPoint_feature", "_UI_RenderPassInfo_type"),
-				 GraphicPackage.Literals.RENDER_PASS_INFO__BIND_POINT,
+				 getString("_UI_AttachementRef_attachement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttachementRef_attachement_feature", "_UI_AttachementRef_type"),
+				 GraphicPackage.Literals.ATTACHEMENT_REF__ATTACHEMENT,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Layout feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	protected void addLayoutPropertyDescriptor(Object object)
 	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS);
-			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES);
-			childrenFeatures.add(GraphicPackage.Literals.RENDER_PASS_INFO__DEPENDENCIES);
-		}
-		return childrenFeatures;
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttachementRef_layout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttachementRef_layout_feature", "_UI_AttachementRef_type"),
+				 GraphicPackage.Literals.ATTACHEMENT_REF__LAYOUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns RenderPassInfo.gif.
+	 * This returns AttachementRef.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,7 +128,7 @@ public class RenderPassInfoItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RenderPassInfo"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttachementRef"));
 	}
 
 	/**
@@ -152,8 +140,11 @@ public class RenderPassInfoItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		RenderPassInfo renderPassInfo = (RenderPassInfo)object;
-		return getString("_UI_RenderPassInfo_type") + " " + renderPassInfo.getBindPoint();
+		EImageLayout labelValue = ((AttachementRef)object).getLayout();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AttachementRef_type") :
+			getString("_UI_AttachementRef_type") + " " + label;
 	}
 
 
@@ -169,15 +160,10 @@ public class RenderPassInfoItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RenderPassInfo.class))
+		switch (notification.getFeatureID(AttachementRef.class))
 		{
-			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
+			case GraphicPackage.ATTACHEMENT_REF__LAYOUT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
-			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
-			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -194,26 +180,6 @@ public class RenderPassInfoItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-				 GraphicFactory.eINSTANCE.createAttachmentDescription()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-				 GraphicFactory.eINSTANCE.createDepthAttachmentDescription()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES,
-				 GraphicFactory.eINSTANCE.createSubpass()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.RENDER_PASS_INFO__DEPENDENCIES,
-				 GraphicFactory.eINSTANCE.createSubpassDependency()));
 	}
 
 	/**

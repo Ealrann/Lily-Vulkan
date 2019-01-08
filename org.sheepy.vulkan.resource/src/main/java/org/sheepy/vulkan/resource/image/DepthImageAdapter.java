@@ -13,6 +13,7 @@ import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.vulkan.common.resource.image.IDepthImageAdapter;
 import org.sheepy.vulkan.common.util.ModelUtil;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -24,7 +25,7 @@ import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
 import org.sheepy.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.vulkan.resource.nativehelper.VkImageView;
 
-public class DepthImageAdapter extends AbstractFlatAllocableAdapter
+public class DepthImageAdapter extends AbstractFlatAllocableAdapter implements IDepthImageAdapter
 {
 	private VkImage depthImageBackend;
 	private VkImageView depthImageView;
@@ -134,6 +135,7 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter
 		return depthImageView.getId();
 	}
 
+	@Override
 	public int getDepthImageFormat()
 	{
 		return depthFormat;

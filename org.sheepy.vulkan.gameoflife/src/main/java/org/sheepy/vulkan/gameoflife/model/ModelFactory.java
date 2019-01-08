@@ -27,18 +27,21 @@ import org.sheepy.vulkan.model.process.compute.Computer;
 import org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl;
 import org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl;
 import org.sheepy.vulkan.model.process.compute.impl.ComputerImpl;
+import org.sheepy.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.IDescriptor;
 import org.sheepy.vulkan.model.resource.Image;
@@ -74,7 +77,7 @@ public class ModelFactory
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setColorDomain(new ColorDomainImpl());
 		configuration.setClearBeforeRender(false);
-		configuration.setFrameWaitStage(EPipelineStage.TRANSFER_BIT);
+		configuration.setAcquireWaitStage(EPipelineStage.TRANSFER_BIT);
 		configuration.getSwapImageUsages().add(EImageUsage.TRANSFER_DST);
 		configuration.getSwapImageUsages().add(EImageUsage.COLOR_ATTACHMENT);
 
@@ -93,6 +96,8 @@ public class ModelFactory
 	private static RenderPassInfo newInfo()
 	{
 		final RenderPassInfo renderPass = new RenderPassInfoImpl();
+		var subpass = new SubpassImpl();
+		renderPass.getSubpasses().add(subpass);
 
 		final AttachmentDescription colorAttachment = new AttachmentDescriptionImpl();
 		colorAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
@@ -102,13 +107,17 @@ public class ModelFactory
 		colorAttachment.setStencilStoreOp(EAttachmentStoreOp.DONT_CARE);
 		colorAttachment.setInitialLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
 		colorAttachment.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
-		colorAttachment.setRefLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
 
 		renderPass.getAttachments().add(colorAttachment);
 
+		AttachementRef colorRef = new AttachementRefImpl();
+		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
+		colorRef.setAttachement(colorAttachment);
+		subpass.getRefs().add(colorRef);
+
 		final SubpassDependency dependencyExt = new SubpassDependencyImpl();
-		dependencyExt.setSrcSubpass(VK_SUBPASS_EXTERNAL);
-		dependencyExt.setDstSubpass(0);
+		dependencyExt.setSrcSubpass(null);
+		dependencyExt.setDstSubpass(subpass);
 		dependencyExt.setSrcStageMask(EPipelineStage.TRANSFER_BIT);
 		dependencyExt.setDstStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
 		dependencyExt.getSrcAccesses().add(EAccess.TRANSFER_WRITE_BIT);

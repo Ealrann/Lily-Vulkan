@@ -158,6 +158,56 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.Subpass} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SubpassItemProvider subpassItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.Subpass}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSubpassAdapter()
+	{
+		if (subpassItemProvider == null)
+		{
+			subpassItemProvider = new SubpassItemProvider(this);
+		}
+
+		return subpassItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.AttachementRef} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttachementRefItemProvider attachementRefItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.AttachementRef}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttachementRefAdapter()
+	{
+		if (attachementRefItemProvider == null)
+		{
+			attachementRefItemProvider = new AttachementRefItemProvider(this);
+		}
+
+		return attachementRefItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.SubpassDependency} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -205,6 +255,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 		}
 
 		return attachmentDescriptionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DepthAttachmentDescriptionItemProvider depthAttachmentDescriptionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDepthAttachmentDescriptionAdapter()
+	{
+		if (depthAttachmentDescriptionItemProvider == null)
+		{
+			depthAttachmentDescriptionItemProvider = new DepthAttachmentDescriptionItemProvider(this);
+		}
+
+		return depthAttachmentDescriptionItemProvider;
 	}
 
 	/**
@@ -631,8 +706,11 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	{
 		if (graphicConfigurationItemProvider != null) graphicConfigurationItemProvider.dispose();
 		if (renderPassInfoItemProvider != null) renderPassInfoItemProvider.dispose();
+		if (subpassItemProvider != null) subpassItemProvider.dispose();
+		if (attachementRefItemProvider != null) attachementRefItemProvider.dispose();
 		if (subpassDependencyItemProvider != null) subpassDependencyItemProvider.dispose();
 		if (attachmentDescriptionItemProvider != null) attachmentDescriptionItemProvider.dispose();
+		if (depthAttachmentDescriptionItemProvider != null) depthAttachmentDescriptionItemProvider.dispose();
 		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
 		if (dynamicStateItemProvider != null) dynamicStateItemProvider.dispose();
 		if (colorBlendItemProvider != null) colorBlendItemProvider.dispose();

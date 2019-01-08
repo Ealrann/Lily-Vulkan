@@ -21,7 +21,7 @@ public class FrameSubmission extends ProcessSubmission
 							Collection<ISignalEmitter> waitForSignals)
 	{
 		super(context.logicalDevice, context.commandBuffers, waitForSignals,
-				context.configuration.getFrameWaitStage());
+				context.configuration.getAcquireWaitStage());
 
 		this.context = context;
 		this.presentWaitSemaphore = new VkSemaphore();

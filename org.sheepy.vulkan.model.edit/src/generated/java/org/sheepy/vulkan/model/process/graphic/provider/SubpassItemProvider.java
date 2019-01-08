@@ -24,19 +24,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.vulkan.model.VulkanFactory;
-
-import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.vulkan.model.process.graphic.Subpass;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration} object.
+ * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.graphic.Subpass} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphicConfigurationItemProvider 
+public class SubpassItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +49,7 @@ public class GraphicConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GraphicConfigurationItemProvider(AdapterFactory adapterFactory)
+	public SubpassItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -69,98 +67,26 @@ public class GraphicConfigurationItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addClearBeforeRenderPropertyDescriptor(object);
-			addPresentationModePropertyDescriptor(object);
-			addSwapImageUsagesPropertyDescriptor(object);
-			addAcquireWaitStagePropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Clear Before Render feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addClearBeforeRenderPropertyDescriptor(Object object)
+	protected void addNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_clearBeforeRender_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_clearBeforeRender_feature", "_UI_GraphicConfiguration_type"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Presentation Mode feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPresentationModePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_presentationMode_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_presentationMode_feature", "_UI_GraphicConfiguration_type"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__PRESENTATION_MODE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Swap Image Usages feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSwapImageUsagesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_swapImageUsages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_swapImageUsages_feature", "_UI_GraphicConfiguration_type"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Acquire Wait Stage feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAcquireWaitStagePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_acquireWaitStage_feature"),
-				 getString("_UI_GraphicConfiguration_acquireWaitStage_description"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE,
+				 getString("_UI_Subpass_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subpass_name_feature", "_UI_Subpass_type"),
+				 GraphicPackage.Literals.SUBPASS__NAME,
 				 true,
 				 false,
 				 false,
@@ -183,7 +109,7 @@ public class GraphicConfigurationItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN);
+			childrenFeatures.add(GraphicPackage.Literals.SUBPASS__REFS);
 		}
 		return childrenFeatures;
 	}
@@ -203,7 +129,7 @@ public class GraphicConfigurationItemProvider
 	}
 
 	/**
-	 * This returns GraphicConfiguration.gif.
+	 * This returns Subpass.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -211,7 +137,7 @@ public class GraphicConfigurationItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GraphicConfiguration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Subpass"));
 	}
 
 	/**
@@ -223,8 +149,10 @@ public class GraphicConfigurationItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		GraphicConfiguration graphicConfiguration = (GraphicConfiguration)object;
-		return getString("_UI_GraphicConfiguration_type") + " " + graphicConfiguration.isClearBeforeRender();
+		String label = ((Subpass)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Subpass_type") :
+			getString("_UI_Subpass_type") + " " + label;
 	}
 
 
@@ -240,15 +168,12 @@ public class GraphicConfigurationItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GraphicConfiguration.class))
+		switch (notification.getFeatureID(Subpass.class))
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+			case GraphicPackage.SUBPASS__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
+			case GraphicPackage.SUBPASS__REFS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -269,8 +194,8 @@ public class GraphicConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
-				 VulkanFactory.eINSTANCE.createColorDomain()));
+				(GraphicPackage.Literals.SUBPASS__REFS,
+				 GraphicFactory.eINSTANCE.createAttachementRef()));
 	}
 
 	/**

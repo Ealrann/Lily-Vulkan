@@ -19,6 +19,8 @@ module org.sheepy.vulkan.common
 	exports org.sheepy.vulkan.common.execution;
 	exports org.sheepy.vulkan.common.engine;
 	exports org.sheepy.vulkan.common.input;
+	exports org.sheepy.vulkan.common.nativehelper;
+	exports org.sheepy.vulkan.common.resource.image;
 	exports org.sheepy.vulkan.common.queue;
 	exports org.sheepy.vulkan.common.util;
 	exports org.sheepy.vulkan.common.window;

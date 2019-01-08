@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.sheepy.common.model.inference.IInferenceObject;
+import org.sheepy.common.model.root.LObject;
+import org.sheepy.common.model.types.LNamedElement;
 import org.sheepy.vulkan.demo.model.*;
 import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.process.AbstractPipeline;
@@ -89,6 +92,9 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 				if (result == null) result = caseIGraphicsPipeline(meshPipeline);
 				if (result == null) result = caseIPipeline(meshPipeline);
 				if (result == null) result = caseIProcessUnit(meshPipeline);
+				if (result == null) result = caseLNamedElement(meshPipeline);
+				if (result == null) result = caseLObject(meshPipeline);
+				if (result == null) result = caseIInferenceObject(meshPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -99,6 +105,7 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 				if (result == null) result = caseIndexedBuffer(meshBuffer);
 				if (result == null) result = caseBasicResource(meshBuffer);
 				if (result == null) result = caseIResource(meshBuffer);
+				if (result == null) result = caseLNamedElement(meshBuffer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -139,6 +146,38 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIInferenceObject(IInferenceObject object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>LObject</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>LObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLObject(LObject object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -150,6 +189,22 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIProcessUnit(IProcessUnit object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>LNamed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLNamedElement(LNamedElement object)
 	{
 		return null;
 	}

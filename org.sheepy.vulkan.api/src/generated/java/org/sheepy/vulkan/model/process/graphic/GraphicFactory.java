@@ -41,6 +41,24 @@ public interface GraphicFactory extends EFactory
 	RenderPassInfo createRenderPassInfo();
 
 	/**
+	 * Returns a new object of class '<em>Subpass</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Subpass</em>'.
+	 * @generated
+	 */
+	Subpass createSubpass();
+
+	/**
+	 * Returns a new object of class '<em>Attachement Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attachement Ref</em>'.
+	 * @generated
+	 */
+	AttachementRef createAttachementRef();
+
+	/**
 	 * Returns a new object of class '<em>Subpass Dependency</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,6 +75,15 @@ public interface GraphicFactory extends EFactory
 	 * @generated
 	 */
 	AttachmentDescription createAttachmentDescription();
+
+	/**
+	 * Returns a new object of class '<em>Depth Attachment Description</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Depth Attachment Description</em>'.
+	 * @generated
+	 */
+	DepthAttachmentDescription createDepthAttachmentDescription();
 
 	/**
 	 * Returns a new object of class '<em>Process</em>'.

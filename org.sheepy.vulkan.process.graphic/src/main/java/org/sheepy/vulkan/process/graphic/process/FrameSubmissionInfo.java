@@ -18,9 +18,9 @@ import org.sheepy.vulkan.process.process.SubmissionInfo;
 
 public class FrameSubmissionInfo extends SubmissionInfo
 {
-	private LongBuffer bSwapChains;
-	private IntBuffer bImageIndex;
-	private VkPresentInfoKHR presentInfo;
+	private final LongBuffer bSwapChains;
+	private final IntBuffer bImageIndex;
+	private final VkPresentInfoKHR presentInfo;
 
 	public FrameSubmissionInfo(	int imageIndex,
 								SwapChainManager swapChain,

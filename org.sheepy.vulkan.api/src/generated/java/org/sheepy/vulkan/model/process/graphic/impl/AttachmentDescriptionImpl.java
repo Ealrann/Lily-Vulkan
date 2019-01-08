@@ -25,7 +25,7 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#isStencil <em>Stencil</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getSamples <em>Samples</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getLoadOp <em>Load Op</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getStoreOp <em>Store Op</em>}</li>
@@ -33,7 +33,6 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getStencilStoreOp <em>Stencil Store Op</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getInitialLayout <em>Initial Layout</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getFinalLayout <em>Final Layout</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getRefLayout <em>Ref Layout</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,24 +40,24 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container implements AttachmentDescription
 {
 	/**
-	 * The default value of the '{@link #isStencil() <em>Stencil</em>}' attribute.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStencil()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean STENCIL_EDEFAULT = false;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #isStencil() <em>Stencil</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStencil()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean stencil = STENCIL_EDEFAULT;
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSamples() <em>Samples</em>}' attribute.
@@ -201,26 +200,6 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	protected EImageLayout finalLayout = FINAL_LAYOUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRefLayout() <em>Ref Layout</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRefLayout()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EImageLayout REF_LAYOUT_EDEFAULT = EImageLayout.UNDEFINED;
-
-	/**
-	 * The cached value of the '{@link #getRefLayout() <em>Ref Layout</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRefLayout()
-	 * @generated
-	 * @ordered
-	 */
-	protected EImageLayout refLayout = REF_LAYOUT_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -247,9 +226,9 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
-	public boolean isStencil()
+	public String getName()
 	{
-		return stencil;
+		return name;
 	}
 
 	/**
@@ -258,12 +237,12 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
-	public void setStencil(boolean newStencil)
+	public void setName(String newName)
 	{
-		boolean oldStencil = stencil;
-		stencil = newStencil;
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL, oldStencil, stencil));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__NAME, oldName, name));
 	}
 
 	/**
@@ -447,37 +426,12 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
-	public EImageLayout getRefLayout()
-	{
-		return refLayout;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setRefLayout(EImageLayout newRefLayout)
-	{
-		EImageLayout oldRefLayout = refLayout;
-		refLayout = newRefLayout == null ? REF_LAYOUT_EDEFAULT : newRefLayout;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__REF_LAYOUT, oldRefLayout, refLayout));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL:
-				return isStencil();
+			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
+				return getName();
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
 				return getSamples();
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
@@ -492,8 +446,6 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 				return getInitialLayout();
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
 				return getFinalLayout();
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__REF_LAYOUT:
-				return getRefLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -508,8 +460,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL:
-				setStencil((Boolean)newValue);
+			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
+				setName((String)newValue);
 				return;
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
 				setSamples((ESampleCount)newValue);
@@ -532,9 +484,6 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
 				setFinalLayout((EImageLayout)newValue);
 				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__REF_LAYOUT:
-				setRefLayout((EImageLayout)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -549,8 +498,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL:
-				setStencil(STENCIL_EDEFAULT);
+			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
 				setSamples(SAMPLES_EDEFAULT);
@@ -573,9 +522,6 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
 				setFinalLayout(FINAL_LAYOUT_EDEFAULT);
 				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__REF_LAYOUT:
-				setRefLayout(REF_LAYOUT_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -590,8 +536,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL:
-				return stencil != STENCIL_EDEFAULT;
+			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
 				return samples != SAMPLES_EDEFAULT;
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
@@ -606,8 +552,6 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 				return initialLayout != INITIAL_LAYOUT_EDEFAULT;
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
 				return finalLayout != FINAL_LAYOUT_EDEFAULT;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__REF_LAYOUT:
-				return refLayout != REF_LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -623,8 +567,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (stencil: ");
-		result.append(stencil);
+		result.append(" (name: ");
+		result.append(name);
 		result.append(", samples: ");
 		result.append(samples);
 		result.append(", loadOp: ");
@@ -639,8 +583,6 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 		result.append(initialLayout);
 		result.append(", finalLayout: ");
 		result.append(finalLayout);
-		result.append(", refLayout: ");
-		result.append(refLayout);
 		result.append(')');
 		return result.toString();
 	}

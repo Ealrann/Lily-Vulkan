@@ -98,6 +98,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createRenderPassInfoAdapter();
 			}
 			@Override
+			public Adapter caseSubpass(Subpass object)
+			{
+				return createSubpassAdapter();
+			}
+			@Override
+			public Adapter caseAttachementRef(AttachementRef object)
+			{
+				return createAttachementRefAdapter();
+			}
+			@Override
 			public Adapter caseSubpassDependency(SubpassDependency object)
 			{
 				return createSubpassDependencyAdapter();
@@ -106,6 +116,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseAttachmentDescription(AttachmentDescription object)
 			{
 				return createAttachmentDescriptionAdapter();
+			}
+			@Override
+			public Adapter caseDepthAttachmentDescription(DepthAttachmentDescription object)
+			{
+				return createDepthAttachmentDescriptionAdapter();
 			}
 			@Override
 			public Adapter caseGraphicProcess(GraphicProcess object)
@@ -295,6 +310,36 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.Subpass <em>Subpass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.Subpass
+	 * @generated
+	 */
+	public Adapter createSubpassAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.AttachementRef <em>Attachement Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.AttachementRef
+	 * @generated
+	 */
+	public Adapter createAttachementRefAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency <em>Subpass Dependency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -320,6 +365,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAttachmentDescriptionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription <em>Depth Attachment Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription
+	 * @generated
+	 */
+	public Adapter createDepthAttachmentDescriptionAdapter()
 	{
 		return null;
 	}

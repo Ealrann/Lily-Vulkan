@@ -56,10 +56,10 @@ public final class GraphicEditPlugin extends EMFPlugin
 		     ProcessEditPlugin.INSTANCE,
 		     EnumerationEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
+		     ResourceEditPlugin.INSTANCE,
 		     RootEditPlugin.INSTANCE,
 		     TypesEditPlugin.INSTANCE,
 		     InferenceEditPlugin.INSTANCE,
-		     ResourceEditPlugin.INSTANCE,
 		     ApplicationEditPlugin.INSTANCE,
 		     ActionEditPlugin.INSTANCE,
 		   });

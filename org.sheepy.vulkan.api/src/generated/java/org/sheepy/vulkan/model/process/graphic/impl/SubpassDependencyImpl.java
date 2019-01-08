@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -16,6 +17,7 @@ import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 
 /**
@@ -39,44 +41,24 @@ import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implements SubpassDependency
 {
 	/**
-	 * The default value of the '{@link #getSrcSubpass() <em>Src Subpass</em>}' attribute.
+	 * The cached value of the '{@link #getSrcSubpass() <em>Src Subpass</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSrcSubpass()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SRC_SUBPASS_EDEFAULT = -1;
+	protected Subpass srcSubpass;
 
 	/**
-	 * The cached value of the '{@link #getSrcSubpass() <em>Src Subpass</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSrcSubpass()
-	 * @generated
-	 * @ordered
-	 */
-	protected int srcSubpass = SRC_SUBPASS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDstSubpass() <em>Dst Subpass</em>}' attribute.
+	 * The cached value of the '{@link #getDstSubpass() <em>Dst Subpass</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDstSubpass()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int DST_SUBPASS_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getDstSubpass() <em>Dst Subpass</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDstSubpass()
-	 * @generated
-	 * @ordered
-	 */
-	protected int dstSubpass = DST_SUBPASS_EDEFAULT;
+	protected Subpass dstSubpass;
 
 	/**
 	 * The default value of the '{@link #getSrcStageMask() <em>Src Stage Mask</em>}' attribute.
@@ -165,7 +147,27 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public int getSrcSubpass()
+	public Subpass getSrcSubpass()
+	{
+		if (srcSubpass != null && srcSubpass.eIsProxy())
+		{
+			InternalEObject oldSrcSubpass = (InternalEObject)srcSubpass;
+			srcSubpass = (Subpass)eResolveProxy(oldSrcSubpass);
+			if (srcSubpass != oldSrcSubpass)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS, oldSrcSubpass, srcSubpass));
+			}
+		}
+		return srcSubpass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Subpass basicGetSrcSubpass()
 	{
 		return srcSubpass;
 	}
@@ -176,9 +178,9 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void setSrcSubpass(int newSrcSubpass)
+	public void setSrcSubpass(Subpass newSrcSubpass)
 	{
-		int oldSrcSubpass = srcSubpass;
+		Subpass oldSrcSubpass = srcSubpass;
 		srcSubpass = newSrcSubpass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS, oldSrcSubpass, srcSubpass));
@@ -190,7 +192,27 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public int getDstSubpass()
+	public Subpass getDstSubpass()
+	{
+		if (dstSubpass != null && dstSubpass.eIsProxy())
+		{
+			InternalEObject oldDstSubpass = (InternalEObject)dstSubpass;
+			dstSubpass = (Subpass)eResolveProxy(oldDstSubpass);
+			if (dstSubpass != oldDstSubpass)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS, oldDstSubpass, dstSubpass));
+			}
+		}
+		return dstSubpass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Subpass basicGetDstSubpass()
 	{
 		return dstSubpass;
 	}
@@ -201,9 +223,9 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void setDstSubpass(int newDstSubpass)
+	public void setDstSubpass(Subpass newDstSubpass)
 	{
-		int oldDstSubpass = dstSubpass;
+		Subpass oldDstSubpass = dstSubpass;
 		dstSubpass = newDstSubpass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS, oldDstSubpass, dstSubpass));
@@ -300,9 +322,11 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID)
 		{
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
-				return getSrcSubpass();
+				if (resolve) return getSrcSubpass();
+				return basicGetSrcSubpass();
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
-				return getDstSubpass();
+				if (resolve) return getDstSubpass();
+				return basicGetDstSubpass();
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
 				return getSrcStageMask();
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
@@ -327,10 +351,10 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID)
 		{
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
-				setSrcSubpass((Integer)newValue);
+				setSrcSubpass((Subpass)newValue);
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
-				setDstSubpass((Integer)newValue);
+				setDstSubpass((Subpass)newValue);
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
 				setSrcStageMask((EPipelineStage)newValue);
@@ -361,10 +385,10 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID)
 		{
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
-				setSrcSubpass(SRC_SUBPASS_EDEFAULT);
+				setSrcSubpass((Subpass)null);
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
-				setDstSubpass(DST_SUBPASS_EDEFAULT);
+				setDstSubpass((Subpass)null);
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
 				setSrcStageMask(SRC_STAGE_MASK_EDEFAULT);
@@ -393,9 +417,9 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID)
 		{
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
-				return srcSubpass != SRC_SUBPASS_EDEFAULT;
+				return srcSubpass != null;
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
-				return dstSubpass != DST_SUBPASS_EDEFAULT;
+				return dstSubpass != null;
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
 				return srcStageMask != SRC_STAGE_MASK_EDEFAULT;
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
@@ -419,11 +443,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (srcSubpass: ");
-		result.append(srcSubpass);
-		result.append(", dstSubpass: ");
-		result.append(dstSubpass);
-		result.append(", srcStageMask: ");
+		result.append(" (srcStageMask: ");
 		result.append(srcStageMask);
 		result.append(", dstStageMask: ");
 		result.append(dstStageMask);

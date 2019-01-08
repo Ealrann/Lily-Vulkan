@@ -100,6 +100,20 @@ public class GraphicSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GraphicPackage.SUBPASS:
+			{
+				Subpass subpass = (Subpass)theEObject;
+				T result = caseSubpass(subpass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.ATTACHEMENT_REF:
+			{
+				AttachementRef attachementRef = (AttachementRef)theEObject;
+				T result = caseAttachementRef(attachementRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GraphicPackage.SUBPASS_DEPENDENCY:
 			{
 				SubpassDependency subpassDependency = (SubpassDependency)theEObject;
@@ -111,6 +125,14 @@ public class GraphicSwitch<T> extends Switch<T>
 			{
 				AttachmentDescription attachmentDescription = (AttachmentDescription)theEObject;
 				T result = caseAttachmentDescription(attachmentDescription);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION:
+			{
+				DepthAttachmentDescription depthAttachmentDescription = (DepthAttachmentDescription)theEObject;
+				T result = caseDepthAttachmentDescription(depthAttachmentDescription);
+				if (result == null) result = caseAttachmentDescription(depthAttachmentDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -294,6 +316,38 @@ public class GraphicSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Subpass</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Subpass</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSubpass(Subpass object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attachement Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attachement Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttachementRef(AttachementRef object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Subpass Dependency</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -321,6 +375,22 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAttachmentDescription(AttachmentDescription object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Depth Attachment Description</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Depth Attachment Description</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDepthAttachmentDescription(DepthAttachmentDescription object)
 	{
 		return null;
 	}

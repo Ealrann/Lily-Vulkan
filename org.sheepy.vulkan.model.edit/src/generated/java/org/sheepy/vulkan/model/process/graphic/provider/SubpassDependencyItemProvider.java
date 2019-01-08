@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 
@@ -92,8 +93,8 @@ public class SubpassDependencyItemProvider
 				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__SRC_SUBPASS,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -115,8 +116,8 @@ public class SubpassDependencyItemProvider
 				 GraphicPackage.Literals.SUBPASS_DEPENDENCY__DST_SUBPASS,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -234,8 +235,11 @@ public class SubpassDependencyItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		SubpassDependency subpassDependency = (SubpassDependency)object;
-		return getString("_UI_SubpassDependency_type") + " " + subpassDependency.getSrcSubpass();
+		EPipelineStage labelValue = ((SubpassDependency)object).getSrcStageMask();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SubpassDependency_type") :
+			getString("_UI_SubpassDependency_type") + " " + label;
 	}
 
 
@@ -253,8 +257,6 @@ public class SubpassDependencyItemProvider
 
 		switch (notification.getFeatureID(SubpassDependency.class))
 		{
-			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_SUBPASS:
-			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:

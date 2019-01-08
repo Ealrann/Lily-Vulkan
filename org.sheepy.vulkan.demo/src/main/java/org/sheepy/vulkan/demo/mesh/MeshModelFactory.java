@@ -1,7 +1,5 @@
 package org.sheepy.vulkan.demo.mesh;
 
-import static org.lwjgl.vulkan.VK10.VK_SUBPASS_EXTERNAL;
-
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.common.model.application.impl.ApplicationImpl;
@@ -19,14 +17,16 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.impl.ColorDomainImpl;
 import org.sheepy.vulkan.model.impl.VulkanEngineImpl;
-import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl;
@@ -34,6 +34,7 @@ import org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.StaticViewportStateImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
+import org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl;
 import org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.ModuleResource;
@@ -54,6 +55,8 @@ public class MeshModelFactory
 	public final GraphicProcess graphicProcess;
 
 	public UniformBufferManager uniformBufferManager = null;
+
+	private DepthImage depthImage;
 
 	public MeshModelFactory(MeshConfiguration meshConfiguration)
 	{
@@ -79,8 +82,10 @@ public class MeshModelFactory
 	private RenderPassInfo newInfo()
 	{
 		final RenderPassInfo renderPass = new RenderPassInfoImpl();
+		var subpass = new SubpassImpl();
+		renderPass.getSubpasses().add(subpass);
 
-		final AttachmentDescription colorAttachment = new AttachmentDescriptionImpl();
+		var colorAttachment = new AttachmentDescriptionImpl();
 		colorAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachment.setLoadOp(EAttachmentLoadOp.CLEAR);
 		colorAttachment.setStoreOp(EAttachmentStoreOp.STORE);
@@ -89,14 +94,16 @@ public class MeshModelFactory
 		colorAttachment.setInitialLayout(EImageLayout.UNDEFINED);
 		colorAttachment.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
 
-		colorAttachment.setRefLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-
 		renderPass.getAttachments().add(colorAttachment);
+
+		AttachementRef colorRef = new AttachementRefImpl();
+		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
+		colorRef.setAttachement(colorAttachment);
+		subpass.getRefs().add(colorRef);
 
 		if (meshConfiguration.depth)
 		{
-			final AttachmentDescription depthAttachment = new AttachmentDescriptionImpl();
-			depthAttachment.setStencil(true);
+			var depthAttachment = new DepthAttachmentDescriptionImpl();
 
 			depthAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 			depthAttachment.setLoadOp(EAttachmentLoadOp.CLEAR);
@@ -105,15 +112,19 @@ public class MeshModelFactory
 			depthAttachment.setStencilStoreOp(EAttachmentStoreOp.DONT_CARE);
 			depthAttachment.setInitialLayout(EImageLayout.UNDEFINED);
 			depthAttachment.setFinalLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
+			depthAttachment.setDepthImage(depthImage);
 
-			depthAttachment.setRefLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
+			AttachementRef depthRef = new AttachementRefImpl();
+			depthRef.setLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
+			depthRef.setAttachement(depthAttachment);
 
+			subpass.getRefs().add(depthRef);
 			renderPass.getAttachments().add(depthAttachment);
 		}
 
 		final SubpassDependency dependency = new SubpassDependencyImpl();
-		dependency.setSrcSubpass(VK_SUBPASS_EXTERNAL);
-		dependency.setDstSubpass(0);
+		dependency.setSrcSubpass(null);
+		dependency.setDstSubpass(subpass);
 		dependency.setSrcStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
 		dependency.setDstStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
 		dependency.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
@@ -172,7 +183,7 @@ public class MeshModelFactory
 
 		if (meshConfiguration.depth)
 		{
-			final DepthImage depthImage = new DepthImageImpl();
+			depthImage = new DepthImageImpl();
 			graphicProcess.getResources().add(depthImage);
 			graphicProcess.setDepthImage(depthImage);
 		}

@@ -34,7 +34,7 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getPresentationMode <em>Presentation Mode</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSwapImageUsages <em>Swap Image Usages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getFrameWaitStage <em>Frame Wait Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getAcquireWaitStage <em>Acquire Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getColorDomain <em>Color Domain</em>}</li>
  * </ul>
  *
@@ -93,24 +93,24 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	protected EList<EImageUsage> swapImageUsages;
 
 	/**
-	 * The default value of the '{@link #getFrameWaitStage() <em>Frame Wait Stage</em>}' attribute.
+	 * The default value of the '{@link #getAcquireWaitStage() <em>Acquire Wait Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFrameWaitStage()
+	 * @see #getAcquireWaitStage()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EPipelineStage FRAME_WAIT_STAGE_EDEFAULT = EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT;
+	protected static final EPipelineStage ACQUIRE_WAIT_STAGE_EDEFAULT = EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT;
 
 	/**
-	 * The cached value of the '{@link #getFrameWaitStage() <em>Frame Wait Stage</em>}' attribute.
+	 * The cached value of the '{@link #getAcquireWaitStage() <em>Acquire Wait Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFrameWaitStage()
+	 * @see #getAcquireWaitStage()
 	 * @generated
 	 * @ordered
 	 */
-	protected EPipelineStage frameWaitStage = FRAME_WAIT_STAGE_EDEFAULT;
+	protected EPipelineStage acquireWaitStage = ACQUIRE_WAIT_STAGE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getColorDomain() <em>Color Domain</em>}' containment reference.
@@ -214,9 +214,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public EPipelineStage getFrameWaitStage()
+	public EPipelineStage getAcquireWaitStage()
 	{
-		return frameWaitStage;
+		return acquireWaitStage;
 	}
 
 	/**
@@ -225,12 +225,12 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public void setFrameWaitStage(EPipelineStage newFrameWaitStage)
+	public void setAcquireWaitStage(EPipelineStage newAcquireWaitStage)
 	{
-		EPipelineStage oldFrameWaitStage = frameWaitStage;
-		frameWaitStage = newFrameWaitStage == null ? FRAME_WAIT_STAGE_EDEFAULT : newFrameWaitStage;
+		EPipelineStage oldAcquireWaitStage = acquireWaitStage;
+		acquireWaitStage = newAcquireWaitStage == null ? ACQUIRE_WAIT_STAGE_EDEFAULT : newAcquireWaitStage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE, oldFrameWaitStage, frameWaitStage));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE, oldAcquireWaitStage, acquireWaitStage));
 	}
 
 	/**
@@ -315,8 +315,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return getPresentationMode();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 				return getSwapImageUsages();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE:
-				return getFrameWaitStage();
+			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+				return getAcquireWaitStage();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 				return getColorDomain();
 		}
@@ -344,8 +344,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				getSwapImageUsages().clear();
 				getSwapImageUsages().addAll((Collection<? extends EImageUsage>)newValue);
 				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE:
-				setFrameWaitStage((EPipelineStage)newValue);
+			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+				setAcquireWaitStage((EPipelineStage)newValue);
 				return;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 				setColorDomain((ColorDomain)newValue);
@@ -373,8 +373,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 				getSwapImageUsages().clear();
 				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE:
-				setFrameWaitStage(FRAME_WAIT_STAGE_EDEFAULT);
+			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+				setAcquireWaitStage(ACQUIRE_WAIT_STAGE_EDEFAULT);
 				return;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 				setColorDomain((ColorDomain)null);
@@ -399,8 +399,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return presentationMode != PRESENTATION_MODE_EDEFAULT;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 				return swapImageUsages != null && !swapImageUsages.isEmpty();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__FRAME_WAIT_STAGE:
-				return frameWaitStage != FRAME_WAIT_STAGE_EDEFAULT;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+				return acquireWaitStage != ACQUIRE_WAIT_STAGE_EDEFAULT;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 				return colorDomain != null;
 		}
@@ -424,8 +424,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 		result.append(presentationMode);
 		result.append(", swapImageUsages: ");
 		result.append(swapImageUsages);
-		result.append(", frameWaitStage: ");
-		result.append(frameWaitStage);
+		result.append(", acquireWaitStage: ");
+		result.append(acquireWaitStage);
 		result.append(')');
 		return result.toString();
 	}

@@ -23,7 +23,7 @@ import org.sheepy.vulkan.model.process.Configuration;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode <em>Presentation Mode</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getFrameWaitStage <em>Frame Wait Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage <em>Acquire Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain <em>Color Domain</em>}</li>
  * </ul>
  *
@@ -109,34 +109,35 @@ public interface GraphicConfiguration extends Configuration
 	EList<EImageUsage> getSwapImageUsages();
 
 	/**
-	 * Returns the value of the '<em><b>Frame Wait Stage</b></em>' attribute.
+	 * Returns the value of the '<em><b>Acquire Wait Stage</b></em>' attribute.
 	 * The default value is <code>"COLOR_ATTACHMENT_OUTPUT_BIT"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Frame Wait Stage</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Acquire Wait Stage</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Frame Wait Stage</em>' attribute.
+	 * @return the value of the '<em>Acquire Wait Stage</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #setFrameWaitStage(EPipelineStage)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_FrameWaitStage()
+	 * @see #setAcquireWaitStage(EPipelineStage)
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_AcquireWaitStage()
 	 * @model default="COLOR_ATTACHMENT_OUTPUT_BIT" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The stage on which we should wait until acquire the next image'"
 	 * @generated
 	 */
-	EPipelineStage getFrameWaitStage();
+	EPipelineStage getAcquireWaitStage();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getFrameWaitStage <em>Frame Wait Stage</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage <em>Acquire Wait Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Frame Wait Stage</em>' attribute.
+	 * @param value the new value of the '<em>Acquire Wait Stage</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #getFrameWaitStage()
+	 * @see #getAcquireWaitStage()
 	 * @generated
 	 */
-	void setFrameWaitStage(EPipelineStage value);
+	void setAcquireWaitStage(EPipelineStage value);
 
 	/**
 	 * Returns the value of the '<em><b>Color Domain</b></em>' containment reference.

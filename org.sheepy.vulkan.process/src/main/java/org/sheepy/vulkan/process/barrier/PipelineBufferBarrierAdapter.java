@@ -29,6 +29,8 @@ public class PipelineBufferBarrierAdapter extends PipelineBarrierAdapter
 		barrierInfo.dstAccessMask(barrier.getDstAccess().getValue());
 		barrierInfo.offset(0);
 		barrierInfo.size(VK_WHOLE_SIZE);
+		barrierInfo.srcQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
+		barrierInfo.dstQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
 	}
 
 	@Override
@@ -45,7 +47,7 @@ public class PipelineBufferBarrierAdapter extends PipelineBarrierAdapter
 		vkCmdPipelineBarrier(commandBuffer.getVkCommandBuffer(), barrier.getSrcStage().getValue(),
 				barrier.getDstStage().getValue(), 0, null, barrierInfo, null);
 	}
-	
+
 	@Override
 	public boolean isRecordNeeded()
 	{

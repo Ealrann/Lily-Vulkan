@@ -70,6 +70,15 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__CONTENT_OBJECTS = GraphicPackage.GRAPHICS_PIPELINE__CONTENT_OBJECTS;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,6 +95,15 @@ public interface VulkanDemoPackage extends EPackage
 	 * @ordered
 	 */
 	int MESH_PIPELINE__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
@@ -178,6 +196,51 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE___LINFERENCE_OBJECT = GraphicPackage.GRAPHICS_PIPELINE___LINFERENCE_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = GraphicPackage.GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
+
+	/**
+	 * The operation id for the '<em>LContents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE___LCONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LCONTENTS;
+
+	/**
+	 * The operation id for the '<em>LParent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE___LPARENT = GraphicPackage.GRAPHICS_PIPELINE___LPARENT;
+
+	/**
+	 * The operation id for the '<em>LAll Contents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE___LALL_CONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LALL_CONTENTS;
+
+	/**
 	 * The number of operations of the '<em>Mesh Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -195,6 +258,15 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 */
 	int MESH_BUFFER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_BUFFER__NAME = ResourcePackage.INDEXED_BUFFER__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Mesh Buffer</em>' class.

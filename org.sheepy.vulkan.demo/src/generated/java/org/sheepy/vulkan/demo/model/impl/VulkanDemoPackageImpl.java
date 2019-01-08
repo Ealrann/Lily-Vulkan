@@ -95,16 +95,16 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 
 		// Initialize simple dependencies
 		GraphicPackage.eINSTANCE.eClass();
+		RootPackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
+		InferencePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
-		ApplicationPackage.eINSTANCE.eClass();
-		RootPackage.eINSTANCE.eClass();
-		InferencePackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theVulkanDemoPackage.createPackageContents();

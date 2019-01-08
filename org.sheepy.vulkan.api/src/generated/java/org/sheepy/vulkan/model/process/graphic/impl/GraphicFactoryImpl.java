@@ -66,8 +66,11 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION: return createGraphicConfiguration();
 			case GraphicPackage.RENDER_PASS_INFO: return createRenderPassInfo();
+			case GraphicPackage.SUBPASS: return createSubpass();
+			case GraphicPackage.ATTACHEMENT_REF: return createAttachementRef();
 			case GraphicPackage.SUBPASS_DEPENDENCY: return createSubpassDependency();
 			case GraphicPackage.ATTACHMENT_DESCRIPTION: return createAttachmentDescription();
+			case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION: return createDepthAttachmentDescription();
 			case GraphicPackage.GRAPHIC_PROCESS: return createGraphicProcess();
 			case GraphicPackage.DYNAMIC_STATE: return createDynamicState();
 			case GraphicPackage.COLOR_BLEND: return createColorBlend();
@@ -114,6 +117,30 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
+	public Subpass createSubpass()
+	{
+		SubpassImpl subpass = new SubpassImpl();
+		return subpass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttachementRef createAttachementRef()
+	{
+		AttachementRefImpl attachementRef = new AttachementRefImpl();
+		return attachementRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SubpassDependency createSubpassDependency()
 	{
 		SubpassDependencyImpl subpassDependency = new SubpassDependencyImpl();
@@ -130,6 +157,18 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		AttachmentDescriptionImpl attachmentDescription = new AttachmentDescriptionImpl();
 		return attachmentDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DepthAttachmentDescription createDepthAttachmentDescription()
+	{
+		DepthAttachmentDescriptionImpl depthAttachmentDescription = new DepthAttachmentDescriptionImpl();
+		return depthAttachmentDescription;
 	}
 
 	/**

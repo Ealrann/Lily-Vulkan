@@ -38,21 +38,36 @@ class GraphicConfiguration extends Configuration
 	boolean clearBeforeRender = "true"
 	EPresentMode presentationMode = "MailBox"
 	EImageUsage[] swapImageUsages
-	EPipelineStage frameWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
+	
+	@GenModel(propertyDescription="The stage on which we should wait until acquire the next image")
+	EPipelineStage acquireWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
 	contains ColorDomain colorDomain
 }
 
 class RenderPassInfo
 {
 	contains AttachmentDescription[] attachments
+	contains Subpass[] subpasses
 	contains SubpassDependency[] dependencies
 	int bindPoint = "0"
 }
 
+class Subpass
+{
+	String name
+	contains AttachementRef[] refs
+}
+
+class AttachementRef
+{
+	refers AttachmentDescription attachement
+	EImageLayout layout
+}
+
 class SubpassDependency
 {
-	int srcSubpass = "-1"
-	int dstSubpass = "0"
+	refers Subpass srcSubpass
+	refers Subpass dstSubpass
 	EPipelineStage srcStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
 	EPipelineStage dstStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
 	EAccess[] srcAccesses
@@ -61,7 +76,7 @@ class SubpassDependency
 
 class AttachmentDescription
 {
-	boolean stencil = "false"
+	String name
 	ESampleCount samples
 	EAttachmentLoadOp loadOp
 	EAttachmentStoreOp storeOp
@@ -69,8 +84,11 @@ class AttachmentDescription
 	EAttachmentStoreOp stencilStoreOp
 	EImageLayout initialLayout
 	EImageLayout finalLayout
-	// For attachment ref
-	EImageLayout refLayout
+}
+
+class DepthAttachmentDescription extends AttachmentDescription
+{
+	refers DepthImage depthImage
 }
 
 class GraphicProcess extends AbstractProcess

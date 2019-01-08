@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 
 /**
@@ -32,6 +33,7 @@ import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getAttachments <em>Attachments</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getSubpasses <em>Subpasses</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getBindPoint <em>Bind Point</em>}</li>
  * </ul>
@@ -49,6 +51,16 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected EList<AttachmentDescription> attachments;
+
+	/**
+	 * The cached value of the '{@link #getSubpasses() <em>Subpasses</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubpasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Subpass> subpasses;
 
 	/**
 	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' containment reference list.
@@ -122,6 +134,21 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
+	public EList<Subpass> getSubpasses()
+	{
+		if (subpasses == null)
+		{
+			subpasses = new EObjectContainmentEList<Subpass>(Subpass.class, this, GraphicPackage.RENDER_PASS_INFO__SUBPASSES);
+		}
+		return subpasses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<SubpassDependency> getDependencies()
 	{
 		if (dependencies == null)
@@ -168,6 +195,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 		{
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				return ((InternalEList<?>)getAttachments()).basicRemove(otherEnd, msgs);
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				return ((InternalEList<?>)getSubpasses()).basicRemove(otherEnd, msgs);
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
 				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
 		}
@@ -186,6 +215,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 		{
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				return getAttachments();
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				return getSubpasses();
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
 				return getDependencies();
 			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:
@@ -208,6 +239,10 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				getAttachments().clear();
 				getAttachments().addAll((Collection<? extends AttachmentDescription>)newValue);
+				return;
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				getSubpasses().clear();
+				getSubpasses().addAll((Collection<? extends Subpass>)newValue);
 				return;
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
 				getDependencies().clear();
@@ -233,6 +268,9 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				getAttachments().clear();
 				return;
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				getSubpasses().clear();
+				return;
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
 				getDependencies().clear();
 				return;
@@ -255,6 +293,8 @@ public class RenderPassInfoImpl extends MinimalEObjectImpl.Container implements 
 		{
 			case GraphicPackage.RENDER_PASS_INFO__ATTACHMENTS:
 				return attachments != null && !attachments.isEmpty();
+			case GraphicPackage.RENDER_PASS_INFO__SUBPASSES:
+				return subpasses != null && !subpasses.isEmpty();
 			case GraphicPackage.RENDER_PASS_INFO__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
 			case GraphicPackage.RENDER_PASS_INFO__BIND_POINT:

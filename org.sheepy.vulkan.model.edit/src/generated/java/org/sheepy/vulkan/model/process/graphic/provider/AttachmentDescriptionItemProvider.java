@@ -22,7 +22,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 
@@ -65,7 +64,7 @@ public class AttachmentDescriptionItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addStencilPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addSamplesPropertyDescriptor(object);
 			addLoadOpPropertyDescriptor(object);
 			addStoreOpPropertyDescriptor(object);
@@ -73,30 +72,29 @@ public class AttachmentDescriptionItemProvider
 			addStencilStoreOpPropertyDescriptor(object);
 			addInitialLayoutPropertyDescriptor(object);
 			addFinalLayoutPropertyDescriptor(object);
-			addRefLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Stencil feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStencilPropertyDescriptor(Object object)
+	protected void addNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_stencil_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_stencil_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__STENCIL,
+				 getString("_UI_AttachmentDescription_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_name_feature", "_UI_AttachmentDescription_type"),
+				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__NAME,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -263,29 +261,6 @@ public class AttachmentDescriptionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Ref Layout feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRefLayoutPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_refLayout_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_refLayout_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__REF_LAYOUT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns AttachmentDescription.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -306,8 +281,10 @@ public class AttachmentDescriptionItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		AttachmentDescription attachmentDescription = (AttachmentDescription)object;
-		return getString("_UI_AttachmentDescription_type") + " " + attachmentDescription.isStencil();
+		String label = ((AttachmentDescription)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AttachmentDescription_type") :
+			getString("_UI_AttachmentDescription_type") + " " + label;
 	}
 
 
@@ -325,7 +302,7 @@ public class AttachmentDescriptionItemProvider
 
 		switch (notification.getFeatureID(AttachmentDescription.class))
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL:
+			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
@@ -333,7 +310,6 @@ public class AttachmentDescriptionItemProvider
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
 			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__REF_LAYOUT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

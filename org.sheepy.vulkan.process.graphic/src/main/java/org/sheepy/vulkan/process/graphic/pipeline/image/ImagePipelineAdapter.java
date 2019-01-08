@@ -65,15 +65,13 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 		initialBarriers = new InitialImagePipelineBarrier[size];
 		for (int i = 0; i < size; i++)
 		{
-			var dstImageView = context.imageViewManager.getImageView(i);
-			initialBarriers[i] = new InitialImagePipelineBarrier(pipeline, dstImageView);
+			initialBarriers[i] = new InitialImagePipelineBarrier(pipeline);
 			initialBarriers[i].allocate(stack);
 		}
 		finalBarriers = new FinalImagePipelineBarrier[size];
 		for (int i = 0; i < size; i++)
 		{
-			var dstImageView = context.imageViewManager.getImageView(i);
-			finalBarriers[i] = new FinalImagePipelineBarrier(pipeline, dstImageView);
+			finalBarriers[i] = new FinalImagePipelineBarrier(pipeline);
 			finalBarriers[i].allocate(stack);
 		}
 	}
@@ -86,13 +84,13 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 			initialBarriers[i].free();
 			finalBarriers[i].free();
 		}
-		
+
 		initialBarriers = null;
 		finalBarriers = null;
-		
+
 		region.free();
 		region = null;
-		
+
 		super.free();
 	}
 

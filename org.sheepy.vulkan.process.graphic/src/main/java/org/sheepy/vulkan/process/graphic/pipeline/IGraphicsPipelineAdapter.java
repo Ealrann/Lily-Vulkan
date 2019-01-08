@@ -108,7 +108,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 		Logger.check("Failed to create graphics pipeline!",
 				() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, pipelineInfo, null, aId));
 		pipelineId = aId[0];
-		
+
 		dynamicStateBuilder.freeDynamicStateCreateInfo();
 		colorBlendBuilder.freeColorBlendStateCreateInfo();
 		multisampleBuilder.freeMultisampleStateCreateInfo();
@@ -138,7 +138,7 @@ public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicC
 		vertexInputState.free();
 
 		allocationDependencies.remove(renderPass);
-		
+
 		vkDestroyPipeline(device, pipelineId, null);
 		pipelineId = -1;
 

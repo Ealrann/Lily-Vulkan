@@ -18,7 +18,7 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#isStencil <em>Stencil</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getSamples <em>Samples</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getLoadOp <em>Load Op</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getStoreOp <em>Store Op</em>}</li>
@@ -26,7 +26,6 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getStencilStoreOp <em>Stencil Store Op</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getInitialLayout <em>Initial Layout</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getFinalLayout <em>Final Layout</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getRefLayout <em>Ref Layout</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription()
@@ -36,31 +35,30 @@ import org.sheepy.vulkan.model.enumeration.ESampleCount;
 public interface AttachmentDescription extends EObject
 {
 	/**
-	 * Returns the value of the '<em><b>Stencil</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Stencil</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stencil</em>' attribute.
-	 * @see #setStencil(boolean)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_Stencil()
-	 * @model default="false" unique="false"
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_Name()
+	 * @model unique="false"
 	 * @generated
 	 */
-	boolean isStencil();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#isStencil <em>Stencil</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Stencil</em>' attribute.
-	 * @see #isStencil()
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setStencil(boolean value);
+	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Samples</b></em>' attribute.
@@ -264,34 +262,5 @@ public interface AttachmentDescription extends EObject
 	 * @generated
 	 */
 	void setFinalLayout(EImageLayout value);
-
-	/**
-	 * Returns the value of the '<em><b>Ref Layout</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Ref Layout</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ref Layout</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
-	 * @see #setRefLayout(EImageLayout)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_RefLayout()
-	 * @model unique="false"
-	 * @generated
-	 */
-	EImageLayout getRefLayout();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getRefLayout <em>Ref Layout</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ref Layout</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
-	 * @see #getRefLayout()
-	 * @generated
-	 */
-	void setRefLayout(EImageLayout value);
 
 } // AttachmentDescription
