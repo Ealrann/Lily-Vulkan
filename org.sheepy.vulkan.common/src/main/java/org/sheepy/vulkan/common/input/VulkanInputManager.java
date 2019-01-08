@@ -81,6 +81,22 @@ public class VulkanInputManager implements IInputManager
 					break;
 				case GLFW_MOUSE_BUTTON_LEFT:
 					mouseButton = EMouseButton.LEFT;
+					break;
+				case GLFW_MOUSE_BUTTON_4:
+					mouseButton = EMouseButton._4;
+					break;
+				case GLFW_MOUSE_BUTTON_5:
+					mouseButton = EMouseButton._5;
+					break;
+				case GLFW_MOUSE_BUTTON_6:
+					mouseButton = EMouseButton._6;
+					break;
+				case GLFW_MOUSE_BUTTON_7:
+					mouseButton = EMouseButton._7;
+					break;
+				case GLFW_MOUSE_BUTTON_8:
+					mouseButton = EMouseButton._8;
+					break;
 				}
 				events.add(new MouseButtonEvent(mouseButton, action == GLFW_PRESS));
 			}
