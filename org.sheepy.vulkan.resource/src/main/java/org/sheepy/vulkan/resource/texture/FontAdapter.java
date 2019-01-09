@@ -69,8 +69,8 @@ public class FontAdapter extends AbstractSampledImageAdapter
 		ByteBuffer texture = null;
 		try
 		{
-			fontInfo = STBTTFontinfo.create();
-			cdata = STBTTPackedchar.create(95);
+			fontInfo = STBTTFontinfo.calloc();
+			cdata = STBTTPackedchar.malloc(95);
 			stbtt_InitFont(fontInfo, ttf);
 			scale = stbtt_ScaleForPixelHeight(fontInfo, fontHeight);
 
