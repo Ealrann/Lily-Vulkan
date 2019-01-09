@@ -23,6 +23,7 @@ module org.sheepy.vulkan.common
 	exports org.sheepy.vulkan.common.resource.image;
 	exports org.sheepy.vulkan.common.queue;
 	exports org.sheepy.vulkan.common.util;
+	exports org.sheepy.vulkan.common.ui;
 	exports org.sheepy.vulkan.common.window;
 
 	opens org.sheepy.vulkan.common.application;
