@@ -1,3 +1,5 @@
+import org.gradle.internal.os.OperatingSystem
+
 buildscript {
 	repositories {
 		mavenLocal()
@@ -19,6 +21,7 @@ repositories {
 	maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 }
 
+project.ext.targetPlatform = OperatingSystem.current()
 
 project.ext.jomlVersion = "1.9.12"
 project.ext.lwjglVersion = "3.2.1"
@@ -28,6 +31,9 @@ subprojects {
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
 	apply plugin: "org.javamodularity.moduleplugin"
+
+	sourceCompatibility = 11
+	targetCompatibility = 11
 
 	eclipse {
 		classpath {

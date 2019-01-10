@@ -8,7 +8,7 @@ if (project.hasProperty('javaModule')) {
 	javaModule.name = 'org.sheepy.vulkan.api'
 }
 
-switch ( OperatingSystem.current() ) {
+switch (targetPlatform) {
 	case OperatingSystem.WINDOWS:
 		project.ext.lwjglNatives = "natives-windows"
 		break
@@ -23,7 +23,7 @@ switch ( OperatingSystem.current() ) {
 dependencies {
 
 	api project(':org.sheepy.common.api')
-	
+
 	implementation project(':org.sheepy.common.impl')
 
 	api "org.joml:joml:${jomlVersion}"
