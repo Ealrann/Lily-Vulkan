@@ -178,6 +178,7 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 	{
 		final var selector = new PresentationModeSelector(context.logicalDevice, surface);
 		presentMode = selector.findBestMode(desiredMode);
+		System.out.println("Presentation mode: " + EPresentMode.get(presentMode).getName());
 	}
 
 	public List<Long> getSwapChainImages()
