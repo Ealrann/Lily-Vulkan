@@ -21,6 +21,8 @@ abstract class AbstractProcess extends IProcess
 	contains DescriptorSet[] descriptorSets
 	contains IProcessUnit[] units
 	boolean resetAllowed
+	
+	refers AbstractProcess[] waitForSubmissions
 }
 
 interface IProcessUnit extends LObject

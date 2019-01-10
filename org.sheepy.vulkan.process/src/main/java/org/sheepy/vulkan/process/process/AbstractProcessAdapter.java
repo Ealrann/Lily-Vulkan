@@ -11,6 +11,7 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.common.allocation.adapter.IDeepAllocableAdapter;
+import org.sheepy.vulkan.common.concurrent.SignalEmitter;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.engine.AbstractEnginePartAdapter;
@@ -31,16 +32,18 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	private final int bindPoint = getBindPoint();
 
 	protected DescriptorPool descriptorPool;
+	protected LogicalDevice logicalDevice;
 
 	private AbstractProcess process = null;
+	private SignalEmitter submissionComplete;
 
 	@Override
 	public void setTarget(Notifier target)
 	{
 		super.setTarget(target);
 		process = (AbstractProcess) target;
-		LogicalDevice logicalDevice = ILogicalDeviceAdapter.adapt(process)
-				.getLogicalDevice(process);
+		logicalDevice = ILogicalDeviceAdapter.adapt(process).getLogicalDevice(process);
+		submissionComplete = new SignalEmitter(logicalDevice);
 
 		descriptorPool = new DescriptorPool(logicalDevice, gatherDescriptorLists());
 
@@ -94,6 +97,14 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
+	public void free()
+	{
+		super.free();
+
+		submissionComplete.free(logicalDevice);
+	}
+
+	@Override
 	public void prepare()
 	{
 		checkAllocation();
@@ -115,6 +126,18 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 			executionManager.getQueue().waitIdle();
 			recordCommands();
 		}
+	}
+
+	@Override
+	public long getSignalSemaphore()
+	{
+		return submissionComplete.getSignalSemaphore();
+	}
+
+	@Override
+	public boolean hasSemaphore()
+	{
+		return submissionComplete.hasSemaphore();
 	}
 
 	private boolean isRecordNeeded()

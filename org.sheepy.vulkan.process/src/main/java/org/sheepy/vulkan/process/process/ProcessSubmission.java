@@ -1,69 +1,77 @@
 package org.sheepy.vulkan.process.process;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Deque;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubmitInfo;
+import org.sheepy.vulkan.api.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
-import org.sheepy.vulkan.common.concurrent.ISignalEmitter;
-import org.sheepy.vulkan.common.concurrent.SemaphoreManager;
-import org.sheepy.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.process.execution.AbstractCommandBuffers;
 
-public class ProcessSubmission implements ISignalEmitter, IBasicAllocable
+public class ProcessSubmission implements IBasicAllocable
 {
 	protected AbstractCommandBuffers<?> commandBuffers;
 	protected EPipelineStage waitStage;
-	protected List<VkSemaphore> waitSemaphores;
-
-	protected SemaphoreManager signalSemaphoreManager;
 
 	protected List<SubmissionInfo> infos = new ArrayList<>();
+	private final Collection<ISignalEmitter> signalEmitters;
+	private final Deque<Long> waitSemaphores = new ArrayDeque<>();
+	private final Deque<Long> signalSemaphores = new ArrayDeque<>();
 
-	public ProcessSubmission(	LogicalDevice logicalDevice,
-								AbstractCommandBuffers<?> commandBuffers,
-								Collection<ISignalEmitter> waitForEmitters,
+	public ProcessSubmission(	AbstractCommandBuffers<?> commandBuffers,
+								Collection<Long> waitForSemaphores,
+								Collection<ISignalEmitter> signalEmitters,
 								EPipelineStage waitStage)
 	{
 		this.commandBuffers = commandBuffers;
+		this.signalEmitters = signalEmitters;
 		this.waitStage = waitStage;
-		waitSemaphores = new ArrayList<>();
-		for (final ISignalEmitter emitter : waitForEmitters)
-		{
-			final VkSemaphore newSignalSemaphore = emitter.newSignalSemaphore(logicalDevice);
-			waitSemaphores.add(newSignalSemaphore);
-			// System.out.println("New Semaphore to wait : " +
-			// Long.toHexString(newSignalSemaphore.getId()));
-		}
 
-		signalSemaphoreManager = new SemaphoreManager(logicalDevice);
+		waitSemaphores.addAll(waitForSemaphores);
 	}
 
 	@Override
 	public void allocate(MemoryStack stack)
 	{
-		signalSemaphoreManager.lock(true);
+		fillSemaphoreDeque(signalEmitters, signalSemaphores);
+
 		for (int i = 0; i < commandBuffers.size(); i++)
 		{
 			final ICommandBuffer commandBuffer = commandBuffers.get(i);
 			infos.add(buildSubmissionInfo(i, commandBuffer, waitStage, waitSemaphores,
-					signalSemaphoreManager.getSemaphores()));
+					signalSemaphores));
 		}
 	}
 
+	private static void fillSemaphoreDeque(	Collection<ISignalEmitter> emitters,
+											Deque<Long> semaphoreDeque)
+	{
+		for (final ISignalEmitter emitter : emitters)
+		{
+			if (emitter.hasSemaphore())
+			{
+				long newSignalSemaphore = emitter.getSignalSemaphore();
+				semaphoreDeque.add(newSignalSemaphore);
+				// System.out.println("New Semaphore to wait : " +
+				// Long.toHexString(newSignalSemaphore.getId()));
+			}
+		}
+	}
+
+	@SuppressWarnings("static-method")
 	protected SubmissionInfo buildSubmissionInfo(	int infoNumber,
 													ICommandBuffer commandBuffer,
 													EPipelineStage waitStage,
-													Collection<VkSemaphore> waitSemaphores,
-													Collection<VkSemaphore> signalSemaphores)
+													Collection<Long> waitSemaphores,
+													Collection<Long> signalSemaphores)
 	{
-		return new SubmissionInfo(commandBuffer, waitStage, waitSemaphores,
-				signalSemaphoreManager.getSemaphores());
+		return new SubmissionInfo(commandBuffer, waitStage, waitSemaphores, signalSemaphores);
 	}
 
 	public VkSubmitInfo getSubmitInfo(int index)
@@ -79,21 +87,9 @@ public class ProcessSubmission implements ISignalEmitter, IBasicAllocable
 			info.free();
 		}
 
-		signalSemaphoreManager.lock(false);
-		signalSemaphoreManager.free();
+		signalSemaphores.clear();
 
 		infos.clear();
-	}
-
-	@Override
-	public VkSemaphore newSignalSemaphore(LogicalDevice logicalDevice)
-	{
-		return signalSemaphoreManager.newSemaphore();
-	}
-
-	public List<VkSemaphore> getWaitSemaphores()
-	{
-		return waitSemaphores;
 	}
 
 	@Override

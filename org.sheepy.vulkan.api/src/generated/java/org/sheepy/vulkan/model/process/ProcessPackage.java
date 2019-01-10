@@ -135,13 +135,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Wait For Submissions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
+	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -1072,6 +1081,17 @@ public interface ProcessPackage extends EPackage
 	EAttribute getAbstractProcess_ResetAllowed();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getWaitForSubmissions <em>Wait For Submissions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Wait For Submissions</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getWaitForSubmissions()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EReference getAbstractProcess_WaitForSubmissions();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1303,6 +1323,14 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ABSTRACT_PROCESS__RESET_ALLOWED = eINSTANCE.getAbstractProcess_ResetAllowed();
+
+		/**
+		 * The meta object literal for the '<em><b>Wait For Submissions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS = eINSTANCE.getAbstractProcess_WaitForSubmissions();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}' class.

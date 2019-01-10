@@ -3,8 +3,10 @@ package org.sheepy.vulkan.process.graphic.process;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
+import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffers;
@@ -43,7 +45,16 @@ public class GraphicContext extends ProcessContext
 		commandBuffers = new GraphicCommandBuffers(this);
 
 		final var processAdapter = GraphicProcessAdapter.adapt(graphicProcess);
-		submission = new FrameSubmission(this, List.of(processAdapter));
+
+		List<Long> waitForEmitters = new ArrayList<>();
+		waitForEmitters.add(processAdapter.getImageAcquiredEmitter().getSignalSemaphore());
+
+		for (AbstractProcess process : graphicProcess.getWaitForSubmissions())
+		{
+			waitForEmitters.add(IProcessAdapter.adapt(process).getSignalSemaphore());
+		}
+
+		submission = new FrameSubmission(this, waitForEmitters, List.of(processAdapter));
 
 		buildAllocationList();
 	}

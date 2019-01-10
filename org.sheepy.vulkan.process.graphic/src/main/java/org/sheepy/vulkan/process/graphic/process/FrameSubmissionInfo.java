@@ -6,11 +6,9 @@ import static org.lwjgl.vulkan.KHRSwapchain.VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.Collection;
-import java.util.List;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
-import org.sheepy.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
@@ -26,10 +24,11 @@ public class FrameSubmissionInfo extends SubmissionInfo
 								SwapChainManager swapChain,
 								ICommandBuffer commandBuffer,
 								EPipelineStage waitStage,
-								Collection<VkSemaphore> waitSemaphores,
-								VkSemaphore waitPresentSemaphore)
+								Collection<Long> waitSemaphores,
+								Collection<Long> signalSemaphores,
+								Collection<Long> presentWaitSemaphores)
 	{
-		super(commandBuffer, waitStage, waitSemaphores, List.of(waitPresentSemaphore));
+		super(commandBuffer, waitStage, waitSemaphores, signalSemaphores);
 
 		bSwapChains = memAllocLong(1);
 		bSwapChains.put(swapChain.getSwapChain());
@@ -39,9 +38,16 @@ public class FrameSubmissionInfo extends SubmissionInfo
 		bImageIndex.put(imageIndex);
 		bImageIndex.flip();
 
+		LongBuffer bPresentWaitSemaphores = MemoryUtil.memAllocLong(presentWaitSemaphores.size());
+		for (Long signalSemaphore : presentWaitSemaphores)
+		{
+			bPresentWaitSemaphores.put(signalSemaphore);
+		}
+		bPresentWaitSemaphores.flip();
+
 		presentInfo = VkPresentInfoKHR.calloc();
 		presentInfo.sType(VK_STRUCTURE_TYPE_PRESENT_INFO_KHR);
-		presentInfo.pWaitSemaphores(bSignalSemaphores);
+		presentInfo.pWaitSemaphores(bPresentWaitSemaphores);
 		presentInfo.swapchainCount(1);
 		presentInfo.pSwapchains(bSwapChains);
 		presentInfo.pImageIndices(bImageIndex);

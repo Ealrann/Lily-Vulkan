@@ -663,6 +663,15 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__RESET_ALLOWED = ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED;
 
 	/**
+	 * The feature id for the '<em><b>Wait For Submissions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__WAIT_FOR_SUBMISSIONS = ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

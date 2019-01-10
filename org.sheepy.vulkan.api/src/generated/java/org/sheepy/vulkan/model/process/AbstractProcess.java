@@ -22,6 +22,7 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
  *   <li>{@link org.sheepy.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.AbstractProcess#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.AbstractProcess#getWaitForSubmissions <em>Wait For Submissions</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractProcess()
@@ -103,5 +104,21 @@ public interface AbstractProcess extends IProcess
 	 * @generated
 	 */
 	void setResetAllowed(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Wait For Submissions</b></em>' reference list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.process.AbstractProcess}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Wait For Submissions</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Wait For Submissions</em>' reference list.
+	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractProcess_WaitForSubmissions()
+	 * @model
+	 * @generated
+	 */
+	EList<AbstractProcess> getWaitForSubmissions();
 
 } // AbstractProcess

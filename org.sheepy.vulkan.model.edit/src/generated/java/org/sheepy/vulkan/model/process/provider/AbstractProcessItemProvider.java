@@ -68,6 +68,7 @@ public class AbstractProcessItemProvider
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addResetAllowedPropertyDescriptor(object);
+			addWaitForSubmissionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -137,6 +138,29 @@ public class AbstractProcessItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Wait For Submissions feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWaitForSubmissionsPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractProcess_waitForSubmissions_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractProcess_waitForSubmissions_feature", "_UI_AbstractProcess_type"),
+				 ProcessPackage.Literals.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

@@ -134,6 +134,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__RESET_ALLOWED = ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED;
 
 	/**
+	 * The feature id for the '<em><b>Wait For Submissions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__WAIT_FOR_SUBMISSIONS = ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

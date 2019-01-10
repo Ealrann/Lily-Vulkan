@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.common.api.util.LTreeIterator;
 import org.sheepy.common.model.inference.IInferenceObject;
@@ -52,6 +53,7 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getWaitForSubmissions <em>Wait For Submissions</em>}</li>
  * </ul>
  *
  * @generated
@@ -157,6 +159,16 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @ordered
 	 */
 	protected boolean resetAllowed = RESET_ALLOWED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getWaitForSubmissions() <em>Wait For Submissions</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWaitForSubmissions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AbstractProcess> waitForSubmissions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -330,6 +342,21 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
+	public EList<AbstractProcess> getWaitForSubmissions()
+	{
+		if (waitForSubmissions == null)
+		{
+			waitForSubmissions = new EObjectResolvingEList<AbstractProcess>(AbstractProcess.class, this, ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS);
+		}
+		return waitForSubmissions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public <T extends LObject> EList<T> createContainmentEList(final EClass targetEClass)
 	{
 		EList<T> res = null;
@@ -462,6 +489,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 				return getUnits();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return isResetAllowed();
+			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS:
+				return getWaitForSubmissions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -501,6 +530,10 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed((Boolean)newValue);
 				return;
+			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS:
+				getWaitForSubmissions().clear();
+				getWaitForSubmissions().addAll((Collection<? extends AbstractProcess>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -536,6 +569,9 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed(RESET_ALLOWED_EDEFAULT);
 				return;
+			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS:
+				getWaitForSubmissions().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -564,6 +600,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 				return units != null && !units.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return resetAllowed != RESET_ALLOWED_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS:
+				return waitForSubmissions != null && !waitForSubmissions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

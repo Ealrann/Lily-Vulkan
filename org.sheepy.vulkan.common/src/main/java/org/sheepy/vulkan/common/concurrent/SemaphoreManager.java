@@ -8,9 +8,10 @@ import org.sheepy.vulkan.common.device.LogicalDevice;
 public class SemaphoreManager
 {
 	private boolean lock;
-	private List<VkSemaphore> semaphores = new ArrayList<>();
+	private final List<VkSemaphore> semaphores = new ArrayList<>();
+	private final List<Long> semaphoreIds = new ArrayList<>();
 
-	private LogicalDevice logicalDevice;
+	private final LogicalDevice logicalDevice;
 
 	public SemaphoreManager(LogicalDevice logicalDevice)
 	{
@@ -26,6 +27,7 @@ public class SemaphoreManager
 		VkSemaphore res = new VkSemaphore();
 		res.allocate(logicalDevice);
 		semaphores.add(res);
+		semaphoreIds.add(res.getId());
 		return res;
 	}
 
@@ -36,6 +38,7 @@ public class SemaphoreManager
 			vkSemaphore.free(logicalDevice);
 		}
 		semaphores.clear();
+		semaphoreIds.clear();
 	}
 
 	/**
@@ -53,8 +56,8 @@ public class SemaphoreManager
 		return lock;
 	}
 
-	public List<VkSemaphore> getSemaphores()
+	public List<Long> getSemaphores()
 	{
-		return semaphores;
+		return semaphoreIds;
 	}
 }

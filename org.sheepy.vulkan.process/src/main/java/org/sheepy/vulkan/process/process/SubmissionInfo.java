@@ -10,7 +10,6 @@ import java.util.Collection;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
@@ -24,16 +23,16 @@ public class SubmissionInfo
 
 	public SubmissionInfo(	ICommandBuffer commandBuffer,
 							EPipelineStage waitStage,
-							Collection<VkSemaphore> waitSemaphores,
-							Collection<VkSemaphore> signalSemaphores)
+							Collection<Long> waitSemaphores,
+							Collection<Long> signalSemaphores)
 	{
 		if (waitSemaphores.isEmpty() == false)
 		{
 			bWaitSemaphores = MemoryUtil.memAllocLong(waitSemaphores.size());
 			waitStages = MemoryUtil.memAllocInt(waitSemaphores.size());
-			for (VkSemaphore waitSemaphore : waitSemaphores)
+			for (Long waitSemaphore : waitSemaphores)
 			{
-				bWaitSemaphores.put(waitSemaphore.getId());
+				bWaitSemaphores.put(waitSemaphore);
 				waitStages.put(waitStage.getValue());
 			}
 			bWaitSemaphores.flip();
@@ -45,9 +44,9 @@ public class SubmissionInfo
 		pCommandBuffers.flip();
 
 		bSignalSemaphores = MemoryUtil.memAllocLong(signalSemaphores.size());
-		for (VkSemaphore signalSemaphore : signalSemaphores)
+		for (Long signalSemaphore : signalSemaphores)
 		{
-			bSignalSemaphores.put(signalSemaphore.getId());
+			bSignalSemaphores.put(signalSemaphore);
 		}
 		bSignalSemaphores.flip();
 

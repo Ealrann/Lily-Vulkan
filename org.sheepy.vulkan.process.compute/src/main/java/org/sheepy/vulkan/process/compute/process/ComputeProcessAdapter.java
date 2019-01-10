@@ -7,22 +7,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.queue.EQueueType;
 import org.sheepy.vulkan.api.queue.VulkanQueue;
-import org.sheepy.vulkan.common.allocation.adapter.IDeepAllocableAdapter;
-import org.sheepy.vulkan.common.concurrent.ISignalEmitter;
-import org.sheepy.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.vulkan.process.process.AbstractProcessAdapter;
 
-/**
- * A set of ComputePipelines.
- *
- */
 public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommandBuffer>
-		implements ISignalEmitter, IDeepAllocableAdapter
 {
 	private static final String FAILED_SUBMIT_COMPUTE = "Failed to submit compute command buffer";
 
@@ -71,12 +62,6 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	public VulkanQueue getQueue()
 	{
 		return context.executionManager.getQueue();
-	}
-
-	@Override
-	public VkSemaphore newSignalSemaphore(LogicalDevice logicalDevice)
-	{
-		return context.submission.newSignalSemaphore(logicalDevice);
 	}
 
 	@Override

@@ -246,6 +246,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getAbstractProcess_WaitForSubmissions()
+	{
+		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIProcessUnit()
 	{
 		return iProcessUnitEClass;
@@ -452,6 +463,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SETS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__UNITS);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS);
 
 		iProcessUnitEClass = createEClass(IPROCESS_UNIT);
 		createEAttribute(iProcessUnitEClass, IPROCESS_UNIT__ENABLED);
@@ -534,6 +546,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEReference(getAbstractProcess_DescriptorSets(), theResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_Units(), this.getIProcessUnit(), null, "units", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_ResetAllowed(), theEcorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_WaitForSubmissions(), this.getAbstractProcess(), null, "waitForSubmissions", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iProcessUnitEClass, IProcessUnit.class, "IProcessUnit", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIProcessUnit_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, IProcessUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

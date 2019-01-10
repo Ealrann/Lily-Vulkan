@@ -1,10 +1,12 @@
 package org.sheepy.vulkan.process.graphic.process;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
-import org.sheepy.vulkan.common.concurrent.ISignalEmitter;
+import org.sheepy.vulkan.api.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -15,21 +17,22 @@ public class FrameSubmission extends ProcessSubmission
 {
 	private final GraphicContext context;
 
-	private final VkSemaphore presentWaitSemaphore;
+	private VkSemaphore presentWaitSemaphore;
 
 	public FrameSubmission(	GraphicContext context,
-							Collection<ISignalEmitter> waitForSignals)
+							Collection<Long> waitForSignals,
+							Collection<ISignalEmitter> signals)
 	{
-		super(context.logicalDevice, context.commandBuffers, waitForSignals,
+		super(context.commandBuffers, waitForSignals, signals,
 				context.configuration.getAcquireWaitStage());
 
 		this.context = context;
-		this.presentWaitSemaphore = new VkSemaphore();
 	}
 
 	@Override
 	public void allocate(MemoryStack stack)
 	{
+		presentWaitSemaphore = new VkSemaphore();
 		presentWaitSemaphore.allocate(context.logicalDevice);
 		super.allocate(stack);
 	}
@@ -38,11 +41,15 @@ public class FrameSubmission extends ProcessSubmission
 	protected SubmissionInfo buildSubmissionInfo(	int infoNumber,
 													ICommandBuffer commandBuffer,
 													EPipelineStage waitStage,
-													Collection<VkSemaphore> waitSemaphores,
-													Collection<VkSemaphore> signalSemaphores)
+													Collection<Long> waitSemaphores,
+													Collection<Long> signalSemaphores)
 	{
-		return new FrameSubmissionInfo(infoNumber, context.swapChainManager,
-				commandBuffer, waitStage, waitSemaphores, presentWaitSemaphore);
+		List<Long> signals = new ArrayList<>();
+		signals.addAll(signalSemaphores);
+		signals.add(presentWaitSemaphore.getId());
+
+		return new FrameSubmissionInfo(infoNumber, context.swapChainManager, commandBuffer,
+				waitStage, waitSemaphores, signals, List.of(presentWaitSemaphore.getId()));
 	}
 
 	public VkPresentInfoKHR getPresentInfo(int frameIndex)
@@ -55,5 +62,6 @@ public class FrameSubmission extends ProcessSubmission
 	{
 		super.free();
 		presentWaitSemaphore.free(context.logicalDevice);
+		presentWaitSemaphore = null;
 	};
 }
