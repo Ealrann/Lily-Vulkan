@@ -54,8 +54,6 @@ subprojects {
 			jcenter()
 			maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 			maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-			maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
-			maven { url 'https://jitpack.io' }
 		}
 	}
 }
