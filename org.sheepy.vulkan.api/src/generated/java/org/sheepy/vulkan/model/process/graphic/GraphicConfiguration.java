@@ -22,6 +22,7 @@ import org.sheepy.vulkan.model.process.Configuration;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode <em>Presentation Mode</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage <em>Acquire Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain <em>Color Domain</em>}</li>
@@ -89,6 +90,33 @@ public interface GraphicConfiguration extends Configuration
 	 * @generated
 	 */
 	void setPresentationMode(EPresentMode value);
+
+	/**
+	 * Returns the value of the '<em><b>Required Swap Image Count</b></em>' attribute.
+	 * The default value is <code>"3"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Required Swap Image Count</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Required Swap Image Count</em>' attribute.
+	 * @see #setRequiredSwapImageCount(int)
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_RequiredSwapImageCount()
+	 * @model default="3" unique="false"
+	 * @generated
+	 */
+	int getRequiredSwapImageCount();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Required Swap Image Count</em>' attribute.
+	 * @see #getRequiredSwapImageCount()
+	 * @generated
+	 */
+	void setRequiredSwapImageCount(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Swap Image Usages</b></em>' attribute list.

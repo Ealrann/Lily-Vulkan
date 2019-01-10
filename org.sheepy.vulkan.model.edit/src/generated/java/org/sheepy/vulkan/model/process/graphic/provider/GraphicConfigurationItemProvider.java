@@ -71,6 +71,7 @@ public class GraphicConfigurationItemProvider
 
 			addClearBeforeRenderPropertyDescriptor(object);
 			addPresentationModePropertyDescriptor(object);
+			addRequiredSwapImageCountPropertyDescriptor(object);
 			addSwapImageUsagesPropertyDescriptor(object);
 			addAcquireWaitStagePropertyDescriptor(object);
 		}
@@ -119,6 +120,29 @@ public class GraphicConfigurationItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Required Swap Image Count feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequiredSwapImageCountPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GraphicConfiguration_requiredSwapImageCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_requiredSwapImageCount_feature", "_UI_GraphicConfiguration_type"),
+				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -244,6 +268,7 @@ public class GraphicConfigurationItemProvider
 		{
 			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
+			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

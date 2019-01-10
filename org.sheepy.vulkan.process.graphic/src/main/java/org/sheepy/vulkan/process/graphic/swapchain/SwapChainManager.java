@@ -35,7 +35,7 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 	private ColorDomain colorDomain;
 
 	private IntBuffer indices = null;
-	private int minImageCount;
+	private int requiredImageCount;
 	private int swapImageCount;
 	private Surface surface;
 	private int swapImageUsage;
@@ -86,10 +86,19 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 			Logger.log("The desired ColorDomain is not availlable");
 		}
 
-		minImageCount = capabilities.minImageCount() + 1;
-		if (capabilities.maxImageCount() > 0 && minImageCount > capabilities.maxImageCount())
+		int required = configuration.getRequiredSwapImageCount();
+		if (required < capabilities.minImageCount() || required == 0)
 		{
-			minImageCount = capabilities.maxImageCount();
+			requiredImageCount = capabilities.minImageCount() + 1;
+		}
+		else
+		{
+			requiredImageCount = required;
+		}
+
+		if (capabilities.maxImageCount() > 0 && requiredImageCount > capabilities.maxImageCount())
+		{
+			requiredImageCount = capabilities.maxImageCount();
 		}
 	}
 
@@ -125,7 +134,7 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 		final VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
 		createInfo.surface(surface.id);
-		createInfo.minImageCount(minImageCount);
+		createInfo.minImageCount(requiredImageCount);
 		createInfo.imageFormat(colorDomain.getFormat().getValue());
 		createInfo.imageColorSpace(colorDomain.getColorSpace().getValue());
 		createInfo.imageExtent().width(extent.width);

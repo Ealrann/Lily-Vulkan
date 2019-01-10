@@ -37,6 +37,7 @@ class GraphicConfiguration extends Configuration
 {
 	boolean clearBeforeRender = "true"
 	EPresentMode presentationMode = "MailBox"
+	int requiredSwapImageCount = "3"
 	EImageUsage[] swapImageUsages
 
 	@GenModel(propertyDescription="The stage on which we should wait until acquire the next image")

@@ -33,6 +33,7 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getPresentationMode <em>Presentation Mode</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSwapImageUsages <em>Swap Image Usages</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getAcquireWaitStage <em>Acquire Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getColorDomain <em>Color Domain</em>}</li>
@@ -81,6 +82,26 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected EPresentMode presentationMode = PRESENTATION_MODE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRequiredSwapImageCount() <em>Required Swap Image Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiredSwapImageCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT = 3;
+
+	/**
+	 * The cached value of the '{@link #getRequiredSwapImageCount() <em>Required Swap Image Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiredSwapImageCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected int requiredSwapImageCount = REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getSwapImageUsages() <em>Swap Image Usages</em>}' attribute list.
@@ -191,6 +212,31 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 		presentationMode = newPresentationMode == null ? PRESENTATION_MODE_EDEFAULT : newPresentationMode;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE, oldPresentationMode, presentationMode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getRequiredSwapImageCount()
+	{
+		return requiredSwapImageCount;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRequiredSwapImageCount(int newRequiredSwapImageCount)
+	{
+		int oldRequiredSwapImageCount = requiredSwapImageCount;
+		requiredSwapImageCount = newRequiredSwapImageCount;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT, oldRequiredSwapImageCount, requiredSwapImageCount));
 	}
 
 	/**
@@ -313,6 +359,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return isClearBeforeRender();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
 				return getPresentationMode();
+			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+				return getRequiredSwapImageCount();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 				return getSwapImageUsages();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
@@ -339,6 +387,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
 				setPresentationMode((EPresentMode)newValue);
+				return;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+				setRequiredSwapImageCount((Integer)newValue);
 				return;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 				getSwapImageUsages().clear();
@@ -370,6 +421,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
 				setPresentationMode(PRESENTATION_MODE_EDEFAULT);
 				return;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+				setRequiredSwapImageCount(REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT);
+				return;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 				getSwapImageUsages().clear();
 				return;
@@ -397,6 +451,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 				return clearBeforeRender != CLEAR_BEFORE_RENDER_EDEFAULT;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
 				return presentationMode != PRESENTATION_MODE_EDEFAULT;
+			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+				return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
 			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 				return swapImageUsages != null && !swapImageUsages.isEmpty();
 			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
@@ -422,6 +478,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 		result.append(clearBeforeRender);
 		result.append(", presentationMode: ");
 		result.append(presentationMode);
+		result.append(", requiredSwapImageCount: ");
+		result.append(requiredSwapImageCount);
 		result.append(", swapImageUsages: ");
 		result.append(swapImageUsages);
 		result.append(", acquireWaitStage: ");
