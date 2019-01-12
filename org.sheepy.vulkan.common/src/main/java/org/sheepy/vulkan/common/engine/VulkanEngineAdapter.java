@@ -7,6 +7,8 @@ import static org.lwjgl.vulkan.KHRSwapchain.VK_KHR_SWAPCHAIN_EXTENSION_NAME;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -27,8 +29,10 @@ import org.sheepy.common.model.application.Application;
 import org.sheepy.common.model.application.ApplicationPackage;
 import org.sheepy.vulkan.api.adapter.IEnginePartAdapter;
 import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
+import org.sheepy.vulkan.api.concurrent.IFence;
 import org.sheepy.vulkan.api.window.IWindowListener;
 import org.sheepy.vulkan.api.window.Surface;
+import org.sheepy.vulkan.common.concurrent.VkFence;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.device.judge.PhysicalDeviceSelector;
@@ -66,6 +70,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	protected VulkanEngine engine;
 	protected Window window;
 	private boolean listeningResize = true;
+	private final List<VkFence> fences = new ArrayList<>();
 	private final IWindowListener resizeListener = new IWindowListener()
 	{
 		@Override
@@ -187,11 +192,11 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	@Override
 	public void stop()
 	{
-		if(allocated == true)
+		if (allocated == true)
 		{
 			free();
 		}
-		
+
 		if (logicalDevice != null)
 		{
 			logicalDevice.waitIdle();
@@ -201,7 +206,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		cleanup();
 		window.close();
 	}
-	
+
 	@Override
 	public void allocate()
 	{
@@ -235,6 +240,12 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			var adapter = IEnginePartAdapter.adapt(process);
 			adapter.freePart();
 		}
+
+		for (VkFence fence : fences)
+		{
+			fence.free();
+		}
+
 		allocated = false;
 	}
 
@@ -312,6 +323,16 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		vkInstance = null;
 	}
 
+	@Override
+	public IFence newFence()
+	{
+		VkFence res = new VkFence(logicalDevice.getVkDevice());
+		res.allocate();
+
+		fences.add(res);
+		return res;
+	}
+
 	public LogicalDevice getLogicalDevice()
 	{
 		return logicalDevice;
@@ -329,6 +350,12 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	}
 
 	@Override
+	public IInputManager getInputManager()
+	{
+		return inputManager;
+	}
+
+	@Override
 	public boolean isApplicable(EClass eClass)
 	{
 		return VulkanPackage.Literals.VULKAN_ENGINE == eClass;
@@ -337,11 +364,5 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	public static VulkanEngineAdapter adapt(VulkanEngine engine)
 	{
 		return IServiceAdapterFactory.INSTANCE.adapt(engine, VulkanEngineAdapter.class);
-	}
-
-	@Override
-	public IInputManager getInputManager()
-	{
-		return inputManager;
 	}
 }

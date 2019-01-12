@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
+import org.sheepy.vulkan.api.concurrent.IFence;
 import org.sheepy.vulkan.api.queue.EQueueType;
 import org.sheepy.vulkan.api.queue.VulkanQueue;
 import org.sheepy.vulkan.common.concurrent.SignalEmitter;
@@ -69,29 +70,34 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public void execute()
 	{
+		execute(null);
+	}
+	
+	@Override
+	public void execute(IFence fence)
+	{
 		checkAllocation();
 
 		final Integer imageIndex = acquireNextImage();
 
 		if (imageIndex != null)
 		{
-			submitAndPresentImage(imageIndex);
+			submitAndPresentImage(imageIndex, fence);
 		}
 	}
 
-	private void submitAndPresentImage(Integer imageIndex)
+	private void submitAndPresentImage(Integer imageIndex, IFence fence)
 	{
 		var queueManager = executionManager.logicalDevice.queueManager;
 		var graphicQueue = queueManager.getGraphicQueue();
 		var presentQueue = queueManager.getPresentQueue();
+		var fenceId = fence != null ? fence.getId() : VK_NULL_HANDLE;
 		FrameSubmission submission = context.submission;
 		VkSubmitInfo submitInfo = submission.getSubmitInfo(imageIndex);
 		VkPresentInfoKHR presentInfo = submission.getPresentInfo(imageIndex);
 
-		Logger.check(vkQueueSubmit(graphicQueue.vkQueue, submitInfo, VK_NULL_HANDLE),
+		Logger.check(vkQueueSubmit(graphicQueue.vkQueue, submitInfo, fenceId),
 				FAILED_SUBMIT_GRAPHIC);
-
-		// presentQueue.waitIdle();
 
 		Logger.check(vkQueuePresentKHR(presentQueue.vkQueue, presentInfo), FAILED_SUBMIT_PRESENT);
 	}

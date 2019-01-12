@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
+import org.sheepy.vulkan.api.concurrent.IFence;
 import org.sheepy.vulkan.api.queue.EQueueType;
 import org.sheepy.vulkan.api.queue.VulkanQueue;
 import org.sheepy.vulkan.common.util.Logger;
@@ -49,13 +50,20 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public void execute()
 	{
+		execute(null);
+	}
+
+	@Override
+	public void execute(IFence fence)
+	{
 		checkAllocation();
 
 		var queue = context.executionManager.getQueue().vkQueue;
 		var submission = context.submission;
 		var submitInfo = submission.getSubmitInfo(0);
+		long fenceId = fence != null ? fence.getId() : VK_NULL_HANDLE;
 
-		Logger.check(vkQueueSubmit(queue, submitInfo, VK_NULL_HANDLE), FAILED_SUBMIT_COMPUTE);
+		Logger.check(vkQueueSubmit(queue, submitInfo, fenceId), FAILED_SUBMIT_COMPUTE);
 	}
 
 	@Override
