@@ -31,8 +31,8 @@ public class PhysicalDeviceJudge
 	{
 		this.requiredExtensions = requiredExtensions;
 		this.stack = stack;
-		deviceProperties = VkPhysicalDeviceProperties.calloc();
-		deviceFeatures = VkPhysicalDeviceFeatures.calloc();
+		deviceProperties = VkPhysicalDeviceProperties.create();
+		deviceFeatures = VkPhysicalDeviceFeatures.create();
 	}
 
 	public int rateDeviceSuitability(PhysicalDevice physicalDevice, Surface surface)
