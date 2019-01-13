@@ -99,11 +99,11 @@ public class ModelFactory
 
 		final AttachmentDescription colorAttachment = new AttachmentDescriptionImpl();
 		colorAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
-		colorAttachment.setLoadOp(EAttachmentLoadOp.DONT_CARE);
+		colorAttachment.setLoadOp(EAttachmentLoadOp.LOAD);
 		colorAttachment.setStoreOp(EAttachmentStoreOp.STORE);
 		colorAttachment.setStencilLoadOp(EAttachmentLoadOp.DONT_CARE);
 		colorAttachment.setStencilStoreOp(EAttachmentStoreOp.DONT_CARE);
-		colorAttachment.setInitialLayout(EImageLayout.UNDEFINED);
+		colorAttachment.setInitialLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
 		colorAttachment.setFinalLayout(EImageLayout.PRESENT_SRC_KHR);
 
 		renderPass.getAttachments().add(colorAttachment);
@@ -131,11 +131,11 @@ public class ModelFactory
 	{
 		final ImagePipeline imagePipeline = new ImagePipelineImpl();
 		imagePipeline.setImageSrcStage(EPipelineStage.COMPUTE_SHADER_BIT);
-		imagePipeline.setImageDstStage(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
+		imagePipeline.setImageDstStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		imagePipeline.getImageSrcAccessMask().add(EAccess.SHADER_WRITE_BIT);
 		imagePipeline.getImageDstAccessMask().add(EAccess.SHADER_WRITE_BIT);
 		imagePipeline.setImage(boardImage);
-		imagePipeline.setStage(ECommandStage.RENDER);
+		imagePipeline.setStage(ECommandStage.PRE_RENDER);
 
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
 		graphicProcess.getUnits().add(imagePipeline);
