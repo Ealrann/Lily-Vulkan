@@ -84,8 +84,8 @@ public interface SubpassDependency extends EObject
 	void setDstSubpass(Subpass value);
 
 	/**
-	 * Returns the value of the '<em><b>Src Stage Mask</b></em>' attribute.
-	 * The default value is <code>"COLOR_ATTACHMENT_OUTPUT_BIT"</code>.
+	 * Returns the value of the '<em><b>Src Stage Mask</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -93,29 +93,17 @@ public interface SubpassDependency extends EObject
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Src Stage Mask</em>' attribute.
+	 * @return the value of the '<em>Src Stage Mask</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #setSrcStageMask(EPipelineStage)
 	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_SrcStageMask()
-	 * @model default="COLOR_ATTACHMENT_OUTPUT_BIT" unique="false"
+	 * @model unique="false"
 	 * @generated
 	 */
-	EPipelineStage getSrcStageMask();
+	EList<EPipelineStage> getSrcStageMask();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask <em>Src Stage Mask</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Src Stage Mask</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #getSrcStageMask()
-	 * @generated
-	 */
-	void setSrcStageMask(EPipelineStage value);
-
-	/**
-	 * Returns the value of the '<em><b>Dst Stage Mask</b></em>' attribute.
-	 * The default value is <code>"COLOR_ATTACHMENT_OUTPUT_BIT"</code>.
+	 * Returns the value of the '<em><b>Dst Stage Mask</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -123,25 +111,13 @@ public interface SubpassDependency extends EObject
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dst Stage Mask</em>' attribute.
+	 * @return the value of the '<em>Dst Stage Mask</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #setDstStageMask(EPipelineStage)
 	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_DstStageMask()
-	 * @model default="COLOR_ATTACHMENT_OUTPUT_BIT" unique="false"
+	 * @model unique="false"
 	 * @generated
 	 */
-	EPipelineStage getDstStageMask();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstStageMask <em>Dst Stage Mask</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dst Stage Mask</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #getDstStageMask()
-	 * @generated
-	 */
-	void setDstStageMask(EPipelineStage value);
+	EList<EPipelineStage> getDstStageMask();
 
 	/**
 	 * Returns the value of the '<em><b>Src Accesses</b></em>' attribute list.

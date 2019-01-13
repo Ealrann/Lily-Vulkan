@@ -22,8 +22,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 
@@ -235,11 +233,7 @@ public class SubpassDependencyItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((SubpassDependency)object).getSrcStageMask();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SubpassDependency_type") :
-			getString("_UI_SubpassDependency_type") + " " + label;
+		return getString("_UI_SubpassDependency_type");
 	}
 
 

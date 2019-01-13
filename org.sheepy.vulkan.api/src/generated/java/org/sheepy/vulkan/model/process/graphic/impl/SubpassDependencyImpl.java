@@ -61,44 +61,24 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	protected Subpass dstSubpass;
 
 	/**
-	 * The default value of the '{@link #getSrcStageMask() <em>Src Stage Mask</em>}' attribute.
+	 * The cached value of the '{@link #getSrcStageMask() <em>Src Stage Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSrcStageMask()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EPipelineStage SRC_STAGE_MASK_EDEFAULT = EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT;
+	protected EList<EPipelineStage> srcStageMask;
 
 	/**
-	 * The cached value of the '{@link #getSrcStageMask() <em>Src Stage Mask</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSrcStageMask()
-	 * @generated
-	 * @ordered
-	 */
-	protected EPipelineStage srcStageMask = SRC_STAGE_MASK_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDstStageMask() <em>Dst Stage Mask</em>}' attribute.
+	 * The cached value of the '{@link #getDstStageMask() <em>Dst Stage Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDstStageMask()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EPipelineStage DST_STAGE_MASK_EDEFAULT = EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT;
-
-	/**
-	 * The cached value of the '{@link #getDstStageMask() <em>Dst Stage Mask</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDstStageMask()
-	 * @generated
-	 * @ordered
-	 */
-	protected EPipelineStage dstStageMask = DST_STAGE_MASK_EDEFAULT;
+	protected EList<EPipelineStage> dstStageMask;
 
 	/**
 	 * The cached value of the '{@link #getSrcAccesses() <em>Src Accesses</em>}' attribute list.
@@ -237,8 +217,12 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public EPipelineStage getSrcStageMask()
+	public EList<EPipelineStage> getSrcStageMask()
 	{
+		if (srcStageMask == null)
+		{
+			srcStageMask = new EDataTypeEList<EPipelineStage>(EPipelineStage.class, this, GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK);
+		}
 		return srcStageMask;
 	}
 
@@ -248,37 +232,13 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void setSrcStageMask(EPipelineStage newSrcStageMask)
+	public EList<EPipelineStage> getDstStageMask()
 	{
-		EPipelineStage oldSrcStageMask = srcStageMask;
-		srcStageMask = newSrcStageMask == null ? SRC_STAGE_MASK_EDEFAULT : newSrcStageMask;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK, oldSrcStageMask, srcStageMask));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EPipelineStage getDstStageMask()
-	{
+		if (dstStageMask == null)
+		{
+			dstStageMask = new EDataTypeEList<EPipelineStage>(EPipelineStage.class, this, GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK);
+		}
 		return dstStageMask;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDstStageMask(EPipelineStage newDstStageMask)
-	{
-		EPipelineStage oldDstStageMask = dstStageMask;
-		dstStageMask = newDstStageMask == null ? DST_STAGE_MASK_EDEFAULT : newDstStageMask;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK, oldDstStageMask, dstStageMask));
 	}
 
 	/**
@@ -357,10 +317,12 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 				setDstSubpass((Subpass)newValue);
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
-				setSrcStageMask((EPipelineStage)newValue);
+				getSrcStageMask().clear();
+				getSrcStageMask().addAll((Collection<? extends EPipelineStage>)newValue);
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
-				setDstStageMask((EPipelineStage)newValue);
+				getDstStageMask().clear();
+				getDstStageMask().addAll((Collection<? extends EPipelineStage>)newValue);
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
 				getSrcAccesses().clear();
@@ -391,10 +353,10 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 				setDstSubpass((Subpass)null);
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
-				setSrcStageMask(SRC_STAGE_MASK_EDEFAULT);
+				getSrcStageMask().clear();
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
-				setDstStageMask(DST_STAGE_MASK_EDEFAULT);
+				getDstStageMask().clear();
 				return;
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
 				getSrcAccesses().clear();
@@ -421,9 +383,9 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_SUBPASS:
 				return dstSubpass != null;
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK:
-				return srcStageMask != SRC_STAGE_MASK_EDEFAULT;
+				return srcStageMask != null && !srcStageMask.isEmpty();
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK:
-				return dstStageMask != DST_STAGE_MASK_EDEFAULT;
+				return dstStageMask != null && !dstStageMask.isEmpty();
 			case GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES:
 				return srcAccesses != null && !srcAccesses.isEmpty();
 			case GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES:

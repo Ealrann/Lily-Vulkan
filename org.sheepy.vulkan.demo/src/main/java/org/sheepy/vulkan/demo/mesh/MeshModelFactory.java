@@ -65,7 +65,7 @@ public class MeshModelFactory
 
 		application.setTitle("Vulkan Triangle");
 		application.setSize(size);
-		application.setDebug(false);
+		application.setDebug(true);
 
 		application.getEngines().add(engine);
 
@@ -125,8 +125,8 @@ public class MeshModelFactory
 		final SubpassDependency dependency = new SubpassDependencyImpl();
 		dependency.setSrcSubpass(null);
 		dependency.setDstSubpass(subpass);
-		dependency.setSrcStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
-		dependency.setDstStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
+		dependency.getSrcStageMask().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
+		dependency.getDstStageMask().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
 		dependency.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
 		dependency.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_WRITE_BIT);
 

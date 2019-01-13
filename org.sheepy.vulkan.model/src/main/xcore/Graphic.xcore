@@ -69,8 +69,8 @@ class SubpassDependency
 {
 	refers Subpass srcSubpass
 	refers Subpass dstSubpass
-	EPipelineStage srcStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
-	EPipelineStage dstStageMask = "COLOR_ATTACHMENT_OUTPUT_BIT"
+	EPipelineStage[] srcStageMask
+	EPipelineStage[] dstStageMask
 	EAccess[] srcAccesses
 	EAccess[] dstAccesses
 }

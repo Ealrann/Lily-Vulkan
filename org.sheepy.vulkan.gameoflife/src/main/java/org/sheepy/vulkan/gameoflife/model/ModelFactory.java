@@ -71,7 +71,7 @@ public class ModelFactory
 
 		application.setTitle("Vulkan - Game of Life");
 		application.setSize(size);
-		application.setDebug(false);
+		application.setDebug(true);
 		application.getEngines().add(engine);
 
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
@@ -118,8 +118,8 @@ public class ModelFactory
 		final SubpassDependency dependencyExt = new SubpassDependencyImpl();
 		dependencyExt.setSrcSubpass(null);
 		dependencyExt.setDstSubpass(subpass);
-		dependencyExt.setSrcStageMask(EPipelineStage.TRANSFER_BIT);
-		dependencyExt.setDstStageMask(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
+		dependencyExt.getSrcStageMask().add(EPipelineStage.TRANSFER_BIT);
+		dependencyExt.getDstStageMask().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
 		dependencyExt.getSrcAccesses().add(EAccess.TRANSFER_WRITE_BIT);
 		dependencyExt.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_READ_BIT);
 		dependencyExt.getDstAccesses().add(EAccess.COLOR_ATTACHMENT_WRITE_BIT);

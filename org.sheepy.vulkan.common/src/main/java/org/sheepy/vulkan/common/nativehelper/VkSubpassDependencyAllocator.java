@@ -6,8 +6,8 @@ import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubpassDependency;
 import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.vulkan.model.process.graphic.Subpass;
 import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
 
 public class VkSubpassDependencyAllocator
@@ -36,9 +36,11 @@ public class VkSubpassDependencyAllocator
 	{
 		int srcAccessMask = buildAccessMask(dependencyInfo.getSrcAccesses());
 		int dstAccessMask = buildAccessMask(dependencyInfo.getDstAccesses());
+		int srcStageMask = buildStageMask(dependencyInfo.getSrcStageMask());
+		int dstStageMask = buildStageMask(dependencyInfo.getDstStageMask());
 
-		Subpass srcSubpass = dependencyInfo.getSrcSubpass();
-		Subpass dstSubpass = dependencyInfo.getDstSubpass();
+		var srcSubpass = dependencyInfo.getSrcSubpass();
+		var dstSubpass = dependencyInfo.getDstSubpass();
 
 		int srcSubpassIndex = -1;
 		int dstSubpassIndex = -1;
@@ -54,8 +56,8 @@ public class VkSubpassDependencyAllocator
 
 		dependency.srcSubpass(srcSubpassIndex);
 		dependency.dstSubpass(dstSubpassIndex);
-		dependency.srcStageMask(dependencyInfo.getSrcStageMask().getValue());
-		dependency.dstStageMask(dependencyInfo.getDstStageMask().getValue());
+		dependency.srcStageMask(srcStageMask);
+		dependency.dstStageMask(dstStageMask);
 		dependency.srcAccessMask(srcAccessMask);
 		dependency.dstAccessMask(dstAccessMask);
 	}
@@ -66,6 +68,16 @@ public class VkSubpassDependencyAllocator
 		for (EAccess access : accesses)
 		{
 			res |= access.getValue();
+		}
+		return res;
+	}
+
+	private static int buildStageMask(final EList<EPipelineStage> stages)
+	{
+		int res = 0;
+		for (EPipelineStage stage : stages)
+		{
+			res |= stage.getValue();
 		}
 		return res;
 	}

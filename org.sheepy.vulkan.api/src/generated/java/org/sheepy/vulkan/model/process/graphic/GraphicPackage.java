@@ -327,7 +327,7 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS_DEPENDENCY__DST_SUBPASS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Src Stage Mask</b></em>' attribute.
+	 * The feature id for the '<em><b>Src Stage Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -336,7 +336,7 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS_DEPENDENCY__SRC_STAGE_MASK = 2;
 
 	/**
-	 * The feature id for the '<em><b>Dst Stage Mask</b></em>' attribute.
+	 * The feature id for the '<em><b>Dst Stage Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2272,10 +2272,10 @@ public interface GraphicPackage extends EPackage
 	EReference getSubpassDependency_DstSubpass();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask <em>Src Stage Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask <em>Src Stage Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src Stage Mask</em>'.
+	 * @return the meta object for the attribute list '<em>Src Stage Mask</em>'.
 	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask()
 	 * @see #getSubpassDependency()
 	 * @generated
@@ -2283,10 +2283,10 @@ public interface GraphicPackage extends EPackage
 	EAttribute getSubpassDependency_SrcStageMask();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstStageMask <em>Dst Stage Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstStageMask <em>Dst Stage Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dst Stage Mask</em>'.
+	 * @return the meta object for the attribute list '<em>Dst Stage Mask</em>'.
 	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstStageMask()
 	 * @see #getSubpassDependency()
 	 * @generated
@@ -3348,7 +3348,7 @@ public interface GraphicPackage extends EPackage
 		EReference SUBPASS_DEPENDENCY__DST_SUBPASS = eINSTANCE.getSubpassDependency_DstSubpass();
 
 		/**
-		 * The meta object literal for the '<em><b>Src Stage Mask</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Src Stage Mask</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3356,7 +3356,7 @@ public interface GraphicPackage extends EPackage
 		EAttribute SUBPASS_DEPENDENCY__SRC_STAGE_MASK = eINSTANCE.getSubpassDependency_SrcStageMask();
 
 		/**
-		 * The meta object literal for the '<em><b>Dst Stage Mask</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Dst Stage Mask</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
