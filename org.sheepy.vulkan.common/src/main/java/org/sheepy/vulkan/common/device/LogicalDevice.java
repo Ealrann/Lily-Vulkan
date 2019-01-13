@@ -78,6 +78,7 @@ public class LogicalDevice
 			queueCreateInfo.sType(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO);
 			queueCreateInfo.queueFamilyIndex(queueIndex);
 			queueCreateInfo.pQueuePriorities(queuePriority);
+			queueCreateInfo.pNext(NULL);
 		}
 		queueCreateInfos.flip();
 
