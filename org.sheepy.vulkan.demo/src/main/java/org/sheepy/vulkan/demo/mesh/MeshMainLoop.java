@@ -4,6 +4,8 @@ import org.sheepy.common.api.cadence.IMainLoop;
 import org.sheepy.common.api.util.UPSMeter;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.vulkan.api.adapter.IProcessAdapter;
+import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
+import org.sheepy.vulkan.model.VulkanEngine;
 
 public class MeshMainLoop implements IMainLoop
 {
@@ -19,8 +21,11 @@ public class MeshMainLoop implements IMainLoop
 	{
 		var graphicProcess = factory.graphicProcess;
 
+		var engine = (VulkanEngine) application.getEngines().get(0);
+		IVulkanEngineAdapter engineAdapter = IVulkanEngineAdapter.adapt(engine);
+
 		processAdapter = IProcessAdapter.adapt(graphicProcess);
-		processAdapter.allocatePart();
+		engineAdapter.allocate();
 
 		meter = new UPSMeter(2000);
 		start = System.currentTimeMillis();
