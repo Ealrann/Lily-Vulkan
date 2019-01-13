@@ -1,7 +1,6 @@
 package org.sheepy.vulkan.common.engine;
 
 import static org.lwjgl.system.MemoryStack.stackPush;
-import static org.lwjgl.system.MemoryUtil.memUTF8;
 import static org.lwjgl.vulkan.EXTDebugReport.vkDestroyDebugReportCallbackEXT;
 import static org.lwjgl.vulkan.KHRSwapchain.VK_KHR_SWAPCHAIN_EXTENSION_NAME;
 import static org.lwjgl.vulkan.VK10.*;
@@ -17,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkApplicationInfo;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
@@ -48,7 +48,12 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		implements IVulkanEngineAdapter, IAutoAdapter
 {
 	private static final ByteBuffer[] LAYERS_TO_ENABLE = {
-			memUTF8("VK_LAYER_LUNARG_standard_validation")
+			MemoryUtil.memUTF8("VK_LAYER_LUNARG_standard_validation"),
+			MemoryUtil.memUTF8("VK_LAYER_GOOGLE_threading"),
+			MemoryUtil.memUTF8("VK_LAYER_LUNARG_parameter_validation"),
+			MemoryUtil.memUTF8("VK_LAYER_LUNARG_object_tracker"),
+			MemoryUtil.memUTF8("VK_LAYER_LUNARG_core_validation"),
+			MemoryUtil.memUTF8("VK_LAYER_GOOGLE_unique_objects")
 	};
 
 	private static final String[] REQUIRED_EXTENSIONS = {
