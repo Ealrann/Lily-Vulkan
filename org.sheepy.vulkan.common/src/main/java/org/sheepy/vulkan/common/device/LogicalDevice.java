@@ -36,15 +36,6 @@ public class LogicalDevice
 											PhysicalDevice physicalDevice,
 											Window window,
 											String[] requiredExtensions,
-											PointerBuffer ppEnabledLayerNames)
-	{
-		return alloc(stack, physicalDevice, window, requiredExtensions, ppEnabledLayerNames, false);
-	}
-
-	public final static LogicalDevice alloc(MemoryStack stack,
-											PhysicalDevice physicalDevice,
-											Window window,
-											String[] requiredExtensions,
 											PointerBuffer ppEnabledLayerNames,
 											boolean needComputeCapability)
 	{
