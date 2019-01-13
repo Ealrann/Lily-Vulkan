@@ -331,8 +331,14 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	@Override
 	public IFence newFence()
 	{
+		return newFence(false);
+	}
+
+	@Override
+	public IFence newFence(boolean signaled)
+	{
 		VkFence res = new VkFence(logicalDevice.getVkDevice());
-		res.allocate();
+		res.allocate(signaled);
 
 		fences.add(res);
 		return res;

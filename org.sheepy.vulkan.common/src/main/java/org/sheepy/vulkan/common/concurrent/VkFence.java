@@ -20,8 +20,15 @@ public class VkFence implements IFence
 
 	public void allocate()
 	{
+		allocate(false);
+	}
+
+	public void allocate(boolean signaled)
+	{
 		VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
-		createInfo.set(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO, VK_NULL_HANDLE, 0);
+		createInfo.sType(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO);
+		createInfo.pNext(VK_NULL_HANDLE);
+		createInfo.flags(signaled ? VK_FENCE_CREATE_SIGNALED_BIT : 0);
 
 		long[] resArray = new long[1];
 		Logger.check(vkCreateFence(device, createInfo, null, resArray), "Failed to create Fence");
@@ -32,6 +39,13 @@ public class VkFence implements IFence
 	public void free()
 	{
 		vkDestroyFence(device, id, null);
+	}
+
+	@Override
+	public boolean waitForSignal(long timeoutNs)
+	{
+		int res = vkWaitForFences(device, id, true, timeoutNs);
+		return res == VK_SUCCESS;
 	}
 
 	@Override

@@ -14,8 +14,9 @@ public interface IVulkanEngineAdapter extends IEngineAdapter, IVulkanAdapter
 	void free();
 
 	IWindow getWindow();
-	
+
 	IFence newFence();
+	IFence newFence(boolean signaled);
 
 	static IVulkanEngineAdapter adapt(VulkanEngine engine)
 	{
