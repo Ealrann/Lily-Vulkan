@@ -97,7 +97,6 @@ public class LogicalDevice
 		createInfo.pQueueCreateInfos(queueCreateInfos);
 		createInfo.pEnabledFeatures(deviceFeatures);
 		createInfo.ppEnabledExtensionNames(extensionsBuffer);
-		createInfo.ppEnabledLayerNames(ppEnabledLayerNames);
 		final PointerBuffer pDevice = stack.callocPointer(1);
 
 		Logger.check("Failed to create logical device",
