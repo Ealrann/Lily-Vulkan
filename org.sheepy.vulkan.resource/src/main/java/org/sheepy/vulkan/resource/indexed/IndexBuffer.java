@@ -16,8 +16,8 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 {
 	private final ExecutionManager context;
 	private final IIndexBufferDescriptor<T> vertexDescriptor;
-	private final int vertexSize;
-	private final int indiceSize;
+	private final int vertexBufferSizeInByte;
+	private final int indexBufferSizeInByte;
 
 	private BufferBackend vertexBuffer;
 	private BufferBackend indexBuffer;
@@ -38,8 +38,11 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 															T[] vertices,
 															int[] indices)
 	{
-		final IndexBuffer<T> res = new IndexBuffer<>(context, vertexDescriptor, vertices.length,
-				indices.length);
+		int vertexBufferSize = vertices.length * vertexDescriptor.sizeOfVertex();
+		int indexBufferSize = indices.length * vertexDescriptor.sizeOfIndex();
+
+		final IndexBuffer<T> res = new IndexBuffer<>(context, vertexDescriptor, vertexBufferSize,
+				indexBufferSize);
 
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
@@ -52,13 +55,13 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 
 	public IndexBuffer(	ExecutionManager context,
 						IIndexBufferDescriptor<T> vertexDescriptor,
-						int vertexSize,
-						int indiceSize)
+						int vertexBufferSizeInByte,
+						int indexBufferSizeInByte)
 	{
 		this.context = context;
 		this.vertexDescriptor = vertexDescriptor;
-		this.vertexSize = vertexSize;
-		this.indiceSize = indiceSize;
+		this.vertexBufferSizeInByte = vertexBufferSizeInByte;
+		this.indexBufferSizeInByte = indexBufferSizeInByte;
 	}
 
 	@Override
@@ -72,20 +75,18 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 
 	private void allocateVertexBuffer(MemoryStack stack)
 	{
-		final long vertexByteSize = vertexSize * vertexDescriptor.sizeOfVertex();
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
 
 		vertexBuffer = BufferAllocator.allocateGPUBuffer(stack, context.getLogicalDevice(),
-				vertexByteSize, usage);
+				vertexBufferSizeInByte, usage);
 	}
 
 	private void allocateIndexBuffer(MemoryStack stack)
 	{
-		final long indexByteSize = indiceSize * vertexDescriptor.sizeOfIndex();
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
 
 		indexBuffer = BufferAllocator.allocateGPUBuffer(stack, context.getLogicalDevice(),
-				indexByteSize, usage);
+				indexBufferSizeInByte, usage);
 	}
 
 	public void fillBuffer(MemoryStack stack, T[] vertices, int[] indices)
