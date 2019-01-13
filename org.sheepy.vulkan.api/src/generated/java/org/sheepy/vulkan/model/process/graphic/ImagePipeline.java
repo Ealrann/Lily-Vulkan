@@ -2,6 +2,8 @@
  */
 package org.sheepy.vulkan.model.process.graphic;
 
+import org.eclipse.emf.common.util.EList;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import org.sheepy.vulkan.model.process.AbstractPipeline;
@@ -20,8 +22,8 @@ import org.sheepy.vulkan.model.resource.Image;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImage <em>Image</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcStage <em>Image Src Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstStage <em>Image Dst Stage</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccess <em>Image Src Access</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccess <em>Image Dst Access</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccessMask <em>Image Src Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccessMask <em>Image Dst Access Mask</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getImagePipeline()
@@ -115,57 +117,39 @@ public interface ImagePipeline extends AbstractPipeline
 	void setImageDstStage(EPipelineStage value);
 
 	/**
-	 * Returns the value of the '<em><b>Image Src Access</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * Returns the value of the '<em><b>Image Src Access Mask</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Image Src Access</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Image Src Access Mask</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Image Src Access</em>' attribute.
-	 * @see #setImageSrcAccess(int)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getImagePipeline_ImageSrcAccess()
-	 * @model default="0" unique="false"
+	 * @return the value of the '<em>Image Src Access Mask</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getImagePipeline_ImageSrcAccessMask()
+	 * @model unique="false"
 	 * @generated
 	 */
-	int getImageSrcAccess();
+	EList<EAccess> getImageSrcAccessMask();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccess <em>Image Src Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Image Src Access</em>' attribute.
-	 * @see #getImageSrcAccess()
-	 * @generated
-	 */
-	void setImageSrcAccess(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Image Dst Access</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * Returns the value of the '<em><b>Image Dst Access Mask</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Image Dst Access</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Image Dst Access Mask</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Image Dst Access</em>' attribute.
-	 * @see #setImageDstAccess(int)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getImagePipeline_ImageDstAccess()
-	 * @model default="0" unique="false"
+	 * @return the value of the '<em>Image Dst Access Mask</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getImagePipeline_ImageDstAccessMask()
+	 * @model unique="false"
 	 * @generated
 	 */
-	int getImageDstAccess();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccess <em>Image Dst Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Image Dst Access</em>' attribute.
-	 * @see #getImageDstAccess()
-	 * @generated
-	 */
-	void setImageDstAccess(int value);
+	EList<EAccess> getImageDstAccessMask();
 
 } // ImagePipeline

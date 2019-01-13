@@ -55,8 +55,8 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 			addImagePropertyDescriptor(object);
 			addImageSrcStagePropertyDescriptor(object);
 			addImageDstStagePropertyDescriptor(object);
-			addImageSrcAccessPropertyDescriptor(object);
-			addImageDstAccessPropertyDescriptor(object);
+			addImageSrcAccessMaskPropertyDescriptor(object);
+			addImageDstAccessMaskPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -131,47 +131,47 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Image Src Access feature.
+	 * This adds a property descriptor for the Image Src Access Mask feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addImageSrcAccessPropertyDescriptor(Object object)
+	protected void addImageSrcAccessMaskPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ImagePipeline_imageSrcAccess_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_imageSrcAccess_feature", "_UI_ImagePipeline_type"),
-				 GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_ACCESS,
+				 getString("_UI_ImagePipeline_imageSrcAccessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_imageSrcAccessMask_feature", "_UI_ImagePipeline_type"),
+				 GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Image Dst Access feature.
+	 * This adds a property descriptor for the Image Dst Access Mask feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addImageDstAccessPropertyDescriptor(Object object)
+	protected void addImageDstAccessMaskPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ImagePipeline_imageDstAccess_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_imageDstAccess_feature", "_UI_ImagePipeline_type"),
-				 GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_ACCESS,
+				 getString("_UI_ImagePipeline_imageDstAccessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_imageDstAccessMask_feature", "_UI_ImagePipeline_type"),
+				 GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -220,8 +220,8 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 		{
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS:
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS:
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

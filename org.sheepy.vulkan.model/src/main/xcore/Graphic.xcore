@@ -196,8 +196,8 @@ class ImagePipeline extends AbstractPipeline
 	refers Image[1..1] image
 	EPipelineStage imageSrcStage
 	EPipelineStage imageDstStage
-	int imageSrcAccess = "0"
-	int imageDstAccess = "0"
+	EAccess[] imageSrcAccessMask
+	EAccess[] imageDstAccessMask
 }
 
 class PipelineImageBarrier extends PipelineBarrier

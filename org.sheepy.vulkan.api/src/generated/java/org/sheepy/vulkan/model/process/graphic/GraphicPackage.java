@@ -1846,22 +1846,22 @@ public interface GraphicPackage extends EPackage
 	int IMAGE_PIPELINE__IMAGE_DST_STAGE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Image Src Access</b></em>' attribute.
+	 * The feature id for the '<em><b>Image Src Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_PIPELINE__IMAGE_SRC_ACCESS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
+	int IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Image Dst Access</b></em>' attribute.
+	 * The feature id for the '<em><b>Image Dst Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_PIPELINE__IMAGE_DST_ACCESS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
+	int IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Image Pipeline</em>' class.
@@ -3103,26 +3103,26 @@ public interface GraphicPackage extends EPackage
 	EAttribute getImagePipeline_ImageDstStage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccess <em>Image Src Access</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccessMask <em>Image Src Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Image Src Access</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccess()
+	 * @return the meta object for the attribute list '<em>Image Src Access Mask</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccessMask()
 	 * @see #getImagePipeline()
 	 * @generated
 	 */
-	EAttribute getImagePipeline_ImageSrcAccess();
+	EAttribute getImagePipeline_ImageSrcAccessMask();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccess <em>Image Dst Access</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccessMask <em>Image Dst Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Image Dst Access</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccess()
+	 * @return the meta object for the attribute list '<em>Image Dst Access Mask</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccessMask()
 	 * @see #getImagePipeline()
 	 * @generated
 	 */
-	EAttribute getImagePipeline_ImageDstAccess();
+	EAttribute getImagePipeline_ImageDstAccessMask();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier <em>Pipeline Image Barrier</em>}'.
@@ -3996,20 +3996,20 @@ public interface GraphicPackage extends EPackage
 		EAttribute IMAGE_PIPELINE__IMAGE_DST_STAGE = eINSTANCE.getImagePipeline_ImageDstStage();
 
 		/**
-		 * The meta object literal for the '<em><b>Image Src Access</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Image Src Access Mask</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE_PIPELINE__IMAGE_SRC_ACCESS = eINSTANCE.getImagePipeline_ImageSrcAccess();
+		EAttribute IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK = eINSTANCE.getImagePipeline_ImageSrcAccessMask();
 
 		/**
-		 * The meta object literal for the '<em><b>Image Dst Access</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Image Dst Access Mask</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE_PIPELINE__IMAGE_DST_ACCESS = eINSTANCE.getImagePipeline_ImageDstAccess();
+		EAttribute IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK = eINSTANCE.getImagePipeline_ImageDstAccessMask();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.PipelineImageBarrierImpl <em>Pipeline Image Barrier</em>}' class.

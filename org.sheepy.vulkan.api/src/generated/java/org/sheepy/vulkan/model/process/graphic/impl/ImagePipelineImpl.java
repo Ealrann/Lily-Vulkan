@@ -2,13 +2,17 @@
  */
 package org.sheepy.vulkan.model.process.graphic.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
@@ -29,8 +33,8 @@ import org.sheepy.vulkan.model.resource.Image;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImage <em>Image</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageSrcStage <em>Image Src Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageDstStage <em>Image Dst Stage</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageSrcAccess <em>Image Src Access</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageDstAccess <em>Image Dst Access</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageSrcAccessMask <em>Image Src Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageDstAccessMask <em>Image Dst Access Mask</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,44 +92,24 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	protected EPipelineStage imageDstStage = IMAGE_DST_STAGE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getImageSrcAccess() <em>Image Src Access</em>}' attribute.
+	 * The cached value of the '{@link #getImageSrcAccessMask() <em>Image Src Access Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImageSrcAccess()
+	 * @see #getImageSrcAccessMask()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IMAGE_SRC_ACCESS_EDEFAULT = 0;
+	protected EList<EAccess> imageSrcAccessMask;
 
 	/**
-	 * The cached value of the '{@link #getImageSrcAccess() <em>Image Src Access</em>}' attribute.
+	 * The cached value of the '{@link #getImageDstAccessMask() <em>Image Dst Access Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImageSrcAccess()
+	 * @see #getImageDstAccessMask()
 	 * @generated
 	 * @ordered
 	 */
-	protected int imageSrcAccess = IMAGE_SRC_ACCESS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getImageDstAccess() <em>Image Dst Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImageDstAccess()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int IMAGE_DST_ACCESS_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getImageDstAccess() <em>Image Dst Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImageDstAccess()
-	 * @generated
-	 * @ordered
-	 */
-	protected int imageDstAccess = IMAGE_DST_ACCESS_EDEFAULT;
+	protected EList<EAccess> imageDstAccessMask;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -249,9 +233,13 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	 * @generated
 	 */
 	@Override
-	public int getImageSrcAccess()
+	public EList<EAccess> getImageSrcAccessMask()
 	{
-		return imageSrcAccess;
+		if (imageSrcAccessMask == null)
+		{
+			imageSrcAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this, GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK);
+		}
+		return imageSrcAccessMask;
 	}
 
 	/**
@@ -260,37 +248,13 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	 * @generated
 	 */
 	@Override
-	public void setImageSrcAccess(int newImageSrcAccess)
+	public EList<EAccess> getImageDstAccessMask()
 	{
-		int oldImageSrcAccess = imageSrcAccess;
-		imageSrcAccess = newImageSrcAccess;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS, oldImageSrcAccess, imageSrcAccess));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getImageDstAccess()
-	{
-		return imageDstAccess;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setImageDstAccess(int newImageDstAccess)
-	{
-		int oldImageDstAccess = imageDstAccess;
-		imageDstAccess = newImageDstAccess;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS, oldImageDstAccess, imageDstAccess));
+		if (imageDstAccessMask == null)
+		{
+			imageDstAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this, GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK);
+		}
+		return imageDstAccessMask;
 	}
 
 	/**
@@ -310,10 +274,10 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 				return getImageSrcStage();
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
 				return getImageDstStage();
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS:
-				return getImageSrcAccess();
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS:
-				return getImageDstAccess();
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+				return getImageSrcAccessMask();
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+				return getImageDstAccessMask();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -323,6 +287,7 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -337,11 +302,13 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
 				setImageDstStage((EPipelineStage)newValue);
 				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS:
-				setImageSrcAccess((Integer)newValue);
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+				getImageSrcAccessMask().clear();
+				getImageSrcAccessMask().addAll((Collection<? extends EAccess>)newValue);
 				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS:
-				setImageDstAccess((Integer)newValue);
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+				getImageDstAccessMask().clear();
+				getImageDstAccessMask().addAll((Collection<? extends EAccess>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -366,11 +333,11 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
 				setImageDstStage(IMAGE_DST_STAGE_EDEFAULT);
 				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS:
-				setImageSrcAccess(IMAGE_SRC_ACCESS_EDEFAULT);
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+				getImageSrcAccessMask().clear();
 				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS:
-				setImageDstAccess(IMAGE_DST_ACCESS_EDEFAULT);
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+				getImageDstAccessMask().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -392,10 +359,10 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 				return imageSrcStage != IMAGE_SRC_STAGE_EDEFAULT;
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
 				return imageDstStage != IMAGE_DST_STAGE_EDEFAULT;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS:
-				return imageSrcAccess != IMAGE_SRC_ACCESS_EDEFAULT;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS:
-				return imageDstAccess != IMAGE_DST_ACCESS_EDEFAULT;
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+				return imageSrcAccessMask != null && !imageSrcAccessMask.isEmpty();
+			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+				return imageDstAccessMask != null && !imageDstAccessMask.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -415,10 +382,10 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 		result.append(imageSrcStage);
 		result.append(", imageDstStage: ");
 		result.append(imageDstStage);
-		result.append(", imageSrcAccess: ");
-		result.append(imageSrcAccess);
-		result.append(", imageDstAccess: ");
-		result.append(imageDstAccess);
+		result.append(", imageSrcAccessMask: ");
+		result.append(imageSrcAccessMask);
+		result.append(", imageDstAccessMask: ");
+		result.append(imageDstAccessMask);
 		result.append(')');
 		return result.toString();
 	}

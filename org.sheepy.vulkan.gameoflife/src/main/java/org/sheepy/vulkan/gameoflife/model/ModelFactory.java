@@ -1,7 +1,5 @@
 package org.sheepy.vulkan.gameoflife.model;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.sheepy.common.api.types.SVector2i;
 import org.sheepy.common.model.application.Application;
 import org.sheepy.common.model.application.impl.ApplicationImpl;
@@ -134,8 +132,8 @@ public class ModelFactory
 		final ImagePipeline imagePipeline = new ImagePipelineImpl();
 		imagePipeline.setImageSrcStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		imagePipeline.setImageDstStage(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
-		imagePipeline.setImageSrcAccess(VK_ACCESS_SHADER_WRITE_BIT);
-		imagePipeline.setImageDstAccess(VK_ACCESS_SHADER_WRITE_BIT);
+		imagePipeline.getImageSrcAccessMask().add(EAccess.SHADER_WRITE_BIT);
+		imagePipeline.getImageDstAccessMask().add(EAccess.SHADER_WRITE_BIT);
 		imagePipeline.setImage(boardImage);
 		imagePipeline.setStage(ECommandStage.RENDER);
 

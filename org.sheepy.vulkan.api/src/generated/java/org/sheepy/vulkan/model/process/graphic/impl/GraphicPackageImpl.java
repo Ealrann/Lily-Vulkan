@@ -1368,7 +1368,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImagePipeline_ImageSrcAccess()
+	public EAttribute getImagePipeline_ImageSrcAccessMask()
 	{
 		return (EAttribute)imagePipelineEClass.getEStructuralFeatures().get(3);
 	}
@@ -1379,7 +1379,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImagePipeline_ImageDstAccess()
+	public EAttribute getImagePipeline_ImageDstAccessMask()
 	{
 		return (EAttribute)imagePipelineEClass.getEStructuralFeatures().get(4);
 	}
@@ -1555,8 +1555,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(imagePipelineEClass, IMAGE_PIPELINE__IMAGE);
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_SRC_STAGE);
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_STAGE);
-		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_SRC_ACCESS);
-		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_ACCESS);
+		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK);
+		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK);
 
 		pipelineImageBarrierEClass = createEClass(PIPELINE_IMAGE_BARRIER);
 		createEReference(pipelineImageBarrierEClass, PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER);
@@ -1730,8 +1730,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEReference(getImagePipeline_Image(), theResourcePackage.getImage(), null, "image", null, 1, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImagePipeline_ImageSrcStage(), theEnumerationPackage.getEPipelineStage(), "imageSrcStage", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImagePipeline_ImageDstStage(), theEnumerationPackage.getEPipelineStage(), "imageDstStage", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImagePipeline_ImageSrcAccess(), theEcorePackage.getEInt(), "imageSrcAccess", "0", 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImagePipeline_ImageDstAccess(), theEcorePackage.getEInt(), "imageDstAccess", "0", 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImagePipeline_ImageSrcAccessMask(), theEnumerationPackage.getEAccess(), "imageSrcAccessMask", null, 0, -1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImagePipeline_ImageDstAccessMask(), theEnumerationPackage.getEAccess(), "imageDstAccessMask", null, 0, -1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pipelineImageBarrierEClass, PipelineImageBarrier.class, "PipelineImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPipelineImageBarrier_ImageBarrier(), theResourcePackage.getImageBarrier(), null, "imageBarrier", null, 0, 1, PipelineImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

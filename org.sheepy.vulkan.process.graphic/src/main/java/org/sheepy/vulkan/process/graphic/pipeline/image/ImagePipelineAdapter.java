@@ -65,7 +65,8 @@ public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 		initialBarriers = new InitialImagePipelineBarrier[size];
 		for (int i = 0; i < size; i++)
 		{
-			initialBarriers[i] = new InitialImagePipelineBarrier(pipeline);
+			var view = context.imageViewManager.getImageView(i);
+			initialBarriers[i] = new InitialImagePipelineBarrier(pipeline, view);
 			initialBarriers[i].allocate(stack);
 		}
 		finalBarriers = new FinalImagePipelineBarrier[size];
