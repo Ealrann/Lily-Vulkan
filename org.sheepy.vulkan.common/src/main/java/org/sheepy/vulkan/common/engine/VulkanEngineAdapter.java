@@ -3,9 +3,12 @@ package org.sheepy.vulkan.common.engine;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.vulkan.EXTDebugReport.vkDestroyDebugReportCallbackEXT;
 import static org.lwjgl.vulkan.KHRSwapchain.VK_KHR_SWAPCHAIN_EXTENSION_NAME;
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_MAKE_VERSION;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_APPLICATION_INFO;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+import static org.lwjgl.vulkan.VK10.vkCreateInstance;
+import static org.lwjgl.vulkan.VK10.vkDestroyInstance;
 
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +19,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkApplicationInfo;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
@@ -37,6 +39,7 @@ import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.device.judge.PhysicalDeviceSelector;
 import org.sheepy.vulkan.common.input.VulkanInputManager;
+import org.sheepy.vulkan.common.util.LayerFinder;
 import org.sheepy.vulkan.common.util.Logger;
 import org.sheepy.vulkan.common.util.VulkanUtils;
 import org.sheepy.vulkan.common.window.Window;
@@ -47,13 +50,13 @@ import org.sheepy.vulkan.model.VulkanPackage;
 public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		implements IVulkanEngineAdapter, IAutoAdapter
 {
-	private static final ByteBuffer[] LAYERS_TO_ENABLE = {
-			MemoryUtil.memUTF8("VK_LAYER_LUNARG_standard_validation"),
-			MemoryUtil.memUTF8("VK_LAYER_GOOGLE_threading"),
-			MemoryUtil.memUTF8("VK_LAYER_LUNARG_parameter_validation"),
-			MemoryUtil.memUTF8("VK_LAYER_LUNARG_object_tracker"),
-			MemoryUtil.memUTF8("VK_LAYER_LUNARG_core_validation"),
-			MemoryUtil.memUTF8("VK_LAYER_GOOGLE_unique_objects")
+	private static final String[] LAYERS_TO_ENABLE = {
+			"VK_LAYER_LUNARG_standard_validation",
+			"VK_LAYER_GOOGLE_threading",
+			"VK_LAYER_LUNARG_parameter_validation",
+			"VK_LAYER_LUNARG_object_tracker",
+			"VK_LAYER_LUNARG_core_validation",
+			"VK_LAYER_GOOGLE_unique_objects"
 	};
 
 	private static final String[] REQUIRED_EXTENSIONS = {
@@ -286,11 +289,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	private void loadLayerNames(MemoryStack stack)
 	{
 		VulkanUtils.printAvailableExtensions(stack);
-		VulkanUtils.printAvailableLayers(stack);
-		ppEnabledLayerNames = stack.mallocPointer(LAYERS_TO_ENABLE.length);
-		for (int i = 0; i < LAYERS_TO_ENABLE.length; i++)
-			ppEnabledLayerNames.put(LAYERS_TO_ENABLE[i]);
-		ppEnabledLayerNames.flip();
+		ppEnabledLayerNames = LayerFinder.convertToPointerBuffer(stack, LAYERS_TO_ENABLE);
 	}
 
 	private void pickPhysicalDevice(MemoryStack stack)
