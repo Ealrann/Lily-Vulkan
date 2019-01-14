@@ -172,13 +172,27 @@ public class SwapChainManager implements IBasicAllocable, IQueueManagerListener,
 		vkGetSwapchainImagesKHR(vkDevice, swapChain, pImageCount, pSwapchainImages);
 
 		swapChainImages = List.copyOf(VulkanBufferUtils.toList(pSwapchainImages));
+
+		if (context.application.isDebug())
+		{
+			printSwapChainInformations();
+		}
+	}
+
+	private void printSwapChainInformations()
+	{
+		String presentationName = EPresentMode.get(presentMode).getName();
+		int imageCount = swapChainImages.size();
+		String message = String.format(
+				"Swapchain created:\n\t- PresentationMode: %s\n\t- Number of images: %d",
+				presentationName, imageCount);
+		System.out.println(message);
 	}
 
 	private void selectPresentMode(GraphicContext context, Surface surface)
 	{
 		final var selector = new PresentationModeSelector(context.logicalDevice, surface);
 		presentMode = selector.findBestMode(desiredMode);
-		System.out.println("Presentation mode: " + EPresentMode.get(presentMode).getName());
 	}
 
 	public List<Long> getSwapChainImages()

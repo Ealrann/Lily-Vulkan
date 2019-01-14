@@ -27,7 +27,7 @@ public class ComputeContext extends ProcessContext
 							DescriptorPool descriptorPool,
 							ComputeProcess computeProcess)
 	{
-		super(executionManager, descriptorPool);
+		super(executionManager, descriptorPool, computeProcess);
 		this.computeProcess = computeProcess;
 
 		commandBuffers = new ComputeCommandBuffers(this);

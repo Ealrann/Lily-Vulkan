@@ -33,7 +33,7 @@ public class GraphicContext extends ProcessContext
 							DescriptorPool descriptorPool,
 							GraphicProcess graphicProcess)
 	{
-		super(executionManager, descriptorPool);
+		super(executionManager, descriptorPool, graphicProcess);
 
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
