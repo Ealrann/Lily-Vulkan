@@ -7,6 +7,7 @@
 package org.sheepy.vulkan.model.resource
 
 import java.nio.ByteBuffer
+import org.sheepy.common.model.types.LNamedElement
 import org.sheepy.vulkan.model.IResource
 import org.sheepy.vulkan.model.enumeration.EAccess
 import org.sheepy.vulkan.model.enumeration.EBorderColor
@@ -21,7 +22,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
 import org.sheepy.vulkan.model.enumeration.EShaderStage
-import org.sheepy.common.model.types.LNamedElement
 
 interface BasicResource extends IResource
 {
@@ -58,7 +58,7 @@ class ImageLayout
 {
 	EPipelineStage stage
 	EImageLayout layout
-	int access
+	EAccess[] accessMask
 }
 
 abstract class SampledImage extends PipelineResource
@@ -155,8 +155,8 @@ class ImageTransition
 {
 	EImageLayout srcLayout
 	EImageLayout dstLayout
-	int srcAccess
-	int dstAccess
+	EAccess[] srcAccessMask
+	EAccess[] dstAccessMask
 }
 
 // ---------------------

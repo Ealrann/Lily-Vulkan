@@ -69,7 +69,7 @@ public class ImageLayoutItemProvider
 
 			addStagePropertyDescriptor(object);
 			addLayoutPropertyDescriptor(object);
-			addAccessPropertyDescriptor(object);
+			addAccessMaskPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -121,24 +121,24 @@ public class ImageLayoutItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Access feature.
+	 * This adds a property descriptor for the Access Mask feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAccessPropertyDescriptor(Object object)
+	protected void addAccessMaskPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ImageLayout_access_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_access_feature", "_UI_ImageLayout_type"),
-				 ResourcePackage.Literals.IMAGE_LAYOUT__ACCESS,
+				 getString("_UI_ImageLayout_accessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_accessMask_feature", "_UI_ImageLayout_type"),
+				 ResourcePackage.Literals.IMAGE_LAYOUT__ACCESS_MASK,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -188,7 +188,7 @@ public class ImageLayoutItemProvider
 		{
 			case ResourcePackage.IMAGE_LAYOUT__STAGE:
 			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS:
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

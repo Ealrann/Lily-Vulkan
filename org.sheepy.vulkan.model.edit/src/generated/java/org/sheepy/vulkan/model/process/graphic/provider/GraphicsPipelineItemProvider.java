@@ -14,8 +14,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
@@ -196,11 +194,6 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
-				 GraphicFactory.eINSTANCE.createPipelineImageBarrier()));
 
 		newChildDescriptors.add
 			(createChildParameter

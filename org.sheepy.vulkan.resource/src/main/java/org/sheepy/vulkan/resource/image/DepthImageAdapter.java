@@ -15,13 +15,14 @@ import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.vulkan.common.resource.image.IDepthImageAdapter;
 import org.sheepy.vulkan.common.util.ModelUtil;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.DepthImage;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
-import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
+import org.sheepy.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.vulkan.resource.nativehelper.VkImageView;
 
@@ -83,14 +84,13 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter implements I
 		final var transition = new ImageTransitionImpl();
 		transition.setSrcLayout(EImageLayout.UNDEFINED);
 		transition.setDstLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
-		transition.setSrcAccess(0);
-		transition.setDstAccess(VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT
-				| VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT);
+		transition.getDstAccessMask().add(EAccess.DEPTH_STENCIL_ATTACHMENT_READ_BIT);
+		transition.getDstAccessMask().add(EAccess.DEPTH_STENCIL_ATTACHMENT_WRITE_BIT);
 
 		barrier.getTransitions().add(transition);
 
-		var barrierExecutor = new ImageBarrierExecutor();
-		barrierExecutor.allocate(barrier);
+		var barrierExecutor = BarrierExecutorFactory.create(barrier);
+		barrierExecutor.allocate();
 		final SingleTimeCommand stc = new SingleTimeCommand(context)
 		{
 			@Override

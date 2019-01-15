@@ -72,7 +72,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	{
 		execute(null);
 	}
-	
+
 	@Override
 	public void execute(IFence fence)
 	{
@@ -89,17 +89,16 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	private void submitAndPresentImage(Integer imageIndex, IFence fence)
 	{
 		var queueManager = executionManager.logicalDevice.queueManager;
-		var graphicQueue = queueManager.getGraphicQueue();
-		var presentQueue = queueManager.getPresentQueue();
+		var graphicQueue = queueManager.getGraphicQueue().vkQueue;
+		var presentQueue = queueManager.getPresentQueue().vkQueue;
 		var fenceId = fence != null ? fence.getId() : VK_NULL_HANDLE;
 		FrameSubmission submission = context.submission;
 		VkSubmitInfo submitInfo = submission.getSubmitInfo(imageIndex);
 		VkPresentInfoKHR presentInfo = submission.getPresentInfo(imageIndex);
 
-		Logger.check(vkQueueSubmit(graphicQueue.vkQueue, submitInfo, fenceId),
-				FAILED_SUBMIT_GRAPHIC);
+		Logger.check(vkQueueSubmit(graphicQueue, submitInfo, fenceId), FAILED_SUBMIT_GRAPHIC);
 
-		Logger.check(vkQueuePresentKHR(presentQueue.vkQueue, presentInfo), FAILED_SUBMIT_PRESENT);
+		Logger.check(vkQueuePresentKHR(presentQueue, presentInfo), FAILED_SUBMIT_PRESENT);
 	}
 
 	public SignalEmitter getImageAcquiredEmitter()

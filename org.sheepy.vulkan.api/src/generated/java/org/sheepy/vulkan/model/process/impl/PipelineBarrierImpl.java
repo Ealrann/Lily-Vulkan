@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
@@ -23,9 +25,11 @@ import org.sheepy.common.model.root.RootPackage.Literals;
 import org.sheepy.common.model.types.LNamedElement;
 import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.IPipelineUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
 import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.vulkan.model.resource.Barrier;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,11 +43,14 @@ import org.sheepy.vulkan.model.process.ProcessPackage;
  *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getBarrier <em>Barrier</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getSrcQueue <em>Src Queue</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getDstQueue <em>Dst Queue</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements PipelineBarrier
+public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements PipelineBarrier
 {
 	/**
 	 * The cached value of the '{@link #getContentObjects() <em>Content Objects</em>}' attribute.
@@ -114,6 +121,36 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getBarrier() <em>Barrier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBarrier()
+	 * @generated
+	 * @ordered
+	 */
+	protected Barrier barrier;
+
+	/**
+	 * The cached value of the '{@link #getSrcQueue() <em>Src Queue</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSrcQueue()
+	 * @generated
+	 * @ordered
+	 */
+	protected AbstractProcess srcQueue;
+
+	/**
+	 * The cached value of the '{@link #getDstQueue() <em>Dst Queue</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDstQueue()
+	 * @generated
+	 * @ordered
+	 */
+	protected AbstractProcess dstQueue;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -242,6 +279,146 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
+	public Barrier getBarrier()
+	{
+		return barrier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBarrier(Barrier newBarrier, NotificationChain msgs)
+	{
+		Barrier oldBarrier = barrier;
+		barrier = newBarrier;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__BARRIER, oldBarrier, newBarrier);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBarrier(Barrier newBarrier)
+	{
+		if (newBarrier != barrier)
+		{
+			NotificationChain msgs = null;
+			if (barrier != null)
+				msgs = ((InternalEObject)barrier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE_BARRIER__BARRIER, null, msgs);
+			if (newBarrier != null)
+				msgs = ((InternalEObject)newBarrier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.PIPELINE_BARRIER__BARRIER, null, msgs);
+			msgs = basicSetBarrier(newBarrier, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__BARRIER, newBarrier, newBarrier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AbstractProcess getSrcQueue()
+	{
+		if (srcQueue != null && srcQueue.eIsProxy())
+		{
+			InternalEObject oldSrcQueue = (InternalEObject)srcQueue;
+			srcQueue = (AbstractProcess)eResolveProxy(oldSrcQueue);
+			if (srcQueue != oldSrcQueue)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PIPELINE_BARRIER__SRC_QUEUE, oldSrcQueue, srcQueue));
+			}
+		}
+		return srcQueue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AbstractProcess basicGetSrcQueue()
+	{
+		return srcQueue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSrcQueue(AbstractProcess newSrcQueue)
+	{
+		AbstractProcess oldSrcQueue = srcQueue;
+		srcQueue = newSrcQueue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__SRC_QUEUE, oldSrcQueue, srcQueue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AbstractProcess getDstQueue()
+	{
+		if (dstQueue != null && dstQueue.eIsProxy())
+		{
+			InternalEObject oldDstQueue = (InternalEObject)dstQueue;
+			dstQueue = (AbstractProcess)eResolveProxy(oldDstQueue);
+			if (dstQueue != oldDstQueue)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PIPELINE_BARRIER__DST_QUEUE, oldDstQueue, dstQueue));
+			}
+		}
+		return dstQueue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AbstractProcess basicGetDstQueue()
+	{
+		return dstQueue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDstQueue(AbstractProcess newDstQueue)
+	{
+		AbstractProcess oldDstQueue = dstQueue;
+		dstQueue = newDstQueue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__DST_QUEUE, oldDstQueue, dstQueue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public <T extends LObject> EList<T> createContainmentEList(final EClass targetEClass)
 	{
 		EList<T> res = null;
@@ -336,6 +513,22 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ProcessPackage.PIPELINE_BARRIER__BARRIER:
+				return basicSetBarrier(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -348,6 +541,14 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 				return getStage();
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				return getName();
+			case ProcessPackage.PIPELINE_BARRIER__BARRIER:
+				return getBarrier();
+			case ProcessPackage.PIPELINE_BARRIER__SRC_QUEUE:
+				if (resolve) return getSrcQueue();
+				return basicGetSrcQueue();
+			case ProcessPackage.PIPELINE_BARRIER__DST_QUEUE:
+				if (resolve) return getDstQueue();
+				return basicGetDstQueue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -375,6 +576,15 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				setName((String)newValue);
 				return;
+			case ProcessPackage.PIPELINE_BARRIER__BARRIER:
+				setBarrier((Barrier)newValue);
+				return;
+			case ProcessPackage.PIPELINE_BARRIER__SRC_QUEUE:
+				setSrcQueue((AbstractProcess)newValue);
+				return;
+			case ProcessPackage.PIPELINE_BARRIER__DST_QUEUE:
+				setDstQueue((AbstractProcess)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -401,6 +611,15 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case ProcessPackage.PIPELINE_BARRIER__BARRIER:
+				setBarrier((Barrier)null);
+				return;
+			case ProcessPackage.PIPELINE_BARRIER__SRC_QUEUE:
+				setSrcQueue((AbstractProcess)null);
+				return;
+			case ProcessPackage.PIPELINE_BARRIER__DST_QUEUE:
+				setDstQueue((AbstractProcess)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -423,6 +642,12 @@ public abstract class PipelineBarrierImpl extends MinimalEObjectImpl.Container i
 				return stage != STAGE_EDEFAULT;
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ProcessPackage.PIPELINE_BARRIER__BARRIER:
+				return barrier != null;
+			case ProcessPackage.PIPELINE_BARRIER__SRC_QUEUE:
+				return srcQueue != null;
+			case ProcessPackage.PIPELINE_BARRIER__DST_QUEUE:
+				return dstQueue != null;
 		}
 		return super.eIsSet(featureID);
 	}

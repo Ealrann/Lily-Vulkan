@@ -34,7 +34,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.sheepy.vulkan.model.SharedResources;
 import org.sheepy.vulkan.model.VulkanPackage;
-
 import org.sheepy.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.resource.ResourcePackage;
 

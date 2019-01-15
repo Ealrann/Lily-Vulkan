@@ -1,7 +1,5 @@
 package org.sheepy.vulkan.process.graphic.pipeline.image;
 
-import static org.lwjgl.vulkan.VK10.VK_ACCESS_TRANSFER_READ_BIT;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
@@ -13,15 +11,14 @@ import org.sheepy.vulkan.model.resource.ImageBarrier;
 import org.sheepy.vulkan.model.resource.ImageTransition;
 import org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl;
 import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
-import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
+import org.sheepy.vulkan.resource.barrier.BarrierExecutorFactory;
+import org.sheepy.vulkan.resource.barrier.IBarrierExecutor;
 
 public class FinalImagePipelineBarrier implements IBasicAllocable
 {
-	private final ImageBarrierExecutor sourceExecutor = new ImageBarrierExecutor();
-
 	private final ImagePipeline pipeline;
 
-	private ImageBarrier sourceBarrier = null;
+	private IBarrierExecutor sourceExecutor;
 
 	public FinalImagePipelineBarrier(ImagePipeline pipeline)
 	{
@@ -31,17 +28,16 @@ public class FinalImagePipelineBarrier implements IBasicAllocable
 	@Override
 	public void allocate(MemoryStack stack)
 	{
-		allocateSourceBarrier();
+		ImageBarrier barrier = allocateSourceBarrier();
 
-		sourceExecutor.allocate(sourceBarrier);
+		sourceExecutor = BarrierExecutorFactory.create(barrier);
+		sourceExecutor.allocate();
 	}
 
 	@Override
 	public void free()
 	{
 		sourceExecutor.free();
-
-		sourceBarrier = null;
 	}
 
 	public void execute(VkCommandBuffer commandBuffer)
@@ -49,28 +45,24 @@ public class FinalImagePipelineBarrier implements IBasicAllocable
 		sourceExecutor.execute(commandBuffer);
 	}
 
-	private void allocateSourceBarrier()
+	private ImageBarrier allocateSourceBarrier()
 	{
 		var srcImage = pipeline.getImage();
 
-		sourceBarrier = new ImageBarrierImpl();
-		sourceBarrier.setSrcStage(EPipelineStage.TRANSFER_BIT);
-		sourceBarrier.setDstStage(pipeline.getImageDstStage());
-		sourceBarrier.setImage(srcImage);
-
-		int dstAccessMask = 0;
-		for (EAccess access : pipeline.getImageDstAccessMask())
-		{
-			dstAccessMask |= access.getValue();
-		}
+		ImageBarrier barrier = new ImageBarrierImpl();
+		barrier.setSrcStage(EPipelineStage.TRANSFER_BIT);
+		barrier.setDstStage(pipeline.getImageDstStage());
+		barrier.setImage(srcImage);
 
 		ImageTransition transition = new ImageTransitionImpl();
 		transition.setSrcLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
 		transition.setDstLayout(EImageLayout.GENERAL);
-		transition.setSrcAccess(VK_ACCESS_TRANSFER_READ_BIT);
-		transition.setDstAccess(dstAccessMask);
+		transition.getSrcAccessMask().add(EAccess.TRANSFER_READ_BIT);
+		transition.getDstAccessMask().addAll(pipeline.getImageDstAccessMask());
 
-		sourceBarrier.getTransitions().add(transition);
+		barrier.getTransitions().add(transition);
+
+		return barrier;
 	}
 
 	@Override

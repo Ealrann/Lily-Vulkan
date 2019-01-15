@@ -35,7 +35,6 @@ import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGUIPipeline;
 import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
-import org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier;
 import org.sheepy.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.vulkan.model.process.graphic.Scissor;
@@ -201,13 +200,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass imagePipelineEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass pipelineImageBarrierEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1390,20 +1382,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPipelineImageBarrier()
+	public EReference getImagePipeline_SrcQueue()
 	{
-		return pipelineImageBarrierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPipelineImageBarrier_ImageBarrier()
-	{
-		return (EReference)pipelineImageBarrierEClass.getEStructuralFeatures().get(0);
+		return (EReference)imagePipelineEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1557,9 +1538,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_STAGE);
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK);
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK);
-
-		pipelineImageBarrierEClass = createEClass(PIPELINE_IMAGE_BARRIER);
-		createEReference(pipelineImageBarrierEClass, PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER);
+		createEReference(imagePipelineEClass, IMAGE_PIPELINE__SRC_QUEUE);
 	}
 
 	/**
@@ -1609,7 +1588,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		staticViewportStateEClass.getESuperTypes().add(this.getViewportState());
 		dynamicViewportStateEClass.getESuperTypes().add(this.getViewportState());
 		imagePipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
-		pipelineImageBarrierEClass.getESuperTypes().add(theProcessPackage.getPipelineBarrier());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(graphicConfigurationEClass, GraphicConfiguration.class, "GraphicConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1732,9 +1710,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getImagePipeline_ImageDstStage(), theEnumerationPackage.getEPipelineStage(), "imageDstStage", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImagePipeline_ImageSrcAccessMask(), theEnumerationPackage.getEAccess(), "imageSrcAccessMask", null, 0, -1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImagePipeline_ImageDstAccessMask(), theEnumerationPackage.getEAccess(), "imageDstAccessMask", null, 0, -1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(pipelineImageBarrierEClass, PipelineImageBarrier.class, "PipelineImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPipelineImageBarrier_ImageBarrier(), theResourcePackage.getImageBarrier(), null, "imageBarrier", null, 0, 1, PipelineImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImagePipeline_SrcQueue(), theProcessPackage.getAbstractProcess(), null, "srcQueue", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

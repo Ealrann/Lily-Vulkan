@@ -2,8 +2,10 @@
  */
 package org.sheepy.vulkan.model.resource;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
@@ -17,8 +19,8 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.resource.ImageTransition#getSrcLayout <em>Src Layout</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.ImageTransition#getDstLayout <em>Dst Layout</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.ImageTransition#getSrcAccess <em>Src Access</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.ImageTransition#getDstAccess <em>Dst Access</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.ImageTransition#getSrcAccessMask <em>Src Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.ImageTransition#getDstAccessMask <em>Dst Access Mask</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImageTransition()
@@ -86,55 +88,39 @@ public interface ImageTransition extends EObject
 	void setDstLayout(EImageLayout value);
 
 	/**
-	 * Returns the value of the '<em><b>Src Access</b></em>' attribute.
+	 * Returns the value of the '<em><b>Src Access Mask</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Src Access</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Src Access Mask</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Src Access</em>' attribute.
-	 * @see #setSrcAccess(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImageTransition_SrcAccess()
+	 * @return the value of the '<em>Src Access Mask</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImageTransition_SrcAccessMask()
 	 * @model unique="false"
 	 * @generated
 	 */
-	int getSrcAccess();
+	EList<EAccess> getSrcAccessMask();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.ImageTransition#getSrcAccess <em>Src Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Src Access</em>' attribute.
-	 * @see #getSrcAccess()
-	 * @generated
-	 */
-	void setSrcAccess(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Dst Access</b></em>' attribute.
+	 * Returns the value of the '<em><b>Dst Access Mask</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dst Access</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Dst Access Mask</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dst Access</em>' attribute.
-	 * @see #setDstAccess(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImageTransition_DstAccess()
+	 * @return the value of the '<em>Dst Access Mask</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImageTransition_DstAccessMask()
 	 * @model unique="false"
 	 * @generated
 	 */
-	int getDstAccess();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.ImageTransition#getDstAccess <em>Dst Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dst Access</em>' attribute.
-	 * @see #getDstAccess()
-	 * @generated
-	 */
-	void setDstAccess(int value);
+	EList<EAccess> getDstAccessMask();
 
 } // ImageTransition

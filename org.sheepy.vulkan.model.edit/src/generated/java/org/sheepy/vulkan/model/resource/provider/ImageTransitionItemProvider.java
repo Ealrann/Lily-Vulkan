@@ -69,8 +69,8 @@ public class ImageTransitionItemProvider
 
 			addSrcLayoutPropertyDescriptor(object);
 			addDstLayoutPropertyDescriptor(object);
-			addSrcAccessPropertyDescriptor(object);
-			addDstAccessPropertyDescriptor(object);
+			addSrcAccessMaskPropertyDescriptor(object);
+			addDstAccessMaskPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -122,47 +122,47 @@ public class ImageTransitionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Src Access feature.
+	 * This adds a property descriptor for the Src Access Mask feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSrcAccessPropertyDescriptor(Object object)
+	protected void addSrcAccessMaskPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ImageTransition_srcAccess_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageTransition_srcAccess_feature", "_UI_ImageTransition_type"),
-				 ResourcePackage.Literals.IMAGE_TRANSITION__SRC_ACCESS,
+				 getString("_UI_ImageTransition_srcAccessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageTransition_srcAccessMask_feature", "_UI_ImageTransition_type"),
+				 ResourcePackage.Literals.IMAGE_TRANSITION__SRC_ACCESS_MASK,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Dst Access feature.
+	 * This adds a property descriptor for the Dst Access Mask feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDstAccessPropertyDescriptor(Object object)
+	protected void addDstAccessMaskPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ImageTransition_dstAccess_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageTransition_dstAccess_feature", "_UI_ImageTransition_type"),
-				 ResourcePackage.Literals.IMAGE_TRANSITION__DST_ACCESS,
+				 getString("_UI_ImageTransition_dstAccessMask_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageTransition_dstAccessMask_feature", "_UI_ImageTransition_type"),
+				 ResourcePackage.Literals.IMAGE_TRANSITION__DST_ACCESS_MASK,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -212,8 +212,8 @@ public class ImageTransitionItemProvider
 		{
 			case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
 			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
-			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS:
-			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS:
+			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -20,7 +20,6 @@ import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.model.VulkanPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
-
 import org.sheepy.vulkan.model.resource.AbstractConstants;
 import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
 import org.sheepy.vulkan.model.resource.AbstractModuleResource;
@@ -569,7 +568,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImageLayout_Access()
+	public EAttribute getImageLayout_AccessMask()
 	{
 		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(2);
 	}
@@ -1119,7 +1118,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImageTransition_SrcAccess()
+	public EAttribute getImageTransition_SrcAccessMask()
 	{
 		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1130,7 +1129,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImageTransition_DstAccess()
+	public EAttribute getImageTransition_DstAccessMask()
 	{
 		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -1355,7 +1354,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		imageLayoutEClass = createEClass(IMAGE_LAYOUT);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__STAGE);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__LAYOUT);
-		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__ACCESS);
+		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__ACCESS_MASK);
 
 		sampledImageEClass = createEClass(SAMPLED_IMAGE);
 		createEReference(sampledImageEClass, SAMPLED_IMAGE__SAMPLER);
@@ -1420,8 +1419,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		imageTransitionEClass = createEClass(IMAGE_TRANSITION);
 		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__SRC_LAYOUT);
 		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__DST_LAYOUT);
-		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__SRC_ACCESS);
-		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__DST_ACCESS);
+		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__SRC_ACCESS_MASK);
+		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__DST_ACCESS_MASK);
 
 		shaderEClass = createEClass(SHADER);
 		createEReference(shaderEClass, SHADER__FILE);
@@ -1534,7 +1533,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImageLayout_Stage(), theEnumerationPackage.getEPipelineStage(), "stage", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageLayout_Layout(), theEnumerationPackage.getEImageLayout(), "layout", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageLayout_Access(), theEcorePackage.getEInt(), "access", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_AccessMask(), theEnumerationPackage.getEAccess(), "accessMask", null, 0, -1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSampledImage_Sampler(), this.getSampler(), null, "sampler", null, 0, 1, SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1599,8 +1598,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(imageTransitionEClass, ImageTransition.class, "ImageTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImageTransition_SrcLayout(), theEnumerationPackage.getEImageLayout(), "srcLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageTransition_DstLayout(), theEnumerationPackage.getEImageLayout(), "dstLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_SrcAccess(), theEcorePackage.getEInt(), "srcAccess", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_DstAccess(), theEcorePackage.getEInt(), "dstAccess", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageTransition_SrcAccessMask(), theEnumerationPackage.getEAccess(), "srcAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageTransition_DstAccessMask(), theEnumerationPackage.getEAccess(), "dstAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getShader_File(), this.getPathResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -2,13 +2,17 @@
  */
 package org.sheepy.vulkan.model.resource.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 import org.sheepy.vulkan.model.resource.ImageTransition;
@@ -24,8 +28,8 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl#getSrcLayout <em>Src Layout</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl#getDstLayout <em>Dst Layout</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl#getSrcAccess <em>Src Access</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl#getDstAccess <em>Dst Access</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl#getSrcAccessMask <em>Src Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl#getDstAccessMask <em>Dst Access Mask</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,44 +77,24 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	protected EImageLayout dstLayout = DST_LAYOUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSrcAccess() <em>Src Access</em>}' attribute.
+	 * The cached value of the '{@link #getSrcAccessMask() <em>Src Access Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSrcAccess()
+	 * @see #getSrcAccessMask()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SRC_ACCESS_EDEFAULT = 0;
+	protected EList<EAccess> srcAccessMask;
 
 	/**
-	 * The cached value of the '{@link #getSrcAccess() <em>Src Access</em>}' attribute.
+	 * The cached value of the '{@link #getDstAccessMask() <em>Dst Access Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSrcAccess()
+	 * @see #getDstAccessMask()
 	 * @generated
 	 * @ordered
 	 */
-	protected int srcAccess = SRC_ACCESS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDstAccess() <em>Dst Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDstAccess()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int DST_ACCESS_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getDstAccess() <em>Dst Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDstAccess()
-	 * @generated
-	 * @ordered
-	 */
-	protected int dstAccess = DST_ACCESS_EDEFAULT;
+	protected EList<EAccess> dstAccessMask;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,9 +173,13 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public int getSrcAccess()
+	public EList<EAccess> getSrcAccessMask()
 	{
-		return srcAccess;
+		if (srcAccessMask == null)
+		{
+			srcAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this, ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK);
+		}
+		return srcAccessMask;
 	}
 
 	/**
@@ -200,37 +188,13 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public void setSrcAccess(int newSrcAccess)
+	public EList<EAccess> getDstAccessMask()
 	{
-		int oldSrcAccess = srcAccess;
-		srcAccess = newSrcAccess;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS, oldSrcAccess, srcAccess));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getDstAccess()
-	{
-		return dstAccess;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDstAccess(int newDstAccess)
-	{
-		int oldDstAccess = dstAccess;
-		dstAccess = newDstAccess;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_TRANSITION__DST_ACCESS, oldDstAccess, dstAccess));
+		if (dstAccessMask == null)
+		{
+			dstAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this, ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK);
+		}
+		return dstAccessMask;
 	}
 
 	/**
@@ -247,10 +211,10 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 				return getSrcLayout();
 			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
 				return getDstLayout();
-			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS:
-				return getSrcAccess();
-			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS:
-				return getDstAccess();
+			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+				return getSrcAccessMask();
+			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+				return getDstAccessMask();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -260,6 +224,7 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -271,11 +236,13 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
 				setDstLayout((EImageLayout)newValue);
 				return;
-			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS:
-				setSrcAccess((Integer)newValue);
+			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+				getSrcAccessMask().clear();
+				getSrcAccessMask().addAll((Collection<? extends EAccess>)newValue);
 				return;
-			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS:
-				setDstAccess((Integer)newValue);
+			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+				getDstAccessMask().clear();
+				getDstAccessMask().addAll((Collection<? extends EAccess>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -297,11 +264,11 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
 				setDstLayout(DST_LAYOUT_EDEFAULT);
 				return;
-			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS:
-				setSrcAccess(SRC_ACCESS_EDEFAULT);
+			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+				getSrcAccessMask().clear();
 				return;
-			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS:
-				setDstAccess(DST_ACCESS_EDEFAULT);
+			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+				getDstAccessMask().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -321,10 +288,10 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 				return srcLayout != SRC_LAYOUT_EDEFAULT;
 			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
 				return dstLayout != DST_LAYOUT_EDEFAULT;
-			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS:
-				return srcAccess != SRC_ACCESS_EDEFAULT;
-			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS:
-				return dstAccess != DST_ACCESS_EDEFAULT;
+			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+				return srcAccessMask != null && !srcAccessMask.isEmpty();
+			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+				return dstAccessMask != null && !dstAccessMask.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -344,10 +311,10 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 		result.append(srcLayout);
 		result.append(", dstLayout: ");
 		result.append(dstLayout);
-		result.append(", srcAccess: ");
-		result.append(srcAccess);
-		result.append(", dstAccess: ");
-		result.append(dstAccess);
+		result.append(", srcAccessMask: ");
+		result.append(srcAccessMask);
+		result.append(", dstAccessMask: ");
+		result.append(dstAccessMask);
 		result.append(')');
 		return result.toString();
 	}

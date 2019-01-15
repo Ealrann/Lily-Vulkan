@@ -2,13 +2,17 @@
  */
 package org.sheepy.vulkan.model.resource.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
@@ -25,7 +29,7 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl#getLayout <em>Layout</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl#getAccess <em>Access</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl#getAccessMask <em>Access Mask</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,24 +77,14 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	protected EImageLayout layout = LAYOUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getAccess() <em>Access</em>}' attribute.
+	 * The cached value of the '{@link #getAccessMask() <em>Access Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAccess()
+	 * @see #getAccessMask()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ACCESS_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getAccess() <em>Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAccess()
-	 * @generated
-	 * @ordered
-	 */
-	protected int access = ACCESS_EDEFAULT;
+	protected EList<EAccess> accessMask;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -169,23 +163,13 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	 * @generated
 	 */
 	@Override
-	public int getAccess()
+	public EList<EAccess> getAccessMask()
 	{
-		return access;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setAccess(int newAccess)
-	{
-		int oldAccess = access;
-		access = newAccess;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_LAYOUT__ACCESS, oldAccess, access));
+		if (accessMask == null)
+		{
+			accessMask = new EDataTypeEList<EAccess>(EAccess.class, this, ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK);
+		}
+		return accessMask;
 	}
 
 	/**
@@ -202,8 +186,8 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 				return getStage();
 			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
 				return getLayout();
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS:
-				return getAccess();
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+				return getAccessMask();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,6 +197,7 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -224,8 +209,9 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
 				setLayout((EImageLayout)newValue);
 				return;
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS:
-				setAccess((Integer)newValue);
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+				getAccessMask().clear();
+				getAccessMask().addAll((Collection<? extends EAccess>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -247,8 +233,8 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
 				setLayout(LAYOUT_EDEFAULT);
 				return;
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS:
-				setAccess(ACCESS_EDEFAULT);
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+				getAccessMask().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -268,8 +254,8 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 				return stage != STAGE_EDEFAULT;
 			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
 				return layout != LAYOUT_EDEFAULT;
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS:
-				return access != ACCESS_EDEFAULT;
+			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+				return accessMask != null && !accessMask.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -289,8 +275,8 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 		result.append(stage);
 		result.append(", layout: ");
 		result.append(layout);
-		result.append(", access: ");
-		result.append(access);
+		result.append(", accessMask: ");
+		result.append(accessMask);
 		result.append(')');
 		return result.toString();
 	}

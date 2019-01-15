@@ -3,6 +3,7 @@ package org.sheepy.vulkan.resource.nativehelper;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
@@ -16,6 +17,7 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.Sampler;
@@ -80,9 +82,12 @@ public class VkTexture implements IVkDescriptor
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
+				List<EAccess> srcAccessMask = List.of();
+				List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
+
 				image.transitionImageLayout(commandBuffer, EPipelineStage.TOP_OF_PIPE_BIT,
 						EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,
-						EImageLayout.TRANSFER_DST_OPTIMAL, 0, VK_ACCESS_TRANSFER_WRITE_BIT);
+						EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask, dstAccessMask);
 
 				image.fillWithBuffer(commandBuffer, buffer.getId());
 
@@ -90,10 +95,10 @@ public class VkTexture implements IVkDescriptor
 			}
 		};
 		stc.execute();
-		
+
 		buffer.free();
 	}
-	
+
 	private void generateMipmaps(VkCommandBuffer commandBuffer, long image)
 	{
 		final VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.calloc(1);
@@ -189,7 +194,7 @@ public class VkTexture implements IVkDescriptor
 		sampler.free();
 		imageView.free();
 		image.free();
-		
+
 		sampler = null;
 		imageView = null;
 		image = null;

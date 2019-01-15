@@ -8,6 +8,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 import org.sheepy.vulkan.model.process.AbstractPipeline;
 
+import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.resource.Image;
 
 /**
@@ -24,6 +25,7 @@ import org.sheepy.vulkan.model.resource.Image;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstStage <em>Image Dst Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccessMask <em>Image Src Access Mask</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccessMask <em>Image Dst Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getSrcQueue <em>Src Queue</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getImagePipeline()
@@ -151,5 +153,31 @@ public interface ImagePipeline extends AbstractPipeline
 	 * @generated
 	 */
 	EList<EAccess> getImageDstAccessMask();
+
+	/**
+	 * Returns the value of the '<em><b>Src Queue</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Src Queue</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Src Queue</em>' reference.
+	 * @see #setSrcQueue(AbstractProcess)
+	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getImagePipeline_SrcQueue()
+	 * @model
+	 * @generated
+	 */
+	AbstractProcess getSrcQueue();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getSrcQueue <em>Src Queue</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Src Queue</em>' reference.
+	 * @see #getSrcQueue()
+	 * @generated
+	 */
+	void setSrcQueue(AbstractProcess value);
 
 } // ImagePipeline

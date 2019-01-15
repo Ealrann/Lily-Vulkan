@@ -26,7 +26,6 @@ import org.sheepy.vulkan.model.process.IPipeline;
 import org.sheepy.vulkan.model.process.IPipelineUnit;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.PipelineBarrier;
-import org.sheepy.vulkan.model.process.PipelineBufferBarrier;
 import org.sheepy.vulkan.model.process.ProcessFactory;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 import org.sheepy.vulkan.model.process.PushConstant;
@@ -68,13 +67,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass pipelineBarrierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass pipelineBufferBarrierEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -312,9 +304,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPipelineBufferBarrier()
+	public EReference getPipelineBarrier_Barrier()
 	{
-		return pipelineBufferBarrierEClass;
+		return (EReference)pipelineBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -323,9 +315,20 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getPipelineBufferBarrier_BufferBarrier()
+	public EReference getPipelineBarrier_SrcQueue()
 	{
-		return (EReference)pipelineBufferBarrierEClass.getEStructuralFeatures().get(0);
+		return (EReference)pipelineBarrierEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPipelineBarrier_DstQueue()
+	{
+		return (EReference)pipelineBarrierEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -472,9 +475,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		configurationEClass = createEClass(CONFIGURATION);
 
 		pipelineBarrierEClass = createEClass(PIPELINE_BARRIER);
-
-		pipelineBufferBarrierEClass = createEClass(PIPELINE_BUFFER_BARRIER);
-		createEReference(pipelineBufferBarrierEClass, PIPELINE_BUFFER_BARRIER__BUFFER_BARRIER);
+		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__BARRIER);
+		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__SRC_QUEUE);
+		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__DST_QUEUE);
 
 		iPipelineEClass = createEClass(IPIPELINE);
 
@@ -532,7 +535,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		iProcessUnitEClass.getESuperTypes().add(theRootPackage.getLObject());
 		pipelineBarrierEClass.getESuperTypes().add(this.getIProcessUnit());
 		pipelineBarrierEClass.getESuperTypes().add(this.getIPipelineUnit());
-		pipelineBufferBarrierEClass.getESuperTypes().add(this.getPipelineBarrier());
 		iPipelineEClass.getESuperTypes().add(this.getIProcessUnit());
 		iPipelineEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		abstractPipelineEClass.getESuperTypes().add(this.getIPipeline());
@@ -554,10 +556,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(pipelineBufferBarrierEClass, PipelineBufferBarrier.class, "PipelineBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPipelineBufferBarrier_BufferBarrier(), theResourcePackage.getBufferBarrier(), null, "bufferBarrier", null, 0, 1, PipelineBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPipelineBarrier_Barrier(), theResourcePackage.getBarrier(), null, "barrier", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPipelineBarrier_SrcQueue(), this.getAbstractProcess(), null, "srcQueue", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPipelineBarrier_DstQueue(), this.getAbstractProcess(), null, "dstQueue", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iPipelineEClass, IPipeline.class, "IPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

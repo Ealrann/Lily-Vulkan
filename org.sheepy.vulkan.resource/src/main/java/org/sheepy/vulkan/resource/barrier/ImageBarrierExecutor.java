@@ -1,9 +1,12 @@
-package org.sheepy.vulkan.resource.image.barrier;
+package org.sheepy.vulkan.resource.barrier;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.List;
+
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
@@ -14,16 +17,30 @@ import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl;
 import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
+import org.sheepy.vulkan.resource.barrier.proxy.IImageProxy;
 import org.sheepy.vulkan.resource.image.ImageUtil;
-import org.sheepy.vulkan.resource.image.barrier.proxy.IImageProxy;
 
-public class ImageBarrierExecutor
+public class ImageBarrierExecutor implements IBarrierExecutor
 {
+	private final AbstractImageBarrier barrier;
+
 	private VkImageMemoryBarrier.Buffer barrierInfos = null;
 	private EPipelineStage srcStage;
 	private EPipelineStage dstStage;
 
-	public void allocate(AbstractImageBarrier barrier)
+	ImageBarrierExecutor(AbstractImageBarrier barrier)
+	{
+		this.barrier = barrier;
+	}
+
+	@Override
+	public void allocate()
+	{
+		allocate(VK_QUEUE_FAMILY_IGNORED, VK_QUEUE_FAMILY_IGNORED);
+	}
+
+	@Override
+	public void allocate(int srcQueueFamillyIndex, int dstQueueFamillyIndex)
 	{
 		barrierInfos = VkImageMemoryBarrier.calloc(barrier.getTransitions().size());
 		srcStage = barrier.getSrcStage();
@@ -32,17 +49,20 @@ public class ImageBarrierExecutor
 
 		for (final ImageTransition transition : barrier.getTransitions())
 		{
-			fillBarrierInfo(transition, imageProxy, barrierInfos.get());
+			fillBarrierInfo(transition, imageProxy, barrierInfos.get(), srcQueueFamillyIndex,
+					dstQueueFamillyIndex);
 		}
 		barrierInfos.flip();
 	}
 
+	@Override
 	public void free()
 	{
 		barrierInfos.free();
 		barrierInfos = null;
 	}
 
+	@Override
 	public void execute(VkCommandBuffer commandBuffer)
 	{
 		vkCmdPipelineBarrier(commandBuffer, srcStage.getValue(), dstStage.getValue(), 0, null, null,
@@ -51,7 +71,9 @@ public class ImageBarrierExecutor
 
 	private static void fillBarrierInfo(ImageTransition transition,
 										IImageProxy imageProxy,
-										VkImageMemoryBarrier barrierInfo)
+										VkImageMemoryBarrier barrierInfo,
+										int srcQueueFamillyIndex,
+										int dstQueueFamillyIndex)
 	{
 		final var srcLayout = transition.getSrcLayout();
 		final var dstLayout = transition.getDstLayout();
@@ -60,25 +82,25 @@ public class ImageBarrierExecutor
 		barrierInfo.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
 		barrierInfo.oldLayout(srcLayout.getValue());
 		barrierInfo.newLayout(dstLayout.getValue());
-		barrierInfo.srcQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
-		barrierInfo.dstQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
+		barrierInfo.srcQueueFamilyIndex(srcQueueFamillyIndex);
+		barrierInfo.dstQueueFamilyIndex(dstQueueFamillyIndex);
 		barrierInfo.image(imageProxy.getId());
 		barrierInfo.subresourceRange().baseMipLevel(0);
 		barrierInfo.subresourceRange().levelCount(imageProxy.getMipLevels());
 		barrierInfo.subresourceRange().baseArrayLayer(0);
 		barrierInfo.subresourceRange().layerCount(1);
 		barrierInfo.subresourceRange().aspectMask(aspectMask);
-		barrierInfo.srcAccessMask(transition.getSrcAccess());
-		barrierInfo.dstAccessMask(transition.getDstAccess());
+		barrierInfo.srcAccessMask(convertAccessListToMask(transition.getSrcAccessMask()));
+		barrierInfo.dstAccessMask(convertAccessListToMask(transition.getDstAccessMask()));
 	}
 
 	public static void execute(	VkCommandBuffer commandBuffer,
 								EPipelineStage srcStage,
 								EPipelineStage dstStage,
-																																																																																																					EImageLayout srcLayout,
+								EImageLayout srcLayout,
 								EImageLayout dstLayout,
-								int srcAccessMask,
-								int dstAccessMask,
+								List<EAccess> srcAccessMask,
+								List<EAccess> dstAccessMask,
 								Image image)
 	{
 		final ImageBarrier barrier = new ImageBarrierImpl();
@@ -89,8 +111,8 @@ public class ImageBarrierExecutor
 		final ImageTransition transition = new ImageTransitionImpl();
 		transition.setSrcLayout(srcLayout);
 		transition.setDstLayout(dstLayout);
-		transition.setSrcAccess(srcAccessMask);
-		transition.setDstAccess(dstAccessMask);
+		transition.getSrcAccessMask().addAll(srcAccessMask);
+		transition.getDstAccessMask().addAll(dstAccessMask);
 
 		barrier.getTransitions().add(transition);
 
@@ -99,19 +121,19 @@ public class ImageBarrierExecutor
 
 	public static void execute(VkCommandBuffer commandBuffer, AbstractImageBarrier barrier)
 	{
-		ImageBarrierExecutor executor = new ImageBarrierExecutor();
-		executor.allocate(barrier);
+		ImageBarrierExecutor executor = new ImageBarrierExecutor(barrier);
+		executor.allocate();
 		executor.execute(commandBuffer);
 		executor.free();
 	}
-	
+
 	public static void execute(	VkCommandBuffer commandBuffer,
 								EPipelineStage srcStage,
 								EPipelineStage dstStage,
 								EImageLayout srcLayout,
 								EImageLayout dstLayout,
-								int srcAccessMask,
-								int dstAccessMask,
+								List<EAccess> srcAccessMask,
+								List<EAccess> dstAccessMask,
 								long imageId,
 								int imageFormat,
 								int mipLevels)
@@ -126,11 +148,21 @@ public class ImageBarrierExecutor
 		final ImageTransition transition = new ImageTransitionImpl();
 		transition.setSrcLayout(srcLayout);
 		transition.setDstLayout(dstLayout);
-		transition.setSrcAccess(srcAccessMask);
-		transition.setDstAccess(dstAccessMask);
+		transition.getSrcAccessMask().addAll(srcAccessMask);
+		transition.getDstAccessMask().addAll(dstAccessMask);
 
 		barrier.getTransitions().add(transition);
 
 		execute(commandBuffer, barrier);
+	}
+
+	private static int convertAccessListToMask(List<EAccess> accesses)
+	{
+		int res = 0;
+		for (EAccess access : accesses)
+		{
+			res |= access.getValue();
+		}
+		return res;
 	}
 }

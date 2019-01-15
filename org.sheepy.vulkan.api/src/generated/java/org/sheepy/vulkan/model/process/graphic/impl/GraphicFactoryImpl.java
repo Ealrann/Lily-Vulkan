@@ -81,7 +81,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			case GraphicPackage.SCISSOR: return createScissor();
 			case GraphicPackage.RASTERIZER: return createRasterizer();
 			case GraphicPackage.IMAGE_PIPELINE: return createImagePipeline();
-			case GraphicPackage.PIPELINE_IMAGE_BARRIER: return createPipelineImageBarrier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -289,18 +288,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		ImagePipelineImpl imagePipeline = new ImagePipelineImpl();
 		return imagePipeline;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public PipelineImageBarrier createPipelineImageBarrier()
-	{
-		PipelineImageBarrierImpl pipelineImageBarrier = new PipelineImageBarrierImpl();
-		return pipelineImageBarrier;
 	}
 
 	/**

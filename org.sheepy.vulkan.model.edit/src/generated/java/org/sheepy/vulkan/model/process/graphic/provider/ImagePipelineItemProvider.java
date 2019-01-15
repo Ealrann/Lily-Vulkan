@@ -12,9 +12,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.vulkan.model.process.ProcessPackage;
-
-import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
 
@@ -57,6 +54,7 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 			addImageDstStagePropertyDescriptor(object);
 			addImageSrcAccessMaskPropertyDescriptor(object);
 			addImageDstAccessMaskPropertyDescriptor(object);
+			addSrcQueuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -177,6 +175,29 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Src Queue feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSrcQueuePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImagePipeline_srcQueue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_srcQueue_feature", "_UI_ImagePipeline_type"),
+				 GraphicPackage.Literals.IMAGE_PIPELINE__SRC_QUEUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ImagePipeline.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -239,11 +260,6 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
-				 GraphicFactory.eINSTANCE.createPipelineImageBarrier()));
 	}
 
 }

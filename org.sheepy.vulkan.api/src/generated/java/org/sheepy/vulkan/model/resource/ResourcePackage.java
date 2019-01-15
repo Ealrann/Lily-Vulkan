@@ -455,13 +455,13 @@ public interface ResourcePackage extends EPackage
 	int IMAGE_LAYOUT__LAYOUT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Access</b></em>' attribute.
+	 * The feature id for the '<em><b>Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_LAYOUT__ACCESS = 2;
+	int IMAGE_LAYOUT__ACCESS_MASK = 2;
 
 	/**
 	 * The number of structural features of the '<em>Image Layout</em>' class.
@@ -1414,22 +1414,22 @@ public interface ResourcePackage extends EPackage
 	int IMAGE_TRANSITION__DST_LAYOUT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Src Access</b></em>' attribute.
+	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_TRANSITION__SRC_ACCESS = 2;
+	int IMAGE_TRANSITION__SRC_ACCESS_MASK = 2;
 
 	/**
-	 * The feature id for the '<em><b>Dst Access</b></em>' attribute.
+	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_TRANSITION__DST_ACCESS = 3;
+	int IMAGE_TRANSITION__DST_ACCESS_MASK = 3;
 
 	/**
 	 * The number of structural features of the '<em>Image Transition</em>' class.
@@ -2063,15 +2063,15 @@ public interface ResourcePackage extends EPackage
 	EAttribute getImageLayout_Layout();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ImageLayout#getAccess <em>Access</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.ImageLayout#getAccessMask <em>Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Access</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageLayout#getAccess()
+	 * @return the meta object for the attribute list '<em>Access Mask</em>'.
+	 * @see org.sheepy.vulkan.model.resource.ImageLayout#getAccessMask()
 	 * @see #getImageLayout()
 	 * @generated
 	 */
-	EAttribute getImageLayout_Access();
+	EAttribute getImageLayout_AccessMask();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
@@ -2598,26 +2598,26 @@ public interface ResourcePackage extends EPackage
 	EAttribute getImageTransition_DstLayout();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ImageTransition#getSrcAccess <em>Src Access</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.ImageTransition#getSrcAccessMask <em>Src Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src Access</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageTransition#getSrcAccess()
+	 * @return the meta object for the attribute list '<em>Src Access Mask</em>'.
+	 * @see org.sheepy.vulkan.model.resource.ImageTransition#getSrcAccessMask()
 	 * @see #getImageTransition()
 	 * @generated
 	 */
-	EAttribute getImageTransition_SrcAccess();
+	EAttribute getImageTransition_SrcAccessMask();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ImageTransition#getDstAccess <em>Dst Access</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.ImageTransition#getDstAccessMask <em>Dst Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dst Access</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageTransition#getDstAccess()
+	 * @return the meta object for the attribute list '<em>Dst Access Mask</em>'.
+	 * @see org.sheepy.vulkan.model.resource.ImageTransition#getDstAccessMask()
 	 * @see #getImageTransition()
 	 * @generated
 	 */
-	EAttribute getImageTransition_DstAccess();
+	EAttribute getImageTransition_DstAccessMask();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Shader <em>Shader</em>}'.
@@ -2971,12 +2971,12 @@ public interface ResourcePackage extends EPackage
 		EAttribute IMAGE_LAYOUT__LAYOUT = eINSTANCE.getImageLayout_Layout();
 
 		/**
-		 * The meta object literal for the '<em><b>Access</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Access Mask</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE_LAYOUT__ACCESS = eINSTANCE.getImageLayout_Access();
+		EAttribute IMAGE_LAYOUT__ACCESS_MASK = eINSTANCE.getImageLayout_AccessMask();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
@@ -3401,20 +3401,20 @@ public interface ResourcePackage extends EPackage
 		EAttribute IMAGE_TRANSITION__DST_LAYOUT = eINSTANCE.getImageTransition_DstLayout();
 
 		/**
-		 * The meta object literal for the '<em><b>Src Access</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Src Access Mask</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE_TRANSITION__SRC_ACCESS = eINSTANCE.getImageTransition_SrcAccess();
+		EAttribute IMAGE_TRANSITION__SRC_ACCESS_MASK = eINSTANCE.getImageTransition_SrcAccessMask();
 
 		/**
-		 * The meta object literal for the '<em><b>Dst Access</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Dst Access Mask</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE_TRANSITION__DST_ACCESS = eINSTANCE.getImageTransition_DstAccess();
+		EAttribute IMAGE_TRANSITION__DST_ACCESS_MASK = eINSTANCE.getImageTransition_DstAccessMask();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.

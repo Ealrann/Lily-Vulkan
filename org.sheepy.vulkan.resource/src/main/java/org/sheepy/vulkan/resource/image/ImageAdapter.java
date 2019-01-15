@@ -2,6 +2,8 @@ package org.sheepy.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.Collections;
+
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
@@ -75,7 +77,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 				ImageLayout initialLayout = image.getInitialLayout();
 				imageBackend.transitionImageLayout(commandBuffer, EPipelineStage.BOTTOM_OF_PIPE_BIT,
 						initialLayout.getStage(), EImageLayout.UNDEFINED, initialLayout.getLayout(),
-						0, initialLayout.getAccess());
+						Collections.emptyList(), initialLayout.getAccessMask());
 			}
 		};
 		stc.execute();

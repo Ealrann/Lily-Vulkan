@@ -20,6 +20,5 @@ module org.sheepy.vulkan.process.graphic
 
 	opens org.sheepy.vulkan.process.graphic.pipeline.image;
 
-	provides IAdapter
-			with GraphicProcessAdapter, ImagePipelineAdapter, GraphicContextAdapter;
+	provides IAdapter with ImagePipelineAdapter, GraphicProcessAdapter, GraphicContextAdapter;
 }

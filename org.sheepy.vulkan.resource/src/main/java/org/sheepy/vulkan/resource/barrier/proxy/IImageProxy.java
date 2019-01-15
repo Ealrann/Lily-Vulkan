@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.image.barrier.proxy;
+package org.sheepy.vulkan.resource.barrier.proxy;
 
 import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
 import org.sheepy.vulkan.model.resource.ImageBarrier;

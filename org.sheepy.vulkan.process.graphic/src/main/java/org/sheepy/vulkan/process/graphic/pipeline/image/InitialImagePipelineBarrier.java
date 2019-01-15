@@ -1,13 +1,15 @@
 package org.sheepy.vulkan.process.graphic.pipeline.image;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 
+import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.vulkan.model.resource.ImageBarrier;
 import org.sheepy.vulkan.model.resource.ImageTransition;
@@ -15,24 +17,54 @@ import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl;
 import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
-import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
+import org.sheepy.vulkan.process.process.AbstractProcessAdapter;
+import org.sheepy.vulkan.resource.barrier.BarrierExecutorFactory;
+import org.sheepy.vulkan.resource.barrier.IBarrierExecutor;
 import org.sheepy.vulkan.resource.nativehelper.VkImageView;
 
 public class InitialImagePipelineBarrier implements IBasicAllocable
 {
 	private final ImagePipeline pipeline;
 	private final VkImageView view;
+	private final int srcQueueFamilly;
+	private final int dstQueueFamilly;
 
 	private ImageBarrier sourceBarrier = null;
 	private ReferenceImageBarrier targetBarrier = null;
 
-	private final ImageBarrierExecutor sourceExecutor = new ImageBarrierExecutor();
-	private final ImageBarrierExecutor targetExecutor = new ImageBarrierExecutor();
+	private IBarrierExecutor sourceExecutor;
+	private IBarrierExecutor targetExecutor;
 
 	public InitialImagePipelineBarrier(ImagePipeline pipeline, VkImageView view)
 	{
 		this.pipeline = pipeline;
 		this.view = view;
+
+		if (pipeline.getSrcQueue() != null)
+		{
+			var imageProcess = getProcess(pipeline);
+			var srcProcessAdapter = AbstractProcessAdapter.adapt(pipeline.getSrcQueue());
+			var dstProcessAdapter = AbstractProcessAdapter.adapt(imageProcess);
+
+			srcQueueFamilly = srcProcessAdapter.getQueue().index;
+			dstQueueFamilly = dstProcessAdapter.getQueue().index;
+		}
+		else
+		{
+			srcQueueFamilly = VK_QUEUE_FAMILY_IGNORED;
+			dstQueueFamilly = VK_QUEUE_FAMILY_IGNORED;
+		}
+	}
+
+	private static final AbstractProcess getProcess(ImagePipeline pipeline)
+	{
+		EObject course = pipeline;
+		while (course instanceof AbstractProcess == false)
+		{
+			course = course.eContainer();
+		}
+
+		return (AbstractProcess) course;
 	}
 
 	@Override
@@ -41,8 +73,11 @@ public class InitialImagePipelineBarrier implements IBasicAllocable
 		allocateInitialSourceBarrier();
 		allocateInitialTargetBarrier();
 
-		sourceExecutor.allocate(sourceBarrier);
-		targetExecutor.allocate(targetBarrier);
+		sourceExecutor = BarrierExecutorFactory.create(sourceBarrier);
+		targetExecutor = BarrierExecutorFactory.create(targetBarrier);
+
+		sourceExecutor.allocate(srcQueueFamilly, dstQueueFamilly);
+		targetExecutor.allocate();
 	}
 
 	@Override
@@ -70,17 +105,11 @@ public class InitialImagePipelineBarrier implements IBasicAllocable
 		sourceBarrier.setDstStage(EPipelineStage.TRANSFER_BIT);
 		sourceBarrier.setImage(srcImage);
 
-		int srcAccessMask = 0;
-		for (EAccess access : pipeline.getImageSrcAccessMask())
-		{
-			srcAccessMask |= access.getValue();
-		}
-		
 		ImageTransition transition = new ImageTransitionImpl();
 		transition.setSrcLayout(EImageLayout.GENERAL);
 		transition.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
-		transition.setSrcAccess(srcAccessMask);
-		transition.setDstAccess(VK_ACCESS_TRANSFER_READ_BIT);
+		transition.getSrcAccessMask().addAll(pipeline.getImageSrcAccessMask());
+		transition.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
 
 		sourceBarrier.getTransitions().add(transition);
 	}
@@ -97,8 +126,7 @@ public class InitialImagePipelineBarrier implements IBasicAllocable
 		ImageTransition transition = new ImageTransitionImpl();
 		transition.setSrcLayout(EImageLayout.UNDEFINED);
 		transition.setDstLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
-		transition.setSrcAccess(0);
-		transition.setDstAccess(VK_ACCESS_TRANSFER_WRITE_BIT);
+		transition.getDstAccessMask().add(EAccess.TRANSFER_WRITE_BIT);
 
 		targetBarrier.getTransitions().add(transition);
 	}

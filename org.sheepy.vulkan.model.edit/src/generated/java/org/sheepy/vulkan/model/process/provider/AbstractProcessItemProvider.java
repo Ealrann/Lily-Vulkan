@@ -315,7 +315,7 @@ public class AbstractProcessItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
-				 ProcessFactory.eINSTANCE.createPipelineBufferBarrier()));
+				 ProcessFactory.eINSTANCE.createPipelineBarrier()));
 	}
 
 	/**

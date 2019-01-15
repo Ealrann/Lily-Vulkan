@@ -1864,13 +1864,22 @@ public interface GraphicPackage extends EPackage
 	int IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Src Queue</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_PIPELINE__SRC_QUEUE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Image Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
+	int IMAGE_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -1925,125 +1934,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int IMAGE_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.PipelineImageBarrierImpl <em>Pipeline Image Barrier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.PipelineImageBarrierImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getPipelineImageBarrier()
-	 * @generated
-	 */
-	int PIPELINE_IMAGE_BARRIER = 21;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER__CONTENT_OBJECTS = ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER__ENABLED = ProcessPackage.PIPELINE_BARRIER__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER__STAGE = ProcessPackage.PIPELINE_BARRIER__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER__NAME = ProcessPackage.PIPELINE_BARRIER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Image Barrier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER = ProcessPackage.PIPELINE_BARRIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Pipeline Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER_FEATURE_COUNT = ProcessPackage.PIPELINE_BARRIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER___LINFERENCE_OBJECT = ProcessPackage.PIPELINE_BARRIER___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER___CREATE_CONTAINMENT_ELIST__ECLASS = ProcessPackage.PIPELINE_BARRIER___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER___LCONTENTS = ProcessPackage.PIPELINE_BARRIER___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER___LPARENT = ProcessPackage.PIPELINE_BARRIER___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER___LALL_CONTENTS = ProcessPackage.PIPELINE_BARRIER___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>Pipeline Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_IMAGE_BARRIER_OPERATION_COUNT = ProcessPackage.PIPELINE_BARRIER_OPERATION_COUNT + 0;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
@@ -3125,25 +3015,15 @@ public interface GraphicPackage extends EPackage
 	EAttribute getImagePipeline_ImageDstAccessMask();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier <em>Pipeline Image Barrier</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getSrcQueue <em>Src Queue</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Pipeline Image Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier
+	 * @return the meta object for the reference '<em>Src Queue</em>'.
+	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getSrcQueue()
+	 * @see #getImagePipeline()
 	 * @generated
 	 */
-	EClass getPipelineImageBarrier();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier#getImageBarrier <em>Image Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Image Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier#getImageBarrier()
-	 * @see #getPipelineImageBarrier()
-	 * @generated
-	 */
-	EReference getPipelineImageBarrier_ImageBarrier();
+	EReference getImagePipeline_SrcQueue();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4012,22 +3892,12 @@ public interface GraphicPackage extends EPackage
 		EAttribute IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK = eINSTANCE.getImagePipeline_ImageDstAccessMask();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.PipelineImageBarrierImpl <em>Pipeline Image Barrier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.PipelineImageBarrierImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getPipelineImageBarrier()
-		 * @generated
-		 */
-		EClass PIPELINE_IMAGE_BARRIER = eINSTANCE.getPipelineImageBarrier();
-
-		/**
-		 * The meta object literal for the '<em><b>Image Barrier</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Src Queue</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PIPELINE_IMAGE_BARRIER__IMAGE_BARRIER = eINSTANCE.getPipelineImageBarrier_ImageBarrier();
+		EReference IMAGE_PIPELINE__SRC_QUEUE = eINSTANCE.getImagePipeline_SrcQueue();
 
 	}
 

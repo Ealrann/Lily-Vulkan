@@ -176,15 +176,6 @@ public interface GraphicFactory extends EFactory
 	ImagePipeline createImagePipeline();
 
 	/**
-	 * Returns a new object of class '<em>Pipeline Image Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pipeline Image Barrier</em>'.
-	 * @generated
-	 */
-	PipelineImageBarrier createPipelineImageBarrier();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

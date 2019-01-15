@@ -163,11 +163,6 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
-				 GraphicFactory.eINSTANCE.createPipelineImageBarrier()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION,
 				 GraphicFactory.eINSTANCE.createGraphicConfiguration()));
 

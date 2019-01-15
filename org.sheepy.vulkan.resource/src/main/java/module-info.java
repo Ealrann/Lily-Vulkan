@@ -23,7 +23,7 @@ module org.sheepy.vulkan.resource
 	exports org.sheepy.vulkan.resource.file;
 	exports org.sheepy.vulkan.resource.indexed;
 	exports org.sheepy.vulkan.resource.image;
-	exports org.sheepy.vulkan.resource.image.barrier;
+	exports org.sheepy.vulkan.resource.barrier;
 	exports org.sheepy.vulkan.resource.nativehelper;
 	exports org.sheepy.vulkan.resource.texture;
 	exports org.sheepy.vulkan.resource.shader;

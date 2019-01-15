@@ -16,10 +16,7 @@ import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.Configuration;
 import org.sheepy.vulkan.model.process.IPipeline;
-import org.sheepy.vulkan.model.process.IPipelineUnit;
 import org.sheepy.vulkan.model.process.IProcessUnit;
-import org.sheepy.vulkan.model.process.PipelineBarrier;
-
 import org.sheepy.vulkan.model.process.graphic.*;
 
 /**
@@ -263,19 +260,6 @@ public class GraphicSwitch<T> extends Switch<T>
 				if (result == null) result = caseLNamedElement(imagePipeline);
 				if (result == null) result = caseLObject(imagePipeline);
 				if (result == null) result = caseIInferenceObject(imagePipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.PIPELINE_IMAGE_BARRIER:
-			{
-				PipelineImageBarrier pipelineImageBarrier = (PipelineImageBarrier)theEObject;
-				T result = casePipelineImageBarrier(pipelineImageBarrier);
-				if (result == null) result = casePipelineBarrier(pipelineImageBarrier);
-				if (result == null) result = caseIProcessUnit(pipelineImageBarrier);
-				if (result == null) result = caseIPipelineUnit(pipelineImageBarrier);
-				if (result == null) result = caseLObject(pipelineImageBarrier);
-				if (result == null) result = caseLNamedElement(pipelineImageBarrier);
-				if (result == null) result = caseIInferenceObject(pipelineImageBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -620,22 +604,6 @@ public class GraphicSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Image Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pipeline Image Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePipelineImageBarrier(PipelineImageBarrier object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -791,38 +759,6 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractPipeline(AbstractPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIPipelineUnit(IPipelineUnit object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pipeline Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePipelineBarrier(PipelineBarrier object)
 	{
 		return null;
 	}

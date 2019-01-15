@@ -3,6 +3,7 @@ package org.sheepy.vulkan.gameoflife.model;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -25,7 +26,7 @@ public class BoardImageFactory
 		ImageLayout initialLayout = new ImageLayoutImpl();
 		initialLayout.setStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		initialLayout.setLayout(EImageLayout.GENERAL);
-		initialLayout.setAccess(VK_ACCESS_SHADER_WRITE_BIT);
+		initialLayout.getAccessMask().add(EAccess.SHADER_WRITE_BIT);
 
 		res.setWidth(size.x);
 		res.setHeight(size.y);

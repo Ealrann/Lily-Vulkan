@@ -11,7 +11,6 @@ import org.sheepy.common.model.inference.provider.InferenceEditPlugin;
 import org.sheepy.common.model.root.provider.RootEditPlugin;
 import org.sheepy.common.model.types.provider.TypesEditPlugin;
 import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
-
 import org.sheepy.vulkan.model.provider.VulkanEditPlugin;
 
 /**

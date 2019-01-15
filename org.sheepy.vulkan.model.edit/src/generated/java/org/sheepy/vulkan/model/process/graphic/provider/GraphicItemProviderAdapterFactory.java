@@ -36,7 +36,6 @@ import org.sheepy.vulkan.model.VulkanEngine;
 import org.sheepy.vulkan.model.VulkanPackage;
 
 import org.sheepy.vulkan.model.process.AbstractCompositePipeline;
-import org.sheepy.vulkan.model.process.AbstractPipeline;
 import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
@@ -533,31 +532,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PipelineImageBarrierItemProvider pipelineImageBarrierItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.PipelineImageBarrier}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPipelineImageBarrierAdapter()
-	{
-		if (pipelineImageBarrierItemProvider == null)
-		{
-			pipelineImageBarrierItemProvider = new PipelineImageBarrierItemProvider(this);
-		}
-
-		return pipelineImageBarrierItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -721,7 +695,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 		if (scissorItemProvider != null) scissorItemProvider.dispose();
 		if (rasterizerItemProvider != null) rasterizerItemProvider.dispose();
 		if (imagePipelineItemProvider != null) imagePipelineItemProvider.dispose();
-		if (pipelineImageBarrierItemProvider != null) pipelineImageBarrierItemProvider.dispose();
 	}
 
 	/**
@@ -779,27 +752,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 					(createChildParameter
 						(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
 						 GraphicFactory.eINSTANCE.createImagePipeline()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
-						 GraphicFactory.eINSTANCE.createPipelineImageBarrier()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseAbstractPipeline(AbstractPipeline object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
-						 GraphicFactory.eINSTANCE.createPipelineImageBarrier()));
 
 				return null;
 			}

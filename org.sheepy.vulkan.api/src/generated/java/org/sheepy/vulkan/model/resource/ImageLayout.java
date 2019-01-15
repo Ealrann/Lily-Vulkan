@@ -2,8 +2,10 @@
  */
 package org.sheepy.vulkan.model.resource;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
@@ -18,7 +20,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.resource.ImageLayout#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.ImageLayout#getLayout <em>Layout</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.ImageLayout#getAccess <em>Access</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.ImageLayout#getAccessMask <em>Access Mask</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImageLayout()
@@ -86,29 +88,21 @@ public interface ImageLayout extends EObject
 	void setLayout(EImageLayout value);
 
 	/**
-	 * Returns the value of the '<em><b>Access</b></em>' attribute.
+	 * Returns the value of the '<em><b>Access Mask</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Access</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Access Mask</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Access</em>' attribute.
-	 * @see #setAccess(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImageLayout_Access()
+	 * @return the value of the '<em>Access Mask</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImageLayout_AccessMask()
 	 * @model unique="false"
 	 * @generated
 	 */
-	int getAccess();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.ImageLayout#getAccess <em>Access</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Access</em>' attribute.
-	 * @see #getAccess()
-	 * @generated
-	 */
-	void setAccess(int value);
+	EList<EAccess> getAccessMask();
 
 } // ImageLayout

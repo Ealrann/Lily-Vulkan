@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-
+import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
 
@@ -35,6 +35,7 @@ import org.sheepy.vulkan.model.resource.Image;
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageDstStage <em>Image Dst Stage</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageSrcAccessMask <em>Image Src Access Mask</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageDstAccessMask <em>Image Dst Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getSrcQueue <em>Src Queue</em>}</li>
  * </ul>
  *
  * @generated
@@ -110,6 +111,16 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	 * @ordered
 	 */
 	protected EList<EAccess> imageDstAccessMask;
+
+	/**
+	 * The cached value of the '{@link #getSrcQueue() <em>Src Queue</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSrcQueue()
+	 * @generated
+	 * @ordered
+	 */
+	protected AbstractProcess srcQueue;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -263,6 +274,51 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	 * @generated
 	 */
 	@Override
+	public AbstractProcess getSrcQueue()
+	{
+		if (srcQueue != null && srcQueue.eIsProxy())
+		{
+			InternalEObject oldSrcQueue = (InternalEObject)srcQueue;
+			srcQueue = (AbstractProcess)eResolveProxy(oldSrcQueue);
+			if (srcQueue != oldSrcQueue)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE, oldSrcQueue, srcQueue));
+			}
+		}
+		return srcQueue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AbstractProcess basicGetSrcQueue()
+	{
+		return srcQueue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSrcQueue(AbstractProcess newSrcQueue)
+	{
+		AbstractProcess oldSrcQueue = srcQueue;
+		srcQueue = newSrcQueue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE, oldSrcQueue, srcQueue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -278,6 +334,9 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 				return getImageSrcAccessMask();
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
 				return getImageDstAccessMask();
+			case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
+				if (resolve) return getSrcQueue();
+				return basicGetSrcQueue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -310,6 +369,9 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 				getImageDstAccessMask().clear();
 				getImageDstAccessMask().addAll((Collection<? extends EAccess>)newValue);
 				return;
+			case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
+				setSrcQueue((AbstractProcess)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -339,6 +401,9 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
 				getImageDstAccessMask().clear();
 				return;
+			case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
+				setSrcQueue((AbstractProcess)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -363,6 +428,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 				return imageSrcAccessMask != null && !imageSrcAccessMask.isEmpty();
 			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
 				return imageDstAccessMask != null && !imageDstAccessMask.isEmpty();
+			case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
+				return srcQueue != null;
 		}
 		return super.eIsSet(featureID);
 	}

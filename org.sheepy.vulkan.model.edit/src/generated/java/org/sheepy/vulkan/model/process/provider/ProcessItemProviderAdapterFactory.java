@@ -91,28 +91,28 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.PipelineBufferBarrier} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.PipelineBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PipelineBufferBarrierItemProvider pipelineBufferBarrierItemProvider;
+	protected PipelineBarrierItemProvider pipelineBarrierItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.PipelineBufferBarrier}.
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.PipelineBarrier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPipelineBufferBarrierAdapter()
+	public Adapter createPipelineBarrierAdapter()
 	{
-		if (pipelineBufferBarrierItemProvider == null)
+		if (pipelineBarrierItemProvider == null)
 		{
-			pipelineBufferBarrierItemProvider = new PipelineBufferBarrierItemProvider(this);
+			pipelineBarrierItemProvider = new PipelineBarrierItemProvider(this);
 		}
 
-		return pipelineBufferBarrierItemProvider;
+		return pipelineBarrierItemProvider;
 	}
 
 	/**
@@ -287,7 +287,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	@Override
 	public void dispose()
 	{
-		if (pipelineBufferBarrierItemProvider != null) pipelineBufferBarrierItemProvider.dispose();
+		if (pipelineBarrierItemProvider != null) pipelineBarrierItemProvider.dispose();
 		if (pushConstantItemProvider != null) pushConstantItemProvider.dispose();
 	}
 

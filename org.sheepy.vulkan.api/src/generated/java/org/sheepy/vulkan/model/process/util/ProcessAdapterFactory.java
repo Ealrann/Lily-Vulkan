@@ -100,11 +100,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createPipelineBarrierAdapter();
 			}
 			@Override
-			public Adapter casePipelineBufferBarrier(PipelineBufferBarrier object)
-			{
-				return createPipelineBufferBarrierAdapter();
-			}
-			@Override
 			public Adapter caseIPipeline(IPipeline object)
 			{
 				return createIPipelineAdapter();
@@ -232,21 +227,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPipelineBarrierAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.process.PipelineBufferBarrier <em>Pipeline Buffer Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.process.PipelineBufferBarrier
-	 * @generated
-	 */
-	public Adapter createPipelineBufferBarrierAdapter()
 	{
 		return null;
 	}

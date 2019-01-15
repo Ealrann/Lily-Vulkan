@@ -276,7 +276,7 @@ public class AbstractPipelineItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
-				 ProcessFactory.eINSTANCE.createPipelineBufferBarrier()));
+				 ProcessFactory.eINSTANCE.createPipelineBarrier()));
 
 		newChildDescriptors.add
 			(createChildParameter

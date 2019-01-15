@@ -117,19 +117,6 @@ public class ProcessSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.PIPELINE_BUFFER_BARRIER:
-			{
-				PipelineBufferBarrier pipelineBufferBarrier = (PipelineBufferBarrier)theEObject;
-				T result = casePipelineBufferBarrier(pipelineBufferBarrier);
-				if (result == null) result = casePipelineBarrier(pipelineBufferBarrier);
-				if (result == null) result = caseIProcessUnit(pipelineBufferBarrier);
-				if (result == null) result = caseIPipelineUnit(pipelineBufferBarrier);
-				if (result == null) result = caseLObject(pipelineBufferBarrier);
-				if (result == null) result = caseLNamedElement(pipelineBufferBarrier);
-				if (result == null) result = caseIInferenceObject(pipelineBufferBarrier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ProcessPackage.IPIPELINE:
 			{
 				IPipeline iPipeline = (IPipeline)theEObject;
@@ -247,22 +234,6 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T casePipelineBarrier(PipelineBarrier object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Buffer Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pipeline Buffer Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePipelineBufferBarrier(PipelineBufferBarrier object)
 	{
 		return null;
 	}

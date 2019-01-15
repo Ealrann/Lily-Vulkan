@@ -2,14 +2,17 @@ package org.sheepy.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.List;
+
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.common.device.LogicalDevice;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.resource.barrier.ImageBarrierExecutor;
 import org.sheepy.vulkan.resource.image.ImageInfo;
-import org.sheepy.vulkan.resource.image.barrier.ImageBarrierExecutor;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryInfo;
 
@@ -74,8 +77,8 @@ public class VkImage
 										EPipelineStage dstStage,
 										EImageLayout srcLayout,
 										EImageLayout dstLayout,
-										int srcAccessMask,
-										int dstAccessMask)
+										List<EAccess> srcAccessMask,
+										List<EAccess> dstAccessMask)
 	{
 		ImageBarrierExecutor.execute(commandBuffer, srcStage, dstStage, srcLayout, dstLayout,
 				srcAccessMask, dstAccessMask, imageId, info.format, info.mipLevels);
