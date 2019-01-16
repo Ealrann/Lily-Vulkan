@@ -56,7 +56,21 @@ public class VulkanInputManager implements IInputManager
 		});
 		glfwSetCharCallback(windowId, (window, codepoint) -> events.add(new CharEvent(codepoint)));
 		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> {
-			var state = action == GLFW_PRESS ? EKeyState.PRESSED : EKeyState.RELEASED;
+
+			EKeyState state = EKeyState.RELEASED;
+			switch (action)
+			{
+			case GLFW_RELEASE:
+				state = EKeyState.RELEASED;
+				break;
+			case GLFW_PRESS:
+				state = EKeyState.PRESSED;
+				break;
+			case GLFW_REPEAT:
+				state = EKeyState.REPEATED;
+				break;
+			}
+
 			var event = new KeyEvent(key, state, mods);
 			events.add(event);
 		});
@@ -132,8 +146,8 @@ public class VulkanInputManager implements IInputManager
 		}
 
 		fireEvents();
-		
-		if(window.shouldClose())
+
+		if (window.shouldClose())
 		{
 			application.setRun(false);
 		}
