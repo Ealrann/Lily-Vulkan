@@ -21,7 +21,6 @@ import org.sheepy.common.model.types.TypesPackage;
 import org.sheepy.vulkan.model.IResource;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import org.sheepy.vulkan.model.resource.Buffer;
@@ -40,9 +39,9 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getUsages <em>Usages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#isChangeable <em>Changeable</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#getData <em>Data</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#isOftenUpdated <em>Often Updated</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferImpl#isGpuBuffer <em>Gpu Buffer</em>}</li>
  * </ul>
  *
  * @generated
@@ -130,36 +129,6 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	protected EList<EBufferUsage> usages;
 
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProperties()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EMemoryProperty> properties;
-
-	/**
-	 * The default value of the '{@link #isChangeable() <em>Changeable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isChangeable()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean CHANGEABLE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isChangeable() <em>Changeable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isChangeable()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean changeable = CHANGEABLE_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,6 +147,46 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	 * @ordered
 	 */
 	protected ByteBuffer data = DATA_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isOftenUpdated() <em>Often Updated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOftenUpdated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OFTEN_UPDATED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isOftenUpdated() <em>Often Updated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOftenUpdated()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean oftenUpdated = OFTEN_UPDATED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isGpuBuffer() <em>Gpu Buffer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isGpuBuffer()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean GPU_BUFFER_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isGpuBuffer() <em>Gpu Buffer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isGpuBuffer()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean gpuBuffer = GPU_BUFFER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -311,46 +320,6 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	 * @generated
 	 */
 	@Override
-	public EList<EMemoryProperty> getProperties()
-	{
-		if (properties == null)
-		{
-			properties = new EDataTypeEList<EMemoryProperty>(EMemoryProperty.class, this, ResourcePackage.BUFFER__PROPERTIES);
-		}
-		return properties;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isChangeable()
-	{
-		return changeable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setChangeable(boolean newChangeable)
-	{
-		boolean oldChangeable = changeable;
-		changeable = newChangeable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__CHANGEABLE, oldChangeable, changeable));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ByteBuffer getData()
 	{
 		return data;
@@ -376,6 +345,56 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	 * @generated
 	 */
 	@Override
+	public boolean isOftenUpdated()
+	{
+		return oftenUpdated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOftenUpdated(boolean newOftenUpdated)
+	{
+		boolean oldOftenUpdated = oftenUpdated;
+		oftenUpdated = newOftenUpdated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__OFTEN_UPDATED, oldOftenUpdated, oftenUpdated));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isGpuBuffer()
+	{
+		return gpuBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGpuBuffer(boolean newGpuBuffer)
+	{
+		boolean oldGpuBuffer = gpuBuffer;
+		gpuBuffer = newGpuBuffer;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__GPU_BUFFER, oldGpuBuffer, gpuBuffer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -390,12 +409,12 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 				return getSize();
 			case ResourcePackage.BUFFER__USAGES:
 				return getUsages();
-			case ResourcePackage.BUFFER__PROPERTIES:
-				return getProperties();
-			case ResourcePackage.BUFFER__CHANGEABLE:
-				return isChangeable();
 			case ResourcePackage.BUFFER__DATA:
 				return getData();
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+				return isOftenUpdated();
+			case ResourcePackage.BUFFER__GPU_BUFFER:
+				return isGpuBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -428,15 +447,14 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
 				return;
-			case ResourcePackage.BUFFER__PROPERTIES:
-				getProperties().clear();
-				getProperties().addAll((Collection<? extends EMemoryProperty>)newValue);
-				return;
-			case ResourcePackage.BUFFER__CHANGEABLE:
-				setChangeable((Boolean)newValue);
-				return;
 			case ResourcePackage.BUFFER__DATA:
 				setData((ByteBuffer)newValue);
+				return;
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+				setOftenUpdated((Boolean)newValue);
+				return;
+			case ResourcePackage.BUFFER__GPU_BUFFER:
+				setGpuBuffer((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -467,14 +485,14 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 			case ResourcePackage.BUFFER__USAGES:
 				getUsages().clear();
 				return;
-			case ResourcePackage.BUFFER__PROPERTIES:
-				getProperties().clear();
-				return;
-			case ResourcePackage.BUFFER__CHANGEABLE:
-				setChangeable(CHANGEABLE_EDEFAULT);
-				return;
 			case ResourcePackage.BUFFER__DATA:
 				setData(DATA_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+				setOftenUpdated(OFTEN_UPDATED_EDEFAULT);
+				return;
+			case ResourcePackage.BUFFER__GPU_BUFFER:
+				setGpuBuffer(GPU_BUFFER_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -500,12 +518,12 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 				return size != SIZE_EDEFAULT;
 			case ResourcePackage.BUFFER__USAGES:
 				return usages != null && !usages.isEmpty();
-			case ResourcePackage.BUFFER__PROPERTIES:
-				return properties != null && !properties.isEmpty();
-			case ResourcePackage.BUFFER__CHANGEABLE:
-				return changeable != CHANGEABLE_EDEFAULT;
 			case ResourcePackage.BUFFER__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+				return oftenUpdated != OFTEN_UPDATED_EDEFAULT;
+			case ResourcePackage.BUFFER__GPU_BUFFER:
+				return gpuBuffer != GPU_BUFFER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -583,12 +601,12 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 		result.append(size);
 		result.append(", usages: ");
 		result.append(usages);
-		result.append(", properties: ");
-		result.append(properties);
-		result.append(", changeable: ");
-		result.append(changeable);
 		result.append(", data: ");
 		result.append(data);
+		result.append(", oftenUpdated: ");
+		result.append(oftenUpdated);
+		result.append(", gpuBuffer: ");
+		result.append(gpuBuffer);
 		result.append(')');
 		return result.toString();
 	}

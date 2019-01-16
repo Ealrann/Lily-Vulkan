@@ -8,30 +8,45 @@ import java.nio.ByteBuffer;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.vulkan.resource.nativehelper.VkBufferAllocator;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
 import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryInfo;
 
-public class BufferBackend
+public class CPUBufferBackend implements IBufferBackend
 {
-	private final LogicalDevice logicalDevice;
+	public static final int HOST_VISIBLE = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT
+			| VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
 
-	private final BufferInfo infos;
+	public final LogicalDevice logicalDevice;
+	public final int properties;
+	public final BufferInfo infos;
 
 	private long bufferId;
 	private long bufferMemoryId;
+	private long memoryMap = -1;
 
-	public BufferBackend(LogicalDevice logicalDevice, BufferInfo info)
+	public CPUBufferBackend(LogicalDevice logicalDevice, BufferInfo info, boolean coherent)
 	{
 		this.logicalDevice = logicalDevice;
 		this.infos = info;
+
+		properties = createPropertyMask(coherent);
 	}
 
+	private static int createPropertyMask(boolean coherent)
+	{
+		int properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT;
+		if (coherent)
+		{
+			properties |= VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+		}
+		return properties;
+	}
+
+	@Override
 	public void allocate(MemoryStack stack)
 	{
 		bufferId = VkBufferAllocator.allocate(stack, logicalDevice.getVkDevice(), infos);
@@ -41,17 +56,27 @@ public class BufferBackend
 
 		vkBindBufferMemory(logicalDevice.getVkDevice(), bufferId, bufferMemoryId, 0);
 		// System.out.println(Long.toHexString(bufferMemoryId));
+
+		if (infos.keptMapped)
+		{
+			mapMemory();
+		}
 	}
 
 	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		final var properties = infos.properties;
 		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, bufferId, properties);
 		return VkMemoryAllocator.allocateFromBuffer(stack, allocationInfo);
 	}
 
+	@Override
 	public void free()
 	{
+		if (memoryMap != -1)
+		{
+			unmapMemory();
+		}
+
 		vkDestroyBuffer(logicalDevice.getVkDevice(), bufferId, null);
 		vkFreeMemory(logicalDevice.getVkDevice(), bufferMemoryId, null);
 
@@ -59,53 +84,46 @@ public class BufferBackend
 		bufferMemoryId = -1;
 	}
 
-	public void pushData(MemoryStack stack, ExecutionManager executionManager, ByteBuffer data)
+	@Override
+	public void pushData(ExecutionManager executionManager, ByteBuffer data)
 	{
-		if (isGPU())
+		pushData(data);
+	}
+
+	public void pushData(ByteBuffer data)
+	{
+		mapMemory();
+		MemoryUtil.memCopy(memAddress(data), memoryMap, infos.size);
+
+		if (infos.keptMapped == false)
 		{
-			pushDataToGPU(stack, executionManager, data);
+			unmapMemory();
 		}
-		else
+	}
+
+	@Override
+	public long mapMemory()
+	{
+		if (memoryMap == -1)
 		{
-			pushDataToCPU(data);
+			final var device = logicalDevice.getVkDevice();
+			final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
+			vkMapMemory(device, bufferMemoryId, 0, infos.size, 0, pBuffer);
+			memoryMap = pBuffer.get(0);
+			MemoryUtil.memFree(pBuffer);
 		}
+
+		return memoryMap;
 	}
 
-	public boolean isGPU()
+	@Override
+	public void unmapMemory()
 	{
-		return (infos.properties & VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT) != 0;
-	}
-
-	public void pushDataToGPU(ExecutionManager executionManager, BufferBackend stagingBuffer)
-	{
-		int size = (int) Math.min(stagingBuffer.infos.size, infos.size);
-		final SingleTimeCommand stc = new SingleTimeCommand(executionManager)
+		if (memoryMap != -1)
 		{
-			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
-			{
-				BufferUtils.copyBuffer(commandBuffer, stagingBuffer.bufferId, bufferId, size);
-			}
-		};
-		stc.execute();
-	}
-
-	public void pushDataToGPU(MemoryStack stack, ExecutionManager executionManager, ByteBuffer data)
-	{
-		int size = (int) Math.min(data.remaining(), infos.size);
-		var bufferFiller = new BufferGPUFiller(stack, executionManager, bufferId);
-		bufferFiller.fill(data, size);
-	}
-
-	public void pushDataToCPU(ByteBuffer byteBuffer)
-	{
-		final var device = logicalDevice.getVkDevice();
-		final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-		vkMapMemory(device, bufferMemoryId, 0, infos.size, 0, pBuffer);
-		final long data = pBuffer.get(0);
-		MemoryUtil.memCopy(memAddress(byteBuffer), data, infos.size);
-		vkUnmapMemory(device, bufferMemoryId);
-		MemoryUtil.memFree(pBuffer);
+			vkUnmapMemory(logicalDevice.getVkDevice(), bufferMemoryId);
+			memoryMap = -1;
+		}
 	}
 
 	public BufferInfo getInfos()
@@ -113,11 +131,13 @@ public class BufferBackend
 		return infos;
 	}
 
+	@Override
 	public long getId()
 	{
 		return bufferId;
 	}
 
+	@Override
 	public long getMemoryId()
 	{
 		return bufferMemoryId;

@@ -30,7 +30,7 @@ public class BufferUtils
 	 */
 	public static int flush(LogicalDevice logicalDevice, int bufferMemoryId, long size, int offset)
 	{
-		VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.calloc(1);
+		VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);
 		mappedRange.memory(bufferMemoryId);
 		mappedRange.offset(offset);
@@ -56,7 +56,7 @@ public class BufferUtils
 									int size,
 									int offset)
 	{
-		VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.calloc(1);
+		VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);
 		mappedRange.memory(bufferMemoryId);
 		mappedRange.offset(offset);
@@ -69,7 +69,7 @@ public class BufferUtils
 									long dstBuffer,
 									long size)
 	{
-		var copyRegion = VkBufferCopy.calloc(1);
+		var copyRegion = VkBufferCopy.create(1);
 		copyRegion.srcOffset(0); // Optional
 		copyRegion.dstOffset(0); // Optional
 		copyRegion.size(size);

@@ -30,10 +30,10 @@ public class TriangleMeshBuilder implements IIndexedBufferBuilder<Vertex>
 
 		return res;
 	}
-	
+
 	@Override
 	public IndexBuffer<Vertex> build(ExecutionManager executionManager)
 	{
-		return IndexBuffer.alloc(executionManager, getDatas());
+		return IndexBuffer.alloc(executionManager, getDatas(), false);
 	}
 }

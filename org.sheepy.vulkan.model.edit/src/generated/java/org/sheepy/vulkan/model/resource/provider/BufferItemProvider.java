@@ -70,9 +70,9 @@ public class BufferItemProvider
 			addNamePropertyDescriptor(object);
 			addSizePropertyDescriptor(object);
 			addUsagesPropertyDescriptor(object);
-			addPropertiesPropertyDescriptor(object);
-			addChangeablePropertyDescriptor(object);
 			addDataPropertyDescriptor(object);
+			addOftenUpdatedPropertyDescriptor(object);
+			addGpuBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -193,52 +193,6 @@ public class BufferItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Properties feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPropertiesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Buffer_properties_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_properties_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__PROPERTIES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Changeable feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addChangeablePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Buffer_changeable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_changeable_feature", "_UI_Buffer_type"),
-				 ResourcePackage.Literals.BUFFER__CHANGEABLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Data feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -257,6 +211,52 @@ public class BufferItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Often Updated feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOftenUpdatedPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Buffer_oftenUpdated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_oftenUpdated_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__OFTEN_UPDATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Gpu Buffer feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGpuBufferPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Buffer_gpuBuffer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Buffer_gpuBuffer_feature", "_UI_Buffer_type"),
+				 ResourcePackage.Literals.BUFFER__GPU_BUFFER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -308,9 +308,9 @@ public class BufferItemProvider
 			case ResourcePackage.BUFFER__NAME:
 			case ResourcePackage.BUFFER__SIZE:
 			case ResourcePackage.BUFFER__USAGES:
-			case ResourcePackage.BUFFER__PROPERTIES:
-			case ResourcePackage.BUFFER__CHANGEABLE:
 			case ResourcePackage.BUFFER__DATA:
+			case ResourcePackage.BUFFER__OFTEN_UPDATED:
+			case ResourcePackage.BUFFER__GPU_BUFFER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

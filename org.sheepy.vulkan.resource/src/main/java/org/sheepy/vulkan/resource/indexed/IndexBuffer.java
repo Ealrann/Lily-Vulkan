@@ -9,8 +9,8 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.vulkan.resource.buffer.BufferBackend;
 import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
+import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 
 public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 {
@@ -18,9 +18,10 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 	private final IIndexBufferDescriptor<T> vertexDescriptor;
 	private final int vertexBufferSizeInByte;
 	private final int indexBufferSizeInByte;
+	private final boolean isOftenChanged;
 
-	private BufferBackend vertexBuffer;
-	private BufferBackend indexBuffer;
+	private GPUBufferBackend vertexBuffer;
+	private GPUBufferBackend indexBuffer;
 
 	private int vertexCount;
 	private int indexCount;
@@ -28,21 +29,23 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 	boolean allocated = false;
 
 	public static <T extends IVertex> IndexBuffer<T> alloc(	ExecutionManager context,
-															IndexBufferData<T> datas)
+															IndexBufferData<T> datas,
+															boolean isOftenChanged)
 	{
-		return alloc(context, datas.indexDescriptor, datas.vertices, datas.indices);
+		return alloc(context, datas.indexDescriptor, datas.vertices, datas.indices, isOftenChanged);
 	}
 
 	public static <T extends IVertex> IndexBuffer<T> alloc(	ExecutionManager context,
 															IIndexBufferDescriptor<T> vertexDescriptor,
 															T[] vertices,
-															int[] indices)
+															int[] indices,
+															boolean isOftenChanged)
 	{
 		int vertexBufferSize = vertices.length * vertexDescriptor.sizeOfVertex();
 		int indexBufferSize = indices.length * vertexDescriptor.sizeOfIndex();
 
 		final IndexBuffer<T> res = new IndexBuffer<>(context, vertexDescriptor, vertexBufferSize,
-				indexBufferSize);
+				indexBufferSize, isOftenChanged);
 
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
@@ -56,12 +59,14 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 	public IndexBuffer(	ExecutionManager context,
 						IIndexBufferDescriptor<T> vertexDescriptor,
 						int vertexBufferSizeInByte,
-						int indexBufferSizeInByte)
+						int indexBufferSizeInByte,
+						boolean isOftenChanged)
 	{
 		this.context = context;
 		this.vertexDescriptor = vertexDescriptor;
 		this.vertexBufferSizeInByte = vertexBufferSizeInByte;
 		this.indexBufferSizeInByte = indexBufferSizeInByte;
+		this.isOftenChanged = isOftenChanged;
 	}
 
 	@Override
@@ -78,7 +83,7 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
 
 		vertexBuffer = BufferAllocator.allocateGPUBuffer(stack, context.getLogicalDevice(),
-				vertexBufferSizeInByte, usage);
+				vertexBufferSizeInByte, usage, isOftenChanged, isOftenChanged);
 	}
 
 	private void allocateIndexBuffer(MemoryStack stack)
@@ -86,7 +91,7 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
 
 		indexBuffer = BufferAllocator.allocateGPUBuffer(stack, context.getLogicalDevice(),
-				indexBufferSizeInByte, usage);
+				indexBufferSizeInByte, usage, isOftenChanged, isOftenChanged);
 	}
 
 	public void fillBuffer(MemoryStack stack, T[] vertices, int[] indices)
@@ -120,10 +125,36 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 	@Override
 	public void free()
 	{
-		indexBuffer.free();
 		vertexBuffer.free();
+		indexBuffer.free();
 
 		allocated = false;
+	}
+
+	public void pushFromMemoryMap()
+	{
+		vertexBuffer.pushStagging(context);
+		indexBuffer.pushStagging(context);
+	}
+
+	public long mapVertexMemory()
+	{
+		return vertexBuffer.mapMemory();
+	}
+
+	public long mapIndexMemory()
+	{
+		return indexBuffer.mapMemory();
+	}
+
+	public void unmapVertexMemory()
+	{
+		vertexBuffer.unmapMemory();
+	}
+
+	public void unmapIndexMemory()
+	{
+		indexBuffer.unmapMemory();
 	}
 
 	public IIndexBufferDescriptor<T> getIndexBufferDescriptor()
@@ -172,12 +203,12 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 		return false;
 	}
 
-	public BufferBackend getVertexBuffer()
+	public GPUBufferBackend getVertexBuffer()
 	{
 		return vertexBuffer;
 	}
 
-	public BufferBackend getIndexBuffer()
+	public GPUBufferBackend getIndexBuffer()
 	{
 		return indexBuffer;
 	}

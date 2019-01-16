@@ -1,6 +1,6 @@
 package org.sheepy.vulkan.resource.buffer;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 
 import java.nio.ByteBuffer;
 
@@ -12,7 +12,6 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.Buffer;
@@ -21,12 +20,8 @@ import org.sheepy.vulkan.resource.PipelineResourceAdapter;
 
 public class BufferAdapter extends PipelineResourceAdapter
 {
-	private final int STAGING_USAGE = VK_BUFFER_USAGE_TRANSFER_DST_BIT
-			| VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-
-	private BufferBackend bufferBackend;
-	private BufferBackend stagingBuffer;
-	private Buffer buffer;
+	protected Buffer buffer;
+	protected IBufferBackend bufferBackend;
 
 	private ExecutionManager executionManager;
 
@@ -43,66 +38,27 @@ public class BufferAdapter extends PipelineResourceAdapter
 		var logicalDevice = executionManager.logicalDevice;
 		var info = new BufferInfo(buffer);
 
-		bufferBackend = new BufferBackend(logicalDevice, info);
-		bufferBackend.allocate(stack);
-
-		if (buffer.isChangeable() && bufferBackend.isGPU())
+		if (buffer.isGpuBuffer())
 		{
-			allocateStagingBuffer(stack, logicalDevice, info);
+			bufferBackend = new GPUBufferBackend(logicalDevice, info, buffer.isOftenUpdated());
 		}
+		else
+		{
+			bufferBackend = new CPUBufferBackend(logicalDevice, info, true);
+		}
+
+		bufferBackend.allocate(stack);
 
 		ByteBuffer data = buffer.getData();
 		if (data != null)
 		{
-			if (bufferBackend.isGPU() == false)
-			{
-				bufferBackend.pushDataToCPU(data);
-			}
-			else
-			{
-				if (stagingBuffer != null)
-				{
-					bufferBackend.pushDataToGPU(executionManager, stagingBuffer);
-				}
-				else
-				{
-					bufferBackend.pushDataToGPU(stack, executionManager, data);
-				}
-			}
-		}
-	}
-
-	private void allocateStagingBuffer(	MemoryStack stack,
-										LogicalDevice logicalDevice,
-										BufferInfo info)
-	{
-		if (buffer.getData() != null)
-		{
-			stagingBuffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice,
-					info.size, STAGING_USAGE, buffer.getData());
-		}
-		else
-		{
-			stagingBuffer = BufferAllocator.allocateCPUBuffer(stack, logicalDevice, info.size,
-					STAGING_USAGE);
+			bufferBackend.pushData(executionManager, data);
 		}
 	}
 
 	public void pushData(ByteBuffer data)
 	{
-		if (bufferBackend.isGPU())
-		{
-			if (buffer.isChangeable() == false)
-			{
-				new AssertionError("Unchangeable GPU Buffer.").printStackTrace();
-			}
-
-			bufferBackend.pushDataToGPU(executionManager, stagingBuffer);
-		}
-		else
-		{
-			bufferBackend.pushDataToCPU(data);
-		}
+		bufferBackend.pushData(executionManager, data);
 	}
 
 	@Override
@@ -179,14 +135,14 @@ public class BufferAdapter extends PipelineResourceAdapter
 		return poolSize;
 	}
 
-	public static BufferAdapter adapt(Buffer buffer)
-	{
-		return IServiceAdapterFactory.INSTANCE.adapt(buffer, BufferAdapter.class);
-	}
-
 	@Override
 	public boolean isApplicable(EClass eClass)
 	{
 		return ResourcePackage.Literals.BUFFER == eClass;
+	}
+
+	public static BufferAdapter adapt(Buffer buffer)
+	{
+		return IServiceAdapterFactory.INSTANCE.adapt(buffer, BufferAdapter.class);
 	}
 }

@@ -403,7 +403,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_Properties()
+	public EAttribute getBuffer_Data()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(2);
 	}
@@ -414,7 +414,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_Changeable()
+	public EAttribute getBuffer_OftenUpdated()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(3);
 	}
@@ -425,7 +425,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBuffer_Data()
+	public EAttribute getBuffer_GpuBuffer()
 	{
 		return (EAttribute)bufferEClass.getEStructuralFeatures().get(4);
 	}
@@ -1337,9 +1337,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		bufferEClass = createEClass(BUFFER);
 		createEAttribute(bufferEClass, BUFFER__SIZE);
 		createEAttribute(bufferEClass, BUFFER__USAGES);
-		createEAttribute(bufferEClass, BUFFER__PROPERTIES);
-		createEAttribute(bufferEClass, BUFFER__CHANGEABLE);
 		createEAttribute(bufferEClass, BUFFER__DATA);
+		createEAttribute(bufferEClass, BUFFER__OFTEN_UPDATED);
+		createEAttribute(bufferEClass, BUFFER__GPU_BUFFER);
 
 		imageEClass = createEClass(IMAGE);
 		createEAttribute(imageEClass, IMAGE__WIDTH);
@@ -1516,9 +1516,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_Properties(), theEnumerationPackage.getEMemoryProperty(), "properties", null, 0, -1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_Changeable(), theEcorePackage.getEBoolean(), "changeable", "false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_OftenUpdated(), theEcorePackage.getEBoolean(), "oftenUpdated", "false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_GpuBuffer(), theEcorePackage.getEBoolean(), "gpuBuffer", "true", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImage_Width(), theEcorePackage.getEInt(), "width", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

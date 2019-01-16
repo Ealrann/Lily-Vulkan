@@ -15,7 +15,7 @@ public class BufferGPUFiller
 	private final long targetBufferId;
 	private final MemoryStack stack;
 
-	private BufferBackend stagingBuffer;
+	private CPUBufferBackend stagingBuffer;
 
 	public BufferGPUFiller(MemoryStack stack, ExecutionManager context, long targetBufferId)
 	{
@@ -50,7 +50,7 @@ public class BufferGPUFiller
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 		final var logicalDevice = context.logicalDevice;
 		stagingBuffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice, byteSize,
-				usage, sourceBuffer);
+				usage, false, sourceBuffer);
 	}
 
 	private void fillBuffer(VkCommandBuffer commandBuffer, long byteSize)

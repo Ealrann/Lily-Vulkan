@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.resource;
 import java.nio.ByteBuffer;
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,9 +17,9 @@ import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
  * <ul>
  *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getSize <em>Size</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getUsages <em>Usages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#isChangeable <em>Changeable</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getData <em>Data</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer()
@@ -74,51 +73,6 @@ public interface Buffer extends PipelineResource
 	EList<EBufferUsage> getUsages();
 
 	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EMemoryProperty}.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EMemoryProperty}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Properties</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Properties</em>' attribute list.
-	 * @see org.sheepy.vulkan.model.enumeration.EMemoryProperty
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_Properties()
-	 * @model unique="false"
-	 * @generated
-	 */
-	EList<EMemoryProperty> getProperties();
-
-	/**
-	 * Returns the value of the '<em><b>Changeable</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Changeable</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Changeable</em>' attribute.
-	 * @see #setChangeable(boolean)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_Changeable()
-	 * @model default="false" unique="false"
-	 * @generated
-	 */
-	boolean isChangeable();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Buffer#isChangeable <em>Changeable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Changeable</em>' attribute.
-	 * @see #isChangeable()
-	 * @generated
-	 */
-	void setChangeable(boolean value);
-
-	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -143,5 +97,59 @@ public interface Buffer extends PipelineResource
 	 * @generated
 	 */
 	void setData(ByteBuffer value);
+
+	/**
+	 * Returns the value of the '<em><b>Often Updated</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Often Updated</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Often Updated</em>' attribute.
+	 * @see #setOftenUpdated(boolean)
+	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_OftenUpdated()
+	 * @model default="false" unique="false"
+	 * @generated
+	 */
+	boolean isOftenUpdated();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Often Updated</em>' attribute.
+	 * @see #isOftenUpdated()
+	 * @generated
+	 */
+	void setOftenUpdated(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Gpu Buffer</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Gpu Buffer</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Gpu Buffer</em>' attribute.
+	 * @see #setGpuBuffer(boolean)
+	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_GpuBuffer()
+	 * @model default="true" unique="false"
+	 * @generated
+	 */
+	boolean isGpuBuffer();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Gpu Buffer</em>' attribute.
+	 * @see #isGpuBuffer()
+	 * @generated
+	 */
+	void setGpuBuffer(boolean value);
 
 } // Buffer

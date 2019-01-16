@@ -23,7 +23,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.resource.Sampler;
 import org.sheepy.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.vulkan.resource.buffer.BufferBackend;
+import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.vulkan.resource.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.resource.image.ImageInfo;
 
@@ -74,8 +74,8 @@ public class VkTexture implements IVkDescriptor
 
 		int size = imageInfo.width * imageInfo.height * 4;
 
-		final BufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice,
-				size, stagingUsage, data);
+		final CPUBufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice,
+				size, stagingUsage, false, data);
 
 		final SingleTimeCommand stc = new SingleTimeCommand(executionManager)
 		{

@@ -4,7 +4,6 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.gameoflife.compute.Board;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.impl.BufferImpl;
@@ -22,7 +21,6 @@ public class BoardBufferFactory
 		res.getUsages().add(EBufferUsage.STORAGE_BUFFER_BIT);
 		res.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
 		res.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
-		res.getProperties().add(EMemoryProperty.DEVICE_LOCAL_BIT);
 		res.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
 		res.getShaderStages().add(EShaderStage.COMPUTE_BIT);
 

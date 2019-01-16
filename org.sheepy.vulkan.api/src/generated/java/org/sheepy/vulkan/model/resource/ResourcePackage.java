@@ -255,31 +255,31 @@ public interface ResourcePackage extends EPackage
 	int BUFFER__USAGES = PIPELINE_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER__PROPERTIES = PIPELINE_RESOURCE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Changeable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER__CHANGEABLE = PIPELINE_RESOURCE_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__DATA = PIPELINE_RESOURCE_FEATURE_COUNT + 4;
+	int BUFFER__DATA = PIPELINE_RESOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Often Updated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER__OFTEN_UPDATED = PIPELINE_RESOURCE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Gpu Buffer</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER__GPU_BUFFER = PIPELINE_RESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Buffer</em>' class.
@@ -1900,28 +1900,6 @@ public interface ResourcePackage extends EPackage
 	EAttribute getBuffer_Usages();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.Buffer#getProperties <em>Properties</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Properties</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#getProperties()
-	 * @see #getBuffer()
-	 * @generated
-	 */
-	EAttribute getBuffer_Properties();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#isChangeable <em>Changeable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Changeable</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#isChangeable()
-	 * @see #getBuffer()
-	 * @generated
-	 */
-	EAttribute getBuffer_Changeable();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#getData <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1931,6 +1909,28 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getBuffer_Data();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Often Updated</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Buffer#isOftenUpdated()
+	 * @see #getBuffer()
+	 * @generated
+	 */
+	EAttribute getBuffer_OftenUpdated();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Gpu Buffer</em>'.
+	 * @see org.sheepy.vulkan.model.resource.Buffer#isGpuBuffer()
+	 * @see #getBuffer()
+	 * @generated
+	 */
+	EAttribute getBuffer_GpuBuffer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Image <em>Image</em>}'.
@@ -2847,28 +2847,28 @@ public interface ResourcePackage extends EPackage
 		EAttribute BUFFER__USAGES = eINSTANCE.getBuffer_Usages();
 
 		/**
-		 * The meta object literal for the '<em><b>Properties</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER__PROPERTIES = eINSTANCE.getBuffer_Properties();
-
-		/**
-		 * The meta object literal for the '<em><b>Changeable</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER__CHANGEABLE = eINSTANCE.getBuffer_Changeable();
-
-		/**
 		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute BUFFER__DATA = eINSTANCE.getBuffer_Data();
+
+		/**
+		 * The meta object literal for the '<em><b>Often Updated</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER__OFTEN_UPDATED = eINSTANCE.getBuffer_OftenUpdated();
+
+		/**
+		 * The meta object literal for the '<em><b>Gpu Buffer</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER__GPU_BUFFER = eINSTANCE.getBuffer_GpuBuffer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.

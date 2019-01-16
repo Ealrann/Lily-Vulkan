@@ -12,7 +12,6 @@ import org.sheepy.vulkan.common.util.ModelUtil;
 import org.sheepy.vulkan.common.util.SizeOf;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.resource.Buffer;
 import org.sheepy.vulkan.model.resource.impl.BufferImpl;
@@ -52,11 +51,10 @@ public class UniformBufferManager
 
 		res.setSize(SIZE_OF);
 		res.getUsages().add(EBufferUsage.UNIFORM_BUFFER_BIT);
-		res.getProperties().add(EMemoryProperty.HOST_VISIBLE_BIT);
-		res.getProperties().add(EMemoryProperty.HOST_COHERENT_BIT);
 		res.setDescriptorType(EDescriptorType.UNIFORM_BUFFER);
 		res.getShaderStages().add(EShaderStage.VERTEX_BIT);
-		res.setChangeable(true);
+		res.setGpuBuffer(false);
+		res.setOftenUpdated(true);
 
 		stagingBuffer = MemoryUtil.memAlloc(SIZE_OF);
 		stagingValues = new float[48];

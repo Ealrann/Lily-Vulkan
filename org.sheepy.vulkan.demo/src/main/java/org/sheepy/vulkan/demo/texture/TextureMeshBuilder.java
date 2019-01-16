@@ -31,10 +31,10 @@ public class TextureMeshBuilder implements IIndexedBufferBuilder<TextureVertex>
 
 		return res;
 	}
-	
+
 	@Override
 	public IndexBuffer<TextureVertex> build(ExecutionManager executionManager)
 	{
-		return IndexBuffer.alloc(executionManager, getDatas());
+		return IndexBuffer.alloc(executionManager, getDatas(), false);
 	}
 }

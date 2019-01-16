@@ -17,7 +17,6 @@ import org.sheepy.vulkan.model.enumeration.EFilter
 import org.sheepy.vulkan.model.enumeration.EFormat
 import org.sheepy.vulkan.model.enumeration.EImageLayout
 import org.sheepy.vulkan.model.enumeration.EImageUsage
-import org.sheepy.vulkan.model.enumeration.EMemoryProperty
 import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
@@ -35,9 +34,9 @@ class Buffer extends PipelineResource
 {
 	long size
 	EBufferUsage[] usages
-	EMemoryProperty[] properties
-	boolean changeable = "false"
 	ByteBuffer data
+	boolean oftenUpdated = "false"
+	boolean gpuBuffer = "true"
 }
 
 type ByteBuffer wraps ByteBuffer
