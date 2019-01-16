@@ -178,6 +178,15 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE__DYNAMIC_STATE = GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE;
 
 	/**
+	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__SUBPASS = GraphicPackage.GRAPHICS_PIPELINE__SUBPASS;
+
+	/**
 	 * The feature id for the '<em><b>Mesh</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
