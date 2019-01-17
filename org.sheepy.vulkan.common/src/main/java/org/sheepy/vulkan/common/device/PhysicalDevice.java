@@ -5,7 +5,6 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFormatProperties;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
@@ -17,6 +16,7 @@ public class PhysicalDevice
 {
 	public final VkPhysicalDevice vkPhysicalDevice;
 	public final VkInstance vkInstance;
+	public final VkPhysicalDeviceProperties deviceProperties;
 
 	private String name;
 	private int driverVersion;
@@ -27,12 +27,13 @@ public class PhysicalDevice
 	{
 		this.vkPhysicalDevice = vkPhysicalDevice;
 		this.vkInstance = vkInstance;
+
+		deviceProperties = VkPhysicalDeviceProperties.create();
+		vkGetPhysicalDeviceProperties(vkPhysicalDevice, deviceProperties);
 	}
 
-	public void allocate(MemoryStack stack)
+	public void allocate()
 	{
-		final var deviceProperties = VkPhysicalDeviceProperties.callocStack(stack);
-		vkGetPhysicalDeviceProperties(vkPhysicalDevice, deviceProperties);
 
 		name = deviceProperties.deviceNameString();
 		driverVersion = deviceProperties.driverVersion();
@@ -56,16 +57,11 @@ public class PhysicalDevice
 
 	public void printDeviceProperties()
 	{
-		final VkPhysicalDeviceProperties deviceProperties = VkPhysicalDeviceProperties.calloc();
-		vkGetPhysicalDeviceProperties(vkPhysicalDevice, deviceProperties);
-
 		final VkPhysicalDeviceLimits limits = deviceProperties.limits();
 		System.out.println("\tmaxImageDimension2D:\t" + limits.maxImageDimension2D());
 		System.out.println("\tmaxUniformBufferRange:\t" + limits.maxUniformBufferRange());
 		System.out.println("\tmaxStorageBufferRange:\t" + limits.maxStorageBufferRange());
 		System.out.println("\tmaxPushConstantsSize:\t" + limits.maxPushConstantsSize());
-
-		deviceProperties.free();
 	}
 
 	public int findMemoryType(int typeFilter, int properties)

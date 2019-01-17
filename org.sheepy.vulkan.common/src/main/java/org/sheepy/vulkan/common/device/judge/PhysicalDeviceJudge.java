@@ -10,7 +10,6 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
-import org.lwjgl.vulkan.VkPhysicalDeviceProperties;
 import org.sheepy.vulkan.api.window.Surface;
 import org.sheepy.vulkan.common.device.PhysicalDevice;
 import org.sheepy.vulkan.common.device.data.ColorDomains;
@@ -21,9 +20,6 @@ public class PhysicalDeviceJudge
 	private final String[] requiredExtensions;
 	private final MemoryStack stack;
 
-	private final VkPhysicalDeviceProperties deviceProperties;
-	private final VkPhysicalDeviceFeatures deviceFeatures;
-
 	private ColorDomains colorDomains;
 	private PresentModes modes;
 
@@ -31,16 +27,15 @@ public class PhysicalDeviceJudge
 	{
 		this.requiredExtensions = requiredExtensions;
 		this.stack = stack;
-		deviceProperties = VkPhysicalDeviceProperties.create();
-		deviceFeatures = VkPhysicalDeviceFeatures.create();
 	}
 
 	public int rateDeviceSuitability(PhysicalDevice physicalDevice, Surface surface)
 	{
 		colorDomains = new ColorDomains(stack, physicalDevice.vkPhysicalDevice, surface);
 		modes = new PresentModes(physicalDevice.vkPhysicalDevice, surface);
+		var deviceProperties = physicalDevice.deviceProperties;
 
-		vkGetPhysicalDeviceProperties(physicalDevice.vkPhysicalDevice, deviceProperties);
+		VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.calloc();
 		vkGetPhysicalDeviceFeatures(physicalDevice.vkPhysicalDevice, deviceFeatures);
 		int score = 0;
 
@@ -67,6 +62,8 @@ public class PhysicalDeviceJudge
 		{
 			score = 0;
 		}
+
+		deviceFeatures.free();
 
 		return score;
 	}

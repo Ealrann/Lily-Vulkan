@@ -52,7 +52,7 @@ public class PhysicalDeviceSelector
 		Collections.sort(devices, DEVICE_COMPARATOR);
 
 		final PhysicalDevice res = devices.get(0).physicalDevice;
-		res.allocate(stack);
+		res.allocate();
 
 		return res;
 	}
