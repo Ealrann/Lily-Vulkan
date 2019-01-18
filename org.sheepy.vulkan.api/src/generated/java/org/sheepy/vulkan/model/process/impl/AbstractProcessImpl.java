@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.common.api.util.LTreeIterator;
 import org.sheepy.common.model.inference.IInferenceObject;
@@ -36,6 +36,7 @@ import org.sheepy.vulkan.model.process.AbstractProcess;
 import org.sheepy.vulkan.model.process.IProcessUnit;
 import org.sheepy.vulkan.model.process.ProcessPackage;
 
+import org.sheepy.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.vulkan.model.resource.DescriptorSet;
 
 /**
@@ -52,8 +53,10 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getResources <em>Resources</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getUnits <em>Units</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getSemaphores <em>Semaphores</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getWaitForSubmissions <em>Wait For Submissions</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#isInitializedSignalizedSemaphore <em>Initialized Signalized Semaphore</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getDependentProcesses <em>Dependent Processes</em>}</li>
  * </ul>
  *
  * @generated
@@ -141,6 +144,16 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	protected EList<IProcessUnit> units;
 
 	/**
+	 * The cached value of the '{@link #getSemaphores() <em>Semaphores</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSemaphores()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ProcessSemaphore> semaphores;
+
+	/**
 	 * The default value of the '{@link #isResetAllowed() <em>Reset Allowed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -161,14 +174,34 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	protected boolean resetAllowed = RESET_ALLOWED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getWaitForSubmissions() <em>Wait For Submissions</em>}' reference list.
+	 * The default value of the '{@link #isInitializedSignalizedSemaphore() <em>Initialized Signalized Semaphore</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWaitForSubmissions()
+	 * @see #isInitializedSignalizedSemaphore()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AbstractProcess> waitForSubmissions;
+	protected static final boolean INITIALIZED_SIGNALIZED_SEMAPHORE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isInitializedSignalizedSemaphore() <em>Initialized Signalized Semaphore</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isInitializedSignalizedSemaphore()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean initializedSignalizedSemaphore = INITIALIZED_SIGNALIZED_SEMAPHORE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDependentProcesses() <em>Dependent Processes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependentProcesses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ProcessSemaphore> dependentProcesses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -342,13 +375,53 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
-	public EList<AbstractProcess> getWaitForSubmissions()
+	public boolean isInitializedSignalizedSemaphore()
 	{
-		if (waitForSubmissions == null)
+		return initializedSignalizedSemaphore;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInitializedSignalizedSemaphore(boolean newInitializedSignalizedSemaphore)
+	{
+		boolean oldInitializedSignalizedSemaphore = initializedSignalizedSemaphore;
+		initializedSignalizedSemaphore = newInitializedSignalizedSemaphore;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE, oldInitializedSignalizedSemaphore, initializedSignalizedSemaphore));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<ProcessSemaphore> getDependentProcesses()
+	{
+		if (dependentProcesses == null)
 		{
-			waitForSubmissions = new EObjectResolvingEList<AbstractProcess>(AbstractProcess.class, this, ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS);
+			dependentProcesses = new EObjectWithInverseResolvingEList<ProcessSemaphore>(ProcessSemaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, ProcessPackage.PROCESS_SEMAPHORE__PROCESS);
 		}
-		return waitForSubmissions;
+		return dependentProcesses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<ProcessSemaphore> getSemaphores()
+	{
+		if (semaphores == null)
+		{
+			semaphores = new EObjectContainmentEList<ProcessSemaphore>(ProcessSemaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES);
+		}
+		return semaphores;
 	}
 
 	/**
@@ -450,6 +523,23 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependentProcesses()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -461,6 +551,10 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 				return ((InternalEList<?>)getDescriptorSets()).basicRemove(otherEnd, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+				return ((InternalEList<?>)getSemaphores()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+				return ((InternalEList<?>)getDependentProcesses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -487,10 +581,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 				return getDescriptorSets();
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				return getUnits();
+			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+				return getSemaphores();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return isResetAllowed();
-			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS:
-				return getWaitForSubmissions();
+			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
+				return isInitializedSignalizedSemaphore();
+			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+				return getDependentProcesses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -527,12 +625,19 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 				getUnits().clear();
 				getUnits().addAll((Collection<? extends IProcessUnit>)newValue);
 				return;
+			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+				getSemaphores().clear();
+				getSemaphores().addAll((Collection<? extends ProcessSemaphore>)newValue);
+				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed((Boolean)newValue);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS:
-				getWaitForSubmissions().clear();
-				getWaitForSubmissions().addAll((Collection<? extends AbstractProcess>)newValue);
+			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
+				setInitializedSignalizedSemaphore((Boolean)newValue);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+				getDependentProcesses().clear();
+				getDependentProcesses().addAll((Collection<? extends ProcessSemaphore>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -566,11 +671,17 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				getUnits().clear();
 				return;
+			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+				getSemaphores().clear();
+				return;
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				setResetAllowed(RESET_ALLOWED_EDEFAULT);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS:
-				getWaitForSubmissions().clear();
+			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
+				setInitializedSignalizedSemaphore(INITIALIZED_SIGNALIZED_SEMAPHORE_EDEFAULT);
+				return;
+			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+				getDependentProcesses().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -598,10 +709,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 				return descriptorSets != null && !descriptorSets.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				return units != null && !units.isEmpty();
+			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+				return semaphores != null && !semaphores.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 				return resetAllowed != RESET_ALLOWED_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS:
-				return waitForSubmissions != null && !waitForSubmissions.isEmpty();
+			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
+				return initializedSignalizedSemaphore != INITIALIZED_SIGNALIZED_SEMAPHORE_EDEFAULT;
+			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+				return dependentProcesses != null && !dependentProcesses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -687,6 +802,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		result.append(enabled);
 		result.append(", resetAllowed: ");
 		result.append(resetAllowed);
+		result.append(", initializedSignalizedSemaphore: ");
+		result.append(initializedSignalizedSemaphore);
 		result.append(')');
 		return result.toString();
 	}

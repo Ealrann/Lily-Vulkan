@@ -6,12 +6,11 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
-import org.sheepy.vulkan.api.concurrent.ISignalEmitter;
 import org.sheepy.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.vulkan.common.execution.ICommandBuffer;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.process.process.ProcessSubmission;
 import org.sheepy.vulkan.process.process.SubmissionInfo;
+import org.sheepy.vulkan.process.process.WaitData;
 
 public class FrameSubmission extends ProcessSubmission
 {
@@ -20,11 +19,10 @@ public class FrameSubmission extends ProcessSubmission
 	private VkSemaphore presentWaitSemaphore;
 
 	public FrameSubmission(	GraphicContext context,
-							Collection<Long> waitForSignals,
-							Collection<ISignalEmitter> signals)
+							Collection<WaitData> waitForSignals,
+							Collection<VkSemaphore> signals)
 	{
-		super(context.commandBuffers, waitForSignals, signals,
-				context.configuration.getAcquireWaitStage());
+		super(context.commandBuffers, waitForSignals, signals);
 
 		this.context = context;
 	}
@@ -40,8 +38,7 @@ public class FrameSubmission extends ProcessSubmission
 	@Override
 	protected SubmissionInfo buildSubmissionInfo(	int infoNumber,
 													ICommandBuffer commandBuffer,
-													EPipelineStage waitStage,
-													Collection<Long> waitSemaphores,
+													Collection<WaitData> waitSemaphores,
 													Collection<Long> signalSemaphores)
 	{
 		List<Long> signals = new ArrayList<>();
@@ -49,12 +46,12 @@ public class FrameSubmission extends ProcessSubmission
 		signals.add(presentWaitSemaphore.getId());
 
 		return new FrameSubmissionInfo(infoNumber, context.swapChainManager, commandBuffer,
-				waitStage, waitSemaphores, signals, List.of(presentWaitSemaphore.getId()));
+				waitSemaphores, signals, List.of(presentWaitSemaphore.getId()));
 	}
 
 	public VkPresentInfoKHR getPresentInfo(int frameIndex)
 	{
-		return ((FrameSubmissionInfo) infos.get(frameIndex)).getPresentInfo();
+		return ((FrameSubmissionInfo) submitInfos.get(frameIndex)).getPresentInfo();
 	}
 
 	@Override

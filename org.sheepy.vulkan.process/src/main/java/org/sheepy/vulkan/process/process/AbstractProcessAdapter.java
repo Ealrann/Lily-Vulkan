@@ -11,7 +11,7 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.common.api.adapter.IServiceAdapterFactory;
 import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.common.allocation.adapter.IDeepAllocableAdapter;
-import org.sheepy.vulkan.common.concurrent.SignalEmitter;
+import org.sheepy.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
 import org.sheepy.vulkan.common.device.LogicalDevice;
 import org.sheepy.vulkan.common.engine.AbstractEnginePartAdapter;
@@ -35,7 +35,8 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	protected LogicalDevice logicalDevice;
 
 	private AbstractProcess process = null;
-	private SignalEmitter submissionComplete;
+	private VkSemaphore executionSemaphore = null;
+	private boolean firstRecord = true;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -43,7 +44,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		super.setTarget(target);
 		process = (AbstractProcess) target;
 		logicalDevice = ILogicalDeviceAdapter.adapt(process).getLogicalDevice(process);
-		submissionComplete = new SignalEmitter(logicalDevice);
 
 		descriptorPool = new DescriptorPool(logicalDevice, gatherDescriptorLists());
 
@@ -91,9 +91,21 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
+	public void flatAllocate(MemoryStack stack)
+	{
+		super.flatAllocate(stack);
+	}
+
+	@Override
 	public void deepAllocate(MemoryStack stack)
 	{
+		if (firstRecord && executionSemaphore != null && process.isInitializedSignalizedSemaphore())
+		{
+			executionSemaphore.signalSemaphore(executionManager);
+		}
+
 		recordCommands();
+		firstRecord = false;
 	}
 
 	@Override
@@ -101,7 +113,10 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	{
 		super.free();
 
-		submissionComplete.free(logicalDevice);
+		if (executionSemaphore != null)
+		{
+			executionSemaphore.free(logicalDevice);
+		}
 	}
 
 	@Override
@@ -128,16 +143,18 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		}
 	}
 
-	@Override
-	public long getSignalSemaphore()
+	public VkSemaphore getExecutionSemaphore()
 	{
-		return submissionComplete.getSignalSemaphore();
-	}
+		if (executionSemaphore == null)
+		{
+			if (process.getDependentProcesses().isEmpty() == false)
+			{
+				executionSemaphore = new VkSemaphore();
+				executionSemaphore.allocate(logicalDevice);
+			}
+		}
 
-	@Override
-	public boolean hasSemaphore()
-	{
-		return submissionComplete.hasSemaphore();
+		return executionSemaphore;
 	}
 
 	private boolean isRecordNeeded()

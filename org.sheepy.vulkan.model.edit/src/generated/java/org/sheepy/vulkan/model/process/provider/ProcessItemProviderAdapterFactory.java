@@ -91,6 +91,31 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.ProcessSemaphore} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProcessSemaphoreItemProvider processSemaphoreItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.ProcessSemaphore}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProcessSemaphoreAdapter()
+	{
+		if (processSemaphoreItemProvider == null)
+		{
+			processSemaphoreItemProvider = new ProcessSemaphoreItemProvider(this);
+		}
+
+		return processSemaphoreItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.PipelineBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,6 +312,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	@Override
 	public void dispose()
 	{
+		if (processSemaphoreItemProvider != null) processSemaphoreItemProvider.dispose();
 		if (pipelineBarrierItemProvider != null) pipelineBarrierItemProvider.dispose();
 		if (pushConstantItemProvider != null) pushConstantItemProvider.dispose();
 	}

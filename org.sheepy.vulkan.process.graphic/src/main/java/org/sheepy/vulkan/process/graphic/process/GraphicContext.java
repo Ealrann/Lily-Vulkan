@@ -1,18 +1,21 @@
 package org.sheepy.vulkan.process.graphic.process;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.model.process.AbstractProcess;
+import org.sheepy.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
 import org.sheepy.vulkan.process.graphic.view.ImageViewManager;
+import org.sheepy.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.process.process.ProcessContext;
+import org.sheepy.vulkan.process.process.WaitData;
 import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
 
 public class GraphicContext extends ProcessContext
@@ -31,7 +34,8 @@ public class GraphicContext extends ProcessContext
 
 	public GraphicContext(	ExecutionManager executionManager,
 							DescriptorPool descriptorPool,
-							GraphicProcess graphicProcess)
+							GraphicProcess graphicProcess,
+							VkSemaphore imageAcquireSemaphore)
 	{
 		super(executionManager, descriptorPool, graphicProcess);
 
@@ -44,19 +48,49 @@ public class GraphicContext extends ProcessContext
 		imageViewManager = new ImageViewManager(this);
 		commandBuffers = new GraphicCommandBuffers(this);
 
-		final var processAdapter = GraphicProcessAdapter.adapt(graphicProcess);
-
-		List<Long> waitForEmitters = new ArrayList<>();
-		waitForEmitters.add(processAdapter.getImageAcquiredEmitter().getSignalSemaphore());
-
-		for (AbstractProcess process : graphicProcess.getWaitForSubmissions())
-		{
-			waitForEmitters.add(IProcessAdapter.adapt(process).getSignalSemaphore());
-		}
-
-		submission = new FrameSubmission(this, waitForEmitters, List.of(processAdapter));
+		submission = createSubmission(graphicProcess, imageAcquireSemaphore);
 
 		buildAllocationList();
+	}
+
+	private FrameSubmission createSubmission(	GraphicProcess graphicProcess,
+												VkSemaphore imageAcquireSemaphore)
+	{
+		var processAdapter = GraphicProcessAdapter.adapt(graphicProcess);
+
+		List<WaitData> waitForEmitters = new ArrayList<>();
+		waitForEmitters.add(createAcquireSemaphoreData(processAdapter, imageAcquireSemaphore));
+		for (ProcessSemaphore waitFor : graphicProcess.getSemaphores())
+		{
+			waitForEmitters.add(convertToSemaphoreData(waitFor));
+		}
+
+		List<VkSemaphore> signals = null;
+		var executionSemaphore = processAdapter.getExecutionSemaphore();
+		if (executionSemaphore != null)
+		{
+			signals = List.of(executionSemaphore);
+		}
+		else
+		{
+			signals = Collections.emptyList();
+		}
+
+		return new FrameSubmission(this, waitForEmitters, signals);
+	}
+
+	private WaitData createAcquireSemaphoreData(GraphicProcessAdapter processAdapter,
+												VkSemaphore imageAcquireSemaphore)
+	{
+		var acquireWaitStage = configuration.getAcquireWaitStage();
+		return new WaitData(imageAcquireSemaphore, acquireWaitStage);
+	}
+
+	private static WaitData convertToSemaphoreData(ProcessSemaphore waitFor)
+	{
+		var targetProcessAdapter = AbstractProcessAdapter.adapt(waitFor.getProcess());
+		var waitStage = waitFor.getWaitStage();
+		return new WaitData(targetProcessAdapter.getExecutionSemaphore(), waitStage);
 	}
 
 	public void buildAllocationList()

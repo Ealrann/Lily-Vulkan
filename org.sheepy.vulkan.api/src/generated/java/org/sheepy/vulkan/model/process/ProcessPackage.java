@@ -126,22 +126,40 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__UNITS = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Semaphores</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS__SEMAPHORES = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
+	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Wait For Submissions</b></em>' reference list.
+	 * The feature id for the '<em><b>Initialized Signalized Semaphore</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
+	int ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Dependent Processes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PROCESS__DEPENDENT_PROCESSES = VulkanPackage.IPROCESS_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Process</em>' class.
@@ -150,7 +168,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
+	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -207,6 +225,52 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS_OPERATION_COUNT = VulkanPackage.IPROCESS_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.process.impl.ProcessSemaphoreImpl
+	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getProcessSemaphore()
+	 * @generated
+	 */
+	int PROCESS_SEMAPHORE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Process</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_SEMAPHORE__PROCESS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Wait Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_SEMAPHORE__WAIT_STAGE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Semaphore</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_SEMAPHORE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Semaphore</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_SEMAPHORE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -214,7 +278,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIProcessUnit()
 	 * @generated
 	 */
-	int IPROCESS_UNIT = 1;
+	int IPROCESS_UNIT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -314,7 +378,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
 	 * @generated
 	 */
-	int CONFIGURATION = 2;
+	int CONFIGURATION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -342,7 +406,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
 	 * @generated
 	 */
-	int PIPELINE_BARRIER = 3;
+	int PIPELINE_BARRIER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -478,7 +542,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
 	 * @generated
 	 */
-	int IPIPELINE = 4;
+	int IPIPELINE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -587,7 +651,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 5;
+	int ABSTRACT_PIPELINE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -723,7 +787,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
 	 * @generated
 	 */
-	int IPIPELINE_UNIT = 6;
+	int IPIPELINE_UNIT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -760,7 +824,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
 	 * @generated
 	 */
-	int ABSTRACT_COMPOSITE_PIPELINE = 7;
+	int ABSTRACT_COMPOSITE_PIPELINE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -905,7 +969,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
 	 * @generated
 	 */
-	int PUSH_CONSTANT = 8;
+	int PUSH_CONSTANT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -990,15 +1054,69 @@ public interface ProcessPackage extends EPackage
 	EAttribute getAbstractProcess_ResetAllowed();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getWaitForSubmissions <em>Wait For Submissions</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.AbstractProcess#isInitializedSignalizedSemaphore <em>Initialized Signalized Semaphore</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Wait For Submissions</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getWaitForSubmissions()
+	 * @return the meta object for the attribute '<em>Initialized Signalized Semaphore</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractProcess#isInitializedSignalizedSemaphore()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
-	EReference getAbstractProcess_WaitForSubmissions();
+	EAttribute getAbstractProcess_InitializedSignalizedSemaphore();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getDependentProcesses <em>Dependent Processes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Dependent Processes</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getDependentProcesses()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EReference getAbstractProcess_DependentProcesses();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getSemaphores <em>Semaphores</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Semaphores</em>'.
+	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getSemaphores()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EReference getAbstractProcess_Semaphores();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.ProcessSemaphore <em>Semaphore</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Semaphore</em>'.
+	 * @see org.sheepy.vulkan.model.process.ProcessSemaphore
+	 * @generated
+	 */
+	EClass getProcessSemaphore();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.ProcessSemaphore#getProcess <em>Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Process</em>'.
+	 * @see org.sheepy.vulkan.model.process.ProcessSemaphore#getProcess()
+	 * @see #getProcessSemaphore()
+	 * @generated
+	 */
+	EReference getProcessSemaphore_Process();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.ProcessSemaphore#getWaitStage <em>Wait Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Wait Stage</em>'.
+	 * @see org.sheepy.vulkan.model.process.ProcessSemaphore#getWaitStage()
+	 * @see #getProcessSemaphore()
+	 * @generated
+	 */
+	EAttribute getProcessSemaphore_WaitStage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}'.
@@ -1246,12 +1364,54 @@ public interface ProcessPackage extends EPackage
 		EAttribute ABSTRACT_PROCESS__RESET_ALLOWED = eINSTANCE.getAbstractProcess_ResetAllowed();
 
 		/**
-		 * The meta object literal for the '<em><b>Wait For Submissions</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Initialized Signalized Semaphore</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS = eINSTANCE.getAbstractProcess_WaitForSubmissions();
+		EAttribute ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = eINSTANCE.getAbstractProcess_InitializedSignalizedSemaphore();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependent Processes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS__DEPENDENT_PROCESSES = eINSTANCE.getAbstractProcess_DependentProcesses();
+
+		/**
+		 * The meta object literal for the '<em><b>Semaphores</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS__SEMAPHORES = eINSTANCE.getAbstractProcess_Semaphores();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.process.impl.ProcessSemaphoreImpl
+		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getProcessSemaphore()
+		 * @generated
+		 */
+		EClass PROCESS_SEMAPHORE = eINSTANCE.getProcessSemaphore();
+
+		/**
+		 * The meta object literal for the '<em><b>Process</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_SEMAPHORE__PROCESS = eINSTANCE.getProcessSemaphore_Process();
+
+		/**
+		 * The meta object literal for the '<em><b>Wait Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROCESS_SEMAPHORE__WAIT_STAGE = eINSTANCE.getProcessSemaphore_WaitStage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}' class.

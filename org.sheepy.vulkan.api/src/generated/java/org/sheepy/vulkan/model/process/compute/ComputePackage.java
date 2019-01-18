@@ -125,6 +125,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__UNITS = ProcessPackage.ABSTRACT_PROCESS__UNITS;
 
 	/**
+	 * The feature id for the '<em><b>Semaphores</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__SEMAPHORES = ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES;
+
+	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,13 +143,22 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__RESET_ALLOWED = ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED;
 
 	/**
-	 * The feature id for the '<em><b>Wait For Submissions</b></em>' reference list.
+	 * The feature id for the '<em><b>Initialized Signalized Semaphore</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS__WAIT_FOR_SUBMISSIONS = ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR_SUBMISSIONS;
+	int COMPUTE_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE;
+
+	/**
+	 * The feature id for the '<em><b>Dependent Processes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PROCESS__DEPENDENT_PROCESSES = ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.

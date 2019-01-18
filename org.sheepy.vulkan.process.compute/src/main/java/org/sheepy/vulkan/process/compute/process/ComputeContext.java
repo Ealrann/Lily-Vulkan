@@ -1,23 +1,24 @@
 package org.sheepy.vulkan.process.compute.process;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import org.sheepy.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.process.AbstractProcess;
+import org.sheepy.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffers;
+import org.sheepy.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.process.process.ProcessSubmission;
+import org.sheepy.vulkan.process.process.WaitData;
 import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
 
 public class ComputeContext extends ProcessContext
 {
 	public final ComputeProcess computeProcess;
-
 	public final ComputeCommandBuffers commandBuffers;
 	public final ProcessSubmission submission;
 
@@ -32,19 +33,41 @@ public class ComputeContext extends ProcessContext
 
 		commandBuffers = new ComputeCommandBuffers(this);
 
-		var processAdapter = IProcessAdapter.adapt(computeProcess);
-
-		List<Long> emittersToWait = new ArrayList<>();
-		for (AbstractProcess waitFor : computeProcess.getWaitForSubmissions())
-		{
-			IProcessAdapter adapter = IProcessAdapter.adapt(waitFor);
-			emittersToWait.add(adapter.getSignalSemaphore());
-		}
-
-		submission = new ProcessSubmission(commandBuffers, emittersToWait, List.of(processAdapter),
-				EPipelineStage.COMPUTE_SHADER_BIT);
+		submission = createSubmission(computeProcess);
 
 		buildAllocationList();
+	}
+
+	private ProcessSubmission createSubmission(ComputeProcess computeProcess)
+	{
+		var processAdapter = AbstractProcessAdapter.adapt(computeProcess);
+
+		List<WaitData> waitSemaphores = new ArrayList<>();
+		for (ProcessSemaphore waitFor : computeProcess.getSemaphores())
+		{
+			var semaphoreData = convertToData(waitFor);
+			waitSemaphores.add(semaphoreData);
+		}
+
+		List<VkSemaphore> signals = null;
+		var executionSemaphore = processAdapter.getExecutionSemaphore();
+		if (executionSemaphore != null)
+		{
+			signals = List.of(executionSemaphore);
+		}
+		else
+		{
+			signals = Collections.emptyList();
+		}
+
+		return new ProcessSubmission(commandBuffers, waitSemaphores, signals);
+	}
+
+	private static WaitData convertToData(ProcessSemaphore processSemaphore)
+	{
+		var signalEmitter = AbstractProcessAdapter.adapt(processSemaphore.getProcess());
+		var waitStage = processSemaphore.getWaitStage();
+		return new WaitData(signalEmitter.getExecutionSemaphore(), waitStage);
 	}
 
 	private void buildAllocationList()

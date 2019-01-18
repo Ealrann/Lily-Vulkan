@@ -10,8 +10,8 @@ import java.util.Collection;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.sheepy.vulkan.common.execution.ICommandBuffer;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
+import org.sheepy.vulkan.process.process.WaitData;
 import org.sheepy.vulkan.process.process.SubmissionInfo;
 
 public class FrameSubmissionInfo extends SubmissionInfo
@@ -23,12 +23,11 @@ public class FrameSubmissionInfo extends SubmissionInfo
 	public FrameSubmissionInfo(	int imageIndex,
 								SwapChainManager swapChain,
 								ICommandBuffer commandBuffer,
-								EPipelineStage waitStage,
-								Collection<Long> waitSemaphores,
+								Collection<WaitData> waitSemaphores,
 								Collection<Long> signalSemaphores,
 								Collection<Long> presentWaitSemaphores)
 	{
-		super(commandBuffer, waitStage, waitSemaphores, signalSemaphores);
+		super(commandBuffer, waitSemaphores, signalSemaphores);
 
 		bSwapChains = memAllocLong(1);
 		bSwapChains.put(swapChain.getSwapChain());

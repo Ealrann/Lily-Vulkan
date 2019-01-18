@@ -13,14 +13,24 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.vulkan.model.resource.AbstractConstants
 import org.sheepy.vulkan.model.resource.Barrier
 import org.sheepy.vulkan.model.resource.DescriptorSet
+import org.sheepy.vulkan.model.enumeration.EPipelineStage
 
 abstract class AbstractProcess extends IProcess
 {
 	contains IResource[] resources
 	contains DescriptorSet[] descriptorSets
 	contains IProcessUnit[] units
+	contains ProcessSemaphore[] semaphores
 	boolean resetAllowed
-	refers AbstractProcess[] waitForSubmissions
+	boolean initializedSignalizedSemaphore = "false"
+ 	@GenModel(property="Readonly")
+	refers ProcessSemaphore[] dependentProcesses opposite process
+}
+
+class ProcessSemaphore
+{
+	refers AbstractProcess process opposite dependentProcesses
+	EPipelineStage waitStage
 }
 
 interface IProcessUnit extends LObject

@@ -24,11 +24,10 @@ public class VkSemaphore
 		if (vkCreateSemaphore(logicalDevice.getVkDevice(), semaphoreInfo, null,
 				aSemaphore) != VK_SUCCESS)
 		{
-			throw new AssertionError("failed to create semaphores!");
+			throw new AssertionError("Failed to create semaphores");
 		}
 
 		semaphoreId = aSemaphore[0];
-
 		semaphoreInfo.free();
 	}
 

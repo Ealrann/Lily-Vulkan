@@ -56,7 +56,8 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			"VK_LAYER_LUNARG_parameter_validation",
 			"VK_LAYER_LUNARG_object_tracker",
 			"VK_LAYER_LUNARG_core_validation",
-			"VK_LAYER_GOOGLE_unique_objects"
+			"VK_LAYER_GOOGLE_unique_objects",
+//			"VK_LAYER_LUNARG_api_dump"
 	};
 
 	private static final String[] REQUIRED_EXTENSIONS = {
