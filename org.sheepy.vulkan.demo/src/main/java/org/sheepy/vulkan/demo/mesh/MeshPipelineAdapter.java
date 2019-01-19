@@ -35,7 +35,7 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 				0
 		};
 
-		vkCmdBindPipeline(vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineId);
+		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
 		
 		if (meshPipeline.getDescriptorSet() != null)
 		{
