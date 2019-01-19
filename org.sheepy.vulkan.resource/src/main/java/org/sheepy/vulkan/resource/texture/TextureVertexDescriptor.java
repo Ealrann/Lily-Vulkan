@@ -24,7 +24,7 @@ public class TextureVertexDescriptor extends AbstractIntegerIndexDescriptor<Text
 
 	private VkPipelineVertexInputStateCreateInfo vertexInputInfo;
 	private VkVertexInputBindingDescription.Buffer allocBindingDescription;
-	private VkVertexInputAttributeDescription.Buffer getgetAttributeDescriptions;
+	private VkVertexInputAttributeDescription.Buffer attributeDescriptions;
 
 	@Override
 	public VkPipelineVertexInputStateCreateInfo allocCreateInfo()
@@ -33,17 +33,17 @@ public class TextureVertexDescriptor extends AbstractIntegerIndexDescriptor<Text
 		vertexInputInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO);
 
 		allocBindingDescription = allocBindingDescription();
-		getgetAttributeDescriptions = allocAttributeDescriptions();
+		attributeDescriptions = allocAttributeDescriptions();
 
 		vertexInputInfo.pVertexBindingDescriptions(allocBindingDescription);
-		vertexInputInfo.pVertexAttributeDescriptions(getgetAttributeDescriptions);
+		vertexInputInfo.pVertexAttributeDescriptions(attributeDescriptions);
 
 		return vertexInputInfo;
 	}
 
 	private static VkVertexInputBindingDescription.Buffer allocBindingDescription()
 	{
-		final var bindingDescription = VkVertexInputBindingDescription.calloc(1);
+		final var bindingDescription = VkVertexInputBindingDescription.create(1);
 
 		bindingDescription.binding(0);
 		bindingDescription.stride(SIZE_OF);
@@ -54,7 +54,7 @@ public class TextureVertexDescriptor extends AbstractIntegerIndexDescriptor<Text
 
 	private static VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions()
 	{
-		final var attributeDescriptions = VkVertexInputAttributeDescription.calloc(3);
+		final var attributeDescriptions = VkVertexInputAttributeDescription.create(3);
 
 		final var attributeDescriptionPosition = attributeDescriptions.get(0);
 		attributeDescriptionPosition.binding(0);
@@ -82,7 +82,7 @@ public class TextureVertexDescriptor extends AbstractIntegerIndexDescriptor<Text
 	{
 		vertexInputInfo.free();
 		allocBindingDescription.free();
-		getgetAttributeDescriptions.free();
+		attributeDescriptions.free();
 	}
 
 	@Override
