@@ -33,7 +33,7 @@ public class PhysicalDeviceJudge
 	{
 		colorDomains = new ColorDomains(stack, physicalDevice.vkPhysicalDevice, surface);
 		modes = new PresentModes(physicalDevice.vkPhysicalDevice, surface);
-		var deviceProperties = physicalDevice.deviceProperties;
+		var deviceProperties = physicalDevice.deviceProperties.vkDeviceProperties;
 
 		VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.calloc();
 		vkGetPhysicalDeviceFeatures(physicalDevice.vkPhysicalDevice, deviceFeatures);

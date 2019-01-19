@@ -3,11 +3,7 @@ package org.sheepy.vulkan.common.engine;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.vulkan.EXTDebugReport.vkDestroyDebugReportCallbackEXT;
 import static org.lwjgl.vulkan.KHRSwapchain.VK_KHR_SWAPCHAIN_EXTENSION_NAME;
-import static org.lwjgl.vulkan.VK10.VK_MAKE_VERSION;
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_APPLICATION_INFO;
-import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-import static org.lwjgl.vulkan.VK10.vkCreateInstance;
-import static org.lwjgl.vulkan.VK10.vkDestroyInstance;
+import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +53,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			"VK_LAYER_LUNARG_object_tracker",
 			"VK_LAYER_LUNARG_core_validation",
 			"VK_LAYER_GOOGLE_unique_objects",
-//			"VK_LAYER_LUNARG_api_dump"
+			// "VK_LAYER_LUNARG_api_dump"
 	};
 
 	private static final String[] REQUIRED_EXTENSIONS = {
@@ -305,7 +301,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 				physicalDevice.getDriverVersion());
 		System.out.println(deviceInfo);
 
-		if (debug) physicalDevice.printDeviceProperties();
+		if (debug) physicalDevice.deviceProperties.print();
 	}
 
 	private void createLogicalDevice(MemoryStack stack)

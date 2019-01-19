@@ -8,15 +8,14 @@ import java.util.Map;
 import org.lwjgl.vulkan.VkFormatProperties;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.lwjgl.vulkan.VkPhysicalDeviceLimits;
 import org.lwjgl.vulkan.VkPhysicalDeviceMemoryProperties;
-import org.lwjgl.vulkan.VkPhysicalDeviceProperties;
+import org.sheepy.vulkan.common.device.data.DeviceProperties;
 
 public class PhysicalDevice
 {
 	public final VkPhysicalDevice vkPhysicalDevice;
 	public final VkInstance vkInstance;
-	public final VkPhysicalDeviceProperties deviceProperties;
+	public final DeviceProperties deviceProperties;
 
 	private String name;
 	private int driverVersion;
@@ -28,15 +27,15 @@ public class PhysicalDevice
 		this.vkPhysicalDevice = vkPhysicalDevice;
 		this.vkInstance = vkInstance;
 
-		deviceProperties = VkPhysicalDeviceProperties.create();
-		vkGetPhysicalDeviceProperties(vkPhysicalDevice, deviceProperties);
+		deviceProperties = new DeviceProperties(vkPhysicalDevice);
+
 	}
 
 	public void allocate()
 	{
 
-		name = deviceProperties.deviceNameString();
-		driverVersion = deviceProperties.driverVersion();
+		name = deviceProperties.vkDeviceProperties.deviceNameString();
+		driverVersion = deviceProperties.vkDeviceProperties.driverVersion();
 
 		memProperties = VkPhysicalDeviceMemoryProperties.calloc();
 		vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice, memProperties);
@@ -55,13 +54,25 @@ public class PhysicalDevice
 		formatProperties.clear();
 	}
 
-	public void printDeviceProperties()
+	public int findSupportedFormat(int[] candidates, int tiling, int features)
 	{
-		final VkPhysicalDeviceLimits limits = deviceProperties.limits();
-		System.out.println("\tmaxImageDimension2D:\t" + limits.maxImageDimension2D());
-		System.out.println("\tmaxUniformBufferRange:\t" + limits.maxUniformBufferRange());
-		System.out.println("\tmaxStorageBufferRange:\t" + limits.maxStorageBufferRange());
-		System.out.println("\tmaxPushConstantsSize:\t" + limits.maxPushConstantsSize());
+		for (final int format : candidates)
+		{
+			final var formatProperty = getFormatProperty(format);
+
+			if (tiling == VK_IMAGE_TILING_LINEAR
+					&& (formatProperty.linearTilingFeatures() & features) == features)
+			{
+				return format;
+			}
+			else if (tiling == VK_IMAGE_TILING_OPTIMAL
+					&& (formatProperty.optimalTilingFeatures() & features) == features)
+			{
+				return format;
+			}
+		}
+
+		throw new AssertionError("failed to find supported format!");
 	}
 
 	public int findMemoryType(int typeFilter, int properties)
@@ -91,28 +102,6 @@ public class PhysicalDevice
 
 		return res;
 	}
-
-	public int findSupportedFormat(int[] candidates, int tiling, int features)
-	{
-		for (final int format : candidates)
-		{
-			final var formatProperty = getFormatProperty(format);
-
-			if (tiling == VK_IMAGE_TILING_LINEAR
-					&& (formatProperty.linearTilingFeatures() & features) == features)
-			{
-				return format;
-			}
-			else if (tiling == VK_IMAGE_TILING_OPTIMAL
-					&& (formatProperty.optimalTilingFeatures() & features) == features)
-			{
-				return format;
-			}
-		}
-
-		throw new AssertionError("failed to find supported format!");
-	}
-
 	private VkFormatProperties getFormatProperty(int format)
 	{
 		var formatProperty = formatProperties.get(format);
