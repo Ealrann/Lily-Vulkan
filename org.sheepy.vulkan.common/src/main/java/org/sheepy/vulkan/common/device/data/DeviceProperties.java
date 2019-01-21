@@ -48,7 +48,7 @@ public class DeviceProperties
 						value = String.valueOf(objectValue);
 					}
 
-					System.out.println(String.format("\t%s:\t\t%s", method.getName(), value));
+					System.out.println(String.format("\t%-48s: %-10s", method.getName(), value));
 				} catch (Exception e)
 				{
 					e.printStackTrace();
