@@ -1,0 +1,31 @@
+@GenModel(modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+@GenModel(updateClasspath="false")
+
+package org.sheepy.lily.vulkan.model.process.compute
+
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline
+import org.sheepy.lily.vulkan.model.process.AbstractProcess
+import org.sheepy.lily.vulkan.model.process.IPipelineUnit
+import org.sheepy.lily.vulkan.model.resource.Shader
+
+class ComputeProcess extends AbstractProcess
+{
+}
+
+class ComputePipeline extends AbstractPipeline
+{
+	int workgroupSizeX = "32"
+	int workgroupSizeY = "32"
+	int workgroupSizeZ = "32"
+	int width
+	int height
+	int depth
+}
+
+class Computer extends IPipelineUnit
+{
+	refers Shader shader
+}

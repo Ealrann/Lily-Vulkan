@@ -1,0 +1,201 @@
+@GenModel(modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+@GenModel(updateClasspath="false")
+
+package org.sheepy.lily.vulkan.model.process.graphic
+
+import org.sheepy.lily.core.model.types.SVector2i
+import org.sheepy.lily.vulkan.model.ColorDomain
+import org.sheepy.lily.vulkan.model.enumeration.EAccess
+import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
+import org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp
+import org.sheepy.lily.vulkan.model.enumeration.EBlendFactor
+import org.sheepy.lily.vulkan.model.enumeration.EBlendOp
+import org.sheepy.lily.vulkan.model.enumeration.ECullMode
+import org.sheepy.lily.vulkan.model.enumeration.EDynamicState
+import org.sheepy.lily.vulkan.model.enumeration.EFrontFace
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+import org.sheepy.lily.vulkan.model.enumeration.EImageUsage
+import org.sheepy.lily.vulkan.model.enumeration.ELogicOp
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+import org.sheepy.lily.vulkan.model.enumeration.EPolygonMode
+import org.sheepy.lily.vulkan.model.enumeration.EPresentMode
+import org.sheepy.lily.vulkan.model.enumeration.ESampleCount
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline
+import org.sheepy.lily.vulkan.model.process.AbstractProcess
+import org.sheepy.lily.vulkan.model.process.Configuration
+import org.sheepy.lily.vulkan.model.process.IPipeline
+import org.sheepy.lily.vulkan.model.resource.DepthImage
+import org.sheepy.lily.vulkan.model.resource.Image
+import org.sheepy.lily.vulkan.model.resource.Shader
+
+class GraphicConfiguration extends Configuration
+{
+	boolean clearBeforeRender = "true"
+	EPresentMode presentationMode = "MailBox"
+	int requiredSwapImageCount = "3"
+	EImageUsage[] swapImageUsages
+
+	@GenModel(propertyDescription="The stage on which we should wait until acquire the next image")
+	EPipelineStage acquireWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
+	contains ColorDomain colorDomain
+}
+
+class RenderPassInfo
+{
+	contains AttachmentDescription[] attachments
+	contains Subpass[] subpasses
+	contains SubpassDependency[] dependencies
+	int bindPoint = "0"
+}
+
+class Subpass
+{
+	String name
+	contains AttachementRef[] refs
+}
+
+class AttachementRef
+{
+	refers AttachmentDescription attachement
+	EImageLayout layout
+}
+
+class SubpassDependency
+{
+	refers Subpass srcSubpass
+	refers Subpass dstSubpass
+	EPipelineStage[] srcStageMask
+	EPipelineStage[] dstStageMask
+	EAccess[] srcAccesses
+	EAccess[] dstAccesses
+}
+
+class AttachmentDescription
+{
+	String name
+	ESampleCount samples
+	EAttachmentLoadOp loadOp
+	EAttachmentStoreOp storeOp
+	EAttachmentLoadOp stencilLoadOp
+	EAttachmentStoreOp stencilStoreOp
+	EImageLayout initialLayout
+	EImageLayout finalLayout
+}
+
+class DepthAttachmentDescription extends AttachmentDescription
+{
+	refers DepthImage depthImage
+}
+
+class GraphicProcess extends AbstractProcess
+{
+	contains GraphicConfiguration configuration
+	contains RenderPassInfo renderPassInfo
+	contains DepthImage depthImage
+}
+
+interface IGraphicsPipeline extends IPipeline
+{
+}
+
+interface IGUIPipeline extends IGraphicsPipeline
+{
+}
+
+abstract class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
+{
+	refers Shader[] shaders
+	contains ViewportState viewportState
+	contains Rasterizer rasterizer
+	contains ColorBlend colorBlend
+	contains DynamicState dynamicState
+	int subpass = "0"
+}
+
+class DynamicState
+{
+	EDynamicState[] states
+}
+
+class ColorBlend
+{
+	contains ColorBlendAttachment[] attachments
+	boolean logicOpEnable = "false"
+	ELogicOp logicOp = "COPY"
+	int blendConstant0 = "0"
+	int blendConstant1 = "0"
+	int blendConstant2 = "0"
+	int blendConstant3 = "1"
+}
+
+class ColorBlendAttachment
+{
+	boolean blendEnable = "false"
+	boolean redComponentEnable = "true"
+	boolean greenComponentEnable = "true"
+	boolean blueComponentEnable = "true"
+	boolean alphaComponentEnable = "true"
+	EBlendFactor srcColor = "ONE"
+	EBlendFactor dstColor = "ZERO"
+	EBlendFactor srcAlpha = "ONE"
+	EBlendFactor dstAlpha = "ZERO"
+	EBlendOp colorBlendOp = "ADD"
+	EBlendOp alphaBlendOp = "ADD"
+}
+
+interface ViewportState
+{
+}
+
+class StaticViewportState extends ViewportState
+{
+	contains Viewport[] viewports
+	contains Scissor[] scissors
+}
+
+class DynamicViewportState extends ViewportState
+{
+	int viewportCount
+	int scissorCount
+}
+
+class Viewport
+{
+	SVector2i offset = "0, 0"
+	// If null, will use the swapchain image size
+	SVector2i extent
+	int minDepth = "0"
+	int maxDepth = "1"
+}
+
+class Scissor
+{
+	SVector2i offset = "0, 0"
+	// If null, will use the swapchain image size
+	SVector2i extent
+}
+
+class Rasterizer
+{
+	ECullMode cullMode = "BACK_BIT"
+	EFrontFace frontFace = "CLOCKWISE"
+	EPolygonMode polygonMode = "FILL"
+	int lineWidth = "1"
+	boolean depthClampEnable = "false"
+	boolean discardEnable = "false"
+	boolean depthBiasEnable = "false"
+}
+
+class ImagePipeline extends AbstractPipeline
+{
+	refers Image[1..1] image
+	EPipelineStage imageSrcStage
+	EPipelineStage imageDstStage
+	EAccess[] imageSrcAccessMask
+	EAccess[] imageDstAccessMask
+
+	refers AbstractProcess srcQueue 
+}

@@ -1,0 +1,76 @@
+@GenModel(modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+@GenModel(updateClasspath="false")
+package org.sheepy.lily.vulkan.model.process
+
+import org.sheepy.lily.core.model.root.LObject
+import org.sheepy.lily.core.model.types.LNamedElement
+import org.sheepy.lily.vulkan.model.IProcess
+import org.sheepy.lily.vulkan.model.IResource
+import org.sheepy.lily.vulkan.model.enumeration.ECommandStage
+import org.sheepy.lily.vulkan.model.resource.AbstractConstants
+import org.sheepy.lily.vulkan.model.resource.Barrier
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+
+abstract class AbstractProcess extends IProcess
+{
+	contains IResource[] resources
+	contains DescriptorSet[] descriptorSets
+	contains IProcessUnit[] units
+	contains ProcessSemaphore[] semaphores
+	boolean resetAllowed
+	boolean initializedSignalizedSemaphore = "false"
+ 	@GenModel(property="Readonly")
+	refers ProcessSemaphore[] dependentProcesses opposite process
+}
+
+class ProcessSemaphore
+{
+	refers AbstractProcess process opposite dependentProcesses
+	EPipelineStage waitStage
+}
+
+interface IProcessUnit extends LObject
+{
+	boolean enabled = "true"
+	ECommandStage stage = "Render"
+}
+
+interface Configuration
+{
+}
+
+class PipelineBarrier extends IProcessUnit, IPipelineUnit
+{
+	contains Barrier barrier
+
+	refers AbstractProcess srcQueue
+	refers AbstractProcess dstQueue
+}
+
+interface IPipeline extends IProcessUnit, LNamedElement
+{
+}
+
+abstract class AbstractPipeline extends IPipeline
+{
+	contains IPipelineUnit[] units
+	refers DescriptorSet descriptorSet
+	refers AbstractConstants constants
+}
+
+interface IPipelineUnit extends LNamedElement
+{
+}
+
+abstract class AbstractCompositePipeline extends AbstractPipeline
+{
+	contains AbstractPipeline[] pipelines
+}
+
+class PushConstant extends IPipelineUnit
+{
+}

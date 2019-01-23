@@ -1,0 +1,197 @@
+@GenModel(modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+@GenModel(updateClasspath="false")
+
+package org.sheepy.lily.vulkan.model.resource
+
+import java.nio.ByteBuffer
+import org.sheepy.lily.core.model.types.LNamedElement
+import org.sheepy.lily.vulkan.model.IResource
+import org.sheepy.lily.vulkan.model.enumeration.EAccess
+import org.sheepy.lily.vulkan.model.enumeration.EBorderColor
+import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage
+import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType
+import org.sheepy.lily.vulkan.model.enumeration.EFilter
+import org.sheepy.lily.vulkan.model.enumeration.EFormat
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+import org.sheepy.lily.vulkan.model.enumeration.EImageUsage
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+import org.sheepy.lily.vulkan.model.enumeration.ESamplerAddressMode
+import org.sheepy.lily.vulkan.model.enumeration.ESamplerMipmapMode
+import org.sheepy.lily.vulkan.model.enumeration.EShaderStage
+
+interface BasicResource extends IResource
+{
+}
+
+interface PipelineResource extends IDescriptor, IResource
+{
+}
+
+class Buffer extends PipelineResource
+{
+	long size
+	EBufferUsage[] usages
+	ByteBuffer data
+	boolean oftenUpdated = "false"
+	boolean gpuBuffer = "true"
+}
+
+type ByteBuffer wraps ByteBuffer
+
+class Image extends PipelineResource
+{
+	int width
+	int height
+	EFormat format
+	EImageUsage[] usages
+	int properties
+	int tiling = "0"
+	int mipLevels = "1"
+	contains ImageLayout initialLayout
+}
+
+class ImageLayout
+{
+	EPipelineStage stage
+	EImageLayout layout
+	EAccess[] accessMask
+}
+
+abstract class SampledImage extends PipelineResource
+{
+	contains Sampler sampler
+}
+
+class Font extends SampledImage
+{
+	contains PathResource file
+	int height = "18"
+}
+
+abstract class AbstractTexture extends SampledImage
+{
+	boolean mipmapEnabled = "false"
+}
+
+class Texture extends AbstractTexture
+{
+	contains PathResource file
+}
+
+class Sampler
+{
+	EFilter minFilter = "NEAREST"
+	EFilter magFilter = "NEAREST"
+	ESamplerMipmapMode mipmapMode = "NEAREST"
+	ESamplerAddressMode addressMode = "REPEAT"
+	EBorderColor borderColor = "INT_OPAQUE_BLACK"
+	boolean anisotropyEnabled = "false"
+	boolean unnormalizedCoordinates = "false"
+	boolean compareEnable = "false"
+	float lodBias = "0"
+	int minLod = "0"
+	int maxLod = "1"
+	float maxAnisotropy = "1"
+}
+
+type JavaModule wraps Module
+
+abstract class AbstractConstants extends BasicResource
+{
+	EShaderStage stage
+}
+
+class Constants extends AbstractConstants
+{
+	ByteBuffer data
+}
+
+interface IDescriptor
+{
+	EDescriptorType descriptorType
+	EShaderStage[] shaderStages
+}
+
+class DescriptorSet extends LNamedElement
+{
+	refers IDescriptor[1..*] descriptors
+}
+
+abstract class Barrier
+{
+	EPipelineStage srcStage
+	EPipelineStage dstStage
+}
+
+class BufferBarrier extends Barrier
+{
+	refers Buffer buffer
+	EAccess srcAccess
+	EAccess dstAccess
+}
+
+abstract class AbstractImageBarrier extends Barrier
+{
+	contains ImageTransition[] transitions
+}
+
+class ImageBarrier extends AbstractImageBarrier
+{
+	refers Image image
+}
+
+class ReferenceImageBarrier extends AbstractImageBarrier
+{
+	long imageId
+	int mipLevels
+	int imageFormat
+}
+
+class ImageTransition
+{
+	EImageLayout srcLayout
+	EImageLayout dstLayout
+	EAccess[] srcAccessMask
+	EAccess[] dstAccessMask
+}
+
+// ---------------------
+// Non pipeline resource: Vulkan doesn't need a descriptor for them
+class Shader extends BasicResource
+{
+	contains PathResource file
+	EShaderStage stage
+}
+
+abstract class IndexedBuffer extends BasicResource
+{
+}
+
+class DepthImage extends BasicResource
+{
+}
+
+abstract class PathResource extends BasicResource
+{
+	String path
+}
+
+class FileResource extends PathResource
+{
+}
+
+abstract class AbstractModuleResource extends PathResource
+{}
+
+class ModuleResource extends AbstractModuleResource
+{
+	JavaModule module
+}
+
+class StringModuleResource extends AbstractModuleResource
+{
+	String moduleName
+}

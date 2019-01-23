@@ -1,0 +1,25 @@
+plugins {
+	id 'java-library'
+	// id 'application'
+}
+
+dependencies {
+
+	api project(':org.sheepy.lily.vulkan.api')
+	api project(':org.sheepy.lily.vulkan.resource')
+	api project(':org.sheepy.lily.vulkan.process')
+	api project(':org.sheepy.lily.vulkan.process.graphic')
+}
+
+// mainClassName = 'org.sheepy.lily.vulkan.demo.texture.MainTexture'
+
+if (project.hasProperty('javaModule')) {
+	javaModule.name = 'org.sheepy.lily.vulkan.demo'
+}
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/generated/java',
+			'src/main/java']
+	}
+}

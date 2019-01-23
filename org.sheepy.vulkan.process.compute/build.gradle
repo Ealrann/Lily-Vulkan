@@ -1,8 +1,0 @@
-plugins {
-	id 'java-library'
-}
-
-dependencies {
-	api project(':org.sheepy.vulkan.process')
-}
-
