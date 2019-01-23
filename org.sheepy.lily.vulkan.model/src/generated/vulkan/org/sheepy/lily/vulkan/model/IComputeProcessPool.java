@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model;
+package org.sheepy.lily.vulkan.model;
 
 
 /**
@@ -9,7 +9,7 @@ package org.sheepy.vulkan.model;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.VulkanPackage#getIComputeProcessPool()
+ * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIComputeProcessPool()
  * @model interface="true" abstract="true"
  * @generated
  */

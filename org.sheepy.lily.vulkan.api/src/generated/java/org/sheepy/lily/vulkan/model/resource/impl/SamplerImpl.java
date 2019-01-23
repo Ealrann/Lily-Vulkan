@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,13 +9,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.sheepy.vulkan.model.enumeration.EBorderColor;
-import org.sheepy.vulkan.model.enumeration.EFilter;
-import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode;
-import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode;
+import org.sheepy.lily.vulkan.model.enumeration.EBorderColor;
+import org.sheepy.lily.vulkan.model.enumeration.EFilter;
+import org.sheepy.lily.vulkan.model.enumeration.ESamplerAddressMode;
+import org.sheepy.lily.vulkan.model.enumeration.ESamplerMipmapMode;
 
-import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.Sampler;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,18 +25,18 @@ import org.sheepy.vulkan.model.resource.Sampler;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#getMinFilter <em>Min Filter</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#getMagFilter <em>Mag Filter</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#getMipmapMode <em>Mipmap Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#getAddressMode <em>Address Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#getBorderColor <em>Border Color</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#isAnisotropyEnabled <em>Anisotropy Enabled</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#isUnnormalizedCoordinates <em>Unnormalized Coordinates</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#isCompareEnable <em>Compare Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#getLodBias <em>Lod Bias</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#getMinLod <em>Min Lod</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#getMaxLod <em>Max Lod</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl#getMaxAnisotropy <em>Max Anisotropy</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#getMinFilter <em>Min Filter</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#getMagFilter <em>Mag Filter</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#getMipmapMode <em>Mipmap Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#getAddressMode <em>Address Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#getBorderColor <em>Border Color</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#isAnisotropyEnabled <em>Anisotropy Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#isUnnormalizedCoordinates <em>Unnormalized Coordinates</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#isCompareEnable <em>Compare Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#getLodBias <em>Lod Bias</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#getMinLod <em>Min Lod</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#getMaxLod <em>Max Lod</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl#getMaxAnisotropy <em>Max Anisotropy</em>}</li>
  * </ul>
  *
  * @generated

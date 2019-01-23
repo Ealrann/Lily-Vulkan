@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.input;
+package org.sheepy.lily.vulkan.common.input;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.common.api.input.IInputManager;
-import org.sheepy.common.api.input.event.CharEvent;
-import org.sheepy.common.api.input.event.IInputEvent;
-import org.sheepy.common.api.input.event.KeyEvent;
-import org.sheepy.common.api.input.event.MouseButtonEvent;
-import org.sheepy.common.api.input.event.MouseLocationEvent;
-import org.sheepy.common.api.input.event.ScrollEvent;
-import org.sheepy.common.api.types.SVector2f;
-import org.sheepy.common.model.application.Application;
-import org.sheepy.common.model.types.EKeyState;
-import org.sheepy.common.model.types.EMouseButton;
-import org.sheepy.vulkan.common.window.Window;
+import org.sheepy.lily.core.api.input.IInputManager;
+import org.sheepy.lily.core.api.input.event.CharEvent;
+import org.sheepy.lily.core.api.input.event.IInputEvent;
+import org.sheepy.lily.core.api.input.event.KeyEvent;
+import org.sheepy.lily.core.api.input.event.MouseButtonEvent;
+import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
+import org.sheepy.lily.core.api.input.event.ScrollEvent;
+import org.sheepy.lily.core.api.types.SVector2f;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.core.model.types.EKeyState;
+import org.sheepy.lily.core.model.types.EMouseButton;
+import org.sheepy.lily.vulkan.common.window.Window;
 
 public class VulkanInputManager implements IInputManager
 {

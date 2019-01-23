@@ -1,13 +1,13 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute;
+package org.sheepy.lily.vulkan.model.process.compute;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,9 +21,9 @@ import org.sheepy.vulkan.model.process.ProcessPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.process.compute.ComputeFactory
+ * @see org.sheepy.lily.vulkan.model.process.compute.ComputeFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.vulkan.model.process'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model.process'"
  * @generated
  */
 public interface ComputePackage extends EPackage
@@ -42,7 +42,7 @@ public interface ComputePackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "org.sheepy.vulkan.model.process.compute";
+	String eNS_URI = "org.sheepy.lily.vulkan.model.process.compute";
 
 	/**
 	 * The package namespace name.
@@ -58,14 +58,14 @@ public interface ComputePackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ComputePackage eINSTANCE = org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl.init();
+	ComputePackage eINSTANCE = org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl <em>Process</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl <em>Process</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeProcess()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeProcess()
 	 * @generated
 	 */
 	int COMPUTE_PROCESS = 0;
@@ -224,11 +224,11 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS_OPERATION_COUNT = ProcessPackage.ABSTRACT_PROCESS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl <em>Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl <em>Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputePipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputePipeline()
 	 * @generated
 	 */
 	int COMPUTE_PIPELINE = 1;
@@ -414,11 +414,11 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputerImpl
-	 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputer()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl
+	 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputer()
 	 * @generated
 	 */
 	int COMPUTER = 2;
@@ -461,107 +461,107 @@ public interface ComputePackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Process</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputeProcess
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputeProcess
 	 * @generated
 	 */
 	EClass getComputeProcess();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline <em>Pipeline</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline <em>Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Pipeline</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePipeline
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline
 	 * @generated
 	 */
 	EClass getComputePipeline();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX <em>Workgroup Size X</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX <em>Workgroup Size X</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Workgroup Size X</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX()
 	 * @see #getComputePipeline()
 	 * @generated
 	 */
 	EAttribute getComputePipeline_WorkgroupSizeX();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY <em>Workgroup Size Y</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY <em>Workgroup Size Y</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Workgroup Size Y</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY()
 	 * @see #getComputePipeline()
 	 * @generated
 	 */
 	EAttribute getComputePipeline_WorkgroupSizeY();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ <em>Workgroup Size Z</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ <em>Workgroup Size Z</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Workgroup Size Z</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ()
 	 * @see #getComputePipeline()
 	 * @generated
 	 */
 	EAttribute getComputePipeline_WorkgroupSizeZ();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWidth <em>Width</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWidth <em>Width</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Width</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePipeline#getWidth()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWidth()
 	 * @see #getComputePipeline()
 	 * @generated
 	 */
 	EAttribute getComputePipeline_Width();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getHeight <em>Height</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getHeight <em>Height</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePipeline#getHeight()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getHeight()
 	 * @see #getComputePipeline()
 	 * @generated
 	 */
 	EAttribute getComputePipeline_Height();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getDepth <em>Depth</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getDepth <em>Depth</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Depth</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePipeline#getDepth()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getDepth()
 	 * @see #getComputePipeline()
 	 * @generated
 	 */
 	EAttribute getComputePipeline_Depth();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.compute.Computer <em>Computer</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.Computer <em>Computer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Computer</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.Computer
+	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer
 	 * @generated
 	 */
 	EClass getComputer();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.compute.Computer#getShader <em>Shader</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getShader <em>Shader</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Shader</em>'.
-	 * @see org.sheepy.vulkan.model.process.compute.Computer#getShader()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer#getShader()
 	 * @see #getComputer()
 	 * @generated
 	 */
@@ -592,21 +592,21 @@ public interface ComputePackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl <em>Process</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl <em>Process</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputeProcessImpl
-		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeProcess()
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputeProcess()
 		 * @generated
 		 */
 		EClass COMPUTE_PROCESS = eINSTANCE.getComputeProcess();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl <em>Pipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl <em>Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl
-		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputePipeline()
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputePipeline()
 		 * @generated
 		 */
 		EClass COMPUTE_PIPELINE = eINSTANCE.getComputePipeline();
@@ -660,11 +660,11 @@ public interface ComputePackage extends EPackage
 		EAttribute COMPUTE_PIPELINE__DEPTH = eINSTANCE.getComputePipeline_Depth();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputerImpl
-		 * @see org.sheepy.vulkan.model.process.compute.impl.ComputePackageImpl#getComputer()
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl
+		 * @see org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl#getComputer()
 		 * @generated
 		 */
 		EClass COMPUTER = eINSTANCE.getComputer();

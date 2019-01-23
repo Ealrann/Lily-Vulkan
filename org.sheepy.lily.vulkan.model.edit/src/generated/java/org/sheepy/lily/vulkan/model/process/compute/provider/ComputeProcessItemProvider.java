@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute.provider;
+package org.sheepy.lily.vulkan.model.process.compute.provider;
 
 
 import java.util.Collection;
@@ -9,15 +9,15 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.vulkan.model.process.compute.ComputeFactory;
-import org.sheepy.vulkan.model.process.compute.ComputeProcess;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 
-import org.sheepy.vulkan.model.process.provider.AbstractProcessItemProvider;
+import org.sheepy.lily.vulkan.model.process.provider.AbstractProcessItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.compute.ComputeProcess} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.sheepy.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,7 +10,7 @@ import org.sheepy.vulkan.model.process.IPipeline;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getIGraphicsPipeline()
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getIGraphicsPipeline()
  * @model interface="true" abstract="true"
  * @generated
  */

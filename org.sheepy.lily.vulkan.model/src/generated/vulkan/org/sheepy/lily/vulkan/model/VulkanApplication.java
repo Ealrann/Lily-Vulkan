@@ -1,12 +1,12 @@
 /**
  */
-package org.sheepy.vulkan.model;
+package org.sheepy.lily.vulkan.model;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.lily.core.api.types.SVector2i;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,17 +17,17 @@ import org.sheepy.common.api.types.SVector2i;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#isFullscreen <em>Fullscreen</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#isResizeable <em>Resizeable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#isDebug <em>Debug</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#getTitle <em>Title</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#getComputePools <em>Compute Pools</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.VulkanApplication#getGraphicPool <em>Graphic Pool</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.VulkanApplication#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.VulkanApplication#isFullscreen <em>Fullscreen</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.VulkanApplication#isResizeable <em>Resizeable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.VulkanApplication#isDebug <em>Debug</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.VulkanApplication#getTitle <em>Title</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.VulkanApplication#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.VulkanApplication#getComputePools <em>Compute Pools</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.VulkanApplication#getGraphicPool <em>Graphic Pool</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication()
+ * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanApplication()
  * @model
  * @generated
  */
@@ -44,14 +44,14 @@ public interface VulkanApplication extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enabled</em>' attribute.
 	 * @see #setEnabled(boolean)
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_Enabled()
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanApplication_Enabled()
 	 * @model default="true" unique="false"
 	 * @generated
 	 */
 	boolean isEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanApplication#isEnabled <em>Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.VulkanApplication#isEnabled <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enabled</em>' attribute.
@@ -71,14 +71,14 @@ public interface VulkanApplication extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fullscreen</em>' attribute.
 	 * @see #setFullscreen(boolean)
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_Fullscreen()
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanApplication_Fullscreen()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
 	boolean isFullscreen();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanApplication#isFullscreen <em>Fullscreen</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.VulkanApplication#isFullscreen <em>Fullscreen</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Fullscreen</em>' attribute.
@@ -98,14 +98,14 @@ public interface VulkanApplication extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resizeable</em>' attribute.
 	 * @see #setResizeable(boolean)
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_Resizeable()
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanApplication_Resizeable()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
 	boolean isResizeable();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanApplication#isResizeable <em>Resizeable</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.VulkanApplication#isResizeable <em>Resizeable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Resizeable</em>' attribute.
@@ -125,14 +125,14 @@ public interface VulkanApplication extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Debug</em>' attribute.
 	 * @see #setDebug(boolean)
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_Debug()
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanApplication_Debug()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
 	boolean isDebug();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanApplication#isDebug <em>Debug</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.VulkanApplication#isDebug <em>Debug</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Debug</em>' attribute.
@@ -151,14 +151,14 @@ public interface VulkanApplication extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Title</em>' attribute.
 	 * @see #setTitle(String)
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_Title()
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanApplication_Title()
 	 * @model unique="false"
 	 * @generated
 	 */
 	String getTitle();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanApplication#getTitle <em>Title</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.VulkanApplication#getTitle <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Title</em>' attribute.
@@ -177,14 +177,14 @@ public interface VulkanApplication extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
 	 * @see #setSize(SVector2i)
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_Size()
-	 * @model unique="false" dataType="org.sheepy.common.model.types.SVector2i"
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanApplication_Size()
+	 * @model unique="false" dataType="org.sheepy.lily.core.model.types.SVector2i"
 	 * @generated
 	 */
 	SVector2i getSize();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanApplication#getSize <em>Size</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.VulkanApplication#getSize <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Size</em>' attribute.
@@ -195,7 +195,7 @@ public interface VulkanApplication extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Compute Pools</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.IComputeProcessPool}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.IComputeProcessPool}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Compute Pools</em>' containment reference list isn't clear,
@@ -203,7 +203,7 @@ public interface VulkanApplication extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Compute Pools</em>' containment reference list.
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_ComputePools()
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanApplication_ComputePools()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -219,14 +219,14 @@ public interface VulkanApplication extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Graphic Pool</em>' containment reference.
 	 * @see #setGraphicPool(IGraphicProcessPool)
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getVulkanApplication_GraphicPool()
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanApplication_GraphicPool()
 	 * @model containment="true"
 	 * @generated
 	 */
 	IGraphicProcessPool getGraphicPool();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.VulkanApplication#getGraphicPool <em>Graphic Pool</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.VulkanApplication#getGraphicPool <em>Graphic Pool</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Graphic Pool</em>' containment reference.

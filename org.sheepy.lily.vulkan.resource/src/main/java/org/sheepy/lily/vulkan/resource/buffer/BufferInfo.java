@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.resource.buffer;
+package org.sheepy.lily.vulkan.resource.buffer;
 
 import java.util.List;
 
-import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.lily.vulkan.model.resource.Buffer;
 
 public class BufferInfo
 {

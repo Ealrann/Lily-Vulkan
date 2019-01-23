@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import java.util.Collection;
 
@@ -16,10 +16,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.Scissor;
-import org.sheepy.vulkan.model.process.graphic.StaticViewportState;
-import org.sheepy.vulkan.model.process.graphic.Viewport;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
+import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,8 +29,8 @@ import org.sheepy.vulkan.model.process.graphic.Viewport;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.StaticViewportStateImpl#getViewports <em>Viewports</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.StaticViewportStateImpl#getScissors <em>Scissors</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.StaticViewportStateImpl#getViewports <em>Viewports</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.StaticViewportStateImpl#getScissors <em>Scissors</em>}</li>
  * </ul>
  *
  * @generated

@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.resource.descriptor;
+package org.sheepy.lily.vulkan.resource.descriptor;
 
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 
 public interface IVkDescriptorSet
 {

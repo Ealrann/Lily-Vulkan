@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.file;
+package org.sheepy.lily.vulkan.resource.file;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,11 +6,11 @@ import java.nio.ByteBuffer;
 
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
-import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.model.resource.PathResource;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.impl.AbstractSingletonAdapter;
+import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 public abstract class PathResourceAdapter extends AbstractSingletonAdapter implements IVulkanAdapter
 {

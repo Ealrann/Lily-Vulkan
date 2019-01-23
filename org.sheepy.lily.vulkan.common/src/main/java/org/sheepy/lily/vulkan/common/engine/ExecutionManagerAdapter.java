@@ -1,12 +1,12 @@
-package org.sheepy.vulkan.common.engine;
+package org.sheepy.lily.vulkan.common.engine;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
-import org.sheepy.vulkan.model.IEnginePart;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.api.adapter.impl.AbstractSingletonAdapter;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.IExecutionManagerAdapter;
+import org.sheepy.lily.vulkan.model.IEnginePart;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 public class ExecutionManagerAdapter extends AbstractSingletonAdapter
 		implements IExecutionManagerAdapter

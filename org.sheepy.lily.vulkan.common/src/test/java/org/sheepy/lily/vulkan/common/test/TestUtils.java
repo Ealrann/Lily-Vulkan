@@ -1,6 +1,6 @@
-package org.sheepy.vulkan.common.test;
+package org.sheepy.lily.vulkan.common.test;
 
-import org.sheepy.common.model.application.Application;
+import org.sheepy.lily.core.model.application.Application;
 
 public class TestUtils
 {

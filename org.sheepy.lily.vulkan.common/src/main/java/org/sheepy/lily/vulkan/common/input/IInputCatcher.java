@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.common.input;
+package org.sheepy.lily.vulkan.common.input;
 
 import java.util.List;
 
-import org.sheepy.common.api.input.IInputManager.IInputListener;
-import org.sheepy.common.api.input.event.IInputEvent;
+import org.sheepy.lily.core.api.input.IInputManager.IInputListener;
+import org.sheepy.lily.core.api.input.event.IInputEvent;
 
 public interface IInputCatcher extends IInputListener
 {

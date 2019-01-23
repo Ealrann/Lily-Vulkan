@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.engine;
+package org.sheepy.lily.vulkan.common.engine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,22 +7,22 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.common.api.adapter.IStatefullAdapter;
-import org.sheepy.vulkan.api.adapter.IEnginePartAdapter;
-import org.sheepy.vulkan.api.queue.EQueueType;
-import org.sheepy.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractAllocableAdapter;
-import org.sheepy.vulkan.common.allocation.allocator.TreeAllocator;
-import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.IResourceAllocable;
-import org.sheepy.vulkan.common.execution.IResourceAllocableAdapter;
-import org.sheepy.vulkan.common.execution.ResourceAllocator;
-import org.sheepy.vulkan.model.IEnginePart;
-import org.sheepy.vulkan.model.IResource;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IStatefullAdapter;
+import org.sheepy.lily.vulkan.api.adapter.IEnginePartAdapter;
+import org.sheepy.lily.vulkan.api.queue.EQueueType;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
+import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocableAdapter;
+import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
+import org.sheepy.lily.vulkan.common.device.ILogicalDeviceAdapter;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
+import org.sheepy.lily.vulkan.common.execution.IResourceAllocableAdapter;
+import org.sheepy.lily.vulkan.common.execution.ResourceAllocator;
+import org.sheepy.lily.vulkan.model.IEnginePart;
+import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 public abstract class AbstractEnginePartAdapter extends AbstractAllocableAdapter
 		implements IEnginePartAdapter, IStatefullAdapter, IFlatAllocableAdapter

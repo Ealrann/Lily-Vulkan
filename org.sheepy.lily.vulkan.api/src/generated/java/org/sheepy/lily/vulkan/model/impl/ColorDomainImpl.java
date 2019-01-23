@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.impl;
+package org.sheepy.lily.vulkan.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,11 +9,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.sheepy.vulkan.model.ColorDomain;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.ColorDomain;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-import org.sheepy.vulkan.model.enumeration.EColorSpace;
-import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.lily.vulkan.model.enumeration.EColorSpace;
+import org.sheepy.lily.vulkan.model.enumeration.EFormat;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,8 +23,8 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.impl.ColorDomainImpl#getFormat <em>Format</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.ColorDomainImpl#getColorSpace <em>Color Space</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.ColorDomainImpl#getFormat <em>Format</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.ColorDomainImpl#getColorSpace <em>Color Space</em>}</li>
  * </ul>
  *
  * @generated

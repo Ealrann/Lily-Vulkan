@@ -1,23 +1,22 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.util;
+package org.sheepy.lily.vulkan.model.process.graphic.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-import org.sheepy.common.model.inference.IInferenceObject;
-import org.sheepy.common.model.root.LObject;
-import org.sheepy.common.model.types.LNamedElement;
-import org.sheepy.vulkan.model.IEnginePart;
-import org.sheepy.vulkan.model.IProcess;
-
-import org.sheepy.vulkan.model.process.AbstractPipeline;
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.Configuration;
-import org.sheepy.vulkan.model.process.IPipeline;
-import org.sheepy.vulkan.model.process.IProcessUnit;
-import org.sheepy.vulkan.model.process.graphic.*;
+import org.sheepy.lily.core.model.inference.IInferenceObject;
+import org.sheepy.lily.core.model.root.LObject;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.vulkan.model.IEnginePart;
+import org.sheepy.lily.vulkan.model.IProcess;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.Configuration;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.IProcessUnit;
+import org.sheepy.lily.vulkan.model.process.graphic.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +28,7 @@ import org.sheepy.vulkan.model.process.graphic.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage
  * @generated
  */
 public class GraphicSwitch<T> extends Switch<T>

@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.image;
+package org.sheepy.lily.vulkan.resource.image;
 
 import java.nio.ByteBuffer;
 
@@ -8,11 +8,11 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.model.resource.SampledImage;
-import org.sheepy.vulkan.resource.PipelineResourceAdapter;
-import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
-import org.sheepy.vulkan.resource.nativehelper.VkTexture;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.lily.vulkan.resource.PipelineResourceAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
 
 public abstract class AbstractSampledImageAdapter extends PipelineResourceAdapter
 		implements IDescriptorAdapter

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
 
@@ -13,10 +13,10 @@ import java.nio.ByteBuffer;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.Constants#getData <em>Data</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Constants#getData <em>Data</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getConstants()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getConstants()
  * @model
  * @generated
  */
@@ -32,14 +32,14 @@ public interface Constants extends AbstractConstants
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data</em>' attribute.
 	 * @see #setData(ByteBuffer)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getConstants_Data()
-	 * @model unique="false" dataType="org.sheepy.vulkan.model.resource.ByteBuffer"
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getConstants_Data()
+	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
 	 * @generated
 	 */
 	ByteBuffer getData();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Constants#getData <em>Data</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Constants#getData <em>Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Data</em>' attribute.

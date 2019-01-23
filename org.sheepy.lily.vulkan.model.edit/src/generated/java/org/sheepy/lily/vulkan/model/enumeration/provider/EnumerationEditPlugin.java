@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.enumeration.provider;
+package org.sheepy.lily.vulkan.model.enumeration.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 

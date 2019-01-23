@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.common.allocation.allocator.wrapper;
+package org.sheepy.lily.vulkan.common.allocation.allocator.wrapper;
 
 import java.util.Collection;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
 
 public class AllocableWrapper implements IAllocableWrapper
 {

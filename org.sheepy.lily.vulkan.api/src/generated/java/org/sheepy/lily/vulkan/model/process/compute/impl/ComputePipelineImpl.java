@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute.impl;
+package org.sheepy.lily.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -8,10 +8,10 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.vulkan.model.process.compute.ComputePipeline;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 
-import org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl;
+import org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,12 +21,12 @@ import org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeX <em>Workgroup Size X</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeY <em>Workgroup Size Y</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeZ <em>Workgroup Size Z</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getWidth <em>Width</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getHeight <em>Height</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputePipelineImpl#getDepth <em>Depth</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeX <em>Workgroup Size X</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeY <em>Workgroup Size Y</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeZ <em>Workgroup Size Z</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getDepth <em>Depth</em>}</li>
  * </ul>
  *
  * @generated

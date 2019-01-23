@@ -1,12 +1,12 @@
-package org.sheepy.vulkan.resource.nativehelper;
+package org.sheepy.lily.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.resource.Sampler;
-import org.sheepy.vulkan.model.resource.impl.SamplerImpl;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 
 public class VkSampler
 {

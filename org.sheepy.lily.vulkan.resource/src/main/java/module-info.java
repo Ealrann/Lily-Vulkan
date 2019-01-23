@@ -1,32 +1,32 @@
-import org.sheepy.common.api.adapter.IAdapter;
-import org.sheepy.vulkan.resource.buffer.BufferAdapter;
-import org.sheepy.vulkan.resource.buffer.ConstantsAdapter;
-import org.sheepy.vulkan.resource.file.FileResourceAdapter;
-import org.sheepy.vulkan.resource.file.ModuleResourceAdapter;
-import org.sheepy.vulkan.resource.file.StringModuleResourceAdapter;
-import org.sheepy.vulkan.resource.image.DepthImageAdapter;
-import org.sheepy.vulkan.resource.image.ImageAdapter;
-import org.sheepy.vulkan.resource.shader.ShaderAdapter;
-import org.sheepy.vulkan.resource.texture.FontAdapter;
-import org.sheepy.vulkan.resource.texture.TextureAdapter;
+import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.ConstantsAdapter;
+import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
+import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
+import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
+import org.sheepy.lily.vulkan.resource.image.DepthImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
+import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
+import org.sheepy.lily.vulkan.resource.texture.FontAdapter;
+import org.sheepy.lily.vulkan.resource.texture.TextureAdapter;
 
 /**
  * 
  */
-module org.sheepy.vulkan.resource
+module org.sheepy.lily.vulkan.resource
 {
-	requires transitive org.sheepy.vulkan.common;
+	requires transitive org.sheepy.lily.vulkan.common;
 
-	exports org.sheepy.vulkan.resource;
-	exports org.sheepy.vulkan.resource.buffer;
-	exports org.sheepy.vulkan.resource.descriptor;
-	exports org.sheepy.vulkan.resource.file;
-	exports org.sheepy.vulkan.resource.indexed;
-	exports org.sheepy.vulkan.resource.image;
-	exports org.sheepy.vulkan.resource.barrier;
-	exports org.sheepy.vulkan.resource.nativehelper;
-	exports org.sheepy.vulkan.resource.texture;
-	exports org.sheepy.vulkan.resource.shader;
+	exports org.sheepy.lily.vulkan.resource;
+	exports org.sheepy.lily.vulkan.resource.buffer;
+	exports org.sheepy.lily.vulkan.resource.descriptor;
+	exports org.sheepy.lily.vulkan.resource.file;
+	exports org.sheepy.lily.vulkan.resource.indexed;
+	exports org.sheepy.lily.vulkan.resource.image;
+	exports org.sheepy.lily.vulkan.resource.barrier;
+	exports org.sheepy.lily.vulkan.resource.nativehelper;
+	exports org.sheepy.lily.vulkan.resource.texture;
+	exports org.sheepy.lily.vulkan.resource.shader;
 
 	provides IAdapter with ShaderAdapter, BufferAdapter, ImageAdapter, TextureAdapter,
 			DepthImageAdapter, FileResourceAdapter, ModuleResourceAdapter,

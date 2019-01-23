@@ -1,16 +1,16 @@
-package org.sheepy.vulkan.common.application;
+package org.sheepy.lily.vulkan.common.application;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
-import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.device.PhysicalDevice;
-import org.sheepy.vulkan.common.engine.VulkanEngineAdapter;
-import org.sheepy.vulkan.model.VulkanEngine;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.api.adapter.impl.AbstractSingletonAdapter;
+import org.sheepy.lily.vulkan.common.device.ILogicalDeviceAdapter;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
+import org.sheepy.lily.vulkan.common.engine.VulkanEngineAdapter;
+import org.sheepy.lily.vulkan.model.VulkanEngine;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 public class LogicalDeviceAdapter extends AbstractSingletonAdapter implements ILogicalDeviceAdapter
 {

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute.impl;
+package org.sheepy.lily.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,10 +9,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.vulkan.model.process.compute.Computer;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.Computer;
 
-import org.sheepy.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.Shader;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,8 +22,8 @@ import org.sheepy.vulkan.model.resource.Shader;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputerImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.impl.ComputerImpl#getShader <em>Shader</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getShader <em>Shader</em>}</li>
  * </ul>
  *
  * @generated

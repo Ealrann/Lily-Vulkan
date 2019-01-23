@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.process;
+package org.sheepy.lily.vulkan.process.process;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -10,7 +10,7 @@ import java.util.Collection;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.vulkan.common.execution.ICommandBuffer;
+import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
 public class SubmissionInfo
 {
 	protected VkSubmitInfo submitInfo;

@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.common.device;
+package org.sheepy.lily.vulkan.common.device;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 
 public interface ILogicalDeviceAdapter extends IVulkanAdapter
 {

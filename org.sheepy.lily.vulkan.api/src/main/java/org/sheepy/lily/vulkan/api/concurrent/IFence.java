@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.api.concurrent;
+package org.sheepy.lily.vulkan.api.concurrent;
 
 public interface IFence
 {

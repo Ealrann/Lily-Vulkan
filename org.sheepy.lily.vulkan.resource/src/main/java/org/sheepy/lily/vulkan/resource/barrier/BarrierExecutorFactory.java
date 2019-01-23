@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.resource.barrier;
+package org.sheepy.lily.vulkan.resource.barrier;
 
-import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
-import org.sheepy.vulkan.model.resource.Barrier;
-import org.sheepy.vulkan.model.resource.BufferBarrier;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.Barrier;
+import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 public class BarrierExecutorFactory
 {

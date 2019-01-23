@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.file;
+package org.sheepy.lily.vulkan.resource.file;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,10 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.model.resource.FileResource;
-import org.sheepy.vulkan.model.resource.PathResource;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.model.resource.FileResource;
+import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 public class FileResourceAdapter extends PathResourceAdapter
 {

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 
 /**
@@ -12,11 +12,11 @@ package org.sheepy.vulkan.model.resource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.Font#getFile <em>File</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Font#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Font#getFile <em>File</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Font#getHeight <em>Height</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getFont()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFont()
  * @model
  * @generated
  */
@@ -32,14 +32,14 @@ public interface Font extends SampledImage
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' containment reference.
 	 * @see #setFile(PathResource)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getFont_File()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFont_File()
 	 * @model containment="true"
 	 * @generated
 	 */
 	PathResource getFile();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Font#getFile <em>File</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Font#getFile <em>File</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>File</em>' containment reference.
@@ -59,14 +59,14 @@ public interface Font extends SampledImage
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
 	 * @see #setHeight(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getFont_Height()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getFont_Height()
 	 * @model default="18" unique="false"
 	 * @generated
 	 */
 	int getHeight();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Font#getHeight <em>Height</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Font#getHeight <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Height</em>' attribute.

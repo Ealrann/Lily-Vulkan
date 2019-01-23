@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import java.util.Collection;
 
@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.vulkan.model.process.graphic.Subpass;
-import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +32,10 @@ import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getAttachments <em>Attachments</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getSubpasses <em>Subpasses</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getDependencies <em>Dependencies</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getBindPoint <em>Bind Point</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getAttachments <em>Attachments</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getSubpasses <em>Subpasses</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl#getBindPoint <em>Bind Point</em>}</li>
  * </ul>
  *
  * @generated

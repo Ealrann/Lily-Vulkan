@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.demo.mesh;
+package org.sheepy.lily.vulkan.demo.mesh;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -6,16 +6,16 @@ import java.nio.FloatBuffer;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.common.api.types.SVector2i;
-import org.sheepy.common.model.application.Application;
-import org.sheepy.vulkan.common.util.ModelUtil;
-import org.sheepy.vulkan.common.util.SizeOf;
-import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.model.resource.Buffer;
-import org.sheepy.vulkan.model.resource.impl.BufferImpl;
-import org.sheepy.vulkan.resource.buffer.BufferAdapter;
+import org.sheepy.lily.core.api.types.SVector2i;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.vulkan.common.util.ModelUtil;
+import org.sheepy.lily.vulkan.common.util.SizeOf;
+import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
+import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
 
 public class UniformBufferManager
 {

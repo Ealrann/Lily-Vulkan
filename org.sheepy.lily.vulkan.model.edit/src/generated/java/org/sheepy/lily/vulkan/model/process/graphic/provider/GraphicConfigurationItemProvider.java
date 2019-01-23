@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.provider;
+package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
 
 import java.util.Collection;
@@ -25,13 +25,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.VulkanFactory;
 
-import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

@@ -1,8 +1,8 @@
-package org.sheepy.vulkan.resource.descriptor;
+package org.sheepy.lily.vulkan.resource.descriptor;
 
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.model.resource.IDescriptor;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 
 public interface IDescriptorAdapter extends IVulkanAdapter, IVkDescriptor
 {

@@ -1,14 +1,14 @@
 /**
  */
-package org.sheepy.vulkan.model;
+package org.sheepy.lily.vulkan.model;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.common.model.application.ApplicationPackage;
-import org.sheepy.common.model.root.RootPackage;
-import org.sheepy.common.model.types.TypesPackage;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.root.RootPackage;
+import org.sheepy.lily.core.model.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,9 +22,9 @@ import org.sheepy.common.model.types.TypesPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.VulkanFactory
+ * @see org.sheepy.lily.vulkan.model.VulkanFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' basePackage='org.sheepy.vulkan'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' basePackage='org.sheepy.lily.vulkan'"
  * @generated
  */
 public interface VulkanPackage extends EPackage
@@ -43,7 +43,7 @@ public interface VulkanPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "org.sheepy.vulkan.model";
+	String eNS_URI = "org.sheepy.lily.vulkan.model";
 
 	/**
 	 * The package namespace name.
@@ -59,14 +59,14 @@ public interface VulkanPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	VulkanPackage eINSTANCE = org.sheepy.vulkan.model.impl.VulkanPackageImpl.init();
+	VulkanPackage eINSTANCE = org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl <em>Engine</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl <em>Engine</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.VulkanEngineImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanEngine()
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getVulkanEngine()
 	 * @generated
 	 */
 	int VULKAN_ENGINE = 0;
@@ -171,11 +171,11 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE_OPERATION_COUNT = ApplicationPackage.IENGINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.IEnginePart <em>IEngine Part</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IEnginePart <em>IEngine Part</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.IEnginePart
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIEnginePart()
+	 * @see org.sheepy.lily.vulkan.model.IEnginePart
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIEnginePart()
 	 * @generated
 	 */
 	int IENGINE_PART = 1;
@@ -253,11 +253,11 @@ public interface VulkanPackage extends EPackage
 	int IENGINE_PART_OPERATION_COUNT = RootPackage.LOBJECT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.SharedResourcesImpl <em>Shared Resources</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl <em>Shared Resources</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.SharedResourcesImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getSharedResources()
+	 * @see org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getSharedResources()
 	 * @generated
 	 */
 	int SHARED_RESOURCES = 2;
@@ -344,11 +344,11 @@ public interface VulkanPackage extends EPackage
 	int SHARED_RESOURCES_OPERATION_COUNT = IENGINE_PART_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.IResource <em>IResource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.IResource
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIResource()
+	 * @see org.sheepy.lily.vulkan.model.IResource
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIResource()
 	 * @generated
 	 */
 	int IRESOURCE = 3;
@@ -381,11 +381,11 @@ public interface VulkanPackage extends EPackage
 	int IRESOURCE_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IProcess <em>IProcess</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.IProcess
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcess()
+	 * @see org.sheepy.lily.vulkan.model.IProcess
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIProcess()
 	 * @generated
 	 */
 	int IPROCESS = 4;
@@ -481,11 +481,11 @@ public interface VulkanPackage extends EPackage
 	int IPROCESS_OPERATION_COUNT = IENGINE_PART_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.ColorDomainImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getColorDomain()
+	 * @see org.sheepy.lily.vulkan.model.impl.ColorDomainImpl
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getColorDomain()
 	 * @generated
 	 */
 	int COLOR_DOMAIN = 5;
@@ -528,137 +528,137 @@ public interface VulkanPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.VulkanEngine <em>Engine</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.VulkanEngine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Engine</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanEngine
+	 * @see org.sheepy.lily.vulkan.model.VulkanEngine
 	 * @generated
 	 */
 	EClass getVulkanEngine();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanEngine#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.VulkanEngine#isEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanEngine#isEnabled()
+	 * @see org.sheepy.lily.vulkan.model.VulkanEngine#isEnabled()
 	 * @see #getVulkanEngine()
 	 * @generated
 	 */
 	EAttribute getVulkanEngine_Enabled();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.VulkanEngine#getSharedResources <em>Shared Resources</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.VulkanEngine#getSharedResources <em>Shared Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Shared Resources</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanEngine#getSharedResources()
+	 * @see org.sheepy.lily.vulkan.model.VulkanEngine#getSharedResources()
 	 * @see #getVulkanEngine()
 	 * @generated
 	 */
 	EReference getVulkanEngine_SharedResources();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.VulkanEngine#getProcesses <em>Processes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.VulkanEngine#getProcesses <em>Processes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Processes</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanEngine#getProcesses()
+	 * @see org.sheepy.lily.vulkan.model.VulkanEngine#getProcesses()
 	 * @see #getVulkanEngine()
 	 * @generated
 	 */
 	EReference getVulkanEngine_Processes();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IEnginePart <em>IEngine Part</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IEnginePart <em>IEngine Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IEngine Part</em>'.
-	 * @see org.sheepy.vulkan.model.IEnginePart
+	 * @see org.sheepy.lily.vulkan.model.IEnginePart
 	 * @generated
 	 */
 	EClass getIEnginePart();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.SharedResources <em>Shared Resources</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.SharedResources <em>Shared Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Shared Resources</em>'.
-	 * @see org.sheepy.vulkan.model.SharedResources
+	 * @see org.sheepy.lily.vulkan.model.SharedResources
 	 * @generated
 	 */
 	EClass getSharedResources();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.SharedResources#getResources <em>Resources</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.SharedResources#getResources <em>Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Resources</em>'.
-	 * @see org.sheepy.vulkan.model.SharedResources#getResources()
+	 * @see org.sheepy.lily.vulkan.model.SharedResources#getResources()
 	 * @see #getSharedResources()
 	 * @generated
 	 */
 	EReference getSharedResources_Resources();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IResource <em>IResource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IResource</em>'.
-	 * @see org.sheepy.vulkan.model.IResource
+	 * @see org.sheepy.lily.vulkan.model.IResource
 	 * @generated
 	 */
 	EClass getIResource();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IProcess <em>IProcess</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IProcess</em>'.
-	 * @see org.sheepy.vulkan.model.IProcess
+	 * @see org.sheepy.lily.vulkan.model.IProcess
 	 * @generated
 	 */
 	EClass getIProcess();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.IProcess#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.IProcess#isEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.sheepy.vulkan.model.IProcess#isEnabled()
+	 * @see org.sheepy.lily.vulkan.model.IProcess#isEnabled()
 	 * @see #getIProcess()
 	 * @generated
 	 */
 	EAttribute getIProcess_Enabled();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.ColorDomain <em>Color Domain</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.ColorDomain <em>Color Domain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Color Domain</em>'.
-	 * @see org.sheepy.vulkan.model.ColorDomain
+	 * @see org.sheepy.lily.vulkan.model.ColorDomain
 	 * @generated
 	 */
 	EClass getColorDomain();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.ColorDomain#getFormat <em>Format</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.ColorDomain#getFormat <em>Format</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Format</em>'.
-	 * @see org.sheepy.vulkan.model.ColorDomain#getFormat()
+	 * @see org.sheepy.lily.vulkan.model.ColorDomain#getFormat()
 	 * @see #getColorDomain()
 	 * @generated
 	 */
 	EAttribute getColorDomain_Format();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.ColorDomain#getColorSpace <em>Color Space</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.ColorDomain#getColorSpace <em>Color Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Color Space</em>'.
-	 * @see org.sheepy.vulkan.model.ColorDomain#getColorSpace()
+	 * @see org.sheepy.lily.vulkan.model.ColorDomain#getColorSpace()
 	 * @see #getColorDomain()
 	 * @generated
 	 */
@@ -689,11 +689,11 @@ public interface VulkanPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl <em>Engine</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl <em>Engine</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.impl.VulkanEngineImpl
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanEngine()
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getVulkanEngine()
 		 * @generated
 		 */
 		EClass VULKAN_ENGINE = eINSTANCE.getVulkanEngine();
@@ -723,21 +723,21 @@ public interface VulkanPackage extends EPackage
 		EReference VULKAN_ENGINE__PROCESSES = eINSTANCE.getVulkanEngine_Processes();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IEnginePart <em>IEngine Part</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IEnginePart <em>IEngine Part</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.IEnginePart
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIEnginePart()
+		 * @see org.sheepy.lily.vulkan.model.IEnginePart
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIEnginePart()
 		 * @generated
 		 */
 		EClass IENGINE_PART = eINSTANCE.getIEnginePart();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.SharedResourcesImpl <em>Shared Resources</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl <em>Shared Resources</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.impl.SharedResourcesImpl
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getSharedResources()
+		 * @see org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getSharedResources()
 		 * @generated
 		 */
 		EClass SHARED_RESOURCES = eINSTANCE.getSharedResources();
@@ -751,21 +751,21 @@ public interface VulkanPackage extends EPackage
 		EReference SHARED_RESOURCES__RESOURCES = eINSTANCE.getSharedResources_Resources();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IResource <em>IResource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.IResource
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIResource()
+		 * @see org.sheepy.lily.vulkan.model.IResource
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIResource()
 		 * @generated
 		 */
 		EClass IRESOURCE = eINSTANCE.getIResource();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IProcess <em>IProcess</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IProcess <em>IProcess</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.IProcess
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcess()
+		 * @see org.sheepy.lily.vulkan.model.IProcess
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIProcess()
 		 * @generated
 		 */
 		EClass IPROCESS = eINSTANCE.getIProcess();
@@ -779,11 +779,11 @@ public interface VulkanPackage extends EPackage
 		EAttribute IPROCESS__ENABLED = eINSTANCE.getIProcess_Enabled();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.impl.ColorDomainImpl
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getColorDomain()
+		 * @see org.sheepy.lily.vulkan.model.impl.ColorDomainImpl
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getColorDomain()
 		 * @generated
 		 */
 		EClass COLOR_DOMAIN = eINSTANCE.getColorDomain();

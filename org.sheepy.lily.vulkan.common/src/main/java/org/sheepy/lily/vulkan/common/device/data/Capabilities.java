@@ -1,11 +1,11 @@
-package org.sheepy.vulkan.common.device.data;
+package org.sheepy.lily.vulkan.common.device.data;
 
 import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfaceCapabilitiesKHR;
 
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkSurfaceCapabilitiesKHR;
-import org.sheepy.vulkan.api.window.Surface;
-import org.sheepy.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.common.util.Logger;
 
 public class Capabilities
 {

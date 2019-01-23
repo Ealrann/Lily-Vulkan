@@ -1,11 +1,11 @@
-package org.sheepy.vulkan.demo.mesh;
+package org.sheepy.lily.vulkan.demo.mesh;
 
-import org.sheepy.common.api.cadence.IMainLoop;
-import org.sheepy.common.api.util.UPSMeter;
-import org.sheepy.common.model.application.Application;
-import org.sheepy.vulkan.api.adapter.IProcessAdapter;
-import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
-import org.sheepy.vulkan.model.VulkanEngine;
+import org.sheepy.lily.core.api.cadence.IMainLoop;
+import org.sheepy.lily.core.api.util.UPSMeter;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
+import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
+import org.sheepy.lily.vulkan.model.VulkanEngine;
 
 public class MeshMainLoop implements IMainLoop
 {

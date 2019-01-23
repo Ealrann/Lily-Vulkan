@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.common.execution;
+package org.sheepy.lily.vulkan.common.execution;
 
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
 
 public class ResourceAllocator implements IBasicAllocable
 {

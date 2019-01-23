@@ -1,11 +1,11 @@
-package org.sheepy.vulkan.common.application;
+package org.sheepy.lily.vulkan.common.application;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import org.sheepy.common.api.application.ApplicationLauncher;
-import org.sheepy.common.model.application.Application;
-import org.sheepy.vulkan.common.test.TestUtils;
+import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.vulkan.common.test.TestUtils;
 
 public class VulkanApplicationTest
 {

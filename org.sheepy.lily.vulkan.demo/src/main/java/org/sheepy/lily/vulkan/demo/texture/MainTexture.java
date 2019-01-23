@@ -1,12 +1,12 @@
-package org.sheepy.vulkan.demo.texture;
+package org.sheepy.lily.vulkan.demo.texture;
 
-import org.sheepy.common.api.application.ApplicationLauncher;
-import org.sheepy.common.api.cadence.IMainLoop;
-import org.sheepy.vulkan.demo.mesh.MeshAdapter;
-import org.sheepy.vulkan.demo.mesh.MeshConfiguration;
-import org.sheepy.vulkan.demo.mesh.MeshMainLoop;
-import org.sheepy.vulkan.demo.mesh.MeshModelFactory;
-import org.sheepy.vulkan.model.enumeration.EFrontFace;
+import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.api.cadence.IMainLoop;
+import org.sheepy.lily.vulkan.demo.mesh.MeshAdapter;
+import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
+import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
+import org.sheepy.lily.vulkan.demo.mesh.MeshModelFactory;
+import org.sheepy.lily.vulkan.model.enumeration.EFrontFace;
 
 public class MainTexture
 {

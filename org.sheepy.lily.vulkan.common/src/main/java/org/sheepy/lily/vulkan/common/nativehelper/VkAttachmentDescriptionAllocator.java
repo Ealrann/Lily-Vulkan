@@ -1,12 +1,12 @@
-package org.sheepy.vulkan.common.nativehelper;
+package org.sheepy.lily.vulkan.common.nativehelper;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkAttachmentDescription;
-import org.sheepy.vulkan.common.resource.image.IDepthImageAdapter;
-import org.sheepy.vulkan.model.enumeration.EFormat;
-import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription;
-import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.common.resource.image.IDepthImageAdapter;
+import org.sheepy.lily.vulkan.model.enumeration.EFormat;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 
 public class VkAttachmentDescriptionAllocator
 {

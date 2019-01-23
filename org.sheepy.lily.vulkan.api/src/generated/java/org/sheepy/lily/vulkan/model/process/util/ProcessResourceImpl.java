@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.util;
+package org.sheepy.lily.vulkan.model.process.util;
 
 import org.eclipse.emf.common.util.URI;
 
@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.process.util.ProcessResourceFactoryImpl
+ * @see org.sheepy.lily.vulkan.model.process.util.ProcessResourceFactoryImpl
  * @generated
  */
 public class ProcessResourceImpl extends XMIResourceImpl

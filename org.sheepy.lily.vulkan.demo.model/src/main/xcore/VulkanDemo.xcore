@@ -1,12 +1,12 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.demo.model/src/generated/java")
+@GenModel(modelDirectory="/org.sheepy.lily.vulkan.demo.model/src/generated/java")
 @GenModel(modelName="VulkanDemo", prefix="VulkanDemo")
 @GenModel(publicConstructors="true")
 @GenModel(updateClasspath="false")
 
-package org.sheepy.vulkan.demo.model
+package org.sheepy.lily.vulkan.demo.model
 
-import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline
-import org.sheepy.vulkan.model.resource.IndexedBuffer
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline
+import org.sheepy.lily.vulkan.model.resource.IndexedBuffer
 
 class MeshPipeline extends GraphicsPipeline
 {

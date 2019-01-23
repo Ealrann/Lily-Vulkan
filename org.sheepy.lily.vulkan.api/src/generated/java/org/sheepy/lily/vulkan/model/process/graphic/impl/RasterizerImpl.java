@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,12 +9,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.sheepy.vulkan.model.enumeration.ECullMode;
-import org.sheepy.vulkan.model.enumeration.EFrontFace;
-import org.sheepy.vulkan.model.enumeration.EPolygonMode;
+import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
+import org.sheepy.lily.vulkan.model.enumeration.EFrontFace;
+import org.sheepy.lily.vulkan.model.enumeration.EPolygonMode;
 
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.Rasterizer;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,13 +24,13 @@ import org.sheepy.vulkan.model.process.graphic.Rasterizer;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#getCullMode <em>Cull Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#getFrontFace <em>Front Face</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#getPolygonMode <em>Polygon Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#getLineWidth <em>Line Width</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#isDepthClampEnable <em>Depth Clamp Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#isDiscardEnable <em>Discard Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl#isDepthBiasEnable <em>Depth Bias Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl#getCullMode <em>Cull Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl#getFrontFace <em>Front Face</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl#getPolygonMode <em>Polygon Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl#getLineWidth <em>Line Width</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl#isDepthClampEnable <em>Depth Clamp Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl#isDiscardEnable <em>Discard Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl#isDepthBiasEnable <em>Depth Bias Enable</em>}</li>
  * </ul>
  *
  * @generated

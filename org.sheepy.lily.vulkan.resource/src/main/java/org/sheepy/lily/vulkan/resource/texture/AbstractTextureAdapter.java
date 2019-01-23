@@ -1,16 +1,16 @@
-package org.sheepy.vulkan.resource.texture;
+package org.sheepy.lily.vulkan.resource.texture;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.eclipse.emf.common.notify.Notifier;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.model.resource.AbstractTexture;
-import org.sheepy.vulkan.model.resource.Sampler;
-import org.sheepy.vulkan.model.resource.Texture;
-import org.sheepy.vulkan.model.resource.impl.SamplerImpl;
-import org.sheepy.vulkan.resource.image.AbstractSampledImageAdapter;
-import org.sheepy.vulkan.resource.image.ImageInfo;
-import org.sheepy.vulkan.resource.nativehelper.VkTexture;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
+import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.Texture;
+import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
+import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.ImageInfo;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
 
 public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 {

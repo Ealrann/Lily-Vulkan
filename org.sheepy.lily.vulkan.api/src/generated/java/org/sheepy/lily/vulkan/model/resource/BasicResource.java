@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.IResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,7 +10,7 @@ import org.sheepy.vulkan.model.IResource;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBasicResource()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBasicResource()
  * @model interface="true" abstract="true"
  * @generated
  */

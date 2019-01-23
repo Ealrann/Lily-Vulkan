@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.device.data;
+package org.sheepy.lily.vulkan.common.device.data;
 
 import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfaceFormatsKHR;
 
@@ -12,11 +12,11 @@ import java.util.Set;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkSurfaceFormatKHR;
-import org.sheepy.vulkan.api.window.Surface;
-import org.sheepy.vulkan.model.ColorDomain;
-import org.sheepy.vulkan.model.enumeration.EColorSpace;
-import org.sheepy.vulkan.model.enumeration.EFormat;
-import org.sheepy.vulkan.model.impl.ColorDomainImpl;
+import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.model.ColorDomain;
+import org.sheepy.lily.vulkan.model.enumeration.EColorSpace;
+import org.sheepy.lily.vulkan.model.enumeration.EFormat;
+import org.sheepy.lily.vulkan.model.impl.ColorDomainImpl;
 
 public class ColorDomains implements Iterable<ColorDomain>
 {

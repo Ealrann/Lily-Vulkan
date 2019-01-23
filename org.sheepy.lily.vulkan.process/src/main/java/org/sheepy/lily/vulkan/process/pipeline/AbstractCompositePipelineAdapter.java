@@ -1,9 +1,9 @@
-//package org.sheepy.vulkan.process.pipeline;
+//package org.sheepy.lily.vulkan.process.pipeline;
 //
-//import org.sheepy.common.api.adapter.impl.ServiceAdapterFactory;
-//import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-//import org.sheepy.vulkan.model.process.AbstractCompositePipeline;
-//import org.sheepy.vulkan.model.process.AbstractPipeline;
+//import org.sheepy.lily.core.api.adapter.impl.ServiceAdapterFactory;
+//import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+//import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
+//import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 //
 //@Deprecated
 //public abstract class AbstractCompositePipelineAdapter<T extends AbstractCommandBuffer>

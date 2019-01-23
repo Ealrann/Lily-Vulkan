@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,9 +9,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.vulkan.model.resource.Image;
-import org.sheepy.vulkan.model.resource.ImageBarrier;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +21,7 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl#getImage <em>Image</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl#getImage <em>Image</em>}</li>
  * </ul>
  *
  * @generated

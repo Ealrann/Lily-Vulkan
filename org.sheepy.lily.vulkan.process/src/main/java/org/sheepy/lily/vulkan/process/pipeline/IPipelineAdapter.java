@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.pipeline;
+package org.sheepy.lily.vulkan.process.pipeline;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -9,16 +9,16 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.common.allocation.IAllocable;
-import org.sheepy.vulkan.common.device.ILogicalDeviceAdapter;
-import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.common.execution.IResourceAllocable;
-import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.process.IPipeline;
-import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.resource.buffer.AbstractConstantsAdapter;
-import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.device.ILogicalDeviceAdapter;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public abstract class IPipelineAdapter<T extends AbstractCommandBuffer>
 		extends AbstractProcessUnitAdapter<T>

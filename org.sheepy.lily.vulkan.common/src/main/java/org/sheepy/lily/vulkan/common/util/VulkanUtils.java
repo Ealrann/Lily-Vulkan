@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.util;
+package org.sheepy.lily.vulkan.common.util;
 
 import static org.lwjgl.vulkan.EXTDebugReport.VK_DEBUG_REPORT_ERROR_BIT_EXT;
 import static org.lwjgl.vulkan.EXTDebugReport.VK_DEBUG_REPORT_WARNING_BIT_EXT;
@@ -15,7 +15,7 @@ import org.lwjgl.vulkan.VkDebugReportCallbackCreateInfoEXT;
 import org.lwjgl.vulkan.VkDebugReportCallbackEXT;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkInstance;
-import org.sheepy.vulkan.common.window.Window;
+import org.sheepy.lily.vulkan.common.window.Window;
 
 public class VulkanUtils
 {

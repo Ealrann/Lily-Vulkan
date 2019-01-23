@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import java.util.Collection;
 
@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sheepy.vulkan.model.process.graphic.AttachementRef;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,8 +30,8 @@ import org.sheepy.vulkan.model.process.graphic.Subpass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl#getRefs <em>Refs</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl#getRefs <em>Refs</em>}</li>
  * </ul>
  *
  * @generated

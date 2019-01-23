@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.sheepy.vulkan.model.resource.DepthImage;
+import org.sheepy.lily.vulkan.model.resource.DepthImage;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,10 +13,10 @@ import org.sheepy.vulkan.model.resource.DepthImage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage <em>Depth Image</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage <em>Depth Image</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getDepthAttachmentDescription()
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getDepthAttachmentDescription()
  * @model
  * @generated
  */
@@ -32,14 +32,14 @@ public interface DepthAttachmentDescription extends AttachmentDescription
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth Image</em>' reference.
 	 * @see #setDepthImage(DepthImage)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getDepthAttachmentDescription_DepthImage()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getDepthAttachmentDescription_DepthImage()
 	 * @model
 	 * @generated
 	 */
 	DepthImage getDepthImage();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage <em>Depth Image</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage <em>Depth Image</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depth Image</em>' reference.

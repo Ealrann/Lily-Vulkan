@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.enumeration.impl;
+package org.sheepy.lily.vulkan.model.enumeration.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.sheepy.vulkan.model.enumeration.*;
+import org.sheepy.lily.vulkan.model.enumeration.*;
 
 /**
  * <!-- begin-user-doc -->

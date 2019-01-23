@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.api.queue;
+package org.sheepy.lily.vulkan.api.queue;
 
 public enum EQueueType
 {

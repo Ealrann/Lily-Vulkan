@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process;
+package org.sheepy.lily.vulkan.model.process;
 
 
 /**
@@ -9,7 +9,7 @@ package org.sheepy.vulkan.model.process;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.process.ProcessPackage#getPushConstant()
+ * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPushConstant()
  * @model
  * @generated
  */

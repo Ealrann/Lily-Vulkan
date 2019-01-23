@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.IDescriptor;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.IDescriptor;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,8 +23,8 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl#getDescriptors <em>Descriptors</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl#getDescriptors <em>Descriptors</em>}</li>
  * </ul>
  *
  * @generated

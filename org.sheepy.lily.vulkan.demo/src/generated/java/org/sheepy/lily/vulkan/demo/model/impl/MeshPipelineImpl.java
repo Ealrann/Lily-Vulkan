@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.demo.model.impl;
+package org.sheepy.lily.vulkan.demo.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -8,10 +8,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.sheepy.vulkan.demo.model.MeshBuffer;
-import org.sheepy.vulkan.demo.model.MeshPipeline;
-import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-import org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
+import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
+import org.sheepy.lily.vulkan.demo.model.MeshPipeline;
+import org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +21,7 @@ import org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl#getMesh <em>Mesh</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.demo.model.impl.MeshPipelineImpl#getMesh <em>Mesh</em>}</li>
  * </ul>
  *
  * @generated

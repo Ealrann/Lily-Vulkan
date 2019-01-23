@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.demo.mesh;
+package org.sheepy.lily.vulkan.demo.mesh;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.vulkan.demo.model.MeshPipeline;
-import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
-import org.sheepy.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
-import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
-import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
+import org.sheepy.lily.vulkan.demo.model.MeshPipeline;
+import org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage;
+import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
 public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 {

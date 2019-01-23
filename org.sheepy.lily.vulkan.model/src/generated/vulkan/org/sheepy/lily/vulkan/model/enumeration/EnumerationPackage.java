@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.enumeration;
+package org.sheepy.lily.vulkan.model.enumeration;
 
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.enumeration.EnumerationFactory
+ * @see org.sheepy.lily.vulkan.model.enumeration.EnumerationFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/vulkan' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/vulkan' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model'"
  * @generated
  */
 public interface EnumerationPackage extends EPackage
@@ -38,7 +38,7 @@ public interface EnumerationPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "org.sheepy.vulkan.model.enumeration";
+	String eNS_URI = "org.sheepy.lily.vulkan.model.enumeration";
 
 	/**
 	 * The package namespace name.
@@ -54,265 +54,265 @@ public interface EnumerationPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EnumerationPackage eINSTANCE = org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl.init();
+	EnumerationPackage eINSTANCE = org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageLayout()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageLayout()
 	 * @generated
 	 */
 	int EIMAGE_LAYOUT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ECullMode <em>ECull Mode</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.ECullMode <em>ECull Mode</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.ECullMode
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECullMode()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.ECullMode
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECullMode()
 	 * @generated
 	 */
 	int ECULL_MODE = 1;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EFrontFace
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFrontFace()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EFrontFace
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFrontFace()
 	 * @generated
 	 */
 	int EFRONT_FACE = 2;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ECommandStage <em>ECommand Stage</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.ECommandStage <em>ECommand Stage</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECommandStage()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.ECommandStage
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECommandStage()
 	 * @generated
 	 */
 	int ECOMMAND_STAGE = 3;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp <em>EAttachment Load Op</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp <em>EAttachment Load Op</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentLoadOp()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentLoadOp()
 	 * @generated
 	 */
 	int EATTACHMENT_LOAD_OP = 4;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp <em>EAttachment Store Op</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp <em>EAttachment Store Op</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentStoreOp()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentStoreOp()
 	 * @generated
 	 */
 	int EATTACHMENT_STORE_OP = 5;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EShaderStage <em>EShader Stage</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EShaderStage <em>EShader Stage</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EShaderStage
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEShaderStage()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEShaderStage()
 	 * @generated
 	 */
 	int ESHADER_STAGE = 6;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPipelineStage()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPipelineStage()
 	 * @generated
 	 */
 	int EPIPELINE_STAGE = 7;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EColorSpace
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEColorSpace()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EColorSpace
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEColorSpace()
 	 * @generated
 	 */
 	int ECOLOR_SPACE = 8;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EFormat <em>EFormat</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EFormat <em>EFormat</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EFormat
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFormat()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EFormat
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFormat()
 	 * @generated
 	 */
 	int EFORMAT = 9;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EPresentMode
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPresentMode()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EPresentMode
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPresentMode()
 	 * @generated
 	 */
 	int EPRESENT_MODE = 10;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.EImageUsage
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageUsage()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageUsage
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageUsage()
 	 * @generated
 	 */
 	int EIMAGE_USAGE = 11;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.enumeration.ESampleCount
-	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESampleCount()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.ESampleCount
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESampleCount()
 	 * @generated
 	 */
 	int ESAMPLE_COUNT = 12;
 
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EImage Layout</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
 	 * @generated
 	 */
 	EEnum getEImageLayout();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.ECullMode <em>ECull Mode</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.ECullMode <em>ECull Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>ECull Mode</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.ECullMode
+	 * @see org.sheepy.lily.vulkan.model.enumeration.ECullMode
 	 * @generated
 	 */
 	EEnum getECullMode();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EFront Face</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EFrontFace
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EFrontFace
 	 * @generated
 	 */
 	EEnum getEFrontFace();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.ECommandStage <em>ECommand Stage</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.ECommandStage <em>ECommand Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>ECommand Stage</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
+	 * @see org.sheepy.lily.vulkan.model.enumeration.ECommandStage
 	 * @generated
 	 */
 	EEnum getECommandStage();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp <em>EAttachment Load Op</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp <em>EAttachment Load Op</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EAttachment Load Op</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
 	 * @generated
 	 */
 	EEnum getEAttachmentLoadOp();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp <em>EAttachment Store Op</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp <em>EAttachment Store Op</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EAttachment Store Op</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp
 	 * @generated
 	 */
 	EEnum getEAttachmentStoreOp();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EShaderStage <em>EShader Stage</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EShaderStage <em>EShader Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EShader Stage</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EShaderStage
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
 	 * @generated
 	 */
 	EEnum getEShaderStage();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EPipeline Stage</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
 	 * @generated
 	 */
 	EEnum getEPipelineStage();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EColor Space</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EColorSpace
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EColorSpace
 	 * @generated
 	 */
 	EEnum getEColorSpace();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EFormat <em>EFormat</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EFormat <em>EFormat</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EFormat</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EFormat
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EFormat
 	 * @generated
 	 */
 	EEnum getEFormat();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EPresent Mode</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EPresentMode
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EPresentMode
 	 * @generated
 	 */
 	EEnum getEPresentMode();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>EImage Usage</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.EImageUsage
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageUsage
 	 * @generated
 	 */
 	EEnum getEImageUsage();
 
 	/**
-	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}'.
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>ESample Count</em>'.
-	 * @see org.sheepy.vulkan.model.enumeration.ESampleCount
+	 * @see org.sheepy.lily.vulkan.model.enumeration.ESampleCount
 	 * @generated
 	 */
 	EEnum getESampleCount();
@@ -342,131 +342,131 @@ public interface EnumerationPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageLayout()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageLayout()
 		 * @generated
 		 */
 		EEnum EIMAGE_LAYOUT = eINSTANCE.getEImageLayout();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.ECullMode <em>ECull Mode</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.ECullMode <em>ECull Mode</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.ECullMode
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECullMode()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.ECullMode
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECullMode()
 		 * @generated
 		 */
 		EEnum ECULL_MODE = eINSTANCE.getECullMode();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EFrontFace
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFrontFace()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EFrontFace
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFrontFace()
 		 * @generated
 		 */
 		EEnum EFRONT_FACE = eINSTANCE.getEFrontFace();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.ECommandStage <em>ECommand Stage</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.ECommandStage <em>ECommand Stage</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECommandStage()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.ECommandStage
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECommandStage()
 		 * @generated
 		 */
 		EEnum ECOMMAND_STAGE = eINSTANCE.getECommandStage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp <em>EAttachment Load Op</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp <em>EAttachment Load Op</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentLoadOp()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentLoadOp()
 		 * @generated
 		 */
 		EEnum EATTACHMENT_LOAD_OP = eINSTANCE.getEAttachmentLoadOp();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp <em>EAttachment Store Op</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp <em>EAttachment Store Op</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentStoreOp()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentStoreOp()
 		 * @generated
 		 */
 		EEnum EATTACHMENT_STORE_OP = eINSTANCE.getEAttachmentStoreOp();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EShaderStage <em>EShader Stage</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EShaderStage <em>EShader Stage</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EShaderStage
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEShaderStage()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEShaderStage()
 		 * @generated
 		 */
 		EEnum ESHADER_STAGE = eINSTANCE.getEShaderStage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPipelineStage()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPipelineStage()
 		 * @generated
 		 */
 		EEnum EPIPELINE_STAGE = eINSTANCE.getEPipelineStage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EColorSpace
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEColorSpace()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EColorSpace
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEColorSpace()
 		 * @generated
 		 */
 		EEnum ECOLOR_SPACE = eINSTANCE.getEColorSpace();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EFormat <em>EFormat</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EFormat <em>EFormat</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EFormat
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFormat()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EFormat
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFormat()
 		 * @generated
 		 */
 		EEnum EFORMAT = eINSTANCE.getEFormat();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EPresentMode
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPresentMode()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EPresentMode
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPresentMode()
 		 * @generated
 		 */
 		EEnum EPRESENT_MODE = eINSTANCE.getEPresentMode();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.EImageUsage
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageUsage()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EImageUsage
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageUsage()
 		 * @generated
 		 */
 		EEnum EIMAGE_USAGE = eINSTANCE.getEImageUsage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.enumeration.ESampleCount
-		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESampleCount()
+		 * @see org.sheepy.lily.vulkan.model.enumeration.ESampleCount
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESampleCount()
 		 * @generated
 		 */
 		EEnum ESAMPLE_COUNT = eINSTANCE.getESampleCount();

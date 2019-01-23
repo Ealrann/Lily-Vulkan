@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,13 +9,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
-import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.ESampleCount;
+import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp;
+import org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp;
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
 
-import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,14 +25,14 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getSamples <em>Samples</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getLoadOp <em>Load Op</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getStoreOp <em>Store Op</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getStencilLoadOp <em>Stencil Load Op</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getStencilStoreOp <em>Stencil Store Op</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getInitialLayout <em>Initial Layout</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getFinalLayout <em>Final Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getSamples <em>Samples</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getLoadOp <em>Load Op</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getStoreOp <em>Store Op</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getStencilLoadOp <em>Stencil Load Op</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getStencilStoreOp <em>Stencil Store Op</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getInitialLayout <em>Initial Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl#getFinalLayout <em>Final Layout</em>}</li>
  * </ul>
  *
  * @generated

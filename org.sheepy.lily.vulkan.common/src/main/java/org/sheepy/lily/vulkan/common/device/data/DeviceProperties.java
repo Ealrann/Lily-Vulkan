@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.device.data;
+package org.sheepy.lily.vulkan.common.device.data;
 
 import static org.lwjgl.vulkan.VK10.vkGetPhysicalDeviceProperties;
 

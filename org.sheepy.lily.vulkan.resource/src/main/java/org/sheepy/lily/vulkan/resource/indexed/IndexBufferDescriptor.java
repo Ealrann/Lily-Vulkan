@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.indexed;
+package org.sheepy.lily.vulkan.resource.indexed;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -11,7 +11,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
-import org.sheepy.vulkan.resource.indexed.IndexBufferDescriptor.Vertex;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBufferDescriptor.Vertex;
 
 public class IndexBufferDescriptor extends AbstractIntegerIndexDescriptor<Vertex>
 {

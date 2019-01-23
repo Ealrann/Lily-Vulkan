@@ -1,10 +1,10 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.sheepy.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
-import org.sheepy.vulkan.model.resource.DepthImage;
+import org.sheepy.lily.vulkan.model.resource.DepthImage;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,12 +15,12 @@ import org.sheepy.vulkan.model.resource.DepthImage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo <em>Render Pass Info</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getDepthImage <em>Depth Image</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo <em>Render Pass Info</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getDepthImage <em>Depth Image</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess()
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess()
  * @model
  * @generated
  */
@@ -36,14 +36,14 @@ public interface GraphicProcess extends AbstractProcess
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Configuration</em>' containment reference.
 	 * @see #setConfiguration(GraphicConfiguration)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_Configuration()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_Configuration()
 	 * @model containment="true"
 	 * @generated
 	 */
 	GraphicConfiguration getConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Configuration</em>' containment reference.
@@ -62,14 +62,14 @@ public interface GraphicProcess extends AbstractProcess
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Render Pass Info</em>' containment reference.
 	 * @see #setRenderPassInfo(RenderPassInfo)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_RenderPassInfo()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_RenderPassInfo()
 	 * @model containment="true"
 	 * @generated
 	 */
 	RenderPassInfo getRenderPassInfo();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo <em>Render Pass Info</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo <em>Render Pass Info</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Render Pass Info</em>' containment reference.
@@ -88,14 +88,14 @@ public interface GraphicProcess extends AbstractProcess
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth Image</em>' containment reference.
 	 * @see #setDepthImage(DepthImage)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_DepthImage()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_DepthImage()
 	 * @model containment="true"
 	 * @generated
 	 */
 	DepthImage getDepthImage();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getDepthImage <em>Depth Image</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getDepthImage <em>Depth Image</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depth Image</em>' containment reference.

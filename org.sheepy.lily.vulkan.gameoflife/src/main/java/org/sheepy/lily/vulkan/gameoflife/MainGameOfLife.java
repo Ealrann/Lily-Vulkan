@@ -1,8 +1,8 @@
-package org.sheepy.vulkan.gameoflife;
+package org.sheepy.lily.vulkan.gameoflife;
 
-import org.sheepy.common.api.application.ApplicationLauncher;
-import org.sheepy.common.api.cadence.IMainLoop;
-import org.sheepy.vulkan.gameoflife.model.ModelFactory;
+import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.api.cadence.IMainLoop;
+import org.sheepy.lily.vulkan.gameoflife.model.ModelFactory;
 
 public class MainGameOfLife
 {

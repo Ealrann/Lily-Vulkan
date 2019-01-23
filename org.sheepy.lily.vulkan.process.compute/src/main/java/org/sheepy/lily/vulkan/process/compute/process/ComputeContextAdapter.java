@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.process.compute.process;
+package org.sheepy.lily.vulkan.process.compute.process;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
-import org.sheepy.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.vulkan.model.process.compute.ComputeProcess;
+import org.sheepy.lily.core.api.adapter.impl.AbstractSingletonAdapter;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 
 public class ComputeContextAdapter extends AbstractSingletonAdapter
 		implements IComputeContextAdapter

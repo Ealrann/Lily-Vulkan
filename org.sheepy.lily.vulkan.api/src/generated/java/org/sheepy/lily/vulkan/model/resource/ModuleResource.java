@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 
 /**
@@ -12,10 +12,10 @@ package org.sheepy.vulkan.model.resource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.ModuleResource#getModule <em>Module</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.ModuleResource#getModule <em>Module</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getModuleResource()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getModuleResource()
  * @model
  * @generated
  */
@@ -31,14 +31,14 @@ public interface ModuleResource extends AbstractModuleResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module</em>' attribute.
 	 * @see #setModule(Module)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getModuleResource_Module()
-	 * @model unique="false" dataType="org.sheepy.vulkan.model.resource.JavaModule"
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getModuleResource_Module()
+	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.JavaModule"
 	 * @generated
 	 */
 	Module getModule();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.ModuleResource#getModule <em>Module</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ModuleResource#getModule <em>Module</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Module</em>' attribute.

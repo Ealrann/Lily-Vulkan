@@ -1,7 +1,7 @@
-package org.sheepy.vulkan.common.execution;
+package org.sheepy.lily.vulkan.common.execution;
 
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 
 public abstract class AbstractCommandBuffer implements ICommandBuffer
 {

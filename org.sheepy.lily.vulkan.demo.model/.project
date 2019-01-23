@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.sheepy.vulkan.demo.model</name>
+	<name>org.sheepy.lily.vulkan.demo.model</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -35,7 +35,7 @@
 		<link>
 			<name>src/generated/java</name>
 			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.vulkan.demo/src/generated/java</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/org.sheepy.lily.vulkan.demo/src/generated/java</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

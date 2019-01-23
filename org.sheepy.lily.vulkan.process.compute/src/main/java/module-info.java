@@ -1,19 +1,19 @@
-import org.sheepy.common.api.adapter.IAdapter;
-import org.sheepy.vulkan.process.compute.pipeline.ComputePipelineAdapter;
-import org.sheepy.vulkan.process.compute.pipeline.ComputerAdapter;
-import org.sheepy.vulkan.process.compute.process.ComputeContextAdapter;
-import org.sheepy.vulkan.process.compute.process.ComputeProcessAdapter;
+import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.vulkan.process.compute.pipeline.ComputePipelineAdapter;
+import org.sheepy.lily.vulkan.process.compute.pipeline.ComputerAdapter;
+import org.sheepy.lily.vulkan.process.compute.process.ComputeContextAdapter;
+import org.sheepy.lily.vulkan.process.compute.process.ComputeProcessAdapter;
 
 /**
  * 
  */
-module org.sheepy.vulkan.process.compute
+module org.sheepy.lily.vulkan.process.compute
 {
-	requires transitive org.sheepy.vulkan.process;
+	requires transitive org.sheepy.lily.vulkan.process;
 
-	exports org.sheepy.vulkan.process.compute.execution;
-	exports org.sheepy.vulkan.process.compute.pipeline;
-	exports org.sheepy.vulkan.process.compute.process;
+	exports org.sheepy.lily.vulkan.process.compute.execution;
+	exports org.sheepy.lily.vulkan.process.compute.pipeline;
+	exports org.sheepy.lily.vulkan.process.compute.process;
 
 	provides IAdapter with ComputeProcessAdapter, ComputePipelineAdapter, ComputerAdapter,
 			ComputeContextAdapter;

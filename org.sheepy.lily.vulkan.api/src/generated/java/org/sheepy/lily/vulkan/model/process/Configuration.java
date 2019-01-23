@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process;
+package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.process.ProcessPackage#getConfiguration()
+ * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getConfiguration()
  * @model interface="true" abstract="true"
  * @generated
  */

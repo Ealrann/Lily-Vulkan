@@ -1,14 +1,14 @@
-package org.sheepy.vulkan.common.nativehelper;
+package org.sheepy.lily.vulkan.common.nativehelper;
 
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubpassDependency;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.lily.vulkan.model.enumeration.EAccess;
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
 
 public class VkSubpassDependencyAllocator
 {

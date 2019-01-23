@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.queue;
+package org.sheepy.lily.vulkan.common.queue;
 
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -21,9 +21,9 @@ import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkQueueFamilyProperties;
 import org.lwjgl.vulkan.VkQueueFamilyProperties.Buffer;
-import org.sheepy.vulkan.api.queue.EQueueType;
-import org.sheepy.vulkan.api.queue.VulkanQueue;
-import org.sheepy.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.api.queue.EQueueType;
+import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
+import org.sheepy.lily.vulkan.api.window.Surface;
 
 public class QueueManager implements Iterable<Integer>
 {

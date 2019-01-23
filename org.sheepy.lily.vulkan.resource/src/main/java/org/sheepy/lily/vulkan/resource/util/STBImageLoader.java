@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.util;
+package org.sheepy.lily.vulkan.resource.util;
 
 import static org.lwjgl.stb.STBImage.STBI_rgb_alpha;
 
@@ -6,8 +6,8 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.vulkan.model.resource.PathResource;
-import org.sheepy.vulkan.resource.file.FileResourceAdapter;
+import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 
 public class STBImageLoader
 {

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.provider;
+package org.sheepy.lily.vulkan.model.resource.provider;
 
 
 import java.util.Collection;
@@ -11,10 +11,10 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import org.sheepy.vulkan.model.resource.FileResource;
+import org.sheepy.lily.vulkan.model.resource.FileResource;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.resource.FileResource} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileResource} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

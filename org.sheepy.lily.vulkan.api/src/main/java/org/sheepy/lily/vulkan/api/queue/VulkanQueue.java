@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.api.queue;
+package org.sheepy.lily.vulkan.api.queue;
 
 import org.lwjgl.vulkan.VK10;
 import org.lwjgl.vulkan.VkQueue;

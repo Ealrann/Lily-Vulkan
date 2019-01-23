@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute;
+package org.sheepy.lily.vulkan.model.process.compute;
 
-import org.sheepy.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,15 +13,15 @@ import org.sheepy.vulkan.model.process.AbstractPipeline;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX <em>Workgroup Size X</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY <em>Workgroup Size Y</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ <em>Workgroup Size Z</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWidth <em>Width</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getHeight <em>Height</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getDepth <em>Depth</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX <em>Workgroup Size X</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY <em>Workgroup Size Y</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ <em>Workgroup Size Z</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getDepth <em>Depth</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputePipeline()
+ * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputePipeline()
  * @model
  * @generated
  */
@@ -38,14 +38,14 @@ public interface ComputePipeline extends AbstractPipeline
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Workgroup Size X</em>' attribute.
 	 * @see #setWorkgroupSizeX(int)
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputePipeline_WorkgroupSizeX()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputePipeline_WorkgroupSizeX()
 	 * @model default="32" unique="false"
 	 * @generated
 	 */
 	int getWorkgroupSizeX();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX <em>Workgroup Size X</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX <em>Workgroup Size X</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Workgroup Size X</em>' attribute.
@@ -65,14 +65,14 @@ public interface ComputePipeline extends AbstractPipeline
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Workgroup Size Y</em>' attribute.
 	 * @see #setWorkgroupSizeY(int)
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputePipeline_WorkgroupSizeY()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputePipeline_WorkgroupSizeY()
 	 * @model default="32" unique="false"
 	 * @generated
 	 */
 	int getWorkgroupSizeY();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY <em>Workgroup Size Y</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY <em>Workgroup Size Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Workgroup Size Y</em>' attribute.
@@ -92,14 +92,14 @@ public interface ComputePipeline extends AbstractPipeline
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Workgroup Size Z</em>' attribute.
 	 * @see #setWorkgroupSizeZ(int)
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputePipeline_WorkgroupSizeZ()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputePipeline_WorkgroupSizeZ()
 	 * @model default="32" unique="false"
 	 * @generated
 	 */
 	int getWorkgroupSizeZ();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ <em>Workgroup Size Z</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ <em>Workgroup Size Z</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Workgroup Size Z</em>' attribute.
@@ -118,14 +118,14 @@ public interface ComputePipeline extends AbstractPipeline
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
 	 * @see #setWidth(int)
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputePipeline_Width()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputePipeline_Width()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getWidth();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getWidth <em>Width</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWidth <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Width</em>' attribute.
@@ -144,14 +144,14 @@ public interface ComputePipeline extends AbstractPipeline
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
 	 * @see #setHeight(int)
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputePipeline_Height()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputePipeline_Height()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getHeight();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getHeight <em>Height</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getHeight <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Height</em>' attribute.
@@ -170,14 +170,14 @@ public interface ComputePipeline extends AbstractPipeline
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth</em>' attribute.
 	 * @see #setDepth(int)
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputePipeline_Depth()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputePipeline_Depth()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getDepth();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.compute.ComputePipeline#getDepth <em>Depth</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getDepth <em>Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depth</em>' attribute.

@@ -1,13 +1,13 @@
-package org.sheepy.vulkan.resource.buffer;
+package org.sheepy.lily.vulkan.resource.buffer;
 
 import java.nio.ByteBuffer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.model.resource.Constants;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.model.resource.Constants;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 public class ConstantsAdapter extends AbstractConstantsAdapter
 {

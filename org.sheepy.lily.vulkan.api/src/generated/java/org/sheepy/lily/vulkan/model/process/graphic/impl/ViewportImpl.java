@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -8,11 +8,11 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.common.api.types.SVector2i;
-import org.sheepy.common.model.types.TypesFactory;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.Viewport;
+import org.sheepy.lily.core.api.types.SVector2i;
+import org.sheepy.lily.core.model.types.TypesFactory;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,10 +22,10 @@ import org.sheepy.vulkan.model.process.graphic.Viewport;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl#getOffset <em>Offset</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl#getExtent <em>Extent</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl#getMinDepth <em>Min Depth</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl#getMaxDepth <em>Max Depth</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl#getOffset <em>Offset</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl#getExtent <em>Extent</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl#getMinDepth <em>Min Depth</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl#getMaxDepth <em>Max Depth</em>}</li>
  * </ul>
  *
  * @generated

@@ -1,11 +1,11 @@
-package org.sheepy.vulkan.resource.buffer;
+package org.sheepy.lily.vulkan.resource.buffer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkBufferCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
-import org.sheepy.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 
 public class BufferUtils
 {

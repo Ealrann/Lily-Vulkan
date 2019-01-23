@@ -1,8 +1,8 @@
-package org.sheepy.vulkan.common.util;
+package org.sheepy.lily.vulkan.common.util;
 
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.model.application.Application;
-import org.sheepy.common.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
 
 public class ModelUtil
 {

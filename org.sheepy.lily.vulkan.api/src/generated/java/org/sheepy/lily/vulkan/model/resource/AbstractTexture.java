@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 
 /**
@@ -12,10 +12,10 @@ package org.sheepy.vulkan.model.resource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.AbstractTexture#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.AbstractTexture#isMipmapEnabled <em>Mipmap Enabled</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getAbstractTexture()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getAbstractTexture()
  * @model abstract="true"
  * @generated
  */
@@ -32,14 +32,14 @@ public interface AbstractTexture extends SampledImage
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mipmap Enabled</em>' attribute.
 	 * @see #setMipmapEnabled(boolean)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getAbstractTexture_MipmapEnabled()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getAbstractTexture_MipmapEnabled()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
 	boolean isMipmapEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.AbstractTexture#isMipmapEnabled <em>Mipmap Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.AbstractTexture#isMipmapEnabled <em>Mipmap Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mipmap Enabled</em>' attribute.

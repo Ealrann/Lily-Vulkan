@@ -5,12 +5,12 @@ plugins {
 
 dependencies {
 
-	api project(':org.sheepy.vulkan.process.compute')
-	api project(':org.sheepy.vulkan.process.graphic')
+	api project(':org.sheepy.lily.vulkan.process.compute')
+	api project(':org.sheepy.lily.vulkan.process.graphic')
 }
 
-// mainClassName = 'org.sheepy.vulkan.gameoflife.MainGameOfLife'
+// mainClassName = 'org.sheepy.lily.vulkan.gameoflife.MainGameOfLife'
 
 if (project.hasProperty('javaModule')) {
-	javaModule.name = 'org.sheepy.vulkan.gameoflife'
+	javaModule.name = 'org.sheepy.lily.vulkan.gameoflife'
 }

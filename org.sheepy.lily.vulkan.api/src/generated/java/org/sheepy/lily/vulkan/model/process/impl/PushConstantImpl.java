@@ -1,13 +1,13 @@
 /**
  */
-package org.sheepy.vulkan.model.process.impl;
+package org.sheepy.lily.vulkan.model.process.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.model.process.PushConstant;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.PushConstant;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +17,7 @@ import org.sheepy.vulkan.model.process.PushConstant;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.PushConstantImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated

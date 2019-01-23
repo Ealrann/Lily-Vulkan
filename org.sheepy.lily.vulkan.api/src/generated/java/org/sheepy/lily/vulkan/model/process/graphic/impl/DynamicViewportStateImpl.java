@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.sheepy.vulkan.model.process.graphic.DynamicViewportState;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,8 +20,8 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicViewportStateImpl#getViewportCount <em>Viewport Count</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicViewportStateImpl#getScissorCount <em>Scissor Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicViewportStateImpl#getViewportCount <em>Viewport Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicViewportStateImpl#getScissorCount <em>Scissor Count</em>}</li>
  * </ul>
  *
  * @generated

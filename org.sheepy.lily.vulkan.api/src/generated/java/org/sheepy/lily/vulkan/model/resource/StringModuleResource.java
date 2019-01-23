@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 
 /**
@@ -12,10 +12,10 @@ package org.sheepy.vulkan.model.resource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.StringModuleResource#getModuleName <em>Module Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.StringModuleResource#getModuleName <em>Module Name</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getStringModuleResource()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getStringModuleResource()
  * @model
  * @generated
  */
@@ -31,14 +31,14 @@ public interface StringModuleResource extends AbstractModuleResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module Name</em>' attribute.
 	 * @see #setModuleName(String)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getStringModuleResource_ModuleName()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getStringModuleResource_ModuleName()
 	 * @model unique="false"
 	 * @generated
 	 */
 	String getModuleName();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.StringModuleResource#getModuleName <em>Module Name</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.StringModuleResource#getModuleName <em>Module Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Module Name</em>' attribute.

@@ -1,13 +1,13 @@
 /**
  */
-package org.sheepy.vulkan.model.util;
+package org.sheepy.lily.vulkan.model.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.sheepy.vulkan.model.*;
+import org.sheepy.lily.vulkan.model.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +19,7 @@ import org.sheepy.vulkan.model.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.VulkanPackage
+ * @see org.sheepy.lily.vulkan.model.VulkanPackage
  * @generated
  */
 public class VulkanSwitch<T> extends Switch<T>

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.provider;
+package org.sheepy.lily.vulkan.model.provider;
 
 
 import java.util.Collection;
@@ -23,13 +23,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.vulkan.model.ColorDomain;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.ColorDomain;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.lily.vulkan.model.enumeration.EFormat;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.ColorDomain} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.ColorDomain} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

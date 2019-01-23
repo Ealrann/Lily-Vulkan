@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -8,8 +8,8 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,9 +19,9 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl#getImageId <em>Image Id</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl#getMipLevels <em>Mip Levels</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl#getImageFormat <em>Image Format</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl#getImageId <em>Image Id</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl#getMipLevels <em>Mip Levels</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl#getImageFormat <em>Image Format</em>}</li>
  * </ul>
  *
  * @generated

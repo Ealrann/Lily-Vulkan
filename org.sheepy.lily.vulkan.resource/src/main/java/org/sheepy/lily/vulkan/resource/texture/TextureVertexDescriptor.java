@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.texture;
+package org.sheepy.lily.vulkan.resource.texture;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -11,9 +11,9 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
-import org.sheepy.vulkan.resource.indexed.AbstractIntegerIndexDescriptor;
-import org.sheepy.vulkan.resource.indexed.IVertex;
-import org.sheepy.vulkan.resource.texture.TextureVertexDescriptor.TextureVertex;
+import org.sheepy.lily.vulkan.resource.indexed.AbstractIntegerIndexDescriptor;
+import org.sheepy.lily.vulkan.resource.indexed.IVertex;
+import org.sheepy.lily.vulkan.resource.texture.TextureVertexDescriptor.TextureVertex;
 
 public class TextureVertexDescriptor extends AbstractIntegerIndexDescriptor<TextureVertex>
 {

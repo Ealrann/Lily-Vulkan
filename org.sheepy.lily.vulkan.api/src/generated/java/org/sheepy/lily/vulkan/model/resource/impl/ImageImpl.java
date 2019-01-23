@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.util.Collection;
 
@@ -16,17 +16,17 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.sheepy.common.model.types.LNamedElement;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.IResource;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EFormat;
-import org.sheepy.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.lily.vulkan.model.enumeration.EFormat;
+import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
+import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 
-import org.sheepy.vulkan.model.resource.Image;
-import org.sheepy.vulkan.model.resource.ImageLayout;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.resource.ImageLayout;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,17 +36,17 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getDescriptorType <em>Descriptor Type</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getShaderStages <em>Shader Stages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getWidth <em>Width</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getHeight <em>Height</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getFormat <em>Format</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getUsages <em>Usages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getTiling <em>Tiling</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getMipLevels <em>Mip Levels</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageImpl#getInitialLayout <em>Initial Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getDescriptorType <em>Descriptor Type</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getShaderStages <em>Shader Stages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getFormat <em>Format</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getTiling <em>Tiling</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getMipLevels <em>Mip Levels</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getInitialLayout <em>Initial Layout</em>}</li>
  * </ul>
  *
  * @generated

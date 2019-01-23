@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.queue;
+package org.sheepy.lily.vulkan.common.queue;
 
 import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfaceSupportKHR;
 import static org.lwjgl.vulkan.VK10.*;
@@ -8,7 +8,7 @@ import java.nio.IntBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkQueueFamilyProperties;
-import org.sheepy.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.api.window.Surface;
 
 public class QueueFinder
 {

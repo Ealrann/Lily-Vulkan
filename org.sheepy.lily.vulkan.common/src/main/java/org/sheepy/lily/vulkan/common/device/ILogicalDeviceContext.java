@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.device;
+package org.sheepy.lily.vulkan.common.device;
 
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;

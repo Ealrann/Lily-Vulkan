@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.util.Collection;
 
@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
-import org.sheepy.vulkan.model.resource.ImageTransition;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.ImageTransition;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.AbstractImageBarrierImpl#getTransitions <em>Transitions</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl#getTransitions <em>Transitions</em>}</li>
  * </ul>
  *
  * @generated

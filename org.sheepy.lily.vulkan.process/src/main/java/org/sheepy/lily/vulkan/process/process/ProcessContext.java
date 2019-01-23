@@ -1,11 +1,11 @@
-package org.sheepy.vulkan.process.process;
+package org.sheepy.lily.vulkan.process.process;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.sheepy.common.model.application.Application;
-import org.sheepy.vulkan.common.device.LogicalDeviceContext;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 
 public class ProcessContext extends LogicalDeviceContext
 {

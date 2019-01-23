@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model.process;
+package org.sheepy.lily.vulkan.model.process;
 
-import org.sheepy.common.model.types.LNamedElement;
+import org.sheepy.lily.core.model.types.LNamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,7 +10,7 @@ import org.sheepy.common.model.types.LNamedElement;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.process.ProcessPackage#getIPipelineUnit()
+ * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipelineUnit()
  * @model interface="true" abstract="true"
  * @generated
  */

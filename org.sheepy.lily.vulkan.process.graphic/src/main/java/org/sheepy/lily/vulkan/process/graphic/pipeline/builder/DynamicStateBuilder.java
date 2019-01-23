@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.graphic.pipeline.builder;
+package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -6,8 +6,8 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineDynamicStateCreateInfo;
-import org.sheepy.vulkan.model.enumeration.EDynamicState;
-import org.sheepy.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.lily.vulkan.model.enumeration.EDynamicState;
+import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 
 public class DynamicStateBuilder
 {

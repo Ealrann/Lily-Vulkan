@@ -1,6 +1,6 @@
-package org.sheepy.vulkan.demo.mesh;
+package org.sheepy.lily.vulkan.demo.mesh;
 
-import org.sheepy.vulkan.model.enumeration.EFrontFace;
+import org.sheepy.lily.vulkan.model.enumeration.EFrontFace;
 
 public class MeshConfiguration
 {

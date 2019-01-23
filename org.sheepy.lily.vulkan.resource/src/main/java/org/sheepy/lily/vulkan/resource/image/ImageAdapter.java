@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.image;
+package org.sheepy.lily.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -12,18 +12,18 @@ import org.lwjgl.vulkan.VkDescriptorImageInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.SingleTimeCommand;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.model.resource.Image;
-import org.sheepy.vulkan.model.resource.ImageLayout;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.resource.PipelineResourceAdapter;
-import org.sheepy.vulkan.resource.nativehelper.VkImage;
-import org.sheepy.vulkan.resource.nativehelper.VkImageView;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.resource.ImageLayout;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.resource.PipelineResourceAdapter;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
 public class ImageAdapter extends PipelineResourceAdapter
 {

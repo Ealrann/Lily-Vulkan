@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 
 /**
@@ -9,7 +9,7 @@ package org.sheepy.vulkan.model.resource;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getAbstractModuleResource()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getAbstractModuleResource()
  * @model abstract="true"
  * @generated
  */

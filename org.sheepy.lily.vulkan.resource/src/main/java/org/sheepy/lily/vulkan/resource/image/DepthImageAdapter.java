@@ -1,30 +1,30 @@
-package org.sheepy.vulkan.resource.image;
+package org.sheepy.lily.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.common.api.types.SVector2i;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.device.PhysicalDevice;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.IExecutionManagerAdapter;
-import org.sheepy.vulkan.common.execution.SingleTimeCommand;
-import org.sheepy.vulkan.common.resource.image.IDepthImageAdapter;
-import org.sheepy.vulkan.common.util.ModelUtil;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.resource.DepthImage;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
-import org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
-import org.sheepy.vulkan.resource.barrier.BarrierExecutorFactory;
-import org.sheepy.vulkan.resource.nativehelper.VkImage;
-import org.sheepy.vulkan.resource.nativehelper.VkImageView;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.types.SVector2i;
+import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.IExecutionManagerAdapter;
+import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.resource.image.IDepthImageAdapter;
+import org.sheepy.lily.vulkan.common.util.ModelUtil;
+import org.sheepy.lily.vulkan.model.enumeration.EAccess;
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.resource.DepthImage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl;
+import org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
+import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
 public class DepthImageAdapter extends AbstractFlatAllocableAdapter implements IDepthImageAdapter
 {

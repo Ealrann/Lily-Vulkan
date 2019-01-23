@@ -1,7 +1,7 @@
-package org.sheepy.vulkan.resource.barrier.proxy;
+package org.sheepy.lily.vulkan.resource.barrier.proxy;
 
-import org.sheepy.vulkan.model.resource.ImageBarrier;
-import org.sheepy.vulkan.resource.image.ImageAdapter;
+import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
+import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
 
 public class ImageProxy implements IImageProxy
 {

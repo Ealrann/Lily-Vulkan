@@ -1,10 +1,10 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,14 +15,14 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getUsages <em>Usages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#getData <em>Data</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getData <em>Data</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer()
  * @model
  * @generated
  */
@@ -38,14 +38,14 @@ public interface Buffer extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
 	 * @see #setSize(long)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_Size()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Size()
 	 * @model unique="false"
 	 * @generated
 	 */
 	long getSize();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Buffer#getSize <em>Size</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getSize <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Size</em>' attribute.
@@ -56,8 +56,8 @@ public interface Buffer extends PipelineResource
 
 	/**
 	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EBufferUsage}.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EBufferUsage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Usages</em>' attribute list isn't clear,
@@ -65,8 +65,8 @@ public interface Buffer extends PipelineResource
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usages</em>' attribute list.
-	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_Usages()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EBufferUsage
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Usages()
 	 * @model unique="false"
 	 * @generated
 	 */
@@ -82,14 +82,14 @@ public interface Buffer extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data</em>' attribute.
 	 * @see #setData(ByteBuffer)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_Data()
-	 * @model unique="false" dataType="org.sheepy.vulkan.model.resource.ByteBuffer"
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Data()
+	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
 	 * @generated
 	 */
 	ByteBuffer getData();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Buffer#getData <em>Data</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getData <em>Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Data</em>' attribute.
@@ -109,14 +109,14 @@ public interface Buffer extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Often Updated</em>' attribute.
 	 * @see #setOftenUpdated(boolean)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_OftenUpdated()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_OftenUpdated()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
 	boolean isOftenUpdated();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Often Updated</em>' attribute.
@@ -136,14 +136,14 @@ public interface Buffer extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gpu Buffer</em>' attribute.
 	 * @see #setGpuBuffer(boolean)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getBuffer_GpuBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_GpuBuffer()
 	 * @model default="true" unique="false"
 	 * @generated
 	 */
 	boolean isGpuBuffer();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Gpu Buffer</em>' attribute.

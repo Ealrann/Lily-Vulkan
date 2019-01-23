@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.process.pipeline;
+package org.sheepy.lily.vulkan.process.pipeline;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractDeepAllocableAdapter;
-import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractDeepAllocableAdapter;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 public abstract class AbstractProcessUnitAdapter<T extends AbstractCommandBuffer>
 		extends AbstractDeepAllocableAdapter implements IProcessUnitAdapter<T>

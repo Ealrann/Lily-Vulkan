@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.impl;
+package org.sheepy.lily.vulkan.model.process.impl;
 
 import java.util.Collection;
 
@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sheepy.vulkan.model.process.AbstractCompositePipeline;
-import org.sheepy.vulkan.model.process.AbstractPipeline;
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ import org.sheepy.vulkan.model.process.ProcessPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractCompositePipelineImpl#getPipelines <em>Pipelines</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractCompositePipelineImpl#getPipelines <em>Pipelines</em>}</li>
  * </ul>
  *
  * @generated

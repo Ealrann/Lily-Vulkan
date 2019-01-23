@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.provider;
+package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
 
 import java.util.Collection;
@@ -23,13 +23,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.vulkan.model.enumeration.ECullMode;
+import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
 
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.Rasterizer;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.graphic.Rasterizer} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

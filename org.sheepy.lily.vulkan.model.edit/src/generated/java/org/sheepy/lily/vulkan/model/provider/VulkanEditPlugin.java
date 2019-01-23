@@ -1,16 +1,16 @@
 /**
  */
-package org.sheepy.vulkan.model.provider;
+package org.sheepy.lily.vulkan.model.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.sheepy.common.model.action.provider.ActionEditPlugin;
-import org.sheepy.common.model.application.provider.ApplicationEditPlugin;
-import org.sheepy.common.model.inference.provider.InferenceEditPlugin;
-import org.sheepy.common.model.root.provider.RootEditPlugin;
-import org.sheepy.common.model.types.provider.TypesEditPlugin;
-import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
+import org.sheepy.lily.core.model.action.provider.ActionEditPlugin;
+import org.sheepy.lily.core.model.application.provider.ApplicationEditPlugin;
+import org.sheepy.lily.core.model.inference.provider.InferenceEditPlugin;
+import org.sheepy.lily.core.model.root.provider.RootEditPlugin;
+import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
+import org.sheepy.lily.vulkan.model.enumeration.provider.EnumerationEditPlugin;
 
 /**
  * This is the central singleton for the Vulkan edit plugin.

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.impl;
+package org.sheepy.lily.vulkan.model.impl;
 
 import java.util.Collection;
 
@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.lily.core.api.types.SVector2i;
 
-import org.sheepy.vulkan.model.IComputeProcessPool;
-import org.sheepy.vulkan.model.IGraphicProcessPool;
-import org.sheepy.vulkan.model.VulkanApplication;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.IComputeProcessPool;
+import org.sheepy.lily.vulkan.model.IGraphicProcessPool;
+import org.sheepy.lily.vulkan.model.VulkanApplication;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,14 +33,14 @@ import org.sheepy.vulkan.model.VulkanPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#isFullscreen <em>Fullscreen</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#isResizeable <em>Resizeable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#isDebug <em>Debug</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#getTitle <em>Title</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#getSize <em>Size</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#getComputePools <em>Compute Pools</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl#getGraphicPool <em>Graphic Pool</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl#isFullscreen <em>Fullscreen</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl#isResizeable <em>Resizeable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl#isDebug <em>Debug</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl#getTitle <em>Title</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl#getComputePools <em>Compute Pools</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl#getGraphicPool <em>Graphic Pool</em>}</li>
  * </ul>
  *
  * @generated

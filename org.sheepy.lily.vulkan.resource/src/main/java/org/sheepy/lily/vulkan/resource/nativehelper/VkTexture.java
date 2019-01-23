@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.nativehelper;
+package org.sheepy.lily.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -14,18 +14,18 @@ import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.SingleTimeCommand;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.resource.Sampler;
-import org.sheepy.vulkan.model.resource.impl.SamplerImpl;
-import org.sheepy.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
-import org.sheepy.vulkan.resource.descriptor.IVkDescriptor;
-import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.model.enumeration.EAccess;
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
+import org.sheepy.lily.vulkan.resource.buffer.BufferAllocator;
+import org.sheepy.lily.vulkan.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 
 public class VkTexture implements IVkDescriptor
 {

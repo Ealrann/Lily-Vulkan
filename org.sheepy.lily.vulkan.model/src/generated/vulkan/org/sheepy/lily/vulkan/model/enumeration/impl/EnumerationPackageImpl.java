@@ -1,27 +1,27 @@
 /**
  */
-package org.sheepy.vulkan.model.enumeration.impl;
+package org.sheepy.lily.vulkan.model.enumeration.impl;
 
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
-import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
-import org.sheepy.vulkan.model.enumeration.EColorSpace;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.model.enumeration.ECullMode;
-import org.sheepy.vulkan.model.enumeration.EFormat;
-import org.sheepy.vulkan.model.enumeration.EFrontFace;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.enumeration.EPresentMode;
-import org.sheepy.vulkan.model.enumeration.ESampleCount;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.model.enumeration.EnumerationFactory;
-import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp;
+import org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp;
+import org.sheepy.lily.vulkan.model.enumeration.EColorSpace;
+import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
+import org.sheepy.lily.vulkan.model.enumeration.EFormat;
+import org.sheepy.lily.vulkan.model.enumeration.EFrontFace;
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
+import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
+import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.vulkan.model.enumeration.EnumerationFactory;
+import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -133,7 +133,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.sheepy.vulkan.model.enumeration.EnumerationPackage#eNS_URI
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

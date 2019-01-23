@@ -1,8 +1,8 @@
-package org.sheepy.vulkan.common.ui;
+package org.sheepy.lily.vulkan.common.ui;
 
-import org.sheepy.common.model.presentation.IPositionElement;
-import org.sheepy.common.model.presentation.ISizedElement;
-import org.sheepy.vulkan.api.window.Surface;
+import org.sheepy.lily.core.model.presentation.IPositionElement;
+import org.sheepy.lily.core.model.presentation.ISizedElement;
+import org.sheepy.lily.vulkan.api.window.Surface;
 
 public class UIUtil
 {

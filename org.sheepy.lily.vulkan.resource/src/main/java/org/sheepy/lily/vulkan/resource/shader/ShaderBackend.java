@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.shader;
+package org.sheepy.lily.vulkan.resource.shader;
 
 import static org.lwjgl.system.MemoryUtil.NULL;
 import static org.lwjgl.vulkan.VK10.*;
@@ -7,9 +7,9 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkShaderModuleCreateInfo;
-import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.resource.PathResource;
-import org.sheepy.vulkan.resource.file.PathResourceAdapter;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.vulkan.resource.file.PathResourceAdapter;
 
 public class ShaderBackend
 {

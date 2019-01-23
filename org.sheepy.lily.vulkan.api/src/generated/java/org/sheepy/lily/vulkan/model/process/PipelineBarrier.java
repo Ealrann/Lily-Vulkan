@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model.process;
+package org.sheepy.lily.vulkan.model.process;
 
-import org.sheepy.vulkan.model.resource.Barrier;
+import org.sheepy.lily.vulkan.model.resource.Barrier;
 
 
 /**
@@ -14,12 +14,12 @@ import org.sheepy.vulkan.model.resource.Barrier;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.PipelineBarrier#getBarrier <em>Barrier</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.PipelineBarrier#getDstQueue <em>Dst Queue</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarrier <em>Barrier</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstQueue <em>Dst Queue</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.ProcessPackage#getPipelineBarrier()
+ * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPipelineBarrier()
  * @model
  * @generated
  */
@@ -36,14 +36,14 @@ public interface PipelineBarrier extends IProcessUnit, IPipelineUnit
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Barrier</em>' containment reference.
 	 * @see #setBarrier(Barrier)
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getPipelineBarrier_Barrier()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPipelineBarrier_Barrier()
 	 * @model containment="true"
 	 * @generated
 	 */
 	Barrier getBarrier();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.PipelineBarrier#getBarrier <em>Barrier</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarrier <em>Barrier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Barrier</em>' containment reference.
@@ -62,14 +62,14 @@ public interface PipelineBarrier extends IProcessUnit, IPipelineUnit
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Queue</em>' reference.
 	 * @see #setSrcQueue(AbstractProcess)
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getPipelineBarrier_SrcQueue()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPipelineBarrier_SrcQueue()
 	 * @model
 	 * @generated
 	 */
 	AbstractProcess getSrcQueue();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Src Queue</em>' reference.
@@ -88,14 +88,14 @@ public interface PipelineBarrier extends IProcessUnit, IPipelineUnit
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Queue</em>' reference.
 	 * @see #setDstQueue(AbstractProcess)
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getPipelineBarrier_DstQueue()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPipelineBarrier_DstQueue()
 	 * @model
 	 * @generated
 	 */
 	AbstractProcess getDstQueue();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.PipelineBarrier#getDstQueue <em>Dst Queue</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstQueue <em>Dst Queue</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dst Queue</em>' reference.

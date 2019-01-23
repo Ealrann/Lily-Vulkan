@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -10,14 +10,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 
-import org.sheepy.vulkan.model.process.impl.AbstractProcessImpl;
+import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
 
-import org.sheepy.vulkan.model.resource.DepthImage;
+import org.sheepy.lily.vulkan.model.resource.DepthImage;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,9 +27,9 @@ import org.sheepy.vulkan.model.resource.DepthImage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl#getRenderPassInfo <em>Render Pass Info</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl#getDepthImage <em>Depth Image</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getRenderPassInfo <em>Render Pass Info</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getDepthImage <em>Depth Image</em>}</li>
  * </ul>
  *
  * @generated

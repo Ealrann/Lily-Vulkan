@@ -1,10 +1,10 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.vulkan.model.enumeration.EFormat;
-import org.sheepy.vulkan.model.enumeration.EImageUsage;
+import org.sheepy.lily.vulkan.model.enumeration.EFormat;
+import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,17 +15,17 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.Image#getWidth <em>Width</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Image#getHeight <em>Height</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Image#getFormat <em>Format</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Image#getUsages <em>Usages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Image#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Image#getTiling <em>Tiling</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Image#getMipLevels <em>Mip Levels</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.Image#getInitialLayout <em>Initial Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getFormat <em>Format</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getUsages <em>Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getTiling <em>Tiling</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getMipLevels <em>Mip Levels</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getInitialLayout <em>Initial Layout</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImage()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage()
  * @model
  * @generated
  */
@@ -41,14 +41,14 @@ public interface Image extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
 	 * @see #setWidth(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImage_Width()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_Width()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getWidth();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Image#getWidth <em>Width</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Image#getWidth <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Width</em>' attribute.
@@ -67,14 +67,14 @@ public interface Image extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
 	 * @see #setHeight(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImage_Height()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_Height()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getHeight();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Image#getHeight <em>Height</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Image#getHeight <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Height</em>' attribute.
@@ -85,7 +85,7 @@ public interface Image extends PipelineResource
 
 	/**
 	 * Returns the value of the '<em><b>Format</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFormat}.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EFormat}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Format</em>' attribute isn't clear,
@@ -93,20 +93,20 @@ public interface Image extends PipelineResource
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Format</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EFormat
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EFormat
 	 * @see #setFormat(EFormat)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImage_Format()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_Format()
 	 * @model unique="false"
 	 * @generated
 	 */
 	EFormat getFormat();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Image#getFormat <em>Format</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Image#getFormat <em>Format</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Format</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EFormat
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EFormat
 	 * @see #getFormat()
 	 * @generated
 	 */
@@ -114,8 +114,8 @@ public interface Image extends PipelineResource
 
 	/**
 	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage}.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Usages</em>' attribute list isn't clear,
@@ -123,8 +123,8 @@ public interface Image extends PipelineResource
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usages</em>' attribute list.
-	 * @see org.sheepy.vulkan.model.enumeration.EImageUsage
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImage_Usages()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageUsage
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_Usages()
 	 * @model unique="false"
 	 * @generated
 	 */
@@ -140,14 +140,14 @@ public interface Image extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Properties</em>' attribute.
 	 * @see #setProperties(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImage_Properties()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_Properties()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getProperties();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Image#getProperties <em>Properties</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Image#getProperties <em>Properties</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Properties</em>' attribute.
@@ -167,14 +167,14 @@ public interface Image extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tiling</em>' attribute.
 	 * @see #setTiling(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImage_Tiling()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_Tiling()
 	 * @model default="0" unique="false"
 	 * @generated
 	 */
 	int getTiling();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Image#getTiling <em>Tiling</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Image#getTiling <em>Tiling</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Tiling</em>' attribute.
@@ -194,14 +194,14 @@ public interface Image extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mip Levels</em>' attribute.
 	 * @see #setMipLevels(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImage_MipLevels()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_MipLevels()
 	 * @model default="1" unique="false"
 	 * @generated
 	 */
 	int getMipLevels();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Image#getMipLevels <em>Mip Levels</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Image#getMipLevels <em>Mip Levels</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mip Levels</em>' attribute.
@@ -220,14 +220,14 @@ public interface Image extends PipelineResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial Layout</em>' containment reference.
 	 * @see #setInitialLayout(ImageLayout)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getImage_InitialLayout()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_InitialLayout()
 	 * @model containment="true"
 	 * @generated
 	 */
 	ImageLayout getInitialLayout();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Image#getInitialLayout <em>Initial Layout</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Image#getInitialLayout <em>Initial Layout</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Initial Layout</em>' containment reference.

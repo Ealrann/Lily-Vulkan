@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,10 +9,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.resource.Buffer;
-import org.sheepy.vulkan.model.resource.BufferBarrier;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.enumeration.EAccess;
+import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,9 +22,9 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl#getBuffer <em>Buffer</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl#getSrcAccess <em>Src Access</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl#getDstAccess <em>Dst Access</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl#getBuffer <em>Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl#getSrcAccess <em>Src Access</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl#getDstAccess <em>Dst Access</em>}</li>
  * </ul>
  *
  * @generated

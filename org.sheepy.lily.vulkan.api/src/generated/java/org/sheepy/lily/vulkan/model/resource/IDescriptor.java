@@ -1,13 +1,13 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,11 +18,11 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.IDescriptor#getDescriptorType <em>Descriptor Type</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.IDescriptor#getShaderStages <em>Shader Stages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getDescriptorType <em>Descriptor Type</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getShaderStages <em>Shader Stages</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getIDescriptor()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getIDescriptor()
  * @model interface="true" abstract="true"
  * @generated
  */
@@ -30,7 +30,7 @@ public interface IDescriptor extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Descriptor Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EDescriptorType}.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EDescriptorType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Descriptor Type</em>' attribute isn't clear,
@@ -38,20 +38,20 @@ public interface IDescriptor extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Descriptor Type</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EDescriptorType
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EDescriptorType
 	 * @see #setDescriptorType(EDescriptorType)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getIDescriptor_DescriptorType()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getIDescriptor_DescriptorType()
 	 * @model unique="false"
 	 * @generated
 	 */
 	EDescriptorType getDescriptorType();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.IDescriptor#getDescriptorType <em>Descriptor Type</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getDescriptorType <em>Descriptor Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Descriptor Type</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EDescriptorType
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EDescriptorType
 	 * @see #getDescriptorType()
 	 * @generated
 	 */
@@ -59,8 +59,8 @@ public interface IDescriptor extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Shader Stages</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EShaderStage}.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EShaderStage}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EShaderStage}.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EShaderStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Shader Stages</em>' attribute list isn't clear,
@@ -68,8 +68,8 @@ public interface IDescriptor extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shader Stages</em>' attribute list.
-	 * @see org.sheepy.vulkan.model.enumeration.EShaderStage
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getIDescriptor_ShaderStages()
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getIDescriptor_ShaderStages()
 	 * @model unique="false"
 	 * @generated
 	 */

@@ -1,7 +1,7 @@
-package org.sheepy.vulkan.common.allocation.allocator;
+package org.sheepy.lily.vulkan.common.allocation.allocator;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
 
 public interface IAllocator extends IBasicAllocable
 {

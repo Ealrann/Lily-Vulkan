@@ -1,19 +1,19 @@
-package org.sheepy.vulkan.process.barrier;
+package org.sheepy.lily.vulkan.process.barrier;
 
 import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.allocation.adapter.impl.AbstractDeepAllocableAdapter;
-import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.PipelineBarrier;
-import org.sheepy.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.process.pipeline.IPipelineUnitAdapter;
-import org.sheepy.vulkan.process.pipeline.IProcessUnitAdapter;
-import org.sheepy.vulkan.process.process.AbstractProcessAdapter;
-import org.sheepy.vulkan.resource.barrier.BarrierExecutorFactory;
-import org.sheepy.vulkan.resource.barrier.IBarrierExecutor;
+import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractDeepAllocableAdapter;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.IProcessUnitAdapter;
+import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
+import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
+import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
 
 public class PipelineBarrierAdapter extends AbstractDeepAllocableAdapter implements
 		IProcessUnitAdapter<AbstractCommandBuffer>, IPipelineUnitAdapter<AbstractCommandBuffer>

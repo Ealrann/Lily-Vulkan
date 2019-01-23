@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage
  * @generated
  */
 public interface GraphicFactory extends EFactory
@@ -20,7 +20,7 @@ public interface GraphicFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	GraphicFactory eINSTANCE = org.sheepy.vulkan.model.process.graphic.impl.GraphicFactoryImpl.init();
+	GraphicFactory eINSTANCE = org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Configuration</em>'.

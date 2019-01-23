@@ -1,13 +1,13 @@
-package org.sheepy.vulkan.demo.mesh;
+package org.sheepy.lily.vulkan.demo.mesh;
 
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.demo.model.MeshBuffer;
-import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-import org.sheepy.vulkan.resource.ResourceAdapter;
-import org.sheepy.vulkan.resource.indexed.IndexBuffer;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
+import org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage;
+import org.sheepy.lily.vulkan.resource.ResourceAdapter;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
 
 public class MeshAdapter extends ResourceAdapter
 {

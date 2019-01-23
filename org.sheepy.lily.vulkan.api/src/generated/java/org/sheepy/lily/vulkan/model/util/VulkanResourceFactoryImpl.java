@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.util;
+package org.sheepy.lily.vulkan.model.util;
 
 import org.eclipse.emf.common.util.URI;
 
@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * <!-- begin-user-doc -->
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.util.VulkanResourceImpl
+ * @see org.sheepy.lily.vulkan.model.util.VulkanResourceImpl
  * @generated
  */
 public class VulkanResourceFactoryImpl extends ResourceFactoryImpl

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.nio.ByteBuffer;
 
@@ -10,46 +10,45 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.sheepy.common.model.action.ActionPackage;
-import org.sheepy.common.model.application.ApplicationPackage;
-import org.sheepy.common.model.inference.InferencePackage;
-import org.sheepy.common.model.root.RootPackage;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.model.action.ActionPackage;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.inference.InferencePackage;
+import org.sheepy.lily.core.model.root.RootPackage;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
-import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.model.resource.AbstractImageBarrier;
-import org.sheepy.vulkan.model.resource.AbstractModuleResource;
-import org.sheepy.vulkan.model.resource.AbstractTexture;
-import org.sheepy.vulkan.model.resource.Barrier;
-import org.sheepy.vulkan.model.resource.BasicResource;
-import org.sheepy.vulkan.model.resource.Buffer;
-import org.sheepy.vulkan.model.resource.BufferBarrier;
-import org.sheepy.vulkan.model.resource.Constants;
-import org.sheepy.vulkan.model.resource.DepthImage;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.FileResource;
-import org.sheepy.vulkan.model.resource.Font;
-import org.sheepy.vulkan.model.resource.IDescriptor;
-import org.sheepy.vulkan.model.resource.Image;
-import org.sheepy.vulkan.model.resource.ImageBarrier;
-import org.sheepy.vulkan.model.resource.ImageLayout;
-import org.sheepy.vulkan.model.resource.ImageTransition;
-import org.sheepy.vulkan.model.resource.IndexedBuffer;
-import org.sheepy.vulkan.model.resource.ModuleResource;
-import org.sheepy.vulkan.model.resource.StringModuleResource;
-import org.sheepy.vulkan.model.resource.PathResource;
-import org.sheepy.vulkan.model.resource.PipelineResource;
-import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
-import org.sheepy.vulkan.model.resource.ResourceFactory;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.SampledImage;
-import org.sheepy.vulkan.model.resource.Sampler;
-import org.sheepy.vulkan.model.resource.Shader;
-import org.sheepy.vulkan.model.resource.Texture;
+import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
+import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
+import org.sheepy.lily.vulkan.model.resource.Barrier;
+import org.sheepy.lily.vulkan.model.resource.BasicResource;
+import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.resource.Constants;
+import org.sheepy.lily.vulkan.model.resource.DepthImage;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.FileResource;
+import org.sheepy.lily.vulkan.model.resource.Font;
+import org.sheepy.lily.vulkan.model.resource.IDescriptor;
+import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.ImageLayout;
+import org.sheepy.lily.vulkan.model.resource.ImageTransition;
+import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
+import org.sheepy.lily.vulkan.model.resource.ModuleResource;
+import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
+import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.vulkan.model.resource.PipelineResource;
+import org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.Texture;
 
 /**
  * <!-- begin-user-doc -->
@@ -280,7 +279,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#eNS_URI
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

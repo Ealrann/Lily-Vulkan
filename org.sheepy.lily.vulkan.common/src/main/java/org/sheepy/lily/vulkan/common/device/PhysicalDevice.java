@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.device;
+package org.sheepy.lily.vulkan.common.device;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -9,7 +9,7 @@ import org.lwjgl.vulkan.VkFormatProperties;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceMemoryProperties;
-import org.sheepy.vulkan.common.device.data.DeviceProperties;
+import org.sheepy.lily.vulkan.common.device.data.DeviceProperties;
 
 public class PhysicalDevice
 {

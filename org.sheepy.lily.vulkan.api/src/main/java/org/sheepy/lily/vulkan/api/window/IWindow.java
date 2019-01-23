@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.api.window;
+package org.sheepy.lily.vulkan.api.window;
 
 public interface IWindow
 {

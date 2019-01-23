@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.impl;
+package org.sheepy.lily.vulkan.model.process.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.sheepy.vulkan.model.process.*;
+import org.sheepy.lily.vulkan.model.process.*;
 
 /**
  * <!-- begin-user-doc -->

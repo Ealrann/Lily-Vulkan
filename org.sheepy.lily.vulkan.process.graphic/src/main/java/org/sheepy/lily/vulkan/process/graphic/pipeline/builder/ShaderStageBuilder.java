@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.process.graphic.pipeline.builder;
+package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
 
 import java.util.List;
 
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.vulkan.model.resource.Shader;
-import org.sheepy.vulkan.resource.shader.ShaderAdapter;
+import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 
 public class ShaderStageBuilder
 {

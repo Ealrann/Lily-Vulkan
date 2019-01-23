@@ -1,7 +1,7 @@
-package org.sheepy.vulkan.api.adapter;
+package org.sheepy.lily.vulkan.api.adapter;
 
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.model.IEnginePart;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.model.IEnginePart;
 
 public interface IEnginePartAdapter extends IVulkanAdapter
 {

@@ -1,11 +1,11 @@
-package org.sheepy.vulkan.resource.file;
+package org.sheepy.lily.vulkan.resource.file;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.model.resource.AbstractModuleResource;
-import org.sheepy.vulkan.model.resource.ModuleResource;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.StringModuleResource;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
+import org.sheepy.lily.vulkan.model.resource.ModuleResource;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 
 public class StringModuleResourceAdapter extends AbstractModuleResourceAdapter
 {

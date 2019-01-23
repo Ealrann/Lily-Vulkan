@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.nativehelper;
+package org.sheepy.lily.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -11,11 +11,11 @@ import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
-import org.sheepy.vulkan.resource.descriptor.IVkDescriptor;
-import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
+import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public class VkDescriptorSet implements IVkDescriptorSet
 {

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.impl;
+package org.sheepy.lily.vulkan.model.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -10,14 +10,14 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.sheepy.common.model.types.TypesPackage;
+import org.sheepy.lily.core.model.types.TypesPackage;
 
-import org.sheepy.vulkan.model.IComputeProcessPool;
-import org.sheepy.vulkan.model.IGraphicProcessPool;
-import org.sheepy.vulkan.model.IProcessPool;
-import org.sheepy.vulkan.model.VulkanApplication;
-import org.sheepy.vulkan.model.VulkanFactory;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.IComputeProcessPool;
+import org.sheepy.lily.vulkan.model.IGraphicProcessPool;
+import org.sheepy.lily.vulkan.model.IProcessPool;
+import org.sheepy.lily.vulkan.model.VulkanApplication;
+import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.sheepy.vulkan.model.VulkanPackage#eNS_URI
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

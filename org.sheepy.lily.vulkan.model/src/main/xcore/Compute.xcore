@@ -1,15 +1,15 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
-@GenModel(editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java")
+@GenModel(modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java")
 @GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
 @GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
 @GenModel(updateClasspath="false")
 
-package org.sheepy.vulkan.model.process.compute
+package org.sheepy.lily.vulkan.model.process.compute
 
-import org.sheepy.vulkan.model.process.AbstractPipeline
-import org.sheepy.vulkan.model.process.AbstractProcess
-import org.sheepy.vulkan.model.process.IPipelineUnit
-import org.sheepy.vulkan.model.resource.Shader
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline
+import org.sheepy.lily.vulkan.model.process.AbstractProcess
+import org.sheepy.lily.vulkan.model.process.IPipelineUnit
+import org.sheepy.lily.vulkan.model.resource.Shader
 
 class ComputeProcess extends AbstractProcess
 {

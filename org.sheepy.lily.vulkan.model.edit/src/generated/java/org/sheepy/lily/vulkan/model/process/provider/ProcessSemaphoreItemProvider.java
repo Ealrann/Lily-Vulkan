@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.provider;
+package org.sheepy.lily.vulkan.model.process.provider;
 
 
 import java.util.Collection;
@@ -23,13 +23,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 
-import org.sheepy.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.model.process.ProcessSemaphore;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.ProcessSemaphore} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

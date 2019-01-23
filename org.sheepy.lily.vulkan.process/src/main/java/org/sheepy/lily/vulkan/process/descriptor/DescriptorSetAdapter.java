@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.descriptor;
+package org.sheepy.lily.vulkan.process.descriptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,17 +6,17 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
-import org.sheepy.vulkan.model.resource.IDescriptor;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.resource.descriptor.DescriptorPool;
-import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
-import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
-import org.sheepy.vulkan.resource.descriptor.IVkDescriptor;
-import org.sheepy.vulkan.resource.nativehelper.VkDescriptorSet;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.IDescriptor;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
+import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkDescriptorSet;
 
 public class DescriptorSetAdapter extends AbstractStatefullAdapter
 		implements IDescriptorSetAdapter

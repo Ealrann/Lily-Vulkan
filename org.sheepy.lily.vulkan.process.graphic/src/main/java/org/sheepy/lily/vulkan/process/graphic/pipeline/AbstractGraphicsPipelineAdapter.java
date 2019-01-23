@@ -1,13 +1,13 @@
-package org.sheepy.vulkan.process.graphic.pipeline;
+package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
 import java.util.List;
 
-import org.sheepy.vulkan.model.process.graphic.ColorBlend;
-import org.sheepy.vulkan.model.process.graphic.DynamicState;
-import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.vulkan.model.process.graphic.Rasterizer;
-import org.sheepy.vulkan.model.process.graphic.ViewportState;
-import org.sheepy.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
+import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
+import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
+import org.sheepy.lily.vulkan.model.resource.Shader;
 
 public abstract class AbstractGraphicsPipelineAdapter extends IGraphicsPipelineAdapter
 {

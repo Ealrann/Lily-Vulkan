@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.provider;
+package org.sheepy.lily.vulkan.model.resource.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,14 +32,14 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.sheepy.vulkan.model.SharedResources;
-import org.sheepy.vulkan.model.VulkanPackage;
-import org.sheepy.vulkan.model.resource.ResourceFactory;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.SharedResources;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
-import org.sheepy.vulkan.model.resource.util.ResourceAdapterFactory;
+import org.sheepy.lily.vulkan.model.resource.util.ResourceAdapterFactory;
 
-import org.sheepy.vulkan.model.util.VulkanSwitch;
+import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -100,7 +100,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.Buffer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Buffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -108,7 +108,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected BufferItemProvider bufferItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.Buffer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Buffer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -125,7 +125,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.Image} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Image} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -133,7 +133,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected ImageItemProvider imageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.Image}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Image}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -150,7 +150,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.ImageLayout} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageLayout} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -158,7 +158,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected ImageLayoutItemProvider imageLayoutItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.ImageLayout}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageLayout}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -175,7 +175,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.Font} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Font} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -183,7 +183,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected FontItemProvider fontItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.Font}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Font}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -200,7 +200,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.Texture} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Texture} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -208,7 +208,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected TextureItemProvider textureItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.Texture}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Texture}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -225,7 +225,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.Sampler} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Sampler} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -233,7 +233,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected SamplerItemProvider samplerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.Sampler}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Sampler}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -250,7 +250,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.Constants} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Constants} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -258,7 +258,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected ConstantsItemProvider constantsItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.Constants}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Constants}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -275,7 +275,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.DescriptorSet} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -283,7 +283,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected DescriptorSetItemProvider descriptorSetItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.DescriptorSet}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -300,7 +300,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.BufferBarrier} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -308,7 +308,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected BufferBarrierItemProvider bufferBarrierItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.BufferBarrier}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferBarrier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -325,7 +325,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.ImageBarrier} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -333,7 +333,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected ImageBarrierItemProvider imageBarrierItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.ImageBarrier}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageBarrier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -350,7 +350,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -358,7 +358,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected ReferenceImageBarrierItemProvider referenceImageBarrierItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -375,7 +375,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.ImageTransition} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageTransition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -383,7 +383,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected ImageTransitionItemProvider imageTransitionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.ImageTransition}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageTransition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -400,7 +400,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.Shader} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Shader} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -408,7 +408,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected ShaderItemProvider shaderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.Shader}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Shader}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -425,7 +425,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.DepthImage} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DepthImage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -433,7 +433,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected DepthImageItemProvider depthImageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.DepthImage}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.DepthImage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -450,7 +450,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.FileResource} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FileResource} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -458,7 +458,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected FileResourceItemProvider fileResourceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.FileResource}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.FileResource}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -475,7 +475,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.ModuleResource} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ModuleResource} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -483,7 +483,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected ModuleResourceItemProvider moduleResourceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.ModuleResource}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ModuleResource}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -500,7 +500,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.resource.StringModuleResource} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.StringModuleResource} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -508,7 +508,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	protected StringModuleResourceItemProvider stringModuleResourceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.resource.StringModuleResource}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.StringModuleResource}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

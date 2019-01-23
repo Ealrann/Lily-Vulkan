@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.texture;
+package org.sheepy.lily.vulkan.resource.texture;
 
 import static org.lwjgl.stb.STBTruetype.*;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -13,14 +13,14 @@ import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.resource.Font;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.resource.file.FileResourceAdapter;
-import org.sheepy.vulkan.resource.image.AbstractSampledImageAdapter;
-import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.model.resource.Font;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
+import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 
 public class FontAdapter extends AbstractSampledImageAdapter
 {

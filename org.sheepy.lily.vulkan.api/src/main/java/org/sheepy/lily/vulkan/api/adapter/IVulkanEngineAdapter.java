@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.api.adapter;
+package org.sheepy.lily.vulkan.api.adapter;
 
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.common.api.engine.IEngineAdapter;
-import org.sheepy.vulkan.api.concurrent.IFence;
-import org.sheepy.vulkan.api.window.IWindow;
-import org.sheepy.vulkan.model.VulkanEngine;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.engine.IEngineAdapter;
+import org.sheepy.lily.vulkan.api.concurrent.IFence;
+import org.sheepy.lily.vulkan.api.window.IWindow;
+import org.sheepy.lily.vulkan.model.VulkanEngine;
 
 public interface IVulkanEngineAdapter extends IEngineAdapter, IVulkanAdapter
 {

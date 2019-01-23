@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute;
+package org.sheepy.lily.vulkan.model.process.compute;
 
-import org.sheepy.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,7 +10,7 @@ import org.sheepy.vulkan.model.process.AbstractProcess;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputeProcess()
+ * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputeProcess()
  * @model
  * @generated
  */

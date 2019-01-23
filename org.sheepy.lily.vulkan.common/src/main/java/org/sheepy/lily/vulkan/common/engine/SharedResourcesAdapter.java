@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.common.engine;
+package org.sheepy.lily.vulkan.common.engine;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.api.queue.EQueueType;
-import org.sheepy.vulkan.model.SharedResources;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.api.queue.EQueueType;
+import org.sheepy.lily.vulkan.model.SharedResources;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 public class SharedResourcesAdapter extends AbstractEnginePartAdapter
 {

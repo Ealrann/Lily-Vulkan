@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.provider;
+package org.sheepy.lily.vulkan.model.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,13 +28,13 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.sheepy.common.model.application.Application;
-import org.sheepy.common.model.application.ApplicationPackage;
-import org.sheepy.common.model.application.util.ApplicationSwitch;
-import org.sheepy.vulkan.model.VulkanFactory;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.application.util.ApplicationSwitch;
+import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-import org.sheepy.vulkan.model.util.VulkanAdapterFactory;
+import org.sheepy.lily.vulkan.model.util.VulkanAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -95,7 +95,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.VulkanEngine} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.VulkanEngine} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -103,7 +103,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	protected VulkanEngineItemProvider vulkanEngineItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.VulkanEngine}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.VulkanEngine}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -120,7 +120,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.SharedResources} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.SharedResources} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -128,7 +128,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	protected SharedResourcesItemProvider sharedResourcesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.SharedResources}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.SharedResources}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -145,7 +145,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.ColorDomain} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.ColorDomain} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -153,7 +153,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	protected ColorDomainItemProvider colorDomainItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.ColorDomain}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.ColorDomain}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

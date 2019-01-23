@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.provider;
+package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,22 +31,19 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.sheepy.lily.vulkan.model.VulkanEngine;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.vulkan.model.VulkanEngine;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
-import org.sheepy.vulkan.model.process.AbstractCompositePipeline;
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.util.GraphicAdapterFactory;
 
-import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-
-import org.sheepy.vulkan.model.process.graphic.util.GraphicAdapterFactory;
-
-import org.sheepy.vulkan.model.process.util.ProcessSwitch;
-
-import org.sheepy.vulkan.model.util.VulkanSwitch;
+import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
+import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -107,7 +104,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -115,7 +112,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected GraphicConfigurationItemProvider graphicConfigurationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -132,7 +129,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,7 +137,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected RenderPassInfoItemProvider renderPassInfoItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -157,7 +154,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.Subpass} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.Subpass} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -165,7 +162,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected SubpassItemProvider subpassItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.Subpass}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.Subpass}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -182,7 +179,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.AttachementRef} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -190,7 +187,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected AttachementRefItemProvider attachementRefItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.AttachementRef}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -207,7 +204,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.SubpassDependency} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -215,7 +212,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected SubpassDependencyItemProvider subpassDependencyItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.SubpassDependency}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -232,7 +229,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -240,7 +237,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected AttachmentDescriptionItemProvider attachmentDescriptionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -257,7 +254,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -265,7 +262,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected DepthAttachmentDescriptionItemProvider depthAttachmentDescriptionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -282,7 +279,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.GraphicProcess} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -290,7 +287,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected GraphicProcessItemProvider graphicProcessItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.GraphicProcess}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -307,7 +304,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.DynamicState} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DynamicState} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -315,7 +312,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected DynamicStateItemProvider dynamicStateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.DynamicState}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DynamicState}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -332,7 +329,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.ColorBlend} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -340,7 +337,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected ColorBlendItemProvider colorBlendItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.ColorBlend}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -357,7 +354,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -365,7 +362,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected ColorBlendAttachmentItemProvider colorBlendAttachmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -382,7 +379,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.StaticViewportState} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -390,7 +387,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected StaticViewportStateItemProvider staticViewportStateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.StaticViewportState}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -407,7 +404,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.DynamicViewportState} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -415,7 +412,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected DynamicViewportStateItemProvider dynamicViewportStateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.DynamicViewportState}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -432,7 +429,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.Viewport} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.Viewport} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -440,7 +437,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected ViewportItemProvider viewportItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.Viewport}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.Viewport}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -457,7 +454,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.Scissor} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.Scissor} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -465,7 +462,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected ScissorItemProvider scissorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.Scissor}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.Scissor}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -482,7 +479,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.Rasterizer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -490,7 +487,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected RasterizerItemProvider rasterizerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.Rasterizer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -507,7 +504,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.graphic.ImagePipeline} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -515,7 +512,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	protected ImagePipelineItemProvider imagePipelineItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.graphic.ImagePipeline}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

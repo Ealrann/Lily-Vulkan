@@ -1,11 +1,11 @@
-package org.sheepy.vulkan.resource.nativehelper;
+package org.sheepy.lily.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferCreateInfo;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.vulkan.resource.buffer.BufferInfo;
+import org.sheepy.lily.vulkan.resource.buffer.BufferInfo;
 
 public class VkBufferAllocator
 {

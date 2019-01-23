@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.descriptor;
+package org.sheepy.lily.vulkan.resource.descriptor;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;

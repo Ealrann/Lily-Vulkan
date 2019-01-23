@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.process.graphic.process;
+package org.sheepy.lily.vulkan.process.graphic.process;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.core.api.adapter.impl.AbstractSingletonAdapter;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 
 public class GraphicContextAdapter extends AbstractSingletonAdapter
 		implements IGraphicContextAdapter

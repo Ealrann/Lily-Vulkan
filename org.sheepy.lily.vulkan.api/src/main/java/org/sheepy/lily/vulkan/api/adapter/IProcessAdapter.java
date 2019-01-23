@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.api.adapter;
+package org.sheepy.lily.vulkan.api.adapter;
 
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.api.concurrent.IFence;
-import org.sheepy.vulkan.api.queue.VulkanQueue;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.api.concurrent.IFence;
+import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 
 public interface IProcessAdapter extends IEnginePartAdapter
 {

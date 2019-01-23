@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.enumeration;
+package org.sheepy.lily.vulkan.model.enumeration;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.enumeration.EnumerationPackage
+ * @see org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage
  * @generated
  */
 public interface EnumerationFactory extends EFactory
@@ -20,7 +20,7 @@ public interface EnumerationFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EnumerationFactory eINSTANCE = org.sheepy.vulkan.model.enumeration.impl.EnumerationFactoryImpl.init();
+	EnumerationFactory eINSTANCE = org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationFactoryImpl.init();
 
 	/**
 	 * Returns the package supported by this factory.

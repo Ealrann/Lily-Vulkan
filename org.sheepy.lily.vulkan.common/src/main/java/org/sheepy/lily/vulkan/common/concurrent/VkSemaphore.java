@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.concurrent;
+package org.sheepy.lily.vulkan.common.concurrent;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -7,9 +7,9 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 
 public class VkSemaphore
 {

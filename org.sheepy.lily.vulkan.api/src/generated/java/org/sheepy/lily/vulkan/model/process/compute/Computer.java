@@ -1,10 +1,10 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute;
+package org.sheepy.lily.vulkan.model.process.compute;
 
-import org.sheepy.vulkan.model.process.IPipelineUnit;
+import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 
-import org.sheepy.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.Shader;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,10 +15,10 @@ import org.sheepy.vulkan.model.resource.Shader;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.compute.Computer#getShader <em>Shader</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getShader <em>Shader</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputer()
+ * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputer()
  * @model
  * @generated
  */
@@ -34,14 +34,14 @@ public interface Computer extends IPipelineUnit
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shader</em>' reference.
 	 * @see #setShader(Shader)
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePackage#getComputer_Shader()
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputer_Shader()
 	 * @model
 	 * @generated
 	 */
 	Shader getShader();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.compute.Computer#getShader <em>Shader</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getShader <em>Shader</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Shader</em>' reference.

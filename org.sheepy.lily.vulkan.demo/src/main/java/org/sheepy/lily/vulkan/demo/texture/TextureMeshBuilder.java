@@ -1,11 +1,11 @@
-package org.sheepy.vulkan.demo.texture;
+package org.sheepy.lily.vulkan.demo.texture;
 
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.demo.mesh.IIndexedBufferBuilder;
-import org.sheepy.vulkan.resource.indexed.IndexBuffer;
-import org.sheepy.vulkan.resource.indexed.IndexBufferData;
-import org.sheepy.vulkan.resource.texture.TextureVertexDescriptor;
-import org.sheepy.vulkan.resource.texture.TextureVertexDescriptor.TextureVertex;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.demo.mesh.IIndexedBufferBuilder;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBufferData;
+import org.sheepy.lily.vulkan.resource.texture.TextureVertexDescriptor;
+import org.sheepy.lily.vulkan.resource.texture.TextureVertexDescriptor.TextureVertex;
 
 public class TextureMeshBuilder implements IIndexedBufferBuilder<TextureVertex>
 {

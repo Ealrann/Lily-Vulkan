@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.process.pipeline;
+package org.sheepy.lily.vulkan.process.pipeline;
 
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.process.IPipelineUnit;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 
 public interface IPipelineUnitAdapter<T extends AbstractCommandBuffer> extends IVulkanAdapter
 {

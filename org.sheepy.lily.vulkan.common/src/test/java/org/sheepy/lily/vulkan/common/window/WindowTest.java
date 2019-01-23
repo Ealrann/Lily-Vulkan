@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.window;
+package org.sheepy.lily.vulkan.common.window;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,14 +7,14 @@ import java.util.Random;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.sheepy.common.api.application.ApplicationLauncher;
-import org.sheepy.common.api.types.SVector2i;
-import org.sheepy.common.model.application.Application;
-import org.sheepy.vulkan.api.window.IWindowListener;
-import org.sheepy.vulkan.api.window.Surface;
-import org.sheepy.vulkan.common.application.VulkanApplicationUtil;
-import org.sheepy.vulkan.common.test.BasicModelFactory;
-import org.sheepy.vulkan.common.test.TestUtils;
+import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.api.types.SVector2i;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.vulkan.api.window.IWindowListener;
+import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.common.application.VulkanApplicationUtil;
+import org.sheepy.lily.vulkan.common.test.BasicModelFactory;
+import org.sheepy.lily.vulkan.common.test.TestUtils;
 
 public class WindowTest
 {

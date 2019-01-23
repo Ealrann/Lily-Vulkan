@@ -1,14 +1,14 @@
-package org.sheepy.vulkan.process.pipeline;
+package org.sheepy.lily.vulkan.process.pipeline;
 
 import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.model.process.IPipeline;
-import org.sheepy.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.resource.buffer.AbstractConstantsAdapter;
+import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 
 public class PushConstantAdapter extends AbstractStatefullAdapter implements
 		IProcessUnitAdapter<AbstractCommandBuffer>, IPipelineUnitAdapter<AbstractCommandBuffer>

@@ -1,50 +1,49 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.sheepy.common.model.action.ActionPackage;
-import org.sheepy.common.model.application.ApplicationPackage;
-import org.sheepy.common.model.inference.InferencePackage;
-import org.sheepy.common.model.root.RootPackage;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.model.action.ActionPackage;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.inference.InferencePackage;
+import org.sheepy.lily.core.model.root.RootPackage;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
 
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.vulkan.model.process.graphic.AttachementRef;
-import org.sheepy.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.vulkan.model.process.graphic.ColorBlend;
-import org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment;
-import org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription;
-import org.sheepy.vulkan.model.process.graphic.DynamicState;
-import org.sheepy.vulkan.model.process.graphic.DynamicViewportState;
-import org.sheepy.vulkan.model.process.graphic.GraphicConfiguration;
-import org.sheepy.vulkan.model.process.graphic.GraphicFactory;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.vulkan.model.process.graphic.IGUIPipeline;
-import org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline;
-import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
-import org.sheepy.vulkan.model.process.graphic.Rasterizer;
-import org.sheepy.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.vulkan.model.process.graphic.Scissor;
-import org.sheepy.vulkan.model.process.graphic.StaticViewportState;
-import org.sheepy.vulkan.model.process.graphic.Subpass;
-import org.sheepy.vulkan.model.process.graphic.SubpassDependency;
-import org.sheepy.vulkan.model.process.graphic.Viewport;
-import org.sheepy.vulkan.model.process.graphic.ViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
+import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
+import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -212,7 +211,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#eNS_URI
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

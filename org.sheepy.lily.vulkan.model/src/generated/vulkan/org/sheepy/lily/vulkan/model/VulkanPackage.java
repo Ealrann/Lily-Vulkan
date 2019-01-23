@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model;
+package org.sheepy.lily.vulkan.model;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.VulkanFactory
+ * @see org.sheepy.lily.vulkan.model.VulkanFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/vulkan' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.vulkan'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/vulkan' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan'"
  * @generated
  */
 public interface VulkanPackage extends EPackage
@@ -40,7 +40,7 @@ public interface VulkanPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "org.sheepy.vulkan.model";
+	String eNS_URI = "org.sheepy.lily.vulkan.model";
 
 	/**
 	 * The package namespace name.
@@ -56,14 +56,14 @@ public interface VulkanPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	VulkanPackage eINSTANCE = org.sheepy.vulkan.model.impl.VulkanPackageImpl.init();
+	VulkanPackage eINSTANCE = org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl <em>Application</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl <em>Application</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.impl.VulkanApplicationImpl
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanApplication()
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getVulkanApplication()
 	 * @generated
 	 */
 	int VULKAN_APPLICATION = 0;
@@ -159,11 +159,11 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_APPLICATION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IProcessPool <em>IProcess Pool</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.IProcessPool
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcessPool()
+	 * @see org.sheepy.lily.vulkan.model.IProcessPool
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIProcessPool()
 	 * @generated
 	 */
 	int IPROCESS_POOL = 1;
@@ -187,11 +187,11 @@ public interface VulkanPackage extends EPackage
 	int IPROCESS_POOL_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.IComputeProcessPool
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIComputeProcessPool()
+	 * @see org.sheepy.lily.vulkan.model.IComputeProcessPool
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIComputeProcessPool()
 	 * @generated
 	 */
 	int ICOMPUTE_PROCESS_POOL = 2;
@@ -215,11 +215,11 @@ public interface VulkanPackage extends EPackage
 	int ICOMPUTE_PROCESS_POOL_OPERATION_COUNT = IPROCESS_POOL_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.IGraphicProcessPool
-	 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIGraphicProcessPool()
+	 * @see org.sheepy.lily.vulkan.model.IGraphicProcessPool
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIGraphicProcessPool()
 	 * @generated
 	 */
 	int IGRAPHIC_PROCESS_POOL = 3;
@@ -244,129 +244,129 @@ public interface VulkanPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.VulkanApplication <em>Application</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.VulkanApplication <em>Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Application</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication
 	 * @generated
 	 */
 	EClass getVulkanApplication();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.VulkanApplication#isEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#isEnabled()
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication#isEnabled()
 	 * @see #getVulkanApplication()
 	 * @generated
 	 */
 	EAttribute getVulkanApplication_Enabled();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#isFullscreen <em>Fullscreen</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.VulkanApplication#isFullscreen <em>Fullscreen</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Fullscreen</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#isFullscreen()
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication#isFullscreen()
 	 * @see #getVulkanApplication()
 	 * @generated
 	 */
 	EAttribute getVulkanApplication_Fullscreen();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#isResizeable <em>Resizeable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.VulkanApplication#isResizeable <em>Resizeable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Resizeable</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#isResizeable()
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication#isResizeable()
 	 * @see #getVulkanApplication()
 	 * @generated
 	 */
 	EAttribute getVulkanApplication_Resizeable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#isDebug <em>Debug</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.VulkanApplication#isDebug <em>Debug</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Debug</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#isDebug()
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication#isDebug()
 	 * @see #getVulkanApplication()
 	 * @generated
 	 */
 	EAttribute getVulkanApplication_Debug();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#getTitle <em>Title</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.VulkanApplication#getTitle <em>Title</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Title</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#getTitle()
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication#getTitle()
 	 * @see #getVulkanApplication()
 	 * @generated
 	 */
 	EAttribute getVulkanApplication_Title();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.VulkanApplication#getSize <em>Size</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.VulkanApplication#getSize <em>Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#getSize()
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication#getSize()
 	 * @see #getVulkanApplication()
 	 * @generated
 	 */
 	EAttribute getVulkanApplication_Size();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.VulkanApplication#getComputePools <em>Compute Pools</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.VulkanApplication#getComputePools <em>Compute Pools</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Compute Pools</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#getComputePools()
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication#getComputePools()
 	 * @see #getVulkanApplication()
 	 * @generated
 	 */
 	EReference getVulkanApplication_ComputePools();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.VulkanApplication#getGraphicPool <em>Graphic Pool</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.VulkanApplication#getGraphicPool <em>Graphic Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Graphic Pool</em>'.
-	 * @see org.sheepy.vulkan.model.VulkanApplication#getGraphicPool()
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication#getGraphicPool()
 	 * @see #getVulkanApplication()
 	 * @generated
 	 */
 	EReference getVulkanApplication_GraphicPool();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IProcessPool <em>IProcess Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IProcess Pool</em>'.
-	 * @see org.sheepy.vulkan.model.IProcessPool
+	 * @see org.sheepy.lily.vulkan.model.IProcessPool
 	 * @generated
 	 */
 	EClass getIProcessPool();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ICompute Process Pool</em>'.
-	 * @see org.sheepy.vulkan.model.IComputeProcessPool
+	 * @see org.sheepy.lily.vulkan.model.IComputeProcessPool
 	 * @generated
 	 */
 	EClass getIComputeProcessPool();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IGraphic Process Pool</em>'.
-	 * @see org.sheepy.vulkan.model.IGraphicProcessPool
+	 * @see org.sheepy.lily.vulkan.model.IGraphicProcessPool
 	 * @generated
 	 */
 	EClass getIGraphicProcessPool();
@@ -396,11 +396,11 @@ public interface VulkanPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.impl.VulkanApplicationImpl <em>Application</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl <em>Application</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.impl.VulkanApplicationImpl
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getVulkanApplication()
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanApplicationImpl
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getVulkanApplication()
 		 * @generated
 		 */
 		EClass VULKAN_APPLICATION = eINSTANCE.getVulkanApplication();
@@ -470,31 +470,31 @@ public interface VulkanPackage extends EPackage
 		EReference VULKAN_APPLICATION__GRAPHIC_POOL = eINSTANCE.getVulkanApplication_GraphicPool();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IProcessPool <em>IProcess Pool</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.IProcessPool
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIProcessPool()
+		 * @see org.sheepy.lily.vulkan.model.IProcessPool
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIProcessPool()
 		 * @generated
 		 */
 		EClass IPROCESS_POOL = eINSTANCE.getIProcessPool();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.IComputeProcessPool
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIComputeProcessPool()
+		 * @see org.sheepy.lily.vulkan.model.IComputeProcessPool
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIComputeProcessPool()
 		 * @generated
 		 */
 		EClass ICOMPUTE_PROCESS_POOL = eINSTANCE.getIComputeProcessPool();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.IGraphicProcessPool
-		 * @see org.sheepy.vulkan.model.impl.VulkanPackageImpl#getIGraphicProcessPool()
+		 * @see org.sheepy.lily.vulkan.model.IGraphicProcessPool
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIGraphicProcessPool()
 		 * @generated
 		 */
 		EClass IGRAPHIC_PROCESS_POOL = eINSTANCE.getIGraphicProcessPool();

@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model;
+package org.sheepy.lily.vulkan.model;
 
-import org.sheepy.common.model.root.LObject;
+import org.sheepy.lily.core.model.root.LObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,7 +10,7 @@ import org.sheepy.common.model.root.LObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.VulkanPackage#getIEnginePart()
+ * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIEnginePart()
  * @model interface="true" abstract="true"
  * @generated
  */

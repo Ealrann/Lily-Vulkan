@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.impl;
+package org.sheepy.lily.vulkan.model.process.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -18,18 +18,18 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
-import org.sheepy.common.api.util.LTreeIterator;
-import org.sheepy.common.model.inference.IInferenceObject;
-import org.sheepy.common.model.root.LObject;
-import org.sheepy.common.model.root.RootPackage.Literals;
-import org.sheepy.common.model.types.LNamedElement;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.IPipelineUnit;
-import org.sheepy.vulkan.model.process.PipelineBarrier;
-import org.sheepy.vulkan.model.process.ProcessPackage;
-import org.sheepy.vulkan.model.resource.Barrier;
+import org.sheepy.lily.core.api.util.LTreeIterator;
+import org.sheepy.lily.core.model.inference.IInferenceObject;
+import org.sheepy.lily.core.model.root.LObject;
+import org.sheepy.lily.core.model.root.RootPackage.Literals;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
+import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.Barrier;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,13 +39,13 @@ import org.sheepy.vulkan.model.resource.Barrier;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getContentObjects <em>Content Objects</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getBarrier <em>Barrier</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getSrcQueue <em>Src Queue</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl#getDstQueue <em>Dst Queue</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getContentObjects <em>Content Objects</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getBarrier <em>Barrier</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getSrcQueue <em>Src Queue</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getDstQueue <em>Dst Queue</em>}</li>
  * </ul>
  *
  * @generated

@@ -3,11 +3,11 @@ plugins {
 }
 
 if (project.hasProperty('javaModule')) {
-	javaModule.name = 'org.sheepy.vulkan.common'
+	javaModule.name = 'org.sheepy.lily.vulkan.common'
 }
 
 dependencies {
-		api project(':org.sheepy.vulkan.api')
+		api project(':org.sheepy.lily.vulkan.api')
 
 		testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
 		testImplementation 'org.junit.jupiter:junit-jupiter-params:5.3.1'

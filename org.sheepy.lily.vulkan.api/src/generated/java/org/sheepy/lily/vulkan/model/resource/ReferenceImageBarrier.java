@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 
 /**
@@ -12,12 +12,12 @@ package org.sheepy.vulkan.model.resource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getImageId <em>Image Id</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getMipLevels <em>Mip Levels</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getImageFormat <em>Image Format</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageId <em>Image Id</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getMipLevels <em>Mip Levels</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageFormat <em>Image Format</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getReferenceImageBarrier()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getReferenceImageBarrier()
  * @model
  * @generated
  */
@@ -33,14 +33,14 @@ public interface ReferenceImageBarrier extends AbstractImageBarrier
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image Id</em>' attribute.
 	 * @see #setImageId(long)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getReferenceImageBarrier_ImageId()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getReferenceImageBarrier_ImageId()
 	 * @model unique="false"
 	 * @generated
 	 */
 	long getImageId();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getImageId <em>Image Id</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageId <em>Image Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Image Id</em>' attribute.
@@ -59,14 +59,14 @@ public interface ReferenceImageBarrier extends AbstractImageBarrier
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mip Levels</em>' attribute.
 	 * @see #setMipLevels(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getReferenceImageBarrier_MipLevels()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getReferenceImageBarrier_MipLevels()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getMipLevels();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getMipLevels <em>Mip Levels</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getMipLevels <em>Mip Levels</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mip Levels</em>' attribute.
@@ -85,14 +85,14 @@ public interface ReferenceImageBarrier extends AbstractImageBarrier
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image Format</em>' attribute.
 	 * @see #setImageFormat(int)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getReferenceImageBarrier_ImageFormat()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getReferenceImageBarrier_ImageFormat()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getImageFormat();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getImageFormat <em>Image Format</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageFormat <em>Image Format</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Image Format</em>' attribute.

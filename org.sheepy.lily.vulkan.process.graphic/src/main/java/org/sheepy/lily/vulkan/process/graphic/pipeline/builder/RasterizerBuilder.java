@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.process.graphic.pipeline.builder;
+package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkPipelineRasterizationStateCreateInfo;
-import org.sheepy.vulkan.model.process.graphic.Rasterizer;
+import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 
 public class RasterizerBuilder
 {

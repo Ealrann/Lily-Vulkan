@@ -1,18 +1,18 @@
-package org.sheepy.vulkan.process.compute.pipeline;
+package org.sheepy.lily.vulkan.process.compute.pipeline;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.common.api.adapter.IStatefullAdapter;
-import org.sheepy.common.api.adapter.impl.AbstractSingletonAdapter;
-import org.sheepy.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.vulkan.model.process.compute.ComputePipeline;
-import org.sheepy.vulkan.model.process.compute.Computer;
-import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
-import org.sheepy.vulkan.process.pipeline.IPipelineUnitAdapter;
-import org.sheepy.vulkan.process.pipeline.IProcessUnitAdapter;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.impl.AbstractSingletonAdapter;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
+import org.sheepy.lily.vulkan.model.process.compute.Computer;
+import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
+import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.IProcessUnitAdapter;
 
 public class ComputerAdapter extends AbstractSingletonAdapter
 		implements IProcessUnitAdapter<ComputeCommandBuffer>, IStatefullAdapter,

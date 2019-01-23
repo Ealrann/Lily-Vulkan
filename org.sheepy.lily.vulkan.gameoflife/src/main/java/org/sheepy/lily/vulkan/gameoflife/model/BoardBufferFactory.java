@@ -1,12 +1,12 @@
-package org.sheepy.vulkan.gameoflife.model;
+package org.sheepy.lily.vulkan.gameoflife.model;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.vulkan.gameoflife.compute.Board;
-import org.sheepy.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.model.resource.Buffer;
-import org.sheepy.vulkan.model.resource.impl.BufferImpl;
+import org.sheepy.lily.vulkan.gameoflife.compute.Board;
+import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
 
 public class BoardBufferFactory
 {

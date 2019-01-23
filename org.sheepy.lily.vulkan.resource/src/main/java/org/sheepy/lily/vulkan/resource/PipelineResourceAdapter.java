@@ -1,8 +1,8 @@
-package org.sheepy.vulkan.resource;
+package org.sheepy.lily.vulkan.resource;
 
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.model.resource.PipelineResource;
-import org.sheepy.vulkan.resource.descriptor.IDescriptorAdapter;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.model.resource.PipelineResource;
+import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 
 public abstract class PipelineResourceAdapter extends ResourceAdapter implements IDescriptorAdapter
 {

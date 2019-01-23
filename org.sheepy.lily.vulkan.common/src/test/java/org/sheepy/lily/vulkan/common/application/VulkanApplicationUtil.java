@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.common.application;
+package org.sheepy.lily.vulkan.common.application;
 
-import org.sheepy.common.model.application.Application;
-import org.sheepy.common.model.application.IEngine;
-import org.sheepy.vulkan.api.adapter.IVulkanEngineAdapter;
-import org.sheepy.vulkan.api.window.IWindow;
-import org.sheepy.vulkan.model.VulkanEngine;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.core.model.application.IEngine;
+import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
+import org.sheepy.lily.vulkan.api.window.IWindow;
+import org.sheepy.lily.vulkan.model.VulkanEngine;
 
 public class VulkanApplicationUtil
 {

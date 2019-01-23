@@ -1,11 +1,11 @@
 /**
  */
-package org.sheepy.vulkan.demo.model.impl;
+package org.sheepy.lily.vulkan.demo.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.vulkan.demo.model.MeshBuffer;
-import org.sheepy.vulkan.demo.model.VulkanDemoPackage;
-import org.sheepy.vulkan.model.resource.impl.IndexedBufferImpl;
+import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
+import org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage;
+import org.sheepy.lily.vulkan.model.resource.impl.IndexedBufferImpl;
 
 /**
  * <!-- begin-user-doc -->

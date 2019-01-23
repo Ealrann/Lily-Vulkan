@@ -1,14 +1,14 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,9 +22,9 @@ import org.sheepy.vulkan.model.VulkanPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.resource.ResourceFactory
+ * @see org.sheepy.lily.vulkan.model.resource.ResourceFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model'"
  * @generated
  */
 public interface ResourcePackage extends EPackage
@@ -43,7 +43,7 @@ public interface ResourcePackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "org.sheepy.vulkan.model.resource";
+	String eNS_URI = "org.sheepy.lily.vulkan.model.resource";
 
 	/**
 	 * The package namespace name.
@@ -59,14 +59,14 @@ public interface ResourcePackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ResourcePackage eINSTANCE = org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl.init();
+	ResourcePackage eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.BasicResource <em>Basic Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.BasicResource
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBasicResource()
+	 * @see org.sheepy.lily.vulkan.model.resource.BasicResource
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBasicResource()
 	 * @generated
 	 */
 	int BASIC_RESOURCE = 0;
@@ -99,11 +99,11 @@ public interface ResourcePackage extends EPackage
 	int BASIC_RESOURCE_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.IDescriptor
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
+	 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
 	 * @generated
 	 */
 	int IDESCRIPTOR = 12;
@@ -145,11 +145,11 @@ public interface ResourcePackage extends EPackage
 	int IDESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.PipelineResource
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPipelineResource()
+	 * @see org.sheepy.lily.vulkan.model.resource.PipelineResource
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPipelineResource()
 	 * @generated
 	 */
 	int PIPELINE_RESOURCE = 1;
@@ -200,11 +200,11 @@ public interface ResourcePackage extends EPackage
 	int PIPELINE_RESOURCE_OPERATION_COUNT = IDESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.BufferImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBuffer()
 	 * @generated
 	 */
 	int BUFFER = 2;
@@ -300,11 +300,11 @@ public interface ResourcePackage extends EPackage
 	int BUFFER_OPERATION_COUNT = PIPELINE_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.ImageImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImage()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImage()
 	 * @generated
 	 */
 	int IMAGE = 3;
@@ -427,11 +427,11 @@ public interface ResourcePackage extends EPackage
 	int IMAGE_OPERATION_COUNT = PIPELINE_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageLayout()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageLayout()
 	 * @generated
 	 */
 	int IMAGE_LAYOUT = 4;
@@ -482,11 +482,11 @@ public interface ResourcePackage extends EPackage
 	int IMAGE_LAYOUT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.SampledImageImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
 	 * @generated
 	 */
 	int SAMPLED_IMAGE = 5;
@@ -546,11 +546,11 @@ public interface ResourcePackage extends EPackage
 	int SAMPLED_IMAGE_OPERATION_COUNT = PIPELINE_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.FontImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
 	 * @generated
 	 */
 	int FONT = 6;
@@ -628,11 +628,11 @@ public interface ResourcePackage extends EPackage
 	int FONT_OPERATION_COUNT = SAMPLED_IMAGE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
 	 * @generated
 	 */
 	int ABSTRACT_TEXTURE = 7;
@@ -701,11 +701,11 @@ public interface ResourcePackage extends EPackage
 	int ABSTRACT_TEXTURE_OPERATION_COUNT = SAMPLED_IMAGE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.TextureImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.TextureImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
 	 * @generated
 	 */
 	int TEXTURE = 8;
@@ -783,11 +783,11 @@ public interface ResourcePackage extends EPackage
 	int TEXTURE_OPERATION_COUNT = ABSTRACT_TEXTURE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.SamplerImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
 	 * @generated
 	 */
 	int SAMPLER = 9;
@@ -919,11 +919,11 @@ public interface ResourcePackage extends EPackage
 	int SAMPLER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractConstantsImpl <em>Abstract Constants</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl <em>Abstract Constants</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.AbstractConstantsImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractConstants()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractConstants()
 	 * @generated
 	 */
 	int ABSTRACT_CONSTANTS = 10;
@@ -965,11 +965,11 @@ public interface ResourcePackage extends EPackage
 	int ABSTRACT_CONSTANTS_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.ConstantsImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getConstants()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getConstants()
 	 * @generated
 	 */
 	int CONSTANTS = 11;
@@ -1020,11 +1020,11 @@ public interface ResourcePackage extends EPackage
 	int CONSTANTS_OPERATION_COUNT = ABSTRACT_CONSTANTS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
 	int DESCRIPTOR_SET = 13;
@@ -1066,11 +1066,11 @@ public interface ResourcePackage extends EPackage
 	int DESCRIPTOR_SET_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.BarrierImpl <em>Barrier</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl <em>Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.BarrierImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
 	 * @generated
 	 */
 	int BARRIER = 14;
@@ -1112,11 +1112,11 @@ public interface ResourcePackage extends EPackage
 	int BARRIER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
 	int BUFFER_BARRIER = 15;
@@ -1185,11 +1185,11 @@ public interface ResourcePackage extends EPackage
 	int BUFFER_BARRIER_OPERATION_COUNT = BARRIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.AbstractImageBarrierImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
 	 * @generated
 	 */
 	int ABSTRACT_IMAGE_BARRIER = 16;
@@ -1240,11 +1240,11 @@ public interface ResourcePackage extends EPackage
 	int ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT = BARRIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
 	int IMAGE_BARRIER = 17;
@@ -1304,11 +1304,11 @@ public interface ResourcePackage extends EPackage
 	int IMAGE_BARRIER_OPERATION_COUNT = ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
 	 * @generated
 	 */
 	int REFERENCE_IMAGE_BARRIER = 18;
@@ -1386,11 +1386,11 @@ public interface ResourcePackage extends EPackage
 	int REFERENCE_IMAGE_BARRIER_OPERATION_COUNT = ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
 	 * @generated
 	 */
 	int IMAGE_TRANSITION = 19;
@@ -1450,11 +1450,11 @@ public interface ResourcePackage extends EPackage
 	int IMAGE_TRANSITION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.ShaderImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
 	int SHADER = 20;
@@ -1505,11 +1505,11 @@ public interface ResourcePackage extends EPackage
 	int SHADER_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.IndexedBufferImpl <em>Indexed Buffer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.IndexedBufferImpl <em>Indexed Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.IndexedBufferImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIndexedBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.IndexedBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getIndexedBuffer()
 	 * @generated
 	 */
 	int INDEXED_BUFFER = 21;
@@ -1542,11 +1542,11 @@ public interface ResourcePackage extends EPackage
 	int INDEXED_BUFFER_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.DepthImageImpl <em>Depth Image</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DepthImageImpl <em>Depth Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.DepthImageImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDepthImage()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.DepthImageImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDepthImage()
 	 * @generated
 	 */
 	int DEPTH_IMAGE = 22;
@@ -1579,11 +1579,11 @@ public interface ResourcePackage extends EPackage
 	int DEPTH_IMAGE_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.PathResourceImpl <em>Path Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl <em>Path Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.PathResourceImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
 	int PATH_RESOURCE = 23;
@@ -1625,11 +1625,11 @@ public interface ResourcePackage extends EPackage
 	int PATH_RESOURCE_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.FileResourceImpl <em>File Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileResourceImpl <em>File Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.FileResourceImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.FileResourceImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
 	int FILE_RESOURCE = 24;
@@ -1671,11 +1671,11 @@ public interface ResourcePackage extends EPackage
 	int FILE_RESOURCE_OPERATION_COUNT = PATH_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractModuleResourceImpl <em>Abstract Module Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractModuleResourceImpl <em>Abstract Module Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.AbstractModuleResourceImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractModuleResourceImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
 	 * @generated
 	 */
 	int ABSTRACT_MODULE_RESOURCE = 25;
@@ -1717,11 +1717,11 @@ public interface ResourcePackage extends EPackage
 	int ABSTRACT_MODULE_RESOURCE_OPERATION_COUNT = PATH_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.ModuleResourceImpl <em>Module Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl <em>Module Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.ModuleResourceImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
 	int MODULE_RESOURCE = 26;
@@ -1772,11 +1772,11 @@ public interface ResourcePackage extends EPackage
 	int MODULE_RESOURCE_OPERATION_COUNT = ABSTRACT_MODULE_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.resource.impl.StringModuleResourceImpl <em>String Module Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StringModuleResourceImpl <em>String Module Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.resource.impl.StringModuleResourceImpl
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.StringModuleResourceImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
 	 * @generated
 	 */
 	int STRING_MODULE_RESOURCE = 27;
@@ -1831,7 +1831,7 @@ public interface ResourcePackage extends EPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see java.nio.ByteBuffer
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
 	int BYTE_BUFFER = 28;
@@ -1841,914 +1841,914 @@ public interface ResourcePackage extends EPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see java.lang.Module
-	 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
 	int JAVA_MODULE = 29;
 
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Basic Resource</em>'.
-	 * @see org.sheepy.vulkan.model.resource.BasicResource
+	 * @see org.sheepy.lily.vulkan.model.resource.BasicResource
 	 * @generated
 	 */
 	EClass getBasicResource();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Pipeline Resource</em>'.
-	 * @see org.sheepy.vulkan.model.resource.PipelineResource
+	 * @see org.sheepy.lily.vulkan.model.resource.PipelineResource
 	 * @generated
 	 */
 	EClass getPipelineResource();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Buffer <em>Buffer</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Buffer <em>Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer
 	 * @generated
 	 */
 	EClass getBuffer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#getSize <em>Size</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getSize <em>Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#getSize()
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#getSize()
 	 * @see #getBuffer()
 	 * @generated
 	 */
 	EAttribute getBuffer_Size();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.Buffer#getUsages <em>Usages</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getUsages <em>Usages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Usages</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#getUsages()
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#getUsages()
 	 * @see #getBuffer()
 	 * @generated
 	 */
 	EAttribute getBuffer_Usages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#getData <em>Data</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getData <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Data</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#getData()
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#getData()
 	 * @see #getBuffer()
 	 * @generated
 	 */
 	EAttribute getBuffer_Data();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Often Updated</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#isOftenUpdated()
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#isOftenUpdated()
 	 * @see #getBuffer()
 	 * @generated
 	 */
 	EAttribute getBuffer_OftenUpdated();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Gpu Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Buffer#isGpuBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#isGpuBuffer()
 	 * @see #getBuffer()
 	 * @generated
 	 */
 	EAttribute getBuffer_GpuBuffer();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Image <em>Image</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Image</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Image
+	 * @see org.sheepy.lily.vulkan.model.resource.Image
 	 * @generated
 	 */
 	EClass getImage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Image#getWidth <em>Width</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getWidth <em>Width</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Width</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Image#getWidth()
+	 * @see org.sheepy.lily.vulkan.model.resource.Image#getWidth()
 	 * @see #getImage()
 	 * @generated
 	 */
 	EAttribute getImage_Width();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Image#getHeight <em>Height</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getHeight <em>Height</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Image#getHeight()
+	 * @see org.sheepy.lily.vulkan.model.resource.Image#getHeight()
 	 * @see #getImage()
 	 * @generated
 	 */
 	EAttribute getImage_Height();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Image#getFormat <em>Format</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getFormat <em>Format</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Format</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Image#getFormat()
+	 * @see org.sheepy.lily.vulkan.model.resource.Image#getFormat()
 	 * @see #getImage()
 	 * @generated
 	 */
 	EAttribute getImage_Format();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.Image#getUsages <em>Usages</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.Image#getUsages <em>Usages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Usages</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Image#getUsages()
+	 * @see org.sheepy.lily.vulkan.model.resource.Image#getUsages()
 	 * @see #getImage()
 	 * @generated
 	 */
 	EAttribute getImage_Usages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Image#getProperties <em>Properties</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Properties</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Image#getProperties()
+	 * @see org.sheepy.lily.vulkan.model.resource.Image#getProperties()
 	 * @see #getImage()
 	 * @generated
 	 */
 	EAttribute getImage_Properties();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Image#getTiling <em>Tiling</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getTiling <em>Tiling</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Tiling</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Image#getTiling()
+	 * @see org.sheepy.lily.vulkan.model.resource.Image#getTiling()
 	 * @see #getImage()
 	 * @generated
 	 */
 	EAttribute getImage_Tiling();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Image#getMipLevels <em>Mip Levels</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#getMipLevels <em>Mip Levels</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Mip Levels</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Image#getMipLevels()
+	 * @see org.sheepy.lily.vulkan.model.resource.Image#getMipLevels()
 	 * @see #getImage()
 	 * @generated
 	 */
 	EAttribute getImage_MipLevels();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.resource.Image#getInitialLayout <em>Initial Layout</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Image#getInitialLayout <em>Initial Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Initial Layout</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Image#getInitialLayout()
+	 * @see org.sheepy.lily.vulkan.model.resource.Image#getInitialLayout()
 	 * @see #getImage()
 	 * @generated
 	 */
 	EReference getImage_InitialLayout();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.ImageLayout <em>Image Layout</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout <em>Image Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Image Layout</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageLayout
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageLayout
 	 * @generated
 	 */
 	EClass getImageLayout();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ImageLayout#getStage <em>Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout#getStage <em>Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageLayout#getStage()
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageLayout#getStage()
 	 * @see #getImageLayout()
 	 * @generated
 	 */
 	EAttribute getImageLayout_Stage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ImageLayout#getLayout <em>Layout</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout#getLayout <em>Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Layout</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageLayout#getLayout()
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageLayout#getLayout()
 	 * @see #getImageLayout()
 	 * @generated
 	 */
 	EAttribute getImageLayout_Layout();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.ImageLayout#getAccessMask <em>Access Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout#getAccessMask <em>Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Access Mask</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageLayout#getAccessMask()
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageLayout#getAccessMask()
 	 * @see #getImageLayout()
 	 * @generated
 	 */
 	EAttribute getImageLayout_AccessMask();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.SampledImage <em>Sampled Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Sampled Image</em>'.
-	 * @see org.sheepy.vulkan.model.resource.SampledImage
+	 * @see org.sheepy.lily.vulkan.model.resource.SampledImage
 	 * @generated
 	 */
 	EClass getSampledImage();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.resource.SampledImage#getSampler <em>Sampler</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.SampledImage#getSampler <em>Sampler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Sampler</em>'.
-	 * @see org.sheepy.vulkan.model.resource.SampledImage#getSampler()
+	 * @see org.sheepy.lily.vulkan.model.resource.SampledImage#getSampler()
 	 * @see #getSampledImage()
 	 * @generated
 	 */
 	EReference getSampledImage_Sampler();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Font <em>Font</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Font <em>Font</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Font</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Font
+	 * @see org.sheepy.lily.vulkan.model.resource.Font
 	 * @generated
 	 */
 	EClass getFont();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.resource.Font#getFile <em>File</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Font#getFile <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>File</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Font#getFile()
+	 * @see org.sheepy.lily.vulkan.model.resource.Font#getFile()
 	 * @see #getFont()
 	 * @generated
 	 */
 	EReference getFont_File();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Font#getHeight <em>Height</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Font#getHeight <em>Height</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Font#getHeight()
+	 * @see org.sheepy.lily.vulkan.model.resource.Font#getHeight()
 	 * @see #getFont()
 	 * @generated
 	 */
 	EAttribute getFont_Height();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.AbstractTexture <em>Abstract Texture</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.AbstractTexture <em>Abstract Texture</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Abstract Texture</em>'.
-	 * @see org.sheepy.vulkan.model.resource.AbstractTexture
+	 * @see org.sheepy.lily.vulkan.model.resource.AbstractTexture
 	 * @generated
 	 */
 	EClass getAbstractTexture();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.AbstractTexture#isMipmapEnabled <em>Mipmap Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.AbstractTexture#isMipmapEnabled <em>Mipmap Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Mipmap Enabled</em>'.
-	 * @see org.sheepy.vulkan.model.resource.AbstractTexture#isMipmapEnabled()
+	 * @see org.sheepy.lily.vulkan.model.resource.AbstractTexture#isMipmapEnabled()
 	 * @see #getAbstractTexture()
 	 * @generated
 	 */
 	EAttribute getAbstractTexture_MipmapEnabled();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Texture <em>Texture</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Texture <em>Texture</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Texture</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Texture
+	 * @see org.sheepy.lily.vulkan.model.resource.Texture
 	 * @generated
 	 */
 	EClass getTexture();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.resource.Texture#getFile <em>File</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Texture#getFile <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>File</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Texture#getFile()
+	 * @see org.sheepy.lily.vulkan.model.resource.Texture#getFile()
 	 * @see #getTexture()
 	 * @generated
 	 */
 	EReference getTexture_File();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Sampler <em>Sampler</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Sampler <em>Sampler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Sampler</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler
 	 * @generated
 	 */
 	EClass getSampler();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMinFilter <em>Min Filter</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMinFilter <em>Min Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Min Filter</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#getMinFilter()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMinFilter()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_MinFilter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMagFilter <em>Mag Filter</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMagFilter <em>Mag Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Mag Filter</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#getMagFilter()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMagFilter()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_MagFilter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMipmapMode <em>Mipmap Mode</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMipmapMode <em>Mipmap Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Mipmap Mode</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#getMipmapMode()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMipmapMode()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_MipmapMode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getAddressMode <em>Address Mode</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getAddressMode <em>Address Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Address Mode</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#getAddressMode()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getAddressMode()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_AddressMode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getBorderColor <em>Border Color</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getBorderColor <em>Border Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Border Color</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#getBorderColor()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getBorderColor()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_BorderColor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#isAnisotropyEnabled <em>Anisotropy Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#isAnisotropyEnabled <em>Anisotropy Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Anisotropy Enabled</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#isAnisotropyEnabled()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#isAnisotropyEnabled()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_AnisotropyEnabled();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#isUnnormalizedCoordinates <em>Unnormalized Coordinates</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#isUnnormalizedCoordinates <em>Unnormalized Coordinates</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Unnormalized Coordinates</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#isUnnormalizedCoordinates()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#isUnnormalizedCoordinates()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_UnnormalizedCoordinates();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#isCompareEnable <em>Compare Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#isCompareEnable <em>Compare Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Compare Enable</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#isCompareEnable()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#isCompareEnable()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_CompareEnable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getLodBias <em>Lod Bias</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getLodBias <em>Lod Bias</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Lod Bias</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#getLodBias()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getLodBias()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_LodBias();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMinLod <em>Min Lod</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMinLod <em>Min Lod</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Min Lod</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#getMinLod()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMinLod()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_MinLod();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMaxLod <em>Max Lod</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMaxLod <em>Max Lod</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Max Lod</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#getMaxLod()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMaxLod()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_MaxLod();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Sampler#getMaxAnisotropy <em>Max Anisotropy</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Sampler#getMaxAnisotropy <em>Max Anisotropy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Max Anisotropy</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Sampler#getMaxAnisotropy()
+	 * @see org.sheepy.lily.vulkan.model.resource.Sampler#getMaxAnisotropy()
 	 * @see #getSampler()
 	 * @generated
 	 */
 	EAttribute getSampler_MaxAnisotropy();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.AbstractConstants <em>Abstract Constants</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants <em>Abstract Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Abstract Constants</em>'.
-	 * @see org.sheepy.vulkan.model.resource.AbstractConstants
+	 * @see org.sheepy.lily.vulkan.model.resource.AbstractConstants
 	 * @generated
 	 */
 	EClass getAbstractConstants();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.AbstractConstants#getStage <em>Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStage <em>Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.vulkan.model.resource.AbstractConstants#getStage()
+	 * @see org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStage()
 	 * @see #getAbstractConstants()
 	 * @generated
 	 */
 	EAttribute getAbstractConstants_Stage();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Constants <em>Constants</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Constants <em>Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Constants</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Constants
+	 * @see org.sheepy.lily.vulkan.model.resource.Constants
 	 * @generated
 	 */
 	EClass getConstants();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Constants#getData <em>Data</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Constants#getData <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Data</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Constants#getData()
+	 * @see org.sheepy.lily.vulkan.model.resource.Constants#getData()
 	 * @see #getConstants()
 	 * @generated
 	 */
 	EAttribute getConstants_Data();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IDescriptor</em>'.
-	 * @see org.sheepy.vulkan.model.resource.IDescriptor
+	 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor
 	 * @generated
 	 */
 	EClass getIDescriptor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.IDescriptor#getDescriptorType <em>Descriptor Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getDescriptorType <em>Descriptor Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Descriptor Type</em>'.
-	 * @see org.sheepy.vulkan.model.resource.IDescriptor#getDescriptorType()
+	 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor#getDescriptorType()
 	 * @see #getIDescriptor()
 	 * @generated
 	 */
 	EAttribute getIDescriptor_DescriptorType();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.IDescriptor#getShaderStages <em>Shader Stages</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getShaderStages <em>Shader Stages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Shader Stages</em>'.
-	 * @see org.sheepy.vulkan.model.resource.IDescriptor#getShaderStages()
+	 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor#getShaderStages()
 	 * @see #getIDescriptor()
 	 * @generated
 	 */
 	EAttribute getIDescriptor_ShaderStages();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.DescriptorSet <em>Descriptor Set</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorSet <em>Descriptor Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Descriptor Set</em>'.
-	 * @see org.sheepy.vulkan.model.resource.DescriptorSet
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorSet
 	 * @generated
 	 */
 	EClass getDescriptorSet();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.resource.DescriptorSet#getDescriptors <em>Descriptors</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.resource.DescriptorSet#getDescriptors <em>Descriptors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Descriptors</em>'.
-	 * @see org.sheepy.vulkan.model.resource.DescriptorSet#getDescriptors()
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorSet#getDescriptors()
 	 * @see #getDescriptorSet()
 	 * @generated
 	 */
 	EReference getDescriptorSet_Descriptors();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Barrier <em>Barrier</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Barrier <em>Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Barrier
+	 * @see org.sheepy.lily.vulkan.model.resource.Barrier
 	 * @generated
 	 */
 	EClass getBarrier();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Barrier#getSrcStage <em>Src Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Barrier#getSrcStage <em>Src Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Src Stage</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Barrier#getSrcStage()
+	 * @see org.sheepy.lily.vulkan.model.resource.Barrier#getSrcStage()
 	 * @see #getBarrier()
 	 * @generated
 	 */
 	EAttribute getBarrier_SrcStage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Barrier#getDstStage <em>Dst Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Barrier#getDstStage <em>Dst Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Dst Stage</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Barrier#getDstStage()
+	 * @see org.sheepy.lily.vulkan.model.resource.Barrier#getDstStage()
 	 * @see #getBarrier()
 	 * @generated
 	 */
 	EAttribute getBarrier_DstStage();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.BufferBarrier <em>Buffer Barrier</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier <em>Buffer Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Buffer Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.resource.BufferBarrier
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferBarrier
 	 * @generated
 	 */
 	EClass getBufferBarrier();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.resource.BufferBarrier#getBuffer <em>Buffer</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getBuffer <em>Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.resource.BufferBarrier#getBuffer()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferBarrier#getBuffer()
 	 * @see #getBufferBarrier()
 	 * @generated
 	 */
 	EReference getBufferBarrier_Buffer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.BufferBarrier#getSrcAccess <em>Src Access</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getSrcAccess <em>Src Access</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Src Access</em>'.
-	 * @see org.sheepy.vulkan.model.resource.BufferBarrier#getSrcAccess()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferBarrier#getSrcAccess()
 	 * @see #getBufferBarrier()
 	 * @generated
 	 */
 	EAttribute getBufferBarrier_SrcAccess();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.BufferBarrier#getDstAccess <em>Dst Access</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getDstAccess <em>Dst Access</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Dst Access</em>'.
-	 * @see org.sheepy.vulkan.model.resource.BufferBarrier#getDstAccess()
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferBarrier#getDstAccess()
 	 * @see #getBufferBarrier()
 	 * @generated
 	 */
 	EAttribute getBufferBarrier_DstAccess();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.AbstractImageBarrier <em>Abstract Image Barrier</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier <em>Abstract Image Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Abstract Image Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.resource.AbstractImageBarrier
+	 * @see org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier
 	 * @generated
 	 */
 	EClass getAbstractImageBarrier();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.resource.AbstractImageBarrier#getTransitions <em>Transitions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier#getTransitions <em>Transitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Transitions</em>'.
-	 * @see org.sheepy.vulkan.model.resource.AbstractImageBarrier#getTransitions()
+	 * @see org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier#getTransitions()
 	 * @see #getAbstractImageBarrier()
 	 * @generated
 	 */
 	EReference getAbstractImageBarrier_Transitions();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.ImageBarrier <em>Image Barrier</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageBarrier <em>Image Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Image Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageBarrier
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageBarrier
 	 * @generated
 	 */
 	EClass getImageBarrier();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.resource.ImageBarrier#getImage <em>Image</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.resource.ImageBarrier#getImage <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Image</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageBarrier#getImage()
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageBarrier#getImage()
 	 * @see #getImageBarrier()
 	 * @generated
 	 */
 	EReference getImageBarrier_Image();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier <em>Reference Image Barrier</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier <em>Reference Image Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Reference Image Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ReferenceImageBarrier
+	 * @see org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier
 	 * @generated
 	 */
 	EClass getReferenceImageBarrier();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getImageId <em>Image Id</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageId <em>Image Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Image Id</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getImageId()
+	 * @see org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageId()
 	 * @see #getReferenceImageBarrier()
 	 * @generated
 	 */
 	EAttribute getReferenceImageBarrier_ImageId();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getMipLevels <em>Mip Levels</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getMipLevels <em>Mip Levels</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Mip Levels</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getMipLevels()
+	 * @see org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getMipLevels()
 	 * @see #getReferenceImageBarrier()
 	 * @generated
 	 */
 	EAttribute getReferenceImageBarrier_MipLevels();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getImageFormat <em>Image Format</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageFormat <em>Image Format</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Image Format</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ReferenceImageBarrier#getImageFormat()
+	 * @see org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageFormat()
 	 * @see #getReferenceImageBarrier()
 	 * @generated
 	 */
 	EAttribute getReferenceImageBarrier_ImageFormat();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.ImageTransition <em>Image Transition</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition <em>Image Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Image Transition</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageTransition
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition
 	 * @generated
 	 */
 	EClass getImageTransition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ImageTransition#getSrcLayout <em>Src Layout</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition#getSrcLayout <em>Src Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Src Layout</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageTransition#getSrcLayout()
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition#getSrcLayout()
 	 * @see #getImageTransition()
 	 * @generated
 	 */
 	EAttribute getImageTransition_SrcLayout();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ImageTransition#getDstLayout <em>Dst Layout</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition#getDstLayout <em>Dst Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Dst Layout</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageTransition#getDstLayout()
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition#getDstLayout()
 	 * @see #getImageTransition()
 	 * @generated
 	 */
 	EAttribute getImageTransition_DstLayout();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.ImageTransition#getSrcAccessMask <em>Src Access Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition#getSrcAccessMask <em>Src Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Src Access Mask</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageTransition#getSrcAccessMask()
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition#getSrcAccessMask()
 	 * @see #getImageTransition()
 	 * @generated
 	 */
 	EAttribute getImageTransition_SrcAccessMask();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.resource.ImageTransition#getDstAccessMask <em>Dst Access Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition#getDstAccessMask <em>Dst Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Dst Access Mask</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ImageTransition#getDstAccessMask()
+	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition#getDstAccessMask()
 	 * @see #getImageTransition()
 	 * @generated
 	 */
 	EAttribute getImageTransition_DstAccessMask();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.Shader <em>Shader</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Shader <em>Shader</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Shader</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Shader
+	 * @see org.sheepy.lily.vulkan.model.resource.Shader
 	 * @generated
 	 */
 	EClass getShader();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.resource.Shader#getFile <em>File</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.Shader#getFile <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>File</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Shader#getFile()
+	 * @see org.sheepy.lily.vulkan.model.resource.Shader#getFile()
 	 * @see #getShader()
 	 * @generated
 	 */
 	EReference getShader_File();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.Shader#getStage <em>Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Shader#getStage <em>Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.vulkan.model.resource.Shader#getStage()
+	 * @see org.sheepy.lily.vulkan.model.resource.Shader#getStage()
 	 * @see #getShader()
 	 * @generated
 	 */
 	EAttribute getShader_Stage();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.IndexedBuffer <em>Indexed Buffer</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IndexedBuffer <em>Indexed Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Indexed Buffer</em>'.
-	 * @see org.sheepy.vulkan.model.resource.IndexedBuffer
+	 * @see org.sheepy.lily.vulkan.model.resource.IndexedBuffer
 	 * @generated
 	 */
 	EClass getIndexedBuffer();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.DepthImage <em>Depth Image</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.DepthImage <em>Depth Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Depth Image</em>'.
-	 * @see org.sheepy.vulkan.model.resource.DepthImage
+	 * @see org.sheepy.lily.vulkan.model.resource.DepthImage
 	 * @generated
 	 */
 	EClass getDepthImage();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.PathResource <em>Path Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.PathResource <em>Path Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Path Resource</em>'.
-	 * @see org.sheepy.vulkan.model.resource.PathResource
+	 * @see org.sheepy.lily.vulkan.model.resource.PathResource
 	 * @generated
 	 */
 	EClass getPathResource();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.PathResource#getPath <em>Path</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.PathResource#getPath <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Path</em>'.
-	 * @see org.sheepy.vulkan.model.resource.PathResource#getPath()
+	 * @see org.sheepy.lily.vulkan.model.resource.PathResource#getPath()
 	 * @see #getPathResource()
 	 * @generated
 	 */
 	EAttribute getPathResource_Path();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.FileResource <em>File Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.FileResource <em>File Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>File Resource</em>'.
-	 * @see org.sheepy.vulkan.model.resource.FileResource
+	 * @see org.sheepy.lily.vulkan.model.resource.FileResource
 	 * @generated
 	 */
 	EClass getFileResource();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.AbstractModuleResource <em>Abstract Module Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.AbstractModuleResource <em>Abstract Module Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Abstract Module Resource</em>'.
-	 * @see org.sheepy.vulkan.model.resource.AbstractModuleResource
+	 * @see org.sheepy.lily.vulkan.model.resource.AbstractModuleResource
 	 * @generated
 	 */
 	EClass getAbstractModuleResource();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.ModuleResource <em>Module Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ModuleResource <em>Module Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Module Resource</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ModuleResource
+	 * @see org.sheepy.lily.vulkan.model.resource.ModuleResource
 	 * @generated
 	 */
 	EClass getModuleResource();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.ModuleResource#getModule <em>Module</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ModuleResource#getModule <em>Module</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Module</em>'.
-	 * @see org.sheepy.vulkan.model.resource.ModuleResource#getModule()
+	 * @see org.sheepy.lily.vulkan.model.resource.ModuleResource#getModule()
 	 * @see #getModuleResource()
 	 * @generated
 	 */
 	EAttribute getModuleResource_Module();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.resource.StringModuleResource <em>String Module Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.StringModuleResource <em>String Module Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>String Module Resource</em>'.
-	 * @see org.sheepy.vulkan.model.resource.StringModuleResource
+	 * @see org.sheepy.lily.vulkan.model.resource.StringModuleResource
 	 * @generated
 	 */
 	EClass getStringModuleResource();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.resource.StringModuleResource#getModuleName <em>Module Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.StringModuleResource#getModuleName <em>Module Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Module Name</em>'.
-	 * @see org.sheepy.vulkan.model.resource.StringModuleResource#getModuleName()
+	 * @see org.sheepy.lily.vulkan.model.resource.StringModuleResource#getModuleName()
 	 * @see #getStringModuleResource()
 	 * @generated
 	 */
@@ -2801,31 +2801,31 @@ public interface ResourcePackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.BasicResource <em>Basic Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.BasicResource
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBasicResource()
+		 * @see org.sheepy.lily.vulkan.model.resource.BasicResource
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBasicResource()
 		 * @generated
 		 */
 		EClass BASIC_RESOURCE = eINSTANCE.getBasicResource();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.PipelineResource
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPipelineResource()
+		 * @see org.sheepy.lily.vulkan.model.resource.PipelineResource
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPipelineResource()
 		 * @generated
 		 */
 		EClass PIPELINE_RESOURCE = eINSTANCE.getPipelineResource();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.BufferImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBuffer()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBuffer()
 		 * @generated
 		 */
 		EClass BUFFER = eINSTANCE.getBuffer();
@@ -2871,11 +2871,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute BUFFER__GPU_BUFFER = eINSTANCE.getBuffer_GpuBuffer();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.ImageImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImage()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImage()
 		 * @generated
 		 */
 		EClass IMAGE = eINSTANCE.getImage();
@@ -2945,11 +2945,11 @@ public interface ResourcePackage extends EPackage
 		EReference IMAGE__INITIAL_LAYOUT = eINSTANCE.getImage_InitialLayout();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageLayout()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageLayout()
 		 * @generated
 		 */
 		EClass IMAGE_LAYOUT = eINSTANCE.getImageLayout();
@@ -2979,11 +2979,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute IMAGE_LAYOUT__ACCESS_MASK = eINSTANCE.getImageLayout_AccessMask();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.SampledImageImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
 		 * @generated
 		 */
 		EClass SAMPLED_IMAGE = eINSTANCE.getSampledImage();
@@ -2997,11 +2997,11 @@ public interface ResourcePackage extends EPackage
 		EReference SAMPLED_IMAGE__SAMPLER = eINSTANCE.getSampledImage_Sampler();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.FontImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.FontImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
 		 * @generated
 		 */
 		EClass FONT = eINSTANCE.getFont();
@@ -3023,11 +3023,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute FONT__HEIGHT = eINSTANCE.getFont_Height();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.AbstractTextureImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
 		 * @generated
 		 */
 		EClass ABSTRACT_TEXTURE = eINSTANCE.getAbstractTexture();
@@ -3041,11 +3041,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute ABSTRACT_TEXTURE__MIPMAP_ENABLED = eINSTANCE.getAbstractTexture_MipmapEnabled();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.TextureImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.TextureImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
 		 * @generated
 		 */
 		EClass TEXTURE = eINSTANCE.getTexture();
@@ -3059,11 +3059,11 @@ public interface ResourcePackage extends EPackage
 		EReference TEXTURE__FILE = eINSTANCE.getTexture_File();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.SamplerImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
 		 * @generated
 		 */
 		EClass SAMPLER = eINSTANCE.getSampler();
@@ -3165,11 +3165,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute SAMPLER__MAX_ANISOTROPY = eINSTANCE.getSampler_MaxAnisotropy();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractConstantsImpl <em>Abstract Constants</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl <em>Abstract Constants</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.AbstractConstantsImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractConstants()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractConstants()
 		 * @generated
 		 */
 		EClass ABSTRACT_CONSTANTS = eINSTANCE.getAbstractConstants();
@@ -3183,11 +3183,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute ABSTRACT_CONSTANTS__STAGE = eINSTANCE.getAbstractConstants_Stage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.ConstantsImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getConstants()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getConstants()
 		 * @generated
 		 */
 		EClass CONSTANTS = eINSTANCE.getConstants();
@@ -3201,11 +3201,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute CONSTANTS__DATA = eINSTANCE.getConstants_Data();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.IDescriptor
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
+		 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
 		 * @generated
 		 */
 		EClass IDESCRIPTOR = eINSTANCE.getIDescriptor();
@@ -3227,11 +3227,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute IDESCRIPTOR__SHADER_STAGES = eINSTANCE.getIDescriptor_ShaderStages();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.DescriptorSetImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 		 * @generated
 		 */
 		EClass DESCRIPTOR_SET = eINSTANCE.getDescriptorSet();
@@ -3245,11 +3245,11 @@ public interface ResourcePackage extends EPackage
 		EReference DESCRIPTOR_SET__DESCRIPTORS = eINSTANCE.getDescriptorSet_Descriptors();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.BarrierImpl <em>Barrier</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl <em>Barrier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.BarrierImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
 		 * @generated
 		 */
 		EClass BARRIER = eINSTANCE.getBarrier();
@@ -3271,11 +3271,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute BARRIER__DST_STAGE = eINSTANCE.getBarrier_DstStage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.BufferBarrierImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 		 * @generated
 		 */
 		EClass BUFFER_BARRIER = eINSTANCE.getBufferBarrier();
@@ -3305,11 +3305,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute BUFFER_BARRIER__DST_ACCESS = eINSTANCE.getBufferBarrier_DstAccess();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.AbstractImageBarrierImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
 		 * @generated
 		 */
 		EClass ABSTRACT_IMAGE_BARRIER = eINSTANCE.getAbstractImageBarrier();
@@ -3323,11 +3323,11 @@ public interface ResourcePackage extends EPackage
 		EReference ABSTRACT_IMAGE_BARRIER__TRANSITIONS = eINSTANCE.getAbstractImageBarrier_Transitions();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 		 * @generated
 		 */
 		EClass IMAGE_BARRIER = eINSTANCE.getImageBarrier();
@@ -3341,11 +3341,11 @@ public interface ResourcePackage extends EPackage
 		EReference IMAGE_BARRIER__IMAGE = eINSTANCE.getImageBarrier_Image();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
 		 * @generated
 		 */
 		EClass REFERENCE_IMAGE_BARRIER = eINSTANCE.getReferenceImageBarrier();
@@ -3375,11 +3375,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT = eINSTANCE.getReferenceImageBarrier_ImageFormat();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
 		 * @generated
 		 */
 		EClass IMAGE_TRANSITION = eINSTANCE.getImageTransition();
@@ -3417,11 +3417,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute IMAGE_TRANSITION__DST_ACCESS_MASK = eINSTANCE.getImageTransition_DstAccessMask();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.ShaderImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 		 * @generated
 		 */
 		EClass SHADER = eINSTANCE.getShader();
@@ -3443,31 +3443,31 @@ public interface ResourcePackage extends EPackage
 		EAttribute SHADER__STAGE = eINSTANCE.getShader_Stage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.IndexedBufferImpl <em>Indexed Buffer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.IndexedBufferImpl <em>Indexed Buffer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.IndexedBufferImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getIndexedBuffer()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.IndexedBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getIndexedBuffer()
 		 * @generated
 		 */
 		EClass INDEXED_BUFFER = eINSTANCE.getIndexedBuffer();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.DepthImageImpl <em>Depth Image</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DepthImageImpl <em>Depth Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.DepthImageImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getDepthImage()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.DepthImageImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDepthImage()
 		 * @generated
 		 */
 		EClass DEPTH_IMAGE = eINSTANCE.getDepthImage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.PathResourceImpl <em>Path Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl <em>Path Resource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.PathResourceImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 		 * @generated
 		 */
 		EClass PATH_RESOURCE = eINSTANCE.getPathResource();
@@ -3481,31 +3481,31 @@ public interface ResourcePackage extends EPackage
 		EAttribute PATH_RESOURCE__PATH = eINSTANCE.getPathResource_Path();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.FileResourceImpl <em>File Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FileResourceImpl <em>File Resource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.FileResourceImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.FileResourceImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 		 * @generated
 		 */
 		EClass FILE_RESOURCE = eINSTANCE.getFileResource();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.AbstractModuleResourceImpl <em>Abstract Module Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractModuleResourceImpl <em>Abstract Module Resource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.AbstractModuleResourceImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractModuleResourceImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
 		 * @generated
 		 */
 		EClass ABSTRACT_MODULE_RESOURCE = eINSTANCE.getAbstractModuleResource();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.ModuleResourceImpl <em>Module Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl <em>Module Resource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.ModuleResourceImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 		 * @generated
 		 */
 		EClass MODULE_RESOURCE = eINSTANCE.getModuleResource();
@@ -3519,11 +3519,11 @@ public interface ResourcePackage extends EPackage
 		EAttribute MODULE_RESOURCE__MODULE = eINSTANCE.getModuleResource_Module();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.resource.impl.StringModuleResourceImpl <em>String Module Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.StringModuleResourceImpl <em>String Module Resource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.resource.impl.StringModuleResourceImpl
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.StringModuleResourceImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
 		 * @generated
 		 */
 		EClass STRING_MODULE_RESOURCE = eINSTANCE.getStringModuleResource();
@@ -3541,7 +3541,7 @@ public interface ResourcePackage extends EPackage
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see java.nio.ByteBuffer
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 		 * @generated
 		 */
 		EDataType BYTE_BUFFER = eINSTANCE.getByteBuffer();
@@ -3551,7 +3551,7 @@ public interface ResourcePackage extends EPackage
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see java.lang.Module
-		 * @see org.sheepy.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 		 * @generated
 		 */
 		EDataType JAVA_MODULE = eINSTANCE.getJavaModule();

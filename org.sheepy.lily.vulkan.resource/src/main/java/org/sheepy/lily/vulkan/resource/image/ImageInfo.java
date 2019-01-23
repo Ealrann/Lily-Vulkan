@@ -1,8 +1,8 @@
-package org.sheepy.vulkan.resource.image;
+package org.sheepy.lily.vulkan.resource.image;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
+import org.sheepy.lily.vulkan.model.resource.Image;
 
 public class ImageInfo
 {

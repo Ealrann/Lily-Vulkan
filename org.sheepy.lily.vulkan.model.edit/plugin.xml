@@ -9,8 +9,8 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated Graphic -->
       <factory
-            uri="org.sheepy.vulkan.model.process.graphic"
-            class="org.sheepy.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory"
+            uri="org.sheepy.lily.vulkan.model.process.graphic"
+            class="org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -22,18 +22,18 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated Graphic -->
       <extender
-            uri="org.sheepy.vulkan.model.process"
-            class="org.sheepy.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory$ProcessChildCreationExtender"/>
+            uri="org.sheepy.lily.vulkan.model.process"
+            class="org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory$ProcessChildCreationExtender"/>
       <extender
-            uri="org.sheepy.vulkan.model"
-            class="org.sheepy.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory$VulkanChildCreationExtender"/>
+            uri="org.sheepy.lily.vulkan.model"
+            class="org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicItemProviderAdapterFactory$VulkanChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated Vulkan -->
       <factory
-            uri="org.sheepy.vulkan.model"
-            class="org.sheepy.vulkan.model.provider.VulkanItemProviderAdapterFactory"
+            uri="org.sheepy.lily.vulkan.model"
+            class="org.sheepy.lily.vulkan.model.provider.VulkanItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -45,15 +45,15 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated Vulkan -->
       <extender
-            uri="org.sheepy.common.model.application"
-            class="org.sheepy.vulkan.model.provider.VulkanItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
+            uri="org.sheepy.lily.core.model.application"
+            class="org.sheepy.lily.vulkan.model.provider.VulkanItemProviderAdapterFactory$ApplicationChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated Compute -->
       <factory
-            uri="org.sheepy.vulkan.model.process.compute"
-            class="org.sheepy.vulkan.model.process.compute.provider.ComputeItemProviderAdapterFactory"
+            uri="org.sheepy.lily.vulkan.model.process.compute"
+            class="org.sheepy.lily.vulkan.model.process.compute.provider.ComputeItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -65,18 +65,18 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated Compute -->
       <extender
-            uri="org.sheepy.vulkan.model.process"
-            class="org.sheepy.vulkan.model.process.compute.provider.ComputeItemProviderAdapterFactory$ProcessChildCreationExtender"/>
+            uri="org.sheepy.lily.vulkan.model.process"
+            class="org.sheepy.lily.vulkan.model.process.compute.provider.ComputeItemProviderAdapterFactory$ProcessChildCreationExtender"/>
       <extender
-            uri="org.sheepy.vulkan.model"
-            class="org.sheepy.vulkan.model.process.compute.provider.ComputeItemProviderAdapterFactory$VulkanChildCreationExtender"/>
+            uri="org.sheepy.lily.vulkan.model"
+            class="org.sheepy.lily.vulkan.model.process.compute.provider.ComputeItemProviderAdapterFactory$VulkanChildCreationExtender"/>
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated Process -->
       <factory
-            uri="org.sheepy.vulkan.model.process"
-            class="org.sheepy.vulkan.model.process.provider.ProcessItemProviderAdapterFactory"
+            uri="org.sheepy.lily.vulkan.model.process"
+            class="org.sheepy.lily.vulkan.model.process.provider.ProcessItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -88,8 +88,8 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated Resource -->
       <factory
-            uri="org.sheepy.vulkan.model.resource"
-            class="org.sheepy.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory"
+            uri="org.sheepy.lily.vulkan.model.resource"
+            class="org.sheepy.lily.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -101,8 +101,8 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated Resource -->
       <extender
-            uri="org.sheepy.vulkan.model"
-            class="org.sheepy.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory$VulkanChildCreationExtender"/>
+            uri="org.sheepy.lily.vulkan.model"
+            class="org.sheepy.lily.vulkan.model.resource.provider.ResourceItemProviderAdapterFactory$VulkanChildCreationExtender"/>
    </extension>
 
 </plugin>

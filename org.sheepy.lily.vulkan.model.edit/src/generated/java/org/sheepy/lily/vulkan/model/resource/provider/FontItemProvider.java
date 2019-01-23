@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.provider;
+package org.sheepy.lily.vulkan.model.resource.provider;
 
 
 import java.util.Collection;
@@ -15,12 +15,12 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.vulkan.model.resource.Font;
-import org.sheepy.vulkan.model.resource.ResourceFactory;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.Font;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.resource.Font} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Font} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

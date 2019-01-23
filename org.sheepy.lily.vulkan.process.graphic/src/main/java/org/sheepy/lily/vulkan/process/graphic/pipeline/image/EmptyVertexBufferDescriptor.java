@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.graphic.pipeline.image;
+package org.sheepy.lily.vulkan.process.graphic.pipeline.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -7,8 +7,8 @@ import java.nio.ByteBuffer;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
-import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
-import org.sheepy.vulkan.resource.indexed.IndexBufferDescriptor.Vertex;
+import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBufferDescriptor.Vertex;
 
 public class EmptyVertexBufferDescriptor implements IVertexBufferDescriptor<Vertex>
 {

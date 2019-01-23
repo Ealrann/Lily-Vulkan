@@ -1,35 +1,35 @@
-@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
-@GenModel(editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java")
+@GenModel(modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java")
 @GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
 @GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
 @GenModel(updateClasspath="false")
 
-package org.sheepy.vulkan.model.process.graphic
+package org.sheepy.lily.vulkan.model.process.graphic
 
-import org.sheepy.common.model.types.SVector2i
-import org.sheepy.vulkan.model.ColorDomain
-import org.sheepy.vulkan.model.enumeration.EAccess
-import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
-import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
-import org.sheepy.vulkan.model.enumeration.EBlendFactor
-import org.sheepy.vulkan.model.enumeration.EBlendOp
-import org.sheepy.vulkan.model.enumeration.ECullMode
-import org.sheepy.vulkan.model.enumeration.EDynamicState
-import org.sheepy.vulkan.model.enumeration.EFrontFace
-import org.sheepy.vulkan.model.enumeration.EImageLayout
-import org.sheepy.vulkan.model.enumeration.EImageUsage
-import org.sheepy.vulkan.model.enumeration.ELogicOp
-import org.sheepy.vulkan.model.enumeration.EPipelineStage
-import org.sheepy.vulkan.model.enumeration.EPolygonMode
-import org.sheepy.vulkan.model.enumeration.EPresentMode
-import org.sheepy.vulkan.model.enumeration.ESampleCount
-import org.sheepy.vulkan.model.process.AbstractPipeline
-import org.sheepy.vulkan.model.process.AbstractProcess
-import org.sheepy.vulkan.model.process.Configuration
-import org.sheepy.vulkan.model.process.IPipeline
-import org.sheepy.vulkan.model.resource.DepthImage
-import org.sheepy.vulkan.model.resource.Image
-import org.sheepy.vulkan.model.resource.Shader
+import org.sheepy.lily.core.model.types.SVector2i
+import org.sheepy.lily.vulkan.model.ColorDomain
+import org.sheepy.lily.vulkan.model.enumeration.EAccess
+import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
+import org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp
+import org.sheepy.lily.vulkan.model.enumeration.EBlendFactor
+import org.sheepy.lily.vulkan.model.enumeration.EBlendOp
+import org.sheepy.lily.vulkan.model.enumeration.ECullMode
+import org.sheepy.lily.vulkan.model.enumeration.EDynamicState
+import org.sheepy.lily.vulkan.model.enumeration.EFrontFace
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+import org.sheepy.lily.vulkan.model.enumeration.EImageUsage
+import org.sheepy.lily.vulkan.model.enumeration.ELogicOp
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+import org.sheepy.lily.vulkan.model.enumeration.EPolygonMode
+import org.sheepy.lily.vulkan.model.enumeration.EPresentMode
+import org.sheepy.lily.vulkan.model.enumeration.ESampleCount
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline
+import org.sheepy.lily.vulkan.model.process.AbstractProcess
+import org.sheepy.lily.vulkan.model.process.Configuration
+import org.sheepy.lily.vulkan.model.process.IPipeline
+import org.sheepy.lily.vulkan.model.resource.DepthImage
+import org.sheepy.lily.vulkan.model.resource.Image
+import org.sheepy.lily.vulkan.model.resource.Shader
 
 class GraphicConfiguration extends Configuration
 {

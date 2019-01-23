@@ -1,32 +1,31 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute.impl;
+package org.sheepy.lily.vulkan.model.process.compute.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.sheepy.common.model.action.ActionPackage;
-import org.sheepy.common.model.application.ApplicationPackage;
-import org.sheepy.common.model.inference.InferencePackage;
-import org.sheepy.common.model.root.RootPackage;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.model.action.ActionPackage;
+import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.model.inference.InferencePackage;
+import org.sheepy.lily.core.model.root.RootPackage;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
 
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.vulkan.model.process.compute.ComputeFactory;
-import org.sheepy.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.vulkan.model.process.compute.ComputePipeline;
-import org.sheepy.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.vulkan.model.process.compute.Computer;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
+import org.sheepy.lily.vulkan.model.process.compute.Computer;
 
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,7 +67,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.sheepy.vulkan.model.process.compute.ComputePackage#eNS_URI
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

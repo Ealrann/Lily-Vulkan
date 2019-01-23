@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.descriptor;
+package org.sheepy.lily.vulkan.resource.descriptor;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -9,10 +9,10 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.sheepy.vulkan.common.allocation.IBasicAllocable;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.device.LogicalDeviceContext;
-import org.sheepy.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
+import org.sheepy.lily.vulkan.common.util.Logger;
 
 public class DescriptorPool extends LogicalDeviceContext implements IBasicAllocable
 {

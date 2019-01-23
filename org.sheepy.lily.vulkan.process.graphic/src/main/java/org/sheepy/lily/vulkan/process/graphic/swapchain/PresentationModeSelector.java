@@ -1,14 +1,14 @@
-package org.sheepy.vulkan.process.graphic.swapchain;
+package org.sheepy.lily.vulkan.process.graphic.swapchain;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.KHRSurface.*;
 
 import java.nio.IntBuffer;
 
-import org.sheepy.vulkan.api.window.Surface;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.enumeration.EPresentMode;
+import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
 
 public class PresentationModeSelector
 {

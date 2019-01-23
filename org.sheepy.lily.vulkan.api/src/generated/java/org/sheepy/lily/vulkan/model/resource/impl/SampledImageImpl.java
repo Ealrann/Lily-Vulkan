@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.util.Collection;
 
@@ -16,15 +16,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.sheepy.common.model.types.LNamedElement;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.IResource;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 
-import org.sheepy.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.resource.SampledImage;
-import org.sheepy.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.SampledImage;
+import org.sheepy.lily.vulkan.model.resource.Sampler;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,10 +34,10 @@ import org.sheepy.vulkan.model.resource.Sampler;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl#getDescriptorType <em>Descriptor Type</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl#getShaderStages <em>Shader Stages</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.SampledImageImpl#getSampler <em>Sampler</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getDescriptorType <em>Descriptor Type</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getShaderStages <em>Shader Stages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getSampler <em>Sampler</em>}</li>
  * </ul>
  *
  * @generated

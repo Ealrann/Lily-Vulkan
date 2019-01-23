@@ -1,8 +1,8 @@
-package org.sheepy.vulkan.demo.mesh;
+package org.sheepy.lily.vulkan.demo.mesh;
 
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.resource.indexed.IVertex;
-import org.sheepy.vulkan.resource.indexed.IndexBuffer;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.resource.indexed.IVertex;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
 
 public interface IIndexedBufferBuilder<T extends IVertex>
 {

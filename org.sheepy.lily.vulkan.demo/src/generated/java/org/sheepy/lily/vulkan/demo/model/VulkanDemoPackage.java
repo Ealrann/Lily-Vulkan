@@ -1,12 +1,12 @@
 /**
  */
-package org.sheepy.vulkan.demo.model;
+package org.sheepy.lily.vulkan.demo.model;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +20,9 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.demo.model.VulkanDemoFactory
+ * @see org.sheepy.lily.vulkan.demo.model.VulkanDemoFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.demo.model/src/generated/java' modelName='VulkanDemo' prefix='VulkanDemo' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.vulkan.demo'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.demo.model/src/generated/java' modelName='VulkanDemo' prefix='VulkanDemo' publicConstructors='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.demo'"
  * @generated
  */
 public interface VulkanDemoPackage extends EPackage
@@ -41,7 +41,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "org.sheepy.vulkan.demo.model";
+	String eNS_URI = "org.sheepy.lily.vulkan.demo.model";
 
 	/**
 	 * The package namespace name.
@@ -57,14 +57,14 @@ public interface VulkanDemoPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	VulkanDemoPackage eINSTANCE = org.sheepy.vulkan.demo.model.impl.VulkanDemoPackageImpl.init();
+	VulkanDemoPackage eINSTANCE = org.sheepy.lily.vulkan.demo.model.impl.VulkanDemoPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl <em>Mesh Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.demo.model.impl.MeshPipelineImpl <em>Mesh Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl
-	 * @see org.sheepy.vulkan.demo.model.impl.VulkanDemoPackageImpl#getMeshPipeline()
+	 * @see org.sheepy.lily.vulkan.demo.model.impl.MeshPipelineImpl
+	 * @see org.sheepy.lily.vulkan.demo.model.impl.VulkanDemoPackageImpl#getMeshPipeline()
 	 * @generated
 	 */
 	int MESH_PIPELINE = 0;
@@ -259,11 +259,11 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE_OPERATION_COUNT = GraphicPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.demo.model.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.demo.model.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.demo.model.impl.MeshBufferImpl
-	 * @see org.sheepy.vulkan.demo.model.impl.VulkanDemoPackageImpl#getMeshBuffer()
+	 * @see org.sheepy.lily.vulkan.demo.model.impl.MeshBufferImpl
+	 * @see org.sheepy.lily.vulkan.demo.model.impl.VulkanDemoPackageImpl#getMeshBuffer()
 	 * @generated
 	 */
 	int MESH_BUFFER = 1;
@@ -296,32 +296,32 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_BUFFER_OPERATION_COUNT = ResourcePackage.INDEXED_BUFFER_OPERATION_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.demo.model.MeshPipeline <em>Mesh Pipeline</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.demo.model.MeshPipeline <em>Mesh Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Mesh Pipeline</em>'.
-	 * @see org.sheepy.vulkan.demo.model.MeshPipeline
+	 * @see org.sheepy.lily.vulkan.demo.model.MeshPipeline
 	 * @generated
 	 */
 	EClass getMeshPipeline();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.demo.model.MeshPipeline#getMesh <em>Mesh</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.demo.model.MeshPipeline#getMesh <em>Mesh</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Mesh</em>'.
-	 * @see org.sheepy.vulkan.demo.model.MeshPipeline#getMesh()
+	 * @see org.sheepy.lily.vulkan.demo.model.MeshPipeline#getMesh()
 	 * @see #getMeshPipeline()
 	 * @generated
 	 */
 	EReference getMeshPipeline_Mesh();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.demo.model.MeshBuffer <em>Mesh Buffer</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.demo.model.MeshBuffer <em>Mesh Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Mesh Buffer</em>'.
-	 * @see org.sheepy.vulkan.demo.model.MeshBuffer
+	 * @see org.sheepy.lily.vulkan.demo.model.MeshBuffer
 	 * @generated
 	 */
 	EClass getMeshBuffer();
@@ -351,11 +351,11 @@ public interface VulkanDemoPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl <em>Mesh Pipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.demo.model.impl.MeshPipelineImpl <em>Mesh Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.demo.model.impl.MeshPipelineImpl
-		 * @see org.sheepy.vulkan.demo.model.impl.VulkanDemoPackageImpl#getMeshPipeline()
+		 * @see org.sheepy.lily.vulkan.demo.model.impl.MeshPipelineImpl
+		 * @see org.sheepy.lily.vulkan.demo.model.impl.VulkanDemoPackageImpl#getMeshPipeline()
 		 * @generated
 		 */
 		EClass MESH_PIPELINE = eINSTANCE.getMeshPipeline();
@@ -369,11 +369,11 @@ public interface VulkanDemoPackage extends EPackage
 		EReference MESH_PIPELINE__MESH = eINSTANCE.getMeshPipeline_Mesh();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.demo.model.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.demo.model.impl.MeshBufferImpl <em>Mesh Buffer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.demo.model.impl.MeshBufferImpl
-		 * @see org.sheepy.vulkan.demo.model.impl.VulkanDemoPackageImpl#getMeshBuffer()
+		 * @see org.sheepy.lily.vulkan.demo.model.impl.MeshBufferImpl
+		 * @see org.sheepy.lily.vulkan.demo.model.impl.VulkanDemoPackageImpl#getMeshBuffer()
 		 * @generated
 		 */
 		EClass MESH_BUFFER = eINSTANCE.getMeshBuffer();

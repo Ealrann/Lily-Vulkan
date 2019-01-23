@@ -1,26 +1,26 @@
-package org.sheepy.vulkan.process.graphic.pipeline.image;
+package org.sheepy.lily.vulkan.process.graphic.pipeline.image;
 
 import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.common.allocation.IBasicAllocable;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
-import org.sheepy.vulkan.model.resource.ImageBarrier;
-import org.sheepy.vulkan.model.resource.ImageTransition;
-import org.sheepy.vulkan.model.resource.ReferenceImageBarrier;
-import org.sheepy.vulkan.model.resource.impl.ImageBarrierImpl;
-import org.sheepy.vulkan.model.resource.impl.ImageTransitionImpl;
-import org.sheepy.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
-import org.sheepy.vulkan.process.process.AbstractProcessAdapter;
-import org.sheepy.vulkan.resource.barrier.BarrierExecutorFactory;
-import org.sheepy.vulkan.resource.barrier.IBarrierExecutor;
-import org.sheepy.vulkan.resource.nativehelper.VkImageView;
+import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.model.enumeration.EAccess;
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.ImageTransition;
+import org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier;
+import org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl;
+import org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl;
+import org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
+import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
+import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
+import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
 public class InitialImagePipelineBarrier implements IBasicAllocable
 {

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute.provider;
+package org.sheepy.lily.vulkan.model.process.compute.provider;
 
 
 import java.util.Collection;
@@ -12,16 +12,16 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.vulkan.model.process.compute.ComputeFactory;
-import org.sheepy.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.vulkan.model.process.compute.ComputePipeline;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 
-import org.sheepy.vulkan.model.process.provider.AbstractPipelineItemProvider;
+import org.sheepy.lily.vulkan.model.process.provider.AbstractPipelineItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.compute.ComputePipeline} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

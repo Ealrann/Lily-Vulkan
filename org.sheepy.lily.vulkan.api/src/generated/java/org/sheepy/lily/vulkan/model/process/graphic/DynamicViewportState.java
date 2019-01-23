@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.model.process.graphic;
 
 
 /**
@@ -12,11 +12,11 @@ package org.sheepy.vulkan.model.process.graphic;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.DynamicViewportState#getViewportCount <em>Viewport Count</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.DynamicViewportState#getScissorCount <em>Scissor Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState#getViewportCount <em>Viewport Count</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState#getScissorCount <em>Scissor Count</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getDynamicViewportState()
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getDynamicViewportState()
  * @model
  * @generated
  */
@@ -32,14 +32,14 @@ public interface DynamicViewportState extends ViewportState
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Viewport Count</em>' attribute.
 	 * @see #setViewportCount(int)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getDynamicViewportState_ViewportCount()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getDynamicViewportState_ViewportCount()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getViewportCount();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.DynamicViewportState#getViewportCount <em>Viewport Count</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState#getViewportCount <em>Viewport Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Viewport Count</em>' attribute.
@@ -58,14 +58,14 @@ public interface DynamicViewportState extends ViewportState
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Scissor Count</em>' attribute.
 	 * @see #setScissorCount(int)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getDynamicViewportState_ScissorCount()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getDynamicViewportState_ScissorCount()
 	 * @model unique="false"
 	 * @generated
 	 */
 	int getScissorCount();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.DynamicViewportState#getScissorCount <em>Scissor Count</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState#getScissorCount <em>Scissor Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Scissor Count</em>' attribute.

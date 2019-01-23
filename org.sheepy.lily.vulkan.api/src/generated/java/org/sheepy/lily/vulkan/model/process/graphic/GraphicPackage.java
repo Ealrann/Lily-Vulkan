@@ -1,13 +1,13 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,9 +21,9 @@ import org.sheepy.vulkan.model.process.ProcessPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.process.graphic.GraphicFactory
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.vulkan.model.process'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model.process'"
  * @generated
  */
 public interface GraphicPackage extends EPackage
@@ -42,7 +42,7 @@ public interface GraphicPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "org.sheepy.vulkan.model.process.graphic";
+	String eNS_URI = "org.sheepy.lily.vulkan.model.process.graphic";
 
 	/**
 	 * The package namespace name.
@@ -58,14 +58,14 @@ public interface GraphicPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	GraphicPackage eINSTANCE = org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl.init();
+	GraphicPackage eINSTANCE = org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl <em>Configuration</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl <em>Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicConfiguration()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicConfiguration()
 	 * @generated
 	 */
 	int GRAPHIC_CONFIGURATION = 0;
@@ -143,11 +143,11 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_CONFIGURATION_OPERATION_COUNT = ProcessPackage.CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRenderPassInfo()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRenderPassInfo()
 	 * @generated
 	 */
 	int RENDER_PASS_INFO = 1;
@@ -207,11 +207,11 @@ public interface GraphicPackage extends EPackage
 	int RENDER_PASS_INFO_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpass()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpass()
 	 * @generated
 	 */
 	int SUBPASS = 2;
@@ -253,11 +253,11 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl <em>Attachement Ref</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl <em>Attachement Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
 	 * @generated
 	 */
 	int ATTACHEMENT_REF = 3;
@@ -299,11 +299,11 @@ public interface GraphicPackage extends EPackage
 	int ATTACHEMENT_REF_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpassDependency()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpassDependency()
 	 * @generated
 	 */
 	int SUBPASS_DEPENDENCY = 4;
@@ -381,11 +381,11 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS_DEPENDENCY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl <em>Attachment Description</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl <em>Attachment Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentDescription()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentDescription()
 	 * @generated
 	 */
 	int ATTACHMENT_DESCRIPTION = 5;
@@ -481,11 +481,11 @@ public interface GraphicPackage extends EPackage
 	int ATTACHMENT_DESCRIPTION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl <em>Depth Attachment Description</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl <em>Depth Attachment Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthAttachmentDescription()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthAttachmentDescription()
 	 * @generated
 	 */
 	int DEPTH_ATTACHMENT_DESCRIPTION = 6;
@@ -590,11 +590,11 @@ public interface GraphicPackage extends EPackage
 	int DEPTH_ATTACHMENT_DESCRIPTION_OPERATION_COUNT = ATTACHMENT_DESCRIPTION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
 	 * @generated
 	 */
 	int GRAPHIC_PROCESS = 7;
@@ -780,11 +780,11 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS_OPERATION_COUNT = ProcessPackage.ABSTRACT_PROCESS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
 	 * @generated
 	 */
 	int IGRAPHICS_PIPELINE = 8;
@@ -889,11 +889,11 @@ public interface GraphicPackage extends EPackage
 	int IGRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.IPIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.IGUIPipeline
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
 	 * @generated
 	 */
 	int IGUI_PIPELINE = 9;
@@ -998,11 +998,11 @@ public interface GraphicPackage extends EPackage
 	int IGUI_PIPELINE_OPERATION_COUNT = IGRAPHICS_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 	 * @generated
 	 */
 	int GRAPHICS_PIPELINE = 10;
@@ -1188,11 +1188,11 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.DynamicStateImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicStateImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
 	 * @generated
 	 */
 	int DYNAMIC_STATE = 11;
@@ -1225,11 +1225,11 @@ public interface GraphicPackage extends EPackage
 	int DYNAMIC_STATE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl <em>Color Blend</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl <em>Color Blend</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
 	 * @generated
 	 */
 	int COLOR_BLEND = 12;
@@ -1316,11 +1316,11 @@ public interface GraphicPackage extends EPackage
 	int COLOR_BLEND_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl <em>Color Blend Attachment</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl <em>Color Blend Attachment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
 	 * @generated
 	 */
 	int COLOR_BLEND_ATTACHMENT = 13;
@@ -1443,11 +1443,11 @@ public interface GraphicPackage extends EPackage
 	int COLOR_BLEND_ATTACHMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.ViewportState
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ViewportState
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
 	 * @generated
 	 */
 	int VIEWPORT_STATE = 14;
@@ -1471,11 +1471,11 @@ public interface GraphicPackage extends EPackage
 	int VIEWPORT_STATE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.StaticViewportStateImpl <em>Static Viewport State</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.StaticViewportStateImpl <em>Static Viewport State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.StaticViewportStateImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.StaticViewportStateImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
 	 * @generated
 	 */
 	int STATIC_VIEWPORT_STATE = 15;
@@ -1517,11 +1517,11 @@ public interface GraphicPackage extends EPackage
 	int STATIC_VIEWPORT_STATE_OPERATION_COUNT = VIEWPORT_STATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicViewportStateImpl <em>Dynamic Viewport State</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicViewportStateImpl <em>Dynamic Viewport State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.DynamicViewportStateImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicViewportStateImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
 	 * @generated
 	 */
 	int DYNAMIC_VIEWPORT_STATE = 16;
@@ -1563,11 +1563,11 @@ public interface GraphicPackage extends EPackage
 	int DYNAMIC_VIEWPORT_STATE_OPERATION_COUNT = VIEWPORT_STATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl <em>Viewport</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl <em>Viewport</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
 	 * @generated
 	 */
 	int VIEWPORT = 17;
@@ -1627,11 +1627,11 @@ public interface GraphicPackage extends EPackage
 	int VIEWPORT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl <em>Scissor</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ScissorImpl <em>Scissor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ScissorImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
 	 * @generated
 	 */
 	int SCISSOR = 18;
@@ -1673,11 +1673,11 @@ public interface GraphicPackage extends EPackage
 	int SCISSOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl <em>Rasterizer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl <em>Rasterizer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
 	 * @generated
 	 */
 	int RASTERIZER = 19;
@@ -1764,11 +1764,11 @@ public interface GraphicPackage extends EPackage
 	int RASTERIZER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl <em>Image Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl <em>Image Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl
-	 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 	 * @generated
 	 */
 	int IMAGE_PIPELINE = 20;
@@ -1954,1090 +1954,1090 @@ public interface GraphicPackage extends EPackage
 	int IMAGE_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Configuration</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration
 	 * @generated
 	 */
 	EClass getGraphicConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Clear Before Render</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
 	EAttribute getGraphicConfiguration_ClearBeforeRender();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode <em>Presentation Mode</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode <em>Presentation Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Presentation Mode</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
 	EAttribute getGraphicConfiguration_PresentationMode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Required Swap Image Count</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
 	EAttribute getGraphicConfiguration_RequiredSwapImageCount();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Swap Image Usages</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
 	EAttribute getGraphicConfiguration_SwapImageUsages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage <em>Acquire Wait Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage <em>Acquire Wait Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Acquire Wait Stage</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
 	EAttribute getGraphicConfiguration_AcquireWaitStage();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain <em>Color Domain</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain <em>Color Domain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Color Domain</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
 	EReference getGraphicConfiguration_ColorDomain();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo <em>Render Pass Info</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo <em>Render Pass Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Render Pass Info</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.RenderPassInfo
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo
 	 * @generated
 	 */
 	EClass getRenderPassInfo();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getAttachments <em>Attachments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getAttachments <em>Attachments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Attachments</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getAttachments()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getAttachments()
 	 * @see #getRenderPassInfo()
 	 * @generated
 	 */
 	EReference getRenderPassInfo_Attachments();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getSubpasses <em>Subpasses</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getSubpasses <em>Subpasses</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Subpasses</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getSubpasses()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getSubpasses()
 	 * @see #getRenderPassInfo()
 	 * @generated
 	 */
 	EReference getRenderPassInfo_Subpasses();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getDependencies <em>Dependencies</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Dependencies</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getDependencies()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getDependencies()
 	 * @see #getRenderPassInfo()
 	 * @generated
 	 */
 	EReference getRenderPassInfo_Dependencies();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getBindPoint <em>Bind Point</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getBindPoint <em>Bind Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Bind Point</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.RenderPassInfo#getBindPoint()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo#getBindPoint()
 	 * @see #getRenderPassInfo()
 	 * @generated
 	 */
 	EAttribute getRenderPassInfo_BindPoint();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.Subpass <em>Subpass</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass <em>Subpass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Subpass</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Subpass
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass
 	 * @generated
 	 */
 	EClass getSubpass();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Subpass#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Subpass#getName()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getName()
 	 * @see #getSubpass()
 	 * @generated
 	 */
 	EAttribute getSubpass_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.Subpass#getRefs <em>Refs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.Subpass#getRefs <em>Refs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Refs</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Subpass#getRefs()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Subpass#getRefs()
 	 * @see #getSubpass()
 	 * @generated
 	 */
 	EReference getSubpass_Refs();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.AttachementRef <em>Attachement Ref</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef <em>Attachement Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attachement Ref</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachementRef
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachementRef
 	 * @generated
 	 */
 	EClass getAttachementRef();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.AttachementRef#getAttachement <em>Attachement</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef#getAttachement <em>Attachement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Attachement</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachementRef#getAttachement()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachementRef#getAttachement()
 	 * @see #getAttachementRef()
 	 * @generated
 	 */
 	EReference getAttachementRef_Attachement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachementRef#getLayout <em>Layout</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef#getLayout <em>Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Layout</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachementRef#getLayout()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachementRef#getLayout()
 	 * @see #getAttachementRef()
 	 * @generated
 	 */
 	EAttribute getAttachementRef_Layout();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency <em>Subpass Dependency</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency <em>Subpass Dependency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Subpass Dependency</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency
 	 * @generated
 	 */
 	EClass getSubpassDependency();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass <em>Src Subpass</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass <em>Src Subpass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Src Subpass</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcSubpass()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
 	EReference getSubpassDependency_SrcSubpass();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstSubpass <em>Dst Subpass</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstSubpass <em>Dst Subpass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Dst Subpass</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstSubpass()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstSubpass()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
 	EReference getSubpassDependency_DstSubpass();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask <em>Src Stage Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask <em>Src Stage Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Src Stage Mask</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcStageMask()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
 	EAttribute getSubpassDependency_SrcStageMask();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstStageMask <em>Dst Stage Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstStageMask <em>Dst Stage Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Dst Stage Mask</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstStageMask()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstStageMask()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
 	EAttribute getSubpassDependency_DstStageMask();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcAccesses <em>Src Accesses</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcAccesses <em>Src Accesses</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Src Accesses</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getSrcAccesses()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getSrcAccesses()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
 	EAttribute getSubpassDependency_SrcAccesses();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstAccesses <em>Dst Accesses</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstAccesses <em>Dst Accesses</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Dst Accesses</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.SubpassDependency#getDstAccesses()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency#getDstAccesses()
 	 * @see #getSubpassDependency()
 	 * @generated
 	 */
 	EAttribute getSubpassDependency_DstAccesses();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription <em>Attachment Description</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription <em>Attachment Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attachment Description</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription
 	 * @generated
 	 */
 	EClass getAttachmentDescription();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getName()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getName()
 	 * @see #getAttachmentDescription()
 	 * @generated
 	 */
 	EAttribute getAttachmentDescription_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getSamples <em>Samples</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getSamples <em>Samples</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Samples</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getSamples()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getSamples()
 	 * @see #getAttachmentDescription()
 	 * @generated
 	 */
 	EAttribute getAttachmentDescription_Samples();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getLoadOp <em>Load Op</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getLoadOp <em>Load Op</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Load Op</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getLoadOp()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getLoadOp()
 	 * @see #getAttachmentDescription()
 	 * @generated
 	 */
 	EAttribute getAttachmentDescription_LoadOp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getStoreOp <em>Store Op</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getStoreOp <em>Store Op</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Store Op</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getStoreOp()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getStoreOp()
 	 * @see #getAttachmentDescription()
 	 * @generated
 	 */
 	EAttribute getAttachmentDescription_StoreOp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getStencilLoadOp <em>Stencil Load Op</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getStencilLoadOp <em>Stencil Load Op</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stencil Load Op</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getStencilLoadOp()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getStencilLoadOp()
 	 * @see #getAttachmentDescription()
 	 * @generated
 	 */
 	EAttribute getAttachmentDescription_StencilLoadOp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getStencilStoreOp <em>Stencil Store Op</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getStencilStoreOp <em>Stencil Store Op</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stencil Store Op</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getStencilStoreOp()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getStencilStoreOp()
 	 * @see #getAttachmentDescription()
 	 * @generated
 	 */
 	EAttribute getAttachmentDescription_StencilStoreOp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getInitialLayout <em>Initial Layout</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getInitialLayout <em>Initial Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Initial Layout</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getInitialLayout()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getInitialLayout()
 	 * @see #getAttachmentDescription()
 	 * @generated
 	 */
 	EAttribute getAttachmentDescription_InitialLayout();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getFinalLayout <em>Final Layout</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getFinalLayout <em>Final Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Final Layout</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.AttachmentDescription#getFinalLayout()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getFinalLayout()
 	 * @see #getAttachmentDescription()
 	 * @generated
 	 */
 	EAttribute getAttachmentDescription_FinalLayout();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription <em>Depth Attachment Description</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription <em>Depth Attachment Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Depth Attachment Description</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription
 	 * @generated
 	 */
 	EClass getDepthAttachmentDescription();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage <em>Depth Image</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage <em>Depth Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Depth Image</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription#getDepthImage()
 	 * @see #getDepthAttachmentDescription()
 	 * @generated
 	 */
 	EReference getDepthAttachmentDescription_DepthImage();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess <em>Process</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess <em>Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Process</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcess
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess
 	 * @generated
 	 */
 	EClass getGraphicProcess();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Configuration</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcess#getConfiguration()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getConfiguration()
 	 * @see #getGraphicProcess()
 	 * @generated
 	 */
 	EReference getGraphicProcess_Configuration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo <em>Render Pass Info</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo <em>Render Pass Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Render Pass Info</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getRenderPassInfo()
 	 * @see #getGraphicProcess()
 	 * @generated
 	 */
 	EReference getGraphicProcess_RenderPassInfo();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicProcess#getDepthImage <em>Depth Image</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getDepthImage <em>Depth Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Depth Image</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicProcess#getDepthImage()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getDepthImage()
 	 * @see #getGraphicProcess()
 	 * @generated
 	 */
 	EReference getGraphicProcess_DepthImage();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IGraphics Pipeline</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline
 	 * @generated
 	 */
 	EClass getIGraphicsPipeline();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IGUI Pipeline</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.IGUIPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline
 	 * @generated
 	 */
 	EClass getIGUIPipeline();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Graphics Pipeline</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline
 	 * @generated
 	 */
 	EClass getGraphicsPipeline();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getShaders <em>Shaders</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getShaders <em>Shaders</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Shaders</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getShaders()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getShaders()
 	 * @see #getGraphicsPipeline()
 	 * @generated
 	 */
 	EReference getGraphicsPipeline_Shaders();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState <em>Viewport State</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getViewportState <em>Viewport State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Viewport State</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getViewportState()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getViewportState()
 	 * @see #getGraphicsPipeline()
 	 * @generated
 	 */
 	EReference getGraphicsPipeline_ViewportState();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Rasterizer</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer()
 	 * @see #getGraphicsPipeline()
 	 * @generated
 	 */
 	EReference getGraphicsPipeline_Rasterizer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Color Blend</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend()
 	 * @see #getGraphicsPipeline()
 	 * @generated
 	 */
 	EReference getGraphicsPipeline_ColorBlend();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Dynamic State</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState()
 	 * @see #getGraphicsPipeline()
 	 * @generated
 	 */
 	EReference getGraphicsPipeline_DynamicState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Subpass</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicsPipeline#getSubpass()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass()
 	 * @see #getGraphicsPipeline()
 	 * @generated
 	 */
 	EAttribute getGraphicsPipeline_Subpass();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.DynamicState <em>Dynamic State</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicState <em>Dynamic State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Dynamic State</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.DynamicState
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DynamicState
 	 * @generated
 	 */
 	EClass getDynamicState();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.DynamicState#getStates <em>States</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicState#getStates <em>States</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>States</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.DynamicState#getStates()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DynamicState#getStates()
 	 * @see #getDynamicState()
 	 * @generated
 	 */
 	EAttribute getDynamicState_States();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend <em>Color Blend</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend <em>Color Blend</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Color Blend</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlend
 	 * @generated
 	 */
 	EClass getColorBlend();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getAttachments <em>Attachments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getAttachments <em>Attachments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Attachments</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getAttachments()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getAttachments()
 	 * @see #getColorBlend()
 	 * @generated
 	 */
 	EReference getColorBlend_Attachments();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#isLogicOpEnable <em>Logic Op Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#isLogicOpEnable <em>Logic Op Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Logic Op Enable</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#isLogicOpEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#isLogicOpEnable()
 	 * @see #getColorBlend()
 	 * @generated
 	 */
 	EAttribute getColorBlend_LogicOpEnable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getLogicOp <em>Logic Op</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getLogicOp <em>Logic Op</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Logic Op</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getLogicOp()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getLogicOp()
 	 * @see #getColorBlend()
 	 * @generated
 	 */
 	EAttribute getColorBlend_LogicOp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant0 <em>Blend Constant0</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getBlendConstant0 <em>Blend Constant0</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Blend Constant0</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant0()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getBlendConstant0()
 	 * @see #getColorBlend()
 	 * @generated
 	 */
 	EAttribute getColorBlend_BlendConstant0();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant1 <em>Blend Constant1</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getBlendConstant1 <em>Blend Constant1</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Blend Constant1</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant1()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getBlendConstant1()
 	 * @see #getColorBlend()
 	 * @generated
 	 */
 	EAttribute getColorBlend_BlendConstant1();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant2 <em>Blend Constant2</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getBlendConstant2 <em>Blend Constant2</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Blend Constant2</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant2()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getBlendConstant2()
 	 * @see #getColorBlend()
 	 * @generated
 	 */
 	EAttribute getColorBlend_BlendConstant2();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant3 <em>Blend Constant3</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getBlendConstant3 <em>Blend Constant3</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Blend Constant3</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlend#getBlendConstant3()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlend#getBlendConstant3()
 	 * @see #getColorBlend()
 	 * @generated
 	 */
 	EAttribute getColorBlend_BlendConstant3();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment <em>Color Blend Attachment</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment <em>Color Blend Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Color Blend Attachment</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment
 	 * @generated
 	 */
 	EClass getColorBlendAttachment();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isBlendEnable <em>Blend Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isBlendEnable <em>Blend Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Blend Enable</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isBlendEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isBlendEnable()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_BlendEnable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isRedComponentEnable <em>Red Component Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isRedComponentEnable <em>Red Component Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Red Component Enable</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isRedComponentEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isRedComponentEnable()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_RedComponentEnable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isGreenComponentEnable <em>Green Component Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isGreenComponentEnable <em>Green Component Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Green Component Enable</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isGreenComponentEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isGreenComponentEnable()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_GreenComponentEnable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isBlueComponentEnable <em>Blue Component Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isBlueComponentEnable <em>Blue Component Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Blue Component Enable</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isBlueComponentEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isBlueComponentEnable()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_BlueComponentEnable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isAlphaComponentEnable <em>Alpha Component Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isAlphaComponentEnable <em>Alpha Component Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Alpha Component Enable</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#isAlphaComponentEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#isAlphaComponentEnable()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_AlphaComponentEnable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getSrcColor <em>Src Color</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getSrcColor <em>Src Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Src Color</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getSrcColor()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getSrcColor()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_SrcColor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getDstColor <em>Dst Color</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getDstColor <em>Dst Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Dst Color</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getDstColor()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getDstColor()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_DstColor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getSrcAlpha <em>Src Alpha</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getSrcAlpha <em>Src Alpha</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Src Alpha</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getSrcAlpha()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getSrcAlpha()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_SrcAlpha();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getDstAlpha <em>Dst Alpha</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getDstAlpha <em>Dst Alpha</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Dst Alpha</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getDstAlpha()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getDstAlpha()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_DstAlpha();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getColorBlendOp <em>Color Blend Op</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getColorBlendOp <em>Color Blend Op</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Color Blend Op</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getColorBlendOp()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getColorBlendOp()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_ColorBlendOp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getAlphaBlendOp <em>Alpha Blend Op</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getAlphaBlendOp <em>Alpha Blend Op</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Alpha Blend Op</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment#getAlphaBlendOp()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment#getAlphaBlendOp()
 	 * @see #getColorBlendAttachment()
 	 * @generated
 	 */
 	EAttribute getColorBlendAttachment_AlphaBlendOp();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Viewport State</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ViewportState
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ViewportState
 	 * @generated
 	 */
 	EClass getViewportState();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.StaticViewportState <em>Static Viewport State</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState <em>Static Viewport State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Static Viewport State</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.StaticViewportState
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState
 	 * @generated
 	 */
 	EClass getStaticViewportState();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.StaticViewportState#getViewports <em>Viewports</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState#getViewports <em>Viewports</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Viewports</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.StaticViewportState#getViewports()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState#getViewports()
 	 * @see #getStaticViewportState()
 	 * @generated
 	 */
 	EReference getStaticViewportState_Viewports();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.graphic.StaticViewportState#getScissors <em>Scissors</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState#getScissors <em>Scissors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Scissors</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.StaticViewportState#getScissors()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState#getScissors()
 	 * @see #getStaticViewportState()
 	 * @generated
 	 */
 	EReference getStaticViewportState_Scissors();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.DynamicViewportState <em>Dynamic Viewport State</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState <em>Dynamic Viewport State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Dynamic Viewport State</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.DynamicViewportState
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState
 	 * @generated
 	 */
 	EClass getDynamicViewportState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.DynamicViewportState#getViewportCount <em>Viewport Count</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState#getViewportCount <em>Viewport Count</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Viewport Count</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.DynamicViewportState#getViewportCount()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState#getViewportCount()
 	 * @see #getDynamicViewportState()
 	 * @generated
 	 */
 	EAttribute getDynamicViewportState_ViewportCount();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.DynamicViewportState#getScissorCount <em>Scissor Count</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState#getScissorCount <em>Scissor Count</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Scissor Count</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.DynamicViewportState#getScissorCount()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState#getScissorCount()
 	 * @see #getDynamicViewportState()
 	 * @generated
 	 */
 	EAttribute getDynamicViewportState_ScissorCount();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.Viewport <em>Viewport</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Viewport <em>Viewport</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Viewport</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Viewport
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Viewport
 	 * @generated
 	 */
 	EClass getViewport();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Viewport#getOffset <em>Offset</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Viewport#getOffset <em>Offset</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Offset</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Viewport#getOffset()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Viewport#getOffset()
 	 * @see #getViewport()
 	 * @generated
 	 */
 	EAttribute getViewport_Offset();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Viewport#getExtent <em>Extent</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Viewport#getExtent <em>Extent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Extent</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Viewport#getExtent()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Viewport#getExtent()
 	 * @see #getViewport()
 	 * @generated
 	 */
 	EAttribute getViewport_Extent();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Viewport#getMinDepth <em>Min Depth</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Viewport#getMinDepth <em>Min Depth</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Min Depth</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Viewport#getMinDepth()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Viewport#getMinDepth()
 	 * @see #getViewport()
 	 * @generated
 	 */
 	EAttribute getViewport_MinDepth();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Viewport#getMaxDepth <em>Max Depth</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Viewport#getMaxDepth <em>Max Depth</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Max Depth</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Viewport#getMaxDepth()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Viewport#getMaxDepth()
 	 * @see #getViewport()
 	 * @generated
 	 */
 	EAttribute getViewport_MaxDepth();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.Scissor <em>Scissor</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Scissor <em>Scissor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Scissor</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Scissor
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Scissor
 	 * @generated
 	 */
 	EClass getScissor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Scissor#getOffset <em>Offset</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Scissor#getOffset <em>Offset</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Offset</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Scissor#getOffset()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Scissor#getOffset()
 	 * @see #getScissor()
 	 * @generated
 	 */
 	EAttribute getScissor_Offset();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Scissor#getExtent <em>Extent</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Scissor#getExtent <em>Extent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Extent</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Scissor#getExtent()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Scissor#getExtent()
 	 * @see #getScissor()
 	 * @generated
 	 */
 	EAttribute getScissor_Extent();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer <em>Rasterizer</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer <em>Rasterizer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Rasterizer</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Rasterizer
 	 * @generated
 	 */
 	EClass getRasterizer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getCullMode <em>Cull Mode</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getCullMode <em>Cull Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Cull Mode</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#getCullMode()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getCullMode()
 	 * @see #getRasterizer()
 	 * @generated
 	 */
 	EAttribute getRasterizer_CullMode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getFrontFace <em>Front Face</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getFrontFace <em>Front Face</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Front Face</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#getFrontFace()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getFrontFace()
 	 * @see #getRasterizer()
 	 * @generated
 	 */
 	EAttribute getRasterizer_FrontFace();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getPolygonMode <em>Polygon Mode</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getPolygonMode <em>Polygon Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Polygon Mode</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#getPolygonMode()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getPolygonMode()
 	 * @see #getRasterizer()
 	 * @generated
 	 */
 	EAttribute getRasterizer_PolygonMode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getLineWidth <em>Line Width</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getLineWidth <em>Line Width</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Line Width</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#getLineWidth()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getLineWidth()
 	 * @see #getRasterizer()
 	 * @generated
 	 */
 	EAttribute getRasterizer_LineWidth();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable <em>Depth Clamp Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable <em>Depth Clamp Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Depth Clamp Enable</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable()
 	 * @see #getRasterizer()
 	 * @generated
 	 */
 	EAttribute getRasterizer_DepthClampEnable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDiscardEnable <em>Discard Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDiscardEnable <em>Discard Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Discard Enable</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#isDiscardEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDiscardEnable()
 	 * @see #getRasterizer()
 	 * @generated
 	 */
 	EAttribute getRasterizer_DiscardEnable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable <em>Depth Bias Enable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable <em>Depth Bias Enable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Depth Bias Enable</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable()
 	 * @see #getRasterizer()
 	 * @generated
 	 */
 	EAttribute getRasterizer_DepthBiasEnable();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline <em>Image Pipeline</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline <em>Image Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Image Pipeline</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline
 	 * @generated
 	 */
 	EClass getImagePipeline();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImage <em>Image</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImage <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Image</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImage()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImage()
 	 * @see #getImagePipeline()
 	 * @generated
 	 */
 	EReference getImagePipeline_Image();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcStage <em>Image Src Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImageSrcStage <em>Image Src Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Image Src Stage</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcStage()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImageSrcStage()
 	 * @see #getImagePipeline()
 	 * @generated
 	 */
 	EAttribute getImagePipeline_ImageSrcStage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstStage <em>Image Dst Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImageDstStage <em>Image Dst Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Image Dst Stage</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstStage()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImageDstStage()
 	 * @see #getImagePipeline()
 	 * @generated
 	 */
 	EAttribute getImagePipeline_ImageDstStage();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccessMask <em>Image Src Access Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccessMask <em>Image Src Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Image Src Access Mask</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccessMask()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImageSrcAccessMask()
 	 * @see #getImagePipeline()
 	 * @generated
 	 */
 	EAttribute getImagePipeline_ImageSrcAccessMask();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccessMask <em>Image Dst Access Mask</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImageDstAccessMask <em>Image Dst Access Mask</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Image Dst Access Mask</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getImageDstAccessMask()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getImageDstAccessMask()
 	 * @see #getImagePipeline()
 	 * @generated
 	 */
 	EAttribute getImagePipeline_ImageDstAccessMask();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.graphic.ImagePipeline#getSrcQueue <em>Src Queue</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getSrcQueue <em>Src Queue</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Src Queue</em>'.
-	 * @see org.sheepy.vulkan.model.process.graphic.ImagePipeline#getSrcQueue()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline#getSrcQueue()
 	 * @see #getImagePipeline()
 	 * @generated
 	 */
@@ -3068,11 +3068,11 @@ public interface GraphicPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl <em>Configuration</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl <em>Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicConfigurationImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicConfiguration()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicConfiguration()
 		 * @generated
 		 */
 		EClass GRAPHIC_CONFIGURATION = eINSTANCE.getGraphicConfiguration();
@@ -3126,11 +3126,11 @@ public interface GraphicPackage extends EPackage
 		EReference GRAPHIC_CONFIGURATION__COLOR_DOMAIN = eINSTANCE.getGraphicConfiguration_ColorDomain();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.RenderPassInfoImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRenderPassInfo()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRenderPassInfo()
 		 * @generated
 		 */
 		EClass RENDER_PASS_INFO = eINSTANCE.getRenderPassInfo();
@@ -3168,11 +3168,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute RENDER_PASS_INFO__BIND_POINT = eINSTANCE.getRenderPassInfo_BindPoint();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.SubpassImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpass()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpass()
 		 * @generated
 		 */
 		EClass SUBPASS = eINSTANCE.getSubpass();
@@ -3194,11 +3194,11 @@ public interface GraphicPackage extends EPackage
 		EReference SUBPASS__REFS = eINSTANCE.getSubpass_Refs();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl <em>Attachement Ref</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl <em>Attachement Ref</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.AttachementRefImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
 		 * @generated
 		 */
 		EClass ATTACHEMENT_REF = eINSTANCE.getAttachementRef();
@@ -3220,11 +3220,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute ATTACHEMENT_REF__LAYOUT = eINSTANCE.getAttachementRef_Layout();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.SubpassDependencyImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpassDependency()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpassDependency()
 		 * @generated
 		 */
 		EClass SUBPASS_DEPENDENCY = eINSTANCE.getSubpassDependency();
@@ -3278,11 +3278,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute SUBPASS_DEPENDENCY__DST_ACCESSES = eINSTANCE.getSubpassDependency_DstAccesses();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl <em>Attachment Description</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl <em>Attachment Description</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentDescription()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentDescription()
 		 * @generated
 		 */
 		EClass ATTACHMENT_DESCRIPTION = eINSTANCE.getAttachmentDescription();
@@ -3352,11 +3352,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute ATTACHMENT_DESCRIPTION__FINAL_LAYOUT = eINSTANCE.getAttachmentDescription_FinalLayout();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl <em>Depth Attachment Description</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl <em>Depth Attachment Description</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthAttachmentDescription()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthAttachmentDescription()
 		 * @generated
 		 */
 		EClass DEPTH_ATTACHMENT_DESCRIPTION = eINSTANCE.getDepthAttachmentDescription();
@@ -3370,11 +3370,11 @@ public interface GraphicPackage extends EPackage
 		EReference DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE = eINSTANCE.getDepthAttachmentDescription_DepthImage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicProcessImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
 		 * @generated
 		 */
 		EClass GRAPHIC_PROCESS = eINSTANCE.getGraphicProcess();
@@ -3404,31 +3404,31 @@ public interface GraphicPackage extends EPackage
 		EReference GRAPHIC_PROCESS__DEPTH_IMAGE = eINSTANCE.getGraphicProcess_DepthImage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.IGraphicsPipeline
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
 		 * @generated
 		 */
 		EClass IGRAPHICS_PIPELINE = eINSTANCE.getIGraphicsPipeline();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.IGUIPipeline
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
 		 * @generated
 		 */
 		EClass IGUI_PIPELINE = eINSTANCE.getIGUIPipeline();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicsPipelineImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 		 * @generated
 		 */
 		EClass GRAPHICS_PIPELINE = eINSTANCE.getGraphicsPipeline();
@@ -3482,11 +3482,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute GRAPHICS_PIPELINE__SUBPASS = eINSTANCE.getGraphicsPipeline_Subpass();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.DynamicStateImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicStateImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
 		 * @generated
 		 */
 		EClass DYNAMIC_STATE = eINSTANCE.getDynamicState();
@@ -3500,11 +3500,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute DYNAMIC_STATE__STATES = eINSTANCE.getDynamicState_States();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl <em>Color Blend</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl <em>Color Blend</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
 		 * @generated
 		 */
 		EClass COLOR_BLEND = eINSTANCE.getColorBlend();
@@ -3566,11 +3566,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute COLOR_BLEND__BLEND_CONSTANT3 = eINSTANCE.getColorBlend_BlendConstant3();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl <em>Color Blend Attachment</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl <em>Color Blend Attachment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
 		 * @generated
 		 */
 		EClass COLOR_BLEND_ATTACHMENT = eINSTANCE.getColorBlendAttachment();
@@ -3664,21 +3664,21 @@ public interface GraphicPackage extends EPackage
 		EAttribute COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP = eINSTANCE.getColorBlendAttachment_AlphaBlendOp();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.ViewportState
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.ViewportState
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
 		 * @generated
 		 */
 		EClass VIEWPORT_STATE = eINSTANCE.getViewportState();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.StaticViewportStateImpl <em>Static Viewport State</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.StaticViewportStateImpl <em>Static Viewport State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.StaticViewportStateImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.StaticViewportStateImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
 		 * @generated
 		 */
 		EClass STATIC_VIEWPORT_STATE = eINSTANCE.getStaticViewportState();
@@ -3700,11 +3700,11 @@ public interface GraphicPackage extends EPackage
 		EReference STATIC_VIEWPORT_STATE__SCISSORS = eINSTANCE.getStaticViewportState_Scissors();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.DynamicViewportStateImpl <em>Dynamic Viewport State</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicViewportStateImpl <em>Dynamic Viewport State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.DynamicViewportStateImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicViewportStateImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
 		 * @generated
 		 */
 		EClass DYNAMIC_VIEWPORT_STATE = eINSTANCE.getDynamicViewportState();
@@ -3726,11 +3726,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT = eINSTANCE.getDynamicViewportState_ScissorCount();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl <em>Viewport</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl <em>Viewport</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.ViewportImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
 		 * @generated
 		 */
 		EClass VIEWPORT = eINSTANCE.getViewport();
@@ -3768,11 +3768,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute VIEWPORT__MAX_DEPTH = eINSTANCE.getViewport_MaxDepth();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl <em>Scissor</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ScissorImpl <em>Scissor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.ScissorImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ScissorImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
 		 * @generated
 		 */
 		EClass SCISSOR = eINSTANCE.getScissor();
@@ -3794,11 +3794,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute SCISSOR__EXTENT = eINSTANCE.getScissor_Extent();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl <em>Rasterizer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl <em>Rasterizer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.RasterizerImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
 		 * @generated
 		 */
 		EClass RASTERIZER = eINSTANCE.getRasterizer();
@@ -3860,11 +3860,11 @@ public interface GraphicPackage extends EPackage
 		EAttribute RASTERIZER__DEPTH_BIAS_ENABLE = eINSTANCE.getRasterizer_DepthBiasEnable();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl <em>Image Pipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl <em>Image Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl
-		 * @see org.sheepy.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 		 * @generated
 		 */
 		EClass IMAGE_PIPELINE = eINSTANCE.getImagePipeline();

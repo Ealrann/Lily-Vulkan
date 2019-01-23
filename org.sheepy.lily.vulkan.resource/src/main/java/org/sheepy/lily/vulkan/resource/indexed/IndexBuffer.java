@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.indexed;
+package org.sheepy.lily.vulkan.resource.indexed;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -6,11 +6,11 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.vulkan.common.allocation.IBasicAllocable;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
-import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
+import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.resource.buffer.BufferAllocator;
+import org.sheepy.lily.vulkan.resource.buffer.BufferGPUFiller;
+import org.sheepy.lily.vulkan.resource.buffer.GPUBufferBackend;
 
 public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 {

@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.window;
+package org.sheepy.lily.vulkan.common.window;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFWVulkan.*;
@@ -9,12 +9,12 @@ import java.util.List;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
-import org.sheepy.common.api.types.SVector2i;
-import org.sheepy.common.model.application.Application;
-import org.sheepy.vulkan.api.window.IWindow;
-import org.sheepy.vulkan.api.window.IWindowListener;
-import org.sheepy.vulkan.api.window.Surface;
-import org.sheepy.vulkan.common.util.Logger;
+import org.sheepy.lily.core.api.types.SVector2i;
+import org.sheepy.lily.core.model.application.Application;
+import org.sheepy.lily.vulkan.api.window.IWindow;
+import org.sheepy.lily.vulkan.api.window.IWindowListener;
+import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.common.util.Logger;
 
 public class Window implements IWindow
 {

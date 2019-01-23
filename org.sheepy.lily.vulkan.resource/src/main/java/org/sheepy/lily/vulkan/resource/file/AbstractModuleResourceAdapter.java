@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.resource.file;
+package org.sheepy.lily.vulkan.resource.file;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.sheepy.vulkan.model.resource.AbstractModuleResource;
-import org.sheepy.vulkan.model.resource.PathResource;
+import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
+import org.sheepy.lily.vulkan.model.resource.PathResource;
 
 public abstract class AbstractModuleResourceAdapter extends PathResourceAdapter
 {

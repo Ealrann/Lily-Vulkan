@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.resource;
+package org.sheepy.lily.vulkan.resource;
 
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.vulkan.common.execution.IResourceAllocableAdapter;
-import org.sheepy.vulkan.model.IResource;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.vulkan.common.execution.IResourceAllocableAdapter;
+import org.sheepy.lily.vulkan.model.IResource;
 
 public abstract class ResourceAdapter extends AbstractStatefullAdapter
 		implements IResourceAllocableAdapter

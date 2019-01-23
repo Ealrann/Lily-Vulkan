@@ -1,13 +1,13 @@
-package org.sheepy.vulkan.common.allocation.adapter.impl;
+package org.sheepy.lily.vulkan.common.allocation.adapter.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.vulkan.common.allocation.IBasicAllocable;
-import org.sheepy.vulkan.common.allocation.adapter.IAllocableAdapter;
+import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
 
 public abstract class AbstractAllocableAdapter extends AbstractStatefullAdapter
 		implements IAllocableAdapter

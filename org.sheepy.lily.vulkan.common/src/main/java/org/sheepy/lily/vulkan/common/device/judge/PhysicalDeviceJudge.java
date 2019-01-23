@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.device.judge;
+package org.sheepy.lily.vulkan.common.device.judge;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
@@ -10,10 +10,10 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
-import org.sheepy.vulkan.api.window.Surface;
-import org.sheepy.vulkan.common.device.PhysicalDevice;
-import org.sheepy.vulkan.common.device.data.ColorDomains;
-import org.sheepy.vulkan.common.device.data.PresentModes;
+import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
+import org.sheepy.lily.vulkan.common.device.data.ColorDomains;
+import org.sheepy.lily.vulkan.common.device.data.PresentModes;
 
 public class PhysicalDeviceJudge
 {

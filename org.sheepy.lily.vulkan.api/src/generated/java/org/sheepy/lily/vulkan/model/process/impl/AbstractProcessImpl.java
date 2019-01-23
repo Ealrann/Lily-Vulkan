@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.impl;
+package org.sheepy.lily.vulkan.model.process.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -24,20 +24,20 @@ import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.common.api.util.LTreeIterator;
-import org.sheepy.common.model.inference.IInferenceObject;
-import org.sheepy.common.model.root.LObject;
-import org.sheepy.common.model.root.RootPackage.Literals;
-import org.sheepy.common.model.types.LNamedElement;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.IResource;
+import org.sheepy.lily.core.api.util.LTreeIterator;
+import org.sheepy.lily.core.model.inference.IInferenceObject;
+import org.sheepy.lily.core.model.root.LObject;
+import org.sheepy.lily.core.model.root.RootPackage.Literals;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.IResource;
 
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.IProcessUnit;
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.IProcessUnit;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.vulkan.model.process.ProcessSemaphore;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,16 +47,16 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getContentObjects <em>Content Objects</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getResources <em>Resources</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getUnits <em>Units</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getSemaphores <em>Semaphores</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#isInitializedSignalizedSemaphore <em>Initialized Signalized Semaphore</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl#getDependentProcesses <em>Dependent Processes</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getContentObjects <em>Content Objects</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getUnits <em>Units</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSemaphores <em>Semaphores</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isInitializedSignalizedSemaphore <em>Initialized Signalized Semaphore</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDependentProcesses <em>Dependent Processes</em>}</li>
  * </ul>
  *
  * @generated
@@ -415,21 +415,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
-	public EList<ProcessSemaphore> getSemaphores()
-	{
-		if (semaphores == null)
-		{
-			semaphores = new EObjectContainmentEList<ProcessSemaphore>(ProcessSemaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES);
-		}
-		return semaphores;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public <T extends LObject> EList<T> createContainmentEList(final EClass targetEClass)
 	{
 		EList<T> res = null;
@@ -516,6 +501,21 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	public IInferenceObject lInferenceObject()
 	{
 		return this;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<ProcessSemaphore> getSemaphores()
+	{
+		if (semaphores == null)
+		{
+			semaphores = new EObjectContainmentEList<ProcessSemaphore>(ProcessSemaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES);
+		}
+		return semaphores;
 	}
 
 	/**

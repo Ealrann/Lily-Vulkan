@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model;
+package org.sheepy.lily.vulkan.model;
 
-import org.sheepy.common.model.types.LNamedElement;
+import org.sheepy.lily.core.model.types.LNamedElement;
 
 
 /**
@@ -14,10 +14,10 @@ import org.sheepy.common.model.types.LNamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.IProcess#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.IProcess#isEnabled <em>Enabled</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.VulkanPackage#getIProcess()
+ * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIProcess()
  * @model interface="true" abstract="true"
  * @generated
  */
@@ -34,14 +34,14 @@ public interface IProcess extends IEnginePart, LNamedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enabled</em>' attribute.
 	 * @see #setEnabled(boolean)
-	 * @see org.sheepy.vulkan.model.VulkanPackage#getIProcess_Enabled()
+	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIProcess_Enabled()
 	 * @model default="true" unique="false"
 	 * @generated
 	 */
 	boolean isEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.IProcess#isEnabled <em>Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.IProcess#isEnabled <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enabled</em>' attribute.

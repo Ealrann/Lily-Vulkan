@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.process.compute.pipeline;
-//package org.sheepy.vulkan.pipeline.compute;
+package org.sheepy.lily.vulkan.process.compute.pipeline;
+//package org.sheepy.lily.vulkan.pipeline.compute;
 //
 //import static org.lwjgl.vulkan.VK10.VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT;
 //
-//import org.sheepy.vulkan.buffer.Image;
-//import org.sheepy.vulkan.buffer.ImageBarrier;
+//import org.sheepy.lily.vulkan.buffer.Image;
+//import org.sheepy.lily.vulkan.buffer.ImageBarrier;
 //
 //public class ComputeImageBarrier extends ImageBarrier
 //{

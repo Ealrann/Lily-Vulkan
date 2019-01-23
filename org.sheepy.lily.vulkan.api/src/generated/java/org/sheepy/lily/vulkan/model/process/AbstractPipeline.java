@@ -1,11 +1,11 @@
 /**
  */
-package org.sheepy.vulkan.model.process;
+package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,12 +16,12 @@ import org.sheepy.vulkan.model.resource.DescriptorSet;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.AbstractPipeline#getUnits <em>Units</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getUnits <em>Units</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline()
+ * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline()
  * @model abstract="true"
  * @generated
  */
@@ -29,7 +29,7 @@ public interface AbstractPipeline extends IPipeline
 {
 	/**
 	 * Returns the value of the '<em><b>Units</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.process.IPipelineUnit}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.IPipelineUnit}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Units</em>' containment reference list isn't clear,
@@ -37,7 +37,7 @@ public interface AbstractPipeline extends IPipeline
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Units</em>' containment reference list.
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline_Units()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline_Units()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -53,14 +53,14 @@ public interface AbstractPipeline extends IPipeline
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Descriptor Set</em>' reference.
 	 * @see #setDescriptorSet(DescriptorSet)
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline_DescriptorSet()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline_DescriptorSet()
 	 * @model
 	 * @generated
 	 */
 	DescriptorSet getDescriptorSet();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Descriptor Set</em>' reference.
@@ -79,14 +79,14 @@ public interface AbstractPipeline extends IPipeline
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constants</em>' reference.
 	 * @see #setConstants(AbstractConstants)
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractPipeline_Constants()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline_Constants()
 	 * @model
 	 * @generated
 	 */
 	AbstractConstants getConstants();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Constants</em>' reference.

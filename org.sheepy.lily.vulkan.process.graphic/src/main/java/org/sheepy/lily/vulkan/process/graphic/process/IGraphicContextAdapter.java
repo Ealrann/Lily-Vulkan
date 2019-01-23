@@ -1,8 +1,8 @@
-package org.sheepy.vulkan.process.graphic.process;
+package org.sheepy.lily.vulkan.process.graphic.process;
 
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.process.process.IContextAdapter;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.process.process.IContextAdapter;
 
 public interface IGraphicContextAdapter extends IContextAdapter<GraphicContext>
 {

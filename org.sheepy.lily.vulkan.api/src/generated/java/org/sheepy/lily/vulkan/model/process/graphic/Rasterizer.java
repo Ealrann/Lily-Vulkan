@@ -1,12 +1,12 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.sheepy.vulkan.model.enumeration.ECullMode;
-import org.sheepy.vulkan.model.enumeration.EFrontFace;
-import org.sheepy.vulkan.model.enumeration.EPolygonMode;
+import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
+import org.sheepy.lily.vulkan.model.enumeration.EFrontFace;
+import org.sheepy.lily.vulkan.model.enumeration.EPolygonMode;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,16 +17,16 @@ import org.sheepy.vulkan.model.enumeration.EPolygonMode;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getCullMode <em>Cull Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getFrontFace <em>Front Face</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getPolygonMode <em>Polygon Mode</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getLineWidth <em>Line Width</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable <em>Depth Clamp Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDiscardEnable <em>Discard Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable <em>Depth Bias Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getCullMode <em>Cull Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getFrontFace <em>Front Face</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getPolygonMode <em>Polygon Mode</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getLineWidth <em>Line Width</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable <em>Depth Clamp Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDiscardEnable <em>Discard Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable <em>Depth Bias Enable</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRasterizer()
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRasterizer()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface Rasterizer extends EObject
 	/**
 	 * Returns the value of the '<em><b>Cull Mode</b></em>' attribute.
 	 * The default value is <code>"BACK_BIT"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECullMode}.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.ECullMode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Cull Mode</em>' attribute isn't clear,
@@ -43,20 +43,20 @@ public interface Rasterizer extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cull Mode</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECullMode
+	 * @see org.sheepy.lily.vulkan.model.enumeration.ECullMode
 	 * @see #setCullMode(ECullMode)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRasterizer_CullMode()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRasterizer_CullMode()
 	 * @model default="BACK_BIT" unique="false"
 	 * @generated
 	 */
 	ECullMode getCullMode();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getCullMode <em>Cull Mode</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getCullMode <em>Cull Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cull Mode</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.ECullMode
+	 * @see org.sheepy.lily.vulkan.model.enumeration.ECullMode
 	 * @see #getCullMode()
 	 * @generated
 	 */
@@ -65,7 +65,7 @@ public interface Rasterizer extends EObject
 	/**
 	 * Returns the value of the '<em><b>Front Face</b></em>' attribute.
 	 * The default value is <code>"CLOCKWISE"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFrontFace}.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EFrontFace}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Front Face</em>' attribute isn't clear,
@@ -73,20 +73,20 @@ public interface Rasterizer extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Front Face</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EFrontFace
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EFrontFace
 	 * @see #setFrontFace(EFrontFace)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRasterizer_FrontFace()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRasterizer_FrontFace()
 	 * @model default="CLOCKWISE" unique="false"
 	 * @generated
 	 */
 	EFrontFace getFrontFace();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getFrontFace <em>Front Face</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getFrontFace <em>Front Face</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Front Face</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EFrontFace
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EFrontFace
 	 * @see #getFrontFace()
 	 * @generated
 	 */
@@ -95,7 +95,7 @@ public interface Rasterizer extends EObject
 	/**
 	 * Returns the value of the '<em><b>Polygon Mode</b></em>' attribute.
 	 * The default value is <code>"FILL"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPolygonMode}.
+	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPolygonMode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Polygon Mode</em>' attribute isn't clear,
@@ -103,20 +103,20 @@ public interface Rasterizer extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Polygon Mode</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPolygonMode
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EPolygonMode
 	 * @see #setPolygonMode(EPolygonMode)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRasterizer_PolygonMode()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRasterizer_PolygonMode()
 	 * @model default="FILL" unique="false"
 	 * @generated
 	 */
 	EPolygonMode getPolygonMode();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getPolygonMode <em>Polygon Mode</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getPolygonMode <em>Polygon Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Polygon Mode</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPolygonMode
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EPolygonMode
 	 * @see #getPolygonMode()
 	 * @generated
 	 */
@@ -133,14 +133,14 @@ public interface Rasterizer extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Line Width</em>' attribute.
 	 * @see #setLineWidth(int)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRasterizer_LineWidth()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRasterizer_LineWidth()
 	 * @model default="1" unique="false"
 	 * @generated
 	 */
 	int getLineWidth();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#getLineWidth <em>Line Width</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#getLineWidth <em>Line Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Line Width</em>' attribute.
@@ -160,14 +160,14 @@ public interface Rasterizer extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth Clamp Enable</em>' attribute.
 	 * @see #setDepthClampEnable(boolean)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRasterizer_DepthClampEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRasterizer_DepthClampEnable()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
 	boolean isDepthClampEnable();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable <em>Depth Clamp Enable</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDepthClampEnable <em>Depth Clamp Enable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depth Clamp Enable</em>' attribute.
@@ -187,14 +187,14 @@ public interface Rasterizer extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Discard Enable</em>' attribute.
 	 * @see #setDiscardEnable(boolean)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRasterizer_DiscardEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRasterizer_DiscardEnable()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
 	boolean isDiscardEnable();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDiscardEnable <em>Discard Enable</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDiscardEnable <em>Discard Enable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Discard Enable</em>' attribute.
@@ -214,14 +214,14 @@ public interface Rasterizer extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth Bias Enable</em>' attribute.
 	 * @see #setDepthBiasEnable(boolean)
-	 * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getRasterizer_DepthBiasEnable()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRasterizer_DepthBiasEnable()
 	 * @model default="false" unique="false"
 	 * @generated
 	 */
 	boolean isDepthBiasEnable();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable <em>Depth Bias Enable</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer#isDepthBiasEnable <em>Depth Bias Enable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depth Bias Enable</em>' attribute.

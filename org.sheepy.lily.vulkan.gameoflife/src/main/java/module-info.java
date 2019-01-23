@@ -1,12 +1,12 @@
-import org.sheepy.common.api.cadence.IMainLoop;
-import org.sheepy.vulkan.gameoflife.MainLoop;
+import org.sheepy.lily.core.api.cadence.IMainLoop;
+import org.sheepy.lily.vulkan.gameoflife.MainLoop;
 
-module org.sheepy.vulkan.gameoflife
+module org.sheepy.lily.vulkan.gameoflife
 {
-	requires org.sheepy.vulkan.api;
-	requires org.sheepy.vulkan.resource;
-	requires org.sheepy.vulkan.process.compute;
-	requires org.sheepy.vulkan.process.graphic;
+	requires org.sheepy.lily.vulkan.api;
+	requires org.sheepy.lily.vulkan.resource;
+	requires org.sheepy.lily.vulkan.process.compute;
+	requires org.sheepy.lily.vulkan.process.graphic;
 
 	requires org.joml;
 	

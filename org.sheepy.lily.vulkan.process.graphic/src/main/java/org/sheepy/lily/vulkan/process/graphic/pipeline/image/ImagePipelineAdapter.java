@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.process.graphic.pipeline.image;
+package org.sheepy.lily.vulkan.process.graphic.pipeline.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -7,16 +7,16 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkImageBlit;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
-import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.process.graphic.execution.GraphicCommandBuffer;
-import org.sheepy.vulkan.process.graphic.process.IGraphicContextAdapter;
-import org.sheepy.vulkan.process.graphic.swapchain.SwapChainManager;
-import org.sheepy.vulkan.process.pipeline.IPipelineAdapter;
-import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.resource.image.ImageAdapter;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
+import org.sheepy.lily.vulkan.process.graphic.swapchain.SwapChainManager;
+import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
 
 public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
 {

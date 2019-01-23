@@ -1,6 +1,6 @@
-package org.sheepy.vulkan.gameoflife.compute;
+package org.sheepy.lily.vulkan.gameoflife.compute;
 
-import org.sheepy.common.api.types.SVector2i;
+import org.sheepy.lily.core.api.types.SVector2i;
 
 public class Board
 {

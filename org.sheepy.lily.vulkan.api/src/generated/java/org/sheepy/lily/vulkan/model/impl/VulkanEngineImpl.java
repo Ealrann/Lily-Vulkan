@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.impl;
+package org.sheepy.lily.vulkan.model.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -23,14 +23,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.common.api.util.LTreeIterator;
-import org.sheepy.common.model.inference.IInferenceObject;
-import org.sheepy.common.model.root.LObject;
-import org.sheepy.common.model.root.RootPackage.Literals;
-import org.sheepy.vulkan.model.IProcess;
-import org.sheepy.vulkan.model.SharedResources;
-import org.sheepy.vulkan.model.VulkanEngine;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.api.util.LTreeIterator;
+import org.sheepy.lily.core.model.inference.IInferenceObject;
+import org.sheepy.lily.core.model.root.LObject;
+import org.sheepy.lily.core.model.root.RootPackage.Literals;
+import org.sheepy.lily.vulkan.model.IProcess;
+import org.sheepy.lily.vulkan.model.SharedResources;
+import org.sheepy.lily.vulkan.model.VulkanEngine;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,10 +40,10 @@ import org.sheepy.vulkan.model.VulkanPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl#getContentObjects <em>Content Objects</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl#getSharedResources <em>Shared Resources</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.impl.VulkanEngineImpl#getProcesses <em>Processes</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getContentObjects <em>Content Objects</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getSharedResources <em>Shared Resources</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getProcesses <em>Processes</em>}</li>
  * </ul>
  *
  * @generated

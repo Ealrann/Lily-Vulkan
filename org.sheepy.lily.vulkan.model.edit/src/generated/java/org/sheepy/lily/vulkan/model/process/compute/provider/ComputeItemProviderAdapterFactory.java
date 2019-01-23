@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.compute.provider;
+package org.sheepy.lily.vulkan.model.process.compute.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,23 +31,20 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.sheepy.lily.vulkan.model.VulkanEngine;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.vulkan.model.VulkanEngine;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 
-import org.sheepy.vulkan.model.process.AbstractCompositePipeline;
-import org.sheepy.vulkan.model.process.AbstractPipeline;
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.util.ComputeAdapterFactory;
 
-import org.sheepy.vulkan.model.process.compute.ComputeFactory;
-import org.sheepy.vulkan.model.process.compute.ComputePackage;
-
-import org.sheepy.vulkan.model.process.compute.util.ComputeAdapterFactory;
-
-import org.sheepy.vulkan.model.process.util.ProcessSwitch;
-
-import org.sheepy.vulkan.model.util.VulkanSwitch;
+import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
+import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -108,7 +105,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.compute.ComputeProcess} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -116,7 +113,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 	protected ComputeProcessItemProvider computeProcessItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.compute.ComputeProcess}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -133,7 +130,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.compute.ComputePipeline} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -141,7 +138,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 	protected ComputePipelineItemProvider computePipelineItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.compute.ComputePipeline}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -158,7 +155,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.compute.Computer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.compute.Computer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -166,7 +163,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 	protected ComputerItemProvider computerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.compute.Computer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.compute.Computer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

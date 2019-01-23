@@ -1,7 +1,7 @@
-package org.sheepy.vulkan.common.execution;
+package org.sheepy.lily.vulkan.common.execution;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 
 public interface IResourceAllocable extends IAllocable
 {

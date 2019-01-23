@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.util;
+package org.sheepy.lily.vulkan.model.resource.util;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * This class contains helper methods to serialize and deserialize XML documents

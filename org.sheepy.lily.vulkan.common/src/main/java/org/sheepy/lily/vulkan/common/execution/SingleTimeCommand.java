@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.execution;
+package org.sheepy.lily.vulkan.common.execution;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -14,7 +14,7 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.vulkan.common.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 
 public abstract class SingleTimeCommand extends AbstractCommandBuffer
 {

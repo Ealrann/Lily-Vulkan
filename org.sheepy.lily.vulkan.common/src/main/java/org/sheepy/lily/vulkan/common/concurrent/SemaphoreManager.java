@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.common.concurrent;
+package org.sheepy.lily.vulkan.common.concurrent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 
 public class SemaphoreManager
 {

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.enumeration;
+package org.sheepy.lily.vulkan.model.enumeration;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>EFront Face</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.enumeration.EnumerationPackage#getEFrontFace()
+ * @see org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage#getEFrontFace()
  * @model
  * @generated
  */

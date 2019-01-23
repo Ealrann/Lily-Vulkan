@@ -1,15 +1,15 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.util;
+package org.sheepy.lily.vulkan.model.resource.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-import org.sheepy.common.model.types.LNamedElement;
-import org.sheepy.vulkan.model.IResource;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.vulkan.model.IResource;
 
-import org.sheepy.vulkan.model.resource.*;
+import org.sheepy.lily.vulkan.model.resource.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +21,7 @@ import org.sheepy.vulkan.model.resource.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.resource.ResourcePackage
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage
  * @generated
  */
 public class ResourceSwitch<T> extends Switch<T>

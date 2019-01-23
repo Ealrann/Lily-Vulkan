@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.provider;
+package org.sheepy.lily.vulkan.model.process.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,9 +28,9 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
-import org.sheepy.vulkan.model.process.util.ProcessAdapterFactory;
+import org.sheepy.lily.vulkan.model.process.util.ProcessAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -91,7 +91,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.ProcessSemaphore} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -99,7 +99,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	protected ProcessSemaphoreItemProvider processSemaphoreItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.ProcessSemaphore}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -116,7 +116,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.PipelineBarrier} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PipelineBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -124,7 +124,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	protected PipelineBarrierItemProvider pipelineBarrierItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.PipelineBarrier}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PipelineBarrier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -141,7 +141,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.process.PushConstant} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PushConstant} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -149,7 +149,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	protected PushConstantItemProvider pushConstantItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.vulkan.model.process.PushConstant}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PushConstant}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

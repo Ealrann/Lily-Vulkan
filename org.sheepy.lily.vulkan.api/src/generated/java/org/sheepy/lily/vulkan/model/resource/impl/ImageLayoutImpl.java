@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
@@ -12,12 +12,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.enumeration.EAccess;
+import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 
-import org.sheepy.vulkan.model.resource.ImageLayout;
-import org.sheepy.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.ImageLayout;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,9 +27,9 @@ import org.sheepy.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl#getLayout <em>Layout</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.resource.impl.ImageLayoutImpl#getAccessMask <em>Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl#getLayout <em>Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl#getAccessMask <em>Access Mask</em>}</li>
  * </ul>
  *
  * @generated

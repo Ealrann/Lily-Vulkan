@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.demo.model;
+package org.sheepy.lily.vulkan.demo.model;
 
-import org.sheepy.vulkan.model.resource.IndexedBuffer;
+import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,7 +10,7 @@ import org.sheepy.vulkan.model.resource.IndexedBuffer;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.demo.model.VulkanDemoPackage#getMeshBuffer()
+ * @see org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage#getMeshBuffer()
  * @model
  * @generated
  */

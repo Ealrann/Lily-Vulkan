@@ -1,11 +1,11 @@
-package org.sheepy.vulkan.demo.triangle;
+package org.sheepy.lily.vulkan.demo.triangle;
 
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.demo.mesh.IIndexedBufferBuilder;
-import org.sheepy.vulkan.resource.indexed.IndexBuffer;
-import org.sheepy.vulkan.resource.indexed.IndexBufferData;
-import org.sheepy.vulkan.resource.indexed.IndexBufferDescriptor;
-import org.sheepy.vulkan.resource.indexed.IndexBufferDescriptor.Vertex;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.demo.mesh.IIndexedBufferBuilder;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBufferData;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBufferDescriptor;
+import org.sheepy.lily.vulkan.resource.indexed.IndexBufferDescriptor.Vertex;
 
 public class TriangleMeshBuilder implements IIndexedBufferBuilder<Vertex>
 {

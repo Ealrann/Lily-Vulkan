@@ -1,18 +1,17 @@
 /**
  */
-package org.sheepy.vulkan.model.process.util;
+package org.sheepy.lily.vulkan.model.process.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-import org.sheepy.common.model.inference.IInferenceObject;
-import org.sheepy.common.model.root.LObject;
-import org.sheepy.common.model.types.LNamedElement;
-import org.sheepy.vulkan.model.IEnginePart;
-import org.sheepy.vulkan.model.IProcess;
-
-import org.sheepy.vulkan.model.process.*;
+import org.sheepy.lily.core.model.inference.IInferenceObject;
+import org.sheepy.lily.core.model.root.LObject;
+import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.vulkan.model.IEnginePart;
+import org.sheepy.lily.vulkan.model.IProcess;
+import org.sheepy.lily.vulkan.model.process.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +23,7 @@ import org.sheepy.vulkan.model.process.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.process.ProcessPackage
+ * @see org.sheepy.lily.vulkan.model.process.ProcessPackage
  * @generated
  */
 public class ProcessSwitch<T> extends Switch<T>

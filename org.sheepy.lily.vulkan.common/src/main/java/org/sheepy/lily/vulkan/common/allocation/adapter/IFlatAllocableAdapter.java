@@ -1,8 +1,8 @@
-package org.sheepy.vulkan.common.allocation.adapter;
+package org.sheepy.lily.vulkan.common.allocation.adapter;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 
 public interface IFlatAllocableAdapter extends IAllocableAdapter
 {

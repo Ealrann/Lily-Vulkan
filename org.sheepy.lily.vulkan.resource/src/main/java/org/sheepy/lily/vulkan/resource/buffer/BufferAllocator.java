@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.resource.buffer;
+package org.sheepy.lily.vulkan.resource.buffer;
 
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
 
 public class BufferAllocator
 {

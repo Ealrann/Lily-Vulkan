@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import java.util.Collection;
 
@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sheepy.vulkan.model.enumeration.ELogicOp;
+import org.sheepy.lily.vulkan.model.enumeration.ELogicOp;
 
-import org.sheepy.vulkan.model.process.graphic.ColorBlend;
-import org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,13 +32,13 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl#getAttachments <em>Attachments</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl#isLogicOpEnable <em>Logic Op Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl#getLogicOp <em>Logic Op</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl#getBlendConstant0 <em>Blend Constant0</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl#getBlendConstant1 <em>Blend Constant1</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl#getBlendConstant2 <em>Blend Constant2</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendImpl#getBlendConstant3 <em>Blend Constant3</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl#getAttachments <em>Attachments</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl#isLogicOpEnable <em>Logic Op Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl#getLogicOp <em>Logic Op</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl#getBlendConstant0 <em>Blend Constant0</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl#getBlendConstant1 <em>Blend Constant1</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl#getBlendConstant2 <em>Blend Constant2</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl#getBlendConstant3 <em>Blend Constant3</em>}</li>
  * </ul>
  *
  * @generated

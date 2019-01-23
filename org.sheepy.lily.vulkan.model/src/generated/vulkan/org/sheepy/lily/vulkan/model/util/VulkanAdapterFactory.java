@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.util;
+package org.sheepy.lily.vulkan.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -9,14 +9,14 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.sheepy.vulkan.model.*;
+import org.sheepy.lily.vulkan.model.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.VulkanPackage
+ * @see org.sheepy.lily.vulkan.model.VulkanPackage
  * @generated
  */
 public class VulkanAdapterFactory extends AdapterFactoryImpl
@@ -117,13 +117,13 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.VulkanApplication <em>Application</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.VulkanApplication <em>Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.VulkanApplication
+	 * @see org.sheepy.lily.vulkan.model.VulkanApplication
 	 * @generated
 	 */
 	public Adapter createVulkanApplicationAdapter()
@@ -132,13 +132,13 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IProcessPool <em>IProcess Pool</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IProcessPool <em>IProcess Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.IProcessPool
+	 * @see org.sheepy.lily.vulkan.model.IProcessPool
 	 * @generated
 	 */
 	public Adapter createIProcessPoolAdapter()
@@ -147,13 +147,13 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IComputeProcessPool <em>ICompute Process Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.IComputeProcessPool
+	 * @see org.sheepy.lily.vulkan.model.IComputeProcessPool
 	 * @generated
 	 */
 	public Adapter createIComputeProcessPoolAdapter()
@@ -162,13 +162,13 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IGraphicProcessPool <em>IGraphic Process Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.vulkan.model.IGraphicProcessPool
+	 * @see org.sheepy.lily.vulkan.model.IGraphicProcessPool
 	 * @generated
 	 */
 	public Adapter createIGraphicProcessPoolAdapter()

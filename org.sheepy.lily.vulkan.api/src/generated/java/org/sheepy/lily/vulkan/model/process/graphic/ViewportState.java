@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getViewportState()
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getViewportState()
  * @model interface="true" abstract="true"
  * @generated
  */

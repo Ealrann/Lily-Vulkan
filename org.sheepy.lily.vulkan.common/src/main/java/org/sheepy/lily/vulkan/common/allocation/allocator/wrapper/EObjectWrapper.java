@@ -1,13 +1,13 @@
-package org.sheepy.vulkan.common.allocation.allocator.wrapper;
+package org.sheepy.lily.vulkan.common.allocation.allocator.wrapper;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.allocation.adapter.IAllocableAdapter;
-import org.sheepy.vulkan.common.allocation.adapter.IDeepAllocableAdapter;
-import org.sheepy.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IDeepAllocableAdapter;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
 
 public class EObjectWrapper implements IAllocableWrapper
 {

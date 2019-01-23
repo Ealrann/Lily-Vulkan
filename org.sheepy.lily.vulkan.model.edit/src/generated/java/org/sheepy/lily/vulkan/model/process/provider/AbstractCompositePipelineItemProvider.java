@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.provider;
+package org.sheepy.lily.vulkan.model.process.provider;
 
 
 import java.util.Collection;
@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.vulkan.model.process.AbstractCompositePipeline;
-import org.sheepy.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.vulkan.model.process.AbstractCompositePipeline} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

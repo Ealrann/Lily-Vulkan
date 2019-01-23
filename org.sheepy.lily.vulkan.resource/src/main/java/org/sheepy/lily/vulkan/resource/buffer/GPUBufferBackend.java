@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.buffer;
+package org.sheepy.lily.vulkan.resource.buffer;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -6,13 +6,13 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.common.device.LogicalDevice;
-import org.sheepy.vulkan.common.execution.ExecutionManager;
-import org.sheepy.vulkan.common.execution.SingleTimeCommand;
-import org.sheepy.vulkan.resource.nativehelper.VkBufferAllocator;
-import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator;
-import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
-import org.sheepy.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryInfo;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkBufferAllocator;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
+import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryInfo;
 
 public class GPUBufferBackend implements IBufferBackend
 {

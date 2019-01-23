@@ -1,9 +1,9 @@
-package org.sheepy.vulkan.api.adapter;
+package org.sheepy.lily.vulkan.api.adapter;
 
 import java.util.Iterator;
 import java.util.ServiceLoader;
 
-import org.sheepy.common.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.adapter.IAdapter;
 
 public interface IVulkanAdapter extends IAdapter
 {

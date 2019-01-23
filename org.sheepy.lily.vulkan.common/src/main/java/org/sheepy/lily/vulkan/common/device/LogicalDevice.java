@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.device;
+package org.sheepy.lily.vulkan.common.device;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
@@ -13,14 +13,14 @@ import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.lwjgl.vulkan.VkSurfaceCapabilitiesKHR;
-import org.sheepy.vulkan.api.window.Surface;
-import org.sheepy.vulkan.common.device.data.Capabilities;
-import org.sheepy.vulkan.common.device.data.ColorDomains;
-import org.sheepy.vulkan.common.queue.QueueManager;
-import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.common.window.Window;
-import org.sheepy.vulkan.model.ColorDomain;
-import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.common.device.data.Capabilities;
+import org.sheepy.lily.vulkan.common.device.data.ColorDomains;
+import org.sheepy.lily.vulkan.common.queue.QueueManager;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.common.window.Window;
+import org.sheepy.lily.vulkan.model.ColorDomain;
+import org.sheepy.lily.vulkan.model.enumeration.EFormat;
 
 public class LogicalDevice
 {

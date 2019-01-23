@@ -1,13 +1,13 @@
-package org.sheepy.vulkan.process.pipeline;
+package org.sheepy.lily.vulkan.process.pipeline;
 
 import java.util.List;
 
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.vulkan.model.process.AbstractPipeline;
-import org.sheepy.vulkan.model.resource.AbstractConstants;
-import org.sheepy.vulkan.resource.descriptor.IDescriptorSetAdapter;
-import org.sheepy.vulkan.resource.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		extends IPipelineAdapter<T>

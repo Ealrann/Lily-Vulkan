@@ -9,8 +9,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated VulkanDemo -->
       <package
-            uri="org.sheepy.vulkan.demo.model"
-            class="org.sheepy.vulkan.demo.model.VulkanDemoPackage"
+            uri="org.sheepy.lily.vulkan.demo.model"
+            class="org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage"
             genModel="src/main/xcore/VulkanDemo.xcore"/>
    </extension>
 

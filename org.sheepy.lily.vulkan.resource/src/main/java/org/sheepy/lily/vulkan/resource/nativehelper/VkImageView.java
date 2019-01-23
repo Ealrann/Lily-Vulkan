@@ -1,10 +1,10 @@
-package org.sheepy.vulkan.resource.nativehelper;
+package org.sheepy.lily.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkImageViewCreateInfo;
-import org.sheepy.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.common.util.Logger;
 
 public class VkImageView
 {

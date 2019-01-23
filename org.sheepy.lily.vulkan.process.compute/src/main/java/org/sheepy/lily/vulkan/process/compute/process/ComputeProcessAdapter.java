@@ -1,18 +1,18 @@
-package org.sheepy.vulkan.process.compute.process;
+package org.sheepy.lily.vulkan.process.compute.process;
 
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.sheepy.common.api.adapter.IServiceAdapterFactory;
-import org.sheepy.vulkan.api.concurrent.IFence;
-import org.sheepy.vulkan.api.queue.EQueueType;
-import org.sheepy.vulkan.api.queue.VulkanQueue;
-import org.sheepy.vulkan.common.util.Logger;
-import org.sheepy.vulkan.model.process.compute.ComputePackage;
-import org.sheepy.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.vulkan.process.compute.execution.ComputeCommandBuffer;
-import org.sheepy.vulkan.process.process.AbstractProcessAdapter;
+import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.api.concurrent.IFence;
+import org.sheepy.lily.vulkan.api.queue.EQueueType;
+import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
+import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
+import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
+import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 
 public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommandBuffer>
 {

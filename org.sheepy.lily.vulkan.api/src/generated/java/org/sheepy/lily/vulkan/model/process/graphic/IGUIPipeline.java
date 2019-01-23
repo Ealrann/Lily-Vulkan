@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.model.process.graphic;
 
 
 /**
@@ -9,7 +9,7 @@ package org.sheepy.vulkan.model.process.graphic;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.process.graphic.GraphicPackage#getIGUIPipeline()
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getIGUIPipeline()
  * @model interface="true" abstract="true"
  * @generated
  */

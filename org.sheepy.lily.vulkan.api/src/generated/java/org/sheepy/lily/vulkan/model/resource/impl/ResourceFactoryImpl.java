@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.nio.ByteBuffer;
 
@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.sheepy.vulkan.model.resource.*;
+import org.sheepy.lily.vulkan.model.resource.*;
 
 /**
  * <!-- begin-user-doc -->

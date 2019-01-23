@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-	api project(':org.sheepy.vulkan.process')
+	api project(':org.sheepy.lily.vulkan.process')
 }
 

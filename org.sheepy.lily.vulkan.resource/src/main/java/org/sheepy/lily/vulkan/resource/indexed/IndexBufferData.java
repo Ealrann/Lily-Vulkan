@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.resource.indexed;
+package org.sheepy.lily.vulkan.resource.indexed;
 
 public class IndexBufferData<T extends IVertex>
 {

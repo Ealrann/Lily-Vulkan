@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 
 /**
@@ -12,10 +12,10 @@ package org.sheepy.vulkan.model.resource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.PathResource#getPath <em>Path</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.PathResource#getPath <em>Path</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getPathResource()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getPathResource()
  * @model abstract="true"
  * @generated
  */
@@ -31,14 +31,14 @@ public interface PathResource extends BasicResource
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path</em>' attribute.
 	 * @see #setPath(String)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getPathResource_Path()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getPathResource_Path()
 	 * @model unique="false"
 	 * @generated
 	 */
 	String getPath();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.PathResource#getPath <em>Path</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.PathResource#getPath <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Path</em>' attribute.

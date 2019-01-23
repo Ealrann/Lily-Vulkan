@@ -1,14 +1,14 @@
 /**
  */
-package org.sheepy.vulkan.model.process;
+package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.common.model.root.RootPackage;
-import org.sheepy.common.model.types.TypesPackage;
-import org.sheepy.vulkan.model.VulkanPackage;
+import org.sheepy.lily.core.model.root.RootPackage;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,9 +22,9 @@ import org.sheepy.vulkan.model.VulkanPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.sheepy.vulkan.model.process.ProcessFactory
+ * @see org.sheepy.lily.vulkan.model.process.ProcessFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model'"
  * @generated
  */
 public interface ProcessPackage extends EPackage
@@ -43,7 +43,7 @@ public interface ProcessPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "org.sheepy.vulkan.model.process";
+	String eNS_URI = "org.sheepy.lily.vulkan.model.process";
 
 	/**
 	 * The package namespace name.
@@ -59,14 +59,14 @@ public interface ProcessPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ProcessPackage eINSTANCE = org.sheepy.vulkan.model.process.impl.ProcessPackageImpl.init();
+	ProcessPackage eINSTANCE = org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl <em>Abstract Process</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl <em>Abstract Process</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.AbstractProcessImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractProcess()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractProcess()
 	 * @generated
 	 */
 	int ABSTRACT_PROCESS = 0;
@@ -225,11 +225,11 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS_OPERATION_COUNT = VulkanPackage.IPROCESS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessSemaphoreImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getProcessSemaphore()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessSemaphore()
 	 * @generated
 	 */
 	int PROCESS_SEMAPHORE = 1;
@@ -271,11 +271,11 @@ public interface ProcessPackage extends EPackage
 	int PROCESS_SEMAPHORE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.IProcessUnit
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIProcessUnit()
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessUnit
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIProcessUnit()
 	 * @generated
 	 */
 	int IPROCESS_UNIT = 2;
@@ -371,11 +371,11 @@ public interface ProcessPackage extends EPackage
 	int IPROCESS_UNIT_OPERATION_COUNT = RootPackage.LOBJECT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.Configuration
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
+	 * @see org.sheepy.lily.vulkan.model.process.Configuration
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
 	 * @generated
 	 */
 	int CONFIGURATION = 3;
@@ -399,11 +399,11 @@ public interface ProcessPackage extends EPackage
 	int CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
 	 * @generated
 	 */
 	int PIPELINE_BARRIER = 4;
@@ -535,11 +535,11 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_BARRIER_OPERATION_COUNT = IPROCESS_UNIT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.IPipeline
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
 	 * @generated
 	 */
 	int IPIPELINE = 5;
@@ -644,11 +644,11 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE_OPERATION_COUNT = IPROCESS_UNIT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 	 * @generated
 	 */
 	int ABSTRACT_PIPELINE = 6;
@@ -780,11 +780,11 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE_OPERATION_COUNT = IPIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.IPipelineUnit
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineUnit
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
 	 * @generated
 	 */
 	int IPIPELINE_UNIT = 7;
@@ -817,11 +817,11 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE_UNIT_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.AbstractCompositePipelineImpl <em>Abstract Composite Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractCompositePipelineImpl <em>Abstract Composite Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.AbstractCompositePipelineImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractCompositePipelineImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
 	 * @generated
 	 */
 	int ABSTRACT_COMPOSITE_PIPELINE = 8;
@@ -962,11 +962,11 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_COMPOSITE_PIPELINE_OPERATION_COUNT = ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.vulkan.model.process.impl.PushConstantImpl
-	 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
 	 * @generated
 	 */
 	int PUSH_CONSTANT = 9;
@@ -1000,299 +1000,299 @@ public interface ProcessPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Abstract Process</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcess
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess
 	 * @generated
 	 */
 	EClass getAbstractProcess();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getResources <em>Resources</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getResources <em>Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Resources</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getResources()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getResources()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
 	EReference getAbstractProcess_Resources();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Descriptor Sets</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getDescriptorSets()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSets()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
 	EReference getAbstractProcess_DescriptorSets();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getUnits <em>Units</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getUnits <em>Units</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Units</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getUnits()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getUnits()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
 	EReference getAbstractProcess_Units();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Reset Allowed</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcess#isResetAllowed()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
 	EAttribute getAbstractProcess_ResetAllowed();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.AbstractProcess#isInitializedSignalizedSemaphore <em>Initialized Signalized Semaphore</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isInitializedSignalizedSemaphore <em>Initialized Signalized Semaphore</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Initialized Signalized Semaphore</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcess#isInitializedSignalizedSemaphore()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#isInitializedSignalizedSemaphore()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
 	EAttribute getAbstractProcess_InitializedSignalizedSemaphore();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getDependentProcesses <em>Dependent Processes</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDependentProcesses <em>Dependent Processes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Dependent Processes</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getDependentProcesses()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getDependentProcesses()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
 	EReference getAbstractProcess_DependentProcesses();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractProcess#getSemaphores <em>Semaphores</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores <em>Semaphores</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Semaphores</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractProcess#getSemaphores()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
 	EReference getAbstractProcess_Semaphores();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.ProcessSemaphore <em>Semaphore</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore <em>Semaphore</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Semaphore</em>'.
-	 * @see org.sheepy.vulkan.model.process.ProcessSemaphore
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessSemaphore
 	 * @generated
 	 */
 	EClass getProcessSemaphore();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.ProcessSemaphore#getProcess <em>Process</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore#getProcess <em>Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Process</em>'.
-	 * @see org.sheepy.vulkan.model.process.ProcessSemaphore#getProcess()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessSemaphore#getProcess()
 	 * @see #getProcessSemaphore()
 	 * @generated
 	 */
 	EReference getProcessSemaphore_Process();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.ProcessSemaphore#getWaitStage <em>Wait Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore#getWaitStage <em>Wait Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wait Stage</em>'.
-	 * @see org.sheepy.vulkan.model.process.ProcessSemaphore#getWaitStage()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessSemaphore#getWaitStage()
 	 * @see #getProcessSemaphore()
 	 * @generated
 	 */
 	EAttribute getProcessSemaphore_WaitStage();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IProcess Unit</em>'.
-	 * @see org.sheepy.vulkan.model.process.IProcessUnit
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessUnit
 	 * @generated
 	 */
 	EClass getIProcessUnit();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.IProcessUnit#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.IProcessUnit#isEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.sheepy.vulkan.model.process.IProcessUnit#isEnabled()
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessUnit#isEnabled()
 	 * @see #getIProcessUnit()
 	 * @generated
 	 */
 	EAttribute getIProcessUnit_Enabled();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.process.IProcessUnit#getStage <em>Stage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.IProcessUnit#getStage <em>Stage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.vulkan.model.process.IProcessUnit#getStage()
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessUnit#getStage()
 	 * @see #getIProcessUnit()
 	 * @generated
 	 */
 	EAttribute getIProcessUnit_Stage();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Configuration</em>'.
-	 * @see org.sheepy.vulkan.model.process.Configuration
+	 * @see org.sheepy.lily.vulkan.model.process.Configuration
 	 * @generated
 	 */
 	EClass getConfiguration();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.PipelineBarrier <em>Pipeline Barrier</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier <em>Pipeline Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Pipeline Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.process.PipelineBarrier
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier
 	 * @generated
 	 */
 	EClass getPipelineBarrier();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.vulkan.model.process.PipelineBarrier#getBarrier <em>Barrier</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarrier <em>Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Barrier</em>'.
-	 * @see org.sheepy.vulkan.model.process.PipelineBarrier#getBarrier()
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarrier()
 	 * @see #getPipelineBarrier()
 	 * @generated
 	 */
 	EReference getPipelineBarrier_Barrier();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Src Queue</em>'.
-	 * @see org.sheepy.vulkan.model.process.PipelineBarrier#getSrcQueue()
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue()
 	 * @see #getPipelineBarrier()
 	 * @generated
 	 */
 	EReference getPipelineBarrier_SrcQueue();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.PipelineBarrier#getDstQueue <em>Dst Queue</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstQueue <em>Dst Queue</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Dst Queue</em>'.
-	 * @see org.sheepy.vulkan.model.process.PipelineBarrier#getDstQueue()
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstQueue()
 	 * @see #getPipelineBarrier()
 	 * @generated
 	 */
 	EReference getPipelineBarrier_DstQueue();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IPipeline</em>'.
-	 * @see org.sheepy.vulkan.model.process.IPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline
 	 * @generated
 	 */
 	EClass getIPipeline();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Abstract Pipeline</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline
 	 * @generated
 	 */
 	EClass getAbstractPipeline();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getUnits <em>Units</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getUnits <em>Units</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Units</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractPipeline#getUnits()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getUnits()
 	 * @see #getAbstractPipeline()
 	 * @generated
 	 */
 	EReference getAbstractPipeline_Units();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Descriptor Set</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractPipeline#getDescriptorSet()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet()
 	 * @see #getAbstractPipeline()
 	 * @generated
 	 */
 	EReference getAbstractPipeline_DescriptorSet();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Constants</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractPipeline#getConstants()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants()
 	 * @see #getAbstractPipeline()
 	 * @generated
 	 */
 	EReference getAbstractPipeline_Constants();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IPipeline Unit</em>'.
-	 * @see org.sheepy.vulkan.model.process.IPipelineUnit
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineUnit
 	 * @generated
 	 */
 	EClass getIPipelineUnit();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.AbstractCompositePipeline <em>Abstract Composite Pipeline</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline <em>Abstract Composite Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Abstract Composite Pipeline</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractCompositePipeline
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline
 	 * @generated
 	 */
 	EClass getAbstractCompositePipeline();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.vulkan.model.process.AbstractCompositePipeline#getPipelines <em>Pipelines</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline#getPipelines <em>Pipelines</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Pipelines</em>'.
-	 * @see org.sheepy.vulkan.model.process.AbstractCompositePipeline#getPipelines()
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline#getPipelines()
 	 * @see #getAbstractCompositePipeline()
 	 * @generated
 	 */
 	EReference getAbstractCompositePipeline_Pipelines();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.process.PushConstant <em>Push Constant</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PushConstant <em>Push Constant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Push Constant</em>'.
-	 * @see org.sheepy.vulkan.model.process.PushConstant
+	 * @see org.sheepy.lily.vulkan.model.process.PushConstant
 	 * @generated
 	 */
 	EClass getPushConstant();
@@ -1322,11 +1322,11 @@ public interface ProcessPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.AbstractProcessImpl <em>Abstract Process</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl <em>Abstract Process</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.impl.AbstractProcessImpl
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractProcess()
+		 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractProcess()
 		 * @generated
 		 */
 		EClass ABSTRACT_PROCESS = eINSTANCE.getAbstractProcess();
@@ -1388,11 +1388,11 @@ public interface ProcessPackage extends EPackage
 		EReference ABSTRACT_PROCESS__SEMAPHORES = eINSTANCE.getAbstractProcess_Semaphores();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessSemaphoreImpl
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getProcessSemaphore()
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessSemaphore()
 		 * @generated
 		 */
 		EClass PROCESS_SEMAPHORE = eINSTANCE.getProcessSemaphore();
@@ -1414,11 +1414,11 @@ public interface ProcessPackage extends EPackage
 		EAttribute PROCESS_SEMAPHORE__WAIT_STAGE = eINSTANCE.getProcessSemaphore_WaitStage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.IProcessUnit
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIProcessUnit()
+		 * @see org.sheepy.lily.vulkan.model.process.IProcessUnit
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIProcessUnit()
 		 * @generated
 		 */
 		EClass IPROCESS_UNIT = eINSTANCE.getIProcessUnit();
@@ -1440,21 +1440,21 @@ public interface ProcessPackage extends EPackage
 		EAttribute IPROCESS_UNIT__STAGE = eINSTANCE.getIProcessUnit_Stage();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.Configuration <em>Configuration</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.Configuration
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
+		 * @see org.sheepy.lily.vulkan.model.process.Configuration
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
 		 * @generated
 		 */
 		EClass CONFIGURATION = eINSTANCE.getConfiguration();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.impl.PipelineBarrierImpl
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
+		 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
 		 * @generated
 		 */
 		EClass PIPELINE_BARRIER = eINSTANCE.getPipelineBarrier();
@@ -1484,21 +1484,21 @@ public interface ProcessPackage extends EPackage
 		EReference PIPELINE_BARRIER__DST_QUEUE = eINSTANCE.getPipelineBarrier_DstQueue();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.IPipeline
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
+		 * @see org.sheepy.lily.vulkan.model.process.IPipeline
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
 		 * @generated
 		 */
 		EClass IPIPELINE = eINSTANCE.getIPipeline();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
+		 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 		 * @generated
 		 */
 		EClass ABSTRACT_PIPELINE = eINSTANCE.getAbstractPipeline();
@@ -1528,21 +1528,21 @@ public interface ProcessPackage extends EPackage
 		EReference ABSTRACT_PIPELINE__CONSTANTS = eINSTANCE.getAbstractPipeline_Constants();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.IPipelineUnit
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
+		 * @see org.sheepy.lily.vulkan.model.process.IPipelineUnit
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
 		 * @generated
 		 */
 		EClass IPIPELINE_UNIT = eINSTANCE.getIPipelineUnit();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.AbstractCompositePipelineImpl <em>Abstract Composite Pipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractCompositePipelineImpl <em>Abstract Composite Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.impl.AbstractCompositePipelineImpl
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
+		 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractCompositePipelineImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
 		 * @generated
 		 */
 		EClass ABSTRACT_COMPOSITE_PIPELINE = eINSTANCE.getAbstractCompositePipeline();
@@ -1556,11 +1556,11 @@ public interface ProcessPackage extends EPackage
 		EReference ABSTRACT_COMPOSITE_PIPELINE__PIPELINES = eINSTANCE.getAbstractCompositePipeline_Pipelines();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.vulkan.model.process.impl.PushConstantImpl
-		 * @see org.sheepy.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
+		 * @see org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
 		 * @generated
 		 */
 		EClass PUSH_CONSTANT = eINSTANCE.getPushConstant();

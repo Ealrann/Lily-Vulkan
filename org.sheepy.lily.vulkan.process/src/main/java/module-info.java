@@ -1,21 +1,21 @@
-import org.sheepy.common.api.adapter.IAdapter;
-import org.sheepy.vulkan.process.barrier.PipelineBarrierAdapter;
-import org.sheepy.vulkan.process.descriptor.DescriptorSetAdapter;
-import org.sheepy.vulkan.process.pipeline.PushConstantAdapter;
+import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.vulkan.process.barrier.PipelineBarrierAdapter;
+import org.sheepy.lily.vulkan.process.descriptor.DescriptorSetAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.PushConstantAdapter;
 
 /**
  * 
  */
-module org.sheepy.vulkan.process
+module org.sheepy.lily.vulkan.process
 {
-	requires transitive org.sheepy.vulkan.common;
-	requires transitive org.sheepy.vulkan.resource;
+	requires transitive org.sheepy.lily.vulkan.common;
+	requires transitive org.sheepy.lily.vulkan.resource;
 
-	exports org.sheepy.vulkan.process.barrier;
-	exports org.sheepy.vulkan.process.descriptor;
-	exports org.sheepy.vulkan.process.execution;
-	exports org.sheepy.vulkan.process.pipeline;
-	exports org.sheepy.vulkan.process.process;
+	exports org.sheepy.lily.vulkan.process.barrier;
+	exports org.sheepy.lily.vulkan.process.descriptor;
+	exports org.sheepy.lily.vulkan.process.execution;
+	exports org.sheepy.lily.vulkan.process.pipeline;
+	exports org.sheepy.lily.vulkan.process.process;
 
 	provides IAdapter with PipelineBarrierAdapter, PushConstantAdapter, DescriptorSetAdapter;
 }

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,11 +9,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.sheepy.vulkan.model.enumeration.EBlendFactor;
-import org.sheepy.vulkan.model.enumeration.EBlendOp;
+import org.sheepy.lily.vulkan.model.enumeration.EBlendFactor;
+import org.sheepy.lily.vulkan.model.enumeration.EBlendOp;
 
-import org.sheepy.vulkan.model.process.graphic.ColorBlendAttachment;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,17 +23,17 @@ import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isBlendEnable <em>Blend Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isRedComponentEnable <em>Red Component Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isGreenComponentEnable <em>Green Component Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isBlueComponentEnable <em>Blue Component Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isAlphaComponentEnable <em>Alpha Component Enable</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getSrcColor <em>Src Color</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getDstColor <em>Dst Color</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getSrcAlpha <em>Src Alpha</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getDstAlpha <em>Dst Alpha</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getColorBlendOp <em>Color Blend Op</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getAlphaBlendOp <em>Alpha Blend Op</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isBlendEnable <em>Blend Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isRedComponentEnable <em>Red Component Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isGreenComponentEnable <em>Green Component Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isBlueComponentEnable <em>Blue Component Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isAlphaComponentEnable <em>Alpha Component Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getSrcColor <em>Src Color</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getDstColor <em>Dst Color</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getSrcAlpha <em>Src Alpha</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getDstAlpha <em>Dst Alpha</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getColorBlendOp <em>Color Blend Op</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getAlphaBlendOp <em>Alpha Blend Op</em>}</li>
  * </ul>
  *
  * @generated

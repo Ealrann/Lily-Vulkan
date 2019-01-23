@@ -1,8 +1,8 @@
 /**
  */
-package org.sheepy.vulkan.model;
+package org.sheepy.lily.vulkan.model;
 
-import org.sheepy.common.model.types.LNamedElement;
+import org.sheepy.lily.core.model.types.LNamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,7 +10,7 @@ import org.sheepy.common.model.types.LNamedElement;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.vulkan.model.VulkanPackage#getIResource()
+ * @see org.sheepy.lily.vulkan.model.VulkanPackage#getIResource()
  * @model interface="true" abstract="true"
  * @generated
  */

@@ -1,4 +1,4 @@
-package org.sheepy.vulkan.common.allocation.allocator;
+package org.sheepy.lily.vulkan.common.allocation.allocator;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.common.allocation.allocator.wrapper.AllocableWrapperPool;
-import org.sheepy.vulkan.common.allocation.allocator.wrapper.IAllocableWrapper;
+import org.sheepy.lily.vulkan.common.allocation.allocator.wrapper.AllocableWrapperPool;
+import org.sheepy.lily.vulkan.common.allocation.allocator.wrapper.IAllocableWrapper;
 
 public class TreeAllocator implements IAllocator
 {

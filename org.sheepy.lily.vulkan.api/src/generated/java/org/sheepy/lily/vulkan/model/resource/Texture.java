@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.resource;
+package org.sheepy.lily.vulkan.model.resource;
 
 
 /**
@@ -12,10 +12,10 @@ package org.sheepy.vulkan.model.resource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.resource.Texture#getFile <em>File</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Texture#getFile <em>File</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.resource.ResourcePackage#getTexture()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTexture()
  * @model
  * @generated
  */
@@ -31,14 +31,14 @@ public interface Texture extends AbstractTexture
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' containment reference.
 	 * @see #setFile(PathResource)
-	 * @see org.sheepy.vulkan.model.resource.ResourcePackage#getTexture_File()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getTexture_File()
 	 * @model containment="true"
 	 * @generated
 	 */
 	PathResource getFile();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.resource.Texture#getFile <em>File</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Texture#getFile <em>File</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>File</em>' containment reference.

@@ -5,16 +5,16 @@ plugins {
 
 dependencies {
 
-	api project(':org.sheepy.vulkan.api')
-	api project(':org.sheepy.vulkan.resource')
-	api project(':org.sheepy.vulkan.process')
-	api project(':org.sheepy.vulkan.process.graphic')
+	api project(':org.sheepy.lily.vulkan.api')
+	api project(':org.sheepy.lily.vulkan.resource')
+	api project(':org.sheepy.lily.vulkan.process')
+	api project(':org.sheepy.lily.vulkan.process.graphic')
 }
 
-// mainClassName = 'org.sheepy.vulkan.demo.texture.MainTexture'
+// mainClassName = 'org.sheepy.lily.vulkan.demo.texture.MainTexture'
 
 if (project.hasProperty('javaModule')) {
-	javaModule.name = 'org.sheepy.vulkan.demo'
+	javaModule.name = 'org.sheepy.lily.vulkan.demo'
 }
 
 sourceSets {

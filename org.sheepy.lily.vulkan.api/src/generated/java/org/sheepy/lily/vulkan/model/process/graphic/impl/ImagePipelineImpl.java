@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
@@ -12,15 +12,15 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.sheepy.vulkan.model.enumeration.EAccess;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.process.AbstractProcess;
-import org.sheepy.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.lily.vulkan.model.enumeration.EAccess;
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
 
-import org.sheepy.vulkan.model.process.impl.AbstractPipelineImpl;
+import org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl;
 
-import org.sheepy.vulkan.model.resource.Image;
+import org.sheepy.lily.vulkan.model.resource.Image;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +30,12 @@ import org.sheepy.vulkan.model.resource.Image;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImage <em>Image</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageSrcStage <em>Image Src Stage</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageDstStage <em>Image Dst Stage</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageSrcAccessMask <em>Image Src Access Mask</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageDstAccessMask <em>Image Dst Access Mask</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.process.graphic.impl.ImagePipelineImpl#getSrcQueue <em>Src Queue</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImage <em>Image</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageSrcStage <em>Image Src Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageDstStage <em>Image Dst Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageSrcAccessMask <em>Image Src Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl#getImageDstAccessMask <em>Image Dst Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl#getSrcQueue <em>Src Queue</em>}</li>
  * </ul>
  *
  * @generated

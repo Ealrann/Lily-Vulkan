@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.vulkan.model.process;
+package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -13,10 +13,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.process.AbstractCompositePipeline#getPipelines <em>Pipelines</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline#getPipelines <em>Pipelines</em>}</li>
  * </ul>
  *
- * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractCompositePipeline()
+ * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractCompositePipeline()
  * @model abstract="true"
  * @generated
  */
@@ -24,7 +24,7 @@ public interface AbstractCompositePipeline extends AbstractPipeline
 {
 	/**
 	 * Returns the value of the '<em><b>Pipelines</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.vulkan.model.process.AbstractPipeline}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.AbstractPipeline}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pipelines</em>' containment reference list isn't clear,
@@ -32,7 +32,7 @@ public interface AbstractCompositePipeline extends AbstractPipeline
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pipelines</em>' containment reference list.
-	 * @see org.sheepy.vulkan.model.process.ProcessPackage#getAbstractCompositePipeline_Pipelines()
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractCompositePipeline_Pipelines()
 	 * @model containment="true"
 	 * @generated
 	 */
