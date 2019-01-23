@@ -1,3 +1,3 @@
-[submodule "Sheepy"]
-	path = Sheepy
-	url = https://github.com/Ealrann/Sheepy.git
+[submodule "Lily-core"]
+	path = Lily-core
+	url = https://github.com/Ealrann/Lily-core.git
