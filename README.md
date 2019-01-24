@@ -1,4 +1,4 @@
-# Sheepy-Vulkan
+# Lily-Vulkan
 Vulkan POO wrapper using LWJGL
 
 :warning:**Under heavy modifications, will change a lot.**:warning:
