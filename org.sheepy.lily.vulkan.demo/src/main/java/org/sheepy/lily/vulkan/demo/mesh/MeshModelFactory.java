@@ -53,6 +53,8 @@ public class MeshModelFactory
 	public final VulkanEngine engine = new VulkanEngineImpl();
 	public final MeshBuffer meshBuffer = new MeshBufferImpl();
 	public final GraphicProcess graphicProcess;
+	
+	public float rotationSpeed = 1f;
 
 	public UniformBufferManager uniformBufferManager = null;
 

@@ -45,7 +45,7 @@ public class MeshMainLoop implements IMainLoop
 		if (factory.uniformBufferManager != null)
 		{
 			final long current = System.currentTimeMillis();
-			final float progress = (current - start) / 1000f;
+			final float progress = factory.rotationSpeed * (current - start) / 1000f ;
 
 			factory.uniformBufferManager.update(progress);
 		}
