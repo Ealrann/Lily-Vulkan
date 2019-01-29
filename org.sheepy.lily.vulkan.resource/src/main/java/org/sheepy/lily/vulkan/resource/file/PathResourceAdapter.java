@@ -31,6 +31,7 @@ public abstract class PathResourceAdapter extends AbstractSingletonAdapter imple
 
 		} catch (final Exception e)
 		{
+			System.err.println("Cannot read: " + resource.getPath());
 			e.printStackTrace();
 		} finally
 		{
