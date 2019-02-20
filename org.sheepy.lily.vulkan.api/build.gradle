@@ -4,10 +4,6 @@ plugins {
 	id 'java-library'
 }
 
-if (project.hasProperty('javaModule')) {
-	javaModule.name = 'org.sheepy.lily.vulkan.api'
-}
-
 switch (targetPlatform) {
 	case OperatingSystem.WINDOWS:
 		project.ext.lwjglNatives = "natives-windows"

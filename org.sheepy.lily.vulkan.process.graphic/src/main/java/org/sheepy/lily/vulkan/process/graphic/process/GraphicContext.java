@@ -79,7 +79,7 @@ public class GraphicContext extends ProcessContext
 		return new FrameSubmission(this, waitForEmitters, signals);
 	}
 
-	private WaitData createAcquireSemaphoreData(GraphicProcessAdapter processAdapter,
+	private WaitData createAcquireSemaphoreData(@SuppressWarnings("unused") GraphicProcessAdapter processAdapter,
 												VkSemaphore imageAcquireSemaphore)
 	{
 		var acquireWaitStage = configuration.getAcquireWaitStage();
