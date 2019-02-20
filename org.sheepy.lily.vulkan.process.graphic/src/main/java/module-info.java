@@ -18,7 +18,7 @@ module org.sheepy.lily.vulkan.process.graphic
 	exports org.sheepy.lily.vulkan.process.graphic.swapchain;
 	exports org.sheepy.lily.vulkan.process.graphic.view;
 
-	opens org.sheepy.lily.vulkan.process.graphic.pipeline.image;
+	opens org.sheepy.lily.vulkan.process.graphic.pipeline.image to org.sheepy.lily.core.api;
 
 	provides IAdapter with ImagePipelineAdapter, GraphicProcessAdapter, GraphicContextAdapter;
 }

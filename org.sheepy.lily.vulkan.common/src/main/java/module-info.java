@@ -8,6 +8,8 @@ module org.sheepy.lily.vulkan.common
 {
 	requires transitive org.sheepy.lily.vulkan.api;
 
+	requires org.sheepy.lily.core.impl;
+
 	exports org.sheepy.lily.vulkan.common.allocation;
 	exports org.sheepy.lily.vulkan.common.allocation.adapter;
 	exports org.sheepy.lily.vulkan.common.allocation.adapter.impl;
@@ -26,7 +28,7 @@ module org.sheepy.lily.vulkan.common
 	exports org.sheepy.lily.vulkan.common.ui;
 	exports org.sheepy.lily.vulkan.common.window;
 
-	opens org.sheepy.lily.vulkan.common.application;
+	opens org.sheepy.lily.vulkan.common.application to org.sheepy.lily.core.api;
 
 	provides IAdapter with LogicalDeviceAdapter, VulkanEngineAdapter, ExecutionManagerAdapter,
 			SharedResourcesAdapter;

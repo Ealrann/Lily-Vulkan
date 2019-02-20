@@ -24,8 +24,6 @@ dependencies {
 
 	api project(':org.sheepy.lily.core.api')
 
-	implementation project(':org.sheepy.lily.core.impl')
-
 	api "org.joml:joml:${jomlVersion}"
 
 	api "org.lwjgl:lwjgl:$lwjglVersion"

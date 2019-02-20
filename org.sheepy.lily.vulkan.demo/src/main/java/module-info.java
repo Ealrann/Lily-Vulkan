@@ -9,8 +9,6 @@ import org.sheepy.lily.vulkan.demo.mesh.MeshPipelineAdapter;
  */
 module org.sheepy.lily.vulkan.demo {
 
-	requires transitive org.sheepy.lily.vulkan.api;
-	requires transitive org.sheepy.lily.vulkan.resource;
 	requires transitive org.sheepy.lily.vulkan.process.graphic;
 
 	requires org.joml;

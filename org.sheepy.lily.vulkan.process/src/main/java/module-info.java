@@ -8,7 +8,6 @@ import org.sheepy.lily.vulkan.process.pipeline.PushConstantAdapter;
  */
 module org.sheepy.lily.vulkan.process
 {
-	requires transitive org.sheepy.lily.vulkan.common;
 	requires transitive org.sheepy.lily.vulkan.resource;
 
 	exports org.sheepy.lily.vulkan.process.barrier;

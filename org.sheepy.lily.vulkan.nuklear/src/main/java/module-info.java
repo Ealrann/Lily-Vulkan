@@ -11,9 +11,6 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexBufferAdapter;
 
 module org.sheepy.lily.vulkan.nuklear
 {
-	requires transitive org.sheepy.lily.vulkan.resource;
-	requires transitive org.sheepy.lily.vulkan.api;
-	requires transitive org.sheepy.lily.vulkan.process;
 	requires transitive org.sheepy.lily.vulkan.process.graphic;
 
 	requires transitive org.lwjgl.nuklear;
@@ -24,8 +21,8 @@ module org.sheepy.lily.vulkan.nuklear
 	exports org.sheepy.lily.vulkan.nuklear.model.impl;
 	exports org.sheepy.lily.vulkan.nuklear.model.util;
 
-	opens org.sheepy.lily.vulkan.nuklear.adapter;
-	opens org.sheepy.lily.vulkan.nuklear.pipeline;
+	opens org.sheepy.lily.vulkan.nuklear.adapter to org.sheepy.lily.core.api;
+	opens org.sheepy.lily.vulkan.nuklear.pipeline to org.sheepy.lily.core.api;
 
 	provides IAdapter with NuklearPipelineAdapter, NuklearConstantsAdapter,
 			NuklearVertexBufferAdapter, ButtonAdapter, PanelAdapter, LabelAdapter,
