@@ -11,11 +11,11 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
+import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
-import org.sheepy.lily.vulkan.process.pipeline.IProcessUnitAdapter;
 
 public class ComputerAdapter extends AbstractSingletonAdapter
-		implements IProcessUnitAdapter<ComputeCommandBuffer>, IStatefullAdapter,
+		implements IPipelineAdapter<ComputeCommandBuffer>, IStatefullAdapter,
 		IPipelineUnitAdapter<ComputeCommandBuffer>
 {
 	private Computer computer = null;

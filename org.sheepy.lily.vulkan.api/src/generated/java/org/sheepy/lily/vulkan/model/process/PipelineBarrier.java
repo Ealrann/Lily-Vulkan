@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
+import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.vulkan.model.resource.Barrier;
 
 /**
@@ -22,7 +23,7 @@ import org.sheepy.lily.vulkan.model.resource.Barrier;
  * @model
  * @generated
  */
-public interface PipelineBarrier extends IProcessUnit, IPipelineUnit
+public interface PipelineBarrier extends LObject, IPipelineUnit
 {
 	/**
 	 * Returns the value of the '<em><b>Barrier</b></em>' containment reference.

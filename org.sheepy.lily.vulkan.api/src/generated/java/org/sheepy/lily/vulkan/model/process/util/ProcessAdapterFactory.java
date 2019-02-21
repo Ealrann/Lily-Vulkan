@@ -94,11 +94,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 				return createProcessSemaphoreAdapter();
 			}
 			@Override
-			public Adapter caseIProcessUnit(IProcessUnit object)
-			{
-				return createIProcessUnitAdapter();
-			}
-			@Override
 			public Adapter caseConfiguration(Configuration object)
 			{
 				return createConfigurationAdapter();
@@ -206,21 +201,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createProcessSemaphoreAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IProcessUnit
-	 * @generated
-	 */
-	public Adapter createIProcessUnitAdapter()
 	{
 		return null;
 	}

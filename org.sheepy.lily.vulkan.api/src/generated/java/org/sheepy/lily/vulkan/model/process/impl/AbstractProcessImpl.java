@@ -43,7 +43,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.ResourceContainer;
 
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.IProcessUnit;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 
@@ -151,7 +151,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IProcessUnit> units;
+	protected EList<IPipeline> units;
 
 	/**
 	 * The cached value of the '{@link #getSemaphores() <em>Semaphores</em>}' containment reference list.
@@ -380,11 +380,11 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
-	public EList<IProcessUnit> getUnits()
+	public EList<IPipeline> getUnits()
 	{
 		if (units == null)
 		{
-			units = new EObjectContainmentEList<IProcessUnit>(IProcessUnit.class, this, ProcessPackage.ABSTRACT_PROCESS__UNITS);
+			units = new EObjectContainmentEList<IPipeline>(IPipeline.class, this, ProcessPackage.ABSTRACT_PROCESS__UNITS);
 		}
 		return units;
 	}
@@ -667,7 +667,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 				getUnits().clear();
-				getUnits().addAll((Collection<? extends IProcessUnit>)newValue);
+				getUnits().addAll((Collection<? extends IPipeline>)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
 				getSemaphores().clear();

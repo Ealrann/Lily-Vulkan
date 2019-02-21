@@ -389,7 +389,6 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

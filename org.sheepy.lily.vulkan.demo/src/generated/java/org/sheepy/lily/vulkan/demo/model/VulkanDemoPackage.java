@@ -79,6 +79,15 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE__CONTENT_OBJECTS = GraphicPackage.GRAPHICS_PIPELINE__CONTENT_OBJECTS;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,15 +104,6 @@ public interface VulkanDemoPackage extends EPackage
 	 * @ordered
 	 */
 	int MESH_PIPELINE__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_PIPELINE__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.

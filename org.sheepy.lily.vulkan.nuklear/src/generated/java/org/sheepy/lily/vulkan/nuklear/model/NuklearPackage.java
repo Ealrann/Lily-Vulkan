@@ -80,6 +80,15 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_PIPELINE__CONTENT_OBJECTS = ProcessPackage.IPIPELINE__CONTENT_OBJECTS;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_PIPELINE__NAME = ProcessPackage.IPIPELINE__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,15 +105,6 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int NUKLEAR_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE__NAME = ProcessPackage.IPIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Index Buffer</b></em>' containment reference.

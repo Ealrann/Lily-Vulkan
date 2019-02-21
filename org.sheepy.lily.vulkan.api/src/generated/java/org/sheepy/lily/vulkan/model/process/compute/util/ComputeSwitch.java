@@ -20,8 +20,6 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
-import org.sheepy.lily.vulkan.model.process.IProcessUnit;
-
 import org.sheepy.lily.vulkan.model.process.compute.*;
 
 /**
@@ -106,9 +104,8 @@ public class ComputeSwitch<T> extends Switch<T>
 				T result = caseComputePipeline(computePipeline);
 				if (result == null) result = caseAbstractPipeline(computePipeline);
 				if (result == null) result = caseIPipeline(computePipeline);
-				if (result == null) result = caseIProcessUnit(computePipeline);
-				if (result == null) result = caseLNamedElement(computePipeline);
 				if (result == null) result = caseLObject(computePipeline);
+				if (result == null) result = caseLNamedElement(computePipeline);
 				if (result == null) result = caseIInferenceObject(computePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -266,22 +263,6 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractProcess(AbstractProcess object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIProcessUnit(IProcessUnit object)
 	{
 		return null;
 	}

@@ -24,10 +24,10 @@ import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ShaderStageBuilde
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
 import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.RenderPass;
-import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
-public abstract class IGraphicsPipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
+public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
 {
 	private ShaderStageBuilder shaderStageBuilder;
 	private InputAssemblyBuilder inputAssemblyBuilder;

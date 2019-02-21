@@ -61,9 +61,9 @@ public class AbstractPipelineItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 			addDescriptorSetPropertyDescriptor(object);
 			addConstantsPropertyDescriptor(object);
 		}
@@ -82,9 +82,9 @@ public class AbstractPipelineItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IProcessUnit_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IProcessUnit_enabled_feature", "_UI_IProcessUnit_type"),
-				 ProcessPackage.Literals.IPROCESS_UNIT__ENABLED,
+				 getString("_UI_IPipeline_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__ENABLED,
 				 true,
 				 false,
 				 false,
@@ -105,9 +105,9 @@ public class AbstractPipelineItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IProcessUnit_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IProcessUnit_stage_feature", "_UI_IProcessUnit_type"),
-				 ProcessPackage.Literals.IPROCESS_UNIT__STAGE,
+				 getString("_UI_IPipeline_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__STAGE,
 				 true,
 				 false,
 				 false,
@@ -249,9 +249,9 @@ public class AbstractPipelineItemProvider
 		switch (notification.getFeatureID(AbstractPipeline.class))
 		{
 			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
+			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:

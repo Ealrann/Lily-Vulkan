@@ -14,7 +14,6 @@ import org.sheepy.lily.vulkan.demo.model.*;
 import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.IProcessUnit;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
@@ -90,9 +89,8 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 				if (result == null) result = caseAbstractPipeline(meshPipeline);
 				if (result == null) result = caseIGraphicsPipeline(meshPipeline);
 				if (result == null) result = caseIPipeline(meshPipeline);
-				if (result == null) result = caseIProcessUnit(meshPipeline);
-				if (result == null) result = caseLNamedElement(meshPipeline);
 				if (result == null) result = caseLObject(meshPipeline);
+				if (result == null) result = caseLNamedElement(meshPipeline);
 				if (result == null) result = caseIInferenceObject(meshPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -171,22 +169,6 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseLObject(LObject object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIProcessUnit(IProcessUnit object)
 	{
 		return null;
 	}

@@ -14,11 +14,11 @@ import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
 import org.sheepy.lily.vulkan.process.graphic.swapchain.SwapChainManager;
-import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
 
-public class ImagePipelineAdapter extends IPipelineAdapter<GraphicCommandBuffer>
+public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
 {
 	private VkImageBlit.Buffer region;
 

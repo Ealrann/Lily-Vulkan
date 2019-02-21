@@ -43,9 +43,9 @@ import org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getContentObjects <em>Content Objects</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getIndexBuffer <em>Index Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getPushConstant <em>Push Constant</em>}</li>
@@ -65,6 +65,26 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected EList<LObject> contentObjects;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
@@ -105,26 +125,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getIndexBuffer() <em>Index Buffer</em>}' containment reference.
@@ -598,12 +598,12 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 		{
 			case NuklearPackage.NUKLEAR_PIPELINE__CONTENT_OBJECTS:
 				return getContentObjects();
+			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
+				return getName();
 			case NuklearPackage.NUKLEAR_PIPELINE__ENABLED:
 				return isEnabled();
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				return getStage();
-			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
-				return getName();
 			case NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER:
 				return getIndexBuffer();
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
@@ -630,14 +630,14 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 			case NuklearPackage.NUKLEAR_PIPELINE__CONTENT_OBJECTS:
 				setContentObjects((EList<LObject>)newValue);
 				return;
+			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
+				setName((String)newValue);
+				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				setStage((ECommandStage)newValue);
-				return;
-			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
-				setName((String)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER:
 				setIndexBuffer((NuklearIndexBuffer)newValue);
@@ -668,14 +668,14 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 			case NuklearPackage.NUKLEAR_PIPELINE__CONTENT_OBJECTS:
 				setContentObjects((EList<LObject>)null);
 				return;
+			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				setStage(STAGE_EDEFAULT);
-				return;
-			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
-				setName(NAME_EDEFAULT);
 				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER:
 				setIndexBuffer((NuklearIndexBuffer)null);
@@ -705,12 +705,12 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 		{
 			case NuklearPackage.NUKLEAR_PIPELINE__CONTENT_OBJECTS:
 				return contentObjects != null;
+			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case NuklearPackage.NUKLEAR_PIPELINE__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				return stage != STAGE_EDEFAULT;
-			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER:
 				return indexBuffer != null;
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
@@ -826,12 +826,12 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (contentObjects: ");
 		result.append(contentObjects);
+		result.append(", name: ");
+		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
 		result.append(", stage: ");
 		result.append(stage);
-		result.append(", name: ");
-		result.append(name);
 		result.append(", subpass: ");
 		result.append(subpass);
 		result.append(')');

@@ -22,8 +22,6 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.IProcessUnit;
-
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 
 /**
@@ -228,11 +226,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseAbstractProcess(AbstractProcess object)
 			{
 				return createAbstractProcessAdapter();
-			}
-			@Override
-			public Adapter caseIProcessUnit(IProcessUnit object)
-			{
-				return createIProcessUnitAdapter();
 			}
 			@Override
 			public Adapter caseIPipeline(IPipeline object)
@@ -682,21 +675,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAbstractProcessAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IProcessUnit <em>IProcess Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IProcessUnit
-	 * @generated
-	 */
-	public Adapter createIProcessUnitAdapter()
 	{
 		return null;
 	}

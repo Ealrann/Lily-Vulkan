@@ -10,13 +10,12 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
-import org.sheepy.lily.vulkan.process.pipeline.IProcessUnitAdapter;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
 
-public class PipelineBarrierAdapter extends AbstractDeepAllocableAdapter implements
-		IProcessUnitAdapter<AbstractCommandBuffer>, IPipelineUnitAdapter<AbstractCommandBuffer>
+public class PipelineBarrierAdapter extends AbstractDeepAllocableAdapter
+		implements IPipelineUnitAdapter<AbstractCommandBuffer>
 {
 	private IBarrierExecutor executor;
 
@@ -56,16 +55,6 @@ public class PipelineBarrierAdapter extends AbstractDeepAllocableAdapter impleme
 	{
 		executor.execute(commandBuffer.getVkCommandBuffer());
 	}
-
-	@Override
-	public boolean isRecordNeeded()
-	{
-		return false;
-	}
-
-	@Override
-	public void setRecordNeeded(boolean value)
-	{}
 
 	@Override
 	public boolean isApplicable(EClass eClass)

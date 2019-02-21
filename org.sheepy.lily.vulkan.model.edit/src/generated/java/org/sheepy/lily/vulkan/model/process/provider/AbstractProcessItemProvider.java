@@ -300,11 +300,6 @@ public class AbstractProcessItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
-				 ProcessFactory.eINSTANCE.createPipelineBarrier()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(ProcessPackage.Literals.ABSTRACT_PROCESS__SEMAPHORES,
 				 ProcessFactory.eINSTANCE.createProcessSemaphore()));
 	}

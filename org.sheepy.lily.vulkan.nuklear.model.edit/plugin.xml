@@ -31,4 +31,5 @@
             uri="org.sheepy.lily.vulkan.model"
             class="org.sheepy.lily.vulkan.nuklear.model.provider.NuklearItemProviderAdapterFactory$VulkanChildCreationExtender"/>
    </extension>
+
 </plugin>

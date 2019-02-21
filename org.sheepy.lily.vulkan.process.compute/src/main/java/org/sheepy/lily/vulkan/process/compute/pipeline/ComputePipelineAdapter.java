@@ -20,13 +20,13 @@ import org.sheepy.lily.vulkan.model.process.compute.Computer;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.process.compute.process.IComputeContextAdapter;
-import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 
-public class ComputePipelineAdapter extends IPipelineAdapter<ComputeCommandBuffer>
+public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeCommandBuffer>
 {
 	private int groupCountX;
 	private int groupCountY;

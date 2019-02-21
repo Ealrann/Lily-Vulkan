@@ -20,9 +20,8 @@ import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.IProcessUnit;
+import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.process.pipeline.IProcessUnitAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
@@ -41,12 +40,12 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	@Override
 	public void setTarget(Notifier target)
 	{
-		super.setTarget(target);
 		process = (AbstractProcess) target;
+
+		super.setTarget(target);
+
 		logicalDevice = ILogicalDeviceAdapter.adapt(process).getLogicalDevice(process);
-
 		descriptorPool = new DescriptorPool(logicalDevice, gatherDescriptorLists());
-
 		childAllocables.add(descriptorPool);
 	}
 
@@ -54,13 +53,10 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	protected List<IResourceAllocable> gatherResources()
 	{
 		List<IResourceAllocable> resources = super.gatherResources();
-		for (IProcessUnit unit : ((AbstractProcess) target).getUnits())
+		for (IPipeline pipeline : process.getUnits())
 		{
-			if (unit instanceof IPipeline)
-			{
-				var adapter = IPipelineAdapter.adapt((IPipeline) unit);
-				resources.addAll(adapter.getResources());
-			}
+			var adapter = AbstractPipelineAdapter.adapt(pipeline);
+			resources.addAll(adapter.getResources());
 		}
 		return resources;
 	}
@@ -68,14 +64,10 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	private List<IVkDescriptorSet> gatherDescriptorLists()
 	{
 		List<IVkDescriptorSet> res = new ArrayList<>();
-		for (EObject eo : process.eContents())
+		for (IPipeline pipeline : process.getUnits())
 		{
-			if (eo instanceof IPipeline)
-			{
-				var adapter = IPipelineAdapter.adapt((IPipeline) eo);
-				res.addAll(adapter.getDescriptorSets());
-			}
-
+			var adapter = AbstractPipelineAdapter.adapt(pipeline);
+			res.addAll(adapter.getDescriptorSets());
 		}
 		return res;
 	}
@@ -162,9 +154,9 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		boolean res = false;
 		for (EObject child : process.eContents())
 		{
-			if (child instanceof IProcessUnit)
+			if (child instanceof IPipeline)
 			{
-				var adapter = IProcessUnitAdapter.adapt((IProcessUnit) child);
+				var adapter = IPipelineAdapter.adapt((IPipeline) child);
 				if (adapter.isRecordNeeded())
 				{
 					res = true;
@@ -189,18 +181,14 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 	public void recordCommand(T commandBuffer, ECommandStage stage)
 	{
-		for (EObject child : process.eContents())
+		for (IPipeline pipeline : process.getUnits())
 		{
-			if (child instanceof IProcessUnit)
+			final IPipelineAdapter<T> adapter = IPipelineAdapter.adapt(pipeline);
+			if (pipeline.isEnabled() && pipeline.getStage() == stage)
 			{
-				IProcessUnit unit = (IProcessUnit) child;
-				final IProcessUnitAdapter<T> adapter = IProcessUnitAdapter.adapt(unit);
-				if (unit.isEnabled() && unit.getStage() == stage)
-				{
-					adapter.record(commandBuffer, bindPoint);
-				}
-				adapter.setRecordNeeded(false);
+				adapter.record(commandBuffer, bindPoint);
 			}
+			adapter.setRecordNeeded(false);
 		}
 	}
 

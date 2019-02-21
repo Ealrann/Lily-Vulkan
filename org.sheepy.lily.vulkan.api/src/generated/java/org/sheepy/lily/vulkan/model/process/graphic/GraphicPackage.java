@@ -801,6 +801,15 @@ public interface GraphicPackage extends EPackage
 	int IGRAPHICS_PIPELINE__CONTENT_OBJECTS = ProcessPackage.IPIPELINE__CONTENT_OBJECTS;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGRAPHICS_PIPELINE__NAME = ProcessPackage.IPIPELINE__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -817,15 +826,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int IGRAPHICS_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__NAME = ProcessPackage.IPIPELINE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>IGraphics Pipeline</em>' class.
@@ -910,6 +910,15 @@ public interface GraphicPackage extends EPackage
 	int IGUI_PIPELINE__CONTENT_OBJECTS = IGRAPHICS_PIPELINE__CONTENT_OBJECTS;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUI_PIPELINE__NAME = IGRAPHICS_PIPELINE__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -926,15 +935,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int IGUI_PIPELINE__STAGE = IGRAPHICS_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE__NAME = IGRAPHICS_PIPELINE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>IGUI Pipeline</em>' class.
@@ -1019,6 +1019,15 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__CONTENT_OBJECTS = ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__NAME = ProcessPackage.ABSTRACT_PIPELINE__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1035,15 +1044,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__NAME = ProcessPackage.ABSTRACT_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
@@ -1785,6 +1785,15 @@ public interface GraphicPackage extends EPackage
 	int IMAGE_PIPELINE__CONTENT_OBJECTS = ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_PIPELINE__NAME = ProcessPackage.ABSTRACT_PIPELINE__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1801,15 +1810,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int IMAGE_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_PIPELINE__NAME = ProcessPackage.ABSTRACT_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.

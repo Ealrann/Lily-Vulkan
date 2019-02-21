@@ -10,15 +10,15 @@ import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 
-public class PushConstantAdapter extends AbstractStatefullAdapter implements
-		IProcessUnitAdapter<AbstractCommandBuffer>, IPipelineUnitAdapter<AbstractCommandBuffer>
+public class PushConstantAdapter extends AbstractStatefullAdapter
+		implements IPipelineUnitAdapter<AbstractCommandBuffer>
 {
 
 	@Override
 	public void record(AbstractCommandBuffer commandBuffer, int bindPoint)
 	{
 		IPipeline pipeline = (IPipeline) target.eContainer();
-		IPipelineAdapter<?> adapter = IPipelineAdapter.adapt(pipeline);
+		AbstractPipelineAdapter<?> adapter = AbstractPipelineAdapter.adapt(pipeline);
 		final var constants = adapter.getConstants();
 		if (constants != null)
 		{
@@ -30,16 +30,6 @@ public class PushConstantAdapter extends AbstractStatefullAdapter implements
 					pushConstantAdapter.getData());
 		}
 	}
-
-	@Override
-	public boolean isRecordNeeded()
-	{
-		return false;
-	}
-
-	@Override
-	public void setRecordNeeded(boolean value)
-	{}
 
 	@Override
 	public boolean isApplicable(EClass eClass)

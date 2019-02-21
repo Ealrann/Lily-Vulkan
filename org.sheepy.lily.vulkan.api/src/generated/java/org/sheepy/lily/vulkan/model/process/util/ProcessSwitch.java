@@ -100,15 +100,6 @@ public class ProcessSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.IPROCESS_UNIT:
-			{
-				IProcessUnit iProcessUnit = (IProcessUnit)theEObject;
-				T result = caseIProcessUnit(iProcessUnit);
-				if (result == null) result = caseLObject(iProcessUnit);
-				if (result == null) result = caseIInferenceObject(iProcessUnit);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ProcessPackage.CONFIGURATION:
 			{
 				Configuration configuration = (Configuration)theEObject;
@@ -120,11 +111,10 @@ public class ProcessSwitch<T> extends Switch<T>
 			{
 				PipelineBarrier pipelineBarrier = (PipelineBarrier)theEObject;
 				T result = casePipelineBarrier(pipelineBarrier);
-				if (result == null) result = caseIProcessUnit(pipelineBarrier);
-				if (result == null) result = caseIPipelineUnit(pipelineBarrier);
 				if (result == null) result = caseLObject(pipelineBarrier);
-				if (result == null) result = caseLNamedElement(pipelineBarrier);
+				if (result == null) result = caseIPipelineUnit(pipelineBarrier);
 				if (result == null) result = caseIInferenceObject(pipelineBarrier);
+				if (result == null) result = caseLNamedElement(pipelineBarrier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -132,9 +122,8 @@ public class ProcessSwitch<T> extends Switch<T>
 			{
 				IPipeline iPipeline = (IPipeline)theEObject;
 				T result = caseIPipeline(iPipeline);
-				if (result == null) result = caseIProcessUnit(iPipeline);
-				if (result == null) result = caseLNamedElement(iPipeline);
 				if (result == null) result = caseLObject(iPipeline);
+				if (result == null) result = caseLNamedElement(iPipeline);
 				if (result == null) result = caseIInferenceObject(iPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -144,9 +133,8 @@ public class ProcessSwitch<T> extends Switch<T>
 				AbstractPipeline abstractPipeline = (AbstractPipeline)theEObject;
 				T result = caseAbstractPipeline(abstractPipeline);
 				if (result == null) result = caseIPipeline(abstractPipeline);
-				if (result == null) result = caseIProcessUnit(abstractPipeline);
-				if (result == null) result = caseLNamedElement(abstractPipeline);
 				if (result == null) result = caseLObject(abstractPipeline);
+				if (result == null) result = caseLNamedElement(abstractPipeline);
 				if (result == null) result = caseIInferenceObject(abstractPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -165,9 +153,8 @@ public class ProcessSwitch<T> extends Switch<T>
 				T result = caseAbstractCompositePipeline(abstractCompositePipeline);
 				if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);
 				if (result == null) result = caseIPipeline(abstractCompositePipeline);
-				if (result == null) result = caseIProcessUnit(abstractCompositePipeline);
-				if (result == null) result = caseLNamedElement(abstractCompositePipeline);
 				if (result == null) result = caseLObject(abstractCompositePipeline);
+				if (result == null) result = caseLNamedElement(abstractCompositePipeline);
 				if (result == null) result = caseIInferenceObject(abstractCompositePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -213,22 +200,6 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseProcessSemaphore(ProcessSemaphore object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIProcessUnit(IProcessUnit object)
 	{
 		return null;
 	}

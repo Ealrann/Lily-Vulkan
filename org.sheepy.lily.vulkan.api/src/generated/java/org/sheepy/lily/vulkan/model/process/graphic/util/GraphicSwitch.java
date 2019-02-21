@@ -20,8 +20,6 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.IProcessUnit;
-
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 
 /**
@@ -158,9 +156,8 @@ public class GraphicSwitch<T> extends Switch<T>
 				IGraphicsPipeline iGraphicsPipeline = (IGraphicsPipeline)theEObject;
 				T result = caseIGraphicsPipeline(iGraphicsPipeline);
 				if (result == null) result = caseIPipeline(iGraphicsPipeline);
-				if (result == null) result = caseIProcessUnit(iGraphicsPipeline);
-				if (result == null) result = caseLNamedElement(iGraphicsPipeline);
 				if (result == null) result = caseLObject(iGraphicsPipeline);
+				if (result == null) result = caseLNamedElement(iGraphicsPipeline);
 				if (result == null) result = caseIInferenceObject(iGraphicsPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -171,9 +168,8 @@ public class GraphicSwitch<T> extends Switch<T>
 				T result = caseIGUIPipeline(iguiPipeline);
 				if (result == null) result = caseIGraphicsPipeline(iguiPipeline);
 				if (result == null) result = caseIPipeline(iguiPipeline);
-				if (result == null) result = caseIProcessUnit(iguiPipeline);
-				if (result == null) result = caseLNamedElement(iguiPipeline);
 				if (result == null) result = caseLObject(iguiPipeline);
+				if (result == null) result = caseLNamedElement(iguiPipeline);
 				if (result == null) result = caseIInferenceObject(iguiPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -185,9 +181,8 @@ public class GraphicSwitch<T> extends Switch<T>
 				if (result == null) result = caseAbstractPipeline(graphicsPipeline);
 				if (result == null) result = caseIGraphicsPipeline(graphicsPipeline);
 				if (result == null) result = caseIPipeline(graphicsPipeline);
-				if (result == null) result = caseIProcessUnit(graphicsPipeline);
-				if (result == null) result = caseLNamedElement(graphicsPipeline);
 				if (result == null) result = caseLObject(graphicsPipeline);
+				if (result == null) result = caseLNamedElement(graphicsPipeline);
 				if (result == null) result = caseIInferenceObject(graphicsPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -263,9 +258,8 @@ public class GraphicSwitch<T> extends Switch<T>
 				T result = caseImagePipeline(imagePipeline);
 				if (result == null) result = caseAbstractPipeline(imagePipeline);
 				if (result == null) result = caseIPipeline(imagePipeline);
-				if (result == null) result = caseIProcessUnit(imagePipeline);
-				if (result == null) result = caseLNamedElement(imagePipeline);
 				if (result == null) result = caseLObject(imagePipeline);
+				if (result == null) result = caseLNamedElement(imagePipeline);
 				if (result == null) result = caseIInferenceObject(imagePipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -718,22 +712,6 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractProcess(AbstractProcess object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIProcessUnit(IProcessUnit object)
 	{
 		return null;
 	}

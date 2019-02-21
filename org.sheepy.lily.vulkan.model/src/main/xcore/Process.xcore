@@ -19,7 +19,7 @@ abstract class AbstractProcess extends IProcess
 {
 	contains ResourceContainer resourceContainer
 	contains DescriptorSet[] descriptorSets
-	contains IProcessUnit[] units
+	contains IPipeline[] units
 	contains ProcessSemaphore[] semaphores
 	boolean resetAllowed
 	boolean initializedSignalizedSemaphore = "false"
@@ -33,17 +33,11 @@ class ProcessSemaphore
 	EPipelineStage waitStage
 }
 
-interface IProcessUnit extends LObject
-{
-	boolean enabled = "true"
-	ECommandStage stage = "Render"
-}
-
 interface Configuration
 {
 }
 
-class PipelineBarrier extends IProcessUnit, IPipelineUnit
+class PipelineBarrier extends LObject, IPipelineUnit
 {
 	contains Barrier barrier
 
@@ -51,8 +45,10 @@ class PipelineBarrier extends IProcessUnit, IPipelineUnit
 	refers AbstractProcess dstQueue
 }
 
-interface IPipeline extends IProcessUnit, LNamedElement
+interface IPipeline extends LObject, LNamedElement
 {
+	boolean enabled = "true"
+	ECommandStage stage = "Render"
 }
 
 abstract class AbstractPipeline extends IPipeline

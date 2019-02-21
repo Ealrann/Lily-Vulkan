@@ -73,9 +73,9 @@ public class NuklearPipelineItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 			addSubpassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -93,9 +93,9 @@ public class NuklearPipelineItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IProcessUnit_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IProcessUnit_enabled_feature", "_UI_IProcessUnit_type"),
-				 ProcessPackage.Literals.IPROCESS_UNIT__ENABLED,
+				 getString("_UI_IPipeline_enabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__ENABLED,
 				 true,
 				 false,
 				 false,
@@ -116,9 +116,9 @@ public class NuklearPipelineItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IProcessUnit_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IProcessUnit_stage_feature", "_UI_IProcessUnit_type"),
-				 ProcessPackage.Literals.IPROCESS_UNIT__STAGE,
+				 getString("_UI_IPipeline_stage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature", "_UI_IPipeline_type"),
+				 ProcessPackage.Literals.IPIPELINE__STAGE,
 				 true,
 				 false,
 				 false,
@@ -251,9 +251,9 @@ public class NuklearPipelineItemProvider
 		switch (notification.getFeatureID(NuklearPipeline.class))
 		{
 			case NuklearPackage.NUKLEAR_PIPELINE__CONTENT_OBJECTS:
+			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
 			case NuklearPackage.NUKLEAR_PIPELINE__ENABLED:
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
-			case NuklearPackage.NUKLEAR_PIPELINE__NAME:
 			case NuklearPackage.NUKLEAR_PIPELINE__SUBPASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

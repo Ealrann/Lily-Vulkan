@@ -35,9 +35,6 @@ import org.sheepy.lily.core.model.root.RootPackage.Literals;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
-
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
@@ -54,8 +51,6 @@ import org.sheepy.lily.vulkan.model.resource.Barrier;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getContentObjects <em>Content Objects</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getBarrier <em>Barrier</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl#getSrcQueue <em>Src Queue</em>}</li>
@@ -75,46 +70,6 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected EList<LObject> contentObjects;
-
-	/**
-	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isEnabled()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean ENABLED_EDEFAULT = true;
-
-	/**
-	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isEnabled()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean enabled = ENABLED_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.RENDER;
-
-	/**
-	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -210,56 +165,6 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 		contentObjects = newContentObjects;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS, oldContentObjects, contentObjects));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isEnabled()
-	{
-		return enabled;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setEnabled(boolean newEnabled)
-	{
-		boolean oldEnabled = enabled;
-		enabled = newEnabled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__ENABLED, oldEnabled, enabled));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ECommandStage getStage()
-	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStage(ECommandStage newStage)
-	{
-		ECommandStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PIPELINE_BARRIER__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -549,10 +454,6 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 		{
 			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
 				return getContentObjects();
-			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
-				return isEnabled();
-			case ProcessPackage.PIPELINE_BARRIER__STAGE:
-				return getStage();
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				return getName();
 			case ProcessPackage.PIPELINE_BARRIER__BARRIER:
@@ -580,12 +481,6 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 		{
 			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
 				setContentObjects((EList<LObject>)newValue);
-				return;
-			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
-				setEnabled((Boolean)newValue);
-				return;
-			case ProcessPackage.PIPELINE_BARRIER__STAGE:
-				setStage((ECommandStage)newValue);
 				return;
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				setName((String)newValue);
@@ -616,12 +511,6 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
 				setContentObjects((EList<LObject>)null);
 				return;
-			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
-				setEnabled(ENABLED_EDEFAULT);
-				return;
-			case ProcessPackage.PIPELINE_BARRIER__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -650,10 +539,6 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 		{
 			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
 				return contentObjects != null;
-			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
-				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.PIPELINE_BARRIER__STAGE:
-				return stage != STAGE_EDEFAULT;
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.PIPELINE_BARRIER__BARRIER:
@@ -755,10 +640,6 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (contentObjects: ");
 		result.append(contentObjects);
-		result.append(", enabled: ");
-		result.append(enabled);
-		result.append(", stage: ");
-		result.append(stage);
 		result.append(", name: ");
 		result.append(name);
 		result.append(')');

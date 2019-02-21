@@ -60,59 +60,11 @@ public class PipelineBarrierItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addEnabledPropertyDescriptor(object);
-			addStagePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addSrcQueuePropertyDescriptor(object);
 			addDstQueuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Enabled feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEnabledPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IProcessUnit_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IProcessUnit_enabled_feature", "_UI_IProcessUnit_type"),
-				 ProcessPackage.Literals.IPROCESS_UNIT__ENABLED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Stage feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStagePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IProcessUnit_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IProcessUnit_stage_feature", "_UI_IProcessUnit_type"),
-				 ProcessPackage.Literals.IPROCESS_UNIT__STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -260,8 +212,6 @@ public class PipelineBarrierItemProvider
 		switch (notification.getFeatureID(PipelineBarrier.class))
 		{
 			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
-			case ProcessPackage.PIPELINE_BARRIER__ENABLED:
-			case ProcessPackage.PIPELINE_BARRIER__STAGE:
 			case ProcessPackage.PIPELINE_BARRIER__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

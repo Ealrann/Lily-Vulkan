@@ -57,9 +57,9 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getContentObjects <em>Content Objects</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSet <em>Descriptor Set</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getConstants <em>Constants</em>}</li>
@@ -78,6 +78,26 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected EList<LObject> contentObjects;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
@@ -118,26 +138,6 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getUnits() <em>Units</em>}' containment reference list.
@@ -517,12 +517,12 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 		{
 			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
 				return getContentObjects();
+			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+				return getName();
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				return isEnabled();
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				return getStage();
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-				return getName();
 			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 				return getUnits();
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
@@ -549,14 +549,14 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
 				setContentObjects((EList<LObject>)newValue);
 				return;
+			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+				setName((String)newValue);
+				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				setStage((ECommandStage)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-				setName((String)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 				getUnits().clear();
@@ -585,14 +585,14 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
 				setContentObjects((EList<LObject>)null);
 				return;
+			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				setStage(STAGE_EDEFAULT);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-				setName(NAME_EDEFAULT);
 				return;
 			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 				getUnits().clear();
@@ -619,12 +619,12 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 		{
 			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
 				return contentObjects != null;
+			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 				return stage != STAGE_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 				return units != null && !units.isEmpty();
 			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
@@ -710,12 +710,12 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (contentObjects: ");
 		result.append(contentObjects);
+		result.append(", name: ");
+		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
 		result.append(", stage: ");
 		result.append(stage);
-		result.append(", name: ");
-		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

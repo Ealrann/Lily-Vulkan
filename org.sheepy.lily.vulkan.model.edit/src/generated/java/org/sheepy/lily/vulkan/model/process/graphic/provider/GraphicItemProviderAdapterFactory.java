@@ -752,7 +752,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

@@ -11,7 +11,6 @@ import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.IProcessUnit;
 import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
@@ -87,11 +86,10 @@ public class NuklearSwitch<T> extends Switch<T>
 				NuklearPipeline nuklearPipeline = (NuklearPipeline)theEObject;
 				T result = caseNuklearPipeline(nuklearPipeline);
 				if (result == null) result = caseIGUIPipeline(nuklearPipeline);
-				if (result == null) result = caseIProcessUnit(nuklearPipeline);
+				if (result == null) result = caseLObject(nuklearPipeline);
 				if (result == null) result = caseLNamedElement(nuklearPipeline);
 				if (result == null) result = caseIGraphicsPipeline(nuklearPipeline);
 				if (result == null) result = caseIPipeline(nuklearPipeline);
-				if (result == null) result = caseLObject(nuklearPipeline);
 				if (result == null) result = caseIInferenceObject(nuklearPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -198,22 +196,6 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseLObject(LObject object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IProcess Unit</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIProcessUnit(IProcessUnit object)
 	{
 		return null;
 	}

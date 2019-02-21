@@ -77,7 +77,7 @@ public interface AbstractProcess extends IProcess
 
 	/**
 	 * Returns the value of the '<em><b>Units</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.IProcessUnit}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.IPipeline}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Units</em>' containment reference list isn't clear,
@@ -89,7 +89,7 @@ public interface AbstractProcess extends IProcess
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IProcessUnit> getUnits();
+	EList<IPipeline> getUnits();
 
 	/**
 	 * Returns the value of the '<em><b>Semaphores</b></em>' containment reference list.
