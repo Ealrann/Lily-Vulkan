@@ -47,6 +47,7 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -56,6 +57,7 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getRefs() <em>Refs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

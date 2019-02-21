@@ -3,11 +3,14 @@
 package org.sheepy.lily.vulkan.model.process.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 
@@ -20,22 +23,30 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.lily.core.api.util.LTreeIterator;
+
 import org.sheepy.lily.core.model.inference.IInferenceObject;
+
 import org.sheepy.lily.core.model.root.LObject;
+
 import org.sheepy.lily.core.model.root.RootPackage.Literals;
+
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.ResourceContainer;
+
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IProcessUnit;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
+
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 /**
@@ -384,6 +395,21 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
+	public EList<ProcessSemaphore> getSemaphores()
+	{
+		if (semaphores == null)
+		{
+			semaphores = new EObjectContainmentEList<ProcessSemaphore>(ProcessSemaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES);
+		}
+		return semaphores;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isResetAllowed()
 	{
 		return resetAllowed;
@@ -535,21 +561,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	public IInferenceObject lInferenceObject()
 	{
 		return this;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<ProcessSemaphore> getSemaphores()
-	{
-		if (semaphores == null)
-		{
-			semaphores = new EObjectContainmentEList<ProcessSemaphore>(ProcessSemaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES);
-		}
-		return semaphores;
 	}
 
 	/**

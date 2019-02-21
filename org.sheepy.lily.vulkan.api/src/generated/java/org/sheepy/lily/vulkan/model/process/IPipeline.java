@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IPipeline</b></em>'.

@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 
 /**
@@ -24,7 +25,6 @@ import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
  */
 public interface AttachementRef extends EObject
 {
-
 	/**
 	 * Returns the value of the '<em><b>Attachement</b></em>' reference.
 	 * <!-- begin-user-doc -->

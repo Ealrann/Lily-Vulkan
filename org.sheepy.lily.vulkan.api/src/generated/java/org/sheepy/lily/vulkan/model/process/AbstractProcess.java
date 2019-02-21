@@ -3,8 +3,10 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.ResourceContainer;
+
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 /**
@@ -90,6 +92,22 @@ public interface AbstractProcess extends IProcess
 	EList<IProcessUnit> getUnits();
 
 	/**
+	 * Returns the value of the '<em><b>Semaphores</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Semaphores</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Semaphores</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_Semaphores()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ProcessSemaphore> getSemaphores();
+
+	/**
 	 * Returns the value of the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -160,21 +178,5 @@ public interface AbstractProcess extends IProcess
 	 * @generated
 	 */
 	EList<ProcessSemaphore> getDependentProcesses();
-
-	/**
-	 * Returns the value of the '<em><b>Semaphores</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Semaphores</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semaphores</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_Semaphores()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ProcessSemaphore> getSemaphores();
 
 } // AbstractProcess

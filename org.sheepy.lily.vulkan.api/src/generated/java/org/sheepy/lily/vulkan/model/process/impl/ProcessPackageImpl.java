@@ -7,12 +7,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.sheepy.lily.core.model.action.ActionPackage;
+
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+
 import org.sheepy.lily.core.model.inference.InferencePackage;
+
 import org.sheepy.lily.core.model.root.RootPackage;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
@@ -29,6 +36,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
+
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -233,6 +241,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getAbstractProcess_Semaphores()
+	{
+		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EAttribute getAbstractProcess_ResetAllowed()
 	{
 		return (EAttribute)abstractProcessEClass.getEStructuralFeatures().get(4);
@@ -258,17 +277,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EReference getAbstractProcess_DependentProcesses()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAbstractProcess_Semaphores()
-	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**

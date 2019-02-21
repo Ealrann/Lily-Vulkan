@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.sheepy.lily.core.api.types.SVector2i;
 
 /**

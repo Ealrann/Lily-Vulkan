@@ -6,8 +6,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.sheepy.lily.core.model.root.RootPackage;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 /**
@@ -1043,6 +1046,17 @@ public interface ProcessPackage extends EPackage
 	EReference getAbstractProcess_Units();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores <em>Semaphores</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Semaphores</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores()
+	 * @see #getAbstractProcess()
+	 * @generated
+	 */
+	EReference getAbstractProcess_Semaphores();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1074,17 +1088,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractProcess_DependentProcesses();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores <em>Semaphores</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Semaphores</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores()
-	 * @see #getAbstractProcess()
-	 * @generated
-	 */
-	EReference getAbstractProcess_Semaphores();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore <em>Semaphore</em>}'.
@@ -1356,6 +1359,14 @@ public interface ProcessPackage extends EPackage
 		EReference ABSTRACT_PROCESS__UNITS = eINSTANCE.getAbstractProcess_Units();
 
 		/**
+		 * The meta object literal for the '<em><b>Semaphores</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PROCESS__SEMAPHORES = eINSTANCE.getAbstractProcess_Semaphores();
+
+		/**
 		 * The meta object literal for the '<em><b>Reset Allowed</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1378,14 +1389,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference ABSTRACT_PROCESS__DEPENDENT_PROCESSES = eINSTANCE.getAbstractProcess_DependentProcesses();
-
-		/**
-		 * The meta object literal for the '<em><b>Semaphores</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS__SEMAPHORES = eINSTANCE.getAbstractProcess_Semaphores();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.

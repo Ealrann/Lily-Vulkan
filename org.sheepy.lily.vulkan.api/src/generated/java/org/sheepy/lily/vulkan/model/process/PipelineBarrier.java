@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.vulkan.model.resource.Barrier;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Pipeline Barrier</b></em>'.
@@ -25,7 +24,6 @@ import org.sheepy.lily.vulkan.model.resource.Barrier;
  */
 public interface PipelineBarrier extends IProcessUnit, IPipelineUnit
 {
-
 	/**
 	 * Returns the value of the '<em><b>Barrier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -103,4 +101,5 @@ public interface PipelineBarrier extends IProcessUnit, IPipelineUnit
 	 * @generated
 	 */
 	void setDstQueue(AbstractProcess value);
+
 } // PipelineBarrier
