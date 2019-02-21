@@ -33,7 +33,7 @@ public interface DepthAttachmentDescription extends AttachmentDescription
 	 * @return the value of the '<em>Depth Image</em>' reference.
 	 * @see #setDepthImage(DepthImage)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getDepthAttachmentDescription_DepthImage()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	DepthImage getDepthImage();

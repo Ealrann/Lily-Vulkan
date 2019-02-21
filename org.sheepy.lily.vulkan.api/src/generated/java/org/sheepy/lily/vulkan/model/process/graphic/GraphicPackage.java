@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
@@ -397,7 +398,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION__NAME = 0;
+	int ATTACHMENT_DESCRIPTION__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Samples</b></em>' attribute.
@@ -406,7 +407,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION__SAMPLES = 1;
+	int ATTACHMENT_DESCRIPTION__SAMPLES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Load Op</b></em>' attribute.
@@ -415,7 +416,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION__LOAD_OP = 2;
+	int ATTACHMENT_DESCRIPTION__LOAD_OP = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Store Op</b></em>' attribute.
@@ -424,7 +425,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION__STORE_OP = 3;
+	int ATTACHMENT_DESCRIPTION__STORE_OP = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Stencil Load Op</b></em>' attribute.
@@ -433,7 +434,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP = 4;
+	int ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Stencil Store Op</b></em>' attribute.
@@ -442,7 +443,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP = 5;
+	int ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Initial Layout</b></em>' attribute.
@@ -451,7 +452,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT = 6;
+	int ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Final Layout</b></em>' attribute.
@@ -460,7 +461,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION__FINAL_LAYOUT = 7;
+	int ATTACHMENT_DESCRIPTION__FINAL_LAYOUT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Attachment Description</em>' class.
@@ -469,7 +470,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION_FEATURE_COUNT = 8;
+	int ATTACHMENT_DESCRIPTION_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Attachment Description</em>' class.
@@ -478,7 +479,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_DESCRIPTION_OPERATION_COUNT = 0;
+	int ATTACHMENT_DESCRIPTION_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl <em>Depth Attachment Description</em>}' class.
@@ -2234,17 +2235,6 @@ public interface GraphicPackage extends EPackage
 	EClass getAttachmentDescription();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getName()
-	 * @see #getAttachmentDescription()
-	 * @generated
-	 */
-	EAttribute getAttachmentDescription_Name();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getSamples <em>Samples</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3286,14 +3276,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass ATTACHMENT_DESCRIPTION = eINSTANCE.getAttachmentDescription();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ATTACHMENT_DESCRIPTION__NAME = eINSTANCE.getAttachmentDescription_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Samples</b></em>' attribute feature.

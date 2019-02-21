@@ -186,7 +186,6 @@ public class MeshModelFactory
 		if (meshConfiguration.depth)
 		{
 			depthImage = new DepthImageImpl();
-			graphicProcess.getResources().add(depthImage);
 			graphicProcess.setDepthImage(depthImage);
 		}
 

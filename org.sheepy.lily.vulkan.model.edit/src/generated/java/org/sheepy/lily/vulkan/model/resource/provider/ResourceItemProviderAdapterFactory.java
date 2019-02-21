@@ -774,11 +774,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 				newChildDescriptors.add
 					(createChildParameter
 						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
-						 ResourceFactory.eINSTANCE.createDepthImage()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
 						 ResourceFactory.eINSTANCE.createFileResource()));
 
 				newChildDescriptors.add

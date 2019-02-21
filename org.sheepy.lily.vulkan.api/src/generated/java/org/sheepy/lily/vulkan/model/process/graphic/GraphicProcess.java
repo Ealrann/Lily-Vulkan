@@ -37,7 +37,7 @@ public interface GraphicProcess extends AbstractProcess
 	 * @return the value of the '<em>Configuration</em>' containment reference.
 	 * @see #setConfiguration(GraphicConfiguration)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_Configuration()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	GraphicConfiguration getConfiguration();
@@ -63,7 +63,7 @@ public interface GraphicProcess extends AbstractProcess
 	 * @return the value of the '<em>Render Pass Info</em>' containment reference.
 	 * @see #setRenderPassInfo(RenderPassInfo)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicProcess_RenderPassInfo()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	RenderPassInfo getRenderPassInfo();

@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -88,9 +89,9 @@ public class AttachmentDescriptionItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_name_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__NAME,
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,

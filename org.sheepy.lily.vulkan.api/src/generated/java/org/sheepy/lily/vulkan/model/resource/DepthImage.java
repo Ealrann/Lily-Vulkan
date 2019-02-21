@@ -2,6 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.eclipse.emf.ecore.EObject;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,6 +15,6 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface DepthImage extends BasicResource
+public interface DepthImage extends EObject
 {
 } // DepthImage

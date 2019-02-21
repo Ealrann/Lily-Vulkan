@@ -194,6 +194,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 				return createConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseLNamedElement(LNamedElement object)
+			{
+				return createLNamedElementAdapter();
+			}
+			@Override
 			public Adapter caseIInferenceObject(IInferenceObject object)
 			{
 				return createIInferenceObjectAdapter();
@@ -207,11 +212,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIEnginePart(IEnginePart object)
 			{
 				return createIEnginePartAdapter();
-			}
-			@Override
-			public Adapter caseLNamedElement(LNamedElement object)
-			{
-				return createLNamedElementAdapter();
 			}
 			@Override
 			public Adapter caseIProcess(IProcess object)

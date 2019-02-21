@@ -1552,22 +1552,13 @@ public interface ResourcePackage extends EPackage
 	int DEPTH_IMAGE = 22;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPTH_IMAGE__NAME = BASIC_RESOURCE__NAME;
-
-	/**
 	 * The number of structural features of the '<em>Depth Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPTH_IMAGE_FEATURE_COUNT = BASIC_RESOURCE_FEATURE_COUNT + 0;
+	int DEPTH_IMAGE_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of operations of the '<em>Depth Image</em>' class.
@@ -1576,7 +1567,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DEPTH_IMAGE_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
+	int DEPTH_IMAGE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.PathResourceImpl <em>Path Resource</em>}' class.

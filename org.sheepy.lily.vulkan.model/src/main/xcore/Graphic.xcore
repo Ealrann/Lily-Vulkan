@@ -30,6 +30,7 @@ import org.sheepy.lily.vulkan.model.process.IPipeline
 import org.sheepy.lily.vulkan.model.resource.DepthImage
 import org.sheepy.lily.vulkan.model.resource.Image
 import org.sheepy.lily.vulkan.model.resource.Shader
+import org.sheepy.lily.core.model.types.LNamedElement
 
 class GraphicConfiguration extends Configuration
 {
@@ -40,7 +41,7 @@ class GraphicConfiguration extends Configuration
 
 	@GenModel(propertyDescription="The stage on which we should wait until acquire the next image")
 	EPipelineStage acquireWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
-	contains ColorDomain colorDomain
+	contains ColorDomain[1..1] colorDomain
 }
 
 class RenderPassInfo
@@ -73,9 +74,8 @@ class SubpassDependency
 	EAccess[] dstAccesses
 }
 
-class AttachmentDescription
+class AttachmentDescription extends LNamedElement
 {
-	String name
 	ESampleCount samples
 	EAttachmentLoadOp loadOp
 	EAttachmentStoreOp storeOp
@@ -87,13 +87,13 @@ class AttachmentDescription
 
 class DepthAttachmentDescription extends AttachmentDescription
 {
-	refers DepthImage depthImage
+	refers DepthImage[1..1] depthImage
 }
 
 class GraphicProcess extends AbstractProcess
 {
-	contains GraphicConfiguration configuration
-	contains RenderPassInfo renderPassInfo
+	contains GraphicConfiguration[1..1] configuration
+	contains RenderPassInfo[1..1] renderPassInfo
 	contains DepthImage depthImage
 }
 

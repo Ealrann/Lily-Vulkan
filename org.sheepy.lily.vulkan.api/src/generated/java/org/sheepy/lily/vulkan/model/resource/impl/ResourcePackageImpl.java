@@ -1500,7 +1500,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		referenceImageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
 		shaderEClass.getESuperTypes().add(this.getBasicResource());
 		indexedBufferEClass.getESuperTypes().add(this.getBasicResource());
-		depthImageEClass.getESuperTypes().add(this.getBasicResource());
 		pathResourceEClass.getESuperTypes().add(this.getBasicResource());
 		fileResourceEClass.getESuperTypes().add(this.getPathResource());
 		abstractModuleResourceEClass.getESuperTypes().add(this.getPathResource());

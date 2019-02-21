@@ -170,7 +170,7 @@ abstract class IndexedBuffer extends BasicResource
 {
 }
 
-class DepthImage extends BasicResource
+class DepthImage
 {
 }
 

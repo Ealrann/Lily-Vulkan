@@ -121,6 +121,7 @@ public class GraphicSwitch<T> extends Switch<T>
 			{
 				AttachmentDescription attachmentDescription = (AttachmentDescription)theEObject;
 				T result = caseAttachmentDescription(attachmentDescription);
+				if (result == null) result = caseLNamedElement(attachmentDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,6 +130,7 @@ public class GraphicSwitch<T> extends Switch<T>
 				DepthAttachmentDescription depthAttachmentDescription = (DepthAttachmentDescription)theEObject;
 				T result = caseDepthAttachmentDescription(depthAttachmentDescription);
 				if (result == null) result = caseAttachmentDescription(depthAttachmentDescription);
+				if (result == null) result = caseLNamedElement(depthAttachmentDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

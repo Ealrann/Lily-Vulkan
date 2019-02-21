@@ -2,8 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
@@ -18,7 +17,6 @@ import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getSamples <em>Samples</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getLoadOp <em>Load Op</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getStoreOp <em>Store Op</em>}</li>
@@ -32,34 +30,8 @@ import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
  * @model
  * @generated
  */
-public interface AttachmentDescription extends EObject
+public interface AttachmentDescription extends LNamedElement
 {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_Name()
-	 * @model unique="false"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Samples</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.ESampleCount}.

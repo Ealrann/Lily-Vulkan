@@ -254,9 +254,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
@@ -567,7 +567,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttachmentDescription_Name()
+	public EAttribute getAttachmentDescription_Samples()
 	{
 		return (EAttribute)attachmentDescriptionEClass.getEStructuralFeatures().get(0);
 	}
@@ -578,7 +578,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttachmentDescription_Samples()
+	public EAttribute getAttachmentDescription_LoadOp()
 	{
 		return (EAttribute)attachmentDescriptionEClass.getEStructuralFeatures().get(1);
 	}
@@ -589,7 +589,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttachmentDescription_LoadOp()
+	public EAttribute getAttachmentDescription_StoreOp()
 	{
 		return (EAttribute)attachmentDescriptionEClass.getEStructuralFeatures().get(2);
 	}
@@ -600,7 +600,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttachmentDescription_StoreOp()
+	public EAttribute getAttachmentDescription_StencilLoadOp()
 	{
 		return (EAttribute)attachmentDescriptionEClass.getEStructuralFeatures().get(3);
 	}
@@ -611,7 +611,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttachmentDescription_StencilLoadOp()
+	public EAttribute getAttachmentDescription_StencilStoreOp()
 	{
 		return (EAttribute)attachmentDescriptionEClass.getEStructuralFeatures().get(4);
 	}
@@ -622,7 +622,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttachmentDescription_StencilStoreOp()
+	public EAttribute getAttachmentDescription_InitialLayout()
 	{
 		return (EAttribute)attachmentDescriptionEClass.getEStructuralFeatures().get(5);
 	}
@@ -633,20 +633,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttachmentDescription_InitialLayout()
-	{
-		return (EAttribute)attachmentDescriptionEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getAttachmentDescription_FinalLayout()
 	{
-		return (EAttribute)attachmentDescriptionEClass.getEStructuralFeatures().get(7);
+		return (EAttribute)attachmentDescriptionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1448,7 +1437,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(subpassDependencyEClass, SUBPASS_DEPENDENCY__DST_ACCESSES);
 
 		attachmentDescriptionEClass = createEClass(ATTACHMENT_DESCRIPTION);
-		createEAttribute(attachmentDescriptionEClass, ATTACHMENT_DESCRIPTION__NAME);
 		createEAttribute(attachmentDescriptionEClass, ATTACHMENT_DESCRIPTION__SAMPLES);
 		createEAttribute(attachmentDescriptionEClass, ATTACHMENT_DESCRIPTION__LOAD_OP);
 		createEAttribute(attachmentDescriptionEClass, ATTACHMENT_DESCRIPTION__STORE_OP);
@@ -1569,8 +1557,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1578,6 +1566,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		// Add supertypes to classes
 		graphicConfigurationEClass.getESuperTypes().add(theProcessPackage.getConfiguration());
+		attachmentDescriptionEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		depthAttachmentDescriptionEClass.getESuperTypes().add(this.getAttachmentDescription());
 		graphicProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
 		iGraphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
@@ -1595,7 +1584,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getGraphicConfiguration_RequiredSwapImageCount(), theEcorePackage.getEInt(), "requiredSwapImageCount", "3", 0, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGraphicConfiguration_SwapImageUsages(), theEnumerationPackage.getEImageUsage(), "swapImageUsages", null, 0, -1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGraphicConfiguration_AcquireWaitStage(), theEnumerationPackage.getEPipelineStage(), "acquireWaitStage", "COLOR_ATTACHMENT_OUTPUT_BIT", 0, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicConfiguration_ColorDomain(), theVulkanPackage.getColorDomain(), null, "colorDomain", null, 0, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicConfiguration_ColorDomain(), theVulkanPackage.getColorDomain(), null, "colorDomain", null, 1, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(renderPassInfoEClass, RenderPassInfo.class, "RenderPassInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRenderPassInfo_Attachments(), this.getAttachmentDescription(), null, "attachments", null, 0, -1, RenderPassInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1620,7 +1609,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getSubpassDependency_DstAccesses(), theEnumerationPackage.getEAccess(), "dstAccesses", null, 0, -1, SubpassDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attachmentDescriptionEClass, AttachmentDescription.class, "AttachmentDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAttachmentDescription_Name(), theEcorePackage.getEString(), "name", null, 0, 1, AttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttachmentDescription_Samples(), theEnumerationPackage.getESampleCount(), "samples", null, 0, 1, AttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttachmentDescription_LoadOp(), theEnumerationPackage.getEAttachmentLoadOp(), "loadOp", null, 0, 1, AttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttachmentDescription_StoreOp(), theEnumerationPackage.getEAttachmentStoreOp(), "storeOp", null, 0, 1, AttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1630,11 +1618,11 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getAttachmentDescription_FinalLayout(), theEnumerationPackage.getEImageLayout(), "finalLayout", null, 0, 1, AttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(depthAttachmentDescriptionEClass, DepthAttachmentDescription.class, "DepthAttachmentDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDepthAttachmentDescription_DepthImage(), theResourcePackage.getDepthImage(), null, "depthImage", null, 0, 1, DepthAttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDepthAttachmentDescription_DepthImage(), theResourcePackage.getDepthImage(), null, "depthImage", null, 1, 1, DepthAttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphicProcessEClass, GraphicProcess.class, "GraphicProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGraphicProcess_Configuration(), this.getGraphicConfiguration(), null, "configuration", null, 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicProcess_RenderPassInfo(), this.getRenderPassInfo(), null, "renderPassInfo", null, 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicProcess_Configuration(), this.getGraphicConfiguration(), null, "configuration", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicProcess_RenderPassInfo(), this.getRenderPassInfo(), null, "renderPassInfo", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphicProcess_DepthImage(), theResourcePackage.getDepthImage(), null, "depthImage", null, 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iGraphicsPipelineEClass, IGraphicsPipeline.class, "IGraphicsPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

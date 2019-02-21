@@ -316,11 +316,6 @@ public class AbstractProcessItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createDepthImage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
 				 ResourceFactory.eINSTANCE.createFileResource()));
 
 		newChildDescriptors.add

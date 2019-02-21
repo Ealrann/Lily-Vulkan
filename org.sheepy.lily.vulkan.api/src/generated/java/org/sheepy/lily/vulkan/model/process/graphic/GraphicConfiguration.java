@@ -178,7 +178,7 @@ public interface GraphicConfiguration extends Configuration
 	 * @return the value of the '<em>Color Domain</em>' containment reference.
 	 * @see #setColorDomain(ColorDomain)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_ColorDomain()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	ColorDomain getColorDomain();

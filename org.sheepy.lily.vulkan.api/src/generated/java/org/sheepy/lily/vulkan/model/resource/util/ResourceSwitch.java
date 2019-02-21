@@ -285,9 +285,6 @@ public class ResourceSwitch<T> extends Switch<T>
 			{
 				DepthImage depthImage = (DepthImage)theEObject;
 				T result = caseDepthImage(depthImage);
-				if (result == null) result = caseBasicResource(depthImage);
-				if (result == null) result = caseIResource(depthImage);
-				if (result == null) result = caseLNamedElement(depthImage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
