@@ -200,7 +200,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_Resources()
+	public EReference getAbstractProcess_ResourceContainer()
 	{
 		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(0);
 	}
@@ -523,7 +523,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Create classes and their features
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__RESOURCES);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__RESOURCE_CONTAINER);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SETS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__UNITS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SEMAPHORES);
@@ -611,7 +611,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractProcess_Resources(), theVulkanPackage.getIResource(), null, "resources", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_ResourceContainer(), theVulkanPackage.getResourceContainer(), null, "resourceContainer", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_DescriptorSets(), theResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_Units(), this.getIProcessUnit(), null, "units", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_Semaphores(), this.getProcessSemaphore(), null, "semaphores", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -65,6 +65,7 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 		switch (eClass.getClassifierID())
 		{
 			case VulkanPackage.VULKAN_ENGINE: return createVulkanEngine();
+			case VulkanPackage.RESOURCE_CONTAINER: return createResourceContainer();
 			case VulkanPackage.SHARED_RESOURCES: return createSharedResources();
 			case VulkanPackage.COLOR_DOMAIN: return createColorDomain();
 			default:
@@ -82,6 +83,18 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	{
 		VulkanEngineImpl vulkanEngine = new VulkanEngineImpl();
 		return vulkanEngine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceContainer createResourceContainer()
+	{
+		ResourceContainerImpl resourceContainer = new ResourceContainerImpl();
+		return resourceContainer;
 	}
 
 	/**

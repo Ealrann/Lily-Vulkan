@@ -99,13 +99,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__ENABLED = VulkanPackage.IPROCESS__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Resource Container</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__RESOURCES = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
+	int ABSTRACT_PROCESS__RESOURCE_CONTAINER = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -1010,15 +1010,15 @@ public interface ProcessPackage extends EPackage
 	EClass getAbstractProcess();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getResources <em>Resources</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getResourceContainer <em>Resource Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Resources</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getResources()
+	 * @return the meta object for the containment reference '<em>Resource Container</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getResourceContainer()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
-	EReference getAbstractProcess_Resources();
+	EReference getAbstractProcess_ResourceContainer();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}'.
@@ -1332,12 +1332,12 @@ public interface ProcessPackage extends EPackage
 		EClass ABSTRACT_PROCESS = eINSTANCE.getAbstractProcess();
 
 		/**
-		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Resource Container</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PROCESS__RESOURCES = eINSTANCE.getAbstractProcess_Resources();
+		EReference ABSTRACT_PROCESS__RESOURCE_CONTAINER = eINSTANCE.getAbstractProcess_ResourceContainer();
 
 		/**
 		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' containment reference list feature.

@@ -98,13 +98,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__ENABLED = ProcessPackage.ABSTRACT_PROCESS__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Resource Container</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS__RESOURCES = ProcessPackage.ABSTRACT_PROCESS__RESOURCES;
+	int COMPUTE_PROCESS__RESOURCE_CONTAINER = ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.

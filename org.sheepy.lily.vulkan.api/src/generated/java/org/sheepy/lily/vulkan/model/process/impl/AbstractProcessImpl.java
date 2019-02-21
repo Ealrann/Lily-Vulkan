@@ -30,8 +30,7 @@ import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.root.RootPackage.Literals;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.IResource;
-
+import org.sheepy.lily.vulkan.model.ResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IProcessUnit;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -50,7 +49,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getContentObjects <em>Content Objects</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getResourceContainer <em>Resource Container</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSemaphores <em>Semaphores</em>}</li>
@@ -114,14 +113,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.
+	 * The cached value of the '{@link #getResourceContainer() <em>Resource Container</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResources()
+	 * @see #getResourceContainer()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IResource> resources;
+	protected ResourceContainer resourceContainer;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorSets() <em>Descriptor Sets</em>}' containment reference list.
@@ -305,13 +304,48 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
-	public EList<IResource> getResources()
+	public ResourceContainer getResourceContainer()
 	{
-		if (resources == null)
+		return resourceContainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResourceContainer(ResourceContainer newResourceContainer, NotificationChain msgs)
+	{
+		ResourceContainer oldResourceContainer = resourceContainer;
+		resourceContainer = newResourceContainer;
+		if (eNotificationRequired())
 		{
-			resources = new EObjectContainmentEList<IResource>(IResource.class, this, ProcessPackage.ABSTRACT_PROCESS__RESOURCES);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, oldResourceContainer, newResourceContainer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return resources;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setResourceContainer(ResourceContainer newResourceContainer)
+	{
+		if (newResourceContainer != resourceContainer)
+		{
+			NotificationChain msgs = null;
+			if (resourceContainer != null)
+				msgs = ((InternalEObject)resourceContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, null, msgs);
+			if (newResourceContainer != null)
+				msgs = ((InternalEObject)newResourceContainer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, null, msgs);
+			msgs = basicSetResourceContainer(newResourceContainer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, newResourceContainer, newResourceContainer));
 	}
 
 	/**
@@ -545,8 +579,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+				return basicSetResourceContainer(null, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				return ((InternalEList<?>)getDescriptorSets()).basicRemove(otherEnd, msgs);
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
@@ -575,8 +609,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 				return getName();
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 				return isEnabled();
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				return getResources();
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+				return getResourceContainer();
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				return getDescriptorSets();
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
@@ -613,9 +647,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 				setEnabled((Boolean)newValue);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				getResources().clear();
-				getResources().addAll((Collection<? extends IResource>)newValue);
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+				setResourceContainer((ResourceContainer)newValue);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				getDescriptorSets().clear();
@@ -662,8 +695,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 				setEnabled(ENABLED_EDEFAULT);
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				getResources().clear();
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+				setResourceContainer((ResourceContainer)null);
 				return;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				getDescriptorSets().clear();
@@ -703,8 +736,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
-				return resources != null && !resources.isEmpty();
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+				return resourceContainer != null;
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 				return descriptorSets != null && !descriptorSets.isEmpty();
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:

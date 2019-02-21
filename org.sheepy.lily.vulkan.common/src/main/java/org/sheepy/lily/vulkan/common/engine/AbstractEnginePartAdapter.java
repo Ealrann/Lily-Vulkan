@@ -22,6 +22,7 @@ import org.sheepy.lily.vulkan.common.execution.IResourceAllocableAdapter;
 import org.sheepy.lily.vulkan.common.execution.ResourceAllocator;
 import org.sheepy.lily.vulkan.model.IEnginePart;
 import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 public abstract class AbstractEnginePartAdapter extends AbstractAllocableAdapter
@@ -57,15 +58,27 @@ public abstract class AbstractEnginePartAdapter extends AbstractAllocableAdapter
 			if (child instanceof IResource)
 			{
 				IResource resource = (IResource) child;
-				var adapter = IResourceAllocableAdapter.adapt(resource);
-				if (adapter != null)
+				gatherResource(resources, resource);
+			}
+			else if (child instanceof ResourceContainer)
+			{
+				for (IResource resource : ((ResourceContainer) child).getResources())
 				{
-					resources.add(adapter);
+					gatherResource(resources, resource);
 				}
 			}
 		}
 
 		return resources;
+	}
+
+	private static void gatherResource(List<IResourceAllocable> resources, IResource resource)
+	{
+		var adapter = IResourceAllocableAdapter.adapt(resource);
+		if (adapter != null)
+		{
+			resources.add(adapter);
+		}
 	}
 
 	@Override

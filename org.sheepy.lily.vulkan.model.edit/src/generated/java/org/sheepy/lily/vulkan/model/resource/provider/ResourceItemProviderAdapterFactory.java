@@ -32,7 +32,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.sheepy.lily.vulkan.model.SharedResources;
+import org.sheepy.lily.vulkan.model.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -739,56 +739,55 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 			 * @generated
 			 */
 			@Override
-			public Object caseSharedResources(SharedResources object)
+			public Object caseResourceContainer(ResourceContainer object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 ResourceFactory.eINSTANCE.createBuffer()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 ResourceFactory.eINSTANCE.createImage()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 ResourceFactory.eINSTANCE.createFont()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 ResourceFactory.eINSTANCE.createTexture()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 ResourceFactory.eINSTANCE.createConstants()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 ResourceFactory.eINSTANCE.createShader()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 ResourceFactory.eINSTANCE.createFileResource()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 ResourceFactory.eINSTANCE.createModuleResource()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 ResourceFactory.eINSTANCE.createStringModuleResource()));
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

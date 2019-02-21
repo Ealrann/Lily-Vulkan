@@ -120,6 +120,31 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.ResourceContainer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ResourceContainerItemProvider resourceContainerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.ResourceContainer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createResourceContainerAdapter()
+	{
+		if (resourceContainerItemProvider == null)
+		{
+			resourceContainerItemProvider = new ResourceContainerItemProvider(this);
+		}
+
+		return resourceContainerItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.SharedResources} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -317,6 +342,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	public void dispose()
 	{
 		if (vulkanEngineItemProvider != null) vulkanEngineItemProvider.dispose();
+		if (resourceContainerItemProvider != null) resourceContainerItemProvider.dispose();
 		if (sharedResourcesItemProvider != null) sharedResourcesItemProvider.dispose();
 		if (colorDomainItemProvider != null) colorDomainItemProvider.dispose();
 	}

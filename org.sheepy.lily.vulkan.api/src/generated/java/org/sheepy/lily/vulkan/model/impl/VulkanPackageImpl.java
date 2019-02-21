@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.ColorDomain;
 import org.sheepy.lily.vulkan.model.IEnginePart;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.ResourceContainer;
 import org.sheepy.lily.vulkan.model.SharedResources;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -45,6 +46,13 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass iEnginePartEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass resourceContainerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -207,9 +215,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSharedResources()
+	public EClass getResourceContainer()
 	{
-		return sharedResourcesEClass;
+		return resourceContainerEClass;
 	}
 
 	/**
@@ -218,9 +226,20 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSharedResources_Resources()
+	public EReference getResourceContainer_Resources()
 	{
-		return (EReference)sharedResourcesEClass.getEStructuralFeatures().get(0);
+		return (EReference)resourceContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSharedResources()
+	{
+		return sharedResourcesEClass;
 	}
 
 	/**
@@ -327,8 +346,10 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		iEnginePartEClass = createEClass(IENGINE_PART);
 
+		resourceContainerEClass = createEClass(RESOURCE_CONTAINER);
+		createEReference(resourceContainerEClass, RESOURCE_CONTAINER__RESOURCES);
+
 		sharedResourcesEClass = createEClass(SHARED_RESOURCES);
-		createEReference(sharedResourcesEClass, SHARED_RESOURCES__RESOURCES);
 
 		iResourceEClass = createEClass(IRESOURCE);
 
@@ -378,6 +399,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		// Add supertypes to classes
 		vulkanEngineEClass.getESuperTypes().add(theApplicationPackage.getIEngine());
 		iEnginePartEClass.getESuperTypes().add(theRootPackage.getLObject());
+		sharedResourcesEClass.getESuperTypes().add(this.getResourceContainer());
 		sharedResourcesEClass.getESuperTypes().add(this.getIEnginePart());
 		iResourceEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iProcessEClass.getESuperTypes().add(this.getIEnginePart());
@@ -391,8 +413,10 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		initEClass(iEnginePartEClass, IEnginePart.class, "IEnginePart", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(resourceContainerEClass, ResourceContainer.class, "ResourceContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getResourceContainer_Resources(), this.getIResource(), null, "resources", null, 0, -1, ResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(sharedResourcesEClass, SharedResources.class, "SharedResources", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSharedResources_Resources(), this.getIResource(), null, "resources", null, 0, -1, SharedResources.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iResourceEClass, IResource.class, "IResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

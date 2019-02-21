@@ -4,10 +4,8 @@ package org.sheepy.lily.vulkan.model.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 
@@ -16,17 +14,15 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.api.util.LTreeIterator;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
+import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.root.LObject;
+import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.root.RootPackage.Literals;
-import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.IEnginePart;
 import org.sheepy.lily.vulkan.model.SharedResources;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
@@ -39,12 +35,11 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl#getContentObjects <em>Content Objects</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl#getResources <em>Resources</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SharedResourcesImpl extends MinimalEObjectImpl.Container implements SharedResources
+public class SharedResourcesImpl extends ResourceContainerImpl implements SharedResources
 {
 	/**
 	 * The cached value of the '{@link #getContentObjects() <em>Content Objects</em>}' attribute.
@@ -55,16 +50,6 @@ public class SharedResourcesImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected EList<LObject> contentObjects;
-	/**
-	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResources()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<IResource> resources;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,21 +94,6 @@ public class SharedResourcesImpl extends MinimalEObjectImpl.Container implements
 		contentObjects = newContentObjects;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS, oldContentObjects, contentObjects));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<IResource> getResources()
-	{
-		if (resources == null)
-		{
-			resources = new EObjectContainmentEList<IResource>(IResource.class, this, VulkanPackage.SHARED_RESOURCES__RESOURCES);
-		}
-		return resources;
 	}
 
 	/**
@@ -226,30 +196,12 @@ public class SharedResourcesImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case VulkanPackage.SHARED_RESOURCES__RESOURCES:
-				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
 			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
 				return getContentObjects();
-			case VulkanPackage.SHARED_RESOURCES__RESOURCES:
-				return getResources();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -268,10 +220,6 @@ public class SharedResourcesImpl extends MinimalEObjectImpl.Container implements
 			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
 				setContentObjects((EList<LObject>)newValue);
 				return;
-			case VulkanPackage.SHARED_RESOURCES__RESOURCES:
-				getResources().clear();
-				getResources().addAll((Collection<? extends IResource>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -289,9 +237,6 @@ public class SharedResourcesImpl extends MinimalEObjectImpl.Container implements
 			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
 				setContentObjects((EList<LObject>)null);
 				return;
-			case VulkanPackage.SHARED_RESOURCES__RESOURCES:
-				getResources().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -308,10 +253,111 @@ public class SharedResourcesImpl extends MinimalEObjectImpl.Container implements
 		{
 			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
 				return contentObjects != null;
-			case VulkanPackage.SHARED_RESOURCES__RESOURCES:
-				return resources != null && !resources.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == IInferenceObject.class)
+		{
+			switch (derivedFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		if (baseClass == LObject.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS: return RootPackage.LOBJECT__CONTENT_OBJECTS;
+				default: return -1;
+			}
+		}
+		if (baseClass == IEnginePart.class)
+		{
+			switch (derivedFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == IInferenceObject.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		if (baseClass == LObject.class)
+		{
+			switch (baseFeatureID)
+			{
+				case RootPackage.LOBJECT__CONTENT_OBJECTS: return VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS;
+				default: return -1;
+			}
+		}
+		if (baseClass == IEnginePart.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
+	{
+		if (baseClass == IInferenceObject.class)
+		{
+			switch (baseOperationID)
+			{
+				case InferencePackage.IINFERENCE_OBJECT___LINFERENCE_OBJECT: return VulkanPackage.SHARED_RESOURCES___LINFERENCE_OBJECT;
+				default: return -1;
+			}
+		}
+		if (baseClass == LObject.class)
+		{
+			switch (baseOperationID)
+			{
+				case RootPackage.LOBJECT___CREATE_CONTAINMENT_ELIST__ECLASS: return VulkanPackage.SHARED_RESOURCES___CREATE_CONTAINMENT_ELIST__ECLASS;
+				case RootPackage.LOBJECT___LCONTENTS: return VulkanPackage.SHARED_RESOURCES___LCONTENTS;
+				case RootPackage.LOBJECT___LPARENT: return VulkanPackage.SHARED_RESOURCES___LPARENT;
+				case RootPackage.LOBJECT___LALL_CONTENTS: return VulkanPackage.SHARED_RESOURCES___LALL_CONTENTS;
+				default: return -1;
+			}
+		}
+		if (baseClass == IEnginePart.class)
+		{
+			switch (baseOperationID)
+			{
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	/**

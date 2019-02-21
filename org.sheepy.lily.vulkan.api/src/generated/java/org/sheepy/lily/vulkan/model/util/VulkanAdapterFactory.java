@@ -88,6 +88,11 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 				return createIEnginePartAdapter();
 			}
 			@Override
+			public Adapter caseResourceContainer(ResourceContainer object)
+			{
+				return createResourceContainerAdapter();
+			}
+			@Override
 			public Adapter caseSharedResources(SharedResources object)
 			{
 				return createSharedResourcesAdapter();
@@ -175,6 +180,21 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIEnginePartAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.ResourceContainer <em>Resource Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.ResourceContainer
+	 * @generated
+	 */
+	public Adapter createResourceContainerAdapter()
 	{
 		return null;
 	}

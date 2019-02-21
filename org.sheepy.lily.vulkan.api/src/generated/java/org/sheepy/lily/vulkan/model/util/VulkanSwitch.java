@@ -94,10 +94,18 @@ public class VulkanSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VulkanPackage.RESOURCE_CONTAINER:
+			{
+				ResourceContainer resourceContainer = (ResourceContainer)theEObject;
+				T result = caseResourceContainer(resourceContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case VulkanPackage.SHARED_RESOURCES:
 			{
 				SharedResources sharedResources = (SharedResources)theEObject;
 				T result = caseSharedResources(sharedResources);
+				if (result == null) result = caseResourceContainer(sharedResources);
 				if (result == null) result = caseIEnginePart(sharedResources);
 				if (result == null) result = caseLObject(sharedResources);
 				if (result == null) result = caseIInferenceObject(sharedResources);
@@ -162,6 +170,22 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIEnginePart(IEnginePart object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Resource Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Resource Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResourceContainer(ResourceContainer object)
 	{
 		return null;
 	}

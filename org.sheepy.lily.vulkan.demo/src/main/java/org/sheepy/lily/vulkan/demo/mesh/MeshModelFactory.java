@@ -7,6 +7,7 @@ import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
 import org.sheepy.lily.vulkan.demo.model.MeshPipeline;
 import org.sheepy.lily.vulkan.demo.model.impl.MeshBufferImpl;
 import org.sheepy.lily.vulkan.demo.model.impl.MeshPipelineImpl;
+import org.sheepy.lily.vulkan.model.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp;
@@ -16,6 +17,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.impl.ColorDomainImpl;
+import org.sheepy.lily.vulkan.model.impl.ResourceContainerImpl;
 import org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
@@ -178,9 +180,13 @@ public class MeshModelFactory
 		graphicPipeline.setColorBlend(colorBlend);
 
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
-		graphicProcess.getResources().add(meshBuffer);
-		graphicProcess.getResources().add(vertexShader);
-		graphicProcess.getResources().add(fragmentShader);
+		
+		ResourceContainer resourceContainer = new ResourceContainerImpl();
+		graphicProcess.setResourceContainer(resourceContainer);
+		
+		resourceContainer.getResources().add(meshBuffer);
+		resourceContainer.getResources().add(vertexShader);
+		resourceContainer.getResources().add(fragmentShader);
 		graphicProcess.getUnits().add(graphicPipeline);
 
 		if (meshConfiguration.depth)
@@ -194,7 +200,7 @@ public class MeshModelFactory
 			uniformBufferManager = new UniformBufferManager();
 			var uniformBuffer = uniformBufferManager.buffer;
 			descriptorSet.getDescriptors().add(uniformBuffer);
-			graphicProcess.getResources().add(uniformBuffer);
+			resourceContainer.getResources().add(uniformBuffer);
 		}
 
 		if (meshConfiguration.texturePath != null)
@@ -208,7 +214,7 @@ public class MeshModelFactory
 			texture.setMipmapEnabled(meshConfiguration.mipmap);
 
 			descriptorSet.getDescriptors().add(texture);
-			graphicProcess.getResources().add(texture);
+			resourceContainer.getResources().add(texture);
 		}
 
 		if (descriptorSet.getDescriptors().isEmpty() == false)

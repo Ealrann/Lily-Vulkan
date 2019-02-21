@@ -31,14 +31,13 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.sheepy.lily.vulkan.model.SharedResources;
+import org.sheepy.lily.vulkan.model.ResourceContainer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
-
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 
 import org.sheepy.lily.vulkan.nuklear.model.NuklearFactory;
@@ -345,16 +344,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-						 NuklearFactory.eINSTANCE.createNuklearConstants()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-						 NuklearFactory.eINSTANCE.createNuklearIndexBuffer()));
-
-				newChildDescriptors.add
-					(createChildParameter
 						(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
 						 NuklearFactory.eINSTANCE.createNuklearPipeline()));
 
@@ -445,21 +434,20 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 			 * @generated
 			 */
 			@Override
-			public Object caseSharedResources(SharedResources object)
+			public Object caseResourceContainer(ResourceContainer object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 NuklearFactory.eINSTANCE.createNuklearConstants()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.SHARED_RESOURCES__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
 						 NuklearFactory.eINSTANCE.createNuklearIndexBuffer()));
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

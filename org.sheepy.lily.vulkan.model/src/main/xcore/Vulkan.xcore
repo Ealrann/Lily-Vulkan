@@ -24,10 +24,13 @@ interface IEnginePart extends LObject
 {
 }
 
-class SharedResources extends IEnginePart
+class ResourceContainer
 {
 	contains IResource[] resources
 }
+
+class SharedResources extends ResourceContainer, IEnginePart
+{}
 
 interface IResource extends LNamedElement
 {

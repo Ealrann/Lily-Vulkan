@@ -32,6 +32,15 @@ public interface VulkanFactory extends EFactory
 	VulkanEngine createVulkanEngine();
 
 	/**
+	 * Returns a new object of class '<em>Resource Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Resource Container</em>'.
+	 * @generated
+	 */
+	ResourceContainer createResourceContainer();
+
+	/**
 	 * Returns a new object of class '<em>Shared Resources</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

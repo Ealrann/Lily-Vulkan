@@ -9,7 +9,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -24,6 +23,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
@@ -202,7 +202,7 @@ public class AbstractProcessItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES);
+			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCE_CONTAINER);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SETS);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__SEMAPHORES);
@@ -261,7 +261,7 @@ public class AbstractProcessItemProvider
 			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCES:
+			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
 			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
 			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
@@ -285,48 +285,13 @@ public class AbstractProcessItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createBuffer()));
+				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
+				 VulkanFactory.eINSTANCE.createResourceContainer()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createImage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createFont()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createTexture()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createConstants()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createShader()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createFileResource()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createModuleResource()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCES,
-				 ResourceFactory.eINSTANCE.createStringModuleResource()));
+				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
+				 VulkanFactory.eINSTANCE.createSharedResources()));
 
 		newChildDescriptors.add
 			(createChildParameter

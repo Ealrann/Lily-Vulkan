@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
@@ -628,13 +629,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__ENABLED = ProcessPackage.ABSTRACT_PROCESS__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Resource Container</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__RESOURCES = ProcessPackage.ABSTRACT_PROCESS__RESOURCES;
+	int GRAPHIC_PROCESS__RESOURCE_CONTAINER = ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -1953,6 +1954,7 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int IMAGE_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
