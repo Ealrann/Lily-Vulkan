@@ -166,10 +166,6 @@ class Shader extends BasicResource
 	EShaderStage stage
 }
 
-abstract class IndexedBuffer extends BasicResource
-{
-}
-
 class DepthImage
 {
 }

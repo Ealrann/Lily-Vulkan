@@ -18,7 +18,6 @@ import org.sheepy.lily.vulkan.model.process.IProcessUnit;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
-import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,7 +101,6 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 			{
 				MeshBuffer meshBuffer = (MeshBuffer)theEObject;
 				T result = caseMeshBuffer(meshBuffer);
-				if (result == null) result = caseIndexedBuffer(meshBuffer);
 				if (result == null) result = caseBasicResource(meshBuffer);
 				if (result == null) result = caseIResource(meshBuffer);
 				if (result == null) result = caseLNamedElement(meshBuffer);
@@ -301,22 +299,6 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseBasicResource(BasicResource object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIndexedBuffer(IndexedBuffer object)
 	{
 		return null;
 	}

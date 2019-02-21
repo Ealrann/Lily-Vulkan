@@ -37,7 +37,6 @@ import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.model.resource.ImageTransition;
-import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
@@ -204,13 +203,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass shaderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass indexedBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1172,17 +1164,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getIndexedBuffer()
-	{
-		return indexedBufferEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getDepthImage()
 	{
 		return depthImageEClass;
@@ -1425,8 +1406,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(shaderEClass, SHADER__FILE);
 		createEAttribute(shaderEClass, SHADER__STAGE);
 
-		indexedBufferEClass = createEClass(INDEXED_BUFFER);
-
 		depthImageEClass = createEClass(DEPTH_IMAGE);
 
 		pathResourceEClass = createEClass(PATH_RESOURCE);
@@ -1499,7 +1478,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		imageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
 		referenceImageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
 		shaderEClass.getESuperTypes().add(this.getBasicResource());
-		indexedBufferEClass.getESuperTypes().add(this.getBasicResource());
 		pathResourceEClass.getESuperTypes().add(this.getBasicResource());
 		fileResourceEClass.getESuperTypes().add(this.getPathResource());
 		abstractModuleResourceEClass.getESuperTypes().add(this.getPathResource());
@@ -1602,8 +1580,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getShader_File(), this.getPathResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(indexedBufferEClass, IndexedBuffer.class, "IndexedBuffer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(depthImageEClass, DepthImage.class, "DepthImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

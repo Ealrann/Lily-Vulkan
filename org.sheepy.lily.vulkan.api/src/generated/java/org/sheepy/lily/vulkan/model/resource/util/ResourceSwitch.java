@@ -271,16 +271,6 @@ public class ResourceSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ResourcePackage.INDEXED_BUFFER:
-			{
-				IndexedBuffer indexedBuffer = (IndexedBuffer)theEObject;
-				T result = caseIndexedBuffer(indexedBuffer);
-				if (result == null) result = caseBasicResource(indexedBuffer);
-				if (result == null) result = caseIResource(indexedBuffer);
-				if (result == null) result = caseLNamedElement(indexedBuffer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ResourcePackage.DEPTH_IMAGE:
 			{
 				DepthImage depthImage = (DepthImage)theEObject;
@@ -680,22 +670,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseShader(Shader object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIndexedBuffer(IndexedBuffer object)
 	{
 		return null;
 	}

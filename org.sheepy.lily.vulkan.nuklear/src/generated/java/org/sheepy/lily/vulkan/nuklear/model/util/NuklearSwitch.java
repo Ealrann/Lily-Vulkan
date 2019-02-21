@@ -17,7 +17,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
 import org.sheepy.lily.vulkan.model.resource.Constants;
-import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
 import org.sheepy.lily.vulkan.nuklear.model.*;
 
 /**
@@ -113,7 +112,6 @@ public class NuklearSwitch<T> extends Switch<T>
 			{
 				NuklearIndexBuffer nuklearIndexBuffer = (NuklearIndexBuffer)theEObject;
 				T result = caseNuklearIndexBuffer(nuklearIndexBuffer);
-				if (result == null) result = caseIndexedBuffer(nuklearIndexBuffer);
 				if (result == null) result = caseBasicResource(nuklearIndexBuffer);
 				if (result == null) result = caseIResource(nuklearIndexBuffer);
 				if (result == null) result = caseLNamedElement(nuklearIndexBuffer);
@@ -344,22 +342,6 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseConstants(Constants object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Indexed Buffer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIndexedBuffer(IndexedBuffer object)
 	{
 		return null;
 	}

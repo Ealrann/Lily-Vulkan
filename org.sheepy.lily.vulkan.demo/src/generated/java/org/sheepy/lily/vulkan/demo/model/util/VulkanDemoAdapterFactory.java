@@ -20,7 +20,6 @@ import org.sheepy.lily.vulkan.model.process.IProcessUnit;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
-import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -144,11 +143,6 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseBasicResource(BasicResource object)
 			{
 				return createBasicResourceAdapter();
-			}
-			@Override
-			public Adapter caseIndexedBuffer(IndexedBuffer object)
-			{
-				return createIndexedBufferAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -348,21 +342,6 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBasicResourceAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.IndexedBuffer <em>Indexed Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.IndexedBuffer
-	 * @generated
-	 */
-	public Adapter createIndexedBufferAdapter()
 	{
 		return null;
 	}

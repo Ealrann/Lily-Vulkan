@@ -224,7 +224,7 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 
 		// Add supertypes to classes
 		meshPipelineEClass.getESuperTypes().add(theGraphicPackage.getGraphicsPipeline());
-		meshBufferEClass.getESuperTypes().add(theResourcePackage.getIndexedBuffer());
+		meshBufferEClass.getESuperTypes().add(theResourcePackage.getBasicResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(meshPipelineEClass, MeshPipeline.class, "MeshPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

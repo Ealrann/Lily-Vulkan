@@ -277,7 +277,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_BUFFER__NAME = ResourcePackage.INDEXED_BUFFER__NAME;
+	int NUKLEAR_INDEX_BUFFER__NAME = ResourcePackage.BASIC_RESOURCE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Index Buffer</em>' class.
@@ -286,7 +286,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_BUFFER_FEATURE_COUNT = ResourcePackage.INDEXED_BUFFER_FEATURE_COUNT + 0;
+	int NUKLEAR_INDEX_BUFFER_FEATURE_COUNT = ResourcePackage.BASIC_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Index Buffer</em>' class.
@@ -295,7 +295,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_INDEX_BUFFER_OPERATION_COUNT = ResourcePackage.INDEXED_BUFFER_OPERATION_COUNT + 0;
+	int NUKLEAR_INDEX_BUFFER_OPERATION_COUNT = ResourcePackage.BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 
 	/**

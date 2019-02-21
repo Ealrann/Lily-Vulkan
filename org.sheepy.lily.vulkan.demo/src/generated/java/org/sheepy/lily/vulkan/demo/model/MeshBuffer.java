@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.demo.model;
 
-import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
+import org.sheepy.lily.vulkan.model.resource.BasicResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
  * @model
  * @generated
  */
-public interface MeshBuffer extends IndexedBuffer
+public interface MeshBuffer extends BasicResource
 {
 
 } // MeshBuffer

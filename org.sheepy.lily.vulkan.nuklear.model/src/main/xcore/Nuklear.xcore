@@ -8,9 +8,9 @@ package org.sheepy.lily.vulkan.nuklear.model
 
 import org.sheepy.lily.vulkan.model.process.IPipeline
 import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline
+import org.sheepy.lily.vulkan.model.resource.BasicResource
 import org.sheepy.lily.vulkan.model.resource.Constants
 import org.sheepy.lily.vulkan.model.resource.Font
-import org.sheepy.lily.vulkan.model.resource.IndexedBuffer
 
 class NuklearPipeline extends IPipeline, IGUIPipeline
 {
@@ -26,6 +26,6 @@ class NuklearConstants extends Constants
 {
 }
 
-class NuklearIndexBuffer extends IndexedBuffer
+class NuklearIndexBuffer extends BasicResource
 {
 }

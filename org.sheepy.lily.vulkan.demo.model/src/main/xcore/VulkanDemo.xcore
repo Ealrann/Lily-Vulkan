@@ -6,13 +6,13 @@
 package org.sheepy.lily.vulkan.demo.model
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline
-import org.sheepy.lily.vulkan.model.resource.IndexedBuffer
+import org.sheepy.lily.vulkan.model.resource.BasicResource
 
 class MeshPipeline extends GraphicsPipeline
 {
 	refers MeshBuffer mesh
 }
 
-class MeshBuffer extends IndexedBuffer
+class MeshBuffer extends BasicResource
 {
 }

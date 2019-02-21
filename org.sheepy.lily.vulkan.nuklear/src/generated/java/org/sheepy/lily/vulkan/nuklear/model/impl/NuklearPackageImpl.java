@@ -290,7 +290,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearPipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
 		nuklearPipelineEClass.getESuperTypes().add(theGraphicPackage.getIGUIPipeline());
 		nuklearConstantsEClass.getESuperTypes().add(theResourcePackage.getConstants());
-		nuklearIndexBufferEClass.getESuperTypes().add(theResourcePackage.getIndexedBuffer());
+		nuklearIndexBufferEClass.getESuperTypes().add(theResourcePackage.getBasicResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(nuklearPipelineEClass, NuklearPipeline.class, "NuklearPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -275,7 +275,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_BUFFER__NAME = ResourcePackage.INDEXED_BUFFER__NAME;
+	int MESH_BUFFER__NAME = ResourcePackage.BASIC_RESOURCE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Mesh Buffer</em>' class.
@@ -284,7 +284,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_BUFFER_FEATURE_COUNT = ResourcePackage.INDEXED_BUFFER_FEATURE_COUNT + 0;
+	int MESH_BUFFER_FEATURE_COUNT = ResourcePackage.BASIC_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Mesh Buffer</em>' class.
@@ -293,7 +293,7 @@ public interface VulkanDemoPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_BUFFER_OPERATION_COUNT = ResourcePackage.INDEXED_BUFFER_OPERATION_COUNT + 0;
+	int MESH_BUFFER_OPERATION_COUNT = ResourcePackage.BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.demo.model.MeshPipeline <em>Mesh Pipeline</em>}'.

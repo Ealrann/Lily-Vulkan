@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.nuklear.model;
 
-import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
+import org.sheepy.lily.vulkan.model.resource.BasicResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +14,6 @@ import org.sheepy.lily.vulkan.model.resource.IndexedBuffer;
  * @model
  * @generated
  */
-public interface NuklearIndexBuffer extends IndexedBuffer
+public interface NuklearIndexBuffer extends BasicResource
 {
 } // NuklearIndexBuffer
