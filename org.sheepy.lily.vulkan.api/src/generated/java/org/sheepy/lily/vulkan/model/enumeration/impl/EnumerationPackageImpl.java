@@ -267,11 +267,14 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 */
 	public static EnumerationPackage init()
 	{
-		if (isInited) return (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		if (isInited) return (EnumerationPackage) EPackage.Registry.INSTANCE
+				.getEPackage(EnumerationPackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredEnumerationPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		EnumerationPackageImpl theEnumerationPackage = registeredEnumerationPackage instanceof EnumerationPackageImpl ? (EnumerationPackageImpl)registeredEnumerationPackage : new EnumerationPackageImpl();
+		EnumerationPackageImpl theEnumerationPackage = registeredEnumerationPackage instanceof EnumerationPackageImpl
+				? (EnumerationPackageImpl) registeredEnumerationPackage
+				: new EnumerationPackageImpl();
 
 		isInited = true;
 
@@ -583,7 +586,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	@Override
 	public EnumerationFactory getEnumerationFactory()
 	{
-		return (EnumerationFactory)getEFactoryInstance();
+		return (EnumerationFactory) getEFactoryInstance();
 	}
 
 	/**

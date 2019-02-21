@@ -43,7 +43,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * @generated
 	 * @ordered
 	 */
-	protected static final SVector2i OFFSET_EDEFAULT = (SVector2i)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getSVector2i(), "0, 0");
+	protected static final SVector2i OFFSET_EDEFAULT = (SVector2i) TypesFactory.eINSTANCE
+			.createFromString(TypesPackage.eINSTANCE.getSVector2i(), "0, 0");
 
 	/**
 	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' attribute.
@@ -157,8 +158,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		SVector2i oldOffset = offset;
 		offset = newOffset;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.VIEWPORT__OFFSET, oldOffset, offset));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.VIEWPORT__OFFSET, oldOffset, offset));
 	}
 
 	/**
@@ -182,8 +183,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		SVector2i oldExtent = extent;
 		extent = newExtent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.VIEWPORT__EXTENT, oldExtent, extent));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.VIEWPORT__EXTENT, oldExtent, extent));
 	}
 
 	/**
@@ -207,8 +208,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		int oldMinDepth = minDepth;
 		minDepth = newMinDepth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.VIEWPORT__MIN_DEPTH, oldMinDepth, minDepth));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.VIEWPORT__MIN_DEPTH, oldMinDepth, minDepth));
 	}
 
 	/**
@@ -232,8 +233,8 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		int oldMaxDepth = maxDepth;
 		maxDepth = newMaxDepth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.VIEWPORT__MAX_DEPTH, oldMaxDepth, maxDepth));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.VIEWPORT__MAX_DEPTH, oldMaxDepth, maxDepth));
 	}
 
 	/**
@@ -246,14 +247,14 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.VIEWPORT__OFFSET:
-				return getOffset();
-			case GraphicPackage.VIEWPORT__EXTENT:
-				return getExtent();
-			case GraphicPackage.VIEWPORT__MIN_DEPTH:
-				return getMinDepth();
-			case GraphicPackage.VIEWPORT__MAX_DEPTH:
-				return getMaxDepth();
+		case GraphicPackage.VIEWPORT__OFFSET:
+			return getOffset();
+		case GraphicPackage.VIEWPORT__EXTENT:
+			return getExtent();
+		case GraphicPackage.VIEWPORT__MIN_DEPTH:
+			return getMinDepth();
+		case GraphicPackage.VIEWPORT__MAX_DEPTH:
+			return getMaxDepth();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -268,18 +269,18 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.VIEWPORT__OFFSET:
-				setOffset((SVector2i)newValue);
-				return;
-			case GraphicPackage.VIEWPORT__EXTENT:
-				setExtent((SVector2i)newValue);
-				return;
-			case GraphicPackage.VIEWPORT__MIN_DEPTH:
-				setMinDepth((Integer)newValue);
-				return;
-			case GraphicPackage.VIEWPORT__MAX_DEPTH:
-				setMaxDepth((Integer)newValue);
-				return;
+		case GraphicPackage.VIEWPORT__OFFSET:
+			setOffset((SVector2i) newValue);
+			return;
+		case GraphicPackage.VIEWPORT__EXTENT:
+			setExtent((SVector2i) newValue);
+			return;
+		case GraphicPackage.VIEWPORT__MIN_DEPTH:
+			setMinDepth((Integer) newValue);
+			return;
+		case GraphicPackage.VIEWPORT__MAX_DEPTH:
+			setMaxDepth((Integer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -294,18 +295,18 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.VIEWPORT__OFFSET:
-				setOffset(OFFSET_EDEFAULT);
-				return;
-			case GraphicPackage.VIEWPORT__EXTENT:
-				setExtent(EXTENT_EDEFAULT);
-				return;
-			case GraphicPackage.VIEWPORT__MIN_DEPTH:
-				setMinDepth(MIN_DEPTH_EDEFAULT);
-				return;
-			case GraphicPackage.VIEWPORT__MAX_DEPTH:
-				setMaxDepth(MAX_DEPTH_EDEFAULT);
-				return;
+		case GraphicPackage.VIEWPORT__OFFSET:
+			setOffset(OFFSET_EDEFAULT);
+			return;
+		case GraphicPackage.VIEWPORT__EXTENT:
+			setExtent(EXTENT_EDEFAULT);
+			return;
+		case GraphicPackage.VIEWPORT__MIN_DEPTH:
+			setMinDepth(MIN_DEPTH_EDEFAULT);
+			return;
+		case GraphicPackage.VIEWPORT__MAX_DEPTH:
+			setMaxDepth(MAX_DEPTH_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -320,14 +321,14 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.VIEWPORT__OFFSET:
-				return OFFSET_EDEFAULT == null ? offset != null : !OFFSET_EDEFAULT.equals(offset);
-			case GraphicPackage.VIEWPORT__EXTENT:
-				return EXTENT_EDEFAULT == null ? extent != null : !EXTENT_EDEFAULT.equals(extent);
-			case GraphicPackage.VIEWPORT__MIN_DEPTH:
-				return minDepth != MIN_DEPTH_EDEFAULT;
-			case GraphicPackage.VIEWPORT__MAX_DEPTH:
-				return maxDepth != MAX_DEPTH_EDEFAULT;
+		case GraphicPackage.VIEWPORT__OFFSET:
+			return OFFSET_EDEFAULT == null ? offset != null : !OFFSET_EDEFAULT.equals(offset);
+		case GraphicPackage.VIEWPORT__EXTENT:
+			return EXTENT_EDEFAULT == null ? extent != null : !EXTENT_EDEFAULT.equals(extent);
+		case GraphicPackage.VIEWPORT__MIN_DEPTH:
+			return minDepth != MIN_DEPTH_EDEFAULT;
+		case GraphicPackage.VIEWPORT__MAX_DEPTH:
+			return maxDepth != MAX_DEPTH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

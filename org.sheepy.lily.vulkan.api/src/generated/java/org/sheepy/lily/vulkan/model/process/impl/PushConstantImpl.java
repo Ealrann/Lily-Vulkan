@@ -89,8 +89,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PUSH_CONSTANT__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.PUSH_CONSTANT__NAME, oldName, name));
 	}
 
 	/**
@@ -103,8 +103,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PUSH_CONSTANT__NAME:
-				return getName();
+		case ProcessPackage.PUSH_CONSTANT__NAME:
+			return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,9 +119,9 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PUSH_CONSTANT__NAME:
-				setName((String)newValue);
-				return;
+		case ProcessPackage.PUSH_CONSTANT__NAME:
+			setName((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -136,9 +136,9 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PUSH_CONSTANT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
+		case ProcessPackage.PUSH_CONSTANT__NAME:
+			setName(NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -153,8 +153,8 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PUSH_CONSTANT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ProcessPackage.PUSH_CONSTANT__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -15,5 +15,4 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
  * @generated
  */
 public interface ComputeProcess extends AbstractProcess
-{
-} // ComputeProcess
+{} // ComputeProcess

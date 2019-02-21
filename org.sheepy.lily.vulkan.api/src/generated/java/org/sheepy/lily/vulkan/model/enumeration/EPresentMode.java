@@ -125,14 +125,9 @@ public enum EPresentMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EPresentMode[] VALUES_ARRAY =
-		new EPresentMode[]
-		{
-			IMMEDIATE,
-			MAIL_BOX,
-			FIFO,
-			FIFO_RELAXED,
-		};
+	private static final EPresentMode[] VALUES_ARRAY = new EPresentMode[] {
+			IMMEDIATE, MAIL_BOX, FIFO, FIFO_RELAXED,
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EPresent Mode</b></em>' enumerators.
@@ -140,7 +135,8 @@ public enum EPresentMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EPresentMode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EPresentMode> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EPresent Mode</b></em>' literal with the specified literal value.
@@ -196,10 +192,14 @@ public enum EPresentMode implements Enumerator
 	{
 		switch (value)
 		{
-			case IMMEDIATE_VALUE: return IMMEDIATE;
-			case MAIL_BOX_VALUE: return MAIL_BOX;
-			case FIFO_VALUE: return FIFO;
-			case FIFO_RELAXED_VALUE: return FIFO_RELAXED;
+		case IMMEDIATE_VALUE:
+			return IMMEDIATE;
+		case MAIL_BOX_VALUE:
+			return MAIL_BOX;
+		case FIFO_VALUE:
+			return FIFO;
+		case FIFO_RELAXED_VALUE:
+			return FIFO_RELAXED;
 		}
 		return null;
 	}
@@ -246,7 +246,7 @@ public enum EPresentMode implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -257,7 +257,7 @@ public enum EPresentMode implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -268,7 +268,7 @@ public enum EPresentMode implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -282,5 +282,5 @@ public enum EPresentMode implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EPresentMode

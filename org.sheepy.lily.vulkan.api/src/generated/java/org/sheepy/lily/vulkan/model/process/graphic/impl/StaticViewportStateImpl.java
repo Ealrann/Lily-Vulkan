@@ -35,7 +35,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
  *
  * @generated
  */
-public class StaticViewportStateImpl extends MinimalEObjectImpl.Container implements StaticViewportState
+public class StaticViewportStateImpl extends MinimalEObjectImpl.Container
+		implements StaticViewportState
 {
 	/**
 	 * The cached value of the '{@link #getViewports() <em>Viewports</em>}' containment reference list.
@@ -88,7 +89,8 @@ public class StaticViewportStateImpl extends MinimalEObjectImpl.Container implem
 	{
 		if (viewports == null)
 		{
-			viewports = new EObjectContainmentEList<Viewport>(Viewport.class, this, GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS);
+			viewports = new EObjectContainmentEList<Viewport>(Viewport.class, this,
+					GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS);
 		}
 		return viewports;
 	}
@@ -103,7 +105,8 @@ public class StaticViewportStateImpl extends MinimalEObjectImpl.Container implem
 	{
 		if (scissors == null)
 		{
-			scissors = new EObjectContainmentEList<Scissor>(Scissor.class, this, GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS);
+			scissors = new EObjectContainmentEList<Scissor>(Scissor.class, this,
+					GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS);
 		}
 		return scissors;
 	}
@@ -114,14 +117,16 @@ public class StaticViewportStateImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
-				return ((InternalEList<?>)getViewports()).basicRemove(otherEnd, msgs);
-			case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
-				return ((InternalEList<?>)getScissors()).basicRemove(otherEnd, msgs);
+		case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
+			return ((InternalEList<?>) getViewports()).basicRemove(otherEnd, msgs);
+		case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
+			return ((InternalEList<?>) getScissors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -136,10 +141,10 @@ public class StaticViewportStateImpl extends MinimalEObjectImpl.Container implem
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
-				return getViewports();
-			case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
-				return getScissors();
+		case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
+			return getViewports();
+		case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
+			return getScissors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -155,14 +160,14 @@ public class StaticViewportStateImpl extends MinimalEObjectImpl.Container implem
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
-				getViewports().clear();
-				getViewports().addAll((Collection<? extends Viewport>)newValue);
-				return;
-			case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
-				getScissors().clear();
-				getScissors().addAll((Collection<? extends Scissor>)newValue);
-				return;
+		case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
+			getViewports().clear();
+			getViewports().addAll((Collection<? extends Viewport>) newValue);
+			return;
+		case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
+			getScissors().clear();
+			getScissors().addAll((Collection<? extends Scissor>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -177,12 +182,12 @@ public class StaticViewportStateImpl extends MinimalEObjectImpl.Container implem
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
-				getViewports().clear();
-				return;
-			case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
-				getScissors().clear();
-				return;
+		case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
+			getViewports().clear();
+			return;
+		case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
+			getScissors().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -197,10 +202,10 @@ public class StaticViewportStateImpl extends MinimalEObjectImpl.Container implem
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
-				return viewports != null && !viewports.isEmpty();
-			case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
-				return scissors != null && !scissors.isEmpty();
+		case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
+			return viewports != null && !viewports.isEmpty();
+		case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
+			return scissors != null && !scissors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

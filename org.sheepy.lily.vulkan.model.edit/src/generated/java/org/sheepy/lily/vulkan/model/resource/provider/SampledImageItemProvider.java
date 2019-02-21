@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -35,14 +34,9 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SampledImageItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class SampledImageItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -83,19 +77,13 @@ public class SampledImageItemProvider
 	 */
 	protected void addDescriptorTypePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IDescriptor_descriptorType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IDescriptor_descriptorType_feature", "_UI_IDescriptor_type"),
-				 ResourcePackage.Literals.IDESCRIPTOR__DESCRIPTOR_TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_IDescriptor_descriptorType_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_IDescriptor_descriptorType_feature", "_UI_IDescriptor_type"),
+				ResourcePackage.Literals.IDESCRIPTOR__DESCRIPTOR_TYPE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -106,19 +94,13 @@ public class SampledImageItemProvider
 	 */
 	protected void addShaderStagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IDescriptor_shaderStages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IDescriptor_shaderStages_feature", "_UI_IDescriptor_type"),
-				 ResourcePackage.Literals.IDESCRIPTOR__SHADER_STAGES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_IDescriptor_shaderStages_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_IDescriptor_shaderStages_feature", "_UI_IDescriptor_type"),
+				ResourcePackage.Literals.IDESCRIPTOR__SHADER_STAGES, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -129,19 +111,13 @@ public class SampledImageItemProvider
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -186,12 +162,11 @@ public class SampledImageItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((SampledImage)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SampledImage_type") :
-			getString("_UI_SampledImage_type") + " " + label;
+		String label = ((SampledImage) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_SampledImage_type")
+				: getString("_UI_SampledImage_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -207,14 +182,16 @@ public class SampledImageItemProvider
 
 		switch (notification.getFeatureID(SampledImage.class))
 		{
-			case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
-			case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
+		case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
+		case ResourcePackage.SAMPLED_IMAGE__NAME:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -231,10 +208,9 @@ public class SampledImageItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
-				 ResourceFactory.eINSTANCE.createSampler()));
+		newChildDescriptors
+				.add(createChildParameter(ResourcePackage.Literals.SAMPLED_IMAGE__SAMPLER,
+						ResourceFactory.eINSTANCE.createSampler()));
 	}
 
 	/**
@@ -246,7 +222,7 @@ public class SampledImageItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

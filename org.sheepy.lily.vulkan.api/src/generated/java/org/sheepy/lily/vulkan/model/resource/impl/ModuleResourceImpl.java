@@ -88,8 +88,8 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	{
 		Module oldModule = module;
 		module = newModule;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.MODULE_RESOURCE__MODULE, oldModule, module));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.MODULE_RESOURCE__MODULE, oldModule, module));
 	}
 
 	/**
@@ -102,8 +102,8 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.MODULE_RESOURCE__MODULE:
-				return getModule();
+		case ResourcePackage.MODULE_RESOURCE__MODULE:
+			return getModule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,9 +118,9 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.MODULE_RESOURCE__MODULE:
-				setModule((Module)newValue);
-				return;
+		case ResourcePackage.MODULE_RESOURCE__MODULE:
+			setModule((Module) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,9 +135,9 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.MODULE_RESOURCE__MODULE:
-				setModule(MODULE_EDEFAULT);
-				return;
+		case ResourcePackage.MODULE_RESOURCE__MODULE:
+			setModule(MODULE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,8 +152,8 @@ public class ModuleResourceImpl extends AbstractModuleResourceImpl implements Mo
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.MODULE_RESOURCE__MODULE:
-				return MODULE_EDEFAULT == null ? module != null : !MODULE_EDEFAULT.equals(module);
+		case ResourcePackage.MODULE_RESOURCE__MODULE:
+			return MODULE_EDEFAULT == null ? module != null : !MODULE_EDEFAULT.equals(module);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -66,19 +65,13 @@ public class BufferBarrierItemProvider extends BarrierItemProvider
 	 */
 	protected void addBufferPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BufferBarrier_buffer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BufferBarrier_buffer_feature", "_UI_BufferBarrier_type"),
-				 ResourcePackage.Literals.BUFFER_BARRIER__BUFFER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_BufferBarrier_buffer_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_BufferBarrier_buffer_feature",
+						"_UI_BufferBarrier_type"),
+				ResourcePackage.Literals.BUFFER_BARRIER__BUFFER, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -89,19 +82,13 @@ public class BufferBarrierItemProvider extends BarrierItemProvider
 	 */
 	protected void addSrcAccessPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BufferBarrier_srcAccess_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BufferBarrier_srcAccess_feature", "_UI_BufferBarrier_type"),
-				 ResourcePackage.Literals.BUFFER_BARRIER__SRC_ACCESS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_BufferBarrier_srcAccess_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_BufferBarrier_srcAccess_feature", "_UI_BufferBarrier_type"),
+				ResourcePackage.Literals.BUFFER_BARRIER__SRC_ACCESS, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -112,19 +99,13 @@ public class BufferBarrierItemProvider extends BarrierItemProvider
 	 */
 	protected void addDstAccessPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BufferBarrier_dstAccess_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BufferBarrier_dstAccess_feature", "_UI_BufferBarrier_type"),
-				 ResourcePackage.Literals.BUFFER_BARRIER__DST_ACCESS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_BufferBarrier_dstAccess_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_BufferBarrier_dstAccess_feature", "_UI_BufferBarrier_type"),
+				ResourcePackage.Literals.BUFFER_BARRIER__DST_ACCESS, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -148,13 +129,12 @@ public class BufferBarrierItemProvider extends BarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((BufferBarrier)object).getSrcStage();
+		EPipelineStage labelValue = ((BufferBarrier) object).getSrcStage();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_BufferBarrier_type") :
-			getString("_UI_BufferBarrier_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_BufferBarrier_type")
+				: getString("_UI_BufferBarrier_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -170,10 +150,11 @@ public class BufferBarrierItemProvider extends BarrierItemProvider
 
 		switch (notification.getFeatureID(BufferBarrier.class))
 		{
-			case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
-			case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
+		case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

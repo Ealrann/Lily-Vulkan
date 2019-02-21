@@ -500,9 +500,7 @@ public enum EBlendFactor implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EBlendFactor[] VALUES_ARRAY =
-		new EBlendFactor[]
-		{
+	private static final EBlendFactor[] VALUES_ARRAY = new EBlendFactor[] {
 			ZERO,
 			ONE,
 			SRC_COLOR,
@@ -522,7 +520,7 @@ public enum EBlendFactor implements Enumerator
 			ONE_MINUS_SRC1_COLOR,
 			SRC1_ALPHA,
 			ONE_MINUS_SRC1_ALPHA,
-		};
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EBlend Factor</b></em>' enumerators.
@@ -530,7 +528,8 @@ public enum EBlendFactor implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EBlendFactor> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EBlendFactor> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EBlend Factor</b></em>' literal with the specified literal value.
@@ -586,25 +585,44 @@ public enum EBlendFactor implements Enumerator
 	{
 		switch (value)
 		{
-			case ZERO_VALUE: return ZERO;
-			case ONE_VALUE: return ONE;
-			case SRC_COLOR_VALUE: return SRC_COLOR;
-			case ONE_MINUS_SRC_COLOR_VALUE: return ONE_MINUS_SRC_COLOR;
-			case DST_COLOR_VALUE: return DST_COLOR;
-			case ONE_MINUS_DST_COLOR_VALUE: return ONE_MINUS_DST_COLOR;
-			case SRC_ALPHA_VALUE: return SRC_ALPHA;
-			case ONE_MINUS_SRC_ALPHA_VALUE: return ONE_MINUS_SRC_ALPHA;
-			case DST_ALPHA_VALUE: return DST_ALPHA;
-			case ONE_MINUS_DST_ALPHA_VALUE: return ONE_MINUS_DST_ALPHA;
-			case CONSTANT_COLOR_VALUE: return CONSTANT_COLOR;
-			case ONE_MINUS_CONSTANT_COLOR_VALUE: return ONE_MINUS_CONSTANT_COLOR;
-			case CONSTANT_ALPHA_VALUE: return CONSTANT_ALPHA;
-			case ONE_MINUS_CONSTANT_ALPHA_VALUE: return ONE_MINUS_CONSTANT_ALPHA;
-			case SRC_ALPHA_SATURATE_VALUE: return SRC_ALPHA_SATURATE;
-			case SRC1_COLOR_VALUE: return SRC1_COLOR;
-			case ONE_MINUS_SRC1_COLOR_VALUE: return ONE_MINUS_SRC1_COLOR;
-			case SRC1_ALPHA_VALUE: return SRC1_ALPHA;
-			case ONE_MINUS_SRC1_ALPHA_VALUE: return ONE_MINUS_SRC1_ALPHA;
+		case ZERO_VALUE:
+			return ZERO;
+		case ONE_VALUE:
+			return ONE;
+		case SRC_COLOR_VALUE:
+			return SRC_COLOR;
+		case ONE_MINUS_SRC_COLOR_VALUE:
+			return ONE_MINUS_SRC_COLOR;
+		case DST_COLOR_VALUE:
+			return DST_COLOR;
+		case ONE_MINUS_DST_COLOR_VALUE:
+			return ONE_MINUS_DST_COLOR;
+		case SRC_ALPHA_VALUE:
+			return SRC_ALPHA;
+		case ONE_MINUS_SRC_ALPHA_VALUE:
+			return ONE_MINUS_SRC_ALPHA;
+		case DST_ALPHA_VALUE:
+			return DST_ALPHA;
+		case ONE_MINUS_DST_ALPHA_VALUE:
+			return ONE_MINUS_DST_ALPHA;
+		case CONSTANT_COLOR_VALUE:
+			return CONSTANT_COLOR;
+		case ONE_MINUS_CONSTANT_COLOR_VALUE:
+			return ONE_MINUS_CONSTANT_COLOR;
+		case CONSTANT_ALPHA_VALUE:
+			return CONSTANT_ALPHA;
+		case ONE_MINUS_CONSTANT_ALPHA_VALUE:
+			return ONE_MINUS_CONSTANT_ALPHA;
+		case SRC_ALPHA_SATURATE_VALUE:
+			return SRC_ALPHA_SATURATE;
+		case SRC1_COLOR_VALUE:
+			return SRC1_COLOR;
+		case ONE_MINUS_SRC1_COLOR_VALUE:
+			return ONE_MINUS_SRC1_COLOR;
+		case SRC1_ALPHA_VALUE:
+			return SRC1_ALPHA;
+		case ONE_MINUS_SRC1_ALPHA_VALUE:
+			return ONE_MINUS_SRC1_ALPHA;
 		}
 		return null;
 	}
@@ -651,7 +669,7 @@ public enum EBlendFactor implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -662,7 +680,7 @@ public enum EBlendFactor implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -673,7 +691,7 @@ public enum EBlendFactor implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -687,5 +705,5 @@ public enum EBlendFactor implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EBlendFactor

@@ -45,17 +45,15 @@ public final class ResourceEditPlugin extends EMFPlugin
 	 */
 	public ResourceEditPlugin()
 	{
-		super
-		  (new ResourceLocator [] 
-		   {
-		     VulkanEditPlugin.INSTANCE,
-		     TypesEditPlugin.INSTANCE,
-		     EnumerationEditPlugin.INSTANCE,
-		     ApplicationEditPlugin.INSTANCE,
-		     RootEditPlugin.INSTANCE,
-		     InferenceEditPlugin.INSTANCE,
-		     ActionEditPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[] {
+				VulkanEditPlugin.INSTANCE,
+				TypesEditPlugin.INSTANCE,
+				EnumerationEditPlugin.INSTANCE,
+				ApplicationEditPlugin.INSTANCE,
+				RootEditPlugin.INSTANCE,
+				InferenceEditPlugin.INSTANCE,
+				ActionEditPlugin.INSTANCE,
+		});
 	}
 
 	/**

@@ -24,7 +24,7 @@ import org.sheepy.lily.core.model.types.TypesPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.lily.vulkan.model.VulkanFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' basePackage='org.sheepy.lily.vulkan'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' basePackage='org.sheepy.lily.vulkan'"
  * @generated
  */
 public interface VulkanPackage extends EPackage
@@ -342,7 +342,8 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SHARED_RESOURCES___CREATE_CONTAINMENT_ELIST__ECLASS = RESOURCE_CONTAINER_OPERATION_COUNT + 1;
+	int SHARED_RESOURCES___CREATE_CONTAINMENT_ELIST__ECLASS = RESOURCE_CONTAINER_OPERATION_COUNT
+			+ 1;
 
 	/**
 	 * The operation id for the '<em>LContents</em>' operation.
@@ -562,7 +563,6 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int COLOR_DOMAIN_OPERATION_COUNT = 0;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.VulkanEngine <em>Engine</em>}'.

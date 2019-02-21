@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -34,14 +33,9 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImageLayoutItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class ImageLayoutItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -82,19 +76,13 @@ public class ImageLayoutItemProvider
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageLayout_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_stage_feature", "_UI_ImageLayout_type"),
-				 ResourcePackage.Literals.IMAGE_LAYOUT__STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImageLayout_stage_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_stage_feature",
+						"_UI_ImageLayout_type"),
+				ResourcePackage.Literals.IMAGE_LAYOUT__STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -105,19 +93,13 @@ public class ImageLayoutItemProvider
 	 */
 	protected void addLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageLayout_layout_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_layout_feature", "_UI_ImageLayout_type"),
-				 ResourcePackage.Literals.IMAGE_LAYOUT__LAYOUT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImageLayout_layout_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_layout_feature",
+						"_UI_ImageLayout_type"),
+				ResourcePackage.Literals.IMAGE_LAYOUT__LAYOUT, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -128,19 +110,13 @@ public class ImageLayoutItemProvider
 	 */
 	protected void addAccessMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageLayout_accessMask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageLayout_accessMask_feature", "_UI_ImageLayout_type"),
-				 ResourcePackage.Literals.IMAGE_LAYOUT__ACCESS_MASK,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImageLayout_accessMask_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ImageLayout_accessMask_feature", "_UI_ImageLayout_type"),
+				ResourcePackage.Literals.IMAGE_LAYOUT__ACCESS_MASK, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -164,13 +140,12 @@ public class ImageLayoutItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((ImageLayout)object).getStage();
+		EPipelineStage labelValue = ((ImageLayout) object).getStage();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ImageLayout_type") :
-			getString("_UI_ImageLayout_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_ImageLayout_type")
+				: getString("_UI_ImageLayout_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -186,11 +161,12 @@ public class ImageLayoutItemProvider
 
 		switch (notification.getFeatureID(ImageLayout.class))
 		{
-			case ResourcePackage.IMAGE_LAYOUT__STAGE:
-			case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
-			case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ResourcePackage.IMAGE_LAYOUT__STAGE:
+		case ResourcePackage.IMAGE_LAYOUT__LAYOUT:
+		case ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -217,7 +193,7 @@ public class ImageLayoutItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

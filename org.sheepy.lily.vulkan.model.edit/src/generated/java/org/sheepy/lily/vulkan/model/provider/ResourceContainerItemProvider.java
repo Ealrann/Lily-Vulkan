@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -32,14 +31,9 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResourceContainerItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class ResourceContainerItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -126,7 +120,6 @@ public class ResourceContainerItemProvider
 		return getString("_UI_ResourceContainer_type");
 	}
 
-
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
@@ -141,9 +134,10 @@ public class ResourceContainerItemProvider
 
 		switch (notification.getFeatureID(ResourceContainer.class))
 		{
-			case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -170,7 +164,7 @@ public class ResourceContainerItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

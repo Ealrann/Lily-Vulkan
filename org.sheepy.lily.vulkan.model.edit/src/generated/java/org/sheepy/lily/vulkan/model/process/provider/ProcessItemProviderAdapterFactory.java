@@ -41,7 +41,8 @@ import org.sheepy.lily.vulkan.model.process.util.ProcessAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -65,7 +66,8 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(ProcessEditPlugin.INSTANCE, ProcessPackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
+			ProcessEditPlugin.INSTANCE, ProcessPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -223,7 +225,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 		if (isFactoryForType(type))
 		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
 			{
 				return adapter;
 			}
@@ -247,6 +249,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 	{
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
@@ -257,6 +260,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getResourceLocator()
 	{
 		return childCreationExtenderManager;

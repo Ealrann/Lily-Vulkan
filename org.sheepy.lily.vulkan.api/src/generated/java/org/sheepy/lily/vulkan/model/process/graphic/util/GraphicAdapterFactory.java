@@ -4,25 +4,39 @@ package org.sheepy.lily.vulkan.model.process.graphic.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.sheepy.lily.core.model.inference.IInferenceObject;
-
 import org.sheepy.lily.core.model.root.LObject;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
-
 import org.sheepy.lily.vulkan.model.IEnginePart;
 import org.sheepy.lily.vulkan.model.IProcess;
-
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.*;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
+import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
+import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
+import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
+import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,7 +87,7 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 		}
 		if (object instanceof EObject)
 		{
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -84,165 +98,194 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GraphicSwitch<Adapter> modelSwitch =
-		new GraphicSwitch<Adapter>()
+	protected GraphicSwitch<Adapter> modelSwitch = new GraphicSwitch<Adapter>()
+	{
+		@Override
+		public Adapter caseGraphicConfiguration(GraphicConfiguration object)
 		{
-			@Override
-			public Adapter caseGraphicConfiguration(GraphicConfiguration object)
-			{
-				return createGraphicConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseRenderPassInfo(RenderPassInfo object)
-			{
-				return createRenderPassInfoAdapter();
-			}
-			@Override
-			public Adapter caseSubpass(Subpass object)
-			{
-				return createSubpassAdapter();
-			}
-			@Override
-			public Adapter caseAttachementRef(AttachementRef object)
-			{
-				return createAttachementRefAdapter();
-			}
-			@Override
-			public Adapter caseSubpassDependency(SubpassDependency object)
-			{
-				return createSubpassDependencyAdapter();
-			}
-			@Override
-			public Adapter caseAttachmentDescription(AttachmentDescription object)
-			{
-				return createAttachmentDescriptionAdapter();
-			}
-			@Override
-			public Adapter caseDepthAttachmentDescription(DepthAttachmentDescription object)
-			{
-				return createDepthAttachmentDescriptionAdapter();
-			}
-			@Override
-			public Adapter caseGraphicProcess(GraphicProcess object)
-			{
-				return createGraphicProcessAdapter();
-			}
-			@Override
-			public Adapter caseIGraphicsPipeline(IGraphicsPipeline object)
-			{
-				return createIGraphicsPipelineAdapter();
-			}
-			@Override
-			public Adapter caseIGUIPipeline(IGUIPipeline object)
-			{
-				return createIGUIPipelineAdapter();
-			}
-			@Override
-			public Adapter caseGraphicsPipeline(GraphicsPipeline object)
-			{
-				return createGraphicsPipelineAdapter();
-			}
-			@Override
-			public Adapter caseDynamicState(DynamicState object)
-			{
-				return createDynamicStateAdapter();
-			}
-			@Override
-			public Adapter caseColorBlend(ColorBlend object)
-			{
-				return createColorBlendAdapter();
-			}
-			@Override
-			public Adapter caseColorBlendAttachment(ColorBlendAttachment object)
-			{
-				return createColorBlendAttachmentAdapter();
-			}
-			@Override
-			public Adapter caseViewportState(ViewportState object)
-			{
-				return createViewportStateAdapter();
-			}
-			@Override
-			public Adapter caseStaticViewportState(StaticViewportState object)
-			{
-				return createStaticViewportStateAdapter();
-			}
-			@Override
-			public Adapter caseDynamicViewportState(DynamicViewportState object)
-			{
-				return createDynamicViewportStateAdapter();
-			}
-			@Override
-			public Adapter caseViewport(Viewport object)
-			{
-				return createViewportAdapter();
-			}
-			@Override
-			public Adapter caseScissor(Scissor object)
-			{
-				return createScissorAdapter();
-			}
-			@Override
-			public Adapter caseRasterizer(Rasterizer object)
-			{
-				return createRasterizerAdapter();
-			}
-			@Override
-			public Adapter caseImagePipeline(ImagePipeline object)
-			{
-				return createImagePipelineAdapter();
-			}
-			@Override
-			public Adapter caseConfiguration(Configuration object)
-			{
-				return createConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseLNamedElement(LNamedElement object)
-			{
-				return createLNamedElementAdapter();
-			}
-			@Override
-			public Adapter caseIInferenceObject(IInferenceObject object)
-			{
-				return createIInferenceObjectAdapter();
-			}
-			@Override
-			public Adapter caseLObject(LObject object)
-			{
-				return createLObjectAdapter();
-			}
-			@Override
-			public Adapter caseIEnginePart(IEnginePart object)
-			{
-				return createIEnginePartAdapter();
-			}
-			@Override
-			public Adapter caseIProcess(IProcess object)
-			{
-				return createIProcessAdapter();
-			}
-			@Override
-			public Adapter caseAbstractProcess(AbstractProcess object)
-			{
-				return createAbstractProcessAdapter();
-			}
-			@Override
-			public Adapter caseIPipeline(IPipeline object)
-			{
-				return createIPipelineAdapter();
-			}
-			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object)
-			{
-				return createAbstractPipelineAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object)
-			{
-				return createEObjectAdapter();
-			}
-		};
+			return createGraphicConfigurationAdapter();
+		}
+
+		@Override
+		public Adapter caseRenderPassInfo(RenderPassInfo object)
+		{
+			return createRenderPassInfoAdapter();
+		}
+
+		@Override
+		public Adapter caseSubpass(Subpass object)
+		{
+			return createSubpassAdapter();
+		}
+
+		@Override
+		public Adapter caseAttachementRef(AttachementRef object)
+		{
+			return createAttachementRefAdapter();
+		}
+
+		@Override
+		public Adapter caseSubpassDependency(SubpassDependency object)
+		{
+			return createSubpassDependencyAdapter();
+		}
+
+		@Override
+		public Adapter caseAttachmentDescription(AttachmentDescription object)
+		{
+			return createAttachmentDescriptionAdapter();
+		}
+
+		@Override
+		public Adapter caseDepthAttachmentDescription(DepthAttachmentDescription object)
+		{
+			return createDepthAttachmentDescriptionAdapter();
+		}
+
+		@Override
+		public Adapter caseGraphicProcess(GraphicProcess object)
+		{
+			return createGraphicProcessAdapter();
+		}
+
+		@Override
+		public Adapter caseIGraphicsPipeline(IGraphicsPipeline object)
+		{
+			return createIGraphicsPipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseIGUIPipeline(IGUIPipeline object)
+		{
+			return createIGUIPipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseGraphicsPipeline(GraphicsPipeline object)
+		{
+			return createGraphicsPipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseDynamicState(DynamicState object)
+		{
+			return createDynamicStateAdapter();
+		}
+
+		@Override
+		public Adapter caseColorBlend(ColorBlend object)
+		{
+			return createColorBlendAdapter();
+		}
+
+		@Override
+		public Adapter caseColorBlendAttachment(ColorBlendAttachment object)
+		{
+			return createColorBlendAttachmentAdapter();
+		}
+
+		@Override
+		public Adapter caseViewportState(ViewportState object)
+		{
+			return createViewportStateAdapter();
+		}
+
+		@Override
+		public Adapter caseStaticViewportState(StaticViewportState object)
+		{
+			return createStaticViewportStateAdapter();
+		}
+
+		@Override
+		public Adapter caseDynamicViewportState(DynamicViewportState object)
+		{
+			return createDynamicViewportStateAdapter();
+		}
+
+		@Override
+		public Adapter caseViewport(Viewport object)
+		{
+			return createViewportAdapter();
+		}
+
+		@Override
+		public Adapter caseScissor(Scissor object)
+		{
+			return createScissorAdapter();
+		}
+
+		@Override
+		public Adapter caseRasterizer(Rasterizer object)
+		{
+			return createRasterizerAdapter();
+		}
+
+		@Override
+		public Adapter caseImagePipeline(ImagePipeline object)
+		{
+			return createImagePipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseConfiguration(Configuration object)
+		{
+			return createConfigurationAdapter();
+		}
+
+		@Override
+		public Adapter caseLNamedElement(LNamedElement object)
+		{
+			return createLNamedElementAdapter();
+		}
+
+		@Override
+		public Adapter caseIInferenceObject(IInferenceObject object)
+		{
+			return createIInferenceObjectAdapter();
+		}
+
+		@Override
+		public Adapter caseLObject(LObject object)
+		{
+			return createLObjectAdapter();
+		}
+
+		@Override
+		public Adapter caseIEnginePart(IEnginePart object)
+		{
+			return createIEnginePartAdapter();
+		}
+
+		@Override
+		public Adapter caseIProcess(IProcess object)
+		{
+			return createIProcessAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractProcess(AbstractProcess object)
+		{
+			return createAbstractProcessAdapter();
+		}
+
+		@Override
+		public Adapter caseIPipeline(IPipeline object)
+		{
+			return createIPipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractPipeline(AbstractPipeline object)
+		{
+			return createAbstractPipelineAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object)
+		{
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -255,9 +298,8 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.

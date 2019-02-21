@@ -125,14 +125,9 @@ public enum ESamplerAddressMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ESamplerAddressMode[] VALUES_ARRAY =
-		new ESamplerAddressMode[]
-		{
-			REPEAT,
-			MIRRORED_REPEAT,
-			CLAMP_TO_EDGE,
-			CLAMP_TO_BORDER,
-		};
+	private static final ESamplerAddressMode[] VALUES_ARRAY = new ESamplerAddressMode[] {
+			REPEAT, MIRRORED_REPEAT, CLAMP_TO_EDGE, CLAMP_TO_BORDER,
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>ESampler Address Mode</b></em>' enumerators.
@@ -140,7 +135,8 @@ public enum ESamplerAddressMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ESamplerAddressMode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ESamplerAddressMode> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>ESampler Address Mode</b></em>' literal with the specified literal value.
@@ -196,10 +192,14 @@ public enum ESamplerAddressMode implements Enumerator
 	{
 		switch (value)
 		{
-			case REPEAT_VALUE: return REPEAT;
-			case MIRRORED_REPEAT_VALUE: return MIRRORED_REPEAT;
-			case CLAMP_TO_EDGE_VALUE: return CLAMP_TO_EDGE;
-			case CLAMP_TO_BORDER_VALUE: return CLAMP_TO_BORDER;
+		case REPEAT_VALUE:
+			return REPEAT;
+		case MIRRORED_REPEAT_VALUE:
+			return MIRRORED_REPEAT;
+		case CLAMP_TO_EDGE_VALUE:
+			return CLAMP_TO_EDGE;
+		case CLAMP_TO_BORDER_VALUE:
+			return CLAMP_TO_BORDER;
 		}
 		return null;
 	}
@@ -246,7 +246,7 @@ public enum ESamplerAddressMode implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -257,7 +257,7 @@ public enum ESamplerAddressMode implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -268,7 +268,7 @@ public enum ESamplerAddressMode implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -282,5 +282,5 @@ public enum ESamplerAddressMode implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //ESamplerAddressMode

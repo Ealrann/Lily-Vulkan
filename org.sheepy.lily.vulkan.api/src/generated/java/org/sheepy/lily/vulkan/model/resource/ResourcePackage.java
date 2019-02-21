@@ -24,7 +24,7 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.lily.vulkan.model.resource.ResourceFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model'"
  * @generated
  */
 public interface ResourcePackage extends EPackage
@@ -59,7 +59,8 @@ public interface ResourcePackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ResourcePackage eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl.init();
+	ResourcePackage eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}' class.
@@ -1800,7 +1801,6 @@ public interface ResourcePackage extends EPackage
 	 */
 	int JAVA_MODULE = 28;
 
-
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
 	 * <!-- begin-user-doc -->
@@ -3066,7 +3066,8 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SAMPLER__UNNORMALIZED_COORDINATES = eINSTANCE.getSampler_UnnormalizedCoordinates();
+		EAttribute SAMPLER__UNNORMALIZED_COORDINATES = eINSTANCE
+				.getSampler_UnnormalizedCoordinates();
 
 		/**
 		 * The meta object literal for the '<em><b>Compare Enable</b></em>' attribute feature.
@@ -3264,7 +3265,8 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_IMAGE_BARRIER__TRANSITIONS = eINSTANCE.getAbstractImageBarrier_Transitions();
+		EReference ABSTRACT_IMAGE_BARRIER__TRANSITIONS = eINSTANCE
+				.getAbstractImageBarrier_Transitions();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
@@ -3308,7 +3310,8 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REFERENCE_IMAGE_BARRIER__MIP_LEVELS = eINSTANCE.getReferenceImageBarrier_MipLevels();
+		EAttribute REFERENCE_IMAGE_BARRIER__MIP_LEVELS = eINSTANCE
+				.getReferenceImageBarrier_MipLevels();
 
 		/**
 		 * The meta object literal for the '<em><b>Image Format</b></em>' attribute feature.
@@ -3316,7 +3319,8 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT = eINSTANCE.getReferenceImageBarrier_ImageFormat();
+		EAttribute REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT = eINSTANCE
+				.getReferenceImageBarrier_ImageFormat();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
@@ -3468,7 +3472,8 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRING_MODULE_RESOURCE__MODULE_NAME = eINSTANCE.getStringModuleResource_ModuleName();
+		EAttribute STRING_MODULE_RESOURCE__MODULE_NAME = eINSTANCE
+				.getStringModuleResource_ModuleName();
 
 		/**
 		 * The meta object literal for the '<em>Byte Buffer</em>' data type.

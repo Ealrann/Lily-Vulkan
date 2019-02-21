@@ -88,8 +88,8 @@ public abstract class AbstractTextureImpl extends SampledImageImpl implements Ab
 	{
 		boolean oldMipmapEnabled = mipmapEnabled;
 		mipmapEnabled = newMipmapEnabled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED, oldMipmapEnabled, mipmapEnabled));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED, oldMipmapEnabled, mipmapEnabled));
 	}
 
 	/**
@@ -102,8 +102,8 @@ public abstract class AbstractTextureImpl extends SampledImageImpl implements Ab
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
-				return isMipmapEnabled();
+		case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
+			return isMipmapEnabled();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,9 +118,9 @@ public abstract class AbstractTextureImpl extends SampledImageImpl implements Ab
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
-				setMipmapEnabled((Boolean)newValue);
-				return;
+		case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
+			setMipmapEnabled((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,9 +135,9 @@ public abstract class AbstractTextureImpl extends SampledImageImpl implements Ab
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
-				setMipmapEnabled(MIPMAP_ENABLED_EDEFAULT);
-				return;
+		case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
+			setMipmapEnabled(MIPMAP_ENABLED_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,8 +152,8 @@ public abstract class AbstractTextureImpl extends SampledImageImpl implements Ab
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
-				return mipmapEnabled != MIPMAP_ENABLED_EDEFAULT;
+		case ResourcePackage.ABSTRACT_TEXTURE__MIPMAP_ENABLED:
+			return mipmapEnabled != MIPMAP_ENABLED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -62,19 +61,13 @@ public class ImageBarrierItemProvider extends AbstractImageBarrierItemProvider
 	 */
 	protected void addImagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImageBarrier_image_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageBarrier_image_feature", "_UI_ImageBarrier_type"),
-				 ResourcePackage.Literals.IMAGE_BARRIER__IMAGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImageBarrier_image_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ImageBarrier_image_feature",
+						"_UI_ImageBarrier_type"),
+				ResourcePackage.Literals.IMAGE_BARRIER__IMAGE, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -98,13 +91,12 @@ public class ImageBarrierItemProvider extends AbstractImageBarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((ImageBarrier)object).getSrcStage();
+		EPipelineStage labelValue = ((ImageBarrier) object).getSrcStage();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ImageBarrier_type") :
-			getString("_UI_ImageBarrier_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_ImageBarrier_type")
+				: getString("_UI_ImageBarrier_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

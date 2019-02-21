@@ -101,8 +101,8 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.DESCRIPTOR_SET__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.DESCRIPTOR_SET__NAME, oldName, name));
 	}
 
 	/**
@@ -115,7 +115,8 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	{
 		if (descriptors == null)
 		{
-			descriptors = new EObjectResolvingEList<IDescriptor>(IDescriptor.class, this, ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
+			descriptors = new EObjectResolvingEList<IDescriptor>(IDescriptor.class, this,
+					ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
 		}
 		return descriptors;
 	}
@@ -130,10 +131,10 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET__NAME:
-				return getName();
-			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
-				return getDescriptors();
+		case ResourcePackage.DESCRIPTOR_SET__NAME:
+			return getName();
+		case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
+			return getDescriptors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,13 +150,13 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET__NAME:
-				setName((String)newValue);
-				return;
-			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
-				getDescriptors().clear();
-				getDescriptors().addAll((Collection<? extends IDescriptor>)newValue);
-				return;
+		case ResourcePackage.DESCRIPTOR_SET__NAME:
+			setName((String) newValue);
+			return;
+		case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
+			getDescriptors().clear();
+			getDescriptors().addAll((Collection<? extends IDescriptor>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -170,12 +171,12 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
-				getDescriptors().clear();
-				return;
+		case ResourcePackage.DESCRIPTOR_SET__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
+			getDescriptors().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -190,10 +191,10 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.DESCRIPTOR_SET__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
-				return descriptors != null && !descriptors.isEmpty();
+		case ResourcePackage.DESCRIPTOR_SET__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
+			return descriptors != null && !descriptors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

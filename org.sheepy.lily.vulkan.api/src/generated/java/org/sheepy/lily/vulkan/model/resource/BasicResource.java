@@ -15,5 +15,4 @@ import org.sheepy.lily.vulkan.model.IResource;
  * @generated
  */
 public interface BasicResource extends IResource
-{
-} // BasicResource
+{} // BasicResource

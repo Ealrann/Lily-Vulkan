@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.compute.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -32,8 +31,9 @@ import org.sheepy.lily.vulkan.model.process.compute.Computer;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComputerItemProvider 
-	extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ComputerItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,19 +73,13 @@ public class ComputerItemProvider
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -96,19 +90,12 @@ public class ComputerItemProvider
 	 */
 	protected void addShaderPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Computer_shader_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Computer_shader_feature", "_UI_Computer_type"),
-				 ComputePackage.Literals.COMPUTER__SHADER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Computer_shader_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Computer_shader_feature",
+						"_UI_Computer_type"),
+				ComputePackage.Literals.COMPUTER__SHADER, true, false, true, null, null, null));
 	}
 
 	/**
@@ -132,12 +119,11 @@ public class ComputerItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Computer)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Computer_type") :
-			getString("_UI_Computer_type") + " " + label;
+		String label = ((Computer) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_Computer_type")
+				: getString("_UI_Computer_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -153,9 +139,10 @@ public class ComputerItemProvider
 
 		switch (notification.getFeatureID(Computer.class))
 		{
-			case ComputePackage.COMPUTER__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ComputePackage.COMPUTER__NAME:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -182,7 +169,7 @@ public class ComputerItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+
 import org.sheepy.lily.vulkan.model.process.graphic.*;
 
 /**
@@ -85,186 +86,187 @@ public class GraphicSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION:
-			{
-				GraphicConfiguration graphicConfiguration = (GraphicConfiguration)theEObject;
-				T result = caseGraphicConfiguration(graphicConfiguration);
-				if (result == null) result = caseConfiguration(graphicConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.RENDER_PASS_INFO:
-			{
-				RenderPassInfo renderPassInfo = (RenderPassInfo)theEObject;
-				T result = caseRenderPassInfo(renderPassInfo);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.SUBPASS:
-			{
-				Subpass subpass = (Subpass)theEObject;
-				T result = caseSubpass(subpass);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.ATTACHEMENT_REF:
-			{
-				AttachementRef attachementRef = (AttachementRef)theEObject;
-				T result = caseAttachementRef(attachementRef);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.SUBPASS_DEPENDENCY:
-			{
-				SubpassDependency subpassDependency = (SubpassDependency)theEObject;
-				T result = caseSubpassDependency(subpassDependency);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.ATTACHMENT_DESCRIPTION:
-			{
-				AttachmentDescription attachmentDescription = (AttachmentDescription)theEObject;
-				T result = caseAttachmentDescription(attachmentDescription);
-				if (result == null) result = caseLNamedElement(attachmentDescription);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION:
-			{
-				DepthAttachmentDescription depthAttachmentDescription = (DepthAttachmentDescription)theEObject;
-				T result = caseDepthAttachmentDescription(depthAttachmentDescription);
-				if (result == null) result = caseAttachmentDescription(depthAttachmentDescription);
-				if (result == null) result = caseLNamedElement(depthAttachmentDescription);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.GRAPHIC_PROCESS:
-			{
-				GraphicProcess graphicProcess = (GraphicProcess)theEObject;
-				T result = caseGraphicProcess(graphicProcess);
-				if (result == null) result = caseAbstractProcess(graphicProcess);
-				if (result == null) result = caseIProcess(graphicProcess);
-				if (result == null) result = caseIEnginePart(graphicProcess);
-				if (result == null) result = caseLNamedElement(graphicProcess);
-				if (result == null) result = caseLObject(graphicProcess);
-				if (result == null) result = caseIInferenceObject(graphicProcess);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.IGRAPHICS_PIPELINE:
-			{
-				IGraphicsPipeline iGraphicsPipeline = (IGraphicsPipeline)theEObject;
-				T result = caseIGraphicsPipeline(iGraphicsPipeline);
-				if (result == null) result = caseIPipeline(iGraphicsPipeline);
-				if (result == null) result = caseLObject(iGraphicsPipeline);
-				if (result == null) result = caseLNamedElement(iGraphicsPipeline);
-				if (result == null) result = caseIInferenceObject(iGraphicsPipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.IGUI_PIPELINE:
-			{
-				IGUIPipeline iguiPipeline = (IGUIPipeline)theEObject;
-				T result = caseIGUIPipeline(iguiPipeline);
-				if (result == null) result = caseIGraphicsPipeline(iguiPipeline);
-				if (result == null) result = caseIPipeline(iguiPipeline);
-				if (result == null) result = caseLObject(iguiPipeline);
-				if (result == null) result = caseLNamedElement(iguiPipeline);
-				if (result == null) result = caseIInferenceObject(iguiPipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.GRAPHICS_PIPELINE:
-			{
-				GraphicsPipeline graphicsPipeline = (GraphicsPipeline)theEObject;
-				T result = caseGraphicsPipeline(graphicsPipeline);
-				if (result == null) result = caseAbstractPipeline(graphicsPipeline);
-				if (result == null) result = caseIGraphicsPipeline(graphicsPipeline);
-				if (result == null) result = caseIPipeline(graphicsPipeline);
-				if (result == null) result = caseLObject(graphicsPipeline);
-				if (result == null) result = caseLNamedElement(graphicsPipeline);
-				if (result == null) result = caseIInferenceObject(graphicsPipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.DYNAMIC_STATE:
-			{
-				DynamicState dynamicState = (DynamicState)theEObject;
-				T result = caseDynamicState(dynamicState);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.COLOR_BLEND:
-			{
-				ColorBlend colorBlend = (ColorBlend)theEObject;
-				T result = caseColorBlend(colorBlend);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT:
-			{
-				ColorBlendAttachment colorBlendAttachment = (ColorBlendAttachment)theEObject;
-				T result = caseColorBlendAttachment(colorBlendAttachment);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.VIEWPORT_STATE:
-			{
-				ViewportState viewportState = (ViewportState)theEObject;
-				T result = caseViewportState(viewportState);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.STATIC_VIEWPORT_STATE:
-			{
-				StaticViewportState staticViewportState = (StaticViewportState)theEObject;
-				T result = caseStaticViewportState(staticViewportState);
-				if (result == null) result = caseViewportState(staticViewportState);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE:
-			{
-				DynamicViewportState dynamicViewportState = (DynamicViewportState)theEObject;
-				T result = caseDynamicViewportState(dynamicViewportState);
-				if (result == null) result = caseViewportState(dynamicViewportState);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.VIEWPORT:
-			{
-				Viewport viewport = (Viewport)theEObject;
-				T result = caseViewport(viewport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.SCISSOR:
-			{
-				Scissor scissor = (Scissor)theEObject;
-				T result = caseScissor(scissor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.RASTERIZER:
-			{
-				Rasterizer rasterizer = (Rasterizer)theEObject;
-				T result = caseRasterizer(rasterizer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicPackage.IMAGE_PIPELINE:
-			{
-				ImagePipeline imagePipeline = (ImagePipeline)theEObject;
-				T result = caseImagePipeline(imagePipeline);
-				if (result == null) result = caseAbstractPipeline(imagePipeline);
-				if (result == null) result = caseIPipeline(imagePipeline);
-				if (result == null) result = caseLObject(imagePipeline);
-				if (result == null) result = caseLNamedElement(imagePipeline);
-				if (result == null) result = caseIInferenceObject(imagePipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case GraphicPackage.GRAPHIC_CONFIGURATION:
+		{
+			GraphicConfiguration graphicConfiguration = (GraphicConfiguration) theEObject;
+			T result = caseGraphicConfiguration(graphicConfiguration);
+			if (result == null) result = caseConfiguration(graphicConfiguration);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.RENDER_PASS_INFO:
+		{
+			RenderPassInfo renderPassInfo = (RenderPassInfo) theEObject;
+			T result = caseRenderPassInfo(renderPassInfo);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.SUBPASS:
+		{
+			Subpass subpass = (Subpass) theEObject;
+			T result = caseSubpass(subpass);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.ATTACHEMENT_REF:
+		{
+			AttachementRef attachementRef = (AttachementRef) theEObject;
+			T result = caseAttachementRef(attachementRef);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.SUBPASS_DEPENDENCY:
+		{
+			SubpassDependency subpassDependency = (SubpassDependency) theEObject;
+			T result = caseSubpassDependency(subpassDependency);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.ATTACHMENT_DESCRIPTION:
+		{
+			AttachmentDescription attachmentDescription = (AttachmentDescription) theEObject;
+			T result = caseAttachmentDescription(attachmentDescription);
+			if (result == null) result = caseLNamedElement(attachmentDescription);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION:
+		{
+			DepthAttachmentDescription depthAttachmentDescription = (DepthAttachmentDescription) theEObject;
+			T result = caseDepthAttachmentDescription(depthAttachmentDescription);
+			if (result == null) result = caseAttachmentDescription(depthAttachmentDescription);
+			if (result == null) result = caseLNamedElement(depthAttachmentDescription);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.GRAPHIC_PROCESS:
+		{
+			GraphicProcess graphicProcess = (GraphicProcess) theEObject;
+			T result = caseGraphicProcess(graphicProcess);
+			if (result == null) result = caseAbstractProcess(graphicProcess);
+			if (result == null) result = caseIProcess(graphicProcess);
+			if (result == null) result = caseIEnginePart(graphicProcess);
+			if (result == null) result = caseLNamedElement(graphicProcess);
+			if (result == null) result = caseLObject(graphicProcess);
+			if (result == null) result = caseIInferenceObject(graphicProcess);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.IGRAPHICS_PIPELINE:
+		{
+			IGraphicsPipeline iGraphicsPipeline = (IGraphicsPipeline) theEObject;
+			T result = caseIGraphicsPipeline(iGraphicsPipeline);
+			if (result == null) result = caseIPipeline(iGraphicsPipeline);
+			if (result == null) result = caseLObject(iGraphicsPipeline);
+			if (result == null) result = caseLNamedElement(iGraphicsPipeline);
+			if (result == null) result = caseIInferenceObject(iGraphicsPipeline);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.IGUI_PIPELINE:
+		{
+			IGUIPipeline iguiPipeline = (IGUIPipeline) theEObject;
+			T result = caseIGUIPipeline(iguiPipeline);
+			if (result == null) result = caseIGraphicsPipeline(iguiPipeline);
+			if (result == null) result = caseIPipeline(iguiPipeline);
+			if (result == null) result = caseLObject(iguiPipeline);
+			if (result == null) result = caseLNamedElement(iguiPipeline);
+			if (result == null) result = caseIInferenceObject(iguiPipeline);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.GRAPHICS_PIPELINE:
+		{
+			GraphicsPipeline graphicsPipeline = (GraphicsPipeline) theEObject;
+			T result = caseGraphicsPipeline(graphicsPipeline);
+			if (result == null) result = caseAbstractPipeline(graphicsPipeline);
+			if (result == null) result = caseIGraphicsPipeline(graphicsPipeline);
+			if (result == null) result = caseIPipeline(graphicsPipeline);
+			if (result == null) result = caseLObject(graphicsPipeline);
+			if (result == null) result = caseLNamedElement(graphicsPipeline);
+			if (result == null) result = caseIInferenceObject(graphicsPipeline);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.DYNAMIC_STATE:
+		{
+			DynamicState dynamicState = (DynamicState) theEObject;
+			T result = caseDynamicState(dynamicState);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.COLOR_BLEND:
+		{
+			ColorBlend colorBlend = (ColorBlend) theEObject;
+			T result = caseColorBlend(colorBlend);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT:
+		{
+			ColorBlendAttachment colorBlendAttachment = (ColorBlendAttachment) theEObject;
+			T result = caseColorBlendAttachment(colorBlendAttachment);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.VIEWPORT_STATE:
+		{
+			ViewportState viewportState = (ViewportState) theEObject;
+			T result = caseViewportState(viewportState);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.STATIC_VIEWPORT_STATE:
+		{
+			StaticViewportState staticViewportState = (StaticViewportState) theEObject;
+			T result = caseStaticViewportState(staticViewportState);
+			if (result == null) result = caseViewportState(staticViewportState);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE:
+		{
+			DynamicViewportState dynamicViewportState = (DynamicViewportState) theEObject;
+			T result = caseDynamicViewportState(dynamicViewportState);
+			if (result == null) result = caseViewportState(dynamicViewportState);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.VIEWPORT:
+		{
+			Viewport viewport = (Viewport) theEObject;
+			T result = caseViewport(viewport);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.SCISSOR:
+		{
+			Scissor scissor = (Scissor) theEObject;
+			T result = caseScissor(scissor);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.RASTERIZER:
+		{
+			Rasterizer rasterizer = (Rasterizer) theEObject;
+			T result = caseRasterizer(rasterizer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.IMAGE_PIPELINE:
+		{
+			ImagePipeline imagePipeline = (ImagePipeline) theEObject;
+			T result = caseImagePipeline(imagePipeline);
+			if (result == null) result = caseAbstractPipeline(imagePipeline);
+			if (result == null) result = caseIPipeline(imagePipeline);
+			if (result == null) result = caseLObject(imagePipeline);
+			if (result == null) result = caseLNamedElement(imagePipeline);
+			if (result == null) result = caseIInferenceObject(imagePipeline);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

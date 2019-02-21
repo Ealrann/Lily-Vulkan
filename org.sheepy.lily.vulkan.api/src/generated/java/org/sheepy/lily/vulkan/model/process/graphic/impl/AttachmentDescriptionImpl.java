@@ -37,7 +37,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  *
  * @generated
  */
-public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container implements AttachmentDescription
+public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container
+		implements AttachmentDescription
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -241,8 +242,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ATTACHMENT_DESCRIPTION__NAME, oldName, name));
 	}
 
 	/**
@@ -266,8 +267,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		ESampleCount oldSamples = samples;
 		samples = newSamples == null ? SAMPLES_EDEFAULT : newSamples;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES, oldSamples, samples));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES, oldSamples, samples));
 	}
 
 	/**
@@ -291,8 +292,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		EAttachmentLoadOp oldLoadOp = loadOp;
 		loadOp = newLoadOp == null ? LOAD_OP_EDEFAULT : newLoadOp;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP, oldLoadOp, loadOp));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP, oldLoadOp, loadOp));
 	}
 
 	/**
@@ -316,8 +317,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		EAttachmentStoreOp oldStoreOp = storeOp;
 		storeOp = newStoreOp == null ? STORE_OP_EDEFAULT : newStoreOp;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP, oldStoreOp, storeOp));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP, oldStoreOp, storeOp));
 	}
 
 	/**
@@ -341,8 +342,9 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		EAttachmentLoadOp oldStencilLoadOp = stencilLoadOp;
 		stencilLoadOp = newStencilLoadOp == null ? STENCIL_LOAD_OP_EDEFAULT : newStencilLoadOp;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP, oldStencilLoadOp, stencilLoadOp));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP, oldStencilLoadOp,
+				stencilLoadOp));
 	}
 
 	/**
@@ -366,8 +368,9 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		EAttachmentStoreOp oldStencilStoreOp = stencilStoreOp;
 		stencilStoreOp = newStencilStoreOp == null ? STENCIL_STORE_OP_EDEFAULT : newStencilStoreOp;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP, oldStencilStoreOp, stencilStoreOp));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP, oldStencilStoreOp,
+				stencilStoreOp));
 	}
 
 	/**
@@ -391,8 +394,9 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		EImageLayout oldInitialLayout = initialLayout;
 		initialLayout = newInitialLayout == null ? INITIAL_LAYOUT_EDEFAULT : newInitialLayout;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT, oldInitialLayout, initialLayout));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT, oldInitialLayout,
+				initialLayout));
 	}
 
 	/**
@@ -416,8 +420,8 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		EImageLayout oldFinalLayout = finalLayout;
 		finalLayout = newFinalLayout == null ? FINAL_LAYOUT_EDEFAULT : newFinalLayout;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT, oldFinalLayout, finalLayout));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT, oldFinalLayout, finalLayout));
 	}
 
 	/**
@@ -430,22 +434,22 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
-				return getName();
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
-				return getSamples();
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
-				return getLoadOp();
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
-				return getStoreOp();
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
-				return getStencilLoadOp();
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
-				return getStencilStoreOp();
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
-				return getInitialLayout();
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
-				return getFinalLayout();
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
+			return getName();
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
+			return getSamples();
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
+			return getLoadOp();
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
+			return getStoreOp();
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
+			return getStencilLoadOp();
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
+			return getStencilStoreOp();
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
+			return getInitialLayout();
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
+			return getFinalLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -460,30 +464,30 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
-				setName((String)newValue);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
-				setSamples((ESampleCount)newValue);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
-				setLoadOp((EAttachmentLoadOp)newValue);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
-				setStoreOp((EAttachmentStoreOp)newValue);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
-				setStencilLoadOp((EAttachmentLoadOp)newValue);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
-				setStencilStoreOp((EAttachmentStoreOp)newValue);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
-				setInitialLayout((EImageLayout)newValue);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
-				setFinalLayout((EImageLayout)newValue);
-				return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
+			setName((String) newValue);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
+			setSamples((ESampleCount) newValue);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
+			setLoadOp((EAttachmentLoadOp) newValue);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
+			setStoreOp((EAttachmentStoreOp) newValue);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
+			setStencilLoadOp((EAttachmentLoadOp) newValue);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
+			setStencilStoreOp((EAttachmentStoreOp) newValue);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
+			setInitialLayout((EImageLayout) newValue);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
+			setFinalLayout((EImageLayout) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -498,30 +502,30 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
-				setSamples(SAMPLES_EDEFAULT);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
-				setLoadOp(LOAD_OP_EDEFAULT);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
-				setStoreOp(STORE_OP_EDEFAULT);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
-				setStencilLoadOp(STENCIL_LOAD_OP_EDEFAULT);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
-				setStencilStoreOp(STENCIL_STORE_OP_EDEFAULT);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
-				setInitialLayout(INITIAL_LAYOUT_EDEFAULT);
-				return;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
-				setFinalLayout(FINAL_LAYOUT_EDEFAULT);
-				return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
+			setSamples(SAMPLES_EDEFAULT);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
+			setLoadOp(LOAD_OP_EDEFAULT);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
+			setStoreOp(STORE_OP_EDEFAULT);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
+			setStencilLoadOp(STENCIL_LOAD_OP_EDEFAULT);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
+			setStencilStoreOp(STENCIL_STORE_OP_EDEFAULT);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
+			setInitialLayout(INITIAL_LAYOUT_EDEFAULT);
+			return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
+			setFinalLayout(FINAL_LAYOUT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -536,22 +540,22 @@ public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
-				return samples != SAMPLES_EDEFAULT;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
-				return loadOp != LOAD_OP_EDEFAULT;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
-				return storeOp != STORE_OP_EDEFAULT;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
-				return stencilLoadOp != STENCIL_LOAD_OP_EDEFAULT;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
-				return stencilStoreOp != STENCIL_STORE_OP_EDEFAULT;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
-				return initialLayout != INITIAL_LAYOUT_EDEFAULT;
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
-				return finalLayout != FINAL_LAYOUT_EDEFAULT;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
+			return samples != SAMPLES_EDEFAULT;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
+			return loadOp != LOAD_OP_EDEFAULT;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
+			return storeOp != STORE_OP_EDEFAULT;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
+			return stencilLoadOp != STENCIL_LOAD_OP_EDEFAULT;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
+			return stencilStoreOp != STENCIL_STORE_OP_EDEFAULT;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
+			return initialLayout != INITIAL_LAYOUT_EDEFAULT;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
+			return finalLayout != FINAL_LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

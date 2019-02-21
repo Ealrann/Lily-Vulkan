@@ -94,12 +94,13 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (process != null && process.eIsProxy())
 		{
-			InternalEObject oldProcess = (InternalEObject)process;
-			process = (AbstractProcess)eResolveProxy(oldProcess);
+			InternalEObject oldProcess = (InternalEObject) process;
+			process = (AbstractProcess) eResolveProxy(oldProcess);
 			if (process != oldProcess)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PROCESS_SEMAPHORE__PROCESS, oldProcess, process));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ProcessPackage.PROCESS_SEMAPHORE__PROCESS, oldProcess, process));
 			}
 		}
 		return process;
@@ -126,8 +127,10 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 		process = newProcess;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.PROCESS_SEMAPHORE__PROCESS, oldProcess, newProcess);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ProcessPackage.PROCESS_SEMAPHORE__PROCESS, oldProcess, newProcess);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -143,15 +146,17 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 		if (newProcess != process)
 		{
 			NotificationChain msgs = null;
-			if (process != null)
-				msgs = ((InternalEObject)process).eInverseRemove(this, ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, AbstractProcess.class, msgs);
-			if (newProcess != null)
-				msgs = ((InternalEObject)newProcess).eInverseAdd(this, ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, AbstractProcess.class, msgs);
+			if (process != null) msgs = ((InternalEObject) process).eInverseRemove(this,
+					ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, AbstractProcess.class,
+					msgs);
+			if (newProcess != null) msgs = ((InternalEObject) newProcess).eInverseAdd(this,
+					ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, AbstractProcess.class,
+					msgs);
 			msgs = basicSetProcess(newProcess, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PROCESS_SEMAPHORE__PROCESS, newProcess, newProcess));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.PROCESS_SEMAPHORE__PROCESS, newProcess, newProcess));
 	}
 
 	/**
@@ -175,8 +180,8 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 	{
 		EPipelineStage oldWaitStage = waitStage;
 		waitStage = newWaitStage == null ? WAIT_STAGE_EDEFAULT : newWaitStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE, oldWaitStage, waitStage));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE, oldWaitStage, waitStage));
 	}
 
 	/**
@@ -185,14 +190,17 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseAdd(	InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
-				if (process != null)
-					msgs = ((InternalEObject)process).eInverseRemove(this, ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, AbstractProcess.class, msgs);
-				return basicSetProcess((AbstractProcess)otherEnd, msgs);
+		case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
+			if (process != null) msgs = ((InternalEObject) process).eInverseRemove(this,
+					ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, AbstractProcess.class,
+					msgs);
+			return basicSetProcess((AbstractProcess) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -203,12 +211,14 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
-				return basicSetProcess(null, msgs);
+		case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
+			return basicSetProcess(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -223,11 +233,11 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
-				if (resolve) return getProcess();
-				return basicGetProcess();
-			case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
-				return getWaitStage();
+		case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
+			if (resolve) return getProcess();
+			return basicGetProcess();
+		case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
+			return getWaitStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -242,12 +252,12 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
-				setProcess((AbstractProcess)newValue);
-				return;
-			case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
-				setWaitStage((EPipelineStage)newValue);
-				return;
+		case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
+			setProcess((AbstractProcess) newValue);
+			return;
+		case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
+			setWaitStage((EPipelineStage) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -262,12 +272,12 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
-				setProcess((AbstractProcess)null);
-				return;
-			case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
-				setWaitStage(WAIT_STAGE_EDEFAULT);
-				return;
+		case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
+			setProcess((AbstractProcess) null);
+			return;
+		case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
+			setWaitStage(WAIT_STAGE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -282,10 +292,10 @@ public class ProcessSemaphoreImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
-				return process != null;
-			case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
-				return waitStage != WAIT_STAGE_EDEFAULT;
+		case ProcessPackage.PROCESS_SEMAPHORE__PROCESS:
+			return process != null;
+		case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
+			return waitStage != WAIT_STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

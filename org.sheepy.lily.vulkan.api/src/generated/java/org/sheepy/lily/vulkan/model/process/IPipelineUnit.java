@@ -15,5 +15,4 @@ import org.sheepy.lily.core.model.types.LNamedElement;
  * @generated
  */
 public interface IPipelineUnit extends LNamedElement
-{
-} // IPipelineUnit
+{} // IPipelineUnit

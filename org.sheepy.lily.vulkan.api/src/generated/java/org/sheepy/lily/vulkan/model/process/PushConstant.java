@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Push Constant</b></em>'.
@@ -14,5 +13,4 @@ package org.sheepy.lily.vulkan.model.process;
  * @generated
  */
 public interface PushConstant extends IPipelineUnit
-{
-} // PushConstant
+{} // PushConstant

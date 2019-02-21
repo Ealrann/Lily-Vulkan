@@ -158,12 +158,13 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		if (image != null && image.eIsProxy())
 		{
-			InternalEObject oldImage = (InternalEObject)image;
-			image = (Image)eResolveProxy(oldImage);
+			InternalEObject oldImage = (InternalEObject) image;
+			image = (Image) eResolveProxy(oldImage);
 			if (image != oldImage)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.IMAGE_PIPELINE__IMAGE, oldImage, image));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							GraphicPackage.IMAGE_PIPELINE__IMAGE, oldImage, image));
 			}
 		}
 		return image;
@@ -189,8 +190,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		Image oldImage = image;
 		image = newImage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_PIPELINE__IMAGE, oldImage, image));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.IMAGE_PIPELINE__IMAGE, oldImage, image));
 	}
 
 	/**
@@ -214,8 +215,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		EPipelineStage oldImageSrcStage = imageSrcStage;
 		imageSrcStage = newImageSrcStage == null ? IMAGE_SRC_STAGE_EDEFAULT : newImageSrcStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE, oldImageSrcStage, imageSrcStage));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE, oldImageSrcStage, imageSrcStage));
 	}
 
 	/**
@@ -239,8 +240,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		EPipelineStage oldImageDstStage = imageDstStage;
 		imageDstStage = newImageDstStage == null ? IMAGE_DST_STAGE_EDEFAULT : newImageDstStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE, oldImageDstStage, imageDstStage));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE, oldImageDstStage, imageDstStage));
 	}
 
 	/**
@@ -253,7 +254,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		if (imageSrcAccessMask == null)
 		{
-			imageSrcAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this, GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK);
+			imageSrcAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this,
+					GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK);
 		}
 		return imageSrcAccessMask;
 	}
@@ -268,7 +270,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		if (imageDstAccessMask == null)
 		{
-			imageDstAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this, GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK);
+			imageDstAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this,
+					GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK);
 		}
 		return imageDstAccessMask;
 	}
@@ -283,12 +286,13 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		if (srcQueue != null && srcQueue.eIsProxy())
 		{
-			InternalEObject oldSrcQueue = (InternalEObject)srcQueue;
-			srcQueue = (AbstractProcess)eResolveProxy(oldSrcQueue);
+			InternalEObject oldSrcQueue = (InternalEObject) srcQueue;
+			srcQueue = (AbstractProcess) eResolveProxy(oldSrcQueue);
 			if (srcQueue != oldSrcQueue)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE, oldSrcQueue, srcQueue));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE, oldSrcQueue, srcQueue));
 			}
 		}
 		return srcQueue;
@@ -314,8 +318,8 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		AbstractProcess oldSrcQueue = srcQueue;
 		srcQueue = newSrcQueue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE, oldSrcQueue, srcQueue));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE, oldSrcQueue, srcQueue));
 	}
 
 	/**
@@ -328,20 +332,20 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE:
-				if (resolve) return getImage();
-				return basicGetImage();
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
-				return getImageSrcStage();
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
-				return getImageDstStage();
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
-				return getImageSrcAccessMask();
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
-				return getImageDstAccessMask();
-			case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
-				if (resolve) return getSrcQueue();
-				return basicGetSrcQueue();
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE:
+			if (resolve) return getImage();
+			return basicGetImage();
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
+			return getImageSrcStage();
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
+			return getImageDstStage();
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+			return getImageSrcAccessMask();
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+			return getImageDstAccessMask();
+		case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
+			if (resolve) return getSrcQueue();
+			return basicGetSrcQueue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -357,26 +361,26 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE:
-				setImage((Image)newValue);
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
-				setImageSrcStage((EPipelineStage)newValue);
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
-				setImageDstStage((EPipelineStage)newValue);
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
-				getImageSrcAccessMask().clear();
-				getImageSrcAccessMask().addAll((Collection<? extends EAccess>)newValue);
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
-				getImageDstAccessMask().clear();
-				getImageDstAccessMask().addAll((Collection<? extends EAccess>)newValue);
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
-				setSrcQueue((AbstractProcess)newValue);
-				return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE:
+			setImage((Image) newValue);
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
+			setImageSrcStage((EPipelineStage) newValue);
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
+			setImageDstStage((EPipelineStage) newValue);
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+			getImageSrcAccessMask().clear();
+			getImageSrcAccessMask().addAll((Collection<? extends EAccess>) newValue);
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+			getImageDstAccessMask().clear();
+			getImageDstAccessMask().addAll((Collection<? extends EAccess>) newValue);
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
+			setSrcQueue((AbstractProcess) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -391,24 +395,24 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE:
-				setImage((Image)null);
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
-				setImageSrcStage(IMAGE_SRC_STAGE_EDEFAULT);
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
-				setImageDstStage(IMAGE_DST_STAGE_EDEFAULT);
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
-				getImageSrcAccessMask().clear();
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
-				getImageDstAccessMask().clear();
-				return;
-			case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
-				setSrcQueue((AbstractProcess)null);
-				return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE:
+			setImage((Image) null);
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
+			setImageSrcStage(IMAGE_SRC_STAGE_EDEFAULT);
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
+			setImageDstStage(IMAGE_DST_STAGE_EDEFAULT);
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+			getImageSrcAccessMask().clear();
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+			getImageDstAccessMask().clear();
+			return;
+		case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
+			setSrcQueue((AbstractProcess) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -423,18 +427,18 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE:
-				return image != null;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
-				return imageSrcStage != IMAGE_SRC_STAGE_EDEFAULT;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
-				return imageDstStage != IMAGE_DST_STAGE_EDEFAULT;
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
-				return imageSrcAccessMask != null && !imageSrcAccessMask.isEmpty();
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
-				return imageDstAccessMask != null && !imageDstAccessMask.isEmpty();
-			case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
-				return srcQueue != null;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE:
+			return image != null;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
+			return imageSrcStage != IMAGE_SRC_STAGE_EDEFAULT;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
+			return imageDstStage != IMAGE_DST_STAGE_EDEFAULT;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+			return imageSrcAccessMask != null && !imageSrcAccessMask.isEmpty();
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+			return imageDstAccessMask != null && !imageDstAccessMask.isEmpty();
+		case GraphicPackage.IMAGE_PIPELINE__SRC_QUEUE:
+			return srcQueue != null;
 		}
 		return super.eIsSet(featureID);
 	}

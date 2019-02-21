@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -64,19 +63,13 @@ public class FontItemProvider extends SampledImageItemProvider
 	 */
 	protected void addHeightPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Font_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Font_height_feature", "_UI_Font_type"),
-				 ResourcePackage.Literals.FONT__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Font_height_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Font_height_feature",
+						"_UI_Font_type"),
+				ResourcePackage.Literals.FONT__HEIGHT, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -133,12 +126,11 @@ public class FontItemProvider extends SampledImageItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Font)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Font_type") :
-			getString("_UI_Font_type") + " " + label;
+		String label = ((Font) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_Font_type")
+				: getString("_UI_Font_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -154,12 +146,14 @@ public class FontItemProvider extends SampledImageItemProvider
 
 		switch (notification.getFeatureID(Font.class))
 		{
-			case ResourcePackage.FONT__HEIGHT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ResourcePackage.FONT__FILE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ResourcePackage.FONT__HEIGHT:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ResourcePackage.FONT__FILE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -176,20 +170,14 @@ public class FontItemProvider extends SampledImageItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.FONT__FILE,
-				 ResourceFactory.eINSTANCE.createFileResource()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.FONT__FILE,
+				ResourceFactory.eINSTANCE.createFileResource()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.FONT__FILE,
-				 ResourceFactory.eINSTANCE.createModuleResource()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.FONT__FILE,
+				ResourceFactory.eINSTANCE.createModuleResource()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.FONT__FILE,
-				 ResourceFactory.eINSTANCE.createStringModuleResource()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.FONT__FILE,
+				ResourceFactory.eINSTANCE.createStringModuleResource()));
 	}
 
 }

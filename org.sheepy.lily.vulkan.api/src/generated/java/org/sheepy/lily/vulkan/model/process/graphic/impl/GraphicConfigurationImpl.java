@@ -44,7 +44,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  *
  * @generated
  */
-public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container implements GraphicConfiguration
+public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
+		implements GraphicConfiguration
 {
 	/**
 	 * The default value of the '{@link #isClearBeforeRender() <em>Clear Before Render</em>}' attribute.
@@ -188,8 +189,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	{
 		boolean oldClearBeforeRender = clearBeforeRender;
 		clearBeforeRender = newClearBeforeRender;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER, oldClearBeforeRender, clearBeforeRender));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER, oldClearBeforeRender,
+				clearBeforeRender));
 	}
 
 	/**
@@ -212,9 +214,12 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	public void setPresentationMode(EPresentMode newPresentationMode)
 	{
 		EPresentMode oldPresentationMode = presentationMode;
-		presentationMode = newPresentationMode == null ? PRESENTATION_MODE_EDEFAULT : newPresentationMode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE, oldPresentationMode, presentationMode));
+		presentationMode = newPresentationMode == null
+				? PRESENTATION_MODE_EDEFAULT
+				: newPresentationMode;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE, oldPresentationMode,
+				presentationMode));
 	}
 
 	/**
@@ -238,8 +243,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	{
 		int oldRequiredSwapImageCount = requiredSwapImageCount;
 		requiredSwapImageCount = newRequiredSwapImageCount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT, oldRequiredSwapImageCount, requiredSwapImageCount));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT,
+				oldRequiredSwapImageCount, requiredSwapImageCount));
 	}
 
 	/**
@@ -252,7 +258,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	{
 		if (swapImageUsages == null)
 		{
-			swapImageUsages = new EDataTypeEList<EImageUsage>(EImageUsage.class, this, GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES);
+			swapImageUsages = new EDataTypeEList<EImageUsage>(EImageUsage.class, this,
+					GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES);
 		}
 		return swapImageUsages;
 	}
@@ -277,9 +284,12 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	public void setAcquireWaitStage(EPipelineStage newAcquireWaitStage)
 	{
 		EPipelineStage oldAcquireWaitStage = acquireWaitStage;
-		acquireWaitStage = newAcquireWaitStage == null ? ACQUIRE_WAIT_STAGE_EDEFAULT : newAcquireWaitStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE, oldAcquireWaitStage, acquireWaitStage));
+		acquireWaitStage = newAcquireWaitStage == null
+				? ACQUIRE_WAIT_STAGE_EDEFAULT
+				: newAcquireWaitStage;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE, oldAcquireWaitStage,
+				acquireWaitStage));
 	}
 
 	/**
@@ -304,8 +314,11 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 		colorDomain = newColorDomain;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, oldColorDomain, newColorDomain);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, oldColorDomain,
+					newColorDomain);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -321,15 +334,18 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 		if (newColorDomain != colorDomain)
 		{
 			NotificationChain msgs = null;
-			if (colorDomain != null)
-				msgs = ((InternalEObject)colorDomain).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, null, msgs);
-			if (newColorDomain != null)
-				msgs = ((InternalEObject)newColorDomain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, null, msgs);
+			if (colorDomain != null) msgs = ((InternalEObject) colorDomain).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
+					null, msgs);
+			if (newColorDomain != null) msgs = ((InternalEObject) newColorDomain).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
+					null, msgs);
 			msgs = basicSetColorDomain(newColorDomain, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, newColorDomain, newColorDomain));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN, newColorDomain,
+				newColorDomain));
 	}
 
 	/**
@@ -338,12 +354,14 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				return basicSetColorDomain(null, msgs);
+		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
+			return basicSetColorDomain(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -358,18 +376,18 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-				return isClearBeforeRender();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-				return getPresentationMode();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-				return getRequiredSwapImageCount();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-				return getSwapImageUsages();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
-				return getAcquireWaitStage();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				return getColorDomain();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
+			return isClearBeforeRender();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
+			return getPresentationMode();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+			return getRequiredSwapImageCount();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
+			return getSwapImageUsages();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+			return getAcquireWaitStage();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
+			return getColorDomain();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -385,25 +403,25 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-				setClearBeforeRender((Boolean)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-				setPresentationMode((EPresentMode)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-				setRequiredSwapImageCount((Integer)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-				getSwapImageUsages().clear();
-				getSwapImageUsages().addAll((Collection<? extends EImageUsage>)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
-				setAcquireWaitStage((EPipelineStage)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				setColorDomain((ColorDomain)newValue);
-				return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
+			setClearBeforeRender((Boolean) newValue);
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
+			setPresentationMode((EPresentMode) newValue);
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+			setRequiredSwapImageCount((Integer) newValue);
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
+			getSwapImageUsages().clear();
+			getSwapImageUsages().addAll((Collection<? extends EImageUsage>) newValue);
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+			setAcquireWaitStage((EPipelineStage) newValue);
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
+			setColorDomain((ColorDomain) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -418,24 +436,24 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-				setClearBeforeRender(CLEAR_BEFORE_RENDER_EDEFAULT);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-				setPresentationMode(PRESENTATION_MODE_EDEFAULT);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-				setRequiredSwapImageCount(REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-				getSwapImageUsages().clear();
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
-				setAcquireWaitStage(ACQUIRE_WAIT_STAGE_EDEFAULT);
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				setColorDomain((ColorDomain)null);
-				return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
+			setClearBeforeRender(CLEAR_BEFORE_RENDER_EDEFAULT);
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
+			setPresentationMode(PRESENTATION_MODE_EDEFAULT);
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+			setRequiredSwapImageCount(REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT);
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
+			getSwapImageUsages().clear();
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+			setAcquireWaitStage(ACQUIRE_WAIT_STAGE_EDEFAULT);
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
+			setColorDomain((ColorDomain) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -450,18 +468,18 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-				return clearBeforeRender != CLEAR_BEFORE_RENDER_EDEFAULT;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-				return presentationMode != PRESENTATION_MODE_EDEFAULT;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-				return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-				return swapImageUsages != null && !swapImageUsages.isEmpty();
-			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
-				return acquireWaitStage != ACQUIRE_WAIT_STAGE_EDEFAULT;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				return colorDomain != null;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
+			return clearBeforeRender != CLEAR_BEFORE_RENDER_EDEFAULT;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
+			return presentationMode != PRESENTATION_MODE_EDEFAULT;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+			return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
+			return swapImageUsages != null && !swapImageUsages.isEmpty();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+			return acquireWaitStage != ACQUIRE_WAIT_STAGE_EDEFAULT;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
+			return colorDomain != null;
 		}
 		return super.eIsSet(featureID);
 	}

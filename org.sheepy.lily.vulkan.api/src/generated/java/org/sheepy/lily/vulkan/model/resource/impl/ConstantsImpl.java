@@ -90,8 +90,8 @@ public class ConstantsImpl extends AbstractConstantsImpl implements Constants
 	{
 		ByteBuffer oldData = data;
 		data = newData;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.CONSTANTS__DATA, oldData, data));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.CONSTANTS__DATA, oldData, data));
 	}
 
 	/**
@@ -104,8 +104,8 @@ public class ConstantsImpl extends AbstractConstantsImpl implements Constants
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANTS__DATA:
-				return getData();
+		case ResourcePackage.CONSTANTS__DATA:
+			return getData();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,9 +120,9 @@ public class ConstantsImpl extends AbstractConstantsImpl implements Constants
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANTS__DATA:
-				setData((ByteBuffer)newValue);
-				return;
+		case ResourcePackage.CONSTANTS__DATA:
+			setData((ByteBuffer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -137,9 +137,9 @@ public class ConstantsImpl extends AbstractConstantsImpl implements Constants
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANTS__DATA:
-				setData(DATA_EDEFAULT);
-				return;
+		case ResourcePackage.CONSTANTS__DATA:
+			setData(DATA_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -154,8 +154,8 @@ public class ConstantsImpl extends AbstractConstantsImpl implements Constants
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.CONSTANTS__DATA:
-				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
+		case ResourcePackage.CONSTANTS__DATA:
+			return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}
 		return super.eIsSet(featureID);
 	}

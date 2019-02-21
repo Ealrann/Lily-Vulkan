@@ -74,7 +74,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		if (transitions == null)
 		{
-			transitions = new EObjectContainmentEList<ImageTransition>(ImageTransition.class, this, ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
+			transitions = new EObjectContainmentEList<ImageTransition>(ImageTransition.class, this,
+					ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
 		}
 		return transitions;
 	}
@@ -85,12 +86,14 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
-				return ((InternalEList<?>)getTransitions()).basicRemove(otherEnd, msgs);
+		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+			return ((InternalEList<?>) getTransitions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -105,8 +108,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
-				return getTransitions();
+		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+			return getTransitions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,10 +125,10 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
-				getTransitions().clear();
-				getTransitions().addAll((Collection<? extends ImageTransition>)newValue);
-				return;
+		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+			getTransitions().clear();
+			getTransitions().addAll((Collection<? extends ImageTransition>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -140,9 +143,9 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
-				getTransitions().clear();
-				return;
+		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+			getTransitions().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -157,8 +160,8 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
-				return transitions != null && !transitions.isEmpty();
+		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+			return transitions != null && !transitions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

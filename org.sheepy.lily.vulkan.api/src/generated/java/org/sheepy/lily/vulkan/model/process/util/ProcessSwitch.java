@@ -81,94 +81,95 @@ public class ProcessSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS:
-			{
-				AbstractProcess abstractProcess = (AbstractProcess)theEObject;
-				T result = caseAbstractProcess(abstractProcess);
-				if (result == null) result = caseIProcess(abstractProcess);
-				if (result == null) result = caseIEnginePart(abstractProcess);
-				if (result == null) result = caseLNamedElement(abstractProcess);
-				if (result == null) result = caseLObject(abstractProcess);
-				if (result == null) result = caseIInferenceObject(abstractProcess);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.PROCESS_SEMAPHORE:
-			{
-				ProcessSemaphore processSemaphore = (ProcessSemaphore)theEObject;
-				T result = caseProcessSemaphore(processSemaphore);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.CONFIGURATION:
-			{
-				Configuration configuration = (Configuration)theEObject;
-				T result = caseConfiguration(configuration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.PIPELINE_BARRIER:
-			{
-				PipelineBarrier pipelineBarrier = (PipelineBarrier)theEObject;
-				T result = casePipelineBarrier(pipelineBarrier);
-				if (result == null) result = caseLObject(pipelineBarrier);
-				if (result == null) result = caseIPipelineUnit(pipelineBarrier);
-				if (result == null) result = caseIInferenceObject(pipelineBarrier);
-				if (result == null) result = caseLNamedElement(pipelineBarrier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.IPIPELINE:
-			{
-				IPipeline iPipeline = (IPipeline)theEObject;
-				T result = caseIPipeline(iPipeline);
-				if (result == null) result = caseLObject(iPipeline);
-				if (result == null) result = caseLNamedElement(iPipeline);
-				if (result == null) result = caseIInferenceObject(iPipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.ABSTRACT_PIPELINE:
-			{
-				AbstractPipeline abstractPipeline = (AbstractPipeline)theEObject;
-				T result = caseAbstractPipeline(abstractPipeline);
-				if (result == null) result = caseIPipeline(abstractPipeline);
-				if (result == null) result = caseLObject(abstractPipeline);
-				if (result == null) result = caseLNamedElement(abstractPipeline);
-				if (result == null) result = caseIInferenceObject(abstractPipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.IPIPELINE_UNIT:
-			{
-				IPipelineUnit iPipelineUnit = (IPipelineUnit)theEObject;
-				T result = caseIPipelineUnit(iPipelineUnit);
-				if (result == null) result = caseLNamedElement(iPipelineUnit);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE:
-			{
-				AbstractCompositePipeline abstractCompositePipeline = (AbstractCompositePipeline)theEObject;
-				T result = caseAbstractCompositePipeline(abstractCompositePipeline);
-				if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);
-				if (result == null) result = caseIPipeline(abstractCompositePipeline);
-				if (result == null) result = caseLObject(abstractCompositePipeline);
-				if (result == null) result = caseLNamedElement(abstractCompositePipeline);
-				if (result == null) result = caseIInferenceObject(abstractCompositePipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcessPackage.PUSH_CONSTANT:
-			{
-				PushConstant pushConstant = (PushConstant)theEObject;
-				T result = casePushConstant(pushConstant);
-				if (result == null) result = caseIPipelineUnit(pushConstant);
-				if (result == null) result = caseLNamedElement(pushConstant);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case ProcessPackage.ABSTRACT_PROCESS:
+		{
+			AbstractProcess abstractProcess = (AbstractProcess) theEObject;
+			T result = caseAbstractProcess(abstractProcess);
+			if (result == null) result = caseIProcess(abstractProcess);
+			if (result == null) result = caseIEnginePart(abstractProcess);
+			if (result == null) result = caseLNamedElement(abstractProcess);
+			if (result == null) result = caseLObject(abstractProcess);
+			if (result == null) result = caseIInferenceObject(abstractProcess);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.PROCESS_SEMAPHORE:
+		{
+			ProcessSemaphore processSemaphore = (ProcessSemaphore) theEObject;
+			T result = caseProcessSemaphore(processSemaphore);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.CONFIGURATION:
+		{
+			Configuration configuration = (Configuration) theEObject;
+			T result = caseConfiguration(configuration);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.PIPELINE_BARRIER:
+		{
+			PipelineBarrier pipelineBarrier = (PipelineBarrier) theEObject;
+			T result = casePipelineBarrier(pipelineBarrier);
+			if (result == null) result = caseLObject(pipelineBarrier);
+			if (result == null) result = caseIPipelineUnit(pipelineBarrier);
+			if (result == null) result = caseIInferenceObject(pipelineBarrier);
+			if (result == null) result = caseLNamedElement(pipelineBarrier);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.IPIPELINE:
+		{
+			IPipeline iPipeline = (IPipeline) theEObject;
+			T result = caseIPipeline(iPipeline);
+			if (result == null) result = caseLObject(iPipeline);
+			if (result == null) result = caseLNamedElement(iPipeline);
+			if (result == null) result = caseIInferenceObject(iPipeline);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.ABSTRACT_PIPELINE:
+		{
+			AbstractPipeline abstractPipeline = (AbstractPipeline) theEObject;
+			T result = caseAbstractPipeline(abstractPipeline);
+			if (result == null) result = caseIPipeline(abstractPipeline);
+			if (result == null) result = caseLObject(abstractPipeline);
+			if (result == null) result = caseLNamedElement(abstractPipeline);
+			if (result == null) result = caseIInferenceObject(abstractPipeline);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.IPIPELINE_UNIT:
+		{
+			IPipelineUnit iPipelineUnit = (IPipelineUnit) theEObject;
+			T result = caseIPipelineUnit(iPipelineUnit);
+			if (result == null) result = caseLNamedElement(iPipelineUnit);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE:
+		{
+			AbstractCompositePipeline abstractCompositePipeline = (AbstractCompositePipeline) theEObject;
+			T result = caseAbstractCompositePipeline(abstractCompositePipeline);
+			if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);
+			if (result == null) result = caseIPipeline(abstractCompositePipeline);
+			if (result == null) result = caseLObject(abstractCompositePipeline);
+			if (result == null) result = caseLNamedElement(abstractCompositePipeline);
+			if (result == null) result = caseIInferenceObject(abstractCompositePipeline);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.PUSH_CONSTANT:
+		{
+			PushConstant pushConstant = (PushConstant) theEObject;
+			T result = casePushConstant(pushConstant);
+			if (result == null) result = caseIPipelineUnit(pushConstant);
+			if (result == null) result = caseLNamedElement(pushConstant);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

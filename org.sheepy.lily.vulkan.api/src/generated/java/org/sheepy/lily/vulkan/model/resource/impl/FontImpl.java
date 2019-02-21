@@ -103,8 +103,10 @@ public class FontImpl extends SampledImageImpl implements Font
 		file = newFile;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT__FILE, oldFile, newFile);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ResourcePackage.FONT__FILE, oldFile, newFile);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -120,15 +122,15 @@ public class FontImpl extends SampledImageImpl implements Font
 		if (newFile != file)
 		{
 			NotificationChain msgs = null;
-			if (file != null)
-				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FONT__FILE, null, msgs);
-			if (newFile != null)
-				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.FONT__FILE, null, msgs);
+			if (file != null) msgs = ((InternalEObject) file).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.FONT__FILE, null, msgs);
+			if (newFile != null) msgs = ((InternalEObject) newFile).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.FONT__FILE, null, msgs);
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT__FILE, newFile, newFile));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.FONT__FILE, newFile, newFile));
 	}
 
 	/**
@@ -152,8 +154,8 @@ public class FontImpl extends SampledImageImpl implements Font
 	{
 		int oldHeight = height;
 		height = newHeight;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.FONT__HEIGHT, oldHeight, height));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.FONT__HEIGHT, oldHeight, height));
 	}
 
 	/**
@@ -162,12 +164,14 @@ public class FontImpl extends SampledImageImpl implements Font
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT__FILE:
-				return basicSetFile(null, msgs);
+		case ResourcePackage.FONT__FILE:
+			return basicSetFile(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -182,10 +186,10 @@ public class FontImpl extends SampledImageImpl implements Font
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT__FILE:
-				return getFile();
-			case ResourcePackage.FONT__HEIGHT:
-				return getHeight();
+		case ResourcePackage.FONT__FILE:
+			return getFile();
+		case ResourcePackage.FONT__HEIGHT:
+			return getHeight();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -200,12 +204,12 @@ public class FontImpl extends SampledImageImpl implements Font
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT__FILE:
-				setFile((PathResource)newValue);
-				return;
-			case ResourcePackage.FONT__HEIGHT:
-				setHeight((Integer)newValue);
-				return;
+		case ResourcePackage.FONT__FILE:
+			setFile((PathResource) newValue);
+			return;
+		case ResourcePackage.FONT__HEIGHT:
+			setHeight((Integer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -220,12 +224,12 @@ public class FontImpl extends SampledImageImpl implements Font
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT__FILE:
-				setFile((PathResource)null);
-				return;
-			case ResourcePackage.FONT__HEIGHT:
-				setHeight(HEIGHT_EDEFAULT);
-				return;
+		case ResourcePackage.FONT__FILE:
+			setFile((PathResource) null);
+			return;
+		case ResourcePackage.FONT__HEIGHT:
+			setHeight(HEIGHT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -240,10 +244,10 @@ public class FontImpl extends SampledImageImpl implements Font
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.FONT__FILE:
-				return file != null;
-			case ResourcePackage.FONT__HEIGHT:
-				return height != HEIGHT_EDEFAULT;
+		case ResourcePackage.FONT__FILE:
+			return file != null;
+		case ResourcePackage.FONT__HEIGHT:
+			return height != HEIGHT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

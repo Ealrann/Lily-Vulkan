@@ -38,10 +38,7 @@ public final class EnumerationEditPlugin extends EMFPlugin
 	 */
 	public EnumerationEditPlugin()
 	{
-		super
-		  (new ResourceLocator [] 
-		   {
-		   });
+		super(new ResourceLocator[] {});
 	}
 
 	/**

@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
+
 import org.sheepy.lily.vulkan.model.process.compute.*;
 
 /**
@@ -85,41 +86,42 @@ public class ComputeSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-			case ComputePackage.COMPUTE_PROCESS:
-			{
-				ComputeProcess computeProcess = (ComputeProcess)theEObject;
-				T result = caseComputeProcess(computeProcess);
-				if (result == null) result = caseAbstractProcess(computeProcess);
-				if (result == null) result = caseIProcess(computeProcess);
-				if (result == null) result = caseIEnginePart(computeProcess);
-				if (result == null) result = caseLNamedElement(computeProcess);
-				if (result == null) result = caseLObject(computeProcess);
-				if (result == null) result = caseIInferenceObject(computeProcess);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ComputePackage.COMPUTE_PIPELINE:
-			{
-				ComputePipeline computePipeline = (ComputePipeline)theEObject;
-				T result = caseComputePipeline(computePipeline);
-				if (result == null) result = caseAbstractPipeline(computePipeline);
-				if (result == null) result = caseIPipeline(computePipeline);
-				if (result == null) result = caseLObject(computePipeline);
-				if (result == null) result = caseLNamedElement(computePipeline);
-				if (result == null) result = caseIInferenceObject(computePipeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ComputePackage.COMPUTER:
-			{
-				Computer computer = (Computer)theEObject;
-				T result = caseComputer(computer);
-				if (result == null) result = caseIPipelineUnit(computer);
-				if (result == null) result = caseLNamedElement(computer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case ComputePackage.COMPUTE_PROCESS:
+		{
+			ComputeProcess computeProcess = (ComputeProcess) theEObject;
+			T result = caseComputeProcess(computeProcess);
+			if (result == null) result = caseAbstractProcess(computeProcess);
+			if (result == null) result = caseIProcess(computeProcess);
+			if (result == null) result = caseIEnginePart(computeProcess);
+			if (result == null) result = caseLNamedElement(computeProcess);
+			if (result == null) result = caseLObject(computeProcess);
+			if (result == null) result = caseIInferenceObject(computeProcess);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ComputePackage.COMPUTE_PIPELINE:
+		{
+			ComputePipeline computePipeline = (ComputePipeline) theEObject;
+			T result = caseComputePipeline(computePipeline);
+			if (result == null) result = caseAbstractPipeline(computePipeline);
+			if (result == null) result = caseIPipeline(computePipeline);
+			if (result == null) result = caseLObject(computePipeline);
+			if (result == null) result = caseLNamedElement(computePipeline);
+			if (result == null) result = caseIInferenceObject(computePipeline);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ComputePackage.COMPUTER:
+		{
+			Computer computer = (Computer) theEObject;
+			T result = caseComputer(computer);
+			if (result == null) result = caseIPipelineUnit(computer);
+			if (result == null) result = caseLNamedElement(computer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

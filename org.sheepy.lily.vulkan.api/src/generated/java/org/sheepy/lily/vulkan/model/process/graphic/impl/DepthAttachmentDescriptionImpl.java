@@ -27,7 +27,8 @@ import org.sheepy.lily.vulkan.model.resource.DepthImage;
  *
  * @generated
  */
-public class DepthAttachmentDescriptionImpl extends AttachmentDescriptionImpl implements DepthAttachmentDescription
+public class DepthAttachmentDescriptionImpl extends AttachmentDescriptionImpl
+		implements DepthAttachmentDescription
 {
 	/**
 	 * The cached value of the '{@link #getDepthImage() <em>Depth Image</em>}' reference.
@@ -70,12 +71,14 @@ public class DepthAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		if (depthImage != null && depthImage.eIsProxy())
 		{
-			InternalEObject oldDepthImage = (InternalEObject)depthImage;
-			depthImage = (DepthImage)eResolveProxy(oldDepthImage);
+			InternalEObject oldDepthImage = (InternalEObject) depthImage;
+			depthImage = (DepthImage) eResolveProxy(oldDepthImage);
 			if (depthImage != oldDepthImage)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE, oldDepthImage, depthImage));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE, oldDepthImage,
+							depthImage));
 			}
 		}
 		return depthImage;
@@ -101,8 +104,9 @@ public class DepthAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		DepthImage oldDepthImage = depthImage;
 		depthImage = newDepthImage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE, oldDepthImage, depthImage));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE, oldDepthImage,
+				depthImage));
 	}
 
 	/**
@@ -115,9 +119,9 @@ public class DepthAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE:
-				if (resolve) return getDepthImage();
-				return basicGetDepthImage();
+		case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE:
+			if (resolve) return getDepthImage();
+			return basicGetDepthImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -132,9 +136,9 @@ public class DepthAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE:
-				setDepthImage((DepthImage)newValue);
-				return;
+		case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE:
+			setDepthImage((DepthImage) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -149,9 +153,9 @@ public class DepthAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE:
-				setDepthImage((DepthImage)null);
-				return;
+		case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE:
+			setDepthImage((DepthImage) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -166,8 +170,8 @@ public class DepthAttachmentDescriptionImpl extends AttachmentDescriptionImpl im
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE:
-				return depthImage != null;
+		case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE:
+			return depthImage != null;
 		}
 		return super.eIsSet(featureID);
 	}

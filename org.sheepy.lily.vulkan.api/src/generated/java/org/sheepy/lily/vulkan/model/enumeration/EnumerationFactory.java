@@ -20,7 +20,8 @@ public interface EnumerationFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EnumerationFactory eINSTANCE = org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationFactoryImpl.init();
+	EnumerationFactory eINSTANCE = org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationFactoryImpl
+			.init();
 
 	/**
 	 * Returns the package supported by this factory.

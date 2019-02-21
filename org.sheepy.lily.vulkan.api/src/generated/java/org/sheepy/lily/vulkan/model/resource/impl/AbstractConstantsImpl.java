@@ -27,7 +27,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *
  * @generated
  */
-public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container implements AbstractConstants
+public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
+		implements AbstractConstants
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -111,8 +112,8 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.ABSTRACT_CONSTANTS__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.ABSTRACT_CONSTANTS__NAME, oldName, name));
 	}
 
 	/**
@@ -136,8 +137,8 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	{
 		EShaderStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.ABSTRACT_CONSTANTS__STAGE, oldStage, stage));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.ABSTRACT_CONSTANTS__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -150,10 +151,10 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
-				return getName();
-			case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
-				return getStage();
+		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
+			return getName();
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+			return getStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,12 +169,12 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
-				setName((String)newValue);
-				return;
-			case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
-				setStage((EShaderStage)newValue);
-				return;
+		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
+			setName((String) newValue);
+			return;
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+			setStage((EShaderStage) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -188,12 +189,12 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
+		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+			setStage(STAGE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -208,10 +209,10 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
-				return stage != STAGE_EDEFAULT;
+		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+			return stage != STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

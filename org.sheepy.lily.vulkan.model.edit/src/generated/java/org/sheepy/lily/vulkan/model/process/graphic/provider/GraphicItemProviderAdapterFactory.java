@@ -54,7 +54,8 @@ import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -78,7 +79,8 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(GraphicEditPlugin.INSTANCE, GraphicPackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
+			GraphicEditPlugin.INSTANCE, GraphicPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -272,7 +274,8 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	{
 		if (depthAttachmentDescriptionItemProvider == null)
 		{
-			depthAttachmentDescriptionItemProvider = new DepthAttachmentDescriptionItemProvider(this);
+			depthAttachmentDescriptionItemProvider = new DepthAttachmentDescriptionItemProvider(
+					this);
 		}
 
 		return depthAttachmentDescriptionItemProvider;
@@ -586,7 +589,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 		if (isFactoryForType(type))
 		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
 			{
 				return adapter;
 			}
@@ -610,6 +613,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 	{
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
@@ -620,6 +624,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getResourceLocator()
 	{
 		return childCreationExtenderManager;
@@ -681,7 +686,8 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 		if (attachementRefItemProvider != null) attachementRefItemProvider.dispose();
 		if (subpassDependencyItemProvider != null) subpassDependencyItemProvider.dispose();
 		if (attachmentDescriptionItemProvider != null) attachmentDescriptionItemProvider.dispose();
-		if (depthAttachmentDescriptionItemProvider != null) depthAttachmentDescriptionItemProvider.dispose();
+		if (depthAttachmentDescriptionItemProvider != null)
+			depthAttachmentDescriptionItemProvider.dispose();
 		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
 		if (dynamicStateItemProvider != null) dynamicStateItemProvider.dispose();
 		if (colorBlendItemProvider != null) colorBlendItemProvider.dispose();
@@ -732,11 +738,12 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
 			{
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -745,13 +752,13 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 			@Override
 			public Object caseAbstractProcess(AbstractProcess object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
-						 GraphicFactory.eINSTANCE.createImagePipeline()));
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
+								GraphicFactory.eINSTANCE.createImagePipeline()));
 
 				return null;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -760,14 +767,13 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 			@Override
 			public Object caseAbstractCompositePipeline(AbstractCompositePipeline object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
-						 GraphicFactory.eINSTANCE.createImagePipeline()));
+				newChildDescriptors.add(createChildParameter(
+						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
+						GraphicFactory.eINSTANCE.createImagePipeline()));
 
 				return null;
 			}
- 
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -785,10 +791,11 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
 		}
 
@@ -797,6 +804,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return GraphicEditPlugin.INSTANCE;
@@ -841,11 +849,12 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
 			{
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -854,14 +863,13 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 			@Override
 			public Object caseVulkanEngine(VulkanEngine object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
-						 GraphicFactory.eINSTANCE.createGraphicProcess()));
+				newChildDescriptors
+						.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
+								GraphicFactory.eINSTANCE.createGraphicProcess()));
 
 				return null;
 			}
- 
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -879,10 +887,11 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
 		}
 
@@ -891,6 +900,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory imp
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return GraphicEditPlugin.INSTANCE;

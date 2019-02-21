@@ -225,9 +225,7 @@ public enum EImageUsage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EImageUsage[] VALUES_ARRAY =
-		new EImageUsage[]
-		{
+	private static final EImageUsage[] VALUES_ARRAY = new EImageUsage[] {
 			TRANSFER_SRC,
 			TRANSFER_DST,
 			SAMPLED,
@@ -236,7 +234,7 @@ public enum EImageUsage implements Enumerator
 			DEPTH_STENCIL_ATTACHMENT,
 			TRANSIENT_ATTACHMENT,
 			INPUT_ATTACHEMENT,
-		};
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EImage Usage</b></em>' enumerators.
@@ -244,7 +242,8 @@ public enum EImageUsage implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EImageUsage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EImageUsage> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EImage Usage</b></em>' literal with the specified literal value.
@@ -300,14 +299,22 @@ public enum EImageUsage implements Enumerator
 	{
 		switch (value)
 		{
-			case TRANSFER_SRC_VALUE: return TRANSFER_SRC;
-			case TRANSFER_DST_VALUE: return TRANSFER_DST;
-			case SAMPLED_VALUE: return SAMPLED;
-			case STORAGE_VALUE: return STORAGE;
-			case COLOR_ATTACHMENT_VALUE: return COLOR_ATTACHMENT;
-			case DEPTH_STENCIL_ATTACHMENT_VALUE: return DEPTH_STENCIL_ATTACHMENT;
-			case TRANSIENT_ATTACHMENT_VALUE: return TRANSIENT_ATTACHMENT;
-			case INPUT_ATTACHEMENT_VALUE: return INPUT_ATTACHEMENT;
+		case TRANSFER_SRC_VALUE:
+			return TRANSFER_SRC;
+		case TRANSFER_DST_VALUE:
+			return TRANSFER_DST;
+		case SAMPLED_VALUE:
+			return SAMPLED;
+		case STORAGE_VALUE:
+			return STORAGE;
+		case COLOR_ATTACHMENT_VALUE:
+			return COLOR_ATTACHMENT;
+		case DEPTH_STENCIL_ATTACHMENT_VALUE:
+			return DEPTH_STENCIL_ATTACHMENT;
+		case TRANSIENT_ATTACHMENT_VALUE:
+			return TRANSIENT_ATTACHMENT;
+		case INPUT_ATTACHEMENT_VALUE:
+			return INPUT_ATTACHEMENT;
 		}
 		return null;
 	}
@@ -354,7 +361,7 @@ public enum EImageUsage implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -365,7 +372,7 @@ public enum EImageUsage implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -376,7 +383,7 @@ public enum EImageUsage implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -390,5 +397,5 @@ public enum EImageUsage implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EImageUsage

@@ -71,7 +71,8 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  *
  * @generated
  */
-public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container implements AbstractProcess
+public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
+		implements AbstractProcess
 {
 	/**
 	 * The cached value of the '{@link #getContentObjects() <em>Content Objects</em>}' attribute.
@@ -255,8 +256,9 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		EList<LObject> oldContentObjects = contentObjects;
 		contentObjects = newContentObjects;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS, oldContentObjects, contentObjects));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS, oldContentObjects,
+				contentObjects));
 	}
 
 	/**
@@ -280,8 +282,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__NAME, oldName, name));
 	}
 
 	/**
@@ -305,8 +307,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__ENABLED, oldEnabled, enabled));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -325,14 +327,18 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourceContainer(ResourceContainer newResourceContainer, NotificationChain msgs)
+	public NotificationChain basicSetResourceContainer(	ResourceContainer newResourceContainer,
+														NotificationChain msgs)
 	{
 		ResourceContainer oldResourceContainer = resourceContainer;
 		resourceContainer = newResourceContainer;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, oldResourceContainer, newResourceContainer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, oldResourceContainer,
+					newResourceContainer);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -348,15 +354,22 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		if (newResourceContainer != resourceContainer)
 		{
 			NotificationChain msgs = null;
-			if (resourceContainer != null)
-				msgs = ((InternalEObject)resourceContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, null, msgs);
-			if (newResourceContainer != null)
-				msgs = ((InternalEObject)newResourceContainer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, null, msgs);
+			if (resourceContainer != null) msgs = ((InternalEObject) resourceContainer)
+					.eInverseRemove(this,
+							EOPPOSITE_FEATURE_BASE
+									- ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
+							null, msgs);
+			if (newResourceContainer != null) msgs = ((InternalEObject) newResourceContainer)
+					.eInverseAdd(this,
+							EOPPOSITE_FEATURE_BASE
+									- ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
+							null, msgs);
 			msgs = basicSetResourceContainer(newResourceContainer, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, newResourceContainer, newResourceContainer));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, newResourceContainer,
+				newResourceContainer));
 	}
 
 	/**
@@ -369,7 +382,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		if (descriptorSets == null)
 		{
-			descriptorSets = new EObjectContainmentEList<DescriptorSet>(DescriptorSet.class, this, ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS);
+			descriptorSets = new EObjectContainmentEList<DescriptorSet>(DescriptorSet.class, this,
+					ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS);
 		}
 		return descriptorSets;
 	}
@@ -384,7 +398,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		if (units == null)
 		{
-			units = new EObjectContainmentEList<IPipeline>(IPipeline.class, this, ProcessPackage.ABSTRACT_PROCESS__UNITS);
+			units = new EObjectContainmentEList<IPipeline>(IPipeline.class, this,
+					ProcessPackage.ABSTRACT_PROCESS__UNITS);
 		}
 		return units;
 	}
@@ -399,7 +414,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		if (semaphores == null)
 		{
-			semaphores = new EObjectContainmentEList<ProcessSemaphore>(ProcessSemaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES);
+			semaphores = new EObjectContainmentEList<ProcessSemaphore>(ProcessSemaphore.class, this,
+					ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES);
 		}
 		return semaphores;
 	}
@@ -425,8 +441,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		boolean oldResetAllowed = resetAllowed;
 		resetAllowed = newResetAllowed;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED, oldResetAllowed, resetAllowed));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED, oldResetAllowed, resetAllowed));
 	}
 
 	/**
@@ -450,8 +466,9 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		boolean oldInitializedSignalizedSemaphore = initializedSignalizedSemaphore;
 		initializedSignalizedSemaphore = newInitializedSignalizedSemaphore;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE, oldInitializedSignalizedSemaphore, initializedSignalizedSemaphore));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE,
+				oldInitializedSignalizedSemaphore, initializedSignalizedSemaphore));
 	}
 
 	/**
@@ -464,7 +481,10 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		if (dependentProcesses == null)
 		{
-			dependentProcesses = new EObjectWithInverseResolvingEList<ProcessSemaphore>(ProcessSemaphore.class, this, ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, ProcessPackage.PROCESS_SEMAPHORE__PROCESS);
+			dependentProcesses = new EObjectWithInverseResolvingEList<ProcessSemaphore>(
+					ProcessSemaphore.class, this,
+					ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES,
+					ProcessPackage.PROCESS_SEMAPHORE__PROCESS);
 		}
 		return dependentProcesses;
 	}
@@ -492,7 +512,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		boolean _isEmpty = unitRefs.isEmpty();
 		if (_isEmpty)
 		{
-			res = ECollections.<T>emptyEList();
+			res = ECollections.<T> emptyEList();
 		}
 		else
 		{
@@ -516,7 +536,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 			boolean _tripleEquals = (_contentObjects == null);
 			if (_tripleEquals)
 			{
-				this.setContentObjects(this.<LObject>createContainmentEList(Literals.LOBJECT));
+				this.setContentObjects(this.<LObject> createContainmentEList(Literals.LOBJECT));
 			}
 			_xblockexpression = this.getContentObjects();
 		}
@@ -570,12 +590,15 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseAdd(	InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependentProcesses()).basicAdd(otherEnd, msgs);
+		case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDependentProcesses())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -586,20 +609,22 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-				return basicSetResourceContainer(null, msgs);
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
-				return ((InternalEList<?>)getDescriptorSets()).basicRemove(otherEnd, msgs);
-			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-				return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
-			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
-				return ((InternalEList<?>)getSemaphores()).basicRemove(otherEnd, msgs);
-			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
-				return ((InternalEList<?>)getDependentProcesses()).basicRemove(otherEnd, msgs);
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+			return basicSetResourceContainer(null, msgs);
+		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
+			return ((InternalEList<?>) getDescriptorSets()).basicRemove(otherEnd, msgs);
+		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
+			return ((InternalEList<?>) getUnits()).basicRemove(otherEnd, msgs);
+		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+			return ((InternalEList<?>) getSemaphores()).basicRemove(otherEnd, msgs);
+		case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+			return ((InternalEList<?>) getDependentProcesses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -614,26 +639,26 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
-				return getContentObjects();
-			case ProcessPackage.ABSTRACT_PROCESS__NAME:
-				return getName();
-			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-				return isEnabled();
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-				return getResourceContainer();
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
-				return getDescriptorSets();
-			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-				return getUnits();
-			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
-				return getSemaphores();
-			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-				return isResetAllowed();
-			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
-				return isInitializedSignalizedSemaphore();
-			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
-				return getDependentProcesses();
+		case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
+			return getContentObjects();
+		case ProcessPackage.ABSTRACT_PROCESS__NAME:
+			return getName();
+		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+			return isEnabled();
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+			return getResourceContainer();
+		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
+			return getDescriptorSets();
+		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
+			return getUnits();
+		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+			return getSemaphores();
+		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
+			return isResetAllowed();
+		case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
+			return isInitializedSignalizedSemaphore();
+		case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+			return getDependentProcesses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -649,40 +674,40 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
-				setContentObjects((EList<LObject>)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__NAME:
-				setName((String)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-				setEnabled((Boolean)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-				setResourceContainer((ResourceContainer)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
-				getDescriptorSets().clear();
-				getDescriptorSets().addAll((Collection<? extends DescriptorSet>)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-				getUnits().clear();
-				getUnits().addAll((Collection<? extends IPipeline>)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
-				getSemaphores().clear();
-				getSemaphores().addAll((Collection<? extends ProcessSemaphore>)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-				setResetAllowed((Boolean)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
-				setInitializedSignalizedSemaphore((Boolean)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
-				getDependentProcesses().clear();
-				getDependentProcesses().addAll((Collection<? extends ProcessSemaphore>)newValue);
-				return;
+		case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
+			setContentObjects((EList<LObject>) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__NAME:
+			setName((String) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+			setEnabled((Boolean) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+			setResourceContainer((ResourceContainer) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
+			getDescriptorSets().clear();
+			getDescriptorSets().addAll((Collection<? extends DescriptorSet>) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
+			getUnits().clear();
+			getUnits().addAll((Collection<? extends IPipeline>) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+			getSemaphores().clear();
+			getSemaphores().addAll((Collection<? extends ProcessSemaphore>) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
+			setResetAllowed((Boolean) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
+			setInitializedSignalizedSemaphore((Boolean) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+			getDependentProcesses().clear();
+			getDependentProcesses().addAll((Collection<? extends ProcessSemaphore>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -697,36 +722,36 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
-				setContentObjects((EList<LObject>)null);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-				setEnabled(ENABLED_EDEFAULT);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-				setResourceContainer((ResourceContainer)null);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
-				getDescriptorSets().clear();
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-				getUnits().clear();
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
-				getSemaphores().clear();
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-				setResetAllowed(RESET_ALLOWED_EDEFAULT);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
-				setInitializedSignalizedSemaphore(INITIALIZED_SIGNALIZED_SEMAPHORE_EDEFAULT);
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
-				getDependentProcesses().clear();
-				return;
+		case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
+			setContentObjects((EList<LObject>) null);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+			setEnabled(ENABLED_EDEFAULT);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+			setResourceContainer((ResourceContainer) null);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
+			getDescriptorSets().clear();
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
+			getUnits().clear();
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+			getSemaphores().clear();
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
+			setResetAllowed(RESET_ALLOWED_EDEFAULT);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
+			setInitializedSignalizedSemaphore(INITIALIZED_SIGNALIZED_SEMAPHORE_EDEFAULT);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+			getDependentProcesses().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -741,26 +766,26 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
-				return contentObjects != null;
-			case ProcessPackage.ABSTRACT_PROCESS__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-				return resourceContainer != null;
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
-				return descriptorSets != null && !descriptorSets.isEmpty();
-			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-				return units != null && !units.isEmpty();
-			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
-				return semaphores != null && !semaphores.isEmpty();
-			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-				return resetAllowed != RESET_ALLOWED_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
-				return initializedSignalizedSemaphore != INITIALIZED_SIGNALIZED_SEMAPHORE_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
-				return dependentProcesses != null && !dependentProcesses.isEmpty();
+		case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
+			return contentObjects != null;
+		case ProcessPackage.ABSTRACT_PROCESS__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+			return enabled != ENABLED_EDEFAULT;
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+			return resourceContainer != null;
+		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
+			return descriptorSets != null && !descriptorSets.isEmpty();
+		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
+			return units != null && !units.isEmpty();
+		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+			return semaphores != null && !semaphores.isEmpty();
+		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
+			return resetAllowed != RESET_ALLOWED_EDEFAULT;
+		case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
+			return initializedSignalizedSemaphore != INITIALIZED_SIGNALIZED_SEMAPHORE_EDEFAULT;
+		case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
+			return dependentProcesses != null && !dependentProcesses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -777,8 +802,10 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		{
 			switch (derivedFeatureID)
 			{
-				case ProcessPackage.ABSTRACT_PROCESS__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
-				default: return -1;
+			case ProcessPackage.ABSTRACT_PROCESS__NAME:
+				return TypesPackage.LNAMED_ELEMENT__NAME;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -796,8 +823,10 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 		{
 			switch (baseFeatureID)
 			{
-				case TypesPackage.LNAMED_ELEMENT__NAME: return ProcessPackage.ABSTRACT_PROCESS__NAME;
-				default: return -1;
+			case TypesPackage.LNAMED_ELEMENT__NAME:
+				return ProcessPackage.ABSTRACT_PROCESS__NAME;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -813,16 +842,16 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container i
 	{
 		switch (operationID)
 		{
-			case ProcessPackage.ABSTRACT_PROCESS___CREATE_CONTAINMENT_ELIST__ECLASS:
-				return createContainmentEList((EClass)arguments.get(0));
-			case ProcessPackage.ABSTRACT_PROCESS___LCONTENTS:
-				return lContents();
-			case ProcessPackage.ABSTRACT_PROCESS___LPARENT:
-				return lParent();
-			case ProcessPackage.ABSTRACT_PROCESS___LALL_CONTENTS:
-				return lAllContents();
-			case ProcessPackage.ABSTRACT_PROCESS___LINFERENCE_OBJECT:
-				return lInferenceObject();
+		case ProcessPackage.ABSTRACT_PROCESS___CREATE_CONTAINMENT_ELIST__ECLASS:
+			return createContainmentEList((EClass) arguments.get(0));
+		case ProcessPackage.ABSTRACT_PROCESS___LCONTENTS:
+			return lContents();
+		case ProcessPackage.ABSTRACT_PROCESS___LPARENT:
+			return lParent();
+		case ProcessPackage.ABSTRACT_PROCESS___LALL_CONTENTS:
+			return lAllContents();
+		case ProcessPackage.ABSTRACT_PROCESS___LINFERENCE_OBJECT:
+			return lInferenceObject();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

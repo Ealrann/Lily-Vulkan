@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -59,19 +58,15 @@ public class DepthAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	 */
 	protected void addDepthImagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DepthAttachmentDescription_depthImage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DepthAttachmentDescription_depthImage_feature", "_UI_DepthAttachmentDescription_type"),
-				 GraphicPackage.Literals.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DepthAttachmentDescription_depthImage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_DepthAttachmentDescription_depthImage_feature",
+						"_UI_DepthAttachmentDescription_type"),
+				GraphicPackage.Literals.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -83,7 +78,8 @@ public class DepthAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DepthAttachmentDescription"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/DepthAttachmentDescription"));
 	}
 
 	/**
@@ -95,12 +91,11 @@ public class DepthAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((DepthAttachmentDescription)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DepthAttachmentDescription_type") :
-			getString("_UI_DepthAttachmentDescription_type") + " " + label;
+		String label = ((DepthAttachmentDescription) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_DepthAttachmentDescription_type")
+				: getString("_UI_DepthAttachmentDescription_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -32,14 +31,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttachmentDescriptionItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class AttachmentDescriptionItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -85,19 +79,13 @@ public class AttachmentDescriptionItemProvider
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -108,19 +96,14 @@ public class AttachmentDescriptionItemProvider
 	 */
 	protected void addSamplesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_samples_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_samples_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__SAMPLES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AttachmentDescription_samples_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AttachmentDescription_samples_feature",
+						"_UI_AttachmentDescription_type"),
+				GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__SAMPLES, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -131,19 +114,14 @@ public class AttachmentDescriptionItemProvider
 	 */
 	protected void addLoadOpPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_loadOp_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_loadOp_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__LOAD_OP,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AttachmentDescription_loadOp_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AttachmentDescription_loadOp_feature",
+						"_UI_AttachmentDescription_type"),
+				GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__LOAD_OP, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -154,19 +132,14 @@ public class AttachmentDescriptionItemProvider
 	 */
 	protected void addStoreOpPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_storeOp_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_storeOp_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__STORE_OP,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AttachmentDescription_storeOp_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AttachmentDescription_storeOp_feature",
+						"_UI_AttachmentDescription_type"),
+				GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__STORE_OP, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -177,19 +150,14 @@ public class AttachmentDescriptionItemProvider
 	 */
 	protected void addStencilLoadOpPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_stencilLoadOp_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_stencilLoadOp_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AttachmentDescription_stencilLoadOp_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AttachmentDescription_stencilLoadOp_feature",
+						"_UI_AttachmentDescription_type"),
+				GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -200,19 +168,14 @@ public class AttachmentDescriptionItemProvider
 	 */
 	protected void addStencilStoreOpPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_stencilStoreOp_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_stencilStoreOp_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AttachmentDescription_stencilStoreOp_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AttachmentDescription_stencilStoreOp_feature",
+						"_UI_AttachmentDescription_type"),
+				GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -223,19 +186,14 @@ public class AttachmentDescriptionItemProvider
 	 */
 	protected void addInitialLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_initialLayout_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_initialLayout_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AttachmentDescription_initialLayout_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AttachmentDescription_initialLayout_feature",
+						"_UI_AttachmentDescription_type"),
+				GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -246,19 +204,14 @@ public class AttachmentDescriptionItemProvider
 	 */
 	protected void addFinalLayoutPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttachmentDescription_finalLayout_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttachmentDescription_finalLayout_feature", "_UI_AttachmentDescription_type"),
-				 GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AttachmentDescription_finalLayout_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AttachmentDescription_finalLayout_feature",
+						"_UI_AttachmentDescription_type"),
+				GraphicPackage.Literals.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -270,7 +223,8 @@ public class AttachmentDescriptionItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttachmentDescription"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/AttachmentDescription"));
 	}
 
 	/**
@@ -282,12 +236,11 @@ public class AttachmentDescriptionItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((AttachmentDescription)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AttachmentDescription_type") :
-			getString("_UI_AttachmentDescription_type") + " " + label;
+		String label = ((AttachmentDescription) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_AttachmentDescription_type")
+				: getString("_UI_AttachmentDescription_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -303,16 +256,17 @@ public class AttachmentDescriptionItemProvider
 
 		switch (notification.getFeatureID(AttachmentDescription.class))
 		{
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
-			case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__NAME:
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__SAMPLES:
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__LOAD_OP:
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STORE_OP:
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_LOAD_OP:
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__STENCIL_STORE_OP:
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT:
+		case GraphicPackage.ATTACHMENT_DESCRIPTION__FINAL_LAYOUT:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -339,7 +293,7 @@ public class AttachmentDescriptionItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

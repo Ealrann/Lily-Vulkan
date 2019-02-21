@@ -22,6 +22,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
+
 import org.sheepy.lily.vulkan.model.process.compute.*;
 
 /**
@@ -73,7 +74,7 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 		}
 		if (object instanceof EObject)
 		{
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -84,75 +85,86 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComputeSwitch<Adapter> modelSwitch =
-		new ComputeSwitch<Adapter>()
+	protected ComputeSwitch<Adapter> modelSwitch = new ComputeSwitch<Adapter>()
+	{
+		@Override
+		public Adapter caseComputeProcess(ComputeProcess object)
 		{
-			@Override
-			public Adapter caseComputeProcess(ComputeProcess object)
-			{
-				return createComputeProcessAdapter();
-			}
-			@Override
-			public Adapter caseComputePipeline(ComputePipeline object)
-			{
-				return createComputePipelineAdapter();
-			}
-			@Override
-			public Adapter caseComputer(Computer object)
-			{
-				return createComputerAdapter();
-			}
-			@Override
-			public Adapter caseIInferenceObject(IInferenceObject object)
-			{
-				return createIInferenceObjectAdapter();
-			}
-			@Override
-			public Adapter caseLObject(LObject object)
-			{
-				return createLObjectAdapter();
-			}
-			@Override
-			public Adapter caseIEnginePart(IEnginePart object)
-			{
-				return createIEnginePartAdapter();
-			}
-			@Override
-			public Adapter caseLNamedElement(LNamedElement object)
-			{
-				return createLNamedElementAdapter();
-			}
-			@Override
-			public Adapter caseIProcess(IProcess object)
-			{
-				return createIProcessAdapter();
-			}
-			@Override
-			public Adapter caseAbstractProcess(AbstractProcess object)
-			{
-				return createAbstractProcessAdapter();
-			}
-			@Override
-			public Adapter caseIPipeline(IPipeline object)
-			{
-				return createIPipelineAdapter();
-			}
-			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object)
-			{
-				return createAbstractPipelineAdapter();
-			}
-			@Override
-			public Adapter caseIPipelineUnit(IPipelineUnit object)
-			{
-				return createIPipelineUnitAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object)
-			{
-				return createEObjectAdapter();
-			}
-		};
+			return createComputeProcessAdapter();
+		}
+
+		@Override
+		public Adapter caseComputePipeline(ComputePipeline object)
+		{
+			return createComputePipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseComputer(Computer object)
+		{
+			return createComputerAdapter();
+		}
+
+		@Override
+		public Adapter caseIInferenceObject(IInferenceObject object)
+		{
+			return createIInferenceObjectAdapter();
+		}
+
+		@Override
+		public Adapter caseLObject(LObject object)
+		{
+			return createLObjectAdapter();
+		}
+
+		@Override
+		public Adapter caseIEnginePart(IEnginePart object)
+		{
+			return createIEnginePartAdapter();
+		}
+
+		@Override
+		public Adapter caseLNamedElement(LNamedElement object)
+		{
+			return createLNamedElementAdapter();
+		}
+
+		@Override
+		public Adapter caseIProcess(IProcess object)
+		{
+			return createIProcessAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractProcess(AbstractProcess object)
+		{
+			return createAbstractProcessAdapter();
+		}
+
+		@Override
+		public Adapter caseIPipeline(IPipeline object)
+		{
+			return createIPipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractPipeline(AbstractPipeline object)
+		{
+			return createAbstractPipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseIPipelineUnit(IPipelineUnit object)
+		{
+			return createIPipelineUnitAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object)
+		{
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -165,9 +177,8 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.

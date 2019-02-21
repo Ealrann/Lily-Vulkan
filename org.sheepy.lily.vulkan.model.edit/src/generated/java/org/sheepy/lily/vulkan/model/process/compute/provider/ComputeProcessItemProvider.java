@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.compute.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -72,12 +71,11 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ComputeProcess)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ComputeProcess_type") :
-			getString("_UI_ComputeProcess_type") + " " + label;
+		String label = ((ComputeProcess) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_ComputeProcess_type")
+				: getString("_UI_ComputeProcess_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -105,10 +103,9 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
-				 ComputeFactory.eINSTANCE.createComputePipeline()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
+						ComputeFactory.eINSTANCE.createComputePipeline()));
 	}
 
 }

@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -67,19 +66,13 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addImagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImagePipeline_image_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_image_feature", "_UI_ImagePipeline_type"),
-				 GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImagePipeline_image_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_image_feature",
+						"_UI_ImagePipeline_type"),
+				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -90,19 +83,13 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addImageSrcStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImagePipeline_imageSrcStage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_imageSrcStage_feature", "_UI_ImagePipeline_type"),
-				 GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImagePipeline_imageSrcStage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ImagePipeline_imageSrcStage_feature", "_UI_ImagePipeline_type"),
+				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -113,19 +100,13 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addImageDstStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImagePipeline_imageDstStage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_imageDstStage_feature", "_UI_ImagePipeline_type"),
-				 GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImagePipeline_imageDstStage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ImagePipeline_imageDstStage_feature", "_UI_ImagePipeline_type"),
+				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -136,19 +117,13 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addImageSrcAccessMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImagePipeline_imageSrcAccessMask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_imageSrcAccessMask_feature", "_UI_ImagePipeline_type"),
-				 GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImagePipeline_imageSrcAccessMask_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ImagePipeline_imageSrcAccessMask_feature", "_UI_ImagePipeline_type"),
+				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -159,19 +134,13 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addImageDstAccessMaskPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImagePipeline_imageDstAccessMask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_imageDstAccessMask_feature", "_UI_ImagePipeline_type"),
-				 GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImagePipeline_imageDstAccessMask_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ImagePipeline_imageDstAccessMask_feature", "_UI_ImagePipeline_type"),
+				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -182,19 +151,13 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addSrcQueuePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImagePipeline_srcQueue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_srcQueue_feature", "_UI_ImagePipeline_type"),
-				 GraphicPackage.Literals.IMAGE_PIPELINE__SRC_QUEUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ImagePipeline_srcQueue_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ImagePipeline_srcQueue_feature", "_UI_ImagePipeline_type"),
+				GraphicPackage.Literals.IMAGE_PIPELINE__SRC_QUEUE, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -218,12 +181,11 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ImagePipeline)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ImagePipeline_type") :
-			getString("_UI_ImagePipeline_type") + " " + label;
+		String label = ((ImagePipeline) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_ImagePipeline_type")
+				: getString("_UI_ImagePipeline_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -239,12 +201,13 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 
 		switch (notification.getFeatureID(ImagePipeline.class))
 		{
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
-			case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

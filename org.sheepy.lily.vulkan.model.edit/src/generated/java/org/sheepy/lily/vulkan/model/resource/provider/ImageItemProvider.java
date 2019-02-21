@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -35,14 +34,9 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImageItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class ImageItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -90,19 +84,13 @@ public class ImageItemProvider
 	 */
 	protected void addDescriptorTypePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IDescriptor_descriptorType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IDescriptor_descriptorType_feature", "_UI_IDescriptor_type"),
-				 ResourcePackage.Literals.IDESCRIPTOR__DESCRIPTOR_TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_IDescriptor_descriptorType_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_IDescriptor_descriptorType_feature", "_UI_IDescriptor_type"),
+				ResourcePackage.Literals.IDESCRIPTOR__DESCRIPTOR_TYPE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -113,19 +101,13 @@ public class ImageItemProvider
 	 */
 	protected void addShaderStagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IDescriptor_shaderStages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IDescriptor_shaderStages_feature", "_UI_IDescriptor_type"),
-				 ResourcePackage.Literals.IDESCRIPTOR__SHADER_STAGES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_IDescriptor_shaderStages_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_IDescriptor_shaderStages_feature", "_UI_IDescriptor_type"),
+				ResourcePackage.Literals.IDESCRIPTOR__SHADER_STAGES, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -136,19 +118,13 @@ public class ImageItemProvider
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -159,19 +135,13 @@ public class ImageItemProvider
 	 */
 	protected void addWidthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_width_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_width_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Image_width_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Image_width_feature",
+						"_UI_Image_type"),
+				ResourcePackage.Literals.IMAGE__WIDTH, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -182,19 +152,13 @@ public class ImageItemProvider
 	 */
 	protected void addHeightPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_height_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Image_height_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Image_height_feature",
+						"_UI_Image_type"),
+				ResourcePackage.Literals.IMAGE__HEIGHT, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -205,19 +169,13 @@ public class ImageItemProvider
 	 */
 	protected void addFormatPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_format_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_format_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__FORMAT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Image_format_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Image_format_feature",
+						"_UI_Image_type"),
+				ResourcePackage.Literals.IMAGE__FORMAT, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -228,19 +186,13 @@ public class ImageItemProvider
 	 */
 	protected void addUsagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_usages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_usages_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__USAGES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Image_usages_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Image_usages_feature",
+						"_UI_Image_type"),
+				ResourcePackage.Literals.IMAGE__USAGES, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -251,19 +203,13 @@ public class ImageItemProvider
 	 */
 	protected void addPropertiesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_properties_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_properties_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__PROPERTIES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Image_properties_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Image_properties_feature",
+						"_UI_Image_type"),
+				ResourcePackage.Literals.IMAGE__PROPERTIES, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -274,19 +220,13 @@ public class ImageItemProvider
 	 */
 	protected void addTilingPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_tiling_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_tiling_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__TILING,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Image_tiling_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Image_tiling_feature",
+						"_UI_Image_type"),
+				ResourcePackage.Literals.IMAGE__TILING, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -297,19 +237,13 @@ public class ImageItemProvider
 	 */
 	protected void addMipLevelsPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Image_mipLevels_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_mipLevels_feature", "_UI_Image_type"),
-				 ResourcePackage.Literals.IMAGE__MIP_LEVELS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Image_mipLevels_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Image_mipLevels_feature",
+						"_UI_Image_type"),
+				ResourcePackage.Literals.IMAGE__MIP_LEVELS, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -366,12 +300,11 @@ public class ImageItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Image)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Image_type") :
-			getString("_UI_Image_type") + " " + label;
+		String label = ((Image) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_Image_type")
+				: getString("_UI_Image_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -387,21 +320,23 @@ public class ImageItemProvider
 
 		switch (notification.getFeatureID(Image.class))
 		{
-			case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
-			case ResourcePackage.IMAGE__SHADER_STAGES:
-			case ResourcePackage.IMAGE__NAME:
-			case ResourcePackage.IMAGE__WIDTH:
-			case ResourcePackage.IMAGE__HEIGHT:
-			case ResourcePackage.IMAGE__FORMAT:
-			case ResourcePackage.IMAGE__USAGES:
-			case ResourcePackage.IMAGE__PROPERTIES:
-			case ResourcePackage.IMAGE__TILING:
-			case ResourcePackage.IMAGE__MIP_LEVELS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
+		case ResourcePackage.IMAGE__SHADER_STAGES:
+		case ResourcePackage.IMAGE__NAME:
+		case ResourcePackage.IMAGE__WIDTH:
+		case ResourcePackage.IMAGE__HEIGHT:
+		case ResourcePackage.IMAGE__FORMAT:
+		case ResourcePackage.IMAGE__USAGES:
+		case ResourcePackage.IMAGE__PROPERTIES:
+		case ResourcePackage.IMAGE__TILING:
+		case ResourcePackage.IMAGE__MIP_LEVELS:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -418,10 +353,8 @@ public class ImageItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.IMAGE__INITIAL_LAYOUT,
-				 ResourceFactory.eINSTANCE.createImageLayout()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.IMAGE__INITIAL_LAYOUT,
+				ResourceFactory.eINSTANCE.createImageLayout()));
 	}
 
 	/**
@@ -433,7 +366,7 @@ public class ImageItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

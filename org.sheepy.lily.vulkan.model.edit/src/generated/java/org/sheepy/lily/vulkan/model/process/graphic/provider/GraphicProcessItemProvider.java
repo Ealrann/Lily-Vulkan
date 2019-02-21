@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -113,12 +112,11 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((GraphicProcess)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_GraphicProcess_type") :
-			getString("_UI_GraphicProcess_type") + " " + label;
+		String label = ((GraphicProcess) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_GraphicProcess_type")
+				: getString("_UI_GraphicProcess_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -134,11 +132,12 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 
 		switch (notification.getFeatureID(GraphicProcess.class))
 		{
-			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-			case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -155,25 +154,21 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
-				 GraphicFactory.eINSTANCE.createImagePipeline()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
+						GraphicFactory.eINSTANCE.createImagePipeline()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION,
-				 GraphicFactory.eINSTANCE.createGraphicConfiguration()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION,
+						GraphicFactory.eINSTANCE.createGraphicConfiguration()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHIC_PROCESS__RENDER_PASS_INFO,
-				 GraphicFactory.eINSTANCE.createRenderPassInfo()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__RENDER_PASS_INFO,
+						GraphicFactory.eINSTANCE.createRenderPassInfo()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHIC_PROCESS__DEPTH_IMAGE,
-				 ResourceFactory.eINSTANCE.createDepthImage()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__DEPTH_IMAGE,
+						ResourceFactory.eINSTANCE.createDepthImage()));
 	}
 
 }

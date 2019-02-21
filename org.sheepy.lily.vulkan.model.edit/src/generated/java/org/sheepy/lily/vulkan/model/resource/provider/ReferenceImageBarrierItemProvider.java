@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -66,19 +65,14 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 	 */
 	protected void addImageIdPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ReferenceImageBarrier_imageId_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceImageBarrier_imageId_feature", "_UI_ReferenceImageBarrier_type"),
-				 ResourcePackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ReferenceImageBarrier_imageId_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ReferenceImageBarrier_imageId_feature",
+						"_UI_ReferenceImageBarrier_type"),
+				ResourcePackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_ID, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -89,19 +83,14 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 	 */
 	protected void addMipLevelsPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ReferenceImageBarrier_mipLevels_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceImageBarrier_mipLevels_feature", "_UI_ReferenceImageBarrier_type"),
-				 ResourcePackage.Literals.REFERENCE_IMAGE_BARRIER__MIP_LEVELS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ReferenceImageBarrier_mipLevels_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ReferenceImageBarrier_mipLevels_feature",
+						"_UI_ReferenceImageBarrier_type"),
+				ResourcePackage.Literals.REFERENCE_IMAGE_BARRIER__MIP_LEVELS, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -112,19 +101,14 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 	 */
 	protected void addImageFormatPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ReferenceImageBarrier_imageFormat_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceImageBarrier_imageFormat_feature", "_UI_ReferenceImageBarrier_type"),
-				 ResourcePackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ReferenceImageBarrier_imageFormat_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ReferenceImageBarrier_imageFormat_feature",
+						"_UI_ReferenceImageBarrier_type"),
+				ResourcePackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -136,7 +120,8 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceImageBarrier"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/ReferenceImageBarrier"));
 	}
 
 	/**
@@ -148,13 +133,12 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((ReferenceImageBarrier)object).getSrcStage();
+		EPipelineStage labelValue = ((ReferenceImageBarrier) object).getSrcStage();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ReferenceImageBarrier_type") :
-			getString("_UI_ReferenceImageBarrier_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_ReferenceImageBarrier_type")
+				: getString("_UI_ReferenceImageBarrier_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -170,11 +154,12 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 
 		switch (notification.getFeatureID(ReferenceImageBarrier.class))
 		{
-			case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
-			case ResourcePackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
-			case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
+		case ResourcePackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
+		case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -138,8 +138,8 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		EImageLayout oldSrcLayout = srcLayout;
 		srcLayout = newSrcLayout == null ? SRC_LAYOUT_EDEFAULT : newSrcLayout;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT, oldSrcLayout, srcLayout));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT, oldSrcLayout, srcLayout));
 	}
 
 	/**
@@ -163,8 +163,8 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		EImageLayout oldDstLayout = dstLayout;
 		dstLayout = newDstLayout == null ? DST_LAYOUT_EDEFAULT : newDstLayout;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT, oldDstLayout, dstLayout));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT, oldDstLayout, dstLayout));
 	}
 
 	/**
@@ -177,7 +177,8 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (srcAccessMask == null)
 		{
-			srcAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this, ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK);
+			srcAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this,
+					ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK);
 		}
 		return srcAccessMask;
 	}
@@ -192,7 +193,8 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (dstAccessMask == null)
 		{
-			dstAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this, ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK);
+			dstAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this,
+					ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK);
 		}
 		return dstAccessMask;
 	}
@@ -207,14 +209,14 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
-				return getSrcLayout();
-			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
-				return getDstLayout();
-			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
-				return getSrcAccessMask();
-			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
-				return getDstAccessMask();
+		case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
+			return getSrcLayout();
+		case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
+			return getDstLayout();
+		case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+			return getSrcAccessMask();
+		case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+			return getDstAccessMask();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -230,20 +232,20 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
-				setSrcLayout((EImageLayout)newValue);
-				return;
-			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
-				setDstLayout((EImageLayout)newValue);
-				return;
-			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
-				getSrcAccessMask().clear();
-				getSrcAccessMask().addAll((Collection<? extends EAccess>)newValue);
-				return;
-			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
-				getDstAccessMask().clear();
-				getDstAccessMask().addAll((Collection<? extends EAccess>)newValue);
-				return;
+		case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
+			setSrcLayout((EImageLayout) newValue);
+			return;
+		case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
+			setDstLayout((EImageLayout) newValue);
+			return;
+		case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+			getSrcAccessMask().clear();
+			getSrcAccessMask().addAll((Collection<? extends EAccess>) newValue);
+			return;
+		case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+			getDstAccessMask().clear();
+			getDstAccessMask().addAll((Collection<? extends EAccess>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -258,18 +260,18 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
-				setSrcLayout(SRC_LAYOUT_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
-				setDstLayout(DST_LAYOUT_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
-				getSrcAccessMask().clear();
-				return;
-			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
-				getDstAccessMask().clear();
-				return;
+		case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
+			setSrcLayout(SRC_LAYOUT_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
+			setDstLayout(DST_LAYOUT_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+			getSrcAccessMask().clear();
+			return;
+		case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+			getDstAccessMask().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -284,14 +286,14 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
-				return srcLayout != SRC_LAYOUT_EDEFAULT;
-			case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
-				return dstLayout != DST_LAYOUT_EDEFAULT;
-			case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
-				return srcAccessMask != null && !srcAccessMask.isEmpty();
-			case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
-				return dstAccessMask != null && !dstAccessMask.isEmpty();
+		case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
+			return srcLayout != SRC_LAYOUT_EDEFAULT;
+		case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
+			return dstLayout != DST_LAYOUT_EDEFAULT;
+		case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+			return srcAccessMask != null && !srcAccessMask.isEmpty();
+		case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+			return dstAccessMask != null && !dstAccessMask.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

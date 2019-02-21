@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -66,19 +65,13 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addShadersPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicsPipeline_shaders_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_shaders_feature", "_UI_GraphicsPipeline_type"),
-				 GraphicPackage.Literals.GRAPHICS_PIPELINE__SHADERS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_GraphicsPipeline_shaders_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_GraphicsPipeline_shaders_feature", "_UI_GraphicsPipeline_type"),
+				GraphicPackage.Literals.GRAPHICS_PIPELINE__SHADERS, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -89,19 +82,13 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addSubpassPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicsPipeline_subpass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicsPipeline_subpass_feature", "_UI_GraphicsPipeline_type"),
-				 GraphicPackage.Literals.GRAPHICS_PIPELINE__SUBPASS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_GraphicsPipeline_subpass_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_GraphicsPipeline_subpass_feature", "_UI_GraphicsPipeline_type"),
+				GraphicPackage.Literals.GRAPHICS_PIPELINE__SUBPASS, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -149,12 +136,11 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((GraphicsPipeline)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_GraphicsPipeline_type") :
-			getString("_UI_GraphicsPipeline_type") + " " + label;
+		String label = ((GraphicsPipeline) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_GraphicsPipeline_type")
+				: getString("_UI_GraphicsPipeline_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -170,15 +156,17 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 
 		switch (notification.getFeatureID(GraphicsPipeline.class))
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -195,30 +183,25 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-				 GraphicFactory.eINSTANCE.createStaticViewportState()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
+						GraphicFactory.eINSTANCE.createStaticViewportState()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-				 GraphicFactory.eINSTANCE.createDynamicViewportState()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
+						GraphicFactory.eINSTANCE.createDynamicViewportState()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER,
-				 GraphicFactory.eINSTANCE.createRasterizer()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER,
+						GraphicFactory.eINSTANCE.createRasterizer()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__COLOR_BLEND,
-				 GraphicFactory.eINSTANCE.createColorBlend()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__COLOR_BLEND,
+						GraphicFactory.eINSTANCE.createColorBlend()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHICS_PIPELINE__DYNAMIC_STATE,
-				 GraphicFactory.eINSTANCE.createDynamicState()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__DYNAMIC_STATE,
+						GraphicFactory.eINSTANCE.createDynamicState()));
 	}
 
 }

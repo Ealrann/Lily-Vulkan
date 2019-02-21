@@ -67,7 +67,8 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  *
  * @generated
  */
-public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container implements AbstractPipeline
+public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
+		implements AbstractPipeline
 {
 	/**
 	 * The cached value of the '{@link #getContentObjects() <em>Content Objects</em>}' attribute.
@@ -211,58 +212,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		EList<LObject> oldContentObjects = contentObjects;
 		contentObjects = newContentObjects;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS, oldContentObjects, contentObjects));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isEnabled()
-	{
-		return enabled;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setEnabled(boolean newEnabled)
-	{
-		boolean oldEnabled = enabled;
-		enabled = newEnabled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__ENABLED, oldEnabled, enabled));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ECommandStage getStage()
-	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStage(ECommandStage newStage)
-	{
-		ECommandStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__STAGE, oldStage, stage));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS, oldContentObjects,
+				contentObjects));
 	}
 
 	/**
@@ -286,8 +238,58 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEnabled(boolean newEnabled)
+	{
+		boolean oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__ENABLED, oldEnabled, enabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ECommandStage getStage()
+	{
+		return stage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setStage(ECommandStage newStage)
+	{
+		ECommandStage oldStage = stage;
+		stage = newStage == null ? STAGE_EDEFAULT : newStage;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -300,7 +302,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		if (units == null)
 		{
-			units = new EObjectContainmentEList<IPipelineUnit>(IPipelineUnit.class, this, ProcessPackage.ABSTRACT_PIPELINE__UNITS);
+			units = new EObjectContainmentEList<IPipelineUnit>(IPipelineUnit.class, this,
+					ProcessPackage.ABSTRACT_PIPELINE__UNITS);
 		}
 		return units;
 	}
@@ -315,12 +318,13 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		if (descriptorSet != null && descriptorSet.eIsProxy())
 		{
-			InternalEObject oldDescriptorSet = (InternalEObject)descriptorSet;
-			descriptorSet = (DescriptorSet)eResolveProxy(oldDescriptorSet);
+			InternalEObject oldDescriptorSet = (InternalEObject) descriptorSet;
+			descriptorSet = (DescriptorSet) eResolveProxy(oldDescriptorSet);
 			if (descriptorSet != oldDescriptorSet)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET, oldDescriptorSet, descriptorSet));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
+						Notification.RESOLVE, ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET,
+						oldDescriptorSet, descriptorSet));
 			}
 		}
 		return descriptorSet;
@@ -346,8 +350,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		DescriptorSet oldDescriptorSet = descriptorSet;
 		descriptorSet = newDescriptorSet;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET, oldDescriptorSet, descriptorSet));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET, oldDescriptorSet, descriptorSet));
 	}
 
 	/**
@@ -360,12 +364,13 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		if (constants != null && constants.eIsProxy())
 		{
-			InternalEObject oldConstants = (InternalEObject)constants;
-			constants = (AbstractConstants)eResolveProxy(oldConstants);
+			InternalEObject oldConstants = (InternalEObject) constants;
+			constants = (AbstractConstants) eResolveProxy(oldConstants);
 			if (constants != oldConstants)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS, oldConstants, constants));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS, oldConstants, constants));
 			}
 		}
 		return constants;
@@ -391,8 +396,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		AbstractConstants oldConstants = constants;
 		constants = newConstants;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS, oldConstants, constants));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS, oldConstants, constants));
 	}
 
 	/**
@@ -418,7 +423,7 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 		boolean _isEmpty = unitRefs.isEmpty();
 		if (_isEmpty)
 		{
-			res = ECollections.<T>emptyEList();
+			res = ECollections.<T> emptyEList();
 		}
 		else
 		{
@@ -442,7 +447,7 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 			boolean _tripleEquals = (_contentObjects == null);
 			if (_tripleEquals)
 			{
-				this.setContentObjects(this.<LObject>createContainmentEList(Literals.LOBJECT));
+				this.setContentObjects(this.<LObject> createContainmentEList(Literals.LOBJECT));
 			}
 			_xblockexpression = this.getContentObjects();
 		}
@@ -495,12 +500,14 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
-				return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
+		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+			return ((InternalEList<?>) getUnits()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -515,22 +522,22 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
-				return getContentObjects();
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-				return getName();
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-				return isEnabled();
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-				return getStage();
-			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
-				return getUnits();
-			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
-				if (resolve) return getDescriptorSet();
-				return basicGetDescriptorSet();
-			case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
-				if (resolve) return getConstants();
-				return basicGetConstants();
+		case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
+			return getContentObjects();
+		case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+			return getName();
+		case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
+			return isEnabled();
+		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
+			return getStage();
+		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+			return getUnits();
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
+			if (resolve) return getDescriptorSet();
+			return basicGetDescriptorSet();
+		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
+			if (resolve) return getConstants();
+			return basicGetConstants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -546,28 +553,28 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
-				setContentObjects((EList<LObject>)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-				setName((String)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-				setEnabled((Boolean)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-				setStage((ECommandStage)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
-				getUnits().clear();
-				getUnits().addAll((Collection<? extends IPipelineUnit>)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
-				setDescriptorSet((DescriptorSet)newValue);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
-				setConstants((AbstractConstants)newValue);
-				return;
+		case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
+			setContentObjects((EList<LObject>) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+			setName((String) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
+			setEnabled((Boolean) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
+			setStage((ECommandStage) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+			getUnits().clear();
+			getUnits().addAll((Collection<? extends IPipelineUnit>) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
+			setDescriptorSet((DescriptorSet) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
+			setConstants((AbstractConstants) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -582,27 +589,27 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
-				setContentObjects((EList<LObject>)null);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-				setEnabled(ENABLED_EDEFAULT);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
-				getUnits().clear();
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
-				setDescriptorSet((DescriptorSet)null);
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
-				setConstants((AbstractConstants)null);
-				return;
+		case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
+			setContentObjects((EList<LObject>) null);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
+			setEnabled(ENABLED_EDEFAULT);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
+			setStage(STAGE_EDEFAULT);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+			getUnits().clear();
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
+			setDescriptorSet((DescriptorSet) null);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
+			setConstants((AbstractConstants) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -617,20 +624,20 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
-				return contentObjects != null;
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-				return enabled != ENABLED_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-				return stage != STAGE_EDEFAULT;
-			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
-				return units != null && !units.isEmpty();
-			case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
-				return descriptorSet != null;
-			case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
-				return constants != null;
+		case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
+			return contentObjects != null;
+		case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
+			return enabled != ENABLED_EDEFAULT;
+		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
+			return stage != STAGE_EDEFAULT;
+		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+			return units != null && !units.isEmpty();
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
+			return descriptorSet != null;
+		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
+			return constants != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -647,8 +654,10 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 		{
 			switch (derivedFeatureID)
 			{
-				case ProcessPackage.ABSTRACT_PIPELINE__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
-				default: return -1;
+			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+				return TypesPackage.LNAMED_ELEMENT__NAME;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -666,8 +675,10 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 		{
 			switch (baseFeatureID)
 			{
-				case TypesPackage.LNAMED_ELEMENT__NAME: return ProcessPackage.ABSTRACT_PIPELINE__NAME;
-				default: return -1;
+			case TypesPackage.LNAMED_ELEMENT__NAME:
+				return ProcessPackage.ABSTRACT_PIPELINE__NAME;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -683,16 +694,16 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container 
 	{
 		switch (operationID)
 		{
-			case ProcessPackage.ABSTRACT_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS:
-				return createContainmentEList((EClass)arguments.get(0));
-			case ProcessPackage.ABSTRACT_PIPELINE___LCONTENTS:
-				return lContents();
-			case ProcessPackage.ABSTRACT_PIPELINE___LPARENT:
-				return lParent();
-			case ProcessPackage.ABSTRACT_PIPELINE___LALL_CONTENTS:
-				return lAllContents();
-			case ProcessPackage.ABSTRACT_PIPELINE___LINFERENCE_OBJECT:
-				return lInferenceObject();
+		case ProcessPackage.ABSTRACT_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS:
+			return createContainmentEList((EClass) arguments.get(0));
+		case ProcessPackage.ABSTRACT_PIPELINE___LCONTENTS:
+			return lContents();
+		case ProcessPackage.ABSTRACT_PIPELINE___LPARENT:
+			return lParent();
+		case ProcessPackage.ABSTRACT_PIPELINE___LALL_CONTENTS:
+			return lAllContents();
+		case ProcessPackage.ABSTRACT_PIPELINE___LINFERENCE_OBJECT:
+			return lInferenceObject();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

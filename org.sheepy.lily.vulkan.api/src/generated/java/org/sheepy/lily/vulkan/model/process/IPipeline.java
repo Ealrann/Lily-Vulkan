@@ -3,7 +3,9 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.core.model.root.LObject;
+
 import org.sheepy.lily.core.model.types.LNamedElement;
+
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 
 /**
@@ -25,7 +27,6 @@ import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
  */
 public interface IPipeline extends LObject, LNamedElement
 {
-
 	/**
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
@@ -82,4 +83,5 @@ public interface IPipeline extends LObject, LNamedElement
 	 * @generated
 	 */
 	void setStage(ECommandStage value);
+
 } // IPipeline

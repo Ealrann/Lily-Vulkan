@@ -31,7 +31,8 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  *
  * @generated
  */
-public abstract class AbstractCompositePipelineImpl extends AbstractPipelineImpl implements AbstractCompositePipeline
+public abstract class AbstractCompositePipelineImpl extends AbstractPipelineImpl
+		implements AbstractCompositePipeline
 {
 	/**
 	 * The cached value of the '{@link #getPipelines() <em>Pipelines</em>}' containment reference list.
@@ -74,7 +75,8 @@ public abstract class AbstractCompositePipelineImpl extends AbstractPipelineImpl
 	{
 		if (pipelines == null)
 		{
-			pipelines = new EObjectContainmentEList<AbstractPipeline>(AbstractPipeline.class, this, ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES);
+			pipelines = new EObjectContainmentEList<AbstractPipeline>(AbstractPipeline.class, this,
+					ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES);
 		}
 		return pipelines;
 	}
@@ -85,12 +87,14 @@ public abstract class AbstractCompositePipelineImpl extends AbstractPipelineImpl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
-				return ((InternalEList<?>)getPipelines()).basicRemove(otherEnd, msgs);
+		case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
+			return ((InternalEList<?>) getPipelines()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -105,8 +109,8 @@ public abstract class AbstractCompositePipelineImpl extends AbstractPipelineImpl
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
-				return getPipelines();
+		case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
+			return getPipelines();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,10 +126,10 @@ public abstract class AbstractCompositePipelineImpl extends AbstractPipelineImpl
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
-				getPipelines().clear();
-				getPipelines().addAll((Collection<? extends AbstractPipeline>)newValue);
-				return;
+		case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
+			getPipelines().clear();
+			getPipelines().addAll((Collection<? extends AbstractPipeline>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -140,9 +144,9 @@ public abstract class AbstractCompositePipelineImpl extends AbstractPipelineImpl
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
-				getPipelines().clear();
-				return;
+		case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
+			getPipelines().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -157,8 +161,8 @@ public abstract class AbstractCompositePipelineImpl extends AbstractPipelineImpl
 	{
 		switch (featureID)
 		{
-			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
-				return pipelines != null && !pipelines.isEmpty();
+		case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
+			return pipelines != null && !pipelines.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

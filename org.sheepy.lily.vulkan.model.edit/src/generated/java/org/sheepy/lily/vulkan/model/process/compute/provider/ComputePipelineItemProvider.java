@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.compute.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -70,19 +69,13 @@ public class ComputePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addWorkgroupSizeXPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComputePipeline_workgroupSizeX_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_workgroupSizeX_feature", "_UI_ComputePipeline_type"),
-				 ComputePackage.Literals.COMPUTE_PIPELINE__WORKGROUP_SIZE_X,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ComputePipeline_workgroupSizeX_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ComputePipeline_workgroupSizeX_feature", "_UI_ComputePipeline_type"),
+				ComputePackage.Literals.COMPUTE_PIPELINE__WORKGROUP_SIZE_X, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -93,19 +86,13 @@ public class ComputePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addWorkgroupSizeYPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComputePipeline_workgroupSizeY_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_workgroupSizeY_feature", "_UI_ComputePipeline_type"),
-				 ComputePackage.Literals.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ComputePipeline_workgroupSizeY_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ComputePipeline_workgroupSizeY_feature", "_UI_ComputePipeline_type"),
+				ComputePackage.Literals.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -116,19 +103,13 @@ public class ComputePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addWorkgroupSizeZPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComputePipeline_workgroupSizeZ_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_workgroupSizeZ_feature", "_UI_ComputePipeline_type"),
-				 ComputePackage.Literals.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ComputePipeline_workgroupSizeZ_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ComputePipeline_workgroupSizeZ_feature", "_UI_ComputePipeline_type"),
+				ComputePackage.Literals.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -139,19 +120,13 @@ public class ComputePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addWidthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComputePipeline_width_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_width_feature", "_UI_ComputePipeline_type"),
-				 ComputePackage.Literals.COMPUTE_PIPELINE__WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ComputePipeline_width_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_width_feature",
+						"_UI_ComputePipeline_type"),
+				ComputePackage.Literals.COMPUTE_PIPELINE__WIDTH, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -162,19 +137,13 @@ public class ComputePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addHeightPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComputePipeline_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_height_feature", "_UI_ComputePipeline_type"),
-				 ComputePackage.Literals.COMPUTE_PIPELINE__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ComputePipeline_height_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ComputePipeline_height_feature", "_UI_ComputePipeline_type"),
+				ComputePackage.Literals.COMPUTE_PIPELINE__HEIGHT, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -185,19 +154,13 @@ public class ComputePipelineItemProvider extends AbstractPipelineItemProvider
 	 */
 	protected void addDepthPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComputePipeline_depth_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_depth_feature", "_UI_ComputePipeline_type"),
-				 ComputePackage.Literals.COMPUTE_PIPELINE__DEPTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ComputePipeline_depth_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_depth_feature",
+						"_UI_ComputePipeline_type"),
+				ComputePackage.Literals.COMPUTE_PIPELINE__DEPTH, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -221,12 +184,11 @@ public class ComputePipelineItemProvider extends AbstractPipelineItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ComputePipeline)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ComputePipeline_type") :
-			getString("_UI_ComputePipeline_type") + " " + label;
+		String label = ((ComputePipeline) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_ComputePipeline_type")
+				: getString("_UI_ComputePipeline_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -242,14 +204,15 @@ public class ComputePipelineItemProvider extends AbstractPipelineItemProvider
 
 		switch (notification.getFeatureID(ComputePipeline.class))
 		{
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
-			case ComputePackage.COMPUTE_PIPELINE__WIDTH:
-			case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
-			case ComputePackage.COMPUTE_PIPELINE__DEPTH:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
+		case ComputePackage.COMPUTE_PIPELINE__WIDTH:
+		case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
+		case ComputePackage.COMPUTE_PIPELINE__DEPTH:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -266,10 +229,9 @@ public class ComputePipelineItemProvider extends AbstractPipelineItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
-				 ComputeFactory.eINSTANCE.createComputer()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
+						ComputeFactory.eINSTANCE.createComputer()));
 	}
 
 }

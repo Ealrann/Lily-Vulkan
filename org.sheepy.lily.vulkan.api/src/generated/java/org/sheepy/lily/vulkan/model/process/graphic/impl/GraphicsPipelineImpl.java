@@ -148,7 +148,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	{
 		if (shaders == null)
 		{
-			shaders = new EObjectResolvingEList<Shader>(Shader.class, this, GraphicPackage.GRAPHICS_PIPELINE__SHADERS);
+			shaders = new EObjectResolvingEList<Shader>(Shader.class, this,
+					GraphicPackage.GRAPHICS_PIPELINE__SHADERS);
 		}
 		return shaders;
 	}
@@ -169,14 +170,18 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetViewportState(ViewportState newViewportState, NotificationChain msgs)
+	public NotificationChain basicSetViewportState(	ViewportState newViewportState,
+													NotificationChain msgs)
 	{
 		ViewportState oldViewportState = viewportState;
 		viewportState = newViewportState;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, oldViewportState, newViewportState);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, oldViewportState,
+					newViewportState);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -192,15 +197,19 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 		if (newViewportState != viewportState)
 		{
 			NotificationChain msgs = null;
-			if (viewportState != null)
-				msgs = ((InternalEObject)viewportState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null, msgs);
+			if (viewportState != null) msgs = ((InternalEObject) viewportState).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null,
+					msgs);
 			if (newViewportState != null)
-				msgs = ((InternalEObject)newViewportState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, null, msgs);
+				msgs = ((InternalEObject) newViewportState).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE,
+						null, msgs);
 			msgs = basicSetViewportState(newViewportState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, newViewportState, newViewportState));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE, newViewportState,
+				newViewportState));
 	}
 
 	/**
@@ -225,8 +234,10 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 		rasterizer = newRasterizer;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, oldRasterizer, newRasterizer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, oldRasterizer, newRasterizer);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -242,15 +253,17 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 		if (newRasterizer != rasterizer)
 		{
 			NotificationChain msgs = null;
-			if (rasterizer != null)
-				msgs = ((InternalEObject)rasterizer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null, msgs);
-			if (newRasterizer != null)
-				msgs = ((InternalEObject)newRasterizer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null, msgs);
+			if (rasterizer != null) msgs = ((InternalEObject) rasterizer).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null,
+					msgs);
+			if (newRasterizer != null) msgs = ((InternalEObject) newRasterizer).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, null,
+					msgs);
 			msgs = basicSetRasterizer(newRasterizer, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, newRasterizer, newRasterizer));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER, newRasterizer, newRasterizer));
 	}
 
 	/**
@@ -275,8 +288,10 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 		colorBlend = newColorBlend;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, oldColorBlend, newColorBlend);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, oldColorBlend, newColorBlend);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -292,15 +307,17 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 		if (newColorBlend != colorBlend)
 		{
 			NotificationChain msgs = null;
-			if (colorBlend != null)
-				msgs = ((InternalEObject)colorBlend).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
-			if (newColorBlend != null)
-				msgs = ((InternalEObject)newColorBlend).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null, msgs);
+			if (colorBlend != null) msgs = ((InternalEObject) colorBlend).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null,
+					msgs);
+			if (newColorBlend != null) msgs = ((InternalEObject) newColorBlend).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, null,
+					msgs);
 			msgs = basicSetColorBlend(newColorBlend, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, newColorBlend, newColorBlend));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND, newColorBlend, newColorBlend));
 	}
 
 	/**
@@ -319,14 +336,18 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDynamicState(DynamicState newDynamicState, NotificationChain msgs)
+	public NotificationChain basicSetDynamicState(	DynamicState newDynamicState,
+													NotificationChain msgs)
 	{
 		DynamicState oldDynamicState = dynamicState;
 		dynamicState = newDynamicState;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, oldDynamicState, newDynamicState);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, oldDynamicState,
+					newDynamicState);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -342,15 +363,18 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 		if (newDynamicState != dynamicState)
 		{
 			NotificationChain msgs = null;
-			if (dynamicState != null)
-				msgs = ((InternalEObject)dynamicState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
+			if (dynamicState != null) msgs = ((InternalEObject) dynamicState).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null,
+					msgs);
 			if (newDynamicState != null)
-				msgs = ((InternalEObject)newDynamicState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, null, msgs);
+				msgs = ((InternalEObject) newDynamicState).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE,
+						null, msgs);
 			msgs = basicSetDynamicState(newDynamicState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, newDynamicState, newDynamicState));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE, newDynamicState, newDynamicState));
 	}
 
 	/**
@@ -374,8 +398,8 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	{
 		int oldSubpass = subpass;
 		subpass = newSubpass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHICS_PIPELINE__SUBPASS, oldSubpass, subpass));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHICS_PIPELINE__SUBPASS, oldSubpass, subpass));
 	}
 
 	/**
@@ -384,18 +408,20 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-				return basicSetViewportState(null, msgs);
-			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-				return basicSetRasterizer(null, msgs);
-			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-				return basicSetColorBlend(null, msgs);
-			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-				return basicSetDynamicState(null, msgs);
+		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+			return basicSetViewportState(null, msgs);
+		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+			return basicSetRasterizer(null, msgs);
+		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+			return basicSetColorBlend(null, msgs);
+		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+			return basicSetDynamicState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -410,18 +436,18 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
-				return getShaders();
-			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-				return getViewportState();
-			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-				return getRasterizer();
-			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-				return getColorBlend();
-			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-				return getDynamicState();
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-				return getSubpass();
+		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
+			return getShaders();
+		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+			return getViewportState();
+		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+			return getRasterizer();
+		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+			return getColorBlend();
+		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+			return getDynamicState();
+		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+			return getSubpass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -437,25 +463,25 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
-				getShaders().clear();
-				getShaders().addAll((Collection<? extends Shader>)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-				setViewportState((ViewportState)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-				setRasterizer((Rasterizer)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-				setColorBlend((ColorBlend)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-				setDynamicState((DynamicState)newValue);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-				setSubpass((Integer)newValue);
-				return;
+		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
+			getShaders().clear();
+			getShaders().addAll((Collection<? extends Shader>) newValue);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+			setViewportState((ViewportState) newValue);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+			setRasterizer((Rasterizer) newValue);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+			setColorBlend((ColorBlend) newValue);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+			setDynamicState((DynamicState) newValue);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+			setSubpass((Integer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -470,24 +496,24 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
-				getShaders().clear();
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-				setViewportState((ViewportState)null);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-				setRasterizer((Rasterizer)null);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-				setColorBlend((ColorBlend)null);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-				setDynamicState((DynamicState)null);
-				return;
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-				setSubpass(SUBPASS_EDEFAULT);
-				return;
+		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
+			getShaders().clear();
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+			setViewportState((ViewportState) null);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+			setRasterizer((Rasterizer) null);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+			setColorBlend((ColorBlend) null);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+			setDynamicState((DynamicState) null);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+			setSubpass(SUBPASS_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -502,18 +528,18 @@ public abstract class GraphicsPipelineImpl extends AbstractPipelineImpl implemen
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
-				return shaders != null && !shaders.isEmpty();
-			case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
-				return viewportState != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
-				return rasterizer != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
-				return colorBlend != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-				return dynamicState != null;
-			case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
-				return subpass != SUBPASS_EDEFAULT;
+		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
+			return shaders != null && !shaders.isEmpty();
+		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
+			return viewportState != null;
+		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
+			return rasterizer != null;
+		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
+			return colorBlend != null;
+		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
+			return dynamicState != null;
+		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
+			return subpass != SUBPASS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

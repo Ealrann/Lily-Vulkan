@@ -50,11 +50,9 @@ public enum EColorSpace implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EColorSpace[] VALUES_ARRAY =
-		new EColorSpace[]
-		{
+	private static final EColorSpace[] VALUES_ARRAY = new EColorSpace[] {
 			SRGB_NONLINEAR_KHR,
-		};
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EColor Space</b></em>' enumerators.
@@ -62,7 +60,8 @@ public enum EColorSpace implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EColorSpace> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EColorSpace> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EColor Space</b></em>' literal with the specified literal value.
@@ -118,7 +117,8 @@ public enum EColorSpace implements Enumerator
 	{
 		switch (value)
 		{
-			case SRGB_NONLINEAR_KHR_VALUE: return SRGB_NONLINEAR_KHR;
+		case SRGB_NONLINEAR_KHR_VALUE:
+			return SRGB_NONLINEAR_KHR;
 		}
 		return null;
 	}
@@ -165,7 +165,7 @@ public enum EColorSpace implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -176,7 +176,7 @@ public enum EColorSpace implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -187,7 +187,7 @@ public enum EColorSpace implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -201,5 +201,5 @@ public enum EColorSpace implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EColorSpace

@@ -57,7 +57,10 @@ public enum EImageLayout implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	DEPTH_STENCIL_ATTACHMENT_OPTIMAL(3, "DEPTH_STENCIL_ATTACHMENT_OPTIMAL", "DEPTH_STENCIL_ATTACHMENT_OPTIMAL"),
+	DEPTH_STENCIL_ATTACHMENT_OPTIMAL(
+			3,
+			"DEPTH_STENCIL_ATTACHMENT_OPTIMAL",
+			"DEPTH_STENCIL_ATTACHMENT_OPTIMAL"),
 
 	/**
 	 * The '<em><b>DEPTH STENCIL READ ONLY OPTIMAL</b></em>' literal object.
@@ -67,7 +70,10 @@ public enum EImageLayout implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	DEPTH_STENCIL_READ_ONLY_OPTIMAL(4, "DEPTH_STENCIL_READ_ONLY_OPTIMAL", "DEPTH_STENCIL_READ_ONLY_OPTIMAL"),
+	DEPTH_STENCIL_READ_ONLY_OPTIMAL(
+			4,
+			"DEPTH_STENCIL_READ_ONLY_OPTIMAL",
+			"DEPTH_STENCIL_READ_ONLY_OPTIMAL"),
 
 	/**
 	 * The '<em><b>SHADER READ ONLY OPTIMAL</b></em>' literal object.
@@ -275,9 +281,7 @@ public enum EImageLayout implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EImageLayout[] VALUES_ARRAY =
-		new EImageLayout[]
-		{
+	private static final EImageLayout[] VALUES_ARRAY = new EImageLayout[] {
 			UNDEFINED,
 			GENERAL,
 			COLOR_ATTACHMENT_OPTIMAL,
@@ -288,7 +292,7 @@ public enum EImageLayout implements Enumerator
 			TRANSFER_DST_OPTIMAL,
 			PREINITIALIZED,
 			PRESENT_SRC_KHR,
-		};
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EImage Layout</b></em>' enumerators.
@@ -296,7 +300,8 @@ public enum EImageLayout implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EImageLayout> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EImageLayout> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EImage Layout</b></em>' literal with the specified literal value.
@@ -352,16 +357,26 @@ public enum EImageLayout implements Enumerator
 	{
 		switch (value)
 		{
-			case UNDEFINED_VALUE: return UNDEFINED;
-			case GENERAL_VALUE: return GENERAL;
-			case COLOR_ATTACHMENT_OPTIMAL_VALUE: return COLOR_ATTACHMENT_OPTIMAL;
-			case DEPTH_STENCIL_ATTACHMENT_OPTIMAL_VALUE: return DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
-			case DEPTH_STENCIL_READ_ONLY_OPTIMAL_VALUE: return DEPTH_STENCIL_READ_ONLY_OPTIMAL;
-			case SHADER_READ_ONLY_OPTIMAL_VALUE: return SHADER_READ_ONLY_OPTIMAL;
-			case TRANSFER_SRC_OPTIMAL_VALUE: return TRANSFER_SRC_OPTIMAL;
-			case TRANSFER_DST_OPTIMAL_VALUE: return TRANSFER_DST_OPTIMAL;
-			case PREINITIALIZED_VALUE: return PREINITIALIZED;
-			case PRESENT_SRC_KHR_VALUE: return PRESENT_SRC_KHR;
+		case UNDEFINED_VALUE:
+			return UNDEFINED;
+		case GENERAL_VALUE:
+			return GENERAL;
+		case COLOR_ATTACHMENT_OPTIMAL_VALUE:
+			return COLOR_ATTACHMENT_OPTIMAL;
+		case DEPTH_STENCIL_ATTACHMENT_OPTIMAL_VALUE:
+			return DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+		case DEPTH_STENCIL_READ_ONLY_OPTIMAL_VALUE:
+			return DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+		case SHADER_READ_ONLY_OPTIMAL_VALUE:
+			return SHADER_READ_ONLY_OPTIMAL;
+		case TRANSFER_SRC_OPTIMAL_VALUE:
+			return TRANSFER_SRC_OPTIMAL;
+		case TRANSFER_DST_OPTIMAL_VALUE:
+			return TRANSFER_DST_OPTIMAL;
+		case PREINITIALIZED_VALUE:
+			return PREINITIALIZED;
+		case PRESENT_SRC_KHR_VALUE:
+			return PRESENT_SRC_KHR;
 		}
 		return null;
 	}
@@ -408,7 +423,7 @@ public enum EImageLayout implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -419,7 +434,7 @@ public enum EImageLayout implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -430,7 +445,7 @@ public enum EImageLayout implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -444,5 +459,5 @@ public enum EImageLayout implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EImageLayout

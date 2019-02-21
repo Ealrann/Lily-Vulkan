@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -61,19 +60,13 @@ public class ConstantsItemProvider extends AbstractConstantsItemProvider
 	 */
 	protected void addDataPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Constants_data_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Constants_data_feature", "_UI_Constants_type"),
-				 ResourcePackage.Literals.CONSTANTS__DATA,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Constants_data_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Constants_data_feature",
+						"_UI_Constants_type"),
+				ResourcePackage.Literals.CONSTANTS__DATA, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -97,12 +90,11 @@ public class ConstantsItemProvider extends AbstractConstantsItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Constants)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Constants_type") :
-			getString("_UI_Constants_type") + " " + label;
+		String label = ((Constants) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_Constants_type")
+				: getString("_UI_Constants_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -118,9 +110,10 @@ public class ConstantsItemProvider extends AbstractConstantsItemProvider
 
 		switch (notification.getFeatureID(Constants.class))
 		{
-			case ResourcePackage.CONSTANTS__DATA:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ResourcePackage.CONSTANTS__DATA:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -425,9 +425,7 @@ public enum ELogicOp implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ELogicOp[] VALUES_ARRAY =
-		new ELogicOp[]
-		{
+	private static final ELogicOp[] VALUES_ARRAY = new ELogicOp[] {
 			CLEAR,
 			AND,
 			AND_REVERSE,
@@ -444,7 +442,7 @@ public enum ELogicOp implements Enumerator
 			OR_INVERTED,
 			NAND,
 			SET,
-		};
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>ELogic Op</b></em>' enumerators.
@@ -452,7 +450,8 @@ public enum ELogicOp implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ELogicOp> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ELogicOp> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>ELogic Op</b></em>' literal with the specified literal value.
@@ -508,22 +507,38 @@ public enum ELogicOp implements Enumerator
 	{
 		switch (value)
 		{
-			case CLEAR_VALUE: return CLEAR;
-			case AND_VALUE: return AND;
-			case AND_REVERSE_VALUE: return AND_REVERSE;
-			case COPY_VALUE: return COPY;
-			case AND_INVERTED_VALUE: return AND_INVERTED;
-			case NO_OP_VALUE: return NO_OP;
-			case XOR_VALUE: return XOR;
-			case OR_VALUE: return OR;
-			case NOR_VALUE: return NOR;
-			case EQUIVALENT_VALUE: return EQUIVALENT;
-			case INVERT_VALUE: return INVERT;
-			case OR_REVERSE_VALUE: return OR_REVERSE;
-			case COPY_INVERTED_VALUE: return COPY_INVERTED;
-			case OR_INVERTED_VALUE: return OR_INVERTED;
-			case NAND_VALUE: return NAND;
-			case SET_VALUE: return SET;
+		case CLEAR_VALUE:
+			return CLEAR;
+		case AND_VALUE:
+			return AND;
+		case AND_REVERSE_VALUE:
+			return AND_REVERSE;
+		case COPY_VALUE:
+			return COPY;
+		case AND_INVERTED_VALUE:
+			return AND_INVERTED;
+		case NO_OP_VALUE:
+			return NO_OP;
+		case XOR_VALUE:
+			return XOR;
+		case OR_VALUE:
+			return OR;
+		case NOR_VALUE:
+			return NOR;
+		case EQUIVALENT_VALUE:
+			return EQUIVALENT;
+		case INVERT_VALUE:
+			return INVERT;
+		case OR_REVERSE_VALUE:
+			return OR_REVERSE;
+		case COPY_INVERTED_VALUE:
+			return COPY_INVERTED;
+		case OR_INVERTED_VALUE:
+			return OR_INVERTED;
+		case NAND_VALUE:
+			return NAND;
+		case SET_VALUE:
+			return SET;
 		}
 		return null;
 	}
@@ -570,7 +585,7 @@ public enum ELogicOp implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -581,7 +596,7 @@ public enum ELogicOp implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -592,7 +607,7 @@ public enum ELogicOp implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -606,5 +621,5 @@ public enum ELogicOp implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //ELogicOp

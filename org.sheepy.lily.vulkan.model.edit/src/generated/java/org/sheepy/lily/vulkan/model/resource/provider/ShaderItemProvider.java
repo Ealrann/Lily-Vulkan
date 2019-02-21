@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -35,8 +34,9 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ShaderItemProvider 
-	extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class ShaderItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -76,19 +76,13 @@ public class ShaderItemProvider
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -99,19 +93,13 @@ public class ShaderItemProvider
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Shader_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Shader_stage_feature", "_UI_Shader_type"),
-				 ResourcePackage.Literals.SHADER__STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Shader_stage_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Shader_stage_feature",
+						"_UI_Shader_type"),
+				ResourcePackage.Literals.SHADER__STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -168,12 +156,11 @@ public class ShaderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Shader)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Shader_type") :
-			getString("_UI_Shader_type") + " " + label;
+		String label = ((Shader) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_Shader_type")
+				: getString("_UI_Shader_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -189,13 +176,15 @@ public class ShaderItemProvider
 
 		switch (notification.getFeatureID(Shader.class))
 		{
-			case ResourcePackage.SHADER__NAME:
-			case ResourcePackage.SHADER__STAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ResourcePackage.SHADER__FILE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ResourcePackage.SHADER__NAME:
+		case ResourcePackage.SHADER__STAGE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ResourcePackage.SHADER__FILE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -212,20 +201,14 @@ public class ShaderItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.SHADER__FILE,
-				 ResourceFactory.eINSTANCE.createFileResource()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SHADER__FILE,
+				ResourceFactory.eINSTANCE.createFileResource()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.SHADER__FILE,
-				 ResourceFactory.eINSTANCE.createModuleResource()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SHADER__FILE,
+				ResourceFactory.eINSTANCE.createModuleResource()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.SHADER__FILE,
-				 ResourceFactory.eINSTANCE.createStringModuleResource()));
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SHADER__FILE,
+				ResourceFactory.eINSTANCE.createStringModuleResource()));
 	}
 
 	/**
@@ -237,7 +220,7 @@ public class ShaderItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

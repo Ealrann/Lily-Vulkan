@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -34,7 +33,9 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class VulkanEngineItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,19 +74,13 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_VulkanEngine_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_VulkanEngine_enabled_feature", "_UI_VulkanEngine_type"),
-				 VulkanPackage.Literals.VULKAN_ENGINE__ENABLED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_VulkanEngine_enabled_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_VulkanEngine_enabled_feature",
+						"_UI_VulkanEngine_type"),
+				VulkanPackage.Literals.VULKAN_ENGINE__ENABLED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -143,13 +138,12 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public String getText(Object object)
 	{
-		EList<LObject> labelValue = ((VulkanEngine)object).getContentObjects();
+		EList<LObject> labelValue = ((VulkanEngine) object).getContentObjects();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_VulkanEngine_type") :
-			getString("_UI_VulkanEngine_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_VulkanEngine_type")
+				: getString("_UI_VulkanEngine_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -165,14 +159,16 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 
 		switch (notification.getFeatureID(VulkanEngine.class))
 		{
-			case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
-			case VulkanPackage.VULKAN_ENGINE__ENABLED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
-			case VulkanPackage.VULKAN_ENGINE__PROCESSES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
+		case VulkanPackage.VULKAN_ENGINE__ENABLED:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
+		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -189,10 +185,9 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(VulkanPackage.Literals.VULKAN_ENGINE__SHARED_RESOURCES,
-				 VulkanFactory.eINSTANCE.createSharedResources()));
+		newChildDescriptors
+				.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__SHARED_RESOURCES,
+						VulkanFactory.eINSTANCE.createSharedResources()));
 	}
 
 	/**
@@ -204,7 +199,7 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

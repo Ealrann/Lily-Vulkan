@@ -146,8 +146,8 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 	{
 		EDescriptorType oldDescriptorType = descriptorType;
 		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
 	}
 
 	/**
@@ -160,7 +160,8 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES);
+			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this,
+					ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -186,8 +187,8 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.SAMPLED_IMAGE__NAME, oldName, name));
 	}
 
 	/**
@@ -212,8 +213,10 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 		sampler = newSampler;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__SAMPLER, oldSampler, newSampler);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ResourcePackage.SAMPLED_IMAGE__SAMPLER, oldSampler, newSampler);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -229,15 +232,15 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 		if (newSampler != sampler)
 		{
 			NotificationChain msgs = null;
-			if (sampler != null)
-				msgs = ((InternalEObject)sampler).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
-			if (newSampler != null)
-				msgs = ((InternalEObject)newSampler).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
+			if (sampler != null) msgs = ((InternalEObject) sampler).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
+			if (newSampler != null) msgs = ((InternalEObject) newSampler).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.SAMPLED_IMAGE__SAMPLER, null, msgs);
 			msgs = basicSetSampler(newSampler, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SAMPLED_IMAGE__SAMPLER, newSampler, newSampler));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.SAMPLED_IMAGE__SAMPLER, newSampler, newSampler));
 	}
 
 	/**
@@ -246,12 +249,14 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-				return basicSetSampler(null, msgs);
+		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			return basicSetSampler(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -266,14 +271,14 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
-				return getDescriptorType();
-			case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
-				return getShaderStages();
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				return getName();
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-				return getSampler();
+		case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
+			return getDescriptorType();
+		case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
+			return getShaderStages();
+		case ResourcePackage.SAMPLED_IMAGE__NAME:
+			return getName();
+		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			return getSampler();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -289,19 +294,19 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
-				setDescriptorType((EDescriptorType)newValue);
-				return;
-			case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
-				getShaderStages().clear();
-				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
-				return;
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				setName((String)newValue);
-				return;
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-				setSampler((Sampler)newValue);
-				return;
+		case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
+			setDescriptorType((EDescriptorType) newValue);
+			return;
+		case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
+			getShaderStages().clear();
+			getShaderStages().addAll((Collection<? extends EShaderStage>) newValue);
+			return;
+		case ResourcePackage.SAMPLED_IMAGE__NAME:
+			setName((String) newValue);
+			return;
+		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			setSampler((Sampler) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -316,18 +321,18 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
-				setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
-				return;
-			case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
-				getShaderStages().clear();
-				return;
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-				setSampler((Sampler)null);
-				return;
+		case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
+			setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
+			return;
+		case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
+			getShaderStages().clear();
+			return;
+		case ResourcePackage.SAMPLED_IMAGE__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			setSampler((Sampler) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -342,14 +347,14 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
-				return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-			case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
-				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
-				return sampler != null;
+		case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
+			return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
+		case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
+			return shaderStages != null && !shaderStages.isEmpty();
+		case ResourcePackage.SAMPLED_IMAGE__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
+			return sampler != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -366,15 +371,18 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 		{
 			switch (derivedFeatureID)
 			{
-				case ResourcePackage.SAMPLED_IMAGE__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
-				default: return -1;
+			case ResourcePackage.SAMPLED_IMAGE__NAME:
+				return TypesPackage.LNAMED_ELEMENT__NAME;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IResource.class)
 		{
 			switch (derivedFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -392,15 +400,18 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 		{
 			switch (baseFeatureID)
 			{
-				case TypesPackage.LNAMED_ELEMENT__NAME: return ResourcePackage.SAMPLED_IMAGE__NAME;
-				default: return -1;
+			case TypesPackage.LNAMED_ELEMENT__NAME:
+				return ResourcePackage.SAMPLED_IMAGE__NAME;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IResource.class)
 		{
 			switch (baseFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

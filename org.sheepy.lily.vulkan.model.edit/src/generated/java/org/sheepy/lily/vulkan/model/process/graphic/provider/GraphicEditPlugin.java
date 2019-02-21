@@ -50,19 +50,17 @@ public final class GraphicEditPlugin extends EMFPlugin
 	 */
 	public GraphicEditPlugin()
 	{
-		super
-		  (new ResourceLocator [] 
-		   {
-		     ProcessEditPlugin.INSTANCE,
-		     EnumerationEditPlugin.INSTANCE,
-		     VulkanEditPlugin.INSTANCE,
-		     TypesEditPlugin.INSTANCE,
-		     ResourceEditPlugin.INSTANCE,
-		     RootEditPlugin.INSTANCE,
-		     InferenceEditPlugin.INSTANCE,
-		     ApplicationEditPlugin.INSTANCE,
-		     ActionEditPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[] {
+				ProcessEditPlugin.INSTANCE,
+				EnumerationEditPlugin.INSTANCE,
+				VulkanEditPlugin.INSTANCE,
+				TypesEditPlugin.INSTANCE,
+				ResourceEditPlugin.INSTANCE,
+				RootEditPlugin.INSTANCE,
+				InferenceEditPlugin.INSTANCE,
+				ApplicationEditPlugin.INSTANCE,
+				ActionEditPlugin.INSTANCE,
+		});
 	}
 
 	/**

@@ -117,7 +117,10 @@ public enum EAccess implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	DEPTH_STENCIL_ATTACHMENT_READ_BIT(512, "DEPTH_STENCIL_ATTACHMENT_READ_BIT", "DEPTH_STENCIL_ATTACHMENT_READ_BIT"),
+	DEPTH_STENCIL_ATTACHMENT_READ_BIT(
+			512,
+			"DEPTH_STENCIL_ATTACHMENT_READ_BIT",
+			"DEPTH_STENCIL_ATTACHMENT_READ_BIT"),
 
 	/**
 	 * The '<em><b>DEPTH STENCIL ATTACHMENT WRITE BIT</b></em>' literal object.
@@ -127,7 +130,10 @@ public enum EAccess implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	DEPTH_STENCIL_ATTACHMENT_WRITE_BIT(1024, "DEPTH_STENCIL_ATTACHMENT_WRITE_BIT", "DEPTH_STENCIL_ATTACHMENT_WRITE_BIT"),
+	DEPTH_STENCIL_ATTACHMENT_WRITE_BIT(
+			1024,
+			"DEPTH_STENCIL_ATTACHMENT_WRITE_BIT",
+			"DEPTH_STENCIL_ATTACHMENT_WRITE_BIT"),
 
 	/**
 	 * The '<em><b>TRANSFER READ BIT</b></em>' literal object.
@@ -450,9 +456,7 @@ public enum EAccess implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EAccess[] VALUES_ARRAY =
-		new EAccess[]
-		{
+	private static final EAccess[] VALUES_ARRAY = new EAccess[] {
 			INDIRECT_COMMAND_READ_BIT,
 			INDEX_READ_BIT,
 			VERTEX_ATTRIBUTE_READ_BIT,
@@ -470,7 +474,7 @@ public enum EAccess implements Enumerator
 			HOST_WRITE_BIT,
 			MEMORY_READ_BIT,
 			MEMORY_WRITE_BIT,
-		};
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EAccess</b></em>' enumerators.
@@ -478,7 +482,8 @@ public enum EAccess implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EAccess> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EAccess> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EAccess</b></em>' literal with the specified literal value.
@@ -534,23 +539,40 @@ public enum EAccess implements Enumerator
 	{
 		switch (value)
 		{
-			case INDIRECT_COMMAND_READ_BIT_VALUE: return INDIRECT_COMMAND_READ_BIT;
-			case INDEX_READ_BIT_VALUE: return INDEX_READ_BIT;
-			case VERTEX_ATTRIBUTE_READ_BIT_VALUE: return VERTEX_ATTRIBUTE_READ_BIT;
-			case UNIFORM_READ_BIT_VALUE: return UNIFORM_READ_BIT;
-			case INPUT_ATTACHMENT_READ_BIT_VALUE: return INPUT_ATTACHMENT_READ_BIT;
-			case SHADER_READ_BIT_VALUE: return SHADER_READ_BIT;
-			case SHADER_WRITE_BIT_VALUE: return SHADER_WRITE_BIT;
-			case COLOR_ATTACHMENT_READ_BIT_VALUE: return COLOR_ATTACHMENT_READ_BIT;
-			case COLOR_ATTACHMENT_WRITE_BIT_VALUE: return COLOR_ATTACHMENT_WRITE_BIT;
-			case DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE: return DEPTH_STENCIL_ATTACHMENT_READ_BIT;
-			case DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE: return DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
-			case TRANSFER_READ_BIT_VALUE: return TRANSFER_READ_BIT;
-			case TRANSFER_WRITE_BIT_VALUE: return TRANSFER_WRITE_BIT;
-			case HOST_READ_BIT_VALUE: return HOST_READ_BIT;
-			case HOST_WRITE_BIT_VALUE: return HOST_WRITE_BIT;
-			case MEMORY_READ_BIT_VALUE: return MEMORY_READ_BIT;
-			case MEMORY_WRITE_BIT_VALUE: return MEMORY_WRITE_BIT;
+		case INDIRECT_COMMAND_READ_BIT_VALUE:
+			return INDIRECT_COMMAND_READ_BIT;
+		case INDEX_READ_BIT_VALUE:
+			return INDEX_READ_BIT;
+		case VERTEX_ATTRIBUTE_READ_BIT_VALUE:
+			return VERTEX_ATTRIBUTE_READ_BIT;
+		case UNIFORM_READ_BIT_VALUE:
+			return UNIFORM_READ_BIT;
+		case INPUT_ATTACHMENT_READ_BIT_VALUE:
+			return INPUT_ATTACHMENT_READ_BIT;
+		case SHADER_READ_BIT_VALUE:
+			return SHADER_READ_BIT;
+		case SHADER_WRITE_BIT_VALUE:
+			return SHADER_WRITE_BIT;
+		case COLOR_ATTACHMENT_READ_BIT_VALUE:
+			return COLOR_ATTACHMENT_READ_BIT;
+		case COLOR_ATTACHMENT_WRITE_BIT_VALUE:
+			return COLOR_ATTACHMENT_WRITE_BIT;
+		case DEPTH_STENCIL_ATTACHMENT_READ_BIT_VALUE:
+			return DEPTH_STENCIL_ATTACHMENT_READ_BIT;
+		case DEPTH_STENCIL_ATTACHMENT_WRITE_BIT_VALUE:
+			return DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
+		case TRANSFER_READ_BIT_VALUE:
+			return TRANSFER_READ_BIT;
+		case TRANSFER_WRITE_BIT_VALUE:
+			return TRANSFER_WRITE_BIT;
+		case HOST_READ_BIT_VALUE:
+			return HOST_READ_BIT;
+		case HOST_WRITE_BIT_VALUE:
+			return HOST_WRITE_BIT;
+		case MEMORY_READ_BIT_VALUE:
+			return MEMORY_READ_BIT;
+		case MEMORY_WRITE_BIT_VALUE:
+			return MEMORY_WRITE_BIT;
 		}
 		return null;
 	}
@@ -597,7 +619,7 @@ public enum EAccess implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -608,7 +630,7 @@ public enum EAccess implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -619,7 +641,7 @@ public enum EAccess implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -633,5 +655,5 @@ public enum EAccess implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EAccess

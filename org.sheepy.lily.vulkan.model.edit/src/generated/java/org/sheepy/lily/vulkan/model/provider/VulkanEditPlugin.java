@@ -44,16 +44,14 @@ public final class VulkanEditPlugin extends EMFPlugin
 	 */
 	public VulkanEditPlugin()
 	{
-		super
-		  (new ResourceLocator [] 
-		   {
-		     ApplicationEditPlugin.INSTANCE,
-		     RootEditPlugin.INSTANCE,
-		     InferenceEditPlugin.INSTANCE,
-		     TypesEditPlugin.INSTANCE,
-		     EnumerationEditPlugin.INSTANCE,
-		     ActionEditPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[] {
+				ApplicationEditPlugin.INSTANCE,
+				RootEditPlugin.INSTANCE,
+				InferenceEditPlugin.INSTANCE,
+				TypesEditPlugin.INSTANCE,
+				EnumerationEditPlugin.INSTANCE,
+				ActionEditPlugin.INSTANCE,
+		});
 	}
 
 	/**

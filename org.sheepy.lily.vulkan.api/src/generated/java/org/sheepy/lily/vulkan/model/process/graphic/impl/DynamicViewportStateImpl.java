@@ -26,7 +26,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  *
  * @generated
  */
-public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container implements DynamicViewportState
+public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container
+		implements DynamicViewportState
 {
 	/**
 	 * The default value of the '{@link #getViewportCount() <em>Viewport Count</em>}' attribute.
@@ -110,8 +111,9 @@ public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container imple
 	{
 		int oldViewportCount = viewportCount;
 		viewportCount = newViewportCount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT, oldViewportCount, viewportCount));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT, oldViewportCount,
+				viewportCount));
 	}
 
 	/**
@@ -135,8 +137,9 @@ public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container imple
 	{
 		int oldScissorCount = scissorCount;
 		scissorCount = newScissorCount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT, oldScissorCount, scissorCount));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT, oldScissorCount,
+				scissorCount));
 	}
 
 	/**
@@ -149,10 +152,10 @@ public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT:
-				return getViewportCount();
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT:
-				return getScissorCount();
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT:
+			return getViewportCount();
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT:
+			return getScissorCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,12 +170,12 @@ public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT:
-				setViewportCount((Integer)newValue);
-				return;
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT:
-				setScissorCount((Integer)newValue);
-				return;
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT:
+			setViewportCount((Integer) newValue);
+			return;
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT:
+			setScissorCount((Integer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -187,12 +190,12 @@ public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT:
-				setViewportCount(VIEWPORT_COUNT_EDEFAULT);
-				return;
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT:
-				setScissorCount(SCISSOR_COUNT_EDEFAULT);
-				return;
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT:
+			setViewportCount(VIEWPORT_COUNT_EDEFAULT);
+			return;
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT:
+			setScissorCount(SCISSOR_COUNT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -207,10 +210,10 @@ public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT:
-				return viewportCount != VIEWPORT_COUNT_EDEFAULT;
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT:
-				return scissorCount != SCISSOR_COUNT_EDEFAULT;
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT:
+			return viewportCount != VIEWPORT_COUNT_EDEFAULT;
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT:
+			return scissorCount != SCISSOR_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

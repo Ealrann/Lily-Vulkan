@@ -150,15 +150,9 @@ public enum EBlendOp implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EBlendOp[] VALUES_ARRAY =
-		new EBlendOp[]
-		{
-			ADD,
-			SUBTRACT,
-			REVERSE_SUBTRACT,
-			MIN,
-			MAX,
-		};
+	private static final EBlendOp[] VALUES_ARRAY = new EBlendOp[] {
+			ADD, SUBTRACT, REVERSE_SUBTRACT, MIN, MAX,
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EBlend Op</b></em>' enumerators.
@@ -166,7 +160,8 @@ public enum EBlendOp implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EBlendOp> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EBlendOp> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EBlend Op</b></em>' literal with the specified literal value.
@@ -222,11 +217,16 @@ public enum EBlendOp implements Enumerator
 	{
 		switch (value)
 		{
-			case ADD_VALUE: return ADD;
-			case SUBTRACT_VALUE: return SUBTRACT;
-			case REVERSE_SUBTRACT_VALUE: return REVERSE_SUBTRACT;
-			case MIN_VALUE: return MIN;
-			case MAX_VALUE: return MAX;
+		case ADD_VALUE:
+			return ADD;
+		case SUBTRACT_VALUE:
+			return SUBTRACT;
+		case REVERSE_SUBTRACT_VALUE:
+			return REVERSE_SUBTRACT;
+		case MIN_VALUE:
+			return MIN;
+		case MAX_VALUE:
+			return MAX;
 		}
 		return null;
 	}
@@ -273,7 +273,7 @@ public enum EBlendOp implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -284,7 +284,7 @@ public enum EBlendOp implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -295,7 +295,7 @@ public enum EBlendOp implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -309,5 +309,5 @@ public enum EBlendOp implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EBlendOp

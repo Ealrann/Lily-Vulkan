@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -37,8 +36,9 @@ import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AbstractProcessItemProvider 
-	extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class AbstractProcessItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -81,19 +81,13 @@ public class AbstractProcessItemProvider
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -104,19 +98,13 @@ public class AbstractProcessItemProvider
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IProcess_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IProcess_enabled_feature", "_UI_IProcess_type"),
-				 VulkanPackage.Literals.IPROCESS__ENABLED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_IProcess_enabled_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_IProcess_enabled_feature",
+						"_UI_IProcess_type"),
+				VulkanPackage.Literals.IPROCESS__ENABLED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -127,19 +115,13 @@ public class AbstractProcessItemProvider
 	 */
 	protected void addResetAllowedPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractProcess_resetAllowed_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractProcess_resetAllowed_feature", "_UI_AbstractProcess_type"),
-				 ProcessPackage.Literals.ABSTRACT_PROCESS__RESET_ALLOWED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AbstractProcess_resetAllowed_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractProcess_resetAllowed_feature", "_UI_AbstractProcess_type"),
+				ProcessPackage.Literals.ABSTRACT_PROCESS__RESET_ALLOWED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -150,19 +132,15 @@ public class AbstractProcessItemProvider
 	 */
 	protected void addInitializedSignalizedSemaphorePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractProcess_initializedSignalizedSemaphore_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractProcess_initializedSignalizedSemaphore_feature", "_UI_AbstractProcess_type"),
-				 ProcessPackage.Literals.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractProcess_initializedSignalizedSemaphore_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractProcess_initializedSignalizedSemaphore_feature",
+						"_UI_AbstractProcess_type"),
+				ProcessPackage.Literals.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE, true,
+				false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -173,19 +151,14 @@ public class AbstractProcessItemProvider
 	 */
 	protected void addDependentProcessesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractProcess_dependentProcesses_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractProcess_dependentProcesses_feature", "_UI_AbstractProcess_type"),
-				 ProcessPackage.Literals.ABSTRACT_PROCESS__DEPENDENT_PROCESSES,
-				 false,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AbstractProcess_dependentProcesses_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractProcess_dependentProcesses_feature",
+						"_UI_AbstractProcess_type"),
+				ProcessPackage.Literals.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, false, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -233,12 +206,11 @@ public class AbstractProcessItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((AbstractProcess)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AbstractProcess_type") :
-			getString("_UI_AbstractProcess_type") + " " + label;
+		String label = ((AbstractProcess) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_AbstractProcess_type")
+				: getString("_UI_AbstractProcess_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -254,19 +226,21 @@ public class AbstractProcessItemProvider
 
 		switch (notification.getFeatureID(AbstractProcess.class))
 		{
-			case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
-			case ProcessPackage.ABSTRACT_PROCESS__NAME:
-			case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-			case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-			case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-			case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
-			case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-			case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
+		case ProcessPackage.ABSTRACT_PROCESS__NAME:
+		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
+		case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
+		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
+		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
+		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -283,25 +257,21 @@ public class AbstractProcessItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
-				 VulkanFactory.eINSTANCE.createResourceContainer()));
+		newChildDescriptors.add(
+				createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
+						VulkanFactory.eINSTANCE.createResourceContainer()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
-				 VulkanFactory.eINSTANCE.createSharedResources()));
+		newChildDescriptors.add(
+				createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
+						VulkanFactory.eINSTANCE.createSharedResources()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SETS,
-				 ResourceFactory.eINSTANCE.createDescriptorSet()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SETS,
+						ResourceFactory.eINSTANCE.createDescriptorSet()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PROCESS__SEMAPHORES,
-				 ProcessFactory.eINSTANCE.createProcessSemaphore()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__SEMAPHORES,
+						ProcessFactory.eINSTANCE.createProcessSemaphore()));
 	}
 
 	/**
@@ -313,7 +283,7 @@ public class AbstractProcessItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

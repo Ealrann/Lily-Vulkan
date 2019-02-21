@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -21,8 +20,7 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SharedResourcesItemProvider 
-	extends ResourceContainerItemProvider
+public class SharedResourcesItemProvider extends ResourceContainerItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,13 +71,12 @@ public class SharedResourcesItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EList<LObject> labelValue = ((SharedResources)object).getContentObjects();
+		EList<LObject> labelValue = ((SharedResources) object).getContentObjects();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SharedResources_type") :
-			getString("_UI_SharedResources_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_SharedResources_type")
+				: getString("_UI_SharedResources_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -95,9 +92,10 @@ public class SharedResourcesItemProvider
 
 		switch (notification.getFeatureID(SharedResources.class))
 		{
-			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -230,8 +230,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		EDescriptorType oldDescriptorType = descriptorType;
 		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
 	}
 
 	/**
@@ -244,7 +244,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.BUFFER__SHADER_STAGES);
+			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this,
+					ResourcePackage.BUFFER__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -270,8 +271,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER__NAME, oldName, name));
 	}
 
 	/**
@@ -295,8 +296,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		long oldSize = size;
 		size = newSize;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__SIZE, oldSize, size));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER__SIZE, oldSize, size));
 	}
 
 	/**
@@ -309,7 +310,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeEList<EBufferUsage>(EBufferUsage.class, this, ResourcePackage.BUFFER__USAGES);
+			usages = new EDataTypeEList<EBufferUsage>(EBufferUsage.class, this,
+					ResourcePackage.BUFFER__USAGES);
 		}
 		return usages;
 	}
@@ -335,8 +337,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		ByteBuffer oldData = data;
 		data = newData;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__DATA, oldData, data));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER__DATA, oldData, data));
 	}
 
 	/**
@@ -360,8 +362,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		boolean oldOftenUpdated = oftenUpdated;
 		oftenUpdated = newOftenUpdated;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__OFTEN_UPDATED, oldOftenUpdated, oftenUpdated));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER__OFTEN_UPDATED, oldOftenUpdated, oftenUpdated));
 	}
 
 	/**
@@ -385,8 +387,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		boolean oldGpuBuffer = gpuBuffer;
 		gpuBuffer = newGpuBuffer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER__GPU_BUFFER, oldGpuBuffer, gpuBuffer));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER__GPU_BUFFER, oldGpuBuffer, gpuBuffer));
 	}
 
 	/**
@@ -399,22 +401,22 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
-				return getDescriptorType();
-			case ResourcePackage.BUFFER__SHADER_STAGES:
-				return getShaderStages();
-			case ResourcePackage.BUFFER__NAME:
-				return getName();
-			case ResourcePackage.BUFFER__SIZE:
-				return getSize();
-			case ResourcePackage.BUFFER__USAGES:
-				return getUsages();
-			case ResourcePackage.BUFFER__DATA:
-				return getData();
-			case ResourcePackage.BUFFER__OFTEN_UPDATED:
-				return isOftenUpdated();
-			case ResourcePackage.BUFFER__GPU_BUFFER:
-				return isGpuBuffer();
+		case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
+			return getDescriptorType();
+		case ResourcePackage.BUFFER__SHADER_STAGES:
+			return getShaderStages();
+		case ResourcePackage.BUFFER__NAME:
+			return getName();
+		case ResourcePackage.BUFFER__SIZE:
+			return getSize();
+		case ResourcePackage.BUFFER__USAGES:
+			return getUsages();
+		case ResourcePackage.BUFFER__DATA:
+			return getData();
+		case ResourcePackage.BUFFER__OFTEN_UPDATED:
+			return isOftenUpdated();
+		case ResourcePackage.BUFFER__GPU_BUFFER:
+			return isGpuBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -430,32 +432,32 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
-				setDescriptorType((EDescriptorType)newValue);
-				return;
-			case ResourcePackage.BUFFER__SHADER_STAGES:
-				getShaderStages().clear();
-				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
-				return;
-			case ResourcePackage.BUFFER__NAME:
-				setName((String)newValue);
-				return;
-			case ResourcePackage.BUFFER__SIZE:
-				setSize((Long)newValue);
-				return;
-			case ResourcePackage.BUFFER__USAGES:
-				getUsages().clear();
-				getUsages().addAll((Collection<? extends EBufferUsage>)newValue);
-				return;
-			case ResourcePackage.BUFFER__DATA:
-				setData((ByteBuffer)newValue);
-				return;
-			case ResourcePackage.BUFFER__OFTEN_UPDATED:
-				setOftenUpdated((Boolean)newValue);
-				return;
-			case ResourcePackage.BUFFER__GPU_BUFFER:
-				setGpuBuffer((Boolean)newValue);
-				return;
+		case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
+			setDescriptorType((EDescriptorType) newValue);
+			return;
+		case ResourcePackage.BUFFER__SHADER_STAGES:
+			getShaderStages().clear();
+			getShaderStages().addAll((Collection<? extends EShaderStage>) newValue);
+			return;
+		case ResourcePackage.BUFFER__NAME:
+			setName((String) newValue);
+			return;
+		case ResourcePackage.BUFFER__SIZE:
+			setSize((Long) newValue);
+			return;
+		case ResourcePackage.BUFFER__USAGES:
+			getUsages().clear();
+			getUsages().addAll((Collection<? extends EBufferUsage>) newValue);
+			return;
+		case ResourcePackage.BUFFER__DATA:
+			setData((ByteBuffer) newValue);
+			return;
+		case ResourcePackage.BUFFER__OFTEN_UPDATED:
+			setOftenUpdated((Boolean) newValue);
+			return;
+		case ResourcePackage.BUFFER__GPU_BUFFER:
+			setGpuBuffer((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -470,30 +472,30 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
-				setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
-				return;
-			case ResourcePackage.BUFFER__SHADER_STAGES:
-				getShaderStages().clear();
-				return;
-			case ResourcePackage.BUFFER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ResourcePackage.BUFFER__SIZE:
-				setSize(SIZE_EDEFAULT);
-				return;
-			case ResourcePackage.BUFFER__USAGES:
-				getUsages().clear();
-				return;
-			case ResourcePackage.BUFFER__DATA:
-				setData(DATA_EDEFAULT);
-				return;
-			case ResourcePackage.BUFFER__OFTEN_UPDATED:
-				setOftenUpdated(OFTEN_UPDATED_EDEFAULT);
-				return;
-			case ResourcePackage.BUFFER__GPU_BUFFER:
-				setGpuBuffer(GPU_BUFFER_EDEFAULT);
-				return;
+		case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
+			setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
+			return;
+		case ResourcePackage.BUFFER__SHADER_STAGES:
+			getShaderStages().clear();
+			return;
+		case ResourcePackage.BUFFER__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ResourcePackage.BUFFER__SIZE:
+			setSize(SIZE_EDEFAULT);
+			return;
+		case ResourcePackage.BUFFER__USAGES:
+			getUsages().clear();
+			return;
+		case ResourcePackage.BUFFER__DATA:
+			setData(DATA_EDEFAULT);
+			return;
+		case ResourcePackage.BUFFER__OFTEN_UPDATED:
+			setOftenUpdated(OFTEN_UPDATED_EDEFAULT);
+			return;
+		case ResourcePackage.BUFFER__GPU_BUFFER:
+			setGpuBuffer(GPU_BUFFER_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -508,22 +510,22 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
-				return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-			case ResourcePackage.BUFFER__SHADER_STAGES:
-				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.BUFFER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.BUFFER__SIZE:
-				return size != SIZE_EDEFAULT;
-			case ResourcePackage.BUFFER__USAGES:
-				return usages != null && !usages.isEmpty();
-			case ResourcePackage.BUFFER__DATA:
-				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
-			case ResourcePackage.BUFFER__OFTEN_UPDATED:
-				return oftenUpdated != OFTEN_UPDATED_EDEFAULT;
-			case ResourcePackage.BUFFER__GPU_BUFFER:
-				return gpuBuffer != GPU_BUFFER_EDEFAULT;
+		case ResourcePackage.BUFFER__DESCRIPTOR_TYPE:
+			return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
+		case ResourcePackage.BUFFER__SHADER_STAGES:
+			return shaderStages != null && !shaderStages.isEmpty();
+		case ResourcePackage.BUFFER__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ResourcePackage.BUFFER__SIZE:
+			return size != SIZE_EDEFAULT;
+		case ResourcePackage.BUFFER__USAGES:
+			return usages != null && !usages.isEmpty();
+		case ResourcePackage.BUFFER__DATA:
+			return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
+		case ResourcePackage.BUFFER__OFTEN_UPDATED:
+			return oftenUpdated != OFTEN_UPDATED_EDEFAULT;
+		case ResourcePackage.BUFFER__GPU_BUFFER:
+			return gpuBuffer != GPU_BUFFER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -540,15 +542,18 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 		{
 			switch (derivedFeatureID)
 			{
-				case ResourcePackage.BUFFER__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
-				default: return -1;
+			case ResourcePackage.BUFFER__NAME:
+				return TypesPackage.LNAMED_ELEMENT__NAME;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IResource.class)
 		{
 			switch (derivedFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -566,15 +571,18 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 		{
 			switch (baseFeatureID)
 			{
-				case TypesPackage.LNAMED_ELEMENT__NAME: return ResourcePackage.BUFFER__NAME;
-				default: return -1;
+			case TypesPackage.LNAMED_ELEMENT__NAME:
+				return ResourcePackage.BUFFER__NAME;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IResource.class)
 		{
 			switch (baseFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

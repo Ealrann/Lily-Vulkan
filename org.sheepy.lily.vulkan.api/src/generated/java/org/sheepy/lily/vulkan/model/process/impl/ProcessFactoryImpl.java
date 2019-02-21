@@ -30,13 +30,13 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		try
 		{
-			ProcessFactory theProcessFactory = (ProcessFactory)EPackage.Registry.INSTANCE.getEFactory(ProcessPackage.eNS_URI);
+			ProcessFactory theProcessFactory = (ProcessFactory) EPackage.Registry.INSTANCE
+					.getEFactory(ProcessPackage.eNS_URI);
 			if (theProcessFactory != null)
 			{
 				return theProcessFactory;
 			}
-		}
-		catch (Exception exception)
+		} catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -64,11 +64,15 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ProcessPackage.PROCESS_SEMAPHORE: return createProcessSemaphore();
-			case ProcessPackage.PIPELINE_BARRIER: return createPipelineBarrier();
-			case ProcessPackage.PUSH_CONSTANT: return createPushConstant();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ProcessPackage.PROCESS_SEMAPHORE:
+			return createProcessSemaphore();
+		case ProcessPackage.PIPELINE_BARRIER:
+			return createPipelineBarrier();
+		case ProcessPackage.PUSH_CONSTANT:
+			return createPushConstant();
+		default:
+			throw new IllegalArgumentException(
+					"The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -116,7 +120,7 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	@Override
 	public ProcessPackage getProcessPackage()
 	{
-		return (ProcessPackage)getEPackage();
+		return (ProcessPackage) getEPackage();
 	}
 
 	/**

@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -32,14 +31,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DynamicStateItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class DynamicStateItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -78,19 +72,13 @@ public class DynamicStateItemProvider
 	 */
 	protected void addStatesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DynamicState_states_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DynamicState_states_feature", "_UI_DynamicState_type"),
-				 GraphicPackage.Literals.DYNAMIC_STATE__STATES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_DynamicState_states_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DynamicState_states_feature",
+						"_UI_DynamicState_type"),
+				GraphicPackage.Literals.DYNAMIC_STATE__STATES, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -117,7 +105,6 @@ public class DynamicStateItemProvider
 		return getString("_UI_DynamicState_type");
 	}
 
-
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
@@ -132,9 +119,10 @@ public class DynamicStateItemProvider
 
 		switch (notification.getFeatureID(DynamicState.class))
 		{
-			case GraphicPackage.DYNAMIC_STATE__STATES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case GraphicPackage.DYNAMIC_STATE__STATES:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -161,7 +149,7 @@ public class DynamicStateItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

@@ -112,12 +112,13 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	{
 		if (buffer != null && buffer.eIsProxy())
 		{
-			InternalEObject oldBuffer = (InternalEObject)buffer;
-			buffer = (Buffer)eResolveProxy(oldBuffer);
+			InternalEObject oldBuffer = (InternalEObject) buffer;
+			buffer = (Buffer) eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
 			}
 		}
 		return buffer;
@@ -143,8 +144,8 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	{
 		Buffer oldBuffer = buffer;
 		buffer = newBuffer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER_BARRIER__BUFFER, oldBuffer, buffer));
 	}
 
 	/**
@@ -168,8 +169,8 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	{
 		EAccess oldSrcAccess = srcAccess;
 		srcAccess = newSrcAccess == null ? SRC_ACCESS_EDEFAULT : newSrcAccess;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_BARRIER__SRC_ACCESS, oldSrcAccess, srcAccess));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER_BARRIER__SRC_ACCESS, oldSrcAccess, srcAccess));
 	}
 
 	/**
@@ -193,8 +194,8 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	{
 		EAccess oldDstAccess = dstAccess;
 		dstAccess = newDstAccess == null ? DST_ACCESS_EDEFAULT : newDstAccess;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.BUFFER_BARRIER__DST_ACCESS, oldDstAccess, dstAccess));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER_BARRIER__DST_ACCESS, oldDstAccess, dstAccess));
 	}
 
 	/**
@@ -207,13 +208,13 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_BARRIER__BUFFER:
-				if (resolve) return getBuffer();
-				return basicGetBuffer();
-			case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
-				return getSrcAccess();
-			case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
-				return getDstAccess();
+		case ResourcePackage.BUFFER_BARRIER__BUFFER:
+			if (resolve) return getBuffer();
+			return basicGetBuffer();
+		case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
+			return getSrcAccess();
+		case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
+			return getDstAccess();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -228,15 +229,15 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_BARRIER__BUFFER:
-				setBuffer((Buffer)newValue);
-				return;
-			case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
-				setSrcAccess((EAccess)newValue);
-				return;
-			case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
-				setDstAccess((EAccess)newValue);
-				return;
+		case ResourcePackage.BUFFER_BARRIER__BUFFER:
+			setBuffer((Buffer) newValue);
+			return;
+		case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
+			setSrcAccess((EAccess) newValue);
+			return;
+		case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
+			setDstAccess((EAccess) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -251,15 +252,15 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_BARRIER__BUFFER:
-				setBuffer((Buffer)null);
-				return;
-			case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
-				setSrcAccess(SRC_ACCESS_EDEFAULT);
-				return;
-			case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
-				setDstAccess(DST_ACCESS_EDEFAULT);
-				return;
+		case ResourcePackage.BUFFER_BARRIER__BUFFER:
+			setBuffer((Buffer) null);
+			return;
+		case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
+			setSrcAccess(SRC_ACCESS_EDEFAULT);
+			return;
+		case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
+			setDstAccess(DST_ACCESS_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -274,12 +275,12 @@ public class BufferBarrierImpl extends BarrierImpl implements BufferBarrier
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.BUFFER_BARRIER__BUFFER:
-				return buffer != null;
-			case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
-				return srcAccess != SRC_ACCESS_EDEFAULT;
-			case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
-				return dstAccess != DST_ACCESS_EDEFAULT;
+		case ResourcePackage.BUFFER_BARRIER__BUFFER:
+			return buffer != null;
+		case ResourcePackage.BUFFER_BARRIER__SRC_ACCESS:
+			return srcAccess != SRC_ACCESS_EDEFAULT;
+		case ResourcePackage.BUFFER_BARRIER__DST_ACCESS:
+			return dstAccess != DST_ACCESS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

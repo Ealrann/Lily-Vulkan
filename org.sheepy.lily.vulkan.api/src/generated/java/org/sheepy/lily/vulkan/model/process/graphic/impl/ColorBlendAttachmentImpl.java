@@ -38,7 +38,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  *
  * @generated
  */
-public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container implements ColorBlendAttachment
+public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
+		implements ColorBlendAttachment
 {
 	/**
 	 * The default value of the '{@link #isBlendEnable() <em>Blend Enable</em>}' attribute.
@@ -302,8 +303,8 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		boolean oldBlendEnable = blendEnable;
 		blendEnable = newBlendEnable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE, oldBlendEnable, blendEnable));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE, oldBlendEnable, blendEnable));
 	}
 
 	/**
@@ -327,8 +328,9 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		boolean oldRedComponentEnable = redComponentEnable;
 		redComponentEnable = newRedComponentEnable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE, oldRedComponentEnable, redComponentEnable));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE, oldRedComponentEnable,
+				redComponentEnable));
 	}
 
 	/**
@@ -352,8 +354,9 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		boolean oldGreenComponentEnable = greenComponentEnable;
 		greenComponentEnable = newGreenComponentEnable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE, oldGreenComponentEnable, greenComponentEnable));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE,
+				oldGreenComponentEnable, greenComponentEnable));
 	}
 
 	/**
@@ -377,8 +380,9 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		boolean oldBlueComponentEnable = blueComponentEnable;
 		blueComponentEnable = newBlueComponentEnable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE, oldBlueComponentEnable, blueComponentEnable));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE,
+				oldBlueComponentEnable, blueComponentEnable));
 	}
 
 	/**
@@ -402,8 +406,9 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		boolean oldAlphaComponentEnable = alphaComponentEnable;
 		alphaComponentEnable = newAlphaComponentEnable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE, oldAlphaComponentEnable, alphaComponentEnable));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE,
+				oldAlphaComponentEnable, alphaComponentEnable));
 	}
 
 	/**
@@ -427,8 +432,8 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		EBlendFactor oldSrcColor = srcColor;
 		srcColor = newSrcColor == null ? SRC_COLOR_EDEFAULT : newSrcColor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR, oldSrcColor, srcColor));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR, oldSrcColor, srcColor));
 	}
 
 	/**
@@ -452,8 +457,8 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		EBlendFactor oldDstColor = dstColor;
 		dstColor = newDstColor == null ? DST_COLOR_EDEFAULT : newDstColor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR, oldDstColor, dstColor));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR, oldDstColor, dstColor));
 	}
 
 	/**
@@ -477,8 +482,8 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		EBlendFactor oldSrcAlpha = srcAlpha;
 		srcAlpha = newSrcAlpha == null ? SRC_ALPHA_EDEFAULT : newSrcAlpha;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA, oldSrcAlpha, srcAlpha));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA, oldSrcAlpha, srcAlpha));
 	}
 
 	/**
@@ -502,8 +507,8 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		EBlendFactor oldDstAlpha = dstAlpha;
 		dstAlpha = newDstAlpha == null ? DST_ALPHA_EDEFAULT : newDstAlpha;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA, oldDstAlpha, dstAlpha));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA, oldDstAlpha, dstAlpha));
 	}
 
 	/**
@@ -527,8 +532,9 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		EBlendOp oldColorBlendOp = colorBlendOp;
 		colorBlendOp = newColorBlendOp == null ? COLOR_BLEND_OP_EDEFAULT : newColorBlendOp;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP, oldColorBlendOp, colorBlendOp));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP, oldColorBlendOp,
+				colorBlendOp));
 	}
 
 	/**
@@ -552,8 +558,9 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		EBlendOp oldAlphaBlendOp = alphaBlendOp;
 		alphaBlendOp = newAlphaBlendOp == null ? ALPHA_BLEND_OP_EDEFAULT : newAlphaBlendOp;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP, oldAlphaBlendOp, alphaBlendOp));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP, oldAlphaBlendOp,
+				alphaBlendOp));
 	}
 
 	/**
@@ -566,28 +573,28 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
-				return isBlendEnable();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-				return isRedComponentEnable();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-				return isGreenComponentEnable();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-				return isBlueComponentEnable();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
-				return isAlphaComponentEnable();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
-				return getSrcColor();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
-				return getDstColor();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
-				return getSrcAlpha();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
-				return getDstAlpha();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
-				return getColorBlendOp();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
-				return getAlphaBlendOp();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
+			return isBlendEnable();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+			return isRedComponentEnable();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+			return isGreenComponentEnable();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+			return isBlueComponentEnable();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
+			return isAlphaComponentEnable();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
+			return getSrcColor();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
+			return getDstColor();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
+			return getSrcAlpha();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
+			return getDstAlpha();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
+			return getColorBlendOp();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
+			return getAlphaBlendOp();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -602,39 +609,39 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
-				setBlendEnable((Boolean)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-				setRedComponentEnable((Boolean)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-				setGreenComponentEnable((Boolean)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-				setBlueComponentEnable((Boolean)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
-				setAlphaComponentEnable((Boolean)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
-				setSrcColor((EBlendFactor)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
-				setDstColor((EBlendFactor)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
-				setSrcAlpha((EBlendFactor)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
-				setDstAlpha((EBlendFactor)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
-				setColorBlendOp((EBlendOp)newValue);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
-				setAlphaBlendOp((EBlendOp)newValue);
-				return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
+			setBlendEnable((Boolean) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+			setRedComponentEnable((Boolean) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+			setGreenComponentEnable((Boolean) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+			setBlueComponentEnable((Boolean) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
+			setAlphaComponentEnable((Boolean) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
+			setSrcColor((EBlendFactor) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
+			setDstColor((EBlendFactor) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
+			setSrcAlpha((EBlendFactor) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
+			setDstAlpha((EBlendFactor) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
+			setColorBlendOp((EBlendOp) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
+			setAlphaBlendOp((EBlendOp) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -649,39 +656,39 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
-				setBlendEnable(BLEND_ENABLE_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-				setRedComponentEnable(RED_COMPONENT_ENABLE_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-				setGreenComponentEnable(GREEN_COMPONENT_ENABLE_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-				setBlueComponentEnable(BLUE_COMPONENT_ENABLE_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
-				setAlphaComponentEnable(ALPHA_COMPONENT_ENABLE_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
-				setSrcColor(SRC_COLOR_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
-				setDstColor(DST_COLOR_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
-				setSrcAlpha(SRC_ALPHA_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
-				setDstAlpha(DST_ALPHA_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
-				setColorBlendOp(COLOR_BLEND_OP_EDEFAULT);
-				return;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
-				setAlphaBlendOp(ALPHA_BLEND_OP_EDEFAULT);
-				return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
+			setBlendEnable(BLEND_ENABLE_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+			setRedComponentEnable(RED_COMPONENT_ENABLE_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+			setGreenComponentEnable(GREEN_COMPONENT_ENABLE_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+			setBlueComponentEnable(BLUE_COMPONENT_ENABLE_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
+			setAlphaComponentEnable(ALPHA_COMPONENT_ENABLE_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
+			setSrcColor(SRC_COLOR_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
+			setDstColor(DST_COLOR_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
+			setSrcAlpha(SRC_ALPHA_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
+			setDstAlpha(DST_ALPHA_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
+			setColorBlendOp(COLOR_BLEND_OP_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
+			setAlphaBlendOp(ALPHA_BLEND_OP_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -696,28 +703,28 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container imple
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
-				return blendEnable != BLEND_ENABLE_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-				return redComponentEnable != RED_COMPONENT_ENABLE_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-				return greenComponentEnable != GREEN_COMPONENT_ENABLE_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-				return blueComponentEnable != BLUE_COMPONENT_ENABLE_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
-				return alphaComponentEnable != ALPHA_COMPONENT_ENABLE_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
-				return srcColor != SRC_COLOR_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
-				return dstColor != DST_COLOR_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
-				return srcAlpha != SRC_ALPHA_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
-				return dstAlpha != DST_ALPHA_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
-				return colorBlendOp != COLOR_BLEND_OP_EDEFAULT;
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
-				return alphaBlendOp != ALPHA_BLEND_OP_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
+			return blendEnable != BLEND_ENABLE_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+			return redComponentEnable != RED_COMPONENT_ENABLE_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+			return greenComponentEnable != GREEN_COMPONENT_ENABLE_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+			return blueComponentEnable != BLUE_COMPONENT_ENABLE_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
+			return alphaComponentEnable != ALPHA_COMPONENT_ENABLE_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
+			return srcColor != SRC_COLOR_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
+			return dstColor != DST_COLOR_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
+			return srcAlpha != SRC_ALPHA_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
+			return dstAlpha != DST_ALPHA_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
+			return colorBlendOp != COLOR_BLEND_OP_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
+			return alphaBlendOp != ALPHA_BLEND_OP_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

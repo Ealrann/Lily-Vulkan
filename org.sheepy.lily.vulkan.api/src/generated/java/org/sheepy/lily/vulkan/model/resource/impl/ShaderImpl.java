@@ -125,8 +125,8 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.SHADER__NAME, oldName, name));
 	}
 
 	/**
@@ -151,8 +151,10 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 		file = newFile;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__FILE, oldFile, newFile);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ResourcePackage.SHADER__FILE, oldFile, newFile);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -168,15 +170,15 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 		if (newFile != file)
 		{
 			NotificationChain msgs = null;
-			if (file != null)
-				msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
-			if (newFile != null)
-				msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
+			if (file != null) msgs = ((InternalEObject) file).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
+			if (newFile != null) msgs = ((InternalEObject) newFile).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.SHADER__FILE, null, msgs);
 			msgs = basicSetFile(newFile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__FILE, newFile, newFile));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.SHADER__FILE, newFile, newFile));
 	}
 
 	/**
@@ -200,8 +202,8 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		EShaderStage oldStage = stage;
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.SHADER__STAGE, oldStage, stage));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.SHADER__STAGE, oldStage, stage));
 	}
 
 	/**
@@ -210,12 +212,14 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__FILE:
-				return basicSetFile(null, msgs);
+		case ResourcePackage.SHADER__FILE:
+			return basicSetFile(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -230,12 +234,12 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__NAME:
-				return getName();
-			case ResourcePackage.SHADER__FILE:
-				return getFile();
-			case ResourcePackage.SHADER__STAGE:
-				return getStage();
+		case ResourcePackage.SHADER__NAME:
+			return getName();
+		case ResourcePackage.SHADER__FILE:
+			return getFile();
+		case ResourcePackage.SHADER__STAGE:
+			return getStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -250,15 +254,15 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__NAME:
-				setName((String)newValue);
-				return;
-			case ResourcePackage.SHADER__FILE:
-				setFile((PathResource)newValue);
-				return;
-			case ResourcePackage.SHADER__STAGE:
-				setStage((EShaderStage)newValue);
-				return;
+		case ResourcePackage.SHADER__NAME:
+			setName((String) newValue);
+			return;
+		case ResourcePackage.SHADER__FILE:
+			setFile((PathResource) newValue);
+			return;
+		case ResourcePackage.SHADER__STAGE:
+			setStage((EShaderStage) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -273,15 +277,15 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ResourcePackage.SHADER__FILE:
-				setFile((PathResource)null);
-				return;
-			case ResourcePackage.SHADER__STAGE:
-				setStage(STAGE_EDEFAULT);
-				return;
+		case ResourcePackage.SHADER__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ResourcePackage.SHADER__FILE:
+			setFile((PathResource) null);
+			return;
+		case ResourcePackage.SHADER__STAGE:
+			setStage(STAGE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -296,12 +300,12 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.SHADER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.SHADER__FILE:
-				return file != null;
-			case ResourcePackage.SHADER__STAGE:
-				return stage != STAGE_EDEFAULT;
+		case ResourcePackage.SHADER__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ResourcePackage.SHADER__FILE:
+			return file != null;
+		case ResourcePackage.SHADER__STAGE:
+			return stage != STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

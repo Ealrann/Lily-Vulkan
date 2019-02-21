@@ -150,11 +150,14 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 */
 	public static ProcessPackage init()
 	{
-		if (isInited) return (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		if (isInited)
+			return (ProcessPackage) EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredProcessPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		ProcessPackageImpl theProcessPackage = registeredProcessPackage instanceof ProcessPackageImpl ? (ProcessPackageImpl)registeredProcessPackage : new ProcessPackageImpl();
+		ProcessPackageImpl theProcessPackage = registeredProcessPackage instanceof ProcessPackageImpl
+				? (ProcessPackageImpl) registeredProcessPackage
+				: new ProcessPackageImpl();
 
 		isInited = true;
 
@@ -202,7 +205,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_ResourceContainer()
 	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(0);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -213,7 +216,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_DescriptorSets()
 	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(1);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -224,7 +227,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_Units()
 	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(2);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -235,7 +238,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_Semaphores()
 	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(3);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -246,7 +249,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EAttribute getAbstractProcess_ResetAllowed()
 	{
-		return (EAttribute)abstractProcessEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -257,7 +260,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EAttribute getAbstractProcess_InitializedSignalizedSemaphore()
 	{
-		return (EAttribute)abstractProcessEClass.getEStructuralFeatures().get(5);
+		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -268,7 +271,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_DependentProcesses()
 	{
-		return (EReference)abstractProcessEClass.getEStructuralFeatures().get(6);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -290,7 +293,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getProcessSemaphore_Process()
 	{
-		return (EReference)processSemaphoreEClass.getEStructuralFeatures().get(0);
+		return (EReference) processSemaphoreEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -301,7 +304,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EAttribute getProcessSemaphore_WaitStage()
 	{
-		return (EAttribute)processSemaphoreEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) processSemaphoreEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -334,7 +337,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getPipelineBarrier_Barrier()
 	{
-		return (EReference)pipelineBarrierEClass.getEStructuralFeatures().get(0);
+		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -345,7 +348,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getPipelineBarrier_SrcQueue()
 	{
-		return (EReference)pipelineBarrierEClass.getEStructuralFeatures().get(1);
+		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -356,7 +359,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getPipelineBarrier_DstQueue()
 	{
-		return (EReference)pipelineBarrierEClass.getEStructuralFeatures().get(2);
+		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -378,7 +381,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EAttribute getIPipeline_Enabled()
 	{
-		return (EAttribute)iPipelineEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) iPipelineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -389,7 +392,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EAttribute getIPipeline_Stage()
 	{
-		return (EAttribute)iPipelineEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) iPipelineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -411,7 +414,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractPipeline_Units()
 	{
-		return (EReference)abstractPipelineEClass.getEStructuralFeatures().get(0);
+		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -422,7 +425,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractPipeline_DescriptorSet()
 	{
-		return (EReference)abstractPipelineEClass.getEStructuralFeatures().get(1);
+		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -433,7 +436,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractPipeline_Constants()
 	{
-		return (EReference)abstractPipelineEClass.getEStructuralFeatures().get(2);
+		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -466,7 +469,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractCompositePipeline_Pipelines()
 	{
-		return (EReference)abstractCompositePipelineEClass.getEStructuralFeatures().get(0);
+		return (EReference) abstractCompositePipelineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -488,7 +491,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public ProcessFactory getProcessFactory()
 	{
-		return (ProcessFactory)getEFactoryInstance();
+		return (ProcessFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -573,12 +576,18 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
-		RootPackage theRootPackage = (RootPackage)EPackage.Registry.INSTANCE.getEPackage(RootPackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		VulkanPackage theVulkanPackage = (VulkanPackage) EPackage.Registry.INSTANCE
+				.getEPackage(VulkanPackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage) EPackage.Registry.INSTANCE
+				.getEPackage(ResourcePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
+		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
+				.getEPackage(EnumerationPackage.eNS_URI);
+		RootPackage theRootPackage = (RootPackage) EPackage.Registry.INSTANCE
+				.getEPackage(RootPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
+				.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -596,41 +605,100 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		pushConstantEClass.getESuperTypes().add(this.getIPipelineUnit());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractProcess_ResourceContainer(), theVulkanPackage.getResourceContainer(), null, "resourceContainer", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_DescriptorSets(), theResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_Units(), this.getIPipeline(), null, "units", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_Semaphores(), this.getProcessSemaphore(), null, "semaphores", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAbstractProcess_ResetAllowed(), theEcorePackage.getEBoolean(), "resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAbstractProcess_InitializedSignalizedSemaphore(), theEcorePackage.getEBoolean(), "initializedSignalizedSemaphore", "false", 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_DependentProcesses(), this.getProcessSemaphore(), this.getProcessSemaphore_Process(), "dependentProcesses", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractProcess_ResourceContainer(),
+				theVulkanPackage.getResourceContainer(), null, "resourceContainer", null, 0, 1,
+				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_DescriptorSets(), theResourcePackage.getDescriptorSet(),
+				null, "descriptorSets", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_Units(), this.getIPipeline(), null, "units", null, 0, -1,
+				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_Semaphores(), this.getProcessSemaphore(), null,
+				"semaphores", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractProcess_ResetAllowed(), theEcorePackage.getEBoolean(),
+				"resetAllowed", null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractProcess_InitializedSignalizedSemaphore(),
+				theEcorePackage.getEBoolean(), "initializedSignalizedSemaphore", "false", 0, 1,
+				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_DependentProcesses(), this.getProcessSemaphore(),
+				this.getProcessSemaphore_Process(), "dependentProcesses", null, 0, -1,
+				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(processSemaphoreEClass, ProcessSemaphore.class, "ProcessSemaphore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcessSemaphore_Process(), this.getAbstractProcess(), this.getAbstractProcess_DependentProcesses(), "process", null, 0, 1, ProcessSemaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProcessSemaphore_WaitStage(), theEnumerationPackage.getEPipelineStage(), "waitStage", null, 0, 1, ProcessSemaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(processSemaphoreEClass, ProcessSemaphore.class, "ProcessSemaphore", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProcessSemaphore_Process(), this.getAbstractProcess(),
+				this.getAbstractProcess_DependentProcesses(), "process", null, 0, 1,
+				ProcessSemaphore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProcessSemaphore_WaitStage(), theEnumerationPackage.getEPipelineStage(),
+				"waitStage", null, 0, 1, ProcessSemaphore.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPipelineBarrier_Barrier(), theResourcePackage.getBarrier(), null, "barrier", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPipelineBarrier_SrcQueue(), this.getAbstractProcess(), null, "srcQueue", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPipelineBarrier_DstQueue(), this.getAbstractProcess(), null, "dstQueue", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPipelineBarrier_Barrier(), theResourcePackage.getBarrier(), null,
+				"barrier", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getPipelineBarrier_SrcQueue(), this.getAbstractProcess(), null, "srcQueue",
+				null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getPipelineBarrier_DstQueue(), this.getAbstractProcess(), null, "dstQueue",
+				null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(iPipelineEClass, IPipeline.class, "IPipeline", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIPipeline_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIPipeline_Stage(), theEnumerationPackage.getECommandStage(), "stage", "Render", 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(iPipelineEClass, IPipeline.class, "IPipeline", IS_ABSTRACT, IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIPipeline_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0,
+				1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIPipeline_Stage(), theEnumerationPackage.getECommandStage(), "stage",
+				"Render", 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abstractPipelineEClass, AbstractPipeline.class, "AbstractPipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractPipeline_Units(), this.getIPipelineUnit(), null, "units", null, 0, -1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractPipeline_DescriptorSet(), theResourcePackage.getDescriptorSet(), null, "descriptorSet", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractPipeline_Constants(), theResourcePackage.getAbstractConstants(), null, "constants", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractPipelineEClass, AbstractPipeline.class, "AbstractPipeline", IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractPipeline_Units(), this.getIPipelineUnit(), null, "units", null, 0,
+				-1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getAbstractPipeline_DescriptorSet(), theResourcePackage.getDescriptorSet(),
+				null, "descriptorSet", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractPipeline_Constants(), theResourcePackage.getAbstractConstants(),
+				null, "constants", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(iPipelineUnitEClass, IPipelineUnit.class, "IPipelineUnit", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(iPipelineUnitEClass, IPipelineUnit.class, "IPipelineUnit", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(abstractCompositePipelineEClass, AbstractCompositePipeline.class, "AbstractCompositePipeline", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractCompositePipeline_Pipelines(), this.getAbstractPipeline(), null, "pipelines", null, 0, -1, AbstractCompositePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractCompositePipelineEClass, AbstractCompositePipeline.class,
+				"AbstractCompositePipeline", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractCompositePipeline_Pipelines(), this.getAbstractPipeline(), null,
+				"pipelines", null, 0, -1, AbstractCompositePipeline.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -104,11 +104,14 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	 */
 	public static ComputePackage init()
 	{
-		if (isInited) return (ComputePackage)EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
+		if (isInited)
+			return (ComputePackage) EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredComputePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		ComputePackageImpl theComputePackage = registeredComputePackage instanceof ComputePackageImpl ? (ComputePackageImpl)registeredComputePackage : new ComputePackageImpl();
+		ComputePackageImpl theComputePackage = registeredComputePackage instanceof ComputePackageImpl
+				? (ComputePackageImpl) registeredComputePackage
+				: new ComputePackageImpl();
 
 		isInited = true;
 
@@ -168,7 +171,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	@Override
 	public EAttribute getComputePipeline_WorkgroupSizeX()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) computePipelineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -179,7 +182,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	@Override
 	public EAttribute getComputePipeline_WorkgroupSizeY()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) computePipelineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -190,7 +193,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	@Override
 	public EAttribute getComputePipeline_WorkgroupSizeZ()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) computePipelineEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -201,7 +204,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	@Override
 	public EAttribute getComputePipeline_Width()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) computePipelineEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -212,7 +215,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	@Override
 	public EAttribute getComputePipeline_Height()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) computePipelineEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -223,7 +226,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	@Override
 	public EAttribute getComputePipeline_Depth()
 	{
-		return (EAttribute)computePipelineEClass.getEStructuralFeatures().get(5);
+		return (EAttribute) computePipelineEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -245,7 +248,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	@Override
 	public EReference getComputer_Shader()
 	{
-		return (EReference)computerEClass.getEStructuralFeatures().get(0);
+		return (EReference) computerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -256,7 +259,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 	@Override
 	public ComputeFactory getComputeFactory()
 	{
-		return (ComputeFactory)getEFactoryInstance();
+		return (ComputeFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -318,9 +321,12 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ProcessPackage theProcessPackage = (ProcessPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ProcessPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage) EPackage.Registry.INSTANCE
+				.getEPackage(ResourcePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -332,18 +338,35 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		computerEClass.getESuperTypes().add(theProcessPackage.getIPipelineUnit());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(computePipelineEClass, ComputePipeline.class, "ComputePipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getComputePipeline_WorkgroupSizeX(), theEcorePackage.getEInt(), "workgroupSizeX", "32", 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputePipeline_WorkgroupSizeY(), theEcorePackage.getEInt(), "workgroupSizeY", "32", 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputePipeline_WorkgroupSizeZ(), theEcorePackage.getEInt(), "workgroupSizeZ", "32", 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputePipeline_Width(), theEcorePackage.getEInt(), "width", null, 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputePipeline_Height(), theEcorePackage.getEInt(), "height", null, 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComputePipeline_Depth(), theEcorePackage.getEInt(), "depth", null, 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(computePipelineEClass, ComputePipeline.class, "ComputePipeline", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getComputePipeline_WorkgroupSizeX(), theEcorePackage.getEInt(),
+				"workgroupSizeX", "32", 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComputePipeline_WorkgroupSizeY(), theEcorePackage.getEInt(),
+				"workgroupSizeY", "32", 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComputePipeline_WorkgroupSizeZ(), theEcorePackage.getEInt(),
+				"workgroupSizeZ", "32", 0, 1, ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComputePipeline_Width(), theEcorePackage.getEInt(), "width", null, 0, 1,
+				ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComputePipeline_Height(), theEcorePackage.getEInt(), "height", null, 0, 1,
+				ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComputePipeline_Depth(), theEcorePackage.getEInt(), "depth", null, 0, 1,
+				ComputePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(computerEClass, Computer.class, "Computer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputer_Shader(), theResourcePackage.getShader(), null, "shader", null, 0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(computerEClass, Computer.class, "Computer", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComputer_Shader(), theResourcePackage.getShader(), null, "shader", null,
+				0, 1, Computer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

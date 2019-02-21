@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -32,14 +31,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ColorBlendAttachmentItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -88,19 +82,14 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addBlendEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_blendEnable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_blendEnable_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlendAttachment_blendEnable_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_blendEnable_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -111,19 +100,15 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addRedComponentEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_redComponentEnable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_redComponentEnable_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ColorBlendAttachment_redComponentEnable_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_redComponentEnable_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE, true, false,
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -134,19 +119,15 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addGreenComponentEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_greenComponentEnable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_greenComponentEnable_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ColorBlendAttachment_greenComponentEnable_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_greenComponentEnable_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE, true, false,
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -157,19 +138,15 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addBlueComponentEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_blueComponentEnable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_blueComponentEnable_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ColorBlendAttachment_blueComponentEnable_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_blueComponentEnable_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE, true, false,
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -180,19 +157,15 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addAlphaComponentEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_alphaComponentEnable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_alphaComponentEnable_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ColorBlendAttachment_alphaComponentEnable_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_alphaComponentEnable_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE, true, false,
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -203,19 +176,14 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addSrcColorPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_srcColor_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_srcColor_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__SRC_COLOR,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlendAttachment_srcColor_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_srcColor_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__SRC_COLOR, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -226,19 +194,14 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addDstColorPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_dstColor_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_dstColor_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__DST_COLOR,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlendAttachment_dstColor_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_dstColor_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__DST_COLOR, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -249,19 +212,14 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addSrcAlphaPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_srcAlpha_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_srcAlpha_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__SRC_ALPHA,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlendAttachment_srcAlpha_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_srcAlpha_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__SRC_ALPHA, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -272,19 +230,14 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addDstAlphaPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_dstAlpha_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_dstAlpha_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__DST_ALPHA,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlendAttachment_dstAlpha_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_dstAlpha_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__DST_ALPHA, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -295,19 +248,14 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addColorBlendOpPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_colorBlendOp_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_colorBlendOp_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlendAttachment_colorBlendOp_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_colorBlendOp_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -318,19 +266,14 @@ public class ColorBlendAttachmentItemProvider
 	 */
 	protected void addAlphaBlendOpPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlendAttachment_alphaBlendOp_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlendAttachment_alphaBlendOp_feature", "_UI_ColorBlendAttachment_type"),
-				 GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlendAttachment_alphaBlendOp_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlendAttachment_alphaBlendOp_feature",
+						"_UI_ColorBlendAttachment_type"),
+				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -342,7 +285,8 @@ public class ColorBlendAttachmentItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ColorBlendAttachment"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/ColorBlendAttachment"));
 	}
 
 	/**
@@ -354,10 +298,11 @@ public class ColorBlendAttachmentItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		ColorBlendAttachment colorBlendAttachment = (ColorBlendAttachment)object;
-		return getString("_UI_ColorBlendAttachment_type") + " " + colorBlendAttachment.isBlendEnable();
+		ColorBlendAttachment colorBlendAttachment = (ColorBlendAttachment) object;
+		return getString("_UI_ColorBlendAttachment_type")
+				+ " "
+				+ colorBlendAttachment.isBlendEnable();
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -373,19 +318,20 @@ public class ColorBlendAttachmentItemProvider
 
 		switch (notification.getFeatureID(ColorBlendAttachment.class))
 		{
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -412,7 +358,7 @@ public class ColorBlendAttachmentItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

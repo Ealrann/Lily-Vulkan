@@ -55,7 +55,8 @@ import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -79,7 +80,8 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(ComputeEditPlugin.INSTANCE, ComputePackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
+			ComputeEditPlugin.INSTANCE, ComputePackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -237,7 +239,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 		if (isFactoryForType(type))
 		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
 			{
 				return adapter;
 			}
@@ -261,6 +263,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 	{
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
@@ -271,6 +274,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getResourceLocator()
 	{
 		return childCreationExtenderManager;
@@ -369,11 +373,12 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
 			{
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -382,13 +387,13 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 			@Override
 			public Object caseAbstractProcess(AbstractProcess object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
-						 ComputeFactory.eINSTANCE.createComputePipeline()));
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
+								ComputeFactory.eINSTANCE.createComputePipeline()));
 
 				return null;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -397,14 +402,13 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 			@Override
 			public Object caseAbstractPipeline(AbstractPipeline object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
-						 ComputeFactory.eINSTANCE.createComputer()));
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
+								ComputeFactory.eINSTANCE.createComputer()));
 
 				return null;
 			}
- 
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -413,14 +417,13 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 			@Override
 			public Object caseAbstractCompositePipeline(AbstractCompositePipeline object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
-						 ComputeFactory.eINSTANCE.createComputePipeline()));
+				newChildDescriptors.add(createChildParameter(
+						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
+						ComputeFactory.eINSTANCE.createComputePipeline()));
 
 				return null;
 			}
- 
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -438,10 +441,11 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
 		}
 
@@ -450,6 +454,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return ComputeEditPlugin.INSTANCE;
@@ -494,11 +499,12 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
 			{
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -507,14 +513,13 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 			@Override
 			public Object caseVulkanEngine(VulkanEngine object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
-						 ComputeFactory.eINSTANCE.createComputeProcess()));
+				newChildDescriptors
+						.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
+								ComputeFactory.eINSTANCE.createComputeProcess()));
 
 				return null;
 			}
- 
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -532,10 +537,11 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
 		}
 
@@ -544,6 +550,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory imp
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return ComputeEditPlugin.INSTANCE;

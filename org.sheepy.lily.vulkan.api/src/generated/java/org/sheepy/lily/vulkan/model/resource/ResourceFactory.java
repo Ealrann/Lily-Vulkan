@@ -20,7 +20,8 @@ public interface ResourceFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ResourceFactory eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.ResourceFactoryImpl.init();
+	ResourceFactory eINSTANCE = org.sheepy.lily.vulkan.model.resource.impl.ResourceFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Buffer</em>'.

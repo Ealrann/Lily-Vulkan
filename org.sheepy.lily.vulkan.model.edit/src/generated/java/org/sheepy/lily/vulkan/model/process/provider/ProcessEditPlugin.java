@@ -48,18 +48,16 @@ public final class ProcessEditPlugin extends EMFPlugin
 	 */
 	public ProcessEditPlugin()
 	{
-		super
-		  (new ResourceLocator [] 
-		   {
-		     VulkanEditPlugin.INSTANCE,
-		     RootEditPlugin.INSTANCE,
-		     TypesEditPlugin.INSTANCE,
-		     InferenceEditPlugin.INSTANCE,
-		     ResourceEditPlugin.INSTANCE,
-		     EnumerationEditPlugin.INSTANCE,
-		     ApplicationEditPlugin.INSTANCE,
-		     ActionEditPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[] {
+				VulkanEditPlugin.INSTANCE,
+				RootEditPlugin.INSTANCE,
+				TypesEditPlugin.INSTANCE,
+				InferenceEditPlugin.INSTANCE,
+				ResourceEditPlugin.INSTANCE,
+				EnumerationEditPlugin.INSTANCE,
+				ApplicationEditPlugin.INSTANCE,
+				ActionEditPlugin.INSTANCE,
+		});
 	}
 
 	/**

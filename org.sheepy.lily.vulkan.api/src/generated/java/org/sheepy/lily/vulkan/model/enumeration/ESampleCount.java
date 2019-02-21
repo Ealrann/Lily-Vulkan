@@ -200,9 +200,7 @@ public enum ESampleCount implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ESampleCount[] VALUES_ARRAY =
-		new ESampleCount[]
-		{
+	private static final ESampleCount[] VALUES_ARRAY = new ESampleCount[] {
 			SAMPLE_COUNT_1BIT,
 			SAMPLE_COUNT_2BIT,
 			SAMPLE_COUNT_4BIT,
@@ -210,7 +208,7 @@ public enum ESampleCount implements Enumerator
 			SAMPLE_COUNT_16_BIT,
 			SAMPLE_COUNT_32_BIT,
 			SAMPLE_COUNT_64_BIT,
-		};
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>ESample Count</b></em>' enumerators.
@@ -218,7 +216,8 @@ public enum ESampleCount implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ESampleCount> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ESampleCount> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>ESample Count</b></em>' literal with the specified literal value.
@@ -274,13 +273,20 @@ public enum ESampleCount implements Enumerator
 	{
 		switch (value)
 		{
-			case SAMPLE_COUNT_1BIT_VALUE: return SAMPLE_COUNT_1BIT;
-			case SAMPLE_COUNT_2BIT_VALUE: return SAMPLE_COUNT_2BIT;
-			case SAMPLE_COUNT_4BIT_VALUE: return SAMPLE_COUNT_4BIT;
-			case SAMPLE_COUNT_8BIT_VALUE: return SAMPLE_COUNT_8BIT;
-			case SAMPLE_COUNT_16_BIT_VALUE: return SAMPLE_COUNT_16_BIT;
-			case SAMPLE_COUNT_32_BIT_VALUE: return SAMPLE_COUNT_32_BIT;
-			case SAMPLE_COUNT_64_BIT_VALUE: return SAMPLE_COUNT_64_BIT;
+		case SAMPLE_COUNT_1BIT_VALUE:
+			return SAMPLE_COUNT_1BIT;
+		case SAMPLE_COUNT_2BIT_VALUE:
+			return SAMPLE_COUNT_2BIT;
+		case SAMPLE_COUNT_4BIT_VALUE:
+			return SAMPLE_COUNT_4BIT;
+		case SAMPLE_COUNT_8BIT_VALUE:
+			return SAMPLE_COUNT_8BIT;
+		case SAMPLE_COUNT_16_BIT_VALUE:
+			return SAMPLE_COUNT_16_BIT;
+		case SAMPLE_COUNT_32_BIT_VALUE:
+			return SAMPLE_COUNT_32_BIT;
+		case SAMPLE_COUNT_64_BIT_VALUE:
+			return SAMPLE_COUNT_64_BIT;
 		}
 		return null;
 	}
@@ -327,7 +333,7 @@ public enum ESampleCount implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -338,7 +344,7 @@ public enum ESampleCount implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -349,7 +355,7 @@ public enum ESampleCount implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -363,5 +369,5 @@ public enum ESampleCount implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //ESampleCount

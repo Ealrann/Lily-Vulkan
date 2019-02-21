@@ -300,9 +300,7 @@ public enum EDescriptorType implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EDescriptorType[] VALUES_ARRAY =
-		new EDescriptorType[]
-		{
+	private static final EDescriptorType[] VALUES_ARRAY = new EDescriptorType[] {
 			SAMPLER,
 			COMBINED_IMAGE_SAMPLER,
 			SAMPLED_IMAGE,
@@ -314,7 +312,7 @@ public enum EDescriptorType implements Enumerator
 			UNIFORM_BUFFER_DYNAMIC,
 			STORAGE_BUFFER_DYNAMIC,
 			INPUT_ATTACHMENT,
-		};
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EDescriptor Type</b></em>' enumerators.
@@ -322,7 +320,8 @@ public enum EDescriptorType implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EDescriptorType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EDescriptorType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EDescriptor Type</b></em>' literal with the specified literal value.
@@ -378,17 +377,28 @@ public enum EDescriptorType implements Enumerator
 	{
 		switch (value)
 		{
-			case SAMPLER_VALUE: return SAMPLER;
-			case COMBINED_IMAGE_SAMPLER_VALUE: return COMBINED_IMAGE_SAMPLER;
-			case SAMPLED_IMAGE_VALUE: return SAMPLED_IMAGE;
-			case STORAGE_IMAGE_VALUE: return STORAGE_IMAGE;
-			case UNIFORM_TEXEL_BUFFER_VALUE: return UNIFORM_TEXEL_BUFFER;
-			case STORAGE_TEXEL_BUFFER_VALUE: return STORAGE_TEXEL_BUFFER;
-			case UNIFORM_BUFFER_VALUE: return UNIFORM_BUFFER;
-			case STORAGE_BUFFER_VALUE: return STORAGE_BUFFER;
-			case UNIFORM_BUFFER_DYNAMIC_VALUE: return UNIFORM_BUFFER_DYNAMIC;
-			case STORAGE_BUFFER_DYNAMIC_VALUE: return STORAGE_BUFFER_DYNAMIC;
-			case INPUT_ATTACHMENT_VALUE: return INPUT_ATTACHMENT;
+		case SAMPLER_VALUE:
+			return SAMPLER;
+		case COMBINED_IMAGE_SAMPLER_VALUE:
+			return COMBINED_IMAGE_SAMPLER;
+		case SAMPLED_IMAGE_VALUE:
+			return SAMPLED_IMAGE;
+		case STORAGE_IMAGE_VALUE:
+			return STORAGE_IMAGE;
+		case UNIFORM_TEXEL_BUFFER_VALUE:
+			return UNIFORM_TEXEL_BUFFER;
+		case STORAGE_TEXEL_BUFFER_VALUE:
+			return STORAGE_TEXEL_BUFFER;
+		case UNIFORM_BUFFER_VALUE:
+			return UNIFORM_BUFFER;
+		case STORAGE_BUFFER_VALUE:
+			return STORAGE_BUFFER;
+		case UNIFORM_BUFFER_DYNAMIC_VALUE:
+			return UNIFORM_BUFFER_DYNAMIC;
+		case STORAGE_BUFFER_DYNAMIC_VALUE:
+			return STORAGE_BUFFER_DYNAMIC;
+		case INPUT_ATTACHMENT_VALUE:
+			return INPUT_ATTACHMENT;
 		}
 		return null;
 	}
@@ -435,7 +445,7 @@ public enum EDescriptorType implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -446,7 +456,7 @@ public enum EDescriptorType implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -457,7 +467,7 @@ public enum EDescriptorType implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -471,5 +481,5 @@ public enum EDescriptorType implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EDescriptorType

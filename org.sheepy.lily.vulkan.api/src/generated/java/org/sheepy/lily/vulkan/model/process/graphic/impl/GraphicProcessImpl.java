@@ -103,14 +103,18 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetConfiguration(GraphicConfiguration newConfiguration, NotificationChain msgs)
+	public NotificationChain basicSetConfiguration(	GraphicConfiguration newConfiguration,
+													NotificationChain msgs)
 	{
 		GraphicConfiguration oldConfiguration = configuration;
 		configuration = newConfiguration;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, oldConfiguration, newConfiguration);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, oldConfiguration,
+					newConfiguration);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -126,15 +130,18 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		if (newConfiguration != configuration)
 		{
 			NotificationChain msgs = null;
-			if (configuration != null)
-				msgs = ((InternalEObject)configuration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null, msgs);
+			if (configuration != null) msgs = ((InternalEObject) configuration).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null,
+					msgs);
 			if (newConfiguration != null)
-				msgs = ((InternalEObject)newConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, null, msgs);
+				msgs = ((InternalEObject) newConfiguration).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION,
+						null, msgs);
 			msgs = basicSetConfiguration(newConfiguration, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, newConfiguration, newConfiguration));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION, newConfiguration, newConfiguration));
 	}
 
 	/**
@@ -153,14 +160,18 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRenderPassInfo(RenderPassInfo newRenderPassInfo, NotificationChain msgs)
+	public NotificationChain basicSetRenderPassInfo(RenderPassInfo newRenderPassInfo,
+													NotificationChain msgs)
 	{
 		RenderPassInfo oldRenderPassInfo = renderPassInfo;
 		renderPassInfo = newRenderPassInfo;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, oldRenderPassInfo, newRenderPassInfo);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, oldRenderPassInfo,
+					newRenderPassInfo);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -177,14 +188,19 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		{
 			NotificationChain msgs = null;
 			if (renderPassInfo != null)
-				msgs = ((InternalEObject)renderPassInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
+				msgs = ((InternalEObject) renderPassInfo).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO,
+						null, msgs);
 			if (newRenderPassInfo != null)
-				msgs = ((InternalEObject)newRenderPassInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, null, msgs);
+				msgs = ((InternalEObject) newRenderPassInfo).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO,
+						null, msgs);
 			msgs = basicSetRenderPassInfo(newRenderPassInfo, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, newRenderPassInfo, newRenderPassInfo));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO, newRenderPassInfo,
+				newRenderPassInfo));
 	}
 
 	/**
@@ -209,8 +225,10 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		depthImage = newDepthImage;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, oldDepthImage, newDepthImage);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, oldDepthImage, newDepthImage);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -226,15 +244,17 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		if (newDepthImage != depthImage)
 		{
 			NotificationChain msgs = null;
-			if (depthImage != null)
-				msgs = ((InternalEObject)depthImage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, null, msgs);
-			if (newDepthImage != null)
-				msgs = ((InternalEObject)newDepthImage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, null, msgs);
+			if (depthImage != null) msgs = ((InternalEObject) depthImage).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, null,
+					msgs);
+			if (newDepthImage != null) msgs = ((InternalEObject) newDepthImage).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, null,
+					msgs);
 			msgs = basicSetDepthImage(newDepthImage, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, newDepthImage, newDepthImage));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, newDepthImage, newDepthImage));
 	}
 
 	/**
@@ -243,16 +263,18 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-				return basicSetConfiguration(null, msgs);
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				return basicSetRenderPassInfo(null, msgs);
-			case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-				return basicSetDepthImage(null, msgs);
+		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+			return basicSetConfiguration(null, msgs);
+		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+			return basicSetRenderPassInfo(null, msgs);
+		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
+			return basicSetDepthImage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -267,12 +289,12 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-				return getConfiguration();
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				return getRenderPassInfo();
-			case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-				return getDepthImage();
+		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+			return getConfiguration();
+		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+			return getRenderPassInfo();
+		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
+			return getDepthImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -287,15 +309,15 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-				setConfiguration((GraphicConfiguration)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				setRenderPassInfo((RenderPassInfo)newValue);
-				return;
-			case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-				setDepthImage((DepthImage)newValue);
-				return;
+		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+			setConfiguration((GraphicConfiguration) newValue);
+			return;
+		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+			setRenderPassInfo((RenderPassInfo) newValue);
+			return;
+		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
+			setDepthImage((DepthImage) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -310,15 +332,15 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-				setConfiguration((GraphicConfiguration)null);
-				return;
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				setRenderPassInfo((RenderPassInfo)null);
-				return;
-			case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-				setDepthImage((DepthImage)null);
-				return;
+		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+			setConfiguration((GraphicConfiguration) null);
+			return;
+		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+			setRenderPassInfo((RenderPassInfo) null);
+			return;
+		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
+			setDepthImage((DepthImage) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -333,12 +355,12 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
-				return configuration != null;
-			case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-				return renderPassInfo != null;
-			case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-				return depthImage != null;
+		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
+			return configuration != null;
+		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
+			return renderPassInfo != null;
+		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
+			return depthImage != null;
 		}
 		return super.eIsSet(featureID);
 	}

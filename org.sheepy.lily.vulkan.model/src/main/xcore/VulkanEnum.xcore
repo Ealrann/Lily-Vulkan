@@ -1,3 +1,4 @@
+@GenModel(cleanup="true", codeFormatting="true")
 @GenModel(modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java")
 @GenModel(editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java")
 @GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")

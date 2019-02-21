@@ -30,13 +30,13 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	{
 		try
 		{
-			ComputeFactory theComputeFactory = (ComputeFactory)EPackage.Registry.INSTANCE.getEFactory(ComputePackage.eNS_URI);
+			ComputeFactory theComputeFactory = (ComputeFactory) EPackage.Registry.INSTANCE
+					.getEFactory(ComputePackage.eNS_URI);
 			if (theComputeFactory != null)
 			{
 				return theComputeFactory;
 			}
-		}
-		catch (Exception exception)
+		} catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -64,11 +64,15 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ComputePackage.COMPUTE_PROCESS: return createComputeProcess();
-			case ComputePackage.COMPUTE_PIPELINE: return createComputePipeline();
-			case ComputePackage.COMPUTER: return createComputer();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ComputePackage.COMPUTE_PROCESS:
+			return createComputeProcess();
+		case ComputePackage.COMPUTE_PIPELINE:
+			return createComputePipeline();
+		case ComputePackage.COMPUTER:
+			return createComputer();
+		default:
+			throw new IllegalArgumentException(
+					"The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -116,7 +120,7 @@ public class ComputeFactoryImpl extends EFactoryImpl implements ComputeFactory
 	@Override
 	public ComputePackage getComputePackage()
 	{
-		return (ComputePackage)getEPackage();
+		return (ComputePackage) getEPackage();
 	}
 
 	/**

@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -34,8 +33,9 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AbstractPipelineItemProvider 
-	extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class AbstractPipelineItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -78,19 +78,13 @@ public class AbstractPipelineItemProvider
 	 */
 	protected void addEnabledPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IPipeline_enabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature", "_UI_IPipeline_type"),
-				 ProcessPackage.Literals.IPIPELINE__ENABLED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_IPipeline_enabled_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_enabled_feature",
+						"_UI_IPipeline_type"),
+				ProcessPackage.Literals.IPIPELINE__ENABLED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -101,19 +95,13 @@ public class AbstractPipelineItemProvider
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IPipeline_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature", "_UI_IPipeline_type"),
-				 ProcessPackage.Literals.IPIPELINE__STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_IPipeline_stage_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
+						"_UI_IPipeline_type"),
+				ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -124,19 +112,13 @@ public class AbstractPipelineItemProvider
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -147,19 +129,13 @@ public class AbstractPipelineItemProvider
 	 */
 	protected void addDescriptorSetPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractPipeline_descriptorSet_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractPipeline_descriptorSet_feature", "_UI_AbstractPipeline_type"),
-				 ProcessPackage.Literals.ABSTRACT_PIPELINE__DESCRIPTOR_SET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AbstractPipeline_descriptorSet_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractPipeline_descriptorSet_feature", "_UI_AbstractPipeline_type"),
+				ProcessPackage.Literals.ABSTRACT_PIPELINE__DESCRIPTOR_SET, true, false, true, null,
+				null, null));
 	}
 
 	/**
@@ -170,19 +146,13 @@ public class AbstractPipelineItemProvider
 	 */
 	protected void addConstantsPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractPipeline_constants_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractPipeline_constants_feature", "_UI_AbstractPipeline_type"),
-				 ProcessPackage.Literals.ABSTRACT_PIPELINE__CONSTANTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AbstractPipeline_constants_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractPipeline_constants_feature", "_UI_AbstractPipeline_type"),
+				ProcessPackage.Literals.ABSTRACT_PIPELINE__CONSTANTS, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -227,12 +197,11 @@ public class AbstractPipelineItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((AbstractPipeline)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AbstractPipeline_type") :
-			getString("_UI_AbstractPipeline_type") + " " + label;
+		String label = ((AbstractPipeline) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_AbstractPipeline_type")
+				: getString("_UI_AbstractPipeline_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -248,15 +217,17 @@ public class AbstractPipelineItemProvider
 
 		switch (notification.getFeatureID(AbstractPipeline.class))
 		{
-			case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
-			case ProcessPackage.ABSTRACT_PIPELINE__NAME:
-			case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
-			case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS:
+		case ProcessPackage.ABSTRACT_PIPELINE__NAME:
+		case ProcessPackage.ABSTRACT_PIPELINE__ENABLED:
+		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -273,15 +244,13 @@ public class AbstractPipelineItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
-				 ProcessFactory.eINSTANCE.createPipelineBarrier()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
+						ProcessFactory.eINSTANCE.createPipelineBarrier()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
-				 ProcessFactory.eINSTANCE.createPushConstant()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
+						ProcessFactory.eINSTANCE.createPushConstant()));
 	}
 
 	/**
@@ -293,7 +262,7 @@ public class AbstractPipelineItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

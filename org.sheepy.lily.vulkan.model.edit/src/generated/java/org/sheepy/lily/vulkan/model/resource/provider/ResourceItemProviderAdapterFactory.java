@@ -50,7 +50,8 @@ import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -74,7 +75,8 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(ResourceEditPlugin.INSTANCE, ResourcePackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
+			ResourceEditPlugin.INSTANCE, ResourcePackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -582,7 +584,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 		if (isFactoryForType(type))
 		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
 			{
 				return adapter;
 			}
@@ -606,6 +608,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 	{
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
@@ -616,6 +619,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getResourceLocator()
 	{
 		return childCreationExtenderManager;
@@ -728,11 +732,12 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
 			{
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -741,53 +746,45 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 			@Override
 			public Object caseResourceContainer(ResourceContainer object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
-						 ResourceFactory.eINSTANCE.createBuffer()));
+				newChildDescriptors.add(
+						createChildParameter(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+								ResourceFactory.eINSTANCE.createBuffer()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
-						 ResourceFactory.eINSTANCE.createImage()));
+				newChildDescriptors.add(
+						createChildParameter(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+								ResourceFactory.eINSTANCE.createImage()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
-						 ResourceFactory.eINSTANCE.createFont()));
+				newChildDescriptors.add(
+						createChildParameter(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+								ResourceFactory.eINSTANCE.createFont()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
-						 ResourceFactory.eINSTANCE.createTexture()));
+				newChildDescriptors.add(
+						createChildParameter(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+								ResourceFactory.eINSTANCE.createTexture()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
-						 ResourceFactory.eINSTANCE.createConstants()));
+				newChildDescriptors.add(
+						createChildParameter(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+								ResourceFactory.eINSTANCE.createConstants()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
-						 ResourceFactory.eINSTANCE.createShader()));
+				newChildDescriptors.add(
+						createChildParameter(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+								ResourceFactory.eINSTANCE.createShader()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
-						 ResourceFactory.eINSTANCE.createFileResource()));
+				newChildDescriptors.add(
+						createChildParameter(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+								ResourceFactory.eINSTANCE.createFileResource()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
-						 ResourceFactory.eINSTANCE.createModuleResource()));
+				newChildDescriptors.add(
+						createChildParameter(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+								ResourceFactory.eINSTANCE.createModuleResource()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
-						 ResourceFactory.eINSTANCE.createStringModuleResource()));
+				newChildDescriptors.add(
+						createChildParameter(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+								ResourceFactory.eINSTANCE.createStringModuleResource()));
 
 				return null;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -805,10 +802,11 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
 		}
 
@@ -817,6 +815,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory i
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return ResourceEditPlugin.INSTANCE;

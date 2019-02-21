@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Reference Image Barrier</b></em>'.

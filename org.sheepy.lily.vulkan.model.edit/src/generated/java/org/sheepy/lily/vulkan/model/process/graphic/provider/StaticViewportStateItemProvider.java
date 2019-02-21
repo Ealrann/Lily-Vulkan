@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -33,14 +32,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StaticViewportStateItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class StaticViewportStateItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -113,7 +107,8 @@ public class StaticViewportStateItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StaticViewportState"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/StaticViewportState"));
 	}
 
 	/**
@@ -127,7 +122,6 @@ public class StaticViewportStateItemProvider
 	{
 		return getString("_UI_StaticViewportState_type");
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -143,10 +137,11 @@ public class StaticViewportStateItemProvider
 
 		switch (notification.getFeatureID(StaticViewportState.class))
 		{
-			case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
-			case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case GraphicPackage.STATIC_VIEWPORT_STATE__VIEWPORTS:
+		case GraphicPackage.STATIC_VIEWPORT_STATE__SCISSORS:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -163,15 +158,13 @@ public class StaticViewportStateItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.STATIC_VIEWPORT_STATE__VIEWPORTS,
-				 GraphicFactory.eINSTANCE.createViewport()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.STATIC_VIEWPORT_STATE__VIEWPORTS,
+						GraphicFactory.eINSTANCE.createViewport()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.STATIC_VIEWPORT_STATE__SCISSORS,
-				 GraphicFactory.eINSTANCE.createScissor()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.STATIC_VIEWPORT_STATE__SCISSORS,
+						GraphicFactory.eINSTANCE.createScissor()));
 	}
 
 	/**
@@ -183,7 +176,7 @@ public class StaticViewportStateItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

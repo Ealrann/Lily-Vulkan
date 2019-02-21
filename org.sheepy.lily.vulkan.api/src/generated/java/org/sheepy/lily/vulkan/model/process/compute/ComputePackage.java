@@ -23,7 +23,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.lily.vulkan.model.process.compute.ComputeFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model.process'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model.process'"
  * @generated
  */
 public interface ComputePackage extends EPackage
@@ -58,7 +58,8 @@ public interface ComputePackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ComputePackage eINSTANCE = org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl.init();
+	ComputePackage eINSTANCE = org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl <em>Process</em>}' class.
@@ -459,7 +460,6 @@ public interface ComputePackage extends EPackage
 	 */
 	int COMPUTER_OPERATION_COUNT = ProcessPackage.IPIPELINE_UNIT_OPERATION_COUNT + 0;
 
-
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.
 	 * <!-- begin-user-doc -->
@@ -617,7 +617,8 @@ public interface ComputePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COMPUTE_PIPELINE__WORKGROUP_SIZE_X = eINSTANCE.getComputePipeline_WorkgroupSizeX();
+		EAttribute COMPUTE_PIPELINE__WORKGROUP_SIZE_X = eINSTANCE
+				.getComputePipeline_WorkgroupSizeX();
 
 		/**
 		 * The meta object literal for the '<em><b>Workgroup Size Y</b></em>' attribute feature.
@@ -625,7 +626,8 @@ public interface ComputePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COMPUTE_PIPELINE__WORKGROUP_SIZE_Y = eINSTANCE.getComputePipeline_WorkgroupSizeY();
+		EAttribute COMPUTE_PIPELINE__WORKGROUP_SIZE_Y = eINSTANCE
+				.getComputePipeline_WorkgroupSizeY();
 
 		/**
 		 * The meta object literal for the '<em><b>Workgroup Size Z</b></em>' attribute feature.
@@ -633,7 +635,8 @@ public interface ComputePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COMPUTE_PIPELINE__WORKGROUP_SIZE_Z = eINSTANCE.getComputePipeline_WorkgroupSizeZ();
+		EAttribute COMPUTE_PIPELINE__WORKGROUP_SIZE_Z = eINSTANCE
+				.getComputePipeline_WorkgroupSizeZ();
 
 		/**
 		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.

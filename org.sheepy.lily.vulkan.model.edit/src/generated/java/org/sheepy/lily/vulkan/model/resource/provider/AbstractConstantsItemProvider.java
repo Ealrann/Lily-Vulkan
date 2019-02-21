@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -32,8 +31,9 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AbstractConstantsItemProvider 
-	extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class AbstractConstantsItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,19 +73,13 @@ public class AbstractConstantsItemProvider
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -96,19 +90,13 @@ public class AbstractConstantsItemProvider
 	 */
 	protected void addStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractConstants_stage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractConstants_stage_feature", "_UI_AbstractConstants_type"),
-				 ResourcePackage.Literals.ABSTRACT_CONSTANTS__STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AbstractConstants_stage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractConstants_stage_feature", "_UI_AbstractConstants_type"),
+				ResourcePackage.Literals.ABSTRACT_CONSTANTS__STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -120,12 +108,11 @@ public class AbstractConstantsItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((AbstractConstants)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AbstractConstants_type") :
-			getString("_UI_AbstractConstants_type") + " " + label;
+		String label = ((AbstractConstants) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_AbstractConstants_type")
+				: getString("_UI_AbstractConstants_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -141,10 +128,11 @@ public class AbstractConstantsItemProvider
 
 		switch (notification.getFeatureID(AbstractConstants.class))
 		{
-			case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
-			case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -171,7 +159,7 @@ public class AbstractConstantsItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

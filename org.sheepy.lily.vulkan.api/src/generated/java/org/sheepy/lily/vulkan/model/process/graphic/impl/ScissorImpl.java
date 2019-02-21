@@ -41,7 +41,8 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 * @ordered
 	 */
-	protected static final SVector2i OFFSET_EDEFAULT = (SVector2i)TypesFactory.eINSTANCE.createFromString(TypesPackage.eINSTANCE.getSVector2i(), "0, 0");
+	protected static final SVector2i OFFSET_EDEFAULT = (SVector2i) TypesFactory.eINSTANCE
+			.createFromString(TypesPackage.eINSTANCE.getSVector2i(), "0, 0");
 
 	/**
 	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' attribute.
@@ -115,8 +116,8 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		SVector2i oldOffset = offset;
 		offset = newOffset;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SCISSOR__OFFSET, oldOffset, offset));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.SCISSOR__OFFSET, oldOffset, offset));
 	}
 
 	/**
@@ -140,8 +141,8 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		SVector2i oldExtent = extent;
 		extent = newExtent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SCISSOR__EXTENT, oldExtent, extent));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.SCISSOR__EXTENT, oldExtent, extent));
 	}
 
 	/**
@@ -154,10 +155,10 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SCISSOR__OFFSET:
-				return getOffset();
-			case GraphicPackage.SCISSOR__EXTENT:
-				return getExtent();
+		case GraphicPackage.SCISSOR__OFFSET:
+			return getOffset();
+		case GraphicPackage.SCISSOR__EXTENT:
+			return getExtent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -172,12 +173,12 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SCISSOR__OFFSET:
-				setOffset((SVector2i)newValue);
-				return;
-			case GraphicPackage.SCISSOR__EXTENT:
-				setExtent((SVector2i)newValue);
-				return;
+		case GraphicPackage.SCISSOR__OFFSET:
+			setOffset((SVector2i) newValue);
+			return;
+		case GraphicPackage.SCISSOR__EXTENT:
+			setExtent((SVector2i) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -192,12 +193,12 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SCISSOR__OFFSET:
-				setOffset(OFFSET_EDEFAULT);
-				return;
-			case GraphicPackage.SCISSOR__EXTENT:
-				setExtent(EXTENT_EDEFAULT);
-				return;
+		case GraphicPackage.SCISSOR__OFFSET:
+			setOffset(OFFSET_EDEFAULT);
+			return;
+		case GraphicPackage.SCISSOR__EXTENT:
+			setExtent(EXTENT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,10 +213,10 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SCISSOR__OFFSET:
-				return OFFSET_EDEFAULT == null ? offset != null : !OFFSET_EDEFAULT.equals(offset);
-			case GraphicPackage.SCISSOR__EXTENT:
-				return EXTENT_EDEFAULT == null ? extent != null : !EXTENT_EDEFAULT.equals(extent);
+		case GraphicPackage.SCISSOR__OFFSET:
+			return OFFSET_EDEFAULT == null ? offset != null : !OFFSET_EDEFAULT.equals(offset);
+		case GraphicPackage.SCISSOR__EXTENT:
+			return EXTENT_EDEFAULT == null ? extent != null : !EXTENT_EDEFAULT.equals(extent);
 		}
 		return super.eIsSet(featureID);
 	}

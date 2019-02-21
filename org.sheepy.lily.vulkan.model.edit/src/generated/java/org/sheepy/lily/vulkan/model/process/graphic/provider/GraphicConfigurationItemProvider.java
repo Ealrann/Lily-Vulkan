@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -36,14 +35,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphicConfigurationItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class GraphicConfigurationItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -86,19 +80,15 @@ public class GraphicConfigurationItemProvider
 	 */
 	protected void addClearBeforeRenderPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_clearBeforeRender_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_clearBeforeRender_feature", "_UI_GraphicConfiguration_type"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_GraphicConfiguration_clearBeforeRender_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_GraphicConfiguration_clearBeforeRender_feature",
+						"_UI_GraphicConfiguration_type"),
+				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER, true, false,
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -109,19 +99,15 @@ public class GraphicConfigurationItemProvider
 	 */
 	protected void addPresentationModePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_presentationMode_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_presentationMode_feature", "_UI_GraphicConfiguration_type"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__PRESENTATION_MODE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_GraphicConfiguration_presentationMode_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_GraphicConfiguration_presentationMode_feature",
+						"_UI_GraphicConfiguration_type"),
+				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__PRESENTATION_MODE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -132,19 +118,15 @@ public class GraphicConfigurationItemProvider
 	 */
 	protected void addRequiredSwapImageCountPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_requiredSwapImageCount_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_requiredSwapImageCount_feature", "_UI_GraphicConfiguration_type"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_GraphicConfiguration_requiredSwapImageCount_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_GraphicConfiguration_requiredSwapImageCount_feature",
+						"_UI_GraphicConfiguration_type"),
+				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT, true,
+				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -155,19 +137,14 @@ public class GraphicConfigurationItemProvider
 	 */
 	protected void addSwapImageUsagesPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_swapImageUsages_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicConfiguration_swapImageUsages_feature", "_UI_GraphicConfiguration_type"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_GraphicConfiguration_swapImageUsages_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_GraphicConfiguration_swapImageUsages_feature",
+						"_UI_GraphicConfiguration_type"),
+				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -178,19 +155,13 @@ public class GraphicConfigurationItemProvider
 	 */
 	protected void addAcquireWaitStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphicConfiguration_acquireWaitStage_feature"),
-				 getString("_UI_GraphicConfiguration_acquireWaitStage_description"),
-				 GraphicPackage.Literals.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_GraphicConfiguration_acquireWaitStage_feature"),
+				getString("_UI_GraphicConfiguration_acquireWaitStage_description"),
+				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -235,7 +206,8 @@ public class GraphicConfigurationItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GraphicConfiguration"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/GraphicConfiguration"));
 	}
 
 	/**
@@ -247,10 +219,11 @@ public class GraphicConfigurationItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		GraphicConfiguration graphicConfiguration = (GraphicConfiguration)object;
-		return getString("_UI_GraphicConfiguration_type") + " " + graphicConfiguration.isClearBeforeRender();
+		GraphicConfiguration graphicConfiguration = (GraphicConfiguration) object;
+		return getString("_UI_GraphicConfiguration_type")
+				+ " "
+				+ graphicConfiguration.isClearBeforeRender();
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -266,16 +239,18 @@ public class GraphicConfigurationItemProvider
 
 		switch (notification.getFeatureID(GraphicConfiguration.class))
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-			case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-			case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-			case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-			case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
+		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
+		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
+		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -292,10 +267,9 @@ public class GraphicConfigurationItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
-				 VulkanFactory.eINSTANCE.createColorDomain()));
+		newChildDescriptors.add(
+				createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
+						VulkanFactory.eINSTANCE.createColorDomain()));
 	}
 
 	/**
@@ -307,7 +281,7 @@ public class GraphicConfigurationItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

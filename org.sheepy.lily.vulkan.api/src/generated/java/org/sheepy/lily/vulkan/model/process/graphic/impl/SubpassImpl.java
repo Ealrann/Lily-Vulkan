@@ -110,8 +110,8 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphicPackage.SUBPASS__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.SUBPASS__NAME, oldName, name));
 	}
 
 	/**
@@ -124,7 +124,8 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		if (refs == null)
 		{
-			refs = new EObjectContainmentEList<AttachementRef>(AttachementRef.class, this, GraphicPackage.SUBPASS__REFS);
+			refs = new EObjectContainmentEList<AttachementRef>(AttachementRef.class, this,
+					GraphicPackage.SUBPASS__REFS);
 		}
 		return refs;
 	}
@@ -135,12 +136,14 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__REFS:
-				return ((InternalEList<?>)getRefs()).basicRemove(otherEnd, msgs);
+		case GraphicPackage.SUBPASS__REFS:
+			return ((InternalEList<?>) getRefs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -155,10 +158,10 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__NAME:
-				return getName();
-			case GraphicPackage.SUBPASS__REFS:
-				return getRefs();
+		case GraphicPackage.SUBPASS__NAME:
+			return getName();
+		case GraphicPackage.SUBPASS__REFS:
+			return getRefs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,13 +177,13 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__NAME:
-				setName((String)newValue);
-				return;
-			case GraphicPackage.SUBPASS__REFS:
-				getRefs().clear();
-				getRefs().addAll((Collection<? extends AttachementRef>)newValue);
-				return;
+		case GraphicPackage.SUBPASS__NAME:
+			setName((String) newValue);
+			return;
+		case GraphicPackage.SUBPASS__REFS:
+			getRefs().clear();
+			getRefs().addAll((Collection<? extends AttachementRef>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -195,12 +198,12 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case GraphicPackage.SUBPASS__REFS:
-				getRefs().clear();
-				return;
+		case GraphicPackage.SUBPASS__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case GraphicPackage.SUBPASS__REFS:
+			getRefs().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -215,10 +218,10 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.SUBPASS__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case GraphicPackage.SUBPASS__REFS:
-				return refs != null && !refs.isEmpty();
+		case GraphicPackage.SUBPASS__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case GraphicPackage.SUBPASS__REFS:
+			return refs != null && !refs.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

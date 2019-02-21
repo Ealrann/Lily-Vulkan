@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -62,19 +61,14 @@ public class StringModuleResourceItemProvider extends AbstractModuleResourceItem
 	 */
 	protected void addModuleNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_StringModuleResource_moduleName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StringModuleResource_moduleName_feature", "_UI_StringModuleResource_type"),
-				 ResourcePackage.Literals.STRING_MODULE_RESOURCE__MODULE_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_StringModuleResource_moduleName_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_StringModuleResource_moduleName_feature",
+						"_UI_StringModuleResource_type"),
+				ResourcePackage.Literals.STRING_MODULE_RESOURCE__MODULE_NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -86,7 +80,8 @@ public class StringModuleResourceItemProvider extends AbstractModuleResourceItem
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StringModuleResource"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/StringModuleResource"));
 	}
 
 	/**
@@ -98,12 +93,11 @@ public class StringModuleResourceItemProvider extends AbstractModuleResourceItem
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((StringModuleResource)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_StringModuleResource_type") :
-			getString("_UI_StringModuleResource_type") + " " + label;
+		String label = ((StringModuleResource) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_StringModuleResource_type")
+				: getString("_UI_StringModuleResource_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -119,9 +113,10 @@ public class StringModuleResourceItemProvider extends AbstractModuleResourceItem
 
 		switch (notification.getFeatureID(StringModuleResource.class))
 		{
-			case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ResourcePackage.STRING_MODULE_RESOURCE__MODULE_NAME:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

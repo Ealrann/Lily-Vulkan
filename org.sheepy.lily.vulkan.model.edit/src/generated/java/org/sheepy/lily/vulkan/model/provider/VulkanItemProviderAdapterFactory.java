@@ -45,7 +45,8 @@ import org.sheepy.lily.vulkan.model.util.VulkanAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
+public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender
 {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -69,7 +70,8 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(VulkanEditPlugin.INSTANCE, VulkanPackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
+			VulkanEditPlugin.INSTANCE, VulkanPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -252,7 +254,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 		if (isFactoryForType(type))
 		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
 			{
 				return adapter;
 			}
@@ -276,6 +278,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 	{
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
@@ -286,6 +289,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getResourceLocator()
 	{
 		return childCreationExtenderManager;
@@ -385,11 +389,12 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
 			{
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -398,14 +403,13 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 			@Override
 			public Object caseApplication(Application object)
 			{
-				newChildDescriptors.add
-					(createChildParameter
-						(ApplicationPackage.Literals.APPLICATION__ENGINES,
-						 VulkanFactory.eINSTANCE.createVulkanEngine()));
+				newChildDescriptors
+						.add(createChildParameter(ApplicationPackage.Literals.APPLICATION__ENGINES,
+								VulkanFactory.eINSTANCE.createVulkanEngine()));
 
 				return null;
 			}
- 
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -423,10 +427,11 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
 		}
 
@@ -435,6 +440,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory imple
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return VulkanEditPlugin.INSTANCE;

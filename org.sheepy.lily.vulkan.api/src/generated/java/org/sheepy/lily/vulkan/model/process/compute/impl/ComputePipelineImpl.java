@@ -195,8 +195,9 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		int oldWorkgroupSizeX = workgroupSizeX;
 		workgroupSizeX = newWorkgroupSizeX;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X, oldWorkgroupSizeX, workgroupSizeX));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X, oldWorkgroupSizeX,
+				workgroupSizeX));
 	}
 
 	/**
@@ -220,8 +221,9 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		int oldWorkgroupSizeY = workgroupSizeY;
 		workgroupSizeY = newWorkgroupSizeY;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y, oldWorkgroupSizeY, workgroupSizeY));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y, oldWorkgroupSizeY,
+				workgroupSizeY));
 	}
 
 	/**
@@ -245,8 +247,9 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		int oldWorkgroupSizeZ = workgroupSizeZ;
 		workgroupSizeZ = newWorkgroupSizeZ;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z, oldWorkgroupSizeZ, workgroupSizeZ));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z, oldWorkgroupSizeZ,
+				workgroupSizeZ));
 	}
 
 	/**
@@ -270,8 +273,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		int oldWidth = width;
 		width = newWidth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__WIDTH, oldWidth, width));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTE_PIPELINE__WIDTH, oldWidth, width));
 	}
 
 	/**
@@ -295,8 +298,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		int oldHeight = height;
 		height = newHeight;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__HEIGHT, oldHeight, height));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTE_PIPELINE__HEIGHT, oldHeight, height));
 	}
 
 	/**
@@ -320,8 +323,8 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		int oldDepth = depth;
 		depth = newDepth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTE_PIPELINE__DEPTH, oldDepth, depth));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTE_PIPELINE__DEPTH, oldDepth, depth));
 	}
 
 	/**
@@ -334,18 +337,18 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
-				return getWorkgroupSizeX();
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
-				return getWorkgroupSizeY();
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
-				return getWorkgroupSizeZ();
-			case ComputePackage.COMPUTE_PIPELINE__WIDTH:
-				return getWidth();
-			case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
-				return getHeight();
-			case ComputePackage.COMPUTE_PIPELINE__DEPTH:
-				return getDepth();
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
+			return getWorkgroupSizeX();
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
+			return getWorkgroupSizeY();
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
+			return getWorkgroupSizeZ();
+		case ComputePackage.COMPUTE_PIPELINE__WIDTH:
+			return getWidth();
+		case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
+			return getHeight();
+		case ComputePackage.COMPUTE_PIPELINE__DEPTH:
+			return getDepth();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -360,24 +363,24 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
-				setWorkgroupSizeX((Integer)newValue);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
-				setWorkgroupSizeY((Integer)newValue);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
-				setWorkgroupSizeZ((Integer)newValue);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__WIDTH:
-				setWidth((Integer)newValue);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
-				setHeight((Integer)newValue);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__DEPTH:
-				setDepth((Integer)newValue);
-				return;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
+			setWorkgroupSizeX((Integer) newValue);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
+			setWorkgroupSizeY((Integer) newValue);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
+			setWorkgroupSizeZ((Integer) newValue);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__WIDTH:
+			setWidth((Integer) newValue);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
+			setHeight((Integer) newValue);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__DEPTH:
+			setDepth((Integer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -392,24 +395,24 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
-				setWorkgroupSizeX(WORKGROUP_SIZE_X_EDEFAULT);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
-				setWorkgroupSizeY(WORKGROUP_SIZE_Y_EDEFAULT);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
-				setWorkgroupSizeZ(WORKGROUP_SIZE_Z_EDEFAULT);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__WIDTH:
-				setWidth(WIDTH_EDEFAULT);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
-				setHeight(HEIGHT_EDEFAULT);
-				return;
-			case ComputePackage.COMPUTE_PIPELINE__DEPTH:
-				setDepth(DEPTH_EDEFAULT);
-				return;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
+			setWorkgroupSizeX(WORKGROUP_SIZE_X_EDEFAULT);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
+			setWorkgroupSizeY(WORKGROUP_SIZE_Y_EDEFAULT);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
+			setWorkgroupSizeZ(WORKGROUP_SIZE_Z_EDEFAULT);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__WIDTH:
+			setWidth(WIDTH_EDEFAULT);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
+			setHeight(HEIGHT_EDEFAULT);
+			return;
+		case ComputePackage.COMPUTE_PIPELINE__DEPTH:
+			setDepth(DEPTH_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -424,18 +427,18 @@ public class ComputePipelineImpl extends AbstractPipelineImpl implements Compute
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
-				return workgroupSizeX != WORKGROUP_SIZE_X_EDEFAULT;
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
-				return workgroupSizeY != WORKGROUP_SIZE_Y_EDEFAULT;
-			case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
-				return workgroupSizeZ != WORKGROUP_SIZE_Z_EDEFAULT;
-			case ComputePackage.COMPUTE_PIPELINE__WIDTH:
-				return width != WIDTH_EDEFAULT;
-			case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
-				return height != HEIGHT_EDEFAULT;
-			case ComputePackage.COMPUTE_PIPELINE__DEPTH:
-				return depth != DEPTH_EDEFAULT;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
+			return workgroupSizeX != WORKGROUP_SIZE_X_EDEFAULT;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
+			return workgroupSizeY != WORKGROUP_SIZE_Y_EDEFAULT;
+		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
+			return workgroupSizeZ != WORKGROUP_SIZE_Z_EDEFAULT;
+		case ComputePackage.COMPUTE_PIPELINE__WIDTH:
+			return width != WIDTH_EDEFAULT;
+		case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
+			return height != HEIGHT_EDEFAULT;
+		case ComputePackage.COMPUTE_PIPELINE__DEPTH:
+			return depth != DEPTH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -93,12 +92,11 @@ public class AbstractCompositePipelineItemProvider extends AbstractPipelineItemP
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((AbstractCompositePipeline)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AbstractCompositePipeline_type") :
-			getString("_UI_AbstractCompositePipeline_type") + " " + label;
+		String label = ((AbstractCompositePipeline) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_AbstractCompositePipeline_type")
+				: getString("_UI_AbstractCompositePipeline_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -114,9 +112,10 @@ public class AbstractCompositePipelineItemProvider extends AbstractPipelineItemP
 
 		switch (notification.getFeatureID(AbstractCompositePipeline.class))
 		{
-			case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

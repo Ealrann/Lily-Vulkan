@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -34,14 +33,9 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BarrierItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class BarrierItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -81,19 +75,13 @@ public class BarrierItemProvider
 	 */
 	protected void addSrcStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Barrier_srcStage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Barrier_srcStage_feature", "_UI_Barrier_type"),
-				 ResourcePackage.Literals.BARRIER__SRC_STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Barrier_srcStage_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Barrier_srcStage_feature",
+						"_UI_Barrier_type"),
+				ResourcePackage.Literals.BARRIER__SRC_STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -104,19 +92,13 @@ public class BarrierItemProvider
 	 */
 	protected void addDstStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Barrier_dstStage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Barrier_dstStage_feature", "_UI_Barrier_type"),
-				 ResourcePackage.Literals.BARRIER__DST_STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Barrier_dstStage_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Barrier_dstStage_feature",
+						"_UI_Barrier_type"),
+				ResourcePackage.Literals.BARRIER__DST_STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -128,13 +110,12 @@ public class BarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((Barrier)object).getSrcStage();
+		EPipelineStage labelValue = ((Barrier) object).getSrcStage();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Barrier_type") :
-			getString("_UI_Barrier_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_Barrier_type")
+				: getString("_UI_Barrier_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -150,10 +131,11 @@ public class BarrierItemProvider
 
 		switch (notification.getFeatureID(Barrier.class))
 		{
-			case ResourcePackage.BARRIER__SRC_STAGE:
-			case ResourcePackage.BARRIER__DST_STAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ResourcePackage.BARRIER__SRC_STAGE:
+		case ResourcePackage.BARRIER__DST_STAGE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -180,7 +162,7 @@ public class BarrierItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

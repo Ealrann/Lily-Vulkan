@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -33,8 +32,9 @@ import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PipelineBarrierItemProvider 
-	extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class PipelineBarrierItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -75,19 +75,13 @@ public class PipelineBarrierItemProvider
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -98,19 +92,13 @@ public class PipelineBarrierItemProvider
 	 */
 	protected void addSrcQueuePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PipelineBarrier_srcQueue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PipelineBarrier_srcQueue_feature", "_UI_PipelineBarrier_type"),
-				 ProcessPackage.Literals.PIPELINE_BARRIER__SRC_QUEUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_PipelineBarrier_srcQueue_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PipelineBarrier_srcQueue_feature", "_UI_PipelineBarrier_type"),
+				ProcessPackage.Literals.PIPELINE_BARRIER__SRC_QUEUE, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -121,19 +109,13 @@ public class PipelineBarrierItemProvider
 	 */
 	protected void addDstQueuePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PipelineBarrier_dstQueue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PipelineBarrier_dstQueue_feature", "_UI_PipelineBarrier_type"),
-				 ProcessPackage.Literals.PIPELINE_BARRIER__DST_QUEUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_PipelineBarrier_dstQueue_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PipelineBarrier_dstQueue_feature", "_UI_PipelineBarrier_type"),
+				ProcessPackage.Literals.PIPELINE_BARRIER__DST_QUEUE, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -190,12 +172,11 @@ public class PipelineBarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((PipelineBarrier)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PipelineBarrier_type") :
-			getString("_UI_PipelineBarrier_type") + " " + label;
+		String label = ((PipelineBarrier) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_PipelineBarrier_type")
+				: getString("_UI_PipelineBarrier_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -211,13 +192,15 @@ public class PipelineBarrierItemProvider
 
 		switch (notification.getFeatureID(PipelineBarrier.class))
 		{
-			case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
-			case ProcessPackage.PIPELINE_BARRIER__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ProcessPackage.PIPELINE_BARRIER__BARRIER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ProcessPackage.PIPELINE_BARRIER__CONTENT_OBJECTS:
+		case ProcessPackage.PIPELINE_BARRIER__NAME:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ProcessPackage.PIPELINE_BARRIER__BARRIER:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -234,20 +217,17 @@ public class PipelineBarrierItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIER,
-				 ResourceFactory.eINSTANCE.createBufferBarrier()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIER,
+						ResourceFactory.eINSTANCE.createBufferBarrier()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIER,
-				 ResourceFactory.eINSTANCE.createImageBarrier()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIER,
+						ResourceFactory.eINSTANCE.createImageBarrier()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIER,
-				 ResourceFactory.eINSTANCE.createReferenceImageBarrier()));
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIER,
+						ResourceFactory.eINSTANCE.createReferenceImageBarrier()));
 	}
 
 	/**
@@ -259,7 +239,7 @@ public class PipelineBarrierItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

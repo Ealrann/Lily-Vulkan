@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.lily.vulkan.model.enumeration.EnumerationFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model'"
  * @generated
  */
 public interface EnumerationPackage extends EPackage
@@ -54,7 +54,8 @@ public interface EnumerationPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EnumerationPackage eINSTANCE = org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl.init();
+	EnumerationPackage eINSTANCE = org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}' enum.
@@ -315,7 +316,6 @@ public interface EnumerationPackage extends EPackage
 	 * @generated
 	 */
 	int ESAMPLE_COUNT = 25;
-
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}'.

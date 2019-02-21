@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Buffer Barrier</b></em>'.

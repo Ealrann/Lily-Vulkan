@@ -103,8 +103,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTER__NAME, oldName, name));
 	}
 
 	/**
@@ -117,12 +117,12 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		if (shader != null && shader.eIsProxy())
 		{
-			InternalEObject oldShader = (InternalEObject)shader;
-			shader = (Shader)eResolveProxy(oldShader);
+			InternalEObject oldShader = (InternalEObject) shader;
+			shader = (Shader) eResolveProxy(oldShader);
 			if (shader != oldShader)
 			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputePackage.COMPUTER__SHADER, oldShader, shader));
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
+						Notification.RESOLVE, ComputePackage.COMPUTER__SHADER, oldShader, shader));
 			}
 		}
 		return shader;
@@ -148,8 +148,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		Shader oldShader = shader;
 		shader = newShader;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputePackage.COMPUTER__SHADER, oldShader, shader));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTER__SHADER, oldShader, shader));
 	}
 
 	/**
@@ -162,11 +162,11 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__NAME:
-				return getName();
-			case ComputePackage.COMPUTER__SHADER:
-				if (resolve) return getShader();
-				return basicGetShader();
+		case ComputePackage.COMPUTER__NAME:
+			return getName();
+		case ComputePackage.COMPUTER__SHADER:
+			if (resolve) return getShader();
+			return basicGetShader();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -181,12 +181,12 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__NAME:
-				setName((String)newValue);
-				return;
-			case ComputePackage.COMPUTER__SHADER:
-				setShader((Shader)newValue);
-				return;
+		case ComputePackage.COMPUTER__NAME:
+			setName((String) newValue);
+			return;
+		case ComputePackage.COMPUTER__SHADER:
+			setShader((Shader) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -201,12 +201,12 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ComputePackage.COMPUTER__SHADER:
-				setShader((Shader)null);
-				return;
+		case ComputePackage.COMPUTER__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ComputePackage.COMPUTER__SHADER:
+			setShader((Shader) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -221,10 +221,10 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	{
 		switch (featureID)
 		{
-			case ComputePackage.COMPUTER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ComputePackage.COMPUTER__SHADER:
-				return shader != null;
+		case ComputePackage.COMPUTER__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ComputePackage.COMPUTER__SHADER:
+			return shader != null;
 		}
 		return super.eIsSet(featureID);
 	}

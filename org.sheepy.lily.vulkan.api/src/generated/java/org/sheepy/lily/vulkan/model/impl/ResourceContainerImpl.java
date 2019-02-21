@@ -76,7 +76,8 @@ public class ResourceContainerImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (resources == null)
 		{
-			resources = new EObjectContainmentEList<IResource>(IResource.class, this, VulkanPackage.RESOURCE_CONTAINER__RESOURCES);
+			resources = new EObjectContainmentEList<IResource>(IResource.class, this,
+					VulkanPackage.RESOURCE_CONTAINER__RESOURCES);
 		}
 		return resources;
 	}
@@ -87,12 +88,14 @@ public class ResourceContainerImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
-				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
+		case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
+			return ((InternalEList<?>) getResources()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -107,8 +110,8 @@ public class ResourceContainerImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
-				return getResources();
+		case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
+			return getResources();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,10 +127,10 @@ public class ResourceContainerImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
-				getResources().clear();
-				getResources().addAll((Collection<? extends IResource>)newValue);
-				return;
+		case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
+			getResources().clear();
+			getResources().addAll((Collection<? extends IResource>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -142,9 +145,9 @@ public class ResourceContainerImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
-				getResources().clear();
-				return;
+		case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
+			getResources().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -159,8 +162,8 @@ public class ResourceContainerImpl extends MinimalEObjectImpl.Container implemen
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
-				return resources != null && !resources.isEmpty();
+		case VulkanPackage.RESOURCE_CONTAINER__RESOURCES:
+			return resources != null && !resources.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -69,7 +69,7 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 		}
 		if (object instanceof EObject)
 		{
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -80,85 +80,98 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProcessSwitch<Adapter> modelSwitch =
-		new ProcessSwitch<Adapter>()
+	protected ProcessSwitch<Adapter> modelSwitch = new ProcessSwitch<Adapter>()
+	{
+		@Override
+		public Adapter caseAbstractProcess(AbstractProcess object)
 		{
-			@Override
-			public Adapter caseAbstractProcess(AbstractProcess object)
-			{
-				return createAbstractProcessAdapter();
-			}
-			@Override
-			public Adapter caseProcessSemaphore(ProcessSemaphore object)
-			{
-				return createProcessSemaphoreAdapter();
-			}
-			@Override
-			public Adapter caseConfiguration(Configuration object)
-			{
-				return createConfigurationAdapter();
-			}
-			@Override
-			public Adapter casePipelineBarrier(PipelineBarrier object)
-			{
-				return createPipelineBarrierAdapter();
-			}
-			@Override
-			public Adapter caseIPipeline(IPipeline object)
-			{
-				return createIPipelineAdapter();
-			}
-			@Override
-			public Adapter caseAbstractPipeline(AbstractPipeline object)
-			{
-				return createAbstractPipelineAdapter();
-			}
-			@Override
-			public Adapter caseIPipelineUnit(IPipelineUnit object)
-			{
-				return createIPipelineUnitAdapter();
-			}
-			@Override
-			public Adapter caseAbstractCompositePipeline(AbstractCompositePipeline object)
-			{
-				return createAbstractCompositePipelineAdapter();
-			}
-			@Override
-			public Adapter casePushConstant(PushConstant object)
-			{
-				return createPushConstantAdapter();
-			}
-			@Override
-			public Adapter caseIInferenceObject(IInferenceObject object)
-			{
-				return createIInferenceObjectAdapter();
-			}
-			@Override
-			public Adapter caseLObject(LObject object)
-			{
-				return createLObjectAdapter();
-			}
-			@Override
-			public Adapter caseIEnginePart(IEnginePart object)
-			{
-				return createIEnginePartAdapter();
-			}
-			@Override
-			public Adapter caseLNamedElement(LNamedElement object)
-			{
-				return createLNamedElementAdapter();
-			}
-			@Override
-			public Adapter caseIProcess(IProcess object)
-			{
-				return createIProcessAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object)
-			{
-				return createEObjectAdapter();
-			}
-		};
+			return createAbstractProcessAdapter();
+		}
+
+		@Override
+		public Adapter caseProcessSemaphore(ProcessSemaphore object)
+		{
+			return createProcessSemaphoreAdapter();
+		}
+
+		@Override
+		public Adapter caseConfiguration(Configuration object)
+		{
+			return createConfigurationAdapter();
+		}
+
+		@Override
+		public Adapter casePipelineBarrier(PipelineBarrier object)
+		{
+			return createPipelineBarrierAdapter();
+		}
+
+		@Override
+		public Adapter caseIPipeline(IPipeline object)
+		{
+			return createIPipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractPipeline(AbstractPipeline object)
+		{
+			return createAbstractPipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseIPipelineUnit(IPipelineUnit object)
+		{
+			return createIPipelineUnitAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractCompositePipeline(AbstractCompositePipeline object)
+		{
+			return createAbstractCompositePipelineAdapter();
+		}
+
+		@Override
+		public Adapter casePushConstant(PushConstant object)
+		{
+			return createPushConstantAdapter();
+		}
+
+		@Override
+		public Adapter caseIInferenceObject(IInferenceObject object)
+		{
+			return createIInferenceObjectAdapter();
+		}
+
+		@Override
+		public Adapter caseLObject(LObject object)
+		{
+			return createLObjectAdapter();
+		}
+
+		@Override
+		public Adapter caseIEnginePart(IEnginePart object)
+		{
+			return createIEnginePartAdapter();
+		}
+
+		@Override
+		public Adapter caseLNamedElement(LNamedElement object)
+		{
+			return createLNamedElementAdapter();
+		}
+
+		@Override
+		public Adapter caseIProcess(IProcess object)
+		{
+			return createIProcessAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object)
+		{
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -171,9 +184,8 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.

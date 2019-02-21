@@ -301,11 +301,14 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 */
 	public static ResourcePackage init()
 	{
-		if (isInited) return (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		if (isInited) return (ResourcePackage) EPackage.Registry.INSTANCE
+				.getEPackage(ResourcePackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredResourcePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		ResourcePackageImpl theResourcePackage = registeredResourcePackage instanceof ResourcePackageImpl ? (ResourcePackageImpl)registeredResourcePackage : new ResourcePackageImpl();
+		ResourcePackageImpl theResourcePackage = registeredResourcePackage instanceof ResourcePackageImpl
+				? (ResourcePackageImpl) registeredResourcePackage
+				: new ResourcePackageImpl();
 
 		isInited = true;
 
@@ -374,7 +377,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBuffer_Size()
 	{
-		return (EAttribute)bufferEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) bufferEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -385,7 +388,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBuffer_Usages()
 	{
-		return (EAttribute)bufferEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) bufferEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -396,7 +399,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBuffer_Data()
 	{
-		return (EAttribute)bufferEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) bufferEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -407,7 +410,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBuffer_OftenUpdated()
 	{
-		return (EAttribute)bufferEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) bufferEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -418,7 +421,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBuffer_GpuBuffer()
 	{
-		return (EAttribute)bufferEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) bufferEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -440,7 +443,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImage_Width()
 	{
-		return (EAttribute)imageEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) imageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -451,7 +454,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImage_Height()
 	{
-		return (EAttribute)imageEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) imageEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -462,7 +465,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImage_Format()
 	{
-		return (EAttribute)imageEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) imageEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -473,7 +476,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImage_Usages()
 	{
-		return (EAttribute)imageEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) imageEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -484,7 +487,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImage_Properties()
 	{
-		return (EAttribute)imageEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) imageEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -495,7 +498,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImage_Tiling()
 	{
-		return (EAttribute)imageEClass.getEStructuralFeatures().get(5);
+		return (EAttribute) imageEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -506,7 +509,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImage_MipLevels()
 	{
-		return (EAttribute)imageEClass.getEStructuralFeatures().get(6);
+		return (EAttribute) imageEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -517,7 +520,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getImage_InitialLayout()
 	{
-		return (EReference)imageEClass.getEStructuralFeatures().get(7);
+		return (EReference) imageEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -539,7 +542,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImageLayout_Stage()
 	{
-		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) imageLayoutEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -550,7 +553,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImageLayout_Layout()
 	{
-		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) imageLayoutEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -561,7 +564,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImageLayout_AccessMask()
 	{
-		return (EAttribute)imageLayoutEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) imageLayoutEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -583,7 +586,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getSampledImage_Sampler()
 	{
-		return (EReference)sampledImageEClass.getEStructuralFeatures().get(0);
+		return (EReference) sampledImageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -605,7 +608,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getFont_File()
 	{
-		return (EReference)fontEClass.getEStructuralFeatures().get(0);
+		return (EReference) fontEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -616,7 +619,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getFont_Height()
 	{
-		return (EAttribute)fontEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) fontEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -638,7 +641,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getAbstractTexture_MipmapEnabled()
 	{
-		return (EAttribute)abstractTextureEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) abstractTextureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -660,7 +663,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getTexture_File()
 	{
-		return (EReference)textureEClass.getEStructuralFeatures().get(0);
+		return (EReference) textureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -682,7 +685,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_MinFilter()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -693,7 +696,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_MagFilter()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -704,7 +707,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_MipmapMode()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -715,7 +718,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_AddressMode()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -726,7 +729,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_BorderColor()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -737,7 +740,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_AnisotropyEnabled()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(5);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -748,7 +751,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_UnnormalizedCoordinates()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(6);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -759,7 +762,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_CompareEnable()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(7);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -770,7 +773,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_LodBias()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(8);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -781,7 +784,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_MinLod()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(9);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -792,7 +795,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_MaxLod()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(10);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -803,7 +806,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getSampler_MaxAnisotropy()
 	{
-		return (EAttribute)samplerEClass.getEStructuralFeatures().get(11);
+		return (EAttribute) samplerEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -825,7 +828,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getAbstractConstants_Stage()
 	{
-		return (EAttribute)abstractConstantsEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) abstractConstantsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -847,7 +850,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getConstants_Data()
 	{
-		return (EAttribute)constantsEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) constantsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -869,7 +872,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getIDescriptor_DescriptorType()
 	{
-		return (EAttribute)iDescriptorEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) iDescriptorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -880,7 +883,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getIDescriptor_ShaderStages()
 	{
-		return (EAttribute)iDescriptorEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) iDescriptorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -902,7 +905,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getDescriptorSet_Descriptors()
 	{
-		return (EReference)descriptorSetEClass.getEStructuralFeatures().get(0);
+		return (EReference) descriptorSetEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -924,7 +927,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBarrier_SrcStage()
 	{
-		return (EAttribute)barrierEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) barrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -935,7 +938,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBarrier_DstStage()
 	{
-		return (EAttribute)barrierEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) barrierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -957,7 +960,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getBufferBarrier_Buffer()
 	{
-		return (EReference)bufferBarrierEClass.getEStructuralFeatures().get(0);
+		return (EReference) bufferBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -968,7 +971,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBufferBarrier_SrcAccess()
 	{
-		return (EAttribute)bufferBarrierEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) bufferBarrierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -979,7 +982,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getBufferBarrier_DstAccess()
 	{
-		return (EAttribute)bufferBarrierEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) bufferBarrierEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1001,7 +1004,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getAbstractImageBarrier_Transitions()
 	{
-		return (EReference)abstractImageBarrierEClass.getEStructuralFeatures().get(0);
+		return (EReference) abstractImageBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1023,7 +1026,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getImageBarrier_Image()
 	{
-		return (EReference)imageBarrierEClass.getEStructuralFeatures().get(0);
+		return (EReference) imageBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1045,7 +1048,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getReferenceImageBarrier_ImageId()
 	{
-		return (EAttribute)referenceImageBarrierEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1056,7 +1059,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getReferenceImageBarrier_MipLevels()
 	{
-		return (EAttribute)referenceImageBarrierEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1067,7 +1070,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getReferenceImageBarrier_ImageFormat()
 	{
-		return (EAttribute)referenceImageBarrierEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1089,7 +1092,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImageTransition_SrcLayout()
 	{
-		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1100,7 +1103,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImageTransition_DstLayout()
 	{
-		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1111,7 +1114,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImageTransition_SrcAccessMask()
 	{
-		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1122,7 +1125,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getImageTransition_DstAccessMask()
 	{
-		return (EAttribute)imageTransitionEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1144,7 +1147,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EReference getShader_File()
 	{
-		return (EReference)shaderEClass.getEStructuralFeatures().get(0);
+		return (EReference) shaderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1155,7 +1158,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getShader_Stage()
 	{
-		return (EAttribute)shaderEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) shaderEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1188,7 +1191,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getPathResource_Path()
 	{
-		return (EAttribute)pathResourceEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) pathResourceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1232,7 +1235,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getModuleResource_Module()
 	{
-		return (EAttribute)moduleResourceEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) moduleResourceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1254,7 +1257,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getStringModuleResource_ModuleName()
 	{
-		return (EAttribute)stringModuleResourceEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) stringModuleResourceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1287,7 +1290,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public ResourceFactory getResourceFactory()
 	{
-		return (ResourceFactory)getEFactoryInstance();
+		return (ResourceFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -1451,10 +1454,14 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		EnumerationPackage theEnumerationPackage = (EnumerationPackage)EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		VulkanPackage theVulkanPackage = (VulkanPackage) EPackage.Registry.INSTANCE
+				.getEPackage(VulkanPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
+		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
+				.getEPackage(EnumerationPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
+				.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1485,120 +1492,266 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		stringModuleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(pipelineResourceEClass, PipelineResource.class, "PipelineResource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(pipelineResourceEClass, PipelineResource.class, "PipelineResource", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null, 0, -1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_OftenUpdated(), theEcorePackage.getEBoolean(), "oftenUpdated", "false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBuffer_GpuBuffer(), theEcorePackage.getEBoolean(), "gpuBuffer", "true", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
+				Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null,
+				0, -1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, Buffer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_OftenUpdated(), theEcorePackage.getEBoolean(), "oftenUpdated",
+				"false", 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_GpuBuffer(), theEcorePackage.getEBoolean(), "gpuBuffer", "true", 0,
+				1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImage_Width(), theEcorePackage.getEInt(), "width", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Height(), theEcorePackage.getEInt(), "height", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Format(), theEnumerationPackage.getEFormat(), "format", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 0, -1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Properties(), theEcorePackage.getEInt(), "properties", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_Tiling(), theEcorePackage.getEInt(), "tiling", "0", 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImage_MipLevels(), theEcorePackage.getEInt(), "mipLevels", "1", 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getImage_InitialLayout(), this.getImageLayout(), null, "initialLayout", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImage_Width(), theEcorePackage.getEInt(), "width", null, 0, 1,
+				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Height(), theEcorePackage.getEInt(), "height", null, 0, 1,
+				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Format(), theEnumerationPackage.getEFormat(), "format", null, 0, 1,
+				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 0,
+				-1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Properties(), theEcorePackage.getEInt(), "properties", null, 0, 1,
+				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Tiling(), theEcorePackage.getEInt(), "tiling", "0", 0, 1,
+				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_MipLevels(), theEcorePackage.getEInt(), "mipLevels", "1", 0, 1,
+				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImage_InitialLayout(), this.getImageLayout(), null, "initialLayout", null,
+				0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImageLayout_Stage(), theEnumerationPackage.getEPipelineStage(), "stage", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageLayout_Layout(), theEnumerationPackage.getEImageLayout(), "layout", null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageLayout_AccessMask(), theEnumerationPackage.getEAccess(), "accessMask", null, 0, -1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImageLayout_Stage(), theEnumerationPackage.getEPipelineStage(), "stage",
+				null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_Layout(), theEnumerationPackage.getEImageLayout(), "layout",
+				null, 0, 1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageLayout_AccessMask(), theEnumerationPackage.getEAccess(),
+				"accessMask", null, 0, -1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSampledImage_Sampler(), this.getSampler(), null, "sampler", null, 0, 1, SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSampledImage_Sampler(), this.getSampler(), null, "sampler", null, 0, 1,
+				SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(fontEClass, Font.class, "Font", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFont_File(), this.getPathResource(), null, "file", null, 0, 1, Font.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFont_Height(), theEcorePackage.getEInt(), "height", "18", 0, 1, Font.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(fontEClass, Font.class, "Font", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFont_File(), this.getPathResource(), null, "file", null, 0, 1, Font.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFont_Height(), theEcorePackage.getEInt(), "height", "18", 0, 1,
+				Font.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abstractTextureEClass, AbstractTexture.class, "AbstractTexture", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractTexture_MipmapEnabled(), theEcorePackage.getEBoolean(), "mipmapEnabled", "false", 0, 1, AbstractTexture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractTextureEClass, AbstractTexture.class, "AbstractTexture", IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractTexture_MipmapEnabled(), theEcorePackage.getEBoolean(),
+				"mipmapEnabled", "false", 0, 1, AbstractTexture.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(textureEClass, Texture.class, "Texture", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTexture_File(), this.getPathResource(), null, "file", null, 0, 1, Texture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(textureEClass, Texture.class, "Texture", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTexture_File(), this.getPathResource(), null, "file", null, 0, 1,
+				Texture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(samplerEClass, Sampler.class, "Sampler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSampler_MinFilter(), theEnumerationPackage.getEFilter(), "minFilter", "NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MagFilter(), theEnumerationPackage.getEFilter(), "magFilter", "NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MipmapMode(), theEnumerationPackage.getESamplerMipmapMode(), "mipmapMode", "NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_AddressMode(), theEnumerationPackage.getESamplerAddressMode(), "addressMode", "REPEAT", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_BorderColor(), theEnumerationPackage.getEBorderColor(), "borderColor", "INT_OPAQUE_BLACK", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_AnisotropyEnabled(), theEcorePackage.getEBoolean(), "anisotropyEnabled", "false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_UnnormalizedCoordinates(), theEcorePackage.getEBoolean(), "unnormalizedCoordinates", "false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_CompareEnable(), theEcorePackage.getEBoolean(), "compareEnable", "false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_LodBias(), theEcorePackage.getEFloat(), "lodBias", "0", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MinLod(), theEcorePackage.getEInt(), "minLod", "0", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MaxLod(), theEcorePackage.getEInt(), "maxLod", "1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSampler_MaxAnisotropy(), theEcorePackage.getEFloat(), "maxAnisotropy", "1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(samplerEClass, Sampler.class, "Sampler", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSampler_MinFilter(), theEnumerationPackage.getEFilter(), "minFilter",
+				"NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MagFilter(), theEnumerationPackage.getEFilter(), "magFilter",
+				"NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MipmapMode(), theEnumerationPackage.getESamplerMipmapMode(),
+				"mipmapMode", "NEAREST", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_AddressMode(), theEnumerationPackage.getESamplerAddressMode(),
+				"addressMode", "REPEAT", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_BorderColor(), theEnumerationPackage.getEBorderColor(),
+				"borderColor", "INT_OPAQUE_BLACK", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_AnisotropyEnabled(), theEcorePackage.getEBoolean(),
+				"anisotropyEnabled", "false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_UnnormalizedCoordinates(), theEcorePackage.getEBoolean(),
+				"unnormalizedCoordinates", "false", 0, 1, Sampler.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getSampler_CompareEnable(), theEcorePackage.getEBoolean(), "compareEnable",
+				"false", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_LodBias(), theEcorePackage.getEFloat(), "lodBias", "0", 0, 1,
+				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MinLod(), theEcorePackage.getEInt(), "minLod", "0", 0, 1,
+				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MaxLod(), theEcorePackage.getEInt(), "maxLod", "1", 0, 1,
+				Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSampler_MaxAnisotropy(), theEcorePackage.getEFloat(), "maxAnisotropy",
+				"1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abstractConstantsEClass, AbstractConstants.class, "AbstractConstants", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractConstants_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, AbstractConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractConstantsEClass, AbstractConstants.class, "AbstractConstants",
+				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractConstants_Stage(), theEnumerationPackage.getEShaderStage(),
+				"stage", null, 0, 1, AbstractConstants.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(constantsEClass, Constants.class, "Constants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstants_Data(), this.getByteBuffer(), "data", null, 0, 1, Constants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(constantsEClass, Constants.class, "Constants", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConstants_Data(), this.getByteBuffer(), "data", null, 0, 1,
+				Constants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(), "descriptorType", null, 0, 1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(), "shaderStages", null, 0, -1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(),
+				"descriptorType", null, 0, 1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(),
+				"shaderStages", null, 0, -1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDescriptorSet_Descriptors(), this.getIDescriptor(), null, "descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDescriptorSet_Descriptors(), this.getIDescriptor(), null, "descriptors",
+				null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBarrier_SrcStage(), theEnumerationPackage.getEPipelineStage(), "srcStage", null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(), "dstStage", null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBarrier_SrcStage(), theEnumerationPackage.getEPipelineStage(), "srcStage",
+				null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(), "dstStage",
+				null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(bufferBarrierEClass, BufferBarrier.class, "BufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBufferBarrier_Buffer(), this.getBuffer(), null, "buffer", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferBarrier_SrcAccess(), theEnumerationPackage.getEAccess(), "srcAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferBarrier_DstAccess(), theEnumerationPackage.getEAccess(), "dstAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bufferBarrierEClass, BufferBarrier.class, "BufferBarrier", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBufferBarrier_Buffer(), this.getBuffer(), null, "buffer", null, 0, 1,
+				BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferBarrier_SrcAccess(), theEnumerationPackage.getEAccess(),
+				"srcAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferBarrier_DstAccess(), theEnumerationPackage.getEAccess(),
+				"dstAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abstractImageBarrierEClass, AbstractImageBarrier.class, "AbstractImageBarrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractImageBarrier_Transitions(), this.getImageTransition(), null, "transitions", null, 0, -1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractImageBarrierEClass, AbstractImageBarrier.class, "AbstractImageBarrier",
+				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractImageBarrier_Transitions(), this.getImageTransition(), null,
+				"transitions", null, 0, -1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(imageBarrierEClass, ImageBarrier.class, "ImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImageBarrier_Image(), this.getImage(), null, "image", null, 0, 1, ImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(imageBarrierEClass, ImageBarrier.class, "ImageBarrier", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getImageBarrier_Image(), this.getImage(), null, "image", null, 0, 1,
+				ImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(referenceImageBarrierEClass, ReferenceImageBarrier.class, "ReferenceImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReferenceImageBarrier_ImageId(), theEcorePackage.getELong(), "imageId", null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getReferenceImageBarrier_MipLevels(), theEcorePackage.getEInt(), "mipLevels", null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getReferenceImageBarrier_ImageFormat(), theEcorePackage.getEInt(), "imageFormat", null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(referenceImageBarrierEClass, ReferenceImageBarrier.class,
+				"ReferenceImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getReferenceImageBarrier_ImageId(), theEcorePackage.getELong(), "imageId",
+				null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReferenceImageBarrier_MipLevels(), theEcorePackage.getEInt(), "mipLevels",
+				null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReferenceImageBarrier_ImageFormat(), theEcorePackage.getEInt(),
+				"imageFormat", null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(imageTransitionEClass, ImageTransition.class, "ImageTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImageTransition_SrcLayout(), theEnumerationPackage.getEImageLayout(), "srcLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_DstLayout(), theEnumerationPackage.getEImageLayout(), "dstLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_SrcAccessMask(), theEnumerationPackage.getEAccess(), "srcAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_DstAccessMask(), theEnumerationPackage.getEAccess(), "dstAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(imageTransitionEClass, ImageTransition.class, "ImageTransition", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImageTransition_SrcLayout(), theEnumerationPackage.getEImageLayout(),
+				"srcLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageTransition_DstLayout(), theEnumerationPackage.getEImageLayout(),
+				"dstLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageTransition_SrcAccessMask(), theEnumerationPackage.getEAccess(),
+				"srcAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageTransition_DstAccessMask(), theEnumerationPackage.getEAccess(),
+				"dstAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getShader_File(), this.getPathResource(), null, "file", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0, 1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getShader_File(), this.getPathResource(), null, "file", null, 0, 1,
+				Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0,
+				1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(depthImageEClass, DepthImage.class, "DepthImage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(depthImageEClass, DepthImage.class, "DepthImage", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(pathResourceEClass, PathResource.class, "PathResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPathResource_Path(), theEcorePackage.getEString(), "path", null, 0, 1, PathResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(pathResourceEClass, PathResource.class, "PathResource", IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPathResource_Path(), theEcorePackage.getEString(), "path", null, 0, 1,
+				PathResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(fileResourceEClass, FileResource.class, "FileResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(fileResourceEClass, FileResource.class, "FileResource", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(abstractModuleResourceEClass, AbstractModuleResource.class, "AbstractModuleResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(abstractModuleResourceEClass, AbstractModuleResource.class,
+				"AbstractModuleResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(moduleResourceEClass, ModuleResource.class, "ModuleResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModuleResource_Module(), this.getJavaModule(), "module", null, 0, 1, ModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(moduleResourceEClass, ModuleResource.class, "ModuleResource", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModuleResource_Module(), this.getJavaModule(), "module", null, 0, 1,
+				ModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(stringModuleResourceEClass, StringModuleResource.class, "StringModuleResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringModuleResource_ModuleName(), theEcorePackage.getEString(), "moduleName", null, 0, 1, StringModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(stringModuleResourceEClass, StringModuleResource.class, "StringModuleResource",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringModuleResource_ModuleName(), theEcorePackage.getEString(),
+				"moduleName", null, 0, 1, StringModuleResource.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
-		initEDataType(byteBufferEDataType, ByteBuffer.class, "ByteBuffer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(javaModuleEDataType, Module.class, "JavaModule", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(byteBufferEDataType, ByteBuffer.class, "ByteBuffer", IS_SERIALIZABLE,
+				!IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(javaModuleEDataType, Module.class, "JavaModule", IS_SERIALIZABLE,
+				!IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

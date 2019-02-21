@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -34,14 +33,9 @@ import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProcessSemaphoreItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class ProcessSemaphoreItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -81,19 +75,13 @@ public class ProcessSemaphoreItemProvider
 	 */
 	protected void addProcessPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProcessSemaphore_process_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProcessSemaphore_process_feature", "_UI_ProcessSemaphore_type"),
-				 ProcessPackage.Literals.PROCESS_SEMAPHORE__PROCESS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ProcessSemaphore_process_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ProcessSemaphore_process_feature", "_UI_ProcessSemaphore_type"),
+				ProcessPackage.Literals.PROCESS_SEMAPHORE__PROCESS, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -104,19 +92,13 @@ public class ProcessSemaphoreItemProvider
 	 */
 	protected void addWaitStagePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProcessSemaphore_waitStage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProcessSemaphore_waitStage_feature", "_UI_ProcessSemaphore_type"),
-				 ProcessPackage.Literals.PROCESS_SEMAPHORE__WAIT_STAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ProcessSemaphore_waitStage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ProcessSemaphore_waitStage_feature", "_UI_ProcessSemaphore_type"),
+				ProcessPackage.Literals.PROCESS_SEMAPHORE__WAIT_STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -140,13 +122,12 @@ public class ProcessSemaphoreItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((ProcessSemaphore)object).getWaitStage();
+		EPipelineStage labelValue = ((ProcessSemaphore) object).getWaitStage();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ProcessSemaphore_type") :
-			getString("_UI_ProcessSemaphore_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_ProcessSemaphore_type")
+				: getString("_UI_ProcessSemaphore_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -162,9 +143,10 @@ public class ProcessSemaphoreItemProvider
 
 		switch (notification.getFeatureID(ProcessSemaphore.class))
 		{
-			case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -191,7 +173,7 @@ public class ProcessSemaphoreItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

@@ -75,12 +75,9 @@ public enum ESamplerMipmapMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ESamplerMipmapMode[] VALUES_ARRAY =
-		new ESamplerMipmapMode[]
-		{
-			NEAREST,
-			LINEAR,
-		};
+	private static final ESamplerMipmapMode[] VALUES_ARRAY = new ESamplerMipmapMode[] {
+			NEAREST, LINEAR,
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>ESampler Mipmap Mode</b></em>' enumerators.
@@ -88,7 +85,8 @@ public enum ESamplerMipmapMode implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ESamplerMipmapMode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ESamplerMipmapMode> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>ESampler Mipmap Mode</b></em>' literal with the specified literal value.
@@ -144,8 +142,10 @@ public enum ESamplerMipmapMode implements Enumerator
 	{
 		switch (value)
 		{
-			case NEAREST_VALUE: return NEAREST;
-			case LINEAR_VALUE: return LINEAR;
+		case NEAREST_VALUE:
+			return NEAREST;
+		case LINEAR_VALUE:
+			return LINEAR;
 		}
 		return null;
 	}
@@ -192,7 +192,7 @@ public enum ESamplerMipmapMode implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -203,7 +203,7 @@ public enum ESamplerMipmapMode implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -214,7 +214,7 @@ public enum ESamplerMipmapMode implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -228,5 +228,5 @@ public enum ESamplerMipmapMode implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //ESamplerMipmapMode

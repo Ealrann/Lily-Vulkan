@@ -73,7 +73,8 @@ public class DynamicStateImpl extends MinimalEObjectImpl.Container implements Dy
 	{
 		if (states == null)
 		{
-			states = new EDataTypeEList<EDynamicState>(EDynamicState.class, this, GraphicPackage.DYNAMIC_STATE__STATES);
+			states = new EDataTypeEList<EDynamicState>(EDynamicState.class, this,
+					GraphicPackage.DYNAMIC_STATE__STATES);
 		}
 		return states;
 	}
@@ -88,8 +89,8 @@ public class DynamicStateImpl extends MinimalEObjectImpl.Container implements Dy
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DYNAMIC_STATE__STATES:
-				return getStates();
+		case GraphicPackage.DYNAMIC_STATE__STATES:
+			return getStates();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -105,10 +106,10 @@ public class DynamicStateImpl extends MinimalEObjectImpl.Container implements Dy
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DYNAMIC_STATE__STATES:
-				getStates().clear();
-				getStates().addAll((Collection<? extends EDynamicState>)newValue);
-				return;
+		case GraphicPackage.DYNAMIC_STATE__STATES:
+			getStates().clear();
+			getStates().addAll((Collection<? extends EDynamicState>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -123,9 +124,9 @@ public class DynamicStateImpl extends MinimalEObjectImpl.Container implements Dy
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DYNAMIC_STATE__STATES:
-				getStates().clear();
-				return;
+		case GraphicPackage.DYNAMIC_STATE__STATES:
+			getStates().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,8 +141,8 @@ public class DynamicStateImpl extends MinimalEObjectImpl.Container implements Dy
 	{
 		switch (featureID)
 		{
-			case GraphicPackage.DYNAMIC_STATE__STATES:
-				return states != null && !states.isEmpty();
+		case GraphicPackage.DYNAMIC_STATE__STATES:
+			return states != null && !states.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

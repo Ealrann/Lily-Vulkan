@@ -100,13 +100,9 @@ public enum EAttachmentLoadOp implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EAttachmentLoadOp[] VALUES_ARRAY =
-		new EAttachmentLoadOp[]
-		{
-			LOAD,
-			CLEAR,
-			DONT_CARE,
-		};
+	private static final EAttachmentLoadOp[] VALUES_ARRAY = new EAttachmentLoadOp[] {
+			LOAD, CLEAR, DONT_CARE,
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EAttachment Load Op</b></em>' enumerators.
@@ -114,7 +110,8 @@ public enum EAttachmentLoadOp implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EAttachmentLoadOp> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EAttachmentLoadOp> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EAttachment Load Op</b></em>' literal with the specified literal value.
@@ -170,9 +167,12 @@ public enum EAttachmentLoadOp implements Enumerator
 	{
 		switch (value)
 		{
-			case LOAD_VALUE: return LOAD;
-			case CLEAR_VALUE: return CLEAR;
-			case DONT_CARE_VALUE: return DONT_CARE;
+		case LOAD_VALUE:
+			return LOAD;
+		case CLEAR_VALUE:
+			return CLEAR;
+		case DONT_CARE_VALUE:
+			return DONT_CARE;
 		}
 		return null;
 	}
@@ -219,7 +219,7 @@ public enum EAttachmentLoadOp implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -230,7 +230,7 @@ public enum EAttachmentLoadOp implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -241,7 +241,7 @@ public enum EAttachmentLoadOp implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -255,5 +255,5 @@ public enum EAttachmentLoadOp implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EAttachmentLoadOp

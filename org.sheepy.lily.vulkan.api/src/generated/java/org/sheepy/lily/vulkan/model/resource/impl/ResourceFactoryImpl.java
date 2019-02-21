@@ -33,13 +33,13 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		try
 		{
-			ResourceFactory theResourceFactory = (ResourceFactory)EPackage.Registry.INSTANCE.getEFactory(ResourcePackage.eNS_URI);
+			ResourceFactory theResourceFactory = (ResourceFactory) EPackage.Registry.INSTANCE
+					.getEFactory(ResourcePackage.eNS_URI);
 			if (theResourceFactory != null)
 			{
 				return theResourceFactory;
 			}
-		}
-		catch (Exception exception)
+		} catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -67,25 +67,43 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case ResourcePackage.BUFFER: return createBuffer();
-			case ResourcePackage.IMAGE: return createImage();
-			case ResourcePackage.IMAGE_LAYOUT: return createImageLayout();
-			case ResourcePackage.FONT: return createFont();
-			case ResourcePackage.TEXTURE: return createTexture();
-			case ResourcePackage.SAMPLER: return createSampler();
-			case ResourcePackage.CONSTANTS: return createConstants();
-			case ResourcePackage.DESCRIPTOR_SET: return createDescriptorSet();
-			case ResourcePackage.BUFFER_BARRIER: return createBufferBarrier();
-			case ResourcePackage.IMAGE_BARRIER: return createImageBarrier();
-			case ResourcePackage.REFERENCE_IMAGE_BARRIER: return createReferenceImageBarrier();
-			case ResourcePackage.IMAGE_TRANSITION: return createImageTransition();
-			case ResourcePackage.SHADER: return createShader();
-			case ResourcePackage.DEPTH_IMAGE: return createDepthImage();
-			case ResourcePackage.FILE_RESOURCE: return createFileResource();
-			case ResourcePackage.MODULE_RESOURCE: return createModuleResource();
-			case ResourcePackage.STRING_MODULE_RESOURCE: return createStringModuleResource();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ResourcePackage.BUFFER:
+			return createBuffer();
+		case ResourcePackage.IMAGE:
+			return createImage();
+		case ResourcePackage.IMAGE_LAYOUT:
+			return createImageLayout();
+		case ResourcePackage.FONT:
+			return createFont();
+		case ResourcePackage.TEXTURE:
+			return createTexture();
+		case ResourcePackage.SAMPLER:
+			return createSampler();
+		case ResourcePackage.CONSTANTS:
+			return createConstants();
+		case ResourcePackage.DESCRIPTOR_SET:
+			return createDescriptorSet();
+		case ResourcePackage.BUFFER_BARRIER:
+			return createBufferBarrier();
+		case ResourcePackage.IMAGE_BARRIER:
+			return createImageBarrier();
+		case ResourcePackage.REFERENCE_IMAGE_BARRIER:
+			return createReferenceImageBarrier();
+		case ResourcePackage.IMAGE_TRANSITION:
+			return createImageTransition();
+		case ResourcePackage.SHADER:
+			return createShader();
+		case ResourcePackage.DEPTH_IMAGE:
+			return createDepthImage();
+		case ResourcePackage.FILE_RESOURCE:
+			return createFileResource();
+		case ResourcePackage.MODULE_RESOURCE:
+			return createModuleResource();
+		case ResourcePackage.STRING_MODULE_RESOURCE:
+			return createStringModuleResource();
+		default:
+			throw new IllegalArgumentException(
+					"The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -99,12 +117,13 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
-			case ResourcePackage.BYTE_BUFFER:
-				return createByteBufferFromString(eDataType, initialValue);
-			case ResourcePackage.JAVA_MODULE:
-				return createJavaModuleFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case ResourcePackage.BYTE_BUFFER:
+			return createByteBufferFromString(eDataType, initialValue);
+		case ResourcePackage.JAVA_MODULE:
+			return createJavaModuleFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException(
+					"The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -118,12 +137,13 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eDataType.getClassifierID())
 		{
-			case ResourcePackage.BYTE_BUFFER:
-				return convertByteBufferToString(eDataType, instanceValue);
-			case ResourcePackage.JAVA_MODULE:
-				return convertJavaModuleToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case ResourcePackage.BYTE_BUFFER:
+			return convertByteBufferToString(eDataType, instanceValue);
+		case ResourcePackage.JAVA_MODULE:
+			return convertJavaModuleToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException(
+					"The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -338,7 +358,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 */
 	public ByteBuffer createByteBufferFromString(EDataType eDataType, String initialValue)
 	{
-		return (ByteBuffer)super.createFromString(eDataType, initialValue);
+		return (ByteBuffer) super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -358,7 +378,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 */
 	public Module createJavaModuleFromString(EDataType eDataType, String initialValue)
 	{
-		return (Module)super.createFromString(eDataType, initialValue);
+		return (Module) super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -379,7 +399,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	@Override
 	public ResourcePackage getResourcePackage()
 	{
-		return (ResourcePackage)getEPackage();
+		return (ResourcePackage) getEPackage();
 	}
 
 	/**

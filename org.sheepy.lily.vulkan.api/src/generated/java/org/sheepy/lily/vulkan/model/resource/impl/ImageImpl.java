@@ -285,8 +285,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		EDescriptorType oldDescriptorType = descriptorType;
 		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
 	}
 
 	/**
@@ -299,7 +299,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this, ResourcePackage.IMAGE__SHADER_STAGES);
+			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this,
+					ResourcePackage.IMAGE__SHADER_STAGES);
 		}
 		return shaderStages;
 	}
@@ -325,8 +326,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__NAME, oldName, name));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__NAME, oldName, name));
 	}
 
 	/**
@@ -350,8 +351,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		int oldWidth = width;
 		width = newWidth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__WIDTH, oldWidth, width));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__WIDTH, oldWidth, width));
 	}
 
 	/**
@@ -375,8 +376,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		int oldHeight = height;
 		height = newHeight;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__HEIGHT, oldHeight, height));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__HEIGHT, oldHeight, height));
 	}
 
 	/**
@@ -400,8 +401,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		EFormat oldFormat = format;
 		format = newFormat == null ? FORMAT_EDEFAULT : newFormat;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__FORMAT, oldFormat, format));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__FORMAT, oldFormat, format));
 	}
 
 	/**
@@ -414,7 +415,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeEList<EImageUsage>(EImageUsage.class, this, ResourcePackage.IMAGE__USAGES);
+			usages = new EDataTypeEList<EImageUsage>(EImageUsage.class, this,
+					ResourcePackage.IMAGE__USAGES);
 		}
 		return usages;
 	}
@@ -440,8 +442,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		int oldProperties = properties;
 		properties = newProperties;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__PROPERTIES, oldProperties, properties));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__PROPERTIES, oldProperties, properties));
 	}
 
 	/**
@@ -465,8 +467,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		int oldTiling = tiling;
 		tiling = newTiling;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__TILING, oldTiling, tiling));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__TILING, oldTiling, tiling));
 	}
 
 	/**
@@ -490,8 +492,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		int oldMipLevels = mipLevels;
 		mipLevels = newMipLevels;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__MIP_LEVELS, oldMipLevels, mipLevels));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__MIP_LEVELS, oldMipLevels, mipLevels));
 	}
 
 	/**
@@ -510,14 +512,17 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitialLayout(ImageLayout newInitialLayout, NotificationChain msgs)
+	public NotificationChain basicSetInitialLayout(	ImageLayout newInitialLayout,
+													NotificationChain msgs)
 	{
 		ImageLayout oldInitialLayout = initialLayout;
 		initialLayout = newInitialLayout;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ResourcePackage.IMAGE__INITIAL_LAYOUT, oldInitialLayout, newInitialLayout);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -533,15 +538,16 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 		if (newInitialLayout != initialLayout)
 		{
 			NotificationChain msgs = null;
-			if (initialLayout != null)
-				msgs = ((InternalEObject)initialLayout).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
+			if (initialLayout != null) msgs = ((InternalEObject) initialLayout).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
 			if (newInitialLayout != null)
-				msgs = ((InternalEObject)newInitialLayout).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
+				msgs = ((InternalEObject) newInitialLayout).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - ResourcePackage.IMAGE__INITIAL_LAYOUT, null, msgs);
 			msgs = basicSetInitialLayout(newInitialLayout, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ResourcePackage.IMAGE__INITIAL_LAYOUT, newInitialLayout, newInitialLayout));
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__INITIAL_LAYOUT, newInitialLayout, newInitialLayout));
 	}
 
 	/**
@@ -550,12 +556,14 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-				return basicSetInitialLayout(null, msgs);
+		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+			return basicSetInitialLayout(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -570,28 +578,28 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
-				return getDescriptorType();
-			case ResourcePackage.IMAGE__SHADER_STAGES:
-				return getShaderStages();
-			case ResourcePackage.IMAGE__NAME:
-				return getName();
-			case ResourcePackage.IMAGE__WIDTH:
-				return getWidth();
-			case ResourcePackage.IMAGE__HEIGHT:
-				return getHeight();
-			case ResourcePackage.IMAGE__FORMAT:
-				return getFormat();
-			case ResourcePackage.IMAGE__USAGES:
-				return getUsages();
-			case ResourcePackage.IMAGE__PROPERTIES:
-				return getProperties();
-			case ResourcePackage.IMAGE__TILING:
-				return getTiling();
-			case ResourcePackage.IMAGE__MIP_LEVELS:
-				return getMipLevels();
-			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-				return getInitialLayout();
+		case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
+			return getDescriptorType();
+		case ResourcePackage.IMAGE__SHADER_STAGES:
+			return getShaderStages();
+		case ResourcePackage.IMAGE__NAME:
+			return getName();
+		case ResourcePackage.IMAGE__WIDTH:
+			return getWidth();
+		case ResourcePackage.IMAGE__HEIGHT:
+			return getHeight();
+		case ResourcePackage.IMAGE__FORMAT:
+			return getFormat();
+		case ResourcePackage.IMAGE__USAGES:
+			return getUsages();
+		case ResourcePackage.IMAGE__PROPERTIES:
+			return getProperties();
+		case ResourcePackage.IMAGE__TILING:
+			return getTiling();
+		case ResourcePackage.IMAGE__MIP_LEVELS:
+			return getMipLevels();
+		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+			return getInitialLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -607,41 +615,41 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
-				setDescriptorType((EDescriptorType)newValue);
-				return;
-			case ResourcePackage.IMAGE__SHADER_STAGES:
-				getShaderStages().clear();
-				getShaderStages().addAll((Collection<? extends EShaderStage>)newValue);
-				return;
-			case ResourcePackage.IMAGE__NAME:
-				setName((String)newValue);
-				return;
-			case ResourcePackage.IMAGE__WIDTH:
-				setWidth((Integer)newValue);
-				return;
-			case ResourcePackage.IMAGE__HEIGHT:
-				setHeight((Integer)newValue);
-				return;
-			case ResourcePackage.IMAGE__FORMAT:
-				setFormat((EFormat)newValue);
-				return;
-			case ResourcePackage.IMAGE__USAGES:
-				getUsages().clear();
-				getUsages().addAll((Collection<? extends EImageUsage>)newValue);
-				return;
-			case ResourcePackage.IMAGE__PROPERTIES:
-				setProperties((Integer)newValue);
-				return;
-			case ResourcePackage.IMAGE__TILING:
-				setTiling((Integer)newValue);
-				return;
-			case ResourcePackage.IMAGE__MIP_LEVELS:
-				setMipLevels((Integer)newValue);
-				return;
-			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-				setInitialLayout((ImageLayout)newValue);
-				return;
+		case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
+			setDescriptorType((EDescriptorType) newValue);
+			return;
+		case ResourcePackage.IMAGE__SHADER_STAGES:
+			getShaderStages().clear();
+			getShaderStages().addAll((Collection<? extends EShaderStage>) newValue);
+			return;
+		case ResourcePackage.IMAGE__NAME:
+			setName((String) newValue);
+			return;
+		case ResourcePackage.IMAGE__WIDTH:
+			setWidth((Integer) newValue);
+			return;
+		case ResourcePackage.IMAGE__HEIGHT:
+			setHeight((Integer) newValue);
+			return;
+		case ResourcePackage.IMAGE__FORMAT:
+			setFormat((EFormat) newValue);
+			return;
+		case ResourcePackage.IMAGE__USAGES:
+			getUsages().clear();
+			getUsages().addAll((Collection<? extends EImageUsage>) newValue);
+			return;
+		case ResourcePackage.IMAGE__PROPERTIES:
+			setProperties((Integer) newValue);
+			return;
+		case ResourcePackage.IMAGE__TILING:
+			setTiling((Integer) newValue);
+			return;
+		case ResourcePackage.IMAGE__MIP_LEVELS:
+			setMipLevels((Integer) newValue);
+			return;
+		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+			setInitialLayout((ImageLayout) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -656,39 +664,39 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
-				setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE__SHADER_STAGES:
-				getShaderStages().clear();
-				return;
-			case ResourcePackage.IMAGE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE__WIDTH:
-				setWidth(WIDTH_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE__HEIGHT:
-				setHeight(HEIGHT_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE__FORMAT:
-				setFormat(FORMAT_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE__USAGES:
-				getUsages().clear();
-				return;
-			case ResourcePackage.IMAGE__PROPERTIES:
-				setProperties(PROPERTIES_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE__TILING:
-				setTiling(TILING_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE__MIP_LEVELS:
-				setMipLevels(MIP_LEVELS_EDEFAULT);
-				return;
-			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-				setInitialLayout((ImageLayout)null);
-				return;
+		case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
+			setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE__SHADER_STAGES:
+			getShaderStages().clear();
+			return;
+		case ResourcePackage.IMAGE__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE__WIDTH:
+			setWidth(WIDTH_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE__HEIGHT:
+			setHeight(HEIGHT_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE__FORMAT:
+			setFormat(FORMAT_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE__USAGES:
+			getUsages().clear();
+			return;
+		case ResourcePackage.IMAGE__PROPERTIES:
+			setProperties(PROPERTIES_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE__TILING:
+			setTiling(TILING_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE__MIP_LEVELS:
+			setMipLevels(MIP_LEVELS_EDEFAULT);
+			return;
+		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+			setInitialLayout((ImageLayout) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -703,28 +711,28 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		switch (featureID)
 		{
-			case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
-				return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-			case ResourcePackage.IMAGE__SHADER_STAGES:
-				return shaderStages != null && !shaderStages.isEmpty();
-			case ResourcePackage.IMAGE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ResourcePackage.IMAGE__WIDTH:
-				return width != WIDTH_EDEFAULT;
-			case ResourcePackage.IMAGE__HEIGHT:
-				return height != HEIGHT_EDEFAULT;
-			case ResourcePackage.IMAGE__FORMAT:
-				return format != FORMAT_EDEFAULT;
-			case ResourcePackage.IMAGE__USAGES:
-				return usages != null && !usages.isEmpty();
-			case ResourcePackage.IMAGE__PROPERTIES:
-				return properties != PROPERTIES_EDEFAULT;
-			case ResourcePackage.IMAGE__TILING:
-				return tiling != TILING_EDEFAULT;
-			case ResourcePackage.IMAGE__MIP_LEVELS:
-				return mipLevels != MIP_LEVELS_EDEFAULT;
-			case ResourcePackage.IMAGE__INITIAL_LAYOUT:
-				return initialLayout != null;
+		case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
+			return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
+		case ResourcePackage.IMAGE__SHADER_STAGES:
+			return shaderStages != null && !shaderStages.isEmpty();
+		case ResourcePackage.IMAGE__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ResourcePackage.IMAGE__WIDTH:
+			return width != WIDTH_EDEFAULT;
+		case ResourcePackage.IMAGE__HEIGHT:
+			return height != HEIGHT_EDEFAULT;
+		case ResourcePackage.IMAGE__FORMAT:
+			return format != FORMAT_EDEFAULT;
+		case ResourcePackage.IMAGE__USAGES:
+			return usages != null && !usages.isEmpty();
+		case ResourcePackage.IMAGE__PROPERTIES:
+			return properties != PROPERTIES_EDEFAULT;
+		case ResourcePackage.IMAGE__TILING:
+			return tiling != TILING_EDEFAULT;
+		case ResourcePackage.IMAGE__MIP_LEVELS:
+			return mipLevels != MIP_LEVELS_EDEFAULT;
+		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
+			return initialLayout != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -741,15 +749,18 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 		{
 			switch (derivedFeatureID)
 			{
-				case ResourcePackage.IMAGE__NAME: return TypesPackage.LNAMED_ELEMENT__NAME;
-				default: return -1;
+			case ResourcePackage.IMAGE__NAME:
+				return TypesPackage.LNAMED_ELEMENT__NAME;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IResource.class)
 		{
 			switch (derivedFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -767,15 +778,18 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 		{
 			switch (baseFeatureID)
 			{
-				case TypesPackage.LNAMED_ELEMENT__NAME: return ResourcePackage.IMAGE__NAME;
-				default: return -1;
+			case TypesPackage.LNAMED_ELEMENT__NAME:
+				return ResourcePackage.IMAGE__NAME;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IResource.class)
 		{
 			switch (baseFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

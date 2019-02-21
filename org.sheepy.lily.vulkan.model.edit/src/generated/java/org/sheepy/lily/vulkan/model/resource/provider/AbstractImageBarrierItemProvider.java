@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -98,13 +97,12 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((AbstractImageBarrier)object).getSrcStage();
+		EPipelineStage labelValue = ((AbstractImageBarrier) object).getSrcStage();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AbstractImageBarrier_type") :
-			getString("_UI_AbstractImageBarrier_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_AbstractImageBarrier_type")
+				: getString("_UI_AbstractImageBarrier_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -120,9 +118,10 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 
 		switch (notification.getFeatureID(AbstractImageBarrier.class))
 		{
-			case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -139,10 +138,9 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ResourcePackage.Literals.ABSTRACT_IMAGE_BARRIER__TRANSITIONS,
-				 ResourceFactory.eINSTANCE.createImageTransition()));
+		newChildDescriptors.add(
+				createChildParameter(ResourcePackage.Literals.ABSTRACT_IMAGE_BARRIER__TRANSITIONS,
+						ResourceFactory.eINSTANCE.createImageTransition()));
 	}
 
 }

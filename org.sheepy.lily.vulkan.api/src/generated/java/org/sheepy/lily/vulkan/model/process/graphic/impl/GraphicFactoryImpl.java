@@ -30,13 +30,13 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		try
 		{
-			GraphicFactory theGraphicFactory = (GraphicFactory)EPackage.Registry.INSTANCE.getEFactory(GraphicPackage.eNS_URI);
+			GraphicFactory theGraphicFactory = (GraphicFactory) EPackage.Registry.INSTANCE
+					.getEFactory(GraphicPackage.eNS_URI);
 			if (theGraphicFactory != null)
 			{
 				return theGraphicFactory;
 			}
-		}
-		catch (Exception exception)
+		} catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
@@ -64,25 +64,43 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case GraphicPackage.GRAPHIC_CONFIGURATION: return createGraphicConfiguration();
-			case GraphicPackage.RENDER_PASS_INFO: return createRenderPassInfo();
-			case GraphicPackage.SUBPASS: return createSubpass();
-			case GraphicPackage.ATTACHEMENT_REF: return createAttachementRef();
-			case GraphicPackage.SUBPASS_DEPENDENCY: return createSubpassDependency();
-			case GraphicPackage.ATTACHMENT_DESCRIPTION: return createAttachmentDescription();
-			case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION: return createDepthAttachmentDescription();
-			case GraphicPackage.GRAPHIC_PROCESS: return createGraphicProcess();
-			case GraphicPackage.DYNAMIC_STATE: return createDynamicState();
-			case GraphicPackage.COLOR_BLEND: return createColorBlend();
-			case GraphicPackage.COLOR_BLEND_ATTACHMENT: return createColorBlendAttachment();
-			case GraphicPackage.STATIC_VIEWPORT_STATE: return createStaticViewportState();
-			case GraphicPackage.DYNAMIC_VIEWPORT_STATE: return createDynamicViewportState();
-			case GraphicPackage.VIEWPORT: return createViewport();
-			case GraphicPackage.SCISSOR: return createScissor();
-			case GraphicPackage.RASTERIZER: return createRasterizer();
-			case GraphicPackage.IMAGE_PIPELINE: return createImagePipeline();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case GraphicPackage.GRAPHIC_CONFIGURATION:
+			return createGraphicConfiguration();
+		case GraphicPackage.RENDER_PASS_INFO:
+			return createRenderPassInfo();
+		case GraphicPackage.SUBPASS:
+			return createSubpass();
+		case GraphicPackage.ATTACHEMENT_REF:
+			return createAttachementRef();
+		case GraphicPackage.SUBPASS_DEPENDENCY:
+			return createSubpassDependency();
+		case GraphicPackage.ATTACHMENT_DESCRIPTION:
+			return createAttachmentDescription();
+		case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION:
+			return createDepthAttachmentDescription();
+		case GraphicPackage.GRAPHIC_PROCESS:
+			return createGraphicProcess();
+		case GraphicPackage.DYNAMIC_STATE:
+			return createDynamicState();
+		case GraphicPackage.COLOR_BLEND:
+			return createColorBlend();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT:
+			return createColorBlendAttachment();
+		case GraphicPackage.STATIC_VIEWPORT_STATE:
+			return createStaticViewportState();
+		case GraphicPackage.DYNAMIC_VIEWPORT_STATE:
+			return createDynamicViewportState();
+		case GraphicPackage.VIEWPORT:
+			return createViewport();
+		case GraphicPackage.SCISSOR:
+			return createScissor();
+		case GraphicPackage.RASTERIZER:
+			return createRasterizer();
+		case GraphicPackage.IMAGE_PIPELINE:
+			return createImagePipeline();
+		default:
+			throw new IllegalArgumentException(
+					"The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -298,7 +316,7 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	@Override
 	public GraphicPackage getGraphicPackage()
 	{
-		return (GraphicPackage)getEPackage();
+		return (GraphicPackage) getEPackage();
 	}
 
 	/**

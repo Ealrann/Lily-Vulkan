@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -35,14 +34,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ColorBlendItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class ColorBlendItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -86,19 +80,13 @@ public class ColorBlendItemProvider
 	 */
 	protected void addLogicOpEnablePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlend_logicOpEnable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlend_logicOpEnable_feature", "_UI_ColorBlend_type"),
-				 GraphicPackage.Literals.COLOR_BLEND__LOGIC_OP_ENABLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlend_logicOpEnable_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlend_logicOpEnable_feature", "_UI_ColorBlend_type"),
+				GraphicPackage.Literals.COLOR_BLEND__LOGIC_OP_ENABLE, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -109,19 +97,13 @@ public class ColorBlendItemProvider
 	 */
 	protected void addLogicOpPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlend_logicOp_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlend_logicOp_feature", "_UI_ColorBlend_type"),
-				 GraphicPackage.Literals.COLOR_BLEND__LOGIC_OP,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlend_logicOp_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ColorBlend_logicOp_feature",
+						"_UI_ColorBlend_type"),
+				GraphicPackage.Literals.COLOR_BLEND__LOGIC_OP, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -132,19 +114,13 @@ public class ColorBlendItemProvider
 	 */
 	protected void addBlendConstant0PropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlend_blendConstant0_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlend_blendConstant0_feature", "_UI_ColorBlend_type"),
-				 GraphicPackage.Literals.COLOR_BLEND__BLEND_CONSTANT0,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlend_blendConstant0_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlend_blendConstant0_feature", "_UI_ColorBlend_type"),
+				GraphicPackage.Literals.COLOR_BLEND__BLEND_CONSTANT0, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -155,19 +131,13 @@ public class ColorBlendItemProvider
 	 */
 	protected void addBlendConstant1PropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlend_blendConstant1_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlend_blendConstant1_feature", "_UI_ColorBlend_type"),
-				 GraphicPackage.Literals.COLOR_BLEND__BLEND_CONSTANT1,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlend_blendConstant1_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlend_blendConstant1_feature", "_UI_ColorBlend_type"),
+				GraphicPackage.Literals.COLOR_BLEND__BLEND_CONSTANT1, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -178,19 +148,13 @@ public class ColorBlendItemProvider
 	 */
 	protected void addBlendConstant2PropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlend_blendConstant2_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlend_blendConstant2_feature", "_UI_ColorBlend_type"),
-				 GraphicPackage.Literals.COLOR_BLEND__BLEND_CONSTANT2,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlend_blendConstant2_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlend_blendConstant2_feature", "_UI_ColorBlend_type"),
+				GraphicPackage.Literals.COLOR_BLEND__BLEND_CONSTANT2, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -201,19 +165,13 @@ public class ColorBlendItemProvider
 	 */
 	protected void addBlendConstant3PropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ColorBlend_blendConstant3_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ColorBlend_blendConstant3_feature", "_UI_ColorBlend_type"),
-				 GraphicPackage.Literals.COLOR_BLEND__BLEND_CONSTANT3,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ColorBlend_blendConstant3_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ColorBlend_blendConstant3_feature", "_UI_ColorBlend_type"),
+				GraphicPackage.Literals.COLOR_BLEND__BLEND_CONSTANT3, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -270,10 +228,9 @@ public class ColorBlendItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		ColorBlend colorBlend = (ColorBlend)object;
+		ColorBlend colorBlend = (ColorBlend) object;
 		return getString("_UI_ColorBlend_type") + " " + colorBlend.isLogicOpEnable();
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -289,17 +246,19 @@ public class ColorBlendItemProvider
 
 		switch (notification.getFeatureID(ColorBlend.class))
 		{
-			case GraphicPackage.COLOR_BLEND__LOGIC_OP_ENABLE:
-			case GraphicPackage.COLOR_BLEND__LOGIC_OP:
-			case GraphicPackage.COLOR_BLEND__BLEND_CONSTANT0:
-			case GraphicPackage.COLOR_BLEND__BLEND_CONSTANT1:
-			case GraphicPackage.COLOR_BLEND__BLEND_CONSTANT2:
-			case GraphicPackage.COLOR_BLEND__BLEND_CONSTANT3:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case GraphicPackage.COLOR_BLEND__ATTACHMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case GraphicPackage.COLOR_BLEND__LOGIC_OP_ENABLE:
+		case GraphicPackage.COLOR_BLEND__LOGIC_OP:
+		case GraphicPackage.COLOR_BLEND__BLEND_CONSTANT0:
+		case GraphicPackage.COLOR_BLEND__BLEND_CONSTANT1:
+		case GraphicPackage.COLOR_BLEND__BLEND_CONSTANT2:
+		case GraphicPackage.COLOR_BLEND__BLEND_CONSTANT3:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case GraphicPackage.COLOR_BLEND__ATTACHMENTS:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -316,10 +275,9 @@ public class ColorBlendItemProvider
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(GraphicPackage.Literals.COLOR_BLEND__ATTACHMENTS,
-				 GraphicFactory.eINSTANCE.createColorBlendAttachment()));
+		newChildDescriptors
+				.add(createChildParameter(GraphicPackage.Literals.COLOR_BLEND__ATTACHMENTS,
+						GraphicFactory.eINSTANCE.createColorBlendAttachment()));
 	}
 
 	/**
@@ -331,7 +289,7 @@ public class ColorBlendItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

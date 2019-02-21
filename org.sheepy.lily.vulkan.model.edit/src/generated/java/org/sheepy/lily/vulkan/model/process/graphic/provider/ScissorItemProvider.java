@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -32,14 +31,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ScissorItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class ScissorItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -79,19 +73,13 @@ public class ScissorItemProvider
 	 */
 	protected void addOffsetPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Scissor_offset_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Scissor_offset_feature", "_UI_Scissor_type"),
-				 GraphicPackage.Literals.SCISSOR__OFFSET,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Scissor_offset_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Scissor_offset_feature",
+						"_UI_Scissor_type"),
+				GraphicPackage.Literals.SCISSOR__OFFSET, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -102,19 +90,13 @@ public class ScissorItemProvider
 	 */
 	protected void addExtentPropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Scissor_extent_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Scissor_extent_feature", "_UI_Scissor_type"),
-				 GraphicPackage.Literals.SCISSOR__EXTENT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Scissor_extent_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Scissor_extent_feature",
+						"_UI_Scissor_type"),
+				GraphicPackage.Literals.SCISSOR__EXTENT, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -138,13 +120,12 @@ public class ScissorItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		SVector2i labelValue = ((Scissor)object).getOffset();
+		SVector2i labelValue = ((Scissor) object).getOffset();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Scissor_type") :
-			getString("_UI_Scissor_type") + " " + label;
+		return label == null || label.length() == 0
+				? getString("_UI_Scissor_type")
+				: getString("_UI_Scissor_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -160,10 +141,11 @@ public class ScissorItemProvider
 
 		switch (notification.getFeatureID(Scissor.class))
 		{
-			case GraphicPackage.SCISSOR__OFFSET:
-			case GraphicPackage.SCISSOR__EXTENT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case GraphicPackage.SCISSOR__OFFSET:
+		case GraphicPackage.SCISSOR__EXTENT:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -190,7 +172,7 @@ public class ScissorItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

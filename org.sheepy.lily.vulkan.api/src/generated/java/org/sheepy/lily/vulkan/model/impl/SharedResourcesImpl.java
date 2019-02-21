@@ -92,8 +92,9 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 	{
 		EList<LObject> oldContentObjects = contentObjects;
 		contentObjects = newContentObjects;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS, oldContentObjects, contentObjects));
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS, oldContentObjects,
+				contentObjects));
 	}
 
 	/**
@@ -119,7 +120,7 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 		boolean _isEmpty = unitRefs.isEmpty();
 		if (_isEmpty)
 		{
-			res = ECollections.<T>emptyEList();
+			res = ECollections.<T> emptyEList();
 		}
 		else
 		{
@@ -143,7 +144,7 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 			boolean _tripleEquals = (_contentObjects == null);
 			if (_tripleEquals)
 			{
-				this.setContentObjects(this.<LObject>createContainmentEList(Literals.LOBJECT));
+				this.setContentObjects(this.<LObject> createContainmentEList(Literals.LOBJECT));
 			}
 			_xblockexpression = this.getContentObjects();
 		}
@@ -200,8 +201,8 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
-				return getContentObjects();
+		case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
+			return getContentObjects();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -217,9 +218,9 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
-				setContentObjects((EList<LObject>)newValue);
-				return;
+		case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
+			setContentObjects((EList<LObject>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -234,9 +235,9 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
-				setContentObjects((EList<LObject>)null);
-				return;
+		case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
+			setContentObjects((EList<LObject>) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -251,8 +252,8 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 	{
 		switch (featureID)
 		{
-			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
-				return contentObjects != null;
+		case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
+			return contentObjects != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -269,22 +270,26 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 		{
 			switch (derivedFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == LObject.class)
 		{
 			switch (derivedFeatureID)
 			{
-				case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS: return RootPackage.LOBJECT__CONTENT_OBJECTS;
-				default: return -1;
+			case VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS:
+				return RootPackage.LOBJECT__CONTENT_OBJECTS;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IEnginePart.class)
 		{
 			switch (derivedFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -302,22 +307,26 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 		{
 			switch (baseFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == LObject.class)
 		{
 			switch (baseFeatureID)
 			{
-				case RootPackage.LOBJECT__CONTENT_OBJECTS: return VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS;
-				default: return -1;
+			case RootPackage.LOBJECT__CONTENT_OBJECTS:
+				return VulkanPackage.SHARED_RESOURCES__CONTENT_OBJECTS;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IEnginePart.class)
 		{
 			switch (baseFeatureID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -335,26 +344,34 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 		{
 			switch (baseOperationID)
 			{
-				case InferencePackage.IINFERENCE_OBJECT___LINFERENCE_OBJECT: return VulkanPackage.SHARED_RESOURCES___LINFERENCE_OBJECT;
-				default: return -1;
+			case InferencePackage.IINFERENCE_OBJECT___LINFERENCE_OBJECT:
+				return VulkanPackage.SHARED_RESOURCES___LINFERENCE_OBJECT;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == LObject.class)
 		{
 			switch (baseOperationID)
 			{
-				case RootPackage.LOBJECT___CREATE_CONTAINMENT_ELIST__ECLASS: return VulkanPackage.SHARED_RESOURCES___CREATE_CONTAINMENT_ELIST__ECLASS;
-				case RootPackage.LOBJECT___LCONTENTS: return VulkanPackage.SHARED_RESOURCES___LCONTENTS;
-				case RootPackage.LOBJECT___LPARENT: return VulkanPackage.SHARED_RESOURCES___LPARENT;
-				case RootPackage.LOBJECT___LALL_CONTENTS: return VulkanPackage.SHARED_RESOURCES___LALL_CONTENTS;
-				default: return -1;
+			case RootPackage.LOBJECT___CREATE_CONTAINMENT_ELIST__ECLASS:
+				return VulkanPackage.SHARED_RESOURCES___CREATE_CONTAINMENT_ELIST__ECLASS;
+			case RootPackage.LOBJECT___LCONTENTS:
+				return VulkanPackage.SHARED_RESOURCES___LCONTENTS;
+			case RootPackage.LOBJECT___LPARENT:
+				return VulkanPackage.SHARED_RESOURCES___LPARENT;
+			case RootPackage.LOBJECT___LALL_CONTENTS:
+				return VulkanPackage.SHARED_RESOURCES___LALL_CONTENTS;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IEnginePart.class)
 		{
 			switch (baseOperationID)
 			{
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -370,16 +387,16 @@ public class SharedResourcesImpl extends ResourceContainerImpl implements Shared
 	{
 		switch (operationID)
 		{
-			case VulkanPackage.SHARED_RESOURCES___CREATE_CONTAINMENT_ELIST__ECLASS:
-				return createContainmentEList((EClass)arguments.get(0));
-			case VulkanPackage.SHARED_RESOURCES___LCONTENTS:
-				return lContents();
-			case VulkanPackage.SHARED_RESOURCES___LPARENT:
-				return lParent();
-			case VulkanPackage.SHARED_RESOURCES___LALL_CONTENTS:
-				return lAllContents();
-			case VulkanPackage.SHARED_RESOURCES___LINFERENCE_OBJECT:
-				return lInferenceObject();
+		case VulkanPackage.SHARED_RESOURCES___CREATE_CONTAINMENT_ELIST__ECLASS:
+			return createContainmentEList((EClass) arguments.get(0));
+		case VulkanPackage.SHARED_RESOURCES___LCONTENTS:
+			return lContents();
+		case VulkanPackage.SHARED_RESOURCES___LPARENT:
+			return lParent();
+		case VulkanPackage.SHARED_RESOURCES___LALL_CONTENTS:
+			return lAllContents();
+		case VulkanPackage.SHARED_RESOURCES___LINFERENCE_OBJECT:
+			return lInferenceObject();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -15,5 +15,4 @@ import org.sheepy.lily.core.model.types.LNamedElement;
  * @generated
  */
 public interface IResource extends LNamedElement
-{
-} // IResource
+{} // IResource

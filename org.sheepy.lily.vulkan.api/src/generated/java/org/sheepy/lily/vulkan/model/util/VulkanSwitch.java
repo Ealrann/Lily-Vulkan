@@ -75,70 +75,71 @@ public class VulkanSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-			case VulkanPackage.VULKAN_ENGINE:
-			{
-				VulkanEngine vulkanEngine = (VulkanEngine)theEObject;
-				T result = caseVulkanEngine(vulkanEngine);
-				if (result == null) result = caseIEngine(vulkanEngine);
-				if (result == null) result = caseLObject(vulkanEngine);
-				if (result == null) result = caseIInferenceObject(vulkanEngine);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.IENGINE_PART:
-			{
-				IEnginePart iEnginePart = (IEnginePart)theEObject;
-				T result = caseIEnginePart(iEnginePart);
-				if (result == null) result = caseLObject(iEnginePart);
-				if (result == null) result = caseIInferenceObject(iEnginePart);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.RESOURCE_CONTAINER:
-			{
-				ResourceContainer resourceContainer = (ResourceContainer)theEObject;
-				T result = caseResourceContainer(resourceContainer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.SHARED_RESOURCES:
-			{
-				SharedResources sharedResources = (SharedResources)theEObject;
-				T result = caseSharedResources(sharedResources);
-				if (result == null) result = caseResourceContainer(sharedResources);
-				if (result == null) result = caseIEnginePart(sharedResources);
-				if (result == null) result = caseLObject(sharedResources);
-				if (result == null) result = caseIInferenceObject(sharedResources);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.IRESOURCE:
-			{
-				IResource iResource = (IResource)theEObject;
-				T result = caseIResource(iResource);
-				if (result == null) result = caseLNamedElement(iResource);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.IPROCESS:
-			{
-				IProcess iProcess = (IProcess)theEObject;
-				T result = caseIProcess(iProcess);
-				if (result == null) result = caseIEnginePart(iProcess);
-				if (result == null) result = caseLNamedElement(iProcess);
-				if (result == null) result = caseLObject(iProcess);
-				if (result == null) result = caseIInferenceObject(iProcess);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case VulkanPackage.COLOR_DOMAIN:
-			{
-				ColorDomain colorDomain = (ColorDomain)theEObject;
-				T result = caseColorDomain(colorDomain);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case VulkanPackage.VULKAN_ENGINE:
+		{
+			VulkanEngine vulkanEngine = (VulkanEngine) theEObject;
+			T result = caseVulkanEngine(vulkanEngine);
+			if (result == null) result = caseIEngine(vulkanEngine);
+			if (result == null) result = caseLObject(vulkanEngine);
+			if (result == null) result = caseIInferenceObject(vulkanEngine);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case VulkanPackage.IENGINE_PART:
+		{
+			IEnginePart iEnginePart = (IEnginePart) theEObject;
+			T result = caseIEnginePart(iEnginePart);
+			if (result == null) result = caseLObject(iEnginePart);
+			if (result == null) result = caseIInferenceObject(iEnginePart);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case VulkanPackage.RESOURCE_CONTAINER:
+		{
+			ResourceContainer resourceContainer = (ResourceContainer) theEObject;
+			T result = caseResourceContainer(resourceContainer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case VulkanPackage.SHARED_RESOURCES:
+		{
+			SharedResources sharedResources = (SharedResources) theEObject;
+			T result = caseSharedResources(sharedResources);
+			if (result == null) result = caseResourceContainer(sharedResources);
+			if (result == null) result = caseIEnginePart(sharedResources);
+			if (result == null) result = caseLObject(sharedResources);
+			if (result == null) result = caseIInferenceObject(sharedResources);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case VulkanPackage.IRESOURCE:
+		{
+			IResource iResource = (IResource) theEObject;
+			T result = caseIResource(iResource);
+			if (result == null) result = caseLNamedElement(iResource);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case VulkanPackage.IPROCESS:
+		{
+			IProcess iProcess = (IProcess) theEObject;
+			T result = caseIProcess(iProcess);
+			if (result == null) result = caseIEnginePart(iProcess);
+			if (result == null) result = caseLNamedElement(iProcess);
+			if (result == null) result = caseLObject(iProcess);
+			if (result == null) result = caseIInferenceObject(iProcess);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case VulkanPackage.COLOR_DOMAIN:
+		{
+			ColorDomain colorDomain = (ColorDomain) theEObject;
+			T result = caseColorDomain(colorDomain);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

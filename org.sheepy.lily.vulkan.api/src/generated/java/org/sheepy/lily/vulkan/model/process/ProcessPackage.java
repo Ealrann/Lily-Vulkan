@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.lily.vulkan.model.process.ProcessFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model'"
  * @generated
  */
 public interface ProcessPackage extends EPackage
@@ -153,7 +153,8 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
+	int ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = VulkanPackage.IPROCESS_FEATURE_COUNT
+			+ 5;
 
 	/**
 	 * The feature id for the '<em><b>Dependent Processes</b></em>' reference list.
@@ -883,7 +884,6 @@ public interface ProcessPackage extends EPackage
 	 */
 	int PUSH_CONSTANT_OPERATION_COUNT = IPIPELINE_UNIT_OPERATION_COUNT + 0;
 
-
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
@@ -1212,7 +1212,8 @@ public interface ProcessPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PROCESS__RESOURCE_CONTAINER = eINSTANCE.getAbstractProcess_ResourceContainer();
+		EReference ABSTRACT_PROCESS__RESOURCE_CONTAINER = eINSTANCE
+				.getAbstractProcess_ResourceContainer();
 
 		/**
 		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' containment reference list feature.
@@ -1220,7 +1221,8 @@ public interface ProcessPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PROCESS__DESCRIPTOR_SETS = eINSTANCE.getAbstractProcess_DescriptorSets();
+		EReference ABSTRACT_PROCESS__DESCRIPTOR_SETS = eINSTANCE
+				.getAbstractProcess_DescriptorSets();
 
 		/**
 		 * The meta object literal for the '<em><b>Units</b></em>' containment reference list feature.
@@ -1252,7 +1254,8 @@ public interface ProcessPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = eINSTANCE.getAbstractProcess_InitializedSignalizedSemaphore();
+		EAttribute ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = eINSTANCE
+				.getAbstractProcess_InitializedSignalizedSemaphore();
 
 		/**
 		 * The meta object literal for the '<em><b>Dependent Processes</b></em>' reference list feature.
@@ -1260,7 +1263,8 @@ public interface ProcessPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PROCESS__DEPENDENT_PROCESSES = eINSTANCE.getAbstractProcess_DependentProcesses();
+		EReference ABSTRACT_PROCESS__DEPENDENT_PROCESSES = eINSTANCE
+				.getAbstractProcess_DependentProcesses();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
@@ -1382,7 +1386,8 @@ public interface ProcessPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PIPELINE__DESCRIPTOR_SET = eINSTANCE.getAbstractPipeline_DescriptorSet();
+		EReference ABSTRACT_PIPELINE__DESCRIPTOR_SET = eINSTANCE
+				.getAbstractPipeline_DescriptorSet();
 
 		/**
 		 * The meta object literal for the '<em><b>Constants</b></em>' reference feature.
@@ -1418,7 +1423,8 @@ public interface ProcessPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_COMPOSITE_PIPELINE__PIPELINES = eINSTANCE.getAbstractCompositePipeline_Pipelines();
+		EReference ABSTRACT_COMPOSITE_PIPELINE__PIPELINES = eINSTANCE
+				.getAbstractCompositePipeline_Pipelines();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.

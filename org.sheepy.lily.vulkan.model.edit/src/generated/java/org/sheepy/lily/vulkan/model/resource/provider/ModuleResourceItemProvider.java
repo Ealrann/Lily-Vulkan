@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.resource.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -62,19 +61,13 @@ public class ModuleResourceItemProvider extends AbstractModuleResourceItemProvid
 	 */
 	protected void addModulePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModuleResource_module_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModuleResource_module_feature", "_UI_ModuleResource_type"),
-				 ResourcePackage.Literals.MODULE_RESOURCE__MODULE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ModuleResource_module_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ModuleResource_module_feature",
+						"_UI_ModuleResource_type"),
+				ResourcePackage.Literals.MODULE_RESOURCE__MODULE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -98,12 +91,11 @@ public class ModuleResourceItemProvider extends AbstractModuleResourceItemProvid
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((ModuleResource)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ModuleResource_type") :
-			getString("_UI_ModuleResource_type") + " " + label;
+		String label = ((ModuleResource) object).getName();
+		return label == null || label.length() == 0
+				? getString("_UI_ModuleResource_type")
+				: getString("_UI_ModuleResource_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -119,9 +111,10 @@ public class ModuleResourceItemProvider extends AbstractModuleResourceItemProvid
 
 		switch (notification.getFeatureID(ModuleResource.class))
 		{
-			case ResourcePackage.MODULE_RESOURCE__MODULE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ResourcePackage.MODULE_RESOURCE__MODULE:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -75,12 +75,9 @@ public enum EFrontFace implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EFrontFace[] VALUES_ARRAY =
-		new EFrontFace[]
-		{
-			COUNTER_CLOCKWISE,
-			CLOCKWISE,
-		};
+	private static final EFrontFace[] VALUES_ARRAY = new EFrontFace[] {
+			COUNTER_CLOCKWISE, CLOCKWISE,
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>EFront Face</b></em>' enumerators.
@@ -88,7 +85,8 @@ public enum EFrontFace implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EFrontFace> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EFrontFace> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EFront Face</b></em>' literal with the specified literal value.
@@ -144,8 +142,10 @@ public enum EFrontFace implements Enumerator
 	{
 		switch (value)
 		{
-			case COUNTER_CLOCKWISE_VALUE: return COUNTER_CLOCKWISE;
-			case CLOCKWISE_VALUE: return CLOCKWISE;
+		case COUNTER_CLOCKWISE_VALUE:
+			return COUNTER_CLOCKWISE;
+		case CLOCKWISE_VALUE:
+			return CLOCKWISE;
 		}
 		return null;
 	}
@@ -192,7 +192,7 @@ public enum EFrontFace implements Enumerator
 	@Override
 	public int getValue()
 	{
-	  return value;
+		return value;
 	}
 
 	/**
@@ -203,7 +203,7 @@ public enum EFrontFace implements Enumerator
 	@Override
 	public String getName()
 	{
-	  return name;
+		return name;
 	}
 
 	/**
@@ -214,7 +214,7 @@ public enum EFrontFace implements Enumerator
 	@Override
 	public String getLiteral()
 	{
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -228,5 +228,5 @@ public enum EFrontFace implements Enumerator
 	{
 		return literal;
 	}
-	
+
 } //EFrontFace
