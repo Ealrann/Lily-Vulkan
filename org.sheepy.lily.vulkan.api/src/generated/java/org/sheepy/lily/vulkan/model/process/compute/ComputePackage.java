@@ -72,13 +72,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS__CONTENT_OBJECTS = ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS;
+	int COMPUTE_PROCESS__RESOURCE_PKG = ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -99,15 +99,6 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__ENABLED = ProcessPackage.ABSTRACT_PROCESS__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resource Container</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS__RESOURCE_CONTAINER = ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER;
-
-	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,13 +108,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__DESCRIPTOR_SETS = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS;
 
 	/**
-	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS__UNITS = ProcessPackage.ABSTRACT_PROCESS__UNITS;
+	int COMPUTE_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Semaphores</b></em>' containment reference list.
@@ -169,51 +160,6 @@ public interface ComputePackage extends EPackage
 	 * @ordered
 	 */
 	int COMPUTE_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS___LINFERENCE_OBJECT = ProcessPackage.ABSTRACT_PROCESS___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS___CREATE_CONTAINMENT_ELIST__ECLASS = ProcessPackage.ABSTRACT_PROCESS___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS___LCONTENTS = ProcessPackage.ABSTRACT_PROCESS___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS___LPARENT = ProcessPackage.ABSTRACT_PROCESS___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PROCESS___LALL_CONTENTS = ProcessPackage.ABSTRACT_PROCESS___LALL_CONTENTS;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -269,6 +215,15 @@ public interface ComputePackage extends EPackage
 	 * @ordered
 	 */
 	int COMPUTE_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__RESOURCE_PKG = ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.

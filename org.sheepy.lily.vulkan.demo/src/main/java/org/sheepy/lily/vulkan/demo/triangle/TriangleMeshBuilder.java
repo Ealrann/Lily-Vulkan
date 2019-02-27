@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.demo.triangle;
 
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.demo.mesh.IIndexedBufferBuilder;
 import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
 import org.sheepy.lily.vulkan.resource.indexed.IndexBufferData;
@@ -32,7 +32,7 @@ public class TriangleMeshBuilder implements IIndexedBufferBuilder<Vertex>
 	}
 
 	@Override
-	public IndexBuffer<Vertex> build(ExecutionManager executionManager)
+	public IndexBuffer<Vertex> build(ExecutionContext executionManager)
 	{
 		return IndexBuffer.alloc(executionManager, getDatas(), false);
 	}

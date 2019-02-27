@@ -15,7 +15,7 @@ import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
@@ -68,7 +68,7 @@ public class VkTexture implements IVkDescriptor
 		sampler.load();
 	}
 
-	public void loadImage(MemoryStack stack, ExecutionManager executionManager, ByteBuffer data)
+	public void loadImage(MemoryStack stack, ExecutionContext executionManager, ByteBuffer data)
 	{
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 

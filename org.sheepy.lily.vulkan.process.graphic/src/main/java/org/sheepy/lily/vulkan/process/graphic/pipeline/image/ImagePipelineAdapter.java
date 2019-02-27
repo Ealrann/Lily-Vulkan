@@ -12,8 +12,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
 import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
-import org.sheepy.lily.vulkan.process.graphic.swapchain.SwapChainManager;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
@@ -27,12 +27,12 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	private SwapChainManager swapChainManager;
 
 	@Override
-	public void deepAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack)
 	{
-		super.deepAllocate(stack);
+		super.allocate(stack);
 
 		var context = IGraphicContextAdapter.adapt(target).getContext(target);
-		var extent = context.swapChainManager.getExtent();
+		var extent = context.surfaceManager.getExtent();
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
 

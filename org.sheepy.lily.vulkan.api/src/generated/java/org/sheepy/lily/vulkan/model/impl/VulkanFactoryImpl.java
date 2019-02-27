@@ -66,10 +66,8 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 		{
 		case VulkanPackage.VULKAN_ENGINE:
 			return createVulkanEngine();
-		case VulkanPackage.RESOURCE_CONTAINER:
-			return createResourceContainer();
-		case VulkanPackage.SHARED_RESOURCES:
-			return createSharedResources();
+		case VulkanPackage.RESOURCE_PKG:
+			return createResourcePkg();
 		case VulkanPackage.COLOR_DOMAIN:
 			return createColorDomain();
 		default:
@@ -96,22 +94,10 @@ public class VulkanFactoryImpl extends EFactoryImpl implements VulkanFactory
 	 * @generated
 	 */
 	@Override
-	public ResourceContainer createResourceContainer()
+	public ResourcePkg createResourcePkg()
 	{
-		ResourceContainerImpl resourceContainer = new ResourceContainerImpl();
-		return resourceContainer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SharedResources createSharedResources()
-	{
-		SharedResourcesImpl sharedResources = new SharedResourcesImpl();
-		return sharedResources;
+		ResourcePkgImpl resourcePkg = new ResourcePkgImpl();
+		return resourcePkg;
 	}
 
 	/**

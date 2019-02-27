@@ -9,7 +9,7 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkBufferAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
@@ -85,7 +85,7 @@ public class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void pushData(ExecutionManager executionManager, ByteBuffer data)
+	public void pushData(ExecutionContext executionManager, ByteBuffer data)
 	{
 		pushData(data);
 	}

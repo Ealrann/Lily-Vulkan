@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
@@ -24,17 +24,22 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public void setTarget(Notifier target)
 	{
-		super.setTarget(target);
 		process = (ComputeProcess) target;
+		super.setTarget(target);
+	}
 
+	@Override
+	protected void gatherAllocationServices()
+	{
+		super.gatherAllocationServices();
 		context = new ComputeContext(executionManager, descriptorPool, process);
-		childAllocables.addAll(context.getAllocationList());
+		allocationList.addAll(context.getAllocationList());
 	}
 
 	@Override
 	public void unsetTarget(Notifier oldTarget)
 	{
-		childAllocables.removeAll(context.getAllocationList());
+		allocationList.removeAll(context.getAllocationList());
 		context = null;
 
 		process = null;
@@ -56,8 +61,6 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public void execute(IFence fence)
 	{
-		checkAllocation();
-
 		var queue = context.executionManager.getQueue().vkQueue;
 		var submission = context.submission;
 		var submitInfo = submission.getSubmitInfo(0);

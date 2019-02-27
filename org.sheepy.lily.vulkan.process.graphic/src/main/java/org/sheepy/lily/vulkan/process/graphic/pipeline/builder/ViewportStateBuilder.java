@@ -11,8 +11,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
 import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
-import org.sheepy.lily.vulkan.process.graphic.swapchain.SwapChainManager;
-import org.sheepy.lily.vulkan.process.graphic.swapchain.SwapChainManager.Extent2D;
+import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
+import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager.Extent2D;
 
 public class ViewportStateBuilder
 {
@@ -21,7 +21,7 @@ public class ViewportStateBuilder
 	private VkViewport.Buffer viewports;
 	private VkRect2D.Buffer scissors;
 
-	public VkPipelineViewportStateCreateInfo allocCreateInfo(	SwapChainManager swapChainManager,
+	public VkPipelineViewportStateCreateInfo allocCreateInfo(	PhysicalDeviceSurfaceManager surfaceManager,
 																ViewportState vState)
 	{
 		viewportState = VkPipelineViewportStateCreateInfo.calloc();
@@ -30,7 +30,7 @@ public class ViewportStateBuilder
 		if (vState instanceof StaticViewportState)
 		{
 			var state = (StaticViewportState) vState;
-			fillStaticStateInfo(swapChainManager, state);
+			fillStaticStateInfo(surfaceManager, state);
 		}
 		else if (vState instanceof DynamicViewportState)
 		{
@@ -47,10 +47,11 @@ public class ViewportStateBuilder
 		viewportState.viewportCount(state.getViewportCount());
 	}
 
-	private void fillStaticStateInfo(SwapChainManager swapChainManager, StaticViewportState state)
+	private void fillStaticStateInfo(	PhysicalDeviceSurfaceManager surfaceManager,
+										StaticViewportState state)
 	{
 		// Viewports and scissors
-		Extent2D swapExtent = swapChainManager.getExtent();
+		Extent2D swapExtent = surfaceManager.getExtent();
 		viewports = VkViewport.calloc(state.getViewports().size());
 		for (Viewport viewport : state.getViewports())
 		{

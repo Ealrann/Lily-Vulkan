@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkImageCreateInfo;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 
 public class VkImageAllocator

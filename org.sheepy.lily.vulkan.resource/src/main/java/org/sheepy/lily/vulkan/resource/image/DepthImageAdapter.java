@@ -6,12 +6,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.lily.core.api.types.SVector2i;
-import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractFlatAllocableAdapter;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
-import org.sheepy.lily.vulkan.common.execution.IExecutionManagerAdapter;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.lily.vulkan.common.resource.image.IDepthImageAdapter;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
@@ -26,7 +25,7 @@ import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
-public class DepthImageAdapter extends AbstractFlatAllocableAdapter implements IDepthImageAdapter
+public class DepthImageAdapter extends AbstractStatefullAdapter implements IDepthImageAdapter
 {
 	private VkImage depthImageBackend;
 	private VkImageView depthImageView;
@@ -34,17 +33,16 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter implements I
 	private SVector2i size;
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, ExecutionContext executionContext)
 	{
-		var executionManager = IExecutionManagerAdapter.adapt(target).getExecutionManager(target);
-		depthFormat = findDepthFormat(executionManager.getPhysicalDevice());
+		depthFormat = findDepthFormat(executionContext.getPhysicalDevice());
 
-		createDepthImage(executionManager.getLogicalDevice());
+		createDepthImage(executionContext.getLogicalDevice());
 		allocateDepthImage(stack);
 
-		createAndAllocateImageView(executionManager.getLogicalDevice());
+		createAndAllocateImageView(executionContext.getLogicalDevice());
 
-		layoutTransitionOfDepthImage(executionManager);
+		layoutTransitionOfDepthImage(executionContext);
 	}
 
 	private void createAndAllocateImageView(LogicalDevice logicalDevice)
@@ -62,7 +60,7 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter implements I
 	private void createDepthImage(LogicalDevice logicalDevice)
 	{
 		var vulkanApp = ModelUtil.getApplication(target);
-		size = vulkanApp.getSize();
+		size = new SVector2i(vulkanApp.getSize());
 		int width = size.getX();
 		int height = size.getY();
 		int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
@@ -72,7 +70,7 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter implements I
 		depthImageBackend = new VkImage(logicalDevice, depthImageInfo);
 	}
 
-	private void layoutTransitionOfDepthImage(ExecutionManager context)
+	private void layoutTransitionOfDepthImage(ExecutionContext context)
 	{
 		final var barrier = new ReferenceImageBarrierImpl();
 		barrier.setImageId(depthImageBackend.getId());
@@ -122,7 +120,7 @@ public class DepthImageAdapter extends AbstractFlatAllocableAdapter implements I
 	{
 		var application = ModelUtil.getApplication(target);
 
-		return size != application.getSize();
+		return size.equals(application.getSize()) == false;
 	}
 
 	public long getDepthImageId()

@@ -3,10 +3,10 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 import org.sheepy.lily.vulkan.common.nativehelper.VkRenderPassAllocator;
 
-public class RenderPass implements IBasicAllocable
+public class RenderPass implements IAllocable
 {
 	private final GraphicContext context;
 
@@ -21,7 +21,7 @@ public class RenderPass implements IBasicAllocable
 	public void allocate(MemoryStack stack)
 	{
 		var renderPassInfo = context.graphicProcess.getRenderPassInfo();
-		var format = context.swapChainManager.getColorDomain().getFormat();
+		var format = context.surfaceManager.getColorDomain().getFormat();
 
 		var renderPassAllocator = new VkRenderPassAllocator(context.getVkDevice(), format);
 		renderPass = renderPassAllocator.allocate(stack, renderPassInfo);

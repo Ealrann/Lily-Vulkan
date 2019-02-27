@@ -5,9 +5,9 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 
-public class CommandPool implements IBasicAllocable
+public class CommandPool implements IAllocable
 {
 	private final VkDevice device;
 	private final int queueIndex;

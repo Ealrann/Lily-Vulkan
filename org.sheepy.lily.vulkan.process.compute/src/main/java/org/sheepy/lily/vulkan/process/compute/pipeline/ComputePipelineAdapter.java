@@ -11,8 +11,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.device.ILogicalDeviceAdapter;
-import org.sheepy.lily.vulkan.common.util.Logger;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
@@ -44,9 +44,9 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	}
 
 	@Override
-	public void deepAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack)
 	{
-		super.deepAllocate(stack);
+		super.allocate(stack);
 
 		var context = IComputeContextAdapter.adapt(target).getContext(target);
 		var device = context.getVkDevice();

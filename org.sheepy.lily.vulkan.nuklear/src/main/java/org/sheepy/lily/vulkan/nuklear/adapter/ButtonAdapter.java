@@ -8,7 +8,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.action.context.ExecutionContext;
+import org.sheepy.lily.core.api.action.context.ActionExecutionContext;
 import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.lily.core.api.application.IApplicationAdapter;
 import org.sheepy.lily.core.model.action.Action;
@@ -41,7 +41,7 @@ public class ButtonAdapter extends AbstractStatefullAdapter implements IUIElemen
 
 			for (Action action : button.getActions())
 			{
-				ExecutionContext ec = new ExecutionContext(button.getExecutor(), action, null);
+				ActionExecutionContext ec = new ActionExecutionContext(button.getExecutor(), action, null);
 				cadencer.postAction(ec);
 			}
 			res = true;

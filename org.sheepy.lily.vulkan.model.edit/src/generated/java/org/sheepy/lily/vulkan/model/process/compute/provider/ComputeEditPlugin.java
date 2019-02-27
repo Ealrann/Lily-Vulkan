@@ -52,14 +52,14 @@ public final class ComputeEditPlugin extends EMFPlugin
 	{
 		super(new ResourceLocator[] {
 				ProcessEditPlugin.INSTANCE,
-				RootEditPlugin.INSTANCE,
 				TypesEditPlugin.INSTANCE,
 				VulkanEditPlugin.INSTANCE,
+				RootEditPlugin.INSTANCE,
 				InferenceEditPlugin.INSTANCE,
 				ResourceEditPlugin.INSTANCE,
 				EnumerationEditPlugin.INSTANCE,
-				ActionEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
+				ActionEditPlugin.INSTANCE,
 		});
 	}
 

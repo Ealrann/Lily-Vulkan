@@ -23,6 +23,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.VulkanFactory;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -169,6 +171,7 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS);
 		}
 		return childrenFeatures;
@@ -224,6 +227,7 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -243,6 +247,10 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors
+				.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+						VulkanFactory.eINSTANCE.createResourcePkg()));
 
 		newChildDescriptors
 				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,

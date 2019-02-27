@@ -4,7 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkImageViewCreateInfo;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.api.util.Logger;
 
 public class VkImageView
 {

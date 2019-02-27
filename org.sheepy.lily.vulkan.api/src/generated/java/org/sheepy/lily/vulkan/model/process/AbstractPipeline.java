@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
-
+import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
@@ -25,7 +25,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractPipeline extends IPipeline
+public interface AbstractPipeline extends IPipeline, IResourceContainer
 {
 	/**
 	 * Returns the value of the '<em><b>Units</b></em>' containment reference list.

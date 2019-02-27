@@ -28,7 +28,6 @@ public class PhysicalDevice
 		this.vkInstance = vkInstance;
 
 		deviceProperties = new DeviceProperties(vkPhysicalDevice);
-
 	}
 
 	public void allocate()

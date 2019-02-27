@@ -106,6 +106,15 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
+
+	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

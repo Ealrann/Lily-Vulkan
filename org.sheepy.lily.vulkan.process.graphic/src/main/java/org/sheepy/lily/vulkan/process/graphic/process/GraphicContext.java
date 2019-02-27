@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
-import org.sheepy.lily.vulkan.process.graphic.swapchain.SwapChainManager;
-import org.sheepy.lily.vulkan.process.graphic.view.ImageViewManager;
+import org.sheepy.lily.vulkan.process.graphic.frame.Framebuffers;
+import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewManager;
+import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
+import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.lily.vulkan.process.process.WaitData;
@@ -23,6 +25,7 @@ public class GraphicContext extends ProcessContext
 	public final GraphicConfiguration configuration;
 	public final GraphicProcess graphicProcess;
 
+	public final PhysicalDeviceSurfaceManager surfaceManager;
 	public final SwapChainManager swapChainManager;
 	public final ImageViewManager imageViewManager;
 	public final Framebuffers framebuffers;
@@ -30,9 +33,9 @@ public class GraphicContext extends ProcessContext
 	public final FrameSubmission submission;
 	public final GraphicCommandBuffers commandBuffers;
 
-	private List<IBasicAllocable> allocationList;
+	private List<IAllocable> allocationList;
 
-	public GraphicContext(	ExecutionManager executionManager,
+	public GraphicContext(	ExecutionContext executionManager,
 							DescriptorPool descriptorPool,
 							GraphicProcess graphicProcess,
 							VkSemaphore imageAcquireSemaphore)
@@ -42,6 +45,7 @@ public class GraphicContext extends ProcessContext
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
 
+		surfaceManager = new PhysicalDeviceSurfaceManager(this);
 		swapChainManager = new SwapChainManager(this);
 		framebuffers = new Framebuffers(this);
 		renderPass = new RenderPass(this);
@@ -95,8 +99,9 @@ public class GraphicContext extends ProcessContext
 
 	public void buildAllocationList()
 	{
-		var tmpList = new ArrayList<IBasicAllocable>();
+		var tmpList = new ArrayList<IAllocable>();
 
+		tmpList.add(surfaceManager);
 		tmpList.add(swapChainManager);
 		tmpList.add(imageViewManager);
 		tmpList.add(renderPass);
@@ -107,7 +112,7 @@ public class GraphicContext extends ProcessContext
 		allocationList = List.copyOf(tmpList);
 	}
 
-	public List<IBasicAllocable> getAllocationList()
+	public List<IAllocable> getAllocationList()
 	{
 		return allocationList;
 	}

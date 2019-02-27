@@ -122,53 +122,28 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.ResourceContainer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.ResourcePkg} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ResourceContainerItemProvider resourceContainerItemProvider;
+	protected ResourcePkgItemProvider resourcePkgItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.ResourceContainer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.ResourcePkg}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createResourceContainerAdapter()
+	public Adapter createResourcePkgAdapter()
 	{
-		if (resourceContainerItemProvider == null)
+		if (resourcePkgItemProvider == null)
 		{
-			resourceContainerItemProvider = new ResourceContainerItemProvider(this);
+			resourcePkgItemProvider = new ResourcePkgItemProvider(this);
 		}
 
-		return resourceContainerItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.SharedResources} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SharedResourcesItemProvider sharedResourcesItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.SharedResources}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSharedResourcesAdapter()
-	{
-		if (sharedResourcesItemProvider == null)
-		{
-			sharedResourcesItemProvider = new SharedResourcesItemProvider(this);
-		}
-
-		return sharedResourcesItemProvider;
+		return resourcePkgItemProvider;
 	}
 
 	/**
@@ -346,8 +321,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	public void dispose()
 	{
 		if (vulkanEngineItemProvider != null) vulkanEngineItemProvider.dispose();
-		if (resourceContainerItemProvider != null) resourceContainerItemProvider.dispose();
-		if (sharedResourcesItemProvider != null) sharedResourcesItemProvider.dispose();
+		if (resourcePkgItemProvider != null) resourcePkgItemProvider.dispose();
 		if (colorDomainItemProvider != null) colorDomainItemProvider.dispose();
 	}
 

@@ -30,10 +30,9 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import org.sheepy.lily.vulkan.model.ResourceContainer;
+import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
@@ -338,16 +337,15 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 			 * @generated
 			 */
 			@Override
-			public Object caseAbstractProcess(AbstractProcess object)
+			public Object casePipelinePkg(PipelinePkg object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
+						(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 						 NuklearFactory.eINSTANCE.createNuklearPipeline()));
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -432,16 +430,16 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 			 * @generated
 			 */
 			@Override
-			public Object caseResourceContainer(ResourceContainer object)
+			public Object caseResourcePkg(ResourcePkg object)
 			{
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 NuklearFactory.eINSTANCE.createNuklearConstants()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_CONTAINER__RESOURCES,
+						(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 NuklearFactory.eINSTANCE.createNuklearIndexBuffer()));
 
 				return null;

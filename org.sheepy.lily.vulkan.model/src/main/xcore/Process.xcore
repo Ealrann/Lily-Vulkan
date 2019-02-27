@@ -14,18 +14,22 @@ import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants
 import org.sheepy.lily.vulkan.model.resource.Barrier
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet
-import org.sheepy.lily.vulkan.model.ResourceContainer
+import org.sheepy.lily.vulkan.model.IResourceContainer
 
 abstract class AbstractProcess extends IProcess
 {
-	contains ResourceContainer resourceContainer
 	contains DescriptorSet[] descriptorSets
-	contains IPipeline[] units
+	contains PipelinePkg pipelinePkg
 	contains ProcessSemaphore[] semaphores
 	boolean resetAllowed
 	boolean initializedSignalizedSemaphore = "false"
  	@GenModel(property="Readonly")
 	refers ProcessSemaphore[] dependentProcesses opposite process
+}
+
+class PipelinePkg
+{
+	contains IPipeline[] pipelines
 }
 
 class ProcessSemaphore
@@ -52,7 +56,7 @@ interface IPipeline extends LObject, LNamedElement
 	ECommandStage stage = "Render"
 }
 
-abstract class AbstractPipeline extends IPipeline
+abstract class AbstractPipeline extends IPipeline, IResourceContainer
 {
 	contains IPipelineUnit[] units
 	refers DescriptorSet descriptorSet

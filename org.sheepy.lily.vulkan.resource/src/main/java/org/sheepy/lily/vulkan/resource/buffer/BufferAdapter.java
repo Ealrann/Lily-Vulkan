@@ -12,7 +12,7 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -23,7 +23,7 @@ public class BufferAdapter extends PipelineResourceAdapter
 	protected Buffer buffer;
 	protected IBufferBackend bufferBackend;
 
-	private ExecutionManager executionManager;
+	private ExecutionContext executionManager;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -33,7 +33,7 @@ public class BufferAdapter extends PipelineResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionManager executionManager)
+	public void allocate(MemoryStack stack, ExecutionContext executionManager)
 	{
 		var logicalDevice = executionManager.logicalDevice;
 		var info = new BufferInfo(buffer);

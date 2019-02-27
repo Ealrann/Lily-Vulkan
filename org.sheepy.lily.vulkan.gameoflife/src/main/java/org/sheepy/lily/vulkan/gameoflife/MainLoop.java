@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.gameoflife;
 import org.sheepy.lily.core.api.cadence.IMainLoop;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
-import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.gameoflife.model.ModelFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 
@@ -11,8 +10,6 @@ public class MainLoop implements IMainLoop
 {
 	private static final int TARGET_FPS = 60;
 	private static final int FRAME_TIME_STEP_MS = (int) ((1f / TARGET_FPS) * 1000);
-
-	private IVulkanEngineAdapter engineAdapter;
 
 	private long nextRenderDate = 0;
 	private int countFrame = 0;
@@ -26,7 +23,6 @@ public class MainLoop implements IMainLoop
 	@Override
 	public void load(Application application)
 	{
-		engineAdapter = IVulkanEngineAdapter.adapt(factory.engine);
 		computeProcessAdapters[0] = IProcessAdapter.adapt(factory.computeProcess1);
 		computeProcessAdapters[1] = IProcessAdapter.adapt(factory.computeProcess2);
 		GraphicProcess imageProcess = factory.imageProcess;
@@ -35,7 +31,7 @@ public class MainLoop implements IMainLoop
 		stopCountDate = System.currentTimeMillis() + 3000;
 		nextRenderDate = System.currentTimeMillis() + FRAME_TIME_STEP_MS;
 
-		engineAdapter.allocate();
+		factory.engine.setEnabled(true);
 	}
 
 	@Override

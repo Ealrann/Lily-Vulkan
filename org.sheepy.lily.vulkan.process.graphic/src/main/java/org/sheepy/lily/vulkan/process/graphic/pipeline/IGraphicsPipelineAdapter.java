@@ -7,7 +7,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
@@ -45,16 +45,16 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 	private VkDevice device;
 
 	@Override
-	public void deepAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack)
 	{
-		super.deepAllocate(stack);
+		super.allocate(stack);
 
 		createBuilders();
 
 		final var context = IGraphicContextAdapter.adapt(target).getContext(target);
 		final var useDepthBuffer = context.graphicProcess.getDepthImage() != null;
 		device = context.getVkDevice();
-		var swapchain = context.swapChainManager;
+		var surfaceManager = context.surfaceManager;
 
 		renderPass = context.renderPass;
 		allocationDependencies.add(renderPass);
@@ -73,7 +73,8 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 		var viewportState = getViewportState();
 		if (viewportState != null)
 		{
-			var allocCreateInfo = viewportStateBuilder.allocCreateInfo(swapchain, viewportState);
+			var allocCreateInfo = viewportStateBuilder.allocCreateInfo(surfaceManager,
+					viewportState);
 			pipelineInfo.pViewportState(allocCreateInfo);
 		}
 
@@ -147,10 +148,15 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 	}
 
 	protected abstract List<Shader> getShaders();
+
 	protected abstract ViewportState getViewportState();
+
 	protected abstract Rasterizer getRasterizer();
+
 	protected abstract ColorBlend getColorBlend();
+
 	protected abstract DynamicState getDynamicState();
+
 	protected abstract int getSubpass();
 
 	abstract protected IVertexBufferDescriptor<?> getVertexBufferDescriptor();

@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.resource.nativehelper;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.util.Logger;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 

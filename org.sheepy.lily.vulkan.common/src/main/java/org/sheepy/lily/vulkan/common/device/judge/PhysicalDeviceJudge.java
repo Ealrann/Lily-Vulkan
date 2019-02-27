@@ -6,32 +6,29 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
-import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.ColorDomains;
+import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.PresentModes;
+import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.common.device.data.ColorDomains;
-import org.sheepy.lily.vulkan.common.device.data.PresentModes;
 
 public class PhysicalDeviceJudge
 {
 	private final String[] requiredExtensions;
-	private final MemoryStack stack;
 
 	private ColorDomains colorDomains;
 	private PresentModes modes;
 
-	public PhysicalDeviceJudge(MemoryStack stack, String[] requiredExtensions)
+	public PhysicalDeviceJudge(String[] requiredExtensions)
 	{
 		this.requiredExtensions = requiredExtensions;
-		this.stack = stack;
 	}
 
-	public int rateDeviceSuitability(PhysicalDevice physicalDevice, Surface surface)
+	public int rateDeviceSuitability(PhysicalDevice physicalDevice, VkSurface surface)
 	{
-		colorDomains = new ColorDomains(stack, physicalDevice.vkPhysicalDevice, surface);
+		colorDomains = new ColorDomains(physicalDevice.vkPhysicalDevice, surface);
 		modes = new PresentModes(physicalDevice.vkPhysicalDevice, surface);
 		var deviceProperties = physicalDevice.deviceProperties.vkDeviceProperties;
 
@@ -47,12 +44,6 @@ public class PhysicalDeviceJudge
 
 		// Maximum possible size of textures affects graphics quality
 		score += deviceProperties.limits().maxImageDimension2D();
-
-		// Application can't work without geometry shaders
-		if (!deviceFeatures.geometryShader())
-		{
-			score = 0;
-		}
 
 		// Application can't work without required extensions
 		// Application can't work without swap chain

@@ -7,15 +7,23 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 
-public class VkSemaphore
+public class VkSemaphore implements IAllocable
 {
 	private long semaphoreId = 0;
+	private final LogicalDevice logicalDevice;
 
-	public void allocate(LogicalDevice logicalDevice)
+	public VkSemaphore(LogicalDevice logicalDevice)
+	{
+		this.logicalDevice = logicalDevice;
+	}
+
+	@Override
+	public void allocate(MemoryStack stack)
 	{
 		VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
 		semaphoreInfo.sType(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO);
@@ -36,7 +44,7 @@ public class VkSemaphore
 		return semaphoreId;
 	}
 
-	public void signalSemaphore(ExecutionManager executionManager)
+	public void signalSemaphore(ExecutionContext executionManager)
 	{
 		if (semaphoreId == 0)
 		{
@@ -53,9 +61,16 @@ public class VkSemaphore
 		stc.execute();
 	}
 
-	public void free(LogicalDevice logicalDevice)
+	@Override
+	public void free()
 	{
 		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphoreId, null);
 		semaphoreId = -1;
+	}
+
+	@Override
+	public boolean isAllocationDirty()
+	{
+		return false;
 	}
 }

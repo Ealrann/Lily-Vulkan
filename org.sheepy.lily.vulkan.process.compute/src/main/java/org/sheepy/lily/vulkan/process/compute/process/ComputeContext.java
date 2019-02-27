@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffers;
@@ -22,9 +22,9 @@ public class ComputeContext extends ProcessContext
 	public final ComputeCommandBuffers commandBuffers;
 	public final ProcessSubmission submission;
 
-	private List<IBasicAllocable> allocationList;
+	private List<IAllocable> allocationList;
 
-	public ComputeContext(	ExecutionManager executionManager,
+	public ComputeContext(	ExecutionContext executionManager,
 							DescriptorPool descriptorPool,
 							ComputeProcess computeProcess)
 	{
@@ -72,7 +72,7 @@ public class ComputeContext extends ProcessContext
 
 	private void buildAllocationList()
 	{
-		var tmpList = new ArrayList<IBasicAllocable>();
+		var tmpList = new ArrayList<IAllocable>();
 
 		tmpList.add(commandBuffers);
 		tmpList.add(submission);
@@ -80,7 +80,7 @@ public class ComputeContext extends ProcessContext
 		allocationList = List.copyOf(tmpList);
 	}
 
-	public List<IBasicAllocable> getAllocationList()
+	public List<IAllocable> getAllocationList()
 	{
 		return allocationList;
 	}

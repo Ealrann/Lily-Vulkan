@@ -12,9 +12,9 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
-import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.common.util.Logger;
 
 public class PhysicalDeviceSelector
 {
@@ -30,7 +30,7 @@ public class PhysicalDeviceSelector
 	private final VkInstance vkInstance;
 	private final List<PhysicalDeviceWrapper> devices = new ArrayList<>();
 	private final String[] requiredExtensions;
-	private final Surface surface;
+	private final VkSurface surface;
 
 	private IntBuffer pPhysicalDeviceCount;
 
@@ -38,7 +38,7 @@ public class PhysicalDeviceSelector
 
 	public PhysicalDeviceSelector(	VkInstance vkInstance,
 									String[] requiredExtensions,
-									Surface surface)
+									VkSurface surface)
 	{
 		this.vkInstance = vkInstance;
 		this.requiredExtensions = requiredExtensions;
@@ -48,7 +48,7 @@ public class PhysicalDeviceSelector
 	public PhysicalDevice findBestPhysicalDevice(MemoryStack stack)
 	{
 		load(stack);
-		gatherDevices(stack);
+		gatherDevices();
 		Collections.sort(devices, DEVICE_COMPARATOR);
 
 		final PhysicalDevice res = devices.get(0).physicalDevice;
@@ -68,9 +68,9 @@ public class PhysicalDeviceSelector
 		Logger.check(err, "Failed to get physical devices");
 	}
 
-	private void gatherDevices(MemoryStack stack)
+	private void gatherDevices()
 	{
-		final PhysicalDeviceJudge judge = new PhysicalDeviceJudge(stack, requiredExtensions);
+		final PhysicalDeviceJudge judge = new PhysicalDeviceJudge(requiredExtensions);
 		for (int i = 0; i < pPhysicalDeviceCount.get(0); i++)
 		{
 			final var vkPhysicalDevice = new VkPhysicalDevice(pPhysicalDevices.get(i), vkInstance);

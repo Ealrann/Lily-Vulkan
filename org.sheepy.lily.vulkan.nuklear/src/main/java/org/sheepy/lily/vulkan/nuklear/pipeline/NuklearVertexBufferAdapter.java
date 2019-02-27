@@ -13,7 +13,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
@@ -55,7 +55,7 @@ public class NuklearVertexBufferAdapter extends ResourceAdapter
 	private VkMappedMemoryRange rangeIndex;
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionManager executionManager)
+	public void allocate(MemoryStack stack, ExecutionContext executionManager)
 	{
 		nkNullTexture.texture().ptr(nullTexture.getSamplerId());
 		nkNullTexture.uv().set(0.5f, 0.5f);

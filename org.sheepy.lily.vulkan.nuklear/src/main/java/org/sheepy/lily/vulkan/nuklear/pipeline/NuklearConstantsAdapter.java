@@ -5,16 +5,16 @@ import java.nio.ByteBuffer;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.vulkan.api.window.IWindowListener;
-import org.sheepy.lily.vulkan.api.window.Surface;
-import org.sheepy.lily.vulkan.common.allocation.adapter.IFlatAllocableAdapter;
+import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
+import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 
 public class NuklearConstantsAdapter extends AbstractConstantsAdapter
-		implements IFlatAllocableAdapter
+		implements IAllocableAdapter
 {
 	private final int SIZE = 16 * 4;
 	private ByteBuffer buffer;
@@ -24,14 +24,14 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter
 	private final IWindowListener windowListener = new IWindowListener()
 	{
 		@Override
-		public void onWindowResize(Surface surface)
+		public void onWindowResize(VkSurface surface)
 		{
 			needRecord = true;
 		}
 	};
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack)
 	{
 		var context = IGraphicContextAdapter.adapt(target).getContext(target);
 		logicalDevice = context.logicalDevice;
@@ -73,7 +73,7 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter
 	@Override
 	public ByteBuffer getData()
 	{
-		Surface surface = logicalDevice.window.getSurface();
+		VkSurface surface = logicalDevice.window.getSurface();
 		int width = surface.width;
 		int height = surface.height;
 

@@ -15,8 +15,12 @@ module org.sheepy.lily.vulkan.api
 
 	exports org.sheepy.lily.vulkan.api.adapter;
 	exports org.sheepy.lily.vulkan.api.concurrent;
+	exports org.sheepy.lily.vulkan.api.nativehelper;
+	exports org.sheepy.lily.vulkan.api.nativehelper.device.capabilities;
+	exports org.sheepy.lily.vulkan.api.nativehelper.surface;
+	exports org.sheepy.lily.vulkan.api.nativehelper.window;
 	exports org.sheepy.lily.vulkan.api.queue;
-	exports org.sheepy.lily.vulkan.api.window;
+	exports org.sheepy.lily.vulkan.api.util;
 
 	exports org.sheepy.lily.vulkan.model;
 	exports org.sheepy.lily.vulkan.model.impl;

@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -153,10 +152,6 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
-						GraphicFactory.eINSTANCE.createImagePipeline()));
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION,

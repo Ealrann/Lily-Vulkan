@@ -35,7 +35,7 @@ import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
-import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
@@ -385,10 +385,10 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 			 * @generated
 			 */
 			@Override
-			public Object caseAbstractProcess(AbstractProcess object)
+			public Object casePipelinePkg(PipelinePkg object)
 			{
 				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
+						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 								ComputeFactory.eINSTANCE.createComputePipeline()));
 
 				return null;

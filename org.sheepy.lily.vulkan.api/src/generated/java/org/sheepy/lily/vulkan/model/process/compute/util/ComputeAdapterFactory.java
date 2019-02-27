@@ -8,16 +8,14 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.sheepy.lily.core.model.inference.IInferenceObject;
-
 import org.sheepy.lily.core.model.root.LObject;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.IEnginePart;
+import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 
+import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
@@ -106,27 +104,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
-		public Adapter caseIInferenceObject(IInferenceObject object)
+		public Adapter caseIResourceContainer(IResourceContainer object)
 		{
-			return createIInferenceObjectAdapter();
-		}
-
-		@Override
-		public Adapter caseLObject(LObject object)
-		{
-			return createLObjectAdapter();
-		}
-
-		@Override
-		public Adapter caseIEnginePart(IEnginePart object)
-		{
-			return createIEnginePartAdapter();
+			return createIResourceContainerAdapter();
 		}
 
 		@Override
 		public Adapter caseLNamedElement(LNamedElement object)
 		{
 			return createLNamedElementAdapter();
+		}
+
+		@Override
+		public Adapter caseIExecutionManager(IExecutionManager object)
+		{
+			return createIExecutionManagerAdapter();
 		}
 
 		@Override
@@ -139,6 +131,18 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 		public Adapter caseAbstractProcess(AbstractProcess object)
 		{
 			return createAbstractProcessAdapter();
+		}
+
+		@Override
+		public Adapter caseIInferenceObject(IInferenceObject object)
+		{
+			return createIInferenceObjectAdapter();
+		}
+
+		@Override
+		public Adapter caseLObject(LObject object)
+		{
+			return createLObjectAdapter();
 		}
 
 		@Override
@@ -226,21 +230,6 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.inference.IInferenceObject <em>IInference Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.inference.IInferenceObject
-	 * @generated
-	 */
-	public Adapter createIInferenceObjectAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.root.LObject <em>LObject</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -256,16 +245,16 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IEnginePart <em>IEngine Part</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.IEnginePart
+	 * @see org.sheepy.lily.vulkan.model.IResourceContainer
 	 * @generated
 	 */
-	public Adapter createIEnginePartAdapter()
+	public Adapter createIResourceContainerAdapter()
 	{
 		return null;
 	}
@@ -281,6 +270,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createLNamedElementAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.IExecutionManager
+	 * @generated
+	 */
+	public Adapter createIExecutionManagerAdapter()
 	{
 		return null;
 	}
@@ -311,6 +315,21 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAbstractProcessAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.inference.IInferenceObject <em>IInference Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.core.model.inference.IInferenceObject
+	 * @generated
+	 */
+	public Adapter createIInferenceObjectAdapter()
 	{
 		return null;
 	}

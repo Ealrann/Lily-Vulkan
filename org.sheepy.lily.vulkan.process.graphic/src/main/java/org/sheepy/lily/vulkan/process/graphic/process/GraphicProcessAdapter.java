@@ -3,17 +3,20 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
+import org.sheepy.lily.vulkan.common.resource.image.IDepthImageAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
@@ -40,11 +43,44 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	{
 		this.process = (GraphicProcess) target;
 		super.setTarget(target);
+	}
 
-		imageAvailableSemaphore = new VkSemaphore();
+	@Override
+	protected void gatherAllocationServices()
+	{
+		super.gatherAllocationServices();
+		imageAvailableSemaphore = new VkSemaphore(executionManager.logicalDevice);
 		context = new GraphicContext(executionManager, descriptorPool, process,
 				imageAvailableSemaphore);
-		childAllocables.addAll(context.getAllocationList());
+		
+		
+		allocationList.add(imageAvailableSemaphore);
+		allocationList.addAll(context.getAllocationList());
+	}
+
+	@Override
+	protected List<IResourceAllocable> gatherResources()
+	{
+		List<IResourceAllocable> res = super.gatherResources();
+
+		var depthImage = process.getDepthImage();
+		if (depthImage != null)
+		{
+			res.add(IDepthImageAdapter.adapt(depthImage));
+		}
+
+		return res;
+	}
+
+	@Override
+	public void unsetTarget(Notifier oldTarget)
+	{
+		allocationList.remove(imageAvailableSemaphore);
+		allocationList.removeAll(context.getAllocationList());
+		context = null;
+
+		this.process = null;
+		super.unsetTarget(oldTarget);
 	}
 
 	@Override
@@ -60,24 +96,8 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	}
 
 	@Override
-	public void flatAllocate(MemoryStack stack)
-	{
-		imageAvailableSemaphore.allocate(logicalDevice);
-		super.flatAllocate(stack);
-	}
-
-	@Override
-	public void freePart()
-	{
-		super.freePart();
-		imageAvailableSemaphore.free(logicalDevice);
-	}
-
-	@Override
 	public void execute(IFence fence)
 	{
-		checkAllocation();
-
 		final Integer imageIndex = acquireNextImage();
 
 		if (imageIndex != null)
@@ -123,16 +143,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	protected EQueueType getQueueType()
 	{
 		return EQueueType.Graphic;
-	}
-
-	@Override
-	public void unsetTarget(Notifier oldTarget)
-	{
-		childAllocables.removeAll(context.getAllocationList());
-		context = null;
-
-		this.process = null;
-		super.unsetTarget(oldTarget);
 	}
 
 	@Override

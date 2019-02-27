@@ -30,8 +30,8 @@ public class FrameSubmission extends ProcessSubmission
 	@Override
 	public void allocate(MemoryStack stack)
 	{
-		presentWaitSemaphore = new VkSemaphore();
-		presentWaitSemaphore.allocate(context.logicalDevice);
+		presentWaitSemaphore = new VkSemaphore(context.logicalDevice);
+		presentWaitSemaphore.allocate(stack);
 		super.allocate(stack);
 	}
 
@@ -58,7 +58,7 @@ public class FrameSubmission extends ProcessSubmission
 	public void free()
 	{
 		super.free();
-		presentWaitSemaphore.free(context.logicalDevice);
+		presentWaitSemaphore.free();
 		presentWaitSemaphore = null;
 	};
 }

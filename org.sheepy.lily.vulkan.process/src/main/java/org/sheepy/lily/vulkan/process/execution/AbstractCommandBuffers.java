@@ -11,13 +11,13 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.api.util.Logger;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 import org.sheepy.lily.vulkan.common.execution.CommandPool;
 import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
-import org.sheepy.lily.vulkan.common.util.Logger;
 
 public abstract class AbstractCommandBuffers<CB extends ICommandBuffer>
-		implements Iterable<CB>, IBasicAllocable
+		implements Iterable<CB>, IAllocable
 {
 	protected List<CB> commandBuffers = Collections.emptyList();
 

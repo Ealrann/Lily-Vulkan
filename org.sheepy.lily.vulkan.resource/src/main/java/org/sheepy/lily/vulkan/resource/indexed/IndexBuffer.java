@@ -6,15 +6,15 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.lily.vulkan.resource.buffer.BufferGPUFiller;
 import org.sheepy.lily.vulkan.resource.buffer.GPUBufferBackend;
 
-public class IndexBuffer<T extends IVertex> implements IBasicAllocable
+public class IndexBuffer<T extends IVertex> implements IAllocable
 {
-	private final ExecutionManager context;
+	private final ExecutionContext context;
 	private final IIndexBufferDescriptor<T> vertexDescriptor;
 	private final int vertexBufferSizeInByte;
 	private final int indexBufferSizeInByte;
@@ -28,14 +28,14 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 
 	boolean allocated = false;
 
-	public static <T extends IVertex> IndexBuffer<T> alloc(	ExecutionManager context,
+	public static <T extends IVertex> IndexBuffer<T> alloc(	ExecutionContext context,
 															IndexBufferData<T> datas,
 															boolean isOftenChanged)
 	{
 		return alloc(context, datas.indexDescriptor, datas.vertices, datas.indices, isOftenChanged);
 	}
 
-	public static <T extends IVertex> IndexBuffer<T> alloc(	ExecutionManager context,
+	public static <T extends IVertex> IndexBuffer<T> alloc(	ExecutionContext context,
 															IIndexBufferDescriptor<T> vertexDescriptor,
 															T[] vertices,
 															int[] indices,
@@ -56,7 +56,7 @@ public class IndexBuffer<T extends IVertex> implements IBasicAllocable
 		return res;
 	}
 
-	public IndexBuffer(	ExecutionManager context,
+	public IndexBuffer(	ExecutionContext context,
 						IIndexBufferDescriptor<T> vertexDescriptor,
 						int vertexBufferSizeInByte,
 						int indexBufferSizeInByte,

@@ -14,11 +14,11 @@ import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.ColorDomain;
-import org.sheepy.lily.vulkan.model.IEnginePart;
+import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResource;
-import org.sheepy.lily.vulkan.model.ResourceContainer;
-import org.sheepy.lily.vulkan.model.SharedResources;
+import org.sheepy.lily.vulkan.model.IResourceContainer;
+import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -45,21 +45,14 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iEnginePartEClass = null;
+	private EClass iResourceContainerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass resourceContainerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass sharedResourcesEClass = null;
+	private EClass resourcePkgEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,6 +67,13 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass iProcessEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iExecutionManagerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,7 +185,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getVulkanEngine_SharedResources()
+	public EReference getVulkanEngine_Processes()
 	{
 		return (EReference) vulkanEngineEClass.getEStructuralFeatures().get(1);
 	}
@@ -196,9 +196,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getVulkanEngine_Processes()
+	public EClass getIResourceContainer()
 	{
-		return (EReference) vulkanEngineEClass.getEStructuralFeatures().get(2);
+		return iResourceContainerEClass;
 	}
 
 	/**
@@ -207,9 +207,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getIEnginePart()
+	public EReference getIResourceContainer_ResourcePkg()
 	{
-		return iEnginePartEClass;
+		return (EReference) iResourceContainerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -218,9 +218,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getResourceContainer()
+	public EClass getResourcePkg()
 	{
-		return resourceContainerEClass;
+		return resourcePkgEClass;
 	}
 
 	/**
@@ -229,20 +229,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getResourceContainer_Resources()
+	public EReference getResourcePkg_Resources()
 	{
-		return (EReference) resourceContainerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getSharedResources()
-	{
-		return sharedResourcesEClass;
+		return (EReference) resourcePkgEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -276,6 +265,17 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	public EAttribute getIProcess_Enabled()
 	{
 		return (EAttribute) iProcessEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIExecutionManager()
+	{
+		return iExecutionManagerEClass;
 	}
 
 	/**
@@ -344,20 +344,20 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		// Create classes and their features
 		vulkanEngineEClass = createEClass(VULKAN_ENGINE);
 		createEAttribute(vulkanEngineEClass, VULKAN_ENGINE__ENABLED);
-		createEReference(vulkanEngineEClass, VULKAN_ENGINE__SHARED_RESOURCES);
 		createEReference(vulkanEngineEClass, VULKAN_ENGINE__PROCESSES);
 
-		iEnginePartEClass = createEClass(IENGINE_PART);
+		iResourceContainerEClass = createEClass(IRESOURCE_CONTAINER);
+		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__RESOURCE_PKG);
 
-		resourceContainerEClass = createEClass(RESOURCE_CONTAINER);
-		createEReference(resourceContainerEClass, RESOURCE_CONTAINER__RESOURCES);
-
-		sharedResourcesEClass = createEClass(SHARED_RESOURCES);
+		resourcePkgEClass = createEClass(RESOURCE_PKG);
+		createEReference(resourcePkgEClass, RESOURCE_PKG__RESOURCES);
 
 		iResourceEClass = createEClass(IRESOURCE);
 
 		iProcessEClass = createEClass(IPROCESS);
 		createEAttribute(iProcessEClass, IPROCESS__ENABLED);
+
+		iExecutionManagerEClass = createEClass(IEXECUTION_MANAGER);
 
 		colorDomainEClass = createEClass(COLOR_DOMAIN);
 		createEAttribute(colorDomainEClass, COLOR_DOMAIN__FORMAT);
@@ -393,8 +393,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 				.getEPackage(ApplicationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 				.getEPackage(EcorePackage.eNS_URI);
-		RootPackage theRootPackage = (RootPackage) EPackage.Registry.INSTANCE
-				.getEPackage(RootPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
 				.getEPackage(TypesPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
@@ -406,12 +404,12 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		// Add supertypes to classes
 		vulkanEngineEClass.getESuperTypes().add(theApplicationPackage.getIEngine());
-		iEnginePartEClass.getESuperTypes().add(theRootPackage.getLObject());
-		sharedResourcesEClass.getESuperTypes().add(this.getResourceContainer());
-		sharedResourcesEClass.getESuperTypes().add(this.getIEnginePart());
+		vulkanEngineEClass.getESuperTypes().add(this.getIResourceContainer());
+		vulkanEngineEClass.getESuperTypes().add(this.getIExecutionManager());
 		iResourceEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		iProcessEClass.getESuperTypes().add(this.getIEnginePart());
+		iProcessEClass.getESuperTypes().add(this.getIResourceContainer());
 		iProcessEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
+		iProcessEClass.getESuperTypes().add(this.getIExecutionManager());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT,
@@ -419,26 +417,22 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEAttribute(getVulkanEngine_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true",
 				0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVulkanEngine_SharedResources(), this.getSharedResources(), null,
-				"sharedResources", null, 0, 1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 		initEReference(getVulkanEngine_Processes(), this.getIProcess(), null, "processes", null, 0,
 				-1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iEnginePartEClass, IEnginePart.class, "IEnginePart", IS_ABSTRACT, IS_INTERFACE,
+		initEClass(iResourceContainerEClass, IResourceContainer.class, "IResourceContainer",
+				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIResourceContainer_ResourcePkg(), this.getResourcePkg(), null,
+				"resourcePkg", null, 0, 1, IResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(resourcePkgEClass, ResourcePkg.class, "ResourcePkg", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(resourceContainerEClass, ResourceContainer.class, "ResourceContainer",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getResourceContainer_Resources(), this.getIResource(), null, "resources",
-				null, 0, -1, ResourceContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(sharedResourcesEClass, SharedResources.class, "SharedResources", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getResourcePkg_Resources(), this.getIResource(), null, "resources", null, 0,
+				-1, ResourcePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iResourceEClass, IResource.class, "IResource", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -448,6 +442,9 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEAttribute(getIProcess_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true", 0,
 				1, IProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iExecutionManagerEClass, IExecutionManager.class, "IExecutionManager",
+				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(colorDomainEClass, ColorDomain.class, "ColorDomain", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

@@ -23,6 +23,15 @@ public interface ProcessFactory extends EFactory
 	ProcessFactory eINSTANCE = org.sheepy.lily.vulkan.model.process.impl.ProcessFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Pipeline Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pipeline Pkg</em>'.
+	 * @generated
+	 */
+	PipelinePkg createPipelinePkg();
+
+	/**
 	 * Returns a new object of class '<em>Semaphore</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

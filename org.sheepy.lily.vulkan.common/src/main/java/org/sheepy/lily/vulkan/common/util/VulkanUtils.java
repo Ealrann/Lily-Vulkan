@@ -15,7 +15,8 @@ import org.lwjgl.vulkan.VkDebugReportCallbackCreateInfoEXT;
 import org.lwjgl.vulkan.VkDebugReportCallbackEXT;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkInstance;
-import org.sheepy.lily.vulkan.common.window.Window;
+import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
+import org.sheepy.lily.vulkan.api.util.Logger;
 
 public class VulkanUtils
 {

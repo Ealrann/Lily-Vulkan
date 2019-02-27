@@ -8,12 +8,12 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.process.execution.AbstractCommandBuffers;
 
-public class ProcessSubmission implements IBasicAllocable
+public class ProcessSubmission implements IAllocable
 {
 	protected final AbstractCommandBuffers<?> commandBuffers;
 	private final Collection<VkSemaphore> signalEmitters;

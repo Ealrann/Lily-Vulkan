@@ -2,48 +2,25 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.sheepy.lily.core.api.util.LTreeIterator;
-
-import org.sheepy.lily.core.model.inference.IInferenceObject;
-
-import org.sheepy.lily.core.model.root.LObject;
-
-import org.sheepy.lily.core.model.root.RootPackage.Literals;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.model.ResourceContainer;
-
+import org.sheepy.lily.vulkan.model.IExecutionManager;
+import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 
@@ -57,12 +34,11 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getContentObjects <em>Content Objects</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getResourceContainer <em>Resource Container</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getUnits <em>Units</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSemaphores <em>Semaphores</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isInitializedSignalizedSemaphore <em>Initialized Signalized Semaphore</em>}</li>
@@ -75,14 +51,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		implements AbstractProcess
 {
 	/**
-	 * The cached value of the '{@link #getContentObjects() <em>Content Objects</em>}' attribute.
+	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContentObjects()
+	 * @see #getResourcePkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LObject> contentObjects;
+	protected ResourcePkg resourcePkg;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -125,16 +101,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getResourceContainer() <em>Resource Container</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResourceContainer()
-	 * @generated
-	 * @ordered
-	 */
-	protected ResourceContainer resourceContainer;
-
-	/**
 	 * The cached value of the '{@link #getDescriptorSets() <em>Descriptor Sets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,14 +111,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	protected EList<DescriptorSet> descriptorSets;
 
 	/**
-	 * The cached value of the '{@link #getUnits() <em>Units</em>}' containment reference list.
+	 * The cached value of the '{@link #getPipelinePkg() <em>Pipeline Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUnits()
+	 * @see #getPipelinePkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IPipeline> units;
+	protected PipelinePkg pipelinePkg;
 
 	/**
 	 * The cached value of the '{@link #getSemaphores() <em>Semaphores</em>}' containment reference list.
@@ -241,9 +207,28 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public EList<LObject> getContentObjects()
+	public ResourcePkg getResourcePkg()
 	{
-		return contentObjects;
+		return resourcePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	{
+		ResourcePkg oldResourcePkg = resourcePkg;
+		resourcePkg = newResourcePkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -252,13 +237,22 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public void setContentObjects(EList<LObject> newContentObjects)
+	public void setResourcePkg(ResourcePkg newResourcePkg)
 	{
-		EList<LObject> oldContentObjects = contentObjects;
-		contentObjects = newContentObjects;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS, oldContentObjects,
-				contentObjects));
+		if (newResourcePkg != resourcePkg)
+		{
+			NotificationChain msgs = null;
+			if (resourcePkg != null) msgs = ((InternalEObject) resourcePkg).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null,
+					msgs);
+			if (newResourcePkg != null) msgs = ((InternalEObject) newResourcePkg).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, null,
+					msgs);
+			msgs = basicSetResourcePkg(newResourcePkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG, newResourcePkg, newResourcePkg));
 	}
 
 	/**
@@ -317,67 +311,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public ResourceContainer getResourceContainer()
-	{
-		return resourceContainer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetResourceContainer(	ResourceContainer newResourceContainer,
-														NotificationChain msgs)
-	{
-		ResourceContainer oldResourceContainer = resourceContainer;
-		resourceContainer = newResourceContainer;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, oldResourceContainer,
-					newResourceContainer);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setResourceContainer(ResourceContainer newResourceContainer)
-	{
-		if (newResourceContainer != resourceContainer)
-		{
-			NotificationChain msgs = null;
-			if (resourceContainer != null) msgs = ((InternalEObject) resourceContainer)
-					.eInverseRemove(this,
-							EOPPOSITE_FEATURE_BASE
-									- ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
-							null, msgs);
-			if (newResourceContainer != null) msgs = ((InternalEObject) newResourceContainer)
-					.eInverseAdd(this,
-							EOPPOSITE_FEATURE_BASE
-									- ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER,
-							null, msgs);
-			msgs = basicSetResourceContainer(newResourceContainer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER, newResourceContainer,
-				newResourceContainer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<DescriptorSet> getDescriptorSets()
 	{
 		if (descriptorSets == null)
@@ -394,14 +327,52 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public EList<IPipeline> getUnits()
+	public PipelinePkg getPipelinePkg()
 	{
-		if (units == null)
+		return pipelinePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPipelinePkg(PipelinePkg newPipelinePkg, NotificationChain msgs)
+	{
+		PipelinePkg oldPipelinePkg = pipelinePkg;
+		pipelinePkg = newPipelinePkg;
+		if (eNotificationRequired())
 		{
-			units = new EObjectContainmentEList<IPipeline>(IPipeline.class, this,
-					ProcessPackage.ABSTRACT_PROCESS__UNITS);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, oldPipelinePkg, newPipelinePkg);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
-		return units;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPipelinePkg(PipelinePkg newPipelinePkg)
+	{
+		if (newPipelinePkg != pipelinePkg)
+		{
+			NotificationChain msgs = null;
+			if (pipelinePkg != null) msgs = ((InternalEObject) pipelinePkg).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, null,
+					msgs);
+			if (newPipelinePkg != null) msgs = ((InternalEObject) newPipelinePkg).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, null,
+					msgs);
+			msgs = basicSetPipelinePkg(newPipelinePkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, newPipelinePkg, newPipelinePkg));
 	}
 
 	/**
@@ -494,100 +465,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public <T extends LObject> EList<T> createContainmentEList(final EClass targetEClass)
-	{
-		EList<T> res = null;
-		final List<EStructuralFeature> unitRefs = new ArrayList<EStructuralFeature>();
-		EList<EReference> _eAllContainments = this.eClass().getEAllContainments();
-		for (final EReference ref : _eAllContainments)
-		{
-			EClassifier _eType = ref.getEType();
-			boolean _isSuperTypeOf = targetEClass.isSuperTypeOf(((EClass) _eType));
-			if (_isSuperTypeOf)
-			{
-				unitRefs.add(ref);
-			}
-		}
-		boolean _isEmpty = unitRefs.isEmpty();
-		if (_isEmpty)
-		{
-			res = ECollections.<T> emptyEList();
-		}
-		else
-		{
-			EContentsEList<T> _eContentsEList = new EContentsEList<T>(this, unitRefs);
-			res = _eContentsEList;
-		}
-		return res;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<LObject> lContents()
-	{
-		EList<LObject> _xblockexpression = null;
-		{
-			EList<LObject> _contentObjects = this.getContentObjects();
-			boolean _tripleEquals = (_contentObjects == null);
-			if (_tripleEquals)
-			{
-				this.setContentObjects(this.<LObject> createContainmentEList(Literals.LOBJECT));
-			}
-			_xblockexpression = this.getContentObjects();
-		}
-		return _xblockexpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public LObject lParent()
-	{
-		LObject _xifexpression = null;
-		EObject _eContainer = this.eContainer();
-		if ((_eContainer instanceof LObject))
-		{
-			EObject _eContainer_1 = this.eContainer();
-			_xifexpression = ((LObject) _eContainer_1);
-		}
-		return _xifexpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public LTreeIterator lAllContents()
-	{
-		return new LTreeIterator(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public IInferenceObject lInferenceObject()
-	{
-		return this;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(	InternalEObject otherEnd,
@@ -615,12 +492,12 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-			return basicSetResourceContainer(null, msgs);
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+			return basicSetResourcePkg(null, msgs);
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			return ((InternalEList<?>) getDescriptorSets()).basicRemove(otherEnd, msgs);
-		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-			return ((InternalEList<?>) getUnits()).basicRemove(otherEnd, msgs);
+		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+			return basicSetPipelinePkg(null, msgs);
 		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
 			return ((InternalEList<?>) getSemaphores()).basicRemove(otherEnd, msgs);
 		case ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES:
@@ -639,18 +516,16 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
-			return getContentObjects();
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+			return getResourcePkg();
 		case ProcessPackage.ABSTRACT_PROCESS__NAME:
 			return getName();
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 			return isEnabled();
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-			return getResourceContainer();
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			return getDescriptorSets();
-		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-			return getUnits();
+		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+			return getPipelinePkg();
 		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
 			return getSemaphores();
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
@@ -674,8 +549,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
-			setContentObjects((EList<LObject>) newValue);
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+			setResourcePkg((ResourcePkg) newValue);
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__NAME:
 			setName((String) newValue);
@@ -683,16 +558,12 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 			setEnabled((Boolean) newValue);
 			return;
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-			setResourceContainer((ResourceContainer) newValue);
-			return;
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			getDescriptorSets().clear();
 			getDescriptorSets().addAll((Collection<? extends DescriptorSet>) newValue);
 			return;
-		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-			getUnits().clear();
-			getUnits().addAll((Collection<? extends IPipeline>) newValue);
+		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+			setPipelinePkg((PipelinePkg) newValue);
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
 			getSemaphores().clear();
@@ -722,8 +593,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
-			setContentObjects((EList<LObject>) null);
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+			setResourcePkg((ResourcePkg) null);
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__NAME:
 			setName(NAME_EDEFAULT);
@@ -731,14 +602,11 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 			setEnabled(ENABLED_EDEFAULT);
 			return;
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-			setResourceContainer((ResourceContainer) null);
-			return;
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			getDescriptorSets().clear();
 			return;
-		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-			getUnits().clear();
+		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+			setPipelinePkg((PipelinePkg) null);
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
 			getSemaphores().clear();
@@ -766,18 +634,16 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS__CONTENT_OBJECTS:
-			return contentObjects != null;
+		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
+			return resourcePkg != null;
 		case ProcessPackage.ABSTRACT_PROCESS__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 			return enabled != ENABLED_EDEFAULT;
-		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_CONTAINER:
-			return resourceContainer != null;
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			return descriptorSets != null && !descriptorSets.isEmpty();
-		case ProcessPackage.ABSTRACT_PROCESS__UNITS:
-			return units != null && !units.isEmpty();
+		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
+			return pipelinePkg != null;
 		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
 			return semaphores != null && !semaphores.isEmpty();
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
@@ -808,6 +674,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 				return -1;
 			}
 		}
+		if (baseClass == IExecutionManager.class)
+		{
+			switch (derivedFeatureID)
+			{
+			default:
+				return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -829,31 +703,15 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 				return -1;
 			}
 		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
+		if (baseClass == IExecutionManager.class)
 		{
-		case ProcessPackage.ABSTRACT_PROCESS___CREATE_CONTAINMENT_ELIST__ECLASS:
-			return createContainmentEList((EClass) arguments.get(0));
-		case ProcessPackage.ABSTRACT_PROCESS___LCONTENTS:
-			return lContents();
-		case ProcessPackage.ABSTRACT_PROCESS___LPARENT:
-			return lParent();
-		case ProcessPackage.ABSTRACT_PROCESS___LALL_CONTENTS:
-			return lAllContents();
-		case ProcessPackage.ABSTRACT_PROCESS___LINFERENCE_OBJECT:
-			return lInferenceObject();
+			switch (baseFeatureID)
+			{
+			default:
+				return -1;
+			}
 		}
-		return super.eInvoke(operationID, arguments);
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -867,9 +725,7 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (contentObjects: ");
-		result.append(contentObjects);
-		result.append(", name: ");
+		result.append(" (name: ");
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);

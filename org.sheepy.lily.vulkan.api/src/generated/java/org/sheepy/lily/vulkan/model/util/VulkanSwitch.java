@@ -80,35 +80,24 @@ public class VulkanSwitch<T> extends Switch<T>
 			VulkanEngine vulkanEngine = (VulkanEngine) theEObject;
 			T result = caseVulkanEngine(vulkanEngine);
 			if (result == null) result = caseIEngine(vulkanEngine);
+			if (result == null) result = caseIResourceContainer(vulkanEngine);
+			if (result == null) result = caseIExecutionManager(vulkanEngine);
 			if (result == null) result = caseLObject(vulkanEngine);
 			if (result == null) result = caseIInferenceObject(vulkanEngine);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case VulkanPackage.IENGINE_PART:
+		case VulkanPackage.IRESOURCE_CONTAINER:
 		{
-			IEnginePart iEnginePart = (IEnginePart) theEObject;
-			T result = caseIEnginePart(iEnginePart);
-			if (result == null) result = caseLObject(iEnginePart);
-			if (result == null) result = caseIInferenceObject(iEnginePart);
+			IResourceContainer iResourceContainer = (IResourceContainer) theEObject;
+			T result = caseIResourceContainer(iResourceContainer);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case VulkanPackage.RESOURCE_CONTAINER:
+		case VulkanPackage.RESOURCE_PKG:
 		{
-			ResourceContainer resourceContainer = (ResourceContainer) theEObject;
-			T result = caseResourceContainer(resourceContainer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case VulkanPackage.SHARED_RESOURCES:
-		{
-			SharedResources sharedResources = (SharedResources) theEObject;
-			T result = caseSharedResources(sharedResources);
-			if (result == null) result = caseResourceContainer(sharedResources);
-			if (result == null) result = caseIEnginePart(sharedResources);
-			if (result == null) result = caseLObject(sharedResources);
-			if (result == null) result = caseIInferenceObject(sharedResources);
+			ResourcePkg resourcePkg = (ResourcePkg) theEObject;
+			T result = caseResourcePkg(resourcePkg);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -124,10 +113,16 @@ public class VulkanSwitch<T> extends Switch<T>
 		{
 			IProcess iProcess = (IProcess) theEObject;
 			T result = caseIProcess(iProcess);
-			if (result == null) result = caseIEnginePart(iProcess);
+			if (result == null) result = caseIResourceContainer(iProcess);
 			if (result == null) result = caseLNamedElement(iProcess);
-			if (result == null) result = caseLObject(iProcess);
-			if (result == null) result = caseIInferenceObject(iProcess);
+			if (result == null) result = caseIExecutionManager(iProcess);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case VulkanPackage.IEXECUTION_MANAGER:
+		{
+			IExecutionManager iExecutionManager = (IExecutionManager) theEObject;
+			T result = caseIExecutionManager(iExecutionManager);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -160,49 +155,33 @@ public class VulkanSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IResource Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IResource Container</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIEnginePart(IEnginePart object)
+	public T caseIResourceContainer(IResourceContainer object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resource Container</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Resource Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resource Container</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Resource Pkg</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseResourceContainer(ResourceContainer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Shared Resources</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Shared Resources</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSharedResources(SharedResources object)
+	public T caseResourcePkg(ResourcePkg object)
 	{
 		return null;
 	}
@@ -235,6 +214,22 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIProcess(IProcess object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIExecutionManager(IExecutionManager object)
 	{
 		return null;
 	}

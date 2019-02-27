@@ -4,12 +4,12 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 
 public class BufferAllocator
 {
 	public static GPUBufferBackend allocateGPUBufferAndFill(MemoryStack stack,
-															ExecutionManager executionManager,
+															ExecutionContext executionManager,
 															long size,
 															int usage,
 															boolean keepStagingBuffer,

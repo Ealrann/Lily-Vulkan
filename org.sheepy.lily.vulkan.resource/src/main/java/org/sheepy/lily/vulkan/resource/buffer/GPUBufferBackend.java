@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkBufferAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator;
@@ -81,7 +81,7 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void pushData(ExecutionManager executionManager, ByteBuffer data)
+	public void pushData(ExecutionContext executionManager, ByteBuffer data)
 	{
 		if (cpuBackend == null)
 		{
@@ -99,7 +99,7 @@ public class GPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	public void pushData(ExecutionManager executionManager, CPUBufferBackend stagingBuffer)
+	public void pushData(ExecutionContext executionManager, CPUBufferBackend stagingBuffer)
 	{
 		int size = (int) Math.min(stagingBuffer.infos.size, infos.size);
 		final SingleTimeCommand stc = new SingleTimeCommand(executionManager)
@@ -141,7 +141,7 @@ public class GPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	public void pushStagging(ExecutionManager executionManager)
+	public void pushStagging(ExecutionContext executionManager)
 	{
 		pushData(executionManager, cpuBackend);
 	}

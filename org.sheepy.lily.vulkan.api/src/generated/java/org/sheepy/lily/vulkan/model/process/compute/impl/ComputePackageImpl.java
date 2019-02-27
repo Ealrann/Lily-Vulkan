@@ -117,15 +117,15 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 
 		// Initialize simple dependencies
 		ProcessPackage.eINSTANCE.eClass();
-		RootPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
+		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
-		ActionPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theComputePackage.createPackageContents();

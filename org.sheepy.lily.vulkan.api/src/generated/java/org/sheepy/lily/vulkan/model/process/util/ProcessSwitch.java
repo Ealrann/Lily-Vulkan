@@ -6,16 +6,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.sheepy.lily.core.model.inference.IInferenceObject;
-
 import org.sheepy.lily.core.model.root.LObject;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.IEnginePart;
+import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 
+import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.*;
 
 /**
@@ -86,10 +84,16 @@ public class ProcessSwitch<T> extends Switch<T>
 			AbstractProcess abstractProcess = (AbstractProcess) theEObject;
 			T result = caseAbstractProcess(abstractProcess);
 			if (result == null) result = caseIProcess(abstractProcess);
-			if (result == null) result = caseIEnginePart(abstractProcess);
+			if (result == null) result = caseIResourceContainer(abstractProcess);
 			if (result == null) result = caseLNamedElement(abstractProcess);
-			if (result == null) result = caseLObject(abstractProcess);
-			if (result == null) result = caseIInferenceObject(abstractProcess);
+			if (result == null) result = caseIExecutionManager(abstractProcess);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.PIPELINE_PKG:
+		{
+			PipelinePkg pipelinePkg = (PipelinePkg) theEObject;
+			T result = casePipelinePkg(pipelinePkg);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -133,6 +137,7 @@ public class ProcessSwitch<T> extends Switch<T>
 			AbstractPipeline abstractPipeline = (AbstractPipeline) theEObject;
 			T result = caseAbstractPipeline(abstractPipeline);
 			if (result == null) result = caseIPipeline(abstractPipeline);
+			if (result == null) result = caseIResourceContainer(abstractPipeline);
 			if (result == null) result = caseLObject(abstractPipeline);
 			if (result == null) result = caseLNamedElement(abstractPipeline);
 			if (result == null) result = caseIInferenceObject(abstractPipeline);
@@ -153,6 +158,7 @@ public class ProcessSwitch<T> extends Switch<T>
 			T result = caseAbstractCompositePipeline(abstractCompositePipeline);
 			if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);
 			if (result == null) result = caseIPipeline(abstractCompositePipeline);
+			if (result == null) result = caseIResourceContainer(abstractCompositePipeline);
 			if (result == null) result = caseLObject(abstractCompositePipeline);
 			if (result == null) result = caseLNamedElement(abstractCompositePipeline);
 			if (result == null) result = caseIInferenceObject(abstractCompositePipeline);
@@ -185,6 +191,22 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractProcess(AbstractProcess object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pipeline Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePipelinePkg(PipelinePkg object)
 	{
 		return null;
 	}
@@ -318,22 +340,6 @@ public class ProcessSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIInferenceObject(IInferenceObject object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>LObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -350,17 +356,17 @@ public class ProcessSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IResource Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IResource Container</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIEnginePart(IEnginePart object)
+	public T caseIResourceContainer(IResourceContainer object)
 	{
 		return null;
 	}
@@ -382,6 +388,22 @@ public class ProcessSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIExecutionManager(IExecutionManager object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IProcess</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -393,6 +415,22 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIProcess(IProcess object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIInferenceObject(IInferenceObject object)
 	{
 		return null;
 	}

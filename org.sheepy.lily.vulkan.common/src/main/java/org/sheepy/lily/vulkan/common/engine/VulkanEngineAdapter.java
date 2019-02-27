@@ -20,31 +20,40 @@ import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.lily.core.api.adapter.IAutoAdapter;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.IStatefullAdapter;
 import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-import org.sheepy.lily.vulkan.api.adapter.IEnginePartAdapter;
+import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
-import org.sheepy.lily.vulkan.api.window.IWindowListener;
-import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
+import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
+import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
+import org.sheepy.lily.vulkan.api.queue.EQueueType;
+import org.sheepy.lily.vulkan.api.util.Logger;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationAdapter;
+import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocationDescriptorAdapter;
+import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.lily.vulkan.common.concurrent.VkFence;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.common.device.judge.PhysicalDeviceSelector;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
+import org.sheepy.lily.vulkan.common.resource.IResourceAllocableAdapter;
+import org.sheepy.lily.vulkan.common.resource.ResourceAllocator;
 import org.sheepy.lily.vulkan.common.util.LayerFinder;
-import org.sheepy.lily.vulkan.common.util.Logger;
 import org.sheepy.lily.vulkan.common.util.VulkanUtils;
-import org.sheepy.lily.vulkan.common.window.Window;
 import org.sheepy.lily.vulkan.model.IProcess;
+import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-public class VulkanEngineAdapter extends AbstractStatefullAdapter
-		implements IVulkanEngineAdapter, IAutoAdapter
+public class VulkanEngineAdapter extends AbstractAllocationDescriptorAdapter
+		implements IStatefullAdapter, IVulkanEngineAdapter, IAutoAdapter, IExecutionManagerAdapter
 {
 	private static final String[] LAYERS_TO_ENABLE = {
 			"VK_LAYER_LUNARG_standard_validation",
@@ -61,15 +70,17 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	};
 
 	protected boolean debug;
-	boolean allocated = false;
 
 	protected VkInstance vkInstance;
 	protected PhysicalDevice physicalDevice;
 	protected LogicalDevice logicalDevice = null;
+	protected TreeAllocator allocator;
 
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames = null;
 	private VulkanInputManager inputManager;
+	private ExecutionContext executionContext = null;
+	private boolean allocated = false;
 
 	protected Application application;
 	protected VulkanEngine engine;
@@ -79,7 +90,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	private final IWindowListener resizeListener = new IWindowListener()
 	{
 		@Override
-		public void onWindowResize(Surface surface)
+		public void onWindowResize(VkSurface surface)
 		{
 			resize(surface);
 		}
@@ -128,6 +139,11 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		application = (Application) engine.eContainer();
 		application.eAdapters().add(applicationAdapter);
 		debug = application.isDebug();
+		allocator = new TreeAllocator(target);
+
+		window = new Window(application.getSize(), application.getTitle(),
+				application.isResizeable(), application.isFullscreen());
+		inputManager = new VulkanInputManager(application, window);
 
 		if (debug)
 		{
@@ -160,42 +176,40 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		application = null;
 	}
 
-	@Override
-	public void start()
+	private void start()
 	{
 		try (MemoryStack stack = stackPush())
 		{
-			window = new Window(application);
 			createInstance(stack);
 			window.open(vkInstance);
-			inputManager = new VulkanInputManager(application, window);
 			pickPhysicalDevice(stack);
 			createLogicalDevice(stack);
-
+			inputManager.load();
 			window.addListener(resizeListener);
+			executionContext = new ExecutionContext(logicalDevice, EQueueType.Graphic, false);
+			allocate(stack);
 		}
 	}
 
-	private void resize(Surface surface)
+	private void resize(VkSurface surface)
 	{
 		listeningResize = false;
 
 		try
 		{
-			SVector2i size = new SVector2i();
-			size.x = surface.width;
-			size.y = surface.height;
-
-			application.setSize(size);
+			SVector2i newSize = new SVector2i(surface.width, surface.height);
+			application.setSize(newSize);
 			logicalDevice.recreateQueues(surface);
+		} catch (Throwable e)
+		{
+			e.printStackTrace();
 		} finally
 		{
 			listeningResize = true;
 		}
 	}
 
-	@Override
-	public void stop()
+	private void stop()
 	{
 		if (allocated == true)
 		{
@@ -209,48 +223,49 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 
 		window.removeListener(resizeListener);
 		cleanup();
-		window.close();
 	}
 
-	@Override
-	public void allocate()
+	private void allocate(MemoryStack stack)
 	{
-		var sharedResources = engine.getSharedResources();
-		if (sharedResources != null)
-		{
-			var adapter = IEnginePartAdapter.adapt(sharedResources);
-			adapter.allocatePart();
-		}
-
-		for (IProcess process : engine.getProcesses())
-		{
-			var adapter = IEnginePartAdapter.adapt(process);
-			adapter.allocatePart();
-		}
+		gatherAllocationList();
+		allocator.allocate(stack);
 		allocated = true;
 	}
 
-	@Override
-	public void free()
+	private void gatherAllocationList()
 	{
-		var sharedResources = engine.getSharedResources();
-		if (sharedResources != null)
+		allocationList.clear();
+		var resourcePkg = engine.getResourcePkg();
+		allocationList.add(executionContext);
+		if (resourcePkg != null)
 		{
-			var adapter = IEnginePartAdapter.adapt(sharedResources);
-			adapter.freePart();
+			for (IResource resource : resourcePkg.getResources())
+			{
+				ResourceAllocator allocator = new ResourceAllocator(executionContext,
+						IResourceAllocableAdapter.adapt(resource));
+				allocationList.add(allocator);
+			}
 		}
-
 		for (IProcess process : engine.getProcesses())
 		{
-			var adapter = IEnginePartAdapter.adapt(process);
-			adapter.freePart();
+			var adapter = IProcessAdapter.adapt(process);
+			if (adapter instanceof IAllocationAdapter)
+			{
+				allocationList.add(adapter);
+			}
 		}
+	}
+
+	private void free()
+	{
+		executionContext.getQueue().waitIdle();
+		allocator.free();
 
 		for (VkFence fence : fences)
 		{
 			fence.free();
 		}
-
+		allocationList.clear();
 		allocated = false;
 	}
 
@@ -291,9 +306,8 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 
 	private void pickPhysicalDevice(MemoryStack stack)
 	{
-		final var surface = window.getSurface();
 		final var deviceSelector = new PhysicalDeviceSelector(vkInstance, REQUIRED_EXTENSIONS,
-				surface);
+				window.getSurface());
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
@@ -319,6 +333,8 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			vkDestroyDebugReportCallbackEXT(vkInstance, debugCallbackHandle, null);
 			debugCallbackHandle = -1;
 		}
+
+		window.close();
 
 		vkDestroyInstance(vkInstance, null);
 		vkInstance = null;
@@ -360,6 +376,12 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	public IInputManager getInputManager()
 	{
 		return inputManager;
+	}
+
+	@Override
+	public ExecutionContext getExecutionContext()
+	{
+		return executionContext;
 	}
 
 	@Override

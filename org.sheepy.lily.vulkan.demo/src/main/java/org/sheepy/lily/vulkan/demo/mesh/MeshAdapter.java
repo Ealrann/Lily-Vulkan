@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.demo.mesh;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
 import org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.lily.vulkan.resource.ResourceAdapter;
@@ -16,7 +16,7 @@ public class MeshAdapter extends ResourceAdapter
 	private IndexBuffer<?> indexBuffer;
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionManager executionManager)
+	public void allocate(MemoryStack stack, ExecutionContext executionManager)
 	{
 		indexBuffer = meshBuilder.build(executionManager);
 	}

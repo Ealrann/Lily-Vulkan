@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
 import org.sheepy.lily.vulkan.demo.model.MeshPipeline;
 import org.sheepy.lily.vulkan.demo.model.impl.MeshBufferImpl;
 import org.sheepy.lily.vulkan.demo.model.impl.MeshPipelineImpl;
-import org.sheepy.lily.vulkan.model.ResourceContainer;
+import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp;
@@ -17,7 +17,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.impl.ColorDomainImpl;
-import org.sheepy.lily.vulkan.model.impl.ResourceContainerImpl;
+import org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl;
 import org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
@@ -38,6 +38,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.StaticViewportStateImpl
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl;
+import org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl;
 import org.sheepy.lily.vulkan.model.resource.DepthImage;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -55,7 +56,7 @@ public class MeshModelFactory
 	public final VulkanEngine engine = new VulkanEngineImpl();
 	public final MeshBuffer meshBuffer = new MeshBufferImpl();
 	public final GraphicProcess graphicProcess;
-	
+
 	public float rotationSpeed = 1f;
 
 	public UniformBufferManager uniformBufferManager = null;
@@ -180,14 +181,15 @@ public class MeshModelFactory
 		graphicPipeline.setColorBlend(colorBlend);
 
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
-		
-		ResourceContainer resourceContainer = new ResourceContainerImpl();
-		graphicProcess.setResourceContainer(resourceContainer);
-		
+
+		ResourcePkg resourceContainer = new ResourcePkgImpl();
+		graphicProcess.setResourcePkg(resourceContainer);
+
 		resourceContainer.getResources().add(meshBuffer);
 		resourceContainer.getResources().add(vertexShader);
 		resourceContainer.getResources().add(fragmentShader);
-		graphicProcess.getUnits().add(graphicPipeline);
+		graphicProcess.setPipelinePkg(new PipelinePkgImpl());
+		graphicProcess.getPipelinePkg().getPipelines().add(graphicPipeline);
 
 		if (meshConfiguration.depth)
 		{

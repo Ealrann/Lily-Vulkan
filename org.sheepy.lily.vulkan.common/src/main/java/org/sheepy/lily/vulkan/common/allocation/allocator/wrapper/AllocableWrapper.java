@@ -1,59 +1,114 @@
 package org.sheepy.lily.vulkan.common.allocation.allocator.wrapper;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IAllocationNode;
+import org.sheepy.lily.vulkan.common.allocation.IAllocationObject;
 
-public class AllocableWrapper implements IAllocableWrapper
+public class AllocableWrapper implements IAllocationWrapper
 {
-	private IBasicAllocable allocable;
+	private IAllocationObject allocationObject;
+	private List<IAllocationWrapper> children;
 
 	AllocableWrapper()
 	{}
 
-	public void set(IBasicAllocable allocable)
+	public void set(IAllocationObject allocable)
 	{
-		this.allocable = allocable;
+		this.allocationObject = allocable;
+		gatherChildWrappers();
+	}
+
+	public void unset()
+	{
+		allocationObject = null;
+		children = null;
 	}
 
 	@Override
 	public boolean isAllocable()
 	{
-		return true;
+		return allocationObject instanceof IAllocable;
 	}
 
 	@Override
-	public void deepAllocate(MemoryStack stack)
-	{}
-
-	@Override
-	public void flatAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, boolean deep)
 	{
-		allocable.allocate(stack);
+		if (deep)
+		{
+			for (IAllocationWrapper child : children)
+			{
+				child.allocate(stack, deep);
+			}
+		}
+
+		if (allocationObject instanceof IAllocable)
+		{
+			((IAllocable) allocationObject).allocate(stack);
+		}
 	}
 
 	@Override
-	public void free()
+	public void free(boolean deep)
 	{
-		allocable.free();
+		if (allocationObject instanceof IAllocable)
+		{
+			((IAllocable) allocationObject).free();
+		}
+
+		if (deep)
+		{
+			for (IAllocationWrapper child : children)
+			{
+				child.free(deep);
+			}
+		}
 	}
 
 	@Override
+	public void gatherDirtyAllocables(Collection<IAllocationWrapper> res)
+	{
+		for (IAllocationWrapper child : children)
+		{
+			child.gatherDirtyAllocables(res);
+		}
+
+		if (isAllocationDirty())
+		{
+			res.add(this);
+		}
+	}
+
 	public boolean isAllocationDirty()
 	{
-		return allocable.isAllocationDirty();
+		if (allocationObject instanceof IAllocable)
+		{
+			return ((IAllocable) allocationObject).isAllocationDirty();
+		}
+		else
+		{
+			return false;
+		}
 	}
 
-	@Override
-	public void gatherChildWrappers(AllocableWrapperPool pool,
-									Collection<IAllocableWrapper> gatherIn)
+	public void gatherChildWrappers()
 	{
-		var children = allocable.getChildAllocables();
-		for (int i = 0; i < children.size(); i++)
+		if (allocationObject instanceof IAllocationNode)
 		{
-			var childAllocable = children.get(i);
-			gatherIn.add(pool.wrap(childAllocable));
+			children = new ArrayList<>();
+			for (Object child : ((IAllocationNode) allocationObject).getAllocationList())
+			{
+				children.add(AllocableWrapperFactory.wrap(child));
+			}
+		}
+		else
+		{
+			children = Collections.emptyList();
 		}
 	}
 }

@@ -10,8 +10,8 @@ import java.util.Collection;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
-import org.sheepy.lily.vulkan.process.graphic.swapchain.SwapChainManager;
 import org.sheepy.lily.vulkan.process.process.WaitData;
+import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
 import org.sheepy.lily.vulkan.process.process.SubmissionInfo;
 
 public class FrameSubmissionInfo extends SubmissionInfo

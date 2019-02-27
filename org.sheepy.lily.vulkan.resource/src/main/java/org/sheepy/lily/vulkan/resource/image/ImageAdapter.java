@@ -13,7 +13,7 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
@@ -32,7 +32,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 	private VkImageView imageView;
 
 	private IImageLoader loader = null;
-	private ExecutionManager executionManager;
+	private ExecutionContext executionManager;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -47,7 +47,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionManager executionManager)
+	public void allocate(MemoryStack stack, ExecutionContext executionManager)
 	{
 		this.executionManager = executionManager;
 		var logicalDevice = executionManager.logicalDevice;
@@ -161,7 +161,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 
 	public static interface IImageLoader
 	{
-		void load(ExecutionManager executionManager, VkImage backendBuffer);
+		void load(ExecutionContext executionManager, VkImage backendBuffer);
 	}
 
 	public static ImageAdapter adapt(Image image)

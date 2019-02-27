@@ -2,17 +2,17 @@ package org.sheepy.lily.vulkan.common.ui;
 
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
-import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 
 public class UIUtil
 {
-	public final static int computeXRelative(Surface surface, ISizedElement panel)
+	public final static int computeXRelative(VkSurface surface, ISizedElement panel)
 	{
 		int width = panel.getWidth();
 		return computeXRelative(surface, panel, width);
 	}
 
-	public final static int computeXRelative(Surface surface, IPositionElement panel, int width)
+	public final static int computeXRelative(VkSurface surface, IPositionElement panel, int width)
 	{
 		int x = panel.getPosition().x;
 		int surfaceWidth = surface.width;
@@ -31,13 +31,13 @@ public class UIUtil
 		return x;
 	}
 
-	public final static int computeYRelative(Surface surface, ISizedElement panel)
+	public final static int computeYRelative(VkSurface surface, ISizedElement panel)
 	{
 		int height = panel.getHeight();
 		return computeYRelative(surface, panel, height);
 	}
 
-	public final static int computeYRelative(Surface surface, IPositionElement panel, int height)
+	public final static int computeYRelative(VkSurface surface, IPositionElement panel, int height)
 	{
 		int y = panel.getPosition().y;
 		int surfaceHeight = surface.height;

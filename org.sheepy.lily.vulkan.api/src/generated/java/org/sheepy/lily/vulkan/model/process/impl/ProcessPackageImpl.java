@@ -31,6 +31,7 @@ import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
@@ -52,6 +53,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass abstractProcessEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pipelinePkgEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -163,12 +171,12 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Initialize simple dependencies
 		VulkanPackage.eINSTANCE.eClass();
-		RootPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
-		InferencePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		RootPackage.eINSTANCE.eClass();
+		InferencePackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 
@@ -203,7 +211,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_ResourceContainer()
+	public EReference getAbstractProcess_DescriptorSets()
 	{
 		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(0);
 	}
@@ -214,7 +222,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_DescriptorSets()
+	public EReference getAbstractProcess_PipelinePkg()
 	{
 		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(1);
 	}
@@ -225,7 +233,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_Units()
+	public EReference getAbstractProcess_Semaphores()
 	{
 		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(2);
 	}
@@ -236,20 +244,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_Semaphores()
-	{
-		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getAbstractProcess_ResetAllowed()
 	{
-		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -260,7 +257,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EAttribute getAbstractProcess_InitializedSignalizedSemaphore()
 	{
-		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(5);
+		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -271,7 +268,29 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_DependentProcesses()
 	{
-		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(6);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPipelinePkg()
+	{
+		return pipelinePkgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPipelinePkg_Pipelines()
+	{
+		return (EReference) pipelinePkgEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -515,13 +534,15 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Create classes and their features
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__RESOURCE_CONTAINER);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SETS);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__UNITS);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__PIPELINE_PKG);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SEMAPHORES);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DEPENDENT_PROCESSES);
+
+		pipelinePkgEClass = createEClass(PIPELINE_PKG);
+		createEReference(pipelinePkgEClass, PIPELINE_PKG__PIPELINES);
 
 		processSemaphoreEClass = createEClass(PROCESS_SEMAPHORE);
 		createEReference(processSemaphoreEClass, PROCESS_SEMAPHORE__PROCESS);
@@ -600,6 +621,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		iPipelineEClass.getESuperTypes().add(theRootPackage.getLObject());
 		iPipelineEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		abstractPipelineEClass.getESuperTypes().add(this.getIPipeline());
+		abstractPipelineEClass.getESuperTypes().add(theVulkanPackage.getIResourceContainer());
 		iPipelineUnitEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		abstractCompositePipelineEClass.getESuperTypes().add(this.getAbstractPipeline());
 		pushConstantEClass.getESuperTypes().add(this.getIPipelineUnit());
@@ -607,17 +629,14 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractProcess_ResourceContainer(),
-				theVulkanPackage.getResourceContainer(), null, "resourceContainer", null, 0, 1,
-				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_DescriptorSets(), theResourcePackage.getDescriptorSet(),
 				null, "descriptorSets", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_Units(), this.getIPipeline(), null, "units", null, 0, -1,
-				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_PipelinePkg(), this.getPipelinePkg(), null, "pipelinePkg",
+				null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 		initEReference(getAbstractProcess_Semaphores(), this.getProcessSemaphore(), null,
 				"semaphores", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
@@ -633,6 +652,12 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				this.getProcessSemaphore_Process(), "dependentProcesses", null, 0, -1,
 				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pipelinePkgEClass, PipelinePkg.class, "PipelinePkg", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPipelinePkg_Pipelines(), this.getIPipeline(), null, "pipelines", null, 0,
+				-1, PipelinePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(processSemaphoreEClass, ProcessSemaphore.class, "ProcessSemaphore", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

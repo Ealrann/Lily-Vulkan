@@ -5,8 +5,6 @@ package org.sheepy.lily.vulkan.model.process;
 import org.eclipse.emf.common.util.EList;
 
 import org.sheepy.lily.vulkan.model.IProcess;
-import org.sheepy.lily.vulkan.model.ResourceContainer;
-
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 /**
@@ -18,9 +16,8 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getResourceContainer <em>Resource Container</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getUnits <em>Units</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores <em>Semaphores</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isInitializedSignalizedSemaphore <em>Initialized Signalized Semaphore</em>}</li>
@@ -33,32 +30,6 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  */
 public interface AbstractProcess extends IProcess
 {
-	/**
-	 * Returns the value of the '<em><b>Resource Container</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Resource Container</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Resource Container</em>' containment reference.
-	 * @see #setResourceContainer(ResourceContainer)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_ResourceContainer()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ResourceContainer getResourceContainer();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getResourceContainer <em>Resource Container</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Resource Container</em>' containment reference.
-	 * @see #getResourceContainer()
-	 * @generated
-	 */
-	void setResourceContainer(ResourceContainer value);
-
 	/**
 	 * Returns the value of the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet}.
@@ -76,20 +47,30 @@ public interface AbstractProcess extends IProcess
 	EList<DescriptorSet> getDescriptorSets();
 
 	/**
-	 * Returns the value of the '<em><b>Units</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.IPipeline}.
+	 * Returns the value of the '<em><b>Pipeline Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Units</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Pipeline Pkg</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Units</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_Units()
+	 * @return the value of the '<em>Pipeline Pkg</em>' containment reference.
+	 * @see #setPipelinePkg(PipelinePkg)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_PipelinePkg()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IPipeline> getUnits();
+	PipelinePkg getPipelinePkg();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pipeline Pkg</em>' containment reference.
+	 * @see #getPipelinePkg()
+	 * @generated
+	 */
+	void setPipelinePkg(PipelinePkg value);
 
 	/**
 	 * Returns the value of the '<em><b>Semaphores</b></em>' containment reference list.

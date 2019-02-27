@@ -4,7 +4,7 @@ import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.impl.ApplicationImpl;
 import org.sheepy.lily.vulkan.gameoflife.compute.Board;
-import org.sheepy.lily.vulkan.model.SharedResources;
+import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp;
@@ -16,9 +16,10 @@ import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.impl.ColorDomainImpl;
-import org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl;
+import org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl;
 import org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
@@ -40,6 +41,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
+import org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Image;
@@ -59,7 +61,7 @@ public class ModelFactory
 	public final GraphicProcess imageProcess;
 	public ComputeProcess computeProcess1;
 	public ComputeProcess computeProcess2;
-	public SharedResources sharedResources = new SharedResourcesImpl();
+	public ResourcePkg sharedResources = new ResourcePkgImpl();
 	private Image boardImage;
 	private final SVector2i size;
 
@@ -88,7 +90,7 @@ public class ModelFactory
 		engine.getProcesses().add(computeProcess1);
 		engine.getProcesses().add(computeProcess2);
 		engine.getProcesses().add(imageProcess);
-		engine.setSharedResources(sharedResources);
+		engine.setResourcePkg(sharedResources);
 	}
 
 	private static RenderPassInfo newInfo()
@@ -138,7 +140,8 @@ public class ModelFactory
 		imagePipeline.setStage(ECommandStage.PRE_RENDER);
 
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
-		graphicProcess.getUnits().add(imagePipeline);
+		graphicProcess.setPipelinePkg(new PipelinePkgImpl());
+		graphicProcess.getPipelinePkg().getPipelines().add(imagePipeline);
 
 		return graphicProcess;
 	}
@@ -186,11 +189,17 @@ public class ModelFactory
 		ComputePipeline pixelPipeline2 = createPipeline(computeProcess2, pixelComputer2,
 				boardBuffer1, boardImage);
 
-		computeProcess1.getUnits().add(lifePipeline1);
-		computeProcess1.getUnits().add(pixelPipeline1);
+		PipelinePkg pipelines1 = new PipelinePkgImpl();
+		computeProcess1.setPipelinePkg(pipelines1);
 
-		computeProcess2.getUnits().add(lifePipeline2);
-		computeProcess2.getUnits().add(pixelPipeline2);
+		pipelines1.getPipelines().add(lifePipeline1);
+		pipelines1.getPipelines().add(pixelPipeline1);
+
+		PipelinePkg pipelines2 = new PipelinePkgImpl();
+		computeProcess2.setPipelinePkg(pipelines2);
+
+		pipelines2.getPipelines().add(lifePipeline2);
+		pipelines2.getPipelines().add(pixelPipeline2);
 
 		sharedResources.getResources().add(lifeShader);
 		sharedResources.getResources().add(life2pixelShader);

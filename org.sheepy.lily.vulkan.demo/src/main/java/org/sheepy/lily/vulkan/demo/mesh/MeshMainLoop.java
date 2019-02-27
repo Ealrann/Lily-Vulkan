@@ -4,8 +4,6 @@ import org.sheepy.lily.core.api.cadence.IMainLoop;
 import org.sheepy.lily.core.api.util.UPSMeter;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
-import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
-import org.sheepy.lily.vulkan.model.VulkanEngine;
 
 public class MeshMainLoop implements IMainLoop
 {
@@ -21,11 +19,8 @@ public class MeshMainLoop implements IMainLoop
 	{
 		var graphicProcess = factory.graphicProcess;
 
-		var engine = (VulkanEngine) application.getEngines().get(0);
-		IVulkanEngineAdapter engineAdapter = IVulkanEngineAdapter.adapt(engine);
-
+		factory.engine.setEnabled(true);
 		processAdapter = IProcessAdapter.adapt(graphicProcess);
-		engineAdapter.allocate();
 
 		meter = new UPSMeter(2000);
 		start = System.currentTimeMillis();
@@ -45,7 +40,7 @@ public class MeshMainLoop implements IMainLoop
 		if (factory.uniformBufferManager != null)
 		{
 			final long current = System.currentTimeMillis();
-			final float progress = factory.rotationSpeed * (current - start) / 1000f ;
+			final float progress = factory.rotationSpeed * (current - start) / 1000f;
 
 			factory.uniformBufferManager.update(progress);
 		}

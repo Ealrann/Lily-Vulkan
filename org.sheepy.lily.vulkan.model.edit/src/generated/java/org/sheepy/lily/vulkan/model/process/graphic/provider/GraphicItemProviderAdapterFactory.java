@@ -34,7 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
-import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
@@ -750,10 +750,10 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 			 * @generated
 			 */
 			@Override
-			public Object caseAbstractProcess(AbstractProcess object)
+			public Object casePipelinePkg(PipelinePkg object)
 			{
 				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__UNITS,
+						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 								GraphicFactory.eINSTANCE.createImagePipeline()));
 
 				return null;

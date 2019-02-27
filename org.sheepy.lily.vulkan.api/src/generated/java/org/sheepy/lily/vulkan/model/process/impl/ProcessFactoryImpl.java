@@ -64,6 +64,8 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		switch (eClass.getClassifierID())
 		{
+		case ProcessPackage.PIPELINE_PKG:
+			return createPipelinePkg();
 		case ProcessPackage.PROCESS_SEMAPHORE:
 			return createProcessSemaphore();
 		case ProcessPackage.PIPELINE_BARRIER:
@@ -74,6 +76,18 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 			throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PipelinePkg createPipelinePkg()
+	{
+		PipelinePkgImpl pipelinePkg = new PipelinePkgImpl();
+		return pipelinePkg;
 	}
 
 	/**

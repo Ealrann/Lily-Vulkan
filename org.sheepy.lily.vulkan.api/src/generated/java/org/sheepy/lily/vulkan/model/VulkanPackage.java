@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 /**
@@ -81,22 +80,22 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE__CONTENT_OBJECTS = ApplicationPackage.IENGINE__CONTENT_OBJECTS;
 
 	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE__RESOURCE_PKG = ApplicationPackage.IENGINE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE__ENABLED = ApplicationPackage.IENGINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Shared Resources</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_ENGINE__SHARED_RESOURCES = ApplicationPackage.IENGINE_FEATURE_COUNT + 1;
+	int VULKAN_ENGINE__ENABLED = ApplicationPackage.IENGINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Processes</b></em>' containment reference list.
@@ -171,96 +170,51 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE_OPERATION_COUNT = ApplicationPackage.IENGINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IEnginePart <em>IEngine Part</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.IEnginePart
-	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIEnginePart()
+	 * @see org.sheepy.lily.vulkan.model.IResourceContainer
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIResourceContainer()
 	 * @generated
 	 */
-	int IENGINE_PART = 1;
+	int IRESOURCE_CONTAINER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IENGINE_PART__CONTENT_OBJECTS = RootPackage.LOBJECT__CONTENT_OBJECTS;
+	int IRESOURCE_CONTAINER__RESOURCE_PKG = 0;
 
 	/**
-	 * The number of structural features of the '<em>IEngine Part</em>' class.
+	 * The number of structural features of the '<em>IResource Container</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IENGINE_PART_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 0;
+	int IRESOURCE_CONTAINER_FEATURE_COUNT = 1;
 
 	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * The number of operations of the '<em>IResource Container</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IENGINE_PART___LINFERENCE_OBJECT = RootPackage.LOBJECT___LINFERENCE_OBJECT;
+	int IRESOURCE_CONTAINER_OPERATION_COUNT = 0;
 
 	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl <em>Resource Pkg</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IENGINE_PART___CREATE_CONTAINMENT_ELIST__ECLASS = RootPackage.LOBJECT___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IENGINE_PART___LCONTENTS = RootPackage.LOBJECT___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IENGINE_PART___LPARENT = RootPackage.LOBJECT___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IENGINE_PART___LALL_CONTENTS = RootPackage.LOBJECT___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>IEngine Part</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IENGINE_PART_OPERATION_COUNT = RootPackage.LOBJECT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.ResourceContainerImpl <em>Resource Container</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.impl.ResourceContainerImpl
-	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getResourceContainer()
+	 * @see org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getResourcePkg()
 	 * @generated
 	 */
-	int RESOURCE_CONTAINER = 2;
+	int RESOURCE_PKG = 2;
 
 	/**
 	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
@@ -269,117 +223,25 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_CONTAINER__RESOURCES = 0;
+	int RESOURCE_PKG__RESOURCES = 0;
 
 	/**
-	 * The number of structural features of the '<em>Resource Container</em>' class.
+	 * The number of structural features of the '<em>Resource Pkg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_CONTAINER_FEATURE_COUNT = 1;
+	int RESOURCE_PKG_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Resource Container</em>' class.
+	 * The number of operations of the '<em>Resource Pkg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_CONTAINER_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl <em>Shared Resources</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl
-	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getSharedResources()
-	 * @generated
-	 */
-	int SHARED_RESOURCES = 3;
-
-	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHARED_RESOURCES__RESOURCES = RESOURCE_CONTAINER__RESOURCES;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHARED_RESOURCES__CONTENT_OBJECTS = RESOURCE_CONTAINER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Shared Resources</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHARED_RESOURCES_FEATURE_COUNT = RESOURCE_CONTAINER_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHARED_RESOURCES___LINFERENCE_OBJECT = RESOURCE_CONTAINER_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHARED_RESOURCES___CREATE_CONTAINMENT_ELIST__ECLASS = RESOURCE_CONTAINER_OPERATION_COUNT
-			+ 1;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHARED_RESOURCES___LCONTENTS = RESOURCE_CONTAINER_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHARED_RESOURCES___LPARENT = RESOURCE_CONTAINER_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHARED_RESOURCES___LALL_CONTENTS = RESOURCE_CONTAINER_OPERATION_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Shared Resources</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHARED_RESOURCES_OPERATION_COUNT = RESOURCE_CONTAINER_OPERATION_COUNT + 5;
+	int RESOURCE_PKG_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}' class.
@@ -389,7 +251,7 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIResource()
 	 * @generated
 	 */
-	int IRESOURCE = 4;
+	int IRESOURCE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -426,16 +288,16 @@ public interface VulkanPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIProcess()
 	 * @generated
 	 */
-	int IPROCESS = 5;
+	int IPROCESS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS__CONTENT_OBJECTS = IENGINE_PART__CONTENT_OBJECTS;
+	int IPROCESS__RESOURCE_PKG = IRESOURCE_CONTAINER__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -444,7 +306,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS__NAME = IENGINE_PART_FEATURE_COUNT + 0;
+	int IPROCESS__NAME = IRESOURCE_CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -453,7 +315,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS__ENABLED = IENGINE_PART_FEATURE_COUNT + 1;
+	int IPROCESS__ENABLED = IRESOURCE_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>IProcess</em>' class.
@@ -462,52 +324,7 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS_FEATURE_COUNT = IENGINE_PART_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPROCESS___LINFERENCE_OBJECT = IENGINE_PART___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPROCESS___CREATE_CONTAINMENT_ELIST__ECLASS = IENGINE_PART___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPROCESS___LCONTENTS = IENGINE_PART___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPROCESS___LPARENT = IENGINE_PART___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPROCESS___LALL_CONTENTS = IENGINE_PART___LALL_CONTENTS;
+	int IPROCESS_FEATURE_COUNT = IRESOURCE_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>IProcess</em>' class.
@@ -516,7 +333,35 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPROCESS_OPERATION_COUNT = IENGINE_PART_OPERATION_COUNT + 0;
+	int IPROCESS_OPERATION_COUNT = IRESOURCE_CONTAINER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.IExecutionManager
+	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIExecutionManager()
+	 * @generated
+	 */
+	int IEXECUTION_MANAGER = 5;
+
+	/**
+	 * The number of structural features of the '<em>IExecution Manager</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IEXECUTION_MANAGER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IExecution Manager</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IEXECUTION_MANAGER_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
@@ -586,17 +431,6 @@ public interface VulkanPackage extends EPackage
 	EAttribute getVulkanEngine_Enabled();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.VulkanEngine#getSharedResources <em>Shared Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Shared Resources</em>'.
-	 * @see org.sheepy.lily.vulkan.model.VulkanEngine#getSharedResources()
-	 * @see #getVulkanEngine()
-	 * @generated
-	 */
-	EReference getVulkanEngine_SharedResources();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.VulkanEngine#getProcesses <em>Processes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -608,45 +442,46 @@ public interface VulkanPackage extends EPackage
 	EReference getVulkanEngine_Processes();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IEnginePart <em>IEngine Part</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IEngine Part</em>'.
-	 * @see org.sheepy.lily.vulkan.model.IEnginePart
+	 * @return the meta object for class '<em>IResource Container</em>'.
+	 * @see org.sheepy.lily.vulkan.model.IResourceContainer
 	 * @generated
 	 */
-	EClass getIEnginePart();
+	EClass getIResourceContainer();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.ResourceContainer <em>Resource Container</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.IResourceContainer#getResourcePkg <em>Resource Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Resource Container</em>'.
-	 * @see org.sheepy.lily.vulkan.model.ResourceContainer
+	 * @return the meta object for the containment reference '<em>Resource Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.IResourceContainer#getResourcePkg()
+	 * @see #getIResourceContainer()
 	 * @generated
 	 */
-	EClass getResourceContainer();
+	EReference getIResourceContainer_ResourcePkg();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.ResourceContainer#getResources <em>Resources</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.ResourcePkg <em>Resource Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Resource Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.ResourcePkg
+	 * @generated
+	 */
+	EClass getResourcePkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.ResourcePkg#getResources <em>Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Resources</em>'.
-	 * @see org.sheepy.lily.vulkan.model.ResourceContainer#getResources()
-	 * @see #getResourceContainer()
+	 * @see org.sheepy.lily.vulkan.model.ResourcePkg#getResources()
+	 * @see #getResourcePkg()
 	 * @generated
 	 */
-	EReference getResourceContainer_Resources();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.SharedResources <em>Shared Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Shared Resources</em>'.
-	 * @see org.sheepy.lily.vulkan.model.SharedResources
-	 * @generated
-	 */
-	EClass getSharedResources();
+	EReference getResourcePkg_Resources();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}'.
@@ -678,6 +513,16 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getIProcess_Enabled();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IExecution Manager</em>'.
+	 * @see org.sheepy.lily.vulkan.model.IExecutionManager
+	 * @generated
+	 */
+	EClass getIExecutionManager();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.ColorDomain <em>Color Domain</em>}'.
@@ -754,14 +599,6 @@ public interface VulkanPackage extends EPackage
 		EAttribute VULKAN_ENGINE__ENABLED = eINSTANCE.getVulkanEngine_Enabled();
 
 		/**
-		 * The meta object literal for the '<em><b>Shared Resources</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VULKAN_ENGINE__SHARED_RESOURCES = eINSTANCE.getVulkanEngine_SharedResources();
-
-		/**
 		 * The meta object literal for the '<em><b>Processes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -770,24 +607,33 @@ public interface VulkanPackage extends EPackage
 		EReference VULKAN_ENGINE__PROCESSES = eINSTANCE.getVulkanEngine_Processes();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IEnginePart <em>IEngine Part</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.IEnginePart
-		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIEnginePart()
+		 * @see org.sheepy.lily.vulkan.model.IResourceContainer
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIResourceContainer()
 		 * @generated
 		 */
-		EClass IENGINE_PART = eINSTANCE.getIEnginePart();
+		EClass IRESOURCE_CONTAINER = eINSTANCE.getIResourceContainer();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.ResourceContainerImpl <em>Resource Container</em>}' class.
+		 * The meta object literal for the '<em><b>Resource Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.impl.ResourceContainerImpl
-		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getResourceContainer()
 		 * @generated
 		 */
-		EClass RESOURCE_CONTAINER = eINSTANCE.getResourceContainer();
+		EReference IRESOURCE_CONTAINER__RESOURCE_PKG = eINSTANCE
+				.getIResourceContainer_ResourcePkg();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl <em>Resource Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getResourcePkg()
+		 * @generated
+		 */
+		EClass RESOURCE_PKG = eINSTANCE.getResourcePkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
@@ -795,17 +641,7 @@ public interface VulkanPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RESOURCE_CONTAINER__RESOURCES = eINSTANCE.getResourceContainer_Resources();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl <em>Shared Resources</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.impl.SharedResourcesImpl
-		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getSharedResources()
-		 * @generated
-		 */
-		EClass SHARED_RESOURCES = eINSTANCE.getSharedResources();
+		EReference RESOURCE_PKG__RESOURCES = eINSTANCE.getResourcePkg_Resources();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}' class.
@@ -834,6 +670,16 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute IPROCESS__ENABLED = eINSTANCE.getIProcess_Enabled();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.IExecutionManager
+		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getIExecutionManager()
+		 * @generated
+		 */
+		EClass IEXECUTION_MANAGER = eINSTANCE.getIExecutionManager();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.

@@ -7,7 +7,7 @@ import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.model.presentation.IUIElement;
-import org.sheepy.lily.vulkan.common.window.Window;
+import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 
 public interface IUIElementAdapter extends IAdapter
 {

@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkFenceCreateInfo;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
-import org.sheepy.lily.vulkan.common.util.Logger;
+import org.sheepy.lily.vulkan.api.util.Logger;
 
 public class VkFence implements IFence
 {

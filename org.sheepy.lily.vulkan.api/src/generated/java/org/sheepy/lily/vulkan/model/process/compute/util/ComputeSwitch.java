@@ -6,16 +6,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.sheepy.lily.core.model.inference.IInferenceObject;
-
 import org.sheepy.lily.core.model.root.LObject;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.IEnginePart;
+import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 
+import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
@@ -92,10 +90,9 @@ public class ComputeSwitch<T> extends Switch<T>
 			T result = caseComputeProcess(computeProcess);
 			if (result == null) result = caseAbstractProcess(computeProcess);
 			if (result == null) result = caseIProcess(computeProcess);
-			if (result == null) result = caseIEnginePart(computeProcess);
+			if (result == null) result = caseIResourceContainer(computeProcess);
 			if (result == null) result = caseLNamedElement(computeProcess);
-			if (result == null) result = caseLObject(computeProcess);
-			if (result == null) result = caseIInferenceObject(computeProcess);
+			if (result == null) result = caseIExecutionManager(computeProcess);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -105,6 +102,7 @@ public class ComputeSwitch<T> extends Switch<T>
 			T result = caseComputePipeline(computePipeline);
 			if (result == null) result = caseAbstractPipeline(computePipeline);
 			if (result == null) result = caseIPipeline(computePipeline);
+			if (result == null) result = caseIResourceContainer(computePipeline);
 			if (result == null) result = caseLObject(computePipeline);
 			if (result == null) result = caseLNamedElement(computePipeline);
 			if (result == null) result = caseIInferenceObject(computePipeline);
@@ -174,22 +172,6 @@ public class ComputeSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIInferenceObject(IInferenceObject object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>LObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -206,17 +188,17 @@ public class ComputeSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IResource Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IEngine Part</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IResource Container</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIEnginePart(IEnginePart object)
+	public T caseIResourceContainer(IResourceContainer object)
 	{
 		return null;
 	}
@@ -233,6 +215,22 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseLNamedElement(LNamedElement object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IExecution Manager</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIExecutionManager(IExecutionManager object)
 	{
 		return null;
 	}
@@ -265,6 +263,22 @@ public class ComputeSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractProcess(AbstractProcess object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIInferenceObject(IInferenceObject object)
 	{
 		return null;
 	}

@@ -98,9 +98,9 @@ public class VulkanDemoPackageImpl extends EPackageImpl implements VulkanDemoPac
 		RootPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
+		VulkanPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
-		VulkanPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();

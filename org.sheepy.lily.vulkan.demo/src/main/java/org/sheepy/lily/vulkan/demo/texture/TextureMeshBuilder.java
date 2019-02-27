@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.demo.texture;
 
-import org.sheepy.lily.vulkan.common.execution.ExecutionManager;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.demo.mesh.IIndexedBufferBuilder;
 import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
 import org.sheepy.lily.vulkan.resource.indexed.IndexBufferData;
@@ -33,7 +33,7 @@ public class TextureMeshBuilder implements IIndexedBufferBuilder<TextureVertex>
 	}
 
 	@Override
-	public IndexBuffer<TextureVertex> build(ExecutionManager executionManager)
+	public IndexBuffer<TextureVertex> build(ExecutionContext executionManager)
 	{
 		return IndexBuffer.alloc(executionManager, getDatas(), false);
 	}

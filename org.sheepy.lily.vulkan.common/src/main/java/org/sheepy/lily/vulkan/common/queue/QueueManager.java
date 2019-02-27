@@ -21,9 +21,9 @@ import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkQueueFamilyProperties;
 import org.lwjgl.vulkan.VkQueueFamilyProperties.Buffer;
+import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
-import org.sheepy.lily.vulkan.api.window.Surface;
 
 public class QueueManager implements Iterable<Integer>
 {
@@ -33,14 +33,13 @@ public class QueueManager implements Iterable<Integer>
 
 	private final Map<EQueueType, VulkanQueue> queueMap = new HashMap<>();
 	private List<Integer> queueIndexes;
-	private final List<IQueueManagerListener> listeners = new ArrayList<>();
 
 	private boolean exclusive = false;
 
 	public QueueManager()
 	{}
 
-	public void load(VkPhysicalDevice physicalDevice, Surface surface, boolean loadComputeQueue)
+	public void load(VkPhysicalDevice physicalDevice, VkSurface surface, boolean loadComputeQueue)
 	{
 		try (MemoryStack stack = stackPush())
 		{
@@ -77,7 +76,7 @@ public class QueueManager implements Iterable<Integer>
 	}
 
 	private void findQueueIndexes(	VkPhysicalDevice physicalDevice,
-									Surface surface,
+									VkSurface surface,
 									boolean loadComputeQueue,
 									MemoryStack stack,
 									final VkQueueFamilyProperties.Buffer queueProps)
@@ -91,7 +90,7 @@ public class QueueManager implements Iterable<Integer>
 	public void loadVkQueues(VkDevice device)
 	{
 		queueMap.clear();
-		
+
 		final var vkGraphicQueue = retrieveDeviceQueue(device, graphicQueueIndex);
 		final var graphicType = EQueueType.Graphic;
 		final var graphicQueue = new VulkanQueue(graphicType, graphicQueueIndex, vkGraphicQueue);
@@ -109,8 +108,6 @@ public class QueueManager implements Iterable<Integer>
 		final var presentType = EQueueType.Present;
 		final var presentQueue = new VulkanQueue(presentType, presentQueueIndex, vkPresentQueue);
 		queueMap.put(presentType, presentQueue);
-		
-		fireReload();
 	}
 
 	public boolean isExclusive()
@@ -173,23 +170,5 @@ public class QueueManager implements Iterable<Integer>
 		res.flip();
 
 		return res;
-	}
-	
-	public void addListener(IQueueManagerListener listener)
-	{
-		listeners.add(listener);
-	}
-	
-	public void removeListener(IQueueManagerListener listener)
-	{
-		listeners.remove(listener);
-	}
-	
-	private void fireReload()
-	{
-		for (final IQueueManagerListener listener : listeners)
-		{
-			listener.onQueueManagerReload();
-		}
 	}
 }

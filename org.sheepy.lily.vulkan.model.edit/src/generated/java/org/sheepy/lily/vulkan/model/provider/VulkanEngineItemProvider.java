@@ -97,7 +97,7 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(VulkanPackage.Literals.VULKAN_ENGINE__SHARED_RESOURCES);
+			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES);
 		}
 		return childrenFeatures;
@@ -164,7 +164,7 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case VulkanPackage.VULKAN_ENGINE__SHARED_RESOURCES:
+		case VulkanPackage.VULKAN_ENGINE__RESOURCE_PKG:
 		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -186,8 +186,8 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors
-				.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__SHARED_RESOURCES,
-						VulkanFactory.eINSTANCE.createSharedResources()));
+				.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
+						VulkanFactory.eINSTANCE.createResourcePkg()));
 	}
 
 	/**

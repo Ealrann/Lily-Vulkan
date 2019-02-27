@@ -29,9 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.core.api.util.LTreeIterator;
-
 import org.sheepy.lily.core.model.inference.IInferenceObject;
-
 import org.sheepy.lily.core.model.root.LObject;
 
 import org.sheepy.lily.core.model.root.RootPackage.Literals;
@@ -39,6 +37,9 @@ import org.sheepy.lily.core.model.root.RootPackage.Literals;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.model.IResourceContainer;
+import org.sheepy.lily.vulkan.model.ResourcePkg;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
@@ -60,6 +61,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSet <em>Descriptor Set</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getConstants <em>Constants</em>}</li>
@@ -139,6 +141,16 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourcePkg()
+	 * @generated
+	 * @ordered
+	 */
+	protected ResourcePkg resourcePkg;
 
 	/**
 	 * The cached value of the '{@link #getUnits() <em>Units</em>}' containment reference list.
@@ -290,6 +302,60 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				ProcessPackage.ABSTRACT_PIPELINE__STAGE, oldStage, stage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourcePkg getResourcePkg()
+	{
+		return resourcePkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResourcePkg(ResourcePkg newResourcePkg, NotificationChain msgs)
+	{
+		ResourcePkg oldResourcePkg = resourcePkg;
+		resourcePkg = newResourcePkg;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG, oldResourcePkg, newResourcePkg);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setResourcePkg(ResourcePkg newResourcePkg)
+	{
+		if (newResourcePkg != resourcePkg)
+		{
+			NotificationChain msgs = null;
+			if (resourcePkg != null) msgs = ((InternalEObject) resourcePkg).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG, null,
+					msgs);
+			if (newResourcePkg != null) msgs = ((InternalEObject) newResourcePkg).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG, null,
+					msgs);
+			msgs = basicSetResourcePkg(newResourcePkg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG, newResourcePkg, newResourcePkg));
 	}
 
 	/**
@@ -506,6 +572,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
+			return basicSetResourcePkg(null, msgs);
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			return ((InternalEList<?>) getUnits()).basicRemove(otherEnd, msgs);
 		}
@@ -530,6 +598,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return isEnabled();
 		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 			return getStage();
+		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
+			return getResourcePkg();
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			return getUnits();
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
@@ -564,6 +634,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 			setStage((ECommandStage) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
+			setResourcePkg((ResourcePkg) newValue);
 			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			getUnits().clear();
@@ -601,6 +674,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 			setStage(STAGE_EDEFAULT);
 			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
+			setResourcePkg((ResourcePkg) null);
+			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			getUnits().clear();
 			return;
@@ -632,6 +708,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return enabled != ENABLED_EDEFAULT;
 		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 			return stage != STAGE_EDEFAULT;
+		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
+			return resourcePkg != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			return units != null && !units.isEmpty();
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
@@ -660,6 +738,16 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 				return -1;
 			}
 		}
+		if (baseClass == IResourceContainer.class)
+		{
+			switch (derivedFeatureID)
+			{
+			case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
+				return VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG;
+			default:
+				return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -677,6 +765,16 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			{
 			case TypesPackage.LNAMED_ELEMENT__NAME:
 				return ProcessPackage.ABSTRACT_PIPELINE__NAME;
+			default:
+				return -1;
+			}
+		}
+		if (baseClass == IResourceContainer.class)
+		{
+			switch (baseFeatureID)
+			{
+			case VulkanPackage.IRESOURCE_CONTAINER__RESOURCE_PKG:
+				return ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG;
 			default:
 				return -1;
 			}

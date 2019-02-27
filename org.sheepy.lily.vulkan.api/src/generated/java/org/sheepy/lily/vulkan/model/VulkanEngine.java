@@ -15,7 +15,6 @@ import org.sheepy.lily.core.model.application.IEngine;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.VulkanEngine#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.VulkanEngine#getSharedResources <em>Shared Resources</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.VulkanEngine#getProcesses <em>Processes</em>}</li>
  * </ul>
  *
@@ -23,7 +22,7 @@ import org.sheepy.lily.core.model.application.IEngine;
  * @model
  * @generated
  */
-public interface VulkanEngine extends IEngine
+public interface VulkanEngine extends IEngine, IResourceContainer, IExecutionManager
 {
 	/**
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
@@ -51,32 +50,6 @@ public interface VulkanEngine extends IEngine
 	 * @generated
 	 */
 	void setEnabled(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Shared Resources</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Shared Resources</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Shared Resources</em>' containment reference.
-	 * @see #setSharedResources(SharedResources)
-	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanEngine_SharedResources()
-	 * @model containment="true"
-	 * @generated
-	 */
-	SharedResources getSharedResources();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.VulkanEngine#getSharedResources <em>Shared Resources</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Shared Resources</em>' containment reference.
-	 * @see #getSharedResources()
-	 * @generated
-	 */
-	void setSharedResources(SharedResources value);
 
 	/**
 	 * Returns the value of the '<em><b>Processes</b></em>' containment reference list.

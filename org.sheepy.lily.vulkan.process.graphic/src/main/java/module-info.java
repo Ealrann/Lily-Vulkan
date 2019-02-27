@@ -13,10 +13,9 @@ module org.sheepy.lily.vulkan.process.graphic
 	requires transitive org.sheepy.lily.vulkan.api;
 
 	exports org.sheepy.lily.vulkan.process.graphic.execution;
+	exports org.sheepy.lily.vulkan.process.graphic.frame;
 	exports org.sheepy.lily.vulkan.process.graphic.pipeline;
 	exports org.sheepy.lily.vulkan.process.graphic.process;
-	exports org.sheepy.lily.vulkan.process.graphic.swapchain;
-	exports org.sheepy.lily.vulkan.process.graphic.view;
 
 	opens org.sheepy.lily.vulkan.process.graphic.pipeline.image to org.sheepy.lily.core.api;
 

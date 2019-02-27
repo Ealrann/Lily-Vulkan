@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.common.allocation.IBasicAllocable;
+import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
@@ -22,7 +22,7 @@ import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
-public class InitialImagePipelineBarrier implements IBasicAllocable
+public class InitialImagePipelineBarrier implements IAllocable
 {
 	private final ImagePipeline pipeline;
 	private final VkImageView view;

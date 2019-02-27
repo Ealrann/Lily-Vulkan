@@ -10,37 +10,36 @@ package org.sheepy.lily.vulkan.model
 import org.sheepy.lily.vulkan.model.enumeration.EColorSpace
 import org.sheepy.lily.vulkan.model.enumeration.EFormat
 import org.sheepy.lily.core.model.application.IEngine
-import org.sheepy.lily.core.model.root.LObject
 import org.sheepy.lily.core.model.types.LNamedElement
 
-class VulkanEngine extends IEngine
+class VulkanEngine extends IEngine, IResourceContainer, IExecutionManager
 {
 	boolean enabled = "true"
 	
-	contains SharedResources sharedResources
 	contains IProcess[] processes
 }
 
-interface IEnginePart extends LObject
+interface IResourceContainer
 {
+	contains ResourcePkg resourcePkg
 }
 
-class ResourceContainer
+class ResourcePkg
 {
 	contains IResource[] resources
 }
-
-class SharedResources extends ResourceContainer, IEnginePart
-{}
 
 interface IResource extends LNamedElement
 {
 }
 
-interface IProcess extends IEnginePart, LNamedElement
+interface IProcess extends IResourceContainer, LNamedElement, IExecutionManager
 {
 	boolean enabled = "true"
 }
+
+interface IExecutionManager
+{}
 
 class ColorDomain
 {

@@ -1,16 +1,10 @@
 package org.sheepy.lily.vulkan.common.allocation;
 
-import java.util.Collections;
-import java.util.List;
+import org.lwjgl.system.MemoryStack;
 
-public interface IAllocable
+public interface IAllocable extends IAllocationObject
 {
+	void allocate(MemoryStack stack);
 	void free();
-	
 	boolean isAllocationDirty();
-	
-	default List<IBasicAllocable> getChildAllocables()
-	{
-		return Collections.emptyList();
-	}
 }

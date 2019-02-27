@@ -4,8 +4,8 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
+import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager.Extent2D;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
-import org.sheepy.lily.vulkan.process.graphic.swapchain.SwapChainManager.Extent2D;
 
 public class RenderCommandBuffer extends GraphicCommandBuffer
 {
@@ -14,13 +14,13 @@ public class RenderCommandBuffer extends GraphicCommandBuffer
 	private final GraphicContext context;
 
 	public RenderCommandBuffer(	GraphicContext context,
-	                           	int index,
+								int index,
 								long commandBufferId,
 								long framebufferId)
 	{
 		super(context.logicalDevice, index, commandBufferId);
 		this.framebufferId = framebufferId;
-		this.extent = context.swapChainManager.getExtent();
+		this.extent = context.surfaceManager.getExtent();
 		this.context = context;
 	}
 

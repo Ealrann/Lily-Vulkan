@@ -44,7 +44,7 @@ public class VulkanApplicationTest
 			e.printStackTrace();
 		}
 
-		assertEquals(null, VulkanApplicationUtil.getWindow(application));
+		assertEquals(false, VulkanApplicationUtil.getWindow(application).isOpenned());
 
 		engine.setEnabled(true);
 
@@ -56,7 +56,7 @@ public class VulkanApplicationTest
 			e.printStackTrace();
 		}
 
-		assertNotEquals(null, VulkanApplicationUtil.getWindow(application));
+		assertEquals(true, VulkanApplicationUtil.getWindow(application).isOpenned());
 
 		ApplicationLauncher.stop(application);
 	}

@@ -14,17 +14,17 @@ import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.core.model.ui.UiPackage;
-import org.sheepy.lily.vulkan.api.window.IWindowListener;
-import org.sheepy.lily.vulkan.api.window.Surface;
+import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
+import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
+import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.common.ui.UIUtil;
-import org.sheepy.lily.vulkan.common.window.Window;
 
 public class PanelAdapter extends AbstractStatefullAdapter implements IUIElementAdapter
 {
 	private final IWindowListener listener = new IWindowListener()
 	{
 		@Override
-		public void onWindowResize(Surface surface)
+		public void onWindowResize(VkSurface surface)
 		{
 			updateLocation(surface);
 		}
@@ -78,7 +78,7 @@ public class PanelAdapter extends AbstractStatefullAdapter implements IUIElement
 		super.unsetTarget(oldTarget);
 	}
 
-	private void updateLocation(Surface surface)
+	private void updateLocation(VkSurface surface)
 	{
 		int width = panel.getWidth();
 		int height = panel.getHeight();

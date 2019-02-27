@@ -18,32 +18,32 @@ import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 
 public abstract class SingleTimeCommand extends AbstractCommandBuffer
 {
-	protected final ExecutionManager executionManager;
+	protected final ExecutionContext executionContext;
 	private List<VkSemaphore> semaphoreToSignal = null;
 
-	public SingleTimeCommand(ExecutionManager executionManager, long commandBufferId)
+	public SingleTimeCommand(ExecutionContext executionManager, long commandBufferId)
 	{
 		this(executionManager, commandBufferId, null);
 	}
 
-	public SingleTimeCommand(ExecutionManager executionManager)
+	public SingleTimeCommand(ExecutionContext executionManager)
 	{
 		this(executionManager, allocCommandBufferId(executionManager), null);
 	}
 
-	public SingleTimeCommand(	ExecutionManager executionManager,
+	public SingleTimeCommand(	ExecutionContext executionManager,
 								Collection<VkSemaphore> semaphoreToSignal)
 	{
 		this(executionManager, allocCommandBufferId(executionManager), semaphoreToSignal);
 	}
 
-	public SingleTimeCommand(	ExecutionManager executionManager,
+	public SingleTimeCommand(	ExecutionContext executionManager,
 								long commandBufferId,
 								Collection<VkSemaphore> semaphoreToSignal)
 	{
 		super(executionManager.logicalDevice, commandBufferId);
 
-		this.executionManager = executionManager;
+		this.executionContext = executionManager;
 		if (semaphoreToSignal != null && semaphoreToSignal.isEmpty() == false)
 		{
 			this.semaphoreToSignal = new ArrayList<>(semaphoreToSignal);
@@ -68,7 +68,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		postExecute();
 	}
 
-	private static long allocCommandBufferId(ExecutionManager executionManager)
+	private static long allocCommandBufferId(ExecutionContext executionManager)
 	{
 		final VkCommandBufferAllocateInfo allocInfo = VkCommandBufferAllocateInfo.calloc();
 		allocInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO);
@@ -122,10 +122,10 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		submitInfo.pCommandBuffers(pCommandBuffer);
 		submitInfo.pSignalSemaphores(lBuffer);
 
-		vkQueueSubmit(executionManager.getQueue().vkQueue, submitInfo, VK_NULL_HANDLE);
-		vkQueueWaitIdle(executionManager.getQueue().vkQueue);
+		vkQueueSubmit(executionContext.getQueue().vkQueue, submitInfo, VK_NULL_HANDLE);
+		vkQueueWaitIdle(executionContext.getQueue().vkQueue);
 
-		vkFreeCommandBuffers(executionManager.getVkDevice(), executionManager.commandPool.getId(),
+		vkFreeCommandBuffers(executionContext.getVkDevice(), executionContext.commandPool.getId(),
 				pCommandBuffer);
 		pCommandBuffer.free();
 

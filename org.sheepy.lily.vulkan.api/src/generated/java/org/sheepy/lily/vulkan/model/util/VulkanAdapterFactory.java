@@ -83,21 +83,15 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
-		public Adapter caseIEnginePart(IEnginePart object)
+		public Adapter caseIResourceContainer(IResourceContainer object)
 		{
-			return createIEnginePartAdapter();
+			return createIResourceContainerAdapter();
 		}
 
 		@Override
-		public Adapter caseResourceContainer(ResourceContainer object)
+		public Adapter caseResourcePkg(ResourcePkg object)
 		{
-			return createResourceContainerAdapter();
-		}
-
-		@Override
-		public Adapter caseSharedResources(SharedResources object)
-		{
-			return createSharedResourcesAdapter();
+			return createResourcePkgAdapter();
 		}
 
 		@Override
@@ -110,6 +104,12 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 		public Adapter caseIProcess(IProcess object)
 		{
 			return createIProcessAdapter();
+		}
+
+		@Override
+		public Adapter caseIExecutionManager(IExecutionManager object)
+		{
+			return createIExecutionManagerAdapter();
 		}
 
 		@Override
@@ -179,46 +179,31 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IEnginePart <em>IEngine Part</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.IEnginePart
+	 * @see org.sheepy.lily.vulkan.model.IResourceContainer
 	 * @generated
 	 */
-	public Adapter createIEnginePartAdapter()
+	public Adapter createIResourceContainerAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.ResourceContainer <em>Resource Container</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.ResourcePkg <em>Resource Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.ResourceContainer
+	 * @see org.sheepy.lily.vulkan.model.ResourcePkg
 	 * @generated
 	 */
-	public Adapter createResourceContainerAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.SharedResources <em>Shared Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.SharedResources
-	 * @generated
-	 */
-	public Adapter createSharedResourcesAdapter()
+	public Adapter createResourcePkgAdapter()
 	{
 		return null;
 	}
@@ -249,6 +234,21 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIProcessAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.IExecutionManager
+	 * @generated
+	 */
+	public Adapter createIExecutionManagerAdapter()
 	{
 		return null;
 	}

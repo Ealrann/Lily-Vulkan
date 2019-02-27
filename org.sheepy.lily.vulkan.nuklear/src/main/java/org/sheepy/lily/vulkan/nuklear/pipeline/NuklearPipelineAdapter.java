@@ -26,10 +26,10 @@ import org.sheepy.lily.core.model.application.IView;
 import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IUIView;
 import org.sheepy.lily.core.model.presentation.UIPage;
+import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
-import org.sheepy.lily.vulkan.common.window.Window;
 import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
@@ -51,10 +51,10 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ColorBlendFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.DynamicStateFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ViewportStateFactory;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager.Extent2D;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.IGraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
-import org.sheepy.lily.vulkan.process.graphic.swapchain.SwapChainManager.Extent2D;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
@@ -101,9 +101,9 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	}
 
 	@Override
-	public void deepAllocate(MemoryStack stack)
+	public void allocate(MemoryStack stack)
 	{
-		super.deepAllocate(stack);
+		super.allocate(stack);
 
 		context = IGraphicContextAdapter.adapt(target).getContext(target);
 		window = context.logicalDevice.window;
@@ -239,7 +239,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		setViewport(commandBuffer);
 		pushConstants(commandBuffer);
 
-		drawer.prepare(bindPoint, context.swapChainManager.getExtent());
+		drawer.prepare(bindPoint, context.surfaceManager.getExtent());
 		for (DrawCommandData data : recorder.getDrawCommands())
 		{
 			drawer.draw(graphicCommandBuffer, data);
@@ -250,7 +250,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 	private void setViewport(VkCommandBuffer commandBuffer)
 	{
-		Extent2D extent = context.swapChainManager.getExtent();
+		Extent2D extent = context.surfaceManager.getExtent();
 		viewport.get(0).set(0, 0, extent.getWidth(), extent.getHeight(), 1, 1);
 		vkCmdSetViewport(commandBuffer, 0, viewport);
 	}

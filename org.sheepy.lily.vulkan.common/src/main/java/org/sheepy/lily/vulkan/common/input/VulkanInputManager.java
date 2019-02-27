@@ -18,7 +18,7 @@ import org.sheepy.lily.core.api.types.SVector2f;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.core.model.types.EMouseButton;
-import org.sheepy.lily.vulkan.common.window.Window;
+import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 
 public class VulkanInputManager implements IInputManager
 {
@@ -39,6 +39,10 @@ public class VulkanInputManager implements IInputManager
 	{
 		this.application = application;
 		this.window = window;
+	}
+
+	public void load()
+	{
 		setupInputCallbacks();
 	}
 
@@ -120,36 +124,39 @@ public class VulkanInputManager implements IInputManager
 	@Override
 	public void pollInputs()
 	{
-		if (catcher != null)
+		if (window.isOpenned())
 		{
-			catcher.startCatch();
-		}
-
-		glfwPollEvents();
-
-		// The elegance itself (nonono)
-		glfwGetCursorPos(window.getId(), cursorPositionX, cursorPositionY);
-		cursorPosition.x = (float) cursorPositionX[0];
-		cursorPosition.y = (float) cursorPositionY[0];
-
-		if (catcher != null)
-		{
-			for (IInputEvent event : events)
+			if (catcher != null)
 			{
-				fireEvent(event, catcher);
+				catcher.startCatch();
 			}
 
-			if (catcher.hasCaughtInputs(events))
+			glfwPollEvents();
+
+			// The elegance itself (nonono)
+			glfwGetCursorPos(window.getId(), cursorPositionX, cursorPositionY);
+			cursorPosition.x = (float) cursorPositionX[0];
+			cursorPosition.y = (float) cursorPositionY[0];
+
+			if (catcher != null)
 			{
-				dropInputEvents();
+				for (IInputEvent event : events)
+				{
+					fireEvent(event, catcher);
+				}
+
+				if (catcher.hasCaughtInputs(events))
+				{
+					dropInputEvents();
+				}
 			}
-		}
 
-		fireEvents();
+			fireEvents();
 
-		if (window.shouldClose())
-		{
-			application.setRun(false);
+			if (window.shouldClose())
+			{
+				application.setRun(false);
+			}
 		}
 	}
 

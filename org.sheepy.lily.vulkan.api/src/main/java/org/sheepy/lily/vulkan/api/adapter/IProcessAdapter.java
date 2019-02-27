@@ -5,7 +5,7 @@ import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 
-public interface IProcessAdapter extends IEnginePartAdapter
+public interface IProcessAdapter extends IVulkanAdapter
 {
 	VulkanQueue getQueue();
 

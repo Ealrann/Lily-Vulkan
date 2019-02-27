@@ -12,15 +12,10 @@ import org.lwjgl.vulkan.VkDeviceCreateInfo;
 import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
-import org.lwjgl.vulkan.VkSurfaceCapabilitiesKHR;
-import org.sheepy.lily.vulkan.api.window.Surface;
-import org.sheepy.lily.vulkan.common.device.data.Capabilities;
-import org.sheepy.lily.vulkan.common.device.data.ColorDomains;
+import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
+import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.queue.QueueManager;
-import org.sheepy.lily.vulkan.common.util.Logger;
-import org.sheepy.lily.vulkan.common.window.Window;
-import org.sheepy.lily.vulkan.model.ColorDomain;
-import org.sheepy.lily.vulkan.model.enumeration.EFormat;
 
 public class LogicalDevice
 {
@@ -44,9 +39,6 @@ public class LogicalDevice
 		res.load(stack, requiredExtensions, ppEnabledLayerNames);
 		return res;
 	}
-
-	private Capabilities capabilities;
-	private ColorDomains colorDomains;
 
 	private LogicalDevice(	PhysicalDevice physicalDevice,
 							Window window,
@@ -107,33 +99,18 @@ public class LogicalDevice
 		vkDevice = new VkDevice(deviceId, physicalDevice.vkPhysicalDevice, createInfo);
 
 		queueManager.loadVkQueues(vkDevice);
-
-		final Surface surface = window.getSurface();
-		capabilities = new Capabilities(physicalDevice.vkPhysicalDevice, surface);
-		colorDomains = new ColorDomains(stack, physicalDevice.vkPhysicalDevice, surface);
 	}
 
-	public void recreateQueues(Surface surface)
+	public void recreateQueues(VkSurface surface)
 	{
 		waitIdle();
 
 		queueManager.load(physicalDevice.vkPhysicalDevice, surface, needComputeCapability);
 		queueManager.loadVkQueues(vkDevice);
-
-		capabilities.free();
-
-		capabilities = new Capabilities(physicalDevice.vkPhysicalDevice, surface);
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			colorDomains = new ColorDomains(stack, physicalDevice.vkPhysicalDevice, surface);
-		}
 	}
 
 	public void free()
 	{
-		capabilities.free();
-		capabilities = null;
-		
 		vkDestroyDevice(vkDevice, null);
 		vkDevice = null;
 	}
@@ -154,23 +131,8 @@ public class LogicalDevice
 		return physicalDevice.vkPhysicalDevice;
 	}
 
-	public VkSurfaceCapabilitiesKHR getCapabilities()
-	{
-		return capabilities.vkCapabilities;
-	}
-
-	public boolean isColorDomainAvaillable(ColorDomain colorDomain)
-	{
-		// Best case : the graphic card has no preferences
-		if (colorDomains.size() == 1 && colorDomains.get(0).getFormat() == EFormat.UNDEFINED)
-		{
-			return true;
-		}
-		else if (colorDomains.contains(colorDomain))
-		{
-			return true;
-		}
-
-		return false;
-	}
+	// public VkSurfaceCapabilitiesKHR getCapabilities()
+	// {
+	// return capabilities.vkCapabilities;
+	// }
 }

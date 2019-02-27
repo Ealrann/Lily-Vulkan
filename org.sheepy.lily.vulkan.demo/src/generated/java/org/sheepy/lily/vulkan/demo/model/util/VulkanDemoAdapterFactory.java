@@ -14,6 +14,7 @@ import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.demo.model.*;
 import org.sheepy.lily.vulkan.model.IResource;
+import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -112,6 +113,11 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseIPipeline(IPipeline object)
 			{
 				return createIPipelineAdapter();
+			}
+			@Override
+			public Adapter caseIResourceContainer(IResourceContainer object)
+			{
+				return createIResourceContainerAdapter();
 			}
 			@Override
 			public Adapter caseAbstractPipeline(AbstractPipeline object)
@@ -246,6 +252,21 @@ public class VulkanDemoAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.IResourceContainer
+	 * @generated
+	 */
+	public Adapter createIResourceContainerAdapter()
 	{
 		return null;
 	}

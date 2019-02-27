@@ -75,13 +75,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__CONTENT_OBJECTS = VulkanPackage.IPROCESS__CONTENT_OBJECTS;
+	int ABSTRACT_PROCESS__RESOURCE_PKG = VulkanPackage.IPROCESS__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -102,31 +102,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__ENABLED = VulkanPackage.IPROCESS__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Resource Container</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS__RESOURCE_CONTAINER = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__DESCRIPTOR_SETS = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
+	int ABSTRACT_PROCESS__DESCRIPTOR_SETS = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__UNITS = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
+	int ABSTRACT_PROCESS__PIPELINE_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Semaphores</b></em>' containment reference list.
@@ -135,7 +126,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__SEMAPHORES = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
+	int ABSTRACT_PROCESS__SEMAPHORES = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
@@ -144,7 +135,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
+	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Initialized Signalized Semaphore</b></em>' attribute.
@@ -154,7 +145,7 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = VulkanPackage.IPROCESS_FEATURE_COUNT
-			+ 5;
+			+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Dependent Processes</b></em>' reference list.
@@ -163,7 +154,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__DEPENDENT_PROCESSES = VulkanPackage.IPROCESS_FEATURE_COUNT + 6;
+	int ABSTRACT_PROCESS__DEPENDENT_PROCESSES = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Process</em>' class.
@@ -172,52 +163,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 7;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS___LINFERENCE_OBJECT = VulkanPackage.IPROCESS___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS___CREATE_CONTAINMENT_ELIST__ECLASS = VulkanPackage.IPROCESS___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS___LCONTENTS = VulkanPackage.IPROCESS___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS___LPARENT = VulkanPackage.IPROCESS___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS___LALL_CONTENTS = VulkanPackage.IPROCESS___LALL_CONTENTS;
+	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Abstract Process</em>' class.
@@ -229,6 +175,43 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS_OPERATION_COUNT = VulkanPackage.IPROCESS_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl <em>Pipeline Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelinePkg()
+	 * @generated
+	 */
+	int PIPELINE_PKG = 1;
+
+	/**
+	 * The feature id for the '<em><b>Pipelines</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_PKG__PIPELINES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Pipeline Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Pipeline Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_PKG_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -236,7 +219,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessSemaphore()
 	 * @generated
 	 */
-	int PROCESS_SEMAPHORE = 1;
+	int PROCESS_SEMAPHORE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Process</b></em>' reference.
@@ -282,7 +265,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
 	 * @generated
 	 */
-	int CONFIGURATION = 2;
+	int CONFIGURATION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -310,7 +293,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
 	 * @generated
 	 */
-	int PIPELINE_BARRIER = 3;
+	int PIPELINE_BARRIER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -428,7 +411,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
 	 * @generated
 	 */
-	int IPIPELINE = 4;
+	int IPIPELINE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -537,7 +520,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 5;
+	int ABSTRACT_PIPELINE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -576,13 +559,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__STAGE = IPIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PIPELINE__RESOURCE_PKG = IPIPELINE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__UNITS = IPIPELINE_FEATURE_COUNT + 0;
+	int ABSTRACT_PIPELINE__UNITS = IPIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
@@ -591,7 +583,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 1;
+	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
@@ -600,7 +592,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 2;
+	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
@@ -609,7 +601,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 3;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -673,7 +665,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
 	 * @generated
 	 */
-	int IPIPELINE_UNIT = 6;
+	int IPIPELINE_UNIT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -710,7 +702,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
 	 * @generated
 	 */
-	int ABSTRACT_COMPOSITE_PIPELINE = 7;
+	int ABSTRACT_COMPOSITE_PIPELINE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -747,6 +739,15 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_COMPOSITE_PIPELINE__STAGE = ABSTRACT_PIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_COMPOSITE_PIPELINE__RESOURCE_PKG = ABSTRACT_PIPELINE__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
@@ -855,7 +856,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
 	 * @generated
 	 */
-	int PUSH_CONSTANT = 8;
+	int PUSH_CONSTANT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -895,17 +896,6 @@ public interface ProcessPackage extends EPackage
 	EClass getAbstractProcess();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getResourceContainer <em>Resource Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Resource Container</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getResourceContainer()
-	 * @see #getAbstractProcess()
-	 * @generated
-	 */
-	EReference getAbstractProcess_ResourceContainer();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -917,15 +907,15 @@ public interface ProcessPackage extends EPackage
 	EReference getAbstractProcess_DescriptorSets();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getUnits <em>Units</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Units</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getUnits()
+	 * @return the meta object for the containment reference '<em>Pipeline Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
-	EReference getAbstractProcess_Units();
+	EReference getAbstractProcess_PipelinePkg();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores <em>Semaphores</em>}'.
@@ -970,6 +960,27 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractProcess_DependentProcesses();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelinePkg <em>Pipeline Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pipeline Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelinePkg
+	 * @generated
+	 */
+	EClass getPipelinePkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.PipelinePkg#getPipelines <em>Pipelines</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Pipelines</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelinePkg#getPipelines()
+	 * @see #getPipelinePkg()
+	 * @generated
+	 */
+	EReference getPipelinePkg_Pipelines();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore <em>Semaphore</em>}'.
@@ -1207,15 +1218,6 @@ public interface ProcessPackage extends EPackage
 		EClass ABSTRACT_PROCESS = eINSTANCE.getAbstractProcess();
 
 		/**
-		 * The meta object literal for the '<em><b>Resource Container</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS__RESOURCE_CONTAINER = eINSTANCE
-				.getAbstractProcess_ResourceContainer();
-
-		/**
 		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1225,12 +1227,12 @@ public interface ProcessPackage extends EPackage
 				.getAbstractProcess_DescriptorSets();
 
 		/**
-		 * The meta object literal for the '<em><b>Units</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Pipeline Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PROCESS__UNITS = eINSTANCE.getAbstractProcess_Units();
+		EReference ABSTRACT_PROCESS__PIPELINE_PKG = eINSTANCE.getAbstractProcess_PipelinePkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Semaphores</b></em>' containment reference list feature.
@@ -1265,6 +1267,24 @@ public interface ProcessPackage extends EPackage
 		 */
 		EReference ABSTRACT_PROCESS__DEPENDENT_PROCESSES = eINSTANCE
 				.getAbstractProcess_DependentProcesses();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl <em>Pipeline Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelinePkg()
+		 * @generated
+		 */
+		EClass PIPELINE_PKG = eINSTANCE.getPipelinePkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Pipelines</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PIPELINE_PKG__PIPELINES = eINSTANCE.getPipelinePkg_Pipelines();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
