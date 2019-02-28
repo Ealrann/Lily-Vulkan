@@ -11,11 +11,11 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
-import org.sheepy.lily.vulkan.resource.PipelineResourceAdapter;
+import org.sheepy.lily.vulkan.resource.DescriptorResourceAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
 
-public abstract class AbstractSampledImageAdapter extends PipelineResourceAdapter
+public abstract class AbstractSampledImageAdapter extends DescriptorResourceAdapter
 		implements IDescriptorAdapter
 {
 	protected VkTexture vkTexture;

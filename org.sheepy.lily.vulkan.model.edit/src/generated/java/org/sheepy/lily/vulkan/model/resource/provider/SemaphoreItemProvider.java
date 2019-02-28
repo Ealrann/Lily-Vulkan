@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.provider;
+package org.sheepy.lily.vulkan.model.resource.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,19 +21,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
-
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
+import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Semaphore} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProcessSemaphoreItemProvider extends ItemProviderAdapter
+public class SemaphoreItemProvider extends ItemProviderAdapter
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
@@ -43,7 +41,7 @@ public class ProcessSemaphoreItemProvider extends ItemProviderAdapter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProcessSemaphoreItemProvider(AdapterFactory adapterFactory)
+	public SemaphoreItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -61,27 +59,45 @@ public class ProcessSemaphoreItemProvider extends ItemProviderAdapter
 		{
 			super.getPropertyDescriptors(object);
 
-			addProcessPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addSignalizedAtInitPropertyDescriptor(object);
 			addWaitStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Process feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProcessPropertyDescriptor(Object object)
+	protected void addNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ProcessSemaphore_process_feature"),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Signalized At Init feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSignalizedAtInitPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Semaphore_signalizedAtInit_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProcessSemaphore_process_feature", "_UI_ProcessSemaphore_type"),
-				ProcessPackage.Literals.PROCESS_SEMAPHORE__PROCESS, true, false, true, null, null,
-				null));
+						"_UI_Semaphore_signalizedAtInit_feature", "_UI_Semaphore_type"),
+				ResourcePackage.Literals.SEMAPHORE__SIGNALIZED_AT_INIT, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -94,15 +110,15 @@ public class ProcessSemaphoreItemProvider extends ItemProviderAdapter
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ProcessSemaphore_waitStage_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProcessSemaphore_waitStage_feature", "_UI_ProcessSemaphore_type"),
-				ProcessPackage.Literals.PROCESS_SEMAPHORE__WAIT_STAGE, true, false, false,
+				getResourceLocator(), getString("_UI_Semaphore_waitStage_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Semaphore_waitStage_feature",
+						"_UI_Semaphore_type"),
+				ResourcePackage.Literals.SEMAPHORE__WAIT_STAGE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns ProcessSemaphore.gif.
+	 * This returns Semaphore.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -110,7 +126,7 @@ public class ProcessSemaphoreItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProcessSemaphore"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Semaphore"));
 	}
 
 	/**
@@ -122,11 +138,10 @@ public class ProcessSemaphoreItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((ProcessSemaphore) object).getWaitStage();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((Semaphore) object).getName();
 		return label == null || label.length() == 0
-				? getString("_UI_ProcessSemaphore_type")
-				: getString("_UI_ProcessSemaphore_type") + " " + label;
+				? getString("_UI_Semaphore_type")
+				: getString("_UI_Semaphore_type") + " " + label;
 	}
 
 	/**
@@ -141,9 +156,11 @@ public class ProcessSemaphoreItemProvider extends ItemProviderAdapter
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProcessSemaphore.class))
+		switch (notification.getFeatureID(Semaphore.class))
 		{
-		case ProcessPackage.PROCESS_SEMAPHORE__WAIT_STAGE:
+		case ResourcePackage.SEMAPHORE__NAME:
+		case ResourcePackage.SEMAPHORE__SIGNALIZED_AT_INIT:
+		case ResourcePackage.SEMAPHORE__WAIT_STAGE:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

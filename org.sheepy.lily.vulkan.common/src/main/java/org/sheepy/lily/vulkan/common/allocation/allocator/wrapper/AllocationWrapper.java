@@ -165,7 +165,11 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 			children = new ArrayList<>();
 			for (Object child : ((IAllocationNode) allocationObject).getAllocationChildren())
 			{
-				children.add(AllocableWrapperFactory.wrap(child));
+				IAllocationWrapper wrap = AllocableWrapperFactory.wrap(child);
+				if (wrap != null)
+				{
+					children.add(wrap);
+				}
 			}
 		}
 		else

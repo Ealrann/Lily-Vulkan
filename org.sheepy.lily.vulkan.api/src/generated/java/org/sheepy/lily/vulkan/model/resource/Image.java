@@ -29,7 +29,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
  * @model
  * @generated
  */
-public interface Image extends PipelineResource
+public interface Image extends DescriptorResource
 {
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.

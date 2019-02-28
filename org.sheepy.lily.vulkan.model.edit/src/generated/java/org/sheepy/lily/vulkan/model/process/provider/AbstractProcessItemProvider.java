@@ -67,8 +67,8 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addResetAllowedPropertyDescriptor(object);
-			addInitializedSignalizedSemaphorePropertyDescriptor(object);
-			addDependentProcessesPropertyDescriptor(object);
+			addSignalsPropertyDescriptor(object);
+			addWaitForPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -125,40 +125,37 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Initialized Signalized Semaphore feature.
+	 * This adds a property descriptor for the Signals feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInitializedSignalizedSemaphorePropertyDescriptor(Object object)
+	protected void addSignalsPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_AbstractProcess_initializedSignalizedSemaphore_feature"),
+				getResourceLocator(), getString("_UI_AbstractProcess_signals_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractProcess_initializedSignalizedSemaphore_feature",
-						"_UI_AbstractProcess_type"),
-				ProcessPackage.Literals.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE, true,
-				false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+						"_UI_AbstractProcess_signals_feature", "_UI_AbstractProcess_type"),
+				ProcessPackage.Literals.ABSTRACT_PROCESS__SIGNALS, true, false, true, null,
+				getString("_UI_SemaphoresPropertyCategory"), null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Dependent Processes feature.
+	 * This adds a property descriptor for the Wait For feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDependentProcessesPropertyDescriptor(Object object)
+	protected void addWaitForPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AbstractProcess_dependentProcesses_feature"),
+				getResourceLocator(), getString("_UI_AbstractProcess_waitFor_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractProcess_dependentProcesses_feature",
-						"_UI_AbstractProcess_type"),
-				ProcessPackage.Literals.ABSTRACT_PROCESS__DEPENDENT_PROCESSES, false, false, true,
-				null, null, null));
+						"_UI_AbstractProcess_waitFor_feature", "_UI_AbstractProcess_type"),
+				ProcessPackage.Literals.ABSTRACT_PROCESS__WAIT_FOR, true, false, true, null,
+				getString("_UI_SemaphoresPropertyCategory"), null));
 	}
 
 	/**
@@ -178,7 +175,6 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SETS);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG);
-			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__SEMAPHORES);
 		}
 		return childrenFeatures;
 	}
@@ -229,14 +225,12 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 		case ProcessPackage.ABSTRACT_PROCESS__NAME:
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
-		case ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-		case ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -267,10 +261,6 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 		newChildDescriptors
 				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,
 						ProcessFactory.eINSTANCE.createPipelinePkg()));
-
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__SEMAPHORES,
-						ProcessFactory.eINSTANCE.createProcessSemaphore()));
 	}
 
 	/**

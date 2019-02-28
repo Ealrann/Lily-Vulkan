@@ -16,7 +16,6 @@ import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContextProvider;
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -37,8 +36,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 	protected ProcessContext context = null;
 	private AbstractProcess process = null;
-	private VkSemaphore executionSemaphore = null;
-	private boolean firstRecord = true;
 	private TreeAllocator allocator;
 
 	@Override
@@ -58,25 +55,13 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 			@Override
 			public void allocate(MemoryStack stack, IAllocationContext context)
 			{
-				if (firstRecord
-						&& executionSemaphore != null
-						&& process.isInitializedSignalizedSemaphore())
-				{
-					executionSemaphore.signalSemaphore((ProcessContext) context);
-				}
-
+				// TODO use a boolean "isRecorded"
 				recordCommands();
-				firstRecord = false;
 			}
 
 			@Override
 			public void free(IAllocationContext context)
-			{
-				if (executionSemaphore != null)
-				{
-					executionSemaphore.free(context);
-				}
-			}
+			{}
 
 			@Override
 			public boolean isAllocationDirty(IAllocationContext context)
@@ -125,6 +110,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 			{
 				var adapter = AbstractPipelineAdapter.adapt(pipeline);
 				resources.addAll(adapter.getResources());
+				resources.add(adapter.getConstants());
 			}
 		}
 		return resources;
@@ -175,20 +161,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 			context.getQueue().waitIdle();
 			recordCommands();
 		}
-	}
-
-	public VkSemaphore getExecutionSemaphore()
-	{
-		if (executionSemaphore == null)
-		{
-			if (process.getDependentProcesses().isEmpty() == false)
-			{
-				executionSemaphore = new VkSemaphore();
-				executionSemaphore.allocate(null, context);
-			}
-		}
-
-		return executionSemaphore;
 	}
 
 	private boolean isRecordNeeded()

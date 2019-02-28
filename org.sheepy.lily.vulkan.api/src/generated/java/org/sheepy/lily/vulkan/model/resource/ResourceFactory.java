@@ -51,6 +51,15 @@ public interface ResourceFactory extends EFactory
 	ImageLayout createImageLayout();
 
 	/**
+	 * Returns a new object of class '<em>Semaphore</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Semaphore</em>'.
+	 * @generated
+	 */
+	Semaphore createSemaphore();
+
+	/**
 	 * Returns a new object of class '<em>Font</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

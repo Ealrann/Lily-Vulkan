@@ -40,12 +40,13 @@ import org.sheepy.lily.vulkan.model.resource.ImageTransition;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
-import org.sheepy.lily.vulkan.model.resource.PipelineResource;
+import org.sheepy.lily.vulkan.model.resource.DescriptorResource;
 import org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.Texture;
 
@@ -69,7 +70,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pipelineResourceEClass = null;
+	private EClass descriptorResourceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,6 +99,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass sampledImageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass semaphoreEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -353,9 +361,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPipelineResource()
+	public EClass getDescriptorResource()
 	{
-		return pipelineResourceEClass;
+		return descriptorResourceEClass;
 	}
 
 	/**
@@ -587,6 +595,39 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EReference getSampledImage_Sampler()
 	{
 		return (EReference) sampledImageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSemaphore()
+	{
+		return semaphoreEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSemaphore_SignalizedAtInit()
+	{
+		return (EAttribute) semaphoreEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSemaphore_WaitStage()
+	{
+		return (EAttribute) semaphoreEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1315,7 +1356,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Create classes and their features
 		basicResourceEClass = createEClass(BASIC_RESOURCE);
 
-		pipelineResourceEClass = createEClass(PIPELINE_RESOURCE);
+		descriptorResourceEClass = createEClass(DESCRIPTOR_RESOURCE);
 
 		bufferEClass = createEClass(BUFFER);
 		createEAttribute(bufferEClass, BUFFER__SIZE);
@@ -1341,6 +1382,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		sampledImageEClass = createEClass(SAMPLED_IMAGE);
 		createEReference(sampledImageEClass, SAMPLED_IMAGE__SAMPLER);
+
+		semaphoreEClass = createEClass(SEMAPHORE);
+		createEAttribute(semaphoreEClass, SEMAPHORE__SIGNALIZED_AT_INIT);
+		createEAttribute(semaphoreEClass, SEMAPHORE__WAIT_STAGE);
 
 		fontEClass = createEClass(FONT);
 		createEReference(fontEClass, FONT__FILE);
@@ -1469,11 +1514,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		// Add supertypes to classes
 		basicResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		pipelineResourceEClass.getESuperTypes().add(this.getIDescriptor());
-		pipelineResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		bufferEClass.getESuperTypes().add(this.getPipelineResource());
-		imageEClass.getESuperTypes().add(this.getPipelineResource());
-		sampledImageEClass.getESuperTypes().add(this.getPipelineResource());
+		descriptorResourceEClass.getESuperTypes().add(this.getIDescriptor());
+		descriptorResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		bufferEClass.getESuperTypes().add(this.getDescriptorResource());
+		imageEClass.getESuperTypes().add(this.getDescriptorResource());
+		sampledImageEClass.getESuperTypes().add(this.getDescriptorResource());
+		semaphoreEClass.getESuperTypes().add(this.getBasicResource());
+		semaphoreEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		fontEClass.getESuperTypes().add(this.getSampledImage());
 		abstractTextureEClass.getESuperTypes().add(this.getSampledImage());
 		textureEClass.getESuperTypes().add(this.getAbstractTexture());
@@ -1495,8 +1542,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(pipelineResourceEClass, PipelineResource.class, "PipelineResource", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(descriptorResourceEClass, DescriptorResource.class, "DescriptorResource",
+				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1560,6 +1607,15 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getSampledImage_Sampler(), this.getSampler(), null, "sampler", null, 0, 1,
 				SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(semaphoreEClass, Semaphore.class, "Semaphore", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSemaphore_SignalizedAtInit(), theEcorePackage.getEBoolean(),
+				"signalizedAtInit", "false", 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSemaphore_WaitStage(), theEnumerationPackage.getEPipelineStage(),
+				"waitStage", null, 0, 1, Semaphore.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fontEClass, Font.class, "Font", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

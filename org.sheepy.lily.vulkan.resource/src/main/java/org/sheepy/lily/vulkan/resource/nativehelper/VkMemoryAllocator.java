@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 
 public abstract class VkMemoryAllocator
@@ -59,10 +60,8 @@ public abstract class VkMemoryAllocator
 	{
 		final var vkDevice = allocationInfo.logicalDevice.getVkDevice();
 		final long[] aMemoryId = new long[1];
-		if (vkAllocateMemory(vkDevice, allocInfo, null, aMemoryId) != VK_SUCCESS)
-		{
-			throw new AssertionError("failed to allocate memory!");
-		}
+		Logger.check("Failed to allocate buffer",
+				() -> vkAllocateMemory(vkDevice, allocInfo, null, aMemoryId));
 		return aMemoryId[0];
 	}
 

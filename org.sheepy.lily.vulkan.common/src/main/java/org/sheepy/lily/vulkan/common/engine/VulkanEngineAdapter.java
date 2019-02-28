@@ -21,7 +21,6 @@ import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.lily.core.api.adapter.IAutoAdapter;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
@@ -357,7 +356,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	}
 
 	@Override
-	public IInputManager getInputManager()
+	public VulkanInputManager getInputManager()
 	{
 		return inputManager;
 	}

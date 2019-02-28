@@ -52,9 +52,9 @@ public final class ProcessEditPlugin extends EMFPlugin
 				VulkanEditPlugin.INSTANCE,
 				TypesEditPlugin.INSTANCE,
 				ResourceEditPlugin.INSTANCE,
-				EnumerationEditPlugin.INSTANCE,
 				RootEditPlugin.INSTANCE,
 				InferenceEditPlugin.INSTANCE,
+				EnumerationEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
 				ActionEditPlugin.INSTANCE,
 		});

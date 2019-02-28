@@ -28,16 +28,15 @@ public class AllocableWrapperFactory
 
 	public static AllocationWrapper wrap(EObject object)
 	{
+		AllocationWrapper res = null;
 		IAllocationAdapter adapter = IAllocationAdapter.adapt(object);
 
-		if (adapter == null)
+		if (adapter != null)
 		{
-			throw new AssertionError(String.format("[%s] cannot be adapted to %s.",
-					object.eClass().getName(), IAllocationAdapter.class.getSimpleName()));
+			res = new AllocationWrapper(adapter);
+			object.eAdapters().add(res);
 		}
-
-		var res = new AllocationWrapper(adapter);
-		object.eAdapters().add(res);
 		return res;
+
 	}
 }

@@ -27,11 +27,11 @@ interface BasicResource extends IResource
 {
 }
 
-interface PipelineResource extends IDescriptor, IResource
+interface DescriptorResource extends IDescriptor, IResource
 {
 }
 
-class Buffer extends PipelineResource
+class Buffer extends DescriptorResource
 {
 	long size
 	EBufferUsage[] usages
@@ -42,7 +42,7 @@ class Buffer extends PipelineResource
 
 type ByteBuffer wraps ByteBuffer
 
-class Image extends PipelineResource
+class Image extends DescriptorResource
 {
 	int width
 	int height
@@ -61,9 +61,15 @@ class ImageLayout
 	EAccess[] accessMask
 }
 
-abstract class SampledImage extends PipelineResource
+abstract class SampledImage extends DescriptorResource
 {
 	contains Sampler sampler
+}
+
+class Semaphore extends BasicResource, LNamedElement
+{
+	boolean signalizedAtInit = "false"
+	EPipelineStage waitStage
 }
 
 class Font extends SampledImage

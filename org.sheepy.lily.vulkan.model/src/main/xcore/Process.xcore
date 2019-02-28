@@ -9,33 +9,28 @@ package org.sheepy.lily.vulkan.model.process
 import org.sheepy.lily.core.model.root.LObject
 import org.sheepy.lily.core.model.types.LNamedElement
 import org.sheepy.lily.vulkan.model.IProcess
+import org.sheepy.lily.vulkan.model.IResourceContainer
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants
 import org.sheepy.lily.vulkan.model.resource.Barrier
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet
-import org.sheepy.lily.vulkan.model.IResourceContainer
+import org.sheepy.lily.vulkan.model.resource.Semaphore
 
 abstract class AbstractProcess extends IProcess
 {
 	contains DescriptorSet[] descriptorSets
 	contains PipelinePkg pipelinePkg
-	contains ProcessSemaphore[] semaphores
 	boolean resetAllowed
-	boolean initializedSignalizedSemaphore = "false"
- 	@GenModel(property="Readonly")
-	refers ProcessSemaphore[] dependentProcesses opposite process
+	
+	@GenModel(propertyCategory="Semaphores")
+	refers Semaphore[] signals
+	@GenModel(propertyCategory="Semaphores")
+	refers Semaphore[] waitFor
 }
 
 class PipelinePkg
 {
 	contains IPipeline[] pipelines
-}
-
-class ProcessSemaphore
-{
-	refers AbstractProcess process opposite dependentProcesses
-	EPipelineStage waitStage
 }
 
 interface Configuration

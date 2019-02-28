@@ -1,13 +1,10 @@
 package org.sheepy.lily.vulkan.process.graphic.process;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
@@ -15,7 +12,6 @@ import org.sheepy.lily.vulkan.process.graphic.frame.Framebuffers;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
-import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.lily.vulkan.process.process.ProcessSubmission;
 import org.sheepy.lily.vulkan.process.process.WaitData;
@@ -59,43 +55,25 @@ public class GraphicContext extends ProcessContext
 	@Override
 	protected ProcessSubmission createSubmission(AbstractProcess process)
 	{
-		var graphicProcess = (GraphicProcess) process;
-		var processAdapter = GraphicProcessAdapter.adapt(graphicProcess);
 		imageAvailableSemaphore = new VkSemaphore();
-
-		List<WaitData> waitForEmitters = new ArrayList<>();
-		waitForEmitters.add(createAcquireSemaphoreData(graphicProcess.getConfiguration(),
-				imageAvailableSemaphore));
-		for (ProcessSemaphore waitFor : graphicProcess.getSemaphores())
-		{
-			waitForEmitters.add(convertToSemaphoreData(waitFor));
-		}
-
-		List<VkSemaphore> signals = null;
-		var executionSemaphore = processAdapter.getExecutionSemaphore();
-		if (executionSemaphore != null)
-		{
-			signals = List.of(executionSemaphore);
-		}
-		else
-		{
-			signals = Collections.emptyList();
-		}
-
+		List<WaitData> waitForEmitters = gatherWaitDatas();
+		List<VkSemaphore> signals = gatherSinalSemaphores();
 		return new FrameSubmission(this, waitForEmitters, signals);
 	}
 
-	private static WaitData createAcquireSemaphoreData(	GraphicConfiguration configuration,
-														VkSemaphore imageAcquireSemaphore)
+	@Override
+	protected List<WaitData> gatherWaitDatas()
 	{
-		var acquireWaitStage = configuration.getAcquireWaitStage();
-		return new WaitData(imageAcquireSemaphore, acquireWaitStage);
+		var res = super.gatherWaitDatas();
+		imageAvailableSemaphore = new VkSemaphore();
+		res.add(0, createAcquireSemaphoreData());
+		return res;
 	}
 
-	private static WaitData convertToSemaphoreData(ProcessSemaphore waitFor)
+	private WaitData createAcquireSemaphoreData()
 	{
-		var targetProcessAdapter = AbstractProcessAdapter.adapt(waitFor.getProcess());
-		var waitStage = waitFor.getWaitStage();
-		return new WaitData(targetProcessAdapter.getExecutionSemaphore(), waitStage);
+		var graphicProcess = (GraphicProcess) process;
+		var acquireWaitStage = graphicProcess.getConfiguration().getAcquireWaitStage();
+		return new WaitData(imageAvailableSemaphore, acquireWaitStage);
 	}
 }

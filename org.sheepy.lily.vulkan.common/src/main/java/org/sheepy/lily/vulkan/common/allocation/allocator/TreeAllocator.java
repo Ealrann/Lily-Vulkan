@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.common.allocation.allocator;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationAdapter;
 import org.sheepy.lily.vulkan.common.allocation.allocator.wrapper.AllocableWrapperFactory;
 import org.sheepy.lily.vulkan.common.allocation.allocator.wrapper.IAllocationWrapper;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
@@ -25,6 +26,13 @@ public class TreeAllocator implements IAllocable
 		if (rootWrapper == null)
 		{
 			rootWrapper = AllocableWrapperFactory.wrap(root);
+
+			if (rootWrapper == null)
+			{
+				throw new AssertionError(String.format("[%s] cannot be adapted to %s.",
+						rootWrapper.getClass().getSimpleName(),
+						IAllocationAdapter.class.getSimpleName()));
+			}
 		}
 
 		rootWrapper.allocate(stack, context);

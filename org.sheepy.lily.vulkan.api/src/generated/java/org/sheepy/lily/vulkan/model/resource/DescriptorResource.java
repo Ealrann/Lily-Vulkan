@@ -10,9 +10,9 @@ import org.sheepy.lily.vulkan.model.IResource;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getPipelineResource()
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getDescriptorResource()
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface PipelineResource extends IDescriptor, IResource
+public interface DescriptorResource extends IDescriptor, IResource
 {} // PipelineResource

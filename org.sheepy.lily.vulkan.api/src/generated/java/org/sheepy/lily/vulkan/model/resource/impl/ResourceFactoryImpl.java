@@ -73,6 +73,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createImage();
 		case ResourcePackage.IMAGE_LAYOUT:
 			return createImageLayout();
+		case ResourcePackage.SEMAPHORE:
+			return createSemaphore();
 		case ResourcePackage.FONT:
 			return createFont();
 		case ResourcePackage.TEXTURE:
@@ -181,6 +183,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		ImageLayoutImpl imageLayout = new ImageLayoutImpl();
 		return imageLayout;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Semaphore createSemaphore()
+	{
+		SemaphoreImpl semaphore = new SemaphoreImpl();
+		return semaphore;
 	}
 
 	/**

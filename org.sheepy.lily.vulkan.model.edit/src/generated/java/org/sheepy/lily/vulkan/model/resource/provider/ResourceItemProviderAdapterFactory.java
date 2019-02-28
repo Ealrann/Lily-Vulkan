@@ -176,6 +176,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Semaphore} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SemaphoreItemProvider semaphoreItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Semaphore}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSemaphoreAdapter()
+	{
+		if (semaphoreItemProvider == null)
+		{
+			semaphoreItemProvider = new SemaphoreItemProvider(this);
+		}
+
+		return semaphoreItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Font} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -677,6 +702,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
+		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
 		if (fontItemProvider != null) fontItemProvider.dispose();
 		if (textureItemProvider != null) textureItemProvider.dispose();
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
@@ -752,6 +778,10 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 								ResourceFactory.eINSTANCE.createImage()));
+
+				newChildDescriptors
+						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+								ResourceFactory.eINSTANCE.createSemaphore()));
 
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,

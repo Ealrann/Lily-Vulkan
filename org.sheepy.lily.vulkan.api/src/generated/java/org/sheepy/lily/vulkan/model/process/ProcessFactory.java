@@ -32,15 +32,6 @@ public interface ProcessFactory extends EFactory
 	PipelinePkg createPipelinePkg();
 
 	/**
-	 * Returns a new object of class '<em>Semaphore</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Semaphore</em>'.
-	 * @generated
-	 */
-	ProcessSemaphore createProcessSemaphore();
-
-	/**
 	 * Returns a new object of class '<em>Pipeline Barrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -18,6 +18,7 @@ import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocationD
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
@@ -57,6 +58,10 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer> e
 		pipeline = (IPipeline) target;
 		super.setTarget(target);
 
+		if (pipeline instanceof AbstractPipeline)
+		{
+			allocationList.addAll(((AbstractPipeline) pipeline).getUnits());
+		}
 	}
 
 	@Override
@@ -175,7 +180,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer> e
 		return List.of();
 	}
 
-	protected abstract AbstractConstants getConstants();
+	public abstract AbstractConstants getConstants();
 
 	public abstract List<IVkDescriptorSet> getDescriptorSets();
 

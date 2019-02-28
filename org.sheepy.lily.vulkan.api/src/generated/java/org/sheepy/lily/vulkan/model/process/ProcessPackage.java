@@ -120,41 +120,31 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__PIPELINE_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Semaphores</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS__SEMAPHORES = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
+	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Initialized Signalized Semaphore</b></em>' attribute.
+	 * The feature id for the '<em><b>Signals</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = VulkanPackage.IPROCESS_FEATURE_COUNT
-			+ 4;
+	int ABSTRACT_PROCESS__SIGNALS = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Dependent Processes</b></em>' reference list.
+	 * The feature id for the '<em><b>Wait For</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__DEPENDENT_PROCESSES = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
+	int ABSTRACT_PROCESS__WAIT_FOR = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Process</em>' class.
@@ -163,7 +153,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 6;
+	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Abstract Process</em>' class.
@@ -212,52 +202,6 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_PKG_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessSemaphore()
-	 * @generated
-	 */
-	int PROCESS_SEMAPHORE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Process</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS_SEMAPHORE__PROCESS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Wait Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS_SEMAPHORE__WAIT_STAGE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Semaphore</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS_SEMAPHORE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Semaphore</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS_SEMAPHORE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -265,7 +209,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
 	 * @generated
 	 */
-	int CONFIGURATION = 3;
+	int CONFIGURATION = 2;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -293,7 +237,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
 	 * @generated
 	 */
-	int PIPELINE_BARRIER = 4;
+	int PIPELINE_BARRIER = 3;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -411,7 +355,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
 	 * @generated
 	 */
-	int IPIPELINE = 5;
+	int IPIPELINE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -520,7 +464,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 6;
+	int ABSTRACT_PIPELINE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -665,7 +609,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
 	 * @generated
 	 */
-	int IPIPELINE_UNIT = 7;
+	int IPIPELINE_UNIT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -702,7 +646,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
 	 * @generated
 	 */
-	int ABSTRACT_COMPOSITE_PIPELINE = 8;
+	int ABSTRACT_COMPOSITE_PIPELINE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -856,7 +800,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
 	 * @generated
 	 */
-	int PUSH_CONSTANT = 9;
+	int PUSH_CONSTANT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -918,17 +862,6 @@ public interface ProcessPackage extends EPackage
 	EReference getAbstractProcess_PipelinePkg();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores <em>Semaphores</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Semaphores</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getSemaphores()
-	 * @see #getAbstractProcess()
-	 * @generated
-	 */
-	EReference getAbstractProcess_Semaphores();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -940,26 +873,26 @@ public interface ProcessPackage extends EPackage
 	EAttribute getAbstractProcess_ResetAllowed();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isInitializedSignalizedSemaphore <em>Initialized Signalized Semaphore</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals <em>Signals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Initialized Signalized Semaphore</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#isInitializedSignalizedSemaphore()
+	 * @return the meta object for the reference list '<em>Signals</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
-	EAttribute getAbstractProcess_InitializedSignalizedSemaphore();
+	EReference getAbstractProcess_Signals();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDependentProcesses <em>Dependent Processes</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getWaitFor <em>Wait For</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Dependent Processes</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getDependentProcesses()
+	 * @return the meta object for the reference list '<em>Wait For</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getWaitFor()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
-	EReference getAbstractProcess_DependentProcesses();
+	EReference getAbstractProcess_WaitFor();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelinePkg <em>Pipeline Pkg</em>}'.
@@ -981,38 +914,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getPipelinePkg_Pipelines();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore <em>Semaphore</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Semaphore</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessSemaphore
-	 * @generated
-	 */
-	EClass getProcessSemaphore();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore#getProcess <em>Process</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Process</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessSemaphore#getProcess()
-	 * @see #getProcessSemaphore()
-	 * @generated
-	 */
-	EReference getProcessSemaphore_Process();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.ProcessSemaphore#getWaitStage <em>Wait Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Wait Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessSemaphore#getWaitStage()
-	 * @see #getProcessSemaphore()
-	 * @generated
-	 */
-	EAttribute getProcessSemaphore_WaitStage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}'.
@@ -1235,14 +1136,6 @@ public interface ProcessPackage extends EPackage
 		EReference ABSTRACT_PROCESS__PIPELINE_PKG = eINSTANCE.getAbstractProcess_PipelinePkg();
 
 		/**
-		 * The meta object literal for the '<em><b>Semaphores</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS__SEMAPHORES = eINSTANCE.getAbstractProcess_Semaphores();
-
-		/**
 		 * The meta object literal for the '<em><b>Reset Allowed</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1251,22 +1144,20 @@ public interface ProcessPackage extends EPackage
 		EAttribute ABSTRACT_PROCESS__RESET_ALLOWED = eINSTANCE.getAbstractProcess_ResetAllowed();
 
 		/**
-		 * The meta object literal for the '<em><b>Initialized Signalized Semaphore</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Signals</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = eINSTANCE
-				.getAbstractProcess_InitializedSignalizedSemaphore();
+		EReference ABSTRACT_PROCESS__SIGNALS = eINSTANCE.getAbstractProcess_Signals();
 
 		/**
-		 * The meta object literal for the '<em><b>Dependent Processes</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Wait For</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PROCESS__DEPENDENT_PROCESSES = eINSTANCE
-				.getAbstractProcess_DependentProcesses();
+		EReference ABSTRACT_PROCESS__WAIT_FOR = eINSTANCE.getAbstractProcess_WaitFor();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl <em>Pipeline Pkg</em>}' class.
@@ -1285,32 +1176,6 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PIPELINE_PKG__PIPELINES = eINSTANCE.getPipelinePkg_Pipelines();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl <em>Semaphore</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessSemaphoreImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessSemaphore()
-		 * @generated
-		 */
-		EClass PROCESS_SEMAPHORE = eINSTANCE.getProcessSemaphore();
-
-		/**
-		 * The meta object literal for the '<em><b>Process</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROCESS_SEMAPHORE__PROCESS = eINSTANCE.getProcessSemaphore_Process();
-
-		/**
-		 * The meta object literal for the '<em><b>Wait Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROCESS_SEMAPHORE__WAIT_STAGE = eINSTANCE.getProcessSemaphore_WaitStage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.

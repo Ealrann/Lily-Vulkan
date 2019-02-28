@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.nuklear.NkAllocator;
 import org.lwjgl.nuklear.NkBuffer;
 import org.lwjgl.nuklear.NkContext;
@@ -19,7 +19,6 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkViewport;
-import org.sheepy.lily.core.api.application.IApplicationAdapter;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.IView;
@@ -28,8 +27,9 @@ import org.sheepy.lily.core.model.presentation.IUIView;
 import org.sheepy.lily.core.model.presentation.UIPage;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
+import org.sheepy.lily.vulkan.common.engine.VulkanEngineAdapter;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
+import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
@@ -74,7 +74,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	private DrawRecorder recorder;
 	private NuklearDrawer drawer;
 
-	private GraphicContext context;
+	private GraphicContext graphicContext;
 	private Window window;
 
 	private boolean dirty = true;
@@ -104,13 +104,13 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	{
 		super.allocate(stack, context);
 
-		var graphicContext = (GraphicContext) context;
+		graphicContext = (GraphicContext) context;
 		window = graphicContext.getLogicalDevice().window;
 		viewport = VkViewport.calloc(1);
 
-		var application = (Application) EcoreUtil.getRootContainer(nkPipeline);
-		var cadencer = IApplicationAdapter.adapt(application).getCadencer();
-		var inputManager = (VulkanInputManager) cadencer.getInputManager();
+		var engine = getEngine(nkPipeline);
+		var application = (Application) engine.eContainer();
+		var inputManager = VulkanEngineAdapter.adapt(engine).getInputManager();
 
 		resources.allocate();
 
@@ -123,6 +123,22 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		// Prepare a first render for the opening of the screen
 		layout(Collections.emptyList());
 		prepare();
+	}
+
+	private VulkanEngine getEngine(EObject eo)
+	{
+		while (eo != null)
+		{
+			if (eo instanceof VulkanEngine)
+			{
+				return (VulkanEngine) eo;
+			}
+			else
+			{
+				eo = eo.eContainer();
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -238,7 +254,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		setViewport(commandBuffer);
 		pushConstants(commandBuffer);
 
-		drawer.prepare(bindPoint, context.surfaceManager.getExtent());
+		drawer.prepare(bindPoint, graphicContext.surfaceManager.getExtent());
 		for (DrawCommandData data : recorder.getDrawCommands())
 		{
 			drawer.draw(graphicCommandBuffer, data);
@@ -249,7 +265,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 	private void setViewport(VkCommandBuffer commandBuffer)
 	{
-		Extent2D extent = context.surfaceManager.getExtent();
+		Extent2D extent = graphicContext.surfaceManager.getExtent();
 		viewport.get(0).set(0, 0, extent.getWidth(), extent.getHeight(), 1, 1);
 		vkCmdSetViewport(commandBuffer, 0, viewport);
 	}
@@ -268,7 +284,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	}
 
 	@Override
-	protected AbstractConstants getConstants()
+	public AbstractConstants getConstants()
 	{
 		return nkPipeline.getPushConstant();
 	}

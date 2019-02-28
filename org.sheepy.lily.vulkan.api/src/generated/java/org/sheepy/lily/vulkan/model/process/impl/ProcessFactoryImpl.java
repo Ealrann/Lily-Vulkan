@@ -66,8 +66,6 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 		{
 		case ProcessPackage.PIPELINE_PKG:
 			return createPipelinePkg();
-		case ProcessPackage.PROCESS_SEMAPHORE:
-			return createProcessSemaphore();
 		case ProcessPackage.PIPELINE_BARRIER:
 			return createPipelineBarrier();
 		case ProcessPackage.PUSH_CONSTANT:
@@ -88,18 +86,6 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		PipelinePkgImpl pipelinePkg = new PipelinePkgImpl();
 		return pipelinePkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ProcessSemaphore createProcessSemaphore()
-	{
-		ProcessSemaphoreImpl processSemaphore = new ProcessSemaphoreImpl();
-		return processSemaphore;
 	}
 
 	/**

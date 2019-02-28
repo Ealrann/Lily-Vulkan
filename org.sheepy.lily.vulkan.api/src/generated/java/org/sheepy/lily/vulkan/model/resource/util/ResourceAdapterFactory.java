@@ -82,9 +82,9 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
-		public Adapter casePipelineResource(PipelineResource object)
+		public Adapter caseDescriptorResource(DescriptorResource object)
 		{
-			return createPipelineResourceAdapter();
+			return createDescriptorResourceAdapter();
 		}
 
 		@Override
@@ -109,6 +109,12 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		public Adapter caseSampledImage(SampledImage object)
 		{
 			return createSampledImageAdapter();
+		}
+
+		@Override
+		public Adapter caseSemaphore(Semaphore object)
+		{
+			return createSemaphoreAdapter();
 		}
 
 		@Override
@@ -286,16 +292,16 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.PipelineResource <em>Pipeline Resource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorResource <em>Descriptor Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.PipelineResource
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorResource
 	 * @generated
 	 */
-	public Adapter createPipelineResourceAdapter()
+	public Adapter createDescriptorResourceAdapter()
 	{
 		return null;
 	}
@@ -356,6 +362,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createSampledImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Semaphore <em>Semaphore</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.Semaphore
+	 * @generated
+	 */
+	public Adapter createSemaphoreAdapter()
 	{
 		return null;
 	}

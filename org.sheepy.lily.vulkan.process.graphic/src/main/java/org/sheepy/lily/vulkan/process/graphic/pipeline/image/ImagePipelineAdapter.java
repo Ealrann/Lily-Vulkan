@@ -119,7 +119,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	}
 
 	@Override
-	protected AbstractConstants getConstants()
+	public AbstractConstants getConstants()
 	{
 		return ((ImagePipeline) target).getConstants();
 	}

@@ -26,7 +26,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
  * @model
  * @generated
  */
-public interface Buffer extends PipelineResource
+public interface Buffer extends DescriptorResource
 {
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

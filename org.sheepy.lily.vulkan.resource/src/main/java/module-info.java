@@ -6,6 +6,7 @@ import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.image.DepthImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
+import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAdapter;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 import org.sheepy.lily.vulkan.resource.texture.FontAdapter;
 import org.sheepy.lily.vulkan.resource.texture.TextureAdapter;
@@ -26,9 +27,10 @@ module org.sheepy.lily.vulkan.resource
 	exports org.sheepy.lily.vulkan.resource.barrier;
 	exports org.sheepy.lily.vulkan.resource.nativehelper;
 	exports org.sheepy.lily.vulkan.resource.texture;
+	exports org.sheepy.lily.vulkan.resource.semaphore;
 	exports org.sheepy.lily.vulkan.resource.shader;
 
 	provides IAdapter with ShaderAdapter, BufferAdapter, ImageAdapter, TextureAdapter,
 			DepthImageAdapter, FileResourceAdapter, ModuleResourceAdapter,
-			StringModuleResourceAdapter, ConstantsAdapter, FontAdapter;
+			StringModuleResourceAdapter, ConstantsAdapter, FontAdapter, SemaphoreAdapter;
 }

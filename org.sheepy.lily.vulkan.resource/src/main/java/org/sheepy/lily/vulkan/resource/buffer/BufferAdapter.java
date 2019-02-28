@@ -17,9 +17,9 @@ import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.resource.PipelineResourceAdapter;
+import org.sheepy.lily.vulkan.resource.DescriptorResourceAdapter;
 
-public class BufferAdapter extends PipelineResourceAdapter
+public class BufferAdapter extends DescriptorResourceAdapter
 {
 	protected Buffer buffer;
 	protected IBufferBackend bufferBackend;

@@ -22,11 +22,11 @@ import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.resource.PipelineResourceAdapter;
+import org.sheepy.lily.vulkan.resource.DescriptorResourceAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
-public class ImageAdapter extends PipelineResourceAdapter
+public class ImageAdapter extends DescriptorResourceAdapter
 {
 	private VkImage imageBackend;
 	private Image image;

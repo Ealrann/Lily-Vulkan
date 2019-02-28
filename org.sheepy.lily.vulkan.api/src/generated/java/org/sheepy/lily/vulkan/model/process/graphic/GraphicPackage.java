@@ -649,15 +649,6 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Semaphores</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__SEMAPHORES = ProcessPackage.ABSTRACT_PROCESS__SEMAPHORES;
-
-	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -667,22 +658,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__RESET_ALLOWED = ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED;
 
 	/**
-	 * The feature id for the '<em><b>Initialized Signalized Semaphore</b></em>' attribute.
+	 * The feature id for the '<em><b>Signals</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE = ProcessPackage.ABSTRACT_PROCESS__INITIALIZED_SIGNALIZED_SEMAPHORE;
+	int GRAPHIC_PROCESS__SIGNALS = ProcessPackage.ABSTRACT_PROCESS__SIGNALS;
 
 	/**
-	 * The feature id for the '<em><b>Dependent Processes</b></em>' reference list.
+	 * The feature id for the '<em><b>Wait For</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__DEPENDENT_PROCESSES = ProcessPackage.ABSTRACT_PROCESS__DEPENDENT_PROCESSES;
+	int GRAPHIC_PROCESS__WAIT_FOR = ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR;
 
 	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' containment reference.

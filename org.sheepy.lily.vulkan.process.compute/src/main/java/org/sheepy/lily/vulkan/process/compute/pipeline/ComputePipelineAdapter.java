@@ -151,7 +151,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	}
 
 	@Override
-	protected AbstractConstants getConstants()
+	public AbstractConstants getConstants()
 	{
 		return ((ComputePipeline) target).getConstants();
 	}

@@ -58,7 +58,7 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	protected AbstractConstants getConstants()
+	public AbstractConstants getConstants()
 	{
 		return ((MeshPipeline) pipeline).getConstants();
 	}

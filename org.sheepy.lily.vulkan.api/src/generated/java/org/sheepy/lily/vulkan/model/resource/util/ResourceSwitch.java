@@ -83,13 +83,13 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case ResourcePackage.PIPELINE_RESOURCE:
+		case ResourcePackage.DESCRIPTOR_RESOURCE:
 		{
-			PipelineResource pipelineResource = (PipelineResource) theEObject;
-			T result = casePipelineResource(pipelineResource);
-			if (result == null) result = caseIDescriptor(pipelineResource);
-			if (result == null) result = caseIResource(pipelineResource);
-			if (result == null) result = caseLNamedElement(pipelineResource);
+			DescriptorResource descriptorResource = (DescriptorResource) theEObject;
+			T result = caseDescriptorResource(descriptorResource);
+			if (result == null) result = caseIDescriptor(descriptorResource);
+			if (result == null) result = caseIResource(descriptorResource);
+			if (result == null) result = caseLNamedElement(descriptorResource);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -97,7 +97,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		{
 			Buffer buffer = (Buffer) theEObject;
 			T result = caseBuffer(buffer);
-			if (result == null) result = casePipelineResource(buffer);
+			if (result == null) result = caseDescriptorResource(buffer);
 			if (result == null) result = caseIDescriptor(buffer);
 			if (result == null) result = caseIResource(buffer);
 			if (result == null) result = caseLNamedElement(buffer);
@@ -108,7 +108,7 @@ public class ResourceSwitch<T> extends Switch<T>
 		{
 			Image image = (Image) theEObject;
 			T result = caseImage(image);
-			if (result == null) result = casePipelineResource(image);
+			if (result == null) result = caseDescriptorResource(image);
 			if (result == null) result = caseIDescriptor(image);
 			if (result == null) result = caseIResource(image);
 			if (result == null) result = caseLNamedElement(image);
@@ -126,10 +126,20 @@ public class ResourceSwitch<T> extends Switch<T>
 		{
 			SampledImage sampledImage = (SampledImage) theEObject;
 			T result = caseSampledImage(sampledImage);
-			if (result == null) result = casePipelineResource(sampledImage);
+			if (result == null) result = caseDescriptorResource(sampledImage);
 			if (result == null) result = caseIDescriptor(sampledImage);
 			if (result == null) result = caseIResource(sampledImage);
 			if (result == null) result = caseLNamedElement(sampledImage);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ResourcePackage.SEMAPHORE:
+		{
+			Semaphore semaphore = (Semaphore) theEObject;
+			T result = caseSemaphore(semaphore);
+			if (result == null) result = caseBasicResource(semaphore);
+			if (result == null) result = caseIResource(semaphore);
+			if (result == null) result = caseLNamedElement(semaphore);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -138,7 +148,7 @@ public class ResourceSwitch<T> extends Switch<T>
 			Font font = (Font) theEObject;
 			T result = caseFont(font);
 			if (result == null) result = caseSampledImage(font);
-			if (result == null) result = casePipelineResource(font);
+			if (result == null) result = caseDescriptorResource(font);
 			if (result == null) result = caseIDescriptor(font);
 			if (result == null) result = caseIResource(font);
 			if (result == null) result = caseLNamedElement(font);
@@ -150,7 +160,7 @@ public class ResourceSwitch<T> extends Switch<T>
 			AbstractTexture abstractTexture = (AbstractTexture) theEObject;
 			T result = caseAbstractTexture(abstractTexture);
 			if (result == null) result = caseSampledImage(abstractTexture);
-			if (result == null) result = casePipelineResource(abstractTexture);
+			if (result == null) result = caseDescriptorResource(abstractTexture);
 			if (result == null) result = caseIDescriptor(abstractTexture);
 			if (result == null) result = caseIResource(abstractTexture);
 			if (result == null) result = caseLNamedElement(abstractTexture);
@@ -163,7 +173,7 @@ public class ResourceSwitch<T> extends Switch<T>
 			T result = caseTexture(texture);
 			if (result == null) result = caseAbstractTexture(texture);
 			if (result == null) result = caseSampledImage(texture);
-			if (result == null) result = casePipelineResource(texture);
+			if (result == null) result = caseDescriptorResource(texture);
 			if (result == null) result = caseIDescriptor(texture);
 			if (result == null) result = caseIResource(texture);
 			if (result == null) result = caseLNamedElement(texture);
@@ -356,17 +366,17 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Resource</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Descriptor Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pipeline Resource</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Descriptor Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePipelineResource(PipelineResource object)
+	public T caseDescriptorResource(DescriptorResource object)
 	{
 		return null;
 	}
@@ -431,6 +441,22 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseSampledImage(SampledImage object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Semaphore</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Semaphore</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSemaphore(Semaphore object)
 	{
 		return null;
 	}
