@@ -18,9 +18,6 @@ import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContextProvider;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
-import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
-import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
@@ -111,17 +108,14 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		}
 	}
 
-	protected List<IResourceAllocable> gatherResources()
+	protected List<Object> gatherResources()
 	{
-		List<IResourceAllocable> resources = new ArrayList<>();
+		List<Object> resources = new ArrayList<>();
 
 		var resourcePkg = process.getResourcePkg();
 		if (resourcePkg != null)
 		{
-			for (IResource resource : resourcePkg.getResources())
-			{
-				resources.add(IResourceAdapter.adapt(resource));
-			}
+			resources.addAll(resourcePkg.getResources());
 		}
 
 		PipelinePkg pipelinePkg = process.getPipelinePkg();

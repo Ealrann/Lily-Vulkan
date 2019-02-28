@@ -18,7 +18,6 @@ import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocationD
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
@@ -167,8 +166,11 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer> e
 		descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, getLayoutId());
 	}
 
+	/**
+	 * @return IAllocable or EObject
+	 */
 	@SuppressWarnings("static-method")
-	public List<IResourceAllocable> getResources()
+	public List<? extends Object> getResources()
 	{
 		return List.of();
 	}

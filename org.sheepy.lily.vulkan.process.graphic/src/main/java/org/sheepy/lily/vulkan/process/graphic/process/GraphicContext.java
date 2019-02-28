@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
+import org.sheepy.lily.vulkan.process.process.ProcessSubmission;
 import org.sheepy.lily.vulkan.process.process.WaitData;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 
@@ -25,15 +26,14 @@ public class GraphicContext extends ProcessContext
 	public final GraphicConfiguration configuration;
 	public final GraphicProcess graphicProcess;
 
-	public final PhysicalDeviceSurfaceManager surfaceManager;
-	public final SwapChainManager swapChainManager;
-	public final ImageViewManager imageViewManager;
-	public final Framebuffers framebuffers;
-	public final RenderPass renderPass;
-	public final FrameSubmission submission;
-	public final VkSemaphore imageAvailableSemaphore;
+	public final PhysicalDeviceSurfaceManager surfaceManager = new PhysicalDeviceSurfaceManager();
+	public final SwapChainManager swapChainManager = new SwapChainManager();
+	public final ImageViewManager imageViewManager = new ImageViewManager();
+	public final Framebuffers framebuffers = new Framebuffers();
+	public final RenderPass renderPass = new RenderPass();
+	public VkSemaphore imageAvailableSemaphore;
 
-	private List<IAllocable> allocationList;
+	public final FrameSubmission frameSubmission;
 
 	public GraphicContext(	EQueueType queueType,
 							boolean resetAllowed,
@@ -44,26 +44,28 @@ public class GraphicContext extends ProcessContext
 
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
+		frameSubmission = (FrameSubmission) submission;
 
-		imageAvailableSemaphore = new VkSemaphore();
-		surfaceManager = new PhysicalDeviceSurfaceManager();
-		swapChainManager = new SwapChainManager();
-		framebuffers = new Framebuffers();
-		renderPass = new RenderPass();
-		imageViewManager = new ImageViewManager();
-
-		submission = createSubmission(graphicProcess, imageAvailableSemaphore);
-
-		buildAllocationList();
+		allocationList.add(imageAvailableSemaphore);
+		allocationList.add(surfaceManager);
+		allocationList.add(swapChainManager);
+		allocationList.add(imageViewManager);
+		allocationList.add(renderPass);
+		allocationList.add(framebuffers);
+		allocationList.add(commandBuffers);
+		allocationList.add(submission);
 	}
 
-	private FrameSubmission createSubmission(	GraphicProcess graphicProcess,
-												VkSemaphore imageAcquireSemaphore)
+	@Override
+	protected ProcessSubmission createSubmission(AbstractProcess process)
 	{
+		var graphicProcess = (GraphicProcess) process;
 		var processAdapter = GraphicProcessAdapter.adapt(graphicProcess);
+		imageAvailableSemaphore = new VkSemaphore();
 
 		List<WaitData> waitForEmitters = new ArrayList<>();
-		waitForEmitters.add(createAcquireSemaphoreData(processAdapter, imageAcquireSemaphore));
+		waitForEmitters.add(createAcquireSemaphoreData(graphicProcess.getConfiguration(),
+				imageAvailableSemaphore));
 		for (ProcessSemaphore waitFor : graphicProcess.getSemaphores())
 		{
 			waitForEmitters.add(convertToSemaphoreData(waitFor));
@@ -83,8 +85,8 @@ public class GraphicContext extends ProcessContext
 		return new FrameSubmission(this, waitForEmitters, signals);
 	}
 
-	private WaitData createAcquireSemaphoreData(@SuppressWarnings("unused") GraphicProcessAdapter processAdapter,
-												VkSemaphore imageAcquireSemaphore)
+	private static WaitData createAcquireSemaphoreData(	GraphicConfiguration configuration,
+														VkSemaphore imageAcquireSemaphore)
 	{
 		var acquireWaitStage = configuration.getAcquireWaitStage();
 		return new WaitData(imageAcquireSemaphore, acquireWaitStage);
@@ -95,32 +97,5 @@ public class GraphicContext extends ProcessContext
 		var targetProcessAdapter = AbstractProcessAdapter.adapt(waitFor.getProcess());
 		var waitStage = waitFor.getWaitStage();
 		return new WaitData(targetProcessAdapter.getExecutionSemaphore(), waitStage);
-	}
-
-	public void buildAllocationList()
-	{
-		var tmpList = new ArrayList<IAllocable>();
-
-		tmpList.add(imageAvailableSemaphore);
-		tmpList.add(surfaceManager);
-		tmpList.add(swapChainManager);
-		tmpList.add(imageViewManager);
-		tmpList.add(renderPass);
-		tmpList.add(framebuffers);
-		tmpList.add(commandBuffers);
-		tmpList.add(submission);
-
-		allocationList = List.copyOf(tmpList);
-	}
-
-	public List<IAllocable> getAllocationList()
-	{
-		return allocationList;
-	}
-
-	@Override
-	public List<? extends Object> getAllocationChildren()
-	{
-		return allocationList;
 	}
 }

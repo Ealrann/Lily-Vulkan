@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import org.lwjgl.nuklear.NkUserFont;
-import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
@@ -37,7 +36,7 @@ public class NuklearResources
 	private final Shader fragmentShader;
 	private final List<IVkDescriptorSet> descriptors;
 	private final List<Shader> shaders;
-	private List<IResourceAllocable> resourceList;
+	private List<Object> resourceList;
 
 	public NuklearResources(NuklearPipeline nkPipeline)
 	{
@@ -94,7 +93,7 @@ public class NuklearResources
 		return defaultFont;
 	}
 
-	public List<IResourceAllocable> toList()
+	public List<Object> toList()
 	{
 		if (resourceList == null)
 		{

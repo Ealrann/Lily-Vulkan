@@ -6,16 +6,16 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.model.enumeration.EFilter;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
 
-public class NullTexture implements IResourceAllocable
+public class NullTexture implements IAllocable
 {
 	private static final int FORMAT = VK_FORMAT_R8G8B8A8_UNORM;
 	private static final int USAGE = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
@@ -53,5 +53,11 @@ public class NullTexture implements IResourceAllocable
 	public long getSamplerId()
 	{
 		return texture.getSamplerId();
+	}
+
+	@Override
+	public boolean isAllocationDirty(IAllocationContext context)
+	{
+		return false;
 	}
 }

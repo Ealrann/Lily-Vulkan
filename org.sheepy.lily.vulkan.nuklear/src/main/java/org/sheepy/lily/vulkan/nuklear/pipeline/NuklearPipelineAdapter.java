@@ -28,7 +28,6 @@ import org.sheepy.lily.core.model.presentation.IUIView;
 import org.sheepy.lily.core.model.presentation.UIPage;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
@@ -95,7 +94,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	}
 
 	@Override
-	public List<IResourceAllocable> getResources()
+	public List<? extends Object> getResources()
 	{
 		return resources.toList();
 	}

@@ -12,8 +12,6 @@ import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
-import org.sheepy.lily.vulkan.common.resource.image.IDepthImageAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
@@ -49,14 +47,14 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	}
 
 	@Override
-	protected List<IResourceAllocable> gatherResources()
+	protected List<Object> gatherResources()
 	{
-		List<IResourceAllocable> res = super.gatherResources();
+		List<Object> res = super.gatherResources();
 
 		var depthImage = process.getDepthImage();
 		if (depthImage != null)
 		{
-			res.add(IDepthImageAdapter.adapt(depthImage));
+			res.add(depthImage);
 		}
 
 		return res;
@@ -116,7 +114,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 		var graphicQueue = queueManager.getGraphicQueue().vkQueue;
 		var presentQueue = queueManager.getPresentQueue().vkQueue;
 		var fenceId = fence != null ? fence.getId() : VK_NULL_HANDLE;
-		var submission = context.submission;
+		var submission = context.frameSubmission;
 		var submitInfo = submission.getSubmitInfo(imageIndex);
 		var presentInfo = submission.getPresentInfo(imageIndex);
 
