@@ -40,14 +40,14 @@ public class VkSemaphore implements IAllocable
 		return semaphoreId;
 	}
 
-	public void signalSemaphore(ExecutionContext executionManager)
+	public void signalSemaphore(ExecutionContext executionContext)
 	{
 		if (semaphoreId == 0)
 		{
 			throw new AssertionError("");
 		}
 
-		SingleTimeCommand stc = new SingleTimeCommand(executionManager, List.of(this))
+		SingleTimeCommand stc = new SingleTimeCommand(executionContext, List.of(this))
 		{
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
