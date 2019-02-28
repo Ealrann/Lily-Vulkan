@@ -5,6 +5,7 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.resource.ResourceAdapter;
@@ -17,6 +18,11 @@ public class SemaphoreAdapter extends ResourceAdapter
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		vkSemaphore.allocate(stack, context);
+
+		if (((Semaphore) getTarget()).isSignalizedAtInit())
+		{
+			vkSemaphore.signalSemaphore((ExecutionContext) context);
+		}
 	}
 
 	@Override
