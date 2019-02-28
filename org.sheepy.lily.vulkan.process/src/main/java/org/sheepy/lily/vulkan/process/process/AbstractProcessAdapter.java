@@ -13,8 +13,6 @@ import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContextProvider;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
@@ -31,12 +29,11 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		implements IStatefullAdapter, IProcessAdapter, IAllocationContextProvider
 {
 	private final int bindPoint = getBindPoint();
-
 	protected DescriptorPool descriptorPool;
-
 	protected ProcessContext context = null;
 	private AbstractProcess process = null;
 	private TreeAllocator allocator;
+	private boolean recorded = false;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -49,26 +46,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 		gatherAllocationServices();
 		gatherPipelines();
-
-		allocationList.add(new IAllocable()
-		{
-			@Override
-			public void allocate(MemoryStack stack, IAllocationContext context)
-			{
-				// TODO use a boolean "isRecorded"
-				recordCommands();
-			}
-
-			@Override
-			public void free(IAllocationContext context)
-			{}
-
-			@Override
-			public boolean isAllocationDirty(IAllocationContext context)
-			{
-				return false;
-			}
-		});
 	}
 
 	@Override
@@ -144,7 +121,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	@Override
 	public void prepare()
 	{
-		boolean needRecord = false;
+		boolean needRecord = !recorded;
 
 		if (allocator.isAllocationDirty(context))
 		{
@@ -160,6 +137,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		{
 			context.getQueue().waitIdle();
 			recordCommands();
+			recorded = true;
 		}
 	}
 
