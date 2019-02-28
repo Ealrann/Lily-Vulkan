@@ -13,7 +13,8 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
@@ -22,25 +23,10 @@ import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 public class SwapChainManager implements IAllocable
 {
-	private final GraphicContext context;
-	private final int swapImageUsage;
-	private final EPresentMode requiredPresentMode;
-
-	private int requiredImageCount;
-
 	private Long swapChain = null;
 	private List<Long> swapChainImages = null;
 	private IntBuffer indices = null;
 	private int swapImageCount;
-	private int presentMode = -1;
-
-	public SwapChainManager(GraphicContext context)
-	{
-		this.context = context;
-		final var configuration = context.configuration;
-		requiredPresentMode = configuration.getPresentationMode();
-		swapImageUsage = loadSwapChainUsage(configuration);
-	}
 
 	private static int loadSwapChainUsage(final GraphicConfiguration configuration)
 	{
@@ -61,55 +47,22 @@ public class SwapChainManager implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		requiredImageCount = loadRequiredImageCount();
-
-		createSwapChain(stack);
-	}
-
-	private int loadRequiredImageCount()
-	{
-		int requiredImageCount = 0;
-		final var capabilities = context.surfaceManager.getCapabilities().vkCapabilities;
-		int required = context.configuration.getRequiredSwapImageCount();
-		if (required < capabilities.minImageCount() || required == 0)
-		{
-			requiredImageCount = capabilities.minImageCount() + 1;
-		}
-		else
-		{
-			requiredImageCount = required;
-		}
-
-		if (capabilities.maxImageCount() > 0 && requiredImageCount > capabilities.maxImageCount())
-		{
-			requiredImageCount = capabilities.maxImageCount();
-		}
-
-		return requiredImageCount;
-	}
-
-	@Override
-	public void free()
-	{
-		vkDestroySwapchainKHR(context.getVkDevice(), swapChain, null);
-		MemoryUtil.memFree(indices);
-		swapChainImages = null;
-		indices = null;
-	}
-
-	private void createSwapChain(MemoryStack stack) throws AssertionError
-	{
-		final var queueManager = context.logicalDevice.queueManager;
-		final var pdsManager = context.surfaceManager;
+		final var graphicContext = (GraphicContext) context;
+		final var queueManager = graphicContext.getLogicalDevice().queueManager;
+		final var configuration = graphicContext.configuration;
+		final var pdsManager = graphicContext.surfaceManager;
+		final var vkDevice = graphicContext.getVkDevice();
 		final var capabilities = pdsManager.getCapabilities().vkCapabilities;
 		final var surface = pdsManager.getSurface();
 		final var extent = pdsManager.getExtent();
 		final var requiredColorDomain = pdsManager.getColorDomain();
 
-		final var vkDevice = context.getVkDevice();
-		selectPresentMode(context, surface);
+		var requiredImageCount = loadRequiredImageCount(graphicContext);
+		var requiredPresentMode = configuration.getPresentationMode();
+		int swapImageUsage = loadSwapChainUsage(configuration);
+		int targetPresentMode = selectPresentMode(graphicContext, requiredPresentMode, surface);
 
 		final VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
@@ -136,7 +89,7 @@ public class SwapChainManager implements IAllocable
 
 		createInfo.preTransform(capabilities.currentTransform());
 		createInfo.compositeAlpha(VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR);
-		createInfo.presentMode(presentMode);
+		createInfo.presentMode(targetPresentMode);
 		createInfo.clipped(true);
 		createInfo.oldSwapchain(VK_NULL_HANDLE);
 
@@ -153,13 +106,45 @@ public class SwapChainManager implements IAllocable
 
 		swapChainImages = List.copyOf(VulkanBufferUtils.toList(pSwapchainImages));
 
-		if (context.application.isDebug())
+		if (graphicContext.application.isDebug())
 		{
-			printSwapChainInformations();
+			printSwapChainInformations(targetPresentMode);
 		}
 	}
 
-	private void printSwapChainInformations()
+	private static int loadRequiredImageCount(GraphicContext context)
+	{
+		int requiredImageCount = 0;
+		final var capabilities = context.surfaceManager.getCapabilities().vkCapabilities;
+		int required = context.configuration.getRequiredSwapImageCount();
+		if (required < capabilities.minImageCount() || required == 0)
+		{
+			requiredImageCount = capabilities.minImageCount() + 1;
+		}
+		else
+		{
+			requiredImageCount = required;
+		}
+
+		if (capabilities.maxImageCount() > 0 && requiredImageCount > capabilities.maxImageCount())
+		{
+			requiredImageCount = capabilities.maxImageCount();
+		}
+
+		return requiredImageCount;
+	}
+
+	@Override
+	public void free(IAllocationContext context)
+	{
+		var graphicContext = (GraphicContext) context;
+		vkDestroySwapchainKHR(graphicContext.getVkDevice(), swapChain, null);
+		MemoryUtil.memFree(indices);
+		swapChainImages = null;
+		indices = null;
+	}
+
+	private void printSwapChainInformations(int presentMode)
 	{
 		String presentationName = EPresentMode.get(presentMode).getName();
 		int imageCount = swapChainImages.size();
@@ -169,10 +154,12 @@ public class SwapChainManager implements IAllocable
 		System.out.println(message);
 	}
 
-	private void selectPresentMode(GraphicContext context, VkSurface surface)
+	private static int selectPresentMode(	GraphicContext context,
+											EPresentMode requiredPresentMode,
+											VkSurface surface)
 	{
-		final var selector = new PresentationModeSelector(context.logicalDevice, surface);
-		presentMode = selector.findBestMode(requiredPresentMode);
+		final var selector = new PresentationModeSelector(context.getLogicalDevice(), surface);
+		return selector.findBestMode(requiredPresentMode);
 	}
 
 	public List<Long> getSwapChainImages()
@@ -186,8 +173,9 @@ public class SwapChainManager implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		return context.surfaceManager.isAllocationDirty();
+		var graphicContext = (GraphicContext) context;
+		return graphicContext.surfaceManager.isAllocationDirty(context);
 	}
 }

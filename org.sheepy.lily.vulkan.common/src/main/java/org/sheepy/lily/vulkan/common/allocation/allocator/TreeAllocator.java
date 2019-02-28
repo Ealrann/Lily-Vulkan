@@ -1,66 +1,80 @@
 package org.sheepy.lily.vulkan.common.allocation.allocator;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.common.allocation.allocator.wrapper.AllocableWrapperFactory;
 import org.sheepy.lily.vulkan.common.allocation.allocator.wrapper.IAllocationWrapper;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 
-public class TreeAllocator implements IAllocator
+public class TreeAllocator implements IAllocable
 {
-	private final EObject root;
-
+	private final Object root;
 	private IAllocationWrapper rootWrapper;
-	private final List<IAllocationWrapper> dirtyWrappers = new ArrayList<>();
-
 	private boolean isAllocated = false;
 
-	public TreeAllocator(EObject root)
+	public TreeAllocator(Object root)
 	{
 		this.root = root;
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		rootWrapper = AllocableWrapperFactory.wrap(root);
-		rootWrapper.allocate(stack, true);
+		if (rootWrapper == null)
+		{
+			rootWrapper = AllocableWrapperFactory.wrap(root);
+		}
+
+		rootWrapper.allocate(stack, context);
 		isAllocated = true;
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		rootWrapper.free(true);
+		rootWrapper.free(context);
 		rootWrapper = null;
 		isAllocated = false;
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		rootWrapper.gatherDirtyAllocables(dirtyWrappers);
+		if (rootWrapper == null && root instanceof EObject)
+		{
+			rootWrapper = getAllocationWrapper((EObject) root);
+		}
 
-		return dirtyWrappers.isEmpty() == false;
+		return rootWrapper.isAllocationDirty(context);
 	}
 
-	@Override
-	public void reloadDirtyElements(MemoryStack stack)
+	public void reloadDirtyElements(MemoryStack stack, IAllocationContext context)
 	{
-		for (int i = dirtyWrappers.size() - 1; i >= 0; i--)
+		if (rootWrapper == null && root instanceof EObject)
 		{
-			IAllocationWrapper wrapper = dirtyWrappers.get(i);
-			wrapper.free(false);
+			rootWrapper = getAllocationWrapper((EObject) root);
 		}
 
-		for (int i = 0; i < dirtyWrappers.size(); i++)
+		rootWrapper.freeDirtyElements(context);
+		rootWrapper.allocate(stack, context);
+	}
+
+	private static final IAllocationWrapper getAllocationWrapper(EObject eobject)
+	{
+		IAllocationWrapper res = null;
+
+		for (Adapter adapter : eobject.eAdapters())
 		{
-			IAllocationWrapper wrapper = dirtyWrappers.get(i);
-			wrapper.allocate(stack, false);
+			if (adapter instanceof IAllocationWrapper)
+			{
+				res = (IAllocationWrapper) adapter;
+				break;
+			}
 		}
-		dirtyWrappers.clear();
+
+		return res;
 	}
 
 	public boolean isAllocated()

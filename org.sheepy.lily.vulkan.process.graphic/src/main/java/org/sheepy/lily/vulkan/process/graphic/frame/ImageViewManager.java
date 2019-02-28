@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
@@ -14,21 +15,15 @@ public class ImageViewManager implements IAllocable
 {
 	private static final int IMAGE_ASPECT = VK_IMAGE_ASPECT_COLOR_BIT;
 
-	private final GraphicContext context;
-
 	private List<VkImageView> imageViews = null;
 
-	public ImageViewManager(GraphicContext context)
-	{
-		this.context = context;
-	}
-
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var device = context.getVkDevice();
-		var swapChainManager = context.swapChainManager;
-		var pdsManager = context.surfaceManager;
+		var graphicContext = (GraphicContext) context;
+		var device = graphicContext.getVkDevice();
+		var swapChainManager = graphicContext.swapChainManager;
+		var pdsManager = graphicContext.surfaceManager;
 		var colorFormat = pdsManager.getColorDomain().getFormat().getValue();
 		var swapImages = swapChainManager.getSwapChainImages();
 
@@ -53,7 +48,7 @@ public class ImageViewManager implements IAllocable
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		for (final VkImageView view : imageViews)
 		{
@@ -63,8 +58,9 @@ public class ImageViewManager implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		return context.swapChainManager.isAllocationDirty();
+		var graphicContext = (GraphicContext) context;
+		return graphicContext.swapChainManager.isAllocationDirty(context);
 	}
 }

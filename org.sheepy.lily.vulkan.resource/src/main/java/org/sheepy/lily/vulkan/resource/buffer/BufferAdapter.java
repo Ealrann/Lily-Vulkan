@@ -12,6 +12,7 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
@@ -33,9 +34,10 @@ public class BufferAdapter extends PipelineResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionContext executionManager)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var logicalDevice = executionManager.logicalDevice;
+		executionManager = (ExecutionContext) context;
+		var logicalDevice = executionManager.getLogicalDevice();
 		var info = new BufferInfo(buffer);
 
 		if (buffer.isGpuBuffer())
@@ -62,7 +64,7 @@ public class BufferAdapter extends PipelineResourceAdapter
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		bufferBackend.free();
 		bufferBackend = null;

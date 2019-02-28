@@ -9,23 +9,25 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocationDescriptorAdapter;
-import org.sheepy.lily.vulkan.common.device.ILogicalDeviceAdapter;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
-public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
-		extends AbstractAllocationDescriptorAdapter implements IAllocableAdapter, IPipelineAdapter<T>
+public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer> extends
+		AbstractAllocationDescriptorAdapter implements IAllocableAdapter, IPipelineAdapter<T>
 {
 	protected long pipelineLayout = -1;
 	protected boolean recordNeeded = false;
@@ -59,15 +61,16 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		pipelineLayout = allocatePipelineLayout(stack);
+		var vkDevice = ((ProcessContext) context).getVkDevice();
+		pipelineLayout = allocatePipelineLayout(stack, vkDevice);
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice(pipeline);
+		var vkDevice = ((ProcessContext) context).getVkDevice();
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);
 
 		allocationDependencies.clear();
@@ -76,13 +79,13 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		boolean res = false;
 
 		for (IAllocable dependency : allocationDependencies)
 		{
-			if (dependency.isAllocationDirty())
+			if (dependency.isAllocationDirty(context))
 			{
 				res = true;
 				break;
@@ -110,9 +113,8 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		return res;
 	}
 
-	protected long allocatePipelineLayout(MemoryStack stack)
+	protected long allocatePipelineLayout(MemoryStack stack, VkDevice vkDevice)
 	{
-		final var vkDevice = ILogicalDeviceAdapter.adapt(pipeline).getVkDevice(pipeline);
 		descriptorSets = List.copyOf(getDescriptorSets());
 
 		LongBuffer bDescriptorSet = null;

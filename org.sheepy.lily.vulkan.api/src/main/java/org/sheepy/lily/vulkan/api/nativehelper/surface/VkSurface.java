@@ -53,4 +53,9 @@ public class VkSurface
 			destroy();
 		}
 	}
+
+	public boolean isDeprecated()
+	{
+		return detroyRequired;
+	}
 }

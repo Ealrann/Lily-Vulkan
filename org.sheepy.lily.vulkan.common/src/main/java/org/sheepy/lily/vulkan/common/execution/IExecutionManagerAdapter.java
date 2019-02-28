@@ -4,6 +4,7 @@ import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 
+@Deprecated
 public interface IExecutionManagerAdapter extends IVulkanAdapter
 {
 	ExecutionContext getExecutionContext();

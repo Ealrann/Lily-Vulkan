@@ -10,25 +10,24 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 
-public class DescriptorPool extends LogicalDeviceContext implements IAllocable
+public class DescriptorPool implements IAllocable
 {
 	private List<IVkDescriptorSet> descriptorSets = null;
-
 	private long id;
 
-	public DescriptorPool(LogicalDevice logicalDevice, List<IVkDescriptorSet> descriptorSets)
+	public DescriptorPool(List<IVkDescriptorSet> descriptorSets)
 	{
-		super(logicalDevice);
 		this.descriptorSets = List.copyOf(descriptorSets);
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
+		var vkDevice = ((ExecutionContext) context).getVkDevice();
 		int poolSize = 0;
 		for (final IVkDescriptorSet descriptorSet : descriptorSets)
 		{
@@ -52,7 +51,6 @@ public class DescriptorPool extends LogicalDeviceContext implements IAllocable
 			poolInfo.pPoolSizes(poolSizes);
 			poolInfo.maxSets(descriptorSets.size());
 
-			final var vkDevice = getVkDevice();
 			final long[] aDescriptor = new long[1];
 			Logger.check("Failed to create descriptor pool",
 					() -> vkCreateDescriptorPool(vkDevice, poolInfo, null, aDescriptor));
@@ -61,26 +59,28 @@ public class DescriptorPool extends LogicalDeviceContext implements IAllocable
 
 		for (var descriptorSet : descriptorSets)
 		{
-			descriptorSet.allocate(stack, this);
+			descriptorSet.allocate(stack, context, this);
 		}
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
+		var vkDevice = ((ExecutionContext) context).getVkDevice();
+
 		for (var descriptorSet : descriptorSets)
 		{
 			descriptorSet.free();
 		}
 		descriptorSets = null;
 
-		vkDestroyDescriptorPool(getVkDevice(), id, null);
+		vkDestroyDescriptorPool(vkDevice, id, null);
 		id = -1;
 	}
 

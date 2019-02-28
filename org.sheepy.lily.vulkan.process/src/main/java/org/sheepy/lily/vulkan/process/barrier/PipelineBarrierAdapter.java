@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocableAdapter;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
@@ -20,7 +21,7 @@ public class PipelineBarrierAdapter extends AbstractAllocableAdapter
 	private IBarrierExecutor executor;
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		var pipelineBarrier = (PipelineBarrier) target;
 		var barrier = pipelineBarrier.getBarrier();
@@ -45,7 +46,7 @@ public class PipelineBarrierAdapter extends AbstractAllocableAdapter
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		executor.free();
 	}
@@ -63,7 +64,7 @@ public class PipelineBarrierAdapter extends AbstractAllocableAdapter
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}

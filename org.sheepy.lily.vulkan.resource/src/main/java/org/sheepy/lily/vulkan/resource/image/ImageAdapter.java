@@ -13,6 +13,7 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
@@ -32,7 +33,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 	private VkImageView imageView;
 
 	private IImageLoader loader = null;
-	private ExecutionContext executionManager;
+	private ExecutionContext executionContext;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -47,10 +48,10 @@ public class ImageAdapter extends PipelineResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionContext executionManager)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		this.executionManager = executionManager;
-		var logicalDevice = executionManager.logicalDevice;
+		this.executionContext = (ExecutionContext) context;
+		var logicalDevice = executionContext.getLogicalDevice();
 		var info = new ImageInfo(image);
 
 		imageBackend = new VkImage(logicalDevice, info);
@@ -61,7 +62,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 			initialTransition();
 		}
 
-		imageView = new VkImageView(executionManager.logicalDevice.getVkDevice());
+		imageView = new VkImageView(logicalDevice.getVkDevice());
 		imageView.allocate(imageBackend.getId(), 1, info.format, VK_IMAGE_ASPECT_COLOR_BIT);
 
 		load();
@@ -69,7 +70,7 @@ public class ImageAdapter extends PipelineResourceAdapter
 
 	private void initialTransition()
 	{
-		SingleTimeCommand stc = new SingleTimeCommand(executionManager)
+		SingleTimeCommand stc = new SingleTimeCommand(executionContext)
 		{
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
@@ -87,12 +88,12 @@ public class ImageAdapter extends PipelineResourceAdapter
 	{
 		if (loader != null)
 		{
-			loader.load(executionManager, imageBackend);
+			loader.load(executionContext, imageBackend);
 		}
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		imageView.free();
 		imageView = null;

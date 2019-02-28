@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.common.allocation.adapter;
 
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 
 public interface IAllocableAdapter extends IAllocable, IAllocationAdapter
 {

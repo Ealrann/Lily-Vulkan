@@ -1,12 +1,13 @@
 package org.sheepy.lily.vulkan.process.compute.process;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.queue.EQueueType;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffers;
@@ -19,26 +20,24 @@ import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 public class ComputeContext extends ProcessContext
 {
 	public final ComputeProcess computeProcess;
-	public final ComputeCommandBuffers commandBuffers;
 	public final ProcessSubmission submission;
 
 	private List<IAllocable> allocationList;
 
-	public ComputeContext(	ExecutionContext executionManager,
+	public ComputeContext(	EQueueType queueType,
+							boolean resetAllowed,
 							DescriptorPool descriptorPool,
 							ComputeProcess computeProcess)
 	{
-		super(executionManager, descriptorPool, computeProcess);
+		super(queueType, resetAllowed, descriptorPool, new ComputeCommandBuffers(), computeProcess);
 		this.computeProcess = computeProcess;
-
-		commandBuffers = new ComputeCommandBuffers(this);
 
 		submission = createSubmission(computeProcess);
 
 		buildAllocationList();
 	}
 
-	private ProcessSubmission createSubmission(ComputeProcess computeProcess)
+	private static ProcessSubmission createSubmission(ComputeProcess computeProcess)
 	{
 		var processAdapter = AbstractProcessAdapter.adapt(computeProcess);
 
@@ -60,7 +59,7 @@ public class ComputeContext extends ProcessContext
 			signals = Collections.emptyList();
 		}
 
-		return new ProcessSubmission(commandBuffers, waitSemaphores, signals);
+		return new ProcessSubmission(waitSemaphores, signals);
 	}
 
 	private static WaitData convertToData(ProcessSemaphore processSemaphore)
@@ -80,7 +79,8 @@ public class ComputeContext extends ProcessContext
 		allocationList = List.copyOf(tmpList);
 	}
 
-	public List<IAllocable> getAllocationList()
+	@Override
+	public Collection<? extends Object> getAllocationChildren()
 	{
 		return allocationList;
 	}

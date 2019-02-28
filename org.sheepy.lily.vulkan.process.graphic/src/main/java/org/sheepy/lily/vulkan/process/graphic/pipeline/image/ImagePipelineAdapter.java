@@ -8,12 +8,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
-import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
-import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
+import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewManager;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
@@ -24,19 +25,21 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 
 	private InitialImagePipelineBarrier[] initialBarriers;
 	private FinalImagePipelineBarrier[] finalBarriers;
-	private SwapChainManager swapChainManager;
+
+	private ImageViewManager imageViewManager;
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		super.allocate(stack);
+		super.allocate(stack, context);
 
-		var context = IGraphicContextAdapter.adapt(target).getContext(target);
-		var extent = context.surfaceManager.getExtent();
+		var graphicContext = (GraphicContext) context;
+		var extent = graphicContext.surfaceManager.getExtent();
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
+		var swapChainManager = graphicContext.swapChainManager;
 
-		swapChainManager = context.swapChainManager;
+		imageViewManager = graphicContext.imageViewManager;
 		allocationDependencies.add(swapChainManager);
 
 		region = VkImageBlit.calloc(1);
@@ -61,29 +64,29 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		region.dstOffsets(1).y(extent.getHeight());
 		region.dstOffsets(1).z(1);
 
-		int size = context.commandBuffers.size();
+		int size = graphicContext.commandBuffers.size();
 		initialBarriers = new InitialImagePipelineBarrier[size];
 		for (int i = 0; i < size; i++)
 		{
-			var view = context.imageViewManager.getImageView(i);
+			var view = imageViewManager.getImageView(i);
 			initialBarriers[i] = new InitialImagePipelineBarrier(pipeline, view);
-			initialBarriers[i].allocate(stack);
+			initialBarriers[i].allocate(stack, context);
 		}
 		finalBarriers = new FinalImagePipelineBarrier[size];
 		for (int i = 0; i < size; i++)
 		{
 			finalBarriers[i] = new FinalImagePipelineBarrier(pipeline);
-			finalBarriers[i].allocate(stack);
+			finalBarriers[i].allocate(stack, context);
 		}
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		for (int i = 0; i < initialBarriers.length; i++)
 		{
-			initialBarriers[i].free();
-			finalBarriers[i].free();
+			initialBarriers[i].free(context);
+			finalBarriers[i].free(context);
 		}
 
 		initialBarriers = null;
@@ -92,17 +95,16 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		region.free();
 		region = null;
 
-		super.free();
+		super.free(context);
 	}
 
 	@Override
 	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
 	{
-		var context = IGraphicContextAdapter.adapt(target).getContext(target);
 		var pipeline = (ImagePipeline) target;
 		var srcImage = pipeline.getImage();
 		var srcImageId = ImageAdapter.adapt(srcImage).getId();
-		var dstImageView = context.imageViewManager.getImageView(commandBuffer.index);
+		var dstImageView = imageViewManager.getImageView(commandBuffer.index);
 		var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 
 		initialBarriers[commandBuffer.index].execute(vkCommandBuffer);

@@ -1,14 +1,12 @@
 package org.sheepy.lily.vulkan.common.execution;
 
-import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 
-public interface IResourceAllocable
+public interface IResourceAllocable extends IAllocableAdapter
 {
-	void allocate(MemoryStack stack, ExecutionContext executionManager);
-
-	void free();
-
-	default boolean isAllocationDirty()
+	@Override
+	default boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}

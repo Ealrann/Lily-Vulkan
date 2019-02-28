@@ -1,16 +1,9 @@
 package org.sheepy.lily.vulkan.common.allocation.allocator.wrapper;
 
-import java.util.Collection;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 
-import org.lwjgl.system.MemoryStack;
-
-public interface IAllocationWrapper
+public interface IAllocationWrapper extends IAllocable
 {
-	void allocate(MemoryStack stack, boolean deep);
-
-	void free(boolean deep);
-
-	public void gatherDirtyAllocables(Collection<IAllocationWrapper> res);
-
-	boolean isAllocable();
+	void freeDirtyElements(IAllocationContext context);
 }

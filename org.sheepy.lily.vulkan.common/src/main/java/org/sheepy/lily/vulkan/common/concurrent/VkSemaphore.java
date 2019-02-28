@@ -7,24 +7,20 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.common.device.ILogicalDeviceContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 
 public class VkSemaphore implements IAllocable
 {
 	private long semaphoreId = 0;
-	private final LogicalDevice logicalDevice;
-
-	public VkSemaphore(LogicalDevice logicalDevice)
-	{
-		this.logicalDevice = logicalDevice;
-	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
+		final var logicalDevice = ((ILogicalDeviceContext) context).getLogicalDevice();
 		VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
 		semaphoreInfo.sType(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO);
 
@@ -62,14 +58,15 @@ public class VkSemaphore implements IAllocable
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
+		final var logicalDevice = ((ILogicalDeviceContext) context).getLogicalDevice();
 		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphoreId, null);
 		semaphoreId = -1;
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}

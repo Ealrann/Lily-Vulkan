@@ -16,7 +16,7 @@ public class BufferAllocator
 															boolean keptMapped,
 															ByteBuffer fillWith)
 	{
-		var logicalDevice = executionManager.logicalDevice;
+		var logicalDevice = executionManager.getLogicalDevice();
 		var res = allocateGPUBuffer(stack, logicalDevice, size, usage, keepStagingBuffer,
 				keptMapped);
 

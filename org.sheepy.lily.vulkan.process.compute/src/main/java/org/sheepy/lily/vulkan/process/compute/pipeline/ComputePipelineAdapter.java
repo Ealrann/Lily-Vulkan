@@ -12,16 +12,16 @@ import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.device.ILogicalDeviceAdapter;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
-import org.sheepy.lily.vulkan.process.compute.process.IComputeContextAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
@@ -32,9 +32,9 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	private int groupCountY;
 	private int groupCountZ;
 
-	private long[] pipelines;
-
 	protected ComputePipeline pipeline;
+
+	private long[] pipelines;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -44,12 +44,12 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		super.allocate(stack);
+		super.allocate(stack, context);
 
-		var context = IComputeContextAdapter.adapt(target).getContext(target);
-		var device = context.getVkDevice();
+		var processContext = (ProcessContext) context;
+		var vkDevice = processContext.getVkDevice();
 		var units = pipeline.getUnits();
 		int size = 0;
 
@@ -92,7 +92,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 		pipelines = new long[size];
 		Logger.check("Failed to create compute pipeline!",
-				() -> vkCreateComputePipelines(device, 0, pipelineCreateInfos, null, pipelines));
+				() -> vkCreateComputePipelines(vkDevice, 0, pipelineCreateInfos, null, pipelines));
 
 		groupCountX = (int) Math.ceil((float) pipeline.getWidth() / pipeline.getWorkgroupSizeX());
 		groupCountY = (int) Math.ceil((float) pipeline.getHeight() / pipeline.getWorkgroupSizeY());
@@ -100,10 +100,10 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		final var vkDevice = ILogicalDeviceAdapter.adapt(target).getVkDevice(target);
-
+		var processContext = (ProcessContext) context;
+		var vkDevice = processContext.getVkDevice();
 		for (long id : pipelines)
 		{
 			vkDestroyPipeline(vkDevice, id, null);
@@ -111,7 +111,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 		pipelines = null;
 
-		super.free();
+		super.free(context);
 	}
 
 	public long getPipelineId(int index)

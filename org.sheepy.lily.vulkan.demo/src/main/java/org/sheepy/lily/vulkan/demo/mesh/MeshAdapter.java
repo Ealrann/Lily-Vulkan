@@ -3,9 +3,10 @@ package org.sheepy.lily.vulkan.demo.mesh;
 import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
 import org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.resource.ResourceAdapter;
 import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
 
@@ -16,15 +17,16 @@ public class MeshAdapter extends ResourceAdapter
 	private IndexBuffer<?> indexBuffer;
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionContext executionManager)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		indexBuffer = meshBuilder.build(executionManager);
+		var graphicContext = (GraphicContext) context;
+		indexBuffer = meshBuilder.build(graphicContext);
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		indexBuffer.free();
+		indexBuffer.free(context);
 	}
 
 	public IndexBuffer<?> getIndexBuffer()
@@ -33,7 +35,7 @@ public class MeshAdapter extends ResourceAdapter
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}

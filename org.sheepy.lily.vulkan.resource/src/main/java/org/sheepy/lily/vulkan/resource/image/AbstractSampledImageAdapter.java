@@ -8,6 +8,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.resource.PipelineResourceAdapter;
@@ -32,14 +33,15 @@ public abstract class AbstractSampledImageAdapter extends PipelineResourceAdapte
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionContext executionManager)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var logicalDevice = executionManager.getLogicalDevice();
+		final var executionContext = (ExecutionContext) context;
+		final var logicalDevice = executionContext.getLogicalDevice();
 
 		ByteBuffer allocDataBuffer = allocDataBuffer(stack);
 
 		vkTexture.allocate(stack, logicalDevice);
-		vkTexture.loadImage(stack, executionManager, allocDataBuffer);
+		vkTexture.loadImage(stack, executionContext, allocDataBuffer);
 
 		MemoryUtil.memFree(allocDataBuffer);
 	}
@@ -60,7 +62,7 @@ public abstract class AbstractSampledImageAdapter extends PipelineResourceAdapte
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		vkTexture.free();
 	}

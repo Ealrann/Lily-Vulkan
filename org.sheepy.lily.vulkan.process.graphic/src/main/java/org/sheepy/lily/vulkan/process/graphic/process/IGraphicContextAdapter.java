@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.process.process.IContextAdapter;
 
+@Deprecated
 public interface IGraphicContextAdapter extends IContextAdapter<GraphicContext>
 {
 	@Override

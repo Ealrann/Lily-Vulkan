@@ -20,12 +20,11 @@ import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.lily.core.api.adapter.IAutoAdapter;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.core.api.adapter.IStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
@@ -33,27 +32,22 @@ import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationAdapter;
-import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.lily.vulkan.common.concurrent.VkFence;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.common.device.judge.PhysicalDeviceSelector;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
-import org.sheepy.lily.vulkan.common.resource.IResourceAllocableAdapter;
-import org.sheepy.lily.vulkan.common.resource.ResourceAllocator;
 import org.sheepy.lily.vulkan.common.util.LayerFinder;
 import org.sheepy.lily.vulkan.common.util.VulkanUtils;
-import org.sheepy.lily.vulkan.model.IProcess;
-import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-public class VulkanEngineAdapter extends AbstractAllocationDescriptorAdapter
-		implements IStatefullAdapter, IVulkanEngineAdapter, IAutoAdapter, IExecutionManagerAdapter
+public class VulkanEngineAdapter extends AbstractStatefullAdapter
+		implements IVulkanEngineAdapter, IAutoAdapter, IExecutionManagerAdapter
 {
 	private static final String[] LAYERS_TO_ENABLE = {
 			"VK_LAYER_LUNARG_standard_validation",
@@ -74,13 +68,15 @@ public class VulkanEngineAdapter extends AbstractAllocationDescriptorAdapter
 	protected VkInstance vkInstance;
 	protected PhysicalDevice physicalDevice;
 	protected LogicalDevice logicalDevice = null;
+	protected LogicalDeviceContext logicalDeviceContext = null;
 	protected TreeAllocator allocator;
+	private VulkanEngineAllocationRoot allocationRoot;
+	private boolean allocated = false;
 
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames = null;
 	private VulkanInputManager inputManager;
 	private ExecutionContext executionContext = null;
-	private boolean allocated = false;
 
 	protected Application application;
 	protected VulkanEngine engine;
@@ -139,7 +135,7 @@ public class VulkanEngineAdapter extends AbstractAllocationDescriptorAdapter
 		application = (Application) engine.eContainer();
 		application.eAdapters().add(applicationAdapter);
 		debug = application.isDebug();
-		allocator = new TreeAllocator(target);
+		executionContext = new ExecutionContext(EQueueType.Graphic, false);
 
 		window = new Window(application.getSize(), application.getTitle(),
 				application.isResizeable(), application.isFullscreen());
@@ -186,7 +182,6 @@ public class VulkanEngineAdapter extends AbstractAllocationDescriptorAdapter
 			createLogicalDevice(stack);
 			inputManager.load();
 			window.addListener(resizeListener);
-			executionContext = new ExecutionContext(logicalDevice, EQueueType.Graphic, false);
 			allocate(stack);
 		}
 	}
@@ -227,45 +222,33 @@ public class VulkanEngineAdapter extends AbstractAllocationDescriptorAdapter
 
 	private void allocate(MemoryStack stack)
 	{
-		gatherAllocationList();
-		allocator.allocate(stack);
+		allocationRoot = new VulkanEngineAllocationRoot(executionContext, gatherAllocationList());
+		allocator = new TreeAllocator(allocationRoot);
+		allocator.allocate(stack, logicalDeviceContext);
 		allocated = true;
 	}
 
-	private void gatherAllocationList()
+	private List<Object> gatherAllocationList()
 	{
-		allocationList.clear();
+		List<Object> allocationList = new ArrayList<>();
 		var resourcePkg = engine.getResourcePkg();
-		allocationList.add(executionContext);
 		if (resourcePkg != null)
 		{
-			for (IResource resource : resourcePkg.getResources())
-			{
-				ResourceAllocator allocator = new ResourceAllocator(executionContext,
-						IResourceAllocableAdapter.adapt(resource));
-				allocationList.add(allocator);
-			}
+			allocationList.addAll(resourcePkg.getResources());
 		}
-		for (IProcess process : engine.getProcesses())
-		{
-			var adapter = IProcessAdapter.adapt(process);
-			if (adapter instanceof IAllocationAdapter)
-			{
-				allocationList.add(adapter);
-			}
-		}
+		allocationList.addAll(engine.getProcesses());
+		return allocationList;
 	}
 
 	private void free()
 	{
 		executionContext.getQueue().waitIdle();
-		allocator.free();
+		allocator.free(logicalDeviceContext);
 
 		for (VkFence fence : fences)
 		{
 			fence.free();
 		}
-		allocationList.clear();
 		allocated = false;
 	}
 
@@ -322,6 +305,7 @@ public class VulkanEngineAdapter extends AbstractAllocationDescriptorAdapter
 	{
 		logicalDevice = LogicalDevice.alloc(stack, physicalDevice, window, REQUIRED_EXTENSIONS,
 				ppEnabledLayerNames, true);
+		logicalDeviceContext = new LogicalDeviceContext(logicalDevice);
 	}
 
 	private void cleanup()

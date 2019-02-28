@@ -9,6 +9,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -21,9 +22,9 @@ public class ShaderAdapter extends ResourceAdapter
 	private ShaderBackend shaderBackend;
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionContext executionManager)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var vkDevice = executionManager.logicalDevice.getVkDevice();
+		var vkDevice = ((ExecutionContext) context).getVkDevice();
 		var shader = (Shader) target;
 		var resource = shader.getFile();
 
@@ -47,7 +48,7 @@ public class ShaderAdapter extends ResourceAdapter
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		shaderBackend.free();
 		shaderBackend = null;

@@ -13,7 +13,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
@@ -55,7 +55,7 @@ public class NuklearVertexBufferAdapter extends ResourceAdapter
 	private VkMappedMemoryRange rangeIndex;
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionContext executionManager)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		nkNullTexture.texture().ptr(nullTexture.getSamplerId());
 		nkNullTexture.uv().set(0.5f, 0.5f);
@@ -63,9 +63,9 @@ public class NuklearVertexBufferAdapter extends ResourceAdapter
 		vbuf = NkBuffer.calloc();
 		ebuf = NkBuffer.calloc();
 
-		indexBuffer = new IndexBuffer<GuiVertex>(executionManager, VERTEX_DESCRIPTOR,
-				VERTEX_BUFFER_SIZE, INDEX_BUFFER_SIZE, true);
-		indexBuffer.allocate(stack);
+		indexBuffer = new IndexBuffer<GuiVertex>(VERTEX_DESCRIPTOR, VERTEX_BUFFER_SIZE,
+				INDEX_BUFFER_SIZE, true);
+		indexBuffer.allocate(stack, context);
 
 		vertexMemoryMap = indexBuffer.mapVertexMemory();
 		indexMemoryMap = indexBuffer.mapIndexMemory();
@@ -90,7 +90,7 @@ public class NuklearVertexBufferAdapter extends ResourceAdapter
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		rangeIndex.free();
 		rangeVertex.free();
@@ -100,7 +100,7 @@ public class NuklearVertexBufferAdapter extends ResourceAdapter
 		indexBuffer.unmapVertexMemory();
 		indexBuffer.unmapIndexMemory();
 
-		indexBuffer.free();
+		indexBuffer.free(context);
 		indexBuffer = null;
 
 		vbuf.free();
@@ -136,7 +136,7 @@ public class NuklearVertexBufferAdapter extends ResourceAdapter
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}

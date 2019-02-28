@@ -10,9 +10,12 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
+import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.Logger;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
@@ -21,19 +24,18 @@ public class VkDescriptorSet implements IVkDescriptorSet
 {
 	private long descriptorSetId;
 	private long layoutId;
-	private DescriptorPool pool;
 	private final List<IVkDescriptor> descriptors;
+	private VkDevice device;
 
 	public VkDescriptorSet(List<IVkDescriptor> descriptors)
 	{
 		this.descriptors = List.copyOf(descriptors);
 	}
-	
+
 	@Override
-	public void allocate(MemoryStack stack, DescriptorPool pool)
+	public void allocate(MemoryStack stack, IAllocationContext context, DescriptorPool pool)
 	{
-		this.pool = pool;
-		var device = pool.getVkDevice();
+		device = ((ExecutionContext) context).getVkDevice();
 		var layoutBindings = createLayoutBinding(stack);
 
 		final var layoutInfo = VkDescriptorSetLayoutCreateInfo.callocStack(stack);
@@ -65,7 +67,6 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	@Override
 	public void free()
 	{
-		var device = pool.getVkDevice();
 		vkDestroyDescriptorSetLayout(device, layoutId, null);
 		layoutId = -1;
 	}
@@ -101,7 +102,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		}
 		descriptorWrites.flip();
 
-		vkUpdateDescriptorSets(pool.getVkDevice(), descriptorWrites, null);
+		vkUpdateDescriptorSets(device, descriptorWrites, null);
 	}
 
 	@Override

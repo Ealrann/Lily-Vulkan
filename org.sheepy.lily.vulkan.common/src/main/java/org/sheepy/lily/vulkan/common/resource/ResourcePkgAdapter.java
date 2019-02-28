@@ -14,6 +14,7 @@ import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
+@Deprecated
 public class ResourcePkgAdapter extends AbstractAllocationDescriptorAdapter
 		implements IResourcePkgAdapter, IStatefullAdapter
 {
@@ -28,7 +29,7 @@ public class ResourcePkgAdapter extends AbstractAllocationDescriptorAdapter
 		var executionContext = ExecutionManagerUtils.getExecutionContext(resourcePkg);
 		for (IResourceAllocable resource : gatherResources())
 		{
-			allocationList.add(new ResourceAllocator(executionContext, resource));
+//			allocationList.add(new ResourceAllocator(executionContext, resource));
 		}
 	}
 
@@ -45,7 +46,7 @@ public class ResourcePkgAdapter extends AbstractAllocationDescriptorAdapter
 
 	private static void gatherResource(List<IResourceAllocable> resources, IResource resource)
 	{
-		var adapter = IResourceAllocableAdapter.adapt(resource);
+		var adapter = IResourceAdapter.adapt(resource);
 		if (adapter != null)
 		{
 			resources.add(adapter);

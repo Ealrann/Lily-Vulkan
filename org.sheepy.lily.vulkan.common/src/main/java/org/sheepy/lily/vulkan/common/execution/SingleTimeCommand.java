@@ -26,9 +26,9 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		this(executionManager, commandBufferId, null);
 	}
 
-	public SingleTimeCommand(ExecutionContext executionManager)
+	public SingleTimeCommand(ExecutionContext executionContext)
 	{
-		this(executionManager, allocCommandBufferId(executionManager), null);
+		this(executionContext, allocCommandBufferId(executionContext), null);
 	}
 
 	public SingleTimeCommand(	ExecutionContext executionManager,
@@ -37,13 +37,13 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		this(executionManager, allocCommandBufferId(executionManager), semaphoreToSignal);
 	}
 
-	public SingleTimeCommand(	ExecutionContext executionManager,
+	public SingleTimeCommand(	ExecutionContext executionContext,
 								long commandBufferId,
 								Collection<VkSemaphore> semaphoreToSignal)
 	{
-		super(executionManager.logicalDevice, commandBufferId);
+		super(executionContext.getLogicalDevice(), commandBufferId);
 
-		this.executionContext = executionManager;
+		this.executionContext = executionContext;
 		if (semaphoreToSignal != null && semaphoreToSignal.isEmpty() == false)
 		{
 			this.semaphoreToSignal = new ArrayList<>(semaphoreToSignal);

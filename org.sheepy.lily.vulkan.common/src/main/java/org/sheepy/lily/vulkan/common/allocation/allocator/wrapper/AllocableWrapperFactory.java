@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.common.allocation.allocator.wrapper;
 
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.lily.vulkan.common.allocation.IAllocationObject;
-import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationDescriptorAdapter;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationAdapter;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationObject;
 
 public class AllocableWrapperFactory
 {
@@ -12,10 +12,6 @@ public class AllocableWrapperFactory
 		{
 			return wrap((EObject) object);
 		}
-		else if (object instanceof IAllocationDescriptorAdapter)
-		{
-			return wrap(((IAllocationDescriptorAdapter) object).getTarget());
-		}
 		else if (object instanceof IAllocationObject)
 		{
 			return wrap((IAllocationObject) object);
@@ -24,16 +20,23 @@ public class AllocableWrapperFactory
 		return null;
 	}
 
-	public static AllocableWrapper wrap(IAllocationObject object)
+	public static AllocationWrapper wrap(IAllocationObject object)
 	{
-		AllocableWrapper res = new AllocableWrapper();
-		res.set(object);
+		AllocationWrapper res = new AllocationWrapper(object);
 		return res;
 	}
 
-	public static AllocationManagerAdapter wrap(EObject object)
+	public static AllocationWrapper wrap(EObject object)
 	{
-		var res = new AllocationManagerAdapter();
+		IAllocationAdapter adapter = IAllocationAdapter.adapt(object);
+
+		if (adapter == null)
+		{
+			throw new AssertionError(String.format("[%s] cannot be adapted to %s.",
+					object.eClass().getName(), IAllocationAdapter.class.getSimpleName()));
+		}
+
+		var res = new AllocationWrapper(adapter);
 		object.eAdapters().add(res);
 		return res;
 	}

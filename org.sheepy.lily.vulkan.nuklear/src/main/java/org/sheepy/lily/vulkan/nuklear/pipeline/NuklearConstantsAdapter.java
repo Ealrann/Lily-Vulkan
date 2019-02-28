@@ -8,13 +8,13 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearPackage;
-import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 
-public class NuklearConstantsAdapter extends AbstractConstantsAdapter
-		implements IAllocableAdapter
+public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements IAllocableAdapter
 {
 	private final int SIZE = 16 * 4;
 	private ByteBuffer buffer;
@@ -31,16 +31,16 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter
 	};
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var context = IGraphicContextAdapter.adapt(target).getContext(target);
-		logicalDevice = context.logicalDevice;
+		var graphicContext = (GraphicContext) context;
+		logicalDevice = graphicContext.getLogicalDevice();
 		buffer = MemoryUtil.memAlloc(SIZE);
 		logicalDevice.window.addListener(windowListener);
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		MemoryUtil.memFree(buffer);
 		logicalDevice.window.removeListener(windowListener);
@@ -53,7 +53,7 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}

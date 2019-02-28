@@ -12,7 +12,7 @@ public abstract class AbstractAllocationDescriptorAdapter extends AbstractStatef
 	protected List<Object> allocationList = new ArrayList<>();
 
 	@Override
-	public List<Object> getAllocationList()
+	public List<Object> getAllocationChildren()
 	{
 		return allocationList;
 	}

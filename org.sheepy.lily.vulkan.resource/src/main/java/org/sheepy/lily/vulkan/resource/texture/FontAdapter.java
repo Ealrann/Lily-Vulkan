@@ -15,7 +15,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.resource.Font;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
@@ -34,7 +34,7 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	private ByteBuffer bufferedRessource;
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionContext executionManager)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		final var font = (Font) target;
 
@@ -42,13 +42,13 @@ public class FontAdapter extends AbstractSampledImageAdapter
 		final var fileAdapter = FileResourceAdapter.adapt(file);
 		bufferedRessource = fileAdapter.toByteBuffer(file);
 
-		super.allocate(stack, executionManager);
+		super.allocate(stack, context);
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		super.free();
+		super.free(context);
 
 		fontInfo.free();
 		cdata.free();

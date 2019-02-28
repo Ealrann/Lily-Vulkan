@@ -8,33 +8,33 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.process.execution.AbstractCommandBuffers;
 
 public class ProcessSubmission implements IAllocable
 {
-	protected final AbstractCommandBuffers<?> commandBuffers;
+	protected AbstractCommandBuffers<?> commandBuffers;
 	private final Collection<VkSemaphore> signalEmitters;
 	private final Deque<WaitData> waitSemaphores = new ArrayDeque<>();
 	private final Deque<Long> signalSemaphores = new ArrayDeque<>();
 
 	protected List<SubmissionInfo> submitInfos = new ArrayList<>();
 
-	public ProcessSubmission(	AbstractCommandBuffers<?> commandBuffers,
-								Collection<WaitData> waitForSemaphores,
+	public ProcessSubmission(	Collection<WaitData> waitForSemaphores,
 								Collection<VkSemaphore> signalEmitters)
 	{
-		this.commandBuffers = commandBuffers;
 		this.signalEmitters = signalEmitters;
 
 		waitSemaphores.addAll(waitForSemaphores);
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
+		this.commandBuffers = ((ProcessContext) context).commandBuffers;
 		fillSemaphoreDeque(signalEmitters, signalSemaphores);
 
 		for (int i = 0; i < commandBuffers.size(); i++)
@@ -72,7 +72,7 @@ public class ProcessSubmission implements IAllocable
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		for (final SubmissionInfo info : submitInfos)
 		{
@@ -85,8 +85,8 @@ public class ProcessSubmission implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		return commandBuffers.isAllocationDirty();
+		return commandBuffers.isAllocationDirty(context);
 	}
 }

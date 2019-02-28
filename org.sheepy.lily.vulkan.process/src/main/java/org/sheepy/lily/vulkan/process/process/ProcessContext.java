@@ -1,25 +1,35 @@
 package org.sheepy.lily.vulkan.process.process;
 
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
+import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.process.execution.AbstractCommandBuffers;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 
-public class ProcessContext extends LogicalDeviceContext
+public abstract class ProcessContext extends ExecutionContext
 {
-	public final ExecutionContext executionManager;
 	public final DescriptorPool descriptorPool;
+	public final AbstractCommandBuffers<?> commandBuffers;
 	public final Application application;
-	
-	
-	public ProcessContext(ExecutionContext executionManager, DescriptorPool descriptorPool, AbstractProcess process)
-	{
-		super(executionManager.logicalDevice);
+	public final AbstractProcess process;
 
-		this.executionManager = executionManager;
+	public ProcessContext(	EQueueType queueType,
+							boolean resetAllowed,
+							DescriptorPool descriptorPool,
+							AbstractCommandBuffers<?> commandBuffers,
+							AbstractProcess process)
+	{
+		super(queueType, resetAllowed);
+
 		this.descriptorPool = descriptorPool;
+		this.commandBuffers = commandBuffers;
+		this.process = process;
 		this.application = (Application) EcoreUtil.getRootContainer(process);
 	}
+
+	public  abstract Collection<? extends Object> getAllocationChildren();
 }

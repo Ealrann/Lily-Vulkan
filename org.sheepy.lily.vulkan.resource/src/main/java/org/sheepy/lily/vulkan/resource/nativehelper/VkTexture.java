@@ -68,7 +68,7 @@ public class VkTexture implements IVkDescriptor
 		sampler.load();
 	}
 
-	public void loadImage(MemoryStack stack, ExecutionContext executionManager, ByteBuffer data)
+	public void loadImage(MemoryStack stack, ExecutionContext executionContext, ByteBuffer data)
 	{
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 
@@ -77,7 +77,7 @@ public class VkTexture implements IVkDescriptor
 		final CPUBufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice,
 				size, stagingUsage, false, data);
 
-		final SingleTimeCommand stc = new SingleTimeCommand(executionManager)
+		final SingleTimeCommand stc = new SingleTimeCommand(executionContext)
 		{
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)

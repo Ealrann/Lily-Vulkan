@@ -18,7 +18,7 @@ public class RenderCommandBuffer extends GraphicCommandBuffer
 								long commandBufferId,
 								long framebufferId)
 	{
-		super(context.logicalDevice, index, commandBufferId);
+		super(context.getLogicalDevice(), index, commandBufferId);
 		this.framebufferId = framebufferId;
 		this.extent = context.surfaceManager.getExtent();
 		this.context = context;

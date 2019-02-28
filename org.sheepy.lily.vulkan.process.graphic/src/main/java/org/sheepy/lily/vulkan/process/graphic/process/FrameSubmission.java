@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.process.process.ProcessSubmission;
@@ -22,17 +23,17 @@ public class FrameSubmission extends ProcessSubmission
 							Collection<WaitData> waitForSignals,
 							Collection<VkSemaphore> signals)
 	{
-		super(context.commandBuffers, waitForSignals, signals);
+		super(waitForSignals, signals);
 
 		this.context = context;
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		presentWaitSemaphore = new VkSemaphore(context.logicalDevice);
-		presentWaitSemaphore.allocate(stack);
-		super.allocate(stack);
+		presentWaitSemaphore = new VkSemaphore();
+		presentWaitSemaphore.allocate(stack, context);
+		super.allocate(stack, context);
 	}
 
 	@Override
@@ -55,10 +56,10 @@ public class FrameSubmission extends ProcessSubmission
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		super.free();
-		presentWaitSemaphore.free();
+		super.free(context);
+		presentWaitSemaphore.free(context);
 		presentWaitSemaphore = null;
 	};
 }

@@ -1,13 +1,25 @@
 package org.sheepy.lily.vulkan.common.device;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 
-public class LogicalDeviceContext implements ILogicalDeviceContext
+public class LogicalDeviceContext implements ILogicalDeviceContext, IAllocationContext
 {
-	public final LogicalDevice logicalDevice;
+	private LogicalDevice logicalDevice;
+
+	public LogicalDeviceContext()
+	{
+		this(null);
+	}
 
 	public LogicalDeviceContext(LogicalDevice logicalDevice)
+	{
+		this.logicalDevice = logicalDevice;
+	}
+
+	public void setLogicalDevice(LogicalDevice logicalDevice)
 	{
 		this.logicalDevice = logicalDevice;
 	}
@@ -34,5 +46,19 @@ public class LogicalDeviceContext implements ILogicalDeviceContext
 	public VkDevice getVkDevice()
 	{
 		return logicalDevice.getVkDevice();
+	}
+
+	@Override
+	public void allocate(MemoryStack stack, IAllocationContext context)
+	{}
+
+	@Override
+	public void free(IAllocationContext context)
+	{}
+
+	@Override
+	public boolean isAllocationDirty(IAllocationContext context)
+	{
+		return false;
 	}
 }

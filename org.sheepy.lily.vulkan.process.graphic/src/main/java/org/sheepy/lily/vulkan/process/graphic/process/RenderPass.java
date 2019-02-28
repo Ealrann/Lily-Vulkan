@@ -3,34 +3,30 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.nativehelper.VkRenderPassAllocator;
 
 public class RenderPass implements IAllocable
 {
-	private final GraphicContext context;
-
 	private long renderPass;
 
-	public RenderPass(GraphicContext context)
-	{
-		this.context = context;
-	}
-
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var renderPassInfo = context.graphicProcess.getRenderPassInfo();
-		var format = context.surfaceManager.getColorDomain().getFormat();
+		var graphicContext = (GraphicContext) context;
+		var renderPassInfo = graphicContext.graphicProcess.getRenderPassInfo();
+		var format = graphicContext.surfaceManager.getColorDomain().getFormat();
 
-		var renderPassAllocator = new VkRenderPassAllocator(context.getVkDevice(), format);
+		var renderPassAllocator = new VkRenderPassAllocator(graphicContext.getVkDevice(), format);
 		renderPass = renderPassAllocator.allocate(stack, renderPassInfo);
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		vkDestroyRenderPass(context.getVkDevice(), renderPass, null);
+		var graphicContext = (GraphicContext) context;
+		vkDestroyRenderPass(graphicContext.getVkDevice(), renderPass, null);
 		renderPass = -1;
 	}
 
@@ -40,8 +36,9 @@ public class RenderPass implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		return context.swapChainManager.isAllocationDirty();
+		var graphicContext = (GraphicContext) context;
+		return graphicContext.swapChainManager.isAllocationDirty(context);
 	}
 }

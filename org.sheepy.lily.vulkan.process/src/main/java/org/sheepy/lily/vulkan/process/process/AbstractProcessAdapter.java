@@ -11,18 +11,15 @@ import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.adapter.IStatefullAdapter;
 import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationAdapter;
 import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocationDescriptorAdapter;
-import org.sheepy.lily.vulkan.common.allocation.allocator.AllocationHelper;
+import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContextProvider;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.device.ILogicalDeviceAdapter;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
-import org.sheepy.lily.vulkan.common.resource.IResourceAllocableAdapter;
-import org.sheepy.lily.vulkan.common.resource.ResourceAllocator;
+import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -34,29 +31,27 @@ import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
-		extends AbstractAllocationDescriptorAdapter implements IStatefullAdapter, IProcessAdapter
+		extends AbstractAllocationDescriptorAdapter
+		implements IStatefullAdapter, IProcessAdapter, IAllocationContextProvider
 {
 	private final int bindPoint = getBindPoint();
 
 	protected DescriptorPool descriptorPool;
-	protected LogicalDevice logicalDevice;
-	protected ExecutionContext executionManager;
 
+	protected ProcessContext context = null;
 	private AbstractProcess process = null;
 	private VkSemaphore executionSemaphore = null;
 	private boolean firstRecord = true;
-
-	private AllocationHelper allocationHelper;
+	private TreeAllocator allocator;
 
 	@Override
 	public void setTarget(Notifier target)
 	{
 		super.setTarget(target);
 		process = (AbstractProcess) target;
-		logicalDevice = ILogicalDeviceAdapter.adapt(process).getLogicalDevice(process);
-		executionManager = new ExecutionContext(logicalDevice, getQueueType(), isResetAllowed());
-		descriptorPool = new DescriptorPool(logicalDevice, gatherDescriptorLists());
-		allocationHelper = new AllocationHelper(process);
+		descriptorPool = new DescriptorPool(gatherDescriptorLists());
+		context = createContext();
+		allocator = new TreeAllocator(process);
 
 		gatherAllocationServices();
 		gatherPipelines();
@@ -64,13 +59,13 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		allocationList.add(new IAllocable()
 		{
 			@Override
-			public void allocate(MemoryStack stack)
+			public void allocate(MemoryStack stack, IAllocationContext context)
 			{
 				if (firstRecord
 						&& executionSemaphore != null
 						&& process.isInitializedSignalizedSemaphore())
 				{
-					executionSemaphore.signalSemaphore(executionManager);
+					executionSemaphore.signalSemaphore((ProcessContext) context);
 				}
 
 				recordCommands();
@@ -78,29 +73,32 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 			}
 
 			@Override
-			public void free()
+			public void free(IAllocationContext context)
 			{
 				if (executionSemaphore != null)
 				{
-					executionSemaphore.free();
+					executionSemaphore.free(context);
 				}
 			}
 
 			@Override
-			public boolean isAllocationDirty()
+			public boolean isAllocationDirty(IAllocationContext context)
 			{
 				return false;
 			}
 		});
 	}
 
+	@Override
+	public ProcessContext getAllocationContext()
+	{
+		return context;
+	}
+
 	protected void gatherAllocationServices()
 	{
-		allocationList.add(executionManager);
-		for (IResourceAllocable resource : gatherResources())
-		{
-			allocationList.add(new ResourceAllocator(executionManager, resource));
-		}
+		allocationList.addAll(gatherResources());
+		allocationList.addAll(context.getAllocationChildren());
 		allocationList.add(descriptorPool);
 	}
 
@@ -109,14 +107,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		PipelinePkg pipelinePkg = process.getPipelinePkg();
 		if (pipelinePkg != null)
 		{
-			for (IPipeline pipeline : pipelinePkg.getPipelines())
-			{
-				var adapter = IPipelineAdapter.adapt(pipeline);
-				if (adapter instanceof IAllocationAdapter)
-				{
-					allocationList.add(pipeline);
-				}
-			}
+			allocationList.addAll(pipelinePkg.getPipelines());
 		}
 	}
 
@@ -129,7 +120,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		{
 			for (IResource resource : resourcePkg.getResources())
 			{
-				resources.add(IResourceAllocableAdapter.adapt(resource));
+				resources.add(IResourceAdapter.adapt(resource));
 			}
 		}
 
@@ -164,9 +155,8 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	public void unsetTarget(Notifier oldTarget)
 	{
 		allocationList.clear();
-		executionManager = null;
 		process = null;
-		allocationHelper = null;
+		allocator = null;
 		descriptorPool = null;
 		super.unsetTarget(oldTarget);
 	}
@@ -175,11 +165,12 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	public void prepare()
 	{
 		boolean needRecord = false;
-		if (allocationHelper.isAllocationDirty())
+
+		if (allocator.isAllocationDirty(context))
 		{
 			try (MemoryStack stack = stackPush())
 			{
-				allocationHelper.reloadDirtyElements(stack);
+				allocator.reloadDirtyElements(stack, context);
 			}
 
 			needRecord = true;
@@ -187,7 +178,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 		if (needRecord || isRecordNeeded())
 		{
-			executionManager.getQueue().waitIdle();
+			context.getQueue().waitIdle();
 			recordCommands();
 		}
 	}
@@ -198,8 +189,8 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		{
 			if (process.getDependentProcesses().isEmpty() == false)
 			{
-				executionSemaphore = new VkSemaphore(logicalDevice);
-				executionSemaphore.allocate(null);
+				executionSemaphore = new VkSemaphore();
+				executionSemaphore.allocate(null, context);
 			}
 		}
 
@@ -252,6 +243,8 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	protected abstract void recordCommands();
 
 	protected abstract int getBindPoint();
+
+	protected abstract ProcessContext createContext();
 
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractProcessAdapter<T> adapt(AbstractProcess object)

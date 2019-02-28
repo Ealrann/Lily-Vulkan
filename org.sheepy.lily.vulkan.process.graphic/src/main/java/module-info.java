@@ -1,6 +1,5 @@
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.image.ImagePipelineAdapter;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContextAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAdapter;
 
 /**
@@ -19,5 +18,5 @@ module org.sheepy.lily.vulkan.process.graphic
 
 	opens org.sheepy.lily.vulkan.process.graphic.pipeline.image to org.sheepy.lily.core.api;
 
-	provides IAdapter with ImagePipelineAdapter, GraphicProcessAdapter, GraphicContextAdapter;
+	provides IAdapter with ImagePipelineAdapter, GraphicProcessAdapter;
 }

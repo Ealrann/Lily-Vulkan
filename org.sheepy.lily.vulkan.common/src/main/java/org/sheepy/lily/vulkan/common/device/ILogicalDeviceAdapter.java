@@ -6,6 +6,7 @@ import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 
+@Deprecated
 public interface ILogicalDeviceAdapter extends IVulkanAdapter
 {
 	PhysicalDevice getPhysicalDevice(EObject target);

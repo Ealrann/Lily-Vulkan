@@ -7,20 +7,19 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.lwjgl.vulkan.VkPresentInfoKHR;
-import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.common.resource.image.IDepthImageAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandBuffer>
 {
@@ -34,8 +33,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 
 	private final int[] nextImageArray = new int[1];
 
-	protected GraphicContext context;
-	private VkSemaphore imageAvailableSemaphore;
 	private GraphicProcess process = null;
 
 	@Override
@@ -46,16 +43,9 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	}
 
 	@Override
-	protected void gatherAllocationServices()
+	protected ProcessContext createContext()
 	{
-		super.gatherAllocationServices();
-		imageAvailableSemaphore = new VkSemaphore(executionManager.logicalDevice);
-		context = new GraphicContext(executionManager, descriptorPool, process,
-				imageAvailableSemaphore);
-		
-		
-		allocationList.add(imageAvailableSemaphore);
-		allocationList.addAll(context.getAllocationList());
+		return new GraphicContext(getQueueType(), isResetAllowed(), descriptorPool, process);
 	}
 
 	@Override
@@ -75,8 +65,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public void unsetTarget(Notifier oldTarget)
 	{
-		allocationList.remove(imageAvailableSemaphore);
-		allocationList.removeAll(context.getAllocationList());
 		context = null;
 
 		this.process = null;
@@ -86,7 +74,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public void recordCommands()
 	{
-		context.commandBuffers.recordCommands(context);
+		((GraphicCommandBuffers) context.commandBuffers).recordCommands((GraphicContext) context);
 	}
 
 	@Override
@@ -98,35 +86,39 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public void execute(IFence fence)
 	{
-		final Integer imageIndex = acquireNextImage();
+		var graphicContext = (GraphicContext) context;
+		final Integer imageIndex = acquireNextImage(graphicContext);
 
 		if (imageIndex != null)
 		{
-			submitAndPresentImage(imageIndex, fence);
+			submitAndPresentImage(graphicContext, imageIndex, fence);
 		}
 	}
 
-	public Integer acquireNextImage()
+	public Integer acquireNextImage(GraphicContext context)
 	{
-		long semaphore = imageAvailableSemaphore.getId();
+		long semaphore = context.imageAvailableSemaphore.getId();
 		long swapChain = context.swapChainManager.getSwapChain();
+		var device = context.getVkDevice();
 
-		final int res = vkAcquireNextImageKHR(context.getVkDevice(), swapChain, UINT64_MAX,
-				semaphore, VK_NULL_HANDLE, nextImageArray);
+		int res = vkAcquireNextImageKHR(device, swapChain, UINT64_MAX, semaphore, VK_NULL_HANDLE,
+				nextImageArray);
 
 		if (res == VK_SUCCESS) return nextImageArray[0];
 		else return null;
 	}
 
-	private void submitAndPresentImage(Integer imageIndex, IFence fence)
+	private static void submitAndPresentImage(	GraphicContext context,
+												Integer imageIndex,
+												IFence fence)
 	{
-		var queueManager = executionManager.logicalDevice.queueManager;
+		var queueManager = context.getLogicalDevice().queueManager;
 		var graphicQueue = queueManager.getGraphicQueue().vkQueue;
 		var presentQueue = queueManager.getPresentQueue().vkQueue;
 		var fenceId = fence != null ? fence.getId() : VK_NULL_HANDLE;
-		FrameSubmission submission = context.submission;
-		VkSubmitInfo submitInfo = submission.getSubmitInfo(imageIndex);
-		VkPresentInfoKHR presentInfo = submission.getPresentInfo(imageIndex);
+		var submission = context.submission;
+		var submitInfo = submission.getSubmitInfo(imageIndex);
+		var presentInfo = submission.getPresentInfo(imageIndex);
 
 		Logger.check(vkQueueSubmit(graphicQueue, submitInfo, fenceId), FAILED_SUBMIT_GRAPHIC);
 
@@ -136,7 +128,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public VulkanQueue getQueue()
 	{
-		return context.executionManager.getQueue();
+		return context.getQueue();
 	}
 
 	@Override

@@ -12,14 +12,15 @@ import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
+import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffers;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommandBuffer>
 {
 	private static final String FAILED_SUBMIT_COMPUTE = "Failed to submit compute command buffer";
 
 	private ComputeProcess process = null;
-	protected ComputeContext context;
 
 	@Override
 	public void setTarget(Notifier target)
@@ -29,19 +30,14 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	}
 
 	@Override
-	protected void gatherAllocationServices()
+	protected ProcessContext createContext()
 	{
-		super.gatherAllocationServices();
-		context = new ComputeContext(executionManager, descriptorPool, process);
-		allocationList.addAll(context.getAllocationList());
+		return new ComputeContext(getQueueType(), isResetAllowed(), descriptorPool, process);
 	}
 
 	@Override
 	public void unsetTarget(Notifier oldTarget)
 	{
-		allocationList.removeAll(context.getAllocationList());
-		context = null;
-
 		process = null;
 		super.unsetTarget(oldTarget);
 	}
@@ -49,7 +45,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public void recordCommands()
 	{
-		context.commandBuffers.recordCommands();
+		((ComputeCommandBuffers) context.commandBuffers).recordCommands();
 	}
 
 	@Override
@@ -61,8 +57,9 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public void execute(IFence fence)
 	{
-		var queue = context.executionManager.getQueue().vkQueue;
-		var submission = context.submission;
+		var computeContext = (ComputeContext) context;
+		var queue = context.getQueue().vkQueue;
+		var submission = computeContext.submission;
 		var submitInfo = submission.getSubmitInfo(0);
 		long fenceId = fence != null ? fence.getId() : VK_NULL_HANDLE;
 
@@ -72,7 +69,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public VulkanQueue getQueue()
 	{
-		return context.executionManager.getQueue();
+		return context.getQueue();
 	}
 
 	@Override

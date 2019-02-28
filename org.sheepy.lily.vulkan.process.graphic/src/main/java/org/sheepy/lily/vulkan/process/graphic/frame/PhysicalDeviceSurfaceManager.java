@@ -2,17 +2,16 @@ package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkExtent2D;
-import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.Capabilities;
 import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.ColorDomains;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
-import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.ColorDomain;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
-public class PhysicalDeviceSurfaceManager implements IAllocable, IWindowListener
+public class PhysicalDeviceSurfaceManager implements IAllocable
 {
 	private Capabilities capabilities;
 	private ColorDomains colorDomains;
@@ -21,44 +20,25 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, IWindowListener
 
 	private Extent2D extent;
 
-	private VkSurface nextSurface;
-	private VkSurface currentSurface;
-
-	private boolean dirty = false;
-	private final VkPhysicalDevice physicalDevice;
-	private final GraphicContext context;
-
-	public PhysicalDeviceSurfaceManager(GraphicContext context)
-	{
-		this.context = context;
-		final var logicalDevice = context.logicalDevice;
-		physicalDevice = context.getPhysicalDevice().vkPhysicalDevice;
-
-		loadSurface(logicalDevice.window.getSurface());
-
-		logicalDevice.window.addListener(this);
-	}
-
-	private void loadSurface(VkSurface surface)
-	{
-		this.nextSurface = surface;
-		extent = new Extent2D(surface.width, surface.height);
-	}
+	private VkSurface surface;
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		currentSurface = nextSurface;
-		currentSurface.lock();
-		capabilities = new Capabilities(physicalDevice, currentSurface);
-		colorDomains = new ColorDomains(physicalDevice, currentSurface);
+		final var graphicContext = (GraphicContext) context;
+		final var logicalDevice = graphicContext.getLogicalDevice();
+		final var window = logicalDevice.window;
 
-		requiredColorDomain = loadColorDomain();
+		surface = window.getSurface();
+		surface.lock();
+		extent = new Extent2D(surface.width, surface.height);
+		capabilities = new Capabilities(graphicContext.getVkPhysicalDevice(), surface);
+		colorDomains = new ColorDomains(graphicContext.getVkPhysicalDevice(), surface);
 
-		dirty = false;
+		requiredColorDomain = loadColorDomain(graphicContext);
 	}
 
-	private ColorDomain loadColorDomain()
+	private ColorDomain loadColorDomain(GraphicContext context)
 	{
 		var colorDomain = context.configuration.getColorDomain();
 		if (colorDomains.isColorDomainAvaillable(colorDomain) == false)
@@ -70,11 +50,11 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, IWindowListener
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		capabilities.free();
-		currentSurface.release();
-		currentSurface = null;
+		surface.release();
+		surface = null;
 	}
 
 	public ColorDomain getColorDomain()
@@ -99,20 +79,13 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, IWindowListener
 
 	public VkSurface getSurface()
 	{
-		return currentSurface;
+		return surface;
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		return dirty;
-	}
-
-	@Override
-	public void onWindowResize(VkSurface surface)
-	{
-		loadSurface(surface);
-		dirty = true;
+		return surface.isDeprecated();
 	}
 
 	public class Extent2D

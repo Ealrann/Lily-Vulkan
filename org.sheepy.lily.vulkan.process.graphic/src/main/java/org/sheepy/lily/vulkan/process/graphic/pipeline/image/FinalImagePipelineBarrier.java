@@ -2,7 +2,8 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.image;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
@@ -26,7 +27,7 @@ public class FinalImagePipelineBarrier implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		ImageBarrier barrier = allocateSourceBarrier();
 
@@ -35,7 +36,7 @@ public class FinalImagePipelineBarrier implements IAllocable
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		sourceExecutor.free();
 	}
@@ -66,7 +67,7 @@ public class FinalImagePipelineBarrier implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}

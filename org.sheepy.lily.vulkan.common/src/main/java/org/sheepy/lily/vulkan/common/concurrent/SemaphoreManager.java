@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.common.concurrent;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
 
 public class SemaphoreManager
 {
@@ -11,11 +11,11 @@ public class SemaphoreManager
 	private final List<VkSemaphore> semaphores = new ArrayList<>();
 	private final List<Long> semaphoreIds = new ArrayList<>();
 
-	private final LogicalDevice logicalDevice;
+	private final LogicalDeviceContext context;
 
-	public SemaphoreManager(LogicalDevice logicalDevice)
+	public SemaphoreManager(LogicalDeviceContext context)
 	{
-		this.logicalDevice = logicalDevice;
+		this.context = context;
 	}
 
 	public VkSemaphore newSemaphore()
@@ -24,8 +24,8 @@ public class SemaphoreManager
 		{
 			throw new AssertionError("Object locked, can't create a Semaphore");
 		}
-		VkSemaphore res = new VkSemaphore(logicalDevice);
-		res.allocate(null);
+		VkSemaphore res = new VkSemaphore();
+		res.allocate(null, context);
 		semaphores.add(res);
 		semaphoreIds.add(res.getId());
 		return res;
@@ -35,7 +35,7 @@ public class SemaphoreManager
 	{
 		for (VkSemaphore vkSemaphore : semaphores)
 		{
-			vkSemaphore.free();
+			vkSemaphore.free(context);
 		}
 		semaphores.clear();
 		semaphoreIds.clear();

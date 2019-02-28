@@ -4,39 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.process.execution.AbstractCommandBuffers;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAdapter;
+import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandBuffer>
 {
-	private final GraphicContext context;
-
-	public GraphicCommandBuffers(GraphicContext context)
-	{
-		super(context.getVkDevice(), context.executionManager.commandPool);
-		this.context = context;
-	}
-
 	@Override
-	protected List<RenderCommandBuffer> allocCommandBuffers(MemoryStack stack)
+	protected List<RenderCommandBuffer> allocCommandBuffers(MemoryStack stack,
+															ProcessContext context)
 	{
-		final var framebuffers = context.framebuffers;
+		var graphicContext = (GraphicContext) context;
+		final var framebuffers = graphicContext.framebuffers;
 
 		final long commandPoolId = commandPool.getId();
 
 		// Command Pool Buffers
 		// ------------------
-		final long[] commandBufferIds = allocCommandBuffers(commandPoolId, framebuffers.size());
+		final long[] commandBufferIds = allocCommandBuffers(graphicContext.getVkDevice(),
+				commandPoolId, framebuffers.size());
 
 		final List<RenderCommandBuffer> commandBuffers = new ArrayList<>();
 		for (int i = 0; i < framebuffers.getIDs().size(); i++)
 		{
 			final Long framebufferId = framebuffers.getIDs().get(i);
-			final long commandBufferId = commandBufferIds[i];
+			final long id = commandBufferIds[i];
 
-			commandBuffers.add(new RenderCommandBuffer(context, i, commandBufferId, framebufferId));
+			var commandBuffer = new RenderCommandBuffer(graphicContext, i, id, framebufferId);
+			commandBuffers.add(commandBuffer);
 		}
 
 		return List.copyOf(commandBuffers);
@@ -66,8 +64,9 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		return context.framebuffers.isAllocationDirty();
+		var graphicContext = (GraphicContext) context;
+		return graphicContext.framebuffers.isAllocationDirty(context);
 	}
 }

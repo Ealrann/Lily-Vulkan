@@ -6,7 +6,8 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.lily.vulkan.resource.buffer.BufferGPUFiller;
@@ -14,12 +15,12 @@ import org.sheepy.lily.vulkan.resource.buffer.GPUBufferBackend;
 
 public class IndexBuffer<T extends IVertex> implements IAllocable
 {
-	private final ExecutionContext context;
 	private final IIndexBufferDescriptor<T> vertexDescriptor;
 	private final int vertexBufferSizeInByte;
 	private final int indexBufferSizeInByte;
 	private final boolean isOftenChanged;
 
+	private ExecutionContext context;
 	private GPUBufferBackend vertexBuffer;
 	private GPUBufferBackend indexBuffer;
 
@@ -44,25 +45,23 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 		int vertexBufferSize = vertices.length * vertexDescriptor.sizeOfVertex();
 		int indexBufferSize = indices.length * vertexDescriptor.sizeOfIndex();
 
-		final IndexBuffer<T> res = new IndexBuffer<>(context, vertexDescriptor, vertexBufferSize,
+		final IndexBuffer<T> res = new IndexBuffer<>(vertexDescriptor, vertexBufferSize,
 				indexBufferSize, isOftenChanged);
 
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			res.allocate(stack);
+			res.allocate(stack, context);
 			res.fillBuffer(stack, vertices, indices);
 		}
 
 		return res;
 	}
 
-	public IndexBuffer(	ExecutionContext context,
-						IIndexBufferDescriptor<T> vertexDescriptor,
+	public IndexBuffer(	IIndexBufferDescriptor<T> vertexDescriptor,
 						int vertexBufferSizeInByte,
 						int indexBufferSizeInByte,
 						boolean isOftenChanged)
 	{
-		this.context = context;
 		this.vertexDescriptor = vertexDescriptor;
 		this.vertexBufferSizeInByte = vertexBufferSizeInByte;
 		this.indexBufferSizeInByte = indexBufferSizeInByte;
@@ -70,8 +69,10 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
+		this.context = (ExecutionContext) context;
+
 		allocateIndexBuffer(stack);
 		allocateVertexBuffer(stack);
 
@@ -123,7 +124,7 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		vertexBuffer.free();
 		indexBuffer.free();
@@ -198,7 +199,7 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}

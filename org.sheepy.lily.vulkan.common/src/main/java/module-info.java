@@ -1,7 +1,6 @@
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.vulkan.common.application.LogicalDeviceAdapter;
 import org.sheepy.lily.vulkan.common.engine.VulkanEngineAdapter;
-import org.sheepy.lily.vulkan.common.resource.ResourcePkgAdapter;
 
 module org.sheepy.lily.vulkan.common
 {
@@ -9,11 +8,10 @@ module org.sheepy.lily.vulkan.common
 
 	requires org.sheepy.lily.core.impl;
 
-	exports org.sheepy.lily.vulkan.common.allocation;
 	exports org.sheepy.lily.vulkan.common.allocation.adapter;
 	exports org.sheepy.lily.vulkan.common.allocation.adapter.impl;
 	exports org.sheepy.lily.vulkan.common.allocation.allocator;
-	exports org.sheepy.lily.vulkan.common.allocation.allocator.wrapper;
+	exports org.sheepy.lily.vulkan.common.allocation.common;
 	exports org.sheepy.lily.vulkan.common.concurrent;
 	exports org.sheepy.lily.vulkan.common.device;
 	exports org.sheepy.lily.vulkan.common.device.data;
@@ -29,5 +27,5 @@ module org.sheepy.lily.vulkan.common
 
 	opens org.sheepy.lily.vulkan.common.application to org.sheepy.lily.core.api;
 
-	provides IAdapter with LogicalDeviceAdapter, VulkanEngineAdapter, ResourcePkgAdapter;
+	provides IAdapter with LogicalDeviceAdapter, VulkanEngineAdapter;
 }

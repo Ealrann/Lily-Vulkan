@@ -4,28 +4,27 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
-import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 
 public class CommandPool implements IAllocable
 {
-	private final VkDevice device;
 	private final int queueIndex;
 	private final boolean allowReset;
 
 	private long commandPoolId = -1;
 
-	public CommandPool(VkDevice device, int queueIndex, boolean allowReset)
+	public CommandPool(int queueIndex, boolean allowReset)
 	{
-		this.device = device;
 		this.queueIndex = queueIndex;
 		this.allowReset = allowReset;
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		if (commandPoolId != -1) free();
+		var device = ((ExecutionContext) context).getVkDevice();
+		if (commandPoolId != -1) free(context);
 
 		// Command Pool
 		// ------------------
@@ -41,9 +40,9 @@ public class CommandPool implements IAllocable
 		}
 		commandPoolId = aCommandPool[0];
 	}
-	
+
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
 	}
@@ -54,8 +53,9 @@ public class CommandPool implements IAllocable
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
+		var device = ((ExecutionContext) context).getVkDevice();
 		vkDestroyCommandPool(device, commandPoolId, null);
 		commandPoolId = -1;
 	}

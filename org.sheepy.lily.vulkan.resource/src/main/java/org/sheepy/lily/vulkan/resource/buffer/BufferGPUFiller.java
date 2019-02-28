@@ -48,7 +48,7 @@ public class BufferGPUFiller
 	private void createStagingBuffer(ByteBuffer sourceBuffer, long byteSize)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-		final var logicalDevice = context.logicalDevice;
+		final var logicalDevice = context.getLogicalDevice();
 		stagingBuffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice, byteSize,
 				usage, false, sourceBuffer);
 	}

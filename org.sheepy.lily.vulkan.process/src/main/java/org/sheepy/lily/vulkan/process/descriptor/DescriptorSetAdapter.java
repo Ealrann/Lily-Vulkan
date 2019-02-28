@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
@@ -18,8 +19,7 @@ import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkDescriptorSet;
 
-public class DescriptorSetAdapter extends AbstractStatefullAdapter
-		implements IDescriptorSetAdapter
+public class DescriptorSetAdapter extends AbstractStatefullAdapter implements IDescriptorSetAdapter
 {
 	protected VkDescriptorSet vkDescriptorSet;
 	protected DescriptorSet descriptorSet = null;
@@ -34,10 +34,10 @@ public class DescriptorSetAdapter extends AbstractStatefullAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, DescriptorPool pool)
+	public void allocate(MemoryStack stack, IAllocationContext context, DescriptorPool pool)
 	{
 		vkDescriptorSet = new VkDescriptorSet(getDescriptors());
-		vkDescriptorSet.allocate(stack, pool);
+		vkDescriptorSet.allocate(stack, context, pool);
 	}
 
 	@Override

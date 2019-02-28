@@ -8,6 +8,7 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
 import org.sheepy.lily.core.api.types.SVector2i;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
@@ -33,8 +34,9 @@ public class DepthImageAdapter extends AbstractStatefullAdapter implements IDept
 	private SVector2i size;
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionContext executionContext)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
+		var executionContext = (ExecutionContext) context;
 		depthFormat = findDepthFormat(executionContext.getPhysicalDevice());
 
 		createDepthImage(executionContext.getLogicalDevice());
@@ -109,14 +111,14 @@ public class DepthImageAdapter extends AbstractStatefullAdapter implements IDept
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		depthImageView.free();
 		depthImageBackend.free();
 	}
 
 	@Override
-	public boolean isAllocationDirty()
+	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		var application = ModelUtil.getApplication(target);
 

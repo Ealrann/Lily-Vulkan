@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.common.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.queue.EQueueType;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.process.ProcessSemaphore;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -31,28 +31,28 @@ public class GraphicContext extends ProcessContext
 	public final Framebuffers framebuffers;
 	public final RenderPass renderPass;
 	public final FrameSubmission submission;
-	public final GraphicCommandBuffers commandBuffers;
+	public final VkSemaphore imageAvailableSemaphore;
 
 	private List<IAllocable> allocationList;
 
-	public GraphicContext(	ExecutionContext executionManager,
+	public GraphicContext(	EQueueType queueType,
+							boolean resetAllowed,
 							DescriptorPool descriptorPool,
-							GraphicProcess graphicProcess,
-							VkSemaphore imageAcquireSemaphore)
+							GraphicProcess graphicProcess)
 	{
-		super(executionManager, descriptorPool, graphicProcess);
+		super(queueType, resetAllowed, descriptorPool, new GraphicCommandBuffers(), graphicProcess);
 
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
 
-		surfaceManager = new PhysicalDeviceSurfaceManager(this);
-		swapChainManager = new SwapChainManager(this);
-		framebuffers = new Framebuffers(this);
-		renderPass = new RenderPass(this);
-		imageViewManager = new ImageViewManager(this);
-		commandBuffers = new GraphicCommandBuffers(this);
+		imageAvailableSemaphore = new VkSemaphore();
+		surfaceManager = new PhysicalDeviceSurfaceManager();
+		swapChainManager = new SwapChainManager();
+		framebuffers = new Framebuffers();
+		renderPass = new RenderPass();
+		imageViewManager = new ImageViewManager();
 
-		submission = createSubmission(graphicProcess, imageAcquireSemaphore);
+		submission = createSubmission(graphicProcess, imageAvailableSemaphore);
 
 		buildAllocationList();
 	}
@@ -101,6 +101,7 @@ public class GraphicContext extends ProcessContext
 	{
 		var tmpList = new ArrayList<IAllocable>();
 
+		tmpList.add(imageAvailableSemaphore);
 		tmpList.add(surfaceManager);
 		tmpList.add(swapChainManager);
 		tmpList.add(imageViewManager);
@@ -113,6 +114,12 @@ public class GraphicContext extends ProcessContext
 	}
 
 	public List<IAllocable> getAllocationList()
+	{
+		return allocationList;
+	}
+
+	@Override
+	public List<? extends Object> getAllocationChildren()
 	{
 		return allocationList;
 	}

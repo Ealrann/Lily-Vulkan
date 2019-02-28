@@ -27,6 +27,7 @@ import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IUIView;
 import org.sheepy.lily.core.model.presentation.UIPage;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
@@ -54,7 +55,6 @@ import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager.Extent2D;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.IGraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
-import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
@@ -101,12 +101,12 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		super.allocate(stack);
+		super.allocate(stack, context);
 
-		context = IGraphicContextAdapter.adapt(target).getContext(target);
-		window = context.logicalDevice.window;
+		var graphicContext = (GraphicContext) context;
+		window = graphicContext.getLogicalDevice().window;
 		viewport = VkViewport.calloc(1);
 
 		var application = (Application) EcoreUtil.getRootContainer(nkPipeline);
@@ -127,9 +127,9 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		super.free();
+		super.free(context);
 
 		// Release all Vulkan resources required for rendering imGui
 		viewport.free();

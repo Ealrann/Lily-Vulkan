@@ -5,9 +5,9 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.lily.vulkan.api.util.Logger;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
@@ -22,8 +22,7 @@ import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.MultisampleBuilde
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.RasterizerBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ShaderStageBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
-import org.sheepy.lily.vulkan.process.graphic.process.IGraphicContextAdapter;
-import org.sheepy.lily.vulkan.process.graphic.process.RenderPass;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
@@ -38,25 +37,23 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 	private ColorBlendBuilder colorBlendBuilder;
 	private DynamicStateBuilder dynamicStateBuilder;
 
-	private RenderPass renderPass;
 	private IVertexBufferDescriptor<?> vertexInputState = null;
 
 	protected long pipelineId = -1;
-	private VkDevice device;
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		super.allocate(stack);
+		super.allocate(stack, context);
 
 		createBuilders();
 
-		final var context = IGraphicContextAdapter.adapt(target).getContext(target);
-		final var useDepthBuffer = context.graphicProcess.getDepthImage() != null;
-		device = context.getVkDevice();
-		var surfaceManager = context.surfaceManager;
+		final var graphicContext = (GraphicContext) context;
+		final var useDepthBuffer = graphicContext.graphicProcess.getDepthImage() != null;
+		final var device = graphicContext.getVkDevice();
+		final var surfaceManager = graphicContext.surfaceManager;
+		final var renderPass = graphicContext.renderPass;
 
-		renderPass = context.renderPass;
 		allocationDependencies.add(renderPass);
 
 		vertexInputState = getVertexBufferDescriptor();
@@ -101,7 +98,7 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 		}
 
 		pipelineInfo.layout(pipelineLayout);
-		pipelineInfo.renderPass(context.renderPass.getId());
+		pipelineInfo.renderPass(renderPass.getId());
 		pipelineInfo.subpass(0);
 		pipelineInfo.basePipelineHandle(VK_NULL_HANDLE); // Optional
 		pipelineInfo.basePipelineIndex(-1); // Optional
@@ -135,16 +132,18 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
+		final var graphicContext = (GraphicContext) context;
+		final var device = graphicContext.getVkDevice();
 		vertexInputState.free();
 
-		allocationDependencies.remove(renderPass);
+		allocationDependencies.remove(graphicContext.renderPass);
 
 		vkDestroyPipeline(device, pipelineId, null);
 		pipelineId = -1;
 
-		super.free();
+		super.free(context);
 	}
 
 	protected abstract List<Shader> getShaders();

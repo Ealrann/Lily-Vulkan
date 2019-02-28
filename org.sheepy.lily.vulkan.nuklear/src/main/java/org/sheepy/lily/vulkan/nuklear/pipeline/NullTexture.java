@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.IResourceAllocable;
 import org.sheepy.lily.vulkan.model.enumeration.EFilter;
@@ -32,18 +33,19 @@ public class NullTexture implements IResourceAllocable
 	public final VkTexture texture = new VkTexture(imageInfo, sampler);
 
 	@Override
-	public void allocate(MemoryStack stack, ExecutionContext executionManager)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
+		var executionContext = (ExecutionContext) context;
 		ByteBuffer buffer = MemoryUtil.memAlloc(4);
 		buffer.putInt(0xFFFFFFFF);
 		buffer.flip();
 
-		texture.allocate(stack, executionManager.logicalDevice);
-		texture.loadImage(stack, executionManager, buffer);
+		texture.allocate(stack, executionContext.getLogicalDevice());
+		texture.loadImage(stack, executionContext, buffer);
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
 		texture.free();
 	}
