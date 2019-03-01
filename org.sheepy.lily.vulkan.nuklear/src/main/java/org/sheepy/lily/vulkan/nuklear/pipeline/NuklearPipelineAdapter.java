@@ -6,6 +6,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -96,7 +97,9 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	@Override
 	public List<? extends Object> getResources()
 	{
-		return resources.toList();
+		var res = new ArrayList<Object>(resources.toList());
+		res.add(nkPipeline.getPushConstant());
+		return res;
 	}
 
 	@Override

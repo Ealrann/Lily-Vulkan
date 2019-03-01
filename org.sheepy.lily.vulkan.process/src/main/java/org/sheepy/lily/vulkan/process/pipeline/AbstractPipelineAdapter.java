@@ -143,14 +143,14 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer> e
 		info.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
 		info.pSetLayouts(bDescriptorSet);
 
-		allocPushConstant(stack, info);
+		preparePushConstant(stack, info);
 
 		Logger.check("Failed to create compute pipeline layout",
 				() -> vkCreatePipelineLayout(vkDevice, info, null, aLayout));
 		return aLayout[0];
 	}
 
-	private void allocPushConstant(MemoryStack stack, VkPipelineLayoutCreateInfo info)
+	private void preparePushConstant(MemoryStack stack, VkPipelineLayoutCreateInfo info)
 	{
 		var constants = getConstants();
 		if (constants != null)

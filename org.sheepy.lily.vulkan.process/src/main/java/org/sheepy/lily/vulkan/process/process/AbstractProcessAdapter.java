@@ -87,7 +87,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 			{
 				var adapter = AbstractPipelineAdapter.adapt(pipeline);
 				resources.addAll(adapter.getResources());
-				resources.add(adapter.getConstants());
 			}
 		}
 		return resources;
