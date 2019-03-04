@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.demo.mesh;
 
-import org.sheepy.lily.core.api.types.SVector2i;
+import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.impl.ApplicationImpl;
 import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
@@ -66,7 +66,7 @@ public class MeshModelFactory
 	public MeshModelFactory(MeshConfiguration meshConfiguration)
 	{
 		this.meshConfiguration = meshConfiguration;
-		var size = new SVector2i(meshConfiguration.width, meshConfiguration.height);
+		var size = new Vector2i(meshConfiguration.width, meshConfiguration.height);
 
 		application.setTitle("Vulkan Triangle");
 		application.setSize(size);

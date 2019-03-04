@@ -6,6 +6,7 @@ import java.nio.DoubleBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joml.Vector2f;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.input.event.CharEvent;
@@ -14,7 +15,6 @@ import org.sheepy.lily.core.api.input.event.KeyEvent;
 import org.sheepy.lily.core.api.input.event.MouseButtonEvent;
 import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
 import org.sheepy.lily.core.api.input.event.ScrollEvent;
-import org.sheepy.lily.core.api.types.SVector2f;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.core.model.types.EMouseButton;
@@ -25,7 +25,7 @@ public class VulkanInputManager implements IInputManager
 	private final Application application;
 	private final Window window;
 
-	private final SVector2f cursorPosition = new SVector2f();
+	private final Vector2f cursorPosition = new Vector2f();
 	private final double[] cursorPositionX = new double[1];
 	private final double[] cursorPositionY = new double[1];
 
@@ -47,7 +47,7 @@ public class VulkanInputManager implements IInputManager
 	}
 
 	@Override
-	public SVector2f getMouseLocation()
+	public Vector2f getMouseLocation()
 	{
 		return cursorPosition;
 	}

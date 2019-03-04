@@ -21,7 +21,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.api.types.SVector2i;
+import org.joml.Vector2i;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
 
@@ -156,7 +156,7 @@ public class ViewportItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		SVector2i labelValue = ((Viewport) object).getOffset();
+		Vector2i labelValue = ((Viewport) object).getOffset();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0
 				? getString("_UI_Viewport_type")

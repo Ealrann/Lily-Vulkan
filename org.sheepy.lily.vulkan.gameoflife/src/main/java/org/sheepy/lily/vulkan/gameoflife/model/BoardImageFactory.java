@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.gameoflife.model;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.sheepy.lily.core.api.types.SVector2i;
+import org.joml.Vector2i;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.lily.vulkan.model.enumeration.EFormat;
@@ -19,7 +19,7 @@ public class BoardImageFactory
 {
 	private static final EFormat IMAGE_FORMAT = EFormat.R8G8B8A8_UNORM;
 
-	public static final Image createBoardImage(SVector2i size)
+	public static final Image createBoardImage(Vector2i size)
 	{
 		Image res = new ImageImpl();
 

@@ -4,9 +4,9 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import org.joml.Matrix4f;
+import org.joml.Vector2i;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.common.util.SizeOf;
@@ -66,14 +66,14 @@ public class UniformBufferManager
 		{
 			application = ModelUtil.getApplication(buffer);
 		}
-		SVector2i size = application.getSize();
+		Vector2i size = application.getSize();
 
 		model.identity().rotate(time * -RADIANS_90, AXIS);
 
 		view.identity().lookAt(EYE_LOCATION, CENTER_LOCATION, UP_AXIS);
 
-		final int width = size.getX();
-		final int height = size.getY();
+		final int width = size.x;
+		final int height = size.y;
 
 		proj.identity().perspective(RADIANS_45, (float) width / (float) height, 0.1f, 10f);
 		// inverse the y axis

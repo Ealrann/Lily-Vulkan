@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Random;
 
+import org.joml.Vector2i;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.application.ApplicationLauncher;
-import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
@@ -61,6 +61,6 @@ public class WindowTest
 			}
 		});
 
-		application.setSize(new SVector2i(newWidth, newHeight));
+		application.setSize(new Vector2i(newWidth, newHeight));
 	}
 }

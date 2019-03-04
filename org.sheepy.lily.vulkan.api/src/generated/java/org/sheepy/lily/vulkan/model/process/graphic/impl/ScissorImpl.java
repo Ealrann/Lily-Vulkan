@@ -8,12 +8,9 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.sheepy.lily.core.api.types.SVector2i;
-
+import org.joml.Vector2i;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
-
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
 
@@ -41,8 +38,8 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 * @ordered
 	 */
-	protected static final SVector2i OFFSET_EDEFAULT = (SVector2i) TypesFactory.eINSTANCE
-			.createFromString(TypesPackage.eINSTANCE.getSVector2i(), "0, 0");
+	protected static final Vector2i OFFSET_EDEFAULT = (Vector2i) TypesFactory.eINSTANCE
+			.createFromString(TypesPackage.eINSTANCE.getVector2i(), "0, 0");
 
 	/**
 	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' attribute.
@@ -52,7 +49,7 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 * @ordered
 	 */
-	protected SVector2i offset = OFFSET_EDEFAULT;
+	protected Vector2i offset = OFFSET_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getExtent() <em>Extent</em>}' attribute.
@@ -62,7 +59,7 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 * @ordered
 	 */
-	protected static final SVector2i EXTENT_EDEFAULT = null;
+	protected static final Vector2i EXTENT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getExtent() <em>Extent</em>}' attribute.
@@ -72,7 +69,7 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 * @ordered
 	 */
-	protected SVector2i extent = EXTENT_EDEFAULT;
+	protected Vector2i extent = EXTENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,7 +98,7 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 */
 	@Override
-	public SVector2i getOffset()
+	public Vector2i getOffset()
 	{
 		return offset;
 	}
@@ -112,9 +109,9 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 */
 	@Override
-	public void setOffset(SVector2i newOffset)
+	public void setOffset(Vector2i newOffset)
 	{
-		SVector2i oldOffset = offset;
+		Vector2i oldOffset = offset;
 		offset = newOffset;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				GraphicPackage.SCISSOR__OFFSET, oldOffset, offset));
@@ -126,7 +123,7 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 */
 	@Override
-	public SVector2i getExtent()
+	public Vector2i getExtent()
 	{
 		return extent;
 	}
@@ -137,9 +134,9 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 	 * @generated
 	 */
 	@Override
-	public void setExtent(SVector2i newExtent)
+	public void setExtent(Vector2i newExtent)
 	{
-		SVector2i oldExtent = extent;
+		Vector2i oldExtent = extent;
 		extent = newExtent;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				GraphicPackage.SCISSOR__EXTENT, oldExtent, extent));
@@ -174,10 +171,10 @@ public class ScissorImpl extends MinimalEObjectImpl.Container implements Scissor
 		switch (featureID)
 		{
 		case GraphicPackage.SCISSOR__OFFSET:
-			setOffset((SVector2i) newValue);
+			setOffset((Vector2i) newValue);
 			return;
 		case GraphicPackage.SCISSOR__EXTENT:
-			setExtent((SVector2i) newValue);
+			setExtent((Vector2i) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

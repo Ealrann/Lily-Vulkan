@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.common.test;
 
-import org.sheepy.lily.core.api.types.SVector2i;
+import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
@@ -32,7 +32,7 @@ public class BasicModelFactory
 		final var application = ApplicationFactory.eINSTANCE.createApplication();
 
 		application.setTitle(title);
-		application.setSize(new SVector2i(width, height));
+		application.setSize(new Vector2i(width, height));
 		application.setDebug(false);
 
 		application.getEngines().add(VulkanFactory.eINSTANCE.createVulkanEngine());

@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.gameoflife.compute;
 
-import org.sheepy.lily.core.api.types.SVector2i;
+import org.joml.Vector2i;
 
 public class Board
 {
@@ -51,7 +51,7 @@ public class Board
 		return values;
 	}
 	
-	public static Board createTestBoard(SVector2i size)
+	public static Board createTestBoard(Vector2i size)
 	{
 		Board board = new Board(size.x, size.y);
 

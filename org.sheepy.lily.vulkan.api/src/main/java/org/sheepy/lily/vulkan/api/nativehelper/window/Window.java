@@ -6,10 +6,10 @@ import static org.lwjgl.glfw.GLFWVulkan.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joml.Vector2i;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
-import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.util.Logger;
 
@@ -26,11 +26,11 @@ public class Window
 
 	private VkSurface surface;
 
-	private SVector2i size = null;
+	private Vector2i size = null;
 
-	public Window(SVector2i initialSize, String title, boolean resizeable, boolean fullscreen)
+	public Window(Vector2i initialSize, String title, boolean resizeable, boolean fullscreen)
 	{
-		this.size = new SVector2i(initialSize);
+		this.size = new Vector2i(initialSize);
 		this.title = title;
 		this.resizeable = resizeable;
 		this.fullscreen = fullscreen;
@@ -61,7 +61,7 @@ public class Window
 			@Override
 			public void invoke(long window, int width, int height)
 			{
-				size = new SVector2i(width, height);
+				size = new Vector2i(width, height);
 				createSurface(vkInstance);
 				fireResizeEvent();
 			}

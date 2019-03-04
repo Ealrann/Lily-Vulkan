@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.joml.Vector2i;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkApplicationInfo;
@@ -21,7 +22,6 @@ import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.lily.core.api.adapter.IAutoAdapter;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
@@ -100,7 +100,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			{
 				if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__SIZE)
 				{
-					SVector2i newSize = (SVector2i) notification.getNewValue();
+					Vector2i newSize = (Vector2i) notification.getNewValue();
 					window.setSize(newSize.x, newSize.y);
 				}
 			}
@@ -191,7 +191,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 
 		try
 		{
-			SVector2i newSize = new SVector2i(surface.width, surface.height);
+			Vector2i newSize = new Vector2i(surface.width, surface.height);
 			application.setSize(newSize);
 			logicalDevice.recreateQueues(surface);
 		} catch (Throwable e)

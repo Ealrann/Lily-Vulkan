@@ -1873,10 +1873,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(viewportEClass, Viewport.class, "Viewport", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getViewport_Offset(), theTypesPackage.getSVector2i(), "offset", "0, 0", 0, 1,
+		initEAttribute(getViewport_Offset(), theTypesPackage.getVector2i(), "offset", "0, 0", 0, 1,
 				Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getViewport_Extent(), theTypesPackage.getSVector2i(), "extent", null, 0, 1,
+		initEAttribute(getViewport_Extent(), theTypesPackage.getVector2i(), "extent", null, 0, 1,
 				Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getViewport_MinDepth(), theEcorePackage.getEInt(), "minDepth", "0", 0, 1,
@@ -1888,10 +1888,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(scissorEClass, Scissor.class, "Scissor", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getScissor_Offset(), theTypesPackage.getSVector2i(), "offset", "0, 0", 0, 1,
+		initEAttribute(getScissor_Offset(), theTypesPackage.getVector2i(), "offset", "0, 0", 0, 1,
 				Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getScissor_Extent(), theTypesPackage.getSVector2i(), "extent", null, 0, 1,
+		initEAttribute(getScissor_Extent(), theTypesPackage.getVector2i(), "extent", null, 0, 1,
 				Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

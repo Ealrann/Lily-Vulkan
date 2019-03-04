@@ -5,6 +5,7 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.util.List;
 
+import org.joml.Vector2f;
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkMouse;
 import org.lwjgl.nuklear.NkVec2;
@@ -14,7 +15,6 @@ import org.sheepy.lily.core.api.input.event.KeyEvent;
 import org.sheepy.lily.core.api.input.event.MouseButtonEvent;
 import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
 import org.sheepy.lily.core.api.input.event.ScrollEvent;
-import org.sheepy.lily.core.api.types.SVector2f;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.vulkan.common.input.IInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPipelineAdapter;
@@ -122,10 +122,10 @@ public class NuklearInputCatcher implements IInputCatcher
 	}
 
 	@Override
-	public void onMouseClickEvent(SVector2f location, MouseButtonEvent event)
+	public void onMouseClickEvent(Vector2f location, MouseButtonEvent event)
 	{
-		int x = (int) location.getX();
-		int y = (int) location.getY();
+		int x = (int) location.x;
+		int y = (int) location.y;
 
 		int nkButton = -1;
 		switch (event.button)

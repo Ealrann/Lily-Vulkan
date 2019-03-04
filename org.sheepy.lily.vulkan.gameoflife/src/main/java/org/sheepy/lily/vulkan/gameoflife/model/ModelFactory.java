@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.gameoflife.model;
 
-import org.sheepy.lily.core.api.types.SVector2i;
+import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.impl.ApplicationImpl;
 import org.sheepy.lily.vulkan.gameoflife.compute.Board;
@@ -63,11 +63,11 @@ public class ModelFactory
 	public ComputeProcess computeProcess2;
 	public ResourcePkg sharedResources = new ResourcePkgImpl();
 	private Image boardImage;
-	private final SVector2i size;
+	private final Vector2i size;
 
 	public ModelFactory(int width, int height)
 	{
-		size = new SVector2i(width, height);
+		size = new Vector2i(width, height);
 
 		application.setTitle("Vulkan - Game of Life");
 		application.setSize(size);
@@ -227,8 +227,8 @@ public class ModelFactory
 		res.setDescriptorSet(descriptorSet);
 		res.setStage(ECommandStage.COMPUTE);
 
-		res.setWidth(application.getSize().getX());
-		res.setHeight(application.getSize().getY());
+		res.setWidth(application.getSize().x);
+		res.setHeight(application.getSize().y);
 		res.setDepth(1);
 
 		return res;

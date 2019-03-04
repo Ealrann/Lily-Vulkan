@@ -2,10 +2,10 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
 
+import org.joml.Vector2i;
 import org.lwjgl.vulkan.VkPipelineViewportStateCreateInfo;
 import org.lwjgl.vulkan.VkRect2D;
 import org.lwjgl.vulkan.VkViewport;
-import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
 import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
@@ -55,11 +55,11 @@ public class ViewportStateBuilder
 		viewports = VkViewport.calloc(state.getViewports().size());
 		for (Viewport viewport : state.getViewports())
 		{
-			SVector2i offset = viewport.getOffset();
+			Vector2i offset = viewport.getOffset();
 			viewports.x(offset.x);
 			viewports.y(offset.y);
 
-			SVector2i extent = viewport.getExtent();
+			Vector2i extent = viewport.getExtent();
 			if (extent == null)
 			{
 				viewports.width(swapExtent.getWidth());
@@ -67,8 +67,8 @@ public class ViewportStateBuilder
 			}
 			else
 			{
-				viewports.width(extent.getX());
-				viewports.height(extent.getY());
+				viewports.width(extent.x);
+				viewports.height(extent.y);
 			}
 
 			viewports.minDepth(viewport.getMinDepth());
@@ -81,7 +81,7 @@ public class ViewportStateBuilder
 		scissors = VkRect2D.calloc(state.getScissors().size());
 		for (Scissor scissor : state.getScissors())
 		{
-			SVector2i offset = scissor.getOffset();
+			Vector2i offset = scissor.getOffset();
 			scissors.offset().set(offset.x, offset.y);
 
 			var extent = scissor.getExtent();
@@ -91,7 +91,7 @@ public class ViewportStateBuilder
 			}
 			else
 			{
-				scissors.extent().set(extent.getX(), extent.getY());
+				scissors.extent().set(extent.x, extent.y);
 			}
 
 			scissors.get();

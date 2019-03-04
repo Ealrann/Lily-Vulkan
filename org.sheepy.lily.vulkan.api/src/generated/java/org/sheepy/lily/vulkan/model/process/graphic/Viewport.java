@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.sheepy.lily.core.api.types.SVector2i;
+import org.joml.Vector2i;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,12 +36,12 @@ public interface Viewport extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Offset</em>' attribute.
-	 * @see #setOffset(SVector2i)
+	 * @see #setOffset(Vector2i)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getViewport_Offset()
-	 * @model default="0, 0" unique="false" dataType="org.sheepy.lily.core.model.types.SVector2i"
+	 * @model default="0, 0" unique="false" dataType="org.sheepy.lily.core.model.types.Vector2i"
 	 * @generated
 	 */
-	SVector2i getOffset();
+	Vector2i getOffset();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Viewport#getOffset <em>Offset</em>}' attribute.
@@ -52,7 +51,7 @@ public interface Viewport extends EObject
 	 * @see #getOffset()
 	 * @generated
 	 */
-	void setOffset(SVector2i value);
+	void setOffset(Vector2i value);
 
 	/**
 	 * Returns the value of the '<em><b>Extent</b></em>' attribute.
@@ -63,12 +62,12 @@ public interface Viewport extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extent</em>' attribute.
-	 * @see #setExtent(SVector2i)
+	 * @see #setExtent(Vector2i)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getViewport_Extent()
-	 * @model unique="false" dataType="org.sheepy.lily.core.model.types.SVector2i"
+	 * @model unique="false" dataType="org.sheepy.lily.core.model.types.Vector2i"
 	 * @generated
 	 */
-	SVector2i getExtent();
+	Vector2i getExtent();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.Viewport#getExtent <em>Extent</em>}' attribute.
@@ -78,7 +77,7 @@ public interface Viewport extends EObject
 	 * @see #getExtent()
 	 * @generated
 	 */
-	void setExtent(SVector2i value);
+	void setExtent(Vector2i value);
 
 	/**
 	 * Returns the value of the '<em><b>Min Depth</b></em>' attribute.

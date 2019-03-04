@@ -3,11 +3,11 @@ package org.sheepy.lily.vulkan.resource.image;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.joml.Vector2i;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
-import org.sheepy.lily.core.api.types.SVector2i;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
@@ -31,7 +31,7 @@ public class DepthImageAdapter extends AbstractStatefullAdapter implements IDept
 	private VkImage depthImageBackend;
 	private VkImageView depthImageView;
 	private int depthFormat;
-	private SVector2i size;
+	private Vector2i size;
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
@@ -62,9 +62,9 @@ public class DepthImageAdapter extends AbstractStatefullAdapter implements IDept
 	private void createDepthImage(LogicalDevice logicalDevice)
 	{
 		var vulkanApp = ModelUtil.getApplication(target);
-		size = new SVector2i(vulkanApp.getSize());
-		int width = size.getX();
-		int height = size.getY();
+		size = new Vector2i(vulkanApp.getSize());
+		int width = size.x;
+		int height = size.y;
 		int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 		var depthImageInfo = new ImageInfo(width, height, depthFormat, usage,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
