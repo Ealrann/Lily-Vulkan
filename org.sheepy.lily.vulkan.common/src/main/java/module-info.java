@@ -1,5 +1,4 @@
 import org.sheepy.lily.core.api.adapter.IAdapter;
-import org.sheepy.lily.vulkan.common.application.LogicalDeviceAdapter;
 import org.sheepy.lily.vulkan.common.engine.VulkanEngineAdapter;
 
 module org.sheepy.lily.vulkan.common
@@ -25,7 +24,5 @@ module org.sheepy.lily.vulkan.common
 	exports org.sheepy.lily.vulkan.common.util;
 	exports org.sheepy.lily.vulkan.common.ui;
 
-	opens org.sheepy.lily.vulkan.common.application to org.sheepy.lily.core.api;
-
-	provides IAdapter with LogicalDeviceAdapter, VulkanEngineAdapter;
+	provides IAdapter with VulkanEngineAdapter;
 }

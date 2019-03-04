@@ -38,7 +38,6 @@ import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.common.device.judge.PhysicalDeviceSelector;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.IExecutionManagerAdapter;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.common.util.LayerFinder;
 import org.sheepy.lily.vulkan.common.util.VulkanUtils;
@@ -46,7 +45,7 @@ import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 public class VulkanEngineAdapter extends AbstractStatefullAdapter
-		implements IVulkanEngineAdapter, IAutoAdapter, IExecutionManagerAdapter
+		implements IVulkanEngineAdapter, IAutoAdapter
 {
 	private static final String[] LAYERS_TO_ENABLE = {
 			"VK_LAYER_LUNARG_standard_validation",
@@ -359,12 +358,6 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	public VulkanInputManager getInputManager()
 	{
 		return inputManager;
-	}
-
-	@Override
-	public ExecutionContext getExecutionContext()
-	{
-		return executionContext;
 	}
 
 	@Override
