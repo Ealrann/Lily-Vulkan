@@ -35,7 +35,6 @@ public class UniformBufferManager
 	public final Buffer buffer;
 
 	private ByteBuffer stagingBuffer;
-	private float[] stagingValues;
 	private final BufferAdapter adapter;
 	private Application application;
 
@@ -57,7 +56,6 @@ public class UniformBufferManager
 		res.setOftenUpdated(true);
 
 		stagingBuffer = MemoryUtil.memAlloc(SIZE_OF);
-		stagingValues = new float[48];
 
 		return res;
 	}
@@ -90,10 +88,8 @@ public class UniformBufferManager
 	{
 		final FloatBuffer fb = stagingBuffer.asFloatBuffer();
 
-		model.get(stagingValues, 0);
-		view.get(stagingValues, 16);
-		proj.get(stagingValues, 32);
-
-		fb.put(stagingValues);
+		model.get(fb.position(0));
+		view.get(fb.position(16));
+		proj.get(fb.position(32));
 	}
 }
