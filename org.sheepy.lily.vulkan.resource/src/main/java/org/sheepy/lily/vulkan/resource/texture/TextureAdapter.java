@@ -2,32 +2,29 @@ package org.sheepy.lily.vulkan.resource.texture;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.model.resource.Texture;
 import org.sheepy.lily.vulkan.resource.util.STBImageLoader;
 
+@Statefull
+@Adapter(scope = Texture.class)
 public class TextureAdapter extends AbstractTextureAdapter
 {
+	private final STBImageLoader imageLoader = new STBImageLoader();
+
 	private int width = 0;
 	private int height = 0;
 
-	private final STBImageLoader imageLoader = new STBImageLoader();
-
-	@Override
-	public void setTarget(Notifier target)
+	public TextureAdapter(Texture texture)
 	{
-		final Texture texture = (Texture) target;
-
+		super(texture);
 		imageLoader.allocBuffer(texture.getFile());
 
 		width = imageLoader.getWidth();
 		height = imageLoader.getHeight();
-		
-		super.setTarget(target);
 	}
 
 	@Override
@@ -46,12 +43,6 @@ public class TextureAdapter extends AbstractTextureAdapter
 	protected int getHeight()
 	{
 		return height;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ResourcePackage.Literals.TEXTURE == eClass;
 	}
 
 	public static TextureAdapter adapt(Texture texture)

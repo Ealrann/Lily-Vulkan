@@ -4,22 +4,20 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.Label;
-import org.sheepy.lily.core.model.ui.UiPackage;
 
-public class LabelAdapter extends AbstractStatefullAdapter implements IUIElementAdapter
+@Statefull
+@Adapter(scope = Label.class)
+public class LabelAdapter implements IUIElementAdapter
 {
-	private ByteBuffer textBuffer;
+	private final ByteBuffer textBuffer;
 
-	@Override
-	public void setTarget(Notifier newTarget)
+	public LabelAdapter(Label label)
 	{
-		Label label = (Label) newTarget;
 		textBuffer = MemoryUtil.memASCII(label.getText());
 	}
 
@@ -45,11 +43,5 @@ public class LabelAdapter extends AbstractStatefullAdapter implements IUIElement
 		nk_label(context.nkContext, textBuffer, align);
 
 		return false;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return UiPackage.Literals.LABEL == eClass;
 	}
 }

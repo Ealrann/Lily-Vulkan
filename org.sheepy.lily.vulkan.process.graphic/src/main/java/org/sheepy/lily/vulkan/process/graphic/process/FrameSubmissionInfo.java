@@ -10,15 +10,16 @@ import java.util.Collection;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
-import org.sheepy.lily.vulkan.process.process.WaitData;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
 import org.sheepy.lily.vulkan.process.process.SubmissionInfo;
+import org.sheepy.lily.vulkan.process.process.WaitData;
 
 public class FrameSubmissionInfo extends SubmissionInfo
 {
-	private final LongBuffer bSwapChains;
-	private final IntBuffer bImageIndex;
-	private final VkPresentInfoKHR presentInfo;
+	private LongBuffer bSwapChains;
+	private IntBuffer bImageIndex;
+	private VkPresentInfoKHR presentInfo;
+	private LongBuffer bPresentWaitSemaphores;
 
 	public FrameSubmissionInfo(	int imageIndex,
 								SwapChainManager swapChain,
@@ -33,11 +34,11 @@ public class FrameSubmissionInfo extends SubmissionInfo
 		bSwapChains.put(swapChain.getSwapChain());
 		bSwapChains.flip();
 
-		bImageIndex = MemoryUtil.memAllocInt(1);
+		bImageIndex = memAllocInt(1);
 		bImageIndex.put(imageIndex);
 		bImageIndex.flip();
 
-		LongBuffer bPresentWaitSemaphores = MemoryUtil.memAllocLong(presentWaitSemaphores.size());
+		bPresentWaitSemaphores = MemoryUtil.memAllocLong(presentWaitSemaphores.size());
 		for (Long signalSemaphore : presentWaitSemaphores)
 		{
 			bPresentWaitSemaphores.put(signalSemaphore);
@@ -58,8 +59,14 @@ public class FrameSubmissionInfo extends SubmissionInfo
 	{
 		memFree(bImageIndex);
 		memFree(bSwapChains);
+		memFree(bPresentWaitSemaphores);
+
+		bImageIndex = null;
+		bSwapChains = null;
+		bPresentWaitSemaphores = null;
 
 		presentInfo.free();
+		presentInfo = null;
 
 		super.free();
 	}

@@ -2,12 +2,13 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.eclipse.emf.ecore.EClass;
 import org.joml.Vector2i;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
@@ -19,19 +20,29 @@ import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.resource.DepthImage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
-public class DepthImageAdapter extends AbstractStatefullAdapter implements IDepthImageAdapter
+@Statefull
+@Adapter(scope = DepthImage.class)
+public class DepthImageAdapter implements IDepthImageAdapter
 {
+	private final DepthImage depthImage;
+	private final Application application;
+
 	private VkImage depthImageBackend;
 	private VkImageView depthImageView;
 	private int depthFormat;
 	private Vector2i size;
+
+	public DepthImageAdapter(DepthImage depthImage)
+	{
+		this.depthImage = depthImage;
+		application = ModelUtil.getApplication(depthImage);
+	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
@@ -61,7 +72,7 @@ public class DepthImageAdapter extends AbstractStatefullAdapter implements IDept
 
 	private void createDepthImage(LogicalDevice logicalDevice)
 	{
-		var vulkanApp = ModelUtil.getApplication(target);
+		var vulkanApp = ModelUtil.getApplication(depthImage);
 		size = new Vector2i(vulkanApp.getSize());
 		int width = size.x;
 		int height = size.y;
@@ -120,8 +131,6 @@ public class DepthImageAdapter extends AbstractStatefullAdapter implements IDept
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		var application = ModelUtil.getApplication(target);
-
 		return size.equals(application.getSize()) == false;
 	}
 
@@ -139,12 +148,6 @@ public class DepthImageAdapter extends AbstractStatefullAdapter implements IDept
 	public int getDepthImageFormat()
 	{
 		return depthFormat;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ResourcePackage.Literals.DEPTH_IMAGE == eClass;
 	}
 
 	public static DepthImageAdapter adapt(DepthImage resource)

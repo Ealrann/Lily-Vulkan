@@ -1,13 +1,17 @@
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.core.api.cadence.IMainLoop;
+import org.sheepy.lily.core.api.resource.IModelExtension;
 import org.sheepy.lily.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
 import org.sheepy.lily.vulkan.demo.mesh.MeshPipelineAdapter;
+import org.sheepy.lily.vulkan.demo.model.VulkanDemoModelExtension;
 
-/**
- *
- */
-module org.sheepy.lily.vulkan.demo {
+@Adapters(classifiers = {
+		MeshAdapter.class, MeshPipelineAdapter.class
+})
+
+module org.sheepy.lily.vulkan.demo
+{
 
 	requires transitive org.sheepy.lily.vulkan.process.graphic;
 
@@ -17,8 +21,7 @@ module org.sheepy.lily.vulkan.demo {
 
 	exports org.sheepy.lily.vulkan.demo.model;
 	exports org.sheepy.lily.vulkan.demo.model.impl;
-	
-	provides IMainLoop with MeshMainLoop;
-	provides IAdapter with MeshAdapter, MeshPipelineAdapter;
-}
 
+	provides IModelExtension with VulkanDemoModelExtension;
+	provides IMainLoop with MeshMainLoop;
+}

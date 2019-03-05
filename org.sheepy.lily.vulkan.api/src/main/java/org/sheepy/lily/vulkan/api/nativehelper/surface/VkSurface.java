@@ -6,7 +6,7 @@ import org.lwjgl.vulkan.VkInstance;
 
 public class VkSurface
 {
-	public final long ptr;
+	public long ptr;
 	public final int width;
 	public final int height;
 
@@ -33,6 +33,7 @@ public class VkSurface
 		if (locked != true)
 		{
 			vkDestroySurfaceKHR(vkInstance, ptr, null);
+			ptr = -1;
 		}
 		else
 		{

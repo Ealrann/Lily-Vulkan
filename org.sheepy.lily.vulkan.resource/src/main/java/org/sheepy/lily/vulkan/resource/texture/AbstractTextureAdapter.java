@@ -2,8 +2,9 @@ package org.sheepy.lily.vulkan.resource.texture;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.eclipse.emf.common.notify.Notifier;
+import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.Texture;
@@ -14,16 +15,22 @@ import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
 
 public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 {
+	private final Texture texture;
+
+	private ImageInfo info;
 	private int mipLevels;
 
 	protected VkTexture vkTexture;
 
-	private ImageInfo info;
-	
-	@Override
-	public void setTarget(Notifier target)
+	public AbstractTextureAdapter(Texture texture)
 	{
-		final AbstractTexture texture = (Texture) target;
+		super(texture);
+		this.texture = texture;
+	}
+
+	@Override
+	public void allocate(MemoryStack stack, IAllocationContext context)
+	{
 		Sampler samplerInfos = texture.getSampler();
 		if (samplerInfos == null)
 		{
@@ -33,9 +40,9 @@ public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 
 		int width = getWidth();
 		int height = getHeight();
-		mipLevels = 1;
 		if (texture.isMipmapEnabled())
 			mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
+		else mipLevels = 1;
 		samplerInfos.setMaxLod(Math.max(mipLevels, samplerInfos.getMaxLod()));
 
 		int format = VK_FORMAT_R8G8B8A8_UNORM;
@@ -45,8 +52,8 @@ public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 
 		info = new ImageInfo(width, height, format, usage, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
 				VK_IMAGE_TILING_OPTIMAL, mipLevels);
-		
-		super.setTarget(target);
+
+		super.allocate(stack, context);
 	}
 
 	@Override
@@ -56,6 +63,7 @@ public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 	}
 
 	protected abstract int getWidth();
+
 	protected abstract int getHeight();
 
 	public static int log2nlz(int bits)

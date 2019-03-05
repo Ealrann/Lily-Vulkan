@@ -1,11 +1,12 @@
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.process.barrier.PipelineBarrierAdapter;
 import org.sheepy.lily.vulkan.process.descriptor.DescriptorSetAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.PushConstantAdapter;
 
-/**
- * 
- */
+@Adapters(classifiers = {
+		PipelineBarrierAdapter.class, PushConstantAdapter.class, DescriptorSetAdapter.class
+})
+
 module org.sheepy.lily.vulkan.process
 {
 	requires transitive org.sheepy.lily.vulkan.resource;
@@ -15,6 +16,4 @@ module org.sheepy.lily.vulkan.process
 	exports org.sheepy.lily.vulkan.process.execution;
 	exports org.sheepy.lily.vulkan.process.pipeline;
 	exports org.sheepy.lily.vulkan.process.process;
-
-	provides IAdapter with PipelineBarrierAdapter, PushConstantAdapter, DescriptorSetAdapter;
 }

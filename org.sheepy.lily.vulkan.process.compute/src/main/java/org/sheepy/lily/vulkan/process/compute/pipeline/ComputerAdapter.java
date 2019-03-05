@@ -2,35 +2,25 @@ package org.sheepy.lily.vulkan.process.compute.pipeline;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.core.api.adapter.IStatefullAdapter;
-import org.sheepy.lily.core.api.adapter.impl.AbstractSingletonAdapter;
-import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
-import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 
-public class ComputerAdapter extends AbstractSingletonAdapter
-		implements IPipelineAdapter<ComputeCommandBuffer>, IStatefullAdapter,
-		IPipelineUnitAdapter<ComputeCommandBuffer>
+@Statefull
+@Adapter(scope = Computer.class)
+public class ComputerAdapter implements IPipelineUnitAdapter<ComputeCommandBuffer>
 {
-	private Computer computer = null;
 	private int index;
 
 	@Override
-	public void setTarget(Notifier target)
+	public void record(IPipelineUnit unit, ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
-		computer = (Computer) target;
-	}
-
-	@Override
-	public void record(ComputeCommandBuffer commandBuffer, int bindPoint)
-	{
-		var computePipeline = (ComputePipeline) computer.eContainer();
+		var computePipeline = (ComputePipeline) unit.eContainer();
 		var pipelineAdapter = ComputePipelineAdapter.adapt(computePipeline);
 
 		var groupCountX = pipelineAdapter.getGroupCountX();
@@ -49,24 +39,8 @@ public class ComputerAdapter extends AbstractSingletonAdapter
 		this.index = index;
 	}
 
-	@Override
-	public boolean isRecordNeeded()
-	{
-		return false;
-	}
-
-	@Override
-	public void setRecordNeeded(boolean value)
-	{}
-
 	public static ComputerAdapter adapt(Computer object)
 	{
 		return IServiceAdapterFactory.INSTANCE.adapt(object, ComputerAdapter.class);
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ComputePackage.Literals.COMPUTER == eClass;
 	}
 }

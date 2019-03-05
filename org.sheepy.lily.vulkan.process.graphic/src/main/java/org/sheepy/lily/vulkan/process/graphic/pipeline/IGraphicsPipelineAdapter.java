@@ -10,6 +10,7 @@ import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -40,6 +41,11 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 	private IVertexBufferDescriptor<?> vertexInputState = null;
 
 	protected long pipelineId = -1;
+
+	public IGraphicsPipelineAdapter(IGraphicsPipeline pipeline)
+	{
+		super(pipeline);
+	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)

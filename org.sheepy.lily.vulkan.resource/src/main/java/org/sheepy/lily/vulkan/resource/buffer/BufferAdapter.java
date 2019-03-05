@@ -4,33 +4,33 @@ import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.resource.DescriptorResourceAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 
-public class BufferAdapter extends DescriptorResourceAdapter
+@Statefull
+@Adapter(scope = Buffer.class)
+public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 {
 	protected Buffer buffer;
 	protected IBufferBackend bufferBackend;
 
 	private ExecutionContext executionManager;
 
-	@Override
-	public void setTarget(Notifier target)
+	public BufferAdapter(Buffer buffer)
 	{
-		this.buffer = (Buffer) target;
-		super.setTarget(target);
+		this.buffer = buffer;
 	}
 
 	@Override
@@ -118,7 +118,6 @@ public class BufferAdapter extends DescriptorResourceAdapter
 
 	protected VkDescriptorBufferInfo.Buffer allocBufferInfo(MemoryStack stack)
 	{
-		final var buffer = (Buffer) target;
 		final VkDescriptorBufferInfo.Buffer bufferInfo = VkDescriptorBufferInfo.callocStack(1,
 				stack);
 		bufferInfo.buffer(getId());
@@ -135,12 +134,6 @@ public class BufferAdapter extends DescriptorResourceAdapter
 		poolSize.type(buffer.getDescriptorType().getValue());
 		poolSize.descriptorCount(getDescriptorCount());
 		return poolSize;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ResourcePackage.Literals.BUFFER == eClass;
 	}
 
 	public static BufferAdapter adapt(Buffer buffer)

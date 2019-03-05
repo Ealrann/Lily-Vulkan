@@ -1,25 +1,33 @@
 package org.sheepy.lily.vulkan.resource.semaphore;
 
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
-import org.sheepy.lily.vulkan.resource.ResourceAdapter;
 
-public class SemaphoreAdapter extends ResourceAdapter
+@Statefull
+@Adapter(scope = Semaphore.class)
+public class SemaphoreAdapter implements IResourceAdapter
 {
+	private final Semaphore semaphore;
 	private final VkSemaphore vkSemaphore = new VkSemaphore();
+
+	public SemaphoreAdapter(Semaphore semaphore)
+	{
+		this.semaphore = semaphore;
+	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		vkSemaphore.allocate(stack, context);
 
-		if (((Semaphore) getTarget()).isSignalizedAtInit())
+		if (semaphore.isSignalizedAtInit())
 		{
 			vkSemaphore.signalSemaphore((ExecutionContext) context);
 		}
@@ -34,12 +42,6 @@ public class SemaphoreAdapter extends ResourceAdapter
 	public VkSemaphore getVkSemaphore()
 	{
 		return vkSemaphore;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ResourcePackage.Literals.SEMAPHORE == eClass;
 	}
 
 	public static SemaphoreAdapter adapt(Semaphore semaphore)

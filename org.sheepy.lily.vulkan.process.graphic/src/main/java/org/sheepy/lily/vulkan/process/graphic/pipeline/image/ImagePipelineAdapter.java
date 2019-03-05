@@ -4,12 +4,12 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
@@ -19,14 +19,24 @@ import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
 
+@Statefull
+@Adapter(scope = ImagePipeline.class)
 public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
 {
+	private final ImagePipeline imagePipeline;
+
 	private VkImageBlit.Buffer region;
 
 	private InitialImagePipelineBarrier[] initialBarriers;
 	private FinalImagePipelineBarrier[] finalBarriers;
 
 	private ImageViewManager imageViewManager;
+
+	public ImagePipelineAdapter(ImagePipeline imagePipeline)
+	{
+		super(imagePipeline);
+		this.imagePipeline = imagePipeline;
+	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
@@ -35,8 +45,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 
 		var graphicContext = (GraphicContext) context;
 		var extent = graphicContext.surfaceManager.getExtent();
-		var pipeline = (ImagePipeline) target;
-		var srcImage = pipeline.getImage();
+		var srcImage = imagePipeline.getImage();
 		var swapChainManager = graphicContext.swapChainManager;
 
 		imageViewManager = graphicContext.imageViewManager;
@@ -69,13 +78,13 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 		for (int i = 0; i < size; i++)
 		{
 			var view = imageViewManager.getImageView(i);
-			initialBarriers[i] = new InitialImagePipelineBarrier(pipeline, view);
+			initialBarriers[i] = new InitialImagePipelineBarrier(imagePipeline, view);
 			initialBarriers[i].allocate(stack, context);
 		}
 		finalBarriers = new FinalImagePipelineBarrier[size];
 		for (int i = 0; i < size; i++)
 		{
-			finalBarriers[i] = new FinalImagePipelineBarrier(pipeline);
+			finalBarriers[i] = new FinalImagePipelineBarrier(imagePipeline);
 			finalBarriers[i].allocate(stack, context);
 		}
 	}
@@ -101,8 +110,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	@Override
 	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
 	{
-		var pipeline = (ImagePipeline) target;
-		var srcImage = pipeline.getImage();
+		var srcImage = imagePipeline.getImage();
 		var srcImageId = ImageAdapter.adapt(srcImage).getId();
 		var dstImageView = imageViewManager.getImageView(commandBuffer.index);
 		var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
@@ -121,7 +129,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	@Override
 	public AbstractConstants getConstants()
 	{
-		return ((ImagePipeline) target).getConstants();
+		return imagePipeline.getConstants();
 	}
 
 	@Override
@@ -134,12 +142,6 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	public boolean isRecordNeeded()
 	{
 		return false;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return GraphicPackage.Literals.IMAGE_PIPELINE == eClass;
 	}
 
 	public static ImagePipelineAdapter adapt(ImagePipeline object)

@@ -39,6 +39,7 @@ public class FinalImagePipelineBarrier implements IAllocable
 	public void free(IAllocationContext context)
 	{
 		sourceExecutor.free();
+		sourceExecutor = null;
 	}
 
 	public void execute(VkCommandBuffer commandBuffer)

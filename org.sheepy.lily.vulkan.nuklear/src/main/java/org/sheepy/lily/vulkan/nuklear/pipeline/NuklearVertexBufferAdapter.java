@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.nuklear.pipeline;
 import static org.lwjgl.nuklear.Nuklear.*;
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.nuklear.NkBuffer;
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkConvertConfig;
@@ -13,14 +12,17 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer;
-import org.sheepy.lily.vulkan.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
-import org.sheepy.lily.vulkan.resource.ResourceAdapter;
 import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
 
-public class NuklearVertexBufferAdapter extends ResourceAdapter
+@Statefull
+@Adapter(scope = NuklearIndexBuffer.class)
+public class NuklearVertexBufferAdapter implements IResourceAdapter
 {
 	public static final NuklearVertexDescriptor VERTEX_DESCRIPTOR = new NuklearVertexDescriptor();
 
@@ -144,12 +146,6 @@ public class NuklearVertexBufferAdapter extends ResourceAdapter
 	public void setNullTexture(NullTexture nullTexture)
 	{
 		this.nullTexture = nullTexture;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return NuklearPackage.Literals.NUKLEAR_INDEX_BUFFER == eClass;
 	}
 
 	public static NuklearVertexBufferAdapter adapt(NuklearIndexBuffer buffer)

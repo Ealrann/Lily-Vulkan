@@ -7,25 +7,29 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.stb.STBTTFontinfo;
 import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.resource.Font;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 
+@Statefull
+@Adapter(scope = Font.class)
 public class FontAdapter extends AbstractSampledImageAdapter
 {
 	public static final int BUFFER_WIDTH = 1024;
 	public static final int BUFFER_HEIGHT = 1024;
+
+	private final Font font;
 
 	private STBTTFontinfo fontInfo;
 	private STBTTPackedchar.Buffer cdata;
@@ -33,11 +37,15 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	private float scale;
 	private ByteBuffer bufferedRessource;
 
+	public FontAdapter(Font font)
+	{
+		super(font);
+		this.font = font;
+	}
+
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var font = (Font) target;
-
 		final var file = font.getFile();
 		final var fileAdapter = FileResourceAdapter.adapt(file);
 		bufferedRessource = fileAdapter.toByteBuffer(file);
@@ -53,13 +61,15 @@ public class FontAdapter extends AbstractSampledImageAdapter
 		fontInfo.free();
 		cdata.free();
 		MemoryUtil.memFree(bufferedRessource);
+
+		fontInfo = null;
+		cdata = null;
+		bufferedRessource = null;
 	}
 
 	@Override
 	protected ByteBuffer allocDataBuffer(MemoryStack stack)
 	{
-		final var font = (Font) target;
-
 		return allocateFontTexture(stack, bufferedRessource, font.getHeight());
 	}
 
@@ -140,11 +150,5 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	public static FontAdapter adapt(Font font)
 	{
 		return IServiceAdapterFactory.INSTANCE.adapt(font, FontAdapter.class);
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ResourcePackage.Literals.FONT == eClass;
 	}
 }

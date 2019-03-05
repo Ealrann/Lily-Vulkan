@@ -4,30 +4,28 @@ import static org.lwjgl.nuklear.Nuklear.nk_button_label;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.action.context.ActionExecutionContext;
-import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.application.IApplicationAdapter;
 import org.sheepy.lily.core.model.action.Action;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.Button;
-import org.sheepy.lily.core.model.ui.UiPackage;
 
-public class ButtonAdapter extends AbstractStatefullAdapter implements IUIElementAdapter
+@Statefull
+@Adapter(scope = Button.class)
+public class ButtonAdapter implements IUIElementAdapter
 {
-	private ByteBuffer textBuffer;
+	private final ByteBuffer textBuffer;
 
-	@Override
-	public void setTarget(Notifier newTarget)
+	public ButtonAdapter(Button button)
 	{
-		Button button = (Button) newTarget;
 		textBuffer = MemoryUtil.memASCII(button.getText());
 	}
-	
+
 	@Override
 	public boolean layout(UIContext context, IUIElement control)
 	{
@@ -41,18 +39,13 @@ public class ButtonAdapter extends AbstractStatefullAdapter implements IUIElemen
 
 			for (Action action : button.getActions())
 			{
-				ActionExecutionContext ec = new ActionExecutionContext(button.getExecutor(), action, null);
+				ActionExecutionContext ec = new ActionExecutionContext(button.getExecutor(), action,
+						null);
 				cadencer.postAction(ec);
 			}
 			res = true;
 		}
 
 		return res;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return UiPackage.Literals.BUTTON == eClass;
 	}
 }

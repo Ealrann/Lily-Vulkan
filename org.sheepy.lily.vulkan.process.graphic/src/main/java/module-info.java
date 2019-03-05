@@ -1,10 +1,11 @@
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.image.ImagePipelineAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAdapter;
 
-/**
- * 
- */
+@Adapters(classifiers = {
+		ImagePipelineAdapter.class, GraphicProcessAdapter.class
+})
+
 module org.sheepy.lily.vulkan.process.graphic
 {
 	requires transitive org.sheepy.lily.vulkan.process;
@@ -16,7 +17,5 @@ module org.sheepy.lily.vulkan.process.graphic
 	exports org.sheepy.lily.vulkan.process.graphic.pipeline;
 	exports org.sheepy.lily.vulkan.process.graphic.process;
 
-	opens org.sheepy.lily.vulkan.process.graphic.pipeline.image to org.sheepy.lily.core.api;
-
-	provides IAdapter with ImagePipelineAdapter, GraphicProcessAdapter;
+	opens org.sheepy.lily.vulkan.process.graphic.pipeline.image;
 }

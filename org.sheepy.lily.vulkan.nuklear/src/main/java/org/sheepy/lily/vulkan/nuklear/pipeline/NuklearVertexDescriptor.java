@@ -40,7 +40,7 @@ public class NuklearVertexDescriptor implements IIndexBufferDescriptor<GuiVertex
 
 	public static VkVertexInputBindingDescription.Buffer allocBindingDescription()
 	{
-		var bindingDescription = VkVertexInputBindingDescription.create(1);
+		var bindingDescription = VkVertexInputBindingDescription.calloc(1);
 
 		bindingDescription.binding(0);
 		bindingDescription.stride(SIZE_OF);
@@ -51,7 +51,7 @@ public class NuklearVertexDescriptor implements IIndexBufferDescriptor<GuiVertex
 
 	public static VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions()
 	{
-		var attributeDescriptions = VkVertexInputAttributeDescription.create(3);
+		var attributeDescriptions = VkVertexInputAttributeDescription.calloc(3);
 
 		var positionAttribute = attributeDescriptions.get(0);
 		positionAttribute.binding(0);

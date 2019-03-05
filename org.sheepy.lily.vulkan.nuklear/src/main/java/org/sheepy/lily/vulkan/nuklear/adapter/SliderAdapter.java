@@ -4,18 +4,19 @@ import static org.lwjgl.nuklear.Nuklear.nk_slider_int;
 
 import java.nio.IntBuffer;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.BufferUtils;
-import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter.IVariableListener;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.Slider;
-import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 
-public class SliderAdapter extends AbstractStatefullAdapter implements IUIElementAdapter
+@Statefull
+@Adapter(scope = Slider.class)
+public class SliderAdapter implements IUIElementAdapter
 {
 	private final IntBuffer buffer = BufferUtils.createIntBuffer(1);
 
@@ -29,17 +30,13 @@ public class SliderAdapter extends AbstractStatefullAdapter implements IUIElemen
 		}
 	};
 
-	private IVariableResolverAdapter<IVariableResolver> resolverAdapter;
-	private IVariableResolver variableResolver;
+	private final IVariableResolverAdapter<IVariableResolver> resolverAdapter;
+	private final IVariableResolver variableResolver;
 
 	private boolean dirty = false;
 
-	@Override
-	public void setTarget(Notifier target)
+	public SliderAdapter(Slider slider)
 	{
-		super.setTarget(target);
-		Slider slider = (Slider) target;
-
 		variableResolver = slider.getVariableResolver();
 		resolverAdapter = IVariableResolverAdapter.adapt(variableResolver);
 
@@ -48,12 +45,10 @@ public class SliderAdapter extends AbstractStatefullAdapter implements IUIElemen
 		resolverAdapter.addListener(listener);
 	}
 
-	@Override
-	public void unsetTarget(Notifier oldTarget)
+	@Dispose
+	public void unsetTarget()
 	{
 		resolverAdapter.removeListener(listener);
-
-		super.unsetTarget(oldTarget);
 	}
 
 	private void updateValue()
@@ -81,11 +76,5 @@ public class SliderAdapter extends AbstractStatefullAdapter implements IUIElemen
 
 		dirty = false;
 		return res;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return UiPackage.Literals.SLIDER == eClass;
 	}
 }

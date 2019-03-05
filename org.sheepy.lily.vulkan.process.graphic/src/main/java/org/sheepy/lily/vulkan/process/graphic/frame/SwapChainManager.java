@@ -139,7 +139,8 @@ public class SwapChainManager implements IAllocable
 	{
 		var graphicContext = (GraphicContext) context;
 		vkDestroySwapchainKHR(graphicContext.getVkDevice(), swapChain, null);
-		MemoryUtil.memFree(indices);
+		if(indices != null) MemoryUtil.memFree(indices);
+		swapChain = null;
 		swapChainImages = null;
 		indices = null;
 	}

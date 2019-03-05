@@ -53,6 +53,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 	public void free(IAllocationContext context)
 	{
 		capabilities.free();
+		capabilities = null;
 		surface.release();
 		surface = null;
 	}

@@ -16,5 +16,4 @@ public class ModelUtil
 
 		return (Application) eObject;
 	}
-
 }

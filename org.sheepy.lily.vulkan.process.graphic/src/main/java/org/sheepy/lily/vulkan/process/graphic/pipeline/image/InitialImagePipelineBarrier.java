@@ -87,6 +87,9 @@ public class InitialImagePipelineBarrier implements IAllocable
 		sourceExecutor.free();
 		targetExecutor.free();
 
+		sourceExecutor = null;
+		targetExecutor = null;
+
 		sourceBarrier = null;
 		targetBarrier = null;
 	}

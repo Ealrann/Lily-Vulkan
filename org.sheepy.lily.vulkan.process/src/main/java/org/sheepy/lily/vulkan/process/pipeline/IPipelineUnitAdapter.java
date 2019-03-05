@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 
 public interface IPipelineUnitAdapter<T extends AbstractCommandBuffer> extends IVulkanAdapter
 {
-	void record(T commandBuffer, int bindPoint);
+	void record(IPipelineUnit unit, T commandBuffer, int bindPoint);
 
 	@SuppressWarnings("unchecked")
 	static <T extends AbstractCommandBuffer> IPipelineUnitAdapter<T> adapt(IPipelineUnit object)

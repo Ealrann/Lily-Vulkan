@@ -105,6 +105,7 @@ public class ViewportStateBuilder
 	public void freeViewportStateCreateInfo()
 	{
 		viewportState.free();
+		viewportState = null;
 
 		if (scissors != null) scissors.free();
 		if (viewports != null) viewports.free();

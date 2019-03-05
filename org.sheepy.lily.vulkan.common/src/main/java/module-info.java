@@ -1,5 +1,7 @@
-import org.sheepy.lily.core.api.adapter.IAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.common.engine.VulkanEngineAdapter;
+
+@Adapters(classifiers = VulkanEngineAdapter.class)
 
 module org.sheepy.lily.vulkan.common
 {
@@ -8,7 +10,6 @@ module org.sheepy.lily.vulkan.common
 	requires org.sheepy.lily.core.impl;
 
 	exports org.sheepy.lily.vulkan.common.allocation.adapter;
-	exports org.sheepy.lily.vulkan.common.allocation.adapter.impl;
 	exports org.sheepy.lily.vulkan.common.allocation.allocator;
 	exports org.sheepy.lily.vulkan.common.allocation.common;
 	exports org.sheepy.lily.vulkan.common.concurrent;
@@ -23,6 +24,4 @@ module org.sheepy.lily.vulkan.common
 	exports org.sheepy.lily.vulkan.common.queue;
 	exports org.sheepy.lily.vulkan.common.util;
 	exports org.sheepy.lily.vulkan.common.ui;
-
-	provides IAdapter with VulkanEngineAdapter;
 }

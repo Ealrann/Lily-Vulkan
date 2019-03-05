@@ -5,20 +5,21 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
+@Statefull
+@Adapter(scope = GraphicProcess.class)
 public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandBuffer>
 {
 	private static final String FAILED_SUBMIT_GRAPHIC = "Failed to submit graphic command buffer";
@@ -31,19 +32,16 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 
 	private final int[] nextImageArray = new int[1];
 
-	private GraphicProcess process = null;
-
-	@Override
-	public void setTarget(Notifier target)
+	public GraphicProcessAdapter(GraphicProcess process)
 	{
-		this.process = (GraphicProcess) target;
-		super.setTarget(target);
+		super(process);
 	}
 
 	@Override
 	protected ProcessContext createContext()
 	{
-		return new GraphicContext(getQueueType(), isResetAllowed(), descriptorPool, process);
+		return new GraphicContext(getQueueType(), isResetAllowed(), descriptorPool,
+				(GraphicProcess) process);
 	}
 
 	@Override
@@ -51,22 +49,13 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	{
 		List<Object> res = super.gatherResources();
 
-		var depthImage = process.getDepthImage();
+		var depthImage = ((GraphicProcess) process).getDepthImage();
 		if (depthImage != null)
 		{
 			res.add(depthImage);
 		}
 
 		return res;
-	}
-
-	@Override
-	public void unsetTarget(Notifier oldTarget)
-	{
-		context = null;
-
-		this.process = null;
-		super.unsetTarget(oldTarget);
 	}
 
 	@Override
@@ -139,12 +128,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	protected int getBindPoint()
 	{
 		return VK_PIPELINE_BIND_POINT_GRAPHICS;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return GraphicPackage.Literals.GRAPHIC_PROCESS.isSuperTypeOf(eClass);
 	}
 
 	public static GraphicProcessAdapter adapt(GraphicProcess object)

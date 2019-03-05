@@ -4,18 +4,19 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter;
 import org.sheepy.lily.core.api.variable.IVariableResolverAdapter.IVariableListener;
 import org.sheepy.lily.core.model.presentation.IUIElement;
-import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.core.model.ui.VariableLabel;
 import org.sheepy.lily.core.model.variable.IVariableResolver;
 
-public class VariableLabelAdapter extends AbstractStatefullAdapter implements IUIElementAdapter
+@Statefull
+@Adapter(scope = VariableLabel.class)
+public class VariableLabelAdapter implements IUIElementAdapter
 {
 	private final IVariableListener listener = new IVariableListener()
 	{
@@ -26,19 +27,17 @@ public class VariableLabelAdapter extends AbstractStatefullAdapter implements IU
 		}
 	};
 
+	private final VariableLabel label;
+	private final IVariableResolverAdapter<IVariableResolver> adapter;
+
 	private String text = "";
 	private ByteBuffer textBuffer;
 
 	private boolean dirty = false;
 
-	private IVariableResolverAdapter<IVariableResolver> adapter;
-
-	@Override
-	public void setTarget(Notifier newTarget)
+	public VariableLabelAdapter(VariableLabel label)
 	{
-		super.setTarget(newTarget);
-		VariableLabel label = (VariableLabel) newTarget;
-
+		this.label = label;
 		var variableResolver = label.getVariableResolver();
 		adapter = IVariableResolverAdapter.adapt(variableResolver);
 
@@ -47,8 +46,8 @@ public class VariableLabelAdapter extends AbstractStatefullAdapter implements IU
 		adapter.addListener(listener);
 	}
 
-	@Override
-	public void unsetTarget(Notifier oldTarget)
+	@Dispose
+	public void unsetTarget()
 	{
 		adapter.removeListener(listener);
 	}
@@ -81,7 +80,6 @@ public class VariableLabelAdapter extends AbstractStatefullAdapter implements IU
 
 	private void updateText(String value)
 	{
-		var label = (VariableLabel) target;
 		String labelText = label.getText();
 		String resultString = "";
 
@@ -96,11 +94,5 @@ public class VariableLabelAdapter extends AbstractStatefullAdapter implements IU
 		}
 
 		dirty = true;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return UiPackage.Literals.VARIABLE_LABEL == eClass;
 	}
 }

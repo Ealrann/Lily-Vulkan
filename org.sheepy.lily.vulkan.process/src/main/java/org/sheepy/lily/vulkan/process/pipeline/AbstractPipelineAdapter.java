@@ -4,17 +4,19 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
-import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocationDescriptorAdapter;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
@@ -26,17 +28,34 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
-public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer> extends
-		AbstractAllocationDescriptorAdapter implements IAllocableAdapter, IPipelineAdapter<T>
+@Statefull
+public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
+		implements IAllocableAdapter, IPipelineAdapter<T>, IAllocationDescriptorAdapter
 {
+	protected final IPipeline pipeline;
+	private final List<Object> allocationList;
+
 	protected long pipelineLayout = -1;
 	protected boolean recordNeeded = false;
-	protected IPipeline pipeline = null;
 
 	protected List<IAllocable> allocationDependencies = new ArrayList<>();
 	private List<IVkDescriptorSet> descriptorSets;
 
-	@Override
+	public AbstractPipelineAdapter(IPipeline pipeline)
+	{
+		this.pipeline = pipeline;
+
+		if (pipeline instanceof AbstractPipeline)
+		{
+			allocationList = List.copyOf(((AbstractPipeline) pipeline).getUnits());
+		}
+		else
+		{
+			allocationList = Collections.emptyList();
+		}
+	}
+
+	@NotifyChanged
 	public void notifyChanged(Notification notification)
 	{
 		if (notification.getFeature() == ProcessPackage.Literals.IPIPELINE__ENABLED
@@ -50,18 +69,6 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer> e
 	public void setRecordNeeded(boolean value)
 	{
 		recordNeeded = value;
-	}
-
-	@Override
-	public void setTarget(Notifier target)
-	{
-		pipeline = (IPipeline) target;
-		super.setTarget(target);
-
-		if (pipeline instanceof AbstractPipeline)
-		{
-			allocationList.addAll(((AbstractPipeline) pipeline).getUnits());
-		}
 	}
 
 	@Override
@@ -156,7 +163,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer> e
 		if (constants != null)
 		{
 			final var adapter = AbstractConstantsAdapter.adapt(constants);
-			info.pPushConstantRanges(adapter.allocRange(stack));
+			info.pPushConstantRanges(adapter.allocRange(stack, constants));
 		}
 	}
 
@@ -169,6 +176,12 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer> e
 	{
 		IVkDescriptorSet descriptorSet = descriptorSets.get(descriptorSetIndex);
 		descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, getLayoutId());
+	}
+
+	@Override
+	public List<? extends Object> getAllocationChildren()
+	{
+		return allocationList;
 	}
 
 	/**

@@ -5,12 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import org.eclipse.emf.ecore.EClass;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.vulkan.model.resource.FileResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
+@Adapter(scope = FileResource.class)
 public class FileResourceAdapter extends PathResourceAdapter
 {
 	@Override
@@ -28,12 +28,6 @@ public class FileResourceAdapter extends PathResourceAdapter
 		}
 
 		return null;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ResourcePackage.Literals.FILE_RESOURCE == eClass;
 	}
 
 	public static FileResourceAdapter adapt(FileResource fileResource)

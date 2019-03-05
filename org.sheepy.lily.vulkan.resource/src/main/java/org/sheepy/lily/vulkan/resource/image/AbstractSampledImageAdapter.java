@@ -2,39 +2,39 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
-import org.sheepy.lily.vulkan.resource.DescriptorResourceAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
 
-public abstract class AbstractSampledImageAdapter extends DescriptorResourceAdapter
-		implements IDescriptorAdapter
+@Statefull
+public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter, IResourceAdapter
 {
+	private final SampledImage sampledImage;
+
 	protected VkTexture vkTexture;
 
-	@Override
-	public void setTarget(Notifier target)
+	public AbstractSampledImageAdapter(SampledImage sampledImage)
 	{
-		super.setTarget(target);
-
-		final var resource = (SampledImage) target;
-		final var samplerInfo = resource.getSampler();
-		final var imageInfo = getImageInfo();
-
-		vkTexture = new VkTexture(imageInfo, samplerInfo);
+		this.sampledImage = sampledImage;
 	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
+		final var samplerInfo = sampledImage.getSampler();
+		final var imageInfo = getImageInfo();
+
+		vkTexture = new VkTexture(imageInfo, samplerInfo);
+
 		final var executionContext = (ExecutionContext) context;
 		final var logicalDevice = executionContext.getLogicalDevice();
 

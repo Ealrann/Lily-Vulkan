@@ -11,6 +11,11 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
 
 public abstract class AbstractGraphicsPipelineAdapter extends IGraphicsPipelineAdapter
 {
+	public AbstractGraphicsPipelineAdapter(GraphicsPipeline pipeline)
+	{
+		super(pipeline);
+	}
+
 	@Override
 	protected List<Shader> getShaders()
 	{

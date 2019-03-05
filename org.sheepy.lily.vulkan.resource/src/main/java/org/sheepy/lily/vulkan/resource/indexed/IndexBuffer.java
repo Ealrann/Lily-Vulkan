@@ -129,6 +129,9 @@ public class IndexBuffer<T extends IVertex> implements IAllocable
 		vertexBuffer.free();
 		indexBuffer.free();
 
+		vertexBuffer = null;
+		indexBuffer = null;
+
 		allocated = false;
 	}
 

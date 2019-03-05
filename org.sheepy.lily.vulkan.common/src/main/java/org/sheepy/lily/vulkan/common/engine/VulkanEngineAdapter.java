@@ -8,20 +8,20 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.joml.Vector2i;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkApplicationInfo;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
-import org.sheepy.lily.core.api.adapter.IAutoAdapter;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Autorun;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
@@ -44,8 +44,9 @@ import org.sheepy.lily.vulkan.common.util.VulkanUtils;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
-public class VulkanEngineAdapter extends AbstractStatefullAdapter
-		implements IVulkanEngineAdapter, IAutoAdapter
+@Statefull
+@Adapter(scope = VulkanEngine.class)
+public class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
 	private static final String[] LAYERS_TO_ENABLE = {
 			"VK_LAYER_LUNARG_standard_validation",
@@ -61,7 +62,21 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			VK_KHR_SWAPCHAIN_EXTENSION_NAME
 	};
 
-	protected boolean debug;
+	private final IWindowListener resizeListener = new IWindowListener()
+	{
+		@Override
+		public void onWindowResize(VkSurface surface)
+		{
+			resize(surface);
+		}
+	};
+
+	private final List<VkFence> fences = new ArrayList<>();
+	private final VulkanInputManager inputManager;
+	private final VulkanEngine engine;
+	private final Application application;
+
+	private final boolean debug;
 
 	protected VkInstance vkInstance;
 	protected PhysicalDevice physicalDevice;
@@ -73,24 +88,12 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames = null;
-	private VulkanInputManager inputManager;
 	private ExecutionContext executionContext = null;
 
-	protected Application application;
-	protected VulkanEngine engine;
 	protected Window window;
 	private boolean listeningResize = true;
-	private final List<VkFence> fences = new ArrayList<>();
-	private final IWindowListener resizeListener = new IWindowListener()
-	{
-		@Override
-		public void onWindowResize(VkSurface surface)
-		{
-			resize(surface);
-		}
-	};
 
-	private final Adapter applicationAdapter = new AdapterImpl()
+	private final AdapterImpl applicationAdapter = new AdapterImpl()
 	{
 		@Override
 		public void notifyChanged(Notification notification)
@@ -106,7 +109,7 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		}
 	};
 
-	@Override
+	@NotifyChanged
 	public void notifyChanged(Notification notification)
 	{
 		if (notification.getFeature() == VulkanPackage.Literals.VULKAN_ENGINE__ENABLED)
@@ -126,18 +129,21 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		}
 	}
 
-	@Override
-	public void load(EObject target)
+	public VulkanEngineAdapter(VulkanEngine engine)
 	{
-		engine = (VulkanEngine) target;
+		this.engine = engine;
 		application = (Application) engine.eContainer();
-		application.eAdapters().add(applicationAdapter);
 		debug = application.isDebug();
 		executionContext = new ExecutionContext(EQueueType.Graphic, false);
-
 		window = new Window(application.getSize(), application.getTitle(),
 				application.isResizeable(), application.isFullscreen());
 		inputManager = new VulkanInputManager(application, window);
+	}
+
+	@Autorun
+	public void load()
+	{
+		application.eAdapters().add(applicationAdapter);
 
 		if (debug)
 		{
@@ -153,8 +159,8 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		}
 	}
 
-	@Override
-	public void dispose(EObject target)
+	@Dispose
+	public void dispose()
 	{
 		if (engine != null)
 		{
@@ -165,9 +171,6 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 		}
 
 		application.eAdapters().remove(applicationAdapter);
-
-		engine = null;
-		application = null;
 	}
 
 	private void start()
@@ -181,6 +184,9 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 			inputManager.load();
 			window.addListener(resizeListener);
 			allocate(stack);
+		} catch (Throwable e)
+		{
+			e.printStackTrace();
 		}
 	}
 
@@ -358,12 +364,6 @@ public class VulkanEngineAdapter extends AbstractStatefullAdapter
 	public VulkanInputManager getInputManager()
 	{
 		return inputManager;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return VulkanPackage.Literals.VULKAN_ENGINE == eClass;
 	}
 
 	public static VulkanEngineAdapter adapt(VulkanEngine engine)

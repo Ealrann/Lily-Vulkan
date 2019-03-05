@@ -23,6 +23,8 @@ public class VkSemaphore implements IAllocable
 		final var logicalDevice = ((ILogicalDeviceContext) context).getLogicalDevice();
 		VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
 		semaphoreInfo.sType(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO);
+		semaphoreInfo.pNext(VK_NULL_HANDLE);
+		semaphoreInfo.flags(0);
 
 		long[] aSemaphore = new long[1];
 		if (vkCreateSemaphore(logicalDevice.getVkDevice(), semaphoreInfo, null,

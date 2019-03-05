@@ -39,6 +39,7 @@ public class VkFence implements IFence
 	public void free()
 	{
 		vkDestroyFence(device, id, null);
+		id = -1;
 	}
 
 	@Override

@@ -5,9 +5,9 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.demo.model.MeshPipeline;
-import org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
@@ -15,8 +15,15 @@ import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
+@Statefull
+@Adapter(scope = MeshPipeline.class)
 public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 {
+	public MeshPipelineAdapter(MeshPipeline pipeline)
+	{
+		super(pipeline);
+	}
+
 	@Override
 	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
 	{
@@ -36,7 +43,7 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		};
 
 		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
-		
+
 		if (meshPipeline.getDescriptorSet() != null)
 		{
 			bindDescriptor(commandBuffer, bindPoint, 0);
@@ -75,12 +82,6 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 			res.add(adapter);
 		}
 		return res;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return VulkanDemoPackage.Literals.MESH_PIPELINE == eClass;
 	}
 
 	@Override

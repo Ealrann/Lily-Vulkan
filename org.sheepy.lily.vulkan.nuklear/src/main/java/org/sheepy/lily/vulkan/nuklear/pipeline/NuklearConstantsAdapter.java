@@ -2,18 +2,21 @@ package org.sheepy.lily.vulkan.nuklear.pipeline;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.nuklear.model.NuklearPackage;
+import org.sheepy.lily.vulkan.nuklear.model.NuklearConstants;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 
+@Statefull
+@Adapter(scope = NuklearConstants.class)
 public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements IAllocableAdapter
 {
 	private final int SIZE = 16 * 4;
@@ -62,12 +65,6 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 	protected int getSize()
 	{
 		return SIZE;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return NuklearPackage.Literals.NUKLEAR_CONSTANTS == eClass;
 	}
 
 	@Override

@@ -5,13 +5,13 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notifier;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.core.api.adapter.IStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
-import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocationDescriptorAdapter;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContextProvider;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
@@ -24,28 +24,32 @@ import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
+@Statefull
 public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
-		extends AbstractAllocationDescriptorAdapter
-		implements IStatefullAdapter, IProcessAdapter, IAllocationContextProvider
+		implements IProcessAdapter, IAllocationContextProvider, IAllocationDescriptorAdapter
 {
+	protected final AbstractProcess process;
+	protected final DescriptorPool descriptorPool;
 	private final int bindPoint = getBindPoint();
-	protected DescriptorPool descriptorPool;
-	protected ProcessContext context = null;
-	private AbstractProcess process = null;
-	private TreeAllocator allocator;
+	private final TreeAllocator allocator;
+	protected final ProcessContext context;
+
 	private boolean recorded = false;
 
-	@Override
-	public void setTarget(Notifier target)
+	private final List<Object> allocationList;
+
+	public AbstractProcessAdapter(AbstractProcess process)
 	{
-		super.setTarget(target);
-		process = (AbstractProcess) target;
+		this.process = process;
 		descriptorPool = new DescriptorPool(gatherDescriptorLists());
 		context = createContext();
 		allocator = new TreeAllocator(process);
 
-		gatherAllocationServices();
-		gatherPipelines();
+		List<Object> allocs = new ArrayList<>();
+		allocs.addAll(gatherAllocationServices());
+		allocs.addAll(gatherPipelines());
+
+		allocationList = List.copyOf(allocs);
 	}
 
 	@Override
@@ -54,20 +58,28 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		return context;
 	}
 
-	protected void gatherAllocationServices()
+	protected List<Object> gatherAllocationServices()
 	{
-		allocationList.addAll(gatherResources());
-		allocationList.addAll(context.getAllocationChildren());
-		allocationList.add(descriptorPool);
+		List<Object> res = new ArrayList<>();
+
+		res.addAll(gatherResources());
+		res.addAll(context.getAllocationChildren());
+		res.add(descriptorPool);
+
+		return res;
 	}
 
-	protected void gatherPipelines()
+	protected List<IPipeline> gatherPipelines()
 	{
+		List<IPipeline> res = new ArrayList<>();
+
 		PipelinePkg pipelinePkg = process.getPipelinePkg();
 		if (pipelinePkg != null)
 		{
-			allocationList.addAll(pipelinePkg.getPipelines());
+			res.addAll(pipelinePkg.getPipelines());
 		}
+
+		return res;
 	}
 
 	protected List<Object> gatherResources()
@@ -107,14 +119,10 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		return res;
 	}
 
-	@Override
-	public void unsetTarget(Notifier oldTarget)
+	@Dispose
+	public void unsetTarget()
 	{
 		allocationList.clear();
-		process = null;
-		allocator = null;
-		descriptorPool = null;
-		super.unsetTarget(oldTarget);
 	}
 
 	@Override
@@ -176,11 +184,17 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		}
 	}
 
+	@Override
+	public List<? extends Object> getAllocationChildren()
+	{
+		return allocationList;
+	}
+
 	protected abstract EQueueType getQueueType();
 
 	protected boolean isResetAllowed()
 	{
-		return ((AbstractProcess) target).isResetAllowed();
+		return process.isResetAllowed();
 	}
 
 	protected abstract void recordCommands();

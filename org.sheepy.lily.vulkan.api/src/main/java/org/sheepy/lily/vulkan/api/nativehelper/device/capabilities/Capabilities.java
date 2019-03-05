@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.api.util.Logger;
 public class Capabilities
 {
 	private static final String FAILED_TO_GET_SURFACE_CAPABILITIES = "Failed to get physical device surface capabilities";
-	public final VkSurfaceCapabilitiesKHR vkCapabilities;
+	public VkSurfaceCapabilitiesKHR vkCapabilities;
 
 	public Capabilities(VkPhysicalDevice device, VkSurface surface)
 	{
@@ -23,5 +23,6 @@ public class Capabilities
 	public void free()
 	{
 		vkCapabilities.free();
+		vkCapabilities = null;
 	}
 }

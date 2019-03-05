@@ -4,8 +4,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.Collections;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkDescriptorImageInfo;
@@ -13,33 +11,35 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.lily.vulkan.resource.DescriptorResourceAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
-public class ImageAdapter extends DescriptorResourceAdapter
+@Statefull
+@Adapter(scope = Image.class)
+public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 {
 	private VkImage imageBackend;
-	private Image image;
+	private final Image image;
 	private VkImageView imageView;
 
 	private IImageLoader loader = null;
 	private ExecutionContext executionContext;
 
-	@Override
-	public void setTarget(Notifier target)
+	public ImageAdapter(Image image)
 	{
-		this.image = (Image) target;
-		super.setTarget(target);
+		this.image = image;
 	}
 
 	public void setLoader(IImageLoader loader)
@@ -152,12 +152,6 @@ public class ImageAdapter extends DescriptorResourceAdapter
 	public long getMemoryId()
 	{
 		return imageBackend.getMemoryId();
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ResourcePackage.Literals.IMAGE == eClass;
 	}
 
 	public static interface IImageLoader

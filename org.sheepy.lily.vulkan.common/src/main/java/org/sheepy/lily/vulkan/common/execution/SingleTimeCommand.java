@@ -80,7 +80,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		vkAllocateCommandBuffers(executionManager.getVkDevice(), allocInfo, pCommandBuffer);
 		final long commandBufferId = pCommandBuffer.get(0);
 
-		pCommandBuffer.free();
+		MemoryUtil.memFree(pCommandBuffer);
 		allocInfo.free();
 		return commandBufferId;
 	}
@@ -125,10 +125,9 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		vkQueueSubmit(executionContext.getQueue().vkQueue, submitInfo, VK_NULL_HANDLE);
 		vkQueueWaitIdle(executionContext.getQueue().vkQueue);
 
-		vkFreeCommandBuffers(executionContext.getVkDevice(), executionContext.commandPool.getId(),
-				pCommandBuffer);
-		pCommandBuffer.free();
-
+		long commandPoolId = executionContext.commandPool.getId();
+		vkFreeCommandBuffers(executionContext.getVkDevice(), commandPoolId, pCommandBuffer);
+		MemoryUtil.memFree(pCommandBuffer);
 		submitInfo.free();
 		if (lBuffer != null) MemoryUtil.memFree(lBuffer);
 	}

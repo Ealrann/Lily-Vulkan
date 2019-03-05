@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.nuklear.NkAllocator;
 import org.lwjgl.nuklear.NkBuffer;
@@ -20,6 +18,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkViewport;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.IView;
@@ -42,7 +42,6 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.nuklear.adapter.IUIElementAdapter;
 import org.sheepy.lily.vulkan.nuklear.adapter.IUIElementAdapter.UIContext;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
-import org.sheepy.lily.vulkan.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline;
 import org.sheepy.lily.vulkan.nuklear.pipeline.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.pipeline.draw.DrawRecorder;
@@ -58,6 +57,8 @@ import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
+@Statefull
+@Adapter(scope = NuklearPipeline.class)
 public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 {
 	private static final int BUFFER_INITIAL_SIZE = 4 * 1024;
@@ -68,8 +69,11 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 				.mfree((handle, ptr) -> nmemFree(ptr));
 	}
 
+	private final NuklearPipeline nkPipeline;
+	private final NuklearResources resources;
+
 	private final NuklearInputCatcher inputCatcher = new NuklearInputCatcher();
-	private final NkBuffer cmds = NkBuffer.create();
+	private NkBuffer cmds;
 	private NkContext nkContext;
 
 	private DrawRecorder recorder;
@@ -81,16 +85,10 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	private boolean dirty = true;
 	private VkViewport.Buffer viewport;
 
-	private NuklearPipeline nkPipeline;
-
-	private NuklearResources resources;
-
-	@Override
-	public void setTarget(Notifier target)
+	public NuklearPipelineAdapter(NuklearPipeline nkPipeline)
 	{
-		super.setTarget(target);
-		nkPipeline = (NuklearPipeline) target;
-
+		super(nkPipeline);
+		this.nkPipeline = nkPipeline;
 		resources = new NuklearResources(nkPipeline);
 	}
 
@@ -151,6 +149,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 		// Release all Vulkan resources required for rendering imGui
 		viewport.free();
+		viewport = null;
 
 		recorder = null;
 
@@ -158,11 +157,15 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 		nk_free(nkContext);
 		nk_buffer_free(cmds);
+
+		nkContext = null;
+		cmds = null;
 	}
 
 	private void createContext()
 	{
 		nkContext = NkContext.create();
+		cmds = NkBuffer.create();
 		nk_init(nkContext, ALLOCATOR, resources.getDefaultFont());
 		nk_buffer_init(cmds, ALLOCATOR, BUFFER_INITIAL_SIZE);
 
@@ -334,11 +337,5 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	protected int getSubpass()
 	{
 		return nkPipeline.getSubpass();
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return NuklearPackage.Literals.NUKLEAR_PIPELINE == eClass;
 	}
 }

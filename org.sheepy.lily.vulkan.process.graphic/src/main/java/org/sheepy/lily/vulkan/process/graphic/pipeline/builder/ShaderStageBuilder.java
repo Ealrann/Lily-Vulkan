@@ -30,5 +30,6 @@ public class ShaderStageBuilder
 	public void freeShaderStageInfo()
 	{
 		shaderStages.free();
+		shaderStages = null;
 	}
 }

@@ -3,34 +3,32 @@ package org.sheepy.lily.vulkan.process.descriptor;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
-import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkDescriptorSet;
 
-public class DescriptorSetAdapter extends AbstractStatefullAdapter implements IDescriptorSetAdapter
+@Statefull
+@Adapter(scope = DescriptorSet.class)
+public class DescriptorSetAdapter implements IDescriptorSetAdapter
 {
 	protected VkDescriptorSet vkDescriptorSet;
 	protected DescriptorSet descriptorSet = null;
 
 	private List<IVkDescriptor> vkDescriptors = null;
 
-	@Override
-	public void setTarget(Notifier target)
+	public DescriptorSetAdapter(DescriptorSet descriptorSet)
 	{
-		descriptorSet = (DescriptorSet) target;
-		super.setTarget(target);
+		this.descriptorSet = descriptorSet;
 	}
 
 	@Override
@@ -86,12 +84,6 @@ public class DescriptorSetAdapter extends AbstractStatefullAdapter implements ID
 				vkDescriptors.add(IDescriptorAdapter.adapt(descriptor));
 			}
 		}
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ResourcePackage.Literals.DESCRIPTOR_SET == eClass;
 	}
 
 	public static DescriptorSetAdapter adapt(DescriptorSet object)

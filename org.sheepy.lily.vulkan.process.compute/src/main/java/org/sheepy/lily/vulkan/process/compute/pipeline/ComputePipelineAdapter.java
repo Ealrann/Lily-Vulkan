@@ -5,16 +5,15 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
-import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
@@ -26,21 +25,22 @@ import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 
+@Statefull
+@Adapter(scope = ComputePipeline.class)
 public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeCommandBuffer>
 {
+	protected final ComputePipeline pipeline;
+
 	private int groupCountX;
 	private int groupCountY;
 	private int groupCountZ;
 
-	protected ComputePipeline pipeline;
-
 	private long[] pipelines;
 
-	@Override
-	public void setTarget(Notifier target)
+	public ComputePipelineAdapter(ComputePipeline pipeline)
 	{
-		pipeline = (ComputePipeline) target;
-		super.setTarget(target);
+		super(pipeline);
+		this.pipeline = pipeline;
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 		for (final IPipelineUnit computer : pipeline.getUnits())
 		{
 			final var adapter = IPipelineUnitAdapter.adapt(computer);
-			adapter.record(commandBuffer, bindPoint);
+			adapter.record(computer, commandBuffer, bindPoint);
 		}
 	}
 
@@ -153,7 +153,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	@Override
 	public AbstractConstants getConstants()
 	{
-		return ((ComputePipeline) target).getConstants();
+		return pipeline.getConstants();
 	}
 
 	@Override
@@ -167,12 +167,6 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 			res.add(adapter);
 		}
 		return res;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ComputePackage.Literals.COMPUTE_PIPELINE == eClass;
 	}
 
 	public static ComputePipelineAdapter adapt(ComputePipeline object)

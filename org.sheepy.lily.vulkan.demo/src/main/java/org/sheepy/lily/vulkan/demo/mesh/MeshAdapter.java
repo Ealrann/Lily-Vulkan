@@ -1,16 +1,18 @@
 package org.sheepy.lily.vulkan.demo.mesh;
 
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
-import org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
-import org.sheepy.lily.vulkan.resource.ResourceAdapter;
 import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
 
-public class MeshAdapter extends ResourceAdapter
+@Statefull
+@Adapter(scope = MeshBuffer.class)
+public class MeshAdapter implements IResourceAdapter
 {
 	public static IIndexedBufferBuilder<?> meshBuilder = null;
 
@@ -27,6 +29,7 @@ public class MeshAdapter extends ResourceAdapter
 	public void free(IAllocationContext context)
 	{
 		indexBuffer.free(context);
+		indexBuffer = null;
 	}
 
 	public IndexBuffer<?> getIndexBuffer()
@@ -38,12 +41,6 @@ public class MeshAdapter extends ResourceAdapter
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return VulkanDemoPackage.Literals.MESH_BUFFER == eClass;
 	}
 
 	public static MeshAdapter adapt(MeshBuffer mesh)

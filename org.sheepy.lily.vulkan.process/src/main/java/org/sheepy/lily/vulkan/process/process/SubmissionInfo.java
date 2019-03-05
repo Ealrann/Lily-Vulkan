@@ -25,8 +25,8 @@ public class SubmissionInfo
 	{
 		if (waitSemaphores.isEmpty() == false)
 		{
-			bWaitSemaphores = MemoryUtil.memAllocLong(waitSemaphores.size());
-			waitStages = MemoryUtil.memAllocInt(waitSemaphores.size());
+			bWaitSemaphores = memAllocLong(waitSemaphores.size());
+			waitStages = memAllocInt(waitSemaphores.size());
 			for (WaitData waitData : waitSemaphores)
 			{
 				bWaitSemaphores.put(waitData.semaphore.getId());
@@ -40,7 +40,7 @@ public class SubmissionInfo
 		pCommandBuffers.put(commandBuffer.getVkCommandBuffer());
 		pCommandBuffers.flip();
 
-		bSignalSemaphores = MemoryUtil.memAllocLong(signalSemaphores.size());
+		bSignalSemaphores = memAllocLong(signalSemaphores.size());
 		for (Long signalSemaphore : signalSemaphores)
 		{
 			bSignalSemaphores.put(signalSemaphore);

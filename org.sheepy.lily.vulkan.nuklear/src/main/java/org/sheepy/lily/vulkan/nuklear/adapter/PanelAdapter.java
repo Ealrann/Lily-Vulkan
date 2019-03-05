@@ -4,22 +4,23 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.nio.ByteBuffer;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.nuklear.NkRect;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.impl.AbstractStatefullAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
-import org.sheepy.lily.core.model.ui.UiPackage;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.common.ui.UIUtil;
 
-public class PanelAdapter extends AbstractStatefullAdapter implements IUIElementAdapter
+@Statefull
+@Adapter(scope = Panel.class)
+public class PanelAdapter implements IUIElementAdapter
 {
 	private final IWindowListener listener = new IWindowListener()
 	{
@@ -30,18 +31,17 @@ public class PanelAdapter extends AbstractStatefullAdapter implements IUIElement
 		}
 	};
 
+	private final Panel panel;
+	private final ByteBuffer textBuffer;
+
 	private NkRect rect = NkRect.create();
 
-	private Panel panel;
-	private ByteBuffer textBuffer;
 	private Window window = null;
-
 	private int style;
 
-	@Override
-	public void setTarget(Notifier newTarget)
+	public PanelAdapter(Panel panel)
 	{
-		panel = (Panel) newTarget;
+		this.panel = panel;
 		String name = panel.getName();
 
 		if (name == null)
@@ -70,12 +70,10 @@ public class PanelAdapter extends AbstractStatefullAdapter implements IUIElement
 		textBuffer = MemoryUtil.memUTF8(name);
 	}
 
-	@Override
-	public void unsetTarget(Notifier oldTarget)
+	@Dispose
+	public void unsetTarget()
 	{
 		window.removeListener(listener);
-
-		super.unsetTarget(oldTarget);
 	}
 
 	private void updateLocation(VkSurface surface)
@@ -127,11 +125,5 @@ public class PanelAdapter extends AbstractStatefullAdapter implements IUIElement
 		}
 
 		return res;
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return UiPackage.Literals.PANEL == eClass;
 	}
 }

@@ -2,32 +2,39 @@ package org.sheepy.lily.vulkan.process.barrier;
 
 import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 
-import org.eclipse.emf.ecore.EClass;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.adapter.impl.AbstractAllocableAdapter;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
 
-public class PipelineBarrierAdapter extends AbstractAllocableAdapter
-		implements IPipelineUnitAdapter<AbstractCommandBuffer>
+@Statefull
+@Adapter(scope = PipelineBarrier.class)
+public class PipelineBarrierAdapter
+		implements IPipelineUnitAdapter<AbstractCommandBuffer>, IAllocableAdapter
 {
-	private IBarrierExecutor executor;
+	private final PipelineBarrier pipelineBarrier;
+	private final IBarrierExecutor executor;
+
+	public PipelineBarrierAdapter(PipelineBarrier pipelineBarrier)
+	{
+		this.pipelineBarrier = pipelineBarrier;
+		var barrier = pipelineBarrier.getBarrier();
+
+		executor = BarrierExecutorFactory.create(barrier);
+	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var pipelineBarrier = (PipelineBarrier) target;
-		var barrier = pipelineBarrier.getBarrier();
-
-		executor = BarrierExecutorFactory.create(barrier);
-
 		int srcQueueIndex = getQueueFamillyIndex(pipelineBarrier.getSrcQueue());
 		int dstQueueIndex = getQueueFamillyIndex(pipelineBarrier.getDstQueue());
 
@@ -52,15 +59,9 @@ public class PipelineBarrierAdapter extends AbstractAllocableAdapter
 	}
 
 	@Override
-	public void record(AbstractCommandBuffer commandBuffer, int bindPoint)
+	public void record(IPipelineUnit unit, AbstractCommandBuffer commandBuffer, int bindPoint)
 	{
 		executor.execute(commandBuffer.getVkCommandBuffer());
-	}
-
-	@Override
-	public boolean isApplicable(EClass eClass)
-	{
-		return ProcessPackage.Literals.PIPELINE_BARRIER == eClass;
 	}
 
 	@Override
