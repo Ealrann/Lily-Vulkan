@@ -1,7 +1,9 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
-import static org.lwjgl.system.MemoryUtil.*;
-import static org.lwjgl.vulkan.KHRSurface.*;
+import static org.lwjgl.system.MemoryUtil.memAllocInt;
+import static org.lwjgl.system.MemoryUtil.memFree;
+import static org.lwjgl.vulkan.KHRSurface.VK_PRESENT_MODE_FIFO_KHR;
+import static org.lwjgl.vulkan.KHRSurface.vkGetPhysicalDeviceSurfacePresentModesKHR;
 
 import java.nio.IntBuffer;
 
@@ -42,10 +44,6 @@ public class PresentationModeSelector
 			{
 				swapchainPresentMode = pPresentModes.get(i);
 				break;
-			}
-			if (pPresentModes.get(i) == VK_PRESENT_MODE_MAILBOX_KHR)
-			{
-				swapchainPresentMode = pPresentModes.get(i);
 			}
 		}
 		memFree(pPresentModeCount);

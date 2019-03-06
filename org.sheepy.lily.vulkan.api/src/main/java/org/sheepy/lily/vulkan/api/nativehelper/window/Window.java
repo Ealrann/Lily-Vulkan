@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.joml.Vector2i;
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.vulkan.VkInstance;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
@@ -23,6 +24,12 @@ public class Window
 	private final boolean resizeable;
 	private final boolean fullscreen;
 	private boolean opened = false;
+
+	private final long[] aSurface = new long[1];
+
+	private GLFWWindowSizeCallback callback;
+
+	private GLFWVidMode mode;
 
 	private VkSurface surface;
 
@@ -56,6 +63,8 @@ public class Window
 		id = glfwCreateWindow(size.x, size.y, title, monitor, 0);
 		createSurface(vkInstance);
 
+		mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
 		callback = new GLFWWindowSizeCallback()
 		{
 			@Override
@@ -70,6 +79,11 @@ public class Window
 
 		opened = true;
 		fireResizeEvent();
+	}
+
+	public int getRefreshRate()
+	{
+		return mode.refreshRate();
 	}
 
 	public long getId()
@@ -95,10 +109,6 @@ public class Window
 	{
 		return glfwWindowShouldClose(id);
 	}
-
-	private final long[] aSurface = new long[1];
-
-	private GLFWWindowSizeCallback callback;
 
 	private void createSurface(VkInstance vkInstance)
 	{
