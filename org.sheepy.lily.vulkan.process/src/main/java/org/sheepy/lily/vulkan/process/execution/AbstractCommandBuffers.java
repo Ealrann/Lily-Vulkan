@@ -53,6 +53,7 @@ public abstract class AbstractCommandBuffers<CB extends ICommandBuffer>
 			commandBufferIds[i] = commandBufferId;
 		}
 		pCommandBuffers.free();
+		allocInfo.free();
 
 		return commandBufferIds;
 	}

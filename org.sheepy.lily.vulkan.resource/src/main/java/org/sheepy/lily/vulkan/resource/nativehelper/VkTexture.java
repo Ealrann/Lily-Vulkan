@@ -65,7 +65,7 @@ public class VkTexture implements IVkDescriptor
 
 		imageView.allocate(imageId, imageInfo.mipLevels, imageInfo.format,
 				VK_IMAGE_ASPECT_COLOR_BIT);
-		sampler.load();
+		sampler.load(stack);
 	}
 
 	public void loadImage(MemoryStack stack, ExecutionContext executionContext, ByteBuffer data)

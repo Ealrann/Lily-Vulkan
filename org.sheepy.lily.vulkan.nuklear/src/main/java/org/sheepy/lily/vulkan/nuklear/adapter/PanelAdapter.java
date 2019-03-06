@@ -73,6 +73,7 @@ public class PanelAdapter implements IUIElementAdapter
 	@Dispose
 	public void unsetTarget()
 	{
+		MemoryUtil.memFree(textBuffer);
 		window.removeListener(listener);
 	}
 

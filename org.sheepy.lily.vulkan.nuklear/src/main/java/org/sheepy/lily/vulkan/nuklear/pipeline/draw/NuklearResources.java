@@ -37,6 +37,7 @@ public class NuklearResources
 	private final List<IVkDescriptorSet> descriptors;
 	private final List<Shader> shaders;
 	private List<Object> resourceList;
+	private NkFontLoader fontLoader;
 
 	public NuklearResources(NuklearPipeline nkPipeline)
 	{
@@ -78,12 +79,15 @@ public class NuklearResources
 		var font = nkPipeline.getFont();
 		var fontAdapter = FontAdapter.adapt(font);
 
-		NkFontLoader fontLoader = new NkFontLoader(font);
+		fontLoader = new NkFontLoader(font);
+		fontLoader.allocate();
 		defaultFont = fontLoader.createNkFont(fontAdapter.getSamplerId());
 	}
 
 	public void free()
 	{
+		fontLoader.free();
+
 		Objects.requireNonNull(defaultFont.query()).free();
 		Objects.requireNonNull(defaultFont.width()).free();
 	}

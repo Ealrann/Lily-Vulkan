@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.nuklear.NkAllocator;
@@ -62,16 +63,11 @@ import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 {
 	private static final int BUFFER_INITIAL_SIZE = 4 * 1024;
-	private static final NkAllocator ALLOCATOR;
-	static
-	{
-		ALLOCATOR = NkAllocator.calloc().alloc((handle, old, size) -> nmemAllocChecked(size))
-				.mfree((handle, ptr) -> nmemFree(ptr));
-	}
 
 	private final NuklearPipeline nkPipeline;
 	private final NuklearResources resources;
 
+	private NkAllocator ALLOCATOR;
 	private final NuklearInputCatcher inputCatcher = new NuklearInputCatcher();
 	private NkBuffer cmds;
 	private NkContext nkContext;
@@ -104,6 +100,9 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		super.allocate(stack, context);
+
+		ALLOCATOR = NkAllocator.calloc().alloc((handle, old, size) -> nmemAllocChecked(size))
+				.mfree((handle, ptr) -> nmemFree(ptr));
 
 		graphicContext = (GraphicContext) context;
 		window = graphicContext.getLogicalDevice().window;
@@ -155,11 +154,18 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 		resources.free();
 
+		Objects.requireNonNull(nkContext.clip().copy()).free();
+		Objects.requireNonNull(nkContext.clip().paste()).free();
+
 		nk_free(nkContext);
 		nk_buffer_free(cmds);
 
 		nkContext = null;
 		cmds = null;
+
+		Objects.requireNonNull(ALLOCATOR.alloc()).free();
+		Objects.requireNonNull(ALLOCATOR.mfree()).free();
+		ALLOCATOR.free();
 	}
 
 	private void createContext()

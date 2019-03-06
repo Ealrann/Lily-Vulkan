@@ -39,29 +39,15 @@ public class VulkanUtils
 		}
 	}
 
-	public static long setupDebugCallback(MemoryStack stack, VkInstance vkInstance)
+	public static long setupDebugCallback(	MemoryStack stack,
+											VkInstance vkInstance,
+											VkDebugReportCallbackEXT callback)
 	{
 		final VkDebugReportCallbackCreateInfoEXT createInfo = VkDebugReportCallbackCreateInfoEXT
 				.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT);
 		createInfo.flags(VK_DEBUG_REPORT_ERROR_BIT_EXT | VK_DEBUG_REPORT_WARNING_BIT_EXT);
-		createInfo.pfnCallback(new VkDebugReportCallbackEXT()
-		{
-			@Override
-			public int invoke(	int flags,
-								int objectType,
-								long object,
-								long location,
-								int messageCode,
-								long pLayerPrefix,
-								long pMessage,
-								long pUserData)
-			{
-				String message = VkDebugReportCallbackEXT.getString(pMessage);
-				System.err.println("ERROR OCCURED: " + message);
-				return 0;
-			}
-		});
+		createInfo.pfnCallback(callback);
 
 		final LongBuffer pCallback = stack.callocLong(1);
 

@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joml.Vector2f;
+import org.lwjgl.glfw.GLFWCharCallback;
+import org.lwjgl.glfw.GLFWCursorPosCallback;
+import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.glfw.GLFWMouseButtonCallback;
+import org.lwjgl.glfw.GLFWScrollCallback;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.input.event.CharEvent;
@@ -35,32 +40,19 @@ public class VulkanInputManager implements IInputManager
 
 	private IInputCatcher catcher;
 
-	public VulkanInputManager(Application application, Window window)
+	private final GLFWCharCallback glfwSetCharCallback = new GLFWCharCallback()
 	{
-		this.application = application;
-		this.window = window;
-	}
-
-	public void load()
+		@Override
+		public void invoke(long window, int codepoint)
+		{
+			events.add(new CharEvent(codepoint));
+		}
+	};
+	private final GLFWKeyCallback glfwSetKeyCallback = new GLFWKeyCallback()
 	{
-		setupInputCallbacks();
-	}
-
-	@Override
-	public Vector2f getMouseLocation()
-	{
-		return cursorPosition;
-	}
-
-	public void setupInputCallbacks()
-	{
-		var windowId = window.getId();
-		glfwSetScrollCallback(windowId, (window, xoffset, yoffset) -> {
-			events.add(new ScrollEvent((float) xoffset, (float) yoffset));
-		});
-		glfwSetCharCallback(windowId, (window, codepoint) -> events.add(new CharEvent(codepoint)));
-		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> {
-
+		@Override
+		public void invoke(long window, int key, int scancode, int action, int mods)
+		{
 			EKeyState state = EKeyState.RELEASED;
 			switch (action)
 			{
@@ -77,10 +69,21 @@ public class VulkanInputManager implements IInputManager
 
 			var event = new KeyEvent(key, state, mods);
 			events.add(event);
-		});
-		glfwSetCursorPosCallback(windowId, (window, xpos, ypos) -> events
-				.add(new MouseLocationEvent((float) xpos, (float) ypos)));
-		glfwSetMouseButtonCallback(windowId, (window, button, action, mods) -> {
+		}
+	};
+	private final GLFWCursorPosCallback glfwSetCursorPosCallback = new GLFWCursorPosCallback()
+	{
+		@Override
+		public void invoke(long window, double xpos, double ypos)
+		{
+			events.add(new MouseLocationEvent((float) xpos, (float) ypos));
+		}
+	};
+	private final GLFWMouseButtonCallback glfwSetMouseButtonCallback = new GLFWMouseButtonCallback()
+	{
+		@Override
+		public void invoke(long window, int button, int action, int mods)
+		{
 			try (MemoryStack stack = MemoryStack.stackPush())
 			{
 				DoubleBuffer cx = stack.mallocDouble(1);
@@ -118,7 +121,41 @@ public class VulkanInputManager implements IInputManager
 				}
 				events.add(new MouseButtonEvent(mouseButton, action == GLFW_PRESS));
 			}
-		});
+		}
+	};
+
+	private final GLFWScrollCallback glfwSetScrollCallback = new GLFWScrollCallback()
+	{
+		@Override
+		public void invoke(long window, double xoffset, double yoffset)
+		{
+			events.add(new ScrollEvent((float) xoffset, (float) yoffset));
+		}
+	};
+
+	public VulkanInputManager(Application application, Window window)
+	{
+		this.application = application;
+		this.window = window;
+	}
+
+	public void load()
+	{
+		var windowId = window.getId();
+		glfwSetScrollCallback(windowId, glfwSetScrollCallback);
+		glfwSetCharCallback(windowId, glfwSetCharCallback);
+		glfwSetKeyCallback(windowId, glfwSetKeyCallback);
+		glfwSetCursorPosCallback(windowId, glfwSetCursorPosCallback);
+		glfwSetMouseButtonCallback(windowId, glfwSetMouseButtonCallback);
+	}
+
+	public void dispose()
+	{
+		glfwSetScrollCallback.free();
+		glfwSetCharCallback.free();
+		glfwSetKeyCallback.free();
+		glfwSetCursorPosCallback.free();
+		glfwSetMouseButtonCallback.free();
 	}
 
 	@Override
@@ -185,6 +222,12 @@ public class VulkanInputManager implements IInputManager
 		{
 			fireEvent(event, listener);
 		}
+	}
+
+	@Override
+	public Vector2f getMouseLocation()
+	{
+		return cursorPosition;
 	}
 
 	private void fireEvent(IInputEvent event, IInputListener listener)

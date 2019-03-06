@@ -33,6 +33,7 @@ public class VkFence implements IFence
 		long[] resArray = new long[1];
 		Logger.check(vkCreateFence(device, createInfo, null, resArray), "Failed to create Fence");
 
+		createInfo.free();
 		id = resArray[0];
 	}
 

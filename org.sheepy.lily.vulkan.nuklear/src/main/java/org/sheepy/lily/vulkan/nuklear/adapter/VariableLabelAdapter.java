@@ -31,7 +31,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 	private final IVariableResolverAdapter<IVariableResolver> adapter;
 
 	private String text = "";
-	private ByteBuffer textBuffer;
+	private ByteBuffer textBuffer = null;
 
 	private boolean dirty = false;
 
@@ -50,6 +50,7 @@ public class VariableLabelAdapter implements IUIElementAdapter
 	public void unsetTarget()
 	{
 		adapter.removeListener(listener);
+		MemoryUtil.memFree(textBuffer);
 	}
 
 	@Override

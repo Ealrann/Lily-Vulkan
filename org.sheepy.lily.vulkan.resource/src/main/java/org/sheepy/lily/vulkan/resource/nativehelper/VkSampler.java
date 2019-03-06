@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.resource.nativehelper;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
@@ -26,9 +27,9 @@ public class VkSampler
 		this.sampler = sampler;
 	}
 
-	public void load()
+	public void load(MemoryStack stack)
 	{
-		VkSamplerCreateInfo samplerInfo = VkSamplerCreateInfo.calloc();
+		var samplerInfo = VkSamplerCreateInfo.callocStack(stack);
 		samplerInfo.sType(VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO);
 		samplerInfo.magFilter(sampler.getMagFilter().getValue());
 		samplerInfo.minFilter(sampler.getMinFilter().getValue());

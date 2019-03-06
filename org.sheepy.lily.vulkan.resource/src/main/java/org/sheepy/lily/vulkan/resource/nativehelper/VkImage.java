@@ -70,6 +70,8 @@ public class VkImage
 
 		final var dstImageLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
 		vkCmdCopyBufferToImage(commandBuffer, bufferId, imageId, dstImageLayout, region);
+		
+		region.free();
 	}
 
 	public void transitionImageLayout(	VkCommandBuffer commandBuffer,

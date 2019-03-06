@@ -47,7 +47,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 				() -> vkCreateDescriptorSetLayout(device, layoutInfo, null, aDescriptorSetLayout));
 		layoutId = aDescriptorSetLayout[0];
 
-		final LongBuffer layouts = MemoryUtil.memAllocLong(1);
+		final LongBuffer layouts = stack.callocLong(1);
 		layouts.put(layoutId);
 		layouts.flip();
 

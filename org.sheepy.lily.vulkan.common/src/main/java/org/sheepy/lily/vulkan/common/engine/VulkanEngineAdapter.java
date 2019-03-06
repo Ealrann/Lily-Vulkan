@@ -14,6 +14,7 @@ import org.joml.Vector2i;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkApplicationInfo;
+import org.lwjgl.vulkan.VkDebugReportCallbackEXT;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
@@ -85,6 +86,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	protected TreeAllocator allocator;
 	private VulkanEngineAllocationRoot allocationRoot;
 	private boolean allocated = false;
+	private VkDebugReportCallbackEXT vkDebugReportCallback;
 
 	private long debugCallbackHandle = -1;
 	private PointerBuffer ppEnabledLayerNames = null;
@@ -281,7 +283,26 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		vkInstance = new VkInstance(instance, createInfo);
 		if (debug)
 		{
-			debugCallbackHandle = VulkanUtils.setupDebugCallback(stack, vkInstance);
+			vkDebugReportCallback = new VkDebugReportCallbackEXT()
+			{
+				@Override
+				public int invoke(	int flags,
+									int objectType,
+									long object,
+									long location,
+									int messageCode,
+									long pLayerPrefix,
+									long pMessage,
+									long pUserData)
+				{
+					String message = VkDebugReportCallbackEXT.getString(pMessage);
+					System.err.println("ERROR OCCURED: " + message);
+					return 0;
+				}
+			};
+
+			debugCallbackHandle = VulkanUtils.setupDebugCallback(stack, vkInstance,
+					vkDebugReportCallback);
 		}
 	}
 
@@ -314,15 +335,22 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void cleanup()
 	{
+		inputManager.dispose();
 		logicalDevice.free();
 
 		if (debug)
 		{
 			vkDestroyDebugReportCallbackEXT(vkInstance, debugCallbackHandle, null);
+			if (vkDebugReportCallback != null)
+			{
+				vkDebugReportCallback.free();
+			}
 			debugCallbackHandle = -1;
 		}
 
 		window.close();
+		
+		physicalDevice.free();
 
 		vkDestroyInstance(vkInstance, null);
 		vkInstance = null;

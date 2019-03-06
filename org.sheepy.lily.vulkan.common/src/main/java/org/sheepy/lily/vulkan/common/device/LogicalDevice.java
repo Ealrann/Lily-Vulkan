@@ -71,6 +71,8 @@ public class LogicalDevice
 			queueCreateInfo.queueFamilyIndex(queueIndex);
 			queueCreateInfo.pQueuePriorities(queuePriority);
 			queueCreateInfo.pNext(NULL);
+			
+			memFree(queuePriority);
 		}
 		queueCreateInfos.flip();
 

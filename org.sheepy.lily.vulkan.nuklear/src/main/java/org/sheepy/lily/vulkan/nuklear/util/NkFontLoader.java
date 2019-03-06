@@ -19,15 +19,15 @@ import org.sheepy.lily.vulkan.resource.texture.FontAdapter;
 
 public class NkFontLoader
 {
-	private static final IntBuffer unicode = MemoryUtil.memAllocInt(1);
-	private static final IntBuffer advanceQuery = MemoryUtil.memAllocInt(1);
-	private static final IntBuffer advanceWidth = MemoryUtil.memAllocInt(1);
-	private static final long unicodeAddress = memAddress(unicode);
+	private IntBuffer unicode;
+	private IntBuffer advanceQuery;
+	private IntBuffer advanceWidth;
+	private long unicodeAddress;
 
-	private static final FloatBuffer X = MemoryUtil.memAllocFloat(1).put(0.0f).flip();
-	private static final FloatBuffer Y = MemoryUtil.memAllocFloat(1).put(0.0f).flip();
+	private FloatBuffer X;
+	private FloatBuffer Y;
 
-	private static final STBTTAlignedQuad quad = STBTTAlignedQuad.calloc();
+	private STBTTAlignedQuad quad;
 
 	private final int width = FontAdapter.BUFFER_WIDTH;
 	private final int height = FontAdapter.BUFFER_HEIGHT;
@@ -37,6 +37,29 @@ public class NkFontLoader
 	public NkFontLoader(Font font)
 	{
 		this.font = font;
+	}
+
+	public void allocate()
+	{
+		unicode = MemoryUtil.memAllocInt(1);
+		advanceQuery = MemoryUtil.memAllocInt(1);
+		advanceWidth = MemoryUtil.memAllocInt(1);
+		unicodeAddress = memAddress(unicode);
+
+		X = MemoryUtil.memAllocFloat(1).put(0.0f).flip();
+		Y = MemoryUtil.memAllocFloat(1).put(0.0f).flip();
+
+		quad = STBTTAlignedQuad.calloc();
+	}
+
+	public void free()
+	{
+		MemoryUtil.memFree(unicode);
+		MemoryUtil.memFree(advanceQuery);
+		MemoryUtil.memFree(advanceWidth);
+		MemoryUtil.memFree(X);
+		MemoryUtil.memFree(Y);
+		quad.free();
 	}
 
 	public NkUserFont createNkFont(long id)
@@ -74,7 +97,7 @@ public class NkFontLoader
 		return default_font;
 	}
 
-	private static class TextWidthCallback extends NkTextWidthCallback
+	private class TextWidthCallback extends NkTextWidthCallback
 	{
 		private final STBTTFontinfo fontInfo;
 		private final float scale;
@@ -113,5 +136,5 @@ public class NkFontLoader
 
 			return textWidth;
 		}
-	};
+	}
 }

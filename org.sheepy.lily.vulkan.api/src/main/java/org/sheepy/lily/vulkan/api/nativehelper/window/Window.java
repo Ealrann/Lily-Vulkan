@@ -56,7 +56,7 @@ public class Window
 		id = glfwCreateWindow(size.x, size.y, title, monitor, 0);
 		createSurface(vkInstance);
 
-		final GLFWWindowSizeCallback callback = new GLFWWindowSizeCallback()
+		callback = new GLFWWindowSizeCallback()
 		{
 			@Override
 			public void invoke(long window, int width, int height)
@@ -81,6 +81,7 @@ public class Window
 	{
 		opened = false;
 		destroySurface();
+		callback.free();
 		glfwDestroyWindow(id);
 		glfwTerminate();
 	}
@@ -96,6 +97,8 @@ public class Window
 	}
 
 	private final long[] aSurface = new long[1];
+
+	private GLFWWindowSizeCallback callback;
 
 	private void createSurface(VkInstance vkInstance)
 	{
