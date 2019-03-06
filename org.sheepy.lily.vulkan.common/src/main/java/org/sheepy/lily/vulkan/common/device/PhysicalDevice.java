@@ -1,10 +1,16 @@
 package org.sheepy.lily.vulkan.common.device;
 
+import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkFormatProperties;
 import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
@@ -17,25 +23,30 @@ public class PhysicalDevice
 	public final VkInstance vkInstance;
 	public final DeviceProperties deviceProperties;
 
-	private String name;
-	private int driverVersion;
+	private final String name;
+	private final int driverVersion;
 	private VkPhysicalDeviceMemoryProperties memProperties;
 	private final Map<Integer, VkFormatProperties> formatProperties = new HashMap<>();
+	private final List<DeviceExtension> retainedExtensions;
+	private final List<String> availableExtensions;
 
-	public PhysicalDevice(VkPhysicalDevice vkPhysicalDevice, VkInstance vkInstance)
+	public PhysicalDevice(	VkPhysicalDevice vkPhysicalDevice,
+							VkInstance vkInstance,
+							DeviceExtension[] requiredExtensions)
 	{
 		this.vkPhysicalDevice = vkPhysicalDevice;
 		this.vkInstance = vkInstance;
 
 		deviceProperties = new DeviceProperties(vkPhysicalDevice);
+		name = deviceProperties.vkDeviceProperties.deviceNameString();
+		driverVersion = deviceProperties.vkDeviceProperties.driverVersion();
+
+		availableExtensions = gatherAvailableExtensions();
+		retainedExtensions = gatherSupportedExtensions(requiredExtensions);
 	}
 
 	public void allocate()
 	{
-
-		name = deviceProperties.vkDeviceProperties.deviceNameString();
-		driverVersion = deviceProperties.vkDeviceProperties.driverVersion();
-
 		memProperties = VkPhysicalDeviceMemoryProperties.calloc();
 		vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice, memProperties);
 	}
@@ -101,6 +112,7 @@ public class PhysicalDevice
 
 		return res;
 	}
+
 	private VkFormatProperties getFormatProperty(int format)
 	{
 		var formatProperty = formatProperties.get(format);
@@ -113,6 +125,60 @@ public class PhysicalDevice
 		return formatProperty;
 	}
 
+	private List<String> gatherAvailableExtensions()
+	{
+		List<String> extensions = new ArrayList<>();
+		final IntBuffer extensionCount = memAllocInt(1);
+
+		vkEnumerateDeviceExtensionProperties(vkPhysicalDevice, (ByteBuffer) null, extensionCount,
+				(VkExtensionProperties.Buffer) null);
+		final VkExtensionProperties.Buffer availableExtensions = VkExtensionProperties
+				.calloc(extensionCount.get(0));
+
+		vkEnumerateDeviceExtensionProperties(vkPhysicalDevice, (ByteBuffer) null, extensionCount,
+				availableExtensions);
+
+		for (final VkExtensionProperties extension : availableExtensions)
+		{
+			extensions.add(extension.extensionNameString());
+		}
+
+		availableExtensions.free();
+		memFree(extensionCount);
+
+		return extensions;
+	}
+
+	private List<DeviceExtension> gatherSupportedExtensions(DeviceExtension[] requiredExtensions)
+	{
+		List<DeviceExtension> compatibleExtensions = new ArrayList<>();
+		for (final DeviceExtension requiredExtension : requiredExtensions)
+		{
+			boolean found = false;
+			for (final String extension : availableExtensions)
+			{
+				if (requiredExtension.name.equals(extension))
+				{
+					found = true;
+					compatibleExtensions.add(requiredExtension);
+					break;
+				}
+			}
+
+			if (found == false && requiredExtension.mandatory)
+			{
+				compatibleExtensions = null;
+				break;
+			}
+		}
+		return compatibleExtensions;
+	}
+
+	public List<DeviceExtension> getRetainedExtensions()
+	{
+		return retainedExtensions;
+	}
+
 	public String getName()
 	{
 		return name;
@@ -121,5 +187,29 @@ public class PhysicalDevice
 	public int getDriverVersion()
 	{
 		return driverVersion;
+	}
+
+	public void printRetainedExtensions()
+	{
+		System.out.println("\nUsing Device Extensions:");
+		for (DeviceExtension deviceExtension : retainedExtensions)
+		{
+			System.out.println("\t- " + deviceExtension.name);
+		}
+	}
+
+	public void printAvailableExtensions()
+	{
+		System.out.println("\nAvailable Device Extensions:");
+		for (String extension : availableExtensions)
+		{
+			System.out.println("\t- " + extension);
+		}
+	}
+
+	public void printPhysicalProperties()
+	{
+		System.out.println("\nPhysical Properties:");
+		deviceProperties.print();
 	}
 }

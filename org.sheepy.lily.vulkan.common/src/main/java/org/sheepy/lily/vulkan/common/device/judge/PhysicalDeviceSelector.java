@@ -14,6 +14,7 @@ import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.util.Logger;
+import org.sheepy.lily.vulkan.common.device.DeviceExtension;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
 
 public class PhysicalDeviceSelector
@@ -29,20 +30,23 @@ public class PhysicalDeviceSelector
 
 	private final VkInstance vkInstance;
 	private final List<PhysicalDeviceWrapper> devices = new ArrayList<>();
-	private final String[] requiredExtensions;
+	private final DeviceExtension[] requiredExtensions;
 	private final VkSurface surface;
+	private final boolean debug;
 
 	private IntBuffer pPhysicalDeviceCount;
 
 	private PointerBuffer pPhysicalDevices;
 
 	public PhysicalDeviceSelector(	VkInstance vkInstance,
-									String[] requiredExtensions,
-									VkSurface surface)
+									DeviceExtension[] requiredExtensions,
+									VkSurface surface,
+									boolean debug)
 	{
 		this.vkInstance = vkInstance;
 		this.requiredExtensions = requiredExtensions;
 		this.surface = surface;
+		this.debug = debug;
 	}
 
 	public PhysicalDevice findBestPhysicalDevice(MemoryStack stack)
@@ -70,13 +74,22 @@ public class PhysicalDeviceSelector
 
 	private void gatherDevices()
 	{
-		final PhysicalDeviceJudge judge = new PhysicalDeviceJudge(requiredExtensions);
+		final PhysicalDeviceJudge judge = new PhysicalDeviceJudge();
 		for (int i = 0; i < pPhysicalDeviceCount.get(0); i++)
 		{
 			final var vkPhysicalDevice = new VkPhysicalDevice(pPhysicalDevices.get(i), vkInstance);
-			final var physicalDevice = new PhysicalDevice(vkPhysicalDevice, vkInstance);
+			final var physicalDevice = new PhysicalDevice(vkPhysicalDevice, vkInstance,
+					requiredExtensions);
 
 			final int deviceScore = judge.rateDeviceSuitability(physicalDevice, surface);
+
+			if (debug)
+			{
+				System.out.println(String.format("[%s (%d)]: %d points", physicalDevice.getName(),
+						physicalDevice.getDriverVersion(), deviceScore));
+				physicalDevice.printAvailableExtensions();
+			}
+
 			devices.add(new PhysicalDeviceWrapper(physicalDevice, deviceScore));
 		}
 	}

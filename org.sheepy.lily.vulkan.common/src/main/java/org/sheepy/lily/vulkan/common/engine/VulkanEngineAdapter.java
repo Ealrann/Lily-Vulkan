@@ -34,6 +34,7 @@ import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.lily.vulkan.common.concurrent.VkFence;
+import org.sheepy.lily.vulkan.common.device.DeviceExtension;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
@@ -59,8 +60,8 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			// "VK_LAYER_LUNARG_api_dump"
 	};
 
-	private static final String[] REQUIRED_EXTENSIONS = {
-			VK_KHR_SWAPCHAIN_EXTENSION_NAME
+	private static final DeviceExtension[] REQUIRED_DEVICE_EXTENSIONS = {
+			new DeviceExtension(VK_KHR_SWAPCHAIN_EXTENSION_NAME, true)
 	};
 
 	private final IWindowListener resizeListener = new IWindowListener()
@@ -268,7 +269,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		appInfo.engineVersion(VK_MAKE_VERSION(1, 0, 0));
 		appInfo.apiVersion(VK_MAKE_VERSION(1, 0, 0));
 
-		final var requiredExtensions = VulkanUtils.getRequiredExtensions(stack, debug);
+		final var requiredExtensions = VulkanUtils.getRequiredInstanceExtensions(stack, debug);
 		final VkInstanceCreateInfo createInfo = VkInstanceCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO);
 		createInfo.pApplicationInfo(appInfo);
@@ -314,22 +315,25 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void pickPhysicalDevice(MemoryStack stack)
 	{
-		final var deviceSelector = new PhysicalDeviceSelector(vkInstance, REQUIRED_EXTENSIONS,
-				window.getSurface());
+		final var deviceSelector = new PhysicalDeviceSelector(vkInstance,
+				REQUIRED_DEVICE_EXTENSIONS, window.getSurface(), debug);
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
-		String deviceInfo = String.format("\nGraphic Device: %s (%s)", physicalDevice.getName(),
-				physicalDevice.getDriverVersion());
+		String deviceInfo = String.format("\nUsing Graphic Device: %s (%s)",
+				physicalDevice.getName(), physicalDevice.getDriverVersion());
 		System.out.println(deviceInfo);
 
-		if (debug) physicalDevice.deviceProperties.print();
+		if (debug)
+		{
+			physicalDevice.printRetainedExtensions();
+			// physicalDevice.printPhysicalProperties();
+		}
 	}
 
 	private void createLogicalDevice(MemoryStack stack)
 	{
-		logicalDevice = LogicalDevice.alloc(stack, physicalDevice, window, REQUIRED_EXTENSIONS,
-				ppEnabledLayerNames, true);
+		logicalDevice = LogicalDevice.alloc(stack, physicalDevice, window, true);
 		logicalDeviceContext = new LogicalDeviceContext(logicalDevice);
 	}
 
@@ -349,7 +353,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 
 		window.close();
-		
+
 		physicalDevice.free();
 
 		vkDestroyInstance(vkInstance, null);

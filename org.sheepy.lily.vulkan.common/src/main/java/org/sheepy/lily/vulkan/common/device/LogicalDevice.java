@@ -4,6 +4,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.HashSet;
+import java.util.List;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
@@ -30,13 +31,11 @@ public class LogicalDevice
 	public final static LogicalDevice alloc(MemoryStack stack,
 											PhysicalDevice physicalDevice,
 											Window window,
-											String[] requiredExtensions,
-											PointerBuffer ppEnabledLayerNames,
 											boolean needComputeCapability)
 	{
 		final LogicalDevice res = new LogicalDevice(physicalDevice, window, needComputeCapability);
 
-		res.load(stack, requiredExtensions, ppEnabledLayerNames);
+		res.load(stack);
 		return res;
 	}
 
@@ -53,9 +52,7 @@ public class LogicalDevice
 				needComputeCapability);
 	}
 
-	public void load(	MemoryStack stack,
-						String[] requiredExtensions,
-						PointerBuffer ppEnabledLayerNames)
+	public void load(MemoryStack stack)
 	{
 		final var uniqueQueueIndexes = new HashSet<>(queueManager.getQueueIndexes());
 		final var size = uniqueQueueIndexes.size();
@@ -71,16 +68,18 @@ public class LogicalDevice
 			queueCreateInfo.queueFamilyIndex(queueIndex);
 			queueCreateInfo.pQueuePriorities(queuePriority);
 			queueCreateInfo.pNext(NULL);
-			
+
 			memFree(queuePriority);
 		}
 		queueCreateInfos.flip();
 
+		List<DeviceExtension> extensions = physicalDevice.getRetainedExtensions();
+
 		// Logical Device
-		final PointerBuffer extensionsBuffer = stack.callocPointer(requiredExtensions.length);
-		for (final String requiredExtension : requiredExtensions)
+		final PointerBuffer extensionsBuffer = stack.callocPointer(extensions.size());
+		for (final DeviceExtension requiredExtension : extensions)
 		{
-			extensionsBuffer.put(stack.UTF8(requiredExtension));
+			extensionsBuffer.put(stack.UTF8(requiredExtension.name));
 		}
 		extensionsBuffer.flip();
 		final VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.callocStack(stack);

@@ -57,7 +57,7 @@ public class VulkanUtils
 		return pCallback.get(0);
 	}
 
-	public static PointerBuffer getRequiredExtensions(MemoryStack stack, boolean debug)
+	public static PointerBuffer getRequiredInstanceExtensions(MemoryStack stack, boolean debug)
 	{
 		/* Look for GLFW instance extensions */
 		final PointerBuffer glfwRequiredExtensions = Window.getRequiredInstanceExtensions();
