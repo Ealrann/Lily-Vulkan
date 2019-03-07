@@ -73,11 +73,11 @@ public class LogicalDevice
 		}
 		queueCreateInfos.flip();
 
-		List<DeviceExtension> extensions = physicalDevice.getRetainedExtensions();
+		List<EDeviceExtension> extensions = physicalDevice.getRetainedExtensions();
 
 		// Logical Device
 		final PointerBuffer extensionsBuffer = stack.callocPointer(extensions.size());
-		for (final DeviceExtension requiredExtension : extensions)
+		for (final EDeviceExtension requiredExtension : extensions)
 		{
 			extensionsBuffer.put(stack.UTF8(requiredExtension.name));
 		}

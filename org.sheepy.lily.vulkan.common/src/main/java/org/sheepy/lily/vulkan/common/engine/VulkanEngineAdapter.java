@@ -1,9 +1,6 @@
 package org.sheepy.lily.vulkan.common.engine;
 
 import static org.lwjgl.system.MemoryStack.stackPush;
-import static org.lwjgl.vulkan.EXTDebugReport.vkDestroyDebugReportCallbackEXT;
-import static org.lwjgl.vulkan.KHRSwapchain.VK_KHR_SWAPCHAIN_EXTENSION_NAME;
-import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +8,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.joml.Vector2i;
-import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkApplicationInfo;
-import org.lwjgl.vulkan.VkDebugReportCallbackEXT;
-import org.lwjgl.vulkan.VkInstance;
-import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Autorun;
@@ -31,18 +23,15 @@ import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
-import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.lily.vulkan.common.concurrent.VkFence;
-import org.sheepy.lily.vulkan.common.device.DeviceExtension;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
+import org.sheepy.lily.vulkan.common.device.VulkanInstance;
 import org.sheepy.lily.vulkan.common.device.judge.PhysicalDeviceSelector;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
-import org.sheepy.lily.vulkan.common.util.LayerFinder;
-import org.sheepy.lily.vulkan.common.util.VulkanUtils;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
@@ -50,20 +39,6 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 @Adapter(scope = VulkanEngine.class)
 public class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
-	private static final String[] LAYERS_TO_ENABLE = {
-			"VK_LAYER_LUNARG_standard_validation",
-			"VK_LAYER_GOOGLE_threading",
-			"VK_LAYER_LUNARG_parameter_validation",
-			"VK_LAYER_LUNARG_object_tracker",
-			"VK_LAYER_LUNARG_core_validation",
-			"VK_LAYER_GOOGLE_unique_objects",
-			// "VK_LAYER_LUNARG_api_dump"
-	};
-
-	private static final DeviceExtension[] REQUIRED_DEVICE_EXTENSIONS = {
-			new DeviceExtension(VK_KHR_SWAPCHAIN_EXTENSION_NAME, true)
-	};
-
 	private final IWindowListener resizeListener = new IWindowListener()
 	{
 		@Override
@@ -77,20 +52,17 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private final VulkanInputManager inputManager;
 	private final VulkanEngine engine;
 	private final Application application;
+	private final EngineExtensionRequirement extensionRequirement;
 
 	private final boolean debug;
 
-	protected VkInstance vkInstance;
+	protected VulkanInstance vkInstance;
 	protected PhysicalDevice physicalDevice;
 	protected LogicalDevice logicalDevice = null;
 	protected LogicalDeviceContext logicalDeviceContext = null;
 	protected TreeAllocator allocator;
 	private VulkanEngineAllocationRoot allocationRoot;
 	private boolean allocated = false;
-	private VkDebugReportCallbackEXT vkDebugReportCallback;
-
-	private long debugCallbackHandle = -1;
-	private PointerBuffer ppEnabledLayerNames = null;
 	private ExecutionContext executionContext = null;
 
 	protected Window window;
@@ -141,20 +113,17 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		window = new Window(application.getSize(), application.getTitle(),
 				application.isResizeable(), application.isFullscreen());
 		inputManager = new VulkanInputManager(application, window);
+
+		try (MemoryStack stack = stackPush())
+		{
+			extensionRequirement = new EngineExtensionRequirement(engine, stack, debug);
+		}
 	}
 
 	@Autorun
 	public void load()
 	{
 		application.eAdapters().add(applicationAdapter);
-
-		if (debug)
-		{
-			try (MemoryStack stack = stackPush())
-			{
-				loadLayerNames(stack);
-			}
-		}
 
 		if (engine.isEnabled())
 		{
@@ -181,7 +150,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		try (MemoryStack stack = stackPush())
 		{
 			createInstance(stack);
-			window.open(vkInstance);
+			window.open(vkInstance.getVkInstance());
 			pickPhysicalDevice(stack);
 			createLogicalDevice(stack);
 			inputManager.load();
@@ -254,69 +223,25 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		for (VkFence fence : fences)
 		{
-			fence.free();
+			fence.free(logicalDeviceContext);
 		}
 		allocated = false;
 	}
 
 	private void createInstance(MemoryStack stack)
 	{
-		final VkApplicationInfo appInfo = VkApplicationInfo.callocStack(stack);
-		appInfo.sType(VK_STRUCTURE_TYPE_APPLICATION_INFO);
-		appInfo.pApplicationName(stack.UTF8(application.getTitle()));
-		appInfo.applicationVersion(VK_MAKE_VERSION(1, 0, 0));
-		appInfo.pEngineName(stack.UTF8("Sheepy"));
-		appInfo.engineVersion(VK_MAKE_VERSION(1, 0, 0));
-		appInfo.apiVersion(VK_MAKE_VERSION(1, 0, 0));
 
-		final var requiredExtensions = VulkanUtils.getRequiredInstanceExtensions(stack, debug);
-		final VkInstanceCreateInfo createInfo = VkInstanceCreateInfo.callocStack(stack);
-		createInfo.sType(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO);
-		createInfo.pApplicationInfo(appInfo);
-		createInfo.ppEnabledExtensionNames(requiredExtensions);
-		createInfo.ppEnabledLayerNames(ppEnabledLayerNames);
+		vkInstance = new VulkanInstance(application, extensionRequirement, debug);
 
-		final var aInstance = stack.mallocPointer(1);
-		final int err = vkCreateInstance(createInfo, null, aInstance);
-		Logger.check(err, "Failed to create VkInstance");
-		final long instance = aInstance.get(0);
+		vkInstance.allocate(stack);
 
-		vkInstance = new VkInstance(instance, createInfo);
-		if (debug)
-		{
-			vkDebugReportCallback = new VkDebugReportCallbackEXT()
-			{
-				@Override
-				public int invoke(	int flags,
-									int objectType,
-									long object,
-									long location,
-									int messageCode,
-									long pLayerPrefix,
-									long pMessage,
-									long pUserData)
-				{
-					String message = VkDebugReportCallbackEXT.getString(pMessage);
-					System.err.println("ERROR OCCURED: " + message);
-					return 0;
-				}
-			};
-
-			debugCallbackHandle = VulkanUtils.setupDebugCallback(stack, vkInstance,
-					vkDebugReportCallback);
-		}
-	}
-
-	private void loadLayerNames(MemoryStack stack)
-	{
-		VulkanUtils.printAvailableExtensions(stack);
-		ppEnabledLayerNames = LayerFinder.convertToPointerBuffer(stack, LAYERS_TO_ENABLE);
 	}
 
 	private void pickPhysicalDevice(MemoryStack stack)
 	{
-		final var deviceSelector = new PhysicalDeviceSelector(vkInstance,
-				REQUIRED_DEVICE_EXTENSIONS, window.getSurface(), debug);
+		final var surface = window.getSurface();
+		final var deviceSelector = new PhysicalDeviceSelector(vkInstance, extensionRequirement,
+				surface, debug);
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
@@ -342,21 +267,11 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		inputManager.dispose();
 		logicalDevice.free();
 
-		if (debug)
-		{
-			vkDestroyDebugReportCallbackEXT(vkInstance, debugCallbackHandle, null);
-			if (vkDebugReportCallback != null)
-			{
-				vkDebugReportCallback.free();
-			}
-			debugCallbackHandle = -1;
-		}
-
 		window.close();
 
 		physicalDevice.free();
 
-		vkDestroyInstance(vkInstance, null);
+		vkInstance.free();
 		vkInstance = null;
 	}
 
@@ -369,8 +284,8 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	@Override
 	public IFence newFence(boolean signaled)
 	{
-		VkFence res = new VkFence(logicalDevice.getVkDevice());
-		res.allocate(signaled);
+		VkFence res = new VkFence(signaled);
+		res.allocate(null, logicalDeviceContext);
 
 		fences.add(res);
 		return res;

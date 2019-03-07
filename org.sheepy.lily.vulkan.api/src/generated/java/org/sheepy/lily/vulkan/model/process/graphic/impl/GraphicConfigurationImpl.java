@@ -34,6 +34,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#isVSyncEnabled <em>VSync Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getPresentationMode <em>Presentation Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
@@ -47,6 +48,26 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		implements GraphicConfiguration
 {
+	/**
+	 * The default value of the '{@link #isVSyncEnabled() <em>VSync Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVSyncEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean VSYNC_ENABLED_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isVSyncEnabled() <em>VSync Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVSyncEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean vSyncEnabled = VSYNC_ENABLED_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #isClearBeforeRender() <em>Clear Before Render</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -166,6 +187,32 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	protected EClass eStaticClass()
 	{
 		return GraphicPackage.Literals.GRAPHIC_CONFIGURATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isVSyncEnabled()
+	{
+		return vSyncEnabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setVSyncEnabled(boolean newVSyncEnabled)
+	{
+		boolean oldVSyncEnabled = vSyncEnabled;
+		vSyncEnabled = newVSyncEnabled;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_CONFIGURATION__VSYNC_ENABLED, oldVSyncEnabled,
+				vSyncEnabled));
 	}
 
 	/**
@@ -376,6 +423,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_CONFIGURATION__VSYNC_ENABLED:
+			return isVSyncEnabled();
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			return isClearBeforeRender();
 		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
@@ -403,6 +452,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_CONFIGURATION__VSYNC_ENABLED:
+			setVSyncEnabled((Boolean) newValue);
+			return;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			setClearBeforeRender((Boolean) newValue);
 			return;
@@ -436,6 +488,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_CONFIGURATION__VSYNC_ENABLED:
+			setVSyncEnabled(VSYNC_ENABLED_EDEFAULT);
+			return;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			setClearBeforeRender(CLEAR_BEFORE_RENDER_EDEFAULT);
 			return;
@@ -468,6 +523,8 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_CONFIGURATION__VSYNC_ENABLED:
+			return vSyncEnabled != VSYNC_ENABLED_EDEFAULT;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			return clearBeforeRender != CLEAR_BEFORE_RENDER_EDEFAULT;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
@@ -495,7 +552,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (clearBeforeRender: ");
+		result.append(" (vSyncEnabled: ");
+		result.append(vSyncEnabled);
+		result.append(", clearBeforeRender: ");
 		result.append(clearBeforeRender);
 		result.append(", presentationMode: ");
 		result.append(presentationMode);

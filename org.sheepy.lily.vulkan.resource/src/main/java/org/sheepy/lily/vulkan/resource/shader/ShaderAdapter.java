@@ -4,6 +4,7 @@ import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREA
 
 import java.nio.ByteBuffer;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
@@ -19,7 +20,20 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
 @Adapter(scope = Shader.class)
 public class ShaderAdapter implements IResourceAdapter
 {
-	private static ByteBuffer MAIN_FUNCTION_NAME = MemoryUtil.memASCII("main");
+	private static final ByteBuffer MAIN_FUNCTION_NAME;
+	static
+	{
+		var memASCII = MemoryUtil.memASCII("main");
+		int capacity = memASCII.capacity();
+
+		MAIN_FUNCTION_NAME = BufferUtils.createByteBuffer(capacity);
+		for (int i = 0; i < capacity; i++)
+		{
+			MAIN_FUNCTION_NAME.put(i, memASCII.get(i));
+		}
+
+		MemoryUtil.memFree(memASCII);
+	}
 
 	private final Shader shader;
 

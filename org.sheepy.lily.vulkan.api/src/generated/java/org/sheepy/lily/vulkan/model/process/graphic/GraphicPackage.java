@@ -74,13 +74,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_CONFIGURATION = 0;
 
 	/**
+	 * The feature id for the '<em><b>VSync Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_CONFIGURATION__VSYNC_ENABLED = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Clear Before Render</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 0;
+	int GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Presentation Mode</b></em>' attribute.
@@ -89,7 +98,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__PRESENTATION_MODE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 1;
+	int GRAPHIC_CONFIGURATION__PRESENTATION_MODE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Required Swap Image Count</b></em>' attribute.
@@ -99,7 +108,7 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT
-			+ 2;
+			+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Swap Image Usages</b></em>' attribute list.
@@ -108,7 +117,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 3;
+	int GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Acquire Wait Stage</b></em>' attribute.
@@ -117,7 +126,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 4;
+	int GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Color Domain</b></em>' containment reference.
@@ -126,7 +135,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__COLOR_DOMAIN = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 5;
+	int GRAPHIC_CONFIGURATION__COLOR_DOMAIN = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -135,7 +144,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION_FEATURE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 6;
+	int GRAPHIC_CONFIGURATION_FEATURE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Configuration</em>' class.
@@ -1923,6 +1932,17 @@ public interface GraphicPackage extends EPackage
 	EClass getGraphicConfiguration();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isVSyncEnabled <em>VSync Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>VSync Enabled</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isVSyncEnabled()
+	 * @see #getGraphicConfiguration()
+	 * @generated
+	 */
+	EAttribute getGraphicConfiguration_VSyncEnabled();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3024,6 +3044,15 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass GRAPHIC_CONFIGURATION = eINSTANCE.getGraphicConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>VSync Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GRAPHIC_CONFIGURATION__VSYNC_ENABLED = eINSTANCE
+				.getGraphicConfiguration_VSyncEnabled();
 
 		/**
 		 * The meta object literal for the '<em><b>Clear Before Render</b></em>' attribute feature.

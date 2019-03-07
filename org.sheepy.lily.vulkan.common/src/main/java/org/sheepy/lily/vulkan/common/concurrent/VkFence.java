@@ -2,29 +2,31 @@ package org.sheepy.lily.vulkan.common.concurrent;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkFenceCreateInfo;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.util.Logger;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.common.device.ILogicalDeviceContext;
 
-public class VkFence implements IFence
+public class VkFence implements IFence, IAllocable
 {
-	private final VkDevice device;
-
+	private final boolean signaled;
 	private long id;
 
-	public VkFence(VkDevice device)
+	private VkDevice device;
+
+	public VkFence(boolean signaled)
 	{
-		this.device = device;
+		this.signaled = signaled;
 	}
 
-	public void allocate()
+	@Override
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		allocate(false);
-	}
-
-	public void allocate(boolean signaled)
-	{
+		device = ((ILogicalDeviceContext) context).getVkDevice();
 		VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO);
 		createInfo.pNext(VK_NULL_HANDLE);
@@ -37,7 +39,8 @@ public class VkFence implements IFence
 		id = resArray[0];
 	}
 
-	public void free()
+	@Override
+	public void free(IAllocationContext context)
 	{
 		vkDestroyFence(device, id, null);
 		id = -1;
@@ -67,5 +70,11 @@ public class VkFence implements IFence
 	public long getId()
 	{
 		return id;
+	}
+
+	@Override
+	public boolean isAllocationDirty(IAllocationContext context)
+	{
+		return false;
 	}
 }

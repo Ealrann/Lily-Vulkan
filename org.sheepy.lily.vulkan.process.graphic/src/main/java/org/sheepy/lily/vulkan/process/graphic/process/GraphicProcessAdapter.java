@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.extension.SoftwareVerticalSynchronization;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
@@ -31,6 +32,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	protected static final long UINT64_MAX = 0xFFFFFFFFFFFFFFFFL;
 
 	private final int[] nextImageArray = new int[1];
+	private SoftwareVerticalSynchronization softVsync;
 
 	public GraphicProcessAdapter(GraphicProcess process)
 	{
@@ -61,7 +63,17 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public void recordCommands()
 	{
-		((GraphicCommandBuffers) context.commandBuffers).recordCommands((GraphicContext) context);
+		var graphicCopntext = (GraphicContext) context;
+
+		if (graphicCopntext.configuration.isVSyncEnabled()
+				&& graphicCopntext.hardwareVSync == false)
+		{
+			int refreshRate = context.getLogicalDevice().window.getRefreshRate();
+			long frequencyNs = (long) (1. / refreshRate * 1e9);
+			softVsync = new SoftwareVerticalSynchronization(frequencyNs);
+		}
+
+		((GraphicCommandBuffers) context.commandBuffers).recordCommands(graphicCopntext);
 	}
 
 	@Override
@@ -73,11 +85,15 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public void execute(IFence fence)
 	{
-		var graphicContext = (GraphicContext) context;
+		final var graphicContext = (GraphicContext) context;
 		final Integer imageIndex = acquireNextImage(graphicContext);
 
 		if (imageIndex != null)
 		{
+			if (graphicContext.presentFence != null)
+			{
+				fence = graphicContext.presentFence;
+			}
 			submitAndPresentImage(graphicContext, imageIndex, fence);
 		}
 	}
@@ -95,9 +111,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 		else return null;
 	}
 
-	private static void submitAndPresentImage(	GraphicContext context,
-												Integer imageIndex,
-												IFence fence)
+	private void submitAndPresentImage(GraphicContext context, Integer imageIndex, IFence fence)
 	{
 		var queueManager = context.getLogicalDevice().queueManager;
 		var graphicQueue = queueManager.getGraphicQueue().vkQueue;
@@ -108,6 +122,11 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 		var presentInfo = submission.getPresentInfo(imageIndex);
 
 		Logger.check(vkQueueSubmit(graphicQueue, submitInfo, fenceId), FAILED_SUBMIT_GRAPHIC);
+
+		if (context.configuration.isVSyncEnabled() && context.hardwareVSync == false)
+		{
+			softVsync.step();
+		}
 
 		Logger.check(vkQueuePresentKHR(presentQueue, presentInfo), FAILED_SUBMIT_PRESENT);
 	}

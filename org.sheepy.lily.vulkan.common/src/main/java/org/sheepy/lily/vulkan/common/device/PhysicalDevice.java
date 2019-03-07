@@ -10,45 +10,58 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkFormatProperties;
-import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceMemoryProperties;
 import org.sheepy.lily.vulkan.common.device.data.DeviceProperties;
+import org.sheepy.lily.vulkan.common.device.display.DisplayInfo;
+import org.sheepy.lily.vulkan.common.device.display.loader.DisplayInformationLoader;
+import org.sheepy.lily.vulkan.common.engine.EngineExtensionRequirement;
 
 public class PhysicalDevice
 {
 	public final VkPhysicalDevice vkPhysicalDevice;
-	public final VkInstance vkInstance;
+	public final VulkanInstance vkInstance;
 	public final DeviceProperties deviceProperties;
 
 	private final String name;
 	private final int driverVersion;
 	private VkPhysicalDeviceMemoryProperties memProperties;
 	private final Map<Integer, VkFormatProperties> formatProperties = new HashMap<>();
-	private final List<DeviceExtension> retainedExtensions;
+	private final List<EDeviceExtension> retainedExtensions;
 	private final List<String> availableExtensions;
 
+	private List<DisplayInfo> displaysInfomations = null;
+	private final EngineExtensionRequirement extensionRequirement;
+
 	public PhysicalDevice(	VkPhysicalDevice vkPhysicalDevice,
-							VkInstance vkInstance,
-							DeviceExtension[] requiredExtensions)
+							VulkanInstance vkInstance,
+							EngineExtensionRequirement extensionRequirement)
 	{
 		this.vkPhysicalDevice = vkPhysicalDevice;
 		this.vkInstance = vkInstance;
+		this.extensionRequirement = extensionRequirement;
 
 		deviceProperties = new DeviceProperties(vkPhysicalDevice);
 		name = deviceProperties.vkDeviceProperties.deviceNameString();
 		driverVersion = deviceProperties.vkDeviceProperties.driverVersion();
 
 		availableExtensions = gatherAvailableExtensions();
-		retainedExtensions = gatherSupportedExtensions(requiredExtensions);
+		retainedExtensions = gatherSupportedExtensions(extensionRequirement);
 	}
 
-	public void allocate()
+	public void allocate(MemoryStack stack)
 	{
 		memProperties = VkPhysicalDeviceMemoryProperties.calloc();
 		vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice, memProperties);
+
+		if (extensionRequirement.getRequiredInstanceExtensions()
+				.contains(EInstanceExtension.VK_KHR_display))
+		{
+			displaysInfomations = DisplayInformationLoader.getDisplayInfos(stack, vkPhysicalDevice);
+		}
 	}
 
 	public void free()
@@ -149,10 +162,11 @@ public class PhysicalDevice
 		return extensions;
 	}
 
-	private List<DeviceExtension> gatherSupportedExtensions(DeviceExtension[] requiredExtensions)
+	private List<EDeviceExtension> gatherSupportedExtensions(EngineExtensionRequirement extensionRequirement)
 	{
-		List<DeviceExtension> compatibleExtensions = new ArrayList<>();
-		for (final DeviceExtension requiredExtension : requiredExtensions)
+		List<EDeviceExtension> compatibleExtensions = new ArrayList<>();
+		for (final EDeviceExtension requiredExtension : extensionRequirement
+				.getRequiredDeviceExtensions())
 		{
 			boolean found = false;
 			for (final String extension : availableExtensions)
@@ -174,7 +188,7 @@ public class PhysicalDevice
 		return compatibleExtensions;
 	}
 
-	public List<DeviceExtension> getRetainedExtensions()
+	public List<EDeviceExtension> getRetainedExtensions()
 	{
 		return retainedExtensions;
 	}
@@ -192,7 +206,7 @@ public class PhysicalDevice
 	public void printRetainedExtensions()
 	{
 		System.out.println("\nUsing Device Extensions:");
-		for (DeviceExtension deviceExtension : retainedExtensions)
+		for (EDeviceExtension deviceExtension : retainedExtensions)
 		{
 			System.out.println("\t- " + deviceExtension.name);
 		}
@@ -211,5 +225,10 @@ public class PhysicalDevice
 	{
 		System.out.println("\nPhysical Properties:");
 		deviceProperties.print();
+	}
+
+	public List<DisplayInfo> getDisplaysInfomations()
+	{
+		return displaysInfomations;
 	}
 }

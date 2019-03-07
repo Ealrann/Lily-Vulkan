@@ -15,6 +15,7 @@ module org.sheepy.lily.vulkan.common
 	exports org.sheepy.lily.vulkan.common.concurrent;
 	exports org.sheepy.lily.vulkan.common.device;
 	exports org.sheepy.lily.vulkan.common.device.data;
+	exports org.sheepy.lily.vulkan.common.device.display;
 	exports org.sheepy.lily.vulkan.common.execution;
 	exports org.sheepy.lily.vulkan.common.engine;
 	exports org.sheepy.lily.vulkan.common.input;

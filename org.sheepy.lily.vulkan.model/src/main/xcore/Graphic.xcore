@@ -35,6 +35,8 @@ import org.sheepy.lily.vulkan.model.resource.Shader
 
 class GraphicConfiguration extends Configuration
 {
+	boolean vSyncEnabled = "true"
+	
 	boolean clearBeforeRender = "true"
 	EPresentMode presentationMode = "MailBox"
 	int requiredSwapImageCount = "3"
