@@ -63,7 +63,6 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 		{
 			super.getPropertyDescriptors(object);
 
-			addVSyncEnabledPropertyDescriptor(object);
 			addClearBeforeRenderPropertyDescriptor(object);
 			addPresentationModePropertyDescriptor(object);
 			addRequiredSwapImageCountPropertyDescriptor(object);
@@ -71,24 +70,6 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 			addAcquireWaitStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the VSync Enabled feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addVSyncEnabledPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_GraphicConfiguration_vSyncEnabled_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_GraphicConfiguration_vSyncEnabled_feature",
-						"_UI_GraphicConfiguration_type"),
-				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__VSYNC_ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -241,7 +222,7 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 		GraphicConfiguration graphicConfiguration = (GraphicConfiguration) object;
 		return getString("_UI_GraphicConfiguration_type")
 				+ " "
-				+ graphicConfiguration.isVSyncEnabled();
+				+ graphicConfiguration.isClearBeforeRender();
 	}
 
 	/**
@@ -258,7 +239,6 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(GraphicConfiguration.class))
 		{
-		case GraphicPackage.GRAPHIC_CONFIGURATION__VSYNC_ENABLED:
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
 		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:

@@ -13,15 +13,10 @@ import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.device.EDeviceExtension;
 import org.sheepy.lily.vulkan.common.device.EInstanceExtension;
-import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 
 public class EngineExtensionRequirement
 {
-	private final VulkanEngine engine;
-	private final boolean vsync;
-
 	private final List<EInstanceExtension> requiredInstanceExtensions;
 	private final List<String> availableInstanceExtensions;
 
@@ -29,31 +24,10 @@ public class EngineExtensionRequirement
 
 	public EngineExtensionRequirement(VulkanEngine engine, MemoryStack stack, boolean debug)
 	{
-		this.engine = engine;
-
-		vsync = isVSyncRequired();
-
 		requiredDeviceExtensions = List.copyOf(gatherDeviceExtensions());
 
 		availableInstanceExtensions = List.copyOf(gatherAvailableInstanceExtensions(stack, debug));
 		requiredInstanceExtensions = List.copyOf(gatherInstanceExtensions(debug));
-	}
-
-	private boolean isVSyncRequired()
-	{
-		for (IProcess process : engine.getProcesses())
-		{
-			if (process instanceof GraphicProcess)
-			{
-				var graphicProcess = (GraphicProcess) process;
-				var configuration = graphicProcess.getConfiguration();
-				if (configuration != null)
-				{
-					return configuration.isVSyncEnabled();
-				}
-			}
-		}
-		return false;
 	}
 
 	public PointerBuffer getRequiredInstanceExtensions(MemoryStack stack)
@@ -127,11 +101,6 @@ public class EngineExtensionRequirement
 
 		requiredExtensions.add(EDeviceExtension.VK_KHR_swapchain);
 
-		if (vsync)
-		{
-			requiredExtensions.add(EDeviceExtension.VK_EXT_display_control);
-		}
-
 		return requiredExtensions;
 	}
 
@@ -142,12 +111,6 @@ public class EngineExtensionRequirement
 		if (debug)
 		{
 			requiredExtensions.add(EInstanceExtension.VK_EXT_debug_report);
-		}
-
-		if (vsync)
-		{
-			requiredExtensions.add(EInstanceExtension.VK_KHR_display);
-			requiredExtensions.add(EInstanceExtension.VK_EXT_display_surface_counter);
 		}
 
 		for (Iterator<EInstanceExtension> iterator = requiredExtensions.iterator(); iterator

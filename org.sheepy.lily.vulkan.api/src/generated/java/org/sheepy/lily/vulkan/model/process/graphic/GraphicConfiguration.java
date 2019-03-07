@@ -21,7 +21,6 @@ import org.sheepy.lily.vulkan.model.process.Configuration;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isVSyncEnabled <em>VSync Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode <em>Presentation Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
@@ -36,33 +35,6 @@ import org.sheepy.lily.vulkan.model.process.Configuration;
  */
 public interface GraphicConfiguration extends Configuration
 {
-	/**
-	 * Returns the value of the '<em><b>VSync Enabled</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>VSync Enabled</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>VSync Enabled</em>' attribute.
-	 * @see #setVSyncEnabled(boolean)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_VSyncEnabled()
-	 * @model default="true" unique="false"
-	 * @generated
-	 */
-	boolean isVSyncEnabled();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isVSyncEnabled <em>VSync Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>VSync Enabled</em>' attribute.
-	 * @see #isVSyncEnabled()
-	 * @generated
-	 */
-	void setVSyncEnabled(boolean value);
-
 	/**
 	 * Returns the value of the '<em><b>Clear Before Render</b></em>' attribute.
 	 * The default value is <code>"true"</code>.

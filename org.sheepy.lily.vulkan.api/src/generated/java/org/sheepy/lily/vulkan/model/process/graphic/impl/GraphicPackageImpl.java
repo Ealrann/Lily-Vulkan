@@ -302,7 +302,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicConfiguration_VSyncEnabled()
+	public EAttribute getGraphicConfiguration_ClearBeforeRender()
 	{
 		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -313,7 +313,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicConfiguration_ClearBeforeRender()
+	public EAttribute getGraphicConfiguration_PresentationMode()
 	{
 		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -324,7 +324,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicConfiguration_PresentationMode()
+	public EAttribute getGraphicConfiguration_RequiredSwapImageCount()
 	{
 		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(2);
 	}
@@ -335,7 +335,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicConfiguration_RequiredSwapImageCount()
+	public EAttribute getGraphicConfiguration_SwapImageUsages()
 	{
 		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(3);
 	}
@@ -346,7 +346,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicConfiguration_SwapImageUsages()
+	public EAttribute getGraphicConfiguration_AcquireWaitStage()
 	{
 		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(4);
 	}
@@ -357,20 +357,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicConfiguration_AcquireWaitStage()
-	{
-		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getGraphicConfiguration_ColorDomain()
 	{
-		return (EReference) graphicConfigurationEClass.getEStructuralFeatures().get(6);
+		return (EReference) graphicConfigurationEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1428,7 +1417,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		// Create classes and their features
 		graphicConfigurationEClass = createEClass(GRAPHIC_CONFIGURATION);
-		createEAttribute(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__VSYNC_ENABLED);
 		createEAttribute(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER);
 		createEAttribute(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__PRESENTATION_MODE);
 		createEAttribute(graphicConfigurationEClass,
@@ -1612,10 +1600,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(graphicConfigurationEClass, GraphicConfiguration.class, "GraphicConfiguration",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getGraphicConfiguration_VSyncEnabled(), theEcorePackage.getEBoolean(),
-				"vSyncEnabled", "true", 0, 1, GraphicConfiguration.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 		initEAttribute(getGraphicConfiguration_ClearBeforeRender(), theEcorePackage.getEBoolean(),
 				"clearBeforeRender", "true", 0, 1, GraphicConfiguration.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
