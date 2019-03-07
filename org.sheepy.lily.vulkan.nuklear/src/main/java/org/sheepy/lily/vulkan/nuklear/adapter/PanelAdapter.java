@@ -4,6 +4,7 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.nio.ByteBuffer;
 
+import org.joml.Vector2i;
 import org.lwjgl.nuklear.NkRect;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
@@ -13,7 +14,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
-import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.common.ui.UIUtil;
@@ -25,9 +25,9 @@ public class PanelAdapter implements IUIElementAdapter
 	private final IWindowListener listener = new IWindowListener()
 	{
 		@Override
-		public void onWindowResize(VkSurface surface)
+		public void onResize(Vector2i size)
 		{
-			updateLocation(surface);
+			updateLocation(size);
 		}
 	};
 
@@ -77,12 +77,12 @@ public class PanelAdapter implements IUIElementAdapter
 		window.removeListener(listener);
 	}
 
-	private void updateLocation(VkSurface surface)
+	private void updateLocation(Vector2i size)
 	{
 		int width = panel.getWidth();
 		int height = panel.getHeight();
-		int x = UIUtil.computeXRelative(surface, panel);
-		int y = UIUtil.computeYRelative(surface, panel);
+		int x = UIUtil.computeXRelative(size, panel);
+		int y = UIUtil.computeYRelative(size, panel);
 
 		rect.set(x, y, width, height);
 	}
@@ -96,7 +96,7 @@ public class PanelAdapter implements IUIElementAdapter
 		if (window == null)
 		{
 			window = context.window;
-			updateLocation(window.getSurface());
+			updateLocation(window.getSize());
 			window.addListener(listener);
 		}
 
@@ -105,8 +105,8 @@ public class PanelAdapter implements IUIElementAdapter
 			rect = NkRect.mallocStack(stack);
 			int width = panel.getWidth();
 			int height = panel.getHeight();
-			int x = UIUtil.computeXRelative(window.getSurface(), panel);
-			int y = UIUtil.computeYRelative(window.getSurface(), panel);
+			int x = UIUtil.computeXRelative(window.getSize(), panel);
+			int y = UIUtil.computeYRelative(window.getSize(), panel);
 
 			if (nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style))
 			{

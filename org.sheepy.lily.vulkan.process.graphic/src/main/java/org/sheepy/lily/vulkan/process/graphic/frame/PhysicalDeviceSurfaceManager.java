@@ -30,6 +30,12 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 		final var window = logicalDevice.window;
 
 		surface = window.getSurface();
+		if (surface == null || surface.isDeprecated())
+		{
+			surface = window.createSurface();
+		}
+		System.out.println("PDS Will use " + surface.ptr);
+
 		surface.lock();
 		extent = new Extent2D(surface.width, surface.height);
 		capabilities = new Capabilities(graphicContext.getVkPhysicalDevice(), surface);

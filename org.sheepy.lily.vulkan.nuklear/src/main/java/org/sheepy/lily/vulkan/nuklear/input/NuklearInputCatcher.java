@@ -16,6 +16,7 @@ import org.sheepy.lily.core.api.input.event.MouseButtonEvent;
 import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
 import org.sheepy.lily.core.api.input.event.ScrollEvent;
 import org.sheepy.lily.core.model.types.EKeyState;
+import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.common.input.IInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPipelineAdapter;
 
@@ -24,15 +25,15 @@ public class NuklearInputCatcher implements IInputCatcher
 	private static final NkVec2 scroll = NkVec2.create();
 
 	private NkContext nkContext;
-	private long window;
+	private Window window;
 	private NuklearPipelineAdapter pipelineAdapter;
 
 	public void configure(	NkContext nkContext,
-							long windowId,
+	                      	Window window,
 							NuklearPipelineAdapter pipelineAdapter)
 	{
 		this.nkContext = nkContext;
-		this.window = windowId;
+		this.window = window;
 		this.pipelineAdapter = pipelineAdapter;
 	}
 
@@ -45,6 +46,7 @@ public class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public void onKeyEvent(KeyEvent event)
 	{
+		long windowId = window.getId();
 		boolean press = event.state == EKeyState.PRESSED;
 		switch (event.key)
 		{
@@ -90,28 +92,28 @@ public class NuklearInputCatcher implements IInputCatcher
 		case GLFW_KEY_RIGHT_CONTROL:
 			if (press)
 			{
-				nk_input_key(nkContext, NK_KEY_COPY, glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_PASTE, glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_CUT, glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS);
+				nk_input_key(nkContext, NK_KEY_COPY, glfwGetKey(windowId, GLFW_KEY_C) == GLFW_PRESS);
+				nk_input_key(nkContext, NK_KEY_PASTE, glfwGetKey(windowId, GLFW_KEY_P) == GLFW_PRESS);
+				nk_input_key(nkContext, NK_KEY_CUT, glfwGetKey(windowId, GLFW_KEY_X) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_TEXT_UNDO,
-						glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS);
+						glfwGetKey(windowId, GLFW_KEY_Z) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_TEXT_REDO,
-						glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS);
+						glfwGetKey(windowId, GLFW_KEY_R) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_TEXT_WORD_LEFT,
-						glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS);
+						glfwGetKey(windowId, GLFW_KEY_LEFT) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_TEXT_WORD_RIGHT,
-						glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS);
+						glfwGetKey(windowId, GLFW_KEY_RIGHT) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_TEXT_LINE_START,
-						glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS);
+						glfwGetKey(windowId, GLFW_KEY_B) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_TEXT_LINE_END,
-						glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS);
+						glfwGetKey(windowId, GLFW_KEY_E) == GLFW_PRESS);
 			}
 			else
 			{
 				nk_input_key(nkContext, NK_KEY_LEFT,
-						glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS);
+						glfwGetKey(windowId, GLFW_KEY_LEFT) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_RIGHT,
-						glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS);
+						glfwGetKey(windowId, GLFW_KEY_RIGHT) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_COPY, false);
 				nk_input_key(nkContext, NK_KEY_PASTE, false);
 				nk_input_key(nkContext, NK_KEY_CUT, false);
@@ -172,22 +174,23 @@ public class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public boolean hasCaughtInputs(List<IInputEvent> events)
 	{
+		long windowId = window.getId();
 		NkMouse mouse = nkContext.input().mouse();
 		if (mouse.grab())
 		{
-			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+			glfwSetInputMode(windowId, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 		}
 		else if (mouse.grabbed())
 		{
 			float prevX = mouse.prev().x();
 			float prevY = mouse.prev().y();
-			glfwSetCursorPos(window, prevX, prevY);
+			glfwSetCursorPos(windowId, prevX, prevY);
 			mouse.pos().x(prevX);
 			mouse.pos().y(prevY);
 		}
 		else if (mouse.ungrab())
 		{
-			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			glfwSetInputMode(windowId, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		}
 
 		nk_input_end(nkContext);

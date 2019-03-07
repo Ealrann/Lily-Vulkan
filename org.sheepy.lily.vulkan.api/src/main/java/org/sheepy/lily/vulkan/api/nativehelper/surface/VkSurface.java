@@ -15,6 +15,7 @@ public class VkSurface
 
 	private boolean locked = false;
 	private boolean detroyRequired = false;
+	private boolean destroyed = false;
 
 	public VkSurface(VkInstance vkInstance, long surfacePtr, int width, int height)
 	{
@@ -30,14 +31,18 @@ public class VkSurface
 
 	public void destroy()
 	{
-		if (locked != true)
+		if (destroyed == false)
 		{
-			vkDestroySurfaceKHR(vkInstance, ptr, null);
-			ptr = -1;
-		}
-		else
-		{
-			detroyRequired = true;
+			if (locked != true)
+			{
+				vkDestroySurfaceKHR(vkInstance, ptr, null);
+				destroyed = true;
+				ptr = -1;
+			}
+			else
+			{
+				detroyRequired = true;
+			}
 		}
 	}
 
@@ -57,6 +62,6 @@ public class VkSurface
 
 	public boolean isDeprecated()
 	{
-		return detroyRequired;
+		return detroyRequired || destroyed;
 	}
 }

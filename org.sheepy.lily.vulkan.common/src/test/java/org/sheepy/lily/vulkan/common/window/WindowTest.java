@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.application.ApplicationLauncher;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.common.application.VulkanApplicationUtil;
 import org.sheepy.lily.vulkan.common.test.BasicModelFactory;
@@ -54,10 +53,10 @@ public class WindowTest
 		window.addListener(new IWindowListener()
 		{
 			@Override
-			public void onWindowResize(VkSurface surface)
+			public void onResize(Vector2i size)
 			{
-				assertEquals(newWidth, surface.width);
-				assertEquals(newHeight, surface.height);
+				assertEquals(newWidth, size.x);
+				assertEquals(newHeight, size.y);
 			}
 		});
 

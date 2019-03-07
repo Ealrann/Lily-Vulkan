@@ -14,6 +14,7 @@ import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
+import org.sheepy.lily.vulkan.api.nativehelper.window.ISurfaceListener;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.queue.QueueManager;
@@ -50,6 +51,15 @@ public class LogicalDevice
 		queueManager = new QueueManager();
 		queueManager.load(physicalDevice.vkPhysicalDevice, window.getSurface(),
 				needComputeCapability);
+
+		window.addSurfaceListener(new ISurfaceListener()
+		{
+			@Override
+			public void onNewSurface(VkSurface newSurface)
+			{
+				reloadQueues();
+			}
+		});
 	}
 
 	public void load(MemoryStack stack)
@@ -102,12 +112,12 @@ public class LogicalDevice
 		queueManager.loadVkQueues(vkDevice);
 	}
 
-	public void recreateQueues(VkSurface surface)
+	private void reloadQueues()
 	{
 		waitIdle();
 
+		VkSurface surface = window.getSurface();
 		queueManager.load(physicalDevice.vkPhysicalDevice, surface, needComputeCapability);
-		queueManager.loadVkQueues(vkDevice);
 	}
 
 	public void free()
@@ -131,9 +141,4 @@ public class LogicalDevice
 	{
 		return physicalDevice.vkPhysicalDevice;
 	}
-
-	// public VkSurfaceCapabilitiesKHR getCapabilities()
-	// {
-	// return capabilities.vkCapabilities;
-	// }
 }

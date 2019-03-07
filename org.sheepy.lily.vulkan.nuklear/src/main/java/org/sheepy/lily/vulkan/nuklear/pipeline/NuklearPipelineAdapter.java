@@ -177,7 +177,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 		nkContext.style().window().fixed_background().data().color().a((byte) 150);
 
-		inputCatcher.configure(nkContext, window.getId(), this);
+		inputCatcher.configure(nkContext, window, this);
 
 		nkContext.clip(it -> it.copy((handle, text, len) -> {
 			if (len == 0)

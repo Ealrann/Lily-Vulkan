@@ -107,6 +107,16 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 		int res = vkAcquireNextImageKHR(device, swapChain, UINT64_MAX, semaphore, VK_NULL_HANDLE,
 				nextImageArray);
 
+		if (res == VK_ERROR_OUT_OF_DATE_KHR)
+		{
+			context.getLogicalDevice().window.createSurface();
+			return null;
+		}
+		else
+		{
+			Logger.check(res, FAILED_SUBMIT_PRESENT);
+		}
+
 		if (res == VK_SUCCESS) return nextImageArray[0];
 		else return null;
 	}
@@ -128,7 +138,17 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 			softVsync.step();
 		}
 
-		Logger.check(vkQueuePresentKHR(presentQueue, presentInfo), FAILED_SUBMIT_PRESENT);
+		int res = vkQueuePresentKHR(presentQueue, presentInfo);
+
+		if (res == VK_ERROR_OUT_OF_DATE_KHR)
+		{
+			context.getLogicalDevice().window.createSurface();
+			System.out.println("OOD");
+		}
+		else
+		{
+			Logger.check(res, FAILED_SUBMIT_PRESENT);
+		}
 	}
 
 	@Override

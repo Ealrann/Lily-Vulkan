@@ -15,9 +15,13 @@ public class Capabilities
 	public Capabilities(VkPhysicalDevice device, VkSurface surface)
 	{
 		vkCapabilities = VkSurfaceCapabilitiesKHR.calloc();
-		final var err = vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface.ptr,
-				vkCapabilities);
-		Logger.check(err, FAILED_TO_GET_SURFACE_CAPABILITIES);
+
+		if (surface.isDeprecated() == false && surface.ptr > 0)
+		{
+			final var err = vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface.ptr,
+					vkCapabilities);
+			Logger.check(err, FAILED_TO_GET_SURFACE_CAPABILITIES);
+		}
 	}
 
 	public void free()

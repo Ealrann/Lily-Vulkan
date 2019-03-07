@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.nuklear.pipeline;
 
 import java.nio.ByteBuffer;
 
+import org.joml.Vector2i;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -27,7 +28,7 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 	private final IWindowListener windowListener = new IWindowListener()
 	{
 		@Override
-		public void onWindowResize(VkSurface surface)
+		public void onResize(Vector2i size)
 		{
 			needRecord = true;
 		}

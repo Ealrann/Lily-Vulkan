@@ -19,7 +19,6 @@ import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
-import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
@@ -39,12 +38,22 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 @Adapter(scope = VulkanEngine.class)
 public class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
-	private final IWindowListener resizeListener = new IWindowListener()
+	private final IWindowListener windowListener = new IWindowListener()
 	{
 		@Override
-		public void onWindowResize(VkSurface surface)
+		public void onResize(Vector2i size)
 		{
-			resize(surface);
+			resize(size);
+		}
+
+		@Override
+		public void onClose(long oldId)
+		{}
+
+		@Override
+		public void onOpen(long id)
+		{
+			inputManager.load();
 		}
 	};
 
@@ -79,6 +88,11 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 				{
 					Vector2i newSize = (Vector2i) notification.getNewValue();
 					window.setSize(newSize.x, newSize.y);
+				}
+				else if (notification
+						.getFeature() == ApplicationPackage.Literals.APPLICATION__FULLSCREEN)
+				{
+					window.setFullscreen(notification.getNewBooleanValue());
 				}
 			}
 		}
@@ -154,7 +168,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			pickPhysicalDevice(stack);
 			createLogicalDevice(stack);
 			inputManager.load();
-			window.addListener(resizeListener);
+			window.addListener(windowListener);
 			allocate(stack);
 		} catch (Throwable e)
 		{
@@ -162,15 +176,14 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	}
 
-	private void resize(VkSurface surface)
+	private void resize(Vector2i size)
 	{
 		listeningResize = false;
 
 		try
 		{
-			Vector2i newSize = new Vector2i(surface.width, surface.height);
+			Vector2i newSize = new Vector2i(size);
 			application.setSize(newSize);
-			logicalDevice.recreateQueues(surface);
 		} catch (Throwable e)
 		{
 			e.printStackTrace();
@@ -192,7 +205,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			logicalDevice.waitIdle();
 		}
 
-		window.removeListener(resizeListener);
+		window.removeListener(windowListener);
 		cleanup();
 	}
 
@@ -268,6 +281,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		logicalDevice.free();
 
 		window.close();
+		window.destroy();
 
 		physicalDevice.free();
 
