@@ -103,7 +103,7 @@ public class EngineExtensionRequirement
 
 			if (debug)
 			{
-				System.out.println("System Extensions:");
+				System.out.println("Available Instance Extensions:");
 			}
 
 			for (int i = 0; i < count; i++)
