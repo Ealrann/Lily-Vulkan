@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.Label;
@@ -19,6 +20,12 @@ public class LabelAdapter implements IUIElementAdapter
 	public LabelAdapter(Label label)
 	{
 		textBuffer = MemoryUtil.memASCII(label.getText());
+	}
+
+	@Dispose
+	public void dispose()
+	{
+		MemoryUtil.memFree(textBuffer);
 	}
 
 	@Override
