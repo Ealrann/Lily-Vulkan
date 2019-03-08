@@ -5,6 +5,8 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.List;
 
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -12,6 +14,7 @@ import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
+import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
@@ -22,6 +25,7 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 @Adapter(scope = GraphicProcess.class)
 public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandBuffer>
 {
+	private static final String FAILED_ACQUIRE_IMAGE = "Failed to acquire next image";
 	private static final String FAILED_SUBMIT_GRAPHIC = "Failed to submit graphic command buffer";
 	private static final String FAILED_SUBMIT_PRESENT = "Failed to submit present command buffer";
 
@@ -61,9 +65,9 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public void recordCommands()
 	{
-		var graphicCopntext = (GraphicContext) context;
+		var graphicContext = (GraphicContext) context;
 
-		((GraphicCommandBuffers) context.commandBuffers).recordCommands(graphicCopntext);
+		((GraphicCommandBuffers) context.commandBuffers).recordCommands(graphicContext);
 	}
 
 	@Override
@@ -82,11 +86,15 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 		{
 			submitAndPresentImage(graphicContext, imageIndex, fence);
 		}
+		else
+		{
+			signalSubmitSemaphores(graphicContext);
+		}
 	}
 
 	public Integer acquireNextImage(GraphicContext context)
 	{
-		long semaphore = context.imageAvailableSemaphore.getId();
+		long semaphore = context.imageAvailableSemaphore.presentSemaphore.getId();
 		long swapChain = context.swapChainManager.getSwapChain();
 		var device = context.getVkDevice();
 
@@ -95,41 +103,43 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 
 		if (res == VK_ERROR_OUT_OF_DATE_KHR)
 		{
-			context.getLogicalDevice().window.createSurface();
-			return null;
+			context.surfaceManager.setDirty(true);
 		}
 		else
 		{
-			Logger.check(res, FAILED_SUBMIT_PRESENT);
+			Logger.check(res, FAILED_ACQUIRE_IMAGE, true);
 		}
 
-		if (res == VK_SUCCESS) return nextImageArray[0];
+		if (res == VK_SUCCESS || res == VK_SUBOPTIMAL_KHR) return nextImageArray[0];
 		else return null;
 	}
 
 	private void submitAndPresentImage(GraphicContext context, Integer imageIndex, IFence fence)
 	{
-		var queueManager = context.getLogicalDevice().queueManager;
-		var graphicQueue = queueManager.getGraphicQueue().vkQueue;
-		var presentQueue = queueManager.getPresentQueue().vkQueue;
+		var graphicQueue = context.getQueue().vkQueue;
+		var presentQueue = context.surfaceManager.getPresentQueue();
 		var fenceId = fence != null ? fence.getId() : VK_NULL_HANDLE;
 		var submission = context.frameSubmission;
 		var submitInfo = submission.getSubmitInfo(imageIndex);
 		var presentInfo = submission.getPresentInfo(imageIndex);
 
-		Logger.check(vkQueueSubmit(graphicQueue, submitInfo, fenceId), FAILED_SUBMIT_GRAPHIC);
+		Logger.check(vkQueueSubmit(graphicQueue, submitInfo, fenceId), FAILED_SUBMIT_GRAPHIC, true);
 
-		int res = vkQueuePresentKHR(presentQueue, presentInfo);
+		Logger.check(vkQueuePresentKHR(presentQueue.vkQueue, presentInfo), FAILED_SUBMIT_PRESENT,
+				true);
+	}
 
-		if (res == VK_ERROR_OUT_OF_DATE_KHR)
+	private void signalSubmitSemaphores(final GraphicContext graphicContext)
+	{
+		var submission = graphicContext.frameSubmission;
+
+		SingleTimeCommand stc = new SingleTimeCommand(graphicContext, submission.signalEmitters)
 		{
-			context.getLogicalDevice().window.createSurface();
-			System.out.println("OOD");
-		}
-		else
-		{
-			Logger.check(res, FAILED_SUBMIT_PRESENT);
-		}
+			@Override
+			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			{}
+		};
+		stc.execute();
 	}
 
 	@Override

@@ -16,8 +16,9 @@ import org.sheepy.lily.vulkan.api.util.Logger;
 
 public class Window
 {
+	private static final String FAILED_TO_CREATE_SURFACE = "Failed to create surface";
+
 	private final List<IWindowListener> listeners = new ArrayList<>();
-	private final List<ISurfaceListener> surfaceListeners = new ArrayList<>();
 
 	private long id;
 
@@ -31,10 +32,11 @@ public class Window
 	private GLFWWindowSizeCallback callback;
 
 	private GLFWVidMode mode;
-	private VkSurface surface;
 	private Vector2i size = null;
 	private Vector2i windowSize = null;
 	private VkInstance vkInstance;
+
+	private boolean fullscreenChangeRequested = false;
 
 	public Window(Vector2i initialSize, String title, boolean resizeable, boolean fullscreen)
 	{
@@ -54,26 +56,22 @@ public class Window
 		if (resizeable) glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 	}
 
-	public void setFullscreen(boolean fullscreen)
+	public void requestFullscreen(boolean fullscreen)
 	{
 		if (this.fullscreen != fullscreen)
 		{
 			this.fullscreen = fullscreen;
 
-			if (fullscreen == false)
-			{
-				size = windowSize;
-			}
+			fullscreenChangeRequested = true;
 
-			close();
-			open(vkInstance);
+			fireSurfaceDeprecation();
 		}
 	}
 
 	public void open(VkInstance vkInstance)
 	{
 		this.vkInstance = vkInstance;
-
+		fullscreenChangeRequested = false;
 		long monitor = 0;
 		if (fullscreen)
 		{
@@ -93,7 +91,6 @@ public class Window
 			public void invoke(long window, int width, int height)
 			{
 				size = new Vector2i(width, height);
-				destroySurface();
 				fireResizeEvent();
 			}
 		};
@@ -119,8 +116,7 @@ public class Window
 	{
 		opened = false;
 		fireCloseWindow();
-		destroySurface();
-		glfwSetWindowSizeCallback(id, callback);
+		glfwSetWindowSizeCallback(id, null);
 		callback.free();
 		glfwDestroyWindow(id);
 	}
@@ -130,11 +126,6 @@ public class Window
 		glfwTerminate();
 	}
 
-	public VkSurface getSurface()
-	{
-		return surface;
-	}
-
 	public boolean shouldClose()
 	{
 		return glfwWindowShouldClose(id);
@@ -142,22 +133,24 @@ public class Window
 
 	public VkSurface createSurface()
 	{
-		destroySurface();
+		manageFullscreenChange();
+
 		int err = glfwCreateWindowSurface(vkInstance, id, null, aSurface);
-		Logger.check(err, "Failed to create surface");
+		Logger.check(err, FAILED_TO_CREATE_SURFACE);
 
-		surface = new VkSurface(vkInstance, aSurface[0], size.x, size.y);
-		fireNewSurfaceEvent();
-
-		return surface;
+		return new VkSurface(vkInstance, aSurface[0]);
 	}
 
-	private void destroySurface()
+	private void manageFullscreenChange()
 	{
-		if (surface != null)
+		if (fullscreenChangeRequested)
 		{
-			surface.destroy();
-			surface = null;
+			if (fullscreen == false)
+			{
+				size = windowSize;
+			}
+			close();
+			open(vkInstance);
 		}
 	}
 
@@ -168,7 +161,10 @@ public class Window
 
 	public void setSize(int x, int y)
 	{
-		glfwSetWindowSize(id, x, y);
+		if (x != size.x || y != size.y)
+		{
+			glfwSetWindowSize(id, x, y);
+		}
 	}
 
 	public void addListener(IWindowListener listener)
@@ -205,6 +201,14 @@ public class Window
 		}
 	}
 
+	private void fireSurfaceDeprecation()
+	{
+		for (final IWindowListener listener : listeners)
+		{
+			listener.onSurfaceDeprecation();
+		}
+	}
+
 	public Vector2i getSize()
 	{
 		return size;
@@ -213,23 +217,5 @@ public class Window
 	public boolean isOpenned()
 	{
 		return opened;
-	}
-
-	public void addSurfaceListener(ISurfaceListener listener)
-	{
-		surfaceListeners.add(listener);
-	}
-
-	public void removeSurfaceListener(ISurfaceListener listener)
-	{
-		surfaceListeners.remove(listener);
-	}
-
-	private void fireNewSurfaceEvent()
-	{
-		for (final ISurfaceListener listener : surfaceListeners)
-		{
-			listener.onNewSurface(surface);
-		}
 	}
 }

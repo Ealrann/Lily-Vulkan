@@ -30,7 +30,7 @@ public class GraphicContext extends ProcessContext
 
 	public final FrameSubmission frameSubmission;
 
-	public VkSemaphore imageAvailableSemaphore;
+	public PresentSemaphore imageAvailableSemaphore;
 
 	public GraphicContext(	EQueueType queueType,
 							boolean resetAllowed,
@@ -56,7 +56,6 @@ public class GraphicContext extends ProcessContext
 	@Override
 	protected ProcessSubmission createSubmission(AbstractProcess process)
 	{
-		imageAvailableSemaphore = new VkSemaphore();
 		List<WaitData> waitForEmitters = gatherWaitDatas();
 		List<VkSemaphore> signals = gatherSinalSemaphores();
 		return new FrameSubmission(this, waitForEmitters, signals);
@@ -66,7 +65,7 @@ public class GraphicContext extends ProcessContext
 	protected List<WaitData> gatherWaitDatas()
 	{
 		var res = super.gatherWaitDatas();
-		imageAvailableSemaphore = new VkSemaphore();
+		imageAvailableSemaphore = new PresentSemaphore();
 		res.add(0, createAcquireSemaphoreData());
 		return res;
 	}
@@ -75,6 +74,6 @@ public class GraphicContext extends ProcessContext
 	{
 		var graphicProcess = (GraphicProcess) process;
 		var acquireWaitStage = graphicProcess.getConfiguration().getAcquireWaitStage();
-		return new WaitData(imageAvailableSemaphore, acquireWaitStage);
+		return new WaitData(imageAvailableSemaphore.presentSemaphore, acquireWaitStage);
 	}
 }

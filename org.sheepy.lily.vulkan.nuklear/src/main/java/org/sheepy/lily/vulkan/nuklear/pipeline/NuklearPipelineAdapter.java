@@ -105,7 +105,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 				.mfree((handle, ptr) -> nmemFree(ptr));
 
 		graphicContext = (GraphicContext) context;
-		window = graphicContext.getLogicalDevice().window;
+		window = graphicContext.getWindow();
 		viewport = VkViewport.calloc(1);
 
 		var engine = getEngine(nkPipeline);

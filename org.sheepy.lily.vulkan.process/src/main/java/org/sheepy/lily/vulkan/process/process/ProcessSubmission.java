@@ -17,7 +17,7 @@ import org.sheepy.lily.vulkan.process.execution.AbstractCommandBuffers;
 public class ProcessSubmission implements IAllocable
 {
 	protected AbstractCommandBuffers<?> commandBuffers;
-	private final Collection<VkSemaphore> signalEmitters;
+	public final Collection<VkSemaphore> signalEmitters;
 	private final Deque<WaitData> waitSemaphores = new ArrayDeque<>();
 	private final Deque<Long> signalSemaphores = new ArrayDeque<>();
 

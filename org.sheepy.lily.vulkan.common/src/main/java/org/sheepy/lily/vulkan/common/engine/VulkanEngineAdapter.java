@@ -19,13 +19,13 @@ import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
+import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.allocation.allocator.TreeAllocator;
 import org.sheepy.lily.vulkan.common.concurrent.VkFence;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.common.device.VulkanInstance;
 import org.sheepy.lily.vulkan.common.device.judge.PhysicalDeviceSelector;
@@ -68,7 +68,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	protected VulkanInstance vkInstance;
 	protected PhysicalDevice physicalDevice;
 	protected LogicalDevice logicalDevice = null;
-	protected LogicalDeviceContext logicalDeviceContext = null;
+	protected VulkanContext vulkanContext = null;
 	protected TreeAllocator allocator;
 	private VulkanEngineAllocationRoot allocationRoot;
 	private boolean allocated = false;
@@ -92,7 +92,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 				else if (notification
 						.getFeature() == ApplicationPackage.Literals.APPLICATION__FULLSCREEN)
 				{
-					window.setFullscreen(notification.getNewBooleanValue());
+					window.requestFullscreen(notification.getNewBooleanValue());
 				}
 			}
 		}
@@ -123,9 +123,9 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		this.engine = engine;
 		application = (Application) engine.eContainer();
 		debug = application.isDebug();
-		executionContext = new ExecutionContext(EQueueType.Graphic, false);
 		window = new Window(application.getSize(), application.getTitle(),
 				application.isResizeable(), application.isFullscreen());
+		executionContext = new ExecutionContext(EQueueType.Graphic, false);
 		inputManager = new VulkanInputManager(application, window);
 
 		try (MemoryStack stack = stackPush())
@@ -165,8 +165,13 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		{
 			createInstance(stack);
 			window.open(vkInstance.getVkInstance());
-			pickPhysicalDevice(stack);
-			createLogicalDevice(stack);
+
+			final var dummySurface = window.createSurface();
+			pickPhysicalDevice(stack, dummySurface);
+			createLogicalDevice(stack, dummySurface);
+			dummySurface.free();
+
+			vulkanContext = new VulkanContext(logicalDevice, window);
 			inputManager.load();
 			window.addListener(windowListener);
 			allocate(stack);
@@ -213,7 +218,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		allocationRoot = new VulkanEngineAllocationRoot(executionContext, gatherAllocationList());
 		allocator = new TreeAllocator(allocationRoot);
-		allocator.allocate(stack, logicalDeviceContext);
+		allocator.allocate(stack, vulkanContext);
 		allocated = true;
 	}
 
@@ -232,11 +237,11 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private void free()
 	{
 		executionContext.getQueue().waitIdle();
-		allocator.free(logicalDeviceContext);
+		allocator.free(vulkanContext);
 
 		for (VkFence fence : fences)
 		{
-			fence.free(logicalDeviceContext);
+			fence.free(vulkanContext);
 		}
 		allocated = false;
 	}
@@ -250,11 +255,10 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	}
 
-	private void pickPhysicalDevice(MemoryStack stack)
+	private void pickPhysicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
-		final var surface = window.getSurface();
 		final var deviceSelector = new PhysicalDeviceSelector(vkInstance, extensionRequirement,
-				surface, debug);
+				dummySurface, debug);
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
@@ -269,10 +273,9 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	}
 
-	private void createLogicalDevice(MemoryStack stack)
+	private void createLogicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
-		logicalDevice = LogicalDevice.alloc(stack, physicalDevice, window, true);
-		logicalDeviceContext = new LogicalDeviceContext(logicalDevice);
+		logicalDevice = LogicalDevice.alloc(stack, physicalDevice, dummySurface, true);
 	}
 
 	private void cleanup()
@@ -299,7 +302,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	public IFence newFence(boolean signaled)
 	{
 		VkFence res = new VkFence(signaled);
-		res.allocate(null, logicalDeviceContext);
+		res.allocate(null, vulkanContext);
 
 		fences.add(res);
 		return res;

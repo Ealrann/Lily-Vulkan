@@ -11,4 +11,6 @@ public interface IWindowListener extends EventListener
 	default void onClose(long oldId) {};
 	
 	default void onOpen(long id) {};
+	
+	default void onSurfaceDeprecation() {};
 }

@@ -5,6 +5,8 @@ import org.lwjgl.vulkan.VkExtent2D;
 import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.Capabilities;
 import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.ColorDomains;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
+import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
+import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
@@ -17,31 +19,47 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 	private ColorDomains colorDomains;
 
 	private ColorDomain requiredColorDomain;
+	private VulkanQueue presentQueue;
 
 	private Extent2D extent;
-
 	private VkSurface surface;
+
+	public boolean dirty = false;
+
+	private final IWindowListener listener = new IWindowListener()
+	{
+		@Override
+		public void onResize(org.joml.Vector2i size)
+		{
+			setDirty(true);
+		}
+
+		@Override
+		public void onSurfaceDeprecation()
+		{
+			setDirty(true);
+		}
+	};
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		final var graphicContext = (GraphicContext) context;
 		final var logicalDevice = graphicContext.getLogicalDevice();
-		final var window = logicalDevice.window;
 
-		surface = window.getSurface();
-		if (surface == null || surface.isDeprecated())
-		{
-			surface = window.createSurface();
-		}
-		System.out.println("PDS Will use " + surface.ptr);
+		surface = graphicContext.getWindow().createSurface();
+		presentQueue = logicalDevice.createPresentQueue(surface);
+		graphicContext.getWindow().addListener(listener);
 
-		surface.lock();
-		extent = new Extent2D(surface.width, surface.height);
 		capabilities = new Capabilities(graphicContext.getVkPhysicalDevice(), surface);
 		colorDomains = new ColorDomains(graphicContext.getVkPhysicalDevice(), surface);
 
+		var currentExtent = capabilities.vkCapabilities.currentExtent();
+		extent = new Extent2D(currentExtent.width(), currentExtent.height());
+
 		requiredColorDomain = loadColorDomain(graphicContext);
+
+		dirty = false;
 	}
 
 	private ColorDomain loadColorDomain(GraphicContext context)
@@ -58,9 +76,12 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
+		final var graphicContext = (GraphicContext) context;
+		graphicContext.getWindow().addListener(listener);
+
 		capabilities.free();
+		surface.free();
 		capabilities = null;
-		surface.release();
 		surface = null;
 	}
 
@@ -89,10 +110,20 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 		return surface;
 	}
 
+	public void setDirty(boolean dirty)
+	{
+		this.dirty = dirty;
+	}
+
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		return surface.isDeprecated();
+		return dirty || surface.isDeprecated();
+	}
+
+	public VulkanQueue getPresentQueue()
+	{
+		return presentQueue;
 	}
 
 	public class Extent2D

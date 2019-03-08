@@ -9,7 +9,7 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.device.ILogicalDeviceContext;
+import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 
@@ -20,7 +20,7 @@ public class VkSemaphore implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var logicalDevice = ((ILogicalDeviceContext) context).getLogicalDevice();
+		final var logicalDevice = ((IVulkanContext) context).getLogicalDevice();
 		VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
 		semaphoreInfo.sType(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO);
 		semaphoreInfo.pNext(VK_NULL_HANDLE);
@@ -62,7 +62,7 @@ public class VkSemaphore implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
-		final var logicalDevice = ((ILogicalDeviceContext) context).getLogicalDevice();
+		final var logicalDevice = ((IVulkanContext) context).getLogicalDevice();
 		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphoreId, null);
 		semaphoreId = -1;
 	}

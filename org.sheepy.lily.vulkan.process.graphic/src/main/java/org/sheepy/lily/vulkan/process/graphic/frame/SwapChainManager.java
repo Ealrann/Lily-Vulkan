@@ -50,7 +50,7 @@ public class SwapChainManager implements IAllocable
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		final var graphicContext = (GraphicContext) context;
-		final var queueManager = graphicContext.getLogicalDevice().queueManager;
+		final var logicalDevice = graphicContext.getLogicalDevice();
 		final var configuration = graphicContext.configuration;
 		final var pdsManager = graphicContext.surfaceManager;
 		final var vkDevice = graphicContext.getVkDevice();
@@ -75,10 +75,10 @@ public class SwapChainManager implements IAllocable
 		createInfo.imageArrayLayers(1);
 		createInfo.imageUsage(swapImageUsage);
 
-		if (queueManager.isExclusive() == false)
+		if (logicalDevice.isQueueExclusive() == false)
 		{
 			createInfo.imageSharingMode(VK_SHARING_MODE_CONCURRENT);
-			indices = queueManager.allocIndices();
+			indices = logicalDevice.allocQueueIndices();
 			createInfo.pQueueFamilyIndices(indices);
 		}
 		else
@@ -117,9 +117,14 @@ public class SwapChainManager implements IAllocable
 		int requiredImageCount = 0;
 		final var capabilities = context.surfaceManager.getCapabilities().vkCapabilities;
 		int required = context.configuration.getRequiredSwapImageCount();
-		if (required < capabilities.minImageCount() || required == 0)
+
+		if (required == 0)
 		{
 			requiredImageCount = capabilities.minImageCount() + 1;
+		}
+		else if (required < capabilities.minImageCount())
+		{
+			requiredImageCount = capabilities.minImageCount();
 		}
 		else
 		{
@@ -139,7 +144,7 @@ public class SwapChainManager implements IAllocable
 	{
 		var graphicContext = (GraphicContext) context;
 		vkDestroySwapchainKHR(graphicContext.getVkDevice(), swapChain, null);
-		if(indices != null) MemoryUtil.memFree(indices);
+		if (indices != null) MemoryUtil.memFree(indices);
 		swapChain = null;
 		swapChainImages = null;
 		indices = null;

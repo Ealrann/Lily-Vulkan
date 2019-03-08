@@ -1,27 +1,43 @@
-package org.sheepy.lily.vulkan.common.device;
+package org.sheepy.lily.vulkan.common.engine;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
+import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
 
-public class LogicalDeviceContext implements ILogicalDeviceContext, IAllocationContext
+public class VulkanContext implements IVulkanContext, IAllocationContext
 {
 	private LogicalDevice logicalDevice;
+	private Window window;
 
-	public LogicalDeviceContext()
+	public VulkanContext()
 	{
-		this(null);
+		this(null, null);
 	}
 
-	public LogicalDeviceContext(LogicalDevice logicalDevice)
+	public VulkanContext(LogicalDevice logicalDevice, Window window)
 	{
 		this.logicalDevice = logicalDevice;
+		this.window = window;
 	}
 
 	public void setLogicalDevice(LogicalDevice logicalDevice)
 	{
 		this.logicalDevice = logicalDevice;
+	}
+
+	public void setWindow(Window window)
+	{
+		this.window = window;
+	}
+
+	@Override
+	public Window getWindow()
+	{
+		return window;
 	}
 
 	@Override

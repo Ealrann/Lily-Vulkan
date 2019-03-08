@@ -132,11 +132,11 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 		if (allocator.isAllocationDirty(context))
 		{
+			context.getQueue().waitIdle();
 			try (MemoryStack stack = stackPush())
 			{
 				allocator.reloadDirtyElements(stack, context);
 			}
-
 			needRecord = true;
 		}
 

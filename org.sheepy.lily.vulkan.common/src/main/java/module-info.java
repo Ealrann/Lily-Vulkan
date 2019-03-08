@@ -22,7 +22,6 @@ module org.sheepy.lily.vulkan.common
 	exports org.sheepy.lily.vulkan.common.nativehelper;
 	exports org.sheepy.lily.vulkan.common.resource;
 	exports org.sheepy.lily.vulkan.common.resource.image;
-	exports org.sheepy.lily.vulkan.common.queue;
 	exports org.sheepy.lily.vulkan.common.util;
 	exports org.sheepy.lily.vulkan.common.ui;
 }

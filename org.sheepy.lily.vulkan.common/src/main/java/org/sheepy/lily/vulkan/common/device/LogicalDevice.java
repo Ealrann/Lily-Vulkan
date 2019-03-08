@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.common.device;
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.nio.IntBuffer;
 import java.util.HashSet;
 import java.util.List;
 
@@ -14,52 +15,41 @@ import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
-import org.sheepy.lily.vulkan.api.nativehelper.window.ISurfaceListener;
-import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
+import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.queue.QueueManager;
 
 public class LogicalDevice
 {
 	public final PhysicalDevice physicalDevice;
-	public final Window window;
-	public final QueueManager queueManager;
+	public final VkSurface dummySurface;
 
-	private final boolean needComputeCapability;
+	private final QueueManager queueManager;
 
 	private VkDevice vkDevice;
+	private VulkanQueue previousPresentQueue;
 
 	public final static LogicalDevice alloc(MemoryStack stack,
 											PhysicalDevice physicalDevice,
-											Window window,
+											VkSurface dummySurface,
 											boolean needComputeCapability)
 	{
-		final LogicalDevice res = new LogicalDevice(physicalDevice, window, needComputeCapability);
+		final LogicalDevice res = new LogicalDevice(physicalDevice, dummySurface,
+				needComputeCapability);
 
 		res.load(stack);
 		return res;
 	}
 
 	private LogicalDevice(	PhysicalDevice physicalDevice,
-							Window window,
+							VkSurface dummySurface,
 							boolean needComputeCapability)
 	{
 		this.physicalDevice = physicalDevice;
-		this.needComputeCapability = needComputeCapability;
-		this.window = window;
+		this.dummySurface = dummySurface;
 
-		queueManager = new QueueManager();
-		queueManager.load(physicalDevice.vkPhysicalDevice, window.getSurface(),
-				needComputeCapability);
-
-		window.addSurfaceListener(new ISurfaceListener()
-		{
-			@Override
-			public void onNewSurface(VkSurface newSurface)
-			{
-				reloadQueues();
-			}
-		});
+		queueManager = new QueueManager(physicalDevice.vkPhysicalDevice, needComputeCapability);
+		queueManager.load(dummySurface);
 	}
 
 	public void load(MemoryStack stack)
@@ -108,16 +98,6 @@ public class LogicalDevice
 
 		final long deviceId = pDevice.get(0);
 		vkDevice = new VkDevice(deviceId, physicalDevice.vkPhysicalDevice, createInfo);
-
-		queueManager.loadVkQueues(vkDevice);
-	}
-
-	private void reloadQueues()
-	{
-		waitIdle();
-
-		VkSurface surface = window.getSurface();
-		queueManager.load(physicalDevice.vkPhysicalDevice, surface, needComputeCapability);
 	}
 
 	public void free()
@@ -140,5 +120,37 @@ public class LogicalDevice
 	public VkPhysicalDevice getVkPhysicalDevice()
 	{
 		return physicalDevice.vkPhysicalDevice;
+	}
+
+	public VulkanQueue createGraphicQueue()
+	{
+		return queueManager.createGraphicQueue(vkDevice);
+	}
+
+	public VulkanQueue createComputeQueue()
+	{
+		return queueManager.createComputeQueue(vkDevice);
+	}
+
+	public VulkanQueue createPresentQueue(VkSurface surface)
+	{
+		if (previousPresentQueue != null)
+		{
+			previousPresentQueue.waitIdle();
+		}
+
+		VulkanQueue presentQueue = queueManager.createPresentQueue(vkDevice, surface);
+		previousPresentQueue = presentQueue;
+		return presentQueue;
+	}
+
+	public boolean isQueueExclusive()
+	{
+		return queueManager.isExclusive();
+	}
+
+	public IntBuffer allocQueueIndices()
+	{
+		return queueManager.allocIndices();
 	}
 }

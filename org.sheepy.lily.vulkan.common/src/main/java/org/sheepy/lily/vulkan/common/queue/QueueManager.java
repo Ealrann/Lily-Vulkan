@@ -1,113 +1,74 @@
 package org.sheepy.lily.vulkan.common.queue;
 
-import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.*;
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.vkGetDeviceQueue;
 
 import java.nio.IntBuffer;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.lwjgl.PointerBuffer;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkQueue;
-import org.lwjgl.vulkan.VkQueueFamilyProperties;
-import org.lwjgl.vulkan.VkQueueFamilyProperties.Buffer;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 
-public class QueueManager implements Iterable<Integer>
+public class QueueManager
 {
-	private Integer graphicQueueIndex = null;
-	private Integer computeQueueIndex = null;
-	private Integer presentQueueIndex = null;
-
-	private final Map<EQueueType, VulkanQueue> queueMap = new HashMap<>();
-	private List<Integer> queueIndexes;
+	private final boolean loadComputeQueue;
+	private final QueueFinder queueFinder;
+	private final Map<EQueueType, Integer> indexMap = new HashMap<>(3);
 
 	private boolean exclusive = false;
 
-	public QueueManager()
-	{}
-
-	public void load(VkPhysicalDevice physicalDevice, VkSurface surface, boolean loadComputeQueue)
+	public QueueManager(VkPhysicalDevice physicalDevice, boolean loadComputeQueue)
 	{
-		try (MemoryStack stack = stackPush())
+		this.loadComputeQueue = loadComputeQueue;
+		queueFinder = new QueueFinder(physicalDevice);
+	}
+
+	public void load(VkSurface surface)
+	{
+		loadGraphicFamilly();
+
+		if (loadComputeQueue)
 		{
-			final var queueProps = getQueueProperties(physicalDevice, stack);
-			findQueueIndexes(physicalDevice, surface, loadComputeQueue, stack, queueProps);
-			buildIndexList(loadComputeQueue);
-			buildUniqueIndexes();
+			loadComputeFamilly();
 		}
+
+		loadPresentFamilly(surface);
+
+		determineExclusitvity();
 	}
 
-	private static Buffer getQueueProperties(VkPhysicalDevice physicalDevice, MemoryStack stack)
+	private void determineExclusitvity()
 	{
-		final IntBuffer pQueueCount = stack.ints(1);
-		vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueCount, null);
-		final int queueCount = pQueueCount.get(0);
-		final var queueProps = VkQueueFamilyProperties.callocStack(queueCount, stack);
-		vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueCount, queueProps);
-		return queueProps;
-	}
-
-	private void buildUniqueIndexes()
-	{
-		final Set<Integer> uniqueIndexes = new HashSet<>(queueIndexes);
+		final Set<Integer> uniqueIndexes = new HashSet<>(indexMap.values());
 		exclusive = uniqueIndexes.size() == 1;
 	}
 
-	private void buildIndexList(boolean loadComputeQueue)
+	private void loadGraphicFamilly()
 	{
-		queueIndexes = new ArrayList<>();
-		queueIndexes.add(graphicQueueIndex);
-		if (loadComputeQueue) queueIndexes.add(computeQueueIndex);
-		queueIndexes.add(presentQueueIndex);
-		queueIndexes = List.copyOf(queueIndexes);
+		var graphicQueueIndex = queueFinder.findGraphicQueueIndex();
+		indexMap.put(EQueueType.Graphic, graphicQueueIndex);
 	}
 
-	private void findQueueIndexes(	VkPhysicalDevice physicalDevice,
-									VkSurface surface,
-									boolean loadComputeQueue,
-									MemoryStack stack,
-									final VkQueueFamilyProperties.Buffer queueProps)
+	private void loadComputeFamilly()
 	{
-		final var queueFinder = new QueueFinder(stack, queueProps);
-		graphicQueueIndex = queueFinder.findGraphicQueueIndex();
-		if (loadComputeQueue) computeQueueIndex = queueFinder.findComputeQueueIndex();
-		presentQueueIndex = queueFinder.findPresentQueueIndex(physicalDevice, surface);
+		var computeQueueIndex = queueFinder.findComputeQueueIndex();
+		indexMap.put(EQueueType.Compute, computeQueueIndex);
 	}
 
-	public void loadVkQueues(VkDevice device)
+	private void loadPresentFamilly(VkSurface surface)
 	{
-		queueMap.clear();
-
-		final var vkGraphicQueue = retrieveDeviceQueue(device, graphicQueueIndex);
-		final var graphicType = EQueueType.Graphic;
-		final var graphicQueue = new VulkanQueue(graphicType, graphicQueueIndex, vkGraphicQueue);
-		queueMap.put(graphicType, graphicQueue);
-
-		if (computeQueueIndex != null)
-		{
-			final var vkComputeQueue = retrieveDeviceQueue(device, computeQueueIndex);
-			final var computeType = EQueueType.Compute;
-			final var computeQueue = new VulkanQueue(computeType, computeQueueIndex,
-					vkComputeQueue);
-			queueMap.put(computeType, computeQueue);
-		}
-		final var vkPresentQueue = retrieveDeviceQueue(device, presentQueueIndex);
-		final var presentType = EQueueType.Present;
-		final var presentQueue = new VulkanQueue(presentType, presentQueueIndex, vkPresentQueue);
-		queueMap.put(presentType, presentQueue);
+		var presentQueueIndex = queueFinder.findPresentQueueIndex(surface);
+		indexMap.put(EQueueType.Present, presentQueueIndex);
 	}
 
 	public boolean isExclusive()
@@ -115,29 +76,30 @@ public class QueueManager implements Iterable<Integer>
 		return exclusive;
 	}
 
-	public List<Integer> getQueueIndexes()
+	public Collection<Integer> getQueueIndexes()
 	{
-		return queueIndexes;
+		return indexMap.values();
 	}
 
-	public VulkanQueue getGraphicQueue()
+	public IntBuffer allocIndices()
 	{
-		return getQueue(EQueueType.Graphic);
+		final IntBuffer res = MemoryUtil.memAllocInt(indexMap.size());
+		for (final int index : getQueueIndexes())
+		{
+			res.put(index);
+		}
+		res.flip();
+
+		return res;
 	}
 
-	public VulkanQueue getComputeQueue()
+	private VulkanQueue createQueue(VkDevice device, EQueueType type)
 	{
-		return getQueue(EQueueType.Compute);
-	}
+		var queueFamilyIndex = indexMap.get(type);
+		final var vkQueue = retrieveDeviceQueue(device, queueFamilyIndex);
+		final var graphicQueue = new VulkanQueue(type, queueFamilyIndex, vkQueue);
 
-	public VulkanQueue getPresentQueue()
-	{
-		return getQueue(EQueueType.Present);
-	}
-
-	public VulkanQueue getQueue(EQueueType type)
-	{
-		return queueMap.get(type);
+		return graphicQueue;
 	}
 
 	private static VkQueue retrieveDeviceQueue(VkDevice device, int queueFamilyIndex)
@@ -149,26 +111,23 @@ public class QueueManager implements Iterable<Integer>
 		return new VkQueue(queue, device);
 	}
 
-	public int size()
+	public VulkanQueue createGraphicQueue(VkDevice device)
 	{
-		return queueIndexes.size();
+		return createQueue(device, EQueueType.Graphic);
 	}
 
-	@Override
-	public Iterator<Integer> iterator()
+	public VulkanQueue createComputeQueue(VkDevice device)
 	{
-		return queueIndexes.iterator();
-	}
-
-	public IntBuffer allocIndices()
-	{
-		final IntBuffer res = MemoryUtil.memAllocInt(queueIndexes.size());
-		for (final int index : queueIndexes)
+		if (loadComputeQueue == false)
 		{
-			res.put(index);
+			throw new AssertionError("Compute support was not turned on.");
 		}
-		res.flip();
+		return createQueue(device, EQueueType.Compute);
+	}
 
-		return res;
+	public VulkanQueue createPresentQueue(VkDevice device, VkSurface surface)
+	{
+		loadPresentFamilly(surface);
+		return createQueue(device, EQueueType.Present);
 	}
 }

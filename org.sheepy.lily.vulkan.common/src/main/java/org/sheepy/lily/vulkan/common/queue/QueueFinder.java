@@ -5,20 +5,31 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.IntBuffer;
 
-import org.lwjgl.system.MemoryStack;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkQueueFamilyProperties;
+import org.lwjgl.vulkan.VkQueueFamilyProperties.Buffer;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 
 class QueueFinder
 {
-	private final MemoryStack stack;
 	private final VkQueueFamilyProperties.Buffer queueProps;
+	private final VkPhysicalDevice physicalDevice;
 
-	QueueFinder(MemoryStack stack, VkQueueFamilyProperties.Buffer queueProps)
+	QueueFinder(VkPhysicalDevice physicalDevice)
 	{
-		this.stack = stack;
-		this.queueProps = queueProps;
+		this.physicalDevice = physicalDevice;
+		this.queueProps = getQueueProperties();
+	}
+
+	private Buffer getQueueProperties()
+	{
+		final IntBuffer pQueueCount = BufferUtils.createIntBuffer(1);
+		vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueCount, null);
+		final int queueCount = pQueueCount.get(0);
+		final var queueProps = VkQueueFamilyProperties.create(queueCount);
+		vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueCount, queueProps);
+		return queueProps;
 	}
 
 	public Integer findGraphicQueueIndex()
@@ -47,17 +58,17 @@ class QueueFinder
 		return res;
 	}
 
-	public Integer findPresentQueueIndex(VkPhysicalDevice physicalDevice, VkSurface surface)
+	public Integer findPresentQueueIndex(VkSurface surface)
 	{
 		Integer res = null;
 
 		for (int index = 0; index < queueProps.capacity(); index++)
 		{
-			final IntBuffer supportsPresent = stack.callocInt(1);
+			final int[] supportsPresent = new int[1];
 			vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, index, surface.ptr,
 					supportsPresent);
 
-			if (supportsPresent.get(0) == VK_TRUE)
+			if (supportsPresent[0] == VK_TRUE)
 			{
 				res = index;
 				break;

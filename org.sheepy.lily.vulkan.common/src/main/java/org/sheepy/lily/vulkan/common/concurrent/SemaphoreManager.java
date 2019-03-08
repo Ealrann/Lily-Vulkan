@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.common.concurrent;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
+import org.sheepy.lily.vulkan.common.engine.VulkanContext;
 
 public class SemaphoreManager
 {
@@ -11,9 +11,9 @@ public class SemaphoreManager
 	private final List<VkSemaphore> semaphores = new ArrayList<>();
 	private final List<Long> semaphoreIds = new ArrayList<>();
 
-	private final LogicalDeviceContext context;
+	private final VulkanContext context;
 
-	public SemaphoreManager(LogicalDeviceContext context)
+	public SemaphoreManager(VulkanContext context)
 	{
 		this.context = context;
 	}

@@ -5,16 +5,16 @@ import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.device.ILogicalDeviceContext;
-import org.sheepy.lily.vulkan.common.device.LogicalDeviceContext;
+import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
+import org.sheepy.lily.vulkan.common.engine.VulkanContext;
 
-public class ExecutionContext extends LogicalDeviceContext implements IAllocationContext, IAllocable
+public class ExecutionContext extends VulkanContext implements IAllocationContext, IAllocable
 {
 	public final EQueueType queueType;
 	private final boolean resetAllowed;
 
+	public VulkanQueue queue;
 	public CommandPool commandPool;
-	private VulkanQueue queue;
 
 	public ExecutionContext(EQueueType queueType, boolean resetAllowed)
 	{
@@ -25,8 +25,23 @@ public class ExecutionContext extends LogicalDeviceContext implements IAllocatio
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		setLogicalDevice(((ILogicalDeviceContext) context).getLogicalDevice());
-		queue = getLogicalDevice().queueManager.getQueue(queueType);
+		setLogicalDevice(((IVulkanContext) context).getLogicalDevice());
+		setWindow(((IVulkanContext) context).getWindow());
+
+		switch (queueType)
+		{
+		case Compute:
+			queue = getLogicalDevice().createComputeQueue();
+			break;
+		case Graphic:
+			queue = getLogicalDevice().createGraphicQueue();
+			break;
+		case Present:
+			throw new AssertionError("Present is not a valid ExecutionContext");
+		default:
+			break;
+		}
+
 		commandPool = new CommandPool(queue.index, resetAllowed);
 		commandPool.allocate(stack, this);
 	}

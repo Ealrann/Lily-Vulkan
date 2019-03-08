@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.device.ILogicalDeviceContext;
+import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
 
 public class VkFence implements IFence, IAllocable
 {
@@ -26,7 +26,7 @@ public class VkFence implements IFence, IAllocable
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		device = ((ILogicalDeviceContext) context).getVkDevice();
+		device = ((IVulkanContext) context).getVkDevice();
 		VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO);
 		createInfo.pNext(VK_NULL_HANDLE);

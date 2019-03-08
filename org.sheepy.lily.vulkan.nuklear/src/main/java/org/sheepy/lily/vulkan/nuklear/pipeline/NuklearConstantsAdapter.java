@@ -7,11 +7,9 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearConstants;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
@@ -22,7 +20,7 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 {
 	private final int SIZE = 16 * 4;
 	private ByteBuffer buffer;
-	private LogicalDevice logicalDevice;
+	private GraphicContext graphicContext;
 	private boolean needRecord = true;
 
 	private final IWindowListener windowListener = new IWindowListener()
@@ -37,17 +35,17 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
-		logicalDevice = graphicContext.getLogicalDevice();
+		graphicContext = (GraphicContext) context;
 		buffer = MemoryUtil.memAlloc(SIZE);
-		logicalDevice.window.addListener(windowListener);
+		graphicContext.getWindow().addListener(windowListener);
 	}
 
 	@Override
 	public void free(IAllocationContext context)
 	{
+		var graphicContext = (GraphicContext) context;
 		MemoryUtil.memFree(buffer);
-		logicalDevice.window.removeListener(windowListener);
+		graphicContext.getWindow().removeListener(windowListener);
 	}
 
 	@Override
@@ -71,9 +69,9 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 	@Override
 	public ByteBuffer getData()
 	{
-		VkSurface surface = logicalDevice.window.getSurface();
-		int width = surface.width;
-		int height = surface.height;
+		Vector2i size = graphicContext.getWindow().getSize();
+		int width = size.x;
+		int height = size.y;
 
 		buffer.putFloat(2.0f / width);
 		buffer.putFloat(0.0f);
