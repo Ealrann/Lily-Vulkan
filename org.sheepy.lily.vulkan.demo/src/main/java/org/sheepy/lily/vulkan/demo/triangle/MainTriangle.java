@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.demo.triangle;
 
 import org.sheepy.lily.core.api.application.ApplicationLauncher;
-import org.sheepy.lily.core.api.cadence.IMainLoop;
 import org.sheepy.lily.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
@@ -16,8 +15,8 @@ public class MainTriangle
 		final var meshConfiguration = new MeshConfiguration();
 		final var modelFactory = new MeshModelFactory(meshConfiguration);
 
-		((MeshMainLoop) IMainLoop.INSTANCE).factory = modelFactory;
+		MeshMainLoop mainLoop = new MeshMainLoop(modelFactory);
 
-		ApplicationLauncher.launch(modelFactory.application);
+		ApplicationLauncher.launch(modelFactory.application, mainLoop);
 	}
 }

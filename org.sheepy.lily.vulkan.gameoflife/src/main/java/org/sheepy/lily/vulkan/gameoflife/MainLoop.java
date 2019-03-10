@@ -11,14 +11,20 @@ public class MainLoop implements IMainLoop
 	private static final int TARGET_FPS = 60;
 	private static final int FRAME_TIME_STEP_MS = (int) ((1f / TARGET_FPS) * 1000);
 
+	public final ModelFactory factory;
+
 	private long nextRenderDate = 0;
 	private int countFrame = 0;
 	private long stopCountDate;
 	private boolean countFrameEnabled = true;
-	public ModelFactory factory;
 	private final IProcessAdapter[] computeProcessAdapters = new IProcessAdapter[2];
 	private IProcessAdapter imageProcessAdapter;
 	private int currentComputePoolIndex = 0;
+
+	public MainLoop(ModelFactory factory)
+	{
+		this.factory = factory;
+	}
 
 	@Override
 	public void load(Application application)
@@ -63,6 +69,10 @@ public class MainLoop implements IMainLoop
 		imageProcessAdapter.prepare();
 		imageProcessAdapter.execute();
 	}
+
+	@Override
+	public void free(Application application)
+	{}
 
 	private void executeComputePool()
 	{

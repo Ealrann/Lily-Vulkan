@@ -8,9 +8,9 @@ import org.sheepy.lily.vulkan.common.application.VulkanApplicationUtil;
 
 public class WindowTestUtil
 {
-	public static void checkWindowSize(	Application application,
-										int expectedWidth,
-										int expectedHeight)
+	public static boolean checkWindowSize(	Application application,
+											int expectedWidth,
+											int expectedHeight)
 	{
 		var window = VulkanApplicationUtil.getWindow(application);
 
@@ -24,7 +24,6 @@ public class WindowTestUtil
 
 		glfwGetWindowSize(window.getId(), width, height);
 
-		assertEquals(expectedWidth, width[0]);
-		assertEquals(expectedHeight, height[0]);
+		return expectedWidth == width[0] && expectedHeight == height[0];
 	}
 }

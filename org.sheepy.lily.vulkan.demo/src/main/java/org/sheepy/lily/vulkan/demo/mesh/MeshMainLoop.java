@@ -14,6 +14,11 @@ public class MeshMainLoop implements IMainLoop
 	private UPSMeter meter;
 	private long start = 0;
 
+	public MeshMainLoop(MeshModelFactory factory)
+	{
+		this.factory = factory;
+	}
+
 	@Override
 	public void load(Application application)
 	{
@@ -34,6 +39,10 @@ public class MeshMainLoop implements IMainLoop
 		processAdapter.execute();
 		meter.tick();
 	}
+
+	@Override
+	public void free(Application application)
+	{}
 
 	private void updateUniformBuffer()
 	{

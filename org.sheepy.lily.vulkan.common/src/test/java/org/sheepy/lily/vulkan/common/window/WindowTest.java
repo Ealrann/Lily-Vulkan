@@ -1,17 +1,15 @@
 package org.sheepy.lily.vulkan.common.window;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Random;
 
 import org.joml.Vector2i;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.api.cadence.IMainLoop;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
-import org.sheepy.lily.vulkan.common.application.VulkanApplicationUtil;
 import org.sheepy.lily.vulkan.common.test.BasicModelFactory;
 import org.sheepy.lily.vulkan.common.test.TestUtils;
 
@@ -23,43 +21,102 @@ public class WindowTest
 	public void init()
 	{
 		application = TestUtils.newBasicApplication();
-		ApplicationLauncher.launch(application);
 	}
 
 	@AfterEach
 	public void clean()
 	{
-		ApplicationLauncher.stop(application);
 		application = null;
 	}
 
 	@Test
 	public void testNewWindow()
 	{
-		int expectedWidth = BasicModelFactory.WIDTH;
-		int expectedHeight = BasicModelFactory.HEIGHT;
+		ApplicationLauncher.launch(application, new IMainLoop()
+		{
 
-		WindowTestUtil.checkWindowSize(application, expectedWidth, expectedHeight);
+			@Override
+			public void step(Application application)
+			{
+				int expectedWidth = BasicModelFactory.WIDTH;
+				int expectedHeight = BasicModelFactory.HEIGHT;
+
+				Assertions.assertTrue(
+						WindowTestUtil.checkWindowSize(application, expectedWidth, expectedHeight));
+
+				application.setRun(false);
+			}
+
+			@Override
+			public void load(Application application)
+			{}
+
+			@Override
+			public void free(Application application)
+			{}
+		});
 	}
 
 	@Test
 	public void testResizeWindow()
 	{
-		Random random = new Random(System.currentTimeMillis());
-		int newWidth = random.nextInt(500) + 1;
-		int newHeight = random.nextInt(500) + 1;
+		int timeoutMs = 1000;
+		long setSizeDate = System.currentTimeMillis();
 
-		var window = VulkanApplicationUtil.getWindow(application);
-		window.addListener(new IWindowListener()
+		ApplicationLauncher.launch(application, new IMainLoop()
 		{
+			Random random = new Random();
+			int expectedWidth = BasicModelFactory.WIDTH;
+			int expectedHeight = BasicModelFactory.HEIGHT;
+
+			int index = 0;
+
 			@Override
-			public void onResize(Vector2i size)
+			public void step(Application application)
 			{
-				assertEquals(newWidth, size.x);
-				assertEquals(newHeight, size.y);
+				boolean expectedSize = WindowTestUtil.checkWindowSize(application, expectedWidth,
+						expectedHeight);
+				if (expectedSize == true)
+				{
+					expectedWidth = random.nextInt(500) + 1;
+					expectedHeight = random.nextInt(500) + 1;
+
+					application.setSize(new Vector2i(expectedWidth, expectedHeight));
+
+					index++;
+				}
+				else
+				{
+					if (System.currentTimeMillis() > (setSizeDate + timeoutMs))
+					{
+						Assertions.fail("Window was not resized");
+					}
+					else
+					{
+						try
+						{
+							Thread.sleep(5);
+						} catch (InterruptedException e)
+						{
+							e.printStackTrace();
+						}
+					}
+				}
+
+				if (index == 5)
+				{
+					application.setRun(false);
+				}
 			}
+
+			@Override
+			public void load(Application application)
+			{}
+
+			@Override
+			public void free(Application application)
+			{}
 		});
 
-		application.setSize(new Vector2i(newWidth, newHeight));
 	}
 }
