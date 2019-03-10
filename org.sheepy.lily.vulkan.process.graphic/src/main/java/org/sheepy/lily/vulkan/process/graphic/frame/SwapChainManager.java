@@ -11,6 +11,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
@@ -27,6 +28,7 @@ public class SwapChainManager implements IAllocable
 	private List<Long> swapChainImages = null;
 	private IntBuffer indices = null;
 	private int swapImageCount;
+	private boolean first = true;
 
 	private static int loadSwapChainUsage(final GraphicConfiguration configuration)
 	{
@@ -106,9 +108,10 @@ public class SwapChainManager implements IAllocable
 
 		swapChainImages = List.copyOf(VulkanBufferUtils.toList(pSwapchainImages));
 
-		if (graphicContext.application.isDebug())
+		if (first && DebugUtil.DEBUG_ENABLED)
 		{
 			printSwapChainInformations(targetPresentMode);
+			first = false;
 		}
 	}
 
