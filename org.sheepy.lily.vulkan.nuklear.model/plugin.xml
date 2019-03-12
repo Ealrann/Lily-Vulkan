@@ -11,7 +11,7 @@
       <package
             uri="org.sheepy.lily.vulkan.nuklear.model"
             class="org.sheepy.lily.vulkan.nuklear.model.NuklearPackage"
-            genModel="src/main/xcore/Nuklear.xcore"/>
+            genModel="model/Nuklear.xcore"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">

@@ -11,7 +11,7 @@
       <package
             uri="org.sheepy.lily.vulkan.model"
             class="org.sheepy.lily.vulkan.model.VulkanPackage"
-            genModel="src/main/xcore/Vulkan.xcore"/>
+            genModel="model/Vulkan.xcore"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -26,7 +26,7 @@
       <package
             uri="org.sheepy.lily.vulkan.model.enumeration"
             class="org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage"
-            genModel="src/main/xcore/VulkanEnum.xcore"/>
+            genModel="model/VulkanEnum.xcore"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -41,7 +41,7 @@
       <package
             uri="org.sheepy.lily.vulkan.model.resource"
             class="org.sheepy.lily.vulkan.model.resource.ResourcePackage"
-            genModel="src/main/xcore/Resource.xcore"/>
+            genModel="model/Resource.xcore"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -56,7 +56,7 @@
       <package
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.model.process.ProcessPackage"
-            genModel="src/main/xcore/Process.xcore"/>
+            genModel="model/Process.xcore"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -71,7 +71,7 @@
       <package
             uri="org.sheepy.lily.vulkan.model.process.compute"
             class="org.sheepy.lily.vulkan.model.process.compute.ComputePackage"
-            genModel="src/main/xcore/Compute.xcore"/>
+            genModel="model/Compute.xcore"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -86,7 +86,7 @@
       <package
             uri="org.sheepy.lily.vulkan.model.process.graphic"
             class="org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage"
-            genModel="src/main/xcore/Graphic.xcore"/>
+            genModel="model/Graphic.xcore"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">

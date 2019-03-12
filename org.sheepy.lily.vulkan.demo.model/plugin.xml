@@ -11,7 +11,7 @@
       <package
             uri="org.sheepy.lily.vulkan.demo.model"
             class="org.sheepy.lily.vulkan.demo.model.VulkanDemoPackage"
-            genModel="src/main/xcore/VulkanDemo.xcore"/>
+            genModel="model/VulkanDemo.xcore"/>
    </extension>
 
 </plugin>
