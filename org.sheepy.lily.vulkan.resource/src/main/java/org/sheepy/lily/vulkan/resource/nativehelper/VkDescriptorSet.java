@@ -26,6 +26,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	private long layoutId;
 	private final List<IVkDescriptor> descriptors;
 	private VkDevice device;
+	private LongBuffer bDescriptorSet;
 
 	public VkDescriptorSet(List<IVkDescriptor> descriptors)
 	{
@@ -56,10 +57,13 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		allocInfo.descriptorPool(pool.getId());
 		allocInfo.pSetLayouts(layouts);
 
-		final long[] aDescriptorSet = new long[1];
+		bDescriptorSet = MemoryUtil.memAllocLong(1);
 		Logger.check("Failed to allocate descriptor set.",
-				() -> vkAllocateDescriptorSets(device, allocInfo, aDescriptorSet));
-		descriptorSetId = aDescriptorSet[0];
+				() -> vkAllocateDescriptorSets(device, allocInfo, bDescriptorSet));
+		descriptorSetId = bDescriptorSet.get(0);
+
+		bDescriptorSet.put(descriptorSetId);
+		bDescriptorSet.flip();
 
 		updateDescriptorSet(stack);
 	}
@@ -69,6 +73,8 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	{
 		vkDestroyDescriptorSetLayout(device, layoutId, null);
 		layoutId = -1;
+		MemoryUtil.memFree(bDescriptorSet);
+		bDescriptorSet = null;
 	}
 
 	private VkDescriptorSetLayoutBinding.Buffer createLayoutBinding(MemoryStack stack)
@@ -111,12 +117,8 @@ public class VkDescriptorSet implements IVkDescriptorSet
 									long pipelineLayoutId)
 	{
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-		final var bDescriptorSet = MemoryUtil.memAllocLong(1);
-		bDescriptorSet.put(descriptorSetId);
-		bDescriptorSet.flip();
 		vkCmdBindDescriptorSets(vkCommandBuffer, bindPoint, pipelineLayoutId, 0, bDescriptorSet,
 				null);
-		MemoryUtil.memFree(bDescriptorSet);
 	}
 
 	@Override

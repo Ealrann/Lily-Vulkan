@@ -11,7 +11,7 @@ import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
 
 public class VkSemaphore implements IAllocable
 {
@@ -49,14 +49,15 @@ public class VkSemaphore implements IAllocable
 			throw new AssertionError("");
 		}
 
-		SingleTimeCommand stc = new SingleTimeCommand(executionContext, List.of(this))
+		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
-			{}
-		};
-
-		stc.execute();
+			executionContext.execute(stack, List.of(this), new ISingleTimeCommand()
+			{
+				@Override
+				public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
+				{}
+			});
+		}
 	}
 
 	@Override

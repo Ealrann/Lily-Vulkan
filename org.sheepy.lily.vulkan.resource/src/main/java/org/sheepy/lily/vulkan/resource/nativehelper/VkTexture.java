@@ -16,7 +16,7 @@ import org.lwjgl.vulkan.VkOffset3D;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
@@ -75,10 +75,10 @@ public class VkTexture implements IVkDescriptor
 		final CPUBufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack,
 				executionContext, size, stagingUsage, false, data);
 
-		final SingleTimeCommand stc = new SingleTimeCommand(executionContext)
+		executionContext.execute(stack, new ISingleTimeCommand()
 		{
 			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
 				List<EAccess> srcAccessMask = List.of();
 				List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
@@ -89,10 +89,9 @@ public class VkTexture implements IVkDescriptor
 
 				image.fillWithBuffer(commandBuffer, buffer.getId());
 
-				generateMipmaps(commandBuffer, image.getId());
+				generateMipmaps(commandBuffer, image.getId());				
 			}
-		};
-		stc.execute();
+		});
 
 		buffer.free(executionContext);
 	}

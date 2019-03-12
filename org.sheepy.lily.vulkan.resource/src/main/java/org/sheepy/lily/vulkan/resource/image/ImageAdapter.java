@@ -15,7 +15,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
@@ -59,7 +59,7 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 
 		if (image.getInitialLayout() != null)
 		{
-			initialTransition();
+			initialTransition(stack);
 		}
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
@@ -68,20 +68,19 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 		load();
 	}
 
-	private void initialTransition()
+	private void initialTransition(MemoryStack stack)
 	{
-		SingleTimeCommand stc = new SingleTimeCommand(executionContext)
+		executionContext.execute(stack, new ISingleTimeCommand()
 		{
 			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
 				ImageLayout initialLayout = image.getInitialLayout();
 				imageBackend.transitionImageLayout(commandBuffer, EPipelineStage.BOTTOM_OF_PIPE_BIT,
 						initialLayout.getStage(), EImageLayout.UNDEFINED, initialLayout.getLayout(),
 						Collections.emptyList(), initialLayout.getAccessMask());
 			}
-		};
-		stc.execute();
+		});
 	}
 
 	public void load()

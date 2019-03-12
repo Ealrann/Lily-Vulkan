@@ -13,7 +13,7 @@ import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.common.resource.image.IDepthImageAdapter;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
@@ -55,7 +55,7 @@ public class DepthImageAdapter implements IDepthImageAdapter
 
 		createAndAllocateImageView(executionContext.getLogicalDevice());
 
-		layoutTransitionOfDepthImage(executionContext);
+		layoutTransitionOfDepthImage(stack, executionContext);
 	}
 
 	private void createAndAllocateImageView(LogicalDevice logicalDevice)
@@ -83,7 +83,7 @@ public class DepthImageAdapter implements IDepthImageAdapter
 		depthImageBackend = new VkImage(logicalDevice, depthImageInfo);
 	}
 
-	private void layoutTransitionOfDepthImage(ExecutionContext context)
+	private void layoutTransitionOfDepthImage(MemoryStack stack, ExecutionContext context)
 	{
 		final var barrier = new ReferenceImageBarrierImpl();
 		barrier.setImageId(depthImageBackend.getId());
@@ -102,15 +102,15 @@ public class DepthImageAdapter implements IDepthImageAdapter
 
 		var barrierExecutor = BarrierExecutorFactory.create(barrier);
 		barrierExecutor.allocate();
-		final SingleTimeCommand stc = new SingleTimeCommand(context)
+
+		context.execute(stack, new ISingleTimeCommand()
 		{
 			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
 				barrierExecutor.execute(commandBuffer);
 			}
-		};
-		stc.execute();
+		});
 		barrierExecutor.free();
 	}
 

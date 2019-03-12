@@ -11,7 +11,7 @@ import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkBufferAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
@@ -108,15 +108,15 @@ public class GPUBufferBackend implements IBufferBackend
 	public void pushData(ExecutionContext executionContext, CPUBufferBackend stagingBuffer)
 	{
 		int size = (int) Math.min(stagingBuffer.infos.size, infos.size);
-		final SingleTimeCommand stc = new SingleTimeCommand(executionContext)
+
+		executionContext.execute(new ISingleTimeCommand()
 		{
 			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
 				BufferUtils.copyBuffer(commandBuffer, stagingBuffer.getId(), bufferId, size);
 			}
-		};
-		stc.execute();
+		});
 	}
 
 	@Override

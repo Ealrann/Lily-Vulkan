@@ -1,12 +1,17 @@
 package org.sheepy.lily.vulkan.common.execution;
 
+import java.util.Collection;
+
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
 import org.sheepy.lily.vulkan.common.engine.VulkanContext;
+import org.sheepy.lily.vulkan.common.execution.internal.SingleTimeCommand;
 
 public class ExecutionContext extends VulkanContext implements IAllocationContext, IAllocable
 {
@@ -61,5 +66,39 @@ public class ExecutionContext extends VulkanContext implements IAllocationContex
 	public VulkanQueue getQueue()
 	{
 		return queue;
+	}
+
+	public void execute(ISingleTimeCommand command)
+	{
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			execute(stack, command);
+		}
+	}
+
+	public void execute(MemoryStack stack, ISingleTimeCommand command)
+	{
+		execute(stack, null, command);
+	}
+
+	public void execute(MemoryStack stack,
+						Collection<VkSemaphore> semaphoreToSignal,
+						ISingleTimeCommand command)
+	{
+		SingleTimeCommand stc = new SingleTimeCommand(this, stack, semaphoreToSignal)
+		{
+			@Override
+			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			{
+				command.execute(stack, commandBuffer);
+			}
+
+			@Override
+			protected void postExecute()
+			{
+				command.postExecute();
+			}
+		};
+		stc.execute();
 	}
 }

@@ -2,47 +2,30 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
-import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager.Extent2D;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 public class RenderCommandBuffer extends GraphicCommandBuffer
 {
-	private final long framebufferId;
-	private final Extent2D extent;
-	private final GraphicContext context;
+	private VkClearValue.Buffer clearValues;
+	private VkRenderPassBeginInfo renderPassInfo;
 
-	public RenderCommandBuffer(	GraphicContext context,
-								int index,
-								long commandBufferId,
-								long framebufferId)
+	public RenderCommandBuffer(int index)
 	{
-		super(context.getLogicalDevice(), index, commandBufferId);
-		this.framebufferId = framebufferId;
-		this.extent = context.surfaceManager.getExtent();
-		this.context = context;
-	}
-
-	public void startCommand()
-	{
-		super.start();
+		super(index);
 	}
 
 	@Override
-	public void start()
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		startCommand();
-		startRenderPass();
-	}
-
-	public void startRenderPass()
-	{
-		final var configuration = context.configuration;
-		final var useDepthBuffer = context.graphicProcess.getDepthImage() != null;
-
-		// Start Render Pass
-		VkClearValue.Buffer clearValues = null;
+		final var graphicContext = (GraphicContext) context;
+		final var configuration = graphicContext.configuration;
+		final var useDepthBuffer = graphicContext.graphicProcess.getDepthImage() != null;
+		final var extent = graphicContext.surfaceManager.getExtent();
+		final var framebufferId = graphicContext.framebuffers.getIDs().get(index);
 
 		if (configuration.isClearBeforeRender())
 		{
@@ -63,18 +46,48 @@ public class RenderCommandBuffer extends GraphicCommandBuffer
 			clearValues.flip();
 		}
 
-		final VkRenderPassBeginInfo renderPassInfo = VkRenderPassBeginInfo.calloc();
+		renderPassInfo = VkRenderPassBeginInfo.calloc();
 		renderPassInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO);
-		renderPassInfo.renderPass(context.renderPass.getId());
+		renderPassInfo.renderPass(graphicContext.renderPass.getId());
 		renderPassInfo.framebuffer(framebufferId);
 		renderPassInfo.renderArea().offset().set(0, 0);
 		renderPassInfo.renderArea().extent().set(extent.getWidth(), extent.getHeight());
 		renderPassInfo.pClearValues(clearValues);
 
+		super.allocate(stack, context);
+	}
+
+	@Override
+	public void free(IAllocationContext context)
+	{
+		if (clearValues != null)
+		{
+			clearValues.free();
+			clearValues = null;
+		}
+
+		renderPassInfo.free();
+		renderPassInfo = null;
+
+		super.free(context);
+	}
+
+	public void startCommand()
+	{
+		super.start();
+	}
+
+	@Override
+	public void start()
+	{
+		startCommand();
+		startRenderPass();
+	}
+
+	public void startRenderPass()
+	{
 		vkCmdBeginRenderPass(vkCommandBuffer, renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
-		if (clearValues != null) clearValues.free();
-		renderPassInfo.free();
 	}
 
 	public void endRenderPass()

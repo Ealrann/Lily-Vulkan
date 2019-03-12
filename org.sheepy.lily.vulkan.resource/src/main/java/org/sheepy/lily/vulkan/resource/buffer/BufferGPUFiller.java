@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
 
 public class BufferGPUFiller
 {
@@ -28,28 +28,27 @@ public class BufferGPUFiller
 	{
 		createStagingBuffer(sourceBuffer, byteSize);
 
-		final SingleTimeCommand stc = new SingleTimeCommand(context)
+		context.execute(stack, new ISingleTimeCommand()
 		{
 			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
 				fillBuffer(commandBuffer, byteSize);
 			}
 
 			@Override
-			protected void postExecute()
+			public void postExecute()
 			{
 				stagingBuffer.free(context);
 			}
-		};
-		stc.execute();
+		});
 	}
 
 	private void createStagingBuffer(ByteBuffer sourceBuffer, long byteSize)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-		stagingBuffer = BufferAllocator.allocateCPUBufferAndFill(stack, context, byteSize,
-				usage, false, sourceBuffer);
+		stagingBuffer = BufferAllocator.allocateCPUBufferAndFill(stack, context, byteSize, usage,
+				false, sourceBuffer);
 	}
 
 	private void fillBuffer(VkCommandBuffer commandBuffer, long byteSize)

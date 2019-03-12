@@ -1,6 +1,5 @@
 package org.sheepy.lily.vulkan.common.device;
 
-import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.IntBuffer;
@@ -60,16 +59,14 @@ public class LogicalDevice
 
 		for (final int queueIndex : uniqueQueueIndexes)
 		{
-			final var queuePriority = memAllocFloat(1).put(1f);
+			final var queuePriority = stack.mallocFloat(1).put(1f);
 			queuePriority.flip();
 
 			final var queueCreateInfo = queueCreateInfos.get();
 			queueCreateInfo.sType(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO);
 			queueCreateInfo.queueFamilyIndex(queueIndex);
 			queueCreateInfo.pQueuePriorities(queuePriority);
-			queueCreateInfo.pNext(NULL);
-
-			memFree(queuePriority);
+			queueCreateInfo.pNext(VK_NULL_HANDLE);
 		}
 		queueCreateInfos.flip();
 
@@ -87,7 +84,7 @@ public class LogicalDevice
 
 		final VkDeviceCreateInfo createInfo = VkDeviceCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO);
-		createInfo.pNext(NULL);
+		createInfo.pNext(VK_NULL_HANDLE);
 		createInfo.pQueueCreateInfos(queueCreateInfos);
 		createInfo.pEnabledFeatures(deviceFeatures);
 		createInfo.ppEnabledExtensionNames(extensionsBuffer);

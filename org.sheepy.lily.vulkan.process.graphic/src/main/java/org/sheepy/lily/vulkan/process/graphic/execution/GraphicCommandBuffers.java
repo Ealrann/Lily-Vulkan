@@ -17,27 +17,18 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 	protected List<RenderCommandBuffer> allocCommandBuffers(MemoryStack stack,
 															ProcessContext context)
 	{
+		final List<RenderCommandBuffer> res = new ArrayList<>();
+
 		var graphicContext = (GraphicContext) context;
 		final var framebuffers = graphicContext.framebuffers;
 
-		final long commandPoolId = commandPool.getId();
-
-		// Command Pool Buffers
-		// ------------------
-		final long[] commandBufferIds = allocCommandBuffers(graphicContext.getVkDevice(),
-				commandPoolId, framebuffers.size());
-
-		final List<RenderCommandBuffer> commandBuffers = new ArrayList<>();
 		for (int i = 0; i < framebuffers.getIDs().size(); i++)
 		{
-			final Long framebufferId = framebuffers.getIDs().get(i);
-			final long id = commandBufferIds[i];
-
-			var commandBuffer = new RenderCommandBuffer(graphicContext, i, id, framebufferId);
-			commandBuffers.add(commandBuffer);
+			var commandBuffer = new RenderCommandBuffer(i);
+			res.add(commandBuffer);
 		}
 
-		return List.copyOf(commandBuffers);
+		return List.copyOf(res);
 	}
 
 	public void recordCommands(GraphicContext context)

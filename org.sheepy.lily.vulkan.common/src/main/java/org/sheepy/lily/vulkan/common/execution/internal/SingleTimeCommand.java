@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.common.execution;
+package org.sheepy.lily.vulkan.common.execution.internal;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -11,39 +11,29 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 
 public abstract class SingleTimeCommand extends AbstractCommandBuffer
 {
 	protected final ExecutionContext executionContext;
 	private List<VkSemaphore> semaphoreToSignal = null;
+	private final MemoryStack stack;
 
-	public SingleTimeCommand(ExecutionContext executionManager, long commandBufferId)
+	public SingleTimeCommand(ExecutionContext executionManager, MemoryStack stack)
 	{
-		this(executionManager, commandBufferId, null);
-	}
-
-	public SingleTimeCommand(ExecutionContext executionContext)
-	{
-		this(executionContext, allocCommandBufferId(executionContext), null);
-	}
-
-	public SingleTimeCommand(	ExecutionContext executionManager,
-								Collection<VkSemaphore> semaphoreToSignal)
-	{
-		this(executionManager, allocCommandBufferId(executionManager), semaphoreToSignal);
+		this(executionManager, stack, null);
 	}
 
 	public SingleTimeCommand(	ExecutionContext executionContext,
-								long commandBufferId,
+								MemoryStack stack,
 								Collection<VkSemaphore> semaphoreToSignal)
 	{
-		super(executionContext.getLogicalDevice(), commandBufferId);
-
 		this.executionContext = executionContext;
+		this.stack = stack;
 		if (semaphoreToSignal != null && semaphoreToSignal.isEmpty() == false)
 		{
 			this.semaphoreToSignal = new ArrayList<>(semaphoreToSignal);
@@ -52,49 +42,31 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		{
 			this.semaphoreToSignal = null;
 		}
+
+		allocate(stack, executionContext);
 	}
 
 	public void execute()
 	{
 		start();
 
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			doExecute(stack, vkCommandBuffer);
-		}
+		doExecute(stack, vkCommandBuffer);
 
 		end();
 
 		postExecute();
-	}
 
-	private static long allocCommandBufferId(ExecutionContext executionManager)
-	{
-		final VkCommandBufferAllocateInfo allocInfo = VkCommandBufferAllocateInfo.calloc();
-		allocInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO);
-		allocInfo.level(VK_COMMAND_BUFFER_LEVEL_PRIMARY);
-		allocInfo.commandPool(executionManager.commandPool.getId());
-		allocInfo.commandBufferCount(1);
-
-		final PointerBuffer pCommandBuffer = MemoryUtil.memAllocPointer(1);
-		vkAllocateCommandBuffers(executionManager.getVkDevice(), allocInfo, pCommandBuffer);
-		final long commandBufferId = pCommandBuffer.get(0);
-
-		MemoryUtil.memFree(pCommandBuffer);
-		allocInfo.free();
-		return commandBufferId;
+		free(executionContext);
 	}
 
 	@Override
 	public void start()
 	{
-		final VkCommandBufferBeginInfo beginInfo = VkCommandBufferBeginInfo.calloc();
+		final VkCommandBufferBeginInfo beginInfo = VkCommandBufferBeginInfo.callocStack(stack);
 		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);
 		beginInfo.flags(VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT);
 
 		vkBeginCommandBuffer(vkCommandBuffer, beginInfo);
-
-		beginInfo.free();
 	}
 
 	@Override
@@ -102,7 +74,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 	{
 		vkEndCommandBuffer(vkCommandBuffer);
 
-		final PointerBuffer pCommandBuffer = MemoryUtil.memAllocPointer(1);
+		final PointerBuffer pCommandBuffer = stack.mallocPointer(1);
 		pCommandBuffer.put(vkCommandBuffer.address());
 		pCommandBuffer.flip();
 
@@ -117,7 +89,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 			lBuffer.flip();
 		}
 
-		final VkSubmitInfo submitInfo = VkSubmitInfo.calloc();
+		final VkSubmitInfo submitInfo = VkSubmitInfo.callocStack(stack);
 		submitInfo.sType(VK_STRUCTURE_TYPE_SUBMIT_INFO);
 		submitInfo.pCommandBuffers(pCommandBuffer);
 		submitInfo.pSignalSemaphores(lBuffer);
@@ -125,10 +97,6 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 		vkQueueSubmit(executionContext.getQueue().vkQueue, submitInfo, VK_NULL_HANDLE);
 		vkQueueWaitIdle(executionContext.getQueue().vkQueue);
 
-		long commandPoolId = executionContext.commandPool.getId();
-		vkFreeCommandBuffers(executionContext.getVkDevice(), commandPoolId, pCommandBuffer);
-		MemoryUtil.memFree(pCommandBuffer);
-		submitInfo.free();
 		if (lBuffer != null) MemoryUtil.memFree(lBuffer);
 	}
 

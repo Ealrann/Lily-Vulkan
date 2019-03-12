@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
+import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
@@ -133,13 +133,15 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	{
 		var submission = graphicContext.frameSubmission;
 
-		SingleTimeCommand stc = new SingleTimeCommand(graphicContext, submission.signalEmitters)
+		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			@Override
-			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
-			{}
-		};
-		stc.execute();
+			graphicContext.execute(stack, submission.signalEmitters, new ISingleTimeCommand()
+			{
+				@Override
+				public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
+				{}
+			});
+		}
 	}
 
 	@Override

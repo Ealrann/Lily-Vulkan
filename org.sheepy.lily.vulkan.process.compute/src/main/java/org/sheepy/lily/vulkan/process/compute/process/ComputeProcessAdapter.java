@@ -36,7 +36,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public void recordCommands()
 	{
-		((ComputeCommandBuffers) context.commandBuffers).recordCommands();
+		((ComputeCommandBuffers) context.commandBuffers).recordCommands((ComputeContext) context);
 	}
 
 	@Override

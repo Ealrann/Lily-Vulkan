@@ -77,8 +77,8 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	{
 		if (vkDescriptors == null)
 		{
-			vkDescriptors = new ArrayList<>();
 			var descriptors = descriptorSet.getDescriptors();
+			vkDescriptors = new ArrayList<>(descriptors.size());
 			for (IDescriptor descriptor : descriptors)
 			{
 				vkDescriptors.add(IDescriptorAdapter.adapt(descriptor));
