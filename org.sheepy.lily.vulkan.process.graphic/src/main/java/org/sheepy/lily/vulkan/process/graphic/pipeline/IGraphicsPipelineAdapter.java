@@ -68,15 +68,15 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 		// -----------------------
 		final var pipelineInfo = VkGraphicsPipelineCreateInfo.callocStack(1, stack);
 		pipelineInfo.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
-		pipelineInfo.pStages(shaderStageBuilder.allocShaderStageInfo(getShaders()));
-		pipelineInfo.pVertexInputState(vertexInputState.allocCreateInfo());
-		pipelineInfo.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo());
+		pipelineInfo.pStages(shaderStageBuilder.allocShaderStageInfo(stack, getShaders()));
+		pipelineInfo.pVertexInputState(vertexInputState.allocCreateInfo(stack));
+		pipelineInfo.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo(stack));
 		pipelineInfo.subpass(getSubpass());
 
 		var viewportState = getViewportState();
 		if (viewportState != null)
 		{
-			var allocCreateInfo = viewportStateBuilder.allocCreateInfo(surfaceManager,
+			var allocCreateInfo = viewportStateBuilder.allocCreateInfo(stack, surfaceManager,
 					viewportState);
 			pipelineInfo.pViewportState(allocCreateInfo);
 		}
@@ -84,23 +84,23 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 		var rasterizer = getRasterizer();
 		if (rasterizer != null)
 		{
-			pipelineInfo.pRasterizationState(rasterizerBuilder.allocCreateInfo(rasterizer));
+			pipelineInfo.pRasterizationState(rasterizerBuilder.allocCreateInfo(stack, rasterizer));
 		}
 
-		pipelineInfo.pMultisampleState(multisampleBuilder.allocCreateInfo());
+		pipelineInfo.pMultisampleState(multisampleBuilder.allocCreateInfo(stack));
 		if (useDepthBuffer == true)
-			pipelineInfo.pDepthStencilState(depthStencilBuidler.allocCreateInfo());
+			pipelineInfo.pDepthStencilState(depthStencilBuidler.allocCreateInfo(stack));
 
 		var colorBlend = getColorBlend();
 		if (colorBlend != null)
 		{
-			pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo(colorBlend));
+			pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo(stack, colorBlend));
 		}
 
 		var dynamicState = getDynamicState();
 		if (dynamicState != null)
 		{
-			pipelineInfo.pDynamicState(dynamicStateBuilder.allocCreateInfo(dynamicState));
+			pipelineInfo.pDynamicState(dynamicStateBuilder.allocCreateInfo(stack, dynamicState));
 		}
 
 		pipelineInfo.layout(pipelineLayout);
@@ -113,16 +113,6 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 		Logger.check("Failed to create graphics pipeline!",
 				() -> vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, pipelineInfo, null, aId));
 		pipelineId = aId[0];
-
-		dynamicStateBuilder.freeDynamicStateCreateInfo();
-		colorBlendBuilder.freeColorBlendStateCreateInfo();
-		multisampleBuilder.freeMultisampleStateCreateInfo();
-		rasterizerBuilder.freeRasterizationStateCreateInfo();
-		viewportStateBuilder.freeViewportStateCreateInfo();
-		inputAssemblyBuilder.freeInputAssemblyStateCreateInfo();
-		vertexInputState.freeInputStateCreateInfo();
-		shaderStageBuilder.freeShaderStageInfo();
-		if (useDepthBuffer == true) depthStencilBuidler.freeDepthStencilStateCreateInfo();
 	}
 
 	private void createBuilders()

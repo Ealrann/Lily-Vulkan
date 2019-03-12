@@ -7,6 +7,7 @@ import java.nio.FloatBuffer;
 
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
@@ -22,18 +23,14 @@ public class TextureVertexDescriptor extends AbstractIntegerIndexDescriptor<Text
 	public static final int COLOR_OFFSET = 3 * 4;
 	public static final int TEXTURE_OFFSET = 6 * 4;
 
-	private VkPipelineVertexInputStateCreateInfo vertexInputInfo;
-	private VkVertexInputBindingDescription.Buffer allocBindingDescription;
-	private VkVertexInputAttributeDescription.Buffer attributeDescriptions;
-
 	@Override
-	public VkPipelineVertexInputStateCreateInfo allocCreateInfo()
+	public VkPipelineVertexInputStateCreateInfo allocCreateInfo(MemoryStack stack)
 	{
-		vertexInputInfo = VkPipelineVertexInputStateCreateInfo.calloc();
+		var vertexInputInfo = VkPipelineVertexInputStateCreateInfo.callocStack(stack);
 		vertexInputInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO);
 
-		allocBindingDescription = allocBindingDescription();
-		attributeDescriptions = allocAttributeDescriptions();
+		var allocBindingDescription = allocBindingDescription(stack);
+		var attributeDescriptions = allocAttributeDescriptions(stack);
 
 		vertexInputInfo.pVertexBindingDescriptions(allocBindingDescription);
 		vertexInputInfo.pVertexAttributeDescriptions(attributeDescriptions);
@@ -41,9 +38,9 @@ public class TextureVertexDescriptor extends AbstractIntegerIndexDescriptor<Text
 		return vertexInputInfo;
 	}
 
-	private static VkVertexInputBindingDescription.Buffer allocBindingDescription()
+	private static VkVertexInputBindingDescription.Buffer allocBindingDescription(MemoryStack stack)
 	{
-		final var bindingDescription = VkVertexInputBindingDescription.create(1);
+		final var bindingDescription = VkVertexInputBindingDescription.callocStack(1, stack);
 
 		bindingDescription.binding(0);
 		bindingDescription.stride(SIZE_OF);
@@ -52,9 +49,9 @@ public class TextureVertexDescriptor extends AbstractIntegerIndexDescriptor<Text
 		return bindingDescription;
 	}
 
-	private static VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions()
+	private static VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions(MemoryStack stack)
 	{
-		final var attributeDescriptions = VkVertexInputAttributeDescription.create(3);
+		final var attributeDescriptions = VkVertexInputAttributeDescription.callocStack(3, stack);
 
 		final var attributeDescriptionPosition = attributeDescriptions.get(0);
 		attributeDescriptionPosition.binding(0);
@@ -75,14 +72,6 @@ public class TextureVertexDescriptor extends AbstractIntegerIndexDescriptor<Text
 		attributeDescriptionTexCoord.offset(TEXTURE_OFFSET);
 
 		return attributeDescriptions;
-	}
-
-	@Override
-	public void freeInputStateCreateInfo()
-	{
-		vertexInputInfo.free();
-		allocBindingDescription.free();
-		attributeDescriptions.free();
 	}
 
 	@Override

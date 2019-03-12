@@ -3,6 +3,7 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
 
 import org.joml.Vector2i;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineViewportStateCreateInfo;
 import org.lwjgl.vulkan.VkRect2D;
 import org.lwjgl.vulkan.VkViewport;
@@ -21,16 +22,17 @@ public class ViewportStateBuilder
 	private VkViewport.Buffer viewports;
 	private VkRect2D.Buffer scissors;
 
-	public VkPipelineViewportStateCreateInfo allocCreateInfo(	PhysicalDeviceSurfaceManager surfaceManager,
+	public VkPipelineViewportStateCreateInfo allocCreateInfo(	MemoryStack stack,
+																PhysicalDeviceSurfaceManager surfaceManager,
 																ViewportState vState)
 	{
-		viewportState = VkPipelineViewportStateCreateInfo.calloc();
+		viewportState = VkPipelineViewportStateCreateInfo.callocStack(stack);
 		viewportState.sType(VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO);
 
 		if (vState instanceof StaticViewportState)
 		{
 			var state = (StaticViewportState) vState;
-			fillStaticStateInfo(surfaceManager, state);
+			fillStaticStateInfo(stack, surfaceManager, state);
 		}
 		else if (vState instanceof DynamicViewportState)
 		{
@@ -47,12 +49,13 @@ public class ViewportStateBuilder
 		viewportState.viewportCount(state.getViewportCount());
 	}
 
-	private void fillStaticStateInfo(	PhysicalDeviceSurfaceManager surfaceManager,
+	private void fillStaticStateInfo(	MemoryStack stack,
+										PhysicalDeviceSurfaceManager surfaceManager,
 										StaticViewportState state)
 	{
 		// Viewports and scissors
 		Extent2D swapExtent = surfaceManager.getExtent();
-		viewports = VkViewport.calloc(state.getViewports().size());
+		viewports = VkViewport.callocStack(state.getViewports().size(), stack);
 		for (Viewport viewport : state.getViewports())
 		{
 			Vector2i offset = viewport.getOffset();
@@ -78,7 +81,7 @@ public class ViewportStateBuilder
 		}
 		viewports.flip();
 
-		scissors = VkRect2D.calloc(state.getScissors().size());
+		scissors = VkRect2D.callocStack(state.getScissors().size(), stack);
 		for (Scissor scissor : state.getScissors())
 		{
 			Vector2i offset = scissor.getOffset();
@@ -100,16 +103,5 @@ public class ViewportStateBuilder
 
 		viewportState.pViewports(viewports);
 		viewportState.pScissors(scissors);
-	}
-
-	public void freeViewportStateCreateInfo()
-	{
-		viewportState.free();
-		viewportState = null;
-
-		if (scissors != null) scissors.free();
-		if (viewports != null) viewports.free();
-		scissors = null;
-		viewports = null;
 	}
 }

@@ -2,14 +2,16 @@ package org.sheepy.lily.vulkan.resource.indexed;
 
 import java.nio.ByteBuffer;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 
 public interface IVertexBufferDescriptor<T extends IVertex>
 {
-	VkPipelineVertexInputStateCreateInfo allocCreateInfo();
-	void freeInputStateCreateInfo();
+	VkPipelineVertexInputStateCreateInfo allocCreateInfo(MemoryStack stack);
+
 	void free();
-	
+
 	int sizeOfVertex();
+
 	ByteBuffer toVertexBuffer(T[] vertices);
 }

@@ -4,6 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
@@ -19,18 +20,14 @@ public class NuklearVertexDescriptor implements IIndexedBufferDescriptor<GuiVert
 	public static final int TEX_COORD_OFFSET = 2 * 4;
 	public static final int COLOR_OFFSET = 4 * 4;
 
-	private VkPipelineVertexInputStateCreateInfo vertexInputInfo;
-	private VkVertexInputBindingDescription.Buffer bindingDescription;
-	private VkVertexInputAttributeDescription.Buffer attributeDescriptions;
-
 	@Override
-	public VkPipelineVertexInputStateCreateInfo allocCreateInfo()
+	public VkPipelineVertexInputStateCreateInfo allocCreateInfo(MemoryStack stack)
 	{
-		vertexInputInfo = VkPipelineVertexInputStateCreateInfo.calloc();
+		var vertexInputInfo = VkPipelineVertexInputStateCreateInfo.callocStack(stack);
 		vertexInputInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO);
 
-		bindingDescription = allocBindingDescription();
-		attributeDescriptions = allocAttributeDescriptions();
+		var bindingDescription = allocBindingDescription(stack);
+		var attributeDescriptions = allocAttributeDescriptions(stack);
 
 		vertexInputInfo.pVertexBindingDescriptions(bindingDescription); // Optional
 		vertexInputInfo.pVertexAttributeDescriptions(attributeDescriptions); // Optional
@@ -38,9 +35,9 @@ public class NuklearVertexDescriptor implements IIndexedBufferDescriptor<GuiVert
 		return vertexInputInfo;
 	}
 
-	public static VkVertexInputBindingDescription.Buffer allocBindingDescription()
+	public static VkVertexInputBindingDescription.Buffer allocBindingDescription(MemoryStack stack)
 	{
-		var bindingDescription = VkVertexInputBindingDescription.calloc(1);
+		var bindingDescription = VkVertexInputBindingDescription.mallocStack(1, stack);
 
 		bindingDescription.binding(0);
 		bindingDescription.stride(SIZE_OF);
@@ -49,9 +46,9 @@ public class NuklearVertexDescriptor implements IIndexedBufferDescriptor<GuiVert
 		return bindingDescription;
 	}
 
-	public static VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions()
+	public static VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions(MemoryStack stack)
 	{
-		var attributeDescriptions = VkVertexInputAttributeDescription.calloc(3);
+		var attributeDescriptions = VkVertexInputAttributeDescription.mallocStack(3, stack);
 
 		var positionAttribute = attributeDescriptions.get(0);
 		positionAttribute.binding(0);
@@ -72,18 +69,6 @@ public class NuklearVertexDescriptor implements IIndexedBufferDescriptor<GuiVert
 		colorAttribute.offset(COLOR_OFFSET);
 
 		return attributeDescriptions;
-	}
-
-	@Override
-	public void freeInputStateCreateInfo()
-	{
-		vertexInputInfo.free();
-		bindingDescription.free();
-		attributeDescriptions.free();
-
-		vertexInputInfo = null;
-		bindingDescription = null;
-		attributeDescriptions = null;
 	}
 
 	@Override

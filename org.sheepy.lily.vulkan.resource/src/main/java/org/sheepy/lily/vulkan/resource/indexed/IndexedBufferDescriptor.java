@@ -7,6 +7,7 @@ import java.nio.FloatBuffer;
 
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
@@ -19,18 +20,14 @@ public class IndexedBufferDescriptor extends AbstractIntegerIndexDescriptor<Vert
 	public static final int POSITION_OFFSET = 0 * 4;
 	public static final int COLOR_OFFSET = 2 * 4;
 
-	private VkPipelineVertexInputStateCreateInfo vertexInputInfo;
-	private VkVertexInputBindingDescription.Buffer allocBindingDescription;
-	private VkVertexInputAttributeDescription.Buffer getgetAttributeDescriptions;
-
 	@Override
-	public VkPipelineVertexInputStateCreateInfo allocCreateInfo()
+	public VkPipelineVertexInputStateCreateInfo allocCreateInfo(MemoryStack stack)
 	{
-		vertexInputInfo = VkPipelineVertexInputStateCreateInfo.calloc();
+		var vertexInputInfo = VkPipelineVertexInputStateCreateInfo.callocStack(stack);
 		vertexInputInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO);
 
-		allocBindingDescription = allocBindingDescription();
-		getgetAttributeDescriptions = allocAttributeDescriptions();
+		var allocBindingDescription = allocBindingDescription(stack);
+		var getgetAttributeDescriptions = allocAttributeDescriptions(stack);
 
 		vertexInputInfo.pVertexBindingDescriptions(allocBindingDescription); // Optional
 		vertexInputInfo.pVertexAttributeDescriptions(getgetAttributeDescriptions); // Optional
@@ -38,9 +35,9 @@ public class IndexedBufferDescriptor extends AbstractIntegerIndexDescriptor<Vert
 		return vertexInputInfo;
 	}
 
-	public static VkVertexInputBindingDescription.Buffer allocBindingDescription()
+	public static VkVertexInputBindingDescription.Buffer allocBindingDescription(MemoryStack stack)
 	{
-		var bindingDescription = VkVertexInputBindingDescription.calloc(1);
+		var bindingDescription = VkVertexInputBindingDescription.callocStack(1, stack);
 
 		bindingDescription.binding(0);
 		bindingDescription.stride(SIZE_OF);
@@ -49,9 +46,9 @@ public class IndexedBufferDescriptor extends AbstractIntegerIndexDescriptor<Vert
 		return bindingDescription;
 	}
 
-	public static VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions()
+	public static VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions(MemoryStack stack)
 	{
-		var attributeDescriptions = VkVertexInputAttributeDescription.calloc(2);
+		var attributeDescriptions = VkVertexInputAttributeDescription.callocStack(2, stack);
 
 		var attributeDescriptionPosition = attributeDescriptions.get(0);
 		attributeDescriptionPosition.binding(0);
@@ -66,14 +63,6 @@ public class IndexedBufferDescriptor extends AbstractIntegerIndexDescriptor<Vert
 		attributeDescriptionColor.offset(COLOR_OFFSET);
 
 		return attributeDescriptions;
-	}
-
-	@Override
-	public void freeInputStateCreateInfo()
-	{
-		vertexInputInfo.free();
-		allocBindingDescription.free();
-		getgetAttributeDescriptions.free();
 	}
 
 	@Override

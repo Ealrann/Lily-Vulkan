@@ -2,15 +2,14 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineDepthStencilStateCreateInfo;
 
 public class DepthStencilBuilder
 {
-	private VkPipelineDepthStencilStateCreateInfo depthStencil;
-
-	public VkPipelineDepthStencilStateCreateInfo allocCreateInfo()
+	public VkPipelineDepthStencilStateCreateInfo allocCreateInfo(MemoryStack stack)
 	{
-		depthStencil = VkPipelineDepthStencilStateCreateInfo.calloc();
+		var depthStencil = VkPipelineDepthStencilStateCreateInfo.callocStack(stack);
 		depthStencil.sType(VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO);
 		depthStencil.depthTestEnable(true);
 		depthStencil.depthWriteEnable(true);
@@ -20,11 +19,9 @@ public class DepthStencilBuilder
 		depthStencil.maxDepthBounds(1.0f); // Optional
 		depthStencil.stencilTestEnable(false);
 
-		return depthStencil;
-	}
+		depthStencil.pNext(VK_NULL_HANDLE);
+		depthStencil.flags(0);
 
-	public void freeDepthStencilStateCreateInfo()
-	{
-		depthStencil.free();
+		return depthStencil;
 	}
 }

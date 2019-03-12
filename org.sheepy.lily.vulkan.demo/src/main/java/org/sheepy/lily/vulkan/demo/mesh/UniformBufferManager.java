@@ -6,7 +6,7 @@ import java.nio.FloatBuffer;
 import org.joml.Matrix4f;
 import org.joml.Vector2i;
 import org.joml.Vector3f;
-import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.BufferUtils;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.common.util.SizeOf;
@@ -55,7 +55,7 @@ public class UniformBufferManager
 		res.setGpuBuffer(false);
 		res.setOftenUpdated(true);
 
-		stagingBuffer = MemoryUtil.memAlloc(SIZE_OF);
+		stagingBuffer = BufferUtils.createByteBuffer(SIZE_OF);
 
 		return res;
 	}

@@ -2,16 +2,16 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineRasterizationStateCreateInfo;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 
 public class RasterizerBuilder
 {
-	private VkPipelineRasterizationStateCreateInfo rasterizerInfo;
-
-	public VkPipelineRasterizationStateCreateInfo allocCreateInfo(Rasterizer rasterizer)
+	public VkPipelineRasterizationStateCreateInfo allocCreateInfo(	MemoryStack stack,
+																	Rasterizer rasterizer)
 	{
-		rasterizerInfo = VkPipelineRasterizationStateCreateInfo.calloc();
+		var rasterizerInfo = VkPipelineRasterizationStateCreateInfo.mallocStack(stack);
 		rasterizerInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO);
 		rasterizerInfo.depthClampEnable(rasterizer.isDepthClampEnable());
 		rasterizerInfo.rasterizerDiscardEnable(rasterizer.isDiscardEnable());
@@ -24,11 +24,9 @@ public class RasterizerBuilder
 		rasterizerInfo.depthBiasClamp(0.0f); // Optional
 		rasterizerInfo.depthBiasSlopeFactor(0.0f); // Optional
 
-		return rasterizerInfo;
-	}
+		rasterizerInfo.pNext(VK_NULL_HANDLE);
+		rasterizerInfo.flags(0);
 
-	public void freeRasterizationStateCreateInfo()
-	{
-		rasterizerInfo.free();
+		return rasterizerInfo;
 	}
 }
