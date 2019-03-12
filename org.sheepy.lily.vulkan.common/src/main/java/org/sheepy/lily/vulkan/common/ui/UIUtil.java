@@ -3,7 +3,6 @@ package org.sheepy.lily.vulkan.common.ui;
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
-import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 
 public class UIUtil
 {
