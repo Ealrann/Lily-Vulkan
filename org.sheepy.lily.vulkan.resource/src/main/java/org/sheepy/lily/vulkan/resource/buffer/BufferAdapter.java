@@ -37,19 +37,18 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		executionManager = (ExecutionContext) context;
-		var logicalDevice = executionManager.getLogicalDevice();
 		var info = new BufferInfo(buffer);
 
 		if (buffer.isGpuBuffer())
 		{
-			bufferBackend = new GPUBufferBackend(logicalDevice, info, buffer.isOftenUpdated());
+			bufferBackend = new GPUBufferBackend(info, buffer.isOftenUpdated());
 		}
 		else
 		{
-			bufferBackend = new CPUBufferBackend(logicalDevice, info, true);
+			bufferBackend = new CPUBufferBackend(info, true);
 		}
 
-		bufferBackend.allocate(stack);
+		bufferBackend.allocate(stack, context);
 
 		ByteBuffer data = buffer.getData();
 		if (data != null)
@@ -66,7 +65,7 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	@Override
 	public void free(IAllocationContext context)
 	{
-		bufferBackend.free();
+		bufferBackend.free(context);
 		bufferBackend = null;
 	}
 

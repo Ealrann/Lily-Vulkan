@@ -15,6 +15,7 @@ import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.common.engine.VulkanContext;
 import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
@@ -59,6 +60,9 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
+		var vulkanContext = (VulkanContext) context;
+		var vkDevice = vulkanContext.getVkDevice();
+
 		nkNullTexture.texture().ptr(nullTexture.getSamplerId());
 		nkNullTexture.uv().set(0.5f, 0.5f);
 
@@ -69,8 +73,8 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 				INDEX_BUFFER_SIZE, true);
 		indexBuffer.allocate(stack, context);
 
-		vertexMemoryMap = indexBuffer.mapVertexMemory();
-		indexMemoryMap = indexBuffer.mapIndexMemory();
+		vertexMemoryMap = indexBuffer.mapVertexMemory(vkDevice);
+		indexMemoryMap = indexBuffer.mapIndexMemory(vkDevice);
 
 		config.null_texture(nkNullTexture);
 		config.vertex_layout(VERTEX_LAYOUT);
@@ -94,13 +98,16 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 	@Override
 	public void free(IAllocationContext context)
 	{
+		var vulkanContext = (VulkanContext) context;
+		var vkDevice = vulkanContext.getVkDevice();
+
 		rangeIndex.free();
 		rangeVertex.free();
 		rangeIndex = null;
 		rangeVertex = null;
 
-		indexBuffer.unmapVertexMemory();
-		indexBuffer.unmapIndexMemory();
+		indexBuffer.unmapVertexMemory(vkDevice);
+		indexBuffer.unmapIndexMemory(vkDevice);
 
 		indexBuffer.free(context);
 		indexBuffer = null;

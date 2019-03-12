@@ -6,11 +6,13 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.lily.vulkan.resource.buffer.BufferGPUFiller;
+import org.sheepy.lily.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.resource.buffer.GPUBufferBackend;
 
 public class IndexedBuffer<T extends IVertex> implements IAllocable
@@ -83,16 +85,16 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
 
-		vertexBuffer = BufferAllocator.allocateGPUBuffer(stack, context.getLogicalDevice(),
-				vertexBufferSizeInByte, usage, isOftenChanged, isOftenChanged);
+		vertexBuffer = BufferAllocator.allocateGPUBuffer(stack, context, vertexBufferSizeInByte,
+				usage, isOftenChanged, isOftenChanged);
 	}
 
 	private void allocateIndexBuffer(MemoryStack stack)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
 
-		indexBuffer = BufferAllocator.allocateGPUBuffer(stack, context.getLogicalDevice(),
-				indexBufferSizeInByte, usage, isOftenChanged, isOftenChanged);
+		indexBuffer = BufferAllocator.allocateGPUBuffer(stack, context, indexBufferSizeInByte,
+				usage, isOftenChanged, isOftenChanged);
 	}
 
 	public void fillBuffer(MemoryStack stack, T[] vertices, int[] indices)
@@ -123,11 +125,26 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		indexFiller.fill(indiceBuffer, indexByteSize);
 	}
 
+	public void fillBuffer(	IAllocationContext context,
+							CPUBufferBackend indexStaggingBuffer,
+							int numberOfIndice,
+							CPUBufferBackend vertexStaggingBuffer,
+							int numberOfVertice)
+	{
+		var executionContext = (ExecutionContext) context;
+
+		indexCount = numberOfIndice;
+		vertexCount = numberOfVertice;
+
+		vertexBuffer.pushData(executionContext, vertexStaggingBuffer);
+		indexBuffer.pushData(executionContext, indexStaggingBuffer);
+	}
+
 	@Override
 	public void free(IAllocationContext context)
 	{
-		vertexBuffer.free();
-		indexBuffer.free();
+		vertexBuffer.free(context);
+		indexBuffer.free(context);
 
 		vertexBuffer = null;
 		indexBuffer = null;
@@ -141,24 +158,24 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		indexBuffer.pushStagging(context);
 	}
 
-	public long mapVertexMemory()
+	public long mapVertexMemory(VkDevice vkDevice)
 	{
-		return vertexBuffer.mapMemory();
+		return vertexBuffer.mapMemory(vkDevice);
 	}
 
-	public long mapIndexMemory()
+	public long mapIndexMemory(VkDevice vkDevice)
 	{
-		return indexBuffer.mapMemory();
+		return indexBuffer.mapMemory(vkDevice);
 	}
 
-	public void unmapVertexMemory()
+	public void unmapVertexMemory(VkDevice vkDevice)
 	{
-		vertexBuffer.unmapMemory();
+		vertexBuffer.unmapMemory(vkDevice);
 	}
 
-	public void unmapIndexMemory()
+	public void unmapIndexMemory(VkDevice vkDevice)
 	{
-		indexBuffer.unmapMemory();
+		indexBuffer.unmapMemory(vkDevice);
 	}
 
 	public IIndexedBufferDescriptor<T> getIndexBufferDescriptor()

@@ -3,62 +3,61 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 
 public class BufferAllocator
 {
 	public static GPUBufferBackend allocateGPUBufferAndFill(MemoryStack stack,
-															ExecutionContext executionManager,
+															ExecutionContext executionContext,
 															long size,
 															int usage,
 															boolean keepStagingBuffer,
 															boolean keptMapped,
 															ByteBuffer fillWith)
 	{
-		var logicalDevice = executionManager.getLogicalDevice();
-		var res = allocateGPUBuffer(stack, logicalDevice, size, usage, keepStagingBuffer,
+		var res = allocateGPUBuffer(stack, executionContext, size, usage, keepStagingBuffer,
 				keptMapped);
 
-		res.pushData(executionManager, fillWith);
+		res.pushData(executionContext, fillWith);
 
 		return res;
 	}
 
 	public static GPUBufferBackend allocateGPUBuffer(	MemoryStack stack,
-														LogicalDevice logicalDevice,
+														IAllocationContext context,
 														long size,
 														int usage,
 														boolean keepStagingBuffer,
 														boolean keptMapped)
 	{
 		var bufferInfo = new BufferInfo(size, usage, keptMapped);
-		var res = new GPUBufferBackend(logicalDevice, bufferInfo, keepStagingBuffer);
-		res.allocate(stack);
+		var res = new GPUBufferBackend(bufferInfo, keepStagingBuffer);
+		res.allocate(stack, context);
 		return res;
 	}
 
 	public static CPUBufferBackend allocateCPUBuffer(	MemoryStack stack,
-														LogicalDevice logicalDevice,
+														IAllocationContext context,
 														long size,
 														int usage,
 														boolean keptMapped)
 	{
 		var bufferInfo = new BufferInfo(size, usage, keptMapped);
-		var res = new CPUBufferBackend(logicalDevice, bufferInfo, true);
-		res.allocate(stack);
+		var res = new CPUBufferBackend(bufferInfo, true);
+		res.allocate(stack, context);
 		return res;
 	}
 
 	public static CPUBufferBackend allocateCPUBufferAndFill(MemoryStack stack,
-															LogicalDevice logicalDevice,
+															ExecutionContext executionContext,
 															long size,
 															int usage,
 															boolean keptMapped,
 															ByteBuffer fillWith)
 	{
-		var res = allocateCPUBuffer(stack, logicalDevice, size, usage, keptMapped);
-		res.pushData(fillWith);
+		var res = allocateCPUBuffer(stack, executionContext, size, usage, keptMapped);
+		res.pushData(executionContext, fillWith);
 		return res;
 	}
 }

@@ -2,19 +2,27 @@ package org.sheepy.lily.vulkan.resource.buffer;
 
 import java.nio.ByteBuffer;
 
-import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 
-public interface IBufferBackend
+public interface IBufferBackend extends IAllocable
 {
-	void allocate(MemoryStack stack);
-	void free();
+
+	@Override
+	default boolean isAllocationDirty(IAllocationContext context)
+	{
+		return false;
+	}
 
 	long getId();
+
 	long getMemoryId();
 
-	public long mapMemory();
-	public void unmapMemory();
+	public long mapMemory(VkDevice vkDevice);
 
-	void pushData(ExecutionContext executionManager, ByteBuffer data);
+	public void unmapMemory(VkDevice vkDevice);
+
+	void pushData(ExecutionContext executionContext, ByteBuffer data);
 }

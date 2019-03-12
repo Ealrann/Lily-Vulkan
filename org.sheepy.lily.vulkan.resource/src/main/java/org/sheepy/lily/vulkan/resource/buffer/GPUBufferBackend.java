@@ -6,7 +6,10 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
+import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.SingleTimeCommand;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkBufferAllocator;
@@ -18,7 +21,6 @@ public class GPUBufferBackend implements IBufferBackend
 {
 	public static final int DEVICE_LOCAL = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
-	private final LogicalDevice logicalDevice;
 	private final int properties;
 	private final BufferInfo infos;
 
@@ -27,35 +29,36 @@ public class GPUBufferBackend implements IBufferBackend
 
 	private CPUBufferBackend cpuBackend = null;
 
-	public GPUBufferBackend(LogicalDevice logicalDevice, BufferInfo info, boolean keepStagingBuffer)
+	public GPUBufferBackend(BufferInfo info, boolean keepStagingBuffer)
 	{
-		this.logicalDevice = logicalDevice;
 		this.infos = info;
 
 		if (keepStagingBuffer)
 		{
 			BufferInfo stagingInfo = new BufferInfo(info.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 					info.keptMapped);
-			cpuBackend = new CPUBufferBackend(logicalDevice, stagingInfo, true);
+			cpuBackend = new CPUBufferBackend(stagingInfo, true);
 		}
 
 		properties = DEVICE_LOCAL;
 	}
 
 	@Override
-	public void allocate(MemoryStack stack)
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		bufferId = VkBufferAllocator.allocate(stack, logicalDevice.getVkDevice(), infos);
+		var vulkanContext = (IVulkanContext) context;
+		var vkDevice = vulkanContext.getVkDevice();
+		bufferId = VkBufferAllocator.allocate(stack, vkDevice, infos);
 
-		final var memoryInfo = allocateMemory(stack, logicalDevice);
+		final var memoryInfo = allocateMemory(stack, vulkanContext.getLogicalDevice());
 		bufferMemoryId = memoryInfo.id;
 
-		vkBindBufferMemory(logicalDevice.getVkDevice(), bufferId, bufferMemoryId, 0);
+		vkBindBufferMemory(vkDevice, bufferId, bufferMemoryId, 0);
 		// System.out.println(Long.toHexString(bufferMemoryId));
 
 		if (cpuBackend != null)
 		{
-			cpuBackend.allocate(stack);
+			cpuBackend.allocate(stack, context);
 		}
 	}
 
@@ -66,14 +69,17 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		vkDestroyBuffer(logicalDevice.getVkDevice(), bufferId, null);
-		vkFreeMemory(logicalDevice.getVkDevice(), bufferMemoryId, null);
+		var vulkanContext = (IVulkanContext) context;
+		var vkDevice = vulkanContext.getVkDevice();
+
+		vkDestroyBuffer(vkDevice, bufferId, null);
+		vkFreeMemory(vkDevice, bufferMemoryId, null);
 
 		if (cpuBackend != null)
 		{
-			cpuBackend.free();
+			cpuBackend.free(context);
 		}
 
 		bufferId = -1;
@@ -81,28 +87,28 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void pushData(ExecutionContext executionManager, ByteBuffer data)
+	public void pushData(ExecutionContext executionContext, ByteBuffer data)
 	{
 		if (cpuBackend == null)
 		{
 			try (MemoryStack stack = MemoryStack.stackPush())
 			{
 				int size = (int) Math.min(data.remaining(), infos.size);
-				var bufferFiller = new BufferGPUFiller(stack, executionManager, bufferId);
+				var bufferFiller = new BufferGPUFiller(stack, executionContext, bufferId);
 				bufferFiller.fill(data, size);
 			}
 		}
 		else
 		{
-			cpuBackend.pushData(data);
-			pushData(executionManager, cpuBackend);
+			cpuBackend.pushData(executionContext, data);
+			pushData(executionContext, cpuBackend);
 		}
 	}
 
-	public void pushData(ExecutionContext executionManager, CPUBufferBackend stagingBuffer)
+	public void pushData(ExecutionContext executionContext, CPUBufferBackend stagingBuffer)
 	{
 		int size = (int) Math.min(stagingBuffer.infos.size, infos.size);
-		final SingleTimeCommand stc = new SingleTimeCommand(executionManager)
+		final SingleTimeCommand stc = new SingleTimeCommand(executionContext)
 		{
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)
@@ -114,11 +120,11 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public long mapMemory()
+	public long mapMemory(VkDevice vkDevice)
 	{
 		if (cpuBackend != null)
 		{
-			return cpuBackend.mapMemory();
+			return cpuBackend.mapMemory(vkDevice);
 		}
 		else
 		{
@@ -128,11 +134,11 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void unmapMemory()
+	public void unmapMemory(VkDevice vkDevice)
 	{
 		if (cpuBackend != null)
 		{
-			cpuBackend.unmapMemory();
+			cpuBackend.unmapMemory(vkDevice);
 		}
 		else
 		{

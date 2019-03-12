@@ -32,7 +32,6 @@ public class VkTexture implements IVkDescriptor
 	private final Sampler samplerInfo;
 	private final ImageInfo imageInfo;
 
-	private LogicalDevice logicalDevice;
 	private VkImage image;
 	private VkImageView imageView;
 	private VkSampler sampler;
@@ -55,7 +54,6 @@ public class VkTexture implements IVkDescriptor
 
 	public void allocate(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		this.logicalDevice = logicalDevice;
 		image = new VkImage(logicalDevice, imageInfo);
 		image.allocate(stack);
 		final var imageId = image.getId();
@@ -74,8 +72,8 @@ public class VkTexture implements IVkDescriptor
 
 		int size = imageInfo.width * imageInfo.height * 4;
 
-		final CPUBufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack, logicalDevice,
-				size, stagingUsage, false, data);
+		final CPUBufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack,
+				executionContext, size, stagingUsage, false, data);
 
 		final SingleTimeCommand stc = new SingleTimeCommand(executionContext)
 		{
@@ -96,7 +94,7 @@ public class VkTexture implements IVkDescriptor
 		};
 		stc.execute();
 
-		buffer.free();
+		buffer.free(executionContext);
 	}
 
 	private void generateMipmaps(VkCommandBuffer commandBuffer, long image)
