@@ -2,10 +2,10 @@ package org.sheepy.lily.vulkan.demo.triangle;
 
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.demo.mesh.IIndexedBufferBuilder;
-import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
-import org.sheepy.lily.vulkan.resource.indexed.IndexBufferData;
-import org.sheepy.lily.vulkan.resource.indexed.IndexBufferDescriptor;
-import org.sheepy.lily.vulkan.resource.indexed.IndexBufferDescriptor.Vertex;
+import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
+import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferData;
+import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferDescriptor;
+import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferDescriptor.Vertex;
 
 public class TriangleMeshBuilder implements IIndexedBufferBuilder<Vertex>
 {
@@ -13,7 +13,7 @@ public class TriangleMeshBuilder implements IIndexedBufferBuilder<Vertex>
 	// {{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
 	// {{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
 	// {{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}}
-	private static IndexBufferData<Vertex> getDatas()
+	private static IndexedBufferData<Vertex> getDatas()
 	{
 		Vertex[] vertices = new Vertex[4];
 		vertices[0] = new Vertex(-0.5f, -0.5f, 1.0f, 1.0f, 1.0f);
@@ -25,15 +25,15 @@ public class TriangleMeshBuilder implements IIndexedBufferBuilder<Vertex>
 				0, 1, 2, 2, 3, 0
 		};
 
-		IndexBufferData<Vertex> res = new IndexBufferData<>(vertices, indices,
-				new IndexBufferDescriptor());
+		IndexedBufferData<Vertex> res = new IndexedBufferData<>(vertices, indices,
+				new IndexedBufferDescriptor());
 
 		return res;
 	}
 
 	@Override
-	public IndexBuffer<Vertex> build(ExecutionContext executionManager)
+	public IndexedBuffer<Vertex> build(ExecutionContext executionManager)
 	{
-		return IndexBuffer.alloc(executionManager, getDatas(), false);
+		return IndexedBuffer.alloc(executionManager, getDatas(), false);
 	}
 }

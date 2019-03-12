@@ -8,7 +8,7 @@ import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
-import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
+import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
 
 @Statefull
 @Adapter(scope = MeshBuffer.class)
@@ -16,7 +16,7 @@ public class MeshAdapter implements IResourceAdapter
 {
 	public static IIndexedBufferBuilder<?> meshBuilder = null;
 
-	private IndexBuffer<?> indexBuffer;
+	private IndexedBuffer<?> indexBuffer;
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
@@ -32,7 +32,7 @@ public class MeshAdapter implements IResourceAdapter
 		indexBuffer = null;
 	}
 
-	public IndexBuffer<?> getIndexBuffer()
+	public IndexedBuffer<?> getIndexBuffer()
 	{
 		return indexBuffer;
 	}

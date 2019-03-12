@@ -11,9 +11,9 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
-import org.sheepy.lily.vulkan.resource.indexed.IndexBufferDescriptor.Vertex;
+import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferDescriptor.Vertex;
 
-public class IndexBufferDescriptor extends AbstractIntegerIndexDescriptor<Vertex>
+public class IndexedBufferDescriptor extends AbstractIntegerIndexDescriptor<Vertex>
 {
 	public static final int SIZE_OF = 5 * 4;
 	public static final int POSITION_OFFSET = 0 * 4;

@@ -5,7 +5,7 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryUtil;
 
-public abstract class AbstractIntegerIndexDescriptor<T extends IVertex> implements IIndexBufferDescriptor<T>
+public abstract class AbstractIntegerIndexDescriptor<T extends IVertex> implements IIndexedBufferDescriptor<T>
 {
 
 	@Override

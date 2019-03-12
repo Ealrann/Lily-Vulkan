@@ -9,10 +9,10 @@ import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
-import org.sheepy.lily.vulkan.resource.indexed.IIndexBufferDescriptor;
+import org.sheepy.lily.vulkan.resource.indexed.IIndexedBufferDescriptor;
 import org.sheepy.lily.vulkan.resource.indexed.IVertex;
 
-public class NuklearVertexDescriptor implements IIndexBufferDescriptor<GuiVertex>
+public class NuklearVertexDescriptor implements IIndexedBufferDescriptor<GuiVertex>
 {
 	public static final int SIZE_OF = 5 * 4;
 	public static final int POSITION_OFFSET = 0;

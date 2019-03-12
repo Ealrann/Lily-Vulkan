@@ -33,10 +33,10 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		final var meshAdapter = MeshAdapter.adapt(mesh);
 
 		final var indexBuffer = meshAdapter.getIndexBuffer();
-		final var indexBufferId = indexBuffer.getIndexBufferId();
+		final var indexBufferId = indexBuffer.getIndexBufferAddress();
 
 		final long[] vertexBuffers = new long[] {
-				indexBuffer.getVertexBufferId()
+				indexBuffer.getVertexBufferAddress()
 		};
 		final long[] offsets = {
 				0
@@ -51,7 +51,7 @@ public class MeshPipelineAdapter extends AbstractGraphicsPipelineAdapter
 
 		vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
 		vkCmdBindIndexBuffer(vkCommandBuffer, indexBufferId, 0, VK_INDEX_TYPE_UINT32);
-		vkCmdDrawIndexed(vkCommandBuffer, indexBuffer.indexCount(), 1, 0, 0, 0);
+		vkCmdDrawIndexed(vkCommandBuffer, indexBuffer.getIndicesCount(), 1, 0, 0, 0);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
-import org.sheepy.lily.vulkan.resource.indexed.IndexBuffer;
+import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
 
 @Statefull
 @Adapter(scope = NuklearIndexBuffer.class)
@@ -45,7 +45,7 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 	private final NkDrawNullTexture nkNullTexture = NkDrawNullTexture.create();
 	private final NkConvertConfig config = NkConvertConfig.create();
 
-	private IndexBuffer<?> indexBuffer;
+	private IndexedBuffer<?> indexBuffer;
 
 	private NullTexture nullTexture = null;
 	private NkBuffer vbuf;
@@ -65,7 +65,7 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 		vbuf = NkBuffer.calloc();
 		ebuf = NkBuffer.calloc();
 
-		indexBuffer = new IndexBuffer<GuiVertex>(VERTEX_DESCRIPTOR, VERTEX_BUFFER_SIZE,
+		indexBuffer = new IndexedBuffer<GuiVertex>(VERTEX_DESCRIPTOR, VERTEX_BUFFER_SIZE,
 				INDEX_BUFFER_SIZE, true);
 		indexBuffer.allocate(stack, context);
 
@@ -126,14 +126,14 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 	{
 		// Bind vertex and index buffer
 		long[] pBuffer = {
-				indexBuffer.getVertexBufferId()
+				indexBuffer.getVertexBufferAddress()
 		};
 		long[] offsets = {
 				0
 		};
 		vkCmdBindVertexBuffers(commandBuffer, 0, pBuffer, offsets);
 
-		vkCmdBindIndexBuffer(commandBuffer, indexBuffer.getIndexBufferId(), 0,
+		vkCmdBindIndexBuffer(commandBuffer, indexBuffer.getIndexBufferAddress(), 0,
 				VK_INDEX_TYPE_UINT16);
 	}
 
