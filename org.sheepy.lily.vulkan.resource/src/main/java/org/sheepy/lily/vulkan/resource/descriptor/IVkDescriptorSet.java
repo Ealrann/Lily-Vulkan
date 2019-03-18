@@ -10,7 +10,7 @@ public interface IVkDescriptorSet
 {
 	void allocate(MemoryStack stack, IAllocationContext context, DescriptorPool pool);
 
-	void free();
+	void free(IAllocationContext context);
 
 	long getId();
 

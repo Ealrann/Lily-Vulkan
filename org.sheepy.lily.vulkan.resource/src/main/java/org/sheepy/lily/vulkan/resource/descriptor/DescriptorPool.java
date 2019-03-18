@@ -76,7 +76,7 @@ public class DescriptorPool implements IAllocable
 
 		for (var descriptorSet : descriptorSets)
 		{
-			descriptorSet.free();
+			descriptorSet.free(context);
 		}
 		descriptorSets = null;
 

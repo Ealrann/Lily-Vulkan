@@ -59,9 +59,9 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
-		vkDescriptorSet.free();
+		vkDescriptorSet.free(context);
 		vkDescriptorSet = null;
 		vkDescriptors = null;
 	}

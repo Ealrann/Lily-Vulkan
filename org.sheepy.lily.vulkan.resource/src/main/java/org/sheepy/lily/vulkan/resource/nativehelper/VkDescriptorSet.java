@@ -22,10 +22,16 @@ import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public class VkDescriptorSet implements IVkDescriptorSet
 {
-	private long descriptorSetId;
-	private long layoutId;
+	private static final String FAILED_TO_CREATE_DESCRIPTOR_SET_LAYOUT = "Failed to create descriptor set layout";
+	private static final String FAILED_TO_ALLOCATE_DESCRIPTOR_SET = "Failed to allocate descriptor set";
+	private static final String UNALLOCATED_DESCRIPTOR_SET = "Unallocated DescriptorSet";
+	private static final int UNINITIALIZED = -1;
+
 	private final List<IVkDescriptor> descriptors;
-	private VkDevice device;
+
+	private long descriptorSetId;
+	private long layoutId = UNINITIALIZED;
+
 	private LongBuffer bDescriptorSet;
 
 	public VkDescriptorSet(List<IVkDescriptor> descriptors)
@@ -36,7 +42,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context, DescriptorPool pool)
 	{
-		device = ((ExecutionContext) context).getVkDevice();
+		var device = ((ExecutionContext) context).getVkDevice();
 		var layoutBindings = createLayoutBinding(stack);
 
 		final var layoutInfo = VkDescriptorSetLayoutCreateInfo.callocStack(stack);
@@ -44,7 +50,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		layoutInfo.pBindings(layoutBindings);
 
 		final long[] aDescriptorSetLayout = new long[1];
-		Logger.check("Failed to create descriptor set layout!",
+		Logger.check(FAILED_TO_CREATE_DESCRIPTOR_SET_LAYOUT,
 				() -> vkCreateDescriptorSetLayout(device, layoutInfo, null, aDescriptorSetLayout));
 		layoutId = aDescriptorSetLayout[0];
 
@@ -58,21 +64,22 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		allocInfo.pSetLayouts(layouts);
 
 		bDescriptorSet = MemoryUtil.memAllocLong(1);
-		Logger.check("Failed to allocate descriptor set.",
+		Logger.check(FAILED_TO_ALLOCATE_DESCRIPTOR_SET,
 				() -> vkAllocateDescriptorSets(device, allocInfo, bDescriptorSet));
 		descriptorSetId = bDescriptorSet.get(0);
 
 		bDescriptorSet.put(descriptorSetId);
 		bDescriptorSet.flip();
 
-		updateDescriptorSet(stack);
+		updateDescriptorSet(stack, device);
 	}
 
 	@Override
-	public void free()
+	public void free(IAllocationContext context)
 	{
+		var device = ((ExecutionContext) context).getVkDevice();
 		vkDestroyDescriptorSetLayout(device, layoutId, null);
-		layoutId = -1;
+		layoutId = UNINITIALIZED;
 		MemoryUtil.memFree(bDescriptorSet);
 		bDescriptorSet = null;
 	}
@@ -93,7 +100,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		return layoutBindings;
 	}
 
-	private void updateDescriptorSet(MemoryStack stack)
+	private void updateDescriptorSet(MemoryStack stack, VkDevice device)
 	{
 		final VkWriteDescriptorSet.Buffer descriptorWrites = VkWriteDescriptorSet
 				.callocStack(descriptors.size(), stack);
@@ -124,13 +131,18 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	@Override
 	public long getId()
 	{
+		if (layoutId == UNINITIALIZED)
+		{
+			throw new AssertionError(UNALLOCATED_DESCRIPTOR_SET);
+		}
+
 		return layoutId;
 	}
 
 	@Override
 	public long getLayoutId()
 	{
-		return layoutId;
+		return getId();
 	}
 
 	@Override
