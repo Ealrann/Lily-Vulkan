@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.demo.model.MeshPipeline;
-import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
@@ -19,7 +19,7 @@ public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 	}
 
 	@Override
-	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
+	public void record(RenderCommandBuffer commandBuffer, int bindPoint)
 	{
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 		final var meshPipeline = (MeshPipeline) pipeline;

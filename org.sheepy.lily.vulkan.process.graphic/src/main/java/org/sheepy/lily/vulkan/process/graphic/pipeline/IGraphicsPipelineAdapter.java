@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ColorBlendBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DepthStencilBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DynamicStateBuilder;
@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
-public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<GraphicCommandBuffer>
+public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<RenderCommandBuffer>
 {
 	private ShaderStageBuilder shaderStageBuilder;
 	private InputAssemblyBuilder inputAssemblyBuilder;
@@ -59,7 +59,7 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 		final var surfaceManager = graphicContext.surfaceManager;
 		final var framebuffers = graphicContext.framebuffers;
 		final var renderPass = graphicContext.renderPass;
-		
+
 		final boolean useDepthBuffer = framebuffers.hasDepthAttachment();
 
 		allocationDependencies.add(renderPass);
@@ -154,7 +154,7 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 
 	protected abstract DynamicState getDynamicState();
 
-	protected abstract int getSubpass();
+	public abstract int getSubpass();
 
 	abstract protected IVertexBufferDescriptor<?> getVertexBufferDescriptor();
 }

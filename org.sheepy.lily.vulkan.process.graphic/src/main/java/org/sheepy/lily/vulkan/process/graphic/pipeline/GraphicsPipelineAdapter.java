@@ -9,7 +9,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
-import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
@@ -28,7 +28,7 @@ public class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
+	public void record(RenderCommandBuffer commandBuffer, int bindPoint)
 	{
 		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 
@@ -74,7 +74,7 @@ public class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	protected int getSubpass()
+	public int getSubpass()
 	{
 		return pipeline.getSubpass();
 	}

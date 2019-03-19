@@ -36,10 +36,10 @@ public class RenderCommandBuffer extends GraphicCommandBuffer
 			final VkClearValue clearValue = clearValues.get();
 			if (clearInfo.isdepthStencil == false)
 			{
-				clearValue.color().float32(0, 0f);
-				clearValue.color().float32(1, 0f);
-				clearValue.color().float32(2, 0f);
-				clearValue.color().float32(3, 1f);
+				clearValue.color().float32(0, clearInfo.color.x());
+				clearValue.color().float32(1, clearInfo.color.y());
+				clearValue.color().float32(2, clearInfo.color.z());
+				clearValue.color().float32(3, clearInfo.color.w());
 			}
 			else
 			{

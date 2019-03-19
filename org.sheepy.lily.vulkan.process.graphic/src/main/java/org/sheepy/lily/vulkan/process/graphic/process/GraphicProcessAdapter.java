@@ -3,8 +3,6 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
@@ -15,9 +13,13 @@ import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.IGraphicsPipelineAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
@@ -54,6 +56,58 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 		var graphicContext = (GraphicContext) context;
 
 		((GraphicCommandBuffers) context.commandBuffers).recordCommands(graphicContext);
+	}
+
+	@Override
+	public void recordCommand(RenderCommandBuffer commandBuffer, ECommandStage stage)
+	{
+		var pipelinePkg = process.getPipelinePkg();
+		if (pipelinePkg != null)
+		{
+			int subpassCount = 1;
+			int currentSubpass = 0;
+
+			do
+			{
+				if (currentSubpass != 0)
+				{
+					vkCmdNextSubpass(commandBuffer.getVkCommandBuffer(),
+							VK_SUBPASS_CONTENTS_INLINE);
+				}
+
+				for (IPipeline pipeline : pipelinePkg.getPipelines())
+				{
+					final IPipelineAdapter<RenderCommandBuffer> adapter = IPipelineAdapter
+							.adapt(pipeline);
+
+					int pipelineSubpass = 0;
+					if (adapter instanceof IGraphicsPipelineAdapter)
+					{
+						var graphicsPipelineAdapter = (IGraphicsPipelineAdapter) adapter;
+						pipelineSubpass = graphicsPipelineAdapter.getSubpass();
+						if (subpassCount <= pipelineSubpass)
+						{
+							subpassCount = pipelineSubpass + 1;
+						}
+					}
+
+					boolean recordOk = pipeline.isEnabled() && pipeline.getStage() == stage;
+
+					if (recordOk && stage == ECommandStage.RENDER)
+					{
+						recordOk = pipelineSubpass == currentSubpass;
+					}
+
+					if (recordOk)
+					{
+						adapter.record(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS);
+						adapter.setRecordNeeded(false);
+					}
+				}
+
+				currentSubpass++;
+			} while (stage == ECommandStage.RENDER && currentSubpass < subpassCount);
+		}
 	}
 
 	@Override
@@ -140,12 +194,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	protected EQueueType getQueueType()
 	{
 		return EQueueType.Graphic;
-	}
-
-	@Override
-	protected int getBindPoint()
-	{
-		return VK_PIPELINE_BIND_POINT_GRAPHICS;
 	}
 
 	public static GraphicProcessAdapter adapt(GraphicProcess object)

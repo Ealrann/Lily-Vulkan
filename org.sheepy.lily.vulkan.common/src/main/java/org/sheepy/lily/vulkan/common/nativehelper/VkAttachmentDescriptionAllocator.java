@@ -17,8 +17,8 @@ public class VkAttachmentDescriptionAllocator
 		this.swapchainImageFormat = swapchainImageFormat;
 	}
 
-	public VkAttachmentDescription.Buffer allocate(MemoryStack stack,
-															final RenderPassInfo renderPassInfo)
+	public VkAttachmentDescription.Buffer allocate(	final MemoryStack stack,
+													final RenderPassInfo renderPassInfo)
 	{
 		var attachmentDescriptions = renderPassInfo.getAttachments();
 		var attachments = VkAttachmentDescription.callocStack(attachmentDescriptions.size(), stack);

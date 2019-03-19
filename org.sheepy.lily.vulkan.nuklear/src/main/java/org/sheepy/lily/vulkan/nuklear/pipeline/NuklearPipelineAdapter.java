@@ -51,7 +51,7 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.draw.NuklearResources;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ColorBlendFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.DynamicStateFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ViewportStateFactory;
-import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
+import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager.Extent2D;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.IGraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
@@ -253,28 +253,23 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	}
 
 	@Override
-	public void record(GraphicCommandBuffer graphicCommandBuffer, int bindPoint)
+	public void record(RenderCommandBuffer commandBuffer, int bindPoint)
 	{
 		var indexBuffer = nkPipeline.getIndexBuffer();
 		var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(indexBuffer);
-		var commandBuffer = graphicCommandBuffer.getVkCommandBuffer();
+		var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 
-		if (getSubpass() > 0)
-		{
-			vkCmdNextSubpass(commandBuffer, VK_SUBPASS_CONTENTS_INLINE);
-		}
+		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
 
-		vkCmdBindPipeline(commandBuffer, bindPoint, pipelineId);
+		indexBufferAdapter.bind(vkCommandBuffer);
 
-		indexBufferAdapter.bind(commandBuffer);
-
-		setViewport(commandBuffer);
-		pushConstants(commandBuffer);
+		setViewport(vkCommandBuffer);
+		pushConstants(vkCommandBuffer);
 
 		drawer.prepare(bindPoint, graphicContext.surfaceManager.getExtent());
 		for (DrawCommandData data : recorder.getDrawCommands())
 		{
-			drawer.draw(graphicCommandBuffer, data);
+			drawer.draw(commandBuffer, data);
 		}
 
 		dirty = false;
@@ -345,7 +340,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	}
 
 	@Override
-	protected int getSubpass()
+	public int getSubpass()
 	{
 		return nkPipeline.getSubpass();
 	}

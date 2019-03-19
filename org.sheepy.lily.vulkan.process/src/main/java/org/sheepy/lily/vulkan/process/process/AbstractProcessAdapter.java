@@ -30,7 +30,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 {
 	protected final AbstractProcess process;
 	protected final DescriptorPool descriptorPool;
-	private final int bindPoint = getBindPoint();
 	private final TreeAllocator allocator;
 	protected final ProcessContext context;
 
@@ -167,23 +166,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		return res;
 	}
 
-	public void recordCommand(T commandBuffer, ECommandStage stage)
-	{
-		PipelinePkg pipelinePkg = process.getPipelinePkg();
-		if (pipelinePkg != null)
-		{
-			for (IPipeline pipeline : pipelinePkg.getPipelines())
-			{
-				final IPipelineAdapter<T> adapter = IPipelineAdapter.adapt(pipeline);
-				if (pipeline.isEnabled() && pipeline.getStage() == stage)
-				{
-					adapter.record(commandBuffer, bindPoint);
-				}
-				adapter.setRecordNeeded(false);
-			}
-		}
-	}
-
 	@Override
 	public List<? extends Object> getAllocationChildren()
 	{
@@ -197,9 +179,9 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		return process.isResetAllowed();
 	}
 
-	protected abstract void recordCommands();
+	public abstract void recordCommand(T commandBuffer, ECommandStage stage);
 
-	protected abstract int getBindPoint();
+	protected abstract void recordCommands();
 
 	protected abstract ProcessContext createContext();
 
