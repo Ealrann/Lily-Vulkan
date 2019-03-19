@@ -26,6 +26,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
+import org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
@@ -129,6 +130,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass iguiPipelineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractGraphicsPipelineEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -742,75 +750,86 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getAbstractGraphicsPipeline()
+	{
+		return abstractGraphicsPipelineEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractGraphicsPipeline_Shaders()
+	{
+		return (EReference) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractGraphicsPipeline_ViewportState()
+	{
+		return (EReference) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractGraphicsPipeline_Rasterizer()
+	{
+		return (EReference) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractGraphicsPipeline_ColorBlend()
+	{
+		return (EReference) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractGraphicsPipeline_DynamicState()
+	{
+		return (EReference) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractGraphicsPipeline_Subpass()
+	{
+		return (EAttribute) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getGraphicsPipeline()
 	{
 		return graphicsPipelineEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getGraphicsPipeline_Shaders()
-	{
-		return (EReference) graphicsPipelineEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getGraphicsPipeline_ViewportState()
-	{
-		return (EReference) graphicsPipelineEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getGraphicsPipeline_Rasterizer()
-	{
-		return (EReference) graphicsPipelineEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getGraphicsPipeline_ColorBlend()
-	{
-		return (EReference) graphicsPipelineEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getGraphicsPipeline_DynamicState()
-	{
-		return (EReference) graphicsPipelineEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getGraphicsPipeline_Subpass()
-	{
-		return (EAttribute) graphicsPipelineEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1469,13 +1488,16 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		iguiPipelineEClass = createEClass(IGUI_PIPELINE);
 
+		abstractGraphicsPipelineEClass = createEClass(ABSTRACT_GRAPHICS_PIPELINE);
+		createEReference(abstractGraphicsPipelineEClass, ABSTRACT_GRAPHICS_PIPELINE__SHADERS);
+		createEReference(abstractGraphicsPipelineEClass,
+				ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE);
+		createEReference(abstractGraphicsPipelineEClass, ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER);
+		createEReference(abstractGraphicsPipelineEClass, ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND);
+		createEReference(abstractGraphicsPipelineEClass, ABSTRACT_GRAPHICS_PIPELINE__DYNAMIC_STATE);
+		createEAttribute(abstractGraphicsPipelineEClass, ABSTRACT_GRAPHICS_PIPELINE__SUBPASS);
+
 		graphicsPipelineEClass = createEClass(GRAPHICS_PIPELINE);
-		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__SHADERS);
-		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VIEWPORT_STATE);
-		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__RASTERIZER);
-		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__COLOR_BLEND);
-		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__DYNAMIC_STATE);
-		createEAttribute(graphicsPipelineEClass, GRAPHICS_PIPELINE__SUBPASS);
 
 		dynamicStateEClass = createEClass(DYNAMIC_STATE);
 		createEAttribute(dynamicStateEClass, DYNAMIC_STATE__STATES);
@@ -1591,8 +1613,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		graphicProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
 		iGraphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
 		iguiPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
-		graphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
-		graphicsPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
+		abstractGraphicsPipelineEClass.getESuperTypes()
+				.add(theProcessPackage.getAbstractPipeline());
+		abstractGraphicsPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
+		graphicsPipelineEClass.getESuperTypes().add(this.getAbstractGraphicsPipeline());
 		staticViewportStateEClass.getESuperTypes().add(this.getViewportState());
 		dynamicViewportStateEClass.getESuperTypes().add(this.getViewportState());
 		imagePipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
@@ -1747,31 +1771,35 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEClass(iguiPipelineEClass, IGUIPipeline.class, "IGUIPipeline", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(graphicsPipelineEClass, GraphicsPipeline.class, "GraphicsPipeline", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGraphicsPipeline_Shaders(), theResourcePackage.getShader(), null,
-				"shaders", null, 0, -1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEClass(abstractGraphicsPipelineEClass, AbstractGraphicsPipeline.class,
+				"AbstractGraphicsPipeline", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractGraphicsPipeline_Shaders(), theResourcePackage.getShader(), null,
+				"shaders", null, 0, -1, AbstractGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicsPipeline_ViewportState(), this.getViewportState(), null,
-				"viewportState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicsPipeline_Rasterizer(), this.getRasterizer(), null, "rasterizer",
-				null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getGraphicsPipeline_ColorBlend(), this.getColorBlend(), null, "colorBlend",
-				null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getGraphicsPipeline_DynamicState(), this.getDynamicState(), null,
-				"dynamicState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGraphicsPipeline_Subpass(), theEcorePackage.getEInt(), "subpass", "0", 0,
-				1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractGraphicsPipeline_ViewportState(), this.getViewportState(), null,
+				"viewportState", null, 0, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractGraphicsPipeline_Rasterizer(), this.getRasterizer(), null,
+				"rasterizer", null, 0, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractGraphicsPipeline_ColorBlend(), this.getColorBlend(), null,
+				"colorBlend", null, 0, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractGraphicsPipeline_DynamicState(), this.getDynamicState(), null,
+				"dynamicState", null, 0, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractGraphicsPipeline_Subpass(), theEcorePackage.getEInt(), "subpass",
+				"0", 0, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(graphicsPipelineEClass, GraphicsPipeline.class, "GraphicsPipeline", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(dynamicStateEClass, DynamicState.class, "DynamicState", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

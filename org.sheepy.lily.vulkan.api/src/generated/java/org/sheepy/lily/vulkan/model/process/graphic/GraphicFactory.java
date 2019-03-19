@@ -96,6 +96,15 @@ public interface GraphicFactory extends EFactory
 	GraphicProcess createGraphicProcess();
 
 	/**
+	 * Returns a new object of class '<em>Graphics Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graphics Pipeline</em>'.
+	 * @generated
+	 */
+	GraphicsPipeline createGraphicsPipeline();
+
+	/**
 	 * Returns a new object of class '<em>Dynamic State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

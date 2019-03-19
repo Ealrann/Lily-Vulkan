@@ -80,6 +80,8 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createDepthAttachmentDescription();
 		case GraphicPackage.GRAPHIC_PROCESS:
 			return createGraphicProcess();
+		case GraphicPackage.GRAPHICS_PIPELINE:
+			return createGraphicsPipeline();
 		case GraphicPackage.DYNAMIC_STATE:
 			return createDynamicState();
 		case GraphicPackage.COLOR_BLEND:
@@ -198,6 +200,18 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicProcessImpl graphicProcess = new GraphicProcessImpl();
 		return graphicProcess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GraphicsPipeline createGraphicsPipeline()
+	{
+		GraphicsPipelineImpl graphicsPipeline = new GraphicsPipelineImpl();
+		return graphicsPipeline;
 	}
 
 	/**

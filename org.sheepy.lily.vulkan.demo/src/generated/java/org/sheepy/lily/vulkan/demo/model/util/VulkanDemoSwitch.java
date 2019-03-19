@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
@@ -87,6 +88,7 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 				MeshPipeline meshPipeline = (MeshPipeline)theEObject;
 				T result = caseMeshPipeline(meshPipeline);
 				if (result == null) result = caseGraphicsPipeline(meshPipeline);
+				if (result == null) result = caseAbstractGraphicsPipeline(meshPipeline);
 				if (result == null) result = caseAbstractPipeline(meshPipeline);
 				if (result == null) result = caseIGraphicsPipeline(meshPipeline);
 				if (result == null) result = caseIPipeline(meshPipeline);
@@ -251,6 +253,22 @@ public class VulkanDemoSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIGraphicsPipeline(IGraphicsPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Graphics Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Graphics Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractGraphicsPipeline(AbstractGraphicsPipeline object)
 	{
 		return null;
 	}

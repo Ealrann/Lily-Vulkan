@@ -307,6 +307,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GraphicsPipelineItemProvider graphicsPipelineItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGraphicsPipelineAdapter()
+	{
+		if (graphicsPipelineItemProvider == null)
+		{
+			graphicsPipelineItemProvider = new GraphicsPipelineItemProvider(this);
+		}
+
+		return graphicsPipelineItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DynamicState} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -689,6 +714,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (depthAttachmentDescriptionItemProvider != null)
 			depthAttachmentDescriptionItemProvider.dispose();
 		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
+		if (graphicsPipelineItemProvider != null) graphicsPipelineItemProvider.dispose();
 		if (dynamicStateItemProvider != null) dynamicStateItemProvider.dispose();
 		if (colorBlendItemProvider != null) colorBlendItemProvider.dispose();
 		if (colorBlendAttachmentItemProvider != null) colorBlendAttachmentItemProvider.dispose();
@@ -754,6 +780,10 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 			{
 				newChildDescriptors
 						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+								GraphicFactory.eINSTANCE.createGraphicsPipeline()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 								GraphicFactory.eINSTANCE.createImagePipeline()));
 
 				return null;
@@ -767,6 +797,10 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 			@Override
 			public Object caseAbstractCompositePipeline(AbstractCompositePipeline object)
 			{
+				newChildDescriptors.add(createChildParameter(
+						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
+						GraphicFactory.eINSTANCE.createGraphicsPipeline()));
+
 				newChildDescriptors.add(createChildParameter(
 						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
 						GraphicFactory.eINSTANCE.createImagePipeline()));

@@ -16,28 +16,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
-import org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
-import org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
-import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
-import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
-import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
-import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
-import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
-import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -159,6 +138,12 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 		public Adapter caseIGUIPipeline(IGUIPipeline object)
 		{
 			return createIGUIPipelineAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractGraphicsPipeline(AbstractGraphicsPipeline object)
+		{
+			return createAbstractGraphicsPipelineAdapter();
 		}
 
 		@Override
@@ -454,6 +439,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIGUIPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline <em>Abstract Graphics Pipeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline
+	 * @generated
+	 */
+	public Adapter createAbstractGraphicsPipelineAdapter()
 	{
 		return null;
 	}

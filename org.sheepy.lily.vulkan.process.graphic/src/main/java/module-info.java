@@ -1,9 +1,10 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.image.ImagePipelineAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAdapter;
 
 @Adapters(classifiers = {
-		ImagePipelineAdapter.class, GraphicProcessAdapter.class
+		ImagePipelineAdapter.class, GraphicProcessAdapter.class, GraphicsPipelineAdapter.class
 })
 
 module org.sheepy.lily.vulkan.process.graphic
