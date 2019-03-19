@@ -25,10 +25,6 @@ public interface DepthAttachmentDescription extends AttachmentDescription
 	/**
 	 * Returns the value of the '<em><b>Depth Image</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Depth Image</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth Image</em>' reference.
 	 * @see #setDepthImage(DepthImage)

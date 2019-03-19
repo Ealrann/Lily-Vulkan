@@ -259,6 +259,11 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(indexBuffer);
 		var commandBuffer = graphicCommandBuffer.getVkCommandBuffer();
 
+		if (getSubpass() > 0)
+		{
+			vkCmdNextSubpass(commandBuffer, VK_SUBPASS_CONTENTS_INLINE);
+		}
+
 		vkCmdBindPipeline(commandBuffer, bindPoint, pipelineId);
 
 		indexBufferAdapter.bind(commandBuffer);

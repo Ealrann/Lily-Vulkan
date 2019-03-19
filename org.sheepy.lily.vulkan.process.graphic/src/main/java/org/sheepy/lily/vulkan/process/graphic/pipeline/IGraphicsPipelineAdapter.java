@@ -105,7 +105,7 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 
 		pipelineInfo.layout(pipelineLayout);
 		pipelineInfo.renderPass(renderPass.getId());
-		pipelineInfo.subpass(0);
+		pipelineInfo.subpass(getSubpass());
 		pipelineInfo.basePipelineHandle(VK_NULL_HANDLE); // Optional
 		pipelineInfo.basePipelineIndex(-1); // Optional
 
