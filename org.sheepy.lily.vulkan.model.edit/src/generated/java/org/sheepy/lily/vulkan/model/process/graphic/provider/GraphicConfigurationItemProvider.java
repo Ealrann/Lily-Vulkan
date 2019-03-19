@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -64,29 +65,9 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 		{
 			super.getPropertyDescriptors(object);
 
-			addClearBeforeRenderPropertyDescriptor(object);
 			addAcquireWaitStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Clear Before Render feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addClearBeforeRenderPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_GraphicConfiguration_clearBeforeRender_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_GraphicConfiguration_clearBeforeRender_feature",
-						"_UI_GraphicConfiguration_type"),
-				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER, true, false,
-				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -165,10 +146,11 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		GraphicConfiguration graphicConfiguration = (GraphicConfiguration) object;
-		return getString("_UI_GraphicConfiguration_type")
-				+ " "
-				+ graphicConfiguration.isClearBeforeRender();
+		EPipelineStage labelValue = ((GraphicConfiguration) object).getAcquireWaitStage();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0
+				? getString("_UI_GraphicConfiguration_type")
+				: getString("_UI_GraphicConfiguration_type") + " " + label;
 	}
 
 	/**
@@ -185,7 +167,6 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(GraphicConfiguration.class))
 		{
-		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));

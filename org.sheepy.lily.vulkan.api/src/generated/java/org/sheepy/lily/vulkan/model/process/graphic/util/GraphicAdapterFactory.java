@@ -99,6 +99,24 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
+		public Adapter caseIFramebufferAttachment(IFramebufferAttachment object)
+		{
+			return createIFramebufferAttachmentAdapter();
+		}
+
+		@Override
+		public Adapter caseImageFramebufferAttachment(ImageFramebufferAttachment object)
+		{
+			return createImageFramebufferAttachmentAdapter();
+		}
+
+		@Override
+		public Adapter caseDepthFramebufferAttachment(DepthFramebufferAttachment object)
+		{
+			return createDepthFramebufferAttachmentAdapter();
+		}
+
+		@Override
 		public Adapter caseRenderPassInfo(RenderPassInfo object)
 		{
 			return createRenderPassInfoAdapter();
@@ -346,6 +364,51 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createFramebufferConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment <em>IFramebuffer Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment
+	 * @generated
+	 */
+	public Adapter createIFramebufferAttachmentAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment <em>Image Framebuffer Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment
+	 * @generated
+	 */
+	public Adapter createImageFramebufferAttachmentAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment <em>Depth Framebuffer Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment
+	 * @generated
+	 */
+	public Adapter createDepthFramebufferAttachmentAdapter()
 	{
 		return null;
 	}

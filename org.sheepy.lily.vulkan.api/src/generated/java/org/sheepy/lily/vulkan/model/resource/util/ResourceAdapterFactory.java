@@ -100,6 +100,12 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
+		public Adapter caseDepthImage(DepthImage object)
+		{
+			return createDepthImageAdapter();
+		}
+
+		@Override
 		public Adapter caseImageLayout(ImageLayout object)
 		{
 			return createImageLayoutAdapter();
@@ -205,12 +211,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		public Adapter caseShader(Shader object)
 		{
 			return createShaderAdapter();
-		}
-
-		@Override
-		public Adapter caseDepthImage(DepthImage object)
-		{
-			return createDepthImageAdapter();
 		}
 
 		@Override

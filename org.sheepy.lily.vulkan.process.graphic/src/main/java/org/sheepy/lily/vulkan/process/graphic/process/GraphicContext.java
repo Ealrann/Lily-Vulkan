@@ -25,7 +25,7 @@ public class GraphicContext extends ProcessContext
 	public final PhysicalDeviceSurfaceManager surfaceManager = new PhysicalDeviceSurfaceManager();
 	public final SwapChainManager swapChainManager = new SwapChainManager();
 	public final ImageViewManager imageViewManager = new ImageViewManager();
-	public final Framebuffers framebuffers = new Framebuffers();
+	public final Framebuffers framebuffers;
 	public final RenderPass renderPass = new RenderPass();
 
 	public final FrameSubmission frameSubmission;
@@ -42,6 +42,8 @@ public class GraphicContext extends ProcessContext
 		this.graphicProcess = graphicProcess;
 		this.configuration = graphicProcess.getConfiguration();
 		frameSubmission = (FrameSubmission) submission;
+
+		framebuffers = new Framebuffers(configuration.getFramebufferConfiguration());
 
 		allocationList.add(imageAvailableSemaphore);
 		allocationList.add(surfaceManager);

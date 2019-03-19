@@ -16,9 +16,9 @@ public interface IBufferBackend extends IAllocable
 		return false;
 	}
 
-	long getId();
+	long getAddress();
 
-	long getMemoryId();
+	long getMemoryAddress();
 
 	public long mapMemory(VkDevice vkDevice);
 

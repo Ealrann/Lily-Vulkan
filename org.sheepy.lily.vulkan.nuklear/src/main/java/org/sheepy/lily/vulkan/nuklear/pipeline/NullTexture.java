@@ -42,7 +42,7 @@ public class NullTexture implements IAllocable
 
 		texture.allocate(stack, executionContext.getLogicalDevice());
 		texture.loadImage(stack, executionContext, buffer);
-		
+
 		MemoryUtil.memFree(buffer);
 	}
 
@@ -52,9 +52,9 @@ public class NullTexture implements IAllocable
 		texture.free();
 	}
 
-	public long getSamplerId()
+	public long getSamplerAddress()
 	{
-		return texture.getSamplerId();
+		return texture.getSamplerAddress();
 	}
 
 	@Override

@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.model.process.Configuration;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapchainConfiguration <em>Swapchain Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getFramebufferConfiguration <em>Framebuffer Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage <em>Acquire Wait Stage</em>}</li>
@@ -28,33 +27,6 @@ import org.sheepy.lily.vulkan.model.process.Configuration;
  */
 public interface GraphicConfiguration extends Configuration
 {
-	/**
-	 * Returns the value of the '<em><b>Clear Before Render</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Clear Before Render</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Clear Before Render</em>' attribute.
-	 * @see #setClearBeforeRender(boolean)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_ClearBeforeRender()
-	 * @model default="true" unique="false"
-	 * @generated
-	 */
-	boolean isClearBeforeRender();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Clear Before Render</em>' attribute.
-	 * @see #isClearBeforeRender()
-	 * @generated
-	 */
-	void setClearBeforeRender(boolean value);
-
 	/**
 	 * Returns the value of the '<em><b>Swapchain Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

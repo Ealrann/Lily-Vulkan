@@ -24,7 +24,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#isClearBeforeRender <em>Clear Before Render</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSwapchainConfiguration <em>Swapchain Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getFramebufferConfiguration <em>Framebuffer Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getAcquireWaitStage <em>Acquire Wait Stage</em>}</li>
@@ -36,26 +35,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		implements GraphicConfiguration
 {
-	/**
-	 * The default value of the '{@link #isClearBeforeRender() <em>Clear Before Render</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isClearBeforeRender()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean CLEAR_BEFORE_RENDER_EDEFAULT = true;
-
-	/**
-	 * The cached value of the '{@link #isClearBeforeRender() <em>Clear Before Render</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isClearBeforeRender()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean clearBeforeRender = CLEAR_BEFORE_RENDER_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getSwapchainConfiguration() <em>Swapchain Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -125,32 +104,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	protected EClass eStaticClass()
 	{
 		return GraphicPackage.Literals.GRAPHIC_CONFIGURATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isClearBeforeRender()
-	{
-		return clearBeforeRender;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setClearBeforeRender(boolean newClearBeforeRender)
-	{
-		boolean oldClearBeforeRender = clearBeforeRender;
-		clearBeforeRender = newClearBeforeRender;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER, oldClearBeforeRender,
-				clearBeforeRender));
 	}
 
 	/**
@@ -391,8 +344,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-			return isClearBeforeRender();
 		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 			return getSwapchainConfiguration();
 		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
@@ -416,9 +367,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-			setClearBeforeRender((Boolean) newValue);
-			return;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 			setSwapchainConfiguration((SwapchainConfiguration) newValue);
 			return;
@@ -445,9 +393,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-			setClearBeforeRender(CLEAR_BEFORE_RENDER_EDEFAULT);
-			return;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 			setSwapchainConfiguration((SwapchainConfiguration) null);
 			return;
@@ -474,8 +419,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-			return clearBeforeRender != CLEAR_BEFORE_RENDER_EDEFAULT;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
 			return swapchainConfiguration != null;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
@@ -499,9 +442,7 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (clearBeforeRender: ");
-		result.append(clearBeforeRender);
-		result.append(", acquireWaitStage: ");
+		result.append(" (acquireWaitStage: ");
 		result.append(acquireWaitStage);
 		result.append(')');
 		return result.toString();

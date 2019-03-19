@@ -56,12 +56,12 @@ public class VkTexture implements IVkDescriptor
 	{
 		image = new VkImage(logicalDevice, imageInfo);
 		image.allocate(stack);
-		final var imageId = image.getId();
+		final var imageAddress = image.getAddress();
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
 		sampler = new VkSampler(logicalDevice, samplerInfo);
 
-		imageView.allocate(imageId, imageInfo.mipLevels, imageInfo.format,
+		imageView.allocate(imageAddress, imageInfo.mipLevels, imageInfo.format,
 				VK_IMAGE_ASPECT_COLOR_BIT);
 		sampler.load(stack);
 	}
@@ -87,9 +87,9 @@ public class VkTexture implements IVkDescriptor
 						EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,
 						EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask, dstAccessMask);
 
-				image.fillWithBuffer(commandBuffer, buffer.getId());
+				image.fillWithBuffer(commandBuffer, buffer.getAddress());
 
-				generateMipmaps(commandBuffer, image.getId());				
+				generateMipmaps(commandBuffer, image.getAddress());
 			}
 		});
 
@@ -171,19 +171,19 @@ public class VkTexture implements IVkDescriptor
 		barrier.free();
 	}
 
-	public long getImageId()
+	public long getImageAddress()
 	{
-		return image.getId();
+		return image.getAddress();
 	}
 
-	public long getImageViewId()
+	public long getViewAddress()
 	{
-		return imageView.getId();
+		return imageView.getAddress();
 	}
 
-	public long getSamplerId()
+	public long getSamplerAddress()
 	{
-		return sampler.getId();
+		return sampler.getAddress();
 	}
 
 	public void free()
@@ -212,8 +212,8 @@ public class VkTexture implements IVkDescriptor
 	{
 		final VkDescriptorImageInfo.Buffer imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
 		imageInfo.imageLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-		imageInfo.imageView(getImageViewId());
-		imageInfo.sampler(sampler.getId());
+		imageInfo.imageView(getViewAddress());
+		imageInfo.sampler(sampler.getAddress());
 
 		final VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
 		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);

@@ -54,6 +54,11 @@ class Image extends DescriptorResource
 	contains ImageLayout initialLayout
 }
 
+class DepthImage extends IResource
+{
+}
+
+
 class ImageLayout
 {
 	EPipelineStage stage
@@ -171,10 +176,6 @@ class Shader extends BasicResource
 {
 	contains PathResource file
 	EShaderStage stage
-}
-
-class DepthImage
-{
 }
 
 abstract class PathResource extends BasicResource

@@ -6,19 +6,33 @@ import java.nio.LongBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joml.Vector4fc;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.model.resource.DepthImage;
+import org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.resource.image.DepthImageAdapter;
+import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
 public class Framebuffers implements IAllocable
 {
+	private final FramebufferConfiguration configuration;
+
+	private boolean depthAttachment = false;
 	private List<Long> framebuffersIds = null;
+	private List<ClearInfo> clearInfos = null;
+
+	public Framebuffers(FramebufferConfiguration configuration)
+	{
+		this.configuration = configuration;
+	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
@@ -26,18 +40,15 @@ public class Framebuffers implements IAllocable
 		var graphicContext = (GraphicContext) context;
 		var vkDevice = graphicContext.getVkDevice();
 		var imageViews = graphicContext.imageViewManager.getImageViews();
-		var depthImage = graphicContext.graphicProcess.getDepthImage();
 		var aFramebufferId = new long[1];
-		var adapter = depthImage != null ? DepthImageAdapter.adapt(depthImage) : null;
-		var depthImageViewId = adapter != null ? adapter.getDepthImageViewId() : -1;
 
-		var attachments = allocAttachments(stack, depthImage);
+		var attachments = allocAttachments(stack);
 		var createInfo = allocCreateInfo(stack, graphicContext, attachments);
 
 		framebuffersIds = new ArrayList<>(imageViews.size());
 		for (final VkImageView imageView : imageViews)
 		{
-			fillAttachements(attachments, imageView.getId(), depthImageViewId);
+			fillAttachements(attachments, imageView.getAddress());
 
 			Logger.check("Failed to create framebuffer!",
 					() -> vkCreateFramebuffer(vkDevice, createInfo, null, aFramebufferId));
@@ -47,22 +58,44 @@ public class Framebuffers implements IAllocable
 		framebuffersIds = List.copyOf(framebuffersIds);
 	}
 
-	private static void fillAttachements(	LongBuffer attachments,
-											long imageViewId,
-											long depthImageViewId)
+	private void fillAttachements(LongBuffer attachments, long imageViewId)
 	{
 		attachments.put(imageViewId);
-		if (depthImageViewId != -1)
+
+		clearInfos = new ArrayList<>();
+		clearInfos.add(new ClearInfo(false, configuration.getClearValue()));
+
+		for (IFramebufferAttachment attachement : configuration.getAtachments())
 		{
-			attachments.put(depthImageViewId);
+			long viewAddress = -1;
+			if (attachement instanceof DepthFramebufferAttachment)
+			{
+				var depthImage = ((DepthFramebufferAttachment) attachement).getDepthImageRef();
+				var adapter = DepthImageAdapter.adapt(depthImage);
+				viewAddress = adapter.getDepthImageViewId();
+				depthAttachment = true;
+				clearInfos.add(new ClearInfo(true, null));
+			}
+			else if (attachement instanceof ImageFramebufferAttachment)
+			{
+				var attachment = (ImageFramebufferAttachment) attachement;
+				var image = attachment.getImageRef();
+				var adapter = ImageAdapter.adapt(image);
+				viewAddress = adapter.getViewAddress();
+				clearInfos.add(new ClearInfo(false, attachment.getClearValue()));
+			}
+			attachments.put(viewAddress);
 		}
+
+		clearInfos = List.copyOf(clearInfos);
+
 		attachments.flip();
 	}
 
-	private static LongBuffer allocAttachments(MemoryStack stack, final DepthImage depthImage)
+	private LongBuffer allocAttachments(MemoryStack stack)
 	{
 		int attachementCount = 1;
-		attachementCount += depthImage != null ? 1 : 0;
+		attachementCount += configuration.getAtachments().size();
 		var attachments = stack.mallocLong(attachementCount);
 		return attachments;
 	}
@@ -109,5 +142,27 @@ public class Framebuffers implements IAllocable
 		var graphicContext = (GraphicContext) context;
 		return graphicContext.swapChainManager.isAllocationDirty(context)
 				|| graphicContext.imageViewManager.isAllocationDirty(context);
+	}
+
+	public boolean hasDepthAttachment()
+	{
+		return depthAttachment;
+	}
+
+	public List<ClearInfo> getClearInfos()
+	{
+		return clearInfos;
+	}
+
+	public class ClearInfo
+	{
+		public final boolean isdepthStencil;
+		public final Vector4fc color;
+
+		public ClearInfo(boolean isdepthStencil, Vector4fc color)
+		{
+			this.isdepthStencil = isdepthStencil;
+			this.color = color;
+		}
 	}
 }

@@ -46,19 +46,19 @@ public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter,
 		MemoryUtil.memFree(allocDataBuffer);
 	}
 
-	public long getImageId()
+	public long getImageAddress()
 	{
-		return vkTexture.getImageId();
+		return vkTexture.getImageAddress();
 	}
 
-	public long getImageViewId()
+	public long getViewAddress()
 	{
-		return vkTexture.getImageViewId();
+		return vkTexture.getViewAddress();
 	}
 
-	public long getSamplerId()
+	public long getSamplerAddress()
 	{
-		return vkTexture.getSamplerId();
+		return vkTexture.getSamplerAddress();
 	}
 
 	@Override

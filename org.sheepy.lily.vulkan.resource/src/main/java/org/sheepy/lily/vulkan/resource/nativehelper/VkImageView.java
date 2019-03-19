@@ -9,15 +9,15 @@ import org.sheepy.lily.vulkan.api.util.Logger;
 public class VkImageView
 {
 	private final VkDevice device;
-	private long imageId;
+	private long imageAddress;
 	private int imageFormat;
 
 	private long imageViewId = -1;
 
-	public static VkImageView alloc(VkDevice device, long imageId, int format, int aspectMask)
+	public static VkImageView alloc(VkDevice device, long imageAddress, int format, int aspectMask)
 	{
 		VkImageView res = new VkImageView(device);
-		res.allocate(imageId, 1, format, aspectMask);
+		res.allocate(imageAddress, 1, format, aspectMask);
 		return res;
 	}
 
@@ -26,14 +26,14 @@ public class VkImageView
 		this.device = device;
 	}
 
-	public void allocate(long imageId, int levelCount, int format, int aspectMask)
+	public void allocate(long imageAddress, int levelCount, int format, int aspectMask)
 	{
-		this.imageId = imageId;
+		this.imageAddress = imageAddress;
 		this.imageFormat = format;
 
 		VkImageViewCreateInfo createInfo = VkImageViewCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO);
-		createInfo.image(imageId);
+		createInfo.image(imageAddress);
 		createInfo.viewType(VK_IMAGE_VIEW_TYPE_2D);
 		createInfo.format(format);
 		createInfo.components().r(VK_COMPONENT_SWIZZLE_IDENTITY);
@@ -60,14 +60,14 @@ public class VkImageView
 		imageViewId = -1;
 	}
 
-	public long getId()
+	public long getAddress()
 	{
 		return imageViewId;
 	}
 
-	public long getImageId()
+	public long getImageAddress()
 	{
-		return imageId;
+		return imageAddress;
 	}
 
 	public int getImageFormat()

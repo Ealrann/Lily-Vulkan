@@ -74,15 +74,6 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_CONFIGURATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Clear Before Render</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Swapchain Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +81,7 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION = ProcessPackage.CONFIGURATION_FEATURE_COUNT
-			+ 1;
+			+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Framebuffer Configuration</b></em>' containment reference.
@@ -100,7 +91,7 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION = ProcessPackage.CONFIGURATION_FEATURE_COUNT
-			+ 2;
+			+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Acquire Wait Stage</b></em>' attribute.
@@ -109,7 +100,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 3;
+	int GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Color Domain</b></em>' containment reference.
@@ -118,7 +109,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__COLOR_DOMAIN = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 4;
+	int GRAPHIC_CONFIGURATION__COLOR_DOMAIN = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -127,7 +118,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION_FEATURE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 5;
+	int GRAPHIC_CONFIGURATION_FEATURE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Configuration</em>' class.
@@ -204,13 +195,31 @@ public interface GraphicPackage extends EPackage
 	int FRAMEBUFFER_CONFIGURATION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Clear Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Atachments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAMEBUFFER_CONFIGURATION__ATACHMENTS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Framebuffer Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAMEBUFFER_CONFIGURATION_FEATURE_COUNT = 0;
+	int FRAMEBUFFER_CONFIGURATION_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Framebuffer Configuration</em>' class.
@@ -222,6 +231,126 @@ public interface GraphicPackage extends EPackage
 	int FRAMEBUFFER_CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment <em>IFramebuffer Attachment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIFramebufferAttachment()
+	 * @generated
+	 */
+	int IFRAMEBUFFER_ATTACHMENT = 3;
+
+	/**
+	 * The number of structural features of the '<em>IFramebuffer Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFRAMEBUFFER_ATTACHMENT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IFramebuffer Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFRAMEBUFFER_ATTACHMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImageFramebufferAttachmentImpl <em>Image Framebuffer Attachment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ImageFramebufferAttachmentImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImageFramebufferAttachment()
+	 * @generated
+	 */
+	int IMAGE_FRAMEBUFFER_ATTACHMENT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Clear Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE = IFRAMEBUFFER_ATTACHMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Image Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF = IFRAMEBUFFER_ATTACHMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Image Framebuffer Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_FRAMEBUFFER_ATTACHMENT_FEATURE_COUNT = IFRAMEBUFFER_ATTACHMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Image Framebuffer Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_FRAMEBUFFER_ATTACHMENT_OPERATION_COUNT = IFRAMEBUFFER_ATTACHMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DepthFramebufferAttachmentImpl <em>Depth Framebuffer Attachment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DepthFramebufferAttachmentImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthFramebufferAttachment()
+	 * @generated
+	 */
+	int DEPTH_FRAMEBUFFER_ATTACHMENT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Clear</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_FRAMEBUFFER_ATTACHMENT__CLEAR = IFRAMEBUFFER_ATTACHMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Depth Image Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_FRAMEBUFFER_ATTACHMENT__DEPTH_IMAGE_REF = IFRAMEBUFFER_ATTACHMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Depth Framebuffer Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_FRAMEBUFFER_ATTACHMENT_FEATURE_COUNT = IFRAMEBUFFER_ATTACHMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Depth Framebuffer Attachment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPTH_FRAMEBUFFER_ATTACHMENT_OPERATION_COUNT = IFRAMEBUFFER_ATTACHMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -229,7 +358,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRenderPassInfo()
 	 * @generated
 	 */
-	int RENDER_PASS_INFO = 3;
+	int RENDER_PASS_INFO = 6;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' containment reference list.
@@ -293,7 +422,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpass()
 	 * @generated
 	 */
-	int SUBPASS = 4;
+	int SUBPASS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -339,7 +468,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
 	 * @generated
 	 */
-	int ATTACHEMENT_REF = 5;
+	int ATTACHEMENT_REF = 8;
 
 	/**
 	 * The feature id for the '<em><b>Attachement</b></em>' reference.
@@ -385,7 +514,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpassDependency()
 	 * @generated
 	 */
-	int SUBPASS_DEPENDENCY = 6;
+	int SUBPASS_DEPENDENCY = 9;
 
 	/**
 	 * The feature id for the '<em><b>Src Subpass</b></em>' reference.
@@ -467,7 +596,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentDescription()
 	 * @generated
 	 */
-	int ATTACHMENT_DESCRIPTION = 7;
+	int ATTACHMENT_DESCRIPTION = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -567,7 +696,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthAttachmentDescription()
 	 * @generated
 	 */
-	int DEPTH_ATTACHMENT_DESCRIPTION = 8;
+	int DEPTH_ATTACHMENT_DESCRIPTION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -676,7 +805,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
 	 * @generated
 	 */
-	int GRAPHIC_PROCESS = 9;
+	int GRAPHIC_PROCESS = 12;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -769,22 +898,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__RENDER_PASS_INFO = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Depth Image</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__DEPTH_IMAGE = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
+	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -803,7 +923,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
 	 * @generated
 	 */
-	int IGRAPHICS_PIPELINE = 10;
+	int IGRAPHICS_PIPELINE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -912,7 +1032,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
 	 * @generated
 	 */
-	int IGUI_PIPELINE = 11;
+	int IGUI_PIPELINE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -1021,7 +1141,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAbstractGraphicsPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_GRAPHICS_PIPELINE = 12;
+	int ABSTRACT_GRAPHICS_PIPELINE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -1225,7 +1345,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 	 * @generated
 	 */
-	int GRAPHICS_PIPELINE = 13;
+	int GRAPHICS_PIPELINE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -1424,7 +1544,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
 	 * @generated
 	 */
-	int DYNAMIC_STATE = 14;
+	int DYNAMIC_STATE = 17;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' attribute list.
@@ -1461,7 +1581,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
 	 * @generated
 	 */
-	int COLOR_BLEND = 15;
+	int COLOR_BLEND = 18;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' containment reference list.
@@ -1552,7 +1672,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
 	 * @generated
 	 */
-	int COLOR_BLEND_ATTACHMENT = 16;
+	int COLOR_BLEND_ATTACHMENT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Blend Enable</b></em>' attribute.
@@ -1679,7 +1799,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
 	 * @generated
 	 */
-	int VIEWPORT_STATE = 17;
+	int VIEWPORT_STATE = 20;
 
 	/**
 	 * The number of structural features of the '<em>Viewport State</em>' class.
@@ -1707,7 +1827,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
 	 * @generated
 	 */
-	int STATIC_VIEWPORT_STATE = 18;
+	int STATIC_VIEWPORT_STATE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Viewports</b></em>' containment reference list.
@@ -1753,7 +1873,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
 	 * @generated
 	 */
-	int DYNAMIC_VIEWPORT_STATE = 19;
+	int DYNAMIC_VIEWPORT_STATE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Viewport Count</b></em>' attribute.
@@ -1799,7 +1919,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
 	 * @generated
 	 */
-	int VIEWPORT = 20;
+	int VIEWPORT = 23;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1863,7 +1983,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
 	 * @generated
 	 */
-	int SCISSOR = 21;
+	int SCISSOR = 24;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1909,7 +2029,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
 	 * @generated
 	 */
-	int RASTERIZER = 22;
+	int RASTERIZER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Cull Mode</b></em>' attribute.
@@ -2000,7 +2120,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 	 * @generated
 	 */
-	int IMAGE_PIPELINE = 23;
+	int IMAGE_PIPELINE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -2202,17 +2322,6 @@ public interface GraphicPackage extends EPackage
 	EClass getGraphicConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Clear Before Render</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender()
-	 * @see #getGraphicConfiguration()
-	 * @generated
-	 */
-	EAttribute getGraphicConfiguration_ClearBeforeRender();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapchainConfiguration <em>Swapchain Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2308,6 +2417,102 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EClass getFramebufferConfiguration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration#getClearValue <em>Clear Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clear Value</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration#getClearValue()
+	 * @see #getFramebufferConfiguration()
+	 * @generated
+	 */
+	EAttribute getFramebufferConfiguration_ClearValue();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration#getAtachments <em>Atachments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Atachments</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration#getAtachments()
+	 * @see #getFramebufferConfiguration()
+	 * @generated
+	 */
+	EReference getFramebufferConfiguration_Atachments();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment <em>IFramebuffer Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IFramebuffer Attachment</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment
+	 * @generated
+	 */
+	EClass getIFramebufferAttachment();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment <em>Image Framebuffer Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Image Framebuffer Attachment</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment
+	 * @generated
+	 */
+	EClass getImageFramebufferAttachment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment#getClearValue <em>Clear Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clear Value</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment#getClearValue()
+	 * @see #getImageFramebufferAttachment()
+	 * @generated
+	 */
+	EAttribute getImageFramebufferAttachment_ClearValue();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment#getImageRef <em>Image Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Image Ref</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment#getImageRef()
+	 * @see #getImageFramebufferAttachment()
+	 * @generated
+	 */
+	EReference getImageFramebufferAttachment_ImageRef();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment <em>Depth Framebuffer Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Depth Framebuffer Attachment</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment
+	 * @generated
+	 */
+	EClass getDepthFramebufferAttachment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment#isClear <em>Clear</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clear</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment#isClear()
+	 * @see #getDepthFramebufferAttachment()
+	 * @generated
+	 */
+	EAttribute getDepthFramebufferAttachment_Clear();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment#getDepthImageRef <em>Depth Image Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Depth Image Ref</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment#getDepthImageRef()
+	 * @see #getDepthFramebufferAttachment()
+	 * @generated
+	 */
+	EReference getDepthFramebufferAttachment_DepthImageRef();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo <em>Render Pass Info</em>}'.
@@ -2642,17 +2847,6 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EReference getGraphicProcess_RenderPassInfo();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getDepthImage <em>Depth Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Depth Image</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getDepthImage()
-	 * @see #getGraphicProcess()
-	 * @generated
-	 */
-	EReference getGraphicProcess_DepthImage();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}'.
@@ -3357,15 +3551,6 @@ public interface GraphicPackage extends EPackage
 		EClass GRAPHIC_CONFIGURATION = eINSTANCE.getGraphicConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Clear Before Render</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER = eINSTANCE
-				.getGraphicConfiguration_ClearBeforeRender();
-
-		/**
 		 * The meta object literal for the '<em><b>Swapchain Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3447,6 +3632,90 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass FRAMEBUFFER_CONFIGURATION = eINSTANCE.getFramebufferConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Clear Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE = eINSTANCE
+				.getFramebufferConfiguration_ClearValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Atachments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FRAMEBUFFER_CONFIGURATION__ATACHMENTS = eINSTANCE
+				.getFramebufferConfiguration_Atachments();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment <em>IFramebuffer Attachment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIFramebufferAttachment()
+		 * @generated
+		 */
+		EClass IFRAMEBUFFER_ATTACHMENT = eINSTANCE.getIFramebufferAttachment();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImageFramebufferAttachmentImpl <em>Image Framebuffer Attachment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.ImageFramebufferAttachmentImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImageFramebufferAttachment()
+		 * @generated
+		 */
+		EClass IMAGE_FRAMEBUFFER_ATTACHMENT = eINSTANCE.getImageFramebufferAttachment();
+
+		/**
+		 * The meta object literal for the '<em><b>Clear Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE = eINSTANCE
+				.getImageFramebufferAttachment_ClearValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Image Ref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF = eINSTANCE
+				.getImageFramebufferAttachment_ImageRef();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DepthFramebufferAttachmentImpl <em>Depth Framebuffer Attachment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DepthFramebufferAttachmentImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthFramebufferAttachment()
+		 * @generated
+		 */
+		EClass DEPTH_FRAMEBUFFER_ATTACHMENT = eINSTANCE.getDepthFramebufferAttachment();
+
+		/**
+		 * The meta object literal for the '<em><b>Clear</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPTH_FRAMEBUFFER_ATTACHMENT__CLEAR = eINSTANCE
+				.getDepthFramebufferAttachment_Clear();
+
+		/**
+		 * The meta object literal for the '<em><b>Depth Image Ref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPTH_FRAMEBUFFER_ATTACHMENT__DEPTH_IMAGE_REF = eINSTANCE
+				.getDepthFramebufferAttachment_DepthImageRef();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
@@ -3716,14 +3985,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference GRAPHIC_PROCESS__RENDER_PASS_INFO = eINSTANCE.getGraphicProcess_RenderPassInfo();
-
-		/**
-		 * The meta object literal for the '<em><b>Depth Image</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GRAPHIC_PROCESS__DEPTH_IMAGE = eINSTANCE.getGraphicProcess_DepthImage();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}' class.

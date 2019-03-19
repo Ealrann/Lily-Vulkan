@@ -53,7 +53,7 @@ public class BufferGPUFiller
 
 	private void fillBuffer(VkCommandBuffer commandBuffer, long byteSize)
 	{
-		final var stagingBufferId = stagingBuffer.getId();
+		final var stagingBufferId = stagingBuffer.getAddress();
 
 		BufferUtils.copyBuffer(commandBuffer, stagingBufferId, targetBufferId, byteSize);
 	}

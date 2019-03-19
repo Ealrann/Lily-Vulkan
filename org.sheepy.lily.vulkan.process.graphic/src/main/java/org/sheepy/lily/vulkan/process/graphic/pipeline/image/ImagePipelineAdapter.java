@@ -111,14 +111,14 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 	public void record(GraphicCommandBuffer commandBuffer, int bindPoint)
 	{
 		var srcImage = imagePipeline.getImage();
-		var srcImageId = ImageAdapter.adapt(srcImage).getId();
+		var srcImageId = ImageAdapter.adapt(srcImage).getAddress();
 		var dstImageView = imageViewManager.getImageView(commandBuffer.index);
 		var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 
 		initialBarriers[commandBuffer.index].execute(vkCommandBuffer);
 
 		long bltSrcImage = srcImageId;
-		long bltDstImage = dstImageView.getImageId();
+		long bltDstImage = dstImageView.getImageAddress();
 
 		vkCmdBlitImage(vkCommandBuffer, bltSrcImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
 				bltDstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region, VK_FILTER_NEAREST);

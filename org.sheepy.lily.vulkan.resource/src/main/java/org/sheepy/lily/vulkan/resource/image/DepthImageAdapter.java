@@ -61,7 +61,7 @@ public class DepthImageAdapter implements IDepthImageAdapter
 	private void createAndAllocateImageView(LogicalDevice logicalDevice)
 	{
 		depthImageView = new VkImageView(logicalDevice.getVkDevice());
-		depthImageView.allocate(depthImageBackend.getId(), 1, depthFormat,
+		depthImageView.allocate(depthImageBackend.getAddress(), 1, depthFormat,
 				VK_IMAGE_ASPECT_DEPTH_BIT);
 	}
 
@@ -86,7 +86,7 @@ public class DepthImageAdapter implements IDepthImageAdapter
 	private void layoutTransitionOfDepthImage(MemoryStack stack, ExecutionContext context)
 	{
 		final var barrier = new ReferenceImageBarrierImpl();
-		barrier.setImageId(depthImageBackend.getId());
+		barrier.setImageId(depthImageBackend.getAddress());
 		barrier.setMipLevels(1);
 		barrier.setImageFormat(depthFormat);
 		barrier.setSrcStage(EPipelineStage.TOP_OF_PIPE_BIT);
@@ -136,12 +136,12 @@ public class DepthImageAdapter implements IDepthImageAdapter
 
 	public long getDepthImageId()
 	{
-		return depthImageBackend.getId();
+		return depthImageBackend.getAddress();
 	}
 
 	public long getDepthImageViewId()
 	{
-		return depthImageView.getId();
+		return depthImageView.getAddress();
 	}
 
 	@Override

@@ -118,8 +118,8 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		final int indexByteSize = numberOfIndice * meshDescriptor.sizeOfIndex();
 		final int vertexByteSize = numberOfVertice * meshDescriptor.sizeOfVertex();
 
-		final var vertexFiller = new BufferGPUFiller(stack, context, vertexBuffer.getId());
-		final var indexFiller = new BufferGPUFiller(stack, context, indexBuffer.getId());
+		final var vertexFiller = new BufferGPUFiller(stack, context, vertexBuffer.getAddress());
+		final var indexFiller = new BufferGPUFiller(stack, context, indexBuffer.getAddress());
 
 		vertexFiller.fill(verticeBuffer, vertexByteSize);
 		indexFiller.fill(indiceBuffer, indexByteSize);
@@ -195,22 +195,22 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 
 	public long getVertexBufferAddress()
 	{
-		return vertexBuffer.getId();
+		return vertexBuffer.getAddress();
 	}
 
 	public long getIndexBufferAddress()
 	{
-		return indexBuffer.getId();
+		return indexBuffer.getAddress();
 	}
 
 	public long getVertexBufferMemoryId()
 	{
-		return vertexBuffer.getMemoryId();
+		return vertexBuffer.getMemoryAddress();
 	}
 
 	public long getIndexBufferMemoryId()
 	{
-		return indexBuffer.getMemoryId();
+		return indexBuffer.getMemoryAddress();
 	}
 
 	public int getIndicesCount()

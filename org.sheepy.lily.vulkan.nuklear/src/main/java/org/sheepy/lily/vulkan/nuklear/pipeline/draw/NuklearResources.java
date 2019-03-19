@@ -81,7 +81,7 @@ public class NuklearResources
 
 		fontLoader = new NkFontLoader(font);
 		fontLoader.allocate();
-		defaultFont = fontLoader.createNkFont(fontAdapter.getSamplerId());
+		defaultFont = fontLoader.createNkFont(fontAdapter.getSamplerAddress());
 	}
 
 	public void free()
@@ -128,7 +128,7 @@ public class NuklearResources
 	{
 		Integer res = null;
 
-		if (textureId == nullTexture.getSamplerId())
+		if (textureId == nullTexture.getSamplerAddress())
 		{
 			res = 0;
 		}

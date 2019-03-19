@@ -1375,6 +1375,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(imageEClass, IMAGE__MIP_LEVELS);
 		createEReference(imageEClass, IMAGE__INITIAL_LAYOUT);
 
+		depthImageEClass = createEClass(DEPTH_IMAGE);
+
 		imageLayoutEClass = createEClass(IMAGE_LAYOUT);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__STAGE);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__LAYOUT);
@@ -1454,8 +1456,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(shaderEClass, SHADER__FILE);
 		createEAttribute(shaderEClass, SHADER__STAGE);
 
-		depthImageEClass = createEClass(DEPTH_IMAGE);
-
 		pathResourceEClass = createEClass(PATH_RESOURCE);
 		createEAttribute(pathResourceEClass, PATH_RESOURCE__PATH);
 
@@ -1518,6 +1518,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		descriptorResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getDescriptorResource());
 		imageEClass.getESuperTypes().add(this.getDescriptorResource());
+		depthImageEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		sampledImageEClass.getESuperTypes().add(this.getDescriptorResource());
 		semaphoreEClass.getESuperTypes().add(this.getBasicResource());
 		semaphoreEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
@@ -1589,6 +1590,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getImage_InitialLayout(), this.getImageLayout(), null, "initialLayout", null,
 				0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(depthImageEClass, DepthImage.class, "DepthImage", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1775,9 +1779,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0,
 				1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(depthImageEClass, DepthImage.class, "DepthImage", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pathResourceEClass, PathResource.class, "PathResource", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -181,6 +181,58 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageFramebufferAttachmentItemProvider imageFramebufferAttachmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImageFramebufferAttachmentAdapter()
+	{
+		if (imageFramebufferAttachmentItemProvider == null)
+		{
+			imageFramebufferAttachmentItemProvider = new ImageFramebufferAttachmentItemProvider(
+					this);
+		}
+
+		return imageFramebufferAttachmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DepthFramebufferAttachmentItemProvider depthFramebufferAttachmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDepthFramebufferAttachmentAdapter()
+	{
+		if (depthFramebufferAttachmentItemProvider == null)
+		{
+			depthFramebufferAttachmentItemProvider = new DepthFramebufferAttachmentItemProvider(
+					this);
+		}
+
+		return depthFramebufferAttachmentItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -760,6 +812,10 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 			swapchainConfigurationItemProvider.dispose();
 		if (framebufferConfigurationItemProvider != null)
 			framebufferConfigurationItemProvider.dispose();
+		if (imageFramebufferAttachmentItemProvider != null)
+			imageFramebufferAttachmentItemProvider.dispose();
+		if (depthFramebufferAttachmentItemProvider != null)
+			depthFramebufferAttachmentItemProvider.dispose();
 		if (renderPassInfoItemProvider != null) renderPassInfoItemProvider.dispose();
 		if (subpassItemProvider != null) subpassItemProvider.dispose();
 		if (attachementRefItemProvider != null) attachementRefItemProvider.dispose();

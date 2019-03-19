@@ -17,8 +17,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 
 import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
 
-import org.sheepy.lily.vulkan.model.resource.DepthImage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Process</b></em>'.
@@ -29,7 +27,6 @@ import org.sheepy.lily.vulkan.model.resource.DepthImage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getConfiguration <em>Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getRenderPassInfo <em>Render Pass Info</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getDepthImage <em>Depth Image</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,16 +52,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @ordered
 	 */
 	protected RenderPassInfo renderPassInfo;
-
-	/**
-	 * The cached value of the '{@link #getDepthImage() <em>Depth Image</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDepthImage()
-	 * @generated
-	 * @ordered
-	 */
-	protected DepthImage depthImage;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -209,60 +196,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @generated
 	 */
 	@Override
-	public DepthImage getDepthImage()
-	{
-		return depthImage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDepthImage(DepthImage newDepthImage, NotificationChain msgs)
-	{
-		DepthImage oldDepthImage = depthImage;
-		depthImage = newDepthImage;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, oldDepthImage, newDepthImage);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDepthImage(DepthImage newDepthImage)
-	{
-		if (newDepthImage != depthImage)
-		{
-			NotificationChain msgs = null;
-			if (depthImage != null) msgs = ((InternalEObject) depthImage).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, null,
-					msgs);
-			if (newDepthImage != null) msgs = ((InternalEObject) newDepthImage).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, null,
-					msgs);
-			msgs = basicSetDepthImage(newDepthImage, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE, newDepthImage, newDepthImage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 											int featureID,
 											NotificationChain msgs)
@@ -273,8 +206,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			return basicSetConfiguration(null, msgs);
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
 			return basicSetRenderPassInfo(null, msgs);
-		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-			return basicSetDepthImage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -293,8 +224,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			return getConfiguration();
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
 			return getRenderPassInfo();
-		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-			return getDepthImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -314,9 +243,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			return;
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
 			setRenderPassInfo((RenderPassInfo) newValue);
-			return;
-		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-			setDepthImage((DepthImage) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -338,9 +264,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
 			setRenderPassInfo((RenderPassInfo) null);
 			return;
-		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-			setDepthImage((DepthImage) null);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -359,8 +282,6 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			return configuration != null;
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
 			return renderPassInfo != null;
-		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
-			return depthImage != null;
 		}
 		return super.eIsSet(featureID);
 	}

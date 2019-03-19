@@ -22,8 +22,8 @@ public class VkImage
 
 	private final ImageInfo info;
 
-	protected long imageId;
-	protected long imageMemoryId;
+	protected long imageAddress;
+	protected long imageMemoryAddress;
 	protected long size;
 
 	public VkImage(LogicalDevice logicalDevice, ImageInfo info)
@@ -34,19 +34,20 @@ public class VkImage
 
 	public void allocate(MemoryStack stack)
 	{
-		imageId = VkImageAllocator.allocate(stack, logicalDevice.getVkDevice(), info);
+		imageAddress = VkImageAllocator.allocate(stack, logicalDevice.getVkDevice(), info);
 
 		final var memoryInfo = allocateMemory(stack, logicalDevice);
-		imageMemoryId = memoryInfo.id;
+		imageMemoryAddress = memoryInfo.id;
 		size = memoryInfo.size;
 
-		vkBindImageMemory(logicalDevice.getVkDevice(), imageId, imageMemoryId, 0);
+		vkBindImageMemory(logicalDevice.getVkDevice(), imageAddress, imageMemoryAddress, 0);
 	}
 
 	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
 	{
 		final var properties = info.properties;
-		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, imageId, properties);
+		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, imageAddress,
+				properties);
 		return VkMemoryAllocator.allocateFromImage(stack, allocationInfo);
 	}
 
@@ -69,8 +70,8 @@ public class VkImage
 		region.imageExtent().set(width, height, 1);
 
 		final var dstImageLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
-		vkCmdCopyBufferToImage(commandBuffer, bufferId, imageId, dstImageLayout, region);
-		
+		vkCmdCopyBufferToImage(commandBuffer, bufferId, imageAddress, dstImageLayout, region);
+
 		region.free();
 	}
 
@@ -83,20 +84,15 @@ public class VkImage
 										List<EAccess> dstAccessMask)
 	{
 		ImageBarrierExecutor.execute(commandBuffer, srcStage, dstStage, srcLayout, dstLayout,
-				srcAccessMask, dstAccessMask, imageId, info.format, info.mipLevels);
+				srcAccessMask, dstAccessMask, imageAddress, info.format, info.mipLevels);
 	}
 
 	public void free()
 	{
-		vkDestroyImage(logicalDevice.getVkDevice(), imageId, null);
-		vkFreeMemory(logicalDevice.getVkDevice(), imageMemoryId, null);
-		imageId = -1;
-		imageMemoryId = -1;
-	}
-
-	public long getId()
-	{
-		return imageId;
+		vkDestroyImage(logicalDevice.getVkDevice(), imageAddress, null);
+		vkFreeMemory(logicalDevice.getVkDevice(), imageMemoryAddress, null);
+		imageAddress = -1;
+		imageMemoryAddress = -1;
 	}
 
 	public long getSize()
@@ -104,9 +100,14 @@ public class VkImage
 		return size;
 	}
 
-	public long getMemoryId()
+	public long getAddress()
 	{
-		return imageMemoryId;
+		return imageAddress;
+	}
+
+	public long getMemoryAddress()
+	{
+		return imageMemoryAddress;
 	}
 
 }

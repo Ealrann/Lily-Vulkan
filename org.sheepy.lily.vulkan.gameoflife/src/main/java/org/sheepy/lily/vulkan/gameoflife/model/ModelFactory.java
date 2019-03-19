@@ -61,8 +61,8 @@ public class ModelFactory
 	public final Application application = new ApplicationImpl();
 	public final VulkanEngine engine = new VulkanEngineImpl();
 	public final GraphicProcess imageProcess;
-	public ComputeProcess computeProcess1;
-	public ComputeProcess computeProcess2;
+	public ComputeProcess process1;
+	public ComputeProcess process2;
 	public ResourcePkg sharedResources = new ResourcePkgImpl();
 	private Image boardImage;
 	private final Vector2i size;
@@ -82,7 +82,6 @@ public class ModelFactory
 
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setColorDomain(new ColorDomainImpl());
-		configuration.setClearBeforeRender(false);
 		configuration.setAcquireWaitStage(EPipelineStage.TRANSFER_BIT);
 		configuration.setSwapchainConfiguration(swapchainConfiguration);
 		configuration.setFramebufferConfiguration(new FramebufferConfigurationImpl());
@@ -93,8 +92,8 @@ public class ModelFactory
 		imageProcess.setConfiguration(configuration);
 		imageProcess.setRenderPassInfo(newInfo());
 
-		engine.getProcesses().add(computeProcess1);
-		engine.getProcesses().add(computeProcess2);
+		engine.getProcesses().add(process1);
+		engine.getProcesses().add(process2);
 		engine.getProcesses().add(imageProcess);
 		engine.setResourcePkg(sharedResources);
 	}
@@ -154,8 +153,8 @@ public class ModelFactory
 
 	private void createComputeProcessPool()
 	{
-		computeProcess1 = new ComputeProcessImpl();
-		computeProcess2 = new ComputeProcessImpl();
+		process1 = new ComputeProcessImpl();
+		process2 = new ComputeProcessImpl();
 		final Module thisModule = getClass().getModule();
 
 		final ModuleResource lifeShaderFile = new ModuleResourceImpl();
@@ -185,24 +184,20 @@ public class ModelFactory
 		Computer lifeComputer2 = createComputer(lifeShader);
 		Computer pixelComputer2 = createComputer(life2pixelShader);
 
-		ComputePipeline lifePipeline1 = createPipeline(computeProcess1, lifeComputer1, boardBuffer1,
-				boardBuffer2);
-		ComputePipeline lifePipeline2 = createPipeline(computeProcess2, lifeComputer2, boardBuffer2,
-				boardBuffer1);
+		var lifePipeline1 = createPipeline(process1, lifeComputer1, boardBuffer1, boardBuffer2);
+		var lifePipeline2 = createPipeline(process2, lifeComputer2, boardBuffer2, boardBuffer1);
 
-		ComputePipeline pixelPipeline1 = createPipeline(computeProcess1, pixelComputer1,
-				boardBuffer2, boardImage);
-		ComputePipeline pixelPipeline2 = createPipeline(computeProcess2, pixelComputer2,
-				boardBuffer1, boardImage);
+		var pixelPipeline1 = createPipeline(process1, pixelComputer1, boardBuffer2, boardImage);
+		var pixelPipeline2 = createPipeline(process2, pixelComputer2, boardBuffer1, boardImage);
 
 		PipelinePkg pipelines1 = new PipelinePkgImpl();
-		computeProcess1.setPipelinePkg(pipelines1);
+		process1.setPipelinePkg(pipelines1);
 
 		pipelines1.getPipelines().add(lifePipeline1);
 		pipelines1.getPipelines().add(pixelPipeline1);
 
 		PipelinePkg pipelines2 = new PipelinePkgImpl();
-		computeProcess2.setPipelinePkg(pipelines2);
+		process2.setPipelinePkg(pipelines2);
 
 		pipelines2.getPipelines().add(lifePipeline2);
 		pipelines2.getPipelines().add(pixelPipeline2);
@@ -213,8 +208,8 @@ public class ModelFactory
 		sharedResources.getResources().add(boardBuffer2);
 		sharedResources.getResources().add(boardImage);
 
-		computeProcess1.setResetAllowed(true);
-		computeProcess2.setResetAllowed(true);
+		process1.setResetAllowed(true);
+		process2.setResetAllowed(true);
 	}
 
 	private ComputePipeline createPipeline(	ComputeProcess process,

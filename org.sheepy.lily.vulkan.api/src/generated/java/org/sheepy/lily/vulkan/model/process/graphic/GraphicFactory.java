@@ -51,6 +51,24 @@ public interface GraphicFactory extends EFactory
 	FramebufferConfiguration createFramebufferConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Image Framebuffer Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Framebuffer Attachment</em>'.
+	 * @generated
+	 */
+	ImageFramebufferAttachment createImageFramebufferAttachment();
+
+	/**
+	 * Returns a new object of class '<em>Depth Framebuffer Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Depth Framebuffer Attachment</em>'.
+	 * @generated
+	 */
+	DepthFramebufferAttachment createDepthFramebufferAttachment();
+
+	/**
 	 * Returns a new object of class '<em>Render Pass Info</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

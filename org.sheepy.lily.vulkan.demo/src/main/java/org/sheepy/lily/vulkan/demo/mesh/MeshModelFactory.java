@@ -29,6 +29,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionIm
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.DepthFramebufferAttachmentImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl;
@@ -76,14 +77,23 @@ public class MeshModelFactory
 
 		application.getEngines().add(engine);
 
+		var framebufferConfiguration = new FramebufferConfigurationImpl();
+
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setSwapchainConfiguration(new SwapchainConfigurationImpl());
-		configuration.setFramebufferConfiguration(new FramebufferConfigurationImpl());
+		configuration.setFramebufferConfiguration(framebufferConfiguration);
 		configuration.setColorDomain(new ColorDomainImpl());
 
 		graphicProcess = newMeshProcess();
 		graphicProcess.setConfiguration(configuration);
 		graphicProcess.setRenderPassInfo(newInfo());
+
+		if (depthImage != null)
+		{
+			var attachment = new DepthFramebufferAttachmentImpl();
+			attachment.setDepthImageRef(depthImage);
+			framebufferConfiguration.getAtachments().add(attachment);
+		}
 
 		engine.getProcesses().add(graphicProcess);
 	}
@@ -198,7 +208,7 @@ public class MeshModelFactory
 		if (meshConfiguration.depth)
 		{
 			depthImage = new DepthImageImpl();
-			graphicProcess.setDepthImage(depthImage);
+			resourceContainer.getResources().add(depthImage);
 		}
 
 		if (meshConfiguration.buildUniformBuffer == true)

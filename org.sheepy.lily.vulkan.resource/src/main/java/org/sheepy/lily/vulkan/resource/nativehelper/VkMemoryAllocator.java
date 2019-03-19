@@ -123,10 +123,10 @@ public abstract class VkMemoryAllocator
 		protected VkMemoryRequirements allocateMemoryRequirements(MemoryStack stack)
 		{
 			final var vkDevice = allocationInfo.logicalDevice.getVkDevice();
-			final var imageId = allocationInfo.bufferId;
+			final var imageAddress = allocationInfo.bufferId;
 			final var memRequirements = VkMemoryRequirements.callocStack(stack);
 
-			vkGetImageMemoryRequirements(vkDevice, imageId, memRequirements);
+			vkGetImageMemoryRequirements(vkDevice, imageAddress, memRequirements);
 			return memRequirements;
 		}
 	}

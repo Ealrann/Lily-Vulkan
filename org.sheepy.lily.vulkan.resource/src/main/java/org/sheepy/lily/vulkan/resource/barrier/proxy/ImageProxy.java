@@ -28,7 +28,7 @@ public class ImageProxy implements IImageProxy
 	public long getId()
 	{
 		var adapter = ImageAdapter.adapt(barrier.getImage());
-		return adapter.getId();
+		return adapter.getAddress();
 	}
 
 }

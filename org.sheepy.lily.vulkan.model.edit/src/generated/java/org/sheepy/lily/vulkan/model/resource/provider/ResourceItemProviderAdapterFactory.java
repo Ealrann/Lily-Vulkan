@@ -701,6 +701,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	{
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();
+		if (depthImageItemProvider != null) depthImageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
 		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
 		if (fontItemProvider != null) fontItemProvider.dispose();
@@ -713,7 +714,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (referenceImageBarrierItemProvider != null) referenceImageBarrierItemProvider.dispose();
 		if (imageTransitionItemProvider != null) imageTransitionItemProvider.dispose();
 		if (shaderItemProvider != null) shaderItemProvider.dispose();
-		if (depthImageItemProvider != null) depthImageItemProvider.dispose();
 		if (fileResourceItemProvider != null) fileResourceItemProvider.dispose();
 		if (moduleResourceItemProvider != null) moduleResourceItemProvider.dispose();
 		if (stringModuleResourceItemProvider != null) stringModuleResourceItemProvider.dispose();
@@ -778,6 +778,10 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 								ResourceFactory.eINSTANCE.createImage()));
+
+				newChildDescriptors
+						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+								ResourceFactory.eINSTANCE.createDepthImage()));
 
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,

@@ -63,7 +63,7 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 		}
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
-		imageView.allocate(imageBackend.getId(), 1, info.format, VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView.allocate(imageBackend.getAddress(), 1, info.format, VK_IMAGE_ASPECT_COLOR_BIT);
 
 		load();
 	}
@@ -122,7 +122,7 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	{
 		VkDescriptorImageInfo.Buffer imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
 		imageInfo.imageLayout(VK_IMAGE_LAYOUT_GENERAL);
-		imageInfo.imageView(imageView.getId());
+		imageInfo.imageView(imageView.getAddress());
 
 		VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
 		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
@@ -143,14 +143,19 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 		return poolSize;
 	}
 
-	public long getId()
+	public long getAddress()
 	{
-		return imageBackend.getId();
+		return imageBackend.getAddress();
 	}
 
-	public long getMemoryId()
+	public long getMemoryAddress()
 	{
-		return imageBackend.getMemoryId();
+		return imageBackend.getMemoryAddress();
+	}
+
+	public long getViewAddress()
+	{
+		return imageView.getAddress();
 	}
 
 	public static interface IImageLoader

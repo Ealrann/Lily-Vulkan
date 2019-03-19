@@ -63,7 +63,7 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 		var vulkanContext = (VulkanContext) context;
 		var vkDevice = vulkanContext.getVkDevice();
 
-		nkNullTexture.texture().ptr(nullTexture.getSamplerId());
+		nkNullTexture.texture().ptr(nullTexture.getSamplerAddress());
 		nkNullTexture.uv().set(0.5f, 0.5f);
 
 		vbuf = NkBuffer.calloc();

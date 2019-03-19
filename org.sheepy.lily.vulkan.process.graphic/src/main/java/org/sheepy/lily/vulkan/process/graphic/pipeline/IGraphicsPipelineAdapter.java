@@ -55,10 +55,12 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter<G
 		createBuilders();
 
 		final var graphicContext = (GraphicContext) context;
-		final var useDepthBuffer = graphicContext.graphicProcess.getDepthImage() != null;
 		final var device = graphicContext.getVkDevice();
 		final var surfaceManager = graphicContext.surfaceManager;
+		final var framebuffers = graphicContext.framebuffers;
 		final var renderPass = graphicContext.renderPass;
+		
+		final boolean useDepthBuffer = framebuffers.hasDepthAttachment();
 
 		allocationDependencies.add(renderPass);
 

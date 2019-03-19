@@ -123,7 +123,7 @@ public class InitialImagePipelineBarrier implements IAllocable
 		targetBarrier = new ReferenceImageBarrierImpl();
 		targetBarrier.setSrcStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		targetBarrier.setDstStage(EPipelineStage.TRANSFER_BIT);
-		targetBarrier.setImageId(view.getImageId());
+		targetBarrier.setImageId(view.getImageAddress());
 		targetBarrier.setImageFormat(view.getImageFormat());
 		targetBarrier.setMipLevels(1);
 

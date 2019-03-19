@@ -106,6 +106,29 @@ public class GraphicSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case GraphicPackage.IFRAMEBUFFER_ATTACHMENT:
+		{
+			IFramebufferAttachment iFramebufferAttachment = (IFramebufferAttachment) theEObject;
+			T result = caseIFramebufferAttachment(iFramebufferAttachment);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT:
+		{
+			ImageFramebufferAttachment imageFramebufferAttachment = (ImageFramebufferAttachment) theEObject;
+			T result = caseImageFramebufferAttachment(imageFramebufferAttachment);
+			if (result == null) result = caseIFramebufferAttachment(imageFramebufferAttachment);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.DEPTH_FRAMEBUFFER_ATTACHMENT:
+		{
+			DepthFramebufferAttachment depthFramebufferAttachment = (DepthFramebufferAttachment) theEObject;
+			T result = caseDepthFramebufferAttachment(depthFramebufferAttachment);
+			if (result == null) result = caseIFramebufferAttachment(depthFramebufferAttachment);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		case GraphicPackage.RENDER_PASS_INFO:
 		{
 			RenderPassInfo renderPassInfo = (RenderPassInfo) theEObject;
@@ -342,6 +365,54 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseFramebufferConfiguration(FramebufferConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IFramebuffer Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IFramebuffer Attachment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIFramebufferAttachment(IFramebufferAttachment object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image Framebuffer Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image Framebuffer Attachment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImageFramebufferAttachment(ImageFramebufferAttachment object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Depth Framebuffer Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Depth Framebuffer Attachment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDepthFramebufferAttachment(DepthFramebufferAttachment object)
 	{
 		return null;
 	}

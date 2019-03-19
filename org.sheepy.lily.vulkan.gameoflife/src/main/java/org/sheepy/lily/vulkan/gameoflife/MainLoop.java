@@ -29,8 +29,8 @@ public class MainLoop implements IMainLoop
 	@Override
 	public void load(Application application)
 	{
-		computeProcessAdapters[0] = IProcessAdapter.adapt(factory.computeProcess1);
-		computeProcessAdapters[1] = IProcessAdapter.adapt(factory.computeProcess2);
+		computeProcessAdapters[0] = IProcessAdapter.adapt(factory.process1);
+		computeProcessAdapters[1] = IProcessAdapter.adapt(factory.process2);
 		GraphicProcess imageProcess = factory.imageProcess;
 		imageProcessAdapter = IProcessAdapter.adapt(imageProcess);
 

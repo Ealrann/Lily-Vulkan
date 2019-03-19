@@ -70,6 +70,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createSwapchainConfiguration();
 		case GraphicPackage.FRAMEBUFFER_CONFIGURATION:
 			return createFramebufferConfiguration();
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT:
+			return createImageFramebufferAttachment();
+		case GraphicPackage.DEPTH_FRAMEBUFFER_ATTACHMENT:
+			return createDepthFramebufferAttachment();
 		case GraphicPackage.RENDER_PASS_INFO:
 			return createRenderPassInfo();
 		case GraphicPackage.SUBPASS:
@@ -144,6 +148,30 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		FramebufferConfigurationImpl framebufferConfiguration = new FramebufferConfigurationImpl();
 		return framebufferConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ImageFramebufferAttachment createImageFramebufferAttachment()
+	{
+		ImageFramebufferAttachmentImpl imageFramebufferAttachment = new ImageFramebufferAttachmentImpl();
+		return imageFramebufferAttachment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DepthFramebufferAttachment createDepthFramebufferAttachment()
+	{
+		DepthFramebufferAttachmentImpl depthFramebufferAttachment = new DepthFramebufferAttachmentImpl();
+		return depthFramebufferAttachment;
 	}
 
 	/**

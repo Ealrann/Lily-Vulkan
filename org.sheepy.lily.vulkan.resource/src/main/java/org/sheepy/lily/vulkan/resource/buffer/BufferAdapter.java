@@ -69,14 +69,14 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 		bufferBackend = null;
 	}
 
-	public long getId()
+	public long getAddress()
 	{
-		return bufferBackend.getId();
+		return bufferBackend.getAddress();
 	}
 
-	public long getMemoryId()
+	public long getMemoryAddress()
 	{
-		return bufferBackend.getMemoryId();
+		return bufferBackend.getMemoryAddress();
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	{
 		final VkDescriptorBufferInfo.Buffer bufferInfo = VkDescriptorBufferInfo.callocStack(1,
 				stack);
-		bufferInfo.buffer(getId());
+		bufferInfo.buffer(getAddress());
 		bufferInfo.offset(0);
 		bufferInfo.range(buffer.getSize());
 

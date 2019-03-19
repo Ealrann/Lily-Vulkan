@@ -2,39 +2,37 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.joml.Vector4f;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment;
+
+import org.sheepy.lily.vulkan.model.resource.Image;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Framebuffer Configuration</b></em>'.
+ * An implementation of the model object '<em><b>Image Framebuffer Attachment</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl#getClearValue <em>Clear Value</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl#getAtachments <em>Atachments</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImageFramebufferAttachmentImpl#getClearValue <em>Clear Value</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImageFramebufferAttachmentImpl#getImageRef <em>Image Ref</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
-		implements FramebufferConfiguration
+public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
+		implements ImageFramebufferAttachment
 {
 	/**
 	 * The default value of the '{@link #getClearValue() <em>Clear Value</em>}' attribute.
@@ -56,21 +54,21 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 */
 	protected Vector4f clearValue = CLEAR_VALUE_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getAtachments() <em>Atachments</em>}' containment reference list.
+	 * The cached value of the '{@link #getImageRef() <em>Image Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAtachments()
+	 * @see #getImageRef()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IFramebufferAttachment> atachments;
+	protected Image imageRef;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FramebufferConfigurationImpl()
+	public ImageFramebufferAttachmentImpl()
 	{
 		super();
 	}
@@ -83,7 +81,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	@Override
 	protected EClass eStaticClass()
 	{
-		return GraphicPackage.Literals.FRAMEBUFFER_CONFIGURATION;
+		return GraphicPackage.Literals.IMAGE_FRAMEBUFFER_ATTACHMENT;
 	}
 
 	/**
@@ -108,7 +106,8 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 		Vector4f oldClearValue = clearValue;
 		clearValue = newClearValue;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE, oldClearValue, clearValue));
+				GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE, oldClearValue,
+				clearValue));
 	}
 
 	/**
@@ -117,15 +116,31 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public EList<IFramebufferAttachment> getAtachments()
+	public Image getImageRef()
 	{
-		if (atachments == null)
+		if (imageRef != null && imageRef.eIsProxy())
 		{
-			atachments = new EObjectContainmentEList<IFramebufferAttachment>(
-					IFramebufferAttachment.class, this,
-					GraphicPackage.FRAMEBUFFER_CONFIGURATION__ATACHMENTS);
+			InternalEObject oldImageRef = (InternalEObject) imageRef;
+			imageRef = (Image) eResolveProxy(oldImageRef);
+			if (imageRef != oldImageRef)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF, oldImageRef,
+							imageRef));
+			}
 		}
-		return atachments;
+		return imageRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Image basicGetImageRef()
+	{
+		return imageRef;
 	}
 
 	/**
@@ -134,16 +149,12 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-											int featureID,
-											NotificationChain msgs)
+	public void setImageRef(Image newImageRef)
 	{
-		switch (featureID)
-		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__ATACHMENTS:
-			return ((InternalEList<?>) getAtachments()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		Image oldImageRef = imageRef;
+		imageRef = newImageRef;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
 	}
 
 	/**
@@ -156,10 +167,11 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE:
 			return getClearValue();
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__ATACHMENTS:
-			return getAtachments();
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF:
+			if (resolve) return getImageRef();
+			return basicGetImageRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,18 +181,16 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE:
 			setClearValue((Vector4f) newValue);
 			return;
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__ATACHMENTS:
-			getAtachments().clear();
-			getAtachments().addAll((Collection<? extends IFramebufferAttachment>) newValue);
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF:
+			setImageRef((Image) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -196,11 +206,11 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE:
 			setClearValue(CLEAR_VALUE_EDEFAULT);
 			return;
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__ATACHMENTS:
-			getAtachments().clear();
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF:
+			setImageRef((Image) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -216,12 +226,12 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE:
 			return CLEAR_VALUE_EDEFAULT == null
 					? clearValue != null
 					: !CLEAR_VALUE_EDEFAULT.equals(clearValue);
-		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__ATACHMENTS:
-			return atachments != null && !atachments.isEmpty();
+		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF:
+			return imageRef != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -243,4 +253,4 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 		return result.toString();
 	}
 
-} //FramebufferConfigurationImpl
+} //ImageFramebufferAttachmentImpl

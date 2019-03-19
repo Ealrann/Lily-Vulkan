@@ -26,8 +26,8 @@ public class CPUBufferBackend implements IBufferBackend
 	public final int properties;
 	public final BufferInfo infos;
 
-	private long bufferId;
-	private long bufferMemoryId;
+	private long address;
+	private long memoryAddress;
 	private long memoryMap = -1;
 
 	public CPUBufferBackend(BufferInfo info, boolean coherent)
@@ -53,12 +53,12 @@ public class CPUBufferBackend implements IBufferBackend
 		var vulkanContext = (IVulkanContext) context;
 		var vkDevice = vulkanContext.getVkDevice();
 
-		bufferId = VkBufferAllocator.allocate(stack, vkDevice, infos);
+		address = VkBufferAllocator.allocate(stack, vkDevice, infos);
 
 		final var memoryInfo = allocateMemory(stack, vulkanContext.getLogicalDevice());
-		bufferMemoryId = memoryInfo.id;
+		memoryAddress = memoryInfo.id;
 
-		vkBindBufferMemory(vkDevice, bufferId, bufferMemoryId, 0);
+		vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
 		// System.out.println(Long.toHexString(bufferMemoryId));
 
 		if (infos.keptMapped)
@@ -69,7 +69,7 @@ public class CPUBufferBackend implements IBufferBackend
 
 	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, bufferId, properties);
+		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, address, properties);
 		return VkMemoryAllocator.allocateFromBuffer(stack, allocationInfo);
 	}
 
@@ -84,11 +84,11 @@ public class CPUBufferBackend implements IBufferBackend
 			unmapMemory(vkDevice);
 		}
 
-		vkDestroyBuffer(vkDevice, bufferId, null);
-		vkFreeMemory(vkDevice, bufferMemoryId, null);
+		vkDestroyBuffer(vkDevice, address, null);
+		vkFreeMemory(vkDevice, memoryAddress, null);
 
-		bufferId = -1;
-		bufferMemoryId = -1;
+		address = -1;
+		memoryAddress = -1;
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class CPUBufferBackend implements IBufferBackend
 		if (memoryMap == -1)
 		{
 			final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-			vkMapMemory(vkDevice, bufferMemoryId, 0, infos.size, 0, pBuffer);
+			vkMapMemory(vkDevice, memoryAddress, 0, infos.size, 0, pBuffer);
 			memoryMap = pBuffer.get(0);
 			MemoryUtil.memFree(pBuffer);
 		}
@@ -124,7 +124,7 @@ public class CPUBufferBackend implements IBufferBackend
 	{
 		if (memoryMap != -1)
 		{
-			vkUnmapMemory(vkDevice, bufferMemoryId);
+			vkUnmapMemory(vkDevice, memoryAddress);
 			memoryMap = -1;
 		}
 	}
@@ -135,15 +135,15 @@ public class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public long getId()
+	public long getAddress()
 	{
-		return bufferId;
+		return address;
 	}
 
 	@Override
-	public long getMemoryId()
+	public long getMemoryAddress()
 	{
-		return bufferMemoryId;
+		return memoryAddress;
 	}
 
 	public long getMemoryMap()

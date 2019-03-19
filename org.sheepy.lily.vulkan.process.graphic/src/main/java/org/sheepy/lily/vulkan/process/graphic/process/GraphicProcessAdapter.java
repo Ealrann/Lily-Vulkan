@@ -49,20 +49,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	}
 
 	@Override
-	protected List<Object> gatherResources()
-	{
-		List<Object> res = super.gatherResources();
-
-		var depthImage = ((GraphicProcess) process).getDepthImage();
-		if (depthImage != null)
-		{
-			res.add(depthImage);
-		}
-
-		return res;
-	}
-
-	@Override
 	public void recordCommands()
 	{
 		var graphicContext = (GraphicContext) context;

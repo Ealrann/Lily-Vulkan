@@ -39,7 +39,7 @@ public class BufferBarrierExecutor implements IBarrierExecutor
 
 		VkBufferMemoryBarrier barrierInfo = barrierInfos.get();
 		barrierInfo.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
-		barrierInfo.buffer(bufferAdapter.getId());
+		barrierInfo.buffer(bufferAdapter.getAddress());
 		barrierInfo.srcAccessMask(barrier.getSrcAccess().getValue());
 		barrierInfo.dstAccessMask(barrier.getDstAccess().getValue());
 		barrierInfo.offset(0);

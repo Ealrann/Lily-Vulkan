@@ -17,8 +17,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 
 import org.sheepy.lily.vulkan.model.process.provider.AbstractProcessItemProvider;
 
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess} object.
  * <!-- begin-user-doc -->
@@ -71,7 +69,6 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__RENDER_PASS_INFO);
-			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__DEPTH_IMAGE);
 		}
 		return childrenFeatures;
 	}
@@ -133,7 +130,6 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		{
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
-		case GraphicPackage.GRAPHIC_PROCESS__DEPTH_IMAGE:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -160,10 +156,6 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__RENDER_PASS_INFO,
 						GraphicFactory.eINSTANCE.createRenderPassInfo()));
-
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.GRAPHIC_PROCESS__DEPTH_IMAGE,
-						ResourceFactory.eINSTANCE.createDepthImage()));
 	}
 
 }

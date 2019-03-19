@@ -55,7 +55,7 @@ public class VkSampler
 		samplerId = aSamplerId[0];
 	}
 
-	public long getId()
+	public long getAddress()
 	{
 		return samplerId;
 	}

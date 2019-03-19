@@ -24,8 +24,8 @@ public class GPUBufferBackend implements IBufferBackend
 	private final int properties;
 	private final BufferInfo infos;
 
-	private long bufferId;
-	private long bufferMemoryId;
+	private long address;
+	private long memoryAddress;
 
 	private CPUBufferBackend cpuBackend = null;
 
@@ -48,12 +48,12 @@ public class GPUBufferBackend implements IBufferBackend
 	{
 		var vulkanContext = (IVulkanContext) context;
 		var vkDevice = vulkanContext.getVkDevice();
-		bufferId = VkBufferAllocator.allocate(stack, vkDevice, infos);
+		address = VkBufferAllocator.allocate(stack, vkDevice, infos);
 
 		final var memoryInfo = allocateMemory(stack, vulkanContext.getLogicalDevice());
-		bufferMemoryId = memoryInfo.id;
+		memoryAddress = memoryInfo.id;
 
-		vkBindBufferMemory(vkDevice, bufferId, bufferMemoryId, 0);
+		vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
 		// System.out.println(Long.toHexString(bufferMemoryId));
 
 		if (cpuBackend != null)
@@ -64,7 +64,7 @@ public class GPUBufferBackend implements IBufferBackend
 
 	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
 	{
-		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, bufferId, properties);
+		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, address, properties);
 		return VkMemoryAllocator.allocateFromBuffer(stack, allocationInfo);
 	}
 
@@ -74,16 +74,16 @@ public class GPUBufferBackend implements IBufferBackend
 		var vulkanContext = (IVulkanContext) context;
 		var vkDevice = vulkanContext.getVkDevice();
 
-		vkDestroyBuffer(vkDevice, bufferId, null);
-		vkFreeMemory(vkDevice, bufferMemoryId, null);
+		vkDestroyBuffer(vkDevice, address, null);
+		vkFreeMemory(vkDevice, memoryAddress, null);
 
 		if (cpuBackend != null)
 		{
 			cpuBackend.free(context);
 		}
 
-		bufferId = -1;
-		bufferMemoryId = -1;
+		address = -1;
+		memoryAddress = -1;
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class GPUBufferBackend implements IBufferBackend
 			try (MemoryStack stack = MemoryStack.stackPush())
 			{
 				int size = (int) Math.min(data.remaining(), infos.size);
-				var bufferFiller = new BufferGPUFiller(stack, executionContext, bufferId);
+				var bufferFiller = new BufferGPUFiller(stack, executionContext, address);
 				bufferFiller.fill(data, size);
 			}
 		}
@@ -114,7 +114,7 @@ public class GPUBufferBackend implements IBufferBackend
 			@Override
 			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
-				BufferUtils.copyBuffer(commandBuffer, stagingBuffer.getId(), bufferId, size);
+				BufferUtils.copyBuffer(commandBuffer, stagingBuffer.getAddress(), address, size);
 			}
 		});
 	}
@@ -158,14 +158,14 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public long getId()
+	public long getAddress()
 	{
-		return bufferId;
+		return address;
 	}
 
 	@Override
-	public long getMemoryId()
+	public long getMemoryAddress()
 	{
-		return bufferMemoryId;
+		return memoryAddress;
 	}
 }

@@ -115,6 +115,15 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case ResourcePackage.DEPTH_IMAGE:
+		{
+			DepthImage depthImage = (DepthImage) theEObject;
+			T result = caseDepthImage(depthImage);
+			if (result == null) result = caseIResource(depthImage);
+			if (result == null) result = caseLNamedElement(depthImage);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		case ResourcePackage.IMAGE_LAYOUT:
 		{
 			ImageLayout imageLayout = (ImageLayout) theEObject;
@@ -278,13 +287,6 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = caseBasicResource(shader);
 			if (result == null) result = caseIResource(shader);
 			if (result == null) result = caseLNamedElement(shader);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.DEPTH_IMAGE:
-		{
-			DepthImage depthImage = (DepthImage) theEObject;
-			T result = caseDepthImage(depthImage);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}

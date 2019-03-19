@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.eclipse.emf.ecore.EObject;
+import org.sheepy.lily.vulkan.model.IResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +14,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DepthImage extends EObject
+public interface DepthImage extends IResource
 {} // DepthImage
