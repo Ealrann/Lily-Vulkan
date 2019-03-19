@@ -92,6 +92,20 @@ public class GraphicSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case GraphicPackage.SWAPCHAIN_CONFIGURATION:
+		{
+			SwapchainConfiguration swapchainConfiguration = (SwapchainConfiguration) theEObject;
+			T result = caseSwapchainConfiguration(swapchainConfiguration);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.FRAMEBUFFER_CONFIGURATION:
+		{
+			FramebufferConfiguration framebufferConfiguration = (FramebufferConfiguration) theEObject;
+			T result = caseFramebufferConfiguration(framebufferConfiguration);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		case GraphicPackage.RENDER_PASS_INFO:
 		{
 			RenderPassInfo renderPassInfo = (RenderPassInfo) theEObject;
@@ -296,6 +310,38 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseGraphicConfiguration(GraphicConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Swapchain Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Swapchain Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSwapchainConfiguration(SwapchainConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Framebuffer Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Framebuffer Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFramebufferConfiguration(FramebufferConfiguration object)
 	{
 		return null;
 	}

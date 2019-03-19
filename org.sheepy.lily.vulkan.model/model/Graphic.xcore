@@ -37,13 +37,23 @@ class GraphicConfiguration extends Configuration
 {
 	boolean clearBeforeRender = "true"
 	
-	EPresentMode presentationMode = "MailBox"
-	int requiredSwapImageCount = "3"
-	EImageUsage[] swapImageUsages
-
+	contains SwapchainConfiguration[1..1] swapchainConfiguration
+	contains FramebufferConfiguration[1..1] framebufferConfiguration
+	
 	@GenModel(propertyDescription="The stage on which we should wait until acquire the next image")
 	EPipelineStage acquireWaitStage = "COLOR_ATTACHMENT_OUTPUT_BIT"
 	contains ColorDomain[1..1] colorDomain
+}
+
+class SwapchainConfiguration
+{
+	EPresentMode presentationMode = "MailBox"
+	int requiredSwapImageCount = "3"
+	EImageUsage[] swapImageUsages
+}
+
+class FramebufferConfiguration
+{
 }
 
 class RenderPassInfo

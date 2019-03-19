@@ -27,6 +27,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
@@ -64,9 +65,6 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 			super.getPropertyDescriptors(object);
 
 			addClearBeforeRenderPropertyDescriptor(object);
-			addPresentationModePropertyDescriptor(object);
-			addRequiredSwapImageCountPropertyDescriptor(object);
-			addSwapImageUsagesPropertyDescriptor(object);
 			addAcquireWaitStagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -89,62 +87,6 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 						"_UI_GraphicConfiguration_type"),
 				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER, true, false,
 				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Presentation Mode feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPresentationModePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_GraphicConfiguration_presentationMode_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_GraphicConfiguration_presentationMode_feature",
-						"_UI_GraphicConfiguration_type"),
-				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__PRESENTATION_MODE, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Required Swap Image Count feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRequiredSwapImageCountPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_GraphicConfiguration_requiredSwapImageCount_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_GraphicConfiguration_requiredSwapImageCount_feature",
-						"_UI_GraphicConfiguration_type"),
-				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT, true,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Swap Image Usages feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSwapImageUsagesPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_GraphicConfiguration_swapImageUsages_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_GraphicConfiguration_swapImageUsages_feature",
-						"_UI_GraphicConfiguration_type"),
-				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -178,6 +120,10 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
+			childrenFeatures
+					.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION);
+			childrenFeatures
+					.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN);
 		}
 		return childrenFeatures;
@@ -240,13 +186,12 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(GraphicConfiguration.class))
 		{
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
-		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
 		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
+		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
 		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -266,6 +211,14 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(
+				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
+				GraphicFactory.eINSTANCE.createSwapchainConfiguration()));
+
+		newChildDescriptors.add(createChildParameter(
+				GraphicPackage.Literals.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
+				GraphicFactory.eINSTANCE.createFramebufferConfiguration()));
 
 		newChildDescriptors.add(
 				createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,

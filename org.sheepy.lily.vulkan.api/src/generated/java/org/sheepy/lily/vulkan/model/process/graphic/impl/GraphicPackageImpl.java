@@ -34,6 +34,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -48,6 +49,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
 import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 
@@ -67,6 +69,20 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass graphicConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass swapchainConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass framebufferConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -321,9 +337,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicConfiguration_PresentationMode()
+	public EReference getGraphicConfiguration_SwapchainConfiguration()
 	{
-		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(1);
+		return (EReference) graphicConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -332,20 +348,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraphicConfiguration_RequiredSwapImageCount()
+	public EReference getGraphicConfiguration_FramebufferConfiguration()
 	{
-		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getGraphicConfiguration_SwapImageUsages()
-	{
-		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(3);
+		return (EReference) graphicConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -356,7 +361,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getGraphicConfiguration_AcquireWaitStage()
 	{
-		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) graphicConfigurationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -367,7 +372,62 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EReference getGraphicConfiguration_ColorDomain()
 	{
-		return (EReference) graphicConfigurationEClass.getEStructuralFeatures().get(5);
+		return (EReference) graphicConfigurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSwapchainConfiguration()
+	{
+		return swapchainConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSwapchainConfiguration_PresentationMode()
+	{
+		return (EAttribute) swapchainConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSwapchainConfiguration_RequiredSwapImageCount()
+	{
+		return (EAttribute) swapchainConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSwapchainConfiguration_SwapImageUsages()
+	{
+		return (EAttribute) swapchainConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFramebufferConfiguration()
+	{
+		return framebufferConfigurationEClass;
 	}
 
 	/**
@@ -1437,12 +1497,20 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		// Create classes and their features
 		graphicConfigurationEClass = createEClass(GRAPHIC_CONFIGURATION);
 		createEAttribute(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER);
-		createEAttribute(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__PRESENTATION_MODE);
-		createEAttribute(graphicConfigurationEClass,
-				GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT);
-		createEAttribute(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES);
+		createEReference(graphicConfigurationEClass,
+				GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION);
+		createEReference(graphicConfigurationEClass,
+				GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION);
 		createEAttribute(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE);
 		createEReference(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__COLOR_DOMAIN);
+
+		swapchainConfigurationEClass = createEClass(SWAPCHAIN_CONFIGURATION);
+		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE);
+		createEAttribute(swapchainConfigurationEClass,
+				SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT);
+		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES);
+
+		framebufferConfigurationEClass = createEClass(FRAMEBUFFER_CONFIGURATION);
 
 		renderPassInfoEClass = createEClass(RENDER_PASS_INFO);
 		createEReference(renderPassInfoEClass, RENDER_PASS_INFO__ATTACHMENTS);
@@ -1628,18 +1696,16 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"clearBeforeRender", "true", 0, 1, GraphicConfiguration.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getGraphicConfiguration_PresentationMode(),
-				theEnumerationPackage.getEPresentMode(), "presentationMode", "MailBox", 0, 1,
+		initEReference(getGraphicConfiguration_SwapchainConfiguration(),
+				this.getSwapchainConfiguration(), null, "swapchainConfiguration", null, 1, 1,
 				GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGraphicConfiguration_RequiredSwapImageCount(), theEcorePackage.getEInt(),
-				"requiredSwapImageCount", "3", 0, 1, GraphicConfiguration.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getGraphicConfiguration_SwapImageUsages(),
-				theEnumerationPackage.getEImageUsage(), "swapImageUsages", null, 0, -1,
+		initEReference(getGraphicConfiguration_FramebufferConfiguration(),
+				this.getFramebufferConfiguration(), null, "framebufferConfiguration", null, 1, 1,
 				GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 		initEAttribute(getGraphicConfiguration_AcquireWaitStage(),
 				theEnumerationPackage.getEPipelineStage(), "acquireWaitStage",
 				"COLOR_ATTACHMENT_OUTPUT_BIT", 0, 1, GraphicConfiguration.class, !IS_TRANSIENT,
@@ -1649,6 +1715,25 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				null, "colorDomain", null, 1, 1, GraphicConfiguration.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(swapchainConfigurationEClass, SwapchainConfiguration.class,
+				"SwapchainConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSwapchainConfiguration_PresentationMode(),
+				theEnumerationPackage.getEPresentMode(), "presentationMode", "MailBox", 0, 1,
+				SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSwapchainConfiguration_RequiredSwapImageCount(),
+				theEcorePackage.getEInt(), "requiredSwapImageCount", "3", 0, 1,
+				SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSwapchainConfiguration_SwapImageUsages(),
+				theEnumerationPackage.getEImageUsage(), "swapImageUsages", null, 0, -1,
+				SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(framebufferConfigurationEClass, FramebufferConfiguration.class,
+				"FramebufferConfiguration", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(renderPassInfoEClass, RenderPassInfo.class, "RenderPassInfo", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

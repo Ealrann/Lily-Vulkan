@@ -35,12 +35,14 @@ import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
@@ -74,12 +76,16 @@ public class ModelFactory
 		application.setDebug(true);
 		application.getEngines().add(engine);
 
+		var swapchainConfiguration = new SwapchainConfigurationImpl();
+		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.TRANSFER_DST);
+		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.COLOR_ATTACHMENT);
+
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setColorDomain(new ColorDomainImpl());
 		configuration.setClearBeforeRender(false);
 		configuration.setAcquireWaitStage(EPipelineStage.TRANSFER_BIT);
-		configuration.getSwapImageUsages().add(EImageUsage.TRANSFER_DST);
-		configuration.getSwapImageUsages().add(EImageUsage.COLOR_ATTACHMENT);
+		configuration.setSwapchainConfiguration(swapchainConfiguration);
+		configuration.setFramebufferConfiguration(new FramebufferConfigurationImpl());
 
 		createComputeProcessPool();
 

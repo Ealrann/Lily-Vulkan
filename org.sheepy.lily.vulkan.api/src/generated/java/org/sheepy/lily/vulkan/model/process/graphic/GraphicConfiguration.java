@@ -2,14 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.sheepy.lily.vulkan.model.ColorDomain;
-
-import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
-
 import org.sheepy.lily.vulkan.model.process.Configuration;
 
 /**
@@ -22,9 +16,8 @@ import org.sheepy.lily.vulkan.model.process.Configuration;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#isClearBeforeRender <em>Clear Before Render</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode <em>Presentation Mode</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapchainConfiguration <em>Swapchain Configuration</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getFramebufferConfiguration <em>Framebuffer Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage <em>Acquire Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getColorDomain <em>Color Domain</em>}</li>
  * </ul>
@@ -63,79 +56,48 @@ public interface GraphicConfiguration extends Configuration
 	void setClearBeforeRender(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Presentation Mode</b></em>' attribute.
-	 * The default value is <code>"MailBox"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPresentMode}.
+	 * Returns the value of the '<em><b>Swapchain Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Presentation Mode</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Presentation Mode</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPresentMode
-	 * @see #setPresentationMode(EPresentMode)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_PresentationMode()
-	 * @model default="MailBox" unique="false"
+	 * @return the value of the '<em>Swapchain Configuration</em>' containment reference.
+	 * @see #setSwapchainConfiguration(SwapchainConfiguration)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_SwapchainConfiguration()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EPresentMode getPresentationMode();
+	SwapchainConfiguration getSwapchainConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode <em>Presentation Mode</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapchainConfiguration <em>Swapchain Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Presentation Mode</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPresentMode
-	 * @see #getPresentationMode()
+	 * @param value the new value of the '<em>Swapchain Configuration</em>' containment reference.
+	 * @see #getSwapchainConfiguration()
 	 * @generated
 	 */
-	void setPresentationMode(EPresentMode value);
+	void setSwapchainConfiguration(SwapchainConfiguration value);
 
 	/**
-	 * Returns the value of the '<em><b>Required Swap Image Count</b></em>' attribute.
-	 * The default value is <code>"3"</code>.
+	 * Returns the value of the '<em><b>Framebuffer Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Required Swap Image Count</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Required Swap Image Count</em>' attribute.
-	 * @see #setRequiredSwapImageCount(int)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_RequiredSwapImageCount()
-	 * @model default="3" unique="false"
+	 * @return the value of the '<em>Framebuffer Configuration</em>' containment reference.
+	 * @see #setFramebufferConfiguration(FramebufferConfiguration)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_FramebufferConfiguration()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	int getRequiredSwapImageCount();
+	FramebufferConfiguration getFramebufferConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getFramebufferConfiguration <em>Framebuffer Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Required Swap Image Count</em>' attribute.
-	 * @see #getRequiredSwapImageCount()
+	 * @param value the new value of the '<em>Framebuffer Configuration</em>' containment reference.
+	 * @see #getFramebufferConfiguration()
 	 * @generated
 	 */
-	void setRequiredSwapImageCount(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Swap Image Usages</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage}.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Swap Image Usages</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Swap Image Usages</em>' attribute list.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageUsage
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_SwapImageUsages()
-	 * @model unique="false"
-	 * @generated
-	 */
-	EList<EImageUsage> getSwapImageUsages();
+	void setFramebufferConfiguration(FramebufferConfiguration value);
 
 	/**
 	 * Returns the value of the '<em><b>Acquire Wait Stage</b></em>' attribute.

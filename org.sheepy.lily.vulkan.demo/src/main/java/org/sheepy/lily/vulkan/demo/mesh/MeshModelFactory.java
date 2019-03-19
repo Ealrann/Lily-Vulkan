@@ -29,6 +29,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionIm
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentDescriptionImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl;
@@ -37,6 +38,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.ScissorImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.StaticViewportStateImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl;
 import org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl;
 import org.sheepy.lily.vulkan.model.resource.DepthImage;
@@ -75,6 +77,8 @@ public class MeshModelFactory
 		application.getEngines().add(engine);
 
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
+		configuration.setSwapchainConfiguration(new SwapchainConfigurationImpl());
+		configuration.setFramebufferConfiguration(new FramebufferConfigurationImpl());
 		configuration.setColorDomain(new ColorDomainImpl());
 
 		graphicProcess = newMeshProcess();

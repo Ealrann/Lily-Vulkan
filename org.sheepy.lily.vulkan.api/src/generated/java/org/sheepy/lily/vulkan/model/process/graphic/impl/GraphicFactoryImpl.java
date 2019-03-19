@@ -66,6 +66,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 		{
 		case GraphicPackage.GRAPHIC_CONFIGURATION:
 			return createGraphicConfiguration();
+		case GraphicPackage.SWAPCHAIN_CONFIGURATION:
+			return createSwapchainConfiguration();
+		case GraphicPackage.FRAMEBUFFER_CONFIGURATION:
+			return createFramebufferConfiguration();
 		case GraphicPackage.RENDER_PASS_INFO:
 			return createRenderPassInfo();
 		case GraphicPackage.SUBPASS:
@@ -116,6 +120,30 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicConfigurationImpl graphicConfiguration = new GraphicConfigurationImpl();
 		return graphicConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SwapchainConfiguration createSwapchainConfiguration()
+	{
+		SwapchainConfigurationImpl swapchainConfiguration = new SwapchainConfigurationImpl();
+		return swapchainConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FramebufferConfiguration createFramebufferConfiguration()
+	{
+		FramebufferConfigurationImpl framebufferConfiguration = new FramebufferConfigurationImpl();
+		return framebufferConfiguration;
 	}
 
 	/**

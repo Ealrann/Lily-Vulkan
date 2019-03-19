@@ -83,32 +83,24 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Presentation Mode</b></em>' attribute.
+	 * The feature id for the '<em><b>Swapchain Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__PRESENTATION_MODE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 1;
+	int GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION = ProcessPackage.CONFIGURATION_FEATURE_COUNT
+			+ 1;
 
 	/**
-	 * The feature id for the '<em><b>Required Swap Image Count</b></em>' attribute.
+	 * The feature id for the '<em><b>Framebuffer Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT
+	int GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION = ProcessPackage.CONFIGURATION_FEATURE_COUNT
 			+ 2;
-
-	/**
-	 * The feature id for the '<em><b>Swap Image Usages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Acquire Wait Stage</b></em>' attribute.
@@ -117,7 +109,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 4;
+	int GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Color Domain</b></em>' containment reference.
@@ -126,7 +118,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION__COLOR_DOMAIN = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 5;
+	int GRAPHIC_CONFIGURATION__COLOR_DOMAIN = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -135,7 +127,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_CONFIGURATION_FEATURE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 6;
+	int GRAPHIC_CONFIGURATION_FEATURE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Configuration</em>' class.
@@ -147,6 +139,89 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_CONFIGURATION_OPERATION_COUNT = ProcessPackage.CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl <em>Swapchain Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSwapchainConfiguration()
+	 * @generated
+	 */
+	int SWAPCHAIN_CONFIGURATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Presentation Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Required Swap Image Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Swap Image Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES = 2;
+
+	/**
+	 * The number of structural features of the '<em>Swapchain Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAPCHAIN_CONFIGURATION_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Swapchain Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAPCHAIN_CONFIGURATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl <em>Framebuffer Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getFramebufferConfiguration()
+	 * @generated
+	 */
+	int FRAMEBUFFER_CONFIGURATION = 2;
+
+	/**
+	 * The number of structural features of the '<em>Framebuffer Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAMEBUFFER_CONFIGURATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Framebuffer Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAMEBUFFER_CONFIGURATION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,7 +229,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRenderPassInfo()
 	 * @generated
 	 */
-	int RENDER_PASS_INFO = 1;
+	int RENDER_PASS_INFO = 3;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' containment reference list.
@@ -218,7 +293,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpass()
 	 * @generated
 	 */
-	int SUBPASS = 2;
+	int SUBPASS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -264,7 +339,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
 	 * @generated
 	 */
-	int ATTACHEMENT_REF = 3;
+	int ATTACHEMENT_REF = 5;
 
 	/**
 	 * The feature id for the '<em><b>Attachement</b></em>' reference.
@@ -310,7 +385,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSubpassDependency()
 	 * @generated
 	 */
-	int SUBPASS_DEPENDENCY = 4;
+	int SUBPASS_DEPENDENCY = 6;
 
 	/**
 	 * The feature id for the '<em><b>Src Subpass</b></em>' reference.
@@ -392,7 +467,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentDescription()
 	 * @generated
 	 */
-	int ATTACHMENT_DESCRIPTION = 5;
+	int ATTACHMENT_DESCRIPTION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -492,7 +567,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDepthAttachmentDescription()
 	 * @generated
 	 */
-	int DEPTH_ATTACHMENT_DESCRIPTION = 6;
+	int DEPTH_ATTACHMENT_DESCRIPTION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -601,7 +676,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicProcess()
 	 * @generated
 	 */
-	int GRAPHIC_PROCESS = 7;
+	int GRAPHIC_PROCESS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -728,7 +803,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
 	 * @generated
 	 */
-	int IGRAPHICS_PIPELINE = 8;
+	int IGRAPHICS_PIPELINE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -837,7 +912,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
 	 * @generated
 	 */
-	int IGUI_PIPELINE = 9;
+	int IGUI_PIPELINE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -946,7 +1021,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAbstractGraphicsPipeline()
 	 * @generated
 	 */
-	int ABSTRACT_GRAPHICS_PIPELINE = 10;
+	int ABSTRACT_GRAPHICS_PIPELINE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -1150,7 +1225,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 	 * @generated
 	 */
-	int GRAPHICS_PIPELINE = 11;
+	int GRAPHICS_PIPELINE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -1349,7 +1424,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
 	 * @generated
 	 */
-	int DYNAMIC_STATE = 12;
+	int DYNAMIC_STATE = 14;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' attribute list.
@@ -1386,7 +1461,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
 	 * @generated
 	 */
-	int COLOR_BLEND = 13;
+	int COLOR_BLEND = 15;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' containment reference list.
@@ -1477,7 +1552,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
 	 * @generated
 	 */
-	int COLOR_BLEND_ATTACHMENT = 14;
+	int COLOR_BLEND_ATTACHMENT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Blend Enable</b></em>' attribute.
@@ -1604,7 +1679,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
 	 * @generated
 	 */
-	int VIEWPORT_STATE = 15;
+	int VIEWPORT_STATE = 17;
 
 	/**
 	 * The number of structural features of the '<em>Viewport State</em>' class.
@@ -1632,7 +1707,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
 	 * @generated
 	 */
-	int STATIC_VIEWPORT_STATE = 16;
+	int STATIC_VIEWPORT_STATE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Viewports</b></em>' containment reference list.
@@ -1678,7 +1753,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
 	 * @generated
 	 */
-	int DYNAMIC_VIEWPORT_STATE = 17;
+	int DYNAMIC_VIEWPORT_STATE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Viewport Count</b></em>' attribute.
@@ -1724,7 +1799,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
 	 * @generated
 	 */
-	int VIEWPORT = 18;
+	int VIEWPORT = 20;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1788,7 +1863,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
 	 * @generated
 	 */
-	int SCISSOR = 19;
+	int SCISSOR = 21;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1834,7 +1909,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
 	 * @generated
 	 */
-	int RASTERIZER = 20;
+	int RASTERIZER = 22;
 
 	/**
 	 * The feature id for the '<em><b>Cull Mode</b></em>' attribute.
@@ -1925,7 +2000,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 	 * @generated
 	 */
-	int IMAGE_PIPELINE = 21;
+	int IMAGE_PIPELINE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -2138,37 +2213,26 @@ public interface GraphicPackage extends EPackage
 	EAttribute getGraphicConfiguration_ClearBeforeRender();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode <em>Presentation Mode</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapchainConfiguration <em>Swapchain Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Presentation Mode</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getPresentationMode()
+	 * @return the meta object for the containment reference '<em>Swapchain Configuration</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapchainConfiguration()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
-	EAttribute getGraphicConfiguration_PresentationMode();
+	EReference getGraphicConfiguration_SwapchainConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getFramebufferConfiguration <em>Framebuffer Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Required Swap Image Count</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getRequiredSwapImageCount()
+	 * @return the meta object for the containment reference '<em>Framebuffer Configuration</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getFramebufferConfiguration()
 	 * @see #getGraphicConfiguration()
 	 * @generated
 	 */
-	EAttribute getGraphicConfiguration_RequiredSwapImageCount();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Swap Image Usages</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getSwapImageUsages()
-	 * @see #getGraphicConfiguration()
-	 * @generated
-	 */
-	EAttribute getGraphicConfiguration_SwapImageUsages();
+	EReference getGraphicConfiguration_FramebufferConfiguration();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration#getAcquireWaitStage <em>Acquire Wait Stage</em>}'.
@@ -2191,6 +2255,59 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EReference getGraphicConfiguration_ColorDomain();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration <em>Swapchain Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Swapchain Configuration</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration
+	 * @generated
+	 */
+	EClass getSwapchainConfiguration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getPresentationMode <em>Presentation Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Presentation Mode</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getPresentationMode()
+	 * @see #getSwapchainConfiguration()
+	 * @generated
+	 */
+	EAttribute getSwapchainConfiguration_PresentationMode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Required Swap Image Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getRequiredSwapImageCount()
+	 * @see #getSwapchainConfiguration()
+	 * @generated
+	 */
+	EAttribute getSwapchainConfiguration_RequiredSwapImageCount();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Swap Image Usages</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getSwapImageUsages()
+	 * @see #getSwapchainConfiguration()
+	 * @generated
+	 */
+	EAttribute getSwapchainConfiguration_SwapImageUsages();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration <em>Framebuffer Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Framebuffer Configuration</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration
+	 * @generated
+	 */
+	EClass getFramebufferConfiguration();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo <em>Render Pass Info</em>}'.
@@ -3249,31 +3366,22 @@ public interface GraphicPackage extends EPackage
 				.getGraphicConfiguration_ClearBeforeRender();
 
 		/**
-		 * The meta object literal for the '<em><b>Presentation Mode</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Swapchain Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GRAPHIC_CONFIGURATION__PRESENTATION_MODE = eINSTANCE
-				.getGraphicConfiguration_PresentationMode();
+		EReference GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION = eINSTANCE
+				.getGraphicConfiguration_SwapchainConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Required Swap Image Count</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Framebuffer Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT = eINSTANCE
-				.getGraphicConfiguration_RequiredSwapImageCount();
-
-		/**
-		 * The meta object literal for the '<em><b>Swap Image Usages</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES = eINSTANCE
-				.getGraphicConfiguration_SwapImageUsages();
+		EReference GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION = eINSTANCE
+				.getGraphicConfiguration_FramebufferConfiguration();
 
 		/**
 		 * The meta object literal for the '<em><b>Acquire Wait Stage</b></em>' attribute feature.
@@ -3292,6 +3400,53 @@ public interface GraphicPackage extends EPackage
 		 */
 		EReference GRAPHIC_CONFIGURATION__COLOR_DOMAIN = eINSTANCE
 				.getGraphicConfiguration_ColorDomain();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl <em>Swapchain Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSwapchainConfiguration()
+		 * @generated
+		 */
+		EClass SWAPCHAIN_CONFIGURATION = eINSTANCE.getSwapchainConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Presentation Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE = eINSTANCE
+				.getSwapchainConfiguration_PresentationMode();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Swap Image Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT = eINSTANCE
+				.getSwapchainConfiguration_RequiredSwapImageCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Swap Image Usages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES = eINSTANCE
+				.getSwapchainConfiguration_SwapImageUsages();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl <em>Framebuffer Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getFramebufferConfiguration()
+		 * @generated
+		 */
+		EClass FRAMEBUFFER_CONFIGURATION = eINSTANCE.getFramebufferConfiguration();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.

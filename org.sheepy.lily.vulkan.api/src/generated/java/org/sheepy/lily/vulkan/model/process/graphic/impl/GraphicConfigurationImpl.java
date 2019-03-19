@@ -2,29 +2,19 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-
 import org.sheepy.lily.vulkan.model.ColorDomain;
-
-import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
-
+import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,9 +25,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#isClearBeforeRender <em>Clear Before Render</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getPresentationMode <em>Presentation Mode</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSwapImageUsages <em>Swap Image Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getSwapchainConfiguration <em>Swapchain Configuration</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getFramebufferConfiguration <em>Framebuffer Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getAcquireWaitStage <em>Acquire Wait Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl#getColorDomain <em>Color Domain</em>}</li>
  * </ul>
@@ -68,54 +57,24 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	protected boolean clearBeforeRender = CLEAR_BEFORE_RENDER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPresentationMode() <em>Presentation Mode</em>}' attribute.
+	 * The cached value of the '{@link #getSwapchainConfiguration() <em>Swapchain Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPresentationMode()
+	 * @see #getSwapchainConfiguration()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EPresentMode PRESENTATION_MODE_EDEFAULT = EPresentMode.MAIL_BOX;
+	protected SwapchainConfiguration swapchainConfiguration;
 
 	/**
-	 * The cached value of the '{@link #getPresentationMode() <em>Presentation Mode</em>}' attribute.
+	 * The cached value of the '{@link #getFramebufferConfiguration() <em>Framebuffer Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPresentationMode()
+	 * @see #getFramebufferConfiguration()
 	 * @generated
 	 * @ordered
 	 */
-	protected EPresentMode presentationMode = PRESENTATION_MODE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getRequiredSwapImageCount() <em>Required Swap Image Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRequiredSwapImageCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT = 3;
-
-	/**
-	 * The cached value of the '{@link #getRequiredSwapImageCount() <em>Required Swap Image Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRequiredSwapImageCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected int requiredSwapImageCount = REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSwapImageUsages() <em>Swap Image Usages</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSwapImageUsages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EImageUsage> swapImageUsages;
+	protected FramebufferConfiguration framebufferConfiguration;
 
 	/**
 	 * The default value of the '{@link #getAcquireWaitStage() <em>Acquire Wait Stage</em>}' attribute.
@@ -200,9 +159,9 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public EPresentMode getPresentationMode()
+	public SwapchainConfiguration getSwapchainConfiguration()
 	{
-		return presentationMode;
+		return swapchainConfiguration;
 	}
 
 	/**
@@ -210,58 +169,110 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setPresentationMode(EPresentMode newPresentationMode)
+	public NotificationChain basicSetSwapchainConfiguration(SwapchainConfiguration newSwapchainConfiguration,
+															NotificationChain msgs)
 	{
-		EPresentMode oldPresentationMode = presentationMode;
-		presentationMode = newPresentationMode == null
-				? PRESENTATION_MODE_EDEFAULT
-				: newPresentationMode;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE, oldPresentationMode,
-				presentationMode));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getRequiredSwapImageCount()
-	{
-		return requiredSwapImageCount;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setRequiredSwapImageCount(int newRequiredSwapImageCount)
-	{
-		int oldRequiredSwapImageCount = requiredSwapImageCount;
-		requiredSwapImageCount = newRequiredSwapImageCount;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT,
-				oldRequiredSwapImageCount, requiredSwapImageCount));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<EImageUsage> getSwapImageUsages()
-	{
-		if (swapImageUsages == null)
+		SwapchainConfiguration oldSwapchainConfiguration = swapchainConfiguration;
+		swapchainConfiguration = newSwapchainConfiguration;
+		if (eNotificationRequired())
 		{
-			swapImageUsages = new EDataTypeEList<EImageUsage>(EImageUsage.class, this,
-					GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
+					oldSwapchainConfiguration, newSwapchainConfiguration);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
-		return swapImageUsages;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSwapchainConfiguration(SwapchainConfiguration newSwapchainConfiguration)
+	{
+		if (newSwapchainConfiguration != swapchainConfiguration)
+		{
+			NotificationChain msgs = null;
+			if (swapchainConfiguration != null)
+				msgs = ((InternalEObject) swapchainConfiguration).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
+						null, msgs);
+			if (newSwapchainConfiguration != null)
+				msgs = ((InternalEObject) newSwapchainConfiguration).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
+						null, msgs);
+			msgs = basicSetSwapchainConfiguration(newSwapchainConfiguration, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION,
+				newSwapchainConfiguration, newSwapchainConfiguration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FramebufferConfiguration getFramebufferConfiguration()
+	{
+		return framebufferConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFramebufferConfiguration(	FramebufferConfiguration newFramebufferConfiguration,
+																NotificationChain msgs)
+	{
+		FramebufferConfiguration oldFramebufferConfiguration = framebufferConfiguration;
+		framebufferConfiguration = newFramebufferConfiguration;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
+					oldFramebufferConfiguration, newFramebufferConfiguration);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFramebufferConfiguration(FramebufferConfiguration newFramebufferConfiguration)
+	{
+		if (newFramebufferConfiguration != framebufferConfiguration)
+		{
+			NotificationChain msgs = null;
+			if (framebufferConfiguration != null)
+				msgs = ((InternalEObject) framebufferConfiguration).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
+						null, msgs);
+			if (newFramebufferConfiguration != null)
+				msgs = ((InternalEObject) newFramebufferConfiguration).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
+						null, msgs);
+			msgs = basicSetFramebufferConfiguration(newFramebufferConfiguration, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION,
+				newFramebufferConfiguration, newFramebufferConfiguration));
 	}
 
 	/**
@@ -360,6 +371,10 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
+			return basicSetSwapchainConfiguration(null, msgs);
+		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
+			return basicSetFramebufferConfiguration(null, msgs);
 		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
 			return basicSetColorDomain(null, msgs);
 		}
@@ -378,12 +393,10 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		{
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			return isClearBeforeRender();
-		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-			return getPresentationMode();
-		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-			return getRequiredSwapImageCount();
-		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-			return getSwapImageUsages();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
+			return getSwapchainConfiguration();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
+			return getFramebufferConfiguration();
 		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 			return getAcquireWaitStage();
 		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
@@ -406,15 +419,11 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			setClearBeforeRender((Boolean) newValue);
 			return;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-			setPresentationMode((EPresentMode) newValue);
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
+			setSwapchainConfiguration((SwapchainConfiguration) newValue);
 			return;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-			setRequiredSwapImageCount((Integer) newValue);
-			return;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-			getSwapImageUsages().clear();
-			getSwapImageUsages().addAll((Collection<? extends EImageUsage>) newValue);
+		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
+			setFramebufferConfiguration((FramebufferConfiguration) newValue);
 			return;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 			setAcquireWaitStage((EPipelineStage) newValue);
@@ -439,14 +448,11 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			setClearBeforeRender(CLEAR_BEFORE_RENDER_EDEFAULT);
 			return;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-			setPresentationMode(PRESENTATION_MODE_EDEFAULT);
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
+			setSwapchainConfiguration((SwapchainConfiguration) null);
 			return;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-			setRequiredSwapImageCount(REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT);
-			return;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-			getSwapImageUsages().clear();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
+			setFramebufferConfiguration((FramebufferConfiguration) null);
 			return;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 			setAcquireWaitStage(ACQUIRE_WAIT_STAGE_EDEFAULT);
@@ -470,12 +476,10 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		{
 		case GraphicPackage.GRAPHIC_CONFIGURATION__CLEAR_BEFORE_RENDER:
 			return clearBeforeRender != CLEAR_BEFORE_RENDER_EDEFAULT;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__PRESENTATION_MODE:
-			return presentationMode != PRESENTATION_MODE_EDEFAULT;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT:
-			return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
-		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAP_IMAGE_USAGES:
-			return swapImageUsages != null && !swapImageUsages.isEmpty();
+		case GraphicPackage.GRAPHIC_CONFIGURATION__SWAPCHAIN_CONFIGURATION:
+			return swapchainConfiguration != null;
+		case GraphicPackage.GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION:
+			return framebufferConfiguration != null;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE:
 			return acquireWaitStage != ACQUIRE_WAIT_STAGE_EDEFAULT;
 		case GraphicPackage.GRAPHIC_CONFIGURATION__COLOR_DOMAIN:
@@ -497,12 +501,6 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (clearBeforeRender: ");
 		result.append(clearBeforeRender);
-		result.append(", presentationMode: ");
-		result.append(presentationMode);
-		result.append(", requiredSwapImageCount: ");
-		result.append(requiredSwapImageCount);
-		result.append(", swapImageUsages: ");
-		result.append(swapImageUsages);
 		result.append(", acquireWaitStage: ");
 		result.append(acquireWaitStage);
 		result.append(')');

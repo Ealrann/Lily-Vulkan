@@ -87,6 +87,18 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
+		public Adapter caseSwapchainConfiguration(SwapchainConfiguration object)
+		{
+			return createSwapchainConfigurationAdapter();
+		}
+
+		@Override
+		public Adapter caseFramebufferConfiguration(FramebufferConfiguration object)
+		{
+			return createFramebufferConfigurationAdapter();
+		}
+
+		@Override
 		public Adapter caseRenderPassInfo(RenderPassInfo object)
 		{
 			return createRenderPassInfoAdapter();
@@ -304,6 +316,36 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGraphicConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration <em>Swapchain Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration
+	 * @generated
+	 */
+	public Adapter createSwapchainConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration <em>Framebuffer Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration
+	 * @generated
+	 */
+	public Adapter createFramebufferConfigurationAdapter()
 	{
 		return null;
 	}

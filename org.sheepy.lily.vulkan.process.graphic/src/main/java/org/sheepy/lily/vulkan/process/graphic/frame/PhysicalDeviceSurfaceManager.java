@@ -85,6 +85,32 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 		surface = null;
 	}
 
+	public int bestSupportedImageCount(int required)
+	{
+		int requiredImageCount = 0;
+		final var capabilities = this.capabilities.vkCapabilities;
+
+		if (required == 0)
+		{
+			requiredImageCount = capabilities.minImageCount() + 1;
+		}
+		else if (required < capabilities.minImageCount())
+		{
+			requiredImageCount = capabilities.minImageCount();
+		}
+		else
+		{
+			requiredImageCount = required;
+		}
+
+		if (capabilities.maxImageCount() > 0 && requiredImageCount > capabilities.maxImageCount())
+		{
+			requiredImageCount = capabilities.maxImageCount();
+		}
+
+		return requiredImageCount;
+	}
+
 	public ColorDomain getColorDomain()
 	{
 		return requiredColorDomain;

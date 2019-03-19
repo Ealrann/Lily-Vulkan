@@ -33,6 +33,24 @@ public interface GraphicFactory extends EFactory
 	GraphicConfiguration createGraphicConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Swapchain Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Swapchain Configuration</em>'.
+	 * @generated
+	 */
+	SwapchainConfiguration createSwapchainConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Framebuffer Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Framebuffer Configuration</em>'.
+	 * @generated
+	 */
+	FramebufferConfiguration createFramebufferConfiguration();
+
+	/**
 	 * Returns a new object of class '<em>Render Pass Info</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

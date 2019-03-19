@@ -131,6 +131,56 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SwapchainConfigurationItemProvider swapchainConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSwapchainConfigurationAdapter()
+	{
+		if (swapchainConfigurationItemProvider == null)
+		{
+			swapchainConfigurationItemProvider = new SwapchainConfigurationItemProvider(this);
+		}
+
+		return swapchainConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FramebufferConfigurationItemProvider framebufferConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFramebufferConfigurationAdapter()
+	{
+		if (framebufferConfigurationItemProvider == null)
+		{
+			framebufferConfigurationItemProvider = new FramebufferConfigurationItemProvider(this);
+		}
+
+		return framebufferConfigurationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -706,6 +756,10 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	public void dispose()
 	{
 		if (graphicConfigurationItemProvider != null) graphicConfigurationItemProvider.dispose();
+		if (swapchainConfigurationItemProvider != null)
+			swapchainConfigurationItemProvider.dispose();
+		if (framebufferConfigurationItemProvider != null)
+			framebufferConfigurationItemProvider.dispose();
 		if (renderPassInfoItemProvider != null) renderPassInfoItemProvider.dispose();
 		if (subpassItemProvider != null) subpassItemProvider.dispose();
 		if (attachementRefItemProvider != null) attachementRefItemProvider.dispose();
