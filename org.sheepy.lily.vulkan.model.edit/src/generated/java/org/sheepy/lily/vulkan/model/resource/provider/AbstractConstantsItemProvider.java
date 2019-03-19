@@ -60,7 +60,7 @@ public class AbstractConstantsItemProvider extends ItemProviderAdapter
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addStagePropertyDescriptor(object);
+			addStagesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -83,19 +83,19 @@ public class AbstractConstantsItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Stage feature.
+	 * This adds a property descriptor for the Stages feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStagePropertyDescriptor(Object object)
+	protected void addStagesPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AbstractConstants_stage_feature"),
+				getResourceLocator(), getString("_UI_AbstractConstants_stages_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractConstants_stage_feature", "_UI_AbstractConstants_type"),
-				ResourcePackage.Literals.ABSTRACT_CONSTANTS__STAGE, true, false, false,
+						"_UI_AbstractConstants_stages_feature", "_UI_AbstractConstants_type"),
+				ResourcePackage.Literals.ABSTRACT_CONSTANTS__STAGES, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -129,7 +129,7 @@ public class AbstractConstantsItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(AbstractConstants.class))
 		{
 		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
-		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGES:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

@@ -225,13 +225,13 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_CONSTANTS__NAME = ResourcePackage.CONSTANTS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONSTANTS__STAGE = ResourcePackage.CONSTANTS__STAGE;
+	int NUKLEAR_CONSTANTS__STAGES = ResourcePackage.CONSTANTS__STAGES;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.

@@ -2,12 +2,15 @@
  */
 package org.sheepy.lily.vulkan.model.resource.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
@@ -22,7 +25,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl#getStages <em>Stages</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,24 +54,14 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
+	 * The cached value of the '{@link #getStages() <em>Stages</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStage()
+	 * @see #getStages()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EShaderStage STAGE_EDEFAULT = EShaderStage.VERTEX_BIT;
-
-	/**
-	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EShaderStage stage = STAGE_EDEFAULT;
+	protected EList<EShaderStage> stages;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,23 +115,14 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public EShaderStage getStage()
+	public EList<EShaderStage> getStages()
 	{
-		return stage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStage(EShaderStage newStage)
-	{
-		EShaderStage oldStage = stage;
-		stage = newStage == null ? STAGE_EDEFAULT : newStage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.ABSTRACT_CONSTANTS__STAGE, oldStage, stage));
+		if (stages == null)
+		{
+			stages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this,
+					ResourcePackage.ABSTRACT_CONSTANTS__STAGES);
+		}
+		return stages;
 	}
 
 	/**
@@ -153,8 +137,8 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 		{
 		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
 			return getName();
-		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
-			return getStage();
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGES:
+			return getStages();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -164,6 +148,7 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -172,8 +157,9 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
 			setName((String) newValue);
 			return;
-		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
-			setStage((EShaderStage) newValue);
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGES:
+			getStages().clear();
+			getStages().addAll((Collection<? extends EShaderStage>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -192,8 +178,8 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
-			setStage(STAGE_EDEFAULT);
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGES:
+			getStages().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -211,8 +197,8 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 		{
 		case ResourcePackage.ABSTRACT_CONSTANTS__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ResourcePackage.ABSTRACT_CONSTANTS__STAGE:
-			return stage != STAGE_EDEFAULT;
+		case ResourcePackage.ABSTRACT_CONSTANTS__STAGES:
+			return stages != null && !stages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -230,8 +216,8 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", stage: ");
-		result.append(stage);
+		result.append(", stages: ");
+		result.append(stages);
 		result.append(')');
 		return result.toString();
 	}

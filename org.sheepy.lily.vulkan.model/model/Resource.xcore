@@ -108,7 +108,7 @@ type JavaModule wraps Module
 
 abstract class AbstractConstants extends BasicResource
 {
-	EShaderStage stage
+	EShaderStage[] stages
 }
 
 class Constants extends AbstractConstants

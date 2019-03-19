@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 
 /**
@@ -13,7 +14,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStages <em>Stages</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getAbstractConstants()
@@ -23,32 +24,17 @@ import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 public interface AbstractConstants extends BasicResource
 {
 	/**
-	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
+	 * Returns the value of the '<em><b>Stages</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EShaderStage}.
 	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EShaderStage}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Stage</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stage</em>' attribute.
+	 * @return the value of the '<em>Stages</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
-	 * @see #setStage(EShaderStage)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getAbstractConstants_Stage()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getAbstractConstants_Stages()
 	 * @model unique="false"
 	 * @generated
 	 */
-	EShaderStage getStage();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStage <em>Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
-	 * @see #getStage()
-	 * @generated
-	 */
-	void setStage(EShaderStage value);
+	EList<EShaderStage> getStages();
 
 } // AbstractConstants

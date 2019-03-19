@@ -16,17 +16,24 @@ public class PushConstantAdapter implements IPipelineUnitAdapter<AbstractCommand
 	@Override
 	public void record(IPipelineUnit unit, AbstractCommandBuffer commandBuffer, int bindPoint)
 	{
-		IPipeline pipeline = (IPipeline) unit.eContainer();
-		AbstractPipelineAdapter<?> adapter = AbstractPipelineAdapter.adapt(pipeline);
-		final var constants = adapter.getConstants();
+		var pipeline = (IPipeline) unit.eContainer();
+		var pipelineAdapter = AbstractPipelineAdapter.adapt(pipeline);
+		final var constants = pipelineAdapter.getConstants();
 		if (constants != null)
 		{
+			final long layoutId = pipelineAdapter.pipelineLayout;
 			final var pushConstantAdapter = AbstractConstantsAdapter.adapt(constants);
 			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
+			final var stages = constants.getStages();
+			final var data = pushConstantAdapter.getData();
 
-			final EShaderStage stage = constants.getStage();
-			vkCmdPushConstants(vkCommandBuffer, adapter.pipelineLayout, stage.getValue(), 0,
-					pushConstantAdapter.getData());
+			int stageFlags = 0;
+			for (EShaderStage stage : stages)
+			{
+				stageFlags |= stage.getValue();
+			}
+
+			vkCmdPushConstants(vkCommandBuffer, layoutId, stageFlags, 0, data);
 		}
 	}
 }

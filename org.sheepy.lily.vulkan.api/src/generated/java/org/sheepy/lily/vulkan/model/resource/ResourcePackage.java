@@ -994,13 +994,13 @@ public interface ResourcePackage extends EPackage
 	int ABSTRACT_CONSTANTS__NAME = BASIC_RESOURCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_CONSTANTS__STAGE = BASIC_RESOURCE_FEATURE_COUNT + 0;
+	int ABSTRACT_CONSTANTS__STAGES = BASIC_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Constants</em>' class.
@@ -1040,13 +1040,13 @@ public interface ResourcePackage extends EPackage
 	int CONSTANTS__NAME = ABSTRACT_CONSTANTS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANTS__STAGE = ABSTRACT_CONSTANTS__STAGE;
+	int CONSTANTS__STAGES = ABSTRACT_CONSTANTS__STAGES;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
@@ -2362,15 +2362,15 @@ public interface ResourcePackage extends EPackage
 	EClass getAbstractConstants();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStage <em>Stage</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStages <em>Stages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStage()
+	 * @return the meta object for the attribute list '<em>Stages</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStages()
 	 * @see #getAbstractConstants()
 	 * @generated
 	 */
-	EAttribute getAbstractConstants_Stage();
+	EAttribute getAbstractConstants_Stages();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Constants <em>Constants</em>}'.
@@ -3233,12 +3233,12 @@ public interface ResourcePackage extends EPackage
 		EClass ABSTRACT_CONSTANTS = eINSTANCE.getAbstractConstants();
 
 		/**
-		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Stages</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABSTRACT_CONSTANTS__STAGE = eINSTANCE.getAbstractConstants_Stage();
+		EAttribute ABSTRACT_CONSTANTS__STAGES = eINSTANCE.getAbstractConstants_Stages();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.

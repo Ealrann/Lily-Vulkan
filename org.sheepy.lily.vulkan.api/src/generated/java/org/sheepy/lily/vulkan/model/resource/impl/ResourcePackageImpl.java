@@ -867,7 +867,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAbstractConstants_Stage()
+	public EAttribute getAbstractConstants_Stages()
 	{
 		return (EAttribute) abstractConstantsEClass.getEStructuralFeatures().get(0);
 	}
@@ -1412,7 +1412,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(samplerEClass, SAMPLER__MAX_ANISOTROPY);
 
 		abstractConstantsEClass = createEClass(ABSTRACT_CONSTANTS);
-		createEAttribute(abstractConstantsEClass, ABSTRACT_CONSTANTS__STAGE);
+		createEAttribute(abstractConstantsEClass, ABSTRACT_CONSTANTS__STAGES);
 
 		constantsEClass = createEClass(CONSTANTS);
 		createEAttribute(constantsEClass, CONSTANTS__DATA);
@@ -1680,8 +1680,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(abstractConstantsEClass, AbstractConstants.class, "AbstractConstants",
 				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractConstants_Stage(), theEnumerationPackage.getEShaderStage(),
-				"stage", null, 0, 1, AbstractConstants.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEAttribute(getAbstractConstants_Stages(), theEnumerationPackage.getEShaderStage(),
+				"stages", null, 0, -1, AbstractConstants.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constantsEClass, Constants.class, "Constants", !IS_ABSTRACT, !IS_INTERFACE,
