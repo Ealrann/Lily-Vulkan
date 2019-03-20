@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.core.api.util.LTreeIterator;
@@ -33,6 +34,7 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,6 +48,7 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getProcesses <em>Processes</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  *
  * @generated
@@ -101,6 +104,16 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * @ordered
 	 */
 	protected EList<IProcess> processes;
+
+	/**
+	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EPhysicalDeviceFeature> features;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -247,6 +260,22 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 	 * @generated
 	 */
 	@Override
+	public EList<EPhysicalDeviceFeature> getFeatures()
+	{
+		if (features == null)
+		{
+			features = new EDataTypeUniqueEList<EPhysicalDeviceFeature>(
+					EPhysicalDeviceFeature.class, this, VulkanPackage.VULKAN_ENGINE__FEATURES);
+		}
+		return features;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public <T extends LObject> EList<T> createContainmentEList(final EClass targetEClass)
 	{
 		EList<T> res = null;
@@ -373,6 +402,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 			return isEnabled();
 		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 			return getProcesses();
+		case VulkanPackage.VULKAN_ENGINE__FEATURES:
+			return getFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -401,6 +432,10 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 			getProcesses().clear();
 			getProcesses().addAll((Collection<? extends IProcess>) newValue);
 			return;
+		case VulkanPackage.VULKAN_ENGINE__FEATURES:
+			getFeatures().clear();
+			getFeatures().addAll((Collection<? extends EPhysicalDeviceFeature>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -427,6 +462,9 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 			getProcesses().clear();
 			return;
+		case VulkanPackage.VULKAN_ENGINE__FEATURES:
+			getFeatures().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -449,6 +487,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 			return enabled != ENABLED_EDEFAULT;
 		case VulkanPackage.VULKAN_ENGINE__PROCESSES:
 			return processes != null && !processes.isEmpty();
+		case VulkanPackage.VULKAN_ENGINE__FEATURES:
+			return features != null && !features.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -550,6 +590,8 @@ public class VulkanEngineImpl extends MinimalEObjectImpl.Container implements Vu
 		result.append(contentObjects);
 		result.append(", enabled: ");
 		result.append(enabled);
+		result.append(", features: ");
+		result.append(features);
 		result.append(')');
 		return result.toString();
 	}

@@ -13,9 +13,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 
@@ -226,7 +224,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (srcStageMask == null)
 		{
-			srcStageMask = new EDataTypeEList<EPipelineStage>(EPipelineStage.class, this,
+			srcStageMask = new EDataTypeUniqueEList<EPipelineStage>(EPipelineStage.class, this,
 					GraphicPackage.SUBPASS_DEPENDENCY__SRC_STAGE_MASK);
 		}
 		return srcStageMask;
@@ -242,7 +240,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (dstStageMask == null)
 		{
-			dstStageMask = new EDataTypeEList<EPipelineStage>(EPipelineStage.class, this,
+			dstStageMask = new EDataTypeUniqueEList<EPipelineStage>(EPipelineStage.class, this,
 					GraphicPackage.SUBPASS_DEPENDENCY__DST_STAGE_MASK);
 		}
 		return dstStageMask;
@@ -258,7 +256,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (srcAccesses == null)
 		{
-			srcAccesses = new EDataTypeEList<EAccess>(EAccess.class, this,
+			srcAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
 					GraphicPackage.SUBPASS_DEPENDENCY__SRC_ACCESSES);
 		}
 		return srcAccesses;
@@ -274,7 +272,7 @@ public class SubpassDependencyImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (dstAccesses == null)
 		{
-			dstAccesses = new EDataTypeEList<EAccess>(EAccess.class, this,
+			dstAccesses = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
 					GraphicPackage.SUBPASS_DEPENDENCY__DST_ACCESSES);
 		}
 		return dstAccesses;

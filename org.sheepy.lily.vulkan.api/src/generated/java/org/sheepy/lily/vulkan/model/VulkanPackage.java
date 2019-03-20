@@ -107,13 +107,22 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE__PROCESSES = ApplicationPackage.IENGINE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Features</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VULKAN_ENGINE__FEATURES = ApplicationPackage.IENGINE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Engine</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VULKAN_ENGINE_FEATURE_COUNT = ApplicationPackage.IENGINE_FEATURE_COUNT + 3;
+	int VULKAN_ENGINE_FEATURE_COUNT = ApplicationPackage.IENGINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -442,6 +451,17 @@ public interface VulkanPackage extends EPackage
 	EReference getVulkanEngine_Processes();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.VulkanEngine#getFeatures <em>Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Features</em>'.
+	 * @see org.sheepy.lily.vulkan.model.VulkanEngine#getFeatures()
+	 * @see #getVulkanEngine()
+	 * @generated
+	 */
+	EAttribute getVulkanEngine_Features();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -605,6 +625,14 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EReference VULKAN_ENGINE__PROCESSES = eINSTANCE.getVulkanEngine_Processes();
+
+		/**
+		 * The meta object literal for the '<em><b>Features</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VULKAN_ENGINE__FEATURES = eINSTANCE.getVulkanEngine_Features();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}' class.

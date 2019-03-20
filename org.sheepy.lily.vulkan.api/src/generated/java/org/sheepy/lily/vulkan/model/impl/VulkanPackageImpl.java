@@ -139,8 +139,8 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -188,6 +188,17 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	public EReference getVulkanEngine_Processes()
 	{
 		return (EReference) vulkanEngineEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVulkanEngine_Features()
+	{
+		return (EAttribute) vulkanEngineEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -345,6 +356,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		vulkanEngineEClass = createEClass(VULKAN_ENGINE);
 		createEAttribute(vulkanEngineEClass, VULKAN_ENGINE__ENABLED);
 		createEReference(vulkanEngineEClass, VULKAN_ENGINE__PROCESSES);
+		createEAttribute(vulkanEngineEClass, VULKAN_ENGINE__FEATURES);
 
 		iResourceContainerEClass = createEClass(IRESOURCE_CONTAINER);
 		createEReference(iResourceContainerEClass, IRESOURCE_CONTAINER__RESOURCE_PKG);
@@ -393,10 +405,10 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 				.getEPackage(ApplicationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 				.getEPackage(EcorePackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
-				.getEPackage(TypesPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(EnumerationPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
+				.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -420,6 +432,10 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		initEReference(getVulkanEngine_Processes(), this.getIProcess(), null, "processes", null, 0,
 				-1, VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVulkanEngine_Features(),
+				theEnumerationPackage.getEPhysicalDeviceFeature(), "features", null, 0, -1,
+				VulkanEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iResourceContainerEClass, IResourceContainer.class, "IResourceContainer",
 				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

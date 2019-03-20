@@ -100,7 +100,7 @@ public interface ImageLayout extends EObject
 	 * @return the value of the '<em>Access Mask</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageLayout_AccessMask()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EAccess> getAccessMask();

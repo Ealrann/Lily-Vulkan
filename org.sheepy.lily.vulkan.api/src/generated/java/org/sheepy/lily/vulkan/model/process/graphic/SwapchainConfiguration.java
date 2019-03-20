@@ -87,7 +87,7 @@ public interface SwapchainConfiguration extends EObject
 	 * @return the value of the '<em>Swap Image Usages</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageUsage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration_SwapImageUsages()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EImageUsage> getSwapImageUsages();

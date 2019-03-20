@@ -38,6 +38,8 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 @Adapter(scope = VulkanEngine.class)
 public class VulkanEngineAdapter implements IVulkanEngineAdapter
 {
+	private static final String USING_GRAPHIC_DEVICE = "\nUsing Graphic Device: %s (%s)";
+
 	private final IWindowListener windowListener = new IWindowListener()
 	{
 		@Override
@@ -86,7 +88,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			{
 				if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__SIZE)
 				{
-					Vector2i newSize = (Vector2i) notification.getNewValue();
+					final Vector2i newSize = (Vector2i) notification.getNewValue();
 					window.setSize(newSize.x, newSize.y);
 				}
 				else if (notification
@@ -175,7 +177,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			inputManager.load();
 			window.addListener(windowListener);
 			allocate(stack);
-		} catch (Throwable e)
+		} catch (final Throwable e)
 		{
 			e.printStackTrace();
 		}
@@ -187,9 +189,9 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		try
 		{
-			Vector2i newSize = new Vector2i(size);
+			final Vector2i newSize = new Vector2i(size);
 			application.setSize(newSize);
-		} catch (Throwable e)
+		} catch (final Throwable e)
 		{
 			e.printStackTrace();
 		} finally
@@ -224,8 +226,8 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private List<Object> gatherAllocationList()
 	{
-		List<Object> allocationList = new ArrayList<>();
-		var resourcePkg = engine.getResourcePkg();
+		final List<Object> allocationList = new ArrayList<>();
+		final var resourcePkg = engine.getResourcePkg();
 		if (resourcePkg != null)
 		{
 			allocationList.addAll(resourcePkg.getResources());
@@ -239,7 +241,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		executionContext.getQueue().waitIdle();
 		allocator.free(vulkanContext);
 
-		for (VkFence fence : fences)
+		for (final VkFence fence : fences)
 		{
 			fence.free(vulkanContext);
 		}
@@ -262,9 +264,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		physicalDevice = deviceSelector.findBestPhysicalDevice(stack);
 
-		String deviceInfo = String.format("\nUsing Graphic Device: %s (%s)",
-				physicalDevice.getName(), physicalDevice.getDriverVersion());
-		System.out.println(deviceInfo);
+		printDeviceInfo();
 
 		if (debug)
 		{
@@ -273,9 +273,20 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 	}
 
+	private void printDeviceInfo()
+	{
+		final String name = physicalDevice.getName();
+		final int driverVersion = physicalDevice.getDriverVersion();
+		final var deviceInfo = String.format(USING_GRAPHIC_DEVICE, name, driverVersion);
+		System.out.println(deviceInfo);
+	}
+
 	private void createLogicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
-		logicalDevice = LogicalDevice.alloc(stack, physicalDevice, dummySurface, true);
+		final var features = engine.getFeatures();
+
+		logicalDevice = new LogicalDevice(physicalDevice, dummySurface, features, true);
+		logicalDevice.allocate(stack);
 	}
 
 	private void cleanup()
@@ -301,7 +312,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	@Override
 	public IFence newFence(boolean signaled)
 	{
-		VkFence res = new VkFence(signaled);
+		final VkFence res = new VkFence(signaled);
 		res.allocate(null, vulkanContext);
 
 		fences.add(res);

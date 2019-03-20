@@ -70,7 +70,7 @@ public interface IDescriptor extends EObject
 	 * @return the value of the '<em>Shader Stages</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getIDescriptor_ShaderStages()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EShaderStage> getShaderStages();

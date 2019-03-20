@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
@@ -119,7 +119,7 @@ public abstract class AbstractConstantsImpl extends MinimalEObjectImpl.Container
 	{
 		if (stages == null)
 		{
-			stages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this,
+			stages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
 					ResourcePackage.ABSTRACT_CONSTANTS__STAGES);
 		}
 		return stages;

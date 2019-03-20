@@ -32,7 +32,7 @@ public interface AbstractConstants extends BasicResource
 	 * @return the value of the '<em>Stages</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getAbstractConstants_Stages()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EShaderStage> getStages();

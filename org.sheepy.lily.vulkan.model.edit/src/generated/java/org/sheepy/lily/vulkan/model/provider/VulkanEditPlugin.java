@@ -48,8 +48,8 @@ public final class VulkanEditPlugin extends EMFPlugin
 				ApplicationEditPlugin.INSTANCE,
 				RootEditPlugin.INSTANCE,
 				InferenceEditPlugin.INSTANCE,
-				TypesEditPlugin.INSTANCE,
 				EnumerationEditPlugin.INSTANCE,
+				TypesEditPlugin.INSTANCE,
 				ActionEditPlugin.INSTANCE,
 		});
 	}

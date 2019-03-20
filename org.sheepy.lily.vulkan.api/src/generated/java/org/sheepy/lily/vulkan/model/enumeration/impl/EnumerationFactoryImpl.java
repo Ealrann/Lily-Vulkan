@@ -83,6 +83,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 		{
 		case EnumerationPackage.EIMAGE_LAYOUT:
 			return createEImageLayoutFromString(eDataType, initialValue);
+		case EnumerationPackage.EPHYSICAL_DEVICE_FEATURE:
+			return createEPhysicalDeviceFeatureFromString(eDataType, initialValue);
 		case EnumerationPackage.ECULL_MODE:
 			return createECullModeFromString(eDataType, initialValue);
 		case EnumerationPackage.EDESCRIPTOR_TYPE:
@@ -151,6 +153,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 		{
 		case EnumerationPackage.EIMAGE_LAYOUT:
 			return convertEImageLayoutToString(eDataType, instanceValue);
+		case EnumerationPackage.EPHYSICAL_DEVICE_FEATURE:
+			return convertEPhysicalDeviceFeatureToString(eDataType, instanceValue);
 		case EnumerationPackage.ECULL_MODE:
 			return convertECullModeToString(eDataType, instanceValue);
 		case EnumerationPackage.EDESCRIPTOR_TYPE:
@@ -229,6 +233,33 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertEImageLayoutToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EPhysicalDeviceFeature createEPhysicalDeviceFeatureFromString(	EDataType eDataType,
+																			String initialValue)
+	{
+		EPhysicalDeviceFeature result = EPhysicalDeviceFeature.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '"
+				+ initialValue
+				+ "' is not a valid enumerator of '"
+				+ eDataType.getName()
+				+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEPhysicalDeviceFeatureToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

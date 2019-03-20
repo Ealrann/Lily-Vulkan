@@ -1840,7 +1840,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getSwapchainConfiguration_SwapImageUsages(),
 				theEnumerationPackage.getEImageUsage(), "swapImageUsages", null, 0, -1,
 				SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(framebufferConfigurationEClass, FramebufferConfiguration.class,
 				"FramebufferConfiguration", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1931,17 +1931,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getSubpassDependency_SrcStageMask(),
 				theEnumerationPackage.getEPipelineStage(), "srcStageMask", null, 0, -1,
 				SubpassDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpassDependency_DstStageMask(),
 				theEnumerationPackage.getEPipelineStage(), "dstStageMask", null, 0, -1,
 				SubpassDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpassDependency_SrcAccesses(), theEnumerationPackage.getEAccess(),
 				"srcAccesses", null, 0, -1, SubpassDependency.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubpassDependency_DstAccesses(), theEnumerationPackage.getEAccess(),
 				"dstAccesses", null, 0, -1, SubpassDependency.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attachmentDescriptionEClass, AttachmentDescription.class,
 				"AttachmentDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2189,10 +2189,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImagePipeline_ImageSrcAccessMask(), theEnumerationPackage.getEAccess(),
 				"imageSrcAccessMask", null, 0, -1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImagePipeline_ImageDstAccessMask(), theEnumerationPackage.getEAccess(),
 				"imageDstAccessMask", null, 0, -1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getImagePipeline_SrcQueue(), theProcessPackage.getAbstractProcess(), null,
 				"srcQueue", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,

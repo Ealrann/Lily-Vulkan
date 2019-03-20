@@ -12,9 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
 
@@ -174,7 +172,7 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 	{
 		if (swapImageUsages == null)
 		{
-			swapImageUsages = new EDataTypeEList<EImageUsage>(EImageUsage.class, this,
+			swapImageUsages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this,
 					GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES);
 		}
 		return swapImageUsages;

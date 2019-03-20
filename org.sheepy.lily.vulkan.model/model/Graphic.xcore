@@ -46,7 +46,7 @@ class SwapchainConfiguration
 {
 	EPresentMode presentationMode = "MailBox"
 	int requiredSwapImageCount = "3"
-	EImageUsage[] swapImageUsages
+	unique EImageUsage[] swapImageUsages
 }
 
 class FramebufferConfiguration
@@ -95,10 +95,10 @@ class SubpassDependency
 {
 	refers Subpass srcSubpass
 	refers Subpass dstSubpass
-	EPipelineStage[] srcStageMask
-	EPipelineStage[] dstStageMask
-	EAccess[] srcAccesses
-	EAccess[] dstAccesses
+	unique EPipelineStage[] srcStageMask
+	unique EPipelineStage[] dstStageMask
+	unique EAccess[] srcAccesses
+	unique EAccess[] dstAccesses
 }
 
 class AttachmentDescription extends LNamedElement
@@ -133,7 +133,7 @@ interface IGUIPipeline extends IGraphicsPipeline
 
 abstract class AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 {
-	refers Shader[] shaders
+	refers unique Shader[] shaders
 	contains ViewportState viewportState
 	contains Rasterizer rasterizer
 	contains ColorBlend colorBlend
@@ -224,7 +224,7 @@ class ImagePipeline extends AbstractPipeline
 	refers Image[1..1] image
 	EPipelineStage imageSrcStage
 	EPipelineStage imageDstStage
-	EAccess[] imageSrcAccessMask
-	EAccess[] imageDstAccessMask
+	unique EAccess[] imageSrcAccessMask
+	unique EAccess[] imageDstAccessMask
 	refers AbstractProcess srcQueue
 }

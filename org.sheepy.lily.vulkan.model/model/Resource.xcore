@@ -34,7 +34,7 @@ interface DescriptorResource extends IDescriptor, IResource
 class Buffer extends DescriptorResource
 {
 	long size
-	EBufferUsage[] usages
+	unique EBufferUsage[] usages
 	ByteBuffer data
 	boolean oftenUpdated = "false"
 	boolean gpuBuffer = "true"
@@ -47,7 +47,7 @@ class Image extends DescriptorResource
 	int width
 	int height
 	EFormat format
-	EImageUsage[] usages
+	unique EImageUsage[] usages
 	int properties
 	int tiling = "0"
 	int mipLevels = "1"
@@ -63,7 +63,7 @@ class ImageLayout
 {
 	EPipelineStage stage
 	EImageLayout layout
-	EAccess[] accessMask
+	unique EAccess[] accessMask
 }
 
 abstract class SampledImage extends DescriptorResource
@@ -113,7 +113,7 @@ type JavaModule wraps Module
 
 abstract class AbstractConstants extends BasicResource
 {
-	EShaderStage[] stages
+	unique EShaderStage[] stages
 }
 
 class Constants extends AbstractConstants
@@ -124,7 +124,7 @@ class Constants extends AbstractConstants
 interface IDescriptor
 {
 	EDescriptorType descriptorType
-	EShaderStage[] shaderStages
+	unique EShaderStage[] shaderStages
 }
 
 class DescriptorSet extends LNamedElement
@@ -166,8 +166,8 @@ class ImageTransition
 {
 	EImageLayout srcLayout
 	EImageLayout dstLayout
-	EAccess[] srcAccessMask
-	EAccess[] dstAccessMask
+	unique EAccess[] srcAccessMask
+	unique EAccess[] dstAccessMask
 }
 
 // ---------------------

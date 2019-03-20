@@ -10,8 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
@@ -167,7 +166,7 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	{
 		if (accessMask == null)
 		{
-			accessMask = new EDataTypeEList<EAccess>(EAccess.class, this,
+			accessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
 					ResourcePackage.IMAGE_LAYOUT__ACCESS_MASK);
 		}
 		return accessMask;

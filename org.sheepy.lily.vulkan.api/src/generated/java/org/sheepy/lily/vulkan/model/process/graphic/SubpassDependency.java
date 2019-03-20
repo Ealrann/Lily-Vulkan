@@ -97,7 +97,7 @@ public interface SubpassDependency extends EObject
 	 * @return the value of the '<em>Src Stage Mask</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_SrcStageMask()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EPipelineStage> getSrcStageMask();
@@ -115,7 +115,7 @@ public interface SubpassDependency extends EObject
 	 * @return the value of the '<em>Dst Stage Mask</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_DstStageMask()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EPipelineStage> getDstStageMask();
@@ -133,7 +133,7 @@ public interface SubpassDependency extends EObject
 	 * @return the value of the '<em>Src Accesses</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_SrcAccesses()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EAccess> getSrcAccesses();
@@ -151,7 +151,7 @@ public interface SubpassDependency extends EObject
 	 * @return the value of the '<em>Dst Accesses</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSubpassDependency_DstAccesses()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EAccess> getDstAccesses();

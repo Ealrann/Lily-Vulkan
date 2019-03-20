@@ -125,7 +125,7 @@ public interface Image extends DescriptorResource
 	 * @return the value of the '<em>Usages</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageUsage
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_Usages()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EImageUsage> getUsages();

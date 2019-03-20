@@ -68,6 +68,16 @@ public interface EnumerationPackage extends EPackage
 	int EIMAGE_LAYOUT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature <em>EPhysical Device Feature</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature
+	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPhysicalDeviceFeature()
+	 * @generated
+	 */
+	int EPHYSICAL_DEVICE_FEATURE = 1;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.ECullMode <em>ECull Mode</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,7 +85,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECullMode()
 	 * @generated
 	 */
-	int ECULL_MODE = 1;
+	int ECULL_MODE = 2;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EDescriptorType <em>EDescriptor Type</em>}' enum.
@@ -85,7 +95,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEDescriptorType()
 	 * @generated
 	 */
-	int EDESCRIPTOR_TYPE = 2;
+	int EDESCRIPTOR_TYPE = 3;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EFrontFace <em>EFront Face</em>}' enum.
@@ -95,7 +105,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFrontFace()
 	 * @generated
 	 */
-	int EFRONT_FACE = 3;
+	int EFRONT_FACE = 4;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EBorderColor <em>EBorder Color</em>}' enum.
@@ -105,7 +115,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBorderColor()
 	 * @generated
 	 */
-	int EBORDER_COLOR = 4;
+	int EBORDER_COLOR = 5;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.ECommandStage <em>ECommand Stage</em>}' enum.
@@ -115,7 +125,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getECommandStage()
 	 * @generated
 	 */
-	int ECOMMAND_STAGE = 5;
+	int ECOMMAND_STAGE = 6;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp <em>EAttachment Load Op</em>}' enum.
@@ -125,7 +135,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentLoadOp()
 	 * @generated
 	 */
-	int EATTACHMENT_LOAD_OP = 6;
+	int EATTACHMENT_LOAD_OP = 7;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.ELogicOp <em>ELogic Op</em>}' enum.
@@ -135,7 +145,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getELogicOp()
 	 * @generated
 	 */
-	int ELOGIC_OP = 7;
+	int ELOGIC_OP = 8;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp <em>EAttachment Store Op</em>}' enum.
@@ -145,7 +155,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAttachmentStoreOp()
 	 * @generated
 	 */
-	int EATTACHMENT_STORE_OP = 8;
+	int EATTACHMENT_STORE_OP = 9;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EShaderStage <em>EShader Stage</em>}' enum.
@@ -155,7 +165,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEShaderStage()
 	 * @generated
 	 */
-	int ESHADER_STAGE = 9;
+	int ESHADER_STAGE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EFilter <em>EFilter</em>}' enum.
@@ -165,7 +175,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFilter()
 	 * @generated
 	 */
-	int EFILTER = 10;
+	int EFILTER = 11;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.ESamplerMipmapMode <em>ESampler Mipmap Mode</em>}' enum.
@@ -175,7 +185,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESamplerMipmapMode()
 	 * @generated
 	 */
-	int ESAMPLER_MIPMAP_MODE = 11;
+	int ESAMPLER_MIPMAP_MODE = 12;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.ESamplerAddressMode <em>ESampler Address Mode</em>}' enum.
@@ -185,7 +195,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESamplerAddressMode()
 	 * @generated
 	 */
-	int ESAMPLER_ADDRESS_MODE = 12;
+	int ESAMPLER_ADDRESS_MODE = 13;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EBlendFactor <em>EBlend Factor</em>}' enum.
@@ -195,7 +205,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBlendFactor()
 	 * @generated
 	 */
-	int EBLEND_FACTOR = 13;
+	int EBLEND_FACTOR = 14;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EDynamicState <em>EDynamic State</em>}' enum.
@@ -205,7 +215,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEDynamicState()
 	 * @generated
 	 */
-	int EDYNAMIC_STATE = 14;
+	int EDYNAMIC_STATE = 15;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EBlendOp <em>EBlend Op</em>}' enum.
@@ -215,7 +225,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBlendOp()
 	 * @generated
 	 */
-	int EBLEND_OP = 15;
+	int EBLEND_OP = 16;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EAccess <em>EAccess</em>}' enum.
@@ -225,7 +235,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAccess()
 	 * @generated
 	 */
-	int EACCESS = 16;
+	int EACCESS = 17;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}' enum.
@@ -235,7 +245,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPipelineStage()
 	 * @generated
 	 */
-	int EPIPELINE_STAGE = 17;
+	int EPIPELINE_STAGE = 18;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}' enum.
@@ -245,7 +255,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEColorSpace()
 	 * @generated
 	 */
-	int ECOLOR_SPACE = 18;
+	int ECOLOR_SPACE = 19;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EFormat <em>EFormat</em>}' enum.
@@ -255,7 +265,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFormat()
 	 * @generated
 	 */
-	int EFORMAT = 19;
+	int EFORMAT = 20;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}' enum.
@@ -265,7 +275,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPresentMode()
 	 * @generated
 	 */
-	int EPRESENT_MODE = 20;
+	int EPRESENT_MODE = 21;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EPolygonMode <em>EPolygon Mode</em>}' enum.
@@ -275,7 +285,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPolygonMode()
 	 * @generated
 	 */
-	int EPOLYGON_MODE = 21;
+	int EPOLYGON_MODE = 22;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}' enum.
@@ -285,7 +295,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageUsage()
 	 * @generated
 	 */
-	int EIMAGE_USAGE = 22;
+	int EIMAGE_USAGE = 23;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EBufferUsage <em>EBuffer Usage</em>}' enum.
@@ -295,7 +305,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBufferUsage()
 	 * @generated
 	 */
-	int EBUFFER_USAGE = 23;
+	int EBUFFER_USAGE = 24;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.EMemoryProperty <em>EMemory Property</em>}' enum.
@@ -305,7 +315,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEMemoryProperty()
 	 * @generated
 	 */
-	int EMEMORY_PROPERTY = 24;
+	int EMEMORY_PROPERTY = 25;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.
@@ -315,7 +325,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESampleCount()
 	 * @generated
 	 */
-	int ESAMPLE_COUNT = 25;
+	int ESAMPLE_COUNT = 26;
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}'.
@@ -326,6 +336,16 @@ public interface EnumerationPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getEImageLayout();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature <em>EPhysical Device Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EPhysical Device Feature</em>'.
+	 * @see org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature
+	 * @generated
+	 */
+	EEnum getEPhysicalDeviceFeature();
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.lily.vulkan.model.enumeration.ECullMode <em>ECull Mode</em>}'.
@@ -610,6 +630,16 @@ public interface EnumerationPackage extends EPackage
 		 * @generated
 		 */
 		EEnum EIMAGE_LAYOUT = eINSTANCE.getEImageLayout();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature <em>EPhysical Device Feature</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature
+		 * @see org.sheepy.lily.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPhysicalDeviceFeature()
+		 * @generated
+		 */
+		EEnum EPHYSICAL_DEVICE_FEATURE = eINSTANCE.getEPhysicalDeviceFeature();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.enumeration.ECullMode <em>ECull Mode</em>}' enum.

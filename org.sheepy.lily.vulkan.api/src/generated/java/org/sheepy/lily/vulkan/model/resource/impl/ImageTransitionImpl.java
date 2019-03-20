@@ -10,8 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 
@@ -177,7 +176,7 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (srcAccessMask == null)
 		{
-			srcAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this,
+			srcAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
 					ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK);
 		}
 		return srcAccessMask;
@@ -193,7 +192,7 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		if (dstAccessMask == null)
 		{
-			dstAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this,
+			dstAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
 					ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK);
 		}
 		return dstAccessMask;

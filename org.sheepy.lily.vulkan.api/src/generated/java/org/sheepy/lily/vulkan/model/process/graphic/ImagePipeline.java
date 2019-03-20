@@ -132,7 +132,7 @@ public interface ImagePipeline extends AbstractPipeline
 	 * @return the value of the '<em>Image Src Access Mask</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getImagePipeline_ImageSrcAccessMask()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EAccess> getImageSrcAccessMask();
@@ -150,7 +150,7 @@ public interface ImagePipeline extends AbstractPipeline
 	 * @return the value of the '<em>Image Dst Access Mask</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getImagePipeline_ImageDstAccessMask()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EAccess> getImageDstAccessMask();

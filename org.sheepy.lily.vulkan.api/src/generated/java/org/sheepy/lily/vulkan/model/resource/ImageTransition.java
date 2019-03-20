@@ -100,7 +100,7 @@ public interface ImageTransition extends EObject
 	 * @return the value of the '<em>Src Access Mask</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageTransition_SrcAccessMask()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EAccess> getSrcAccessMask();
@@ -118,7 +118,7 @@ public interface ImageTransition extends EObject
 	 * @return the value of the '<em>Dst Access Mask</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageTransition_DstAccessMask()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EAccess> getDstAccessMask();

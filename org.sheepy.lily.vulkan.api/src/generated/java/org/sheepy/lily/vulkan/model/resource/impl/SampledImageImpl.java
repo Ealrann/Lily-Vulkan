@@ -14,8 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.IResource;
@@ -160,7 +159,7 @@ public abstract class SampledImageImpl extends MinimalEObjectImpl.Container impl
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this,
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
 					ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES);
 		}
 		return shaderStages;

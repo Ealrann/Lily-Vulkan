@@ -23,9 +23,9 @@ abstract class AbstractProcess extends IProcess
 	boolean resetAllowed
 	
 	@GenModel(propertyCategory="Semaphores")
-	refers Semaphore[] signals
+	refers unique Semaphore[] signals
 	@GenModel(propertyCategory="Semaphores")
-	refers Semaphore[] waitFor
+	refers unique Semaphore[] waitFor
 }
 
 class PipelinePkg

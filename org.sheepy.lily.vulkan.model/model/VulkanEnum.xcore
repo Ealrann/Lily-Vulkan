@@ -21,6 +21,12 @@ enum EImageLayout
 	PRESENT_SRC_KHR                  = 1000001002
 }
 
+enum EPhysicalDeviceFeature
+{
+	FILL_MODE_NON_SOLID,
+	WIDE_LINES
+}
+
 enum ECullMode
 {
 	NONE           = 0

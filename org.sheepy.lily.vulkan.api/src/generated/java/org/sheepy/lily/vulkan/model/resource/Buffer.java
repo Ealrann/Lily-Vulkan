@@ -67,7 +67,7 @@ public interface Buffer extends DescriptorResource
 	 * @return the value of the '<em>Usages</em>' attribute list.
 	 * @see org.sheepy.lily.vulkan.model.enumeration.EBufferUsage
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Usages()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EBufferUsage> getUsages();

@@ -14,8 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.IResource;
@@ -299,7 +298,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this,
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
 					ResourcePackage.IMAGE__SHADER_STAGES);
 		}
 		return shaderStages;
@@ -415,7 +414,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeEList<EImageUsage>(EImageUsage.class, this,
+			usages = new EDataTypeUniqueEList<EImageUsage>(EImageUsage.class, this,
 					ResourcePackage.IMAGE__USAGES);
 		}
 		return usages;

@@ -62,6 +62,7 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 			super.getPropertyDescriptors(object);
 
 			addEnabledPropertyDescriptor(object);
+			addFeaturesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -81,6 +82,23 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 						"_UI_VulkanEngine_type"),
 				VulkanPackage.Literals.VULKAN_ENGINE__ENABLED, true, false, false,
 				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Features feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFeaturesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_VulkanEngine_features_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_VulkanEngine_features_feature",
+						"_UI_VulkanEngine_type"),
+				VulkanPackage.Literals.VULKAN_ENGINE__FEATURES, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -161,6 +179,7 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 		{
 		case VulkanPackage.VULKAN_ENGINE__CONTENT_OBJECTS:
 		case VulkanPackage.VULKAN_ENGINE__ENABLED:
+		case VulkanPackage.VULKAN_ENGINE__FEATURES:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

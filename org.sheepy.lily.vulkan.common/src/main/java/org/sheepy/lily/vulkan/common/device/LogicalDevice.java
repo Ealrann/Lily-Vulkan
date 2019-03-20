@@ -17,41 +17,33 @@ import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.queue.QueueManager;
+import org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature;
 
 public class LogicalDevice
 {
 	public final PhysicalDevice physicalDevice;
 	public final VkSurface dummySurface;
 
+	private final List<EPhysicalDeviceFeature> features;
 	private final QueueManager queueManager;
 
 	private VkDevice vkDevice;
 	private VulkanQueue previousPresentQueue;
 
-	public final static LogicalDevice alloc(MemoryStack stack,
-											PhysicalDevice physicalDevice,
-											VkSurface dummySurface,
-											boolean needComputeCapability)
-	{
-		final LogicalDevice res = new LogicalDevice(physicalDevice, dummySurface,
-				needComputeCapability);
-
-		res.load(stack);
-		return res;
-	}
-
-	private LogicalDevice(	PhysicalDevice physicalDevice,
+	public LogicalDevice(	PhysicalDevice physicalDevice,
 							VkSurface dummySurface,
+							List<EPhysicalDeviceFeature> features,
 							boolean needComputeCapability)
 	{
 		this.physicalDevice = physicalDevice;
 		this.dummySurface = dummySurface;
+		this.features = features;
 
 		queueManager = new QueueManager(physicalDevice.vkPhysicalDevice, needComputeCapability);
 		queueManager.load(dummySurface);
 	}
 
-	public void load(MemoryStack stack)
+	public void allocate(MemoryStack stack)
 	{
 		final var uniqueQueueIndexes = new HashSet<>(queueManager.getQueueIndexes());
 		final var size = uniqueQueueIndexes.size();
@@ -79,8 +71,8 @@ public class LogicalDevice
 			extensionsBuffer.put(stack.UTF8(requiredExtension.name));
 		}
 		extensionsBuffer.flip();
-		final VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.callocStack(stack);
-		deviceFeatures.samplerAnisotropy(true);
+
+		final VkPhysicalDeviceFeatures deviceFeatures = allocPhysicalFeatures(stack);
 
 		final VkDeviceCreateInfo createInfo = VkDeviceCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO);
@@ -95,6 +87,20 @@ public class LogicalDevice
 
 		final long deviceId = pDevice.get(0);
 		vkDevice = new VkDevice(deviceId, physicalDevice.vkPhysicalDevice, createInfo);
+	}
+
+	private VkPhysicalDeviceFeatures allocPhysicalFeatures(MemoryStack stack)
+	{
+		final VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.callocStack(stack);
+		deviceFeatures.samplerAnisotropy(true);
+
+		boolean fillModeNonSolid = features.contains(EPhysicalDeviceFeature.FILL_MODE_NON_SOLID);
+		boolean wideLines = features.contains(EPhysicalDeviceFeature.WIDE_LINES);
+
+		deviceFeatures.fillModeNonSolid(fillModeNonSolid);
+		deviceFeatures.wideLines(wideLines);
+
+		return deviceFeatures;
 	}
 
 	public void free()

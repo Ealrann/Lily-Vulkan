@@ -12,9 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 
@@ -254,7 +252,7 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		if (imageSrcAccessMask == null)
 		{
-			imageSrcAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this,
+			imageSrcAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
 					GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK);
 		}
 		return imageSrcAccessMask;
@@ -270,7 +268,7 @@ public class ImagePipelineImpl extends AbstractPipelineImpl implements ImagePipe
 	{
 		if (imageDstAccessMask == null)
 		{
-			imageDstAccessMask = new EDataTypeEList<EAccess>(EAccess.class, this,
+			imageDstAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
 					GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK);
 		}
 		return imageDstAccessMask;

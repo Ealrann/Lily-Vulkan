@@ -1553,7 +1553,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_Usages(), theEnumerationPackage.getEBufferUsage(), "usages", null,
 				0, -1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1, Buffer.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -1577,7 +1577,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImage_Usages(), theEnumerationPackage.getEImageUsage(), "usages", null, 0,
 				-1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImage_Properties(), theEcorePackage.getEInt(), "properties", null, 0, 1,
 				Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1604,7 +1604,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageLayout_AccessMask(), theEnumerationPackage.getEAccess(),
 				"accessMask", null, 0, -1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1686,7 +1686,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractConstants_Stages(), theEnumerationPackage.getEShaderStage(),
 				"stages", null, 0, -1, AbstractConstants.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constantsEClass, Constants.class, "Constants", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1701,7 +1701,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(),
 				"shaderStages", null, 0, -1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1766,10 +1766,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageTransition_SrcAccessMask(), theEnumerationPackage.getEAccess(),
 				"srcAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageTransition_DstAccessMask(), theEnumerationPackage.getEAccess(),
 				"dstAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

@@ -26,6 +26,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.lily.vulkan.model.enumeration.ELogicOp;
 import org.sheepy.lily.vulkan.model.enumeration.EMemoryProperty;
+import org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.enumeration.EPolygonMode;
 import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
@@ -50,6 +51,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eImageLayoutEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum ePhysicalDeviceFeatureEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -301,6 +309,17 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	public EEnum getEImageLayout()
 	{
 		return eImageLayoutEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getEPhysicalDeviceFeature()
+	{
+		return ePhysicalDeviceFeatureEEnum;
 	}
 
 	/**
@@ -610,6 +629,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 
 		// Create enums
 		eImageLayoutEEnum = createEEnum(EIMAGE_LAYOUT);
+		ePhysicalDeviceFeatureEEnum = createEEnum(EPHYSICAL_DEVICE_FEATURE);
 		eCullModeEEnum = createEEnum(ECULL_MODE);
 		eDescriptorTypeEEnum = createEEnum(EDESCRIPTOR_TYPE);
 		eFrontFaceEEnum = createEEnum(EFRONT_FACE);
@@ -673,6 +693,11 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eImageLayoutEEnum, EImageLayout.TRANSFER_DST_OPTIMAL);
 		addEEnumLiteral(eImageLayoutEEnum, EImageLayout.PREINITIALIZED);
 		addEEnumLiteral(eImageLayoutEEnum, EImageLayout.PRESENT_SRC_KHR);
+
+		initEEnum(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.class,
+				"EPhysicalDeviceFeature");
+		addEEnumLiteral(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.FILL_MODE_NON_SOLID);
+		addEEnumLiteral(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.WIDE_LINES);
 
 		initEEnum(eCullModeEEnum, ECullMode.class, "ECullMode");
 		addEEnumLiteral(eCullModeEEnum, ECullMode.NONE);

@@ -14,8 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.IResource;
@@ -244,7 +243,7 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		if (shaderStages == null)
 		{
-			shaderStages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this,
+			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
 					ResourcePackage.BUFFER__SHADER_STAGES);
 		}
 		return shaderStages;
@@ -310,7 +309,7 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	{
 		if (usages == null)
 		{
-			usages = new EDataTypeEList<EBufferUsage>(EBufferUsage.class, this,
+			usages = new EDataTypeUniqueEList<EBufferUsage>(EBufferUsage.class, this,
 					ResourcePackage.BUFFER__USAGES);
 		}
 		return usages;
