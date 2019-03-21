@@ -119,6 +119,8 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 	@Override
 	public void execute(IFence fence)
 	{
+		prepare();
+
 		final var graphicContext = (GraphicContext) context;
 		final Integer imageIndex = acquireNextImage(graphicContext);
 

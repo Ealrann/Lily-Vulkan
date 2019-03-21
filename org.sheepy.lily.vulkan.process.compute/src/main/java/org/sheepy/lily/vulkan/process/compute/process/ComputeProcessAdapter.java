@@ -69,6 +69,8 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public void execute(IFence fence)
 	{
+		prepare();
+		
 		var computeContext = (ComputeContext) context;
 		var queue = context.getQueue().vkQueue;
 		var submission = computeContext.submission;

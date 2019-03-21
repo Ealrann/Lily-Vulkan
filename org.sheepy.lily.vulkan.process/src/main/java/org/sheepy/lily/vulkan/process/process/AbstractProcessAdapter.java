@@ -118,7 +118,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		return res;
 	}
 
-	@Tick(priority = Integer.MIN_VALUE)
 	public void prepare()
 	{
 		boolean needRecord = !recorded;
