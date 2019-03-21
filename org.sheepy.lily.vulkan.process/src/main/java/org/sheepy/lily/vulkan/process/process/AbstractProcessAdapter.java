@@ -8,6 +8,8 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.cadence.IStatistics;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationDescriptorAdapter;
@@ -31,6 +33,8 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	protected final DescriptorPool descriptorPool;
 	private final TreeAllocator allocator;
 	protected final ProcessContext context;
+
+	private long startPrepareNs = 0;
 
 	private boolean recorded = false;
 
@@ -119,6 +123,11 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 	public void prepare()
 	{
+		if (DebugUtil.DEBUG_ENABLED)
+		{
+			startPrepareNs = System.nanoTime();
+		}
+
 		boolean needRecord = !recorded;
 
 		if (allocator.isAllocationDirty(context))
@@ -136,6 +145,12 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 			context.getQueue().waitIdle();
 			recordCommands();
 			recorded = true;
+		}
+
+		if (DebugUtil.DEBUG_ENABLED)
+		{
+			IStatistics.INSTANCE.addTime(getClass().getSimpleName(),
+					System.nanoTime() - startPrepareNs);
 		}
 	}
 
