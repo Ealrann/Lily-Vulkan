@@ -12,7 +12,6 @@ public class MeshMainLoop implements IMainLoop
 	private IProcessAdapter processAdapter;
 
 	private UPSMeter meter;
-	private long start = 0;
 
 	public MeshMainLoop(MeshModelFactory factory)
 	{
@@ -22,19 +21,16 @@ public class MeshMainLoop implements IMainLoop
 	@Override
 	public void load(Application application)
 	{
-		var graphicProcess = factory.graphicProcess;
+		final var graphicProcess = factory.graphicProcess;
 
-		factory.engine.setEnabled(true);
 		processAdapter = IProcessAdapter.adapt(graphicProcess);
 
 		meter = new UPSMeter(2000);
-		start = System.currentTimeMillis();
 	}
 
 	@Override
 	public void step(Application application)
 	{
-		updateUniformBuffer();
 		processAdapter.prepare();
 		processAdapter.execute();
 		meter.tick();
@@ -43,15 +39,4 @@ public class MeshMainLoop implements IMainLoop
 	@Override
 	public void free(Application application)
 	{}
-
-	private void updateUniformBuffer()
-	{
-		if (factory.uniformBufferManager != null)
-		{
-			final long current = System.currentTimeMillis();
-			final float progress = factory.rotationSpeed * (current - start) / 1000f;
-
-			factory.uniformBufferManager.update(progress);
-		}
-	}
 }

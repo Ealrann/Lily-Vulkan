@@ -45,6 +45,7 @@ import org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl;
 import org.sheepy.lily.vulkan.model.resource.DepthImage;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.DepthImageImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
@@ -53,6 +54,8 @@ import org.sheepy.lily.vulkan.model.resource.impl.TextureImpl;
 
 public class MeshModelFactory
 {
+	public static final String MESH_UNIFORM_BUFFER_NAME = "Mesh Uniform Buffer";
+
 	private final MeshConfiguration meshConfiguration;
 
 	public final Application application = new ApplicationImpl();
@@ -60,16 +63,12 @@ public class MeshModelFactory
 	public final MeshBuffer meshBuffer = new MeshBufferImpl();
 	public final GraphicProcess graphicProcess;
 
-	public float rotationSpeed = 1f;
-
-	public UniformBufferManager uniformBufferManager = null;
-
 	private DepthImage depthImage;
 
 	public MeshModelFactory(MeshConfiguration meshConfiguration)
 	{
 		this.meshConfiguration = meshConfiguration;
-		var size = new Vector2i(meshConfiguration.width, meshConfiguration.height);
+		final var size = new Vector2i(meshConfiguration.width, meshConfiguration.height);
 
 		application.setTitle("Vulkan Triangle");
 		application.setSize(size);
@@ -77,7 +76,7 @@ public class MeshModelFactory
 
 		application.getEngines().add(engine);
 
-		var framebufferConfiguration = new FramebufferConfigurationImpl();
+		final var framebufferConfiguration = new FramebufferConfigurationImpl();
 
 		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
 		configuration.setSwapchainConfiguration(new SwapchainConfigurationImpl());
@@ -90,7 +89,7 @@ public class MeshModelFactory
 
 		if (depthImage != null)
 		{
-			var attachment = new DepthFramebufferAttachmentImpl();
+			final var attachment = new DepthFramebufferAttachmentImpl();
 			attachment.setDepthImageRef(depthImage);
 			framebufferConfiguration.getAtachments().add(attachment);
 		}
@@ -101,10 +100,10 @@ public class MeshModelFactory
 	private RenderPassInfo newInfo()
 	{
 		final RenderPassInfo renderPass = new RenderPassInfoImpl();
-		var subpass = new SubpassImpl();
+		final var subpass = new SubpassImpl();
 		renderPass.getSubpasses().add(subpass);
 
-		var colorAttachment = new AttachmentDescriptionImpl();
+		final var colorAttachment = new AttachmentDescriptionImpl();
 		colorAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachment.setLoadOp(EAttachmentLoadOp.CLEAR);
 		colorAttachment.setStoreOp(EAttachmentStoreOp.STORE);
@@ -115,14 +114,14 @@ public class MeshModelFactory
 
 		renderPass.getAttachments().add(colorAttachment);
 
-		AttachementRef colorRef = new AttachementRefImpl();
+		final AttachementRef colorRef = new AttachementRefImpl();
 		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
 		colorRef.setAttachement(colorAttachment);
 		subpass.getRefs().add(colorRef);
 
 		if (meshConfiguration.depth)
 		{
-			var depthAttachment = new DepthAttachmentDescriptionImpl();
+			final var depthAttachment = new DepthAttachmentDescriptionImpl();
 
 			depthAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 			depthAttachment.setLoadOp(EAttachmentLoadOp.CLEAR);
@@ -133,7 +132,7 @@ public class MeshModelFactory
 			depthAttachment.setFinalLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
 			depthAttachment.setDepthImage(depthImage);
 
-			AttachementRef depthRef = new AttachementRefImpl();
+			final AttachementRef depthRef = new AttachementRefImpl();
 			depthRef.setLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
 			depthRef.setAttachement(depthAttachment);
 
@@ -156,7 +155,7 @@ public class MeshModelFactory
 
 	private GraphicProcess newMeshProcess()
 	{
-		var module = meshConfiguration.module;
+		final var module = meshConfiguration.module;
 
 		final ModuleResource vertexShaderFile = new ModuleResourceImpl();
 		vertexShaderFile.setModule(module);
@@ -174,16 +173,16 @@ public class MeshModelFactory
 		fragmentShader.setFile(fragmentShaderFile);
 		fragmentShader.setStage(EShaderStage.FRAGMENT_BIT);
 
-		var descriptorSet = new DescriptorSetImpl();
+		final var descriptorSet = new DescriptorSetImpl();
 
-		var rasterizer = new RasterizerImpl();
+		final var rasterizer = new RasterizerImpl();
 		rasterizer.setFrontFace(meshConfiguration.rasterizerFrontFace);
 
-		var viewportState = new StaticViewportStateImpl();
+		final var viewportState = new StaticViewportStateImpl();
 		viewportState.getViewports().add(new ViewportImpl());
 		viewportState.getScissors().add(new ScissorImpl());
 
-		var colorBlend = new ColorBlendImpl();
+		final var colorBlend = new ColorBlendImpl();
 		colorBlend.getAttachments().add(new ColorBlendAttachmentImpl());
 
 		final MeshPipeline graphicPipeline = new MeshPipelineImpl();
@@ -196,7 +195,7 @@ public class MeshModelFactory
 
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
 
-		ResourcePkg resourceContainer = new ResourcePkgImpl();
+		final ResourcePkg resourceContainer = new ResourcePkgImpl();
 		graphicProcess.setResourcePkg(resourceContainer);
 
 		resourceContainer.getResources().add(meshBuffer);
@@ -213,8 +212,8 @@ public class MeshModelFactory
 
 		if (meshConfiguration.buildUniformBuffer == true)
 		{
-			uniformBufferManager = new UniformBufferManager();
-			var uniformBuffer = uniformBufferManager.buffer;
+			final var uniformBuffer = new BufferImpl();
+			uniformBuffer.setName(MESH_UNIFORM_BUFFER_NAME);
 			descriptorSet.getDescriptors().add(uniformBuffer);
 			resourceContainer.getResources().add(uniformBuffer);
 		}
