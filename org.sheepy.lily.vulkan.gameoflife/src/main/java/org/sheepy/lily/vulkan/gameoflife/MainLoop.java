@@ -19,7 +19,7 @@ public class MainLoop implements IMainLoop
 	private boolean countFrameEnabled = true;
 	private final IProcessAdapter[] computeProcessAdapters = new IProcessAdapter[2];
 	private IProcessAdapter imageProcessAdapter;
-	private int currentComputePoolIndex = 0;
+	private int currentComputeProcessIndex = 0;
 
 	public MainLoop(ModelFactory factory)
 	{
@@ -29,9 +29,10 @@ public class MainLoop implements IMainLoop
 	@Override
 	public void load(Application application)
 	{
+		final GraphicProcess imageProcess = factory.imageProcess;
+
 		computeProcessAdapters[0] = IProcessAdapter.adapt(factory.process1);
 		computeProcessAdapters[1] = IProcessAdapter.adapt(factory.process2);
-		GraphicProcess imageProcess = factory.imageProcess;
 		imageProcessAdapter = IProcessAdapter.adapt(imageProcess);
 
 		stopCountDate = System.currentTimeMillis() + 3000;
@@ -43,12 +44,9 @@ public class MainLoop implements IMainLoop
 	@Override
 	public void step(Application application)
 	{
-		computeProcessAdapters[0].prepare();
-		computeProcessAdapters[1].prepare();
-
 		while (nextRenderDate > System.currentTimeMillis())
 		{
-			executeComputePool();
+			executeComputeProcess();
 
 			if (countFrameEnabled)
 			{
@@ -66,7 +64,6 @@ public class MainLoop implements IMainLoop
 
 		nextRenderDate = System.currentTimeMillis() + FRAME_TIME_STEP_MS;
 
-		imageProcessAdapter.prepare();
 		imageProcessAdapter.execute();
 	}
 
@@ -74,15 +71,15 @@ public class MainLoop implements IMainLoop
 	public void free(Application application)
 	{}
 
-	private void executeComputePool()
+	private void executeComputeProcess()
 	{
-		var currentPoolAdapter = computeProcessAdapters[currentComputePoolIndex];
-		currentPoolAdapter.execute();
-		currentPoolAdapter.getQueue().waitIdle();
-		currentComputePoolIndex++;
-		if (currentComputePoolIndex > 1)
+		final var currentProcessAdapter = computeProcessAdapters[currentComputeProcessIndex];
+		currentProcessAdapter.execute();
+		currentProcessAdapter.getQueue().waitIdle();
+		currentComputeProcessIndex++;
+		if (currentComputeProcessIndex > 1)
 		{
-			currentComputePoolIndex = 0;
+			currentComputeProcessIndex = 0;
 		}
 	}
 }

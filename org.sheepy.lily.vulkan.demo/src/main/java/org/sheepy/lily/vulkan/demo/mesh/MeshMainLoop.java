@@ -31,7 +31,6 @@ public class MeshMainLoop implements IMainLoop
 	@Override
 	public void step(Application application)
 	{
-		processAdapter.prepare();
 		processAdapter.execute();
 		meter.tick();
 	}

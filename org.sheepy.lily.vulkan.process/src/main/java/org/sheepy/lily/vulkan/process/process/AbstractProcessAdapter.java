@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
-import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationDescriptorAdapter;
@@ -44,7 +44,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		context = createContext();
 		allocator = new TreeAllocator(process);
 
-		List<Object> allocs = new ArrayList<>();
+		final List<Object> allocs = new ArrayList<>();
 		allocs.addAll(gatherAllocationServices());
 		allocs.addAll(gatherPipelines());
 
@@ -59,7 +59,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 	protected List<Object> gatherAllocationServices()
 	{
-		List<Object> res = new ArrayList<>();
+		final List<Object> res = new ArrayList<>();
 
 		res.addAll(gatherResources());
 		res.addAll(context.getAllocationChildren());
@@ -70,9 +70,9 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 	protected List<IPipeline> gatherPipelines()
 	{
-		List<IPipeline> res = new ArrayList<>();
+		final List<IPipeline> res = new ArrayList<>();
 
-		PipelinePkg pipelinePkg = process.getPipelinePkg();
+		final PipelinePkg pipelinePkg = process.getPipelinePkg();
 		if (pipelinePkg != null)
 		{
 			res.addAll(pipelinePkg.getPipelines());
@@ -83,20 +83,20 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 	protected List<Object> gatherResources()
 	{
-		List<Object> resources = new ArrayList<>();
+		final List<Object> resources = new ArrayList<>();
 
-		var resourcePkg = process.getResourcePkg();
+		final var resourcePkg = process.getResourcePkg();
 		if (resourcePkg != null)
 		{
 			resources.addAll(resourcePkg.getResources());
 		}
 
-		PipelinePkg pipelinePkg = process.getPipelinePkg();
+		final PipelinePkg pipelinePkg = process.getPipelinePkg();
 		if (pipelinePkg != null)
 		{
-			for (IPipeline pipeline : pipelinePkg.getPipelines())
+			for (final IPipeline pipeline : pipelinePkg.getPipelines())
 			{
-				var adapter = AbstractPipelineAdapter.adapt(pipeline);
+				final var adapter = AbstractPipelineAdapter.adapt(pipeline);
 				resources.addAll(adapter.getResources());
 			}
 		}
@@ -105,26 +105,20 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 
 	private List<IVkDescriptorSet> gatherDescriptorLists()
 	{
-		List<IVkDescriptorSet> res = new ArrayList<>();
-		PipelinePkg pipelinePkg = process.getPipelinePkg();
+		final List<IVkDescriptorSet> res = new ArrayList<>();
+		final PipelinePkg pipelinePkg = process.getPipelinePkg();
 		if (pipelinePkg != null)
 		{
-			for (IPipeline pipeline : pipelinePkg.getPipelines())
+			for (final IPipeline pipeline : pipelinePkg.getPipelines())
 			{
-				var adapter = AbstractPipelineAdapter.adapt(pipeline);
+				final var adapter = AbstractPipelineAdapter.adapt(pipeline);
 				res.addAll(adapter.getDescriptorSets());
 			}
 		}
 		return res;
 	}
 
-	@Dispose
-	public void unsetTarget()
-	{
-		allocationList.clear();
-	}
-
-	@Override
+	@Tick(priority = Integer.MIN_VALUE)
 	public void prepare()
 	{
 		boolean needRecord = !recorded;
@@ -150,12 +144,12 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	private boolean isRecordNeeded()
 	{
 		boolean res = false;
-		PipelinePkg pipelinePkg = process.getPipelinePkg();
+		final PipelinePkg pipelinePkg = process.getPipelinePkg();
 		if (pipelinePkg != null)
 		{
-			for (IPipeline pipeline : pipelinePkg.getPipelines())
+			for (final IPipeline pipeline : pipelinePkg.getPipelines())
 			{
-				var adapter = IPipelineAdapter.adapt(pipeline);
+				final var adapter = IPipelineAdapter.adapt(pipeline);
 				if (adapter.isRecordNeeded())
 				{
 					res = true;

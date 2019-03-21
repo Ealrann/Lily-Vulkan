@@ -9,8 +9,6 @@ public interface IProcessAdapter extends IVulkanAdapter
 {
 	VulkanQueue getQueue();
 
-	void prepare();
-
 	void execute();
 	void execute(IFence fence);
 
