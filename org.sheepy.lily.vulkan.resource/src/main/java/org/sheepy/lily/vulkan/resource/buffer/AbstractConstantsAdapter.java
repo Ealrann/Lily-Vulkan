@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPushConstantRange;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
@@ -36,6 +36,6 @@ public abstract class AbstractConstantsAdapter implements IVulkanAdapter
 
 	public static AbstractConstantsAdapter adapt(AbstractConstants constants)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(constants, AbstractConstantsAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(constants, AbstractConstantsAdapter.class);
 	}
 }

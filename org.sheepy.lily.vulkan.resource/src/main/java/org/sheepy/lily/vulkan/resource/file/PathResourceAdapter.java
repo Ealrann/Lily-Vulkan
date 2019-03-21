@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 
@@ -47,6 +47,6 @@ public abstract class PathResourceAdapter implements IVulkanAdapter
 
 	public static PathResourceAdapter adapt(PathResource pathResource)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(pathResource, PathResourceAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(pathResource, PathResourceAdapter.class);
 	}
 }

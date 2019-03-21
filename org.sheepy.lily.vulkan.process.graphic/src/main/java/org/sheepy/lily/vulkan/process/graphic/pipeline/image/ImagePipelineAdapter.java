@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkImageBlit;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
@@ -146,6 +146,6 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter<GraphicCommand
 
 	public static ImagePipelineAdapter adapt(ImagePipeline object)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(object, ImagePipelineAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(object, ImagePipelineAdapter.class);
 	}
 }

@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.api.adapter;
 
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.engine.IEngineAdapter;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
@@ -14,6 +14,6 @@ public interface IVulkanEngineAdapter extends IEngineAdapter, IVulkanAdapter
 
 	static IVulkanEngineAdapter adapt(VulkanEngine engine)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(engine, IVulkanEngineAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(engine, IVulkanEngineAdapter.class);
 	}
 }

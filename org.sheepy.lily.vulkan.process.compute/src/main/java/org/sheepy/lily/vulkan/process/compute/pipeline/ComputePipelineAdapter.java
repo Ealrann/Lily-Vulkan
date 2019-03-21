@@ -8,7 +8,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.util.Logger;
@@ -171,6 +171,6 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 	public static ComputePipelineAdapter adapt(ComputePipeline object)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(object, ComputePipelineAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(object, ComputePipelineAdapter.class);
 	}
 }

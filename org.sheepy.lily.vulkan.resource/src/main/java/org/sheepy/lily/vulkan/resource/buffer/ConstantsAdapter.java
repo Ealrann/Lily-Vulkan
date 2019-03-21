@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import java.nio.ByteBuffer;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -52,6 +52,6 @@ public class ConstantsAdapter extends AbstractConstantsAdapter
 
 	public static ConstantsAdapter adapt(Constants object)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(object, ConstantsAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(object, ConstantsAdapter.class);
 	}
 }

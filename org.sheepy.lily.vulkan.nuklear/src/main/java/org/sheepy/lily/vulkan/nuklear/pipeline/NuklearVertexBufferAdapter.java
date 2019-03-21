@@ -11,7 +11,7 @@ import org.lwjgl.nuklear.NkDrawVertexLayoutElement;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
@@ -157,6 +157,6 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 
 	public static NuklearVertexBufferAdapter adapt(NuklearIndexBuffer buffer)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(buffer, NuklearVertexBufferAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(buffer, NuklearVertexBufferAdapter.class);
 	}
 }

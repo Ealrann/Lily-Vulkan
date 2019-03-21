@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
@@ -198,6 +198,6 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 
 	public static GraphicProcessAdapter adapt(GraphicProcess object)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(object, GraphicProcessAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(object, GraphicProcessAdapter.class);
 	}
 }

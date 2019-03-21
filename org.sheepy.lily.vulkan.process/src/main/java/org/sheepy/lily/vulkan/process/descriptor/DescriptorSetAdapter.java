@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
@@ -88,6 +88,6 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 
 	public static DescriptorSetAdapter adapt(DescriptorSet object)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(object, DescriptorSetAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(object, DescriptorSetAdapter.class);
 	}
 }

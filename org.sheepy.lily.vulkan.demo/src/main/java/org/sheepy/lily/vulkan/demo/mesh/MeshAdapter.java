@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.demo.mesh;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
@@ -45,6 +45,6 @@ public class MeshAdapter implements IResourceAdapter
 
 	public static MeshAdapter adapt(MeshBuffer mesh)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(mesh, MeshAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(mesh, MeshAdapter.class);
 	}
 }

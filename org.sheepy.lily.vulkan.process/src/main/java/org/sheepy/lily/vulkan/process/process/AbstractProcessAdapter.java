@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
@@ -188,6 +188,6 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractProcessAdapter<T> adapt(AbstractProcess object)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(object, AbstractProcessAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(object, AbstractProcessAdapter.class);
 	}
 }

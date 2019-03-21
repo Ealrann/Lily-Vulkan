@@ -8,7 +8,7 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
@@ -81,6 +81,6 @@ public class ShaderAdapter implements IResourceAdapter
 
 	public static ShaderAdapter adapt(Shader shader)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(shader, ShaderAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(shader, ShaderAdapter.class);
 	}
 }

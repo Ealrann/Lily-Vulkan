@@ -67,7 +67,7 @@ public class VulkanInputManager implements IInputManager
 				break;
 			}
 
-			var event = new KeyEvent(key, state, mods);
+			final var event = new KeyEvent(key, state, mods);
 			events.add(event);
 		}
 	};
@@ -86,8 +86,8 @@ public class VulkanInputManager implements IInputManager
 		{
 			try (MemoryStack stack = MemoryStack.stackPush())
 			{
-				DoubleBuffer cx = stack.mallocDouble(1);
-				DoubleBuffer cy = stack.mallocDouble(1);
+				final DoubleBuffer cx = stack.mallocDouble(1);
+				final DoubleBuffer cy = stack.mallocDouble(1);
 
 				glfwGetCursorPos(window, cx, cy);
 
@@ -141,7 +141,7 @@ public class VulkanInputManager implements IInputManager
 
 	public void load()
 	{
-		var windowId = window.getId();
+		final var windowId = window.getId();
 		glfwSetScrollCallback(windowId, glfwSetScrollCallback);
 		glfwSetCharCallback(windowId, glfwSetCharCallback);
 		glfwSetKeyCallback(windowId, glfwSetKeyCallback);
@@ -156,6 +156,26 @@ public class VulkanInputManager implements IInputManager
 		glfwSetKeyCallback.free();
 		glfwSetCursorPosCallback.free();
 		glfwSetMouseButtonCallback.free();
+	}
+
+	@Override
+	public void showCursor(boolean show)
+	{
+		final int flag = show ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN;
+		glfwSetInputMode(window.getId(), GLFW_CURSOR, flag);
+	}
+
+	@Override
+	public Vector2f getCursorPosition()
+	{
+		return cursorPosition;
+	}
+
+	@Override
+	public void setCursorPosition(Vector2f position)
+	{
+		glfwSetCursorPos(window.getId(), position.x, position.y);
+		cursorPosition.set(position);
 	}
 
 	@Override
@@ -177,7 +197,7 @@ public class VulkanInputManager implements IInputManager
 
 			if (catcher != null)
 			{
-				for (IInputEvent event : events)
+				for (final IInputEvent event : events)
 				{
 					fireEvent(event, catcher);
 				}
@@ -199,7 +219,7 @@ public class VulkanInputManager implements IInputManager
 
 	public void fireEvents()
 	{
-		for (IInputEvent event : events)
+		for (final IInputEvent event : events)
 		{
 			fireEvent(event);
 		}
@@ -218,16 +238,10 @@ public class VulkanInputManager implements IInputManager
 
 	private void fireEvent(IInputEvent event)
 	{
-		for (IInputListener listener : listeners)
+		for (final IInputListener listener : listeners)
 		{
 			fireEvent(event, listener);
 		}
-	}
-
-	@Override
-	public Vector2f getMouseLocation()
-	{
-		return cursorPosition;
 	}
 
 	private void fireEvent(IInputEvent event, IInputListener listener)
@@ -242,7 +256,7 @@ public class VulkanInputManager implements IInputManager
 		}
 		else if (event instanceof MouseButtonEvent)
 		{
-			listener.onMouseClickEvent(getMouseLocation(), (MouseButtonEvent) event);
+			listener.onMouseClickEvent(getCursorPosition(), (MouseButtonEvent) event);
 		}
 		else if (event instanceof MouseLocationEvent)
 		{

@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.resource.file;
 
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
@@ -16,6 +16,6 @@ public class ModuleResourceAdapter extends AbstractModuleResourceAdapter
 
 	public static ModuleResourceAdapter adapt(ModuleResource moduleResource)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(moduleResource, ModuleResourceAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(moduleResource, ModuleResourceAdapter.class);
 	}
 }

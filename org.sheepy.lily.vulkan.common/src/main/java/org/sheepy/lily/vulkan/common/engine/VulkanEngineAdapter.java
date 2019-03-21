@@ -9,7 +9,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.joml.Vector2i;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
@@ -343,6 +343,6 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	public static VulkanEngineAdapter adapt(VulkanEngine engine)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(engine, VulkanEngineAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(engine, VulkanEngineAdapter.class);
 	}
 }

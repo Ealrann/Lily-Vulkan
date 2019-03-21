@@ -12,7 +12,7 @@ import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.util.Logger;
@@ -149,6 +149,6 @@ public class FontAdapter extends AbstractSampledImageAdapter
 
 	public static FontAdapter adapt(Font font)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(font, FontAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(font, FontAdapter.class);
 	}
 }

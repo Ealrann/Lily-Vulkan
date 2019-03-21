@@ -9,7 +9,7 @@ import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
@@ -137,6 +137,6 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 
 	public static BufferAdapter adapt(Buffer buffer)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(buffer, BufferAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(buffer, BufferAdapter.class);
 	}
 }

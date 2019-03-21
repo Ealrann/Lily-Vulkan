@@ -10,7 +10,7 @@ import org.lwjgl.vulkan.VkDescriptorImageInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
@@ -165,6 +165,6 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 
 	public static ImageAdapter adapt(Image image)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(image, ImageAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(image, ImageAdapter.class);
 	}
 }

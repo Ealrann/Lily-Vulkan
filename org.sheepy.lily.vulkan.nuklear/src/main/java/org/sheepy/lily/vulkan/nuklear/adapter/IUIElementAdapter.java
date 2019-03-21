@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.lwjgl.nuklear.NkContext;
 import org.sheepy.lily.core.api.adapter.IAdapter;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
@@ -15,7 +15,7 @@ public interface IUIElementAdapter extends IAdapter
 
 	public static IUIElementAdapter adapt(IUIElement object)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(object, IUIElementAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(object, IUIElementAdapter.class);
 	}
 	
 	static class UIContext

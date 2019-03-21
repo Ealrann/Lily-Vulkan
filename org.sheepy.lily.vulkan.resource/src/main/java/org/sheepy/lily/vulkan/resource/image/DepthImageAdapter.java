@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.joml.Vector2i;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.application.Application;
@@ -152,6 +152,6 @@ public class DepthImageAdapter implements IDepthImageAdapter
 
 	public static DepthImageAdapter adapt(DepthImage resource)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(resource, DepthImageAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(resource, DepthImageAdapter.class);
 	}
 }

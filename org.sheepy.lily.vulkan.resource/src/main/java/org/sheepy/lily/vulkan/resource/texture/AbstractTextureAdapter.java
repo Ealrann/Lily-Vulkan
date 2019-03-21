@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.texture;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
@@ -74,6 +74,6 @@ public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 
 	public static AbstractTextureAdapter adapt(AbstractTexture texture)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(texture, AbstractTextureAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(texture, AbstractTextureAdapter.class);
 	}
 }

@@ -11,7 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.util.Logger;
@@ -200,6 +200,6 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractPipelineAdapter<T> adapt(IPipeline object)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
 	}
 }

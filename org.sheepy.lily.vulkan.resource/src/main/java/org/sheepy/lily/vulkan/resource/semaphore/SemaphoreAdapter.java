@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.resource.semaphore;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
@@ -46,6 +46,6 @@ public class SemaphoreAdapter implements IResourceAdapter
 
 	public static SemaphoreAdapter adapt(Semaphore semaphore)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(semaphore, SemaphoreAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(semaphore, SemaphoreAdapter.class);
 	}
 }

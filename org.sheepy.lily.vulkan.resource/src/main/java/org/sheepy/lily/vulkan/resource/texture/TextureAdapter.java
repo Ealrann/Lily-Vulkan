@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.resource.texture;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IServiceAdapterFactory;
+import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.model.resource.Texture;
@@ -47,6 +47,6 @@ public class TextureAdapter extends AbstractTextureAdapter
 
 	public static TextureAdapter adapt(Texture texture)
 	{
-		return IServiceAdapterFactory.INSTANCE.adapt(texture, TextureAdapter.class);
+		return IAdapterFactoryService.INSTANCE.adapt(texture, TextureAdapter.class);
 	}
 }
