@@ -8,7 +8,6 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationDescriptorAdapter;
