@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationDescriptorAda
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
 import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
@@ -179,23 +180,18 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	}
 
 	@Override
+	public boolean shouldRecord(ECommandStage stage)
+	{
+		return pipeline.isEnabled() && pipeline.getStage() == stage;
+	}
+
+	@Override
 	public List<? extends Object> getAllocationChildren()
 	{
 		return allocationList;
 	}
 
-	/**
-	 * @return IAllocable or EObject
-	 */
-	@SuppressWarnings("static-method")
-	public List<? extends Object> getResources()
-	{
-		return List.of();
-	}
-
 	public abstract AbstractConstants getConstants();
-
-	public abstract List<IVkDescriptorSet> getDescriptorSets();
 
 	@SuppressWarnings("unchecked")
 	public static <T extends AbstractCommandBuffer> AbstractPipelineAdapter<T> adapt(IPipeline object)

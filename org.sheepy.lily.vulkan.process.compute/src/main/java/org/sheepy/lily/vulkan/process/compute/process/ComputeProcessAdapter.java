@@ -10,11 +10,9 @@ import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffers;
-import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
@@ -45,18 +43,14 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	@Override
 	public void recordCommand(ComputeCommandBuffer commandBuffer, ECommandStage stage)
 	{
-		var pipelinePkg = process.getPipelinePkg();
-		if (pipelinePkg != null)
+		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
-			for (IPipeline pipeline : pipelinePkg.getPipelines())
+			final var pipelineAdapter = pipelineAdapters.get(i);
+			if (pipelineAdapter.shouldRecord(stage))
 			{
-				final var adapter = IPipelineAdapter.adapt(pipeline);
-				if (pipeline.isEnabled() && pipeline.getStage() == stage)
-				{
-					adapter.record(commandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE);
-				}
-				adapter.setRecordNeeded(false);
+				pipelineAdapter.record(commandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE);
 			}
+			pipelineAdapter.setRecordNeeded(false);
 		}
 	}
 
@@ -70,7 +64,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	public void execute(IFence fence)
 	{
 		prepare();
-		
+
 		var computeContext = (ComputeContext) context;
 		var queue = context.getQueue().vkQueue;
 		var submission = computeContext.submission;

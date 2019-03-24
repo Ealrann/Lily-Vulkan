@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.compute.pipeline;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.joml.Vector3ic;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -16,6 +17,7 @@ import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 public class ComputerAdapter implements IPipelineUnitAdapter<ComputeCommandBuffer>
 {
 	private int index;
+	private Vector3ic groupCount;
 
 	@Override
 	public void record(IPipelineUnit unit, ComputeCommandBuffer commandBuffer, int bindPoint)
@@ -23,15 +25,12 @@ public class ComputerAdapter implements IPipelineUnitAdapter<ComputeCommandBuffe
 		var computePipeline = (ComputePipeline) unit.eContainer();
 		var pipelineAdapter = ComputePipelineAdapter.adapt(computePipeline);
 
-		var groupCountX = pipelineAdapter.getGroupCountX();
-		var groupCountY = pipelineAdapter.getGroupCountY();
-		var groupCountZ = pipelineAdapter.getGroupCountZ();
-
 		var id = pipelineAdapter.getPipelineId(index);
 
 		vkCmdBindPipeline(commandBuffer.getVkCommandBuffer(), bindPoint, id);
 
-		vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCountX, groupCountY, groupCountZ);
+		vkCmdDispatch(commandBuffer.getVkCommandBuffer(), groupCount.x(), groupCount.y(),
+				groupCount.z());
 	}
 
 	public void setIndex(int index)
@@ -42,5 +41,10 @@ public class ComputerAdapter implements IPipelineUnitAdapter<ComputeCommandBuffe
 	public static ComputerAdapter adapt(Computer object)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(object, ComputerAdapter.class);
+	}
+
+	public void setGroupCount(Vector3ic groupCount)
+	{
+		this.groupCount = groupCount;
 	}
 }

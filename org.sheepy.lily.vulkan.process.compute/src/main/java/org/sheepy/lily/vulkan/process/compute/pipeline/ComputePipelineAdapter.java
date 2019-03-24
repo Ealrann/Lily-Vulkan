@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joml.Vector3i;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
@@ -31,9 +32,9 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 {
 	protected final ComputePipeline pipeline;
 
-	private int groupCountX;
-	private int groupCountY;
-	private int groupCountZ;
+	private final List<IPipelineUnitAdapter<ComputeCommandBuffer>> pipelinesAdapters = new ArrayList<>();
+
+	private final Vector3i groupCount = new Vector3i();
 
 	private long[] pipelines;
 
@@ -53,20 +54,28 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 		var units = pipeline.getUnits();
 		int size = 0;
 
-		for (IPipelineUnit unit : units)
+		groupCount.x = (int) Math.ceil((float) pipeline.getWidth() / pipeline.getWorkgroupSizeX());
+		groupCount.y = (int) Math.ceil((float) pipeline.getHeight() / pipeline.getWorkgroupSizeY());
+		groupCount.z = (int) Math.ceil((float) pipeline.getDepth() / pipeline.getWorkgroupSizeZ());
+
+		for (int i = 0; i < units.size(); i++)
 		{
+			IPipelineUnit unit = units.get(i);
 			if (unit instanceof Computer)
 			{
 				size++;
 			}
+
+			pipelinesAdapters.add(IPipelineUnitAdapter.adapt(unit));
 		}
 
 		var pipelineCreateInfos = VkComputePipelineCreateInfo.callocStack(size, stack);
 		var shaderInfo = VkPipelineShaderStageCreateInfo.calloc();
 
 		int index = 0;
-		for (IPipelineUnit unit : units)
+		for (int i = 0; i < units.size(); i++)
 		{
+			IPipelineUnit unit = units.get(i);
 			if (unit instanceof Computer)
 			{
 				var computer = (Computer) unit;
@@ -75,9 +84,10 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 				shaderAdapter.fillInfo(shaderInfo);
 
-				final var adapter = ComputerAdapter.adapt(computer);
+				final var adapter = (ComputerAdapter) pipelinesAdapters.get(i);
 
 				adapter.setIndex(index);
+				adapter.setGroupCount(groupCount);
 				index++;
 
 				var pipelineCreateInfo = pipelineCreateInfos.get();
@@ -93,10 +103,6 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 		pipelines = new long[size];
 		Logger.check("Failed to create compute pipeline!",
 				() -> vkCreateComputePipelines(vkDevice, 0, pipelineCreateInfos, null, pipelines));
-
-		groupCountX = (int) Math.ceil((float) pipeline.getWidth() / pipeline.getWorkgroupSizeX());
-		groupCountY = (int) Math.ceil((float) pipeline.getHeight() / pipeline.getWorkgroupSizeY());
-		groupCountZ = (int) Math.ceil((float) pipeline.getDepth() / pipeline.getWorkgroupSizeZ());
 	}
 
 	@Override
@@ -110,6 +116,8 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 		}
 
 		pipelines = null;
+
+		pipelinesAdapters.clear();
 
 		super.free(context);
 	}
@@ -128,26 +136,18 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 	protected void recordComputers(ComputeCommandBuffer commandBuffer, int bindPoint)
 	{
-		for (final IPipelineUnit computer : pipeline.getUnits())
+		final var units = pipeline.getUnits();
+		for (int i = 0; i < units.size(); i++)
 		{
-			final var adapter = IPipelineUnitAdapter.adapt(computer);
-			adapter.record(computer, commandBuffer, bindPoint);
+			final IPipelineUnit unit = units.get(i);
+			final var adapter = pipelinesAdapters.get(i);
+			adapter.record(unit, commandBuffer, bindPoint);
 		}
 	}
 
-	public int getGroupCountX()
+	public Vector3i getGroupCount()
 	{
-		return groupCountX;
-	}
-
-	public int getGroupCountY()
-	{
-		return groupCountY;
-	}
-
-	public int getGroupCountZ()
-	{
-		return groupCountZ;
+		return groupCount;
 	}
 
 	@Override
