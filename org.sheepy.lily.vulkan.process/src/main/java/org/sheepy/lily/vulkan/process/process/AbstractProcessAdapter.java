@@ -60,7 +60,7 @@ public abstract class AbstractProcessAdapter<T extends AbstractCommandBuffer>
 		final PipelinePkg pipelinePkg = process.getPipelinePkg();
 		if (pipelinePkg != null)
 		{
-			var pipelines = pipelinePkg.getPipelines();
+			final var pipelines = pipelinePkg.getPipelines();
 			for (int i = 0; i < pipelines.size(); i++)
 			{
 				final IPipeline pipeline = pipelines.get(i);

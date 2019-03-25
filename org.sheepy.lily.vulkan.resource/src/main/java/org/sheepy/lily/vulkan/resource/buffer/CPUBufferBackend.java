@@ -26,7 +26,7 @@ public class CPUBufferBackend implements IBufferBackend
 	public final int properties;
 	public final BufferInfo infos;
 
-	private long address;
+	private long address = -1;
 	private long memoryAddress;
 	private long memoryMap = -1;
 
@@ -50,8 +50,8 @@ public class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var vulkanContext = (IVulkanContext) context;
-		var vkDevice = vulkanContext.getVkDevice();
+		final var vulkanContext = (IVulkanContext) context;
+		final var vkDevice = vulkanContext.getVkDevice();
 
 		address = VkBufferAllocator.allocate(stack, vkDevice, infos);
 
@@ -76,8 +76,8 @@ public class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var vulkanContext = (IVulkanContext) context;
-		var vkDevice = vulkanContext.getVkDevice();
+		final var vulkanContext = (IVulkanContext) context;
+		final var vkDevice = vulkanContext.getVkDevice();
 
 		if (memoryMap != -1)
 		{
@@ -94,7 +94,12 @@ public class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void pushData(ExecutionContext executionContext, ByteBuffer data)
 	{
-		var vkDevice = executionContext.getVkDevice();
+		if (address == -1)
+		{
+			throw new AssertionError("Buffer not allocated");
+		}
+
+		final var vkDevice = executionContext.getVkDevice();
 
 		mapMemory(vkDevice);
 		MemoryUtil.memCopy(memAddress(data), memoryMap, infos.size);

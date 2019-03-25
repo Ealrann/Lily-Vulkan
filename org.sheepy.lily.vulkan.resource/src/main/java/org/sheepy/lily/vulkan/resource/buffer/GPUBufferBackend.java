@@ -24,7 +24,7 @@ public class GPUBufferBackend implements IBufferBackend
 	private final int properties;
 	private final BufferInfo infos;
 
-	private long address;
+	private long address = -1;
 	private long memoryAddress;
 
 	private CPUBufferBackend cpuBackend = null;
@@ -35,7 +35,7 @@ public class GPUBufferBackend implements IBufferBackend
 
 		if (keepStagingBuffer)
 		{
-			BufferInfo stagingInfo = new BufferInfo(info.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+			final BufferInfo stagingInfo = new BufferInfo(info.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
 					info.keptMapped);
 			cpuBackend = new CPUBufferBackend(stagingInfo, true);
 		}
@@ -46,8 +46,8 @@ public class GPUBufferBackend implements IBufferBackend
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var vulkanContext = (IVulkanContext) context;
-		var vkDevice = vulkanContext.getVkDevice();
+		final var vulkanContext = (IVulkanContext) context;
+		final var vkDevice = vulkanContext.getVkDevice();
 		address = VkBufferAllocator.allocate(stack, vkDevice, infos);
 
 		final var memoryInfo = allocateMemory(stack, vulkanContext.getLogicalDevice());
@@ -71,8 +71,8 @@ public class GPUBufferBackend implements IBufferBackend
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var vulkanContext = (IVulkanContext) context;
-		var vkDevice = vulkanContext.getVkDevice();
+		final var vulkanContext = (IVulkanContext) context;
+		final var vkDevice = vulkanContext.getVkDevice();
 
 		vkDestroyBuffer(vkDevice, address, null);
 		vkFreeMemory(vkDevice, memoryAddress, null);
@@ -89,12 +89,17 @@ public class GPUBufferBackend implements IBufferBackend
 	@Override
 	public void pushData(ExecutionContext executionContext, ByteBuffer data)
 	{
+		if (address == -1)
+		{
+			throw new AssertionError("Buffer not allocated");
+		}
+		
 		if (cpuBackend == null)
 		{
 			try (MemoryStack stack = MemoryStack.stackPush())
 			{
-				int size = (int) Math.min(data.remaining(), infos.size);
-				var bufferFiller = new BufferGPUFiller(stack, executionContext, address);
+				final int size = (int) Math.min(data.remaining(), infos.size);
+				final var bufferFiller = new BufferGPUFiller(stack, executionContext, address);
 				bufferFiller.fill(data, size);
 			}
 		}
@@ -107,7 +112,7 @@ public class GPUBufferBackend implements IBufferBackend
 
 	public void pushData(ExecutionContext executionContext, CPUBufferBackend stagingBuffer)
 	{
-		int size = (int) Math.min(stagingBuffer.infos.size, infos.size);
+		final int size = (int) Math.min(stagingBuffer.infos.size, infos.size);
 
 		executionContext.execute(new ISingleTimeCommand()
 		{
