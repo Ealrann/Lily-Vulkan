@@ -14,27 +14,53 @@ import org.sheepy.lily.vulkan.common.allocation.common.IAllocationObject;
 
 public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 {
-	private boolean allocated = false;
-	private List<IAllocationWrapper> children;
-	private AllocationWrapper providedContext = null;
 	private final IAllocationObject allocationObject;
+	private final List<IAllocationWrapper> children;
+	private final AllocationWrapper providedContext;
+
+	private boolean allocated = false;
+	private IAllocationContext childContext = null;
 
 	AllocationWrapper(IAllocationObject allocable)
 	{
 		this.allocationObject = allocable;
-		gatherChildWrappers();
+		this.children = gatherChildWrappers();
+		this.providedContext = resolveProvidedContext();
+	}
+
+	private AllocationWrapper resolveProvidedContext()
+	{
+		AllocationWrapper res = null;
 
 		if (allocationObject instanceof IAllocationContextProvider)
 		{
 			var contextProvider = (IAllocationContextProvider) allocationObject;
-			providedContext = AllocableWrapperFactory.wrap(contextProvider.getAllocationContext());
+			res = AllocableWrapperFactory.wrap(contextProvider.getAllocationContext());
 		}
+
+		return res;
 	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		IAllocationContext childContext = context;
+		gatherAndAllocateChildContext(stack, context);
+
+		if (allocationObject instanceof IAllocable && allocated == false)
+		{
+			((IAllocable) allocationObject).allocate(stack, context);
+			allocated = true;
+		}
+
+		for (int i = 0; i < children.size(); i++)
+		{
+			var child = children.get(i);
+			child.allocate(stack, childContext);
+		}
+	}
+
+	private void gatherAndAllocateChildContext(MemoryStack stack, IAllocationContext context)
+	{
 		if (allocationObject instanceof IAllocationContext)
 		{
 			childContext = (IAllocationContext) allocationObject;
@@ -44,16 +70,9 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 			providedContext.allocate(stack, context);
 			childContext = (IAllocationContext) providedContext.allocationObject;
 		}
-
-		if (allocationObject instanceof IAllocable && allocated == false)
+		else
 		{
-			((IAllocable) allocationObject).allocate(stack, context);
-			allocated = true;
-		}
-
-		for (IAllocationWrapper child : children)
-		{
-			child.allocate(stack, childContext);
+			childContext = context;
 		}
 	}
 
@@ -71,16 +90,6 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 
 	private void freeInternal(IAllocationContext context, boolean onlyDirty)
 	{
-		IAllocationContext childContext = context;
-		if (allocationObject instanceof IAllocationContext)
-		{
-			childContext = (IAllocationContext) allocationObject;
-		}
-		else if (providedContext != null)
-		{
-			childContext = (IAllocationContext) providedContext.allocationObject;
-		}
-
 		for (int i = children.size() - 1; i >= 0; i--)
 		{
 			IAllocationWrapper child = children.get(i);
@@ -96,14 +105,7 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 
 		if (providedContext != null && (!onlyDirty || providedContext.isAllocationDirty(context)))
 		{
-			if (onlyDirty)
-			{
-				providedContext.freeDirtyElements(childContext);
-			}
-			else
-			{
-				providedContext.free(context);
-			}
+			providedContext.freeInternal(context, onlyDirty);
 		}
 
 		if (allocationObject instanceof IAllocable)
@@ -126,16 +128,6 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 			res = ((IAllocable) allocationObject).isAllocationDirty(context);
 		}
 
-		IAllocationContext childContext = context;
-		if (allocationObject instanceof IAllocationContext)
-		{
-			childContext = (IAllocationContext) allocationObject;
-		}
-		else if (providedContext != null)
-		{
-			childContext = (IAllocationContext) providedContext.allocationObject;
-		}
-
 		if (res == false)
 		{
 			if (childContext.isAllocationDirty(context))
@@ -144,8 +136,9 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 			}
 			else
 			{
-				for (IAllocationWrapper child : children)
+				for (int i = 0; i < children.size(); i++)
 				{
+					var child = children.get(i);
 					if (child.isAllocationDirty(childContext))
 					{
 						res = true;
@@ -158,8 +151,9 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 		return res;
 	}
 
-	public void gatherChildWrappers()
+	public List<IAllocationWrapper> gatherChildWrappers()
 	{
+		List<IAllocationWrapper> children = null;
 		if (allocationObject instanceof IAllocationNode)
 		{
 			children = new ArrayList<>();
@@ -171,10 +165,13 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 					children.add(wrap);
 				}
 			}
+			children = List.copyOf(children);
 		}
 		else
 		{
 			children = Collections.emptyList();
 		}
+
+		return children;
 	}
 }

@@ -28,7 +28,6 @@ public class LogicalDevice
 	private final QueueManager queueManager;
 
 	private VkDevice vkDevice;
-	private VulkanQueue previousPresentQueue;
 
 	public LogicalDevice(	PhysicalDevice physicalDevice,
 							VkSurface dummySurface,
@@ -137,13 +136,7 @@ public class LogicalDevice
 
 	public VulkanQueue createPresentQueue(VkSurface surface)
 	{
-		if (previousPresentQueue != null)
-		{
-			previousPresentQueue.waitIdle();
-		}
-
 		VulkanQueue presentQueue = queueManager.createPresentQueue(vkDevice, surface);
-		previousPresentQueue = presentQueue;
 		return presentQueue;
 	}
 

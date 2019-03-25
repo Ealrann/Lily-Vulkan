@@ -20,6 +20,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkViewport;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.model.application.Application;
@@ -67,7 +68,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	private final NuklearPipeline nkPipeline;
 	private final NuklearResources resources;
 
-	private NkAllocator ALLOCATOR;
+	private final NkAllocator ALLOCATOR;
 	private final NuklearInputCatcher inputCatcher = new NuklearInputCatcher();
 	private NkBuffer cmds;
 	private NkContext nkContext;
@@ -86,6 +87,22 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		super(nkPipeline);
 		this.nkPipeline = nkPipeline;
 		resources = new NuklearResources(nkPipeline);
+
+		ALLOCATOR = NkAllocator.calloc().alloc((handle, old, size) -> nmemAllocChecked(size))
+				.mfree((handle, ptr) -> nmemFree(ptr));
+
+		viewport = VkViewport.calloc(1);
+	}
+
+	@Dispose
+	public void dispose()
+	{
+		Objects.requireNonNull(ALLOCATOR.alloc()).free();
+		Objects.requireNonNull(ALLOCATOR.mfree()).free();
+		ALLOCATOR.free();
+
+		viewport.free();
+		viewport = null;
 	}
 
 	@Override
@@ -101,19 +118,14 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	{
 		super.allocate(stack, context);
 
-		ALLOCATOR = NkAllocator.calloc().alloc((handle, old, size) -> nmemAllocChecked(size))
-				.mfree((handle, ptr) -> nmemFree(ptr));
-
 		graphicContext = (GraphicContext) context;
 		window = graphicContext.getWindow();
-		viewport = VkViewport.calloc(1);
 
 		var engine = getEngine(nkPipeline);
 		var application = (Application) engine.eContainer();
 		var inputManager = VulkanEngineAdapter.adapt(engine).getInputManager();
 
 		resources.allocate();
-
 		createContext();
 		inputManager.setInputCatcher(inputCatcher);
 
@@ -147,8 +159,6 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		super.free(context);
 
 		// Release all Vulkan resources required for rendering imGui
-		viewport.free();
-		viewport = null;
 
 		recorder = null;
 
@@ -162,10 +172,6 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 		nkContext = null;
 		cmds = null;
-
-		Objects.requireNonNull(ALLOCATOR.alloc()).free();
-		Objects.requireNonNull(ALLOCATOR.mfree()).free();
-		ALLOCATOR.free();
 	}
 
 	private void createContext()

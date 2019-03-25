@@ -14,7 +14,6 @@ import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffers;
 import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
@@ -69,19 +68,20 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 
 			do
 			{
-				if (currentSubpass != 0)
+				if (stage == ECommandStage.RENDER && currentSubpass != 0)
 				{
 					vkCmdNextSubpass(commandBuffer.getVkCommandBuffer(),
 							VK_SUBPASS_CONTENTS_INLINE);
 				}
 
-				for (IPipeline pipeline : pipelinePkg.getPipelines())
+				for (int i = 0; i < pipelineAdapters.size(); i++)
 				{
-					final IPipelineAdapter<RenderCommandBuffer> adapter = IPipelineAdapter
-							.adapt(pipeline);
+					IPipelineAdapter<RenderCommandBuffer> adapter = pipelineAdapters.get(i);
+					boolean recordOk = adapter.shouldRecord(stage);
 
 					int pipelineSubpass = 0;
-					if (adapter instanceof IGraphicsPipelineAdapter)
+					if (stage == ECommandStage.RENDER
+							&& adapter instanceof IGraphicsPipelineAdapter)
 					{
 						var graphicsPipelineAdapter = (IGraphicsPipelineAdapter) adapter;
 						pipelineSubpass = graphicsPipelineAdapter.getSubpass();
@@ -89,13 +89,8 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 						{
 							subpassCount = pipelineSubpass + 1;
 						}
-					}
 
-					boolean recordOk = pipeline.isEnabled() && pipeline.getStage() == stage;
-
-					if (recordOk && stage == ECommandStage.RENDER)
-					{
-						recordOk = pipelineSubpass == currentSubpass;
+						recordOk &= pipelineSubpass == currentSubpass;
 					}
 
 					if (recordOk)
@@ -106,7 +101,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<RenderCommandB
 				}
 
 				currentSubpass++;
-			} while (stage == ECommandStage.RENDER && currentSubpass < subpassCount);
+			} while (currentSubpass < subpassCount);
 		}
 	}
 
