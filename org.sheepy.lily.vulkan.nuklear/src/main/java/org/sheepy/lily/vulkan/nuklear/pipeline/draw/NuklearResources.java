@@ -43,20 +43,20 @@ public class NuklearResources
 	{
 		this.nkPipeline = nkPipeline;
 
-		var font = nkPipeline.getFont();
-		var fontAdapter = FontAdapter.adapt(font);
+		final var font = nkPipeline.getFont();
+		final var fontAdapter = FontAdapter.adapt(font);
 
 		nullDescriptorSet = new VkDescriptorSet(List.of(nullTexture.texture));
 		fontDescriptorSet = new VkDescriptorSet(List.of((IVkDescriptor) fontAdapter));
 		descriptors = List.of(nullDescriptorSet, fontDescriptorSet);
 
-		var module = NuklearPipelineAdapter.class.getModule();
+		final var module = NuklearPipelineAdapter.class.getModule();
 
-		var vertexShaderResource = new ModuleResourceImpl();
+		final var vertexShaderResource = new ModuleResourceImpl();
 		vertexShaderResource.setModule(module);
 		vertexShaderResource.setPath(GUI_VERT_SHADER);
 
-		var fragmentShaderResource = new ModuleResourceImpl();
+		final var fragmentShaderResource = new ModuleResourceImpl();
 		fragmentShaderResource.setModule(module);
 		fragmentShaderResource.setPath(GUI_FRAG_SHADER);
 
@@ -70,14 +70,14 @@ public class NuklearResources
 
 		shaders = List.of(vertexShader, fragmentShader);
 
-		var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(nkPipeline.getIndexBuffer());
+		final var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(nkPipeline.getIndexBuffer());
 		indexBufferAdapter.setNullTexture(nullTexture);
 	}
 
 	public void allocate()
 	{
-		var font = nkPipeline.getFont();
-		var fontAdapter = FontAdapter.adapt(font);
+		final var font = nkPipeline.getFont();
+		final var fontAdapter = FontAdapter.adapt(font);
 
 		fontLoader = new NkFontLoader(font);
 		fontLoader.allocate();
@@ -101,11 +101,11 @@ public class NuklearResources
 	{
 		if (resourceList == null)
 		{
-			var font = nkPipeline.getFont();
-			var fontAdapter = FontAdapter.adapt(font);
-			var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(nkPipeline.getIndexBuffer());
-			var vertShaderAdapter = ShaderAdapter.adapt(vertexShader);
-			var fragmentShaderAdapter = ShaderAdapter.adapt(fragmentShader);
+			final var font = nkPipeline.getFont();
+			final var fontAdapter = FontAdapter.adapt(font);
+			final var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(nkPipeline.getIndexBuffer());
+			final var vertShaderAdapter = ShaderAdapter.adapt(vertexShader);
+			final var fragmentShaderAdapter = ShaderAdapter.adapt(fragmentShader);
 
 			resourceList = List.of(nullTexture, fontAdapter, vertShaderAdapter,
 					fragmentShaderAdapter, indexBufferAdapter);

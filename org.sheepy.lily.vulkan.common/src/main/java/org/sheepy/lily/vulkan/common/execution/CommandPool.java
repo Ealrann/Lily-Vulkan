@@ -4,8 +4,8 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 
 public class CommandPool implements IAllocable
 {

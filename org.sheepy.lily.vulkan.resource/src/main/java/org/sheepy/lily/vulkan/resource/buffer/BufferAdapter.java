@@ -12,9 +12,9 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
@@ -26,7 +26,7 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	protected Buffer buffer;
 	protected IBufferBackend bufferBackend;
 
-	private ExecutionContext executionManager;
+	private IExecutionContext executionManager;
 
 	public BufferAdapter(Buffer buffer)
 	{
@@ -36,8 +36,8 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		executionManager = (ExecutionContext) context;
-		var info = new BufferInfo(buffer);
+		executionManager = (IExecutionContext) context;
+		final var info = new BufferInfo(buffer);
 
 		if (buffer.isGpuBuffer())
 		{
@@ -50,7 +50,7 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 
 		bufferBackend.allocate(stack, context);
 
-		ByteBuffer data = buffer.getData();
+		final ByteBuffer data = buffer.getData();
 		if (data != null)
 		{
 			bufferBackend.pushData(executionManager, data);
@@ -83,7 +83,7 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
 		int stages = 0;
-		for (EShaderStage stage : buffer.getShaderStages())
+		for (final EShaderStage stage : buffer.getShaderStages())
 		{
 			stages |= stage.getValue();
 		}

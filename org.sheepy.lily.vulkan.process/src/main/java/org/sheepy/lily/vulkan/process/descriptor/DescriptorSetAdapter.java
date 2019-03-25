@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
@@ -39,7 +39,7 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	}
 
 	@Override
-	public void bindDescriptorSet(	AbstractCommandBuffer commandBuffer,
+	public void bindDescriptorSet(	VkCommandBuffer commandBuffer,
 									int bindPoint,
 									long pipelineLayoutId)
 	{
@@ -77,9 +77,9 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	{
 		if (vkDescriptors == null)
 		{
-			var descriptors = descriptorSet.getDescriptors();
+			final var descriptors = descriptorSet.getDescriptors();
 			vkDescriptors = new ArrayList<>(descriptors.size());
-			for (IDescriptor descriptor : descriptors)
+			for (final IDescriptor descriptor : descriptors)
 			{
 				vkDescriptors.add(IDescriptorAdapter.adapt(descriptor));
 			}

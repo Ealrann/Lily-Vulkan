@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.compute.process;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -11,14 +12,13 @@ import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
-import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffers;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 @Statefull
 @Adapter(scope = ComputeProcess.class)
-public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommandBuffer>
+public class ComputeProcessAdapter extends AbstractProcessAdapter
 {
 	private static final String FAILED_SUBMIT_COMPUTE = "Failed to submit compute command buffer";
 
@@ -41,14 +41,14 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	}
 
 	@Override
-	public void recordCommand(ComputeCommandBuffer commandBuffer, ECommandStage stage)
+	public void recordCommand(VkCommandBuffer commandBuffer, ECommandStage stage, int index)
 	{
 		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
 			final var pipelineAdapter = pipelineAdapters.get(i);
 			if (pipelineAdapter.shouldRecord(stage))
 			{
-				pipelineAdapter.record(commandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE);
+				pipelineAdapter.record(commandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE, index);
 			}
 			pipelineAdapter.setRecordNeeded(false);
 		}
@@ -65,11 +65,11 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<ComputeCommand
 	{
 		prepare();
 
-		var computeContext = (ComputeContext) context;
-		var queue = context.getQueue().vkQueue;
-		var submission = computeContext.submission;
-		var submitInfo = submission.getSubmitInfo(0);
-		long fenceId = fence != null ? fence.getId() : VK_NULL_HANDLE;
+		final var computeContext = (ComputeContext) context;
+		final var queue = context.getQueue().vkQueue;
+		final var submission = computeContext.submission;
+		final var submitInfo = submission.getSubmitInfo(0);
+		final long fenceId = fence != null ? fence.getId() : VK_NULL_HANDLE;
 
 		Logger.check(vkQueueSubmit(queue, submitInfo, fenceId), FAILED_SUBMIT_COMPUTE);
 	}

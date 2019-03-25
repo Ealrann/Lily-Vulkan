@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.process.process;
 
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 
 public class WaitData

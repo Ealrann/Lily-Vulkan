@@ -2,14 +2,14 @@ package org.sheepy.lily.vulkan.process.pipeline;
 
 import java.util.List;
 
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
-public interface IPipelineAdapter<T extends AbstractCommandBuffer> extends IVulkanAdapter
+public interface IPipelineAdapter extends IVulkanAdapter
 {
 	boolean isRecordNeeded();
 
@@ -18,7 +18,7 @@ public interface IPipelineAdapter<T extends AbstractCommandBuffer> extends IVulk
 	default void prepare()
 	{}
 
-	void record(T commandBuffer, int bindPoint);
+	void record(VkCommandBuffer commandBuffer, int bindPoint, int index);
 
 	List<IVkDescriptorSet> getDescriptorSets();
 
@@ -32,8 +32,7 @@ public interface IPipelineAdapter<T extends AbstractCommandBuffer> extends IVulk
 		return List.of();
 	}
 
-	@SuppressWarnings("unchecked")
-	static <T extends AbstractCommandBuffer> IPipelineAdapter<T> adapt(IPipeline object)
+	static IPipelineAdapter adapt(IPipeline object)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(object, IPipelineAdapter.class);
 	}

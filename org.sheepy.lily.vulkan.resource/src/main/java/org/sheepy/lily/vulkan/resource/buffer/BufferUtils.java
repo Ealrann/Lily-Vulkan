@@ -5,12 +5,12 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.vulkan.VkBufferCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 
 public class BufferUtils
 {
 
-	public static int flush(LogicalDevice logicalDevice, int bufferMemoryId)
+	public static int flush(ILogicalDevice logicalDevice, int bufferMemoryId)
 	{
 		return BufferUtils.flush(logicalDevice, bufferMemoryId, VK_WHOLE_SIZE, 0);
 	}
@@ -28,9 +28,9 @@ public class BufferUtils
 	 *
 	 * @return VkResult of the flush call
 	 */
-	public static int flush(LogicalDevice logicalDevice, int bufferMemoryId, long size, int offset)
+	public static int flush(ILogicalDevice logicalDevice, int bufferMemoryId, long size, int offset)
 	{
-		VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
+		final VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);
 		mappedRange.memory(bufferMemoryId);
 		mappedRange.offset(offset);
@@ -51,12 +51,12 @@ public class BufferUtils
 	 *
 	 * @return VkResult of the invalidate call
 	 */
-	public static int invalidate(	LogicalDevice logicalDevice,
+	public static int invalidate(	ILogicalDevice logicalDevice,
 									int bufferMemoryId,
 									int size,
 									int offset)
 	{
-		VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
+		final VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);
 		mappedRange.memory(bufferMemoryId);
 		mappedRange.offset(offset);
@@ -69,7 +69,7 @@ public class BufferUtils
 									long dstBuffer,
 									long size)
 	{
-		var copyRegion = VkBufferCopy.create(1);
+		final var copyRegion = VkBufferCopy.create(1);
 		copyRegion.srcOffset(0); // Optional
 		copyRegion.dstOffset(0); // Optional
 		copyRegion.size(size);

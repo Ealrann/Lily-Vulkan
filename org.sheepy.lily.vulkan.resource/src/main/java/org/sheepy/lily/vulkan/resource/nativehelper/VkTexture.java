@@ -14,9 +14,9 @@ import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
@@ -52,7 +52,7 @@ public class VkTexture implements IVkDescriptor
 		}
 	}
 
-	public void allocate(MemoryStack stack, LogicalDevice logicalDevice)
+	public void allocate(MemoryStack stack, ILogicalDevice logicalDevice)
 	{
 		image = new VkImage(logicalDevice, imageInfo);
 		image.allocate(stack);
@@ -66,11 +66,11 @@ public class VkTexture implements IVkDescriptor
 		sampler.load(stack);
 	}
 
-	public void loadImage(MemoryStack stack, ExecutionContext executionContext, ByteBuffer data)
+	public void loadImage(MemoryStack stack, IExecutionContext executionContext, ByteBuffer data)
 	{
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 
-		int size = imageInfo.width * imageInfo.height * 4;
+		final int size = imageInfo.width * imageInfo.height * 4;
 
 		final CPUBufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack,
 				executionContext, size, stagingUsage, false, data);
@@ -80,8 +80,8 @@ public class VkTexture implements IVkDescriptor
 			@Override
 			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
-				List<EAccess> srcAccessMask = List.of();
-				List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
+				final List<EAccess> srcAccessMask = List.of();
+				final List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 
 				image.transitionImageLayout(commandBuffer, EPipelineStage.TOP_OF_PIPE_BIT,
 						EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,

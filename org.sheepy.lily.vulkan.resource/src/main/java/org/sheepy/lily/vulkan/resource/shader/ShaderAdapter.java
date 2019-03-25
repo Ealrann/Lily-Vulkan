@@ -11,9 +11,9 @@ import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 @Statefull

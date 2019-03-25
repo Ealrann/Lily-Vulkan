@@ -7,11 +7,11 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
-import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearConstants;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 
 @Statefull
@@ -20,7 +20,7 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 {
 	private final int SIZE = 16 * 4;
 	private ByteBuffer buffer;
-	private GraphicContext graphicContext;
+	private IGraphicContext graphicContext;
 	private boolean needRecord = true;
 
 	private final IWindowListener windowListener = new IWindowListener()
@@ -35,7 +35,7 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		graphicContext = (GraphicContext) context;
+		graphicContext = (IGraphicContext) context;
 		buffer = MemoryUtil.memAlloc(SIZE);
 		graphicContext.getWindow().addListener(windowListener);
 	}
@@ -43,7 +43,7 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
+		final var graphicContext = (IGraphicContext) context;
 		MemoryUtil.memFree(buffer);
 		graphicContext.getWindow().removeListener(windowListener);
 	}
@@ -69,9 +69,9 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 	@Override
 	public ByteBuffer getData()
 	{
-		Vector2i size = graphicContext.getWindow().getSize();
-		int width = size.x;
-		int height = size.y;
+		final Vector2i size = graphicContext.getWindow().getSize();
+		final int width = size.x;
+		final int height = size.y;
 
 		buffer.putFloat(2.0f / width);
 		buffer.putFloat(0.0f);

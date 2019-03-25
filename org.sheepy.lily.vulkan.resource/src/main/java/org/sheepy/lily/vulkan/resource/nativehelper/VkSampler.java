@@ -4,24 +4,24 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
+import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 
 public class VkSampler
 {
-	private final LogicalDevice logicalDevice;
+	private final ILogicalDevice logicalDevice;
 	private final Sampler sampler;
 
 	private long samplerId;
 
-	public VkSampler(LogicalDevice logicalDevice)
+	public VkSampler(ILogicalDevice logicalDevice)
 	{
 		this(logicalDevice, new SamplerImpl());
 	}
 
-	public VkSampler(LogicalDevice logicalDevice, Sampler sampler)
+	public VkSampler(ILogicalDevice logicalDevice, Sampler sampler)
 	{
 		this.logicalDevice = logicalDevice;
 		this.sampler = sampler;
@@ -29,7 +29,7 @@ public class VkSampler
 
 	public void load(MemoryStack stack)
 	{
-		var samplerInfo = VkSamplerCreateInfo.callocStack(stack);
+		final var samplerInfo = VkSamplerCreateInfo.callocStack(stack);
 		samplerInfo.sType(VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO);
 		samplerInfo.magFilter(sampler.getMagFilter().getValue());
 		samplerInfo.minFilter(sampler.getMinFilter().getValue());
@@ -49,7 +49,7 @@ public class VkSampler
 		samplerInfo.minLod(sampler.getMinLod());
 		samplerInfo.maxLod(sampler.getMaxLod());
 
-		long[] aSamplerId = new long[1];
+		final long[] aSamplerId = new long[1];
 		Logger.check(vkCreateSampler(logicalDevice.getVkDevice(), samplerInfo, null, aSamplerId),
 				"Failed to create texture sampler");
 		samplerId = aSamplerId[0];

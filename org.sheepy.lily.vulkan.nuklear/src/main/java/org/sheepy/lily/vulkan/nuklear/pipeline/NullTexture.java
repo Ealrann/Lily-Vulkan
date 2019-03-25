@@ -6,9 +6,9 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.model.enumeration.EFilter;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
@@ -35,8 +35,8 @@ public class NullTexture implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var executionContext = (ExecutionContext) context;
-		ByteBuffer buffer = MemoryUtil.memAlloc(4);
+		final var executionContext = (IExecutionContext) context;
+		final ByteBuffer buffer = MemoryUtil.memAlloc(4);
 		buffer.putInt(0xFFFFFFFF);
 		buffer.flip();
 

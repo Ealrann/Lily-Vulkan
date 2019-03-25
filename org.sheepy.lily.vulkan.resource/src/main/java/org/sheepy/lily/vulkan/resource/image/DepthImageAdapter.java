@@ -9,12 +9,12 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
-import org.sheepy.lily.vulkan.common.resource.image.IDepthImageAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
+import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.api.resource.image.IDepthImageAdapter;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
@@ -47,7 +47,7 @@ public class DepthImageAdapter implements IDepthImageAdapter
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var executionContext = (ExecutionContext) context;
+		final var executionContext = (IExecutionContext) context;
 		depthFormat = findDepthFormat(executionContext.getPhysicalDevice());
 
 		createDepthImage(executionContext.getLogicalDevice());
@@ -58,7 +58,7 @@ public class DepthImageAdapter implements IDepthImageAdapter
 		layoutTransitionOfDepthImage(stack, executionContext);
 	}
 
-	private void createAndAllocateImageView(LogicalDevice logicalDevice)
+	private void createAndAllocateImageView(ILogicalDevice logicalDevice)
 	{
 		depthImageView = new VkImageView(logicalDevice.getVkDevice());
 		depthImageView.allocate(depthImageBackend.getAddress(), 1, depthFormat,
@@ -70,20 +70,20 @@ public class DepthImageAdapter implements IDepthImageAdapter
 		depthImageBackend.allocate(stack);
 	}
 
-	private void createDepthImage(LogicalDevice logicalDevice)
+	private void createDepthImage(ILogicalDevice logicalDevice)
 	{
-		var vulkanApp = ModelUtil.getApplication(depthImage);
+		final var vulkanApp = ModelUtil.getApplication(depthImage);
 		size = new Vector2i(vulkanApp.getSize());
-		int width = size.x;
-		int height = size.y;
-		int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
-		var depthImageInfo = new ImageInfo(width, height, depthFormat, usage,
+		final int width = size.x;
+		final int height = size.y;
+		final int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+		final var depthImageInfo = new ImageInfo(width, height, depthFormat, usage,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
 		depthImageBackend = new VkImage(logicalDevice, depthImageInfo);
 	}
 
-	private void layoutTransitionOfDepthImage(MemoryStack stack, ExecutionContext context)
+	private void layoutTransitionOfDepthImage(MemoryStack stack, IExecutionContext context)
 	{
 		final var barrier = new ReferenceImageBarrierImpl();
 		barrier.setImageId(depthImageBackend.getAddress());
@@ -100,7 +100,7 @@ public class DepthImageAdapter implements IDepthImageAdapter
 
 		barrier.getTransitions().add(transition);
 
-		var barrierExecutor = BarrierExecutorFactory.create(barrier);
+		final var barrierExecutor = BarrierExecutorFactory.create(barrier);
 		barrierExecutor.allocate();
 
 		context.execute(stack, new ISingleTimeCommand()
@@ -114,7 +114,7 @@ public class DepthImageAdapter implements IDepthImageAdapter
 		barrierExecutor.free();
 	}
 
-	private static int findDepthFormat(PhysicalDevice physicalDevice)
+	private static int findDepthFormat(IPhysicalDevice physicalDevice)
 	{
 		return physicalDevice.findSupportedFormat(new int[] {
 				VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT

@@ -3,8 +3,8 @@ package org.sheepy.lily.vulkan.resource.descriptor;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.lwjgl.vulkan.VkCommandBuffer;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 
 public interface IVkDescriptorSet
 {
@@ -18,7 +18,7 @@ public interface IVkDescriptorSet
 
 	List<IVkDescriptor> getDescriptors();
 
-	void bindDescriptorSet(	AbstractCommandBuffer commandBuffer,
+	void bindDescriptorSet(	VkCommandBuffer commandBuffer,
 							int bindPoint,
 							long pipelineLayoutId);
 }

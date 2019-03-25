@@ -3,7 +3,7 @@ package org.sheepy.lily.vulkan.demo.mesh;
 import org.sheepy.lily.core.api.cadence.IMainLoop;
 import org.sheepy.lily.core.api.util.UPSMeter;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
+import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 
 public class MeshMainLoop implements IMainLoop
 {

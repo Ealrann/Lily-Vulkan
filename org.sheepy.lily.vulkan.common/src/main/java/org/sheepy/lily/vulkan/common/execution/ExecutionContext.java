@@ -4,16 +4,20 @@ import java.util.Collection;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.api.process.IVulkanContext;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
-import org.sheepy.lily.vulkan.common.engine.VulkanContext;
+import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.common.device.VulkanContext;
 import org.sheepy.lily.vulkan.common.execution.internal.SingleTimeCommand;
 
-public class ExecutionContext extends VulkanContext implements IAllocationContext, IAllocable
+public class ExecutionContext extends VulkanContext
+		implements IAllocationContext, IAllocable, IExecutionContext
 {
 	public final EQueueType queueType;
 	private final boolean resetAllowed;
@@ -30,16 +34,16 @@ public class ExecutionContext extends VulkanContext implements IAllocationContex
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		setLogicalDevice(((IVulkanContext) context).getLogicalDevice());
+		setLogicalDevice((LogicalDevice) ((VulkanContext) context).getLogicalDevice());
 		setWindow(((IVulkanContext) context).getWindow());
 
 		switch (queueType)
 		{
 		case Compute:
-			queue = getLogicalDevice().createComputeQueue();
+			queue = logicalDevice.createComputeQueue();
 			break;
 		case Graphic:
-			queue = getLogicalDevice().createGraphicQueue();
+			queue = logicalDevice.createGraphicQueue();
 			break;
 		case Present:
 			throw new AssertionError("Present is not a valid ExecutionContext");
@@ -68,6 +72,7 @@ public class ExecutionContext extends VulkanContext implements IAllocationContex
 		return queue;
 	}
 
+	@Override
 	public void execute(ISingleTimeCommand command)
 	{
 		try (MemoryStack stack = MemoryStack.stackPush())
@@ -76,16 +81,18 @@ public class ExecutionContext extends VulkanContext implements IAllocationContex
 		}
 	}
 
+	@Override
 	public void execute(MemoryStack stack, ISingleTimeCommand command)
 	{
 		execute(stack, null, command);
 	}
 
+	@Override
 	public void execute(MemoryStack stack,
 						Collection<VkSemaphore> semaphoreToSignal,
 						ISingleTimeCommand command)
 	{
-		SingleTimeCommand stc = new SingleTimeCommand(this, stack, semaphoreToSignal)
+		final SingleTimeCommand stc = new SingleTimeCommand(this, stack, semaphoreToSignal)
 		{
 			@Override
 			protected void doExecute(MemoryStack stack, VkCommandBuffer commandBuffer)

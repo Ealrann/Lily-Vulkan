@@ -5,7 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.process.graphic.frame.Framebuffers.ClearInfo;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 

@@ -7,14 +7,14 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
@@ -42,8 +42,8 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context, DescriptorPool pool)
 	{
-		var device = ((ExecutionContext) context).getVkDevice();
-		var layoutBindings = createLayoutBinding(stack);
+		final var device = ((ExecutionContext) context).getVkDevice();
+		final var layoutBindings = createLayoutBinding(stack);
 
 		final var layoutInfo = VkDescriptorSetLayoutCreateInfo.callocStack(stack);
 		layoutInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO);
@@ -77,7 +77,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var device = ((ExecutionContext) context).getVkDevice();
+		final var device = ((ExecutionContext) context).getVkDevice();
 		vkDestroyDescriptorSetLayout(device, layoutId, null);
 		layoutId = UNINITIALIZED;
 		MemoryUtil.memFree(bDescriptorSet);
@@ -108,7 +108,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 
 		for (final IVkDescriptor descriptor : descriptors)
 		{
-			var allocWriteDescriptor = descriptor.allocWriteDescriptor(stack);
+			final var allocWriteDescriptor = descriptor.allocWriteDescriptor(stack);
 			allocWriteDescriptor.dstSet(descriptorSetId);
 			allocWriteDescriptor.dstBinding(index++);
 			descriptorWrites.put(allocWriteDescriptor);
@@ -119,12 +119,11 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	}
 
 	@Override
-	public void bindDescriptorSet(	AbstractCommandBuffer commandBuffer,
+	public void bindDescriptorSet(	VkCommandBuffer commandBuffer,
 									int bindPoint,
 									long pipelineLayoutId)
 	{
-		final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
-		vkCmdBindDescriptorSets(vkCommandBuffer, bindPoint, pipelineLayoutId, 0, bDescriptorSet,
+		vkCmdBindDescriptorSets(commandBuffer, bindPoint, pipelineLayoutId, 0, bDescriptorSet,
 				null);
 	}
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.process.execution.AbstractCommandBuffers;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
@@ -19,12 +19,12 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 	{
 		final List<RenderCommandBuffer> res = new ArrayList<>();
 
-		var graphicContext = (GraphicContext) context;
+		final var graphicContext = (GraphicContext) context;
 		final var framebuffers = graphicContext.framebuffers;
 
 		for (int i = 0; i < framebuffers.getIDs().size(); i++)
 		{
-			var commandBuffer = new RenderCommandBuffer(i);
+			final var commandBuffer = new RenderCommandBuffer(i);
 			res.add(commandBuffer);
 		}
 
@@ -35,20 +35,21 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 	{
 		for (int i = 0; i < commandBuffers.size(); i++)
 		{
-			final RenderCommandBuffer commandBuffer = commandBuffers.get(i);
+			final var commandBuffer = commandBuffers.get(i);
+			final var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
 
 			commandBuffer.startCommand();
 
-			var adapter = GraphicProcessAdapter.adapt(context.graphicProcess);
-			adapter.recordCommand(commandBuffer, ECommandStage.PRE_RENDER);
+			final var adapter = GraphicProcessAdapter.adapt(context.graphicProcess);
+			adapter.recordCommand(vkCommandBuffer, ECommandStage.PRE_RENDER, i);
 
 			commandBuffer.startRenderPass();
 
-			adapter.recordCommand(commandBuffer, ECommandStage.RENDER);
+			adapter.recordCommand(vkCommandBuffer, ECommandStage.RENDER, i);
 
 			commandBuffer.endRenderPass();
 
-			adapter.recordCommand(commandBuffer, ECommandStage.POST_RENDER);
+			adapter.recordCommand(vkCommandBuffer, ECommandStage.POST_RENDER, i);
 
 			commandBuffer.endCommand();
 		}
@@ -57,7 +58,7 @@ public class GraphicCommandBuffers extends AbstractCommandBuffers<RenderCommandB
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
+		final var graphicContext = (GraphicContext) context;
 		return graphicContext.framebuffers.isAllocationDirty(context);
 	}
 }

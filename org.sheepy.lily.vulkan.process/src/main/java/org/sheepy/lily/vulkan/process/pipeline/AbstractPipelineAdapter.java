@@ -9,17 +9,17 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
+import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
-import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocationDescriptorAdapter;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
@@ -30,8 +30,8 @@ import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 @Statefull
-public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
-		implements IAllocableAdapter, IPipelineAdapter<T>, IAllocationDescriptorAdapter
+public abstract class AbstractPipelineAdapter
+		implements IAllocableAdapter, IPipelineAdapter, IAllocationDescriptorAdapter
 {
 	protected final IPipeline pipeline;
 	private final List<Object> allocationList;
@@ -75,14 +75,14 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var vkDevice = ((ProcessContext) context).getVkDevice();
+		final var vkDevice = ((ProcessContext) context).getVkDevice();
 		pipelineLayout = allocatePipelineLayout(stack, vkDevice);
 	}
 
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var vkDevice = ((ProcessContext) context).getVkDevice();
+		final var vkDevice = ((ProcessContext) context).getVkDevice();
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);
 
 		allocationDependencies.clear();
@@ -95,7 +95,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 	{
 		boolean res = false;
 
-		for (IAllocable dependency : allocationDependencies)
+		for (final IAllocable dependency : allocationDependencies)
 		{
 			if (dependency.isAllocationDirty(context))
 			{
@@ -114,10 +114,10 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 
 		if (res == false)
 		{
-			var pushConstant = getConstants();
+			final var pushConstant = getConstants();
 			if (pushConstant != null)
 			{
-				var pushAdapter = AbstractConstantsAdapter.adapt(pushConstant);
+				final var pushAdapter = AbstractConstantsAdapter.adapt(pushConstant);
 				res |= pushAdapter.needRecord();
 			}
 		}
@@ -133,7 +133,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		if (descriptorSets.isEmpty() == false)
 		{
 			bDescriptorSet = stack.mallocLong(descriptorSets.size());
-			for (IVkDescriptorSet vkDescriptorSet : descriptorSets)
+			for (final IVkDescriptorSet vkDescriptorSet : descriptorSets)
 			{
 				if (vkDescriptorSet.getDescriptors().isEmpty() == false)
 				{
@@ -160,7 +160,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 
 	private void preparePushConstant(MemoryStack stack, VkPipelineLayoutCreateInfo info)
 	{
-		var constants = getConstants();
+		final var constants = getConstants();
 		if (constants != null)
 		{
 			final var adapter = AbstractConstantsAdapter.adapt(constants);
@@ -173,9 +173,9 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 		return pipelineLayout;
 	}
 
-	public void bindDescriptor(T commandBuffer, int bindPoint, int descriptorSetIndex)
+	public void bindDescriptor(VkCommandBuffer commandBuffer, int bindPoint, int descriptorSetIndex)
 	{
-		IVkDescriptorSet descriptorSet = descriptorSets.get(descriptorSetIndex);
+		final IVkDescriptorSet descriptorSet = descriptorSets.get(descriptorSetIndex);
 		descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, getLayoutId());
 	}
 
@@ -193,8 +193,7 @@ public abstract class AbstractPipelineAdapter<T extends AbstractCommandBuffer>
 
 	public abstract AbstractConstants getConstants();
 
-	@SuppressWarnings("unchecked")
-	public static <T extends AbstractCommandBuffer> AbstractPipelineAdapter<T> adapt(IPipeline object)
+	public static AbstractPipelineAdapter adapt(IPipeline object)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
 	}

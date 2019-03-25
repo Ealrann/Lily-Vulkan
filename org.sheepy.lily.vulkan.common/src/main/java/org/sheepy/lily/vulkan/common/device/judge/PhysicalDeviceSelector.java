@@ -15,7 +15,7 @@ import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
 import org.sheepy.lily.vulkan.common.device.VulkanInstance;
-import org.sheepy.lily.vulkan.common.engine.EngineExtensionRequirement;
+import org.sheepy.lily.vulkan.common.engine.utils.EngineExtensionRequirement;
 
 public class PhysicalDeviceSelector
 {

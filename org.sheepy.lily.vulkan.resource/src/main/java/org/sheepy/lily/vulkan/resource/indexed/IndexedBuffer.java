@@ -7,8 +7,9 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.lily.vulkan.resource.buffer.BufferGPUFiller;
@@ -31,21 +32,21 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 
 	boolean allocated = false;
 
-	public static <T extends IVertex> IndexedBuffer<T> alloc(	ExecutionContext context,
+	public static <T extends IVertex> IndexedBuffer<T> alloc(	IExecutionContext context,
 																IndexedBufferData<T> datas,
 																boolean isOftenChanged)
 	{
 		return alloc(context, datas.meshDescriptor, datas.vertices, datas.indices, isOftenChanged);
 	}
 
-	public static <T extends IVertex> IndexedBuffer<T> alloc(	ExecutionContext context,
+	public static <T extends IVertex> IndexedBuffer<T> alloc(	IExecutionContext context,
 																IIndexedBufferDescriptor<T> indexedDescriptor,
 																T[] vertices,
 																int[] indices,
 																boolean isOftenChanged)
 	{
-		int vertexBufferSize = vertices.length * indexedDescriptor.sizeOfVertex();
-		int indexBufferSize = indices.length * indexedDescriptor.sizeOfIndex();
+		final int vertexBufferSize = vertices.length * indexedDescriptor.sizeOfVertex();
+		final int indexBufferSize = indices.length * indexedDescriptor.sizeOfIndex();
 
 		final IndexedBuffer<T> res = new IndexedBuffer<>(indexedDescriptor, vertexBufferSize,
 				indexBufferSize, isOftenChanged);
@@ -131,7 +132,7 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 							CPUBufferBackend vertexStaggingBuffer,
 							int numberOfVertice)
 	{
-		var executionContext = (ExecutionContext) context;
+		final var executionContext = (ExecutionContext) context;
 
 		indexCount = numberOfIndice;
 		vertexCount = numberOfVertice;

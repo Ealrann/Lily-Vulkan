@@ -6,8 +6,9 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 
 public abstract class AbstractCommandBuffer implements ICommandBuffer
 {

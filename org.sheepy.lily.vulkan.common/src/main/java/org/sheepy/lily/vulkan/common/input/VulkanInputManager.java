@@ -13,7 +13,6 @@ import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
 import org.lwjgl.glfw.GLFWScrollCallback;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.input.IInputManager;
 import org.sheepy.lily.core.api.input.event.CharEvent;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.api.input.event.KeyEvent;
@@ -23,9 +22,11 @@ import org.sheepy.lily.core.api.input.event.ScrollEvent;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.core.model.types.EMouseButton;
+import org.sheepy.lily.vulkan.api.input.IInputCatcher;
+import org.sheepy.lily.vulkan.api.input.IVulkanInputManager;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 
-public class VulkanInputManager implements IInputManager
+public class VulkanInputManager implements IVulkanInputManager
 {
 	private final Application application;
 	private final Window window;
@@ -48,6 +49,7 @@ public class VulkanInputManager implements IInputManager
 			events.add(new CharEvent(codepoint));
 		}
 	};
+
 	private final GLFWKeyCallback glfwSetKeyCallback = new GLFWKeyCallback()
 	{
 		@Override
@@ -231,6 +233,7 @@ public class VulkanInputManager implements IInputManager
 		events.clear();
 	}
 
+	@Override
 	public void setInputCatcher(IInputCatcher catcher)
 	{
 		this.catcher = catcher;

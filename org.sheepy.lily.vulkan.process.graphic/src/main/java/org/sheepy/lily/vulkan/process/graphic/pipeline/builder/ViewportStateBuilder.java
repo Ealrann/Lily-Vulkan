@@ -12,8 +12,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
 import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
+import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
-import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager.Extent2D;
 
 public class ViewportStateBuilder
 {
@@ -31,12 +31,12 @@ public class ViewportStateBuilder
 
 		if (vState instanceof StaticViewportState)
 		{
-			var state = (StaticViewportState) vState;
+			final var state = (StaticViewportState) vState;
 			fillStaticStateInfo(stack, surfaceManager, state);
 		}
 		else if (vState instanceof DynamicViewportState)
 		{
-			var state = (DynamicViewportState) vState;
+			final var state = (DynamicViewportState) vState;
 			fillDynamicStateInfo(state);
 		}
 
@@ -54,15 +54,15 @@ public class ViewportStateBuilder
 										StaticViewportState state)
 	{
 		// Viewports and scissors
-		Extent2D swapExtent = surfaceManager.getExtent();
+		final Extent2D swapExtent = surfaceManager.getExtent();
 		viewports = VkViewport.callocStack(state.getViewports().size(), stack);
-		for (Viewport viewport : state.getViewports())
+		for (final Viewport viewport : state.getViewports())
 		{
-			Vector2i offset = viewport.getOffset();
+			final Vector2i offset = viewport.getOffset();
 			viewports.x(offset.x);
 			viewports.y(offset.y);
 
-			Vector2i extent = viewport.getExtent();
+			final Vector2i extent = viewport.getExtent();
 			if (extent == null)
 			{
 				viewports.width(swapExtent.getWidth());
@@ -82,12 +82,12 @@ public class ViewportStateBuilder
 		viewports.flip();
 
 		scissors = VkRect2D.callocStack(state.getScissors().size(), stack);
-		for (Scissor scissor : state.getScissors())
+		for (final Scissor scissor : state.getScissors())
 		{
-			Vector2i offset = scissor.getOffset();
+			final Vector2i offset = scissor.getOffset();
 			scissors.offset().set(offset.x, offset.y);
 
-			var extent = scissor.getExtent();
+			final var extent = scissor.getExtent();
 			if (extent == null)
 			{
 				scissors.extent().set(swapExtent.getWidth(), swapExtent.getHeight());

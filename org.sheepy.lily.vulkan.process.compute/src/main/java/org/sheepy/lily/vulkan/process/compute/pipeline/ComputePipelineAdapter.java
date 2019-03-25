@@ -7,18 +7,18 @@ import java.util.List;
 
 import org.joml.Vector3i;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
-import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffer;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
@@ -28,11 +28,11 @@ import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 
 @Statefull
 @Adapter(scope = ComputePipeline.class)
-public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeCommandBuffer>
+public class ComputePipelineAdapter extends AbstractPipelineAdapter
 {
 	protected final ComputePipeline pipeline;
 
-	private final List<IPipelineUnitAdapter<ComputeCommandBuffer>> pipelinesAdapters = new ArrayList<>();
+	private final List<IPipelineUnitAdapter> pipelinesAdapters = new ArrayList<>();
 
 	private final Vector3i groupCount = new Vector3i();
 
@@ -49,9 +49,9 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	{
 		super.allocate(stack, context);
 
-		var processContext = (ProcessContext) context;
-		var vkDevice = processContext.getVkDevice();
-		var units = pipeline.getUnits();
+		final var processContext = (ProcessContext) context;
+		final var vkDevice = processContext.getVkDevice();
+		final var units = pipeline.getUnits();
 		int size = 0;
 
 		groupCount.x = (int) Math.ceil((float) pipeline.getWidth() / pipeline.getWorkgroupSizeX());
@@ -60,7 +60,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 
 		for (int i = 0; i < units.size(); i++)
 		{
-			IPipelineUnit unit = units.get(i);
+			final IPipelineUnit unit = units.get(i);
 			if (unit instanceof Computer)
 			{
 				size++;
@@ -69,18 +69,18 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 			pipelinesAdapters.add(IPipelineUnitAdapter.adapt(unit));
 		}
 
-		var pipelineCreateInfos = VkComputePipelineCreateInfo.callocStack(size, stack);
-		var shaderInfo = VkPipelineShaderStageCreateInfo.calloc();
+		final var pipelineCreateInfos = VkComputePipelineCreateInfo.callocStack(size, stack);
+		final var shaderInfo = VkPipelineShaderStageCreateInfo.calloc();
 
 		int index = 0;
 		for (int i = 0; i < units.size(); i++)
 		{
-			IPipelineUnit unit = units.get(i);
+			final IPipelineUnit unit = units.get(i);
 			if (unit instanceof Computer)
 			{
-				var computer = (Computer) unit;
-				var shader = computer.getShader();
-				var shaderAdapter = ShaderAdapter.adapt(shader);
+				final var computer = (Computer) unit;
+				final var shader = computer.getShader();
+				final var shaderAdapter = ShaderAdapter.adapt(shader);
 
 				shaderAdapter.fillInfo(shaderInfo);
 
@@ -90,7 +90,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 				adapter.setGroupCount(groupCount);
 				index++;
 
-				var pipelineCreateInfo = pipelineCreateInfos.get();
+				final var pipelineCreateInfo = pipelineCreateInfos.get();
 				pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
 				pipelineCreateInfo.stage(shaderInfo);
 				pipelineCreateInfo.layout(pipelineLayout);
@@ -108,9 +108,9 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var processContext = (ProcessContext) context;
-		var vkDevice = processContext.getVkDevice();
-		for (long id : pipelines)
+		final var processContext = (ProcessContext) context;
+		final var vkDevice = processContext.getVkDevice();
+		for (final long id : pipelines)
 		{
 			vkDestroyPipeline(vkDevice, id, null);
 		}
@@ -128,13 +128,13 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	}
 
 	@Override
-	public void record(ComputeCommandBuffer commandBuffer, int bindPoint)
+	public void record(VkCommandBuffer commandBuffer, int bindPoint, int index)
 	{
 		bindDescriptor(commandBuffer, bindPoint, 0);
 		recordComputers(commandBuffer, bindPoint);
 	}
 
-	protected void recordComputers(ComputeCommandBuffer commandBuffer, int bindPoint)
+	protected void recordComputers(VkCommandBuffer commandBuffer, int bindPoint)
 	{
 		final var units = pipeline.getUnits();
 		for (int i = 0; i < units.size(); i++)
@@ -159,11 +159,11 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter<ComputeComma
 	@Override
 	public List<IVkDescriptorSet> getDescriptorSets()
 	{
-		List<IVkDescriptorSet> res = new ArrayList<>();
-		var ds = pipeline.getDescriptorSet();
+		final List<IVkDescriptorSet> res = new ArrayList<>();
+		final var ds = pipeline.getDescriptorSet();
 		if (ds != null)
 		{
-			var adapter = IDescriptorSetAdapter.adapt(ds);
+			final var adapter = IDescriptorSetAdapter.adapt(ds);
 			res.add(adapter);
 		}
 		return res;

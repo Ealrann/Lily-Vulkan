@@ -3,9 +3,9 @@ package org.sheepy.lily.vulkan.resource.buffer;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 
 public interface IBufferBackend extends IAllocable
 {
@@ -24,5 +24,5 @@ public interface IBufferBackend extends IAllocable
 
 	public void unmapMemory(VkDevice vkDevice);
 
-	void pushData(ExecutionContext executionContext, ByteBuffer data);
+	void pushData(IExecutionContext executionContext, ByteBuffer data);
 }

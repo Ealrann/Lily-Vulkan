@@ -9,7 +9,7 @@ import java.util.Collection;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
+import org.sheepy.lily.vulkan.api.execution.ICommandBuffer;
 public class SubmissionInfo
 {
 	protected VkSubmitInfo submitInfo;

@@ -16,8 +16,8 @@ import org.sheepy.lily.core.api.input.event.MouseButtonEvent;
 import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
 import org.sheepy.lily.core.api.input.event.ScrollEvent;
 import org.sheepy.lily.core.model.types.EKeyState;
+import org.sheepy.lily.vulkan.api.input.IInputCatcher;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
-import org.sheepy.lily.vulkan.common.input.IInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPipelineAdapter;
 
 public class NuklearInputCatcher implements IInputCatcher

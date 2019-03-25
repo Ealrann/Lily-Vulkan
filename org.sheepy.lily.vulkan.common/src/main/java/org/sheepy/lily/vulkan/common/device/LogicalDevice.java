@@ -13,13 +13,15 @@ import org.lwjgl.vulkan.VkDeviceCreateInfo;
 import org.lwjgl.vulkan.VkDeviceQueueCreateInfo;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
+import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
+import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.queue.QueueManager;
 import org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature;
 
-public class LogicalDevice
+public class LogicalDevice implements ILogicalDevice
 {
 	public final PhysicalDevice physicalDevice;
 	public final VkSurface dummySurface;
@@ -61,7 +63,7 @@ public class LogicalDevice
 		}
 		queueCreateInfos.flip();
 
-		List<EDeviceExtension> extensions = physicalDevice.getRetainedExtensions();
+		final List<EDeviceExtension> extensions = physicalDevice.getRetainedExtensions();
 
 		// Logical Device
 		final PointerBuffer extensionsBuffer = stack.callocPointer(extensions.size());
@@ -93,8 +95,9 @@ public class LogicalDevice
 		final VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.callocStack(stack);
 		deviceFeatures.samplerAnisotropy(true);
 
-		boolean fillModeNonSolid = features.contains(EPhysicalDeviceFeature.FILL_MODE_NON_SOLID);
-		boolean wideLines = features.contains(EPhysicalDeviceFeature.WIDE_LINES);
+		final boolean fillModeNonSolid = features
+				.contains(EPhysicalDeviceFeature.FILL_MODE_NON_SOLID);
+		final boolean wideLines = features.contains(EPhysicalDeviceFeature.WIDE_LINES);
 
 		deviceFeatures.fillModeNonSolid(fillModeNonSolid);
 		deviceFeatures.wideLines(wideLines);
@@ -110,18 +113,26 @@ public class LogicalDevice
 
 	public void waitIdle()
 	{
-		int res = vkDeviceWaitIdle(vkDevice);
+		final int res = vkDeviceWaitIdle(vkDevice);
 		Logger.check(res, "Wait idle failed");
 	}
 
+	@Override
 	public VkDevice getVkDevice()
 	{
 		return vkDevice;
 	}
 
+	@Override
 	public VkPhysicalDevice getVkPhysicalDevice()
 	{
 		return physicalDevice.vkPhysicalDevice;
+	}
+
+	@Override
+	public IPhysicalDevice getPhysicalDevice()
+	{
+		return physicalDevice;
 	}
 
 	public VulkanQueue createGraphicQueue()
@@ -134,17 +145,19 @@ public class LogicalDevice
 		return queueManager.createComputeQueue(vkDevice);
 	}
 
+	@Override
 	public VulkanQueue createPresentQueue(VkSurface surface)
 	{
-		VulkanQueue presentQueue = queueManager.createPresentQueue(vkDevice, surface);
-		return presentQueue;
+		return queueManager.createPresentQueue(vkDevice, surface);
 	}
 
+	@Override
 	public boolean isQueueExclusive()
 	{
 		return queueManager.isExclusive();
 	}
 
+	@Override
 	public IntBuffer allocQueueIndices()
 	{
 		return queueManager.allocIndices();

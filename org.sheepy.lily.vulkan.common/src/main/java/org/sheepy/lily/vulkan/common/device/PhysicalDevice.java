@@ -15,12 +15,13 @@ import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkFormatProperties;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceMemoryProperties;
+import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
 import org.sheepy.lily.vulkan.common.device.data.DeviceProperties;
 import org.sheepy.lily.vulkan.common.device.display.DisplayInfo;
 import org.sheepy.lily.vulkan.common.device.display.loader.DisplayInformationLoader;
-import org.sheepy.lily.vulkan.common.engine.EngineExtensionRequirement;
+import org.sheepy.lily.vulkan.common.engine.utils.EngineExtensionRequirement;
 
-public class PhysicalDevice
+public class PhysicalDevice implements IPhysicalDevice
 {
 	public final VkPhysicalDevice vkPhysicalDevice;
 	public final VulkanInstance vkInstance;
@@ -77,6 +78,7 @@ public class PhysicalDevice
 		formatProperties.clear();
 	}
 
+	@Override
 	public int findSupportedFormat(int[] candidates, int tiling, int features)
 	{
 		for (final int format : candidates)
@@ -98,6 +100,7 @@ public class PhysicalDevice
 		throw new AssertionError("failed to find supported format!");
 	}
 
+	@Override
 	public int findMemoryType(int typeFilter, int properties)
 	{
 		int res = -1;
@@ -140,7 +143,7 @@ public class PhysicalDevice
 
 	private List<String> gatherAvailableExtensions()
 	{
-		List<String> extensions = new ArrayList<>();
+		final List<String> extensions = new ArrayList<>();
 		final IntBuffer extensionCount = memAllocInt(1);
 
 		vkEnumerateDeviceExtensionProperties(vkPhysicalDevice, (ByteBuffer) null, extensionCount,
@@ -206,7 +209,7 @@ public class PhysicalDevice
 	public void printRetainedExtensions()
 	{
 		System.out.println("\nUsing Device Extensions:");
-		for (EDeviceExtension deviceExtension : retainedExtensions)
+		for (final EDeviceExtension deviceExtension : retainedExtensions)
 		{
 			System.out.println("\t- " + deviceExtension.name);
 		}
@@ -215,7 +218,7 @@ public class PhysicalDevice
 	public void printAvailableExtensions()
 	{
 		System.out.println("\nAvailable Device Extensions:");
-		for (String extension : availableExtensions)
+		for (final String extension : availableExtensions)
 		{
 			System.out.println("\t- " + extension);
 		}

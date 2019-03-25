@@ -4,7 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 
 public class ComputeCommandBuffer extends AbstractCommandBuffer

@@ -8,10 +8,10 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
-import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.ICommandBuffer;
+import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.process.execution.AbstractCommandBuffers;
 
 public class ProcessSubmission implements IAllocable

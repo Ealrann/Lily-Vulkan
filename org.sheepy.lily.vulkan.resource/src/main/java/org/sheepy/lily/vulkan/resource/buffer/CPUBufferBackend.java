@@ -9,10 +9,10 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.process.IVulkanContext;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkBufferAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
@@ -67,7 +67,7 @@ public class CPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
+	private MemoryInfo allocateMemory(MemoryStack stack, ILogicalDevice logicalDevice)
 	{
 		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, address, properties);
 		return VkMemoryAllocator.allocateFromBuffer(stack, allocationInfo);
@@ -92,7 +92,7 @@ public class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void pushData(ExecutionContext executionContext, ByteBuffer data)
+	public void pushData(IExecutionContext executionContext, ByteBuffer data)
 	{
 		if (address == -1)
 		{

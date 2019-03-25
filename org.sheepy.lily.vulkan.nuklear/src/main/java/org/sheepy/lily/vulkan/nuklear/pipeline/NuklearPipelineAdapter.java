@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.nuklear.NkAllocator;
 import org.lwjgl.nuklear.NkBuffer;
 import org.lwjgl.nuklear.NkContext;
@@ -28,11 +27,10 @@ import org.sheepy.lily.core.model.application.IView;
 import org.sheepy.lily.core.model.presentation.IPanel;
 import org.sheepy.lily.core.model.presentation.IUIView;
 import org.sheepy.lily.core.model.presentation.UIPage;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.engine.VulkanEngineAdapter;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
-import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
@@ -52,10 +50,9 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.draw.NuklearResources;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ColorBlendFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.DynamicStateFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ViewportStateFactory;
-import org.sheepy.lily.vulkan.process.graphic.execution.RenderCommandBuffer;
-import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager.Extent2D;
+import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.IGraphicsPipelineAdapter;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
@@ -76,7 +73,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	private DrawRecorder recorder;
 	private NuklearDrawer drawer;
 
-	private GraphicContext graphicContext;
+	private IGraphicContext graphicContext;
 	private Window window;
 
 	private boolean dirty = true;
@@ -108,7 +105,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	@Override
 	public List<? extends Object> getResources()
 	{
-		var res = new ArrayList<Object>(resources.toList());
+		final var res = new ArrayList<Object>(resources.toList());
 		res.add(nkPipeline.getPushConstant());
 		return res;
 	}
@@ -118,12 +115,12 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	{
 		super.allocate(stack, context);
 
-		graphicContext = (GraphicContext) context;
+		graphicContext = (IGraphicContext) context;
 		window = graphicContext.getWindow();
 
-		var engine = getEngine(nkPipeline);
-		var application = (Application) engine.eContainer();
-		var inputManager = VulkanEngineAdapter.adapt(engine).getInputManager();
+		final var engine = ModelUtil.getEngine(nkPipeline);
+		final var application = (Application) engine.eContainer();
+		final var inputManager = IVulkanEngineAdapter.adapt(engine).getInputManager();
 
 		resources.allocate();
 		createContext();
@@ -135,22 +132,6 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		// Prepare a first render for the opening of the screen
 		layout(Collections.emptyList());
 		prepare();
-	}
-
-	private VulkanEngine getEngine(EObject eo)
-	{
-		while (eo != null)
-		{
-			if (eo instanceof VulkanEngine)
-			{
-				return (VulkanEngine) eo;
-			}
-			else
-			{
-				eo = eo.eContainer();
-			}
-		}
-		return null;
 	}
 
 	@Override
@@ -193,14 +174,14 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 			try (MemoryStack stack = MemoryStack.stackPush())
 			{
-				ByteBuffer str = stack.malloc(len + 1);
+				final ByteBuffer str = stack.malloc(len + 1);
 				MemoryUtil.memCopy(text, MemoryUtil.memAddress(str), len);
 				str.put(len, (byte) 0);
 
 				glfwSetClipboardString(window.getId(), str);
 			}
 		}).paste((handle, edit) -> {
-			long text = nglfwGetClipboardString(window.getId());
+			final long text = nglfwGetClipboardString(window.getId());
 			if (text != 0)
 			{
 				nnk_textedit_paste(edit, text, nnk_strlen(text));
@@ -211,8 +192,8 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	@Override
 	public void prepare()
 	{
-		var indexBuffer = nkPipeline.getIndexBuffer();
-		var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(indexBuffer);
+		final var indexBuffer = nkPipeline.getIndexBuffer();
+		final var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(indexBuffer);
 
 		indexBufferAdapter.update(nkContext, cmds);
 
@@ -221,19 +202,19 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 	public void layout(List<IInputEvent> events)
 	{
-		Application application = ModelUtil.getApplication(nkPipeline);
-		IView view = application.getCurrentView();
-		UIContext context = new UIContext(window, nkContext, events);
+		final Application application = ModelUtil.getApplication(nkPipeline);
+		final IView view = application.getCurrentView();
+		final UIContext context = new UIContext(window, nkContext, events);
 
 		if (view != null && view instanceof IUIView)
 		{
-			IUIView uiView = (IUIView) view;
-			UIPage uiPage = uiView.getCurrentUIPage();
+			final IUIView uiView = (IUIView) view;
+			final UIPage uiPage = uiView.getCurrentUIPage();
 			if (uiPage != null)
 			{
-				for (IPanel panel : uiPage.getPanels())
+				for (final IPanel panel : uiPage.getPanels())
 				{
-					var panelAdapter = IUIElementAdapter.adapt(panel);
+					final var panelAdapter = IUIElementAdapter.adapt(panel);
 					dirty |= panelAdapter.layout(context, panel);
 				}
 			}
@@ -259,11 +240,10 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	}
 
 	@Override
-	public void record(RenderCommandBuffer commandBuffer, int bindPoint)
+	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
 	{
-		var indexBuffer = nkPipeline.getIndexBuffer();
-		var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(indexBuffer);
-		var vkCommandBuffer = commandBuffer.getVkCommandBuffer();
+		final var indexBuffer = nkPipeline.getIndexBuffer();
+		final var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(indexBuffer);
 
 		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
 
@@ -272,10 +252,10 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		setViewport(vkCommandBuffer);
 		pushConstants(vkCommandBuffer);
 
-		drawer.prepare(bindPoint, graphicContext.surfaceManager.getExtent());
-		for (DrawCommandData data : recorder.getDrawCommands())
+		drawer.prepare(bindPoint, graphicContext.getSurfaceManager().getExtent());
+		for (final DrawCommandData data : recorder.getDrawCommands())
 		{
-			drawer.draw(commandBuffer, data);
+			drawer.draw(vkCommandBuffer, data);
 		}
 
 		dirty = false;
@@ -283,14 +263,14 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 
 	private void setViewport(VkCommandBuffer commandBuffer)
 	{
-		Extent2D extent = graphicContext.surfaceManager.getExtent();
+		final Extent2D extent = graphicContext.getSurfaceManager().getExtent();
 		viewport.get(0).set(0, 0, extent.getWidth(), extent.getHeight(), 1, 1);
 		vkCmdSetViewport(commandBuffer, 0, viewport);
 	}
 
 	private void pushConstants(VkCommandBuffer commandBuffer)
 	{
-		var pushAdapter = NuklearConstantsAdapter.adapt(nkPipeline.getPushConstant());
+		final var pushAdapter = NuklearConstantsAdapter.adapt(nkPipeline.getPushConstant());
 		vkCmdPushConstants(commandBuffer, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0,
 				pushAdapter.getData());
 	}
@@ -328,7 +308,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	@Override
 	protected Rasterizer getRasterizer()
 	{
-		var rasterizer = new RasterizerImpl();
+		final var rasterizer = new RasterizerImpl();
 		rasterizer.setCullMode(ECullMode.NONE);
 		return rasterizer;
 	}

@@ -4,7 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.Texture;

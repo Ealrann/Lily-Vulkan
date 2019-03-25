@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.process.graphic.process;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 
 public class PresentSemaphore implements IAllocable
 {

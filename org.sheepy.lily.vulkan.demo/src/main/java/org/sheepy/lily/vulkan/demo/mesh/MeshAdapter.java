@@ -4,10 +4,10 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
 
 @Statefull
@@ -21,7 +21,7 @@ public class MeshAdapter implements IResourceAdapter
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
+		final var graphicContext = (IGraphicContext) context;
 		indexBuffer = meshBuilder.build(graphicContext);
 	}
 

@@ -2,8 +2,8 @@ package org.sheepy.lily.vulkan.process.compute.process;
 
 import java.util.List;
 
+import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeCommandBuffers;
@@ -31,8 +31,8 @@ public class ComputeContext extends ProcessContext
 	@Override
 	protected ProcessSubmission createSubmission(AbstractProcess process)
 	{
-		List<WaitData> waitSemaphores = gatherWaitDatas();
-		List<VkSemaphore> signals = gatherSinalSemaphores();
+		final List<WaitData> waitSemaphores = gatherWaitDatas();
+		final List<VkSemaphore> signals = gatherSinalSemaphores();
 		return new ProcessSubmission(waitSemaphores, signals);
 	}
 }

@@ -9,19 +9,9 @@ module org.sheepy.lily.vulkan.common
 
 	requires org.sheepy.lily.core.impl;
 
-	exports org.sheepy.lily.vulkan.common.allocation.adapter;
-	exports org.sheepy.lily.vulkan.common.allocation.allocator;
-	exports org.sheepy.lily.vulkan.common.allocation.common;
-	exports org.sheepy.lily.vulkan.common.concurrent;
-	exports org.sheepy.lily.vulkan.common.device;
-	exports org.sheepy.lily.vulkan.common.device.data;
-	exports org.sheepy.lily.vulkan.common.device.display;
+	exports org.sheepy.lily.vulkan.common.allocation;
 	exports org.sheepy.lily.vulkan.common.execution;
-	exports org.sheepy.lily.vulkan.common.engine;
-	exports org.sheepy.lily.vulkan.common.input;
-	exports org.sheepy.lily.vulkan.common.nativehelper;
-	exports org.sheepy.lily.vulkan.common.resource;
-	exports org.sheepy.lily.vulkan.common.resource.image;
 	exports org.sheepy.lily.vulkan.common.util;
-	exports org.sheepy.lily.vulkan.common.ui;
+
+	opens org.sheepy.lily.vulkan.common.engine;
 }

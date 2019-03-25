@@ -6,18 +6,18 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
 
 public class BufferGPUFiller
 {
-	private final ExecutionContext context;
+	private final IExecutionContext context;
 	private final long targetBufferId;
 	private final MemoryStack stack;
 
 	private CPUBufferBackend stagingBuffer;
 
-	public BufferGPUFiller(MemoryStack stack, ExecutionContext context, long targetBufferId)
+	public BufferGPUFiller(MemoryStack stack, IExecutionContext context, long targetBufferId)
 	{
 		this.stack = stack;
 		this.context = context;

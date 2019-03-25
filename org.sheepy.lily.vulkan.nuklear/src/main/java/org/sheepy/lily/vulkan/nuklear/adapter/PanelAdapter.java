@@ -16,7 +16,7 @@ import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
-import org.sheepy.lily.vulkan.common.ui.UIUtil;
+import org.sheepy.lily.vulkan.common.util.UIUtil;
 
 @Statefull
 @Adapter(scope = Panel.class)

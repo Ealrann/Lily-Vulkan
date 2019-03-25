@@ -3,11 +3,11 @@ package org.sheepy.lily.vulkan.process.barrier;
 import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.common.allocation.adapter.IAllocableAdapter;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
@@ -18,8 +18,7 @@ import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
 
 @Statefull
 @Adapter(scope = PipelineBarrier.class)
-public class PipelineBarrierAdapter
-		implements IPipelineUnitAdapter<AbstractCommandBuffer>, IAllocableAdapter
+public class PipelineBarrierAdapter implements IPipelineUnitAdapter, IAllocableAdapter
 {
 	private final PipelineBarrier pipelineBarrier;
 	private final IBarrierExecutor executor;
@@ -27,7 +26,7 @@ public class PipelineBarrierAdapter
 	public PipelineBarrierAdapter(PipelineBarrier pipelineBarrier)
 	{
 		this.pipelineBarrier = pipelineBarrier;
-		var barrier = pipelineBarrier.getBarrier();
+		final var barrier = pipelineBarrier.getBarrier();
 
 		executor = BarrierExecutorFactory.create(barrier);
 	}
@@ -35,8 +34,8 @@ public class PipelineBarrierAdapter
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		int srcQueueIndex = getQueueFamillyIndex(pipelineBarrier.getSrcQueue());
-		int dstQueueIndex = getQueueFamillyIndex(pipelineBarrier.getDstQueue());
+		final int srcQueueIndex = getQueueFamillyIndex(pipelineBarrier.getSrcQueue());
+		final int dstQueueIndex = getQueueFamillyIndex(pipelineBarrier.getDstQueue());
 
 		executor.allocate(srcQueueIndex, dstQueueIndex);
 	}
@@ -46,7 +45,7 @@ public class PipelineBarrierAdapter
 		int res = VK_QUEUE_FAMILY_IGNORED;
 		if (process != null)
 		{
-			var queue = AbstractProcessAdapter.adapt(process).getQueue();
+			final var queue = AbstractProcessAdapter.adapt(process).getQueue();
 			res = queue.index;
 		}
 		return res;
@@ -59,9 +58,9 @@ public class PipelineBarrierAdapter
 	}
 
 	@Override
-	public void record(IPipelineUnit unit, AbstractCommandBuffer commandBuffer, int bindPoint)
+	public void record(IPipelineUnit unit, VkCommandBuffer commandBuffer, int bindPoint)
 	{
-		executor.execute(commandBuffer.getVkCommandBuffer());
+		executor.execute(commandBuffer);
 	}
 
 	@Override

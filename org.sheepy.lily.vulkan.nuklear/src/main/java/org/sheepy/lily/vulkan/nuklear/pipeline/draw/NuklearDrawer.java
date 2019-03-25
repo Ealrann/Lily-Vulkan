@@ -7,8 +7,7 @@ import java.util.List;
 import org.joml.Math;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkRect2D;
-import org.sheepy.lily.vulkan.process.graphic.execution.GraphicCommandBuffer;
-import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager.Extent2D;
+import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public class NuklearDrawer
@@ -42,34 +41,32 @@ public class NuklearDrawer
 		indexOffset = 0;
 	}
 
-	public void draw(GraphicCommandBuffer graphicCommandBuffer, DrawCommandData commandData)
+	public void draw(VkCommandBuffer graphicCommandBuffer, DrawCommandData commandData)
 	{
 		updateDescriptor(graphicCommandBuffer, commandData);
 		drawIndexed(graphicCommandBuffer, commandData);
 	}
 
-	public void drawIndexed(GraphicCommandBuffer graphicCommandBuffer, DrawCommandData commandData)
+	public void drawIndexed(VkCommandBuffer commandBuffer, DrawCommandData commandData)
 	{
 		scissorRect.offset().x(Math.max(commandData.xOffset, 0));
 		scissorRect.offset().y(Math.max(commandData.yOffset, 0));
 		scissorRect.extent().width(Math.min(commandData.xExtent, extent.getWidth()));
 		scissorRect.extent().height(Math.min(commandData.yExtent, extent.getHeight()));
 
-		VkCommandBuffer commandBuffer = graphicCommandBuffer.getVkCommandBuffer();
 		vkCmdSetScissor(commandBuffer, 0, scissorRect);
 		vkCmdDrawIndexed(commandBuffer, commandData.elemCount, 1, indexOffset, 0, 0);
 
 		indexOffset += commandData.elemCount;
 	}
 
-	public void updateDescriptor(	GraphicCommandBuffer graphicCommandBuffer,
-									DrawCommandData commandData)
+	public void updateDescriptor(VkCommandBuffer commandBuffer, DrawCommandData commandData)
 	{
-		int currentIndex = resources.getDescriptorSetIndex(commandData.descriptorSetId);
+		final int currentIndex = resources.getDescriptorSetIndex(commandData.descriptorSetId);
 		if (previousDescriptorSet != currentIndex)
 		{
-			var descriptorSet = descriptorSets.get(currentIndex);
-			descriptorSet.bindDescriptorSet(graphicCommandBuffer, bindPoint, layoutId);
+			final var descriptorSet = descriptorSets.get(currentIndex);
+			descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, layoutId);
 			previousDescriptorSet = currentIndex;
 		}
 	}

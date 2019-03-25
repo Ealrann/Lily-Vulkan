@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.gameoflife;
 
 import org.sheepy.lily.core.api.cadence.IMainLoop;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.api.adapter.IProcessAdapter;
+import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.gameoflife.model.ModelFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 

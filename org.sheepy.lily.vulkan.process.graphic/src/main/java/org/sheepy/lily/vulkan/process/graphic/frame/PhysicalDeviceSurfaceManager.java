@@ -1,19 +1,20 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkExtent2D;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.Capabilities;
 import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.ColorDomains;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
 import org.sheepy.lily.vulkan.model.ColorDomain;
+import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
+import org.sheepy.lily.vulkan.process.graphic.api.ISurfaceManager;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
-public class PhysicalDeviceSurfaceManager implements IAllocable
+public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 {
 	private Capabilities capabilities;
 	private ColorDomains colorDomains;
@@ -54,7 +55,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 		capabilities = new Capabilities(graphicContext.getVkPhysicalDevice(), surface);
 		colorDomains = new ColorDomains(graphicContext.getVkPhysicalDevice(), surface);
 
-		var currentExtent = capabilities.vkCapabilities.currentExtent();
+		final var currentExtent = capabilities.vkCapabilities.currentExtent();
 		extent = new Extent2D(currentExtent.width(), currentExtent.height());
 
 		requiredColorDomain = loadColorDomain(graphicContext);
@@ -64,7 +65,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 
 	private ColorDomain loadColorDomain(GraphicContext context)
 	{
-		var colorDomain = context.configuration.getColorDomain();
+		final var colorDomain = context.configuration.getColorDomain();
 		if (colorDomains.isColorDomainAvaillable(colorDomain) == false)
 		{
 			Logger.log("The desired ColorDomain is not availlable");
@@ -116,6 +117,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 		return requiredColorDomain;
 	}
 
+	@Override
 	public Extent2D getExtent()
 	{
 		return extent;
@@ -150,40 +152,5 @@ public class PhysicalDeviceSurfaceManager implements IAllocable
 	public VulkanQueue getPresentQueue()
 	{
 		return presentQueue;
-	}
-
-	public class Extent2D
-	{
-		public final int width;
-		public final int height;
-
-		Extent2D(int width, int height)
-		{
-			this.width = width;
-			this.height = height;
-		}
-
-		/**
-		 *
-		 * Alloc a new Extent. You will have to manage the free.
-		 *
-		 * @return
-		 */
-		public VkExtent2D allocVkExtent2D()
-		{
-			final VkExtent2D vkExtent = VkExtent2D.malloc();
-			vkExtent.set(width, height);
-			return vkExtent;
-		}
-
-		public int getWidth()
-		{
-			return width;
-		}
-
-		public int getHeight()
-		{
-			return height;
-		}
 	}
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.process.compute.process.ComputeContext;
 import org.sheepy.lily.vulkan.process.compute.process.ComputeProcessAdapter;
@@ -26,10 +26,10 @@ public class ComputeCommandBuffers extends AbstractCommandBuffers<ComputeCommand
 
 	public void recordCommands(ComputeContext context)
 	{
-		var processAdapter = ComputeProcessAdapter.adapt(context.computeProcess);
-		var commandBuffer = commandBuffers.get(0);
+		final var processAdapter = ComputeProcessAdapter.adapt(context.computeProcess);
+		final var commandBuffer = commandBuffers.get(0);
 		commandBuffer.start();
-		processAdapter.recordCommand(commandBuffer, ECommandStage.COMPUTE);
+		processAdapter.recordCommand(commandBuffer.getVkCommandBuffer(), ECommandStage.COMPUTE, 0);
 		commandBuffer.end();
 	}
 

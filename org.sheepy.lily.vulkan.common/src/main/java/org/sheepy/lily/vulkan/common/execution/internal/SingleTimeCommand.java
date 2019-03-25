@@ -13,7 +13,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.vulkan.common.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 

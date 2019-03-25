@@ -7,7 +7,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
+import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
@@ -18,7 +18,7 @@ import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryInfo
 
 public class VkImage
 {
-	private final LogicalDevice logicalDevice;
+	private final ILogicalDevice logicalDevice;
 
 	private final ImageInfo info;
 
@@ -26,7 +26,7 @@ public class VkImage
 	protected long imageMemoryAddress;
 	protected long size;
 
-	public VkImage(LogicalDevice logicalDevice, ImageInfo info)
+	public VkImage(ILogicalDevice logicalDevice, ImageInfo info)
 	{
 		this.logicalDevice = logicalDevice;
 		this.info = info;
@@ -43,7 +43,7 @@ public class VkImage
 		vkBindImageMemory(logicalDevice.getVkDevice(), imageAddress, imageMemoryAddress, 0);
 	}
 
-	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
+	private MemoryInfo allocateMemory(MemoryStack stack, ILogicalDevice logicalDevice)
 	{
 		final var properties = info.properties;
 		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, imageAddress,

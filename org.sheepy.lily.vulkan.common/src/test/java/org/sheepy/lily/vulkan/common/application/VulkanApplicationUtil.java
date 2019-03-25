@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.common.application;
 
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.IEngine;
-import org.sheepy.lily.vulkan.api.adapter.IVulkanEngineAdapter;
+import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 

@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
+import static org.lwjgl.vulkan.VK10.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +33,19 @@ public abstract class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAd
 	protected IVertexBufferDescriptor<?> getVertexBufferDescriptor()
 	{
 		return null;
+	}
+
+	@Override
+	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
+	{
+		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
+
+		pushConstants(vkCommandBuffer);
+
+		if (pipeline.getDescriptorSet() != null)
+		{
+			bindDescriptor(vkCommandBuffer, bindPoint, 0);
+		}
 	}
 
 	@Override

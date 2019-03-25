@@ -7,11 +7,11 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.engine.IVulkanContext;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.common.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.api.process.IVulkanContext;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkBufferAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
@@ -35,8 +35,8 @@ public class GPUBufferBackend implements IBufferBackend
 
 		if (keepStagingBuffer)
 		{
-			final BufferInfo stagingInfo = new BufferInfo(info.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
-					info.keptMapped);
+			final BufferInfo stagingInfo = new BufferInfo(info.size,
+					VK_BUFFER_USAGE_TRANSFER_SRC_BIT, info.keptMapped);
 			cpuBackend = new CPUBufferBackend(stagingInfo, true);
 		}
 
@@ -62,7 +62,7 @@ public class GPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
+	private MemoryInfo allocateMemory(MemoryStack stack, ILogicalDevice logicalDevice)
 	{
 		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, address, properties);
 		return VkMemoryAllocator.allocateFromBuffer(stack, allocationInfo);
@@ -87,13 +87,13 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void pushData(ExecutionContext executionContext, ByteBuffer data)
+	public void pushData(IExecutionContext executionContext, ByteBuffer data)
 	{
 		if (address == -1)
 		{
 			throw new AssertionError("Buffer not allocated");
 		}
-		
+
 		if (cpuBackend == null)
 		{
 			try (MemoryStack stack = MemoryStack.stackPush())
@@ -110,7 +110,7 @@ public class GPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	public void pushData(ExecutionContext executionContext, CPUBufferBackend stagingBuffer)
+	public void pushData(IExecutionContext executionContext, CPUBufferBackend stagingBuffer)
 	{
 		final int size = (int) Math.min(stagingBuffer.infos.size, infos.size);
 
@@ -152,7 +152,7 @@ public class GPUBufferBackend implements IBufferBackend
 		}
 	}
 
-	public void pushStagging(ExecutionContext executionManager)
+	public void pushStagging(IExecutionContext executionManager)
 	{
 		pushData(executionManager, cpuBackend);
 	}

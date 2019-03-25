@@ -5,10 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocable;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.common.execution.CommandPool;
-import org.sheepy.lily.vulkan.common.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 
 public abstract class AbstractCommandBuffers<CB extends ICommandBuffer>

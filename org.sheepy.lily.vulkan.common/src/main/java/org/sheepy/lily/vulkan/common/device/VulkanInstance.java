@@ -11,7 +11,7 @@ import org.lwjgl.vulkan.VkInstance;
 import org.lwjgl.vulkan.VkInstanceCreateInfo;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.engine.EngineExtensionRequirement;
+import org.sheepy.lily.vulkan.common.engine.utils.EngineExtensionRequirement;
 import org.sheepy.lily.vulkan.common.util.LayerFinder;
 import org.sheepy.lily.vulkan.common.util.VulkanUtils;
 

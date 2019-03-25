@@ -14,9 +14,9 @@ import org.lwjgl.vulkan.VkMappedMemoryRange;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.common.allocation.common.IAllocationContext;
-import org.sheepy.lily.vulkan.common.engine.VulkanContext;
-import org.sheepy.lily.vulkan.common.resource.IResourceAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.process.IVulkanContext;
+import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
 import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
@@ -60,8 +60,8 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var vulkanContext = (VulkanContext) context;
-		var vkDevice = vulkanContext.getVkDevice();
+		final var vulkanContext = (IVulkanContext) context;
+		final var vkDevice = vulkanContext.getVkDevice();
 
 		nkNullTexture.texture().ptr(nullTexture.getSamplerAddress());
 		nkNullTexture.uv().set(0.5f, 0.5f);
@@ -98,8 +98,8 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var vulkanContext = (VulkanContext) context;
-		var vkDevice = vulkanContext.getVkDevice();
+		final var vulkanContext = (IVulkanContext) context;
+		final var vkDevice = vulkanContext.getVkDevice();
 
 		rangeIndex.free();
 		rangeVertex.free();
@@ -132,10 +132,10 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 	public void bind(VkCommandBuffer commandBuffer)
 	{
 		// Bind vertex and index buffer
-		long[] pBuffer = {
+		final long[] pBuffer = {
 				indexBuffer.getVertexBufferAddress()
 		};
-		long[] offsets = {
+		final long[] offsets = {
 				0
 		};
 		vkCmdBindVertexBuffers(commandBuffer, 0, pBuffer, offsets);

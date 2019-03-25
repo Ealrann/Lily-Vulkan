@@ -5,8 +5,8 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkMemoryAllocateInfo;
 import org.lwjgl.vulkan.VkMemoryRequirements;
+import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
 
 public abstract class VkMemoryAllocator
 {
@@ -43,7 +43,7 @@ public abstract class VkMemoryAllocator
 	private VkMemoryAllocateInfo allocateInfo(	MemoryStack stack,
 												VkMemoryRequirements memRequirements)
 	{
-		final var physicalDevice = allocationInfo.logicalDevice.physicalDevice;
+		final var physicalDevice = allocationInfo.logicalDevice.getPhysicalDevice();
 		final var memoryTypeBits = memRequirements.memoryTypeBits();
 		final var properties = allocationInfo.properties;
 		final var findMemoryType = physicalDevice.findMemoryType(memoryTypeBits, properties);
@@ -67,11 +67,11 @@ public abstract class VkMemoryAllocator
 
 	public static class MemoryAllocationInfo
 	{
-		public final LogicalDevice logicalDevice;
+		public final ILogicalDevice logicalDevice;
 		public final long bufferId;
 		public final int properties;
 
-		public MemoryAllocationInfo(LogicalDevice logicalDevice, long bufferId, int properties)
+		public MemoryAllocationInfo(ILogicalDevice logicalDevice, long bufferId, int properties)
 		{
 			this.logicalDevice = logicalDevice;
 			this.bufferId = bufferId;
