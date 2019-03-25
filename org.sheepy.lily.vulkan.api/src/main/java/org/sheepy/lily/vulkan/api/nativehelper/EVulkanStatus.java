@@ -58,10 +58,13 @@ public enum EVulkanStatus
 
 	public static final EVulkanStatus resolveFromCode(int errorCode)
 	{
-		EVulkanStatus[] values = EVulkanStatus.values();
+		if(errorCode == VK_SUCCESS)
+			return SUCCESS;
+
+		final EVulkanStatus[] values = EVulkanStatus.values();
 		for (int i = 0; i < values.length; i++)
 		{
-			EVulkanStatus eVulkanError = values[i];
+			final EVulkanStatus eVulkanError = values[i];
 			if (eVulkanError.code == errorCode)
 			{
 				return eVulkanError;

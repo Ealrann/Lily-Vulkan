@@ -153,6 +153,7 @@ public abstract class AbstractProcessAdapter
 
 		if (needRecord || isRecordNeeded())
 		{
+			// TODO don't wait, record a new CommandBuffer.
 			context.getQueue().waitIdle();
 			recordCommands();
 			recorded = true;
