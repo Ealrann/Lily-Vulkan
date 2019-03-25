@@ -2003,19 +2003,19 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"AbstractGraphicsPipeline", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractGraphicsPipeline_Shaders(), theResourcePackage.getShader(), null,
-				"shaders", null, 0, -1, AbstractGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				"shaders", null, 1, -1, AbstractGraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractGraphicsPipeline_ViewportState(), this.getViewportState(), null,
-				"viewportState", null, 0, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
+				"viewportState", null, 1, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractGraphicsPipeline_Rasterizer(), this.getRasterizer(), null,
-				"rasterizer", null, 0, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
+				"rasterizer", null, 1, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractGraphicsPipeline_ColorBlend(), this.getColorBlend(), null,
-				"colorBlend", null, 0, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
+				"colorBlend", null, 1, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractGraphicsPipeline_DynamicState(), this.getDynamicState(), null,

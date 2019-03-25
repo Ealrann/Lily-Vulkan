@@ -133,10 +133,10 @@ interface IGUIPipeline extends IGraphicsPipeline
 
 abstract class AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 {
-	refers unique Shader[] shaders
-	contains ViewportState viewportState
-	contains Rasterizer rasterizer
-	contains ColorBlend colorBlend
+	refers unique Shader[1..*] shaders
+	contains ViewportState[1..1] viewportState
+	contains Rasterizer[1..1] rasterizer
+	contains ColorBlend[1..1] colorBlend
 	contains DynamicState dynamicState
 	int subpass = "0"
 }

@@ -38,7 +38,7 @@ public interface AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPip
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shaders</em>' reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAbstractGraphicsPipeline_Shaders()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	EList<Shader> getShaders();
@@ -50,7 +50,7 @@ public interface AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPip
 	 * @return the value of the '<em>Viewport State</em>' containment reference.
 	 * @see #setViewportState(ViewportState)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAbstractGraphicsPipeline_ViewportState()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	ViewportState getViewportState();
@@ -72,7 +72,7 @@ public interface AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPip
 	 * @return the value of the '<em>Rasterizer</em>' containment reference.
 	 * @see #setRasterizer(Rasterizer)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAbstractGraphicsPipeline_Rasterizer()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Rasterizer getRasterizer();
@@ -94,7 +94,7 @@ public interface AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPip
 	 * @return the value of the '<em>Color Blend</em>' containment reference.
 	 * @see #setColorBlend(ColorBlend)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAbstractGraphicsPipeline_ColorBlend()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	ColorBlend getColorBlend();
