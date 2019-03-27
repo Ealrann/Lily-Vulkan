@@ -39,9 +39,10 @@ public class FrameSubmission extends Submission
 							SwapChainManager swapChain,
 							ICommandBuffer commandBuffer,
 							Collection<WaitData> waitSemaphores,
-							Collection<Long> signalSemaphores)
+							Collection<Long> signalSemaphores,
+							boolean useFence)
 	{
-		super(commandBuffer, waitSemaphores, signalSemaphores);
+		super(commandBuffer, waitSemaphores, signalSemaphores, useFence);
 
 		presentWaitSemaphore = new VkSemaphore();
 

@@ -37,16 +37,26 @@ public class Submission implements IAllocable, ISubmission
 	protected PointerBuffer pCommandBuffers;
 	protected LongBuffer bSignalSemaphores;
 
-	public final VkFence fence = new VkFence(true);
+	public final VkFence fence;
 	private VkQueue queue;
 
 	public Submission(	ICommandBuffer commandBuffer,
 						Collection<WaitData> waitSemaphores,
-						Collection<Long> signalSemaphores)
+						Collection<Long> signalSemaphores,
+						boolean useFence)
 	{
 		this.commandBuffer = commandBuffer;
 		this.waitSemaphores = waitSemaphores;
 		this.signalSemaphores = new ArrayList<>(signalSemaphores);
+
+		if (useFence)
+		{
+			fence = new VkFence(true);
+		}
+		else
+		{
+			fence = null;
+		}
 	}
 
 	@Override
@@ -54,7 +64,7 @@ public class Submission implements IAllocable, ISubmission
 	{
 		final var executionContext = (ExecutionContext) context;
 		queue = executionContext.queue.vkQueue;
-		fence.allocate(stack, context);
+		if (fence != null) fence.allocate(stack, context);
 
 		if (waitSemaphores.isEmpty() == false)
 		{
@@ -92,7 +102,7 @@ public class Submission implements IAllocable, ISubmission
 	@Override
 	public void free(IAllocationContext context)
 	{
-		fence.free(context);
+		if (fence != null) fence.free(context);
 
 		memFree(pCommandBuffers);
 		pCommandBuffers = null;
@@ -111,25 +121,28 @@ public class Submission implements IAllocable, ISubmission
 	@Override
 	public void submit()
 	{
-		final long fenceId = fence.getId();
+		final long fenceId = fence != null ? fence.getId() : 0;
 
 		waitIdle();
 
 		Logger.check(vkQueueSubmit(queue, submitInfo, fenceId), FAILED_SUBMIT, true);
-		fence.setUsed(true);
+		if (fence != null) fence.setUsed(true);
 	}
 
 	@Override
 	public void waitIdle()
 	{
-		if (fence.isUsed() && fence.isSignaled() == false)
+		if (fence != null)
 		{
-			if (fence.waitForSignal(TIMEOUT) == false)
+			if (fence.isUsed() && fence.isSignaled() == false)
 			{
-				Logger.log(FENCE_TIMEOUT, true);
+				if (fence.waitForSignal(TIMEOUT) == false)
+				{
+					Logger.log(FENCE_TIMEOUT, true);
+				}
 			}
+			fence.reset();
 		}
-		fence.reset();
 	}
 
 	@Override

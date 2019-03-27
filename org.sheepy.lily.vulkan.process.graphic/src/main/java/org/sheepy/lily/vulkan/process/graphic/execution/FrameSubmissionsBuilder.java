@@ -19,7 +19,7 @@ public class FrameSubmissionsBuilder extends SubmissionsBuilder
 									Collection<WaitData> waitForSignals,
 									Collection<VkSemaphore> signals)
 	{
-		super(waitForSignals, signals);
+		super(waitForSignals, signals, context.graphicProcess.isFenceEnabled());
 
 		this.context = context;
 	}
@@ -40,6 +40,6 @@ public class FrameSubmissionsBuilder extends SubmissionsBuilder
 		signals.addAll(signalSemaphores);
 
 		return new FrameSubmission(infoNumber, context.swapChainManager, commandBuffer,
-				waitSemaphores, signals);
+				waitSemaphores, signals, useFence);
 	}
 }

@@ -85,7 +85,6 @@ public abstract class AbstractProcessAdapter
 	@Override
 	public Integer prepareNext()
 	{
-
 		if (DebugUtil.DEBUG_ENABLED)
 		{
 			startPrepareNs = System.nanoTime();
@@ -107,6 +106,15 @@ public abstract class AbstractProcessAdapter
 	private Integer acquireNextPlayer()
 	{
 		Integer next = prepareNextExecution();
+
+		if (process.isWaitingFenceDuringAcquire())
+		{
+			final var recorders = context.getRecorders();
+			final var recorder = recorders.get(next);
+
+			recorder.waitIdle();
+		}
+
 		return next;
 	}
 

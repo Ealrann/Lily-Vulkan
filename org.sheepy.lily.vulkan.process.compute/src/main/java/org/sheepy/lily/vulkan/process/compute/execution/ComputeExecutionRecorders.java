@@ -19,7 +19,8 @@ public class ComputeExecutionRecorders extends ExecutionRecorders
 
 		final var waitForEmitters = gatherWaitDatas(process);
 		final var signals = gatherSinalSemaphores(process);
-		final var submissionBuilder = new SubmissionsBuilder(waitForEmitters, signals);
+		final var submissionBuilder = new SubmissionsBuilder(waitForEmitters, signals,
+				process.isFenceEnabled());
 
 		final var commandBuffer = new ComputeCommandBuffer();
 		final var submission = submissionBuilder.buildSubmission(commandBuffer, 0);

@@ -36,6 +36,8 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isFenceEnabled <em>Fence Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
@@ -97,6 +99,46 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isFenceEnabled() <em>Fence Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFenceEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FENCE_ENABLED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isFenceEnabled() <em>Fence Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFenceEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean fenceEnabled = FENCE_ENABLED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isWaitingFenceDuringAcquire() <em>Waiting Fence During Acquire</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isWaitingFenceDuringAcquire()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean WAITING_FENCE_DURING_ACQUIRE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isWaitingFenceDuringAcquire() <em>Waiting Fence During Acquire</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isWaitingFenceDuringAcquire()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean waitingFenceDuringAcquire = WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorSets() <em>Descriptor Sets</em>}' containment reference list.
@@ -289,6 +331,57 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
+	public boolean isFenceEnabled()
+	{
+		return fenceEnabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFenceEnabled(boolean newFenceEnabled)
+	{
+		boolean oldFenceEnabled = fenceEnabled;
+		fenceEnabled = newFenceEnabled;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__FENCE_ENABLED, oldFenceEnabled, fenceEnabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isWaitingFenceDuringAcquire()
+	{
+		return waitingFenceDuringAcquire;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setWaitingFenceDuringAcquire(boolean newWaitingFenceDuringAcquire)
+	{
+		boolean oldWaitingFenceDuringAcquire = waitingFenceDuringAcquire;
+		waitingFenceDuringAcquire = newWaitingFenceDuringAcquire;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE,
+				oldWaitingFenceDuringAcquire, waitingFenceDuringAcquire));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<DescriptorSet> getDescriptorSets()
 	{
 		if (descriptorSets == null)
@@ -448,6 +541,10 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 			return getName();
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 			return isEnabled();
+		case ProcessPackage.ABSTRACT_PROCESS__FENCE_ENABLED:
+			return isFenceEnabled();
+		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
+			return isWaitingFenceDuringAcquire();
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			return getDescriptorSets();
 		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
@@ -481,6 +578,12 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 			setEnabled((Boolean) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__FENCE_ENABLED:
+			setFenceEnabled((Boolean) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
+			setWaitingFenceDuringAcquire((Boolean) newValue);
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			getDescriptorSets().clear();
@@ -523,6 +626,12 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 			setEnabled(ENABLED_EDEFAULT);
 			return;
+		case ProcessPackage.ABSTRACT_PROCESS__FENCE_ENABLED:
+			setFenceEnabled(FENCE_ENABLED_EDEFAULT);
+			return;
+		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
+			setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
+			return;
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			getDescriptorSets().clear();
 			return;
@@ -558,6 +667,10 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
 			return enabled != ENABLED_EDEFAULT;
+		case ProcessPackage.ABSTRACT_PROCESS__FENCE_ENABLED:
+			return fenceEnabled != FENCE_ENABLED_EDEFAULT;
+		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
+			return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
 			return descriptorSets != null && !descriptorSets.isEmpty();
 		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
@@ -645,6 +758,10 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
+		result.append(", fenceEnabled: ");
+		result.append(fenceEnabled);
+		result.append(", waitingFenceDuringAcquire: ");
+		result.append(waitingFenceDuringAcquire);
 		result.append(", resetAllowed: ");
 		result.append(resetAllowed);
 		result.append(')');

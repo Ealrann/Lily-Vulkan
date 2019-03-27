@@ -12,11 +12,14 @@ public class SubmissionsBuilder
 	public final Collection<VkSemaphore> signalEmitters;
 	private final Deque<WaitData> waitSemaphores = new ArrayDeque<>();
 	private final Deque<Long> signalSemaphores = new ArrayDeque<>();
+	protected final boolean useFence;
 
 	public SubmissionsBuilder(	Collection<WaitData> waitForSemaphores,
-								Collection<VkSemaphore> signalEmitters)
+								Collection<VkSemaphore> signalEmitters,
+								boolean useFence)
 	{
 		this.signalEmitters = signalEmitters;
+		this.useFence = useFence;
 		waitSemaphores.addAll(waitForSemaphores);
 	}
 
@@ -37,12 +40,11 @@ public class SubmissionsBuilder
 		}
 	}
 
-	@SuppressWarnings("static-method")
 	protected Submission buildSubmissionInfo(	int infoNumber,
 												ICommandBuffer commandBuffer,
 												Collection<WaitData> waitSemaphores,
 												Collection<Long> signalSemaphores)
 	{
-		return new Submission(commandBuffer, waitSemaphores, signalSemaphores);
+		return new Submission(commandBuffer, waitSemaphores, signalSemaphores, useFence);
 	}
 }

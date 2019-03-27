@@ -17,6 +17,8 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isFenceEnabled <em>Fence Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}</li>
@@ -30,6 +32,52 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  */
 public interface AbstractProcess extends IProcess
 {
+	/**
+	 * Returns the value of the '<em><b>Fence Enabled</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fence Enabled</em>' attribute.
+	 * @see #setFenceEnabled(boolean)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_FenceEnabled()
+	 * @model default="false" unique="false"
+	 * @generated
+	 */
+	boolean isFenceEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isFenceEnabled <em>Fence Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fence Enabled</em>' attribute.
+	 * @see #isFenceEnabled()
+	 * @generated
+	 */
+	void setFenceEnabled(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Waiting Fence During Acquire</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Waiting Fence During Acquire</em>' attribute.
+	 * @see #setWaitingFenceDuringAcquire(boolean)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_WaitingFenceDuringAcquire()
+	 * @model default="false" unique="false"
+	 * @generated
+	 */
+	boolean isWaitingFenceDuringAcquire();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Waiting Fence During Acquire</em>' attribute.
+	 * @see #isWaitingFenceDuringAcquire()
+	 * @generated
+	 */
+	void setWaitingFenceDuringAcquire(boolean value);
+
 	/**
 	 * Returns the value of the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet}.

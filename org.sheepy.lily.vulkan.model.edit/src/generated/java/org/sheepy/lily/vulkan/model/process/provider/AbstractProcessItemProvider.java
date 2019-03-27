@@ -66,6 +66,8 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
+			addFenceEnabledPropertyDescriptor(object);
+			addWaitingFenceDuringAcquirePropertyDescriptor(object);
 			addResetAllowedPropertyDescriptor(object);
 			addSignalsPropertyDescriptor(object);
 			addWaitForPropertyDescriptor(object);
@@ -105,6 +107,42 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 						"_UI_IProcess_type"),
 				VulkanPackage.Literals.IPROCESS__ENABLED, true, false, false,
 				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Fence Enabled feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFenceEnabledPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AbstractProcess_fenceEnabled_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractProcess_fenceEnabled_feature", "_UI_AbstractProcess_type"),
+				ProcessPackage.Literals.ABSTRACT_PROCESS__FENCE_ENABLED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Waiting Fence During Acquire feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWaitingFenceDuringAcquirePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractProcess_waitingFenceDuringAcquire_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractProcess_waitingFenceDuringAcquire_feature",
+						"_UI_AbstractProcess_type"),
+				ProcessPackage.Literals.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE, true, false,
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -224,6 +262,8 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 		{
 		case ProcessPackage.ABSTRACT_PROCESS__NAME:
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
+		case ProcessPackage.ABSTRACT_PROCESS__FENCE_ENABLED:
+		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));

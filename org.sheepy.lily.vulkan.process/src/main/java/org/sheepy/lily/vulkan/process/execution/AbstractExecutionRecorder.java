@@ -35,7 +35,7 @@ public abstract class AbstractExecutionRecorder implements IExecutionRecorder, I
 	@Override
 	public void record(List<? extends IRecordable> recordables, List<ECommandStage> stages)
 	{
-		submission.waitIdle();
+		waitIdle();
 
 		for (final ECommandStage stage : stages)
 		{
@@ -45,6 +45,12 @@ public abstract class AbstractExecutionRecorder implements IExecutionRecorder, I
 		}
 
 		setDirty(false);
+	}
+
+	@Override
+	public void waitIdle()
+	{
+		submission.waitIdle();
 	}
 
 	@Override
