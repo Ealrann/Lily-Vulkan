@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IImageViewManager;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
-public class ImageViewManager implements IAllocable
+public class ImageViewManager implements IImageViewManager
 {
 	private static final int IMAGE_ASPECT = VK_IMAGE_ASPECT_COLOR_BIT;
 
@@ -20,23 +20,24 @@ public class ImageViewManager implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
-		var device = graphicContext.getVkDevice();
-		var swapChainManager = graphicContext.swapChainManager;
-		var pdsManager = graphicContext.surfaceManager;
-		var colorFormat = pdsManager.getColorDomain().getFormat().getValue();
-		var swapImages = swapChainManager.getSwapChainImages();
+		final var graphicContext = (IGraphicContext) context;
+		final var device = graphicContext.getVkDevice();
+		final var swapChainManager = graphicContext.getSwapChainManager();
+		final var pdsManager = graphicContext.getSurfaceManager();
+		final var colorFormat = pdsManager.getColorDomain().getFormat().getValue();
+		final var swapImages = swapChainManager.getSwapChainImages();
 
 		imageViews = new ArrayList<>(swapImages.size());
-		for (long imageId : swapImages)
+		for (final long imageId : swapImages)
 		{
-			var imageView = VkImageView.alloc(device, imageId, colorFormat, IMAGE_ASPECT);
+			final var imageView = VkImageView.alloc(device, imageId, colorFormat, IMAGE_ASPECT);
 			imageViews.add(imageView);
 		}
 
 		imageViews = List.copyOf(imageViews);
 	}
 
+	@Override
 	public List<VkImageView> getImageViews()
 	{
 		return imageViews;
@@ -60,7 +61,7 @@ public class ImageViewManager implements IAllocable
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
-		return graphicContext.swapChainManager.isAllocationDirty(context);
+		final var graphicContext = (IGraphicContext) context;
+		return graphicContext.getSwapChainManager().isAllocationDirty(context);
 	}
 }

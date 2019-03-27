@@ -6,14 +6,17 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicExecutionRecorders;
 import org.sheepy.lily.vulkan.process.graphic.process.PresentSemaphore;
 
 public class GraphicExecutionRecorders extends ExecutionRecorders
+		implements IGraphicExecutionRecorders
 {
 	public final PresentSemaphore imageAvailableSemaphore;
 
@@ -27,16 +30,15 @@ public class GraphicExecutionRecorders extends ExecutionRecorders
 	{
 		final List<IExecutionRecorder> res = new ArrayList<>();
 
-		final var graphicContext = (GraphicContext) context;
-		final var process = graphicContext.process;
-		final int executionCount = graphicContext.swapChainManager.getImageCount();
+		final var graphicContext = (IGraphicContext) context;
+		final var process = graphicContext.getGraphicProcess();
+		final int executionCount = graphicContext.getSwapChainManager().getImageCount();
 
 		imageAvailableSemaphore.allocate(stack, context);
 
 		final var waitForEmitters = gatherWaitDatas(process);
 		final var signals = gatherSinalSemaphores(process);
-		final var submissionsBuilder = new FrameSubmissionsBuilder(graphicContext, waitForEmitters,
-				signals);
+		final var submissionsBuilder = new FrameSubmissionsBuilder(waitForEmitters, signals);
 
 		for (int i = 0; i < executionCount; i++)
 		{
@@ -55,8 +57,8 @@ public class GraphicExecutionRecorders extends ExecutionRecorders
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
-		return graphicContext.swapChainManager.isAllocationDirty(context)
+		final var graphicContext = (IGraphicContext) context;
+		return graphicContext.getSwapChainManager().isAllocationDirty(context)
 				|| super.isAllocationDirty(context);
 	}
 
@@ -79,5 +81,11 @@ public class GraphicExecutionRecorders extends ExecutionRecorders
 	{
 		final var acquireWaitStage = process.getConfiguration().getAcquireWaitStage();
 		return new WaitData(imageAvailableSemaphore.presentSemaphore, acquireWaitStage);
+	}
+
+	@Override
+	public VkSemaphore getPresentSemaphore()
+	{
+		return imageAvailableSemaphore.presentSemaphore;
 	}
 }

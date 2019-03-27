@@ -3,20 +3,21 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.nativehelper.VkRenderPassAllocator;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IRenderPass;
 
-public class RenderPass implements IAllocable
+public class RenderPass implements IRenderPass
 {
 	private long renderPass;
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
-		final var renderPassInfo = graphicContext.graphicProcess.getRenderPassInfo();
-		final var format = graphicContext.surfaceManager.getColorDomain().getFormat();
+		final var graphicContext = (IGraphicContext) context;
+		final var renderPassInfo = graphicContext.getGraphicProcess().getRenderPassInfo();
+		final var format = graphicContext.getSurfaceManager().getColorDomain().getFormat();
 
 		final var renderPassAllocator = new VkRenderPassAllocator(graphicContext.getVkDevice(),
 				format);
@@ -26,12 +27,13 @@ public class RenderPass implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
+		final var graphicContext = (IGraphicContext) context;
 		vkDestroyRenderPass(graphicContext.getVkDevice(), renderPass, null);
 		renderPass = -1;
 	}
 
-	public long getId()
+	@Override
+	public long getAddress()
 	{
 		return renderPass;
 	}
@@ -39,7 +41,7 @@ public class RenderPass implements IAllocable
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
-		return graphicContext.swapChainManager.isAllocationDirty(context);
+		final var graphicContext = (IGraphicContext) context;
+		return graphicContext.getSwapChainManager().isAllocationDirty(context);
 	}
 }

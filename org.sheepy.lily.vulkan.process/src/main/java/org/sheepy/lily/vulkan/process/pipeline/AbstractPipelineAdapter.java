@@ -19,13 +19,13 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationDescriptorAdapter;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
-import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
@@ -75,14 +75,14 @@ public abstract class AbstractPipelineAdapter
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var vkDevice = ((ProcessContext) context).getVkDevice();
+		final var vkDevice = ((IExecutionContext) context).getVkDevice();
 		pipelineLayout = allocatePipelineLayout(stack, vkDevice);
 	}
 
 	@Override
 	public void free(IAllocationContext context)
 	{
-		final var vkDevice = ((ProcessContext) context).getVkDevice();
+		final var vkDevice = ((IExecutionContext) context).getVkDevice();
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);
 
 		allocationDependencies.clear();

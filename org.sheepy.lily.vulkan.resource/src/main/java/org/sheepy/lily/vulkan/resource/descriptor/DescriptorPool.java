@@ -11,8 +11,8 @@ import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 
 public class DescriptorPool implements IAllocable
 {
@@ -27,7 +27,7 @@ public class DescriptorPool implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var vkDevice = ((ExecutionContext) context).getVkDevice();
+		final var vkDevice = ((IExecutionContext) context).getVkDevice();
 		int poolSize = 0;
 		for (final IVkDescriptorSet descriptorSet : descriptorSets)
 		{
@@ -37,9 +37,9 @@ public class DescriptorPool implements IAllocable
 		if (poolSize > 0)
 		{
 			final var poolSizes = VkDescriptorPoolSize.callocStack(poolSize);
-			for (var descriptorSet : descriptorSets)
+			for (final var descriptorSet : descriptorSets)
 			{
-				for (var descriptor : descriptorSet.getDescriptors())
+				for (final var descriptor : descriptorSet.getDescriptors())
 				{
 					poolSizes.put(descriptor.allocPoolSize(stack));
 				}
@@ -57,7 +57,7 @@ public class DescriptorPool implements IAllocable
 			id = aDescriptor[0];
 		}
 
-		for (var descriptorSet : descriptorSets)
+		for (final var descriptorSet : descriptorSets)
 		{
 			descriptorSet.allocate(stack, context, this);
 		}
@@ -72,9 +72,9 @@ public class DescriptorPool implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var vkDevice = ((ExecutionContext) context).getVkDevice();
+		final var vkDevice = ((IExecutionContext) context).getVkDevice();
 
-		for (var descriptorSet : descriptorSets)
+		for (final var descriptorSet : descriptorSets)
 		{
 			descriptorSet.free(context);
 		}
@@ -91,9 +91,9 @@ public class DescriptorPool implements IAllocable
 
 	public LongBuffer allocLayoutBuffer()
 	{
-		LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorSets.size());
+		final LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorSets.size());
 
-		for (var descriptorSet : descriptorSets)
+		for (final var descriptorSet : descriptorSets)
 		{
 			bDescriptorSet.put(descriptorSet.getLayoutId());
 		}

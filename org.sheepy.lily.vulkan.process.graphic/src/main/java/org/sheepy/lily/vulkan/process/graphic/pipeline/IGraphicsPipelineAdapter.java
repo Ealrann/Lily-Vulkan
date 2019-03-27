@@ -14,6 +14,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ColorBlendBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DepthStencilBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.DynamicStateBuilder;
@@ -22,7 +23,6 @@ import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.MultisampleBuilde
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.RasterizerBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ShaderStageBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
@@ -53,11 +53,11 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter
 
 		createBuilders();
 
-		final var graphicContext = (GraphicContext) context;
+		final var graphicContext = (IGraphicContext) context;
 		final var device = graphicContext.getVkDevice();
-		final var surfaceManager = graphicContext.surfaceManager;
-		final var framebuffers = graphicContext.framebuffers;
-		final var renderPass = graphicContext.renderPass;
+		final var surfaceManager = graphicContext.getSurfaceManager();
+		final var framebuffers = graphicContext.getFramebufferManager();
+		final var renderPass = graphicContext.getRenderPass();
 
 		final boolean useDepthBuffer = framebuffers.hasDepthAttachment();
 
@@ -105,7 +105,7 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter
 		}
 
 		pipelineInfo.layout(pipelineLayout);
-		pipelineInfo.renderPass(renderPass.getId());
+		pipelineInfo.renderPass(renderPass.getAddress());
 		pipelineInfo.subpass(getSubpass());
 		pipelineInfo.basePipelineHandle(VK_NULL_HANDLE); // Optional
 		pipelineInfo.basePipelineIndex(-1); // Optional
@@ -131,11 +131,11 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter
 	@Override
 	public void free(IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
+		final var graphicContext = (IGraphicContext) context;
 		final var device = graphicContext.getVkDevice();
 		vertexInputState.free();
 
-		allocationDependencies.remove(graphicContext.renderPass);
+		allocationDependencies.remove(graphicContext.getRenderPass());
 
 		vkDestroyPipeline(device, pipelineId, null);
 		pipelineId = -1;

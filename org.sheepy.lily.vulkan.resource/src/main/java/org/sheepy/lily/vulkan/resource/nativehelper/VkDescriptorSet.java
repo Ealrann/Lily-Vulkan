@@ -14,8 +14,8 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
@@ -42,7 +42,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context, DescriptorPool pool)
 	{
-		final var device = ((ExecutionContext) context).getVkDevice();
+		final var device = ((IExecutionContext) context).getVkDevice();
 		final var layoutBindings = createLayoutBinding(stack);
 
 		final var layoutInfo = VkDescriptorSetLayoutCreateInfo.callocStack(stack);
@@ -77,7 +77,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	@Override
 	public void free(IAllocationContext context)
 	{
-		final var device = ((ExecutionContext) context).getVkDevice();
+		final var device = ((IExecutionContext) context).getVkDevice();
 		vkDestroyDescriptorSetLayout(device, layoutId, null);
 		layoutId = UNINITIALIZED;
 		MemoryUtil.memFree(bDescriptorSet);

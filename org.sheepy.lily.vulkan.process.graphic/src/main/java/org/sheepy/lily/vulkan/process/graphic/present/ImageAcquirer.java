@@ -8,8 +8,8 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.ISurfaceManager;
 
 public class ImageAcquirer implements IAllocable
 {
@@ -27,7 +27,7 @@ public class ImageAcquirer implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
+		final var graphicContext = (IGraphicContext) context;
 		container = new Container(graphicContext);
 	}
 
@@ -38,8 +38,8 @@ public class ImageAcquirer implements IAllocable
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
-		return graphicContext.swapChainManager.isAllocationDirty(context);
+		final var graphicContext = (IGraphicContext) context;
+		return graphicContext.getSwapChainManager().isAllocationDirty(context);
 	}
 
 	public Integer acquireNextImage()
@@ -51,15 +51,15 @@ public class ImageAcquirer implements IAllocable
 	{
 		final long semaphore;
 		final long swapChain;
-		final PhysicalDeviceSurfaceManager surfaceManager;
+		final ISurfaceManager surfaceManager;
 		final VkDevice device;
 
-		Container(GraphicContext context)
+		Container(IGraphicContext context)
 		{
-			semaphore = context.executionRecorders.imageAvailableSemaphore.presentSemaphore.getId();
-			swapChain = context.swapChainManager.getSwapChain();
+			semaphore = context.getGraphicExecutionRecorders().getPresentSemaphore().getId();
+			swapChain = context.getSwapChainManager().getAddress();
 			device = context.getVkDevice();
-			surfaceManager = context.surfaceManager;
+			surfaceManager = context.getSurfaceManager();
 		}
 
 		public Integer acquireNextImage()

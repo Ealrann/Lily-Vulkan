@@ -13,8 +13,8 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
-import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewManager;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IImageViewManager;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
@@ -30,7 +30,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter
 	private InitialImagePipelineBarrier[] initialBarriers;
 	private FinalImagePipelineBarrier[] finalBarriers;
 
-	private ImageViewManager imageViewManager;
+	private IImageViewManager imageViewManager;
 
 	public ImagePipelineAdapter(ImagePipeline imagePipeline)
 	{
@@ -43,12 +43,13 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter
 	{
 		super.allocate(stack, context);
 
-		final var graphicContext = (GraphicContext) context;
-		final var extent = graphicContext.surfaceManager.getExtent();
+		final var graphicContext = (IGraphicContext) context;
 		final var srcImage = imagePipeline.getImage();
-		final var swapChainManager = graphicContext.swapChainManager;
+		final var swapChainManager = graphicContext.getSwapChainManager();
+		final var extent = graphicContext.getSurfaceManager().getExtent();
+		final int size = swapChainManager.getImageCount();
 
-		imageViewManager = graphicContext.imageViewManager;
+		imageViewManager = graphicContext.getImageViewManager();
 		allocationDependencies.add(swapChainManager);
 
 		region = VkImageBlit.calloc(1);
@@ -73,11 +74,10 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter
 		region.dstOffsets(1).y(extent.getHeight());
 		region.dstOffsets(1).z(1);
 
-		final int size = graphicContext.swapChainManager.getImageCount();
 		initialBarriers = new InitialImagePipelineBarrier[size];
 		for (int i = 0; i < size; i++)
 		{
-			final var view = imageViewManager.getImageView(i);
+			final var view = imageViewManager.getImageViews().get(i);
 			initialBarriers[i] = new InitialImagePipelineBarrier(imagePipeline, view);
 			initialBarriers[i].allocate(stack, context);
 		}
@@ -112,7 +112,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter
 	{
 		final var srcImage = imagePipeline.getImage();
 		final var srcImageId = ImageAdapter.adapt(srcImage).getAddress();
-		final var dstImageView = imageViewManager.getImageView(index);
+		final var dstImageView = imageViewManager.getImageViews().get(index);
 
 		initialBarriers[index].execute(vkCommandBuffer);
 

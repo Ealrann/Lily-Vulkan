@@ -11,8 +11,8 @@ import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.ColorDomain;
 import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.api.ISurfaceManager;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
 public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 {
@@ -45,7 +45,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
+		final var graphicContext = (IGraphicContext) context;
 		final var logicalDevice = graphicContext.getLogicalDevice();
 
 		surface = graphicContext.getWindow().createSurface();
@@ -63,9 +63,9 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 		dirty = false;
 	}
 
-	private ColorDomain loadColorDomain(GraphicContext context)
+	private ColorDomain loadColorDomain(IGraphicContext context)
 	{
-		final var colorDomain = context.configuration.getColorDomain();
+		final var colorDomain = context.getConfiguration().getColorDomain();
 		if (colorDomains.isColorDomainAvaillable(colorDomain) == false)
 		{
 			Logger.log("The desired ColorDomain is not availlable");
@@ -77,7 +77,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 	@Override
 	public void free(IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
+		final var graphicContext = (IGraphicContext) context;
 		graphicContext.getWindow().addListener(listener);
 
 		capabilities.free();
@@ -86,6 +86,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 		surface = null;
 	}
 
+	@Override
 	public int bestSupportedImageCount(int required)
 	{
 		int requiredImageCount = 0;
@@ -112,6 +113,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 		return requiredImageCount;
 	}
 
+	@Override
 	public ColorDomain getColorDomain()
 	{
 		return requiredColorDomain;
@@ -123,6 +125,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 		return extent;
 	}
 
+	@Override
 	public Capabilities getCapabilities()
 	{
 		return capabilities;
@@ -133,11 +136,13 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 		return colorDomains;
 	}
 
+	@Override
 	public VkSurface getSurface()
 	{
 		return surface;
 	}
 
+	@Override
 	public void setDirty(boolean dirty)
 	{
 		this.dirty = dirty;
@@ -149,6 +154,7 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 		return dirty || surface.isDeprecated();
 	}
 
+	@Override
 	public VulkanQueue getPresentQueue()
 	{
 		return presentQueue;

@@ -7,17 +7,22 @@ import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
+import org.sheepy.lily.vulkan.process.graphic.api.IFramebufferManager;
 import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicExecutionRecorders;
+import org.sheepy.lily.vulkan.process.graphic.api.IImageViewManager;
+import org.sheepy.lily.vulkan.process.graphic.api.IRenderPass;
 import org.sheepy.lily.vulkan.process.graphic.api.ISurfaceManager;
+import org.sheepy.lily.vulkan.process.graphic.api.ISwapChainManager;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecorders;
-import org.sheepy.lily.vulkan.process.graphic.frame.Framebuffers;
+import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 
-public class GraphicContext extends ProcessContext implements IGraphicContext
+class GraphicContext extends ProcessContext implements IGraphicContext
 {
 	public final GraphicConfiguration configuration;
 	public final GraphicProcess graphicProcess;
@@ -25,7 +30,7 @@ public class GraphicContext extends ProcessContext implements IGraphicContext
 	public final PhysicalDeviceSurfaceManager surfaceManager = new PhysicalDeviceSurfaceManager();
 	public final SwapChainManager swapChainManager = new SwapChainManager();
 	public final ImageViewManager imageViewManager = new ImageViewManager();
-	public final Framebuffers framebuffers = new Framebuffers();
+	public final FramebufferManager framebuffers = new FramebufferManager();
 	public final GraphicExecutionRecorders executionRecorders = new GraphicExecutionRecorders();
 
 	public final RenderPass renderPass = new RenderPass();
@@ -55,6 +60,24 @@ public class GraphicContext extends ProcessContext implements IGraphicContext
 	}
 
 	@Override
+	public GraphicConfiguration getConfiguration()
+	{
+		return configuration;
+	}
+
+	@Override
+	public ISwapChainManager getSwapChainManager()
+	{
+		return swapChainManager;
+	}
+
+	@Override
+	public GraphicProcess getGraphicProcess()
+	{
+		return graphicProcess;
+	}
+
+	@Override
 	public List<IExecutionRecorder> getRecorders()
 	{
 		return executionRecorders.getRecorders();
@@ -62,6 +85,30 @@ public class GraphicContext extends ProcessContext implements IGraphicContext
 
 	@Override
 	public ExecutionRecorders getExecutionRecorders()
+	{
+		return executionRecorders;
+	}
+
+	@Override
+	public IImageViewManager getImageViewManager()
+	{
+		return imageViewManager;
+	}
+
+	@Override
+	public IRenderPass getRenderPass()
+	{
+		return renderPass;
+	}
+
+	@Override
+	public IFramebufferManager getFramebufferManager()
+	{
+		return framebuffers;
+	}
+
+	@Override
+	public IGraphicExecutionRecorders getGraphicExecutionRecorders()
 	{
 		return executionRecorders;
 	}

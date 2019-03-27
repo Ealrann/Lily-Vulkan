@@ -13,7 +13,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
-import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
+import org.sheepy.lily.vulkan.process.graphic.api.ISurfaceManager;
 
 public class ViewportStateBuilder
 {
@@ -23,7 +23,7 @@ public class ViewportStateBuilder
 	private VkRect2D.Buffer scissors;
 
 	public VkPipelineViewportStateCreateInfo allocCreateInfo(	MemoryStack stack,
-																PhysicalDeviceSurfaceManager surfaceManager,
+																ISurfaceManager surfaceManager,
 																ViewportState vState)
 	{
 		viewportState = VkPipelineViewportStateCreateInfo.callocStack(stack);
@@ -50,7 +50,7 @@ public class ViewportStateBuilder
 	}
 
 	private void fillStaticStateInfo(	MemoryStack stack,
-										PhysicalDeviceSurfaceManager surfaceManager,
+										ISurfaceManager surfaceManager,
 										StaticViewportState state)
 	{
 		// Viewports and scissors

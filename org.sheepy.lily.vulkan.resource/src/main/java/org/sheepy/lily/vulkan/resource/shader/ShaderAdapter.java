@@ -12,8 +12,8 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 @Statefull
@@ -23,8 +23,8 @@ public class ShaderAdapter implements IResourceAdapter
 	private static final ByteBuffer MAIN_FUNCTION_NAME;
 	static
 	{
-		var memASCII = MemoryUtil.memASCII("main");
-		int capacity = memASCII.capacity();
+		final var memASCII = MemoryUtil.memASCII("main");
+		final int capacity = memASCII.capacity();
 
 		MAIN_FUNCTION_NAME = BufferUtils.createByteBuffer(capacity);
 		for (int i = 0; i < capacity; i++)
@@ -47,8 +47,8 @@ public class ShaderAdapter implements IResourceAdapter
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var vkDevice = ((ExecutionContext) context).getVkDevice();
-		var resource = shader.getFile();
+		final var vkDevice = ((IExecutionContext) context).getVkDevice();
+		final var resource = shader.getFile();
 
 		shaderBackend = new ShaderBackend(vkDevice, resource);
 		shaderBackend.allocate(stack);

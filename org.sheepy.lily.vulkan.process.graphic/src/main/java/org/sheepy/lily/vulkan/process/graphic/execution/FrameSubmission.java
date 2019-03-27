@@ -17,15 +17,13 @@ import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
-import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
-import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 
 public class FrameSubmission extends Submission
 {
 	private static final String FAILED_SUBMIT_PRESENT = "Failed to submit present command buffer";
 
 	private final int imageIndex;
-	private final SwapChainManager swapChain;
 
 	private final VkSemaphore presentWaitSemaphore;
 
@@ -36,7 +34,6 @@ public class FrameSubmission extends Submission
 	private VkQueue presentQueue;
 
 	public FrameSubmission(	int imageIndex,
-							SwapChainManager swapChain,
 							ICommandBuffer commandBuffer,
 							Collection<WaitData> waitSemaphores,
 							Collection<Long> signalSemaphores,
@@ -47,14 +44,15 @@ public class FrameSubmission extends Submission
 		presentWaitSemaphore = new VkSemaphore();
 
 		this.imageIndex = imageIndex;
-		this.swapChain = swapChain;
 	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var graphicContext = (GraphicContext) context;
-		presentQueue = graphicContext.surfaceManager.getPresentQueue().vkQueue;
+		final var graphicContext = (IGraphicContext) context;
+		final var swapChain = graphicContext.getSwapChainManager();
+		
+		presentQueue = graphicContext.getSurfaceManager().getPresentQueue().vkQueue;
 
 		presentWaitSemaphore.allocate(stack, context);
 		final long presentSemaphoreId = presentWaitSemaphore.getId();
@@ -63,7 +61,7 @@ public class FrameSubmission extends Submission
 		super.allocate(stack, context);
 
 		bSwapChains = memAllocLong(1);
-		bSwapChains.put(swapChain.getSwapChain());
+		bSwapChains.put(swapChain.getAddress());
 		bSwapChains.flip();
 
 		bImageIndex = memAllocInt(1);

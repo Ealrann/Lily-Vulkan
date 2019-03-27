@@ -74,6 +74,6 @@ public abstract class ExecutionRecorders implements IAllocationNode, IAllocable
 		return new WaitData(adapter.getVkSemaphore(), waitStage);
 	}
 
-	protected abstract List<IExecutionRecorder> createRecorders(	MemoryStack stack,
+	protected abstract List<IExecutionRecorder> createRecorders(MemoryStack stack,
 																IAllocationContext context);
 }
