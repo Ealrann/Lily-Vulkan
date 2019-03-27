@@ -9,7 +9,11 @@ public interface IProcessAdapter extends IVulkanAdapter
 {
 	VulkanQueue getQueue();
 
-	void execute();
+	void prepareNextAndExecute();
+
+	Integer prepareNext();
+
+	void execute(int next);
 
 	static IProcessAdapter adapt(EObject process)
 	{

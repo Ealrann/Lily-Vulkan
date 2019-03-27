@@ -72,36 +72,56 @@ public abstract class AbstractProcessAdapter
 	}
 
 	@Override
-	public void execute()
+	public void prepareNextAndExecute()
 	{
-		prepareProcess();
-
-		final Integer next = prepareNextExecution();
+		Integer next = prepareNext();
 
 		if (next != null)
 		{
-			if (DebugUtil.DEBUG_ENABLED)
-			{
-				startPrepareNs = System.nanoTime();
-			}
-
-			final var recorders = context.getRecorders();
-			final var recorder = recorders.get(next);
-
-			if (recorder.isDirty())
-			{
-				recorder.record(pipelineAdapters, getStages());
-			}
-
-			recorder.play();
-
-			if (DebugUtil.DEBUG_ENABLED)
-			{
-				IStatistics.INSTANCE.addTime(getClass().getSimpleName(),
-						System.nanoTime() - startPrepareNs);
-			}
-
+			execute(next);
 		}
+	}
+
+	@Override
+	public Integer prepareNext()
+	{
+
+		if (DebugUtil.DEBUG_ENABLED)
+		{
+			startPrepareNs = System.nanoTime();
+		}
+
+		prepareProcess();
+
+		final var recorder = acquireNextPlayer();
+
+		if (DebugUtil.DEBUG_ENABLED)
+		{
+			IStatistics.INSTANCE.addTime(getClass().getSimpleName(),
+					System.nanoTime() - startPrepareNs);
+		}
+
+		return recorder;
+	}
+
+	private Integer acquireNextPlayer()
+	{
+		Integer next = prepareNextExecution();
+		return next;
+	}
+
+	@Override
+	public void execute(int next)
+	{
+		final var recorders = context.getRecorders();
+		final var recorder = recorders.get(next);
+
+		if (recorder.isDirty())
+		{
+			recorder.record(pipelineAdapters, getStages());
+		}
+
+		recorder.play();
 	}
 
 	protected List<Object> gatherAllocationServices()

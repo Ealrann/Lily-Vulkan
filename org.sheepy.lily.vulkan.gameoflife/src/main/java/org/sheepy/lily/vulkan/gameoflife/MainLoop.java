@@ -64,7 +64,7 @@ public class MainLoop implements IMainLoop
 
 		nextRenderDate = System.currentTimeMillis() + FRAME_TIME_STEP_MS;
 
-		imageProcessAdapter.execute();
+		imageProcessAdapter.prepareNextAndExecute();
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class MainLoop implements IMainLoop
 	private void executeComputeProcess()
 	{
 		final var currentProcessAdapter = computeProcessAdapters[currentComputeProcessIndex];
-		currentProcessAdapter.execute();
+		currentProcessAdapter.prepareNextAndExecute();
 		currentProcessAdapter.getQueue().waitIdle();
 		currentComputeProcessIndex++;
 		if (currentComputeProcessIndex > 1)

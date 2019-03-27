@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 
-public interface IExecutionRecorder
+public interface IExecutionRecorder extends IExecutionPlayer
 {
 	ICommandBuffer getCommandBuffer();
 
@@ -15,6 +15,4 @@ public interface IExecutionRecorder
 	void setDirty(boolean dirty);
 
 	void record(List<? extends IRecordable> recordables, List<ECommandStage> stages);
-
-	void play();
 }
