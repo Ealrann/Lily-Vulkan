@@ -15,7 +15,7 @@ import org.sheepy.lily.vulkan.api.process.IVulkanContext;
 
 public class VkSemaphore implements IAllocable
 {
-	private long semaphoreId = 0;
+	private long semaphoreId = -1;
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)

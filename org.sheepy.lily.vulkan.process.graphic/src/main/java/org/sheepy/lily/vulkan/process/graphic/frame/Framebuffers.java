@@ -23,32 +23,27 @@ import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
 public class Framebuffers implements IAllocable
 {
-	private final FramebufferConfiguration configuration;
-
 	private boolean depthAttachment = false;
 	private List<Long> framebuffersIds = null;
 	private List<ClearInfo> clearInfos = null;
 
-	public Framebuffers(FramebufferConfiguration configuration)
-	{
-		this.configuration = configuration;
-	}
-
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
-		var vkDevice = graphicContext.getVkDevice();
-		var imageViews = graphicContext.imageViewManager.getImageViews();
-		var aFramebufferId = new long[1];
+		final var graphicContext = (GraphicContext) context;
+		final var vkDevice = graphicContext.getVkDevice();
+		final var imageViews = graphicContext.imageViewManager.getImageViews();
+		final var aFramebufferId = new long[1];
 
-		var attachments = allocAttachments(stack);
-		var createInfo = allocCreateInfo(stack, graphicContext, attachments);
+		final var configuration = graphicContext.configuration.getFramebufferConfiguration();
+
+		final var attachments = allocAttachments(stack, configuration);
+		final var createInfo = allocCreateInfo(stack, graphicContext, attachments);
 
 		framebuffersIds = new ArrayList<>(imageViews.size());
 		for (final VkImageView imageView : imageViews)
 		{
-			fillAttachements(attachments, imageView.getAddress());
+			fillAttachements(attachments, imageView.getAddress(), configuration);
 
 			Logger.check("Failed to create framebuffer!",
 					() -> vkCreateFramebuffer(vkDevice, createInfo, null, aFramebufferId));
@@ -58,29 +53,32 @@ public class Framebuffers implements IAllocable
 		framebuffersIds = List.copyOf(framebuffersIds);
 	}
 
-	private void fillAttachements(LongBuffer attachments, long imageViewId)
+	private void fillAttachements(	LongBuffer attachments,
+									long imageViewId,
+									FramebufferConfiguration configuration)
 	{
 		attachments.put(imageViewId);
 
 		clearInfos = new ArrayList<>();
 		clearInfos.add(new ClearInfo(false, configuration.getClearValue()));
 
-		for (IFramebufferAttachment attachement : configuration.getAtachments())
+		for (final IFramebufferAttachment attachement : configuration.getAtachments())
 		{
 			long viewAddress = -1;
 			if (attachement instanceof DepthFramebufferAttachment)
 			{
-				var depthImage = ((DepthFramebufferAttachment) attachement).getDepthImageRef();
-				var adapter = DepthImageAdapter.adapt(depthImage);
+				final var depthImage = ((DepthFramebufferAttachment) attachement)
+						.getDepthImageRef();
+				final var adapter = DepthImageAdapter.adapt(depthImage);
 				viewAddress = adapter.getDepthImageViewId();
 				depthAttachment = true;
 				clearInfos.add(new ClearInfo(true, null));
 			}
 			else if (attachement instanceof ImageFramebufferAttachment)
 			{
-				var attachment = (ImageFramebufferAttachment) attachement;
-				var image = attachment.getImageRef();
-				var adapter = ImageAdapter.adapt(image);
+				final var attachment = (ImageFramebufferAttachment) attachement;
+				final var image = attachment.getImageRef();
+				final var adapter = ImageAdapter.adapt(image);
 				viewAddress = adapter.getViewAddress();
 				clearInfos.add(new ClearInfo(false, attachment.getClearValue()));
 			}
@@ -92,11 +90,11 @@ public class Framebuffers implements IAllocable
 		attachments.flip();
 	}
 
-	private LongBuffer allocAttachments(MemoryStack stack)
+	private LongBuffer allocAttachments(MemoryStack stack, FramebufferConfiguration configuration)
 	{
 		int attachementCount = 1;
 		attachementCount += configuration.getAtachments().size();
-		var attachments = stack.mallocLong(attachementCount);
+		final var attachments = stack.mallocLong(attachementCount);
 		return attachments;
 	}
 
@@ -105,7 +103,7 @@ public class Framebuffers implements IAllocable
 															LongBuffer attachments)
 	{
 		final var extent = graphicContext.surfaceManager.getExtent();
-		var createInfo = VkFramebufferCreateInfo.callocStack(stack);
+		final var createInfo = VkFramebufferCreateInfo.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO);
 		createInfo.renderPass(graphicContext.renderPass.getId());
 		createInfo.width(extent.getWidth());
@@ -118,7 +116,7 @@ public class Framebuffers implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
+		final var graphicContext = (GraphicContext) context;
 		for (final long framebuffer : framebuffersIds)
 		{
 			vkDestroyFramebuffer(graphicContext.getVkDevice(), framebuffer, null);
@@ -139,7 +137,7 @@ public class Framebuffers implements IAllocable
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
+		final var graphicContext = (GraphicContext) context;
 		return graphicContext.swapChainManager.isAllocationDirty(context)
 				|| graphicContext.imageViewManager.isAllocationDirty(context);
 	}

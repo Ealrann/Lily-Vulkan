@@ -7,37 +7,30 @@ import java.util.List;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
+import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.resource.Semaphore;
-import org.sheepy.lily.vulkan.process.execution.AbstractCommandBuffers;
+import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
-import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAdapter;
 
 public abstract class ProcessContext extends ExecutionContext
 {
 	public final DescriptorPool descriptorPool;
-	public final AbstractCommandBuffers<?> commandBuffers;
 	public final Application application;
 	public final AbstractProcess process;
-	public final ProcessSubmission submission;
 
 	protected final List<IAllocable> allocationList = new ArrayList<>();
 
 	public ProcessContext(	EQueueType queueType,
 							boolean resetAllowed,
 							DescriptorPool descriptorPool,
-							AbstractCommandBuffers<?> commandBuffers,
 							AbstractProcess process)
 	{
 		super(queueType, resetAllowed);
 
 		this.process = process;
 		this.descriptorPool = descriptorPool;
-		this.commandBuffers = commandBuffers;
-		this.submission = createSubmission(process);
 		this.application = (Application) EcoreUtil.getRootContainer(process);
 	}
 
@@ -45,34 +38,8 @@ public abstract class ProcessContext extends ExecutionContext
 	{
 		return allocationList;
 	}
+	
+	public abstract ExecutionRecorders getExecutionRecorders();
 
-	protected List<VkSemaphore> gatherSinalSemaphores()
-	{
-		final var res = new ArrayList<VkSemaphore>();
-		for (final Semaphore semaphore : process.getSignals())
-		{
-			res.add(SemaphoreAdapter.adapt(semaphore).getVkSemaphore());
-		}
-		return res;
-	}
-
-	protected List<WaitData> gatherWaitDatas()
-	{
-		final var waitDatas = new ArrayList<WaitData>();
-		for (final Semaphore waitFor : process.getWaitFor())
-		{
-			final var semaphoreData = convertToData(waitFor);
-			waitDatas.add(semaphoreData);
-		}
-		return waitDatas;
-	}
-
-	protected static WaitData convertToData(Semaphore semaphore)
-	{
-		final var adapter = SemaphoreAdapter.adapt(semaphore);
-		final var waitStage = semaphore.getWaitStage();
-		return new WaitData(adapter.getVkSemaphore(), waitStage);
-	}
-
-	protected abstract ProcessSubmission createSubmission(AbstractProcess process);
+	public abstract List<IExecutionRecorder> getRecorders();
 }

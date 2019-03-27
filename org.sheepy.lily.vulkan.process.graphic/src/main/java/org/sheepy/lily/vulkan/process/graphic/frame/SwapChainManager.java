@@ -46,10 +46,10 @@ public class SwapChainManager implements IAllocable
 		final var extent = pdsManager.getExtent();
 		final var requiredColorDomain = pdsManager.getColorDomain();
 
-		var imageCount = pdsManager.bestSupportedImageCount(requiredImageCount);
-		var requiredPresentMode = swapchainConfiguration.getPresentationMode();
-		int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
-		int targetPresentMode = selectPresentMode(graphicContext, requiredPresentMode, surface);
+		final var imageCount = pdsManager.bestSupportedImageCount(requiredImageCount);
+		final var requiredPresentMode = swapchainConfiguration.getPresentationMode();
+		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
+		final int targetPresentMode = selectPresentMode(graphicContext, requiredPresentMode, surface);
 
 		final VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
@@ -102,7 +102,7 @@ public class SwapChainManager implements IAllocable
 
 	private static int loadSwapChainUsage(final SwapchainConfiguration configuration)
 	{
-		var usages = configuration.getSwapImageUsages();
+		final var usages = configuration.getSwapImageUsages();
 		int res = ModelUtil.getEnumeratedFlag(usages);
 		if (res == 0)
 		{
@@ -114,7 +114,7 @@ public class SwapChainManager implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
+		final var graphicContext = (GraphicContext) context;
 		vkDestroySwapchainKHR(graphicContext.getVkDevice(), swapChain, null);
 		if (indices != null) MemoryUtil.memFree(indices);
 		swapChain = null;
@@ -124,9 +124,9 @@ public class SwapChainManager implements IAllocable
 
 	private void printSwapChainInformations(int presentMode)
 	{
-		String presentationName = EPresentMode.get(presentMode).getName();
-		int imageCount = swapChainImages.size();
-		String message = String.format(
+		final String presentationName = EPresentMode.get(presentMode).getName();
+		final int imageCount = swapChainImages.size();
+		final String message = String.format(
 				"Swapchain created:\n\t- PresentationMode: %s\n\t- Number of images: %d",
 				presentationName, imageCount);
 		System.out.println(message);
@@ -145,6 +145,11 @@ public class SwapChainManager implements IAllocable
 		return swapChainImages;
 	}
 
+	public int getImageCount()
+	{
+		return swapChainImages.size();
+	}
+
 	public Long getSwapChain()
 	{
 		return swapChain;
@@ -153,7 +158,7 @@ public class SwapChainManager implements IAllocable
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		var graphicContext = (GraphicContext) context;
+		final var graphicContext = (GraphicContext) context;
 		return graphicContext.surfaceManager.isAllocationDirty(context);
 	}
 }

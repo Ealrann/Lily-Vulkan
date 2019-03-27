@@ -16,6 +16,7 @@ public class VkFence implements IFence, IAllocable
 	private final boolean signaled;
 	private long id;
 
+	private boolean used = false;
 	private VkDevice device;
 
 	public VkFence(boolean signaled)
@@ -27,16 +28,17 @@ public class VkFence implements IFence, IAllocable
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		device = ((IVulkanContext) context).getVkDevice();
-		VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
+		final VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO);
 		createInfo.pNext(VK_NULL_HANDLE);
 		createInfo.flags(signaled ? VK_FENCE_CREATE_SIGNALED_BIT : 0);
 
-		long[] resArray = new long[1];
+		final long[] resArray = new long[1];
 		Logger.check(vkCreateFence(device, createInfo, null, resArray), "Failed to create Fence");
 
 		createInfo.free();
 		id = resArray[0];
+		used = false;
 	}
 
 	@Override
@@ -49,14 +51,14 @@ public class VkFence implements IFence, IAllocable
 	@Override
 	public boolean waitForSignal(long timeoutNs)
 	{
-		int res = vkWaitForFences(device, id, true, timeoutNs);
+		final int res = vkWaitForFences(device, id, true, timeoutNs);
 		return res == VK_SUCCESS;
 	}
 
 	@Override
 	public boolean isSignaled()
 	{
-		int status = vkGetFenceStatus(device, id);
+		final int status = vkGetFenceStatus(device, id);
 		return status == VK_SUCCESS;
 	}
 
@@ -64,6 +66,7 @@ public class VkFence implements IFence, IAllocable
 	public void reset()
 	{
 		vkResetFences(device, id);
+		used = false;
 	}
 
 	@Override
@@ -76,5 +79,17 @@ public class VkFence implements IFence, IAllocable
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
 		return false;
+	}
+
+	@Override
+	public boolean isUsed()
+	{
+		return used;
+	}
+
+	@Override
+	public void setUsed(boolean used)
+	{
+		this.used = used;
 	}
 }

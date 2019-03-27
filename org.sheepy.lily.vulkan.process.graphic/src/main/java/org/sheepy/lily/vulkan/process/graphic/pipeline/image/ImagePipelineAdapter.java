@@ -73,7 +73,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter
 		region.dstOffsets(1).y(extent.getHeight());
 		region.dstOffsets(1).z(1);
 
-		final int size = graphicContext.commandBuffers.size();
+		final int size = graphicContext.swapChainManager.getImageCount();
 		initialBarriers = new InitialImagePipelineBarrier[size];
 		for (int i = 0; i < size; i++)
 		{

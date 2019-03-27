@@ -16,6 +16,7 @@ import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 
 public abstract class SingleTimeCommand extends AbstractCommandBuffer
 {
@@ -48,11 +49,11 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 
 	public void execute()
 	{
-		start();
+		start(null);
 
 		doExecute(stack, vkCommandBuffer);
 
-		end();
+		end(null);
 
 		postExecute();
 
@@ -60,7 +61,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 	}
 
 	@Override
-	public void start()
+	public void start(ECommandStage stage)
 	{
 		final VkCommandBufferBeginInfo beginInfo = VkCommandBufferBeginInfo.callocStack(stack);
 		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);
@@ -70,7 +71,7 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer
 	}
 
 	@Override
-	public void end()
+	public void end(ECommandStage stage)
 	{
 		vkEndCommandBuffer(vkCommandBuffer);
 

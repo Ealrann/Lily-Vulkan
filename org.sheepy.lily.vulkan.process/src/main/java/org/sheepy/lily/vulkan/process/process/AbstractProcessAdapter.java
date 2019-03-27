@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.cadence.IStatistics;
@@ -35,9 +34,7 @@ public abstract class AbstractProcessAdapter
 
 	private long startPrepareNs = 0;
 
-	private boolean recorded = false;
-
-	private final List<Object> allocationList;
+	protected final List<Object> allocationList;
 	protected final List<IPipelineAdapter> pipelineAdapters = new ArrayList<>();
 
 	public AbstractProcessAdapter(AbstractProcess process)
@@ -48,11 +45,9 @@ public abstract class AbstractProcessAdapter
 		context = createContext();
 		allocator = new TreeAllocator(process);
 
-		final List<Object> allocs = new ArrayList<>();
-		allocs.addAll(gatherAllocationServices());
-		allocs.addAll(gatherPipelines());
-
-		allocationList = List.copyOf(allocs);
+		allocationList = new ArrayList<>();
+		allocationList.addAll(gatherAllocationServices());
+		allocationList.addAll(gatherPipelines());
 	}
 
 	private void gatherPipelineAdapters(AbstractProcess process)
@@ -74,6 +69,39 @@ public abstract class AbstractProcessAdapter
 	public ProcessContext getAllocationContext()
 	{
 		return context;
+	}
+
+	@Override
+	public void execute()
+	{
+		prepareProcess();
+
+		final Integer next = prepareNextExecution();
+
+		if (next != null)
+		{
+			if (DebugUtil.DEBUG_ENABLED)
+			{
+				startPrepareNs = System.nanoTime();
+			}
+
+			final var recorders = context.getRecorders();
+			final var recorder = recorders.get(next);
+
+			if (recorder.isDirty())
+			{
+				recorder.record(pipelineAdapters, getStages());
+			}
+
+			recorder.play();
+
+			if (DebugUtil.DEBUG_ENABLED)
+			{
+				IStatistics.INSTANCE.addTime(getClass().getSimpleName(),
+						System.nanoTime() - startPrepareNs);
+			}
+
+		}
 	}
 
 	protected List<Object> gatherAllocationServices()
@@ -132,15 +160,29 @@ public abstract class AbstractProcessAdapter
 		return res;
 	}
 
-	public void prepare()
+	private void prepareProcess()
 	{
-		if (DebugUtil.DEBUG_ENABLED)
+		final boolean allocationDirty = prepareAllocation();
+		final boolean needRecord = isRecordNeeded();
+
+		if (needRecord || allocationDirty)
 		{
-			startPrepareNs = System.nanoTime();
+			invalidateRecords();
 		}
+	}
 
-		boolean needRecord = !recorded;
+	private void invalidateRecords()
+	{
+		final var records = context.getRecorders();
+		for (int i = 0; i < records.size(); i++)
+		{
+			records.get(i).setDirty(true);
+		}
+	}
 
+	private boolean prepareAllocation()
+	{
+		boolean dirty = false;
 		if (allocator.isAllocationDirty(context))
 		{
 			context.getQueue().waitIdle();
@@ -148,22 +190,9 @@ public abstract class AbstractProcessAdapter
 			{
 				allocator.reloadDirtyElements(stack, context);
 			}
-			needRecord = true;
+			dirty = true;
 		}
-
-		if (needRecord || isRecordNeeded())
-		{
-			// TODO don't wait, record a new CommandBuffer.
-			context.getQueue().waitIdle();
-			recordCommands();
-			recorded = true;
-		}
-
-		if (DebugUtil.DEBUG_ENABLED)
-		{
-			IStatistics.INSTANCE.addTime(getClass().getSimpleName(),
-					System.nanoTime() - startPrepareNs);
-		}
+		return dirty;
 	}
 
 	private boolean isRecordNeeded()
@@ -189,18 +218,16 @@ public abstract class AbstractProcessAdapter
 		return allocationList;
 	}
 
-	protected abstract EQueueType getQueueType();
-
 	protected boolean isResetAllowed()
 	{
 		return process.isResetAllowed();
 	}
 
-	public abstract void recordCommand(	VkCommandBuffer commandBuffer,
-										ECommandStage stage,
-										int index);
+	protected abstract Integer prepareNextExecution();
 
-	protected abstract void recordCommands();
+	protected abstract EQueueType getQueueType();
+
+	protected abstract List<ECommandStage> getStages();
 
 	protected abstract ProcessContext createContext();
 

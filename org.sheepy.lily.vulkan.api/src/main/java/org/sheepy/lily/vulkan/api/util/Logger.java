@@ -14,13 +14,13 @@ public class Logger
 
 	public static final void check(int status, String message, boolean noException)
 	{
-		EVulkanStatus error = EVulkanStatus.resolveFromCode(status);
+		final EVulkanStatus error = EVulkanStatus.resolveFromCode(status);
 		if (error.isError)
 		{
-			String stringError = error != null ? error.name() : UNKOWN_ERROR;
-			String errorMessage = error.message;
+			final String stringError = error != null ? error.name() : UNKOWN_ERROR;
+			final String errorMessage = error.message;
 
-			String messageWithError = String.format("%s\n[%s] %s", message, stringError,
+			final String messageWithError = String.format("%s\n[%s] %s", message, stringError,
 					errorMessage);
 
 			if (!noException)
@@ -29,7 +29,7 @@ public class Logger
 			}
 			else if (DebugUtil.DEBUG_ENABLED)
 			{
-				System.err.println(messageWithError);
+				log(messageWithError, true);
 			}
 		}
 	}
@@ -47,6 +47,18 @@ public class Logger
 
 	public static void log(String message)
 	{
-		throw new AssertionError(message);
+		log(message, false);
+	}
+
+	public static void log(String message, boolean console)
+	{
+		if (console)
+		{
+			System.err.println(message);
+		}
+		else
+		{
+			throw new AssertionError(message);
+		}
 	}
 }

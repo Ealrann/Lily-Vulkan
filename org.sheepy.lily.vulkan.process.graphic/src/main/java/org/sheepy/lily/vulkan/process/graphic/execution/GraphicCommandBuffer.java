@@ -3,13 +3,23 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
+import org.lwjgl.vulkan.VkRenderPassBeginInfo;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
+import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.lily.vulkan.process.graphic.frame.Framebuffers.ClearInfo;
+import org.sheepy.lily.vulkan.process.graphic.process.GraphicContext;
 
-public abstract class GraphicCommandBuffer extends AbstractCommandBuffer
+public class GraphicCommandBuffer extends AbstractCommandBuffer
 {
+	private static final String FAILED_TO_RECORD_COMMAND_BUFFER = "Failed to record command buffer";
+	private static final String FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER = "Failed to begin recording command buffer";
 	public final int index;
+	private VkClearValue.Buffer clearValues;
+	private VkRenderPassBeginInfo renderPassInfo;
 
 	private VkCommandBufferBeginInfo beginInfo;
 
@@ -21,6 +31,40 @@ public abstract class GraphicCommandBuffer extends AbstractCommandBuffer
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
+		final var graphicContext = (GraphicContext) context;
+		final var extent = graphicContext.surfaceManager.getExtent();
+		final var framebufferId = graphicContext.framebuffers.getIDs().get(index);
+
+		final var clearInfos = graphicContext.framebuffers.getClearInfos();
+
+		final int clearCount = clearInfos.size();
+		clearValues = VkClearValue.malloc(clearCount);
+
+		for (final ClearInfo clearInfo : clearInfos)
+		{
+			final VkClearValue clearValue = clearValues.get();
+			if (clearInfo.isdepthStencil == false)
+			{
+				clearValue.color().float32(0, clearInfo.color.x());
+				clearValue.color().float32(1, clearInfo.color.y());
+				clearValue.color().float32(2, clearInfo.color.z());
+				clearValue.color().float32(3, clearInfo.color.w());
+			}
+			else
+			{
+				clearValue.depthStencil().set(1.0f, 0);
+			}
+		}
+		clearValues.flip();
+
+		renderPassInfo = VkRenderPassBeginInfo.calloc();
+		renderPassInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO);
+		renderPassInfo.renderPass(graphicContext.renderPass.getId());
+		renderPassInfo.framebuffer(framebufferId);
+		renderPassInfo.renderArea().offset().set(0, 0);
+		renderPassInfo.renderArea().extent().set(extent.getWidth(), extent.getHeight());
+		renderPassInfo.pClearValues(clearValues);
+
 		beginInfo = VkCommandBufferBeginInfo.calloc();
 		beginInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO);
 		beginInfo.flags(VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT);
@@ -32,6 +76,15 @@ public abstract class GraphicCommandBuffer extends AbstractCommandBuffer
 	@Override
 	public void free(IAllocationContext context)
 	{
+		if (clearValues != null)
+		{
+			clearValues.free();
+			clearValues = null;
+		}
+
+		renderPassInfo.free();
+		renderPassInfo = null;
+
 		beginInfo.free();
 		beginInfo = null;
 
@@ -39,21 +92,47 @@ public abstract class GraphicCommandBuffer extends AbstractCommandBuffer
 	}
 
 	@Override
-	public void start()
+	public void start(ECommandStage stage)
 	{
-		// Start buffer record
-		if (vkBeginCommandBuffer(vkCommandBuffer, beginInfo) != VK_SUCCESS)
+		switch (stage)
 		{
-			throw new AssertionError("failed to begin recording command buffer!");
+		case COMPUTE:
+			break;
+		case PRE_RENDER:
+			Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
+					FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
+			break;
+		case RENDER:
+			vkCmdBeginRenderPass(vkCommandBuffer, renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
+			break;
+		case POST_RENDER:
+			break;
 		}
 	}
 
 	@Override
-	public void end()
+	public void end(ECommandStage stage)
 	{
-		if (vkEndCommandBuffer(vkCommandBuffer) != VK_SUCCESS)
+		switch (stage)
 		{
-			throw new AssertionError("failed to record command buffer!");
+		case COMPUTE:
+			break;
+		case POST_RENDER:
+			Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
+			break;
+		case RENDER:
+			vkCmdEndRenderPass(vkCommandBuffer);
+			break;
+		case PRE_RENDER:
+			break;
 		}
 	}
+
+	@Override
+	public boolean isAllocationDirty(IAllocationContext context)
+	{
+		final var graphicContext = (GraphicContext) context;
+		return graphicContext.framebuffers.isAllocationDirty(context);
+	}
+
 }

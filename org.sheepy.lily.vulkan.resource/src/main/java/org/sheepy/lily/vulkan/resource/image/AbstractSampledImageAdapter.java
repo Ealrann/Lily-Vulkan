@@ -38,7 +38,7 @@ public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter,
 		final var executionContext = (ExecutionContext) context;
 		final var logicalDevice = executionContext.getLogicalDevice();
 
-		ByteBuffer allocDataBuffer = allocDataBuffer(stack);
+		final ByteBuffer allocDataBuffer = allocDataBuffer(stack);
 
 		vkTexture.allocate(stack, logicalDevice);
 		vkTexture.loadImage(stack, executionContext, allocDataBuffer);
