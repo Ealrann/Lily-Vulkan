@@ -15,6 +15,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Autorun;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.concurrent.IFence;
@@ -127,7 +128,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	{
 		this.engine = engine;
 		application = (Application) engine.eContainer();
-		debug = application.isDebug();
+		debug = DebugUtil.DEBUG_ENABLED;
 		window = new Window(application.getSize(), application.getTitle(),
 				application.isResizeable(), application.isFullscreen());
 		executionContext = new ExecutionContext(EQueueType.Graphic, false);

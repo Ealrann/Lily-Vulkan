@@ -22,6 +22,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.IView;
 import org.sheepy.lily.core.model.presentation.IPanel;
@@ -119,14 +120,13 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		window = graphicContext.getWindow();
 
 		final var engine = ModelUtil.getEngine(nkPipeline);
-		final var application = (Application) engine.eContainer();
 		final var inputManager = IVulkanEngineAdapter.adapt(engine).getInputManager();
 
 		resources.allocate();
 		createContext();
 		inputManager.setInputCatcher(inputCatcher);
 
-		recorder = new DrawRecorder(nkContext, application.isDebug());
+		recorder = new DrawRecorder(nkContext, DebugUtil.DEBUG_ENABLED);
 		drawer = new NuklearDrawer(getDescriptorSets(), resources, pipelineLayout);
 
 		// Prepare a first render for the opening of the screen

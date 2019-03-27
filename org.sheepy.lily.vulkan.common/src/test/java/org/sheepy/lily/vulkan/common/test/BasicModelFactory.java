@@ -33,7 +33,6 @@ public class BasicModelFactory
 
 		application.setTitle(title);
 		application.setSize(new Vector2i(width, height));
-		application.setDebug(false);
 
 		application.getEngines().add(VulkanFactory.eINSTANCE.createVulkanEngine());
 

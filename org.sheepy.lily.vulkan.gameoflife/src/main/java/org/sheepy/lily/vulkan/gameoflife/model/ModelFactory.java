@@ -73,10 +73,9 @@ public class ModelFactory
 
 		application.setTitle("Vulkan - Game of Life");
 		application.setSize(size);
-		application.setDebug(true);
 		application.getEngines().add(engine);
 
-		var swapchainConfiguration = new SwapchainConfigurationImpl();
+		final var swapchainConfiguration = new SwapchainConfigurationImpl();
 		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.TRANSFER_DST);
 		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.COLOR_ATTACHMENT);
 
@@ -101,7 +100,7 @@ public class ModelFactory
 	private static RenderPassInfo newInfo()
 	{
 		final RenderPassInfo renderPass = new RenderPassInfoImpl();
-		var subpass = new SubpassImpl();
+		final var subpass = new SubpassImpl();
 		renderPass.getSubpasses().add(subpass);
 
 		final AttachmentDescription colorAttachment = new AttachmentDescriptionImpl();
@@ -115,7 +114,7 @@ public class ModelFactory
 
 		renderPass.getAttachments().add(colorAttachment);
 
-		AttachementRef colorRef = new AttachementRefImpl();
+		final AttachementRef colorRef = new AttachementRefImpl();
 		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
 		colorRef.setAttachement(colorAttachment);
 		subpass.getRefs().add(colorRef);
@@ -173,30 +172,30 @@ public class ModelFactory
 		life2pixelShader.setFile(life2pixelShaderFile);
 		life2pixelShader.setStage(EShaderStage.COMPUTE_BIT);
 
-		Board board = Board.createTestBoard(size);
-		Buffer boardBuffer1 = BoardBufferFactory.createBoardBuffer(board);
-		Buffer boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
+		final Board board = Board.createTestBoard(size);
+		final Buffer boardBuffer1 = BoardBufferFactory.createBoardBuffer(board);
+		final Buffer boardBuffer2 = BoardBufferFactory.createBoardBuffer(board);
 		boardImage = BoardImageFactory.createBoardImage(size);
 
-		Computer lifeComputer1 = createComputer(lifeShader);
-		Computer pixelComputer1 = createComputer(life2pixelShader);
+		final Computer lifeComputer1 = createComputer(lifeShader);
+		final Computer pixelComputer1 = createComputer(life2pixelShader);
 
-		Computer lifeComputer2 = createComputer(lifeShader);
-		Computer pixelComputer2 = createComputer(life2pixelShader);
+		final Computer lifeComputer2 = createComputer(lifeShader);
+		final Computer pixelComputer2 = createComputer(life2pixelShader);
 
-		var lifePipeline1 = createPipeline(process1, lifeComputer1, boardBuffer1, boardBuffer2);
-		var lifePipeline2 = createPipeline(process2, lifeComputer2, boardBuffer2, boardBuffer1);
+		final var lifePipeline1 = createPipeline(process1, lifeComputer1, boardBuffer1, boardBuffer2);
+		final var lifePipeline2 = createPipeline(process2, lifeComputer2, boardBuffer2, boardBuffer1);
 
-		var pixelPipeline1 = createPipeline(process1, pixelComputer1, boardBuffer2, boardImage);
-		var pixelPipeline2 = createPipeline(process2, pixelComputer2, boardBuffer1, boardImage);
+		final var pixelPipeline1 = createPipeline(process1, pixelComputer1, boardBuffer2, boardImage);
+		final var pixelPipeline2 = createPipeline(process2, pixelComputer2, boardBuffer1, boardImage);
 
-		PipelinePkg pipelines1 = new PipelinePkgImpl();
+		final PipelinePkg pipelines1 = new PipelinePkgImpl();
 		process1.setPipelinePkg(pipelines1);
 
 		pipelines1.getPipelines().add(lifePipeline1);
 		pipelines1.getPipelines().add(pixelPipeline1);
 
-		PipelinePkg pipelines2 = new PipelinePkgImpl();
+		final PipelinePkg pipelines2 = new PipelinePkgImpl();
 		process2.setPipelinePkg(pipelines2);
 
 		pipelines2.getPipelines().add(lifePipeline2);
@@ -216,13 +215,13 @@ public class ModelFactory
 											IPipelineUnit computer,
 											IDescriptor... descriptors)
 	{
-		var descriptorSet = new DescriptorSetImpl();
-		for (IDescriptor descriptor : descriptors)
+		final var descriptorSet = new DescriptorSetImpl();
+		for (final IDescriptor descriptor : descriptors)
 		{
 			descriptorSet.getDescriptors().add(descriptor);
 		}
 
-		ComputePipeline res = new ComputePipelineImpl();
+		final ComputePipeline res = new ComputePipelineImpl();
 		res.getUnits().add(computer);
 		process.getDescriptorSets().add(descriptorSet);
 		res.setDescriptorSet(descriptorSet);
@@ -237,7 +236,7 @@ public class ModelFactory
 
 	private static Computer createComputer(final Shader shader)
 	{
-		Computer res = new ComputerImpl();
+		final Computer res = new ComputerImpl();
 		res.setShader(shader);
 		return res;
 	}

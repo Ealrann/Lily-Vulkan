@@ -1,6 +1,7 @@
 package org.sheepy.lily.vulkan.demo.texture;
 
 import org.sheepy.lily.core.api.application.ApplicationLauncher;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
@@ -15,6 +16,8 @@ public class MainTexture
 
 	public static void main(String[] args)
 	{
+		DebugUtil.DEBUG_ENABLED = true;
+
 		MeshAdapter.meshBuilder = new TextureMeshBuilder();
 
 		final var meshConfiguration = new MeshConfiguration();
@@ -27,7 +30,7 @@ public class MainTexture
 
 		final var modelFactory = new MeshModelFactory(meshConfiguration);
 
-		MeshMainLoop mainLoop = new MeshMainLoop(modelFactory);
+		final MeshMainLoop mainLoop = new MeshMainLoop(modelFactory);
 
 		ApplicationLauncher.launch(modelFactory.application, mainLoop);
 	}
