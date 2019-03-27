@@ -1,54 +1,57 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.impl;
+package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.lily.vulkan.model.resource.DepthImage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Depth Image</b></em>'.
+ * An implementation of the model object '<em><b>Depth Attachment</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.DepthImageImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentImpl#isClear <em>Clear</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DepthImageImpl extends MinimalEObjectImpl.Container implements DepthImage
+public class DepthAttachmentImpl extends MinimalEObjectImpl.Container implements DepthAttachment
 {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #isClear() <em>Clear</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #isClear()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final boolean CLEAR_EDEFAULT = true;
+
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #isClear() <em>Clear</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #isClear()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected boolean clear = CLEAR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DepthImageImpl()
+	public DepthAttachmentImpl()
 	{
 		super();
 	}
@@ -61,7 +64,7 @@ public class DepthImageImpl extends MinimalEObjectImpl.Container implements Dept
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.DEPTH_IMAGE;
+		return GraphicPackage.Literals.DEPTH_ATTACHMENT;
 	}
 
 	/**
@@ -70,9 +73,9 @@ public class DepthImageImpl extends MinimalEObjectImpl.Container implements Dept
 	 * @generated
 	 */
 	@Override
-	public String getName()
+	public boolean isClear()
 	{
-		return name;
+		return clear;
 	}
 
 	/**
@@ -81,12 +84,12 @@ public class DepthImageImpl extends MinimalEObjectImpl.Container implements Dept
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
+	public void setClear(boolean newClear)
 	{
-		String oldName = name;
-		name = newName;
+		boolean oldClear = clear;
+		clear = newClear;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.DEPTH_IMAGE__NAME, oldName, name));
+				GraphicPackage.DEPTH_ATTACHMENT__CLEAR, oldClear, clear));
 	}
 
 	/**
@@ -99,8 +102,8 @@ public class DepthImageImpl extends MinimalEObjectImpl.Container implements Dept
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DEPTH_IMAGE__NAME:
-			return getName();
+		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+			return isClear();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,8 +118,8 @@ public class DepthImageImpl extends MinimalEObjectImpl.Container implements Dept
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DEPTH_IMAGE__NAME:
-			setName((String) newValue);
+		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+			setClear((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -132,8 +135,8 @@ public class DepthImageImpl extends MinimalEObjectImpl.Container implements Dept
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DEPTH_IMAGE__NAME:
-			setName(NAME_EDEFAULT);
+		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+			setClear(CLEAR_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -149,8 +152,8 @@ public class DepthImageImpl extends MinimalEObjectImpl.Container implements Dept
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.DEPTH_IMAGE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
+			return clear != CLEAR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -166,10 +169,10 @@ public class DepthImageImpl extends MinimalEObjectImpl.Container implements Dept
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
+		result.append(" (clear: ");
+		result.append(clear);
 		result.append(')');
 		return result.toString();
 	}
 
-} //DepthImageImpl
+} //DepthAttachmentImpl

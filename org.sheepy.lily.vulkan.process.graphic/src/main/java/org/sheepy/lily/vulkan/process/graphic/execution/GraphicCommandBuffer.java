@@ -10,7 +10,6 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.lily.vulkan.process.graphic.api.IFramebufferManager.ClearInfo;
 import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 
 public class GraphicCommandBuffer extends AbstractCommandBuffer
@@ -40,7 +39,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 
 		clearValues = VkClearValue.malloc(clearCount);
 
-		for (final ClearInfo clearInfo : clearInfos)
+		for (final var clearInfo : clearInfos)
 		{
 			final VkClearValue clearValue = clearValues.get();
 			if (clearInfo.isdepthStencil == false)

@@ -71,8 +71,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createBuffer();
 		case ResourcePackage.IMAGE:
 			return createImage();
-		case ResourcePackage.DEPTH_IMAGE:
-			return createDepthImage();
 		case ResourcePackage.IMAGE_LAYOUT:
 			return createImageLayout();
 		case ResourcePackage.SEMAPHORE:
@@ -315,18 +313,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		ShaderImpl shader = new ShaderImpl();
 		return shader;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DepthImage createDepthImage()
-	{
-		DepthImageImpl depthImage = new DepthImageImpl();
-		return depthImage;
 	}
 
 	/**

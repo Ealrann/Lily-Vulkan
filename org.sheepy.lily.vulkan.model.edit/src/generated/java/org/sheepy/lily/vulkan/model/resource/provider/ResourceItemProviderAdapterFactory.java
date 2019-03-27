@@ -451,31 +451,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DepthImage} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DepthImageItemProvider depthImageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.DepthImage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDepthImageAdapter()
-	{
-		if (depthImageItemProvider == null)
-		{
-			depthImageItemProvider = new DepthImageItemProvider(this);
-		}
-
-		return depthImageItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.FileResource} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -701,7 +676,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	{
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();
-		if (depthImageItemProvider != null) depthImageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
 		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
 		if (fontItemProvider != null) fontItemProvider.dispose();
@@ -778,10 +752,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 								ResourceFactory.eINSTANCE.createImage()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createDepthImage()));
 
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,

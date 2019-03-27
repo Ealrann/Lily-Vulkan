@@ -37,7 +37,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  *
  * @generated
  */
-public class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container
+public abstract class AttachmentDescriptionImpl extends MinimalEObjectImpl.Container
 		implements AttachmentDescription
 {
 	/**

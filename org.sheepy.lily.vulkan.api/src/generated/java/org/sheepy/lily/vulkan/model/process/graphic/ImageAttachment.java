@@ -3,26 +3,27 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.joml.Vector4f;
+
 import org.sheepy.lily.vulkan.model.resource.Image;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Image Framebuffer Attachment</b></em>'.
+ * A representation of the model object '<em><b>Image Attachment</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment#getClearValue <em>Clear Value</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment#getImageRef <em>Image Ref</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment#getClearValue <em>Clear Value</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment#getImageRef <em>Image Ref</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getImageFramebufferAttachment()
+ * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getImageAttachment()
  * @model
  * @generated
  */
-public interface ImageFramebufferAttachment extends IFramebufferAttachment
+public interface ImageAttachment extends ISwapAttachment
 {
 	/**
 	 * Returns the value of the '<em><b>Clear Value</b></em>' attribute.
@@ -31,14 +32,14 @@ public interface ImageFramebufferAttachment extends IFramebufferAttachment
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Clear Value</em>' attribute.
 	 * @see #setClearValue(Vector4f)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getImageFramebufferAttachment_ClearValue()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getImageAttachment_ClearValue()
 	 * @model default="0;0;0;0" unique="false" dataType="org.sheepy.lily.core.model.types.Color4f"
 	 * @generated
 	 */
 	Vector4f getClearValue();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment#getClearValue <em>Clear Value</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment#getClearValue <em>Clear Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Clear Value</em>' attribute.
@@ -53,14 +54,14 @@ public interface ImageFramebufferAttachment extends IFramebufferAttachment
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image Ref</em>' reference.
 	 * @see #setImageRef(Image)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getImageFramebufferAttachment_ImageRef()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getImageAttachment_ImageRef()
 	 * @model
 	 * @generated
 	 */
 	Image getImageRef();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment#getImageRef <em>Image Ref</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment#getImageRef <em>Image Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Image Ref</em>' reference.
@@ -69,4 +70,4 @@ public interface ImageFramebufferAttachment extends IFramebufferAttachment
 	 */
 	void setImageRef(Image value);
 
-} // ImageFramebufferAttachment
+} // ImageAttachment

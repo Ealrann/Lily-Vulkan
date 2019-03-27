@@ -21,6 +21,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getPresentationMode <em>Presentation Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getSwapImageUsages <em>Swap Image Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration#getAtachments <em>Atachments</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration()
@@ -91,5 +92,17 @@ public interface SwapchainConfiguration extends EObject
 	 * @generated
 	 */
 	EList<EImageUsage> getSwapImageUsages();
+
+	/**
+	 * Returns the value of the '<em><b>Atachments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Atachments</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getSwapchainConfiguration_Atachments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ISwapAttachment> getAtachments();
 
 } // SwapchainConfiguration

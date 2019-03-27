@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -10,29 +11,30 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.joml.Vector4f;
+
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
 
 import org.sheepy.lily.vulkan.model.resource.Image;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Image Framebuffer Attachment</b></em>'.
+ * An implementation of the model object '<em><b>Image Attachment</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImageFramebufferAttachmentImpl#getClearValue <em>Clear Value</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImageFramebufferAttachmentImpl#getImageRef <em>Image Ref</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImageAttachmentImpl#getClearValue <em>Clear Value</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImageAttachmentImpl#getImageRef <em>Image Ref</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
-		implements ImageFramebufferAttachment
+public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements ImageAttachment
 {
 	/**
 	 * The default value of the '{@link #getClearValue() <em>Clear Value</em>}' attribute.
@@ -44,6 +46,7 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 	 */
 	protected static final Vector4f CLEAR_VALUE_EDEFAULT = (Vector4f) TypesFactory.eINSTANCE
 			.createFromString(TypesPackage.eINSTANCE.getColor4f(), "0;0;0;0");
+
 	/**
 	 * The cached value of the '{@link #getClearValue() <em>Clear Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,6 +56,7 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected Vector4f clearValue = CLEAR_VALUE_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getImageRef() <em>Image Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -68,7 +72,7 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImageFramebufferAttachmentImpl()
+	public ImageAttachmentImpl()
 	{
 		super();
 	}
@@ -81,7 +85,7 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 	@Override
 	protected EClass eStaticClass()
 	{
-		return GraphicPackage.Literals.IMAGE_FRAMEBUFFER_ATTACHMENT;
+		return GraphicPackage.Literals.IMAGE_ATTACHMENT;
 	}
 
 	/**
@@ -106,8 +110,7 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 		Vector4f oldClearValue = clearValue;
 		clearValue = newClearValue;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE, oldClearValue,
-				clearValue));
+				GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE, oldClearValue, clearValue));
 	}
 
 	/**
@@ -126,8 +129,7 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF, oldImageRef,
-							imageRef));
+							GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
 			}
 		}
 		return imageRef;
@@ -154,7 +156,7 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 		Image oldImageRef = imageRef;
 		imageRef = newImageRef;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
+				GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF, oldImageRef, imageRef));
 	}
 
 	/**
@@ -167,9 +169,9 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE:
+		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
 			return getClearValue();
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF:
+		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
 			if (resolve) return getImageRef();
 			return basicGetImageRef();
 		}
@@ -186,10 +188,10 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE:
+		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
 			setClearValue((Vector4f) newValue);
 			return;
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF:
+		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
 			setImageRef((Image) newValue);
 			return;
 		}
@@ -206,10 +208,10 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE:
+		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
 			setClearValue(CLEAR_VALUE_EDEFAULT);
 			return;
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF:
+		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
 			setImageRef((Image) null);
 			return;
 		}
@@ -226,11 +228,11 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE:
+		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
 			return CLEAR_VALUE_EDEFAULT == null
 					? clearValue != null
 					: !CLEAR_VALUE_EDEFAULT.equals(clearValue);
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF:
+		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
 			return imageRef != null;
 		}
 		return super.eIsSet(featureID);
@@ -253,4 +255,4 @@ public class ImageFramebufferAttachmentImpl extends MinimalEObjectImpl.Container
 		return result.toString();
 	}
 
-} //ImageFramebufferAttachmentImpl
+} //ImageAttachmentImpl

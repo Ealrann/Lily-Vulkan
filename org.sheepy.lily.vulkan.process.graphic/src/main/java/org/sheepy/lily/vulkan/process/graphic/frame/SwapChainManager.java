@@ -8,17 +8,20 @@ import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
+import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.common.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
+import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.api.ISwapChainManager;
@@ -30,6 +33,7 @@ public class SwapChainManager implements ISwapChainManager
 	private IntBuffer indices = null;
 	private int swapImageCount;
 	private boolean first = true;
+	private EList<ISwapAttachment> attachments;
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
@@ -52,6 +56,9 @@ public class SwapChainManager implements ISwapChainManager
 		final int targetPresentMode = selectPresentMode(graphicContext, requiredPresentMode,
 				surface);
 
+		attachments = swapchainConfiguration.getAtachments();
+		allocateAttachments(stack, context);
+		
 		final VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
 		createInfo.surface(surface.ptr);
@@ -101,6 +108,15 @@ public class SwapChainManager implements ISwapChainManager
 		}
 	}
 
+	private void allocateAttachments(MemoryStack stack, IAllocationContext context)
+	{
+		for (final ISwapAttachment attachment : attachments)
+		{
+			final var adapter = ISwapAttachmentAdapter.adapt(attachment);
+			adapter.allocate(stack, context);
+		}
+	}
+
 	private static int loadSwapChainUsage(final SwapchainConfiguration configuration)
 	{
 		final var usages = configuration.getSwapImageUsages();
@@ -121,8 +137,19 @@ public class SwapChainManager implements ISwapChainManager
 		swapChain = null;
 		swapChainImages = null;
 		indices = null;
+
+		freeAttachments(context);
 	}
 
+	private void freeAttachments(IAllocationContext context)
+	{
+		for (final ISwapAttachment attachment : attachments)
+		{
+			final var adapter = ISwapAttachmentAdapter.adapt(attachment);
+			adapter.free(context);
+		}
+	}
+	
 	private void printSwapChainInformations(int presentMode)
 	{
 		final String presentationName = EPresentMode.get(presentMode).getName();

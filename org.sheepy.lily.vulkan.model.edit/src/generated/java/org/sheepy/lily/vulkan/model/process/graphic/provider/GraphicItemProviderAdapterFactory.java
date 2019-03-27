@@ -179,55 +179,53 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImageFramebufferAttachmentItemProvider imageFramebufferAttachmentItemProvider;
+	protected ImageAttachmentItemProvider imageAttachmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createImageFramebufferAttachmentAdapter()
+	public Adapter createImageAttachmentAdapter()
 	{
-		if (imageFramebufferAttachmentItemProvider == null)
+		if (imageAttachmentItemProvider == null)
 		{
-			imageFramebufferAttachmentItemProvider = new ImageFramebufferAttachmentItemProvider(
-					this);
+			imageAttachmentItemProvider = new ImageAttachmentItemProvider(this);
 		}
 
-		return imageFramebufferAttachmentItemProvider;
+		return imageAttachmentItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DepthFramebufferAttachmentItemProvider depthFramebufferAttachmentItemProvider;
+	protected DepthAttachmentItemProvider depthAttachmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createDepthFramebufferAttachmentAdapter()
+	public Adapter createDepthAttachmentAdapter()
 	{
-		if (depthFramebufferAttachmentItemProvider == null)
+		if (depthAttachmentItemProvider == null)
 		{
-			depthFramebufferAttachmentItemProvider = new DepthFramebufferAttachmentItemProvider(
-					this);
+			depthAttachmentItemProvider = new DepthAttachmentItemProvider(this);
 		}
 
-		return depthFramebufferAttachmentItemProvider;
+		return depthAttachmentItemProvider;
 	}
 
 	/**
@@ -331,54 +329,55 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttachmentDescriptionItemProvider attachmentDescriptionItemProvider;
+	protected SwapImageAttachmentDescriptionItemProvider swapImageAttachmentDescriptionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAttachmentDescriptionAdapter()
+	public Adapter createSwapImageAttachmentDescriptionAdapter()
 	{
-		if (attachmentDescriptionItemProvider == null)
+		if (swapImageAttachmentDescriptionItemProvider == null)
 		{
-			attachmentDescriptionItemProvider = new AttachmentDescriptionItemProvider(this);
-		}
-
-		return attachmentDescriptionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DepthAttachmentDescriptionItemProvider depthAttachmentDescriptionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDepthAttachmentDescriptionAdapter()
-	{
-		if (depthAttachmentDescriptionItemProvider == null)
-		{
-			depthAttachmentDescriptionItemProvider = new DepthAttachmentDescriptionItemProvider(
+			swapImageAttachmentDescriptionItemProvider = new SwapImageAttachmentDescriptionItemProvider(
 					this);
 		}
 
-		return depthAttachmentDescriptionItemProvider;
+		return swapImageAttachmentDescriptionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExtraAttachmentDescriptionItemProvider extraAttachmentDescriptionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExtraAttachmentDescriptionAdapter()
+	{
+		if (extraAttachmentDescriptionItemProvider == null)
+		{
+			extraAttachmentDescriptionItemProvider = new ExtraAttachmentDescriptionItemProvider(
+					this);
+		}
+
+		return extraAttachmentDescriptionItemProvider;
 	}
 
 	/**
@@ -810,17 +809,16 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 			swapchainConfigurationItemProvider.dispose();
 		if (framebufferConfigurationItemProvider != null)
 			framebufferConfigurationItemProvider.dispose();
-		if (imageFramebufferAttachmentItemProvider != null)
-			imageFramebufferAttachmentItemProvider.dispose();
-		if (depthFramebufferAttachmentItemProvider != null)
-			depthFramebufferAttachmentItemProvider.dispose();
+		if (imageAttachmentItemProvider != null) imageAttachmentItemProvider.dispose();
+		if (depthAttachmentItemProvider != null) depthAttachmentItemProvider.dispose();
 		if (renderPassInfoItemProvider != null) renderPassInfoItemProvider.dispose();
 		if (subpassItemProvider != null) subpassItemProvider.dispose();
 		if (attachementRefItemProvider != null) attachementRefItemProvider.dispose();
 		if (subpassDependencyItemProvider != null) subpassDependencyItemProvider.dispose();
-		if (attachmentDescriptionItemProvider != null) attachmentDescriptionItemProvider.dispose();
-		if (depthAttachmentDescriptionItemProvider != null)
-			depthAttachmentDescriptionItemProvider.dispose();
+		if (swapImageAttachmentDescriptionItemProvider != null)
+			swapImageAttachmentDescriptionItemProvider.dispose();
+		if (extraAttachmentDescriptionItemProvider != null)
+			extraAttachmentDescriptionItemProvider.dispose();
 		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
 		if (graphicsPipelineItemProvider != null) graphicsPipelineItemProvider.dispose();
 		if (dynamicStateItemProvider != null) dynamicStateItemProvider.dispose();
@@ -933,6 +931,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
@@ -945,6 +944,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return GraphicEditPlugin.INSTANCE;

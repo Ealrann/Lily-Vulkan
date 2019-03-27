@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.joml.Vector4f;
 
@@ -16,7 +15,6 @@ import org.joml.Vector4f;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration#getClearValue <em>Clear Value</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration#getAtachments <em>Atachments</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getFramebufferConfiguration()
@@ -48,17 +46,5 @@ public interface FramebufferConfiguration extends EObject
 	 * @generated
 	 */
 	void setClearValue(Vector4f value);
-
-	/**
-	 * Returns the value of the '<em><b>Atachments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Atachments</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getFramebufferConfiguration_Atachments()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<IFramebufferAttachment> getAtachments();
 
 } // FramebufferConfiguration

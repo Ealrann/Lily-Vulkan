@@ -32,7 +32,7 @@ module org.sheepy.lily.vulkan.api
 	exports org.sheepy.lily.vulkan.api.process;
 	exports org.sheepy.lily.vulkan.api.queue;
 	exports org.sheepy.lily.vulkan.api.resource;
-	exports org.sheepy.lily.vulkan.api.resource.image;
+	exports org.sheepy.lily.vulkan.api.resource.attachment;
 	exports org.sheepy.lily.vulkan.api.util;
 
 	exports org.sheepy.lily.vulkan.model;

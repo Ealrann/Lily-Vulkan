@@ -70,10 +70,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createSwapchainConfiguration();
 		case GraphicPackage.FRAMEBUFFER_CONFIGURATION:
 			return createFramebufferConfiguration();
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT:
-			return createImageFramebufferAttachment();
-		case GraphicPackage.DEPTH_FRAMEBUFFER_ATTACHMENT:
-			return createDepthFramebufferAttachment();
+		case GraphicPackage.IMAGE_ATTACHMENT:
+			return createImageAttachment();
+		case GraphicPackage.DEPTH_ATTACHMENT:
+			return createDepthAttachment();
 		case GraphicPackage.RENDER_PASS_INFO:
 			return createRenderPassInfo();
 		case GraphicPackage.SUBPASS:
@@ -82,10 +82,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createAttachementRef();
 		case GraphicPackage.SUBPASS_DEPENDENCY:
 			return createSubpassDependency();
-		case GraphicPackage.ATTACHMENT_DESCRIPTION:
-			return createAttachmentDescription();
-		case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION:
-			return createDepthAttachmentDescription();
+		case GraphicPackage.SWAP_IMAGE_ATTACHMENT_DESCRIPTION:
+			return createSwapImageAttachmentDescription();
+		case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION:
+			return createExtraAttachmentDescription();
 		case GraphicPackage.GRAPHIC_PROCESS:
 			return createGraphicProcess();
 		case GraphicPackage.GRAPHICS_PIPELINE:
@@ -156,10 +156,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
-	public ImageFramebufferAttachment createImageFramebufferAttachment()
+	public ImageAttachment createImageAttachment()
 	{
-		ImageFramebufferAttachmentImpl imageFramebufferAttachment = new ImageFramebufferAttachmentImpl();
-		return imageFramebufferAttachment;
+		ImageAttachmentImpl imageAttachment = new ImageAttachmentImpl();
+		return imageAttachment;
 	}
 
 	/**
@@ -168,10 +168,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
-	public DepthFramebufferAttachment createDepthFramebufferAttachment()
+	public DepthAttachment createDepthAttachment()
 	{
-		DepthFramebufferAttachmentImpl depthFramebufferAttachment = new DepthFramebufferAttachmentImpl();
-		return depthFramebufferAttachment;
+		DepthAttachmentImpl depthAttachment = new DepthAttachmentImpl();
+		return depthAttachment;
 	}
 
 	/**
@@ -228,10 +228,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
-	public AttachmentDescription createAttachmentDescription()
+	public SwapImageAttachmentDescription createSwapImageAttachmentDescription()
 	{
-		AttachmentDescriptionImpl attachmentDescription = new AttachmentDescriptionImpl();
-		return attachmentDescription;
+		SwapImageAttachmentDescriptionImpl swapImageAttachmentDescription = new SwapImageAttachmentDescriptionImpl();
+		return swapImageAttachmentDescription;
 	}
 
 	/**
@@ -240,10 +240,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
-	public DepthAttachmentDescription createDepthAttachmentDescription()
+	public ExtraAttachmentDescription createExtraAttachmentDescription()
 	{
-		DepthAttachmentDescriptionImpl depthAttachmentDescription = new DepthAttachmentDescriptionImpl();
-		return depthAttachmentDescription;
+		ExtraAttachmentDescriptionImpl extraAttachmentDescription = new ExtraAttachmentDescriptionImpl();
+		return extraAttachmentDescription;
 	}
 
 	/**

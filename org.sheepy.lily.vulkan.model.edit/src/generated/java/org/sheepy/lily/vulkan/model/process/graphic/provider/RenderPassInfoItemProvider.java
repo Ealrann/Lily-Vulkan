@@ -186,11 +186,11 @@ public class RenderPassInfoItemProvider extends ItemProviderAdapter
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-						GraphicFactory.eINSTANCE.createAttachmentDescription()));
+						GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription()));
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__ATTACHMENTS,
-						GraphicFactory.eINSTANCE.createDepthAttachmentDescription()));
+						GraphicFactory.eINSTANCE.createExtraAttachmentDescription()));
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.RENDER_PASS_INFO__SUBPASSES,

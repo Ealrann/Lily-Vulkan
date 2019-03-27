@@ -100,12 +100,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
-		public Adapter caseDepthImage(DepthImage object)
-		{
-			return createDepthImageAdapter();
-		}
-
-		@Override
 		public Adapter caseImageLayout(ImageLayout object)
 		{
 			return createImageLayoutAdapter();
@@ -602,21 +596,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createShaderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DepthImage <em>Depth Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.DepthImage
-	 * @generated
-	 */
-	public Adapter createDepthImageAdapter()
 	{
 		return null;
 	}

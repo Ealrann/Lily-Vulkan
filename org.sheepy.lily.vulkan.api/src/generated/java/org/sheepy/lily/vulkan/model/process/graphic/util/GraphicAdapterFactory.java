@@ -99,21 +99,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
-		public Adapter caseIFramebufferAttachment(IFramebufferAttachment object)
+		public Adapter caseISwapAttachment(ISwapAttachment object)
 		{
-			return createIFramebufferAttachmentAdapter();
+			return createISwapAttachmentAdapter();
 		}
 
 		@Override
-		public Adapter caseImageFramebufferAttachment(ImageFramebufferAttachment object)
+		public Adapter caseImageAttachment(ImageAttachment object)
 		{
-			return createImageFramebufferAttachmentAdapter();
+			return createImageAttachmentAdapter();
 		}
 
 		@Override
-		public Adapter caseDepthFramebufferAttachment(DepthFramebufferAttachment object)
+		public Adapter caseDepthAttachment(DepthAttachment object)
 		{
-			return createDepthFramebufferAttachmentAdapter();
+			return createDepthAttachmentAdapter();
 		}
 
 		@Override
@@ -147,9 +147,15 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
-		public Adapter caseDepthAttachmentDescription(DepthAttachmentDescription object)
+		public Adapter caseSwapImageAttachmentDescription(SwapImageAttachmentDescription object)
 		{
-			return createDepthAttachmentDescriptionAdapter();
+			return createSwapImageAttachmentDescriptionAdapter();
+		}
+
+		@Override
+		public Adapter caseExtraAttachmentDescription(ExtraAttachmentDescription object)
+		{
+			return createExtraAttachmentDescriptionAdapter();
 		}
 
 		@Override
@@ -369,46 +375,46 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment <em>IFramebuffer Attachment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment <em>ISwap Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment
 	 * @generated
 	 */
-	public Adapter createIFramebufferAttachmentAdapter()
+	public Adapter createISwapAttachmentAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment <em>Image Framebuffer Attachment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment <em>Image Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment
 	 * @generated
 	 */
-	public Adapter createImageFramebufferAttachmentAdapter()
+	public Adapter createImageAttachmentAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment <em>Depth Framebuffer Attachment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment <em>Depth Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment
 	 * @generated
 	 */
-	public Adapter createDepthFramebufferAttachmentAdapter()
+	public Adapter createDepthAttachmentAdapter()
 	{
 		return null;
 	}
@@ -489,16 +495,31 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription <em>Depth Attachment Description</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription <em>Swap Image Attachment Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription
 	 * @generated
 	 */
-	public Adapter createDepthAttachmentDescriptionAdapter()
+	public Adapter createSwapImageAttachmentDescriptionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription <em>Extra Attachment Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription
+	 * @generated
+	 */
+	public Adapter createExtraAttachmentDescriptionAdapter()
 	{
 		return null;
 	}

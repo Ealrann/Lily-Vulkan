@@ -54,11 +54,6 @@ class Image extends DescriptorResource
 	contains ImageLayout initialLayout
 }
 
-class DepthImage extends IResource
-{
-}
-
-
 class ImageLayout
 {
 	EPipelineStage stage

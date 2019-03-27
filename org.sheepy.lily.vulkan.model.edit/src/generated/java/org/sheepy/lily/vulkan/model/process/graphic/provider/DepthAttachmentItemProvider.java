@@ -20,18 +20,18 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment;
+
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DepthFramebufferAttachmentItemProvider extends ItemProviderAdapter
+public class DepthAttachmentItemProvider extends ItemProviderAdapter
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
@@ -41,7 +41,7 @@ public class DepthFramebufferAttachmentItemProvider extends ItemProviderAdapter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DepthFramebufferAttachmentItemProvider(AdapterFactory adapterFactory)
+	public DepthAttachmentItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -60,7 +60,6 @@ public class DepthFramebufferAttachmentItemProvider extends ItemProviderAdapter
 			super.getPropertyDescriptors(object);
 
 			addClearPropertyDescriptor(object);
-			addDepthImageRefPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -75,35 +74,15 @@ public class DepthFramebufferAttachmentItemProvider extends ItemProviderAdapter
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_DepthFramebufferAttachment_clear_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_DepthFramebufferAttachment_clear_feature",
-						"_UI_DepthFramebufferAttachment_type"),
-				GraphicPackage.Literals.DEPTH_FRAMEBUFFER_ATTACHMENT__CLEAR, true, false, false,
+				getResourceLocator(), getString("_UI_DepthAttachment_clear_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DepthAttachment_clear_feature",
+						"_UI_DepthAttachment_type"),
+				GraphicPackage.Literals.DEPTH_ATTACHMENT__CLEAR, true, false, false,
 				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Depth Image Ref feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDepthImageRefPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_DepthFramebufferAttachment_depthImageRef_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_DepthFramebufferAttachment_depthImageRef_feature",
-						"_UI_DepthFramebufferAttachment_type"),
-				GraphicPackage.Literals.DEPTH_FRAMEBUFFER_ATTACHMENT__DEPTH_IMAGE_REF, true, false,
-				true, null, null, null));
-	}
-
-	/**
-	 * This returns DepthFramebufferAttachment.gif.
+	 * This returns DepthAttachment.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -111,8 +90,7 @@ public class DepthFramebufferAttachmentItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/DepthFramebufferAttachment"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DepthAttachment"));
 	}
 
 	/**
@@ -124,10 +102,8 @@ public class DepthFramebufferAttachmentItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		DepthFramebufferAttachment depthFramebufferAttachment = (DepthFramebufferAttachment) object;
-		return getString("_UI_DepthFramebufferAttachment_type")
-				+ " "
-				+ depthFramebufferAttachment.isClear();
+		DepthAttachment depthAttachment = (DepthAttachment) object;
+		return getString("_UI_DepthAttachment_type") + " " + depthAttachment.isClear();
 	}
 
 	/**
@@ -142,9 +118,9 @@ public class DepthFramebufferAttachmentItemProvider extends ItemProviderAdapter
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DepthFramebufferAttachment.class))
+		switch (notification.getFeatureID(DepthAttachment.class))
 		{
-		case GraphicPackage.DEPTH_FRAMEBUFFER_ATTACHMENT__CLEAR:
+		case GraphicPackage.DEPTH_ATTACHMENT__CLEAR:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

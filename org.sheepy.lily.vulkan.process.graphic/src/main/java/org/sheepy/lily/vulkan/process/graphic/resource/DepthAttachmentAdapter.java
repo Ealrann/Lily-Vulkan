@@ -1,61 +1,49 @@
-package org.sheepy.lily.vulkan.resource.image;
+package org.sheepy.lily.vulkan.process.graphic.resource;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.joml.Vector2i;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
-import org.sheepy.lily.vulkan.api.resource.image.IDepthImageAdapter;
-import org.sheepy.lily.vulkan.common.util.ModelUtil;
+import org.sheepy.lily.vulkan.api.resource.attachment.IDepthAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.lily.vulkan.model.resource.DepthImage;
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
+import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
 @Statefull
-@Adapter(scope = DepthImage.class)
-public class DepthImageAdapter implements IDepthImageAdapter
+@Adapter(scope = DepthAttachment.class)
+public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 {
-	private final DepthImage depthImage;
-	private final Application application;
-
 	private VkImage depthImageBackend;
 	private VkImageView depthImageView;
 	private int depthFormat;
-	private Vector2i size;
-
-	public DepthImageAdapter(DepthImage depthImage)
-	{
-		this.depthImage = depthImage;
-		application = ModelUtil.getApplication(depthImage);
-	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var executionContext = (IExecutionContext) context;
-		depthFormat = findDepthFormat(executionContext.getPhysicalDevice());
+		final var graphicContext = (IGraphicContext) context;
+		depthFormat = findDepthFormat(graphicContext.getPhysicalDevice());
 
-		createDepthImage(executionContext.getLogicalDevice());
+		createDepthImage(graphicContext);
 		allocateDepthImage(stack);
 
-		createAndAllocateImageView(executionContext.getLogicalDevice());
+		createAndAllocateImageView(graphicContext.getLogicalDevice());
 
-		layoutTransitionOfDepthImage(stack, executionContext);
+		layoutTransitionOfDepthImage(stack, graphicContext);
 	}
 
 	private void createAndAllocateImageView(ILogicalDevice logicalDevice)
@@ -70,12 +58,13 @@ public class DepthImageAdapter implements IDepthImageAdapter
 		depthImageBackend.allocate(stack);
 	}
 
-	private void createDepthImage(ILogicalDevice logicalDevice)
+	private void createDepthImage(IGraphicContext context)
 	{
-		final var vulkanApp = ModelUtil.getApplication(depthImage);
-		size = new Vector2i(vulkanApp.getSize());
-		final int width = size.x;
-		final int height = size.y;
+		final var logicalDevice = context.getLogicalDevice();
+		final var surfaceManager = context.getSurfaceManager();
+		final var extent = surfaceManager.getExtent();
+		final int width = extent.width;
+		final int height = extent.height;
 		final int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 		final var depthImageInfo = new ImageInfo(width, height, depthFormat, usage,
 				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
@@ -131,27 +120,25 @@ public class DepthImageAdapter implements IDepthImageAdapter
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
-		return size.equals(application.getSize()) == false;
+		final var graphicContext = (IGraphicContext) context;
+		return graphicContext.getSurfaceManager().isAllocationDirty(context);
 	}
 
-	public long getDepthImageId()
+	@Override
+	public long getImageId()
 	{
 		return depthImageBackend.getAddress();
 	}
 
-	public long getDepthImageViewId()
+	@Override
+	public long getImageViewId()
 	{
 		return depthImageView.getAddress();
 	}
 
 	@Override
-	public int getDepthImageFormat()
+	public int getImageFormat()
 	{
 		return depthFormat;
-	}
-
-	public static DepthImageAdapter adapt(DepthImage resource)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(resource, DepthImageAdapter.class);
 	}
 }

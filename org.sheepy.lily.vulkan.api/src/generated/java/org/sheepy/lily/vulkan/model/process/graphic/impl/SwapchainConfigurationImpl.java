@@ -6,17 +6,22 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 
 /**
@@ -30,6 +35,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getPresentationMode <em>Presentation Mode</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getRequiredSwapImageCount <em>Required Swap Image Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getSwapImageUsages <em>Swap Image Usages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl#getAtachments <em>Atachments</em>}</li>
  * </ul>
  *
  * @generated
@@ -86,6 +92,16 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected EList<EImageUsage> swapImageUsages;
+
+	/**
+	 * The cached value of the '{@link #getAtachments() <em>Atachments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAtachments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ISwapAttachment> atachments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -184,6 +200,40 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
+	public EList<ISwapAttachment> getAtachments()
+	{
+		if (atachments == null)
+		{
+			atachments = new EObjectContainmentEList<ISwapAttachment>(ISwapAttachment.class, this,
+					GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS);
+		}
+		return atachments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+			return ((InternalEList<?>) getAtachments()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -194,6 +244,8 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 			return getRequiredSwapImageCount();
 		case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 			return getSwapImageUsages();
+		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+			return getAtachments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,6 +271,10 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 			getSwapImageUsages().clear();
 			getSwapImageUsages().addAll((Collection<? extends EImageUsage>) newValue);
 			return;
+		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+			getAtachments().clear();
+			getAtachments().addAll((Collection<? extends ISwapAttachment>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -242,6 +298,9 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 		case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 			getSwapImageUsages().clear();
 			return;
+		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+			getAtachments().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -262,6 +321,8 @@ public class SwapchainConfigurationImpl extends MinimalEObjectImpl.Container
 			return requiredSwapImageCount != REQUIRED_SWAP_IMAGE_COUNT_EDEFAULT;
 		case GraphicPackage.SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES:
 			return swapImageUsages != null && !swapImageUsages.isEmpty();
+		case GraphicPackage.SWAPCHAIN_CONFIGURATION__ATACHMENTS:
+			return atachments != null && !atachments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

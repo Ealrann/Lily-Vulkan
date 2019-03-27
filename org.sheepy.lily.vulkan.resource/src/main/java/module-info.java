@@ -4,7 +4,6 @@ import org.sheepy.lily.vulkan.resource.buffer.ConstantsAdapter;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
-import org.sheepy.lily.vulkan.resource.image.DepthImageAdapter;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
 import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAdapter;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
@@ -16,7 +15,6 @@ import org.sheepy.lily.vulkan.resource.texture.TextureAdapter;
 		BufferAdapter.class,
 		ImageAdapter.class,
 		TextureAdapter.class,
-		DepthImageAdapter.class,
 		FileResourceAdapter.class,
 		ModuleResourceAdapter.class,
 		StringModuleResourceAdapter.class,

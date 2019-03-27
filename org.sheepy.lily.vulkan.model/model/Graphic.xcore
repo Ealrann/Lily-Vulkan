@@ -6,9 +6,9 @@
 @GenModel(updateClasspath="false")
 package org.sheepy.lily.vulkan.model.process.graphic
 
+import org.sheepy.lily.core.model.types.Color4f
 import org.sheepy.lily.core.model.types.LNamedElement
 import org.sheepy.lily.core.model.types.Vector2i
-import org.sheepy.lily.core.model.types.Color4f
 import org.sheepy.lily.vulkan.model.ColorDomain
 import org.sheepy.lily.vulkan.model.enumeration.EAccess
 import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
@@ -29,7 +29,6 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline
 import org.sheepy.lily.vulkan.model.process.AbstractProcess
 import org.sheepy.lily.vulkan.model.process.Configuration
 import org.sheepy.lily.vulkan.model.process.IPipeline
-import org.sheepy.lily.vulkan.model.resource.DepthImage
 import org.sheepy.lily.vulkan.model.resource.Image
 import org.sheepy.lily.vulkan.model.resource.Shader
 
@@ -47,28 +46,28 @@ class SwapchainConfiguration
 	EPresentMode presentationMode = "MailBox"
 	int requiredSwapImageCount = "3"
 	unique EImageUsage[] swapImageUsages
+	
+	contains ISwapAttachment[] atachments
 }
 
 class FramebufferConfiguration
 {
 	Color4f clearValue = "0;0;0;0"
-	contains IFramebufferAttachment[] atachments
 }
 
-interface IFramebufferAttachment
+interface ISwapAttachment
 {
 }
 
-class ImageFramebufferAttachment extends IFramebufferAttachment
+class ImageAttachment extends ISwapAttachment
 {
 	Color4f clearValue = "0;0;0;0"
 	refers Image imageRef
 }
 
-class DepthFramebufferAttachment extends IFramebufferAttachment
+class DepthAttachment extends ISwapAttachment
 {
 	boolean clear = "true"
-	refers DepthImage depthImageRef
 }
 
 class RenderPassInfo
@@ -101,7 +100,7 @@ class SubpassDependency
 	unique EAccess[] dstAccesses
 }
 
-class AttachmentDescription extends LNamedElement
+abstract class AttachmentDescription extends LNamedElement
 {
 	ESampleCount samples
 	EAttachmentLoadOp loadOp
@@ -112,9 +111,13 @@ class AttachmentDescription extends LNamedElement
 	EImageLayout finalLayout
 }
 
-class DepthAttachmentDescription extends AttachmentDescription
+class SwapImageAttachmentDescription extends AttachmentDescription
 {
-	refers DepthImage[1..1] depthImage
+}
+
+class ExtraAttachmentDescription extends AttachmentDescription
+{
+	refers ISwapAttachment[1..1] attachment
 }
 
 class GraphicProcess extends AbstractProcess

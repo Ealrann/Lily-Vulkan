@@ -8,18 +8,17 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DepthAttachmentDescriptionItemProvider extends AttachmentDescriptionItemProvider
+public class SwapImageAttachmentDescriptionItemProvider extends AttachmentDescriptionItemProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -27,7 +26,7 @@ public class DepthAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DepthAttachmentDescriptionItemProvider(AdapterFactory adapterFactory)
+	public SwapImageAttachmentDescriptionItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -45,32 +44,12 @@ public class DepthAttachmentDescriptionItemProvider extends AttachmentDescriptio
 		{
 			super.getPropertyDescriptors(object);
 
-			addDepthImagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Depth Image feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDepthImagePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_DepthAttachmentDescription_depthImage_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_DepthAttachmentDescription_depthImage_feature",
-						"_UI_DepthAttachmentDescription_type"),
-				GraphicPackage.Literals.DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE, true, false,
-				true, null, null, null));
-	}
-
-	/**
-	 * This returns DepthAttachmentDescription.gif.
+	 * This returns SwapImageAttachmentDescription.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -79,7 +58,7 @@ public class DepthAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	public Object getImage(Object object)
 	{
 		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/DepthAttachmentDescription"));
+				getResourceLocator().getImage("full/obj16/SwapImageAttachmentDescription"));
 	}
 
 	/**
@@ -91,10 +70,10 @@ public class DepthAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((DepthAttachmentDescription) object).getName();
+		String label = ((SwapImageAttachmentDescription) object).getName();
 		return label == null || label.length() == 0
-				? getString("_UI_DepthAttachmentDescription_type")
-				: getString("_UI_DepthAttachmentDescription_type") + " " + label;
+				? getString("_UI_SwapImageAttachmentDescription_type")
+				: getString("_UI_SwapImageAttachmentDescription_type") + " " + label;
 	}
 
 	/**

@@ -51,22 +51,22 @@ public interface GraphicFactory extends EFactory
 	FramebufferConfiguration createFramebufferConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Image Framebuffer Attachment</em>'.
+	 * Returns a new object of class '<em>Image Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Image Framebuffer Attachment</em>'.
+	 * @return a new object of class '<em>Image Attachment</em>'.
 	 * @generated
 	 */
-	ImageFramebufferAttachment createImageFramebufferAttachment();
+	ImageAttachment createImageAttachment();
 
 	/**
-	 * Returns a new object of class '<em>Depth Framebuffer Attachment</em>'.
+	 * Returns a new object of class '<em>Depth Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Depth Framebuffer Attachment</em>'.
+	 * @return a new object of class '<em>Depth Attachment</em>'.
 	 * @generated
 	 */
-	DepthFramebufferAttachment createDepthFramebufferAttachment();
+	DepthAttachment createDepthAttachment();
 
 	/**
 	 * Returns a new object of class '<em>Render Pass Info</em>'.
@@ -105,22 +105,22 @@ public interface GraphicFactory extends EFactory
 	SubpassDependency createSubpassDependency();
 
 	/**
-	 * Returns a new object of class '<em>Attachment Description</em>'.
+	 * Returns a new object of class '<em>Swap Image Attachment Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attachment Description</em>'.
+	 * @return a new object of class '<em>Swap Image Attachment Description</em>'.
 	 * @generated
 	 */
-	AttachmentDescription createAttachmentDescription();
+	SwapImageAttachmentDescription createSwapImageAttachmentDescription();
 
 	/**
-	 * Returns a new object of class '<em>Depth Attachment Description</em>'.
+	 * Returns a new object of class '<em>Extra Attachment Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Depth Attachment Description</em>'.
+	 * @return a new object of class '<em>Extra Attachment Description</em>'.
 	 * @generated
 	 */
-	DepthAttachmentDescription createDepthAttachmentDescription();
+	ExtraAttachmentDescription createExtraAttachmentDescription();
 
 	/**
 	 * Returns a new object of class '<em>Process</em>'.

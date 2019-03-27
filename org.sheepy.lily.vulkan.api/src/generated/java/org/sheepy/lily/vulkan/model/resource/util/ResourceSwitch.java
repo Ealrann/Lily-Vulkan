@@ -115,15 +115,6 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case ResourcePackage.DEPTH_IMAGE:
-		{
-			DepthImage depthImage = (DepthImage) theEObject;
-			T result = caseDepthImage(depthImage);
-			if (result == null) result = caseIResource(depthImage);
-			if (result == null) result = caseLNamedElement(depthImage);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
 		case ResourcePackage.IMAGE_LAYOUT:
 		{
 			ImageLayout imageLayout = (ImageLayout) theEObject;
@@ -699,22 +690,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseShader(Shader object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Depth Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Depth Image</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDepthImage(DepthImage object)
 	{
 		return null;
 	}

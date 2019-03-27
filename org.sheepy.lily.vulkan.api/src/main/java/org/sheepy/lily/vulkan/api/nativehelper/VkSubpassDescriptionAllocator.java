@@ -3,9 +3,10 @@ package org.sheepy.lily.vulkan.api.nativehelper;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkAttachmentReference;
 import org.lwjgl.vulkan.VkSubpassDescription;
+import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 
 public class VkSubpassDescriptionAllocator
@@ -19,22 +20,33 @@ public class VkSubpassDescriptionAllocator
 
 	public VkSubpassDescription.Buffer allocate(MemoryStack stack)
 	{
-		int colorAttachmentCount = countColorAttachments(renderPass);
-		var subpassDescriptions = renderPass.getSubpasses();
-		var subpasses = VkSubpassDescription.callocStack(subpassDescriptions.size(), stack);
+		final int colorAttachmentCount = countColorAttachments(renderPass);
+		final var subpassDescriptions = renderPass.getSubpasses();
+		final var subpasses = VkSubpassDescription.callocStack(subpassDescriptions.size(), stack);
 
-		for (var subpassDescription : subpassDescriptions)
+		for (final var subpassDescription : subpassDescriptions)
 		{
 			subpasses.pipelineBindPoint(renderPass.getBindPoint());
 			subpasses.colorAttachmentCount(colorAttachmentCount);
 
-			var refs = subpassDescription.getRefs();
-			var colorAttachmentRef = VkAttachmentReference.callocStack(colorAttachmentCount, stack);
-			for (AttachementRef ref : refs)
+			final var refs = subpassDescription.getRefs();
+			final var colorAttachmentRef = VkAttachmentReference.callocStack(colorAttachmentCount,
+					stack);
+			for (final AttachementRef ref : refs)
 			{
 				VkAttachmentReference vkAttachmentRef = null;
 				// DepthAttachmentRef shouldn't be mixed with ColorAttachments
-				if (ref.getAttachement() instanceof DepthAttachmentDescription)
+
+				boolean isDepth = false;
+				if (ref.getAttachement() instanceof ExtraAttachmentDescription)
+				{
+
+					final var attachment = ((ExtraAttachmentDescription) ref.getAttachement())
+							.getAttachment();
+					final var adapter = ISwapAttachmentAdapter.adapt(attachment);
+					isDepth = adapter.isDepthAttachment();
+				}
+				if (isDepth)
 				{
 					vkAttachmentRef = VkAttachmentReference.callocStack(stack);
 					subpasses.pDepthStencilAttachment(vkAttachmentRef);
@@ -62,7 +74,16 @@ public class VkSubpassDescriptionAllocator
 		int colorAttachmentCount = 0;
 		for (final AttachmentDescription attachmentDescription : renderPassInfo.getAttachments())
 		{
-			if (attachmentDescription instanceof DepthAttachmentDescription == false)
+			boolean isDepth = false;
+			if (attachmentDescription instanceof ExtraAttachmentDescription)
+			{
+				final var attachment = ((ExtraAttachmentDescription) attachmentDescription)
+						.getAttachment();
+				final var adapter = ISwapAttachmentAdapter.adapt(attachment);
+				isDepth = adapter.isDepthAttachment();
+			}
+
+			if (isDepth == false)
 			{
 				colorAttachmentCount++;
 			}
@@ -73,8 +94,8 @@ public class VkSubpassDescriptionAllocator
 	private void fillAttachmentRef(	final AttachementRef attachmentRef,
 									VkAttachmentReference vkAttachmentRef)
 	{
-		AttachmentDescription attachement = attachmentRef.getAttachement();
-		int index = renderPass.getAttachments().indexOf(attachement);
+		final AttachmentDescription attachement = attachmentRef.getAttachement();
+		final int index = renderPass.getAttachments().indexOf(attachement);
 		vkAttachmentRef.attachment(index);
 		vkAttachmentRef.layout(attachmentRef.getLayout().getValue());
 	}

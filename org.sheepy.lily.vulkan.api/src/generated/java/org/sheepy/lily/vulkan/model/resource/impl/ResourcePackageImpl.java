@@ -28,7 +28,6 @@ import org.sheepy.lily.vulkan.model.resource.BasicResource;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.Constants;
-import org.sheepy.lily.vulkan.model.resource.DepthImage;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.FileResource;
 import org.sheepy.lily.vulkan.model.resource.Font;
@@ -211,13 +210,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass shaderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass depthImageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1208,17 +1200,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getDepthImage()
-	{
-		return depthImageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getPathResource()
 	{
 		return pathResourceEClass;
@@ -1375,8 +1356,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(imageEClass, IMAGE__MIP_LEVELS);
 		createEReference(imageEClass, IMAGE__INITIAL_LAYOUT);
 
-		depthImageEClass = createEClass(DEPTH_IMAGE);
-
 		imageLayoutEClass = createEClass(IMAGE_LAYOUT);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__STAGE);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__LAYOUT);
@@ -1518,7 +1497,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		descriptorResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getDescriptorResource());
 		imageEClass.getESuperTypes().add(this.getDescriptorResource());
-		depthImageEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		sampledImageEClass.getESuperTypes().add(this.getDescriptorResource());
 		semaphoreEClass.getESuperTypes().add(this.getBasicResource());
 		semaphoreEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
@@ -1590,9 +1568,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getImage_InitialLayout(), this.getImageLayout(), null, "initialLayout", null,
 				0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(depthImageEClass, DepthImage.class, "DepthImage", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

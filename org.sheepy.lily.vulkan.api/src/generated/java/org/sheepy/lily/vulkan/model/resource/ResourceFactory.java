@@ -150,15 +150,6 @@ public interface ResourceFactory extends EFactory
 	Shader createShader();
 
 	/**
-	 * Returns a new object of class '<em>Depth Image</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Depth Image</em>'.
-	 * @generated
-	 */
-	DepthImage createDepthImage();
-
-	/**
 	 * Returns a new object of class '<em>File Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

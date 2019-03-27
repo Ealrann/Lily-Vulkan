@@ -31,20 +31,20 @@ import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.DepthFramebufferAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.IFramebufferAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.ImageFramebufferAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
@@ -52,6 +52,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
 import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
@@ -92,21 +93,21 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iFramebufferAttachmentEClass = null;
+	private EClass iSwapAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass imageFramebufferAttachmentEClass = null;
+	private EClass imageAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass depthFramebufferAttachmentEClass = null;
+	private EClass depthAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,7 +149,14 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass depthAttachmentDescriptionEClass = null;
+	private EClass swapImageAttachmentDescriptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass extraAttachmentDescriptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -438,6 +446,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getSwapchainConfiguration_Atachments()
+	{
+		return (EReference) swapchainConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getFramebufferConfiguration()
 	{
 		return framebufferConfigurationEClass;
@@ -460,9 +479,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getFramebufferConfiguration_Atachments()
+	public EClass getISwapAttachment()
 	{
-		return (EReference) framebufferConfigurationEClass.getEStructuralFeatures().get(1);
+		return iSwapAttachmentEClass;
 	}
 
 	/**
@@ -471,9 +490,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getIFramebufferAttachment()
+	public EClass getImageAttachment()
 	{
-		return iFramebufferAttachmentEClass;
+		return imageAttachmentEClass;
 	}
 
 	/**
@@ -482,9 +501,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getImageFramebufferAttachment()
+	public EAttribute getImageAttachment_ClearValue()
 	{
-		return imageFramebufferAttachmentEClass;
+		return (EAttribute) imageAttachmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -493,9 +512,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getImageFramebufferAttachment_ClearValue()
+	public EReference getImageAttachment_ImageRef()
 	{
-		return (EAttribute) imageFramebufferAttachmentEClass.getEStructuralFeatures().get(0);
+		return (EReference) imageAttachmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -504,9 +523,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getImageFramebufferAttachment_ImageRef()
+	public EClass getDepthAttachment()
 	{
-		return (EReference) imageFramebufferAttachmentEClass.getEStructuralFeatures().get(1);
+		return depthAttachmentEClass;
 	}
 
 	/**
@@ -515,31 +534,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getDepthFramebufferAttachment()
+	public EAttribute getDepthAttachment_Clear()
 	{
-		return depthFramebufferAttachmentEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getDepthFramebufferAttachment_Clear()
-	{
-		return (EAttribute) depthFramebufferAttachmentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getDepthFramebufferAttachment_DepthImageRef()
-	{
-		return (EReference) depthFramebufferAttachmentEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) depthAttachmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -834,9 +831,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getDepthAttachmentDescription()
+	public EClass getSwapImageAttachmentDescription()
 	{
-		return depthAttachmentDescriptionEClass;
+		return swapImageAttachmentDescriptionEClass;
 	}
 
 	/**
@@ -845,9 +842,20 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getDepthAttachmentDescription_DepthImage()
+	public EClass getExtraAttachmentDescription()
 	{
-		return (EReference) depthAttachmentDescriptionEClass.getEStructuralFeatures().get(0);
+		return extraAttachmentDescriptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getExtraAttachmentDescription_Attachment()
+	{
+		return (EReference) extraAttachmentDescriptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1609,22 +1617,19 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(swapchainConfigurationEClass,
 				SWAPCHAIN_CONFIGURATION__REQUIRED_SWAP_IMAGE_COUNT);
 		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__SWAP_IMAGE_USAGES);
+		createEReference(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__ATACHMENTS);
 
 		framebufferConfigurationEClass = createEClass(FRAMEBUFFER_CONFIGURATION);
 		createEAttribute(framebufferConfigurationEClass, FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE);
-		createEReference(framebufferConfigurationEClass, FRAMEBUFFER_CONFIGURATION__ATACHMENTS);
 
-		iFramebufferAttachmentEClass = createEClass(IFRAMEBUFFER_ATTACHMENT);
+		iSwapAttachmentEClass = createEClass(ISWAP_ATTACHMENT);
 
-		imageFramebufferAttachmentEClass = createEClass(IMAGE_FRAMEBUFFER_ATTACHMENT);
-		createEAttribute(imageFramebufferAttachmentEClass,
-				IMAGE_FRAMEBUFFER_ATTACHMENT__CLEAR_VALUE);
-		createEReference(imageFramebufferAttachmentEClass, IMAGE_FRAMEBUFFER_ATTACHMENT__IMAGE_REF);
+		imageAttachmentEClass = createEClass(IMAGE_ATTACHMENT);
+		createEAttribute(imageAttachmentEClass, IMAGE_ATTACHMENT__CLEAR_VALUE);
+		createEReference(imageAttachmentEClass, IMAGE_ATTACHMENT__IMAGE_REF);
 
-		depthFramebufferAttachmentEClass = createEClass(DEPTH_FRAMEBUFFER_ATTACHMENT);
-		createEAttribute(depthFramebufferAttachmentEClass, DEPTH_FRAMEBUFFER_ATTACHMENT__CLEAR);
-		createEReference(depthFramebufferAttachmentEClass,
-				DEPTH_FRAMEBUFFER_ATTACHMENT__DEPTH_IMAGE_REF);
+		depthAttachmentEClass = createEClass(DEPTH_ATTACHMENT);
+		createEAttribute(depthAttachmentEClass, DEPTH_ATTACHMENT__CLEAR);
 
 		renderPassInfoEClass = createEClass(RENDER_PASS_INFO);
 		createEReference(renderPassInfoEClass, RENDER_PASS_INFO__ATTACHMENTS);
@@ -1657,9 +1662,11 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(attachmentDescriptionEClass, ATTACHMENT_DESCRIPTION__INITIAL_LAYOUT);
 		createEAttribute(attachmentDescriptionEClass, ATTACHMENT_DESCRIPTION__FINAL_LAYOUT);
 
-		depthAttachmentDescriptionEClass = createEClass(DEPTH_ATTACHMENT_DESCRIPTION);
-		createEReference(depthAttachmentDescriptionEClass,
-				DEPTH_ATTACHMENT_DESCRIPTION__DEPTH_IMAGE);
+		swapImageAttachmentDescriptionEClass = createEClass(SWAP_IMAGE_ATTACHMENT_DESCRIPTION);
+
+		extraAttachmentDescriptionEClass = createEClass(EXTRA_ATTACHMENT_DESCRIPTION);
+		createEReference(extraAttachmentDescriptionEClass,
+				EXTRA_ATTACHMENT_DESCRIPTION__ATTACHMENT);
 
 		graphicProcessEClass = createEClass(GRAPHIC_PROCESS);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__CONFIGURATION);
@@ -1789,10 +1796,11 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		// Add supertypes to classes
 		graphicConfigurationEClass.getESuperTypes().add(theProcessPackage.getConfiguration());
-		imageFramebufferAttachmentEClass.getESuperTypes().add(this.getIFramebufferAttachment());
-		depthFramebufferAttachmentEClass.getESuperTypes().add(this.getIFramebufferAttachment());
+		imageAttachmentEClass.getESuperTypes().add(this.getISwapAttachment());
+		depthAttachmentEClass.getESuperTypes().add(this.getISwapAttachment());
 		attachmentDescriptionEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		depthAttachmentDescriptionEClass.getESuperTypes().add(this.getAttachmentDescription());
+		swapImageAttachmentDescriptionEClass.getESuperTypes().add(this.getAttachmentDescription());
+		extraAttachmentDescriptionEClass.getESuperTypes().add(this.getAttachmentDescription());
 		graphicProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
 		iGraphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
 		iguiPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
@@ -1841,6 +1849,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				theEnumerationPackage.getEImageUsage(), "swapImageUsages", null, 0, -1,
 				SwapchainConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSwapchainConfiguration_Atachments(), this.getISwapAttachment(), null,
+				"atachments", null, 0, -1, SwapchainConfiguration.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(framebufferConfigurationEClass, FramebufferConfiguration.class,
 				"FramebufferConfiguration", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1849,38 +1861,25 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"clearValue", "0;0;0;0", 0, 1, FramebufferConfiguration.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getFramebufferConfiguration_Atachments(), this.getIFramebufferAttachment(),
-				null, "atachments", null, 0, -1, FramebufferConfiguration.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iFramebufferAttachmentEClass, IFramebufferAttachment.class,
-				"IFramebufferAttachment", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(iSwapAttachmentEClass, ISwapAttachment.class, "ISwapAttachment", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(imageFramebufferAttachmentEClass, ImageFramebufferAttachment.class,
-				"ImageFramebufferAttachment", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImageFramebufferAttachment_ClearValue(), theTypesPackage.getColor4f(),
-				"clearValue", "0;0;0;0", 0, 1, ImageFramebufferAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getImageFramebufferAttachment_ImageRef(), theResourcePackage.getImage(),
-				null, "imageRef", null, 0, 1, ImageFramebufferAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(imageAttachmentEClass, ImageAttachment.class, "ImageAttachment", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImageAttachment_ClearValue(), theTypesPackage.getColor4f(), "clearValue",
+				"0;0;0;0", 0, 1, ImageAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImageAttachment_ImageRef(), theResourcePackage.getImage(), null,
+				"imageRef", null, 0, 1, ImageAttachment.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(depthFramebufferAttachmentEClass, DepthFramebufferAttachment.class,
-				"DepthFramebufferAttachment", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDepthFramebufferAttachment_Clear(), theEcorePackage.getEBoolean(),
-				"clear", "true", 0, 1, DepthFramebufferAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getDepthFramebufferAttachment_DepthImageRef(),
-				theResourcePackage.getDepthImage(), null, "depthImageRef", null, 0, 1,
-				DepthFramebufferAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(depthAttachmentEClass, DepthAttachment.class, "DepthAttachment", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDepthAttachment_Clear(), theEcorePackage.getEBoolean(), "clear", "true",
+				0, 1, DepthAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(renderPassInfoEClass, RenderPassInfo.class, "RenderPassInfo", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1944,7 +1943,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attachmentDescriptionEClass, AttachmentDescription.class,
-				"AttachmentDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+				"AttachmentDescription", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAttachmentDescription_Samples(), theEnumerationPackage.getESampleCount(),
 				"samples", null, 0, 1, AttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1973,14 +1972,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				AttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(depthAttachmentDescriptionEClass, DepthAttachmentDescription.class,
-				"DepthAttachmentDescription", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(swapImageAttachmentDescriptionEClass, SwapImageAttachmentDescription.class,
+				"SwapImageAttachmentDescription", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDepthAttachmentDescription_DepthImage(),
-				theResourcePackage.getDepthImage(), null, "depthImage", null, 1, 1,
-				DepthAttachmentDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+
+		initEClass(extraAttachmentDescriptionEClass, ExtraAttachmentDescription.class,
+				"ExtraAttachmentDescription", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExtraAttachmentDescription_Attachment(), this.getISwapAttachment(), null,
+				"attachment", null, 1, 1, ExtraAttachmentDescription.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphicProcessEClass, GraphicProcess.class, "GraphicProcess", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

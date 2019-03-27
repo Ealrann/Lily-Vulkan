@@ -28,7 +28,7 @@ import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface AttachmentDescription extends LNamedElement

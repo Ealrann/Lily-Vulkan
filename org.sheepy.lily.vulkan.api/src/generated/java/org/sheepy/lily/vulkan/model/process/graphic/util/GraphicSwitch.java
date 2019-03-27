@@ -11,7 +11,6 @@ import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
-
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -104,26 +103,26 @@ public class GraphicSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicPackage.IFRAMEBUFFER_ATTACHMENT:
+		case GraphicPackage.ISWAP_ATTACHMENT:
 		{
-			IFramebufferAttachment iFramebufferAttachment = (IFramebufferAttachment) theEObject;
-			T result = caseIFramebufferAttachment(iFramebufferAttachment);
+			ISwapAttachment iSwapAttachment = (ISwapAttachment) theEObject;
+			T result = caseISwapAttachment(iSwapAttachment);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicPackage.IMAGE_FRAMEBUFFER_ATTACHMENT:
+		case GraphicPackage.IMAGE_ATTACHMENT:
 		{
-			ImageFramebufferAttachment imageFramebufferAttachment = (ImageFramebufferAttachment) theEObject;
-			T result = caseImageFramebufferAttachment(imageFramebufferAttachment);
-			if (result == null) result = caseIFramebufferAttachment(imageFramebufferAttachment);
+			ImageAttachment imageAttachment = (ImageAttachment) theEObject;
+			T result = caseImageAttachment(imageAttachment);
+			if (result == null) result = caseISwapAttachment(imageAttachment);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicPackage.DEPTH_FRAMEBUFFER_ATTACHMENT:
+		case GraphicPackage.DEPTH_ATTACHMENT:
 		{
-			DepthFramebufferAttachment depthFramebufferAttachment = (DepthFramebufferAttachment) theEObject;
-			T result = caseDepthFramebufferAttachment(depthFramebufferAttachment);
-			if (result == null) result = caseIFramebufferAttachment(depthFramebufferAttachment);
+			DepthAttachment depthAttachment = (DepthAttachment) theEObject;
+			T result = caseDepthAttachment(depthAttachment);
+			if (result == null) result = caseISwapAttachment(depthAttachment);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -163,12 +162,21 @@ public class GraphicSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicPackage.DEPTH_ATTACHMENT_DESCRIPTION:
+		case GraphicPackage.SWAP_IMAGE_ATTACHMENT_DESCRIPTION:
 		{
-			DepthAttachmentDescription depthAttachmentDescription = (DepthAttachmentDescription) theEObject;
-			T result = caseDepthAttachmentDescription(depthAttachmentDescription);
-			if (result == null) result = caseAttachmentDescription(depthAttachmentDescription);
-			if (result == null) result = caseLNamedElement(depthAttachmentDescription);
+			SwapImageAttachmentDescription swapImageAttachmentDescription = (SwapImageAttachmentDescription) theEObject;
+			T result = caseSwapImageAttachmentDescription(swapImageAttachmentDescription);
+			if (result == null) result = caseAttachmentDescription(swapImageAttachmentDescription);
+			if (result == null) result = caseLNamedElement(swapImageAttachmentDescription);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.EXTRA_ATTACHMENT_DESCRIPTION:
+		{
+			ExtraAttachmentDescription extraAttachmentDescription = (ExtraAttachmentDescription) theEObject;
+			T result = caseExtraAttachmentDescription(extraAttachmentDescription);
+			if (result == null) result = caseAttachmentDescription(extraAttachmentDescription);
+			if (result == null) result = caseLNamedElement(extraAttachmentDescription);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -368,49 +376,49 @@ public class GraphicSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IFramebuffer Attachment</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ISwap Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IFramebuffer Attachment</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ISwap Attachment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIFramebufferAttachment(IFramebufferAttachment object)
+	public T caseISwapAttachment(ISwapAttachment object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Image Framebuffer Attachment</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Image Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Image Framebuffer Attachment</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Image Attachment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImageFramebufferAttachment(ImageFramebufferAttachment object)
+	public T caseImageAttachment(ImageAttachment object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Depth Framebuffer Attachment</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Depth Attachment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Depth Framebuffer Attachment</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Depth Attachment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDepthFramebufferAttachment(DepthFramebufferAttachment object)
+	public T caseDepthAttachment(DepthAttachment object)
 	{
 		return null;
 	}
@@ -496,17 +504,33 @@ public class GraphicSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Depth Attachment Description</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Swap Image Attachment Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Depth Attachment Description</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Swap Image Attachment Description</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDepthAttachmentDescription(DepthAttachmentDescription object)
+	public T caseSwapImageAttachmentDescription(SwapImageAttachmentDescription object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extra Attachment Description</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extra Attachment Description</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtraAttachmentDescription(ExtraAttachmentDescription object)
 	{
 		return null;
 	}

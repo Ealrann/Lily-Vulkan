@@ -2,10 +2,10 @@ package org.sheepy.lily.vulkan.api.nativehelper;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkAttachmentDescription;
-import org.sheepy.lily.vulkan.api.resource.image.IDepthImageAdapter;
+import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.enumeration.EFormat;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 
 public class VkAttachmentDescriptionAllocator
@@ -21,7 +21,8 @@ public class VkAttachmentDescriptionAllocator
 													final RenderPassInfo renderPassInfo)
 	{
 		final var attachmentDescriptions = renderPassInfo.getAttachments();
-		final var attachments = VkAttachmentDescription.callocStack(attachmentDescriptions.size(), stack);
+		final var attachments = VkAttachmentDescription.callocStack(attachmentDescriptions.size(),
+				stack);
 		for (final AttachmentDescription attachmentDescription : attachmentDescriptions)
 		{
 			fillAttachment(attachments.get(), attachmentDescription);
@@ -46,11 +47,12 @@ public class VkAttachmentDescriptionAllocator
 
 	private int getAttachmentFormat(final AttachmentDescription attachmentDescription)
 	{
-		if (attachmentDescription instanceof DepthAttachmentDescription)
+		if (attachmentDescription instanceof ExtraAttachmentDescription)
 		{
-			final var depthImage = ((DepthAttachmentDescription) attachmentDescription).getDepthImage();
-			final var adapter = IDepthImageAdapter.adapt(depthImage);
-			return adapter.getDepthImageFormat();
+			final var depthImage = ((ExtraAttachmentDescription) attachmentDescription)
+					.getAttachment();
+			final var adapter = ISwapAttachmentAdapter.adapt(depthImage);
+			return adapter.getImageFormat();
 		}
 		else
 		{
