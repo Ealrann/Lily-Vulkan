@@ -2,7 +2,9 @@ package org.sheepy.lily.vulkan.common.allocation.wrapper;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.lwjgl.system.MemoryStack;
@@ -15,16 +17,15 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocationObject;
 public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 {
 	private final IAllocationObject allocationObject;
-	private final List<IAllocationWrapper> children;
 	private final AllocationWrapper providedContext;
 
+	private List<AllocationWrapper> children = List.of();
 	private boolean allocated = false;
 	private IAllocationContext childContext = null;
 
 	AllocationWrapper(IAllocationObject allocable)
 	{
 		this.allocationObject = allocable;
-		this.children = gatherChildWrappers();
 		this.providedContext = resolveProvidedContext();
 	}
 
@@ -46,17 +47,26 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 	{
 		gatherAndAllocateChildContext(stack, context);
 
-		if (allocationObject instanceof IAllocable && allocated == false)
+		if (allocated == false && allocationObject instanceof IAllocable)
 		{
 			((IAllocable) allocationObject).allocate(stack, context);
 			allocated = true;
 		}
+
+		updateChildren();
 
 		for (int i = 0; i < children.size(); i++)
 		{
 			final var child = children.get(i);
 			child.allocate(stack, childContext);
 		}
+	}
+
+	private void updateChildren()
+	{
+		final var newChildren = gatherChildWrappers();
+		freeUnlinkedOldChildren(childContext, newChildren, children);
+		children = newChildren;
 	}
 
 	private void gatherAndAllocateChildContext(MemoryStack stack, IAllocationContext context)
@@ -92,15 +102,8 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 	{
 		for (int i = children.size() - 1; i >= 0; i--)
 		{
-			final IAllocationWrapper child = children.get(i);
-			if (onlyDirty)
-			{
-				child.freeDirtyElements(childContext);
-			}
-			else
-			{
-				child.free(childContext);
-			}
+			final AllocationWrapper child = children.get(i);
+			child.freeInternal(childContext, onlyDirty);
 		}
 
 		if (providedContext != null && (!onlyDirty || providedContext.isAllocationDirty(context)))
@@ -108,7 +111,7 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 			providedContext.freeInternal(context, onlyDirty);
 		}
 
-		if (allocationObject instanceof IAllocable)
+		if (allocated == true && allocationObject instanceof IAllocable)
 		{
 			final var allocable = (IAllocable) allocationObject;
 			if (onlyDirty == false || allocable.isAllocationDirty(context))
@@ -151,27 +154,91 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 		return res;
 	}
 
-	public List<IAllocationWrapper> gatherChildWrappers()
+	private static void freeUnlinkedOldChildren(IAllocationContext context,
+												List<AllocationWrapper> newChildren,
+												List<AllocationWrapper> oldChildren)
 	{
-		List<IAllocationWrapper> children = null;
+		final Set<AllocationWrapper> newChildrenSet = new HashSet<>(newChildren);
+
+		for (final AllocationWrapper oldChild : oldChildren)
+		{
+			if (newChildrenSet.contains(oldChild) == false)
+			{
+				oldChild.freeInternal(context, false);
+			}
+		}
+	}
+
+	private List<AllocationWrapper> gatherChildWrappers()
+	{
+		List<AllocationWrapper> res = null;
 		if (allocationObject instanceof IAllocationNode)
 		{
-			children = new ArrayList<>();
+			res = new ArrayList<>();
 			for (final Object child : ((IAllocationNode) allocationObject).getAllocationChildren())
 			{
-				final IAllocationWrapper wrap = AllocableWrapperFactory.wrap(child);
+				AllocationWrapper wrap = null;
+
+				wrap = findChild(child);
+
+				if (wrap == null)
+				{
+					wrap = AllocableWrapperFactory.wrap(child);
+				}
+
 				if (wrap != null)
 				{
-					children.add(wrap);
+					res.add(wrap);
 				}
 			}
-			children = List.copyOf(children);
+			res = List.copyOf(res);
 		}
 		else
 		{
-			children = Collections.emptyList();
+			res = Collections.emptyList();
 		}
 
-		return children;
+		return res;
+	}
+
+	private AllocationWrapper findChild(final Object child)
+	{
+		AllocationWrapper res = null;
+
+		for (final AllocationWrapper allocationWrapper : this.children)
+		{
+			final Object wrappedObject = child;
+
+			if (wrappedObject == allocationWrapper.allocationObject)
+			{
+				res = allocationWrapper;
+				break;
+			}
+		}
+		return res;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((allocationObject == null) ? 0 : allocationObject.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		final AllocationWrapper other = (AllocationWrapper) obj;
+		if (allocationObject == null)
+		{
+			if (other.allocationObject != null) return false;
+		}
+		else if (!allocationObject.equals(other.allocationObject)) return false;
+		return true;
 	}
 }

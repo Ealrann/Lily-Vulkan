@@ -29,14 +29,29 @@ public class AllocableWrapperFactory
 	public static AllocationWrapper wrap(EObject object)
 	{
 		AllocationWrapper res = null;
-		final IAllocationAdapter adapter = IAllocationAdapter.adapt(object);
 
-		if (adapter != null)
+		final var adapters = object.eAdapters();
+		for (int i = 0; i < adapters.size(); i++)
 		{
-			res = new AllocationWrapper(adapter);
-			object.eAdapters().add(res);
+			final var adapter = adapters.get(i);
+			if (adapter instanceof AllocationWrapper)
+			{
+				res = (AllocationWrapper) adapter;
+				break;
+			}
 		}
-		return res;
 
+		if (res == null)
+		{
+			final IAllocationAdapter adapter = IAllocationAdapter.adapt(object);
+
+			if (adapter != null)
+			{
+				res = new AllocationWrapper(adapter);
+				adapters.add(res);
+			}
+		}
+
+		return res;
 	}
 }
