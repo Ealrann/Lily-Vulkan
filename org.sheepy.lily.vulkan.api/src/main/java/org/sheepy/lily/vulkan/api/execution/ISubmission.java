@@ -9,4 +9,6 @@ public interface ISubmission
 	void submit();
 
 	void waitIdle();
+
+	boolean isBusy();
 }

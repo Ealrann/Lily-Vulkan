@@ -13,7 +13,6 @@ import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
 import org.sheepy.lily.vulkan.model.enumeration.provider.EnumerationEditPlugin;
 
 import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
-
 import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
 
 /**

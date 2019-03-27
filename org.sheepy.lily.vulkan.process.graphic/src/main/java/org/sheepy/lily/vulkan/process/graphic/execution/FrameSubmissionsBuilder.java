@@ -19,15 +19,9 @@ public class FrameSubmissionsBuilder extends SubmissionsBuilder
 									Collection<WaitData> waitForSignals,
 									Collection<VkSemaphore> signals)
 	{
-		super(waitForSignals, signals, context.graphicProcess.isFenceEnabled());
+		super(waitForSignals, signals, true);
 
 		this.context = context;
-	}
-
-	@Override
-	public Submission buildSubmission(ICommandBuffer commandBuffer, int index)
-	{
-		return super.buildSubmission(commandBuffer, index);
 	}
 
 	@Override

@@ -13,7 +13,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
-
 import org.sheepy.lily.vulkan.model.process.provider.AbstractPipelineItemProvider;
 
 /**

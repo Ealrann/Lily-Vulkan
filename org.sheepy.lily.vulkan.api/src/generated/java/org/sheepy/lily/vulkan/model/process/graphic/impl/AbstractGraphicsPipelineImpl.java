@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline;
@@ -22,9 +21,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
-
 import org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl;
-
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 /**

@@ -36,12 +36,10 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.util.GraphicAdapterFactory;
-
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 
@@ -935,7 +933,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
@@ -948,7 +945,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return GraphicEditPlugin.INSTANCE;

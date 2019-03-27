@@ -46,6 +46,11 @@ public abstract class AbstractExecutionRecorder implements IExecutionRecorder, I
 
 		setDirty(false);
 	}
+	
+	public boolean isBusy()
+	{
+		return submission.isBusy();
+	}
 
 	@Override
 	public void waitIdle()

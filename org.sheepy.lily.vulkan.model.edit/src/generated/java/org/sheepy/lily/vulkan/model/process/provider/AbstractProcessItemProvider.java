@@ -27,7 +27,6 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
 /**
@@ -66,7 +65,6 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
-			addFenceEnabledPropertyDescriptor(object);
 			addWaitingFenceDuringAcquirePropertyDescriptor(object);
 			addResetAllowedPropertyDescriptor(object);
 			addSignalsPropertyDescriptor(object);
@@ -110,23 +108,6 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Fence Enabled feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFenceEnabledPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AbstractProcess_fenceEnabled_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractProcess_fenceEnabled_feature", "_UI_AbstractProcess_type"),
-				ProcessPackage.Literals.ABSTRACT_PROCESS__FENCE_ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Waiting Fence During Acquire feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,9 +119,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
 				getString("_UI_AbstractProcess_waitingFenceDuringAcquire_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractProcess_waitingFenceDuringAcquire_feature",
-						"_UI_AbstractProcess_type"),
+				getString("_UI_AbstractProcess_waitingFenceDuringAcquire_description"),
 				ProcessPackage.Literals.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE, true, false,
 				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
@@ -262,7 +241,6 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 		{
 		case ProcessPackage.ABSTRACT_PROCESS__NAME:
 		case ProcessPackage.ABSTRACT_PROCESS__ENABLED:
-		case ProcessPackage.ABSTRACT_PROCESS__FENCE_ENABLED:
 		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 			fireNotifyChanged(

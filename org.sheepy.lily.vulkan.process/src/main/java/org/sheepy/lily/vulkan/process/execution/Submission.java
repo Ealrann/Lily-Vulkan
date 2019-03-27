@@ -157,4 +157,17 @@ public class Submission implements IAllocable, ISubmission
 		final var processContext = (ProcessContext) context;
 		return processContext.getExecutionRecorders().isAllocationDirty(context);
 	}
+
+	@Override
+	public boolean isBusy()
+	{
+		boolean res = false;
+
+		if (fence != null)
+		{
+			res = !fence.isSignaled();
+		}
+
+		return res;
+	}
 }

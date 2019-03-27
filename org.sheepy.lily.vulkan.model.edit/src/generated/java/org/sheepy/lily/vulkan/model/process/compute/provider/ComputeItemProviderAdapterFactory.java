@@ -37,12 +37,10 @@ import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 
 import org.sheepy.lily.vulkan.model.process.compute.util.ComputeAdapterFactory;
-
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 
@@ -441,7 +439,6 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
@@ -454,7 +451,6 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return ComputeEditPlugin.INSTANCE;

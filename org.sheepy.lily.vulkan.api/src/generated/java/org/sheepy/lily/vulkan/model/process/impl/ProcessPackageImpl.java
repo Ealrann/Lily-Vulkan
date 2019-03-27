@@ -23,7 +23,6 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
-
 import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -35,7 +34,6 @@ import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
-
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -59,49 +57,42 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass pipelinePkgEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass configurationEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass pipelineBarrierEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass iPipelineEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass abstractPipelineEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass iPipelineUnitEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass abstractCompositePipelineEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -203,7 +194,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAbstractProcess_FenceEnabled()
+	public EAttribute getAbstractProcess_WaitingFenceDuringAcquire()
 	{
 		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(0);
 	}
@@ -214,20 +205,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAbstractProcess_WaitingFenceDuringAcquire()
-	{
-		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getAbstractProcess_DescriptorSets()
 	{
-		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(2);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -238,7 +218,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_PipelinePkg()
 	{
-		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(3);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -249,7 +229,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EAttribute getAbstractProcess_ResetAllowed()
 	{
-		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -260,7 +240,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_Signals()
 	{
-		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(5);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -271,7 +251,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_WaitFor()
 	{
-		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(6);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -504,7 +484,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Create classes and their features
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
-		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__FENCE_ENABLED);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SETS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__PIPELINE_PKG);
@@ -596,9 +575,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractProcess_FenceEnabled(), theEcorePackage.getEBoolean(),
-				"fenceEnabled", "false", 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractProcess_WaitingFenceDuringAcquire(),
 				theEcorePackage.getEBoolean(), "waitingFenceDuringAcquire", "false", 0, 1,
 				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,

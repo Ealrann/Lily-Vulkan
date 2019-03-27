@@ -3,7 +3,6 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
@@ -17,7 +16,6 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isFenceEnabled <em>Fence Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}</li>
@@ -33,29 +31,6 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
 public interface AbstractProcess extends IProcess
 {
 	/**
-	 * Returns the value of the '<em><b>Fence Enabled</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Fence Enabled</em>' attribute.
-	 * @see #setFenceEnabled(boolean)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_FenceEnabled()
-	 * @model default="false" unique="false"
-	 * @generated
-	 */
-	boolean isFenceEnabled();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isFenceEnabled <em>Fence Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Fence Enabled</em>' attribute.
-	 * @see #isFenceEnabled()
-	 * @generated
-	 */
-	void setFenceEnabled(boolean value);
-
-	/**
 	 * Returns the value of the '<em><b>Waiting Fence During Acquire</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
@@ -64,6 +39,7 @@ public interface AbstractProcess extends IProcess
 	 * @see #setWaitingFenceDuringAcquire(boolean)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_WaitingFenceDuringAcquire()
 	 * @model default="false" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring'"
 	 * @generated
 	 */
 	boolean isWaitingFenceDuringAcquire();
@@ -82,10 +58,6 @@ public interface AbstractProcess extends IProcess
 	 * Returns the value of the '<em><b>Descriptor Sets</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Descriptor Sets</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Descriptor Sets</em>' containment reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_DescriptorSets()
@@ -97,10 +69,6 @@ public interface AbstractProcess extends IProcess
 	/**
 	 * Returns the value of the '<em><b>Pipeline Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pipeline Pkg</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pipeline Pkg</em>' containment reference.
 	 * @see #setPipelinePkg(PipelinePkg)
@@ -123,10 +91,6 @@ public interface AbstractProcess extends IProcess
 	/**
 	 * Returns the value of the '<em><b>Reset Allowed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Reset Allowed</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reset Allowed</em>' attribute.
 	 * @see #setResetAllowed(boolean)
@@ -150,10 +114,6 @@ public interface AbstractProcess extends IProcess
 	 * Returns the value of the '<em><b>Signals</b></em>' reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.Semaphore}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Signals</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Signals</em>' reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_Signals()
@@ -166,10 +126,6 @@ public interface AbstractProcess extends IProcess
 	 * Returns the value of the '<em><b>Wait For</b></em>' reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.Semaphore}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Wait For</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wait For</em>' reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_WaitFor()
