@@ -127,6 +127,11 @@ class DescriptorSet extends LNamedElement
 	refers IDescriptor[1..*] descriptors
 }
 
+class DescriptorSetPkg
+{
+	contains DescriptorSet[] descriptorSets
+}
+
 abstract class Barrier
 {
 	EPipelineStage srcStage

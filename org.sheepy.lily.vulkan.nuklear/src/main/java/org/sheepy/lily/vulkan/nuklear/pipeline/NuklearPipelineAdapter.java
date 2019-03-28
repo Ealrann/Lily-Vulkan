@@ -35,8 +35,10 @@ import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.InputAssemblyImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -329,5 +331,11 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	public int getSubpass()
 	{
 		return nkPipeline.getSubpass();
+	}
+
+	@Override
+	protected InputAssembly getInputAssembly()
+	{
+		return new InputAssemblyImpl();
 	}
 }

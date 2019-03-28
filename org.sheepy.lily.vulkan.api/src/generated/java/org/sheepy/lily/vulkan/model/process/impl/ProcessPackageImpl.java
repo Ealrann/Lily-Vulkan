@@ -205,7 +205,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_DescriptorSets()
+	public EReference getAbstractProcess_DescriptorSetPkg()
 	{
 		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(1);
 	}
@@ -485,7 +485,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		// Create classes and their features
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SETS);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__PIPELINE_PKG);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SIGNALS);
@@ -579,10 +579,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				theEcorePackage.getEBoolean(), "waitingFenceDuringAcquire", "false", 0, 1,
 				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_DescriptorSets(), theResourcePackage.getDescriptorSet(),
-				null, "descriptorSets", null, 0, -1, AbstractProcess.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractProcess_DescriptorSetPkg(),
+				theResourcePackage.getDescriptorSetPkg(), null, "descriptorSetPkg", null, 0, 1,
+				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_PipelinePkg(), this.getPipelinePkg(), null, "pipelinePkg",
 				null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,

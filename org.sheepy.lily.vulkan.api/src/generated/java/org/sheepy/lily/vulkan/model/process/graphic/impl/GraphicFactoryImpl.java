@@ -106,6 +106,8 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createScissor();
 		case GraphicPackage.RASTERIZER:
 			return createRasterizer();
+		case GraphicPackage.INPUT_ASSEMBLY:
+			return createInputAssembly();
 		case GraphicPackage.IMAGE_PIPELINE:
 			return createImagePipeline();
 		default:
@@ -364,6 +366,18 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		RasterizerImpl rasterizer = new RasterizerImpl();
 		return rasterizer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InputAssembly createInputAssembly()
+	{
+		InputAssemblyImpl inputAssembly = new InputAssemblyImpl();
+		return inputAssembly;
 	}
 
 	/**

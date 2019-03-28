@@ -31,6 +31,7 @@ import org.sheepy.lily.vulkan.model.process.Configuration
 import org.sheepy.lily.vulkan.model.process.IPipeline
 import org.sheepy.lily.vulkan.model.resource.Image
 import org.sheepy.lily.vulkan.model.resource.Shader
+import org.sheepy.lily.vulkan.model.enumeration.EPrimitiveTopology
 
 class GraphicConfiguration extends Configuration
 {
@@ -138,6 +139,7 @@ abstract class AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPipel
 {
 	refers unique Shader[1..*] shaders
 	contains ViewportState[1..1] viewportState
+	contains InputAssembly[1..1] inputAssembly
 	contains Rasterizer[1..1] rasterizer
 	contains ColorBlend[1..1] colorBlend
 	contains DynamicState dynamicState
@@ -220,6 +222,12 @@ class Rasterizer
 	boolean depthClampEnable = "false"
 	boolean discardEnable = "false"
 	boolean depthBiasEnable = "false"
+}
+
+class InputAssembly
+{
+	boolean primitiveRestartEnabled = "false"
+	EPrimitiveTopology primitiveTopology = "TRIANGLE_LIST"
 }
 
 class ImagePipeline extends AbstractPipeline

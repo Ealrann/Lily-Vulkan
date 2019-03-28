@@ -109,6 +109,8 @@ public class AbstractGraphicsPipelineItemProvider extends AbstractPipelineItemPr
 			super.getChildrenFeatures(object);
 			childrenFeatures
 					.add(GraphicPackage.Literals.ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE);
+			childrenFeatures
+					.add(GraphicPackage.Literals.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY);
 			childrenFeatures.add(GraphicPackage.Literals.ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER);
 			childrenFeatures.add(GraphicPackage.Literals.ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND);
 			childrenFeatures.add(GraphicPackage.Literals.ABSTRACT_GRAPHICS_PIPELINE__DYNAMIC_STATE);
@@ -164,6 +166,7 @@ public class AbstractGraphicsPipelineItemProvider extends AbstractPipelineItemPr
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE:
+		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER:
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND:
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__DYNAMIC_STATE:
@@ -193,6 +196,10 @@ public class AbstractGraphicsPipelineItemProvider extends AbstractPipelineItemPr
 		newChildDescriptors.add(createChildParameter(
 				GraphicPackage.Literals.ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE,
 				GraphicFactory.eINSTANCE.createDynamicViewportState()));
+
+		newChildDescriptors.add(createChildParameter(
+				GraphicPackage.Literals.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
+				GraphicFactory.eINSTANCE.createInputAssembly()));
 
 		newChildDescriptors.add(
 				createChildParameter(GraphicPackage.Literals.ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER,

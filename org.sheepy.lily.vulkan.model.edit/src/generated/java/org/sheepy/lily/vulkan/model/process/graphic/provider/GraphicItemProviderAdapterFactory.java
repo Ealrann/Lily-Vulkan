@@ -631,6 +631,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.InputAssembly} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InputAssemblyItemProvider inputAssemblyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.InputAssembly}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInputAssemblyAdapter()
+	{
+		if (inputAssemblyItemProvider == null)
+		{
+			inputAssemblyItemProvider = new InputAssemblyItemProvider(this);
+		}
+
+		return inputAssemblyItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -829,6 +854,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (viewportItemProvider != null) viewportItemProvider.dispose();
 		if (scissorItemProvider != null) scissorItemProvider.dispose();
 		if (rasterizerItemProvider != null) rasterizerItemProvider.dispose();
+		if (inputAssemblyItemProvider != null) inputAssemblyItemProvider.dispose();
 		if (imagePipelineItemProvider != null) imagePipelineItemProvider.dispose();
 	}
 

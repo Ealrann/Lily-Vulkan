@@ -30,6 +30,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.enumeration.EPolygonMode;
 import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
+import org.sheepy.lily.vulkan.model.enumeration.EPrimitiveTopology;
 import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.lily.vulkan.model.enumeration.ESamplerAddressMode;
 import org.sheepy.lily.vulkan.model.enumeration.ESamplerMipmapMode;
@@ -107,6 +108,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eLogicOpEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum ePrimitiveTopologyEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -405,6 +413,17 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	@Override
+	public EEnum getEPrimitiveTopology()
+	{
+		return ePrimitiveTopologyEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEAttachmentStoreOp()
 	{
 		return eAttachmentStoreOpEEnum;
@@ -637,6 +656,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		eCommandStageEEnum = createEEnum(ECOMMAND_STAGE);
 		eAttachmentLoadOpEEnum = createEEnum(EATTACHMENT_LOAD_OP);
 		eLogicOpEEnum = createEEnum(ELOGIC_OP);
+		ePrimitiveTopologyEEnum = createEEnum(EPRIMITIVE_TOPOLOGY);
 		eAttachmentStoreOpEEnum = createEEnum(EATTACHMENT_STORE_OP);
 		eShaderStageEEnum = createEEnum(ESHADER_STAGE);
 		eFilterEEnum = createEEnum(EFILTER);
@@ -758,6 +778,19 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eLogicOpEEnum, ELogicOp.OR_INVERTED);
 		addEEnumLiteral(eLogicOpEEnum, ELogicOp.NAND);
 		addEEnumLiteral(eLogicOpEEnum, ELogicOp.SET);
+
+		initEEnum(ePrimitiveTopologyEEnum, EPrimitiveTopology.class, "EPrimitiveTopology");
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.POINT_LIST);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.LINE_LIST);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.LINE_STRIP);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.TRIANGLE_LIST);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.TRIANGLE_STRIP);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.TRIANGLE_FAN);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.LINE_LIST_WITH_ADJACENCY);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.LINE_STRIP_WITH_ADJACENCY);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.TRIANGLE_LIST_WITH_ADJACENCY);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.TRIANGLE_STRIP_WITH_ADJACENCY);
+		addEEnumLiteral(ePrimitiveTopologyEEnum, EPrimitiveTopology.PATCH_LIST);
 
 		initEEnum(eAttachmentStoreOpEEnum, EAttachmentStoreOp.class, "EAttachmentStoreOp");
 		addEEnumLiteral(eAttachmentStoreOpEEnum, EAttachmentStoreOp.STORE);

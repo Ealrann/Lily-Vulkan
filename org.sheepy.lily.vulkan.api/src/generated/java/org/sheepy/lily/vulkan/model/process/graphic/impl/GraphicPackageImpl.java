@@ -46,6 +46,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
@@ -255,6 +256,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass rasterizerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inputAssemblyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -952,7 +960,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractGraphicsPipeline_Rasterizer()
+	public EReference getAbstractGraphicsPipeline_InputAssembly()
 	{
 		return (EReference) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(2);
 	}
@@ -963,7 +971,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractGraphicsPipeline_ColorBlend()
+	public EReference getAbstractGraphicsPipeline_Rasterizer()
 	{
 		return (EReference) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(3);
 	}
@@ -974,7 +982,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractGraphicsPipeline_DynamicState()
+	public EReference getAbstractGraphicsPipeline_ColorBlend()
 	{
 		return (EReference) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(4);
 	}
@@ -985,9 +993,20 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getAbstractGraphicsPipeline_DynamicState()
+	{
+		return (EReference) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EAttribute getAbstractGraphicsPipeline_Subpass()
 	{
-		return (EAttribute) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(5);
+		return (EAttribute) abstractGraphicsPipelineEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1502,6 +1521,39 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getInputAssembly()
+	{
+		return inputAssemblyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getInputAssembly_PrimitiveRestartEnabled()
+	{
+		return (EAttribute) inputAssemblyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getInputAssembly_PrimitiveTopology()
+	{
+		return (EAttribute) inputAssemblyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getImagePipeline()
 	{
 		return imagePipelineEClass;
@@ -1680,6 +1732,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(abstractGraphicsPipelineEClass, ABSTRACT_GRAPHICS_PIPELINE__SHADERS);
 		createEReference(abstractGraphicsPipelineEClass,
 				ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE);
+		createEReference(abstractGraphicsPipelineEClass,
+				ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY);
 		createEReference(abstractGraphicsPipelineEClass, ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER);
 		createEReference(abstractGraphicsPipelineEClass, ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND);
 		createEReference(abstractGraphicsPipelineEClass, ABSTRACT_GRAPHICS_PIPELINE__DYNAMIC_STATE);
@@ -1742,6 +1796,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(rasterizerEClass, RASTERIZER__DEPTH_CLAMP_ENABLE);
 		createEAttribute(rasterizerEClass, RASTERIZER__DISCARD_ENABLE);
 		createEAttribute(rasterizerEClass, RASTERIZER__DEPTH_BIAS_ENABLE);
+
+		inputAssemblyEClass = createEClass(INPUT_ASSEMBLY);
+		createEAttribute(inputAssemblyEClass, INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED);
+		createEAttribute(inputAssemblyEClass, INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY);
 
 		imagePipelineEClass = createEClass(IMAGE_PIPELINE);
 		createEReference(imagePipelineEClass, IMAGE_PIPELINE__IMAGE);
@@ -2012,6 +2070,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"viewportState", null, 1, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractGraphicsPipeline_InputAssembly(), this.getInputAssembly(), null,
+				"inputAssembly", null, 1, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractGraphicsPipeline_Rasterizer(), this.getRasterizer(), null,
 				"rasterizer", null, 1, 1, AbstractGraphicsPipeline.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
@@ -2176,6 +2238,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getRasterizer_DepthBiasEnable(), theEcorePackage.getEBoolean(),
 				"depthBiasEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(inputAssemblyEClass, InputAssembly.class, "InputAssembly", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getInputAssembly_PrimitiveRestartEnabled(), theEcorePackage.getEBoolean(),
+				"primitiveRestartEnabled", "false", 0, 1, InputAssembly.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getInputAssembly_PrimitiveTopology(),
+				theEnumerationPackage.getEPrimitiveTopology(), "primitiveTopology", "TRIANGLE_LIST",
+				0, 1, InputAssembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imagePipelineEClass, ImagePipeline.class, "ImagePipeline", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

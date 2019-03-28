@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getShaders <em>Shaders</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getViewportState <em>Viewport State</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getInputAssembly <em>Input Assembly</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getRasterizer <em>Rasterizer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getDynamicState <em>Dynamic State</em>}</li>
@@ -62,6 +63,28 @@ public interface AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPip
 	 * @generated
 	 */
 	void setViewportState(ViewportState value);
+
+	/**
+	 * Returns the value of the '<em><b>Input Assembly</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Input Assembly</em>' containment reference.
+	 * @see #setInputAssembly(InputAssembly)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAbstractGraphicsPipeline_InputAssembly()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	InputAssembly getInputAssembly();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getInputAssembly <em>Input Assembly</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Input Assembly</em>' containment reference.
+	 * @see #getInputAssembly()
+	 * @generated
+	 */
+	void setInputAssembly(InputAssembly value);
 
 	/**
 	 * Returns the value of the '<em><b>Rasterizer</b></em>' containment reference.

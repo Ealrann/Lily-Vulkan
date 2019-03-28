@@ -105,6 +105,15 @@ public interface ResourceFactory extends EFactory
 	DescriptorSet createDescriptorSet();
 
 	/**
+	 * Returns a new object of class '<em>Descriptor Set Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Descriptor Set Pkg</em>'.
+	 * @generated
+	 */
+	DescriptorSetPkg createDescriptorSetPkg();
+
+	/**
 	 * Returns a new object of class '<em>Buffer Barrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

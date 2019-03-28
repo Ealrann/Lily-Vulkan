@@ -535,7 +535,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
 	 * @generated
 	 */
-	int BARRIER = 15;
+	int BARRIER = 16;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
@@ -545,7 +545,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 16;
+	int BUFFER_BARRIER = 17;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
@@ -555,7 +555,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
 	 * @generated
 	 */
-	int ABSTRACT_IMAGE_BARRIER = 17;
+	int ABSTRACT_IMAGE_BARRIER = 18;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
@@ -565,7 +565,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 18;
+	int IMAGE_BARRIER = 19;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
@@ -575,7 +575,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
 	 * @generated
 	 */
-	int REFERENCE_IMAGE_BARRIER = 19;
+	int REFERENCE_IMAGE_BARRIER = 20;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
@@ -585,7 +585,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
 	 * @generated
 	 */
-	int IMAGE_TRANSITION = 20;
+	int IMAGE_TRANSITION = 21;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
@@ -595,7 +595,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 21;
+	int SHADER = 22;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -1192,6 +1192,43 @@ public interface ResourcePackage extends EPackage
 	int DESCRIPTOR_SET_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetPkgImpl <em>Descriptor Set Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetPkgImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSetPkg()
+	 * @generated
+	 */
+	int DESCRIPTOR_SET_PKG = 15;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Descriptor Set Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_SET_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Descriptor Set Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_SET_PKG_OPERATION_COUNT = 0;
+
+	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1568,7 +1605,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 22;
+	int PATH_RESOURCE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1614,7 +1651,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 23;
+	int FILE_RESOURCE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1660,7 +1697,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
 	 * @generated
 	 */
-	int ABSTRACT_MODULE_RESOURCE = 24;
+	int ABSTRACT_MODULE_RESOURCE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1706,7 +1743,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 25;
+	int MODULE_RESOURCE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1761,7 +1798,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
 	 * @generated
 	 */
-	int STRING_MODULE_RESOURCE = 26;
+	int STRING_MODULE_RESOURCE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1816,7 +1853,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 27;
+	int BYTE_BUFFER = 28;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -1826,7 +1863,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 28;
+	int JAVA_MODULE = 29;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -2417,6 +2454,27 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EReference getDescriptorSet_Descriptors();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Descriptor Set Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
+	 * @generated
+	 */
+	EClass getDescriptorSetPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg#getDescriptorSets <em>Descriptor Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Descriptor Sets</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg#getDescriptorSets()
+	 * @see #getDescriptorSetPkg()
+	 * @generated
+	 */
+	EReference getDescriptorSetPkg_DescriptorSets();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Barrier <em>Barrier</em>}'.
@@ -3263,6 +3321,25 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference DESCRIPTOR_SET__DESCRIPTORS = eINSTANCE.getDescriptorSet_Descriptors();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetPkgImpl <em>Descriptor Set Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetPkgImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSetPkg()
+		 * @generated
+		 */
+		EClass DESCRIPTOR_SET_PKG = eINSTANCE.getDescriptorSetPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS = eINSTANCE
+				.getDescriptorSetPkg_DescriptorSets();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl <em>Barrier</em>}' class.

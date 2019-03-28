@@ -108,13 +108,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__DESCRIPTOR_SETS = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
+	int ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
@@ -857,15 +857,15 @@ public interface ProcessPackage extends EPackage
 	EAttribute getAbstractProcess_WaitingFenceDuringAcquire();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSets <em>Descriptor Sets</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Descriptor Sets</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSets()
+	 * @return the meta object for the containment reference '<em>Descriptor Set Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
-	EReference getAbstractProcess_DescriptorSets();
+	EReference getAbstractProcess_DescriptorSetPkg();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}'.
@@ -1145,13 +1145,13 @@ public interface ProcessPackage extends EPackage
 				.getAbstractProcess_WaitingFenceDuringAcquire();
 
 		/**
-		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Descriptor Set Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PROCESS__DESCRIPTOR_SETS = eINSTANCE
-				.getAbstractProcess_DescriptorSets();
+		EReference ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG = eINSTANCE
+				.getAbstractProcess_DescriptorSetPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Pipeline Pkg</b></em>' containment reference feature.

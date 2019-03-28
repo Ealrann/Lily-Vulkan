@@ -5,6 +5,7 @@ import java.util.List;
 import org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -26,6 +27,12 @@ public abstract class AbstractGraphicsPipelineAdapter extends IGraphicsPipelineA
 	protected ViewportState getViewportState()
 	{
 		return ((AbstractGraphicsPipeline) pipeline).getViewportState();
+	}
+
+	@Override
+	protected InputAssembly getInputAssembly()
+	{
+		return ((AbstractGraphicsPipeline) pipeline).getInputAssembly();
 	}
 
 	@Override

@@ -85,6 +85,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createConstants();
 		case ResourcePackage.DESCRIPTOR_SET:
 			return createDescriptorSet();
+		case ResourcePackage.DESCRIPTOR_SET_PKG:
+			return createDescriptorSetPkg();
 		case ResourcePackage.BUFFER_BARRIER:
 			return createBufferBarrier();
 		case ResourcePackage.IMAGE_BARRIER:
@@ -253,6 +255,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		DescriptorSetImpl descriptorSet = new DescriptorSetImpl();
 		return descriptorSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DescriptorSetPkg createDescriptorSetPkg()
+	{
+		DescriptorSetPkgImpl descriptorSetPkg = new DescriptorSetPkgImpl();
+		return descriptorSetPkg;
 	}
 
 	/**

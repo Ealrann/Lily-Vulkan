@@ -45,11 +45,13 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDesc
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl;
+import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetPkgImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
 
@@ -183,11 +185,15 @@ public class ModelFactory
 		final Computer lifeComputer2 = createComputer(lifeShader);
 		final Computer pixelComputer2 = createComputer(life2pixelShader);
 
-		final var lifePipeline1 = createPipeline(process1, lifeComputer1, boardBuffer1, boardBuffer2);
-		final var lifePipeline2 = createPipeline(process2, lifeComputer2, boardBuffer2, boardBuffer1);
+		final var lifePipeline1 = createPipeline(process1, lifeComputer1, boardBuffer1,
+				boardBuffer2);
+		final var lifePipeline2 = createPipeline(process2, lifeComputer2, boardBuffer2,
+				boardBuffer1);
 
-		final var pixelPipeline1 = createPipeline(process1, pixelComputer1, boardBuffer2, boardImage);
-		final var pixelPipeline2 = createPipeline(process2, pixelComputer2, boardBuffer1, boardImage);
+		final var pixelPipeline1 = createPipeline(process1, pixelComputer1, boardBuffer2,
+				boardImage);
+		final var pixelPipeline2 = createPipeline(process2, pixelComputer2, boardBuffer1,
+				boardImage);
 
 		final PipelinePkg pipelines1 = new PipelinePkgImpl();
 		process1.setPipelinePkg(pipelines1);
@@ -223,7 +229,11 @@ public class ModelFactory
 
 		final ComputePipeline res = new ComputePipelineImpl();
 		res.getUnits().add(computer);
-		process.getDescriptorSets().add(descriptorSet);
+
+		final DescriptorSetPkg pkg = new DescriptorSetPkgImpl();
+		pkg.getDescriptorSets().add(descriptorSet);
+
+		process.setDescriptorSetPkg(pkg);
 		res.setDescriptorSet(descriptorSet);
 		res.setStage(ECommandStage.COMPUTE);
 

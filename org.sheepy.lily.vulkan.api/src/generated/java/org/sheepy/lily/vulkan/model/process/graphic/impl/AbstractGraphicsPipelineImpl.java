@@ -19,6 +19,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl;
@@ -34,6 +35,7 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl#getShaders <em>Shaders</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl#getViewportState <em>Viewport State</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl#getInputAssembly <em>Input Assembly</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl#getRasterizer <em>Rasterizer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl#getDynamicState <em>Dynamic State</em>}</li>
@@ -64,6 +66,16 @@ public abstract class AbstractGraphicsPipelineImpl extends AbstractPipelineImpl
 	 * @ordered
 	 */
 	protected ViewportState viewportState;
+
+	/**
+	 * The cached value of the '{@link #getInputAssembly() <em>Input Assembly</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInputAssembly()
+	 * @generated
+	 * @ordered
+	 */
+	protected InputAssembly inputAssembly;
 
 	/**
 	 * The cached value of the '{@link #getRasterizer() <em>Rasterizer</em>}' containment reference.
@@ -210,6 +222,66 @@ public abstract class AbstractGraphicsPipelineImpl extends AbstractPipelineImpl
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE, newViewportState,
 				newViewportState));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InputAssembly getInputAssembly()
+	{
+		return inputAssembly;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInputAssembly(	InputAssembly newInputAssembly,
+													NotificationChain msgs)
+	{
+		InputAssembly oldInputAssembly = inputAssembly;
+		inputAssembly = newInputAssembly;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY, oldInputAssembly,
+					newInputAssembly);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInputAssembly(InputAssembly newInputAssembly)
+	{
+		if (newInputAssembly != inputAssembly)
+		{
+			NotificationChain msgs = null;
+			if (inputAssembly != null) msgs = ((InternalEObject) inputAssembly).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+							- GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
+					null, msgs);
+			if (newInputAssembly != null)
+				msgs = ((InternalEObject) newInputAssembly).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
+						null, msgs);
+			msgs = basicSetInputAssembly(newInputAssembly, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY, newInputAssembly,
+				newInputAssembly));
 	}
 
 	/**
@@ -424,6 +496,8 @@ public abstract class AbstractGraphicsPipelineImpl extends AbstractPipelineImpl
 		{
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE:
 			return basicSetViewportState(null, msgs);
+		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+			return basicSetInputAssembly(null, msgs);
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER:
 			return basicSetRasterizer(null, msgs);
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND:
@@ -448,6 +522,8 @@ public abstract class AbstractGraphicsPipelineImpl extends AbstractPipelineImpl
 			return getShaders();
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE:
 			return getViewportState();
+		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+			return getInputAssembly();
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER:
 			return getRasterizer();
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND:
@@ -477,6 +553,9 @@ public abstract class AbstractGraphicsPipelineImpl extends AbstractPipelineImpl
 			return;
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE:
 			setViewportState((ViewportState) newValue);
+			return;
+		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+			setInputAssembly((InputAssembly) newValue);
 			return;
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER:
 			setRasterizer((Rasterizer) newValue);
@@ -510,6 +589,9 @@ public abstract class AbstractGraphicsPipelineImpl extends AbstractPipelineImpl
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE:
 			setViewportState((ViewportState) null);
 			return;
+		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+			setInputAssembly((InputAssembly) null);
+			return;
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER:
 			setRasterizer((Rasterizer) null);
 			return;
@@ -540,6 +622,8 @@ public abstract class AbstractGraphicsPipelineImpl extends AbstractPipelineImpl
 			return shaders != null && !shaders.isEmpty();
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE:
 			return viewportState != null;
+		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
+			return inputAssembly != null;
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER:
 			return rasterizer != null;
 		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND:

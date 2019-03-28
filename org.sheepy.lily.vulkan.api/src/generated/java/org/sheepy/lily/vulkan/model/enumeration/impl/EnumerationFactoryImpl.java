@@ -99,6 +99,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 			return createEAttachmentLoadOpFromString(eDataType, initialValue);
 		case EnumerationPackage.ELOGIC_OP:
 			return createELogicOpFromString(eDataType, initialValue);
+		case EnumerationPackage.EPRIMITIVE_TOPOLOGY:
+			return createEPrimitiveTopologyFromString(eDataType, initialValue);
 		case EnumerationPackage.EATTACHMENT_STORE_OP:
 			return createEAttachmentStoreOpFromString(eDataType, initialValue);
 		case EnumerationPackage.ESHADER_STAGE:
@@ -169,6 +171,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 			return convertEAttachmentLoadOpToString(eDataType, instanceValue);
 		case EnumerationPackage.ELOGIC_OP:
 			return convertELogicOpToString(eDataType, instanceValue);
+		case EnumerationPackage.EPRIMITIVE_TOPOLOGY:
+			return convertEPrimitiveTopologyToString(eDataType, instanceValue);
 		case EnumerationPackage.EATTACHMENT_STORE_OP:
 			return convertEAttachmentStoreOpToString(eDataType, instanceValue);
 		case EnumerationPackage.ESHADER_STAGE:
@@ -443,6 +447,33 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertELogicOpToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EPrimitiveTopology createEPrimitiveTopologyFromString(	EDataType eDataType,
+																	String initialValue)
+	{
+		EPrimitiveTopology result = EPrimitiveTopology.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '"
+				+ initialValue
+				+ "' is not a valid enumerator of '"
+				+ eDataType.getName()
+				+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEPrimitiveTopologyToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

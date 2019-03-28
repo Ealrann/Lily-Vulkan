@@ -29,6 +29,7 @@ import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.Constants;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.FileResource;
 import org.sheepy.lily.vulkan.model.resource.Font;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
@@ -161,6 +162,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass descriptorSetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass descriptorSetPkgEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -947,6 +955,28 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getDescriptorSetPkg()
+	{
+		return descriptorSetPkgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getDescriptorSetPkg_DescriptorSets()
+	{
+		return (EReference) descriptorSetPkgEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getBarrier()
 	{
 		return barrierEClass;
@@ -1405,6 +1435,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		descriptorSetEClass = createEClass(DESCRIPTOR_SET);
 		createEReference(descriptorSetEClass, DESCRIPTOR_SET__DESCRIPTORS);
 
+		descriptorSetPkgEClass = createEClass(DESCRIPTOR_SET_PKG);
+		createEReference(descriptorSetPkgEClass, DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS);
+
 		barrierEClass = createEClass(BARRIER);
 		createEAttribute(barrierEClass, BARRIER__SRC_STAGE);
 		createEAttribute(barrierEClass, BARRIER__DST_STAGE);
@@ -1684,6 +1717,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+
+		initEClass(descriptorSetPkgEClass, DescriptorSetPkg.class, "DescriptorSetPkg", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDescriptorSetPkg_DescriptorSets(), this.getDescriptorSet(), null,
+				"descriptorSets", null, 0, -1, DescriptorSetPkg.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

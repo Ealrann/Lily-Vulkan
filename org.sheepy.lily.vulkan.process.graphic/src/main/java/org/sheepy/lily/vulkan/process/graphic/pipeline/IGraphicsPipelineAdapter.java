@@ -11,6 +11,7 @@ import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -65,38 +66,33 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter
 
 		vertexInputState = getVertexBufferDescriptor();
 
+		final var rasterizer = getRasterizer();
+		final var inputAssembly = getInputAssembly();
+		final var viewportState = getViewportState();
+		final var colorBlend = getColorBlend();
+
 		// Create Pipeline
 		// -----------------------
 		final var pipelineInfo = VkGraphicsPipelineCreateInfo.callocStack(1, stack);
 		pipelineInfo.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
 		pipelineInfo.pStages(shaderStageBuilder.allocShaderStageInfo(stack, getShaders()));
 		pipelineInfo.pVertexInputState(vertexInputState.allocCreateInfo(stack));
-		pipelineInfo.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo(stack));
+
+		pipelineInfo
+				.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo(stack, inputAssembly));
 		pipelineInfo.subpass(getSubpass());
 
-		final var viewportState = getViewportState();
-		if (viewportState != null)
-		{
-			final var allocCreateInfo = viewportStateBuilder.allocCreateInfo(stack, surfaceManager,
-					viewportState);
-			pipelineInfo.pViewportState(allocCreateInfo);
-		}
+		final var viewportInfo = viewportStateBuilder.allocCreateInfo(stack, surfaceManager,
+				viewportState);
+		pipelineInfo.pViewportState(viewportInfo);
 
-		final var rasterizer = getRasterizer();
-		if (rasterizer != null)
-		{
-			pipelineInfo.pRasterizationState(rasterizerBuilder.allocCreateInfo(stack, rasterizer));
-		}
+		pipelineInfo.pRasterizationState(rasterizerBuilder.allocCreateInfo(stack, rasterizer));
 
 		pipelineInfo.pMultisampleState(multisampleBuilder.allocCreateInfo(stack));
 		if (useDepthBuffer == true)
 			pipelineInfo.pDepthStencilState(depthStencilBuidler.allocCreateInfo(stack));
 
-		final var colorBlend = getColorBlend();
-		if (colorBlend != null)
-		{
-			pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo(stack, colorBlend));
-		}
+		pipelineInfo.pColorBlendState(colorBlendBuilder.allocCreateInfo(stack, colorBlend));
 
 		final var dynamicState = getDynamicState();
 		if (dynamicState != null)
@@ -148,6 +144,8 @@ public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter
 	protected abstract ViewportState getViewportState();
 
 	protected abstract Rasterizer getRasterizer();
+
+	protected abstract InputAssembly getInputAssembly();
 
 	protected abstract ColorBlend getColorBlend();
 

@@ -107,13 +107,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__WAITING_FENCE_DURING_ACQUIRE = ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS__DESCRIPTOR_SETS = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS;
+	int COMPUTE_PROCESS__DESCRIPTOR_SET_PKG = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.

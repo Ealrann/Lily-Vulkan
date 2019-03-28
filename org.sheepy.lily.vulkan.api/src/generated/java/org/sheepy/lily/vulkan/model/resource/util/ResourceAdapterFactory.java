@@ -166,6 +166,12 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		}
 
 		@Override
+		public Adapter caseDescriptorSetPkg(DescriptorSetPkg object)
+		{
+			return createDescriptorSetPkgAdapter();
+		}
+
+		@Override
 		public Adapter caseBarrier(Barrier object)
 		{
 			return createBarrierAdapter();
@@ -491,6 +497,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDescriptorSetAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
+	 * @generated
+	 */
+	public Adapter createDescriptorSetPkgAdapter()
 	{
 		return null;
 	}

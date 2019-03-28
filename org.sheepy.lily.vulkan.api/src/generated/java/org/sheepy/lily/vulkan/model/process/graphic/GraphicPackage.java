@@ -934,13 +934,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__WAITING_FENCE_DURING_ACQUIRE = ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__DESCRIPTOR_SETS = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS;
+	int GRAPHIC_PROCESS__DESCRIPTOR_SET_PKG = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
@@ -1334,13 +1334,23 @@ public interface GraphicPackage extends EPackage
 			+ 1;
 
 	/**
+	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT
+			+ 2;
+
+	/**
 	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 2;
+	int ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
@@ -1350,7 +1360,7 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT
-			+ 3;
+			+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
@@ -1360,7 +1370,7 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT
-			+ 4;
+			+ 5;
 
 	/**
 	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
@@ -1369,7 +1379,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__SUBPASS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
+	int ABSTRACT_GRAPHICS_PIPELINE__SUBPASS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Graphics Pipeline</em>' class.
@@ -1379,7 +1389,7 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT
-			+ 6;
+			+ 7;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -1535,6 +1545,15 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHICS_PIPELINE__VIEWPORT_STATE = ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE;
+
+	/**
+	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__INPUT_ASSEMBLY = ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY;
 
 	/**
 	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
@@ -2212,6 +2231,52 @@ public interface GraphicPackage extends EPackage
 	int RASTERIZER_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.InputAssemblyImpl <em>Input Assembly</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.InputAssemblyImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getInputAssembly()
+	 * @generated
+	 */
+	int INPUT_ASSEMBLY = 27;
+
+	/**
+	 * The feature id for the '<em><b>Primitive Restart Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED = 0;
+
+	/**
+	 * The feature id for the '<em><b>Primitive Topology</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY = 1;
+
+	/**
+	 * The number of structural features of the '<em>Input Assembly</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_ASSEMBLY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Input Assembly</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_ASSEMBLY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl <em>Image Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2219,7 +2284,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getImagePipeline()
 	 * @generated
 	 */
-	int IMAGE_PIPELINE = 27;
+	int IMAGE_PIPELINE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -2999,6 +3064,17 @@ public interface GraphicPackage extends EPackage
 	EReference getAbstractGraphicsPipeline_ViewportState();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getInputAssembly <em>Input Assembly</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Input Assembly</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getInputAssembly()
+	 * @see #getAbstractGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getAbstractGraphicsPipeline_InputAssembly();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getRasterizer <em>Rasterizer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3537,6 +3613,38 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getRasterizer_DepthBiasEnable();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.InputAssembly <em>Input Assembly</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Input Assembly</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputAssembly
+	 * @generated
+	 */
+	EClass getInputAssembly();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.InputAssembly#isPrimitiveRestartEnabled <em>Primitive Restart Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Primitive Restart Enabled</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputAssembly#isPrimitiveRestartEnabled()
+	 * @see #getInputAssembly()
+	 * @generated
+	 */
+	EAttribute getInputAssembly_PrimitiveRestartEnabled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.InputAssembly#getPrimitiveTopology <em>Primitive Topology</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Primitive Topology</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputAssembly#getPrimitiveTopology()
+	 * @see #getInputAssembly()
+	 * @generated
+	 */
+	EAttribute getInputAssembly_PrimitiveTopology();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline <em>Image Pipeline</em>}'.
@@ -4131,6 +4239,15 @@ public interface GraphicPackage extends EPackage
 				.getAbstractGraphicsPipeline_ViewportState();
 
 		/**
+		 * The meta object literal for the '<em><b>Input Assembly</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY = eINSTANCE
+				.getAbstractGraphicsPipeline_InputAssembly();
+
+		/**
 		 * The meta object literal for the '<em><b>Rasterizer</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4562,6 +4679,34 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute RASTERIZER__DEPTH_BIAS_ENABLE = eINSTANCE.getRasterizer_DepthBiasEnable();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.InputAssemblyImpl <em>Input Assembly</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.InputAssemblyImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getInputAssembly()
+		 * @generated
+		 */
+		EClass INPUT_ASSEMBLY = eINSTANCE.getInputAssembly();
+
+		/**
+		 * The meta object literal for the '<em><b>Primitive Restart Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED = eINSTANCE
+				.getInputAssembly_PrimitiveRestartEnabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Primitive Topology</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY = eINSTANCE
+				.getInputAssembly_PrimitiveTopology();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImagePipelineImpl <em>Image Pipeline</em>}' class.

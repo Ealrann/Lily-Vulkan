@@ -190,7 +190,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
-			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SETS);
+			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG);
 		}
 		return childrenFeatures;
@@ -247,7 +247,7 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
-		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SETS:
+		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
 		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -272,9 +272,9 @@ public class AbstractProcessItemProvider extends ItemProviderAdapter
 				.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 						VulkanFactory.eINSTANCE.createResourcePkg()));
 
-		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SETS,
-						ResourceFactory.eINSTANCE.createDescriptorSet()));
+		newChildDescriptors.add(
+				createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
+						ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
 		newChildDescriptors
 				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PROCESS__PIPELINE_PKG,

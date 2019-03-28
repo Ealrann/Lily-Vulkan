@@ -160,6 +160,15 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE__VIEWPORT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE;
 
 	/**
+	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__INPUT_ASSEMBLY = GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY;
+
+	/**
 	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

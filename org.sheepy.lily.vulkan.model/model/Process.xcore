@@ -15,16 +15,17 @@ import org.sheepy.lily.vulkan.model.resource.AbstractConstants
 import org.sheepy.lily.vulkan.model.resource.Barrier
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet
 import org.sheepy.lily.vulkan.model.resource.Semaphore
+import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
 
 abstract class AbstractProcess extends IProcess
 {
 	@GenModel(propertyDescription="If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring")
 	boolean waitingFenceDuringAcquire = "false"
 
-	contains DescriptorSet[] descriptorSets
+	contains DescriptorSetPkg descriptorSetPkg
 	contains PipelinePkg pipelinePkg
 	boolean resetAllowed
-	
+
 	@GenModel(propertyCategory="Semaphores")
 	refers unique Semaphore[] signals
 	@GenModel(propertyCategory="Semaphores")

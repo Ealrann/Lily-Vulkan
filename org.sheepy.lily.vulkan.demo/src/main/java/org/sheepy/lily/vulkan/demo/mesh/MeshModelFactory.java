@@ -34,6 +34,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.ExtraAttachmentDescript
 import org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.InputAssemblyImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ScissorImpl;
@@ -44,10 +45,12 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDesc
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl;
 import org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl;
+import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetPkgImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.TextureImpl;
@@ -190,6 +193,7 @@ public class MeshModelFactory
 		graphicPipeline.getShaders().add(fragmentShader);
 		graphicPipeline.setMesh(meshBuffer);
 		graphicPipeline.setRasterizer(rasterizer);
+		graphicPipeline.setInputAssembly(new InputAssemblyImpl());
 		graphicPipeline.setViewportState(viewportState);
 		graphicPipeline.setColorBlend(colorBlend);
 
@@ -229,7 +233,11 @@ public class MeshModelFactory
 		if (descriptorSet.getDescriptors().isEmpty() == false)
 		{
 			graphicPipeline.setDescriptorSet(descriptorSet);
-			graphicProcess.getDescriptorSets().add(descriptorSet);
+
+			final DescriptorSetPkg pkg = new DescriptorSetPkgImpl();
+			pkg.getDescriptorSets().add(descriptorSet);
+
+			graphicProcess.setDescriptorSetPkg(pkg);
 		}
 
 		return graphicProcess;

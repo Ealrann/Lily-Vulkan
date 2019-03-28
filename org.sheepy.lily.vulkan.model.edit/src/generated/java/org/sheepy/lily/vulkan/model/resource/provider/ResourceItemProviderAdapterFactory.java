@@ -326,6 +326,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DescriptorSetPkgItemProvider descriptorSetPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDescriptorSetPkgAdapter()
+	{
+		if (descriptorSetPkgItemProvider == null)
+		{
+			descriptorSetPkgItemProvider = new DescriptorSetPkgItemProvider(this);
+		}
+
+		return descriptorSetPkgItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -683,6 +708,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
 		if (constantsItemProvider != null) constantsItemProvider.dispose();
 		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
+		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
 		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();
 		if (imageBarrierItemProvider != null) imageBarrierItemProvider.dispose();
 		if (referenceImageBarrierItemProvider != null) referenceImageBarrierItemProvider.dispose();

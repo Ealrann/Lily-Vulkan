@@ -213,6 +213,15 @@ public interface GraphicFactory extends EFactory
 	Rasterizer createRasterizer();
 
 	/**
+	 * Returns a new object of class '<em>Input Assembly</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Input Assembly</em>'.
+	 * @generated
+	 */
+	InputAssembly createInputAssembly();
+
+	/**
 	 * Returns a new object of class '<em>Image Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
