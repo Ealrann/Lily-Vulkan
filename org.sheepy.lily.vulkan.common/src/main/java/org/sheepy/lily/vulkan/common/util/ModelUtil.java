@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 
 public class ModelUtil
 {
@@ -23,11 +24,22 @@ public class ModelUtil
 
 	public static VulkanEngine getEngine(EObject eo)
 	{
+		return getParent(eo, VulkanEngine.class);
+	}
+
+	public static GraphicProcess getGraphicProcess(EObject eo)
+	{
+		return getParent(eo, GraphicProcess.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	private static <T extends Object> T getParent(EObject eo, Class<T> classifier)
+	{
 		while (eo != null)
 		{
-			if (eo instanceof VulkanEngine)
+			if (classifier.isInstance(eo))
 			{
-				return (VulkanEngine) eo;
+				return (T) eo;
 			}
 			else
 			{

@@ -32,6 +32,7 @@ import org.sheepy.lily.vulkan.model.process.IPipeline
 import org.sheepy.lily.vulkan.model.resource.Image
 import org.sheepy.lily.vulkan.model.resource.Shader
 import org.sheepy.lily.vulkan.model.enumeration.EPrimitiveTopology
+import org.sheepy.lily.core.model.types.Vector3d
 
 class GraphicConfiguration extends Configuration
 {
@@ -125,6 +126,11 @@ class GraphicProcess extends AbstractProcess
 {
 	contains GraphicConfiguration[1..1] configuration
 	contains RenderPassInfo[1..1] renderPassInfo
+
+	Vector3d graphicOffset = "0;0;0"
+
+	@GenModel(propertyDescription="Field of View in degree ]0 ; 360[")
+	float fieldOfViewY = "45"
 }
 
 interface IGraphicsPipeline extends IPipeline

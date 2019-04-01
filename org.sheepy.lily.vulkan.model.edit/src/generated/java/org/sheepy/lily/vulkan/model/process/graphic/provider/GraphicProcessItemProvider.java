@@ -9,7 +9,9 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
@@ -49,8 +51,43 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addGraphicOffsetPropertyDescriptor(object);
+			addFieldOfViewYPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Graphic Offset feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGraphicOffsetPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_GraphicProcess_graphicOffset_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_GraphicProcess_graphicOffset_feature", "_UI_GraphicProcess_type"),
+				GraphicPackage.Literals.GRAPHIC_PROCESS__GRAPHIC_OFFSET, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Field Of View Y feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFieldOfViewYPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_GraphicProcess_fieldOfViewY_feature"),
+				getString("_UI_GraphicProcess_fieldOfViewY_description"),
+				GraphicPackage.Literals.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y, true, false, false,
+				ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -128,6 +165,11 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 
 		switch (notification.getFeatureID(GraphicProcess.class))
 		{
+		case GraphicPackage.GRAPHIC_PROCESS__GRAPHIC_OFFSET:
+		case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
 			fireNotifyChanged(

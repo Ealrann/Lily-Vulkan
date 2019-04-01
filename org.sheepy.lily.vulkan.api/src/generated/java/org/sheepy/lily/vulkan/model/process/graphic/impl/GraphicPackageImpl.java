@@ -905,6 +905,28 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getGraphicProcess_GraphicOffset()
+	{
+		return (EAttribute) graphicProcessEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGraphicProcess_FieldOfViewY()
+	{
+		return (EAttribute) graphicProcessEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIGraphicsPipeline()
 	{
 		return iGraphicsPipelineEClass;
@@ -1723,6 +1745,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		graphicProcessEClass = createEClass(GRAPHIC_PROCESS);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__CONFIGURATION);
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__RENDER_PASS_INFO);
+		createEAttribute(graphicProcessEClass, GRAPHIC_PROCESS__GRAPHIC_OFFSET);
+		createEAttribute(graphicProcessEClass, GRAPHIC_PROCESS__FIELD_OF_VIEW_Y);
 
 		iGraphicsPipelineEClass = createEClass(IGRAPHICS_PIPELINE);
 
@@ -2052,6 +2076,12 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"renderPassInfo", null, 1, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGraphicProcess_GraphicOffset(), theTypesPackage.getVector3d(),
+				"graphicOffset", "0;0;0", 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGraphicProcess_FieldOfViewY(), theEcorePackage.getEFloat(),
+				"fieldOfViewY", "45", 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iGraphicsPipelineEClass, IGraphicsPipeline.class, "IGraphicsPipeline",
 				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
