@@ -66,7 +66,6 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 		{
 			case NuklearPackage.NUKLEAR_PIPELINE: return createNuklearPipeline();
 			case NuklearPackage.NUKLEAR_CONSTANTS: return createNuklearConstants();
-			case NuklearPackage.NUKLEAR_INDEX_BUFFER: return createNuklearIndexBuffer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -94,18 +93,6 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	{
 		NuklearConstantsImpl nuklearConstants = new NuklearConstantsImpl();
 		return nuklearConstants;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NuklearIndexBuffer createNuklearIndexBuffer()
-	{
-		NuklearIndexBufferImpl nuklearIndexBuffer = new NuklearIndexBufferImpl();
-		return nuklearIndexBuffer;
 	}
 
 	/**

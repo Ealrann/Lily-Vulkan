@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.model.resource.Font;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline#getIndexBuffer <em>Index Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline#getPushConstant <em>Push Constant</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline#getSubpass <em>Subpass</em>}</li>
@@ -27,32 +26,6 @@ import org.sheepy.lily.vulkan.model.resource.Font;
  */
 public interface NuklearPipeline extends IPipeline, IGUIPipeline
 {
-	/**
-	 * Returns the value of the '<em><b>Index Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Index Buffer</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Index Buffer</em>' containment reference.
-	 * @see #setIndexBuffer(NuklearIndexBuffer)
-	 * @see org.sheepy.lily.vulkan.nuklear.model.NuklearPackage#getNuklearPipeline_IndexBuffer()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	NuklearIndexBuffer getIndexBuffer();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline#getIndexBuffer <em>Index Buffer</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Index Buffer</em>' containment reference.
-	 * @see #getIndexBuffer()
-	 * @generated
-	 */
-	void setIndexBuffer(NuklearIndexBuffer value);
-
 	/**
 	 * Returns the value of the '<em><b>Font</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

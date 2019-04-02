@@ -142,31 +142,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NuklearIndexBufferItemProvider nuklearIndexBufferItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNuklearIndexBufferAdapter()
-	{
-		if (nuklearIndexBufferItemProvider == null)
-		{
-			nuklearIndexBufferItemProvider = new NuklearIndexBufferItemProvider(this);
-		}
-
-		return nuklearIndexBufferItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -285,7 +260,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	{
 		if (nuklearPipelineItemProvider != null) nuklearPipelineItemProvider.dispose();
 		if (nuklearConstantsItemProvider != null) nuklearConstantsItemProvider.dispose();
-		if (nuklearIndexBufferItemProvider != null) nuklearIndexBufferItemProvider.dispose();
 	}
 
 	/**
@@ -436,11 +410,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 					(createChildParameter
 						(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 NuklearFactory.eINSTANCE.createNuklearConstants()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-						 NuklearFactory.eINSTANCE.createNuklearIndexBuffer()));
 
 				return null;
 			}

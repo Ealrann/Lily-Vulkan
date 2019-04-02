@@ -106,16 +106,6 @@ public class NuklearSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.NUKLEAR_INDEX_BUFFER:
-			{
-				NuklearIndexBuffer nuklearIndexBuffer = (NuklearIndexBuffer)theEObject;
-				T result = caseNuklearIndexBuffer(nuklearIndexBuffer);
-				if (result == null) result = caseBasicResource(nuklearIndexBuffer);
-				if (result == null) result = caseIResource(nuklearIndexBuffer);
-				if (result == null) result = caseLNamedElement(nuklearIndexBuffer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -148,22 +138,6 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseNuklearConstants(NuklearConstants object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Index Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Index Buffer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNuklearIndexBuffer(NuklearIndexBuffer object)
 	{
 		return null;
 	}

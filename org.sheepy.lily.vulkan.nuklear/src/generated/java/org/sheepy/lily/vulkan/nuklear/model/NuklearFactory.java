@@ -41,15 +41,6 @@ public interface NuklearFactory extends EFactory
 	NuklearConstants createNuklearConstants();
 
 	/**
-	 * Returns a new object of class '<em>Index Buffer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Index Buffer</em>'.
-	 * @generated
-	 */
-	NuklearIndexBuffer createNuklearIndexBuffer();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

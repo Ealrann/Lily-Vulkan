@@ -11,19 +11,13 @@ import org.lwjgl.nuklear.NkDrawVertexLayoutElement;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkMappedMemoryRange;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
-import org.sheepy.lily.core.api.adapter.annotation.Adapter;
-import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.process.IVulkanContext;
-import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
-import org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
 import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
 
-@Statefull
-@Adapter(scope = NuklearIndexBuffer.class)
-public class NuklearVertexBufferAdapter implements IResourceAdapter
+public class NuklearVertexBuffer implements IAllocable
 {
 	public static final NuklearVertexDescriptor VERTEX_DESCRIPTOR = new NuklearVertexDescriptor();
 
@@ -153,10 +147,5 @@ public class NuklearVertexBufferAdapter implements IResourceAdapter
 	public void setNullTexture(NullTexture nullTexture)
 	{
 		this.nullTexture = nullTexture;
-	}
-
-	public static NuklearVertexBufferAdapter adapt(NuklearIndexBuffer buffer)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(buffer, NuklearVertexBufferAdapter.class);
 	}
 }

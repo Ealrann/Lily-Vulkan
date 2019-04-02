@@ -9,12 +9,10 @@ import org.sheepy.lily.vulkan.nuklear.adapter.VariableLabelAdapter;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearModelExtension;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearConstantsAdapter;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPipelineAdapter;
-import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexBufferAdapter;
 
 @Adapters(classifiers = {
 		NuklearPipelineAdapter.class,
 		NuklearConstantsAdapter.class,
-		NuklearVertexBufferAdapter.class,
 		ButtonAdapter.class,
 		PanelAdapter.class,
 		LabelAdapter.class,

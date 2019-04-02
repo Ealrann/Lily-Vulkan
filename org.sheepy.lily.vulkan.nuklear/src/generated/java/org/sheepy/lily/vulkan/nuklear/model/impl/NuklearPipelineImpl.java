@@ -30,7 +30,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.Font;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearConstants;
-import org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline;
 
@@ -46,7 +45,6 @@ import org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline;
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getStage <em>Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getIndexBuffer <em>Index Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getPushConstant <em>Push Constant</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPipelineImpl#getSubpass <em>Subpass</em>}</li>
@@ -125,16 +123,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getIndexBuffer() <em>Index Buffer</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIndexBuffer()
-	 * @generated
-	 * @ordered
-	 */
-	protected NuklearIndexBuffer indexBuffer;
 
 	/**
 	 * The cached value of the '{@link #getFont() <em>Font</em>}' containment reference.
@@ -295,56 +283,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_PIPELINE__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NuklearIndexBuffer getIndexBuffer()
-	{
-		return indexBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetIndexBuffer(NuklearIndexBuffer newIndexBuffer, NotificationChain msgs)
-	{
-		NuklearIndexBuffer oldIndexBuffer = indexBuffer;
-		indexBuffer = newIndexBuffer;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER, oldIndexBuffer, newIndexBuffer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIndexBuffer(NuklearIndexBuffer newIndexBuffer)
-	{
-		if (newIndexBuffer != indexBuffer)
-		{
-			NotificationChain msgs = null;
-			if (indexBuffer != null)
-				msgs = ((InternalEObject)indexBuffer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER, null, msgs);
-			if (newIndexBuffer != null)
-				msgs = ((InternalEObject)newIndexBuffer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER, null, msgs);
-			msgs = basicSetIndexBuffer(newIndexBuffer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER, newIndexBuffer, newIndexBuffer));
 	}
 
 	/**
@@ -576,8 +514,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-			case NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER:
-				return basicSetIndexBuffer(null, msgs);
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				return basicSetFont(null, msgs);
 			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_CONSTANT:
@@ -604,8 +540,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 				return isEnabled();
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				return getStage();
-			case NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER:
-				return getIndexBuffer();
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				return getFont();
 			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_CONSTANT:
@@ -638,9 +572,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				setStage((ECommandStage)newValue);
-				return;
-			case NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER:
-				setIndexBuffer((NuklearIndexBuffer)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				setFont((Font)newValue);
@@ -677,9 +608,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				setStage(STAGE_EDEFAULT);
 				return;
-			case NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER:
-				setIndexBuffer((NuklearIndexBuffer)null);
-				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				setFont((Font)null);
 				return;
@@ -711,8 +639,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 				return enabled != ENABLED_EDEFAULT;
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				return stage != STAGE_EDEFAULT;
-			case NuklearPackage.NUKLEAR_PIPELINE__INDEX_BUFFER:
-				return indexBuffer != null;
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				return font != null;
 			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_CONSTANT:

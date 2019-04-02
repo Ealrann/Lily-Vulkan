@@ -24,7 +24,6 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 import org.sheepy.lily.vulkan.nuklear.model.NuklearConstants;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearFactory;
-import org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline;
 
@@ -49,13 +48,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	private EClass nuklearConstantsEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass nuklearIndexBufferEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -150,7 +142,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearPipeline_IndexBuffer()
+	public EReference getNuklearPipeline_Font()
 	{
 		return (EReference)nuklearPipelineEClass.getEStructuralFeatures().get(0);
 	}
@@ -161,7 +153,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearPipeline_Font()
+	public EReference getNuklearPipeline_PushConstant()
 	{
 		return (EReference)nuklearPipelineEClass.getEStructuralFeatures().get(1);
 	}
@@ -172,20 +164,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getNuklearPipeline_PushConstant()
-	{
-		return (EReference)nuklearPipelineEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getNuklearPipeline_Subpass()
 	{
-		return (EAttribute)nuklearPipelineEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)nuklearPipelineEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -197,17 +178,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 	public EClass getNuklearConstants()
 	{
 		return nuklearConstantsEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getNuklearIndexBuffer()
-	{
-		return nuklearIndexBufferEClass;
 	}
 
 	/**
@@ -242,14 +212,11 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 
 		// Create classes and their features
 		nuklearPipelineEClass = createEClass(NUKLEAR_PIPELINE);
-		createEReference(nuklearPipelineEClass, NUKLEAR_PIPELINE__INDEX_BUFFER);
 		createEReference(nuklearPipelineEClass, NUKLEAR_PIPELINE__FONT);
 		createEReference(nuklearPipelineEClass, NUKLEAR_PIPELINE__PUSH_CONSTANT);
 		createEAttribute(nuklearPipelineEClass, NUKLEAR_PIPELINE__SUBPASS);
 
 		nuklearConstantsEClass = createEClass(NUKLEAR_CONSTANTS);
-
-		nuklearIndexBufferEClass = createEClass(NUKLEAR_INDEX_BUFFER);
 	}
 
 	/**
@@ -290,18 +257,14 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		nuklearPipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
 		nuklearPipelineEClass.getESuperTypes().add(theGraphicPackage.getIGUIPipeline());
 		nuklearConstantsEClass.getESuperTypes().add(theResourcePackage.getConstants());
-		nuklearIndexBufferEClass.getESuperTypes().add(theResourcePackage.getBasicResource());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(nuklearPipelineEClass, NuklearPipeline.class, "NuklearPipeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNuklearPipeline_IndexBuffer(), this.getNuklearIndexBuffer(), null, "indexBuffer", null, 1, 1, NuklearPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearPipeline_Font(), theResourcePackage.getFont(), null, "font", null, 1, 1, NuklearPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNuklearPipeline_PushConstant(), this.getNuklearConstants(), null, "pushConstant", null, 1, 1, NuklearPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNuklearPipeline_Subpass(), theEcorePackage.getEInt(), "subpass", "0", 0, 1, NuklearPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nuklearConstantsEClass, NuklearConstants.class, "NuklearConstants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(nuklearIndexBufferEClass, NuklearIndexBuffer.class, "NuklearIndexBuffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -107,22 +107,13 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
 
 	/**
-	 * The feature id for the '<em><b>Index Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE__INDEX_BUFFER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Font</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__FONT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
+	int NUKLEAR_PIPELINE__FONT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
@@ -131,7 +122,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__PUSH_CONSTANT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 2;
+	int NUKLEAR_PIPELINE__PUSH_CONSTANT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
@@ -140,7 +131,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__SUBPASS = ProcessPackage.IPIPELINE_FEATURE_COUNT + 3;
+	int NUKLEAR_PIPELINE__SUBPASS = ProcessPackage.IPIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Pipeline</em>' class.
@@ -149,7 +140,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 4;
+	int NUKLEAR_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -261,44 +252,6 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_CONSTANTS_OPERATION_COUNT = ResourcePackage.CONSTANTS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearIndexBufferImpl <em>Index Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.nuklear.model.impl.NuklearIndexBufferImpl
-	 * @see org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPackageImpl#getNuklearIndexBuffer()
-	 * @generated
-	 */
-	int NUKLEAR_INDEX_BUFFER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_INDEX_BUFFER__NAME = ResourcePackage.BASIC_RESOURCE__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Index Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_INDEX_BUFFER_FEATURE_COUNT = ResourcePackage.BASIC_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Index Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_INDEX_BUFFER_OPERATION_COUNT = ResourcePackage.BASIC_RESOURCE_OPERATION_COUNT + 0;
-
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline <em>Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -307,17 +260,6 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 */
 	EClass getNuklearPipeline();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline#getIndexBuffer <em>Index Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Index Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline#getIndexBuffer()
-	 * @see #getNuklearPipeline()
-	 * @generated
-	 */
-	EReference getNuklearPipeline_IndexBuffer();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.nuklear.model.NuklearPipeline#getFont <em>Font</em>}'.
@@ -363,16 +305,6 @@ public interface NuklearPackage extends EPackage
 	EClass getNuklearConstants();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer <em>Index Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Index Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.nuklear.model.NuklearIndexBuffer
-	 * @generated
-	 */
-	EClass getNuklearIndexBuffer();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -407,14 +339,6 @@ public interface NuklearPackage extends EPackage
 		EClass NUKLEAR_PIPELINE = eINSTANCE.getNuklearPipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Index Buffer</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NUKLEAR_PIPELINE__INDEX_BUFFER = eINSTANCE.getNuklearPipeline_IndexBuffer();
-
-		/**
 		 * The meta object literal for the '<em><b>Font</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -447,16 +371,6 @@ public interface NuklearPackage extends EPackage
 		 * @generated
 		 */
 		EClass NUKLEAR_CONSTANTS = eINSTANCE.getNuklearConstants();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.nuklear.model.impl.NuklearIndexBufferImpl <em>Index Buffer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.nuklear.model.impl.NuklearIndexBufferImpl
-		 * @see org.sheepy.lily.vulkan.nuklear.model.impl.NuklearPackageImpl#getNuklearIndexBuffer()
-		 * @generated
-		 */
-		EClass NUKLEAR_INDEX_BUFFER = eINSTANCE.getNuklearIndexBuffer();
 
 	}
 

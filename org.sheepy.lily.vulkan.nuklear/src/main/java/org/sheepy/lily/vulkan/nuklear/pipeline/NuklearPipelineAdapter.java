@@ -194,10 +194,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	@Override
 	public void prepare()
 	{
-		final var indexBuffer = nkPipeline.getIndexBuffer();
-		final var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(indexBuffer);
-
-		indexBufferAdapter.update(nkContext, cmds);
+		resources.getVertexBuffer().update(nkContext, cmds);
 
 		recorder.prepare(cmds);
 	}
@@ -244,12 +241,9 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	@Override
 	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
 	{
-		final var indexBuffer = nkPipeline.getIndexBuffer();
-		final var indexBufferAdapter = NuklearVertexBufferAdapter.adapt(indexBuffer);
-
 		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
 
-		indexBufferAdapter.bind(vkCommandBuffer);
+		resources.getVertexBuffer().bind(vkCommandBuffer);
 
 		setViewport(vkCommandBuffer);
 		pushConstants(vkCommandBuffer);
@@ -280,7 +274,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	@Override
 	protected IVertexBufferDescriptor<?> getVertexBufferDescriptor()
 	{
-		return NuklearVertexBufferAdapter.VERTEX_DESCRIPTOR;
+		return NuklearVertexBuffer.VERTEX_DESCRIPTOR;
 	}
 
 	@Override
