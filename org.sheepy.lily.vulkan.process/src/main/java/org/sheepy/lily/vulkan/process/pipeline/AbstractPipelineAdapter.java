@@ -168,6 +168,23 @@ public abstract class AbstractPipelineAdapter
 		}
 	}
 
+	@Override
+	public List<? extends Object> getResources()
+	{
+		final List<Object> resources = new ArrayList<>();
+
+		if (pipeline instanceof AbstractPipeline)
+		{
+			final var resourcePkg = ((AbstractPipeline) pipeline).getResourcePkg();
+			if (resourcePkg != null)
+			{
+				resources.addAll(resourcePkg.getResources());
+			}
+		}
+
+		return resources;
+	}
+
 	public long getLayoutId()
 	{
 		return pipelineLayout;
