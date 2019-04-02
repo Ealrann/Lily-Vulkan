@@ -25,7 +25,6 @@ public class NuklearVertexBuffer implements IAllocable
 	private static final int INDEX_BUFFER_SIZE = 128 * 1024;
 
 	private static final NkDrawVertexLayoutElement.Buffer VERTEX_LAYOUT;
-
 	static
 	{
 		VERTEX_LAYOUT = NkDrawVertexLayoutElement.create(4);
@@ -72,7 +71,7 @@ public class NuklearVertexBuffer implements IAllocable
 
 		config.null_texture(nkNullTexture);
 		config.vertex_layout(VERTEX_LAYOUT);
-		config.vertex_size(20);
+		config.vertex_size(NuklearVertexDescriptor.SIZE_OF);
 		config.vertex_alignment(4);
 		config.circle_segment_count(22);
 		config.curve_segment_count(22);

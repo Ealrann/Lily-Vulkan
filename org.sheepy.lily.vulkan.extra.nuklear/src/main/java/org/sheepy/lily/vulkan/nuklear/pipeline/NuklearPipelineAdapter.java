@@ -241,11 +241,12 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	@Override
 	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
 	{
+		setViewport(vkCommandBuffer);
+
 		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
 
 		resources.getVertexBuffer().bind(vkCommandBuffer);
 
-		setViewport(vkCommandBuffer);
 		pushConstants(vkCommandBuffer);
 
 		drawer.prepare(bindPoint, graphicContext.getSurfaceManager().getExtent());
