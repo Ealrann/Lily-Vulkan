@@ -6,7 +6,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.sheepy.lily.core.api.resource.IModelExtension;
-import org.sheepy.lily.vulkan.extra.model.graphic.GraphicExtraPackage;
+import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage;
+import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage;
 
 public class VulkanExtraModelExtension implements IModelExtension
 {
@@ -16,7 +17,8 @@ public class VulkanExtraModelExtension implements IModelExtension
 		final List<EPackage> res = new ArrayList<>();
 
 		res.add(GraphicExtraPackage.eINSTANCE);
-		
+		res.add(NuklearPackage.eINSTANCE);
+
 		return List.copyOf(res);
 	}
 }

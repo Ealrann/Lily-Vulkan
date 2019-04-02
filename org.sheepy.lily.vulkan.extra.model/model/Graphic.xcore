@@ -5,7 +5,7 @@
 @GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
 @GenModel(modelName="GraphicExtra", prefix="GraphicExtra")
 
-package org.sheepy.lily.vulkan.extra.model.graphic
+package org.sheepy.lily.vulkan.extra.graphic.model
 
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline
 import org.sheepy.lily.vulkan.model.process.AbstractProcess
@@ -22,4 +22,3 @@ class ImagePipeline extends AbstractPipeline
 	unique EAccess[] imageDstAccessMask
 	refers AbstractProcess srcQueue
 }
-

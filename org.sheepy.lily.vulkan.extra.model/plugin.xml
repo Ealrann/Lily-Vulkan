@@ -8,10 +8,24 @@
 
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Nuklear -->
+      <package
+            uri="org.sheepy.lily.vulkan.extra.nuklear.model"
+            class="org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage"
+            genModel="model/Nuklear.xcore"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Nuklear -->
+      <parser
+            type="nuklear"
+            class="org.sheepy.lily.vulkan.extra.nuklear.model.util.NuklearResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Graphic -->
       <package
-            uri="org.sheepy.lily.vulkan.extra.model.graphic"
-            class="org.sheepy.lily.vulkan.extra.model.graphic.GraphicExtraPackage"
+            uri="org.sheepy.lily.vulkan.extra.graphic.model"
+            class="org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage"
             genModel="model/Graphic.xcore"/>
    </extension>
 
@@ -19,6 +33,6 @@
       <!-- @generated Graphic -->
       <parser
             type="graphicextra"
-            class="org.sheepy.lily.vulkan.extra.model.graphic.util.GraphicExtraResourceFactoryImpl"/>
+            class="org.sheepy.lily.vulkan.extra.graphic.model.util.GraphicExtraResourceFactoryImpl"/>
    </extension>
 </plugin>
