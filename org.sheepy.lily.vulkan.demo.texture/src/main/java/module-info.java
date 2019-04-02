@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.demo.mesh.MeshPipelineAdapter;
 		MeshPipelineAdapter.class, UniformBufferAdapter.class
 })
 
-module org.sheepy.lily.vulkan.demo
+module org.sheepy.lily.vulkan.demo.texture
 {
 	requires transitive org.sheepy.lily.vulkan.process.graphic;
 

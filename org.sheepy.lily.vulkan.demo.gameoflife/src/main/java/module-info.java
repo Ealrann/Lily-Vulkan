@@ -1,4 +1,4 @@
-module org.sheepy.lily.vulkan.gameoflife
+module org.sheepy.lily.vulkan.demo.gameoflife
 {
 	requires org.sheepy.lily.vulkan.api;
 	requires org.sheepy.lily.vulkan.resource;

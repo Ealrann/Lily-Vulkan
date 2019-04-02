@@ -7,9 +7,10 @@ include ':org.sheepy.lily.vulkan.resource'
 include ':org.sheepy.lily.vulkan.process'
 include ':org.sheepy.lily.vulkan.process.compute'
 include ':org.sheepy.lily.vulkan.process.graphic'
-include ':org.sheepy.lily.vulkan.demo'
-include ':org.sheepy.lily.vulkan.gameoflife'
 include ':org.sheepy.lily.vulkan.nuklear'
+
+include ':org.sheepy.lily.vulkan.demo.texture'
+include ':org.sheepy.lily.vulkan.demo.gameoflife'
 
 include ':org.sheepy.lily.vulkan.extra.api'
 include ':org.sheepy.lily.vulkan.extra.graphic'
