@@ -48,7 +48,6 @@ class SwapchainConfiguration
 	EPresentMode presentationMode = "MailBox"
 	int requiredSwapImageCount = "3"
 	unique EImageUsage[] swapImageUsages
-	
 	contains ISwapAttachment[] atachments
 }
 
@@ -126,9 +125,7 @@ class GraphicProcess extends AbstractProcess
 {
 	contains GraphicConfiguration[1..1] configuration
 	contains RenderPassInfo[1..1] renderPassInfo
-
 	Vector3d graphicOffset = "0;0;0"
-
 	@GenModel(propertyDescription="Field of View in degree ]0 ; 360[")
 	float fieldOfViewY = "45"
 }
@@ -174,17 +171,28 @@ class ColorBlend
 
 class ColorBlendAttachment
 {
+	@GenModel(propertyCategory="1 - Common")
 	boolean blendEnable = "false"
-	boolean redComponentEnable = "true"
-	boolean greenComponentEnable = "true"
-	boolean blueComponentEnable = "true"
-	boolean alphaComponentEnable = "true"
+	@GenModel(propertyCategory="2 - Operation")
 	EBlendFactor srcColor = "ONE"
+	@GenModel(propertyCategory="2 - Operation")
 	EBlendFactor dstColor = "ZERO"
+	@GenModel(propertyCategory="2 - Operation")
 	EBlendFactor srcAlpha = "ONE"
+	@GenModel(propertyCategory="2 - Operation")
 	EBlendFactor dstAlpha = "ZERO"
+	@GenModel(propertyCategory="2 - Operation")
 	EBlendOp colorBlendOp = "ADD"
+	@GenModel(propertyCategory="2 - Operation")
 	EBlendOp alphaBlendOp = "ADD"
+	@GenModel(propertyCategory="3 - Component")
+	boolean redComponentEnable = "true"
+	@GenModel(propertyCategory="3 - Component")
+	boolean greenComponentEnable = "true"
+	@GenModel(propertyCategory="3 - Component")
+	boolean blueComponentEnable = "true"
+	@GenModel(propertyCategory="3 - Component")
+	boolean alphaComponentEnable = "true"
 }
 
 interface ViewportState

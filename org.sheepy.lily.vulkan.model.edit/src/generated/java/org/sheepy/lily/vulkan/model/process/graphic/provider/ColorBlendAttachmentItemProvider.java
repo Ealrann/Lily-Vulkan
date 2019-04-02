@@ -60,16 +60,16 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 			super.getPropertyDescriptors(object);
 
 			addBlendEnablePropertyDescriptor(object);
-			addRedComponentEnablePropertyDescriptor(object);
-			addGreenComponentEnablePropertyDescriptor(object);
-			addBlueComponentEnablePropertyDescriptor(object);
-			addAlphaComponentEnablePropertyDescriptor(object);
 			addSrcColorPropertyDescriptor(object);
 			addDstColorPropertyDescriptor(object);
 			addSrcAlphaPropertyDescriptor(object);
 			addDstAlphaPropertyDescriptor(object);
 			addColorBlendOpPropertyDescriptor(object);
 			addAlphaBlendOpPropertyDescriptor(object);
+			addRedComponentEnablePropertyDescriptor(object);
+			addGreenComponentEnablePropertyDescriptor(object);
+			addBlueComponentEnablePropertyDescriptor(object);
+			addAlphaComponentEnablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,7 +89,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_blendEnable_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				getString("_UI__1CommonPropertyCategory"), null));
 	}
 
 	/**
@@ -108,7 +109,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_redComponentEnable_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE, true, false,
-				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				getString("_UI__3ComponentPropertyCategory"), null));
 	}
 
 	/**
@@ -127,7 +129,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_greenComponentEnable_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE, true, false,
-				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				getString("_UI__3ComponentPropertyCategory"), null));
 	}
 
 	/**
@@ -146,7 +149,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_blueComponentEnable_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE, true, false,
-				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				getString("_UI__3ComponentPropertyCategory"), null));
 	}
 
 	/**
@@ -165,7 +169,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_alphaComponentEnable_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE, true, false,
-				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				getString("_UI__3ComponentPropertyCategory"), null));
 	}
 
 	/**
@@ -183,7 +188,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_srcColor_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__SRC_COLOR, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				getString("_UI__2OperationPropertyCategory"), null));
 	}
 
 	/**
@@ -201,7 +207,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_dstColor_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__DST_COLOR, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				getString("_UI__2OperationPropertyCategory"), null));
 	}
 
 	/**
@@ -219,7 +226,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_srcAlpha_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__SRC_ALPHA, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				getString("_UI__2OperationPropertyCategory"), null));
 	}
 
 	/**
@@ -237,7 +245,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_dstAlpha_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__DST_ALPHA, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				getString("_UI__2OperationPropertyCategory"), null));
 	}
 
 	/**
@@ -255,7 +264,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_colorBlendOp_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				getString("_UI__2OperationPropertyCategory"), null));
 	}
 
 	/**
@@ -273,7 +283,8 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 						"_UI_ColorBlendAttachment_alphaBlendOp_feature",
 						"_UI_ColorBlendAttachment_type"),
 				GraphicPackage.Literals.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				getString("_UI__2OperationPropertyCategory"), null));
 	}
 
 	/**
@@ -319,16 +330,16 @@ public class ColorBlendAttachmentItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(ColorBlendAttachment.class))
 		{
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_ALPHA:
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_ALPHA:
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP:
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

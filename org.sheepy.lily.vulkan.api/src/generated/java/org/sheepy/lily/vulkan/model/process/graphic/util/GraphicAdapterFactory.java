@@ -85,235 +85,196 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 		{
 			return createGraphicConfigurationAdapter();
 		}
-
 		@Override
 		public Adapter caseSwapchainConfiguration(SwapchainConfiguration object)
 		{
 			return createSwapchainConfigurationAdapter();
 		}
-
 		@Override
 		public Adapter caseFramebufferConfiguration(FramebufferConfiguration object)
 		{
 			return createFramebufferConfigurationAdapter();
 		}
-
 		@Override
 		public Adapter caseISwapAttachment(ISwapAttachment object)
 		{
 			return createISwapAttachmentAdapter();
 		}
-
 		@Override
 		public Adapter caseImageAttachment(ImageAttachment object)
 		{
 			return createImageAttachmentAdapter();
 		}
-
 		@Override
 		public Adapter caseDepthAttachment(DepthAttachment object)
 		{
 			return createDepthAttachmentAdapter();
 		}
-
 		@Override
 		public Adapter caseRenderPassInfo(RenderPassInfo object)
 		{
 			return createRenderPassInfoAdapter();
 		}
-
 		@Override
 		public Adapter caseSubpass(Subpass object)
 		{
 			return createSubpassAdapter();
 		}
-
 		@Override
 		public Adapter caseAttachementRef(AttachementRef object)
 		{
 			return createAttachementRefAdapter();
 		}
-
 		@Override
 		public Adapter caseSubpassDependency(SubpassDependency object)
 		{
 			return createSubpassDependencyAdapter();
 		}
-
 		@Override
 		public Adapter caseAttachmentDescription(AttachmentDescription object)
 		{
 			return createAttachmentDescriptionAdapter();
 		}
-
 		@Override
 		public Adapter caseSwapImageAttachmentDescription(SwapImageAttachmentDescription object)
 		{
 			return createSwapImageAttachmentDescriptionAdapter();
 		}
-
 		@Override
 		public Adapter caseExtraAttachmentDescription(ExtraAttachmentDescription object)
 		{
 			return createExtraAttachmentDescriptionAdapter();
 		}
-
 		@Override
 		public Adapter caseGraphicProcess(GraphicProcess object)
 		{
 			return createGraphicProcessAdapter();
 		}
-
 		@Override
 		public Adapter caseIGraphicsPipeline(IGraphicsPipeline object)
 		{
 			return createIGraphicsPipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseIGUIPipeline(IGUIPipeline object)
 		{
 			return createIGUIPipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractGraphicsPipeline(AbstractGraphicsPipeline object)
 		{
 			return createAbstractGraphicsPipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseGraphicsPipeline(GraphicsPipeline object)
 		{
 			return createGraphicsPipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseDynamicState(DynamicState object)
 		{
 			return createDynamicStateAdapter();
 		}
-
 		@Override
 		public Adapter caseColorBlend(ColorBlend object)
 		{
 			return createColorBlendAdapter();
 		}
-
 		@Override
 		public Adapter caseColorBlendAttachment(ColorBlendAttachment object)
 		{
 			return createColorBlendAttachmentAdapter();
 		}
-
 		@Override
 		public Adapter caseViewportState(ViewportState object)
 		{
 			return createViewportStateAdapter();
 		}
-
 		@Override
 		public Adapter caseStaticViewportState(StaticViewportState object)
 		{
 			return createStaticViewportStateAdapter();
 		}
-
 		@Override
 		public Adapter caseDynamicViewportState(DynamicViewportState object)
 		{
 			return createDynamicViewportStateAdapter();
 		}
-
 		@Override
 		public Adapter caseViewport(Viewport object)
 		{
 			return createViewportAdapter();
 		}
-
 		@Override
 		public Adapter caseScissor(Scissor object)
 		{
 			return createScissorAdapter();
 		}
-
 		@Override
 		public Adapter caseRasterizer(Rasterizer object)
 		{
 			return createRasterizerAdapter();
 		}
-
 		@Override
 		public Adapter caseInputAssembly(InputAssembly object)
 		{
 			return createInputAssemblyAdapter();
 		}
-
 		@Override
 		public Adapter caseImagePipeline(ImagePipeline object)
 		{
 			return createImagePipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseConfiguration(Configuration object)
 		{
 			return createConfigurationAdapter();
 		}
-
 		@Override
 		public Adapter caseLNamedElement(LNamedElement object)
 		{
 			return createLNamedElementAdapter();
 		}
-
 		@Override
 		public Adapter caseIResourceContainer(IResourceContainer object)
 		{
 			return createIResourceContainerAdapter();
 		}
-
 		@Override
 		public Adapter caseIExecutionManager(IExecutionManager object)
 		{
 			return createIExecutionManagerAdapter();
 		}
-
 		@Override
 		public Adapter caseIProcess(IProcess object)
 		{
 			return createIProcessAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractProcess(AbstractProcess object)
 		{
 			return createAbstractProcessAdapter();
 		}
-
 		@Override
 		public Adapter caseIInferenceObject(IInferenceObject object)
 		{
 			return createIInferenceObjectAdapter();
 		}
-
 		@Override
 		public Adapter caseLObject(LObject object)
 		{
 			return createLObjectAdapter();
 		}
-
 		@Override
 		public Adapter caseIPipeline(IPipeline object)
 		{
 			return createIPipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractPipeline(AbstractPipeline object)
 		{
 			return createAbstractPipelineAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object)
 		{

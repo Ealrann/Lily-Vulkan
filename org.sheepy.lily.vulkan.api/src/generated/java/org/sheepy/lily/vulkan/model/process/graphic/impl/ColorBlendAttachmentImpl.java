@@ -24,16 +24,16 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isBlendEnable <em>Blend Enable</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isRedComponentEnable <em>Red Component Enable</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isGreenComponentEnable <em>Green Component Enable</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isBlueComponentEnable <em>Blue Component Enable</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isAlphaComponentEnable <em>Alpha Component Enable</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getSrcColor <em>Src Color</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getDstColor <em>Dst Color</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getSrcAlpha <em>Src Alpha</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getDstAlpha <em>Dst Alpha</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getColorBlendOp <em>Color Blend Op</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#getAlphaBlendOp <em>Alpha Blend Op</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isRedComponentEnable <em>Red Component Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isGreenComponentEnable <em>Green Component Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isBlueComponentEnable <em>Blue Component Enable</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorBlendAttachmentImpl#isAlphaComponentEnable <em>Alpha Component Enable</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,86 +60,6 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected boolean blendEnable = BLEND_ENABLE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isRedComponentEnable() <em>Red Component Enable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isRedComponentEnable()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean RED_COMPONENT_ENABLE_EDEFAULT = true;
-
-	/**
-	 * The cached value of the '{@link #isRedComponentEnable() <em>Red Component Enable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isRedComponentEnable()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean redComponentEnable = RED_COMPONENT_ENABLE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isGreenComponentEnable() <em>Green Component Enable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isGreenComponentEnable()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean GREEN_COMPONENT_ENABLE_EDEFAULT = true;
-
-	/**
-	 * The cached value of the '{@link #isGreenComponentEnable() <em>Green Component Enable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isGreenComponentEnable()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean greenComponentEnable = GREEN_COMPONENT_ENABLE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isBlueComponentEnable() <em>Blue Component Enable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isBlueComponentEnable()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean BLUE_COMPONENT_ENABLE_EDEFAULT = true;
-
-	/**
-	 * The cached value of the '{@link #isBlueComponentEnable() <em>Blue Component Enable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isBlueComponentEnable()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean blueComponentEnable = BLUE_COMPONENT_ENABLE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isAlphaComponentEnable() <em>Alpha Component Enable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAlphaComponentEnable()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean ALPHA_COMPONENT_ENABLE_EDEFAULT = true;
-
-	/**
-	 * The cached value of the '{@link #isAlphaComponentEnable() <em>Alpha Component Enable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAlphaComponentEnable()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean alphaComponentEnable = ALPHA_COMPONENT_ENABLE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSrcColor() <em>Src Color</em>}' attribute.
@@ -260,6 +180,86 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected EBlendOp alphaBlendOp = ALPHA_BLEND_OP_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isRedComponentEnable() <em>Red Component Enable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRedComponentEnable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RED_COMPONENT_ENABLE_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isRedComponentEnable() <em>Red Component Enable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRedComponentEnable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean redComponentEnable = RED_COMPONENT_ENABLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isGreenComponentEnable() <em>Green Component Enable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isGreenComponentEnable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean GREEN_COMPONENT_ENABLE_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isGreenComponentEnable() <em>Green Component Enable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isGreenComponentEnable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean greenComponentEnable = GREEN_COMPONENT_ENABLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isBlueComponentEnable() <em>Blue Component Enable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBlueComponentEnable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean BLUE_COMPONENT_ENABLE_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isBlueComponentEnable() <em>Blue Component Enable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBlueComponentEnable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean blueComponentEnable = BLUE_COMPONENT_ENABLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isAlphaComponentEnable() <em>Alpha Component Enable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAlphaComponentEnable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ALPHA_COMPONENT_ENABLE_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isAlphaComponentEnable() <em>Alpha Component Enable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAlphaComponentEnable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean alphaComponentEnable = ALPHA_COMPONENT_ENABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -575,14 +575,6 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 		{
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
 			return isBlendEnable();
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-			return isRedComponentEnable();
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-			return isGreenComponentEnable();
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-			return isBlueComponentEnable();
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
-			return isAlphaComponentEnable();
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
 			return getSrcColor();
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
@@ -595,6 +587,14 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 			return getColorBlendOp();
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
 			return getAlphaBlendOp();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+			return isRedComponentEnable();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+			return isGreenComponentEnable();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+			return isBlueComponentEnable();
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
+			return isAlphaComponentEnable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -611,18 +611,6 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 		{
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
 			setBlendEnable((Boolean) newValue);
-			return;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-			setRedComponentEnable((Boolean) newValue);
-			return;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-			setGreenComponentEnable((Boolean) newValue);
-			return;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-			setBlueComponentEnable((Boolean) newValue);
-			return;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
-			setAlphaComponentEnable((Boolean) newValue);
 			return;
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
 			setSrcColor((EBlendFactor) newValue);
@@ -642,6 +630,18 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
 			setAlphaBlendOp((EBlendOp) newValue);
 			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+			setRedComponentEnable((Boolean) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+			setGreenComponentEnable((Boolean) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+			setBlueComponentEnable((Boolean) newValue);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
+			setAlphaComponentEnable((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -658,18 +658,6 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 		{
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
 			setBlendEnable(BLEND_ENABLE_EDEFAULT);
-			return;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-			setRedComponentEnable(RED_COMPONENT_ENABLE_EDEFAULT);
-			return;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-			setGreenComponentEnable(GREEN_COMPONENT_ENABLE_EDEFAULT);
-			return;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-			setBlueComponentEnable(BLUE_COMPONENT_ENABLE_EDEFAULT);
-			return;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
-			setAlphaComponentEnable(ALPHA_COMPONENT_ENABLE_EDEFAULT);
 			return;
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
 			setSrcColor(SRC_COLOR_EDEFAULT);
@@ -689,6 +677,18 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
 			setAlphaBlendOp(ALPHA_BLEND_OP_EDEFAULT);
 			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+			setRedComponentEnable(RED_COMPONENT_ENABLE_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+			setGreenComponentEnable(GREEN_COMPONENT_ENABLE_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+			setBlueComponentEnable(BLUE_COMPONENT_ENABLE_EDEFAULT);
+			return;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
+			setAlphaComponentEnable(ALPHA_COMPONENT_ENABLE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -705,14 +705,6 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 		{
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLEND_ENABLE:
 			return blendEnable != BLEND_ENABLE_EDEFAULT;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
-			return redComponentEnable != RED_COMPONENT_ENABLE_EDEFAULT;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
-			return greenComponentEnable != GREEN_COMPONENT_ENABLE_EDEFAULT;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
-			return blueComponentEnable != BLUE_COMPONENT_ENABLE_EDEFAULT;
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
-			return alphaComponentEnable != ALPHA_COMPONENT_ENABLE_EDEFAULT;
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__SRC_COLOR:
 			return srcColor != SRC_COLOR_EDEFAULT;
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__DST_COLOR:
@@ -725,6 +717,14 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 			return colorBlendOp != COLOR_BLEND_OP_EDEFAULT;
 		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP:
 			return alphaBlendOp != ALPHA_BLEND_OP_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE:
+			return redComponentEnable != RED_COMPONENT_ENABLE_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE:
+			return greenComponentEnable != GREEN_COMPONENT_ENABLE_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE:
+			return blueComponentEnable != BLUE_COMPONENT_ENABLE_EDEFAULT;
+		case GraphicPackage.COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE:
+			return alphaComponentEnable != ALPHA_COMPONENT_ENABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -742,14 +742,6 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (blendEnable: ");
 		result.append(blendEnable);
-		result.append(", redComponentEnable: ");
-		result.append(redComponentEnable);
-		result.append(", greenComponentEnable: ");
-		result.append(greenComponentEnable);
-		result.append(", blueComponentEnable: ");
-		result.append(blueComponentEnable);
-		result.append(", alphaComponentEnable: ");
-		result.append(alphaComponentEnable);
 		result.append(", srcColor: ");
 		result.append(srcColor);
 		result.append(", dstColor: ");
@@ -762,6 +754,14 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 		result.append(colorBlendOp);
 		result.append(", alphaBlendOp: ");
 		result.append(alphaBlendOp);
+		result.append(", redComponentEnable: ");
+		result.append(redComponentEnable);
+		result.append(", greenComponentEnable: ");
+		result.append(greenComponentEnable);
+		result.append(", blueComponentEnable: ");
+		result.append(blueComponentEnable);
+		result.append(", alphaComponentEnable: ");
+		result.append(alphaComponentEnable);
 		result.append(')');
 		return result.toString();
 	}

@@ -1820,49 +1820,13 @@ public interface GraphicPackage extends EPackage
 	int COLOR_BLEND_ATTACHMENT__BLEND_ENABLE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Red Component Enable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Green Component Enable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Blue Component Enable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Alpha Component Enable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE = 4;
-
-	/**
 	 * The feature id for the '<em><b>Src Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLOR_BLEND_ATTACHMENT__SRC_COLOR = 5;
+	int COLOR_BLEND_ATTACHMENT__SRC_COLOR = 1;
 
 	/**
 	 * The feature id for the '<em><b>Dst Color</b></em>' attribute.
@@ -1871,7 +1835,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLOR_BLEND_ATTACHMENT__DST_COLOR = 6;
+	int COLOR_BLEND_ATTACHMENT__DST_COLOR = 2;
 
 	/**
 	 * The feature id for the '<em><b>Src Alpha</b></em>' attribute.
@@ -1880,7 +1844,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLOR_BLEND_ATTACHMENT__SRC_ALPHA = 7;
+	int COLOR_BLEND_ATTACHMENT__SRC_ALPHA = 3;
 
 	/**
 	 * The feature id for the '<em><b>Dst Alpha</b></em>' attribute.
@@ -1889,7 +1853,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLOR_BLEND_ATTACHMENT__DST_ALPHA = 8;
+	int COLOR_BLEND_ATTACHMENT__DST_ALPHA = 4;
 
 	/**
 	 * The feature id for the '<em><b>Color Blend Op</b></em>' attribute.
@@ -1898,7 +1862,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP = 9;
+	int COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP = 5;
 
 	/**
 	 * The feature id for the '<em><b>Alpha Blend Op</b></em>' attribute.
@@ -1907,7 +1871,43 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP = 10;
+	int COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP = 6;
+
+	/**
+	 * The feature id for the '<em><b>Red Component Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Green Component Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Blue Component Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Alpha Component Enable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE = 10;
 
 	/**
 	 * The number of structural features of the '<em>Color Blend Attachment</em>' class.

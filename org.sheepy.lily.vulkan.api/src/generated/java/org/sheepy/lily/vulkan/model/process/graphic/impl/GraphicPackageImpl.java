@@ -1182,7 +1182,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_RedComponentEnable()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1193,7 +1193,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_GreenComponentEnable()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -1204,7 +1204,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_BlueComponentEnable()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -1215,7 +1215,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_AlphaComponentEnable()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -1226,7 +1226,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_SrcColor()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(5);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1237,7 +1237,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_DstColor()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(6);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1248,7 +1248,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_SrcAlpha()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(7);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1259,7 +1259,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_DstAlpha()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(8);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1270,7 +1270,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_ColorBlendOp()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(9);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1281,7 +1281,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	@Override
 	public EAttribute getColorBlendAttachment_AlphaBlendOp()
 	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(10);
+		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1779,18 +1779,18 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		colorBlendAttachmentEClass = createEClass(COLOR_BLEND_ATTACHMENT);
 		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__BLEND_ENABLE);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE);
-		createEAttribute(colorBlendAttachmentEClass,
-				COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE);
-		createEAttribute(colorBlendAttachmentEClass,
-				COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE);
 		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__SRC_COLOR);
 		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__DST_COLOR);
 		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__SRC_ALPHA);
 		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__DST_ALPHA);
 		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP);
 		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE);
+		createEAttribute(colorBlendAttachmentEClass,
+				COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE);
+		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE);
+		createEAttribute(colorBlendAttachmentEClass,
+				COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE);
 
 		viewportStateEClass = createEClass(VIEWPORT_STATE);
 
@@ -2160,22 +2160,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"blendEnable", "false", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_RedComponentEnable(), theEcorePackage.getEBoolean(),
-				"redComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_GreenComponentEnable(),
-				theEcorePackage.getEBoolean(), "greenComponentEnable", "true", 0, 1,
-				ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_BlueComponentEnable(), theEcorePackage.getEBoolean(),
-				"blueComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_AlphaComponentEnable(),
-				theEcorePackage.getEBoolean(), "alphaComponentEnable", "true", 0, 1,
-				ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColorBlendAttachment_SrcColor(), theEnumerationPackage.getEBlendFactor(),
 				"srcColor", "ONE", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2196,6 +2180,22 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"alphaBlendOp", "ADD", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_RedComponentEnable(), theEcorePackage.getEBoolean(),
+				"redComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_GreenComponentEnable(),
+				theEcorePackage.getEBoolean(), "greenComponentEnable", "true", 0, 1,
+				ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_BlueComponentEnable(), theEcorePackage.getEBoolean(),
+				"blueComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getColorBlendAttachment_AlphaComponentEnable(),
+				theEcorePackage.getEBoolean(), "alphaComponentEnable", "true", 0, 1,
+				ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(viewportStateEClass, ViewportState.class, "ViewportState", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
