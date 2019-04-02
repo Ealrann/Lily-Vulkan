@@ -27,6 +27,7 @@ import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
+import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 @Statefull
@@ -190,10 +191,37 @@ public abstract class AbstractPipelineAdapter
 		return pipelineLayout;
 	}
 
+	@Override
+	public List<IVkDescriptorSet> getDescriptorSets()
+	{
+		final List<IVkDescriptorSet> res = new ArrayList<>();
+
+		if (pipeline instanceof AbstractPipeline)
+		{
+			var abstractPipeline = (AbstractPipeline) pipeline;
+			var ds = abstractPipeline.getDescriptorSet();
+			if (ds == null)
+			{
+				ds = abstractPipeline.getDescriptorSetRef();
+			}
+
+			if (ds != null)
+			{
+				final var adapter = IDescriptorSetAdapter.adapt(ds);
+				res.add(adapter);
+			}
+		}
+
+		return res;
+	}
+
 	public void bindDescriptor(VkCommandBuffer commandBuffer, int bindPoint, int descriptorSetIndex)
 	{
-		final IVkDescriptorSet descriptorSet = descriptorSets.get(descriptorSetIndex);
-		descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, getLayoutId());
+		if (descriptorSetIndex < descriptorSets.size())
+		{
+			final IVkDescriptorSet descriptorSet = descriptorSets.get(descriptorSetIndex);
+			descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, getLayoutId());
+		}
 	}
 
 	@Override

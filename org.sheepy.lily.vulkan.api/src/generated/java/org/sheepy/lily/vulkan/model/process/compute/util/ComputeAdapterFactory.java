@@ -88,79 +88,66 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 		{
 			return createComputeProcessAdapter();
 		}
-
 		@Override
 		public Adapter caseComputePipeline(ComputePipeline object)
 		{
 			return createComputePipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseComputer(Computer object)
 		{
 			return createComputerAdapter();
 		}
-
 		@Override
 		public Adapter caseIResourceContainer(IResourceContainer object)
 		{
 			return createIResourceContainerAdapter();
 		}
-
 		@Override
 		public Adapter caseLNamedElement(LNamedElement object)
 		{
 			return createLNamedElementAdapter();
 		}
-
 		@Override
 		public Adapter caseIExecutionManager(IExecutionManager object)
 		{
 			return createIExecutionManagerAdapter();
 		}
-
 		@Override
 		public Adapter caseIProcess(IProcess object)
 		{
 			return createIProcessAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractProcess(AbstractProcess object)
 		{
 			return createAbstractProcessAdapter();
 		}
-
 		@Override
 		public Adapter caseIInferenceObject(IInferenceObject object)
 		{
 			return createIInferenceObjectAdapter();
 		}
-
 		@Override
 		public Adapter caseLObject(LObject object)
 		{
 			return createLObjectAdapter();
 		}
-
 		@Override
 		public Adapter caseIPipeline(IPipeline object)
 		{
 			return createIPipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractPipeline(AbstractPipeline object)
 		{
 			return createAbstractPipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseIPipelineUnit(IPipelineUnit object)
 		{
 			return createIPipelineUnitAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object)
 		{

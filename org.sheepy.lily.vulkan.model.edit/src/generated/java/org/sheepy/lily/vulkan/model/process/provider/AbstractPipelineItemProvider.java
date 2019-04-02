@@ -28,6 +28,7 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.AbstractPipeline} object.
@@ -66,7 +67,7 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
-			addDescriptorSetPropertyDescriptor(object);
+			addDescriptorSetRefPropertyDescriptor(object);
 			addConstantsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -107,6 +108,24 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 	}
 
 	/**
+	 * This adds a property descriptor for the Descriptor Set Ref feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptorSetRefPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AbstractPipeline_descriptorSetRef_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractPipeline_descriptorSetRef_feature",
+						"_UI_AbstractPipeline_type"),
+				ProcessPackage.Literals.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF, true, false, true,
+				null, null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -121,23 +140,6 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 						"_UI_LNamedElement_type"),
 				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Descriptor Set feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptorSetPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AbstractPipeline_descriptorSet_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractPipeline_descriptorSet_feature", "_UI_AbstractPipeline_type"),
-				ProcessPackage.Literals.ABSTRACT_PIPELINE__DESCRIPTOR_SET, true, false, true, null,
-				null, null));
 	}
 
 	/**
@@ -173,6 +175,7 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS);
+			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PIPELINE__DESCRIPTOR_SET);
 		}
 		return childrenFeatures;
 	}
@@ -229,6 +232,7 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -259,6 +263,10 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 		newChildDescriptors
 				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
 						ProcessFactory.eINSTANCE.createPushConstant()));
+
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__DESCRIPTOR_SET,
+						ResourceFactory.eINSTANCE.createDescriptorSet()));
 	}
 
 	/**

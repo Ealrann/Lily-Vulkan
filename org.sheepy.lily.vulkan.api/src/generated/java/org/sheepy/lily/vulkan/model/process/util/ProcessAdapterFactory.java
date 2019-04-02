@@ -84,91 +84,76 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 		{
 			return createAbstractProcessAdapter();
 		}
-
 		@Override
 		public Adapter casePipelinePkg(PipelinePkg object)
 		{
 			return createPipelinePkgAdapter();
 		}
-
 		@Override
 		public Adapter caseConfiguration(Configuration object)
 		{
 			return createConfigurationAdapter();
 		}
-
 		@Override
 		public Adapter casePipelineBarrier(PipelineBarrier object)
 		{
 			return createPipelineBarrierAdapter();
 		}
-
 		@Override
 		public Adapter caseIPipeline(IPipeline object)
 		{
 			return createIPipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractPipeline(AbstractPipeline object)
 		{
 			return createAbstractPipelineAdapter();
 		}
-
 		@Override
 		public Adapter caseIPipelineUnit(IPipelineUnit object)
 		{
 			return createIPipelineUnitAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractCompositePipeline(AbstractCompositePipeline object)
 		{
 			return createAbstractCompositePipelineAdapter();
 		}
-
 		@Override
 		public Adapter casePushConstant(PushConstant object)
 		{
 			return createPushConstantAdapter();
 		}
-
 		@Override
 		public Adapter caseIResourceContainer(IResourceContainer object)
 		{
 			return createIResourceContainerAdapter();
 		}
-
 		@Override
 		public Adapter caseLNamedElement(LNamedElement object)
 		{
 			return createLNamedElementAdapter();
 		}
-
 		@Override
 		public Adapter caseIExecutionManager(IExecutionManager object)
 		{
 			return createIExecutionManagerAdapter();
 		}
-
 		@Override
 		public Adapter caseIProcess(IProcess object)
 		{
 			return createIProcessAdapter();
 		}
-
 		@Override
 		public Adapter caseIInferenceObject(IInferenceObject object)
 		{
 			return createIInferenceObjectAdapter();
 		}
-
 		@Override
 		public Adapter caseLObject(LObject object)
 		{
 			return createLObjectAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object)
 		{

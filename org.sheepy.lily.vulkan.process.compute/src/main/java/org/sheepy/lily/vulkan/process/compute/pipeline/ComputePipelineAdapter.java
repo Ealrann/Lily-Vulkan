@@ -22,8 +22,6 @@ import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
-import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 
 @Statefull
@@ -154,19 +152,6 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter
 	public AbstractConstants getConstants()
 	{
 		return pipeline.getConstants();
-	}
-
-	@Override
-	public List<IVkDescriptorSet> getDescriptorSets()
-	{
-		final List<IVkDescriptorSet> res = new ArrayList<>();
-		final var ds = pipeline.getDescriptorSet();
-		if (ds != null)
-		{
-			final var adapter = IDescriptorSetAdapter.adapt(ds);
-			res.add(adapter);
-		}
-		return res;
 	}
 
 	public static ComputePipelineAdapter adapt(ComputePipeline object)

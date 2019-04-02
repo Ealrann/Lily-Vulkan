@@ -63,6 +63,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getUnits <em>Units</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSetRef <em>Descriptor Set Ref</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSet <em>Descriptor Set</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getConstants <em>Constants</em>}</li>
  * </ul>
@@ -163,7 +164,17 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	protected EList<IPipelineUnit> units;
 
 	/**
-	 * The cached value of the '{@link #getDescriptorSet() <em>Descriptor Set</em>}' reference.
+	 * The cached value of the '{@link #getDescriptorSetRef() <em>Descriptor Set Ref</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescriptorSetRef()
+	 * @generated
+	 * @ordered
+	 */
+	protected DescriptorSet descriptorSetRef;
+
+	/**
+	 * The cached value of the '{@link #getDescriptorSet() <em>Descriptor Set</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDescriptorSet()
@@ -380,19 +391,55 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public DescriptorSet getDescriptorSet()
+	public DescriptorSet getDescriptorSetRef()
 	{
-		if (descriptorSet != null && descriptorSet.eIsProxy())
+		if (descriptorSetRef != null && descriptorSetRef.eIsProxy())
 		{
-			InternalEObject oldDescriptorSet = (InternalEObject) descriptorSet;
-			descriptorSet = (DescriptorSet) eResolveProxy(oldDescriptorSet);
-			if (descriptorSet != oldDescriptorSet)
+			InternalEObject oldDescriptorSetRef = (InternalEObject) descriptorSetRef;
+			descriptorSetRef = (DescriptorSet) eResolveProxy(oldDescriptorSetRef);
+			if (descriptorSetRef != oldDescriptorSetRef)
 			{
 				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET,
-						oldDescriptorSet, descriptorSet));
+						Notification.RESOLVE, ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF,
+						oldDescriptorSetRef, descriptorSetRef));
 			}
 		}
+		return descriptorSetRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DescriptorSet basicGetDescriptorSetRef()
+	{
+		return descriptorSetRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDescriptorSetRef(DescriptorSet newDescriptorSetRef)
+	{
+		DescriptorSet oldDescriptorSetRef = descriptorSetRef;
+		descriptorSetRef = newDescriptorSetRef;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF, oldDescriptorSetRef,
+				descriptorSetRef));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DescriptorSet getDescriptorSet()
+	{
 		return descriptorSet;
 	}
 
@@ -401,9 +448,20 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescriptorSet basicGetDescriptorSet()
+	public NotificationChain basicSetDescriptorSet(	DescriptorSet newDescriptorSet,
+													NotificationChain msgs)
 	{
-		return descriptorSet;
+		DescriptorSet oldDescriptorSet = descriptorSet;
+		descriptorSet = newDescriptorSet;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET, oldDescriptorSet,
+					newDescriptorSet);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -414,10 +472,22 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void setDescriptorSet(DescriptorSet newDescriptorSet)
 	{
-		DescriptorSet oldDescriptorSet = descriptorSet;
-		descriptorSet = newDescriptorSet;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET, oldDescriptorSet, descriptorSet));
+		if (newDescriptorSet != descriptorSet)
+		{
+			NotificationChain msgs = null;
+			if (descriptorSet != null) msgs = ((InternalEObject) descriptorSet).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET, null,
+					msgs);
+			if (newDescriptorSet != null)
+				msgs = ((InternalEObject) newDescriptorSet).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET,
+						null, msgs);
+			msgs = basicSetDescriptorSet(newDescriptorSet, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET, newDescriptorSet,
+				newDescriptorSet));
 	}
 
 	/**
@@ -576,6 +646,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return basicSetResourcePkg(null, msgs);
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			return ((InternalEList<?>) getUnits()).basicRemove(otherEnd, msgs);
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
+			return basicSetDescriptorSet(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -602,9 +674,11 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return getResourcePkg();
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			return getUnits();
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF:
+			if (resolve) return getDescriptorSetRef();
+			return basicGetDescriptorSetRef();
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
-			if (resolve) return getDescriptorSet();
-			return basicGetDescriptorSet();
+			return getDescriptorSet();
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
 			if (resolve) return getConstants();
 			return basicGetConstants();
@@ -641,6 +715,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			getUnits().clear();
 			getUnits().addAll((Collection<? extends IPipelineUnit>) newValue);
+			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF:
+			setDescriptorSetRef((DescriptorSet) newValue);
 			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			setDescriptorSet((DescriptorSet) newValue);
@@ -680,6 +757,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			getUnits().clear();
 			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF:
+			setDescriptorSetRef((DescriptorSet) null);
+			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			setDescriptorSet((DescriptorSet) null);
 			return;
@@ -712,6 +792,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return resourcePkg != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			return units != null && !units.isEmpty();
+		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF:
+			return descriptorSetRef != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			return descriptorSet != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:

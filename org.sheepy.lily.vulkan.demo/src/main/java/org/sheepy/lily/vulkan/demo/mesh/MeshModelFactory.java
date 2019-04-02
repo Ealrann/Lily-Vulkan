@@ -45,12 +45,10 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDesc
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl;
 import org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetPkgImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.TextureImpl;
@@ -233,11 +231,6 @@ public class MeshModelFactory
 		if (descriptorSet.getDescriptors().isEmpty() == false)
 		{
 			graphicPipeline.setDescriptorSet(descriptorSet);
-
-			final DescriptorSetPkg pkg = new DescriptorSetPkgImpl();
-			pkg.getDescriptorSets().add(descriptorSet);
-
-			graphicProcess.setDescriptorSetPkg(pkg);
 		}
 
 		return graphicProcess;

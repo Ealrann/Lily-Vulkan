@@ -124,7 +124,16 @@ public interface VulkanDemoPackage extends EPackage
 	int MESH_PIPELINE__UNITS = GraphicPackage.GRAPHICS_PIPELINE__UNITS;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PIPELINE__DESCRIPTOR_SET_REF = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

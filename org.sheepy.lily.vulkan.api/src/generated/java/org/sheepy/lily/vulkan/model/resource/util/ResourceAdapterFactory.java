@@ -80,181 +80,151 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 		{
 			return createBasicResourceAdapter();
 		}
-
 		@Override
 		public Adapter caseDescriptorResource(DescriptorResource object)
 		{
 			return createDescriptorResourceAdapter();
 		}
-
 		@Override
 		public Adapter caseBuffer(Buffer object)
 		{
 			return createBufferAdapter();
 		}
-
 		@Override
 		public Adapter caseImage(Image object)
 		{
 			return createImageAdapter();
 		}
-
 		@Override
 		public Adapter caseImageLayout(ImageLayout object)
 		{
 			return createImageLayoutAdapter();
 		}
-
 		@Override
 		public Adapter caseSampledImage(SampledImage object)
 		{
 			return createSampledImageAdapter();
 		}
-
 		@Override
 		public Adapter caseSemaphore(Semaphore object)
 		{
 			return createSemaphoreAdapter();
 		}
-
 		@Override
 		public Adapter caseFont(Font object)
 		{
 			return createFontAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractTexture(AbstractTexture object)
 		{
 			return createAbstractTextureAdapter();
 		}
-
 		@Override
 		public Adapter caseTexture(Texture object)
 		{
 			return createTextureAdapter();
 		}
-
 		@Override
 		public Adapter caseSampler(Sampler object)
 		{
 			return createSamplerAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractConstants(AbstractConstants object)
 		{
 			return createAbstractConstantsAdapter();
 		}
-
 		@Override
 		public Adapter caseConstants(Constants object)
 		{
 			return createConstantsAdapter();
 		}
-
 		@Override
 		public Adapter caseIDescriptor(IDescriptor object)
 		{
 			return createIDescriptorAdapter();
 		}
-
 		@Override
 		public Adapter caseDescriptorSet(DescriptorSet object)
 		{
 			return createDescriptorSetAdapter();
 		}
-
 		@Override
 		public Adapter caseDescriptorSetPkg(DescriptorSetPkg object)
 		{
 			return createDescriptorSetPkgAdapter();
 		}
-
 		@Override
 		public Adapter caseBarrier(Barrier object)
 		{
 			return createBarrierAdapter();
 		}
-
 		@Override
 		public Adapter caseBufferBarrier(BufferBarrier object)
 		{
 			return createBufferBarrierAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
 		{
 			return createAbstractImageBarrierAdapter();
 		}
-
 		@Override
 		public Adapter caseImageBarrier(ImageBarrier object)
 		{
 			return createImageBarrierAdapter();
 		}
-
 		@Override
 		public Adapter caseReferenceImageBarrier(ReferenceImageBarrier object)
 		{
 			return createReferenceImageBarrierAdapter();
 		}
-
 		@Override
 		public Adapter caseImageTransition(ImageTransition object)
 		{
 			return createImageTransitionAdapter();
 		}
-
 		@Override
 		public Adapter caseShader(Shader object)
 		{
 			return createShaderAdapter();
 		}
-
 		@Override
 		public Adapter casePathResource(PathResource object)
 		{
 			return createPathResourceAdapter();
 		}
-
 		@Override
 		public Adapter caseFileResource(FileResource object)
 		{
 			return createFileResourceAdapter();
 		}
-
 		@Override
 		public Adapter caseAbstractModuleResource(AbstractModuleResource object)
 		{
 			return createAbstractModuleResourceAdapter();
 		}
-
 		@Override
 		public Adapter caseModuleResource(ModuleResource object)
 		{
 			return createModuleResourceAdapter();
 		}
-
 		@Override
 		public Adapter caseStringModuleResource(StringModuleResource object)
 		{
 			return createStringModuleResourceAdapter();
 		}
-
 		@Override
 		public Adapter caseLNamedElement(LNamedElement object)
 		{
 			return createLNamedElementAdapter();
 		}
-
 		@Override
 		public Adapter caseIResource(IResource object)
 		{
 			return createIResourceAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object)
 		{

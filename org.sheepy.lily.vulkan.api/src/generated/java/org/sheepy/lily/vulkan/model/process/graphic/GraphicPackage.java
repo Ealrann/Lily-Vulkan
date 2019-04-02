@@ -1315,7 +1315,16 @@ public interface GraphicPackage extends EPackage
 	int ABSTRACT_GRAPHICS_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE__UNITS;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1529,7 +1538,16 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__UNITS = ABSTRACT_GRAPHICS_PIPELINE__UNITS;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF = ABSTRACT_GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2359,7 +2377,16 @@ public interface GraphicPackage extends EPackage
 	int IMAGE_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE__UNITS;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

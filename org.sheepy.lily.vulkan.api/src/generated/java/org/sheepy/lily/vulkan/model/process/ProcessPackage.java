@@ -527,13 +527,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__UNITS = IPIPELINE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 2;
+	int ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF = IPIPELINE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
@@ -542,7 +551,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 3;
+	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
@@ -551,7 +560,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 4;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -709,7 +718,16 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_COMPOSITE_PIPELINE__UNITS = ABSTRACT_PIPELINE__UNITS;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_COMPOSITE_PIPELINE__DESCRIPTOR_SET_REF = ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1039,10 +1057,21 @@ public interface ProcessPackage extends EPackage
 	EReference getAbstractPipeline_Units();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSetRef <em>Descriptor Set Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Descriptor Set</em>'.
+	 * @return the meta object for the reference '<em>Descriptor Set Ref</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSetRef()
+	 * @see #getAbstractPipeline()
+	 * @generated
+	 */
+	EReference getAbstractPipeline_DescriptorSetRef();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Descriptor Set</em>'.
 	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet()
 	 * @see #getAbstractPipeline()
 	 * @generated
@@ -1292,7 +1321,16 @@ public interface ProcessPackage extends EPackage
 		EReference ABSTRACT_PIPELINE__UNITS = eINSTANCE.getAbstractPipeline_Units();
 
 		/**
-		 * The meta object literal for the '<em><b>Descriptor Set</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Descriptor Set Ref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF = eINSTANCE
+				.getAbstractPipeline_DescriptorSetRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptor Set</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

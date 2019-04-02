@@ -234,7 +234,16 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE__UNITS;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

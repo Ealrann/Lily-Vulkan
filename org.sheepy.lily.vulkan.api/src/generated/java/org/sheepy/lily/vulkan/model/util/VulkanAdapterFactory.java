@@ -81,67 +81,56 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 		{
 			return createVulkanEngineAdapter();
 		}
-
 		@Override
 		public Adapter caseIResourceContainer(IResourceContainer object)
 		{
 			return createIResourceContainerAdapter();
 		}
-
 		@Override
 		public Adapter caseResourcePkg(ResourcePkg object)
 		{
 			return createResourcePkgAdapter();
 		}
-
 		@Override
 		public Adapter caseIResource(IResource object)
 		{
 			return createIResourceAdapter();
 		}
-
 		@Override
 		public Adapter caseIProcess(IProcess object)
 		{
 			return createIProcessAdapter();
 		}
-
 		@Override
 		public Adapter caseIExecutionManager(IExecutionManager object)
 		{
 			return createIExecutionManagerAdapter();
 		}
-
 		@Override
 		public Adapter caseColorDomain(ColorDomain object)
 		{
 			return createColorDomainAdapter();
 		}
-
 		@Override
 		public Adapter caseIInferenceObject(IInferenceObject object)
 		{
 			return createIInferenceObjectAdapter();
 		}
-
 		@Override
 		public Adapter caseLObject(LObject object)
 		{
 			return createLObjectAdapter();
 		}
-
 		@Override
 		public Adapter caseIEngine(IEngine object)
 		{
 			return createIEngineAdapter();
 		}
-
 		@Override
 		public Adapter caseLNamedElement(LNamedElement object)
 		{
 			return createLNamedElementAdapter();
 		}
-
 		@Override
 		public Adapter defaultCase(EObject object)
 		{

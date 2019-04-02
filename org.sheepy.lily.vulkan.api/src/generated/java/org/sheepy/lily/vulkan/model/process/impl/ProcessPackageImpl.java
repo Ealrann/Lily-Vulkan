@@ -392,7 +392,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractPipeline_DescriptorSet()
+	public EReference getAbstractPipeline_DescriptorSetRef()
 	{
 		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(1);
 	}
@@ -403,9 +403,20 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractPipeline_Constants()
+	public EReference getAbstractPipeline_DescriptorSet()
 	{
 		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractPipeline_Constants()
+	{
+		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -507,6 +518,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		abstractPipelineEClass = createEClass(ABSTRACT_PIPELINE);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__UNITS);
+		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__DESCRIPTOR_SET);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__CONSTANTS);
 
@@ -638,9 +650,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				-1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEReference(getAbstractPipeline_DescriptorSetRef(),
+				theResourcePackage.getDescriptorSet(), null, "descriptorSetRef", null, 0, 1,
+				AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractPipeline_DescriptorSet(), theResourcePackage.getDescriptorSet(),
 				null, "descriptorSet", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractPipeline_Constants(), theResourcePackage.getAbstractConstants(),
 				null, "constants", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,

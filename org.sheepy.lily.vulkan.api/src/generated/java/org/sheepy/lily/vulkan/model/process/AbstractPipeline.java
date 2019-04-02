@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getUnits <em>Units</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSetRef <em>Descriptor Set Ref</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}</li>
  * </ul>
@@ -44,26 +45,44 @@ public interface AbstractPipeline extends IPipeline, IResourceContainer
 	EList<IPipelineUnit> getUnits();
 
 	/**
-	 * Returns the value of the '<em><b>Descriptor Set</b></em>' reference.
+	 * Returns the value of the '<em><b>Descriptor Set Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Descriptor Set</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor Set</em>' reference.
+	 * @return the value of the '<em>Descriptor Set Ref</em>' reference.
+	 * @see #setDescriptorSetRef(DescriptorSet)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline_DescriptorSetRef()
+	 * @model
+	 * @generated
+	 */
+	DescriptorSet getDescriptorSetRef();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSetRef <em>Descriptor Set Ref</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Descriptor Set Ref</em>' reference.
+	 * @see #getDescriptorSetRef()
+	 * @generated
+	 */
+	void setDescriptorSetRef(DescriptorSet value);
+
+	/**
+	 * Returns the value of the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Descriptor Set</em>' containment reference.
 	 * @see #setDescriptorSet(DescriptorSet)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline_DescriptorSet()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	DescriptorSet getDescriptorSet();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}' reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor Set</em>' reference.
+	 * @param value the new value of the '<em>Descriptor Set</em>' containment reference.
 	 * @see #getDescriptorSet()
 	 * @generated
 	 */

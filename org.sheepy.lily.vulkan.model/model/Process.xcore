@@ -58,7 +58,10 @@ interface IPipeline extends LObject, LNamedElement
 abstract class AbstractPipeline extends IPipeline, IResourceContainer
 {
 	contains IPipelineUnit[] units
-	refers DescriptorSet descriptorSet
+
+	refers DescriptorSet descriptorSetRef
+	contains DescriptorSet descriptorSet
+
 	refers AbstractConstants constants
 }
 
