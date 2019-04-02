@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.graphic.provider;
+package org.sheepy.lily.vulkan.extra.model.graphic.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,12 +11,12 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.lily.vulkan.extra.model.graphic.GraphicExtraPackage;
+import org.sheepy.lily.vulkan.extra.model.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.process.provider.AbstractPipelineItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.graphic.ImagePipeline} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -70,7 +70,7 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 				getResourceLocator(), getString("_UI_ImagePipeline_image_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_ImagePipeline_image_feature",
 						"_UI_ImagePipeline_type"),
-				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE, true, false, true, null, null,
+				GraphicExtraPackage.Literals.IMAGE_PIPELINE__IMAGE, true, false, true, null, null,
 				null));
 	}
 
@@ -87,7 +87,7 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 				getResourceLocator(), getString("_UI_ImagePipeline_imageSrcStage_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ImagePipeline_imageSrcStage_feature", "_UI_ImagePipeline_type"),
-				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_STAGE, true, false, false,
+				GraphicExtraPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_STAGE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -104,7 +104,7 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 				getResourceLocator(), getString("_UI_ImagePipeline_imageDstStage_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ImagePipeline_imageDstStage_feature", "_UI_ImagePipeline_type"),
-				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_STAGE, true, false, false,
+				GraphicExtraPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_STAGE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -121,8 +121,8 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 				getResourceLocator(), getString("_UI_ImagePipeline_imageSrcAccessMask_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ImagePipeline_imageSrcAccessMask_feature", "_UI_ImagePipeline_type"),
-				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				GraphicExtraPackage.Literals.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -138,8 +138,8 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 				getResourceLocator(), getString("_UI_ImagePipeline_imageDstAccessMask_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ImagePipeline_imageDstAccessMask_feature", "_UI_ImagePipeline_type"),
-				GraphicPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				GraphicExtraPackage.Literals.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -155,8 +155,8 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 				getResourceLocator(), getString("_UI_ImagePipeline_srcQueue_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ImagePipeline_srcQueue_feature", "_UI_ImagePipeline_type"),
-				GraphicPackage.Literals.IMAGE_PIPELINE__SRC_QUEUE, true, false, true, null, null,
-				null));
+				GraphicExtraPackage.Literals.IMAGE_PIPELINE__SRC_QUEUE, true, false, true, null,
+				null, null));
 	}
 
 	/**
@@ -200,10 +200,10 @@ public class ImagePipelineItemProvider extends AbstractPipelineItemProvider
 
 		switch (notification.getFeatureID(ImagePipeline.class))
 		{
-		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
-		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
-		case GraphicPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
-		case GraphicPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
+		case GraphicExtraPackage.IMAGE_PIPELINE__IMAGE_SRC_STAGE:
+		case GraphicExtraPackage.IMAGE_PIPELINE__IMAGE_DST_STAGE:
+		case GraphicExtraPackage.IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK:
+		case GraphicExtraPackage.IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

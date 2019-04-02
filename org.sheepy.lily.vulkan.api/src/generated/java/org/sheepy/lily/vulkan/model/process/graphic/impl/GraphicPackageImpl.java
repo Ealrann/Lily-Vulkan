@@ -45,7 +45,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
@@ -263,13 +262,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass inputAssemblyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass imagePipelineEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1576,83 +1568,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getImagePipeline()
-	{
-		return imagePipelineEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getImagePipeline_Image()
-	{
-		return (EReference) imagePipelineEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImagePipeline_ImageSrcStage()
-	{
-		return (EAttribute) imagePipelineEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImagePipeline_ImageDstStage()
-	{
-		return (EAttribute) imagePipelineEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImagePipeline_ImageSrcAccessMask()
-	{
-		return (EAttribute) imagePipelineEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImagePipeline_ImageDstAccessMask()
-	{
-		return (EAttribute) imagePipelineEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getImagePipeline_SrcQueue()
-	{
-		return (EReference) imagePipelineEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public GraphicFactory getGraphicFactory()
 	{
 		return (GraphicFactory) getEFactoryInstance();
@@ -1824,14 +1739,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		inputAssemblyEClass = createEClass(INPUT_ASSEMBLY);
 		createEAttribute(inputAssemblyEClass, INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED);
 		createEAttribute(inputAssemblyEClass, INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY);
-
-		imagePipelineEClass = createEClass(IMAGE_PIPELINE);
-		createEReference(imagePipelineEClass, IMAGE_PIPELINE__IMAGE);
-		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_SRC_STAGE);
-		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_STAGE);
-		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK);
-		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK);
-		createEReference(imagePipelineEClass, IMAGE_PIPELINE__SRC_QUEUE);
 	}
 
 	/**
@@ -1892,7 +1799,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		graphicsPipelineEClass.getESuperTypes().add(this.getAbstractGraphicsPipeline());
 		staticViewportStateEClass.getESuperTypes().add(this.getViewportState());
 		dynamicViewportStateEClass.getESuperTypes().add(this.getViewportState());
-		imagePipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(graphicConfigurationEClass, GraphicConfiguration.class, "GraphicConfiguration",
@@ -2279,29 +2185,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				theEnumerationPackage.getEPrimitiveTopology(), "primitiveTopology", "TRIANGLE_LIST",
 				0, 1, InputAssembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(imagePipelineEClass, ImagePipeline.class, "ImagePipeline", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImagePipeline_Image(), theResourcePackage.getImage(), null, "image", null,
-				1, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getImagePipeline_ImageSrcStage(), theEnumerationPackage.getEPipelineStage(),
-				"imageSrcStage", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImagePipeline_ImageDstStage(), theEnumerationPackage.getEPipelineStage(),
-				"imageDstStage", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImagePipeline_ImageSrcAccessMask(), theEnumerationPackage.getEAccess(),
-				"imageSrcAccessMask", null, 0, -1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImagePipeline_ImageDstAccessMask(), theEnumerationPackage.getEAccess(),
-				"imageDstAccessMask", null, 0, -1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getImagePipeline_SrcQueue(), theProcessPackage.getAbstractProcess(), null,
-				"srcQueue", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

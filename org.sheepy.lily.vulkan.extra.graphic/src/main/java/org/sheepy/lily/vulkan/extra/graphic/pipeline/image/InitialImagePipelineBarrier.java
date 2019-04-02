@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.graphic.pipeline.image;
+package org.sheepy.lily.vulkan.extra.graphic.pipeline.image;
 
 import static org.lwjgl.vulkan.VK10.VK_QUEUE_FAMILY_IGNORED;
 
@@ -7,11 +7,11 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.extra.model.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageTransition;
 import org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier;
@@ -43,9 +43,9 @@ public class InitialImagePipelineBarrier implements IAllocable
 
 		if (pipeline.getSrcQueue() != null)
 		{
-			var imageProcess = getProcess(pipeline);
-			var srcProcessAdapter = AbstractProcessAdapter.adapt(pipeline.getSrcQueue());
-			var dstProcessAdapter = AbstractProcessAdapter.adapt(imageProcess);
+			final var imageProcess = getProcess(pipeline);
+			final var srcProcessAdapter = AbstractProcessAdapter.adapt(pipeline.getSrcQueue());
+			final var dstProcessAdapter = AbstractProcessAdapter.adapt(imageProcess);
 
 			srcQueueFamilly = srcProcessAdapter.getQueue().index;
 			dstQueueFamilly = dstProcessAdapter.getQueue().index;
@@ -102,14 +102,14 @@ public class InitialImagePipelineBarrier implements IAllocable
 
 	private void allocateInitialSourceBarrier()
 	{
-		var srcImage = pipeline.getImage();
+		final var srcImage = pipeline.getImage();
 
 		sourceBarrier = new ImageBarrierImpl();
 		sourceBarrier.setSrcStage(pipeline.getImageSrcStage());
 		sourceBarrier.setDstStage(EPipelineStage.TRANSFER_BIT);
 		sourceBarrier.setImage(srcImage);
 
-		ImageTransition transition = new ImageTransitionImpl();
+		final ImageTransition transition = new ImageTransitionImpl();
 		transition.setSrcLayout(EImageLayout.GENERAL);
 		transition.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
 		transition.getSrcAccessMask().addAll(pipeline.getImageSrcAccessMask());
@@ -127,7 +127,7 @@ public class InitialImagePipelineBarrier implements IAllocable
 		targetBarrier.setImageFormat(view.getImageFormat());
 		targetBarrier.setMipLevels(1);
 
-		ImageTransition transition = new ImageTransitionImpl();
+		final ImageTransition transition = new ImageTransitionImpl();
 		transition.setSrcLayout(EImageLayout.UNDEFINED);
 		transition.setDstLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
 		transition.getDstAccessMask().add(EAccess.TRANSFER_WRITE_BIT);

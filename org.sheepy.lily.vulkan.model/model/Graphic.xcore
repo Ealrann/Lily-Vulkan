@@ -243,13 +243,3 @@ class InputAssembly
 	boolean primitiveRestartEnabled = "false"
 	EPrimitiveTopology primitiveTopology = "TRIANGLE_LIST"
 }
-
-class ImagePipeline extends AbstractPipeline
-{
-	refers Image[1..1] image
-	EPipelineStage imageSrcStage
-	EPipelineStage imageDstStage
-	unique EAccess[] imageSrcAccessMask
-	unique EAccess[] imageDstAccessMask
-	refers AbstractProcess srcQueue
-}

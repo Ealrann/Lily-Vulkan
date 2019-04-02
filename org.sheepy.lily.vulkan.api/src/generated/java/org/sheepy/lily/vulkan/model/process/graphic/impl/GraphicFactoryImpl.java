@@ -108,8 +108,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createRasterizer();
 		case GraphicPackage.INPUT_ASSEMBLY:
 			return createInputAssembly();
-		case GraphicPackage.IMAGE_PIPELINE:
-			return createImagePipeline();
 		default:
 			throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier");
@@ -378,18 +376,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		InputAssemblyImpl inputAssembly = new InputAssemblyImpl();
 		return inputAssembly;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ImagePipeline createImagePipeline()
-	{
-		ImagePipelineImpl imagePipeline = new ImagePipelineImpl();
-		return imagePipeline;
 	}
 
 	/**

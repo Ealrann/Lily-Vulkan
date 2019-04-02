@@ -1,11 +1,9 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.image.ImagePipelineAdapter;
 import org.sheepy.lily.vulkan.process.graphic.process.GraphicProcessAdapter;
 import org.sheepy.lily.vulkan.process.graphic.resource.DepthAttachmentAdapter;
 
 @Adapters(classifiers = {
-		ImagePipelineAdapter.class,
 		GraphicProcessAdapter.class,
 		GraphicsPipelineAdapter.class,
 		DepthAttachmentAdapter.class
@@ -22,7 +20,6 @@ module org.sheepy.lily.vulkan.process.graphic
 
 	opens org.sheepy.lily.vulkan.process.graphic.frame;
 	opens org.sheepy.lily.vulkan.process.graphic.execution;
-	opens org.sheepy.lily.vulkan.process.graphic.pipeline.image;
 	opens org.sheepy.lily.vulkan.process.graphic.process;
 	opens org.sheepy.lily.vulkan.process.graphic.resource;
 }

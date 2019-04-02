@@ -221,11 +221,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createInputAssemblyAdapter();
 		}
 		@Override
-		public Adapter caseImagePipeline(ImagePipeline object)
-		{
-			return createImagePipelineAdapter();
-		}
-		@Override
 		public Adapter caseConfiguration(Configuration object)
 		{
 			return createConfigurationAdapter();
@@ -712,21 +707,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createInputAssemblyAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline <em>Image Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline
-	 * @generated
-	 */
-	public Adapter createImagePipelineAdapter()
 	{
 		return null;
 	}

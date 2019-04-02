@@ -656,31 +656,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ImagePipelineItemProvider imagePipelineItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createImagePipelineAdapter()
-	{
-		if (imagePipelineItemProvider == null)
-		{
-			imagePipelineItemProvider = new ImagePipelineItemProvider(this);
-		}
-
-		return imagePipelineItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -855,7 +830,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (scissorItemProvider != null) scissorItemProvider.dispose();
 		if (rasterizerItemProvider != null) rasterizerItemProvider.dispose();
 		if (inputAssemblyItemProvider != null) inputAssemblyItemProvider.dispose();
-		if (imagePipelineItemProvider != null) imagePipelineItemProvider.dispose();
 	}
 
 	/**
@@ -914,10 +888,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 								GraphicFactory.eINSTANCE.createGraphicsPipeline()));
 
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-								GraphicFactory.eINSTANCE.createImagePipeline()));
-
 				return null;
 			}
 
@@ -932,10 +902,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 				newChildDescriptors.add(createChildParameter(
 						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
 						GraphicFactory.eINSTANCE.createGraphicsPipeline()));
-
-				newChildDescriptors.add(createChildParameter(
-						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
-						GraphicFactory.eINSTANCE.createImagePipeline()));
 
 				return null;
 			}

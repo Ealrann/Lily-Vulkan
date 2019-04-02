@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.graphic.pipeline.image;
+package org.sheepy.lily.vulkan.extra.graphic.pipeline.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -16,11 +16,11 @@ public class EmptyVertexBufferDescriptor implements IVertexBufferDescriptor<Vert
 	@Override
 	public VkPipelineVertexInputStateCreateInfo allocCreateInfo(MemoryStack stack)
 	{
-		var vertexInputInfo = VkPipelineVertexInputStateCreateInfo.callocStack(stack);
+		final var vertexInputInfo = VkPipelineVertexInputStateCreateInfo.callocStack(stack);
 		vertexInputInfo.sType(VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO);
 
-		var allocBindingDescription = allocBindingDescription(stack);
-		var getgetAttributeDescriptions = allocAttributeDescriptions(stack);
+		final var allocBindingDescription = allocBindingDescription(stack);
+		final var getgetAttributeDescriptions = allocAttributeDescriptions(stack);
 
 		vertexInputInfo.pVertexBindingDescriptions(allocBindingDescription); // Optional
 		vertexInputInfo.pVertexAttributeDescriptions(getgetAttributeDescriptions); // Optional
@@ -30,7 +30,7 @@ public class EmptyVertexBufferDescriptor implements IVertexBufferDescriptor<Vert
 
 	public static VkVertexInputBindingDescription.Buffer allocBindingDescription(MemoryStack stack)
 	{
-		var bindingDescription = VkVertexInputBindingDescription.callocStack(1, stack);
+		final var bindingDescription = VkVertexInputBindingDescription.callocStack(1, stack);
 
 		bindingDescription.binding(0);
 		bindingDescription.stride(0);
@@ -41,9 +41,9 @@ public class EmptyVertexBufferDescriptor implements IVertexBufferDescriptor<Vert
 
 	public static VkVertexInputAttributeDescription.Buffer allocAttributeDescriptions(MemoryStack stack)
 	{
-		var attributeDescriptions = VkVertexInputAttributeDescription.callocStack(1, stack);
+		final var attributeDescriptions = VkVertexInputAttributeDescription.callocStack(1, stack);
 
-		var attributeDescriptionPosition = attributeDescriptions.get(0);
+		final var attributeDescriptionPosition = attributeDescriptions.get(0);
 		attributeDescriptionPosition.binding(0);
 		attributeDescriptionPosition.location(0);
 		attributeDescriptionPosition.format(VK_FORMAT_R32G32_SFLOAT);

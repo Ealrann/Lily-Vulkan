@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.graphic.pipeline.image;
+package org.sheepy.lily.vulkan.extra.graphic.pipeline.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
@@ -11,7 +11,7 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.model.process.graphic.ImagePipeline;
+import org.sheepy.lily.vulkan.extra.model.graphic.ImagePipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.api.IImageViewManager;

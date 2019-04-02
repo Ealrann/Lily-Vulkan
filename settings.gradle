@@ -11,6 +11,9 @@ include ':org.sheepy.lily.vulkan.demo'
 include ':org.sheepy.lily.vulkan.gameoflife'
 include ':org.sheepy.lily.vulkan.nuklear'
 
+include ':org.sheepy.lily.vulkan.extra.api'
+include ':org.sheepy.lily.vulkan.extra.graphic'
+
 // Common
 include ':org.sheepy.lily.core.api'
 project(':org.sheepy.lily.core.api').projectDir = new File(settingsDir, 'Lily-core/org.sheepy.lily.core.api')

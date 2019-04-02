@@ -1,0 +1,25 @@
+@GenModel(cleanup="true", codeFormatting="true")
+@GenModel(modelDirectory="/org.sheepy.lily.vulkan.extra.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.lily.vulkan.extra.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+@GenModel(modelName="GraphicExtra", prefix="GraphicExtra")
+
+package org.sheepy.lily.vulkan.extra.model.graphic
+
+import org.sheepy.lily.vulkan.model.process.AbstractPipeline
+import org.sheepy.lily.vulkan.model.process.AbstractProcess
+import org.sheepy.lily.vulkan.model.enumeration.EAccess
+import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+import org.sheepy.lily.vulkan.model.resource.Image
+
+class ImagePipeline extends AbstractPipeline
+{
+	refers Image[1..1] image
+	EPipelineStage imageSrcStage
+	EPipelineStage imageDstStage
+	unique EAccess[] imageSrcAccessMask
+	unique EAccess[] imageDstAccessMask
+	refers AbstractProcess srcQueue
+}
+

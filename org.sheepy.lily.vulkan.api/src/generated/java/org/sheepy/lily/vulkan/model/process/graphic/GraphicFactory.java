@@ -222,15 +222,6 @@ public interface GraphicFactory extends EFactory
 	InputAssembly createInputAssembly();
 
 	/**
-	 * Returns a new object of class '<em>Image Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Image Pipeline</em>'.
-	 * @generated
-	 */
-	ImagePipeline createImagePipeline();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
