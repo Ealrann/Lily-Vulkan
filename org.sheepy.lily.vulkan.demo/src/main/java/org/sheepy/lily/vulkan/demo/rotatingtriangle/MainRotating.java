@@ -2,10 +2,10 @@ package org.sheepy.lily.vulkan.demo.rotatingtriangle;
 
 import org.sheepy.lily.core.api.application.ApplicationLauncher;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.demo.mesh.MeshAdapter;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
 import org.sheepy.lily.vulkan.demo.mesh.MeshModelFactory;
+import org.sheepy.lily.vulkan.demo.mesh.MeshPipelineAdapter;
 import org.sheepy.lily.vulkan.demo.triangle.TriangleMeshBuilder;
 import org.sheepy.lily.vulkan.model.enumeration.EFrontFace;
 
@@ -18,7 +18,7 @@ public class MainRotating
 	{
 		DebugUtil.DEBUG_ENABLED = true;
 
-		MeshAdapter.meshBuilder = new TriangleMeshBuilder();
+		MeshPipelineAdapter.meshBuilder = new TriangleMeshBuilder();
 
 		final var meshConfiguration = new MeshConfiguration();
 		meshConfiguration.buildUniformBuffer = true;

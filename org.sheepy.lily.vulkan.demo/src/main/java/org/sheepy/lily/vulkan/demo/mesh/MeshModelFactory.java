@@ -3,10 +3,6 @@ package org.sheepy.lily.vulkan.demo.mesh;
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.impl.ApplicationImpl;
-import org.sheepy.lily.vulkan.demo.model.MeshBuffer;
-import org.sheepy.lily.vulkan.demo.model.MeshPipeline;
-import org.sheepy.lily.vulkan.demo.model.impl.MeshBufferImpl;
-import org.sheepy.lily.vulkan.demo.model.impl.MeshPipelineImpl;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
@@ -23,6 +19,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
@@ -34,6 +31,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.ExtraAttachmentDescript
 import org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.InputAssemblyImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.RasterizerImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
@@ -55,13 +53,13 @@ import org.sheepy.lily.vulkan.model.resource.impl.TextureImpl;
 
 public class MeshModelFactory
 {
+	public static final String MESH_PIPELINE_NAME = "MeshPipeline";
 	public static final String MESH_UNIFORM_BUFFER_NAME = "Mesh Uniform Buffer";
 
 	private final MeshConfiguration meshConfiguration;
 
 	public final Application application = new ApplicationImpl();
 	public final VulkanEngine engine = new VulkanEngineImpl();
-	public final MeshBuffer meshBuffer = new MeshBufferImpl();
 	public final GraphicProcess graphicProcess;
 
 	private DepthAttachment depthAttachment;
@@ -186,10 +184,10 @@ public class MeshModelFactory
 		final var colorBlend = new ColorBlendImpl();
 		colorBlend.getAttachments().add(new ColorBlendAttachmentImpl());
 
-		final MeshPipeline graphicPipeline = new MeshPipelineImpl();
+		final GraphicsPipeline graphicPipeline = new GraphicsPipelineImpl();
+		graphicPipeline.setName(MESH_PIPELINE_NAME);
 		graphicPipeline.getShaders().add(vertexShader);
 		graphicPipeline.getShaders().add(fragmentShader);
-		graphicPipeline.setMesh(meshBuffer);
 		graphicPipeline.setRasterizer(rasterizer);
 		graphicPipeline.setInputAssembly(new InputAssemblyImpl());
 		graphicPipeline.setViewportState(viewportState);
@@ -200,7 +198,6 @@ public class MeshModelFactory
 		final ResourcePkg resourceContainer = new ResourcePkgImpl();
 		graphicProcess.setResourcePkg(resourceContainer);
 
-		resourceContainer.getResources().add(meshBuffer);
 		resourceContainer.getResources().add(vertexShader);
 		resourceContainer.getResources().add(fragmentShader);
 		graphicProcess.setPipelinePkg(new PipelinePkgImpl());

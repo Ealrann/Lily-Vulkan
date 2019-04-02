@@ -2,20 +2,46 @@ package org.sheepy.lily.vulkan.demo.mesh;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.demo.model.MeshPipeline;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
+import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
 
 @Statefull
-@Adapter(scope = MeshPipeline.class)
+@Adapter(scope = GraphicsPipeline.class, name = MeshModelFactory.MESH_PIPELINE_NAME)
 public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 {
-	public MeshPipelineAdapter(MeshPipeline pipeline)
+	public static IIndexedBufferBuilder<?> meshBuilder = null;
+
+	private IndexedBuffer<?> indexBuffer;
+
+	public MeshPipelineAdapter(GraphicsPipeline pipeline)
 	{
 		super(pipeline);
+	}
+
+	@Override
+	public void allocate(MemoryStack stack, IAllocationContext context)
+	{
+		final var graphicContext = (IGraphicContext) context;
+		indexBuffer = meshBuilder.build(graphicContext);
+
+		super.allocate(stack, context);
+	}
+
+	@Override
+	public void free(IAllocationContext context)
+	{
+		super.free(context);
+
+		indexBuffer.free(context);
+		indexBuffer = null;
 	}
 
 	@Override
@@ -23,11 +49,6 @@ public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 	{
 		super.record(vkCommandBuffer, bindPoint, index);
 
-		final var meshPipeline = (MeshPipeline) pipeline;
-		final var mesh = meshPipeline.getMesh();
-		final var meshAdapter = MeshAdapter.adapt(mesh);
-
-		final var indexBuffer = meshAdapter.getIndexBuffer();
 		final var indexBufferId = indexBuffer.getIndexBufferAddress();
 
 		final long[] vertexBuffers = new long[] {
@@ -45,10 +66,6 @@ public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 	@Override
 	protected IVertexBufferDescriptor<?> getVertexBufferDescriptor()
 	{
-		final var meshPipeline = (MeshPipeline) pipeline;
-		final var mesh = meshPipeline.getMesh();
-		final var meshAdapter = MeshAdapter.adapt(mesh);
-
-		return meshAdapter.getIndexBuffer().getIndexBufferDescriptor();
+		return indexBuffer.getIndexBufferDescriptor();
 	}
 }

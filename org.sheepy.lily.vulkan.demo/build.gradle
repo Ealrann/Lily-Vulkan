@@ -12,10 +12,3 @@ dependencies {
 if (project.hasProperty('javaModule')) {
 	javaModule.name = 'org.sheepy.lily.vulkan.demo'
 }
-
-sourceSets {
-	main {
-		java.srcDirs = ['src/generated/java',
-			'src/main/java']
-	}
-}
