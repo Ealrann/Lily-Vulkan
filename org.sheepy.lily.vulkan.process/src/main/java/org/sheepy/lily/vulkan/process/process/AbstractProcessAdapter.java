@@ -74,7 +74,7 @@ public abstract class AbstractProcessAdapter
 	@Override
 	public void prepareNextAndExecute()
 	{
-		Integer next = prepareNext();
+		final Integer next = prepareNext();
 
 		if (next != null)
 		{
@@ -105,7 +105,7 @@ public abstract class AbstractProcessAdapter
 
 	private Integer acquireNextPlayer()
 	{
-		Integer next = prepareNextExecution();
+		final Integer next = prepareNextExecution();
 
 		if (process.isWaitingFenceDuringAcquire())
 		{

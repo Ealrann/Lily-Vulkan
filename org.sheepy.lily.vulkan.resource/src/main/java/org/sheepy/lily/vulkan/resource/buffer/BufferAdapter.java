@@ -15,7 +15,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
-import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 
@@ -82,16 +82,11 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	@Override
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
-		int stages = 0;
-		for (final EShaderStage stage : buffer.getShaderStages())
-		{
-			stages |= stage.getValue();
-		}
-
+		final int stageFlags = ModelUtil.getEnumeratedFlag(buffer.getShaderStages());
 		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(buffer.getDescriptorType().getValue());
 		res.descriptorCount(getDescriptorCount());
-		res.stageFlags(stages);
+		res.stageFlags(stageFlags);
 		return res;
 	}
 
