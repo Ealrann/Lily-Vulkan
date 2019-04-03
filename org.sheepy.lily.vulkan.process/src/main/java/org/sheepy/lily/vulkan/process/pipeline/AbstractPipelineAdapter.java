@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkPipelineLayoutCreateInfo;
@@ -20,6 +21,7 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
@@ -28,7 +30,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
-import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 @Statefull
 public abstract class AbstractPipelineAdapter
@@ -42,6 +43,7 @@ public abstract class AbstractPipelineAdapter
 
 	protected List<IAllocable> allocationDependencies = new ArrayList<>();
 	private List<IVkDescriptorSet> descriptorSets;
+	private LongBuffer descriptorSetAddressBuffer;
 
 	public AbstractPipelineAdapter(IPipeline pipeline)
 	{
@@ -85,6 +87,7 @@ public abstract class AbstractPipelineAdapter
 	{
 		final var vkDevice = ((IExecutionContext) context).getVkDevice();
 		vkDestroyPipelineLayout(vkDevice, pipelineLayout, null);
+		MemoryUtil.memFree(descriptorSetAddressBuffer);
 
 		allocationDependencies.clear();
 		pipelineLayout = -1;
@@ -128,29 +131,28 @@ public abstract class AbstractPipelineAdapter
 
 	protected long allocatePipelineLayout(MemoryStack stack, VkDevice vkDevice)
 	{
-		descriptorSets = List.copyOf(getDescriptorSets());
+		descriptorSets = List.copyOf(gatherDescriptorSets());
+		descriptorSetAddressBuffer = MemoryUtil.memAllocLong(descriptorSets.size());
 
-		LongBuffer bDescriptorSet = null;
+		LongBuffer bDescriptorSetLayouts = null;
 		if (descriptorSets.isEmpty() == false)
 		{
-			bDescriptorSet = stack.mallocLong(descriptorSets.size());
+			bDescriptorSetLayouts = stack.mallocLong(descriptorSets.size());
 			for (final IVkDescriptorSet vkDescriptorSet : descriptorSets)
 			{
 				if (vkDescriptorSet.getDescriptors().isEmpty() == false)
 				{
-					// Create Pipeline Layout
-					// -----------------------
-					bDescriptorSet.put(vkDescriptorSet.getLayoutId());
+					bDescriptorSetLayouts.put(vkDescriptorSet.getLayoutId());
 				}
 			}
-			bDescriptorSet.flip();
+			bDescriptorSetLayouts.flip();
 		}
 
 		// Create compute pipeline
 		final long[] aLayout = new long[1];
 		final VkPipelineLayoutCreateInfo info = VkPipelineLayoutCreateInfo.callocStack(stack);
 		info.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
-		info.pSetLayouts(bDescriptorSet);
+		info.pSetLayouts(bDescriptorSetLayouts);
 
 		preparePushConstant(stack, info);
 
@@ -192,13 +194,13 @@ public abstract class AbstractPipelineAdapter
 	}
 
 	@Override
-	public List<IVkDescriptorSet> getDescriptorSets()
+	public List<IVkDescriptorSet> gatherDescriptorSets()
 	{
 		final List<IVkDescriptorSet> res = new ArrayList<>();
 
 		if (pipeline instanceof AbstractPipeline)
 		{
-			var abstractPipeline = (AbstractPipeline) pipeline;
+			final var abstractPipeline = (AbstractPipeline) pipeline;
 			var ds = abstractPipeline.getDescriptorSet();
 			if (ds == null)
 			{
@@ -215,12 +217,27 @@ public abstract class AbstractPipelineAdapter
 		return res;
 	}
 
-	public void bindDescriptor(VkCommandBuffer commandBuffer, int bindPoint, int descriptorSetIndex)
+	public void bindDescriptor(	VkCommandBuffer commandBuffer,
+								int bindPoint,
+								Integer[] descriptorSetIndexes)
 	{
-		if (descriptorSetIndex < descriptorSets.size())
+		descriptorSetAddressBuffer.clear();
+
+		for (final Integer index : descriptorSetIndexes)
 		{
-			final IVkDescriptorSet descriptorSet = descriptorSets.get(descriptorSetIndex);
-			descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, getLayoutId());
+			if (index < descriptorSets.size())
+			{
+				final var descriptorSet = descriptorSets.get(index);
+				final var descriptorId = descriptorSet.getId();
+				descriptorSetAddressBuffer.put(descriptorId);
+			}
+		}
+		descriptorSetAddressBuffer.flip();
+
+		if (descriptorSetAddressBuffer.limit() > 0)
+		{
+			vkCmdBindDescriptorSets(commandBuffer, bindPoint, pipelineLayout, 0,
+					descriptorSetAddressBuffer, null);
 		}
 	}
 

@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptor;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
-import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
-import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkDescriptorSet;
 
 @Statefull
@@ -32,18 +30,10 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context, DescriptorPool pool)
+	public void allocate(MemoryStack stack, IAllocationContext context, long poolAddress)
 	{
 		vkDescriptorSet = new VkDescriptorSet(getDescriptors());
-		vkDescriptorSet.allocate(stack, context, pool);
-	}
-
-	@Override
-	public void bindDescriptorSet(	VkCommandBuffer commandBuffer,
-									int bindPoint,
-									long pipelineLayoutId)
-	{
-		vkDescriptorSet.bindDescriptorSet(commandBuffer, bindPoint, pipelineLayoutId);
+		vkDescriptorSet.allocate(stack, context, poolAddress);
 	}
 
 	@Override

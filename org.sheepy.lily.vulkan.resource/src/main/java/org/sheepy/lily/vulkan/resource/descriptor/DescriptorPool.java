@@ -12,6 +12,7 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.Logger;
 
 public class DescriptorPool implements IAllocable
@@ -59,7 +60,7 @@ public class DescriptorPool implements IAllocable
 
 		for (final var descriptorSet : descriptorSets)
 		{
-			descriptorSet.allocate(stack, context, this);
+			descriptorSet.allocate(stack, context, id);
 		}
 	}
 
@@ -95,7 +96,7 @@ public class DescriptorPool implements IAllocable
 
 		for (final var descriptorSet : descriptorSets)
 		{
-			bDescriptorSet.put(descriptorSet.getLayoutId());
+			bDescriptorSet.put(descriptorSet.getId());
 		}
 
 		bDescriptorSet.flip();

@@ -7,8 +7,8 @@ import java.util.List;
 import org.joml.Math;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkRect2D;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
-import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public class NuklearDrawer
 {
@@ -66,7 +66,11 @@ public class NuklearDrawer
 		if (previousDescriptorSet != currentIndex)
 		{
 			final var descriptorSet = descriptorSets.get(currentIndex);
-			descriptorSet.bindDescriptorSet(commandBuffer, bindPoint, layoutId);
+
+			vkCmdBindDescriptorSets(commandBuffer, bindPoint, layoutId, 0, new long[] {
+					descriptorSet.getId()
+			}, null);
+
 			previousDescriptorSet = currentIndex;
 		}
 	}

@@ -54,7 +54,9 @@ public abstract class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAd
 
 		pushConstants(vkCommandBuffer);
 
-		bindDescriptor(vkCommandBuffer, bindPoint, 0);
+		bindDescriptor(vkCommandBuffer, bindPoint, new Integer[] {
+				0
+		});
 	}
 
 	protected void pushConstants(final VkCommandBuffer vkCommandBuffer)

@@ -14,6 +14,7 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocationContextProvider;
 import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -21,7 +22,6 @@ import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
-import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 @Statefull
 public abstract class AbstractProcessAdapter
@@ -182,7 +182,7 @@ public abstract class AbstractProcessAdapter
 		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
 			final var pipelineAdapter = pipelineAdapters.get(i);
-			res.addAll(pipelineAdapter.getDescriptorSets());
+			res.addAll(pipelineAdapter.gatherDescriptorSets());
 		}
 
 		return res;

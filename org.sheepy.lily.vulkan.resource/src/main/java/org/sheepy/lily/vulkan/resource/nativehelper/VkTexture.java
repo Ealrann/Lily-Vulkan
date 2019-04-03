@@ -17,6 +17,7 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptor;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
@@ -24,7 +25,6 @@ import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.lily.vulkan.resource.buffer.CPUBufferBackend;
-import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 
 public class VkTexture implements IVkDescriptor

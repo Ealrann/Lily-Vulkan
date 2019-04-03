@@ -32,6 +32,7 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
 import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
@@ -57,7 +58,6 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ViewportStateFactory;
 import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
 import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.IGraphicsPipelineAdapter;
-import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 @Statefull
 @Adapter(scope = NuklearPipeline.class)
@@ -129,7 +129,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		inputManager.setInputCatcher(inputCatcher);
 
 		recorder = new DrawRecorder(nkContext, DebugUtil.DEBUG_ENABLED);
-		drawer = new NuklearDrawer(getDescriptorSets(), resources, pipelineLayout);
+		drawer = new NuklearDrawer(gatherDescriptorSets(), resources, pipelineLayout);
 
 		// Prepare a first render for the opening of the screen
 		layout(Collections.emptyList());
@@ -285,7 +285,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	}
 
 	@Override
-	public List<IVkDescriptorSet> getDescriptorSets()
+	public List<IVkDescriptorSet> gatherDescriptorSets()
 	{
 		return resources.getDescriptorSets();
 	}

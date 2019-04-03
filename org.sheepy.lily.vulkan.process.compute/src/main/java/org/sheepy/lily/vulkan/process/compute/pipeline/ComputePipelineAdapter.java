@@ -128,7 +128,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter
 	@Override
 	public void record(VkCommandBuffer commandBuffer, int bindPoint, int index)
 	{
-		bindDescriptor(commandBuffer, bindPoint, 0);
+		bindDescriptor(commandBuffer, bindPoint, new Integer[]{0});
 		recordComputers(commandBuffer, bindPoint);
 	}
 

@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
@@ -15,10 +14,9 @@ import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
-import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
 
 public class VkDescriptorSet implements IVkDescriptorSet
 {
@@ -40,8 +38,13 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context, DescriptorPool pool)
+	public void allocate(MemoryStack stack, IAllocationContext context, long poolAddress)
 	{
+		if (layoutId != UNINITIALIZED)
+		{
+			return;
+		}
+
 		final var device = ((IExecutionContext) context).getVkDevice();
 		final var layoutBindings = createLayoutBinding(stack);
 
@@ -60,7 +63,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 
 		final var allocInfo = VkDescriptorSetAllocateInfo.callocStack(stack);
 		allocInfo.sType(VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO);
-		allocInfo.descriptorPool(pool.getId());
+		allocInfo.descriptorPool(poolAddress);
 		allocInfo.pSetLayouts(layouts);
 
 		bDescriptorSet = MemoryUtil.memAllocLong(1);
@@ -77,6 +80,11 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	@Override
 	public void free(IAllocationContext context)
 	{
+		if (layoutId == UNINITIALIZED)
+		{
+			return;
+		}
+
 		final var device = ((IExecutionContext) context).getVkDevice();
 		vkDestroyDescriptorSetLayout(device, layoutId, null);
 		layoutId = UNINITIALIZED;
@@ -119,16 +127,13 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	}
 
 	@Override
-	public void bindDescriptorSet(	VkCommandBuffer commandBuffer,
-									int bindPoint,
-									long pipelineLayoutId)
+	public long getId()
 	{
-		vkCmdBindDescriptorSets(commandBuffer, bindPoint, pipelineLayoutId, 0, bDescriptorSet,
-				null);
+		return descriptorSetId;
 	}
 
 	@Override
-	public long getId()
+	public long getLayoutId()
 	{
 		if (layoutId == UNINITIALIZED)
 		{
@@ -136,12 +141,6 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		}
 
 		return layoutId;
-	}
-
-	@Override
-	public long getLayoutId()
-	{
-		return getId();
 	}
 
 	@Override
