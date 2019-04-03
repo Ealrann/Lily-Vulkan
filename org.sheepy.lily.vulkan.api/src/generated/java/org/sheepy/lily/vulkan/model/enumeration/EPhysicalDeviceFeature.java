@@ -20,9 +20,18 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum EPhysicalDeviceFeature implements Enumerator
 {
 	/**
-	 * The '<em><b>FILL MODE NON SOLID</b></em>' literal object.
+	 * The '<em><b>GEOMETRY SHADER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #GEOMETRY_SHADER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	GEOMETRY_SHADER(0, "GEOMETRY_SHADER", "GEOMETRY_SHADER"),
+	/**
+	 * The '<em><b>FILL MODE NON SOLID</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
 	 * @see #FILL_MODE_NON_SOLID_VALUE
 	 * @generated
 	 * @ordered
@@ -38,6 +47,17 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	 * @ordered
 	 */
 	WIDE_LINES(0, "WIDE_LINES", "WIDE_LINES");
+
+	/**
+	 * The '<em><b>GEOMETRY SHADER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GEOMETRY_SHADER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GEOMETRY_SHADER_VALUE = 0;
 
 	/**
 	 * The '<em><b>FILL MODE NON SOLID</b></em>' literal value.
@@ -68,7 +88,7 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	 * @generated
 	 */
 	private static final EPhysicalDeviceFeature[] VALUES_ARRAY = new EPhysicalDeviceFeature[] {
-			FILL_MODE_NON_SOLID, WIDE_LINES,
+			GEOMETRY_SHADER, FILL_MODE_NON_SOLID, WIDE_LINES,
 	};
 
 	/**
@@ -134,8 +154,8 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	{
 		switch (value)
 		{
-		case FILL_MODE_NON_SOLID_VALUE:
-			return FILL_MODE_NON_SOLID;
+		case GEOMETRY_SHADER_VALUE:
+			return GEOMETRY_SHADER;
 		}
 		return null;
 	}

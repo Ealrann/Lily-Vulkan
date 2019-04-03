@@ -23,6 +23,7 @@ enum EImageLayout
 
 enum EPhysicalDeviceFeature
 {
+	GEOMETRY_SHADER,
 	FILL_MODE_NON_SOLID,
 	WIDE_LINES
 }

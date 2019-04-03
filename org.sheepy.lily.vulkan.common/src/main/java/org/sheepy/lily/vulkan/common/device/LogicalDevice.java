@@ -98,7 +98,9 @@ public class LogicalDevice implements ILogicalDevice
 		final boolean fillModeNonSolid = features
 				.contains(EPhysicalDeviceFeature.FILL_MODE_NON_SOLID);
 		final boolean wideLines = features.contains(EPhysicalDeviceFeature.WIDE_LINES);
+		final boolean geometryShader = features.contains(EPhysicalDeviceFeature.GEOMETRY_SHADER);
 
+		deviceFeatures.geometryShader(geometryShader);
 		deviceFeatures.fillModeNonSolid(fillModeNonSolid);
 		deviceFeatures.wideLines(wideLines);
 
