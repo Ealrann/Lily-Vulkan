@@ -127,6 +127,56 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TerrainRendererItemProvider terrainRendererItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTerrainRendererAdapter()
+	{
+		if (terrainRendererItemProvider == null)
+		{
+			terrainRendererItemProvider = new TerrainRendererItemProvider(this);
+		}
+
+		return terrainRendererItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ScreenRendererItemProvider screenRendererItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createScreenRendererAdapter()
+	{
+		if (screenRendererItemProvider == null)
+		{
+			screenRendererItemProvider = new ScreenRendererItemProvider(this);
+		}
+
+		return screenRendererItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -276,6 +326,8 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 	public void dispose()
 	{
 		if (imagePipelineItemProvider != null) imagePipelineItemProvider.dispose();
+		if (terrainRendererItemProvider != null) terrainRendererItemProvider.dispose();
+		if (screenRendererItemProvider != null) screenRendererItemProvider.dispose();
 	}
 
 	/**
@@ -333,6 +385,14 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
 								GraphicExtraFactory.eINSTANCE.createImagePipeline()));
 
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+								GraphicExtraFactory.eINSTANCE.createTerrainRenderer()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+								GraphicExtraFactory.eINSTANCE.createScreenRenderer()));
+
 				return null;
 			}
 
@@ -347,6 +407,14 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 				newChildDescriptors.add(createChildParameter(
 						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
 						GraphicExtraFactory.eINSTANCE.createImagePipeline()));
+
+				newChildDescriptors.add(createChildParameter(
+						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
+						GraphicExtraFactory.eINSTANCE.createTerrainRenderer()));
+
+				newChildDescriptors.add(createChildParameter(
+						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
+						GraphicExtraFactory.eINSTANCE.createScreenRenderer()));
 
 				return null;
 			}

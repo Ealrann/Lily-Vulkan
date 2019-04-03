@@ -66,6 +66,10 @@ public class GraphicExtraFactoryImpl extends EFactoryImpl implements GraphicExtr
 		{
 		case GraphicExtraPackage.IMAGE_PIPELINE:
 			return createImagePipeline();
+		case GraphicExtraPackage.TERRAIN_RENDERER:
+			return createTerrainRenderer();
+		case GraphicExtraPackage.SCREEN_RENDERER:
+			return createScreenRenderer();
 		default:
 			throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier");
@@ -82,6 +86,30 @@ public class GraphicExtraFactoryImpl extends EFactoryImpl implements GraphicExtr
 	{
 		ImagePipelineImpl imagePipeline = new ImagePipelineImpl();
 		return imagePipeline;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TerrainRenderer createTerrainRenderer()
+	{
+		TerrainRendererImpl terrainRenderer = new TerrainRendererImpl();
+		return terrainRenderer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ScreenRenderer createScreenRenderer()
+	{
+		ScreenRendererImpl screenRenderer = new ScreenRendererImpl();
+		return screenRenderer;
 	}
 
 	/**

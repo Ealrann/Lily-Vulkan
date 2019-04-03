@@ -7,6 +7,7 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
@@ -25,7 +26,6 @@ import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.RasterizerBuilder
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ShaderStageBuilder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.builder.ViewportStateBuilder;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
-import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
 public abstract class IGraphicsPipelineAdapter extends AbstractPipelineAdapter
 {

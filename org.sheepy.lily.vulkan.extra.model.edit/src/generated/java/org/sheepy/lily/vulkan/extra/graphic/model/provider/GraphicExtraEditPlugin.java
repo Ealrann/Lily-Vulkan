@@ -18,6 +18,7 @@ import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
 
 import org.sheepy.lily.vulkan.model.enumeration.provider.EnumerationEditPlugin;
 
+import org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicEditPlugin;
 import org.sheepy.lily.vulkan.model.process.provider.ProcessEditPlugin;
 
 import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
@@ -64,6 +65,7 @@ public final class GraphicExtraEditPlugin extends EMFPlugin
 				InferenceEditPlugin.INSTANCE,
 				ResourceEditPlugin.INSTANCE,
 				EnumerationEditPlugin.INSTANCE,
+				GraphicEditPlugin.INSTANCE,
 				ActionEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
 		});

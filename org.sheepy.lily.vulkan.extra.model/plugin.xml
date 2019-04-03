@@ -26,7 +26,7 @@
       <package
             uri="org.sheepy.lily.vulkan.extra.graphic.model"
             class="org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage"
-            genModel="model/Graphic.xcore"/>
+            genModel="model/GraphicExtra.xcore"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">

@@ -3,6 +3,7 @@
 @GenModel(modelName="Nuklear", prefix="Nuklear")
 @GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
 @GenModel(childCreationExtenders="true")
+@GenModel(updateClasspath="false")
 
 package org.sheepy.lily.vulkan.extra.nuklear.model
 

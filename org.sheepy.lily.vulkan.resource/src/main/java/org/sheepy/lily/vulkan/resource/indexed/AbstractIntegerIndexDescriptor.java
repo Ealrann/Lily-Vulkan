@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.vulkan.api.resource.IIndexedBufferDescriptor;
+import org.sheepy.lily.vulkan.api.resource.IVertex;
 
 public abstract class AbstractIntegerIndexDescriptor<T extends IVertex> implements IIndexedBufferDescriptor<T>
 {

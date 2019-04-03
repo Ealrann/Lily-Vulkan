@@ -22,14 +22,18 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraFactory;
 import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage;
+import org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider;
 import org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline;
 
+import org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer;
+import org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -46,6 +50,26 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 	 * @generated
 	 */
 	private EClass imagePipelineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass terrainRendererEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iMeshProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass screenRendererEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -107,6 +131,7 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 		InferencePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		GraphicPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
@@ -208,6 +233,50 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 	 * @generated
 	 */
 	@Override
+	public EClass getTerrainRenderer()
+	{
+		return terrainRendererEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTerrainRenderer_MeshProvider()
+	{
+		return (EReference) terrainRendererEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIMeshProvider()
+	{
+		return iMeshProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getScreenRenderer()
+	{
+		return screenRendererEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public GraphicExtraFactory getGraphicExtraFactory()
 	{
 		return (GraphicExtraFactory) getEFactoryInstance();
@@ -240,6 +309,13 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_SRC_ACCESS_MASK);
 		createEAttribute(imagePipelineEClass, IMAGE_PIPELINE__IMAGE_DST_ACCESS_MASK);
 		createEReference(imagePipelineEClass, IMAGE_PIPELINE__SRC_QUEUE);
+
+		terrainRendererEClass = createEClass(TERRAIN_RENDERER);
+		createEReference(terrainRendererEClass, TERRAIN_RENDERER__MESH_PROVIDER);
+
+		iMeshProviderEClass = createEClass(IMESH_PROVIDER);
+
+		screenRendererEClass = createEClass(SCREEN_RENDERER);
 	}
 
 	/**
@@ -273,6 +349,8 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 				.getEPackage(ResourcePackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(EnumerationPackage.eNS_URI);
+		GraphicPackage theGraphicPackage = (GraphicPackage) EPackage.Registry.INSTANCE
+				.getEPackage(GraphicPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -280,6 +358,10 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 
 		// Add supertypes to classes
 		imagePipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
+		terrainRendererEClass.getESuperTypes().add(theGraphicPackage.getGraphicsPipeline());
+		terrainRendererEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
+		screenRendererEClass.getESuperTypes().add(theGraphicPackage.getGraphicsPipeline());
+		screenRendererEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(imagePipelineEClass, ImagePipeline.class, "ImagePipeline", !IS_ABSTRACT,
@@ -304,6 +386,19 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 				"srcQueue", null, 0, 1, ImagePipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(terrainRendererEClass, TerrainRenderer.class, "TerrainRenderer", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTerrainRenderer_MeshProvider(), this.getIMeshProvider(), null,
+				"meshProvider", null, 0, 1, TerrainRenderer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(iMeshProviderEClass, IMeshProvider.class, "IMeshProvider", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(screenRendererEClass, ScreenRenderer.class, "ScreenRenderer", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -10,6 +10,8 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.resource.IIndexedBufferDescriptor;
+import org.sheepy.lily.vulkan.api.resource.IVertex;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.lily.vulkan.resource.buffer.BufferGPUFiller;

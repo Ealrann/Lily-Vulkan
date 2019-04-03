@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.indexed;
+package org.sheepy.lily.vulkan.api.resource;
 
 import java.nio.ByteBuffer;
 

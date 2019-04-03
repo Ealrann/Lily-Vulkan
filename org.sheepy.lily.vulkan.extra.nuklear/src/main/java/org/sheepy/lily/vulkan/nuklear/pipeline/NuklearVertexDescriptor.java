@@ -9,9 +9,9 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
+import org.sheepy.lily.vulkan.api.resource.IIndexedBufferDescriptor;
+import org.sheepy.lily.vulkan.api.resource.IVertex;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
-import org.sheepy.lily.vulkan.resource.indexed.IIndexedBufferDescriptor;
-import org.sheepy.lily.vulkan.resource.indexed.IVertex;
 
 public class NuklearVertexDescriptor implements IIndexedBufferDescriptor<GuiVertex>
 {

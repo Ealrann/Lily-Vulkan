@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -270,6 +271,477 @@ public interface GraphicExtraPackage extends EPackage
 	int IMAGE_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.impl.TerrainRendererImpl <em>Terrain Renderer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.TerrainRendererImpl
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getTerrainRenderer()
+	 * @generated
+	 */
+	int TERRAIN_RENDERER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__CONTENT_OBJECTS = GraphicPackage.GRAPHICS_PIPELINE__CONTENT_OBJECTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__UNITS = GraphicPackage.GRAPHICS_PIPELINE__UNITS;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__DESCRIPTOR_SET_REF = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__DESCRIPTOR_SET = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
+
+	/**
+	 * The feature id for the '<em><b>Constants</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__CONSTANTS = GraphicPackage.GRAPHICS_PIPELINE__CONSTANTS;
+
+	/**
+	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__SHADERS = GraphicPackage.GRAPHICS_PIPELINE__SHADERS;
+
+	/**
+	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__VIEWPORT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE;
+
+	/**
+	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__INPUT_ASSEMBLY = GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY;
+
+	/**
+	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__RASTERIZER = GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER;
+
+	/**
+	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__COLOR_BLEND = GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__DYNAMIC_STATE = GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE;
+
+	/**
+	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__SUBPASS = GraphicPackage.GRAPHICS_PIPELINE__SUBPASS;
+
+	/**
+	 * The feature id for the '<em><b>Mesh Provider</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER__MESH_PROVIDER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Terrain Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER___LINFERENCE_OBJECT = GraphicPackage.GRAPHICS_PIPELINE___LINFERENCE_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER___CREATE_CONTAINMENT_ELIST__ECLASS = GraphicPackage.GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
+
+	/**
+	 * The operation id for the '<em>LContents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER___LCONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LCONTENTS;
+
+	/**
+	 * The operation id for the '<em>LParent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER___LPARENT = GraphicPackage.GRAPHICS_PIPELINE___LPARENT;
+
+	/**
+	 * The operation id for the '<em>LAll Contents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER___LALL_CONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LALL_CONTENTS;
+
+	/**
+	 * The number of operations of the '<em>Terrain Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERRAIN_RENDERER_OPERATION_COUNT = GraphicPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider <em>IMesh Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getIMeshProvider()
+	 * @generated
+	 */
+	int IMESH_PROVIDER = 2;
+
+	/**
+	 * The number of structural features of the '<em>IMesh Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMESH_PROVIDER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IMesh Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMESH_PROVIDER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.impl.ScreenRendererImpl <em>Screen Renderer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.ScreenRendererImpl
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getScreenRenderer()
+	 * @generated
+	 */
+	int SCREEN_RENDERER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__CONTENT_OBJECTS = GraphicPackage.GRAPHICS_PIPELINE__CONTENT_OBJECTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__UNITS = GraphicPackage.GRAPHICS_PIPELINE__UNITS;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__DESCRIPTOR_SET_REF = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__DESCRIPTOR_SET = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
+
+	/**
+	 * The feature id for the '<em><b>Constants</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__CONSTANTS = GraphicPackage.GRAPHICS_PIPELINE__CONSTANTS;
+
+	/**
+	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__SHADERS = GraphicPackage.GRAPHICS_PIPELINE__SHADERS;
+
+	/**
+	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__VIEWPORT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE;
+
+	/**
+	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__INPUT_ASSEMBLY = GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY;
+
+	/**
+	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__RASTERIZER = GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER;
+
+	/**
+	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__COLOR_BLEND = GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__DYNAMIC_STATE = GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE;
+
+	/**
+	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__SUBPASS = GraphicPackage.GRAPHICS_PIPELINE__SUBPASS;
+
+	/**
+	 * The number of structural features of the '<em>Screen Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER___LINFERENCE_OBJECT = GraphicPackage.GRAPHICS_PIPELINE___LINFERENCE_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER___CREATE_CONTAINMENT_ELIST__ECLASS = GraphicPackage.GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
+
+	/**
+	 * The operation id for the '<em>LContents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER___LCONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LCONTENTS;
+
+	/**
+	 * The operation id for the '<em>LParent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER___LPARENT = GraphicPackage.GRAPHICS_PIPELINE___LPARENT;
+
+	/**
+	 * The operation id for the '<em>LAll Contents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER___LALL_CONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LALL_CONTENTS;
+
+	/**
+	 * The number of operations of the '<em>Screen Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER_OPERATION_COUNT = GraphicPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline <em>Image Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -344,6 +816,47 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 */
 	EReference getImagePipeline_SrcQueue();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer <em>Terrain Renderer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Terrain Renderer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer
+	 * @generated
+	 */
+	EClass getTerrainRenderer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer#getMeshProvider <em>Mesh Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Mesh Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer#getMeshProvider()
+	 * @see #getTerrainRenderer()
+	 * @generated
+	 */
+	EReference getTerrainRenderer_MeshProvider();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider <em>IMesh Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IMesh Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider
+	 * @generated
+	 */
+	EClass getIMeshProvider();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer <em>Screen Renderer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Screen Renderer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer
+	 * @generated
+	 */
+	EClass getScreenRenderer();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -428,6 +941,44 @@ public interface GraphicExtraPackage extends EPackage
 		 * @generated
 		 */
 		EReference IMAGE_PIPELINE__SRC_QUEUE = eINSTANCE.getImagePipeline_SrcQueue();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.impl.TerrainRendererImpl <em>Terrain Renderer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.TerrainRendererImpl
+		 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getTerrainRenderer()
+		 * @generated
+		 */
+		EClass TERRAIN_RENDERER = eINSTANCE.getTerrainRenderer();
+
+		/**
+		 * The meta object literal for the '<em><b>Mesh Provider</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TERRAIN_RENDERER__MESH_PROVIDER = eINSTANCE.getTerrainRenderer_MeshProvider();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider <em>IMesh Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider
+		 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getIMeshProvider()
+		 * @generated
+		 */
+		EClass IMESH_PROVIDER = eINSTANCE.getIMeshProvider();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.impl.ScreenRendererImpl <em>Screen Renderer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.ScreenRendererImpl
+		 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getScreenRenderer()
+		 * @generated
+		 */
+		EClass SCREEN_RENDERER = eINSTANCE.getScreenRenderer();
 
 	}
 

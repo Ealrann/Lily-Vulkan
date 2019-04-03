@@ -12,6 +12,8 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess
 import org.sheepy.lily.vulkan.model.enumeration.EAccess
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.lily.vulkan.model.resource.Image
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline
+import org.sheepy.lily.vulkan.model.process.IPipeline
 
 class ImagePipeline extends AbstractPipeline
 {
@@ -21,4 +23,17 @@ class ImagePipeline extends AbstractPipeline
 	unique EAccess[] imageSrcAccessMask
 	unique EAccess[] imageDstAccessMask
 	refers AbstractProcess srcQueue
+}
+
+class TerrainRenderer extends GraphicsPipeline, IPipeline
+{
+	refers IMeshProvider meshProvider
+}
+
+interface IMeshProvider
+{
+}
+
+class ScreenRenderer extends GraphicsPipeline, IPipeline
+{
 }

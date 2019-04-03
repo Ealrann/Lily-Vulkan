@@ -19,6 +19,9 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 
 /**
  * <!-- begin-user-doc -->
@@ -96,6 +99,45 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case GraphicExtraPackage.TERRAIN_RENDERER:
+		{
+			TerrainRenderer terrainRenderer = (TerrainRenderer) theEObject;
+			T result = caseTerrainRenderer(terrainRenderer);
+			if (result == null) result = caseGraphicsPipeline(terrainRenderer);
+			if (result == null) result = caseAbstractGraphicsPipeline(terrainRenderer);
+			if (result == null) result = caseAbstractPipeline(terrainRenderer);
+			if (result == null) result = caseIGraphicsPipeline(terrainRenderer);
+			if (result == null) result = caseIPipeline(terrainRenderer);
+			if (result == null) result = caseIResourceContainer(terrainRenderer);
+			if (result == null) result = caseLObject(terrainRenderer);
+			if (result == null) result = caseLNamedElement(terrainRenderer);
+			if (result == null) result = caseIInferenceObject(terrainRenderer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicExtraPackage.IMESH_PROVIDER:
+		{
+			IMeshProvider iMeshProvider = (IMeshProvider) theEObject;
+			T result = caseIMeshProvider(iMeshProvider);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicExtraPackage.SCREEN_RENDERER:
+		{
+			ScreenRenderer screenRenderer = (ScreenRenderer) theEObject;
+			T result = caseScreenRenderer(screenRenderer);
+			if (result == null) result = caseGraphicsPipeline(screenRenderer);
+			if (result == null) result = caseAbstractGraphicsPipeline(screenRenderer);
+			if (result == null) result = caseAbstractPipeline(screenRenderer);
+			if (result == null) result = caseIGraphicsPipeline(screenRenderer);
+			if (result == null) result = caseIPipeline(screenRenderer);
+			if (result == null) result = caseIResourceContainer(screenRenderer);
+			if (result == null) result = caseLObject(screenRenderer);
+			if (result == null) result = caseLNamedElement(screenRenderer);
+			if (result == null) result = caseIInferenceObject(screenRenderer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -113,6 +155,54 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImagePipeline(ImagePipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Terrain Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Terrain Renderer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTerrainRenderer(TerrainRenderer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IMesh Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IMesh Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIMeshProvider(IMeshProvider object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Screen Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Screen Renderer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseScreenRenderer(ScreenRenderer object)
 	{
 		return null;
 	}
@@ -209,6 +299,54 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractPipeline(AbstractPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IGraphics Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IGraphics Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIGraphicsPipeline(IGraphicsPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Graphics Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Graphics Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractGraphicsPipeline(AbstractGraphicsPipeline object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Graphics Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Graphics Pipeline</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGraphicsPipeline(GraphicsPipeline object)
 	{
 		return null;
 	}

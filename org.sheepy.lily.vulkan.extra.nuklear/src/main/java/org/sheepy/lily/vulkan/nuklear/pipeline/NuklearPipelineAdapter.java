@@ -31,6 +31,7 @@ import org.sheepy.lily.core.model.presentation.UIPage;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
+import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
 import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
@@ -57,7 +58,6 @@ import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
 import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.IGraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.resource.indexed.IVertexBufferDescriptor;
 
 @Statefull
 @Adapter(scope = NuklearPipeline.class)

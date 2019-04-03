@@ -33,6 +33,24 @@ public interface GraphicExtraFactory extends EFactory
 	ImagePipeline createImagePipeline();
 
 	/**
+	 * Returns a new object of class '<em>Terrain Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Terrain Renderer</em>'.
+	 * @generated
+	 */
+	TerrainRenderer createTerrainRenderer();
+
+	/**
+	 * Returns a new object of class '<em>Screen Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Screen Renderer</em>'.
+	 * @generated
+	 */
+	ScreenRenderer createScreenRenderer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
