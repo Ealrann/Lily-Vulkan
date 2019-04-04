@@ -7,10 +7,10 @@ import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 
 public class GraphicCommandBuffer extends AbstractCommandBuffer
 {

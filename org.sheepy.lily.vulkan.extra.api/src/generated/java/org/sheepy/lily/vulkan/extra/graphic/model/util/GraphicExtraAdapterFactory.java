@@ -4,24 +4,19 @@ package org.sheepy.lily.vulkan.extra.graphic.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.sheepy.lily.core.model.inference.IInferenceObject;
-
 import org.sheepy.lily.core.model.root.LObject;
-
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.extra.graphic.model.*;
-
+import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage;
+import org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider;
+import org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline;
+import org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer;
+import org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 
@@ -141,11 +136,6 @@ public class GraphicExtraAdapterFactory extends AdapterFactoryImpl
 		public Adapter caseIGraphicsPipeline(IGraphicsPipeline object)
 		{
 			return createIGraphicsPipelineAdapter();
-		}
-		@Override
-		public Adapter caseAbstractGraphicsPipeline(AbstractGraphicsPipeline object)
-		{
-			return createAbstractGraphicsPipelineAdapter();
 		}
 		@Override
 		public Adapter caseGraphicsPipeline(GraphicsPipeline object)
@@ -334,21 +324,6 @@ public class GraphicExtraAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIGraphicsPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline <em>Abstract Graphics Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline
-	 * @generated
-	 */
-	public Adapter createAbstractGraphicsPipelineAdapter()
 	{
 		return null;
 	}

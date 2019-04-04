@@ -107,10 +107,10 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		ProcessPackage.eINSTANCE.eClass();
 		GraphicPackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
+		ProcessPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
@@ -252,7 +252,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		GraphicPackage theGraphicPackage = (GraphicPackage)EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
@@ -262,7 +261,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		nuklearPipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
 		nuklearPipelineEClass.getESuperTypes().add(theGraphicPackage.getIGUIPipeline());
 		nuklearConstantsEClass.getESuperTypes().add(theResourcePackage.getConstants());
 

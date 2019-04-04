@@ -94,10 +94,10 @@ public class NuklearSwitch<T> extends Switch<T>
 				NuklearPipeline nuklearPipeline = (NuklearPipeline)theEObject;
 				T result = caseNuklearPipeline(nuklearPipeline);
 				if (result == null) result = caseIGUIPipeline(nuklearPipeline);
-				if (result == null) result = caseLObject(nuklearPipeline);
-				if (result == null) result = caseLNamedElement(nuklearPipeline);
 				if (result == null) result = caseIGraphicsPipeline(nuklearPipeline);
 				if (result == null) result = caseIPipeline(nuklearPipeline);
+				if (result == null) result = caseLObject(nuklearPipeline);
+				if (result == null) result = caseLNamedElement(nuklearPipeline);
 				if (result == null) result = caseIInferenceObject(nuklearPipeline);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

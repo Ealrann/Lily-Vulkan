@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.lwjgl.nuklear.NkUserFont;
+import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptor;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
@@ -16,7 +17,6 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexBuffer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NullTexture;
 import org.sheepy.lily.vulkan.nuklear.util.NkFontLoader;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkDescriptorSet;
-import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 import org.sheepy.lily.vulkan.resource.texture.FontAdapter;
 
 public class NuklearResources
@@ -103,8 +103,8 @@ public class NuklearResources
 		{
 			final var font = nkPipeline.getFont();
 			final var fontAdapter = FontAdapter.adapt(font);
-			final var vertShaderAdapter = ShaderAdapter.adapt(vertexShader);
-			final var fragmentShaderAdapter = ShaderAdapter.adapt(fragmentShader);
+			final IShaderAdapter vertShaderAdapter = IShaderAdapter.adapt(vertexShader);
+			final IShaderAdapter fragmentShaderAdapter = IShaderAdapter.adapt(fragmentShader);
 
 			resourceList = List.of(nullTexture, fontAdapter, vertShaderAdapter,
 					fragmentShaderAdapter, vertexBuffer);

@@ -19,7 +19,6 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 
@@ -104,7 +103,6 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 			TerrainRenderer terrainRenderer = (TerrainRenderer) theEObject;
 			T result = caseTerrainRenderer(terrainRenderer);
 			if (result == null) result = caseGraphicsPipeline(terrainRenderer);
-			if (result == null) result = caseAbstractGraphicsPipeline(terrainRenderer);
 			if (result == null) result = caseAbstractPipeline(terrainRenderer);
 			if (result == null) result = caseIGraphicsPipeline(terrainRenderer);
 			if (result == null) result = caseIPipeline(terrainRenderer);
@@ -127,7 +125,6 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 			ScreenRenderer screenRenderer = (ScreenRenderer) theEObject;
 			T result = caseScreenRenderer(screenRenderer);
 			if (result == null) result = caseGraphicsPipeline(screenRenderer);
-			if (result == null) result = caseAbstractGraphicsPipeline(screenRenderer);
 			if (result == null) result = caseAbstractPipeline(screenRenderer);
 			if (result == null) result = caseIGraphicsPipeline(screenRenderer);
 			if (result == null) result = caseIPipeline(screenRenderer);
@@ -315,22 +312,6 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIGraphicsPipeline(IGraphicsPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Graphics Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Graphics Pipeline</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractGraphicsPipeline(AbstractGraphicsPipeline object)
 	{
 		return null;
 	}

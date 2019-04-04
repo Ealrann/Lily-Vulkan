@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
+package org.sheepy.lily.vulkan.api.nativehelper.pipeline.builder;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
 
@@ -7,13 +7,12 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineViewportStateCreateInfo;
 import org.lwjgl.vulkan.VkRect2D;
 import org.lwjgl.vulkan.VkViewport;
+import org.sheepy.lily.vulkan.api.nativehelper.Extent2D;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
 import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
-import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
-import org.sheepy.lily.vulkan.process.graphic.api.ISurfaceManager;
 
 public class ViewportStateBuilder
 {
@@ -23,7 +22,7 @@ public class ViewportStateBuilder
 	private VkRect2D.Buffer scissors;
 
 	public VkPipelineViewportStateCreateInfo allocCreateInfo(	MemoryStack stack,
-																ISurfaceManager surfaceManager,
+	                                                         	Extent2D swapExtent,
 																ViewportState vState)
 	{
 		viewportState = VkPipelineViewportStateCreateInfo.callocStack(stack);
@@ -32,7 +31,7 @@ public class ViewportStateBuilder
 		if (vState instanceof StaticViewportState)
 		{
 			final var state = (StaticViewportState) vState;
-			fillStaticStateInfo(stack, surfaceManager, state);
+			fillStaticStateInfo(stack, swapExtent, state);
 		}
 		else if (vState instanceof DynamicViewportState)
 		{
@@ -50,11 +49,10 @@ public class ViewportStateBuilder
 	}
 
 	private void fillStaticStateInfo(	MemoryStack stack,
-										ISurfaceManager surfaceManager,
+	                                 	Extent2D swapExtent,
 										StaticViewportState state)
 	{
 		// Viewports and scissors
-		final Extent2D swapExtent = surfaceManager.getExtent();
 		viewports = VkViewport.callocStack(state.getViewports().size(), stack);
 		for (final Viewport viewport : state.getViewports())
 		{

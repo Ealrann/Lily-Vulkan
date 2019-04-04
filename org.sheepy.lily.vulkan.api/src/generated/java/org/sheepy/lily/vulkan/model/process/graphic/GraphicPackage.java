@@ -1251,229 +1251,6 @@ public interface GraphicPackage extends EPackage
 	int IGUI_PIPELINE_OPERATION_COUNT = IGRAPHICS_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl <em>Abstract Graphics Pipeline</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAbstractGraphicsPipeline()
-	 * @generated
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE = 16;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__CONTENT_OBJECTS = ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__NAME = ProcessPackage.ABSTRACT_PIPELINE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__ENABLED = ProcessPackage.ABSTRACT_PIPELINE__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__RESOURCE_PKG = ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG;
-
-	/**
-	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE__UNITS;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__DESCRIPTOR_SET = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET;
-
-	/**
-	 * The feature id for the '<em><b>Constants</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__CONSTANTS = ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS;
-
-	/**
-	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__SHADERS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT
-			+ 1;
-
-	/**
-	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT
-			+ 2;
-
-	/**
-	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT
-			+ 4;
-
-	/**
-	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT
-			+ 5;
-
-	/**
-	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE__SUBPASS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 6;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Graphics Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT
-			+ 7;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE___LINFERENCE_OBJECT = ProcessPackage.ABSTRACT_PIPELINE___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = ProcessPackage.ABSTRACT_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE___LCONTENTS = ProcessPackage.ABSTRACT_PIPELINE___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE___LPARENT = ProcessPackage.ABSTRACT_PIPELINE___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE___LALL_CONTENTS = ProcessPackage.ABSTRACT_PIPELINE___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>Abstract Graphics Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT
-			+ 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1481,7 +1258,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 	 * @generated
 	 */
-	int GRAPHICS_PIPELINE = 17;
+	int GRAPHICS_PIPELINE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -1490,7 +1267,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__CONTENT_OBJECTS = ABSTRACT_GRAPHICS_PIPELINE__CONTENT_OBJECTS;
+	int GRAPHICS_PIPELINE__CONTENT_OBJECTS = ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1499,7 +1276,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__NAME = ABSTRACT_GRAPHICS_PIPELINE__NAME;
+	int GRAPHICS_PIPELINE__NAME = ProcessPackage.ABSTRACT_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1508,7 +1285,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__ENABLED = ABSTRACT_GRAPHICS_PIPELINE__ENABLED;
+	int GRAPHICS_PIPELINE__ENABLED = ProcessPackage.ABSTRACT_PIPELINE__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -1517,7 +1294,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__STAGE = ABSTRACT_GRAPHICS_PIPELINE__STAGE;
+	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -1526,7 +1303,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__RESOURCE_PKG = ABSTRACT_GRAPHICS_PIPELINE__RESOURCE_PKG;
+	int GRAPHICS_PIPELINE__RESOURCE_PKG = ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
@@ -1535,7 +1312,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__UNITS = ABSTRACT_GRAPHICS_PIPELINE__UNITS;
+	int GRAPHICS_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE__UNITS;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
@@ -1544,7 +1321,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF = ABSTRACT_GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF;
+	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
@@ -1553,7 +1330,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DESCRIPTOR_SET = ABSTRACT_GRAPHICS_PIPELINE__DESCRIPTOR_SET;
+	int GRAPHICS_PIPELINE__DESCRIPTOR_SET = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
@@ -1562,7 +1339,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__CONSTANTS = ABSTRACT_GRAPHICS_PIPELINE__CONSTANTS;
+	int GRAPHICS_PIPELINE__CONSTANTS = ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
@@ -1571,7 +1348,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__SHADERS = ABSTRACT_GRAPHICS_PIPELINE__SHADERS;
+	int GRAPHICS_PIPELINE__SHADERS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
@@ -1580,7 +1357,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__VIEWPORT_STATE = ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE;
+	int GRAPHICS_PIPELINE__VIEWPORT_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
@@ -1589,7 +1366,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__INPUT_ASSEMBLY = ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY;
+	int GRAPHICS_PIPELINE__INPUT_ASSEMBLY = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
@@ -1598,7 +1375,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__RASTERIZER = ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER;
+	int GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
@@ -1607,7 +1384,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__COLOR_BLEND = ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND;
+	int GRAPHICS_PIPELINE__COLOR_BLEND = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
@@ -1616,7 +1393,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ABSTRACT_GRAPHICS_PIPELINE__DYNAMIC_STATE;
+	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
@@ -1625,7 +1402,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__SUBPASS = ABSTRACT_GRAPHICS_PIPELINE__SUBPASS;
+	int GRAPHICS_PIPELINE__SUBPASS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
@@ -1634,7 +1411,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ABSTRACT_GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -1643,7 +1420,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE___LINFERENCE_OBJECT = ABSTRACT_GRAPHICS_PIPELINE___LINFERENCE_OBJECT;
+	int GRAPHICS_PIPELINE___LINFERENCE_OBJECT = ProcessPackage.ABSTRACT_PIPELINE___LINFERENCE_OBJECT;
 
 	/**
 	 * The operation id for the '<em>Create Containment EList</em>' operation.
@@ -1652,7 +1429,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = ABSTRACT_GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
+	int GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = ProcessPackage.ABSTRACT_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
 
 	/**
 	 * The operation id for the '<em>LContents</em>' operation.
@@ -1661,7 +1438,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE___LCONTENTS = ABSTRACT_GRAPHICS_PIPELINE___LCONTENTS;
+	int GRAPHICS_PIPELINE___LCONTENTS = ProcessPackage.ABSTRACT_PIPELINE___LCONTENTS;
 
 	/**
 	 * The operation id for the '<em>LParent</em>' operation.
@@ -1670,7 +1447,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE___LPARENT = ABSTRACT_GRAPHICS_PIPELINE___LPARENT;
+	int GRAPHICS_PIPELINE___LPARENT = ProcessPackage.ABSTRACT_PIPELINE___LPARENT;
 
 	/**
 	 * The operation id for the '<em>LAll Contents</em>' operation.
@@ -1679,7 +1456,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE___LALL_CONTENTS = ABSTRACT_GRAPHICS_PIPELINE___LALL_CONTENTS;
+	int GRAPHICS_PIPELINE___LALL_CONTENTS = ProcessPackage.ABSTRACT_PIPELINE___LALL_CONTENTS;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -1688,7 +1465,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_OPERATION_COUNT = ABSTRACT_GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
+	int GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.
@@ -1698,7 +1475,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicState()
 	 * @generated
 	 */
-	int DYNAMIC_STATE = 18;
+	int DYNAMIC_STATE = 17;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' attribute list.
@@ -1735,7 +1512,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlend()
 	 * @generated
 	 */
-	int COLOR_BLEND = 19;
+	int COLOR_BLEND = 18;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' containment reference list.
@@ -1826,7 +1603,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getColorBlendAttachment()
 	 * @generated
 	 */
-	int COLOR_BLEND_ATTACHMENT = 20;
+	int COLOR_BLEND_ATTACHMENT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Blend Enable</b></em>' attribute.
@@ -1953,7 +1730,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewportState()
 	 * @generated
 	 */
-	int VIEWPORT_STATE = 21;
+	int VIEWPORT_STATE = 20;
 
 	/**
 	 * The number of structural features of the '<em>Viewport State</em>' class.
@@ -1981,7 +1758,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getStaticViewportState()
 	 * @generated
 	 */
-	int STATIC_VIEWPORT_STATE = 22;
+	int STATIC_VIEWPORT_STATE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Viewports</b></em>' containment reference list.
@@ -2027,7 +1804,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDynamicViewportState()
 	 * @generated
 	 */
-	int DYNAMIC_VIEWPORT_STATE = 23;
+	int DYNAMIC_VIEWPORT_STATE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Viewport Count</b></em>' attribute.
@@ -2073,7 +1850,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getViewport()
 	 * @generated
 	 */
-	int VIEWPORT = 24;
+	int VIEWPORT = 23;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -2137,7 +1914,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getScissor()
 	 * @generated
 	 */
-	int SCISSOR = 25;
+	int SCISSOR = 24;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -2183,7 +1960,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getRasterizer()
 	 * @generated
 	 */
-	int RASTERIZER = 26;
+	int RASTERIZER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Cull Mode</b></em>' attribute.
@@ -2274,7 +2051,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getInputAssembly()
 	 * @generated
 	 */
-	int INPUT_ASSEMBLY = 27;
+	int INPUT_ASSEMBLY = 26;
 
 	/**
 	 * The feature id for the '<em><b>Primitive Restart Enabled</b></em>' attribute.
@@ -2891,93 +2668,6 @@ public interface GraphicPackage extends EPackage
 	EClass getIGUIPipeline();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline <em>Abstract Graphics Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Graphics Pipeline</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline
-	 * @generated
-	 */
-	EClass getAbstractGraphicsPipeline();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getShaders <em>Shaders</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Shaders</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getShaders()
-	 * @see #getAbstractGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getAbstractGraphicsPipeline_Shaders();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getViewportState <em>Viewport State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Viewport State</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getViewportState()
-	 * @see #getAbstractGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getAbstractGraphicsPipeline_ViewportState();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getInputAssembly <em>Input Assembly</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Input Assembly</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getInputAssembly()
-	 * @see #getAbstractGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getAbstractGraphicsPipeline_InputAssembly();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getRasterizer <em>Rasterizer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Rasterizer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getRasterizer()
-	 * @see #getAbstractGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getAbstractGraphicsPipeline_Rasterizer();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getColorBlend <em>Color Blend</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Color Blend</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getColorBlend()
-	 * @see #getAbstractGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getAbstractGraphicsPipeline_ColorBlend();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getDynamicState <em>Dynamic State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Dynamic State</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getDynamicState()
-	 * @see #getAbstractGraphicsPipeline()
-	 * @generated
-	 */
-	EReference getAbstractGraphicsPipeline_DynamicState();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getSubpass <em>Subpass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Subpass</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline#getSubpass()
-	 * @see #getAbstractGraphicsPipeline()
-	 * @generated
-	 */
-	EAttribute getAbstractGraphicsPipeline_Subpass();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2986,6 +2676,83 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EClass getGraphicsPipeline();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getShaders <em>Shaders</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Shaders</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getShaders()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_Shaders();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getViewportState <em>Viewport State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Viewport State</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getViewportState()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_ViewportState();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getInputAssembly <em>Input Assembly</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Input Assembly</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getInputAssembly()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_InputAssembly();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer <em>Rasterizer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Rasterizer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getRasterizer()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_Rasterizer();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Color Blend</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_ColorBlend();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Dynamic State</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_DynamicState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Subpass</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EAttribute getGraphicsPipeline_Subpass();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicState <em>Dynamic State</em>}'.
@@ -4010,79 +3777,6 @@ public interface GraphicPackage extends EPackage
 		EClass IGUI_PIPELINE = eINSTANCE.getIGUIPipeline();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl <em>Abstract Graphics Pipeline</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AbstractGraphicsPipelineImpl
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAbstractGraphicsPipeline()
-		 * @generated
-		 */
-		EClass ABSTRACT_GRAPHICS_PIPELINE = eINSTANCE.getAbstractGraphicsPipeline();
-
-		/**
-		 * The meta object literal for the '<em><b>Shaders</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_GRAPHICS_PIPELINE__SHADERS = eINSTANCE
-				.getAbstractGraphicsPipeline_Shaders();
-
-		/**
-		 * The meta object literal for the '<em><b>Viewport State</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_GRAPHICS_PIPELINE__VIEWPORT_STATE = eINSTANCE
-				.getAbstractGraphicsPipeline_ViewportState();
-
-		/**
-		 * The meta object literal for the '<em><b>Input Assembly</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_GRAPHICS_PIPELINE__INPUT_ASSEMBLY = eINSTANCE
-				.getAbstractGraphicsPipeline_InputAssembly();
-
-		/**
-		 * The meta object literal for the '<em><b>Rasterizer</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_GRAPHICS_PIPELINE__RASTERIZER = eINSTANCE
-				.getAbstractGraphicsPipeline_Rasterizer();
-
-		/**
-		 * The meta object literal for the '<em><b>Color Blend</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_GRAPHICS_PIPELINE__COLOR_BLEND = eINSTANCE
-				.getAbstractGraphicsPipeline_ColorBlend();
-
-		/**
-		 * The meta object literal for the '<em><b>Dynamic State</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_GRAPHICS_PIPELINE__DYNAMIC_STATE = eINSTANCE
-				.getAbstractGraphicsPipeline_DynamicState();
-
-		/**
-		 * The meta object literal for the '<em><b>Subpass</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_GRAPHICS_PIPELINE__SUBPASS = eINSTANCE
-				.getAbstractGraphicsPipeline_Subpass();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4091,6 +3785,64 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass GRAPHICS_PIPELINE = eINSTANCE.getGraphicsPipeline();
+
+		/**
+		 * The meta object literal for the '<em><b>Shaders</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__SHADERS = eINSTANCE.getGraphicsPipeline_Shaders();
+
+		/**
+		 * The meta object literal for the '<em><b>Viewport State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__VIEWPORT_STATE = eINSTANCE
+				.getGraphicsPipeline_ViewportState();
+
+		/**
+		 * The meta object literal for the '<em><b>Input Assembly</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__INPUT_ASSEMBLY = eINSTANCE
+				.getGraphicsPipeline_InputAssembly();
+
+		/**
+		 * The meta object literal for the '<em><b>Rasterizer</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__RASTERIZER = eINSTANCE.getGraphicsPipeline_Rasterizer();
+
+		/**
+		 * The meta object literal for the '<em><b>Color Blend</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__COLOR_BLEND = eINSTANCE.getGraphicsPipeline_ColorBlend();
+
+		/**
+		 * The meta object literal for the '<em><b>Dynamic State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__DYNAMIC_STATE = eINSTANCE.getGraphicsPipeline_DynamicState();
+
+		/**
+		 * The meta object literal for the '<em><b>Subpass</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GRAPHICS_PIPELINE__SUBPASS = eINSTANCE.getGraphicsPipeline_Subpass();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicStateImpl <em>Dynamic State</em>}' class.

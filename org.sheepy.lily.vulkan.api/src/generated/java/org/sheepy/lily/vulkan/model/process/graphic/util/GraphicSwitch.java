@@ -215,25 +215,10 @@ public class GraphicSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicPackage.ABSTRACT_GRAPHICS_PIPELINE:
-		{
-			AbstractGraphicsPipeline abstractGraphicsPipeline = (AbstractGraphicsPipeline) theEObject;
-			T result = caseAbstractGraphicsPipeline(abstractGraphicsPipeline);
-			if (result == null) result = caseAbstractPipeline(abstractGraphicsPipeline);
-			if (result == null) result = caseIGraphicsPipeline(abstractGraphicsPipeline);
-			if (result == null) result = caseIPipeline(abstractGraphicsPipeline);
-			if (result == null) result = caseIResourceContainer(abstractGraphicsPipeline);
-			if (result == null) result = caseLObject(abstractGraphicsPipeline);
-			if (result == null) result = caseLNamedElement(abstractGraphicsPipeline);
-			if (result == null) result = caseIInferenceObject(abstractGraphicsPipeline);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
 		case GraphicPackage.GRAPHICS_PIPELINE:
 		{
 			GraphicsPipeline graphicsPipeline = (GraphicsPipeline) theEObject;
 			T result = caseGraphicsPipeline(graphicsPipeline);
-			if (result == null) result = caseAbstractGraphicsPipeline(graphicsPipeline);
 			if (result == null) result = caseAbstractPipeline(graphicsPipeline);
 			if (result == null) result = caseIGraphicsPipeline(graphicsPipeline);
 			if (result == null) result = caseIPipeline(graphicsPipeline);
@@ -573,22 +558,6 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIGUIPipeline(IGUIPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Graphics Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Graphics Pipeline</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractGraphicsPipeline(AbstractGraphicsPipeline object)
 	{
 		return null;
 	}

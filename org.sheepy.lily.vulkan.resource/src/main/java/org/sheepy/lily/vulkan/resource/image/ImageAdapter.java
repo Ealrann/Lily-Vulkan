@@ -15,6 +15,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.VkImageView;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
@@ -24,7 +25,6 @@ import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
 @Statefull
 @Adapter(scope = Image.class)

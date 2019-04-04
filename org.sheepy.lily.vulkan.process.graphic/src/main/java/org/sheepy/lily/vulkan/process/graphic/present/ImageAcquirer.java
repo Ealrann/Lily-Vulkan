@@ -7,9 +7,9 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
-import org.sheepy.lily.vulkan.process.graphic.api.ISurfaceManager;
 
 public class ImageAcquirer implements IAllocable
 {

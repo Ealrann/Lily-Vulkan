@@ -8,17 +8,16 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
+import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 @Statefull
 @Adapter(scope = Shader.class)
-public class ShaderAdapter implements IResourceAdapter
+public class ShaderAdapter implements IShaderAdapter
 {
 	private static final ByteBuffer MAIN_FUNCTION_NAME;
 	static
@@ -59,6 +58,7 @@ public class ShaderAdapter implements IResourceAdapter
 	 *
 	 * @return
 	 */
+	@Override
 	public void fillInfo(VkPipelineShaderStageCreateInfo info)
 	{
 		info.sType(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO);
@@ -74,13 +74,9 @@ public class ShaderAdapter implements IResourceAdapter
 		shaderBackend = null;
 	}
 
+	@Override
 	public long getShaderModule()
 	{
 		return shaderBackend.getId();
-	}
-
-	public static ShaderAdapter adapt(Shader shader)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(shader, ShaderAdapter.class);
 	}
 }

@@ -30,6 +30,8 @@ import org.sheepy.lily.core.model.presentation.IUIView;
 import org.sheepy.lily.core.model.presentation.UIPage;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.nativehelper.Extent2D;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
@@ -55,13 +57,11 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.draw.NuklearResources;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ColorBlendFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.DynamicStateFactory;
 import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ViewportStateFactory;
-import org.sheepy.lily.vulkan.process.graphic.api.Extent2D;
-import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.IGraphicsPipelineAdapter;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
 
 @Statefull
 @Adapter(scope = NuklearPipeline.class)
-public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
+public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 {
 	private static final int BUFFER_INITIAL_SIZE = 4 * 1024;
 
@@ -129,7 +129,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 		inputManager.setInputCatcher(inputCatcher);
 
 		recorder = new DrawRecorder(nkContext, DebugUtil.DEBUG_ENABLED);
-		drawer = new NuklearDrawer(gatherDescriptorSets(), resources, pipelineLayout);
+		drawer = new NuklearDrawer(gatherDescriptorSets(), resources, getPipelineLayout());
 
 		// Prepare a first render for the opening of the screen
 		layout(Collections.emptyList());
@@ -241,12 +241,11 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	@Override
 	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
 	{
-		setViewport(vkCommandBuffer);
-
-		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
+		vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
 
 		resources.getVertexBuffer().bind(vkCommandBuffer);
 
+		setViewport(vkCommandBuffer);
 		pushConstants(vkCommandBuffer);
 
 		drawer.prepare(bindPoint, graphicContext.getSurfaceManager().getExtent());
@@ -268,7 +267,7 @@ public class NuklearPipelineAdapter extends IGraphicsPipelineAdapter
 	private void pushConstants(VkCommandBuffer commandBuffer)
 	{
 		final var pushAdapter = NuklearConstantsAdapter.adapt(nkPipeline.getPushConstant());
-		vkCmdPushConstants(commandBuffer, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0,
+		vkCmdPushConstants(commandBuffer, getPipelineLayout(), VK_SHADER_STAGE_VERTEX_BIT, 0,
 				pushAdapter.getData());
 	}
 

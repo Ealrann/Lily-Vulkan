@@ -14,6 +14,8 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.api.util.Logger;
@@ -23,8 +25,6 @@ import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
-import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
-import org.sheepy.lily.vulkan.process.graphic.api.ISwapChainManager;
 
 public class SwapChainManager implements ISwapChainManager
 {

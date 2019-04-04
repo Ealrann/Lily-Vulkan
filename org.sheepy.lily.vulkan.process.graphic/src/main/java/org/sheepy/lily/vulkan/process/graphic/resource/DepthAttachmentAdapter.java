@@ -11,6 +11,8 @@ import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.VkImageView;
 import org.sheepy.lily.vulkan.api.resource.attachment.IDepthAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
@@ -18,11 +20,9 @@ import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
-import org.sheepy.lily.vulkan.process.graphic.api.IGraphicContext;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
 @Statefull
 @Adapter(scope = DepthAttachment.class)

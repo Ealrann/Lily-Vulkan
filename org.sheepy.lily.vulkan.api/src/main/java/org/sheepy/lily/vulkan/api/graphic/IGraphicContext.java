@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.graphic.api;
+package org.sheepy.lily.vulkan.api.graphic;
 
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;

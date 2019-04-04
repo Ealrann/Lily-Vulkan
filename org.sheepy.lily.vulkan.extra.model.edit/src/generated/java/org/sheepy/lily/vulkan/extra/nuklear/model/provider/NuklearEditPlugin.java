@@ -61,10 +61,10 @@ public final class NuklearEditPlugin extends EMFPlugin
 		super
 		  (new ResourceLocator [] 
 		   {
-		     ProcessEditPlugin.INSTANCE,
 		     GraphicEditPlugin.INSTANCE,
 		     RootEditPlugin.INSTANCE,
 		     TypesEditPlugin.INSTANCE,
+		     ProcessEditPlugin.INSTANCE,
 		     InferenceEditPlugin.INSTANCE,
 		     ResourceEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,

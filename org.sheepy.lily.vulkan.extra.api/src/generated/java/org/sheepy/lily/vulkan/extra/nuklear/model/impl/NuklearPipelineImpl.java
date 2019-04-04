@@ -41,10 +41,6 @@ import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
 
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
-
-import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
-
 import org.sheepy.lily.vulkan.model.resource.Font;
 
 /**
@@ -679,20 +675,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 				default: return -1;
 			}
 		}
-		if (baseClass == IGraphicsPipeline.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == IGUIPipeline.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -709,20 +691,6 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 			switch (baseFeatureID)
 			{
 				case TypesPackage.LNAMED_ELEMENT__NAME: return NuklearPackage.NUKLEAR_PIPELINE__NAME;
-				default: return -1;
-			}
-		}
-		if (baseClass == IGraphicsPipeline.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == IGUIPipeline.class)
-		{
-			switch (baseFeatureID)
-			{
 				default: return -1;
 			}
 		}

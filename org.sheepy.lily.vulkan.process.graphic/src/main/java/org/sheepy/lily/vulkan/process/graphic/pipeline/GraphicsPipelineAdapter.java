@@ -2,15 +2,24 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.util.List;
+
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.resource.IConstantsAdapter;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.common.util.ModelUtil;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
+import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
+import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
+import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 
 @Statefull
@@ -18,7 +27,7 @@ import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 public abstract class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAdapter
 {
 	protected final GraphicsPipeline pipeline;
-	private AbstractConstantsAdapter pushAdapter;
+	private IConstantsAdapter pushAdapter;
 	private int pushStageFlags;
 
 	public GraphicsPipelineAdapter(GraphicsPipeline pipeline)
@@ -50,7 +59,7 @@ public abstract class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAd
 	@Override
 	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
 	{
-		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
+		vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
 
 		pushConstants(vkCommandBuffer);
 
@@ -64,7 +73,7 @@ public abstract class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAd
 		if (pushAdapter != null)
 		{
 			final var data = pushAdapter.getData();
-			vkCmdPushConstants(vkCommandBuffer, pipelineLayout, pushStageFlags, 0, data);
+			vkCmdPushConstants(vkCommandBuffer, getPipelineLayout(), pushStageFlags, 0, data);
 		}
 	}
 
@@ -78,5 +87,41 @@ public abstract class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAd
 	public int getSubpass()
 	{
 		return pipeline.getSubpass();
+	}
+
+	@Override
+	protected List<Shader> getShaders()
+	{
+		return pipeline.getShaders();
+	}
+
+	@Override
+	protected ViewportState getViewportState()
+	{
+		return pipeline.getViewportState();
+	}
+
+	@Override
+	protected InputAssembly getInputAssembly()
+	{
+		return pipeline.getInputAssembly();
+	}
+
+	@Override
+	protected Rasterizer getRasterizer()
+	{
+		return pipeline.getRasterizer();
+	}
+
+	@Override
+	protected ColorBlend getColorBlend()
+	{
+		return pipeline.getColorBlend();
+	}
+
+	@Override
+	protected DynamicState getDynamicState()
+	{
+		return pipeline.getDynamicState();
 	}
 }

@@ -2,8 +2,6 @@
  */
 package org.sheepy.lily.vulkan.extra.nuklear.model;
 
-import org.sheepy.lily.vulkan.model.process.IPipeline;
-
 import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
 
 import org.sheepy.lily.vulkan.model.resource.Font;
@@ -26,7 +24,7 @@ import org.sheepy.lily.vulkan.model.resource.Font;
  * @model
  * @generated
  */
-public interface NuklearPipeline extends IPipeline, IGUIPipeline
+public interface NuklearPipeline extends IGUIPipeline
 {
 	/**
 	 * Returns the value of the '<em><b>Font</b></em>' containment reference.

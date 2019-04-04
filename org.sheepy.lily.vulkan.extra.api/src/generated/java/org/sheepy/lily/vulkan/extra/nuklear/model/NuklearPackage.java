@@ -6,9 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -79,7 +77,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__CONTENT_OBJECTS = ProcessPackage.IPIPELINE__CONTENT_OBJECTS;
+	int NUKLEAR_PIPELINE__CONTENT_OBJECTS = GraphicPackage.IGUI_PIPELINE__CONTENT_OBJECTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -88,7 +86,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__NAME = ProcessPackage.IPIPELINE__NAME;
+	int NUKLEAR_PIPELINE__NAME = GraphicPackage.IGUI_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -97,7 +95,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__ENABLED = ProcessPackage.IPIPELINE__ENABLED;
+	int NUKLEAR_PIPELINE__ENABLED = GraphicPackage.IGUI_PIPELINE__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -106,7 +104,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
+	int NUKLEAR_PIPELINE__STAGE = GraphicPackage.IGUI_PIPELINE__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Font</b></em>' containment reference.
@@ -115,7 +113,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__FONT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
+	int NUKLEAR_PIPELINE__FONT = GraphicPackage.IGUI_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
@@ -124,7 +122,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__PUSH_CONSTANT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
+	int NUKLEAR_PIPELINE__PUSH_CONSTANT = GraphicPackage.IGUI_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
@@ -133,7 +131,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__SUBPASS = ProcessPackage.IPIPELINE_FEATURE_COUNT + 2;
+	int NUKLEAR_PIPELINE__SUBPASS = GraphicPackage.IGUI_PIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Pipeline</em>' class.
@@ -142,7 +140,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 3;
+	int NUKLEAR_PIPELINE_FEATURE_COUNT = GraphicPackage.IGUI_PIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -151,7 +149,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE___LINFERENCE_OBJECT = ProcessPackage.IPIPELINE___LINFERENCE_OBJECT;
+	int NUKLEAR_PIPELINE___LINFERENCE_OBJECT = GraphicPackage.IGUI_PIPELINE___LINFERENCE_OBJECT;
 
 	/**
 	 * The operation id for the '<em>Create Containment EList</em>' operation.
@@ -160,7 +158,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = ProcessPackage.IPIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
+	int NUKLEAR_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = GraphicPackage.IGUI_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
 
 	/**
 	 * The operation id for the '<em>LContents</em>' operation.
@@ -169,7 +167,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE___LCONTENTS = ProcessPackage.IPIPELINE___LCONTENTS;
+	int NUKLEAR_PIPELINE___LCONTENTS = GraphicPackage.IGUI_PIPELINE___LCONTENTS;
 
 	/**
 	 * The operation id for the '<em>LParent</em>' operation.
@@ -178,7 +176,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE___LPARENT = ProcessPackage.IPIPELINE___LPARENT;
+	int NUKLEAR_PIPELINE___LPARENT = GraphicPackage.IGUI_PIPELINE___LPARENT;
 
 	/**
 	 * The operation id for the '<em>LAll Contents</em>' operation.
@@ -187,7 +185,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE___LALL_CONTENTS = ProcessPackage.IPIPELINE___LALL_CONTENTS;
+	int NUKLEAR_PIPELINE___LALL_CONTENTS = GraphicPackage.IGUI_PIPELINE___LALL_CONTENTS;
 
 	/**
 	 * The number of operations of the '<em>Pipeline</em>' class.
@@ -196,7 +194,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE_OPERATION_COUNT = ProcessPackage.IPIPELINE_OPERATION_COUNT + 0;
+	int NUKLEAR_PIPELINE_OPERATION_COUNT = GraphicPackage.IGUI_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearConstantsImpl <em>Constants</em>}' class.

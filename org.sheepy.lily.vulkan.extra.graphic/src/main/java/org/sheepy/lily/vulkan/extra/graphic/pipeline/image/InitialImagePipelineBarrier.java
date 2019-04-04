@@ -7,6 +7,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.VkImageView;
 import org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
@@ -21,7 +22,6 @@ import org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkImageView;
 
 public class InitialImagePipelineBarrier implements IAllocable
 {

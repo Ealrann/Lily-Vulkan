@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
+package org.sheepy.lily.vulkan.api.nativehelper.pipeline.builder;
 
 import static org.lwjgl.vulkan.VK10.*;
 

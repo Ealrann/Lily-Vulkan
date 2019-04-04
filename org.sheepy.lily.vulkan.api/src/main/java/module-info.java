@@ -23,10 +23,13 @@ module org.sheepy.lily.vulkan.api
 	exports org.sheepy.lily.vulkan.api.device;
 	exports org.sheepy.lily.vulkan.api.engine;
 	exports org.sheepy.lily.vulkan.api.execution;
+	exports org.sheepy.lily.vulkan.api.graphic;
 	exports org.sheepy.lily.vulkan.api.input;
 	exports org.sheepy.lily.vulkan.api.nativehelper;
 	exports org.sheepy.lily.vulkan.api.nativehelper.concurrent;
 	exports org.sheepy.lily.vulkan.api.nativehelper.device.capabilities;
+	exports org.sheepy.lily.vulkan.api.nativehelper.pipeline;
+	exports org.sheepy.lily.vulkan.api.nativehelper.resource;
 	exports org.sheepy.lily.vulkan.api.nativehelper.surface;
 	exports org.sheepy.lily.vulkan.api.nativehelper.window;
 	exports org.sheepy.lily.vulkan.api.process;

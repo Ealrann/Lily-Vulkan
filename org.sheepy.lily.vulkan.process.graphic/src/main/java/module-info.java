@@ -15,7 +15,6 @@ module org.sheepy.lily.vulkan.process.graphic
 	requires transitive org.sheepy.lily.vulkan.resource;
 	requires transitive org.sheepy.lily.vulkan.api;
 
-	exports org.sheepy.lily.vulkan.process.graphic.api;
 	exports org.sheepy.lily.vulkan.process.graphic.pipeline;
 
 	opens org.sheepy.lily.vulkan.process.graphic.frame;

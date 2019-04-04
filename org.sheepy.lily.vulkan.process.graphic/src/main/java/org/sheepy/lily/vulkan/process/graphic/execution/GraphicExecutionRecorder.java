@@ -7,7 +7,7 @@ import java.util.List;
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.IGraphicsPipelineAdapter;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
 
 public class GraphicExecutionRecorder extends AbstractExecutionRecorder
 {
@@ -38,9 +38,9 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder
 				boolean recordOk = adapter.shouldRecord(stage);
 
 				int pipelineSubpass = 0;
-				if (stage == ECommandStage.RENDER && adapter instanceof IGraphicsPipelineAdapter)
+				if (stage == ECommandStage.RENDER && adapter instanceof AbstractGraphicsPipelineAdapter)
 				{
-					final var graphicsPipelineAdapter = (IGraphicsPipelineAdapter) adapter;
+					final var graphicsPipelineAdapter = (AbstractGraphicsPipelineAdapter) adapter;
 					pipelineSubpass = graphicsPipelineAdapter.getSubpass();
 					if (subpassCount <= pipelineSubpass)
 					{

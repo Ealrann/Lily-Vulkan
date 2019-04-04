@@ -138,7 +138,7 @@ interface IGUIPipeline extends IGraphicsPipeline
 {
 }
 
-abstract class AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
+class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 {
 	refers unique Shader[1..*] shaders
 	contains ViewportState[1..1] viewportState
@@ -147,10 +147,6 @@ abstract class AbstractGraphicsPipeline extends AbstractPipeline, IGraphicsPipel
 	contains ColorBlend[1..1] colorBlend
 	contains DynamicState dynamicState
 	int subpass = "0"
-}
-
-class GraphicsPipeline extends AbstractGraphicsPipeline
-{
 }
 
 class DynamicState

@@ -2,54 +2,69 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
 import java.util.List;
 
-import org.sheepy.lily.vulkan.model.process.graphic.AbstractGraphicsPipeline;
+import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.nativehelper.pipeline.VkGraphicsPipeline;
+import org.sheepy.lily.vulkan.api.nativehelper.pipeline.VkPipeline;
+import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
+import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 
-public abstract class AbstractGraphicsPipelineAdapter extends IGraphicsPipelineAdapter
+public abstract class AbstractGraphicsPipelineAdapter extends AbstractPipelineAdapter
 {
-	public AbstractGraphicsPipelineAdapter(AbstractGraphicsPipeline pipeline)
+	public AbstractGraphicsPipelineAdapter(IGraphicsPipeline pipeline)
 	{
 		super(pipeline);
 	}
 
 	@Override
-	protected List<Shader> getShaders()
+	protected VkPipeline createVkPipeline(IAllocationContext context)
 	{
-		return ((AbstractGraphicsPipeline) pipeline).getShaders();
+		return new VkGraphicsPipeline(gatherDescriptorSets(), List.of(getConstants()),
+				getColorBlend(), getRasterizer(), getInputAssembly(), getViewportState(),
+				getDynamicState(), getVertexBufferDescriptor(), getShaders(), getSubpass());
 	}
 
 	@Override
-	protected ViewportState getViewportState()
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		return ((AbstractGraphicsPipeline) pipeline).getViewportState();
+		super.allocate(stack, context);
+
+		final var graphicContext = (IGraphicContext) context;
+		final var renderPass = graphicContext.getRenderPass();
+		allocationDependencies.add(renderPass);
 	}
 
 	@Override
-	protected InputAssembly getInputAssembly()
+	public void free(IAllocationContext context)
 	{
-		return ((AbstractGraphicsPipeline) pipeline).getInputAssembly();
+		final var graphicContext = (IGraphicContext) context;
+		final var renderPass = graphicContext.getRenderPass();
+		allocationDependencies.remove(renderPass);
+
+		super.free(context);
 	}
 
-	@Override
-	protected Rasterizer getRasterizer()
-	{
-		return ((AbstractGraphicsPipeline) pipeline).getRasterizer();
-	}
+	protected abstract List<Shader> getShaders();
 
-	@Override
-	protected ColorBlend getColorBlend()
-	{
-		return ((AbstractGraphicsPipeline) pipeline).getColorBlend();
-	}
+	protected abstract ViewportState getViewportState();
 
-	@Override
-	protected DynamicState getDynamicState()
-	{
-		return ((AbstractGraphicsPipeline) pipeline).getDynamicState();
-	}
+	protected abstract Rasterizer getRasterizer();
+
+	protected abstract InputAssembly getInputAssembly();
+
+	protected abstract ColorBlend getColorBlend();
+
+	protected abstract DynamicState getDynamicState();
+
+	public abstract int getSubpass();
+
+	abstract protected IVertexBufferDescriptor<?> getVertexBufferDescriptor();
 }

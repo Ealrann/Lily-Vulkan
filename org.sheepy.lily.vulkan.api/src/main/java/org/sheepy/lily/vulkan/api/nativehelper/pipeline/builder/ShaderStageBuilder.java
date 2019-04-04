@@ -1,11 +1,11 @@
-package org.sheepy.lily.vulkan.process.graphic.pipeline.builder;
+package org.sheepy.lily.vulkan.api.nativehelper.pipeline.builder;
 
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
+import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 
 public class ShaderStageBuilder
 {
@@ -21,9 +21,9 @@ public class ShaderStageBuilder
 		else
 		{
 			shaderStages = VkPipelineShaderStageCreateInfo.callocStack(shaders.size(), stack);
-			for (Shader shader : shaders)
+			for (final Shader shader : shaders)
 			{
-				var shaderAdapter = ShaderAdapter.adapt(shader);
+				final var shaderAdapter = IShaderAdapter.adapt(shader);
 				shaderAdapter.fillInfo(shaderStages.get());
 			}
 			shaderStages.flip();

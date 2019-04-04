@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.nativehelper;
+package org.sheepy.lily.vulkan.api.nativehelper.resource;
 
 import static org.lwjgl.vulkan.VK10.*;
 

@@ -38,7 +38,7 @@ public class TerrainRendererAdapter extends GraphicsPipelineAdapter
 	@Override
 	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
 	{
-		vkCmdBindPipeline(vkCommandBuffer, bindPoint, pipelineId);
+		vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
 		pushConstants(vkCommandBuffer);
 
 		final long[] vertexBuffers = new long[1];

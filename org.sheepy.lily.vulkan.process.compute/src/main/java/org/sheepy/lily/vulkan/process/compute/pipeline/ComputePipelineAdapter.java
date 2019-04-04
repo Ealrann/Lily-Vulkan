@@ -14,6 +14,7 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
@@ -22,7 +23,6 @@ import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.lily.vulkan.resource.shader.ShaderAdapter;
 
 @Statefull
 @Adapter(scope = ComputePipeline.class)
@@ -78,7 +78,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter
 			{
 				final var computer = (Computer) unit;
 				final var shader = computer.getShader();
-				final var shaderAdapter = ShaderAdapter.adapt(shader);
+				final IShaderAdapter shaderAdapter = IShaderAdapter.adapt(shader);
 
 				shaderAdapter.fillInfo(shaderInfo);
 
@@ -91,7 +91,7 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter
 				final var pipelineCreateInfo = pipelineCreateInfos.get();
 				pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
 				pipelineCreateInfo.stage(shaderInfo);
-				pipelineCreateInfo.layout(pipelineLayout);
+				pipelineCreateInfo.layout(getPipelineLayout());
 			}
 		}
 		shaderInfo.free();
@@ -128,7 +128,9 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter
 	@Override
 	public void record(VkCommandBuffer commandBuffer, int bindPoint, int index)
 	{
-		bindDescriptor(commandBuffer, bindPoint, new Integer[]{0});
+		bindDescriptor(commandBuffer, bindPoint, new Integer[] {
+				0
+		});
 		recordComputers(commandBuffer, bindPoint);
 	}
 
