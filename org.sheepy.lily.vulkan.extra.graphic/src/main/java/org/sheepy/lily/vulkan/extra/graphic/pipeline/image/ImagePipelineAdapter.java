@@ -2,8 +2,6 @@ package org.sheepy.lily.vulkan.extra.graphic.pipeline.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.util.List;
-
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
@@ -13,7 +11,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
@@ -129,12 +126,6 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter
 	public AbstractConstants getConstants()
 	{
 		return imagePipeline.getConstants();
-	}
-
-	@Override
-	public List<IVkDescriptorSet> gatherDescriptorSets()
-	{
-		return List.of();
 	}
 
 	@Override

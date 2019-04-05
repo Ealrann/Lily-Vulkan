@@ -129,6 +129,12 @@ public abstract class AbstractProcessAdapter
 			recorder.record(pipelineAdapters, getStages());
 		}
 
+		for (int i = 0; i < pipelineAdapters.size(); i++)
+		{
+			final var pipelineAdapter = pipelineAdapters.get(i);
+			pipelineAdapter.prepareExecution(context);
+		}
+
 		recorder.play();
 	}
 
@@ -169,7 +175,7 @@ public abstract class AbstractProcessAdapter
 		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
 			final var pipelineAdapter = pipelineAdapters.get(i);
-			resources.addAll(pipelineAdapter.getResources());
+			pipelineAdapter.collectResources(resources);
 		}
 
 		return resources;
@@ -182,7 +188,7 @@ public abstract class AbstractProcessAdapter
 		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
 			final var pipelineAdapter = pipelineAdapters.get(i);
-			res.addAll(pipelineAdapter.gatherDescriptorSets());
+			pipelineAdapter.collectDescriptorSets(res);
 		}
 
 		return res;
@@ -230,10 +236,11 @@ public abstract class AbstractProcessAdapter
 		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
 			final var pipelineAdapter = pipelineAdapters.get(i);
+
 			if (pipelineAdapter.isRecordNeeded())
 			{
 				res = true;
-				pipelineAdapter.prepare();
+				pipelineAdapter.prepareRecord();
 			}
 		}
 

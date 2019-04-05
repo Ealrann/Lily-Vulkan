@@ -38,7 +38,8 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder
 				boolean recordOk = adapter.shouldRecord(stage);
 
 				int pipelineSubpass = 0;
-				if (stage == ECommandStage.RENDER && adapter instanceof AbstractGraphicsPipelineAdapter)
+				if (stage == ECommandStage.RENDER
+						&& adapter instanceof AbstractGraphicsPipelineAdapter)
 				{
 					final var graphicsPipelineAdapter = (AbstractGraphicsPipelineAdapter) adapter;
 					pipelineSubpass = graphicsPipelineAdapter.getSubpass();

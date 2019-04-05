@@ -6,7 +6,6 @@ import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
 import org.sheepy.lily.vulkan.demo.mesh.MeshModelFactory;
 import org.sheepy.lily.vulkan.demo.mesh.MeshPipelineAdapter;
-import org.sheepy.lily.vulkan.demo.triangle.TriangleMeshBuilder;
 import org.sheepy.lily.vulkan.model.enumeration.EFrontFace;
 
 public class MainRotating
@@ -18,10 +17,9 @@ public class MainRotating
 	{
 		DebugUtil.DEBUG_ENABLED = true;
 
-		MeshPipelineAdapter.meshBuilder = new TriangleMeshBuilder();
+		MeshPipelineAdapter.meshBuilder = new RotatingMeshBuilder();
 
 		final var meshConfiguration = new MeshConfiguration();
-		meshConfiguration.buildUniformBuffer = true;
 		meshConfiguration.vertexShaderPath = VERTEX_SHADER_PATH;
 		meshConfiguration.fragmentShaderPath = FRAGMENT_SHADER_PATH;
 		meshConfiguration.rasterizerFrontFace = EFrontFace.COUNTER_CLOCKWISE;

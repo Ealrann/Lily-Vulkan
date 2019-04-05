@@ -11,7 +11,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.resource.IConstantsAdapter;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
-import org.sheepy.lily.vulkan.common.util.ModelUtil;
+import org.sheepy.lily.vulkan.common.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
@@ -52,7 +52,7 @@ public abstract class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAd
 		{
 			pushAdapter = AbstractConstantsAdapter.adapt(constants);
 			final var stages = constants.getStages();
-			pushStageFlags = ModelUtil.getEnumeratedFlag(stages);
+			pushStageFlags = VulkanModelUtil.getEnumeratedFlag(stages);
 		}
 	}
 

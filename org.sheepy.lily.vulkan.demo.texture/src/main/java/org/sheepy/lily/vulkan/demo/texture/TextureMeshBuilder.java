@@ -1,15 +1,15 @@
 package org.sheepy.lily.vulkan.demo.texture;
 
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.demo.mesh.IIndexedBufferBuilder;
-import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
+import org.sheepy.lily.vulkan.demo.adapter.CameraMatrixComputer;
+import org.sheepy.lily.vulkan.demo.mesh.AbstractMeshBuilder;
 import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferData;
 import org.sheepy.lily.vulkan.resource.texture.TextureVertexDescriptor;
 import org.sheepy.lily.vulkan.resource.texture.TextureVertexDescriptor.TextureVertex;
 
-public class TextureMeshBuilder implements IIndexedBufferBuilder<TextureVertex>
+public class TextureMeshBuilder extends AbstractMeshBuilder<TextureVertex>
 {
-	private static IndexedBufferData<TextureVertex> getDatas()
+	@Override
+	protected IndexedBufferData<TextureVertex> buildData()
 	{
 		final TextureVertex[] vertices = new TextureVertex[8];
 		vertices[0] = new TextureVertex(-0.5f, -0.5f, 0f, 1.0f, 0.0f, 0.0f, 1f, 0f);
@@ -26,15 +26,9 @@ public class TextureMeshBuilder implements IIndexedBufferBuilder<TextureVertex>
 				0, 1, 2, 2, 3, 0, 4, 5, 6, 6, 7, 4
 		};
 
-		final IndexedBufferData<TextureVertex> res = new IndexedBufferData<>(vertices, indices,
+		final byte[] uniformData = new byte[CameraMatrixComputer.SIZE_OF];
+
+		return new IndexedBufferData<>(vertices, indices, uniformData,
 				new TextureVertexDescriptor());
-
-		return res;
-	}
-
-	@Override
-	public IndexedBuffer<TextureVertex> build(IExecutionContext executionManager)
-	{
-		return IndexedBuffer.alloc(executionManager, getDatas(), false);
 	}
 }

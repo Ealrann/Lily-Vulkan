@@ -10,12 +10,13 @@ import org.lwjgl.nuklear.NkDrawNullTexture;
 import org.lwjgl.nuklear.NkDrawVertexLayoutElement;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkMappedMemoryRange;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.process.IVulkanContext;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
 import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
+import org.sheepy.lily.vulkan.resource.indexed.IndexedStagingBuffer;
 
 public class NuklearVertexBuffer implements IAllocable
 {
@@ -40,20 +41,16 @@ public class NuklearVertexBuffer implements IAllocable
 	private final NkConvertConfig config = NkConvertConfig.create();
 
 	private IndexedBuffer<?> indexBuffer;
+	private IndexedStagingBuffer stagingIndexBuffer;
 
 	private NullTexture nullTexture = null;
 	private NkBuffer vbuf;
 	private NkBuffer ebuf;
-	private long vertexMemoryMap;
-	private long indexMemoryMap;
-
-	private VkMappedMemoryRange rangeVertex;
-	private VkMappedMemoryRange rangeIndex;
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var vulkanContext = (IVulkanContext) context;
+		final var vulkanContext = (IExecutionContext) context;
 		final var vkDevice = vulkanContext.getVkDevice();
 
 		nkNullTexture.texture().ptr(nullTexture.getSamplerAddress());
@@ -63,11 +60,13 @@ public class NuklearVertexBuffer implements IAllocable
 		ebuf = NkBuffer.calloc();
 
 		indexBuffer = new IndexedBuffer<GuiVertex>(VERTEX_DESCRIPTOR, VERTEX_BUFFER_SIZE,
-				INDEX_BUFFER_SIZE, true);
-		indexBuffer.allocate(stack, context);
+				INDEX_BUFFER_SIZE);
+		stagingIndexBuffer = new IndexedStagingBuffer(indexBuffer, true);
 
-		vertexMemoryMap = indexBuffer.mapVertexMemory(vkDevice);
-		indexMemoryMap = indexBuffer.mapIndexMemory(vkDevice);
+		indexBuffer.allocate(stack, context);
+		stagingIndexBuffer.allocate(stack, context);
+
+		stagingIndexBuffer.mapMemory(vkDevice);
 
 		config.null_texture(nkNullTexture);
 		config.vertex_layout(VERTEX_LAYOUT);
@@ -79,13 +78,6 @@ public class NuklearVertexBuffer implements IAllocable
 		config.global_alpha(1.0f);
 		config.shape_AA(NK_ANTI_ALIASING_ON);
 		config.line_AA(NK_ANTI_ALIASING_ON);
-
-		rangeVertex = VkMappedMemoryRange.calloc();
-		rangeVertex.set(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE, VK_NULL_HANDLE,
-				indexBuffer.getVertexBufferMemoryId(), 0, VERTEX_BUFFER_SIZE);
-		rangeIndex = VkMappedMemoryRange.calloc();
-		rangeIndex.set(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE, VK_NULL_HANDLE,
-				indexBuffer.getIndexBufferMemoryId(), 0, INDEX_BUFFER_SIZE);
 	}
 
 	@Override
@@ -94,13 +86,10 @@ public class NuklearVertexBuffer implements IAllocable
 		final var vulkanContext = (IVulkanContext) context;
 		final var vkDevice = vulkanContext.getVkDevice();
 
-		rangeIndex.free();
-		rangeVertex.free();
-		rangeIndex = null;
-		rangeVertex = null;
+		stagingIndexBuffer.unmapMemory(vkDevice);
 
-		indexBuffer.unmapVertexMemory(vkDevice);
-		indexBuffer.unmapIndexMemory(vkDevice);
+		stagingIndexBuffer.free(context);
+		stagingIndexBuffer = null;
 
 		indexBuffer.free(context);
 		indexBuffer = null;
@@ -113,13 +102,16 @@ public class NuklearVertexBuffer implements IAllocable
 
 	public void update(NkContext ctx, NkBuffer cmds)
 	{
+		var vertexMemoryMap = stagingIndexBuffer.getVertexMemoryMap();
+		var indexMemoryMap = stagingIndexBuffer.getIndexMemoryMap();
+
 		nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, VERTEX_BUFFER_SIZE);
 		nnk_buffer_init_fixed(ebuf.address(), indexMemoryMap, INDEX_BUFFER_SIZE);
 
 		// load draw vertices & elements directly into vertex + element buffer
 		nk_convert(ctx, cmds, vbuf, ebuf, config);
 
-		indexBuffer.pushFromMemoryMap();
+		stagingIndexBuffer.pushData();
 	}
 
 	public void bind(VkCommandBuffer commandBuffer)

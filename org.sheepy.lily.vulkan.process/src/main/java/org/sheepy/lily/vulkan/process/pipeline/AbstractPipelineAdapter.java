@@ -75,7 +75,15 @@ public abstract class AbstractPipelineAdapter
 
 	protected VkPipeline createVkPipeline(IAllocationContext context)
 	{
-		return new VkPipeline(gatherDescriptorSets(), List.of(getConstants()));
+		final var constants = getConstants();
+		List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
+		final List<AbstractConstants> constantsList = constants != null
+				? List.of(constants)
+				: Collections.emptyList();
+
+		collectDescriptorSets(descriptorSets);
+
+		return new VkPipeline(descriptorSets, constantsList);
 	}
 
 	@Override
@@ -121,27 +129,21 @@ public abstract class AbstractPipelineAdapter
 	}
 
 	@Override
-	public List<? extends Object> getResources()
+	public void collectResources(List<Object> collectIn)
 	{
-		final List<Object> resources = new ArrayList<>();
-
 		if (pipeline instanceof AbstractPipeline)
 		{
 			final var resourcePkg = ((AbstractPipeline) pipeline).getResourcePkg();
 			if (resourcePkg != null)
 			{
-				resources.addAll(resourcePkg.getResources());
+				collectIn.addAll(resourcePkg.getResources());
 			}
 		}
-
-		return resources;
 	}
 
 	@Override
-	public List<IVkDescriptorSet> gatherDescriptorSets()
+	public void collectDescriptorSets(List<IVkDescriptorSet> collectIn)
 	{
-		final List<IVkDescriptorSet> res = new ArrayList<>();
-
 		if (pipeline instanceof AbstractPipeline)
 		{
 			final var abstractPipeline = (AbstractPipeline) pipeline;
@@ -154,11 +156,9 @@ public abstract class AbstractPipelineAdapter
 			if (ds != null)
 			{
 				final var adapter = IDescriptorSetAdapter.adapt(ds);
-				res.add(adapter);
+				collectIn.add(adapter);
 			}
 		}
-
-		return res;
 	}
 
 	public long getPipelineLayout()

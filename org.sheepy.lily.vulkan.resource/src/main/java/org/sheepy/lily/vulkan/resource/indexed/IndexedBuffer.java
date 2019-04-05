@@ -6,7 +6,6 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
@@ -21,13 +20,12 @@ import org.sheepy.lily.vulkan.resource.buffer.GPUBufferBackend;
 public class IndexedBuffer<T extends IVertex> implements IAllocable
 {
 	private final IIndexedBufferDescriptor<T> meshDescriptor;
-	private final int vertexBufferSizeInByte;
-	private final int indexBufferSizeInByte;
-	private final boolean isOftenChanged;
+	private final int vertexBufferCapacity;
+	private final int indexBufferCapacity;
 
-	private ExecutionContext context;
-	private GPUBufferBackend vertexBuffer;
-	private GPUBufferBackend indexBuffer;
+	protected ExecutionContext context;
+	protected GPUBufferBackend vertexBuffer;
+	protected GPUBufferBackend indexBuffer;
 
 	private int vertexCount;
 	private int indexCount;
@@ -35,23 +33,21 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 	boolean allocated = false;
 
 	public static <T extends IVertex> IndexedBuffer<T> alloc(	IExecutionContext context,
-																IndexedBufferData<T> datas,
-																boolean isOftenChanged)
+																IndexedBufferData<T> datas)
 	{
-		return alloc(context, datas.meshDescriptor, datas.vertices, datas.indices, isOftenChanged);
+		return alloc(context, datas.meshDescriptor, datas.vertices, datas.indices);
 	}
 
 	public static <T extends IVertex> IndexedBuffer<T> alloc(	IExecutionContext context,
 																IIndexedBufferDescriptor<T> indexedDescriptor,
 																T[] vertices,
-																int[] indices,
-																boolean isOftenChanged)
+																int[] indices)
 	{
 		final int vertexBufferSize = vertices.length * indexedDescriptor.sizeOfVertex();
 		final int indexBufferSize = indices.length * indexedDescriptor.sizeOfIndex();
 
 		final IndexedBuffer<T> res = new IndexedBuffer<>(indexedDescriptor, vertexBufferSize,
-				indexBufferSize, isOftenChanged);
+				indexBufferSize);
 
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
@@ -63,14 +59,12 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 	}
 
 	public IndexedBuffer(	IIndexedBufferDescriptor<T> meshDescriptor,
-							int vertexBufferSizeInByte,
-							int indexBufferSizeInByte,
-							boolean isOftenChanged)
+							int vertexBufferCapacity,
+							int indexBufferCapacity)
 	{
 		this.meshDescriptor = meshDescriptor;
-		this.vertexBufferSizeInByte = vertexBufferSizeInByte;
-		this.indexBufferSizeInByte = indexBufferSizeInByte;
-		this.isOftenChanged = isOftenChanged;
+		this.vertexBufferCapacity = vertexBufferCapacity;
+		this.indexBufferCapacity = indexBufferCapacity;
 	}
 
 	@Override
@@ -88,31 +82,36 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
 
-		vertexBuffer = BufferAllocator.allocateGPUBuffer(stack, context, vertexBufferSizeInByte,
-				usage, isOftenChanged, isOftenChanged);
+		vertexBuffer = BufferAllocator.allocateGPUBuffer(stack, context, vertexBufferCapacity,
+				usage, false, false);
 	}
 
 	private void allocateIndexBuffer(MemoryStack stack)
 	{
 		final int usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
 
-		indexBuffer = BufferAllocator.allocateGPUBuffer(stack, context, indexBufferSizeInByte,
-				usage, isOftenChanged, isOftenChanged);
+		indexBuffer = BufferAllocator.allocateGPUBuffer(stack, context, indexBufferCapacity, usage,
+				false, false);
 	}
 
 	public void fillBuffer(MemoryStack stack, T[] vertices, int[] indices)
 	{
-		final ByteBuffer vertexBuffer = meshDescriptor.toVertexBuffer(vertices);
-		final ByteBuffer indexBuffer = meshDescriptor.toIndexBuffer(indices);
-		fillBuffer(stack, vertexBuffer, vertices.length, indexBuffer, indices.length);
+		final int verticeCount = vertices.length;
+		final int indiceCount = indices.length;
+
+		final var vertexBuffer = meshDescriptor.toVertexBuffer(vertices);
+		final var indexBuffer = meshDescriptor.toIndexBuffer(indices);
+
+		fillBuffer(stack, vertexBuffer, verticeCount, indexBuffer, indiceCount);
+
 		MemoryUtil.memFree(indexBuffer);
 		MemoryUtil.memFree(vertexBuffer);
 	}
 
 	private void fillBuffer(MemoryStack stack,
-							ByteBuffer verticeBuffer,
+							ByteBuffer vertices,
 							int numberOfVertice,
-							ByteBuffer indiceBuffer,
+							ByteBuffer indices,
 							int numberOfIndice)
 	{
 		indexCount = numberOfIndice;
@@ -124,8 +123,8 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		final var vertexFiller = new BufferGPUFiller(stack, context, vertexBuffer.getAddress());
 		final var indexFiller = new BufferGPUFiller(stack, context, indexBuffer.getAddress());
 
-		vertexFiller.fill(verticeBuffer, vertexByteSize);
-		indexFiller.fill(indiceBuffer, indexByteSize);
+		vertexFiller.fill(vertices, vertexByteSize);
+		indexFiller.fill(indices, indexByteSize);
 	}
 
 	public void fillBuffer(	IAllocationContext context,
@@ -136,8 +135,8 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 	{
 		final var executionContext = (ExecutionContext) context;
 
-		indexCount = numberOfIndice;
-		vertexCount = numberOfVertice;
+		this.indexCount = numberOfIndice;
+		this.vertexCount = numberOfVertice;
 
 		vertexBuffer.pushData(executionContext, vertexStaggingBuffer);
 		indexBuffer.pushData(executionContext, indexStaggingBuffer);
@@ -155,32 +154,6 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		allocated = false;
 	}
 
-	public void pushFromMemoryMap()
-	{
-		vertexBuffer.pushStagging(context);
-		indexBuffer.pushStagging(context);
-	}
-
-	public long mapVertexMemory(VkDevice vkDevice)
-	{
-		return vertexBuffer.mapMemory(vkDevice);
-	}
-
-	public long mapIndexMemory(VkDevice vkDevice)
-	{
-		return indexBuffer.mapMemory(vkDevice);
-	}
-
-	public void unmapVertexMemory(VkDevice vkDevice)
-	{
-		vertexBuffer.unmapMemory(vkDevice);
-	}
-
-	public void unmapIndexMemory(VkDevice vkDevice)
-	{
-		indexBuffer.unmapMemory(vkDevice);
-	}
-
 	public IIndexedBufferDescriptor<T> getIndexBufferDescriptor()
 	{
 		return meshDescriptor;
@@ -194,6 +167,21 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 	public int getVerticesCount()
 	{
 		return vertexCount;
+	}
+
+	public int getIndicesCount()
+	{
+		return indexCount;
+	}
+
+	public int getVertexBufferCapacity()
+	{
+		return vertexBufferCapacity;
+	}
+
+	public int getIndexBufferCapacity()
+	{
+		return indexBufferCapacity;
 	}
 
 	public long getVertexBufferAddress()
@@ -216,9 +204,14 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		return indexBuffer.getMemoryAddress();
 	}
 
-	public int getIndicesCount()
+	public int getVertexMemoryOffset()
 	{
-		return indexCount;
+		return 0;
+	}
+
+	public int getIndexMemoryOffset()
+	{
+		return 0;
 	}
 
 	@Override

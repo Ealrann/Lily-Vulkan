@@ -12,7 +12,7 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptor;
-import org.sheepy.lily.vulkan.common.util.ModelUtil;
+import org.sheepy.lily.vulkan.common.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.resource.buffer.BufferInfo;
@@ -59,7 +59,7 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable
 	@Override
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
-		final int stageFlags = ModelUtil.getEnumeratedFlag(stages);
+		final int stageFlags = VulkanModelUtil.getEnumeratedFlag(stages);
 		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(EDescriptorType.UNIFORM_BUFFER_VALUE);
 		res.descriptorCount(getDescriptorCount());
@@ -84,8 +84,7 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable
 
 	protected VkDescriptorBufferInfo.Buffer allocBufferInfo(MemoryStack stack)
 	{
-		final VkDescriptorBufferInfo.Buffer bufferInfo = VkDescriptorBufferInfo.callocStack(1,
-				stack);
+		final var bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
 		bufferInfo.buffer(uniformBuffer.getAddress());
 		bufferInfo.offset(0);
 		bufferInfo.range(uniformBuffer.getInfos().size);

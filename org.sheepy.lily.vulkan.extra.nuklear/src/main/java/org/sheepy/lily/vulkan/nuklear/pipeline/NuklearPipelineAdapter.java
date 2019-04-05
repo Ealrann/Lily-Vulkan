@@ -35,7 +35,7 @@ import org.sheepy.lily.vulkan.api.nativehelper.Extent2D;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.common.util.ModelUtil;
+import org.sheepy.lily.vulkan.common.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
 import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
@@ -106,11 +106,10 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	public List<? extends Object> getResources()
+	public void collectResources(List<Object> collectIn)
 	{
-		final var res = new ArrayList<Object>(resources.toList());
-		res.add(nkPipeline.getPushConstant());
-		return res;
+		collectIn.addAll(resources.toList());
+		collectIn.add(nkPipeline.getPushConstant());
 	}
 
 	@Override
@@ -121,7 +120,7 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		graphicContext = (IGraphicContext) context;
 		window = graphicContext.getWindow();
 
-		final var engine = ModelUtil.getEngine(nkPipeline);
+		final var engine = VulkanModelUtil.getEngine(nkPipeline);
 		final var inputManager = IVulkanEngineAdapter.adapt(engine).getInputManager();
 
 		resources.allocate();
@@ -129,11 +128,14 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		inputManager.setInputCatcher(inputCatcher);
 
 		recorder = new DrawRecorder(nkContext, DebugUtil.DEBUG_ENABLED);
-		drawer = new NuklearDrawer(gatherDescriptorSets(), resources, getPipelineLayout());
+
+		List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
+		collectDescriptorSets(descriptorSets);
+		drawer = new NuklearDrawer(descriptorSets, resources, getPipelineLayout());
 
 		// Prepare a first render for the opening of the screen
 		layout(Collections.emptyList());
-		prepare();
+		prepareRecord();
 	}
 
 	@Override
@@ -192,7 +194,7 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	public void prepare()
+	public void prepareRecord()
 	{
 		resources.getVertexBuffer().update(nkContext, cmds);
 
@@ -201,7 +203,7 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 
 	public void layout(List<IInputEvent> events)
 	{
-		final Application application = ModelUtil.getApplication(nkPipeline);
+		final Application application = VulkanModelUtil.getApplication(nkPipeline);
 		final IView view = application.getCurrentView();
 		final UIContext context = new UIContext(window, nkContext, events);
 
@@ -284,9 +286,10 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	public List<IVkDescriptorSet> gatherDescriptorSets()
+	public void collectDescriptorSets(List<IVkDescriptorSet> collectIn)
 	{
-		return resources.getDescriptorSets();
+		super.collectDescriptorSets(collectIn);
+		collectIn.addAll(resources.getDescriptorSets());
 	}
 
 	@Override

@@ -1,17 +1,18 @@
-package org.sheepy.lily.vulkan.demo.triangle;
+package org.sheepy.lily.vulkan.demo.rotatingtriangle;
 
+import org.sheepy.lily.vulkan.demo.adapter.CameraMatrixComputer;
 import org.sheepy.lily.vulkan.demo.mesh.AbstractMeshBuilder;
 import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferData;
 import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferDescriptor;
 import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferDescriptor.Vertex;
 
-public class TriangleMeshBuilder extends AbstractMeshBuilder<Vertex>
+public class RotatingMeshBuilder extends AbstractMeshBuilder<Vertex>
 {
-
 	// {{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}},
 	// {{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
 	// {{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
 	// {{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}}
+
 	@Override
 	protected IndexedBufferData<Vertex> buildData()
 	{
@@ -25,6 +26,11 @@ public class TriangleMeshBuilder extends AbstractMeshBuilder<Vertex>
 				0, 1, 2, 2, 3, 0
 		};
 
-		return new IndexedBufferData<>(vertices, indices, null, new IndexedBufferDescriptor());
+		final byte[] uniformData = new byte[CameraMatrixComputer.SIZE_OF];
+
+		final IndexedBufferData<Vertex> res = new IndexedBufferData<>(vertices, indices,
+				uniformData, new IndexedBufferDescriptor());
+
+		return res;
 	}
 }

@@ -4,24 +4,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.application.ApplicationPackage;
+import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 
-public class ModelUtil
+public class VulkanModelUtil extends ModelUtil
 {
-	public static final Application getApplication(EObject eObject)
-	{
-		while (eObject != null
-				&& ApplicationPackage.Literals.APPLICATION.isInstance(eObject) == false)
-		{
-			eObject = eObject.eContainer();
-		}
-
-		return (Application) eObject;
-	}
-
 	public static VulkanEngine getEngine(EObject eo)
 	{
 		return getParent(eo, VulkanEngine.class);

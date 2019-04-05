@@ -1,5 +1,7 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
@@ -8,12 +10,14 @@ import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.nativehelper.pipeline.VkGraphicsPipeline;
 import org.sheepy.lily.vulkan.api.nativehelper.pipeline.VkPipeline;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
 import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
+import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 
@@ -27,9 +31,17 @@ public abstract class AbstractGraphicsPipelineAdapter extends AbstractPipelineAd
 	@Override
 	protected VkPipeline createVkPipeline(IAllocationContext context)
 	{
-		return new VkGraphicsPipeline(gatherDescriptorSets(), List.of(getConstants()),
-				getColorBlend(), getRasterizer(), getInputAssembly(), getViewportState(),
-				getDynamicState(), getVertexBufferDescriptor(), getShaders(), getSubpass());
+		final var constants = getConstants();
+		List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
+		final List<AbstractConstants> constantsList = constants != null
+				? List.of(constants)
+				: Collections.emptyList();
+
+		collectDescriptorSets(descriptorSets);
+
+		return new VkGraphicsPipeline(descriptorSets, constantsList, getColorBlend(),
+				getRasterizer(), getInputAssembly(), getViewportState(), getDynamicState(),
+				getVertexBufferDescriptor(), getShaders(), getSubpass());
 	}
 
 	@Override

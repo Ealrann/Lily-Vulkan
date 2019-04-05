@@ -58,13 +58,9 @@ public class ScreenRendererAdapter extends GraphicsPipelineAdapter
 	}
 
 	@Override
-	public List<? extends Object> getResources()
+	public void collectResources(List<Object> collectIn)
 	{
-		final List<Object> res = new ArrayList<>();
-		res.add(buffer);
-		res.addAll(super.getResources());
-
-		return res;
+		collectIn.add(buffer);
 	}
 
 	@Dispose

@@ -19,7 +19,7 @@ import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
 import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.util.ModelUtil;
+import org.sheepy.lily.vulkan.common.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.common.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
@@ -120,7 +120,7 @@ public class SwapChainManager implements ISwapChainManager
 	private static int loadSwapChainUsage(final SwapchainConfiguration configuration)
 	{
 		final var usages = configuration.getSwapImageUsages();
-		int res = ModelUtil.getEnumeratedFlag(usages);
+		int res = VulkanModelUtil.getEnumeratedFlag(usages);
 		if (res == 0)
 		{
 			res = EImageUsage.COLOR_ATTACHMENT_VALUE;

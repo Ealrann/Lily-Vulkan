@@ -21,7 +21,6 @@ public class MainTexture
 		MeshPipelineAdapter.meshBuilder = new TextureMeshBuilder();
 
 		final var meshConfiguration = new MeshConfiguration();
-		meshConfiguration.buildUniformBuffer = true;
 		meshConfiguration.depth = true;
 		meshConfiguration.vertexShaderPath = VERTEX_SHADER_PATH;
 		meshConfiguration.fragmentShaderPath = FRAGMENT_SHADER_PATH;

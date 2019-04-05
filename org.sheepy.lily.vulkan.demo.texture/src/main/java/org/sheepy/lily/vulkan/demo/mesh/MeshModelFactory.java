@@ -45,8 +45,8 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.ViewportImpl;
 import org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl;
+import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetPkgImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.TextureImpl;
@@ -54,7 +54,6 @@ import org.sheepy.lily.vulkan.model.resource.impl.TextureImpl;
 public class MeshModelFactory
 {
 	public static final String MESH_PIPELINE_NAME = "MeshPipeline";
-	public static final String MESH_UNIFORM_BUFFER_NAME = "Mesh Uniform Buffer";
 
 	private final MeshConfiguration meshConfiguration;
 
@@ -203,14 +202,6 @@ public class MeshModelFactory
 		graphicProcess.setPipelinePkg(new PipelinePkgImpl());
 		graphicProcess.getPipelinePkg().getPipelines().add(graphicPipeline);
 
-		if (meshConfiguration.buildUniformBuffer == true)
-		{
-			final var uniformBuffer = new BufferImpl();
-			uniformBuffer.setName(MESH_UNIFORM_BUFFER_NAME);
-			descriptorSet.getDescriptors().add(uniformBuffer);
-			resourceContainer.getResources().add(uniformBuffer);
-		}
-
 		if (meshConfiguration.texturePath != null)
 		{
 			final ModuleResource textureFile = new ModuleResourceImpl();
@@ -223,6 +214,10 @@ public class MeshModelFactory
 
 			descriptorSet.getDescriptors().add(texture);
 			resourceContainer.getResources().add(texture);
+
+			var descriptorSetPkg = new DescriptorSetPkgImpl();
+			descriptorSetPkg.getDescriptorSets().add(descriptorSet);
+			graphicProcess.setDescriptorSetPkg(descriptorSetPkg);
 		}
 
 		if (descriptorSet.getDescriptors().isEmpty() == false)

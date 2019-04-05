@@ -11,6 +11,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.extra.api.terrain.IMesh;
+import org.sheepy.lily.vulkan.extra.api.terrain.IMeshInstances;
 import org.sheepy.lily.vulkan.extra.api.terrain.IMeshProviderAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
@@ -47,7 +48,8 @@ public class TerrainRendererAdapter extends GraphicsPipelineAdapter
 		final var meshes = meshProviderAdapter.getMeshes();
 		for (int i = 0; i < meshes.size(); i++)
 		{
-			final IMesh mesh = meshes.get(i);
+			final IMeshInstances meshInstances = meshes.get(i);
+			final IMesh mesh = meshInstances.getMesh();
 			final long indexAddress = mesh.getIndexBufferAddress();
 			final int indexCount = mesh.getIndicesCount();
 			vertexBuffers[0] = mesh.getVertexBufferAddress();
@@ -61,10 +63,9 @@ public class TerrainRendererAdapter extends GraphicsPipelineAdapter
 	}
 
 	@Override
-	public List<IVkDescriptorSet> gatherDescriptorSets()
+	public void collectDescriptorSets(List<IVkDescriptorSet> collectIn)
 	{
 		final List<Integer[]> indexes = new ArrayList<>();
-		final List<IVkDescriptorSet> res = new ArrayList<>();
 
 		final var mainDescriptorSet = getDescriptorSetFromModel();
 		final var meshes = meshProviderAdapter.getMeshes();
@@ -72,11 +73,11 @@ public class TerrainRendererAdapter extends GraphicsPipelineAdapter
 
 		if (mainDescriptorSet != null)
 		{
-			res.add(mainDescriptorSet);
+			collectIn.add(mainDescriptorSet);
 			index++;
 		}
 
-		for (final IMesh mesh : meshes)
+		for (final IMeshInstances mesh : meshes)
 		{
 			int count = mainDescriptorSet != null ? 1 : 0;
 
@@ -95,15 +96,11 @@ public class TerrainRendererAdapter extends GraphicsPipelineAdapter
 			{
 				indexesArray[arrayIndex++] = index;
 				index++;
-				res.add(meshDescriptorSet);
+				collectIn.add(meshDescriptorSet);
 			}
 
 			indexes.add(indexesArray);
 		}
-
-		descriptorIndexes = List.copyOf(indexes);
-
-		return res;
 	}
 
 	@Override

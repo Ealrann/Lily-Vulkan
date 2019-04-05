@@ -1,9 +1,8 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
-import org.sheepy.lily.vulkan.demo.adapter.UniformBufferAdapter;
 import org.sheepy.lily.vulkan.demo.mesh.MeshPipelineAdapter;
 
 @Adapters(classifiers = {
-		MeshPipelineAdapter.class, UniformBufferAdapter.class
+		MeshPipelineAdapter.class
 })
 
 module org.sheepy.lily.vulkan.demo.texture

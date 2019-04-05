@@ -1,10 +1,11 @@
 package org.sheepy.lily.vulkan.extra.api.terrain;
 
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
+import java.util.List;
+
+import org.sheepy.lily.vulkan.api.resource.IVkDescriptor;
 
 public interface IMesh
 {
-
 	long getVertexBufferAddress();
 
 	long getIndexBufferAddress();
@@ -12,6 +13,6 @@ public interface IMesh
 	int getIndicesCount();
 
 	int getVerticesCount();
-	
-	IVkDescriptorSet getDescriptorSet();
+
+	List<IVkDescriptor> getDescriptors();
 }
