@@ -1,35 +1,44 @@
-package org.sheepy.lily.vulkan.demo.mesh;
+package org.sheepy.lily.vulkan.api.nativehelper.resource;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.IBufferBackend;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 
-public class CameraUniformDescriptor implements IVkDescriptor
+public class VkDescriptor implements IVkDescriptor
 {
 	private final IBufferBackend buffer;
 	private final long offset;
-	private final long size;
+	private final long capacity;
+	private final EDescriptorType type;
+	private final List<EShaderStage> stages;
 
-	public CameraUniformDescriptor(IBufferBackend buffer, long offset, long size)
+	public VkDescriptor(IBufferBackend buffer,
+						long capacity,
+						long offset,
+						EDescriptorType type,
+						List<EShaderStage> stages)
 	{
 		this.buffer = buffer;
+		this.capacity = capacity;
 		this.offset = offset;
-		this.size = size;
+		this.type = type;
+		this.stages = stages;
 	}
 
 	@Override
 	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
 	{
-		final var poolSize = VkDescriptorPoolSize.callocStack(stack);
-		poolSize.type(EDescriptorType.UNIFORM_BUFFER_VALUE);
+		final VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
+		poolSize.type(type.getValue());
 		poolSize.descriptorCount(1);
 		return poolSize;
 	}
@@ -37,10 +46,12 @@ public class CameraUniformDescriptor implements IVkDescriptor
 	@Override
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
-		final var res = VkDescriptorSetLayoutBinding.callocStack(stack);
-		res.descriptorType(EDescriptorType.UNIFORM_BUFFER_VALUE);
+		final int stageFlags = VulkanModelUtil.getEnumeratedFlag(stages);
+
+		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		res.descriptorType(type.getValue());
 		res.descriptorCount(1);
-		res.stageFlags(EShaderStage.VERTEX_BIT_VALUE);
+		res.stageFlags(stageFlags);
 		return res;
 	}
 
@@ -49,13 +60,13 @@ public class CameraUniformDescriptor implements IVkDescriptor
 	{
 		final VkDescriptorBufferInfo.Buffer bufferInfo = allocBufferInfo(stack);
 
-		final var descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
+		final VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
 		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
 		descriptorWrite.dstArrayElement(0);
-		descriptorWrite.descriptorType(EDescriptorType.UNIFORM_BUFFER_VALUE);
+		descriptorWrite.descriptorType(type.getValue());
 		descriptorWrite.pBufferInfo(bufferInfo);
-		descriptorWrite.pImageInfo(null); // Optional
-		descriptorWrite.pTexelBufferView(null); // Optional
+		descriptorWrite.pImageInfo(null);
+		descriptorWrite.pTexelBufferView(null);
 		return descriptorWrite;
 	}
 
@@ -64,7 +75,7 @@ public class CameraUniformDescriptor implements IVkDescriptor
 		final var bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
 		bufferInfo.buffer(buffer.getAddress());
 		bufferInfo.offset(offset);
-		bufferInfo.range(size);
+		bufferInfo.range(capacity);
 
 		return bufferInfo;
 	}

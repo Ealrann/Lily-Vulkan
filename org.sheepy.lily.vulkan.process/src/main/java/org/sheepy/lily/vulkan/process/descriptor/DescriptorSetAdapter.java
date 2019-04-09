@@ -8,7 +8,7 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.IVkDescriptor;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;

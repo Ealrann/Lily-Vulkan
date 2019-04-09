@@ -23,8 +23,6 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 
 	private GPUBufferBackend uniformBuffer;
 
-	private int uniformDataCount;
-
 	boolean allocated = false;
 
 	public static <T extends IVertex> IndexedBufferWithUniform<T> alloc(IExecutionContext context,
@@ -64,7 +62,7 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 		super(meshDescriptor, vertexBufferCapacity, indexBufferCapacity);
 		this.uniformBufferCapacity = uniformBufferCapacity;
 
-		BufferInfo info = new BufferInfo(uniformBufferCapacity, USAGE, false);
+		final BufferInfo info = new BufferInfo(uniformBufferCapacity, USAGE, false);
 		uniformBuffer = new GPUBufferBackend(info, false);
 	}
 
@@ -95,8 +93,6 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 
 	private void fillBuffer(MemoryStack stack, ByteBuffer uniforms, int uniformDataCount)
 	{
-		this.uniformDataCount = uniformDataCount;
-
 		final int uniformDataByteSize = uniformDataCount;
 		final var uniformFiller = new BufferGPUFiller(stack, context, uniformBuffer.getAddress());
 
@@ -108,15 +104,12 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 							int numberOfIndice,
 							CPUBufferBackend vertexStaggingBuffer,
 							int numberOfVertice,
-							CPUBufferBackend uniformStaggingBuffer,
-							int uniformDataCount)
+							CPUBufferBackend uniformStaggingBuffer)
 	{
 		super.fillBuffer(context, indexStaggingBuffer, numberOfIndice, vertexStaggingBuffer,
 				numberOfVertice);
 
 		final var executionContext = (ExecutionContext) context;
-
-		this.uniformDataCount = uniformDataCount;
 
 		uniformBuffer.pushData(executionContext, uniformStaggingBuffer);
 	}
@@ -128,11 +121,6 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 
 		uniformBuffer.free(context);
 		uniformBuffer = null;
-	}
-
-	public int getUniformDataCount()
-	{
-		return uniformDataCount;
 	}
 
 	public long getUniformBufferAddress()

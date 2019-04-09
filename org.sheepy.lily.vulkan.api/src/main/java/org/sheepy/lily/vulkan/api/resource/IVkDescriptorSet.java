@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.IVkDescriptor;
 
 public interface IVkDescriptorSet
 {

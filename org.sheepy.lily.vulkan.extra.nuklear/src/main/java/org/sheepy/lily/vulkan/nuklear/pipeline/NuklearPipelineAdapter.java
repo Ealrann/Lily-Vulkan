@@ -35,7 +35,7 @@ import org.sheepy.lily.vulkan.api.nativehelper.Extent2D;
 import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.common.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
 import org.sheepy.lily.vulkan.model.enumeration.ECullMode;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;

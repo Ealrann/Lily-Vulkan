@@ -14,8 +14,9 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.IBufferBackend;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
-import org.sheepy.lily.vulkan.common.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 

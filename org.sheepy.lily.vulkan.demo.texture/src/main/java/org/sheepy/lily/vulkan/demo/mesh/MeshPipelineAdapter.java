@@ -12,7 +12,7 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.common.util.VulkanModelUtil;
+import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.demo.adapter.CameraMatrixComputer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;

@@ -12,6 +12,7 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.IBufferBackend;
 import org.sheepy.lily.vulkan.api.process.IVulkanContext;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkBufferAllocator;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator;

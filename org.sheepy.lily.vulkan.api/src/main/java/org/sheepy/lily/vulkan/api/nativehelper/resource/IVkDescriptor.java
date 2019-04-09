@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.api.resource;
+package org.sheepy.lily.vulkan.api.nativehelper.resource;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;

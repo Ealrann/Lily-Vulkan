@@ -14,7 +14,7 @@ import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.IVkDescriptor;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.Logger;
 
