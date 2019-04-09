@@ -1,12 +1,19 @@
 package org.sheepy.lily.vulkan.common.allocation.wrapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationObject;
 import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationAdapter;
 
 public class AllocableWrapperFactory
 {
-	public static AllocationWrapper wrap(Object object)
+	public static final AllocableWrapperFactory INSTANCE = new AllocableWrapperFactory();
+
+	private final Map<IAllocationObject, AllocationWrapper> map = new HashMap<>();
+
+	public AllocationWrapper wrap(Object object)
 	{
 		if (object instanceof EObject)
 		{
@@ -20,13 +27,20 @@ public class AllocableWrapperFactory
 		return null;
 	}
 
-	public static AllocationWrapper wrap(IAllocationObject object)
+	public AllocationWrapper wrap(IAllocationObject object)
 	{
-		final AllocationWrapper res = new AllocationWrapper(object);
+		AllocationWrapper res = map.get(object);
+
+		if (res == null)
+		{
+			res = new AllocationWrapper(object);
+			map.put(object, res);
+		}
+
 		return res;
 	}
 
-	public static AllocationWrapper wrap(EObject object)
+	public AllocationWrapper wrap(EObject object)
 	{
 		AllocationWrapper res = null;
 

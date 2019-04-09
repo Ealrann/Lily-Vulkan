@@ -36,7 +36,7 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 		if (allocationObject instanceof IAllocationContextProvider)
 		{
 			final var contextProvider = (IAllocationContextProvider) allocationObject;
-			res = AllocableWrapperFactory.wrap(contextProvider.getAllocationContext());
+			res = AllocableWrapperFactory.INSTANCE.wrap(contextProvider.getAllocationContext());
 		}
 
 		return res;
@@ -183,7 +183,7 @@ public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 
 				if (wrap == null)
 				{
-					wrap = AllocableWrapperFactory.wrap(child);
+					wrap = AllocableWrapperFactory.INSTANCE.wrap(child);
 				}
 
 				if (wrap != null)

@@ -25,7 +25,7 @@ public class TreeAllocator implements IAllocable
 	{
 		if (rootWrapper == null)
 		{
-			rootWrapper = AllocableWrapperFactory.wrap(root);
+			rootWrapper = AllocableWrapperFactory.INSTANCE.wrap(root);
 
 			if (rootWrapper == null)
 			{
@@ -73,7 +73,7 @@ public class TreeAllocator implements IAllocable
 	{
 		IAllocationWrapper res = null;
 
-		for (Adapter adapter : eobject.eAdapters())
+		for (final Adapter adapter : eobject.eAdapters())
 		{
 			if (adapter instanceof IAllocationWrapper)
 			{
