@@ -9,6 +9,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.resource.IIndexedBuffer;
 import org.sheepy.lily.vulkan.api.resource.IIndexedBufferDescriptor;
 import org.sheepy.lily.vulkan.api.resource.IVertex;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
@@ -17,7 +18,7 @@ import org.sheepy.lily.vulkan.resource.buffer.BufferGPUFiller;
 import org.sheepy.lily.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.lily.vulkan.resource.buffer.GPUBufferBackend;
 
-public class IndexedBuffer<T extends IVertex> implements IAllocable
+public class IndexedBuffer<T extends IVertex> implements IAllocable, IIndexedBuffer
 {
 	private final IIndexedBufferDescriptor<T> meshDescriptor;
 	private final int vertexBufferCapacity;
@@ -169,6 +170,7 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		return vertexCount;
 	}
 
+	@Override
 	public int getIndicesCount()
 	{
 		return indexCount;
@@ -184,11 +186,13 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		return indexBufferCapacity;
 	}
 
+	@Override
 	public long getVertexBufferAddress()
 	{
 		return vertexBuffer.getAddress();
 	}
 
+	@Override
 	public long getIndexBufferAddress()
 	{
 		return indexBuffer.getAddress();

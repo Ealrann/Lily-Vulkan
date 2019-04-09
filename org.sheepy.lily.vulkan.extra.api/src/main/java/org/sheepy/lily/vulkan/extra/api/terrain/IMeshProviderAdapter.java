@@ -9,7 +9,7 @@ import org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider;
 
 public interface IMeshProviderAdapter extends IAdapter
 {
-	List<IMeshInstances> getMeshes();
+	List<IMeshObject> getMeshes();
 
 	IVertexBufferDescriptor<?> getVertexBufferDescriptor();
 
@@ -17,4 +17,5 @@ public interface IMeshProviderAdapter extends IAdapter
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(resource, IMeshProviderAdapter.class);
 	}
+
 }

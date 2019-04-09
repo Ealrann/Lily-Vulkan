@@ -4,7 +4,6 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
@@ -60,6 +59,7 @@ public class ScreenRendererAdapter extends GraphicsPipelineAdapter
 	@Override
 	public void collectResources(List<Object> collectIn)
 	{
+		super.collectResources(collectIn);
 		collectIn.add(buffer);
 	}
 

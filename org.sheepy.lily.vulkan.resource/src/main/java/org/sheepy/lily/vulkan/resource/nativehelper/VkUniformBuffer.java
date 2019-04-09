@@ -50,7 +50,7 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable
 	@Override
 	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
 	{
-		final VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
+		final var poolSize = VkDescriptorPoolSize.callocStack(stack);
 		poolSize.type(EDescriptorType.UNIFORM_BUFFER_VALUE);
 		poolSize.descriptorCount(getDescriptorCount());
 		return poolSize;
@@ -60,7 +60,7 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
 		final int stageFlags = VulkanModelUtil.getEnumeratedFlag(stages);
-		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		final var res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(EDescriptorType.UNIFORM_BUFFER_VALUE);
 		res.descriptorCount(getDescriptorCount());
 		res.stageFlags(stageFlags);
@@ -70,15 +70,15 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable
 	@Override
 	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
 	{
-		final VkDescriptorBufferInfo.Buffer bufferInfo = allocBufferInfo(stack);
+		final var bufferInfo = allocBufferInfo(stack);
 
-		final VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
+		final var descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
 		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
 		descriptorWrite.dstArrayElement(0);
 		descriptorWrite.descriptorType(EDescriptorType.UNIFORM_BUFFER_VALUE);
 		descriptorWrite.pBufferInfo(bufferInfo);
-		descriptorWrite.pImageInfo(null); // Optional
-		descriptorWrite.pTexelBufferView(null); // Optional
+		descriptorWrite.pImageInfo(null);
+		descriptorWrite.pTexelBufferView(null);
 		return descriptorWrite;
 	}
 

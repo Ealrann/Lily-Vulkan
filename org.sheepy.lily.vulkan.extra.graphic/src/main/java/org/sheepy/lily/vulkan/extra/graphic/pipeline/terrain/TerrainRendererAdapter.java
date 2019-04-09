@@ -10,8 +10,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.extra.api.terrain.IMesh;
-import org.sheepy.lily.vulkan.extra.api.terrain.IMeshInstances;
 import org.sheepy.lily.vulkan.extra.api.terrain.IMeshProviderAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
@@ -48,17 +46,17 @@ public class TerrainRendererAdapter extends GraphicsPipelineAdapter
 		final var meshes = meshProviderAdapter.getMeshes();
 		for (int i = 0; i < meshes.size(); i++)
 		{
-			final IMeshInstances meshInstances = meshes.get(i);
-			final IMesh mesh = meshInstances.getMesh();
-			final long indexAddress = mesh.getIndexBufferAddress();
-			final int indexCount = mesh.getIndicesCount();
-			vertexBuffers[0] = mesh.getVertexBufferAddress();
+			final var mesh = meshes.get(i);
+			final var indexedBuffer = mesh.getIIndexedBuffer();
+			final long indexAddress = indexedBuffer.getIndexBufferAddress();
+			final int indexCount = indexedBuffer.getIndicesCount();
+			vertexBuffers[0] = indexedBuffer.getVertexBufferAddress();
 			offsets[0] = 0;
 
 			bindDescriptor(vkCommandBuffer, bindPoint, descriptorIndexes.get(i));
 			vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
 			vkCmdBindIndexBuffer(vkCommandBuffer, indexAddress, 0, VK_INDEX_TYPE_UINT32);
-			vkCmdDrawIndexed(vkCommandBuffer, indexCount, 1, 0, 0, 0);
+			vkCmdDrawIndexed(vkCommandBuffer, indexCount, mesh.getInstanceCount(), 0, 0, 0);
 		}
 	}
 
@@ -77,11 +75,11 @@ public class TerrainRendererAdapter extends GraphicsPipelineAdapter
 			index++;
 		}
 
-		for (final IMeshInstances mesh : meshes)
+		for (final var mesh : meshes)
 		{
-			int count = mainDescriptorSet != null ? 1 : 0;
-
 			final var meshDescriptorSet = mesh.getDescriptorSet();
+
+			int count = mainDescriptorSet != null ? 1 : 0;
 			if (meshDescriptorSet != null) count++;
 
 			final Integer[] indexesArray = new Integer[count];
@@ -100,6 +98,20 @@ public class TerrainRendererAdapter extends GraphicsPipelineAdapter
 			}
 
 			indexes.add(indexesArray);
+		}
+
+		descriptorIndexes = List.copyOf(indexes);
+	}
+
+	@Override
+	public void collectResources(List<Object> collectIn)
+	{
+		super.collectResources(collectIn);
+
+		final var meshes = meshProviderAdapter.getMeshes();
+		for (final var mesh : meshes)
+		{
+			collectIn.add(mesh);
 		}
 	}
 
