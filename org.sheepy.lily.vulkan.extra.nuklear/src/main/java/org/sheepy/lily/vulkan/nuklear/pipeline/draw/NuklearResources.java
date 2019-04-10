@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 import org.lwjgl.nuklear.NkUserFont;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Shader;

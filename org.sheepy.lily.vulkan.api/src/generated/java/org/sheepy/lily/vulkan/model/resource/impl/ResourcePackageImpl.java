@@ -438,6 +438,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBuffer_InstanceCount()
+	{
+		return (EAttribute) bufferEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getImage()
 	{
 		return imageEClass;
@@ -1375,6 +1386,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(bufferEClass, BUFFER__DATA);
 		createEAttribute(bufferEClass, BUFFER__OFTEN_UPDATED);
 		createEAttribute(bufferEClass, BUFFER__GPU_BUFFER);
+		createEAttribute(bufferEClass, BUFFER__INSTANCE_COUNT);
 
 		imageEClass = createEClass(IMAGE);
 		createEAttribute(imageEClass, IMAGE__WIDTH);
@@ -1574,6 +1586,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getBuffer_GpuBuffer(), theEcorePackage.getEBoolean(), "gpuBuffer", "true", 0,
 				1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount", "1",
+				0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

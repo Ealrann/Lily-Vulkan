@@ -24,5 +24,8 @@ public interface IBufferBackend extends IAllocable
 
 	public void unmapMemory(VkDevice vkDevice);
 
+	void nextInstance();
+	long getOffset();
+
 	void pushData(IExecutionContext executionContext, ByteBuffer data);
 }

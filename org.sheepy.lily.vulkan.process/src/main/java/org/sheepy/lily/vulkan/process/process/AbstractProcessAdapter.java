@@ -12,16 +12,16 @@ import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContextProvider;
 import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationDescriptorAdapter;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.DescriptorPool;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 
 @Statefull
 public abstract class AbstractProcessAdapter
@@ -197,12 +197,30 @@ public abstract class AbstractProcessAdapter
 	private void prepareProcess()
 	{
 		final boolean allocationDirty = prepareAllocation();
+		final boolean descriptorsDirty = prepareDescriptors();
 		final boolean needRecord = isRecordNeeded();
 
-		if (needRecord || allocationDirty)
+		if (needRecord || allocationDirty || descriptorsDirty)
 		{
 			invalidateRecords();
 		}
+	}
+
+	protected boolean prepareDescriptors()
+	{
+		boolean res = false;
+
+		try (MemoryStack stack = MemoryStack.stackPush())
+		{
+			descriptorPool.prepare(stack);
+		}
+
+		if (descriptorPool.hasChanged())
+		{
+			res = true;
+		}
+
+		return res;
 	}
 
 	private void invalidateRecords()
@@ -239,8 +257,8 @@ public abstract class AbstractProcessAdapter
 
 			if (pipelineAdapter.isRecordNeeded())
 			{
-				res = true;
 				pipelineAdapter.prepareRecord();
+				res = true;
 			}
 		}
 

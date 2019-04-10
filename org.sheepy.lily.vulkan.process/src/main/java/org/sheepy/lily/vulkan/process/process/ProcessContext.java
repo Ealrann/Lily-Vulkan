@@ -8,13 +8,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.DescriptorPool;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
-import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 
-public abstract class ProcessContext extends ExecutionContext
+public abstract class ProcessContext extends ExecutionContext implements IProcessContext
 {
 	public final DescriptorPool descriptorPool;
 	public final Application application;
@@ -38,7 +39,13 @@ public abstract class ProcessContext extends ExecutionContext
 	{
 		return allocationList;
 	}
-	
+
+	@Override
+	public DescriptorPool getDescriptorPool()
+	{
+		return descriptorPool;
+	}
+
 	public abstract ExecutionRecorders getExecutionRecorders();
 
 	public abstract List<IExecutionRecorder> getRecorders();

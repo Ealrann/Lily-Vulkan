@@ -8,6 +8,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkGraphicsPipelineCreateInfo;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.nativehelper.pipeline.builder.ColorBlendBuilder;
 import org.sheepy.lily.vulkan.api.nativehelper.pipeline.builder.DepthStencilBuilder;
 import org.sheepy.lily.vulkan.api.nativehelper.pipeline.builder.DynamicStateBuilder;
@@ -17,7 +18,6 @@ import org.sheepy.lily.vulkan.api.nativehelper.pipeline.builder.RasterizerBuilde
 import org.sheepy.lily.vulkan.api.nativehelper.pipeline.builder.ShaderStageBuilder;
 import org.sheepy.lily.vulkan.api.nativehelper.pipeline.builder.ViewportStateBuilder;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
 import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;

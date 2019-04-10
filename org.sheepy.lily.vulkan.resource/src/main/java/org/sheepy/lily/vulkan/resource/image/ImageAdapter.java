@@ -51,8 +51,8 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		this.executionContext = (ExecutionContext) context;
-		var logicalDevice = executionContext.getLogicalDevice();
-		var info = new ImageInfo(image);
+		final var logicalDevice = executionContext.getLogicalDevice();
+		final var info = new ImageInfo(image);
 
 		imageBackend = new VkImage(logicalDevice, info);
 		imageBackend.allocate(stack);
@@ -75,7 +75,7 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 			@Override
 			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
-				ImageLayout initialLayout = image.getInitialLayout();
+				final ImageLayout initialLayout = image.getInitialLayout();
 				imageBackend.transitionImageLayout(commandBuffer, EPipelineStage.BOTTOM_OF_PIPE_BIT,
 						initialLayout.getStage(), EImageLayout.UNDEFINED, initialLayout.getLayout(),
 						Collections.emptyList(), initialLayout.getAccessMask());
@@ -105,12 +105,12 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
 		int stages = 0;
-		for (EShaderStage stage : image.getShaderStages())
+		for (final EShaderStage stage : image.getShaderStages())
 		{
 			stages |= stage.getValue();
 		}
 
-		VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
+		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(image.getDescriptorType().getValue());
 		res.descriptorCount(1);
 		res.stageFlags(stages);
@@ -118,29 +118,25 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	}
 
 	@Override
-	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
+	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
 	{
-		VkDescriptorImageInfo.Buffer imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
+		final var imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
 		imageInfo.imageLayout(VK_IMAGE_LAYOUT_GENERAL);
 		imageInfo.imageView(imageView.getAddress());
 
-		VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
-		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
-		descriptorWrite.dstArrayElement(0);
-		descriptorWrite.descriptorType(image.getDescriptorType().getValue());
-		descriptorWrite.pBufferInfo(null);
-		descriptorWrite.pImageInfo(imageInfo);
-		descriptorWrite.pTexelBufferView(null); // Optional
-		return descriptorWrite;
+		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		writeDescriptor.dstArrayElement(0);
+		writeDescriptor.descriptorType(image.getDescriptorType().getValue());
+		writeDescriptor.pBufferInfo(null);
+		writeDescriptor.pImageInfo(imageInfo);
+		writeDescriptor.pTexelBufferView(null);
 	}
 
 	@Override
-	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
+	public void fillPoolSize(VkDescriptorPoolSize poolSize)
 	{
-		VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
 		poolSize.type(image.getDescriptorType().getValue());
 		poolSize.descriptorCount(1);
-		return poolSize;
 	}
 
 	public long getAddress()

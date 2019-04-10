@@ -27,6 +27,7 @@ module org.sheepy.lily.vulkan.api
 	exports org.sheepy.lily.vulkan.api.input;
 	exports org.sheepy.lily.vulkan.api.nativehelper;
 	exports org.sheepy.lily.vulkan.api.nativehelper.concurrent;
+	exports org.sheepy.lily.vulkan.api.nativehelper.descriptor;
 	exports org.sheepy.lily.vulkan.api.nativehelper.device.capabilities;
 	exports org.sheepy.lily.vulkan.api.nativehelper.pipeline;
 	exports org.sheepy.lily.vulkan.api.nativehelper.resource;

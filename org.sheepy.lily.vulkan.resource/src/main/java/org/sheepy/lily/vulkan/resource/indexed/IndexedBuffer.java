@@ -124,8 +124,8 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable, IIndexedBuf
 		final var vertexFiller = new BufferGPUFiller(stack, context, vertexBuffer.getAddress());
 		final var indexFiller = new BufferGPUFiller(stack, context, indexBuffer.getAddress());
 
-		vertexFiller.fill(vertices, vertexByteSize);
-		indexFiller.fill(indices, indexByteSize);
+		vertexFiller.fill(vertices, 0, vertexByteSize);
+		indexFiller.fill(indices, 0, indexByteSize);
 	}
 
 	public void fillBuffer(	IAllocationContext context,

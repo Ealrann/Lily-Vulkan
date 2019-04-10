@@ -283,13 +283,22 @@ public interface ResourcePackage extends EPackage
 	int BUFFER__GPU_BUFFER = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER__INSTANCE_COUNT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Buffer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_FEATURE_COUNT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 5;
+	int BUFFER_FEATURE_COUNT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Buffer</em>' class.
@@ -1951,6 +1960,17 @@ public interface ResourcePackage extends EPackage
 	EAttribute getBuffer_GpuBuffer();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount()
+	 * @see #getBuffer()
+	 * @generated
+	 */
+	EAttribute getBuffer_InstanceCount();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2920,6 +2940,14 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BUFFER__GPU_BUFFER = eINSTANCE.getBuffer_GpuBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER__INSTANCE_COUNT = eINSTANCE.getBuffer_InstanceCount();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.

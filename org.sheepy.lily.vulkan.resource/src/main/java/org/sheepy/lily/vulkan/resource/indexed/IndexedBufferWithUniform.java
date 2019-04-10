@@ -96,7 +96,7 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 		final int uniformDataByteSize = uniformDataCount;
 		final var uniformFiller = new BufferGPUFiller(stack, context, uniformBuffer.getAddress());
 
-		uniformFiller.fill(uniforms, uniformDataByteSize);
+		uniformFiller.fill(uniforms, 0, uniformDataByteSize);
 	}
 
 	public void fillBuffer(	IAllocationContext context,

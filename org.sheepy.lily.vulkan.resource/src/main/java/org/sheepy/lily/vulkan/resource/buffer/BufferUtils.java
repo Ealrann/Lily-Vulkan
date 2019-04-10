@@ -66,12 +66,14 @@ public class BufferUtils
 
 	public static void copyBuffer(	VkCommandBuffer vkCommandBuffer,
 									long srcBuffer,
+									long srcOffset,
 									long dstBuffer,
+									long dstOffset,
 									long size)
 	{
 		final var copyRegion = VkBufferCopy.create(1);
-		copyRegion.srcOffset(0); // Optional
-		copyRegion.dstOffset(0); // Optional
+		copyRegion.srcOffset(srcOffset);
+		copyRegion.dstOffset(dstOffset);
 		copyRegion.size(size);
 		vkCmdCopyBuffer(vkCommandBuffer, srcBuffer, dstBuffer, copyRegion);
 	}

@@ -7,6 +7,7 @@ import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
@@ -27,6 +28,8 @@ public class GPUBufferBackend implements IBufferBackend
 
 	private long address = -1;
 	private long memoryAddress;
+	private int currentInstance = 0;
+	private long currentOffset = 0;
 
 	private CPUBufferBackend cpuBackend = null;
 
@@ -101,7 +104,12 @@ public class GPUBufferBackend implements IBufferBackend
 			{
 				final int size = (int) Math.min(data.remaining(), infos.size);
 				final var bufferFiller = new BufferGPUFiller(stack, executionContext, address);
-				bufferFiller.fill(data, size);
+				bufferFiller.fill(data, currentOffset, size);
+			}
+
+			if (DebugUtil.DEBUG_ENABLED)
+			{
+				System.err.println("[Warning] Pushing in a non staged GPU Buffer is slow.");
 			}
 		}
 		else
@@ -120,7 +128,8 @@ public class GPUBufferBackend implements IBufferBackend
 			@Override
 			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
-				BufferUtils.copyBuffer(commandBuffer, stagingBuffer.getAddress(), address, size);
+				BufferUtils.copyBuffer(commandBuffer, stagingBuffer.getAddress(), 0, address,
+						currentOffset, size);
 			}
 		});
 	}
@@ -161,6 +170,24 @@ public class GPUBufferBackend implements IBufferBackend
 	public BufferInfo getInfos()
 	{
 		return infos;
+	}
+
+	@Override
+	public void nextInstance()
+	{
+		currentInstance++;
+		if (currentInstance >= infos.instanceCount)
+		{
+			currentInstance = 0;
+		}
+
+		currentOffset = currentInstance * infos.size;
+	}
+
+	@Override
+	public long getOffset()
+	{
+		return currentOffset;
 	}
 
 	@Override

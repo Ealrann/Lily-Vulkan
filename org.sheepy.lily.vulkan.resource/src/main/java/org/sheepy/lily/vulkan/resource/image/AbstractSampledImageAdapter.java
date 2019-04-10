@@ -74,15 +74,15 @@ public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter,
 	}
 
 	@Override
-	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
+	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
 	{
-		return vkTexture.allocWriteDescriptor(stack);
+		vkTexture.fillWriteDescriptor(stack, writeDescriptor);
 	}
 
 	@Override
-	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
+	public void fillPoolSize(VkDescriptorPoolSize poolSize)
 	{
-		return vkTexture.allocPoolSize(stack);
+		vkTexture.fillPoolSize(poolSize);
 	}
 
 	protected abstract ImageInfo getImageInfo();

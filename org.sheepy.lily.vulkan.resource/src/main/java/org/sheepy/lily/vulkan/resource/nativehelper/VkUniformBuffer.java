@@ -11,7 +11,7 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
@@ -48,12 +48,10 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable
 	}
 
 	@Override
-	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
+	public void fillPoolSize(VkDescriptorPoolSize poolSize)
 	{
-		final var poolSize = VkDescriptorPoolSize.callocStack(stack);
 		poolSize.type(EDescriptorType.UNIFORM_BUFFER_VALUE);
 		poolSize.descriptorCount(getDescriptorCount());
-		return poolSize;
 	}
 
 	@Override
@@ -68,18 +66,16 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable
 	}
 
 	@Override
-	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
+	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
 	{
 		final var bufferInfo = allocBufferInfo(stack);
 
-		final var descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
-		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
-		descriptorWrite.dstArrayElement(0);
-		descriptorWrite.descriptorType(EDescriptorType.UNIFORM_BUFFER_VALUE);
-		descriptorWrite.pBufferInfo(bufferInfo);
-		descriptorWrite.pImageInfo(null);
-		descriptorWrite.pTexelBufferView(null);
-		return descriptorWrite;
+		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		writeDescriptor.dstArrayElement(0);
+		writeDescriptor.descriptorType(EDescriptorType.UNIFORM_BUFFER_VALUE);
+		writeDescriptor.pBufferInfo(bufferInfo);
+		writeDescriptor.pImageInfo(null);
+		writeDescriptor.pTexelBufferView(null);
 	}
 
 	protected VkDescriptorBufferInfo.Buffer allocBufferInfo(MemoryStack stack)

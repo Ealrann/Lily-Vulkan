@@ -13,8 +13,9 @@ import org.lwjgl.vulkan.VkPushConstantRange;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.api.resource.IConstantsAdapter;
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 
@@ -35,35 +36,43 @@ public class VkPipeline implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var vkDevice = ((IExecutionContext) context).getVkDevice();
+		final var processContext = (IProcessContext) context;
+		final var vkDevice = processContext.getVkDevice();
+
+		final LongBuffer layouts = allocLayouts(stack);
 
 		descriptorSetAddressBuffer = MemoryUtil.memAllocLong(descriptorSets.size());
-
-		LongBuffer bDescriptorSetLayouts = null;
-		if (descriptorSets.isEmpty() == false)
-		{
-			bDescriptorSetLayouts = stack.mallocLong(descriptorSets.size());
-			for (final IVkDescriptorSet vkDescriptorSet : descriptorSets)
-			{
-				if (vkDescriptorSet.getDescriptors().isEmpty() == false)
-				{
-					bDescriptorSetLayouts.put(vkDescriptorSet.getLayoutId());
-				}
-			}
-			bDescriptorSetLayouts.flip();
-		}
 
 		// Create compute pipeline
 		final long[] aLayout = new long[1];
 		final VkPipelineLayoutCreateInfo info = VkPipelineLayoutCreateInfo.callocStack(stack);
 		info.sType(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO);
-		info.pSetLayouts(bDescriptorSetLayouts);
-
+		info.pSetLayouts(layouts);
 		preparePushConstant(stack, info);
 
 		Logger.check("Failed to create pipeline layout",
 				() -> vkCreatePipelineLayout(vkDevice, info, null, aLayout));
 		pipelineLayout = aLayout[0];
+	}
+
+	public LongBuffer allocLayouts(MemoryStack stack)
+	{
+		LongBuffer layouts = null;
+
+		if (descriptorSets.isEmpty() == false)
+		{
+			layouts = stack.mallocLong(descriptorSets.size());
+			for (final IVkDescriptorSet vkDescriptorSet : descriptorSets)
+			{
+				if (vkDescriptorSet.size() > 0)
+				{
+					layouts.put(vkDescriptorSet.getLayoutId());
+				}
+			}
+			layouts.flip();
+		}
+
+		return layouts;
 	}
 
 	public void bindDescriptor(	VkCommandBuffer commandBuffer,

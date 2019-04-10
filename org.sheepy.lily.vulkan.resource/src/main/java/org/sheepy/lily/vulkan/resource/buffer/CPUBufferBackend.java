@@ -135,6 +135,18 @@ public class CPUBufferBackend implements IBufferBackend
 		}
 	}
 
+	@Override
+	public void nextInstance()
+	{
+		throw new AssertionError("Not implemented for CPU Buffer");
+	}
+
+	@Override
+	public long getOffset()
+	{
+		return 0;
+	}
+
 	public BufferInfo getInfos()
 	{
 		return infos;

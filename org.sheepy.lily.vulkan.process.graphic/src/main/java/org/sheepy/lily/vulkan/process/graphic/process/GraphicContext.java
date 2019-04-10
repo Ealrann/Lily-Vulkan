@@ -10,6 +10,7 @@ import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
 import org.sheepy.lily.vulkan.api.graphic.IRenderPass;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.DescriptorPool;
 import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -20,7 +21,6 @@ import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.PhysicalDeviceSurfaceManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.SwapChainManager;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.lily.vulkan.resource.descriptor.DescriptorPool;
 
 class GraphicContext extends ProcessContext implements IGraphicContext
 {

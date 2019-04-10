@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.vulkan.VkDescriptorPoolSize.Buffer;
 import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutCreateInfo;
@@ -14,8 +15,8 @@ import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.IVkDescriptor;
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.Logger;
 
 public class VkDescriptorSet implements IVkDescriptorSet
@@ -31,6 +32,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	private long layoutId = UNINITIALIZED;
 
 	private LongBuffer bDescriptorSet;
+	private VkDevice device;
 
 	public VkDescriptorSet(List<IVkDescriptor> descriptors)
 	{
@@ -45,7 +47,8 @@ public class VkDescriptorSet implements IVkDescriptorSet
 			return;
 		}
 
-		final var device = ((IExecutionContext) context).getVkDevice();
+		device = ((IExecutionContext) context).getVkDevice();
+
 		final var layoutBindings = createLayoutBinding(stack);
 
 		final var layoutInfo = VkDescriptorSetLayoutCreateInfo.callocStack(stack);
@@ -74,7 +77,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		bDescriptorSet.put(descriptorSetId);
 		bDescriptorSet.flip();
 
-		updateDescriptorSet(stack, device);
+		updateDescriptorSet(stack, true);
 	}
 
 	@Override
@@ -108,22 +111,48 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		return layoutBindings;
 	}
 
-	private void updateDescriptorSet(MemoryStack stack, VkDevice device)
+	@Override
+	public void fillPoolSizes(Buffer poolSizes)
 	{
-		final VkWriteDescriptorSet.Buffer descriptorWrites = VkWriteDescriptorSet
-				.callocStack(descriptors.size(), stack);
-		int index = 0;
-
-		for (final IVkDescriptor descriptor : descriptors)
+		for (final var descriptor : descriptors)
 		{
-			final var allocWriteDescriptor = descriptor.allocWriteDescriptor(stack);
-			allocWriteDescriptor.dstSet(descriptorSetId);
-			allocWriteDescriptor.dstBinding(index++);
-			descriptorWrites.put(allocWriteDescriptor);
+			final var poolSize = poolSizes.get();
+			descriptor.fillPoolSize(poolSize);
+		}
+	}
+
+	@Override
+	public void updateDescriptorSet(MemoryStack stack)
+	{
+		updateDescriptorSet(stack, false);
+	}
+
+	private void updateDescriptorSet(MemoryStack stack, boolean all)
+	{
+		final int size = descriptors.size();
+		final var descriptorWrites = VkWriteDescriptorSet.callocStack(size, stack);
+
+		for (int i = 0; i < size; i++)
+		{
+			final var descriptor = descriptors.get(i);
+			if (all || descriptor.hasChanged())
+			{
+				final var descriptorWrite = descriptorWrites.get();
+
+				descriptor.fillWriteDescriptor(stack, descriptorWrite);
+				descriptorWrite.dstSet(descriptorSetId);
+				descriptorWrite.dstBinding(i);
+			}
 		}
 		descriptorWrites.flip();
 
 		vkUpdateDescriptorSets(device, descriptorWrites, null);
+	}
+
+	@Override
+	public List<IVkDescriptor> getDescriptors()
+	{
+		return descriptors;
 	}
 
 	@Override
@@ -144,8 +173,8 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	}
 
 	@Override
-	public List<IVkDescriptor> getDescriptors()
+	public int size()
 	{
-		return descriptors;
+		return descriptors.size();
 	}
 }

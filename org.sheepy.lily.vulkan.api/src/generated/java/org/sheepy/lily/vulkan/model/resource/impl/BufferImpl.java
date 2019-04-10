@@ -41,6 +41,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isOftenUpdated <em>Often Updated</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#isGpuBuffer <em>Gpu Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl#getInstanceCount <em>Instance Count</em>}</li>
  * </ul>
  *
  * @generated
@@ -186,6 +187,26 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	 * @ordered
 	 */
 	protected boolean gpuBuffer = GPU_BUFFER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int INSTANCE_COUNT_EDEFAULT = 1;
+
+	/**
+	 * The cached value of the '{@link #getInstanceCount() <em>Instance Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected int instanceCount = INSTANCE_COUNT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -396,6 +417,31 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 	 * @generated
 	 */
 	@Override
+	public int getInstanceCount()
+	{
+		return instanceCount;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInstanceCount(int newInstanceCount)
+	{
+		int oldInstanceCount = instanceCount;
+		instanceCount = newInstanceCount;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.BUFFER__INSTANCE_COUNT, oldInstanceCount, instanceCount));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -416,6 +462,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 			return isOftenUpdated();
 		case ResourcePackage.BUFFER__GPU_BUFFER:
 			return isGpuBuffer();
+		case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			return getInstanceCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -457,6 +505,9 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 		case ResourcePackage.BUFFER__GPU_BUFFER:
 			setGpuBuffer((Boolean) newValue);
 			return;
+		case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			setInstanceCount((Integer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -495,6 +546,9 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 		case ResourcePackage.BUFFER__GPU_BUFFER:
 			setGpuBuffer(GPU_BUFFER_EDEFAULT);
 			return;
+		case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			setInstanceCount(INSTANCE_COUNT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -525,6 +579,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 			return oftenUpdated != OFTEN_UPDATED_EDEFAULT;
 		case ResourcePackage.BUFFER__GPU_BUFFER:
 			return gpuBuffer != GPU_BUFFER_EDEFAULT;
+		case ResourcePackage.BUFFER__INSTANCE_COUNT:
+			return instanceCount != INSTANCE_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -614,6 +670,8 @@ public class BufferImpl extends MinimalEObjectImpl.Container implements Buffer
 		result.append(oftenUpdated);
 		result.append(", gpuBuffer: ");
 		result.append(gpuBuffer);
+		result.append(", instanceCount: ");
+		result.append(instanceCount);
 		result.append(')');
 		return result.toString();
 	}

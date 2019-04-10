@@ -24,7 +24,7 @@ public class BufferGPUFiller
 		this.targetBufferId = targetBufferId;
 	}
 
-	public void fill(ByteBuffer sourceBuffer, long byteSize)
+	public void fill(ByteBuffer sourceBuffer, long offset, long byteSize)
 	{
 		createStagingBuffer(sourceBuffer, byteSize);
 
@@ -33,7 +33,7 @@ public class BufferGPUFiller
 			@Override
 			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
-				fillBuffer(commandBuffer, byteSize);
+				fillBuffer(commandBuffer, offset, byteSize);
 			}
 
 			@Override
@@ -51,10 +51,10 @@ public class BufferGPUFiller
 				false, sourceBuffer);
 	}
 
-	private void fillBuffer(VkCommandBuffer commandBuffer, long byteSize)
+	private void fillBuffer(VkCommandBuffer commandBuffer, long offset, long byteSize)
 	{
-		final var stagingBufferId = stagingBuffer.getAddress();
+		final var srcAddress = stagingBuffer.getAddress();
 
-		BufferUtils.copyBuffer(commandBuffer, stagingBufferId, targetBufferId, byteSize);
+		BufferUtils.copyBuffer(commandBuffer, srcAddress, 0, targetBufferId, offset, byteSize);
 	}
 }

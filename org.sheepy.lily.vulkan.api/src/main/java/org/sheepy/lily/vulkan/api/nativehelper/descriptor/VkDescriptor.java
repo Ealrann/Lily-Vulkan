@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.api.nativehelper.resource;
+package org.sheepy.lily.vulkan.api.nativehelper.descriptor;
 
 import static org.lwjgl.vulkan.VK10.VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 
@@ -9,6 +9,7 @@ import org.lwjgl.vulkan.VkDescriptorBufferInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.IBufferBackend;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
@@ -35,12 +36,10 @@ public class VkDescriptor implements IVkDescriptor
 	}
 
 	@Override
-	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
+	public void fillPoolSize(VkDescriptorPoolSize poolSize)
 	{
-		final VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
 		poolSize.type(type.getValue());
 		poolSize.descriptorCount(1);
-		return poolSize;
 	}
 
 	@Override
@@ -56,18 +55,16 @@ public class VkDescriptor implements IVkDescriptor
 	}
 
 	@Override
-	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
+	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
 	{
 		final VkDescriptorBufferInfo.Buffer bufferInfo = allocBufferInfo(stack);
 
-		final VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
-		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
-		descriptorWrite.dstArrayElement(0);
-		descriptorWrite.descriptorType(type.getValue());
-		descriptorWrite.pBufferInfo(bufferInfo);
-		descriptorWrite.pImageInfo(null);
-		descriptorWrite.pTexelBufferView(null);
-		return descriptorWrite;
+		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		writeDescriptor.dstArrayElement(0);
+		writeDescriptor.descriptorType(type.getValue());
+		writeDescriptor.pBufferInfo(bufferInfo);
+		writeDescriptor.pImageInfo(null);
+		writeDescriptor.pTexelBufferView(null);
 	}
 
 	protected VkDescriptorBufferInfo.Buffer allocBufferInfo(MemoryStack stack)

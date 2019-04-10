@@ -20,6 +20,7 @@ import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getData <em>Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isOftenUpdated <em>Often Updated</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#isGpuBuffer <em>Gpu Buffer</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer()
@@ -151,5 +152,29 @@ public interface Buffer extends DescriptorResource
 	 * @generated
 	 */
 	void setGpuBuffer(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Instance Count</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance Count</em>' attribute.
+	 * @see #setInstanceCount(int)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_InstanceCount()
+	 * @model default="1" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='Every push in this buffer will write on the next instance, and update the descriptor acordingly'"
+	 * @generated
+	 */
+	int getInstanceCount();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Buffer#getInstanceCount <em>Instance Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance Count</em>' attribute.
+	 * @see #getInstanceCount()
+	 * @generated
+	 */
+	void setInstanceCount(int value);
 
 } // Buffer

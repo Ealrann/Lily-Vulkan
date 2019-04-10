@@ -38,6 +38,9 @@ class Buffer extends DescriptorResource
 	ByteBuffer data
 	boolean oftenUpdated = "false"
 	boolean gpuBuffer = "true"
+
+ 	@GenModel(propertyDescription="Every push in this buffer will write on the next instance, and update the descriptor acordingly")
+	int instanceCount = "1"
 }
 
 type ByteBuffer wraps ByteBuffer

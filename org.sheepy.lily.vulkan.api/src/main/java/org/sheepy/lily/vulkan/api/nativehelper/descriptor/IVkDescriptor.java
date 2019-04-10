@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.api.nativehelper.resource;
+package org.sheepy.lily.vulkan.api.nativehelper.descriptor;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
@@ -7,14 +7,17 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 
 public interface IVkDescriptor
 {
-	VkDescriptorPoolSize allocPoolSize(MemoryStack stack);
+	void fillPoolSize(VkDescriptorPoolSize poolSize);
 
 	VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack);
 
-	VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack);
+	void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor);
 
-	default boolean isDirty()
+	default void update()
+	{}
+	default boolean hasChanged()
 	{
 		return false;
 	}
+
 }

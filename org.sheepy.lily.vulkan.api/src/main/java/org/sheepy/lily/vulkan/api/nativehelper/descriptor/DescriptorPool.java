@@ -1,28 +1,44 @@
-package org.sheepy.lily.vulkan.resource.descriptor;
+package org.sheepy.lily.vulkan.api.nativehelper.descriptor;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import java.nio.LongBuffer;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.api.resource.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.util.Logger;
 
 public class DescriptorPool implements IAllocable
 {
-	private List<IVkDescriptorSet> descriptorSets = null;
+	private final List<IVkDescriptor> descriptors;
+	private final List<IVkDescriptorSet> descriptorSets;
+
 	private long id;
+	private boolean hasChanged = false;
 
 	public DescriptorPool(List<IVkDescriptorSet> descriptorSets)
 	{
 		this.descriptorSets = List.copyOf(descriptorSets);
+		descriptors = List.copyOf(gatherDescriptors());
+	}
+
+	private Collection<IVkDescriptor> gatherDescriptors()
+	{
+		final Set<IVkDescriptor> res = new HashSet<>();
+
+		for (final IVkDescriptorSet descriptorSet : descriptorSets)
+		{
+			res.addAll(descriptorSet.getDescriptors());
+		}
+
+		return res;
 	}
 
 	@Override
@@ -30,9 +46,9 @@ public class DescriptorPool implements IAllocable
 	{
 		final var vkDevice = ((IExecutionContext) context).getVkDevice();
 		int poolSize = 0;
-		for (final IVkDescriptorSet descriptorSet : descriptorSets)
+		for (final var descriptorSet : descriptorSets)
 		{
-			poolSize += descriptorSet.getDescriptors().size();
+			poolSize += descriptorSet.size();
 		}
 
 		if (poolSize > 0)
@@ -40,10 +56,7 @@ public class DescriptorPool implements IAllocable
 			final var poolSizes = VkDescriptorPoolSize.callocStack(poolSize);
 			for (final var descriptorSet : descriptorSets)
 			{
-				for (final var descriptor : descriptorSet.getDescriptors())
-				{
-					poolSizes.put(descriptor.allocPoolSize(stack));
-				}
+				descriptorSet.fillPoolSizes(poolSizes);
 			}
 			poolSizes.flip();
 
@@ -64,6 +77,30 @@ public class DescriptorPool implements IAllocable
 		}
 	}
 
+	public void prepare(MemoryStack stack)
+	{
+		hasChanged = false;
+
+		for (final IVkDescriptor descriptor : descriptors)
+		{
+			descriptor.update();
+			hasChanged |= descriptor.hasChanged();
+		}
+
+		if (hasChanged)
+		{
+			for (final IVkDescriptorSet descriptorSet : descriptorSets)
+			{
+				descriptorSet.updateDescriptorSet(stack);
+			}
+		}
+	}
+
+	public boolean hasChanged()
+	{
+		return hasChanged;
+	}
+
 	@Override
 	public boolean isAllocationDirty(IAllocationContext context)
 	{
@@ -79,7 +116,6 @@ public class DescriptorPool implements IAllocable
 		{
 			descriptorSet.free(context);
 		}
-		descriptorSets = null;
 
 		vkDestroyDescriptorPool(vkDevice, id, null);
 		id = -1;
@@ -88,18 +124,5 @@ public class DescriptorPool implements IAllocable
 	public long getId()
 	{
 		return id;
-	}
-
-	public LongBuffer allocLayoutBuffer()
-	{
-		final LongBuffer bDescriptorSet = MemoryUtil.memAllocLong(descriptorSets.size());
-
-		for (final var descriptorSet : descriptorSets)
-		{
-			bDescriptorSet.put(descriptorSet.getId());
-		}
-
-		bDescriptorSet.flip();
-		return bDescriptorSet;
 	}
 }

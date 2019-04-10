@@ -67,6 +67,7 @@ public class BufferItemProvider extends ItemProviderAdapter
 			addDataPropertyDescriptor(object);
 			addOftenUpdatedPropertyDescriptor(object);
 			addGpuBufferPropertyDescriptor(object);
+			addInstanceCountPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -208,6 +209,22 @@ public class BufferItemProvider extends ItemProviderAdapter
 	}
 
 	/**
+	 * This adds a property descriptor for the Instance Count feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInstanceCountPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Buffer_instanceCount_feature"),
+				getString("_UI_Buffer_instanceCount_description"),
+				ResourcePackage.Literals.BUFFER__INSTANCE_COUNT, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns Buffer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,6 +273,7 @@ public class BufferItemProvider extends ItemProviderAdapter
 		case ResourcePackage.BUFFER__DATA:
 		case ResourcePackage.BUFFER__OFTEN_UPDATED:
 		case ResourcePackage.BUFFER__GPU_BUFFER:
+		case ResourcePackage.BUFFER__INSTANCE_COUNT:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

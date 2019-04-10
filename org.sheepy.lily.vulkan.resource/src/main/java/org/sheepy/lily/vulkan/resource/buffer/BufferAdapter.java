@@ -26,6 +26,7 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 {
 	protected Buffer buffer;
 	protected IBufferBackend bufferBackend;
+	private boolean hasChanged = true;
 
 	private IExecutionContext executionManager;
 
@@ -60,7 +61,13 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 
 	public void pushData(ByteBuffer data)
 	{
+		bufferBackend.nextInstance();
 		bufferBackend.pushData(executionManager, data);
+
+		if (buffer.getInstanceCount() > 1)
+		{
+			hasChanged = true;
+		}
 	}
 
 	@Override
@@ -97,18 +104,16 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	}
 
 	@Override
-	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
+	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
 	{
-		final VkDescriptorBufferInfo.Buffer bufferInfo = allocBufferInfo(stack);
+		final var bufferInfo = allocBufferInfo(stack);
 
-		final VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
-		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
-		descriptorWrite.dstArrayElement(0);
-		descriptorWrite.descriptorType(buffer.getDescriptorType().getValue());
-		descriptorWrite.pBufferInfo(bufferInfo);
-		descriptorWrite.pImageInfo(null); // Optional
-		descriptorWrite.pTexelBufferView(null); // Optional
-		return descriptorWrite;
+		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		writeDescriptor.dstArrayElement(0);
+		writeDescriptor.descriptorType(buffer.getDescriptorType().getValue());
+		writeDescriptor.pBufferInfo(bufferInfo);
+		writeDescriptor.pImageInfo(null);
+		writeDescriptor.pTexelBufferView(null);
 	}
 
 	protected VkDescriptorBufferInfo.Buffer allocBufferInfo(MemoryStack stack)
@@ -116,19 +121,29 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 		final VkDescriptorBufferInfo.Buffer bufferInfo = VkDescriptorBufferInfo.callocStack(1,
 				stack);
 		bufferInfo.buffer(getAddress());
-		bufferInfo.offset(0);
+		bufferInfo.offset(bufferBackend.getOffset());
 		bufferInfo.range(buffer.getSize());
 
 		return bufferInfo;
 	}
 
 	@Override
-	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
+	public void fillPoolSize(VkDescriptorPoolSize poolSize)
 	{
-		final VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
 		poolSize.type(buffer.getDescriptorType().getValue());
 		poolSize.descriptorCount(getDescriptorCount());
-		return poolSize;
+	}
+
+	@Override
+	public void update()
+	{
+		hasChanged = false;
+	}
+
+	@Override
+	public boolean hasChanged()
+	{
+		return hasChanged;
 	}
 
 	public static BufferAdapter adapt(Buffer buffer)

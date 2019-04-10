@@ -17,7 +17,7 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.api.nativehelper.resource.VkImageView;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
@@ -209,30 +209,26 @@ public class VkTexture implements IVkDescriptor
 	}
 
 	@Override
-	public VkWriteDescriptorSet allocWriteDescriptor(MemoryStack stack)
+	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
 	{
-		final VkDescriptorImageInfo.Buffer imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
+		final var imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
 		imageInfo.imageLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 		imageInfo.imageView(getViewAddress());
 		imageInfo.sampler(sampler.getAddress());
 
-		final VkWriteDescriptorSet descriptorWrite = VkWriteDescriptorSet.callocStack(stack);
-		descriptorWrite.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
-		descriptorWrite.dstArrayElement(0);
-		descriptorWrite.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		descriptorWrite.pBufferInfo(null);
-		descriptorWrite.pImageInfo(imageInfo);
-		descriptorWrite.pTexelBufferView(null); // Optional
-		return descriptorWrite;
+		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		writeDescriptor.dstArrayElement(0);
+		writeDescriptor.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
+		writeDescriptor.pBufferInfo(null);
+		writeDescriptor.pImageInfo(imageInfo);
+		writeDescriptor.pTexelBufferView(null); // Optional
 	}
 
 	@Override
-	public VkDescriptorPoolSize allocPoolSize(MemoryStack stack)
+	public void fillPoolSize(VkDescriptorPoolSize poolSize)
 	{
-		final VkDescriptorPoolSize poolSize = VkDescriptorPoolSize.callocStack(stack);
 		poolSize.type(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
 		poolSize.descriptorCount(1);
-		return poolSize;
 	}
 
 	public VkImage getImage()

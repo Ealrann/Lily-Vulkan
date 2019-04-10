@@ -24,6 +24,7 @@ public class VulkanInstance
 			"VK_LAYER_LUNARG_object_tracker",
 			"VK_LAYER_LUNARG_core_validation",
 			"VK_LAYER_GOOGLE_unique_objects",
+			// "VK_LAYER_LUNARG_monitor",
 			// "VK_LAYER_LUNARG_api_dump"
 	};
 
@@ -90,7 +91,7 @@ public class VulkanInstance
 									long pMessage,
 									long pUserData)
 				{
-					String message = VkDebugReportCallbackEXT.getString(pMessage);
+					final String message = VkDebugReportCallbackEXT.getString(pMessage);
 					System.err.println("ERROR OCCURED: " + message);
 					return 0;
 				}

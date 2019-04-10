@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.api.process;
 
-import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
+import org.sheepy.lily.vulkan.model.IProcess;
 
 public interface IProcessAdapter extends IVulkanAdapter
 {
@@ -15,7 +15,7 @@ public interface IProcessAdapter extends IVulkanAdapter
 
 	void execute(int next);
 
-	static IProcessAdapter adapt(EObject process)
+	static IProcessAdapter adapt(IProcess process)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(process, IProcessAdapter.class);
 	}
