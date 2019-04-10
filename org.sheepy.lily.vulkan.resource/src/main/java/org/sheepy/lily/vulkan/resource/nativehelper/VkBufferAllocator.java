@@ -17,8 +17,8 @@ public class VkBufferAllocator
 	private static long create(MemoryStack stack, VkDevice device, BufferInfo bufferInfo)
 			throws AssertionError
 	{
-		VkBufferCreateInfo bufferCreateInfo = allocateInfo(stack, bufferInfo);
-		long[] aVertexBuffer = new long[1];
+		final VkBufferCreateInfo bufferCreateInfo = allocateInfo(stack, bufferInfo);
+		final long[] aVertexBuffer = new long[1];
 		if (vkCreateBuffer(device, bufferCreateInfo, null, aVertexBuffer) != VK_SUCCESS)
 		{
 			throw new AssertionError("failed to create vertex buffer!");
@@ -28,9 +28,9 @@ public class VkBufferAllocator
 
 	private static VkBufferCreateInfo allocateInfo(MemoryStack stack, BufferInfo bufferInfo)
 	{
-		VkBufferCreateInfo bufferCreateInfo = VkBufferCreateInfo.callocStack(stack);
+		final VkBufferCreateInfo bufferCreateInfo = VkBufferCreateInfo.callocStack(stack);
 		bufferCreateInfo.sType(VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO);
-		bufferCreateInfo.size(bufferInfo.size);
+		bufferCreateInfo.size(bufferInfo.getTotalSize());
 		bufferCreateInfo.usage(bufferInfo.usage);
 		bufferCreateInfo.sharingMode(VK_SHARING_MODE_EXCLUSIVE);
 

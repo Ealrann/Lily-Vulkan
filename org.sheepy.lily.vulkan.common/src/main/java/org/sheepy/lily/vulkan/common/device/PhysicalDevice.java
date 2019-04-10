@@ -15,6 +15,7 @@ import org.lwjgl.vulkan.VkExtensionProperties;
 import org.lwjgl.vulkan.VkFormatProperties;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceMemoryProperties;
+import org.lwjgl.vulkan.VkPhysicalDeviceProperties;
 import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
 import org.sheepy.lily.vulkan.common.device.data.DeviceProperties;
 import org.sheepy.lily.vulkan.common.device.display.DisplayInfo;
@@ -233,5 +234,11 @@ public class PhysicalDevice implements IPhysicalDevice
 	public List<DisplayInfo> getDisplaysInfomations()
 	{
 		return displaysInfomations;
+	}
+
+	@Override
+	public VkPhysicalDeviceProperties getDeviceProperties()
+	{
+		return deviceProperties.vkDeviceProperties;
 	}
 }

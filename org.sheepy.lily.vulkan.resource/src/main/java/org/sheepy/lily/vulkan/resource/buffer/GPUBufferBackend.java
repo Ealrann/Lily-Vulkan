@@ -24,7 +24,7 @@ public class GPUBufferBackend implements IBufferBackend
 	public static final int DEVICE_LOCAL = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
 
 	private final int properties;
-	private final BufferInfo infos;
+	private final BufferInfo info;
 
 	private long address = -1;
 	private long memoryAddress;
@@ -35,7 +35,7 @@ public class GPUBufferBackend implements IBufferBackend
 
 	public GPUBufferBackend(BufferInfo info, boolean keepStagingBuffer)
 	{
-		this.infos = info;
+		this.info = info;
 
 		if (keepStagingBuffer)
 		{
@@ -52,7 +52,9 @@ public class GPUBufferBackend implements IBufferBackend
 	{
 		final var vulkanContext = (IVulkanContext) context;
 		final var vkDevice = vulkanContext.getVkDevice();
-		address = VkBufferAllocator.allocate(stack, vkDevice, infos);
+
+		info.computeAlignment(vulkanContext.getPhysicalDevice());
+		address = VkBufferAllocator.allocate(stack, vkDevice, info);
 
 		final var memoryInfo = allocateMemory(stack, vulkanContext.getLogicalDevice());
 		memoryAddress = memoryInfo.id;
@@ -102,7 +104,7 @@ public class GPUBufferBackend implements IBufferBackend
 		{
 			try (MemoryStack stack = MemoryStack.stackPush())
 			{
-				final int size = (int) Math.min(data.remaining(), infos.size);
+				final int size = (int) Math.min(data.remaining(), info.size);
 				final var bufferFiller = new BufferGPUFiller(stack, executionContext, address);
 				bufferFiller.fill(data, currentOffset, size);
 			}
@@ -121,7 +123,7 @@ public class GPUBufferBackend implements IBufferBackend
 
 	public void pushData(IExecutionContext executionContext, CPUBufferBackend stagingBuffer)
 	{
-		final int size = (int) Math.min(stagingBuffer.infos.size, infos.size);
+		final int size = (int) Math.min(stagingBuffer.info.size, info.size);
 
 		executionContext.execute(new ISingleTimeCommand()
 		{
@@ -169,19 +171,19 @@ public class GPUBufferBackend implements IBufferBackend
 
 	public BufferInfo getInfos()
 	{
-		return infos;
+		return info;
 	}
 
 	@Override
 	public void nextInstance()
 	{
 		currentInstance++;
-		if (currentInstance >= infos.instanceCount)
+		if (currentInstance >= info.instanceCount)
 		{
 			currentInstance = 0;
 		}
 
-		currentOffset = currentInstance * infos.size;
+		currentOffset = currentInstance * info.getInstanceSize();
 	}
 
 	@Override

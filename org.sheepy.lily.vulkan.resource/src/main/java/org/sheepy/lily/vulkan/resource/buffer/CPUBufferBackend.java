@@ -25,7 +25,7 @@ public class CPUBufferBackend implements IBufferBackend
 			| VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
 
 	public final int properties;
-	public final BufferInfo infos;
+	public final BufferInfo info;
 
 	private long address = -1;
 	private long memoryAddress;
@@ -33,7 +33,7 @@ public class CPUBufferBackend implements IBufferBackend
 
 	public CPUBufferBackend(BufferInfo info, boolean coherent)
 	{
-		this.infos = info;
+		this.info = info;
 
 		properties = createPropertyMask(coherent);
 	}
@@ -54,7 +54,8 @@ public class CPUBufferBackend implements IBufferBackend
 		final var vulkanContext = (IVulkanContext) context;
 		final var vkDevice = vulkanContext.getVkDevice();
 
-		address = VkBufferAllocator.allocate(stack, vkDevice, infos);
+		info.computeAlignment(vulkanContext.getPhysicalDevice());
+		address = VkBufferAllocator.allocate(stack, vkDevice, info);
 
 		final var memoryInfo = allocateMemory(stack, vulkanContext.getLogicalDevice());
 		memoryAddress = memoryInfo.id;
@@ -62,7 +63,7 @@ public class CPUBufferBackend implements IBufferBackend
 		vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
 		// System.out.println(Long.toHexString(bufferMemoryId));
 
-		if (infos.keptMapped)
+		if (info.keptMapped)
 		{
 			mapMemory(vkDevice);
 		}
@@ -103,9 +104,9 @@ public class CPUBufferBackend implements IBufferBackend
 		final var vkDevice = executionContext.getVkDevice();
 
 		mapMemory(vkDevice);
-		MemoryUtil.memCopy(memAddress(data), memoryMap, infos.size);
+		MemoryUtil.memCopy(memAddress(data), memoryMap, info.size);
 
-		if (infos.keptMapped == false)
+		if (info.keptMapped == false)
 		{
 			unmapMemory(vkDevice);
 		}
@@ -117,7 +118,7 @@ public class CPUBufferBackend implements IBufferBackend
 		if (memoryMap == -1)
 		{
 			final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-			vkMapMemory(vkDevice, memoryAddress, 0, infos.size, 0, pBuffer);
+			vkMapMemory(vkDevice, memoryAddress, 0, info.size, 0, pBuffer);
 			memoryMap = pBuffer.get(0);
 			MemoryUtil.memFree(pBuffer);
 		}
@@ -149,7 +150,7 @@ public class CPUBufferBackend implements IBufferBackend
 
 	public BufferInfo getInfos()
 	{
-		return infos;
+		return info;
 	}
 
 	@Override
