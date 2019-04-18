@@ -5,12 +5,12 @@ plugins {
 
 dependencies {
 
-	api project(':org.sheepy.lily.vulkan.process.compute')
-	api project(':org.sheepy.lily.vulkan.process.graphic')
+	implementation project(':org.sheepy.lily.vulkan.process.compute')
+	implementation project(':org.sheepy.lily.vulkan.process.graphic')
 
-	api project(':org.sheepy.lily.vulkan.extra.api')
+	implementation project(':org.sheepy.lily.vulkan.extra.api')
 	
-	runtimeOnly project(':org.sheepy.lily.vulkan.extra.graphic')
+	implementation project(':org.sheepy.lily.vulkan.extra.graphic')
 }
 
 // mainClassName = 'org.sheepy.lily.vulkan.gameoflife.MainGameOfLife'
