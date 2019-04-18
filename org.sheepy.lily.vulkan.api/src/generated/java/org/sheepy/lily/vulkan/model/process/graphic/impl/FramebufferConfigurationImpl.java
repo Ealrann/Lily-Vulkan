@@ -3,12 +3,17 @@
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.joml.Vector4f;
+
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -38,6 +43,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 */
 	protected static final Vector4f CLEAR_VALUE_EDEFAULT = (Vector4f) TypesFactory.eINSTANCE
 			.createFromString(TypesPackage.eINSTANCE.getColor4f(), "0;0;0;0");
+
 	/**
 	 * The cached value of the '{@link #getClearValue() <em>Clear Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -115,7 +121,6 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
