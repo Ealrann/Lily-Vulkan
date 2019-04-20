@@ -30,7 +30,6 @@ module org.sheepy.lily.vulkan.resource
 	exports org.sheepy.lily.vulkan.resource.buffer;
 	exports org.sheepy.lily.vulkan.resource.descriptor;
 	exports org.sheepy.lily.vulkan.resource.file;
-	exports org.sheepy.lily.vulkan.resource.indexed;
 	exports org.sheepy.lily.vulkan.resource.image;
 	exports org.sheepy.lily.vulkan.resource.barrier;
 	exports org.sheepy.lily.vulkan.resource.nativehelper;

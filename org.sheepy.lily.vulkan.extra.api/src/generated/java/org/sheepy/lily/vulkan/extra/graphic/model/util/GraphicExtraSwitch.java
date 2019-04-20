@@ -98,18 +98,18 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicExtraPackage.TERRAIN_RENDERER:
+		case GraphicExtraPackage.MESH_RENDERER:
 		{
-			TerrainRenderer terrainRenderer = (TerrainRenderer) theEObject;
-			T result = caseTerrainRenderer(terrainRenderer);
-			if (result == null) result = caseGraphicsPipeline(terrainRenderer);
-			if (result == null) result = caseAbstractPipeline(terrainRenderer);
-			if (result == null) result = caseIGraphicsPipeline(terrainRenderer);
-			if (result == null) result = caseIPipeline(terrainRenderer);
-			if (result == null) result = caseIResourceContainer(terrainRenderer);
-			if (result == null) result = caseLObject(terrainRenderer);
-			if (result == null) result = caseLNamedElement(terrainRenderer);
-			if (result == null) result = caseIInferenceObject(terrainRenderer);
+			MeshRenderer meshRenderer = (MeshRenderer) theEObject;
+			T result = caseMeshRenderer(meshRenderer);
+			if (result == null) result = caseGraphicsPipeline(meshRenderer);
+			if (result == null) result = caseAbstractPipeline(meshRenderer);
+			if (result == null) result = caseIGraphicsPipeline(meshRenderer);
+			if (result == null) result = caseIPipeline(meshRenderer);
+			if (result == null) result = caseIResourceContainer(meshRenderer);
+			if (result == null) result = caseLObject(meshRenderer);
+			if (result == null) result = caseLNamedElement(meshRenderer);
+			if (result == null) result = caseIInferenceObject(meshRenderer);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -157,17 +157,17 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Terrain Renderer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Mesh Renderer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Terrain Renderer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Mesh Renderer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTerrainRenderer(TerrainRenderer object)
+	public T caseMeshRenderer(MeshRenderer object)
 	{
 		return null;
 	}

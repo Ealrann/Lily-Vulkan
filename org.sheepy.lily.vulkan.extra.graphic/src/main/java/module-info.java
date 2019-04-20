@@ -1,10 +1,10 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.extra.graphic.pipeline.image.ImagePipelineAdapter;
+import org.sheepy.lily.vulkan.extra.graphic.pipeline.mesh.MeshRendererAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.pipeline.screen.ScreenRendererAdapter;
-import org.sheepy.lily.vulkan.extra.graphic.pipeline.terrain.TerrainRendererAdapter;
 
 @Adapters(classifiers = {
-		ImagePipelineAdapter.class, ScreenRendererAdapter.class, TerrainRendererAdapter.class
+		ImagePipelineAdapter.class, ScreenRendererAdapter.class, MeshRendererAdapter.class
 })
 
 module org.sheepy.lily.vulkan.extra.graphic
@@ -15,5 +15,5 @@ module org.sheepy.lily.vulkan.extra.graphic
 
 	opens org.sheepy.lily.vulkan.extra.graphic.pipeline.image;
 	opens org.sheepy.lily.vulkan.extra.graphic.pipeline.screen;
-	opens org.sheepy.lily.vulkan.extra.graphic.pipeline.terrain;
+	opens org.sheepy.lily.vulkan.extra.graphic.pipeline.mesh;
 }

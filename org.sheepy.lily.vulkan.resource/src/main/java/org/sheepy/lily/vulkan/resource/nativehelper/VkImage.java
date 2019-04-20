@@ -8,13 +8,15 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.image.ImageInfo;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.image.VkImageAllocator;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.memory.VkMemoryAllocator;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.memory.VkMemoryAllocator.MemoryAllocationInfo;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.memory.VkMemoryAllocator.MemoryInfo;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.resource.barrier.ImageBarrierExecutor;
-import org.sheepy.lily.vulkan.resource.image.ImageInfo;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryAllocationInfo;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkMemoryAllocator.MemoryInfo;
 
 public class VkImage
 {

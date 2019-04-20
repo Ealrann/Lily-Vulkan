@@ -13,13 +13,13 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.BufferInfo;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.GPUBufferBackend;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer;
 import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
-import org.sheepy.lily.vulkan.resource.buffer.BufferInfo;
-import org.sheepy.lily.vulkan.resource.buffer.GPUBufferBackend;
 
 @Statefull
 @Adapter(scope = ScreenRenderer.class)
@@ -72,14 +72,17 @@ public class ScreenRendererAdapter extends GraphicsPipelineAdapter
 	@Override
 	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
 	{
-		super.record(vkCommandBuffer, bindPoint, index);
-
 		final long[] vertexBuffers = new long[1];
 		final long[] offsets = new long[1];
 
 		vertexBuffers[0] = buffer.getAddress();
 		offsets[0] = 0;
 
+		vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
+		pushConstants(vkCommandBuffer);
+		bindDescriptor(vkCommandBuffer, bindPoint, new Integer[] {
+				0
+		});
 		vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
 		vkCmdBindVertexBuffers(vkCommandBuffer, 1, vertexBuffers, offsets);
 		vkCmdDraw(vkCommandBuffer, 4, 1, 0, 0);

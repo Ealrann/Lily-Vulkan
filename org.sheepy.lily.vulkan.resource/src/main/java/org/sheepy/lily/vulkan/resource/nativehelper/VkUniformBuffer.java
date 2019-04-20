@@ -12,11 +12,11 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.allocation.IAllocable;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.BufferInfo;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.GPUBufferBackend;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.lily.vulkan.resource.buffer.BufferInfo;
-import org.sheepy.lily.vulkan.resource.buffer.GPUBufferBackend;
 
 public class VkUniformBuffer implements IVkDescriptor, IAllocable
 {

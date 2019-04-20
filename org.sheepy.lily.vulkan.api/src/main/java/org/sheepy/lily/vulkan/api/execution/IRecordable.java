@@ -5,12 +5,10 @@ import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 
 public interface IRecordable
 {
-	boolean shouldRecord(ECommandStage stage);
-
 	void record(VkCommandBuffer commandBuffer, int bindPoint, int index);
 
+	boolean shouldRecord(ECommandStage stage);
 	boolean isRecordNeeded();
 
 	void setRecordNeeded(boolean value);
-
 }

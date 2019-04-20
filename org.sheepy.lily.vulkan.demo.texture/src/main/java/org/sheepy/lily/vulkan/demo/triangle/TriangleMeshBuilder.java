@@ -1,9 +1,9 @@
 package org.sheepy.lily.vulkan.demo.triangle;
 
+import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferData;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferDescriptor;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferDescriptor.Vertex;
 import org.sheepy.lily.vulkan.demo.mesh.AbstractMeshBuilder;
-import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferData;
-import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferDescriptor;
-import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferDescriptor.Vertex;
 
 public class TriangleMeshBuilder extends AbstractMeshBuilder<Vertex>
 {

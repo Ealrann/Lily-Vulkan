@@ -13,7 +13,7 @@ import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage;
 import org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider;
 import org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline;
 import org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer;
-import org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer;
+import org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
@@ -88,9 +88,9 @@ public class GraphicExtraAdapterFactory extends AdapterFactoryImpl
 			return createImagePipelineAdapter();
 		}
 		@Override
-		public Adapter caseTerrainRenderer(TerrainRenderer object)
+		public Adapter caseMeshRenderer(MeshRenderer object)
 		{
-			return createTerrainRendererAdapter();
+			return createMeshRendererAdapter();
 		}
 		@Override
 		public Adapter caseIMeshProvider(IMeshProvider object)
@@ -179,16 +179,16 @@ public class GraphicExtraAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer <em>Terrain Renderer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer <em>Mesh Renderer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer
 	 * @generated
 	 */
-	public Adapter createTerrainRendererAdapter()
+	public Adapter createMeshRendererAdapter()
 	{
 		return null;
 	}

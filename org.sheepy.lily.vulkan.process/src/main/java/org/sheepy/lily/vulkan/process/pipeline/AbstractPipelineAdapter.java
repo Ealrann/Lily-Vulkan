@@ -16,6 +16,7 @@ import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.api.nativehelper.pipeline.VkPipeline;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.resource.IConstantsAdapter;
 import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
@@ -29,12 +30,12 @@ import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 public abstract class AbstractPipelineAdapter
 		implements IAllocableAdapter, IPipelineAdapter, IAllocationDescriptorAdapter
 {
-	protected final IPipeline pipeline;
 	private final List<Object> allocationList;
+	protected final IPipeline pipeline;
 
 	protected boolean recordNeeded = false;
-
 	protected List<IAllocable> allocationDependencies = new ArrayList<>();
+
 	private VkPipeline vkPipeline;
 
 	public AbstractPipelineAdapter(IPipeline pipeline)
@@ -66,17 +67,18 @@ public abstract class AbstractPipelineAdapter
 	{
 		recordNeeded = value;
 	}
+
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		vkPipeline = createVkPipeline(context);
+		vkPipeline = createVkPipeline();
 		vkPipeline.allocate(stack, context);
 	}
 
-	protected VkPipeline createVkPipeline(IAllocationContext context)
+	protected VkPipeline createVkPipeline()
 	{
 		final var constants = getConstants();
-		List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
+		final List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
 		final List<AbstractConstants> constantsList = constants != null
 				? List.of(constants)
 				: Collections.emptyList();

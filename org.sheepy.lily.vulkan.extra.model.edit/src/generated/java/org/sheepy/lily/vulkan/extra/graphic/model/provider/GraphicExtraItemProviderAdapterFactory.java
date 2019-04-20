@@ -127,28 +127,28 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TerrainRendererItemProvider terrainRendererItemProvider;
+	protected MeshRendererItemProvider meshRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createTerrainRendererAdapter()
+	public Adapter createMeshRendererAdapter()
 	{
-		if (terrainRendererItemProvider == null)
+		if (meshRendererItemProvider == null)
 		{
-			terrainRendererItemProvider = new TerrainRendererItemProvider(this);
+			meshRendererItemProvider = new MeshRendererItemProvider(this);
 		}
 
-		return terrainRendererItemProvider;
+		return meshRendererItemProvider;
 	}
 
 	/**
@@ -326,7 +326,7 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 	public void dispose()
 	{
 		if (imagePipelineItemProvider != null) imagePipelineItemProvider.dispose();
-		if (terrainRendererItemProvider != null) terrainRendererItemProvider.dispose();
+		if (meshRendererItemProvider != null) meshRendererItemProvider.dispose();
 		if (screenRendererItemProvider != null) screenRendererItemProvider.dispose();
 	}
 
@@ -387,7 +387,7 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 
 				newChildDescriptors
 						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
-								GraphicExtraFactory.eINSTANCE.createTerrainRenderer()));
+								GraphicExtraFactory.eINSTANCE.createMeshRenderer()));
 
 				newChildDescriptors
 						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
@@ -410,7 +410,7 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 
 				newChildDescriptors.add(createChildParameter(
 						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
-						GraphicExtraFactory.eINSTANCE.createTerrainRenderer()));
+						GraphicExtraFactory.eINSTANCE.createMeshRenderer()));
 
 				newChildDescriptors.add(createChildParameter(
 						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,

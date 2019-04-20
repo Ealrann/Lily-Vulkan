@@ -11,14 +11,14 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.VkDescriptorSet;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBuffer;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferWithUniform;
 import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.demo.adapter.CameraMatrixComputer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
-import org.sheepy.lily.vulkan.resource.indexed.IndexedBuffer;
-import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferWithUniform;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkDescriptorSet;
 
 @Statefull
 @Adapter(scope = GraphicsPipeline.class, name = MeshModelFactory.MESH_PIPELINE_NAME)

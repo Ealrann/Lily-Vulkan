@@ -8,7 +8,7 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.IBufferBackend;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.IBufferBackend;
 import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 

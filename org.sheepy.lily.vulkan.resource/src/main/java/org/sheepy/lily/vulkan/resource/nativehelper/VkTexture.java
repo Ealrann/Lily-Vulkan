@@ -18,15 +18,15 @@ import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
 import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.VkImageView;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.BufferAllocator;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.CPUBufferBackend;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.image.ImageInfo;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.model.enumeration.EAccess;
 import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
-import org.sheepy.lily.vulkan.resource.buffer.BufferAllocator;
-import org.sheepy.lily.vulkan.resource.buffer.CPUBufferBackend;
-import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 
 public class VkTexture implements IVkDescriptor
 {

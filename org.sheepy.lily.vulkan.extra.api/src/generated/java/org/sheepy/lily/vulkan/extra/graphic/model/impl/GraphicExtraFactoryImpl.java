@@ -66,8 +66,8 @@ public class GraphicExtraFactoryImpl extends EFactoryImpl implements GraphicExtr
 		{
 		case GraphicExtraPackage.IMAGE_PIPELINE:
 			return createImagePipeline();
-		case GraphicExtraPackage.TERRAIN_RENDERER:
-			return createTerrainRenderer();
+		case GraphicExtraPackage.MESH_RENDERER:
+			return createMeshRenderer();
 		case GraphicExtraPackage.SCREEN_RENDERER:
 			return createScreenRenderer();
 		default:
@@ -94,10 +94,10 @@ public class GraphicExtraFactoryImpl extends EFactoryImpl implements GraphicExtr
 	 * @generated
 	 */
 	@Override
-	public TerrainRenderer createTerrainRenderer()
+	public MeshRenderer createMeshRenderer()
 	{
-		TerrainRendererImpl terrainRenderer = new TerrainRendererImpl();
-		return terrainRenderer;
+		MeshRendererImpl meshRenderer = new MeshRendererImpl();
+		return meshRenderer;
 	}
 
 	/**

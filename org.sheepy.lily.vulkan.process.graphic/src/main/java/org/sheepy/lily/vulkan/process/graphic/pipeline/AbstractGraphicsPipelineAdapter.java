@@ -29,10 +29,10 @@ public abstract class AbstractGraphicsPipelineAdapter extends AbstractPipelineAd
 	}
 
 	@Override
-	protected VkPipeline createVkPipeline(IAllocationContext context)
+	protected VkPipeline createVkPipeline()
 	{
 		final var constants = getConstants();
-		List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
+		final List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
 		final List<AbstractConstants> constantsList = constants != null
 				? List.of(constants)
 				: Collections.emptyList();

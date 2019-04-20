@@ -6,6 +6,7 @@ import java.util.Objects;
 import org.lwjgl.nuklear.NkUserFont;
 import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
 import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.api.nativehelper.descriptor.VkDescriptorSet;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
 import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
@@ -16,7 +17,6 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPipelineAdapter;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexBuffer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NullTexture;
 import org.sheepy.lily.vulkan.nuklear.util.NkFontLoader;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkDescriptorSet;
 import org.sheepy.lily.vulkan.resource.texture.FontAdapter;
 
 public class NuklearResources

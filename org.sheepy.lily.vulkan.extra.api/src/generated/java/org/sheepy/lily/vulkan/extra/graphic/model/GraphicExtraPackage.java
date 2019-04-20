@@ -271,14 +271,14 @@ public interface GraphicExtraPackage extends EPackage
 	int IMAGE_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.impl.TerrainRendererImpl <em>Terrain Renderer</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.impl.MeshRendererImpl <em>Mesh Renderer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.TerrainRendererImpl
-	 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getTerrainRenderer()
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.MeshRendererImpl
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getMeshRenderer()
 	 * @generated
 	 */
-	int TERRAIN_RENDERER = 1;
+	int MESH_RENDERER = 1;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -287,7 +287,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__CONTENT_OBJECTS = GraphicPackage.GRAPHICS_PIPELINE__CONTENT_OBJECTS;
+	int MESH_RENDERER__CONTENT_OBJECTS = GraphicPackage.GRAPHICS_PIPELINE__CONTENT_OBJECTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -296,7 +296,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
+	int MESH_RENDERER__NAME = GraphicPackage.GRAPHICS_PIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -305,7 +305,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
+	int MESH_RENDERER__ENABLED = GraphicPackage.GRAPHICS_PIPELINE__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -314,7 +314,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
+	int MESH_RENDERER__STAGE = GraphicPackage.GRAPHICS_PIPELINE__STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -323,7 +323,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
+	int MESH_RENDERER__RESOURCE_PKG = GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
@@ -332,7 +332,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__UNITS = GraphicPackage.GRAPHICS_PIPELINE__UNITS;
+	int MESH_RENDERER__UNITS = GraphicPackage.GRAPHICS_PIPELINE__UNITS;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
@@ -341,7 +341,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__DESCRIPTOR_SET_REF = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF;
+	int MESH_RENDERER__DESCRIPTOR_SET_REF = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
@@ -350,7 +350,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__DESCRIPTOR_SET = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
+	int MESH_RENDERER__DESCRIPTOR_SET = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
@@ -359,7 +359,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__CONSTANTS = GraphicPackage.GRAPHICS_PIPELINE__CONSTANTS;
+	int MESH_RENDERER__CONSTANTS = GraphicPackage.GRAPHICS_PIPELINE__CONSTANTS;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
@@ -368,7 +368,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__SHADERS = GraphicPackage.GRAPHICS_PIPELINE__SHADERS;
+	int MESH_RENDERER__SHADERS = GraphicPackage.GRAPHICS_PIPELINE__SHADERS;
 
 	/**
 	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
@@ -377,7 +377,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__VIEWPORT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE;
+	int MESH_RENDERER__VIEWPORT_STATE = GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
@@ -386,7 +386,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__INPUT_ASSEMBLY = GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY;
+	int MESH_RENDERER__INPUT_ASSEMBLY = GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY;
 
 	/**
 	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
@@ -395,7 +395,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__RASTERIZER = GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER;
+	int MESH_RENDERER__RASTERIZER = GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER;
 
 	/**
 	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
@@ -404,7 +404,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__COLOR_BLEND = GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND;
+	int MESH_RENDERER__COLOR_BLEND = GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
@@ -413,7 +413,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__DYNAMIC_STATE = GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE;
+	int MESH_RENDERER__DYNAMIC_STATE = GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE;
 
 	/**
 	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
@@ -422,7 +422,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__SUBPASS = GraphicPackage.GRAPHICS_PIPELINE__SUBPASS;
+	int MESH_RENDERER__SUBPASS = GraphicPackage.GRAPHICS_PIPELINE__SUBPASS;
 
 	/**
 	 * The feature id for the '<em><b>Mesh Provider</b></em>' reference.
@@ -431,16 +431,16 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER__MESH_PROVIDER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
+	int MESH_RENDERER__MESH_PROVIDER = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Terrain Renderer</em>' class.
+	 * The number of structural features of the '<em>Mesh Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
+	int MESH_RENDERER_FEATURE_COUNT = GraphicPackage.GRAPHICS_PIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -449,7 +449,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER___LINFERENCE_OBJECT = GraphicPackage.GRAPHICS_PIPELINE___LINFERENCE_OBJECT;
+	int MESH_RENDERER___LINFERENCE_OBJECT = GraphicPackage.GRAPHICS_PIPELINE___LINFERENCE_OBJECT;
 
 	/**
 	 * The operation id for the '<em>Create Containment EList</em>' operation.
@@ -458,7 +458,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER___CREATE_CONTAINMENT_ELIST__ECLASS = GraphicPackage.GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
+	int MESH_RENDERER___CREATE_CONTAINMENT_ELIST__ECLASS = GraphicPackage.GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
 
 	/**
 	 * The operation id for the '<em>LContents</em>' operation.
@@ -467,7 +467,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER___LCONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LCONTENTS;
+	int MESH_RENDERER___LCONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LCONTENTS;
 
 	/**
 	 * The operation id for the '<em>LParent</em>' operation.
@@ -476,7 +476,7 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER___LPARENT = GraphicPackage.GRAPHICS_PIPELINE___LPARENT;
+	int MESH_RENDERER___LPARENT = GraphicPackage.GRAPHICS_PIPELINE___LPARENT;
 
 	/**
 	 * The operation id for the '<em>LAll Contents</em>' operation.
@@ -485,16 +485,16 @@ public interface GraphicExtraPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER___LALL_CONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LALL_CONTENTS;
+	int MESH_RENDERER___LALL_CONTENTS = GraphicPackage.GRAPHICS_PIPELINE___LALL_CONTENTS;
 
 	/**
-	 * The number of operations of the '<em>Terrain Renderer</em>' class.
+	 * The number of operations of the '<em>Mesh Renderer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TERRAIN_RENDERER_OPERATION_COUNT = GraphicPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
+	int MESH_RENDERER_OPERATION_COUNT = GraphicPackage.GRAPHICS_PIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider <em>IMesh Provider</em>}' class.
@@ -818,25 +818,25 @@ public interface GraphicExtraPackage extends EPackage
 	EReference getImagePipeline_SrcQueue();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer <em>Terrain Renderer</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer <em>Mesh Renderer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Terrain Renderer</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer
+	 * @return the meta object for class '<em>Mesh Renderer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer
 	 * @generated
 	 */
-	EClass getTerrainRenderer();
+	EClass getMeshRenderer();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer#getMeshProvider <em>Mesh Provider</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer#getMeshProvider <em>Mesh Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Mesh Provider</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.graphic.model.TerrainRenderer#getMeshProvider()
-	 * @see #getTerrainRenderer()
+	 * @see org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer#getMeshProvider()
+	 * @see #getMeshRenderer()
 	 * @generated
 	 */
-	EReference getTerrainRenderer_MeshProvider();
+	EReference getMeshRenderer_MeshProvider();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider <em>IMesh Provider</em>}'.
@@ -943,14 +943,14 @@ public interface GraphicExtraPackage extends EPackage
 		EReference IMAGE_PIPELINE__SRC_QUEUE = eINSTANCE.getImagePipeline_SrcQueue();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.impl.TerrainRendererImpl <em>Terrain Renderer</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.impl.MeshRendererImpl <em>Mesh Renderer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.TerrainRendererImpl
-		 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getTerrainRenderer()
+		 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.MeshRendererImpl
+		 * @see org.sheepy.lily.vulkan.extra.graphic.model.impl.GraphicExtraPackageImpl#getMeshRenderer()
 		 * @generated
 		 */
-		EClass TERRAIN_RENDERER = eINSTANCE.getTerrainRenderer();
+		EClass MESH_RENDERER = eINSTANCE.getMeshRenderer();
 
 		/**
 		 * The meta object literal for the '<em><b>Mesh Provider</b></em>' reference feature.
@@ -958,7 +958,7 @@ public interface GraphicExtraPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TERRAIN_RENDERER__MESH_PROVIDER = eINSTANCE.getTerrainRenderer_MeshProvider();
+		EReference MESH_RENDERER__MESH_PROVIDER = eINSTANCE.getMeshRenderer_MeshProvider();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.graphic.model.IMeshProvider <em>IMesh Provider</em>}' class.

@@ -16,11 +16,11 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.image.ImageInfo;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.resource.Font;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
-import org.sheepy.lily.vulkan.resource.image.ImageInfo;
 
 @Statefull
 @Adapter(scope = Font.class)

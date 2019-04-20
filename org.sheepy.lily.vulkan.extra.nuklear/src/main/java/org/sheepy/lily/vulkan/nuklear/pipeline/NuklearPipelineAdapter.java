@@ -129,13 +129,12 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 
 		recorder = new DrawRecorder(nkContext, DebugUtil.DEBUG_ENABLED);
 
-		List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
+		final List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
 		collectDescriptorSets(descriptorSets);
 		drawer = new NuklearDrawer(descriptorSets, resources, getPipelineLayout());
 
 		// Prepare a first render for the opening of the screen
 		layout(Collections.emptyList());
-		prepareRecord();
 	}
 
 	@Override
@@ -193,14 +192,6 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		}));
 	}
 
-	@Override
-	public void prepareRecord()
-	{
-		resources.getVertexBuffer().update(nkContext, cmds);
-
-		recorder.prepare(cmds);
-	}
-
 	public void layout(List<IInputEvent> events)
 	{
 		final Application application = VulkanModelUtil.getApplication(nkPipeline);
@@ -225,6 +216,12 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	@Override
 	public boolean isRecordNeeded()
 	{
+		return dirty;
+	}
+
+	@Override
+	public void update()
+	{
 		if (nk_item_is_any_active(nkContext))
 		{
 			dirty = true;
@@ -237,7 +234,11 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 			recorder.clear();
 		}
 
-		return dirty;
+		if (dirty == true)
+		{
+			resources.getVertexBuffer().update(nkContext, cmds);
+			recorder.prepare(cmds);
+		}
 	}
 
 	@Override

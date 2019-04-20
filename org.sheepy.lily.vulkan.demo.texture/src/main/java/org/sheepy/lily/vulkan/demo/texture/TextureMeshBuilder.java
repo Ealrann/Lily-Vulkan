@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.demo.texture;
 
+import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferData;
 import org.sheepy.lily.vulkan.demo.adapter.CameraMatrixComputer;
 import org.sheepy.lily.vulkan.demo.mesh.AbstractMeshBuilder;
-import org.sheepy.lily.vulkan.resource.indexed.IndexedBufferData;
 import org.sheepy.lily.vulkan.resource.texture.TextureVertexDescriptor;
 import org.sheepy.lily.vulkan.resource.texture.TextureVertexDescriptor.TextureVertex;
 

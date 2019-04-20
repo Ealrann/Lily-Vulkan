@@ -13,7 +13,7 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.graphic.IFramebufferManager;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.nativehelper.ClearInfo;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.VkImageView;
+import org.sheepy.lily.vulkan.api.nativehelper.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;

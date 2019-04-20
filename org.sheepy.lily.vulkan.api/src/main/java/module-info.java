@@ -30,9 +30,13 @@ module org.sheepy.lily.vulkan.api
 	exports org.sheepy.lily.vulkan.api.nativehelper.descriptor;
 	exports org.sheepy.lily.vulkan.api.nativehelper.device.capabilities;
 	exports org.sheepy.lily.vulkan.api.nativehelper.pipeline;
-	exports org.sheepy.lily.vulkan.api.nativehelper.resource;
+	exports org.sheepy.lily.vulkan.api.nativehelper.resource.buffer;
+	exports org.sheepy.lily.vulkan.api.nativehelper.resource.image;
+	exports org.sheepy.lily.vulkan.api.nativehelper.resource.indexed;
+	exports org.sheepy.lily.vulkan.api.nativehelper.resource.memory;
 	exports org.sheepy.lily.vulkan.api.nativehelper.surface;
 	exports org.sheepy.lily.vulkan.api.nativehelper.window;
+	exports org.sheepy.lily.vulkan.api.pipeline;
 	exports org.sheepy.lily.vulkan.api.process;
 	exports org.sheepy.lily.vulkan.api.queue;
 	exports org.sheepy.lily.vulkan.api.resource;

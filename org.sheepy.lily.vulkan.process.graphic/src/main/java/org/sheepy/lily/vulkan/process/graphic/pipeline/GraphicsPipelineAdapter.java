@@ -56,18 +56,6 @@ public abstract class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAd
 		}
 	}
 
-	@Override
-	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
-	{
-		vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
-
-		pushConstants(vkCommandBuffer);
-
-		bindDescriptor(vkCommandBuffer, bindPoint, new Integer[] {
-				0
-		});
-	}
-
 	protected void pushConstants(final VkCommandBuffer vkCommandBuffer)
 	{
 		if (pushAdapter != null)
