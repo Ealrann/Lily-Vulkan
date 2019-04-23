@@ -12,16 +12,16 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.BufferInfo;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.CPUBufferBackend;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.GPUBufferBackend;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.IBufferBackend;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
-import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.resource.buffer.BufferInfo;
+import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
+import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
+import org.sheepy.vulkan.resource.buffer.IBufferBackend;
+import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = Buffer.class)
@@ -42,7 +42,7 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		executionManager = (IExecutionContext) context;
-		final var info = new BufferInfo(buffer);
+		final var info = createInfo(buffer);
 
 		if (buffer.isGpuBuffer())
 		{
@@ -93,7 +93,7 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	@Override
 	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
 	{
-		final int stageFlags = VulkanModelUtil.getEnumeratedFlag(buffer.getShaderStages());
+		final int stageFlags = VkModelUtil.getEnumeratedFlag(buffer.getShaderStages());
 		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
 		res.descriptorType(buffer.getDescriptorType().getValue());
 		res.descriptorCount(getDescriptorCount());
@@ -152,5 +152,15 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	public static BufferAdapter adapt(Buffer buffer)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(buffer, BufferAdapter.class);
+	}
+
+	private static BufferInfo createInfo(Buffer buffer)
+	{
+		final var size = buffer.getSize();
+		final int usage = VkModelUtil.getEnumeratedFlag(buffer.getUsages());
+		final var keptMapped = buffer.isOftenUpdated();
+		final int instanceCount = buffer.getInstanceCount();
+
+		return new BufferInfo(size, usage, keptMapped, instanceCount);
 	}
 }

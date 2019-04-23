@@ -10,18 +10,18 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContextProvider;
-import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationDescriptorAdapter;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.DescriptorPool;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
-import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.vulkan.allocation.IAllocationContextProvider;
+import org.sheepy.vulkan.descriptor.DescriptorPool;
+import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.queue.EQueueType;
 
 @Statefull
 public abstract class AbstractProcessAdapter

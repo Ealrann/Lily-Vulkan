@@ -14,12 +14,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
-
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * <!-- begin-user-doc -->

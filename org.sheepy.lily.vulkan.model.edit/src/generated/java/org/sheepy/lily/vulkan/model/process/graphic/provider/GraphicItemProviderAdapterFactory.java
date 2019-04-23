@@ -129,6 +129,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ColorDomain} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ColorDomainItemProvider colorDomainItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ColorDomain}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createColorDomainAdapter()
+	{
+		if (colorDomainItemProvider == null)
+		{
+			colorDomainItemProvider = new ColorDomainItemProvider(this);
+		}
+
+		return colorDomainItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -431,231 +456,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DynamicState} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DynamicStateItemProvider dynamicStateItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DynamicState}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDynamicStateAdapter()
-	{
-		if (dynamicStateItemProvider == null)
-		{
-			dynamicStateItemProvider = new DynamicStateItemProvider(this);
-		}
-
-		return dynamicStateItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ColorBlendItemProvider colorBlendItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createColorBlendAdapter()
-	{
-		if (colorBlendItemProvider == null)
-		{
-			colorBlendItemProvider = new ColorBlendItemProvider(this);
-		}
-
-		return colorBlendItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ColorBlendAttachmentItemProvider colorBlendAttachmentItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createColorBlendAttachmentAdapter()
-	{
-		if (colorBlendAttachmentItemProvider == null)
-		{
-			colorBlendAttachmentItemProvider = new ColorBlendAttachmentItemProvider(this);
-		}
-
-		return colorBlendAttachmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StaticViewportStateItemProvider staticViewportStateItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStaticViewportStateAdapter()
-	{
-		if (staticViewportStateItemProvider == null)
-		{
-			staticViewportStateItemProvider = new StaticViewportStateItemProvider(this);
-		}
-
-		return staticViewportStateItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DynamicViewportStateItemProvider dynamicViewportStateItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDynamicViewportStateAdapter()
-	{
-		if (dynamicViewportStateItemProvider == null)
-		{
-			dynamicViewportStateItemProvider = new DynamicViewportStateItemProvider(this);
-		}
-
-		return dynamicViewportStateItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.Viewport} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ViewportItemProvider viewportItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.Viewport}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createViewportAdapter()
-	{
-		if (viewportItemProvider == null)
-		{
-			viewportItemProvider = new ViewportItemProvider(this);
-		}
-
-		return viewportItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.Scissor} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ScissorItemProvider scissorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.Scissor}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createScissorAdapter()
-	{
-		if (scissorItemProvider == null)
-		{
-			scissorItemProvider = new ScissorItemProvider(this);
-		}
-
-		return scissorItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected RasterizerItemProvider rasterizerItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createRasterizerAdapter()
-	{
-		if (rasterizerItemProvider == null)
-		{
-			rasterizerItemProvider = new RasterizerItemProvider(this);
-		}
-
-		return rasterizerItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.InputAssembly} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected InputAssemblyItemProvider inputAssemblyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.InputAssembly}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createInputAssemblyAdapter()
-	{
-		if (inputAssemblyItemProvider == null)
-		{
-			inputAssemblyItemProvider = new InputAssemblyItemProvider(this);
-		}
-
-		return inputAssemblyItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -805,6 +605,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	public void dispose()
 	{
 		if (graphicConfigurationItemProvider != null) graphicConfigurationItemProvider.dispose();
+		if (colorDomainItemProvider != null) colorDomainItemProvider.dispose();
 		if (swapchainConfigurationItemProvider != null)
 			swapchainConfigurationItemProvider.dispose();
 		if (framebufferConfigurationItemProvider != null)
@@ -821,15 +622,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 			extraAttachmentDescriptionItemProvider.dispose();
 		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
 		if (graphicsPipelineItemProvider != null) graphicsPipelineItemProvider.dispose();
-		if (dynamicStateItemProvider != null) dynamicStateItemProvider.dispose();
-		if (colorBlendItemProvider != null) colorBlendItemProvider.dispose();
-		if (colorBlendAttachmentItemProvider != null) colorBlendAttachmentItemProvider.dispose();
-		if (staticViewportStateItemProvider != null) staticViewportStateItemProvider.dispose();
-		if (dynamicViewportStateItemProvider != null) dynamicViewportStateItemProvider.dispose();
-		if (viewportItemProvider != null) viewportItemProvider.dispose();
-		if (scissorItemProvider != null) scissorItemProvider.dispose();
-		if (rasterizerItemProvider != null) rasterizerItemProvider.dispose();
-		if (inputAssemblyItemProvider != null) inputAssemblyItemProvider.dispose();
 	}
 
 	/**

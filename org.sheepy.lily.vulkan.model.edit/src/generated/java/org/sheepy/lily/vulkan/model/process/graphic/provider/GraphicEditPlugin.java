@@ -10,13 +10,13 @@ import org.sheepy.lily.core.model.application.provider.ApplicationEditPlugin;
 import org.sheepy.lily.core.model.inference.provider.InferenceEditPlugin;
 import org.sheepy.lily.core.model.root.provider.RootEditPlugin;
 import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
-import org.sheepy.lily.vulkan.model.enumeration.provider.EnumerationEditPlugin;
-
 import org.sheepy.lily.vulkan.model.process.provider.ProcessEditPlugin;
 
 import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
 
 import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
+import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
+import org.sheepy.vulkan.model.graphicpipeline.provider.GraphicpipelineEditPlugin;
 
 /**
  * This is the central singleton for the Graphic edit plugin.
@@ -53,11 +53,12 @@ public final class GraphicEditPlugin extends EMFPlugin
 		super(new ResourceLocator[] {
 				ProcessEditPlugin.INSTANCE,
 				EnumerationEditPlugin.INSTANCE,
-				VulkanEditPlugin.INSTANCE,
 				TypesEditPlugin.INSTANCE,
 				ResourceEditPlugin.INSTANCE,
+				VulkanEditPlugin.INSTANCE,
 				RootEditPlugin.INSTANCE,
 				InferenceEditPlugin.INSTANCE,
+				GraphicpipelineEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
 				ActionEditPlugin.INSTANCE,
 		});

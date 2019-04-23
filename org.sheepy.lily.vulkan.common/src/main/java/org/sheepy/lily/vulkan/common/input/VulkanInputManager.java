@@ -24,7 +24,7 @@ import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.core.model.types.EMouseButton;
 import org.sheepy.lily.vulkan.api.input.IInputCatcher;
 import org.sheepy.lily.vulkan.api.input.IVulkanInputManager;
-import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
+import org.sheepy.vulkan.window.Window;
 
 public class VulkanInputManager implements IVulkanInputManager
 {

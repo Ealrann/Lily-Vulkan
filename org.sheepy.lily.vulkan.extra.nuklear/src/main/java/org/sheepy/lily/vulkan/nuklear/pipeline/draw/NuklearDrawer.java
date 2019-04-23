@@ -7,8 +7,8 @@ import java.util.List;
 import org.joml.Math;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkRect2D;
-import org.sheepy.lily.vulkan.api.nativehelper.Extent2D;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.surface.Extent2D;
 
 public class NuklearDrawer
 {

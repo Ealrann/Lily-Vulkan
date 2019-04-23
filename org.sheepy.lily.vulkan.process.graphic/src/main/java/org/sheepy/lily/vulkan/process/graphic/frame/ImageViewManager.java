@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.image.VkImageView;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.resource.image.VkImageView;
 
 public class ImageViewManager implements IImageViewManager
 {

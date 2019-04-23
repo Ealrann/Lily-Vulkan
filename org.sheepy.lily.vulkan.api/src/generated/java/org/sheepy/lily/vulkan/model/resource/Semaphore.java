@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public interface Semaphore extends BasicResource, LNamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Wait Stage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Wait Stage</em>' attribute isn't clear,
@@ -61,7 +61,7 @@ public interface Semaphore extends BasicResource, LNamedElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wait Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #setWaitStage(EPipelineStage)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSemaphore_WaitStage()
 	 * @model unique="false"
@@ -74,7 +74,7 @@ public interface Semaphore extends BasicResource, LNamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Wait Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #getWaitStage()
 	 * @generated
 	 */

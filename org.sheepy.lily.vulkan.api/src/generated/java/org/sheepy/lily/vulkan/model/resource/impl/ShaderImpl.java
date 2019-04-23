@@ -10,11 +10,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
-
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
  * <!-- begin-user-doc -->

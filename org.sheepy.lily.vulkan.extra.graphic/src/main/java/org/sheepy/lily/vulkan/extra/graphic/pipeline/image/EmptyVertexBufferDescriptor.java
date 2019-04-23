@@ -8,8 +8,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferDescriptor.Vertex;
-import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
+import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
+import org.sheepy.vulkan.resource.indexed.IndexedBufferDescriptor.Vertex;
 
 public class EmptyVertexBufferDescriptor implements IVertexBufferDescriptor<Vertex>
 {

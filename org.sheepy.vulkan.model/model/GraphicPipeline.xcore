@@ -1,0 +1,116 @@
+@GenModel(cleanup="true", codeFormatting="true")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+@GenModel(updateClasspath="false")
+
+package org.sheepy.vulkan.model.graphicpipeline
+
+import org.sheepy.vulkan.model.enumeration.ELogicOp
+import org.sheepy.vulkan.model.enumeration.EBlendFactor
+import org.sheepy.vulkan.model.enumeration.EBlendOp
+import org.sheepy.vulkan.model.enumeration.ECullMode
+import org.sheepy.vulkan.model.enumeration.EFrontFace
+import org.sheepy.vulkan.model.enumeration.EPolygonMode
+import org.sheepy.vulkan.model.enumeration.EPrimitiveTopology
+import org.sheepy.vulkan.model.enumeration.EDynamicState
+
+class ColorBlend
+{
+	contains ColorBlendAttachment[] attachments
+	boolean logicOpEnable = "false"
+	ELogicOp logicOp = "COPY"
+	int blendConstant0 = "0"
+	int blendConstant1 = "0"
+	int blendConstant2 = "0"
+	int blendConstant3 = "1"
+}
+
+class ColorBlendAttachment
+{
+	@GenModel(propertyCategory="1 - Common")
+	boolean blendEnable = "false"
+	@GenModel(propertyCategory="2 - Operation")
+	EBlendFactor srcColor = "ONE"
+	@GenModel(propertyCategory="2 - Operation")
+	EBlendFactor dstColor = "ZERO"
+	@GenModel(propertyCategory="2 - Operation")
+	EBlendFactor srcAlpha = "ONE"
+	@GenModel(propertyCategory="2 - Operation")
+	EBlendFactor dstAlpha = "ZERO"
+	@GenModel(propertyCategory="2 - Operation")
+	EBlendOp colorBlendOp = "ADD"
+	@GenModel(propertyCategory="2 - Operation")
+	EBlendOp alphaBlendOp = "ADD"
+	@GenModel(propertyCategory="3 - Component")
+	boolean redComponentEnable = "true"
+	@GenModel(propertyCategory="3 - Component")
+	boolean greenComponentEnable = "true"
+	@GenModel(propertyCategory="3 - Component")
+	boolean blueComponentEnable = "true"
+	@GenModel(propertyCategory="3 - Component")
+	boolean alphaComponentEnable = "true"
+}
+
+class InputAssembly
+{
+	boolean primitiveRestartEnabled = "false"
+	EPrimitiveTopology primitiveTopology = "TRIANGLE_LIST"
+}
+
+class Rasterizer
+{
+	ECullMode cullMode = "BACK_BIT"
+	EFrontFace frontFace = "CLOCKWISE"
+	EPolygonMode polygonMode = "FILL"
+	int lineWidth = "1"
+	boolean depthClampEnable = "false"
+	boolean discardEnable = "false"
+	boolean depthBiasEnable = "false"
+}
+
+class DynamicState
+{
+	EDynamicState[] states
+}
+
+interface ViewportState
+{
+}
+
+class StaticViewportState extends ViewportState
+{
+	contains Viewport[] viewports
+	contains Scissor[] scissors
+}
+
+class DynamicViewportState extends ViewportState
+{
+	int viewportCount
+	int scissorCount
+}
+
+class Vec2I
+{
+	int x = "0"
+	int y = "0"
+}
+
+class Viewport
+{
+	int offsetX = "0"
+	int offsetY = "0"
+	// If null, will use the swapchain image size
+	contains Vec2I extent
+	int minDepth = "0"
+	int maxDepth = "1"
+}
+
+class Scissor
+{
+	int offsetX = "0"
+	int offsetY = "0"
+	// If null, will use the swapchain image size
+	contains Vec2I extent
+}

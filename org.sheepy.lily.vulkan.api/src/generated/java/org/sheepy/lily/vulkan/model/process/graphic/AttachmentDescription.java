@@ -3,11 +3,10 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp;
-import org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp;
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
+import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
+import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.ESampleCount;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +34,7 @@ public interface AttachmentDescription extends LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Samples</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.ESampleCount}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ESampleCount}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Samples</em>' attribute isn't clear,
@@ -43,7 +42,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Samples</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.ESampleCount
+	 * @see org.sheepy.vulkan.model.enumeration.ESampleCount
 	 * @see #setSamples(ESampleCount)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_Samples()
 	 * @model unique="false"
@@ -56,7 +55,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Samples</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.ESampleCount
+	 * @see org.sheepy.vulkan.model.enumeration.ESampleCount
 	 * @see #getSamples()
 	 * @generated
 	 */
@@ -64,7 +63,7 @@ public interface AttachmentDescription extends LNamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Load Op</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Load Op</em>' attribute isn't clear,
@@ -72,7 +71,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Load Op</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
+	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
 	 * @see #setLoadOp(EAttachmentLoadOp)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_LoadOp()
 	 * @model unique="false"
@@ -85,7 +84,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Load Op</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
+	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
 	 * @see #getLoadOp()
 	 * @generated
 	 */
@@ -93,7 +92,7 @@ public interface AttachmentDescription extends LNamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Store Op</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Store Op</em>' attribute isn't clear,
@@ -101,7 +100,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Store Op</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp
+	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
 	 * @see #setStoreOp(EAttachmentStoreOp)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_StoreOp()
 	 * @model unique="false"
@@ -114,7 +113,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Store Op</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp
+	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
 	 * @see #getStoreOp()
 	 * @generated
 	 */
@@ -122,7 +121,7 @@ public interface AttachmentDescription extends LNamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Stencil Load Op</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stencil Load Op</em>' attribute isn't clear,
@@ -130,7 +129,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stencil Load Op</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
+	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
 	 * @see #setStencilLoadOp(EAttachmentLoadOp)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_StencilLoadOp()
 	 * @model unique="false"
@@ -143,7 +142,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stencil Load Op</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp
+	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
 	 * @see #getStencilLoadOp()
 	 * @generated
 	 */
@@ -151,7 +150,7 @@ public interface AttachmentDescription extends LNamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Stencil Store Op</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stencil Store Op</em>' attribute isn't clear,
@@ -159,7 +158,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stencil Store Op</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp
+	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
 	 * @see #setStencilStoreOp(EAttachmentStoreOp)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_StencilStoreOp()
 	 * @model unique="false"
@@ -172,7 +171,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stencil Store Op</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp
+	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
 	 * @see #getStencilStoreOp()
 	 * @generated
 	 */
@@ -180,7 +179,7 @@ public interface AttachmentDescription extends LNamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Initial Layout</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Initial Layout</em>' attribute isn't clear,
@@ -188,7 +187,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #setInitialLayout(EImageLayout)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_InitialLayout()
 	 * @model unique="false"
@@ -201,7 +200,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Initial Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #getInitialLayout()
 	 * @generated
 	 */
@@ -209,7 +208,7 @@ public interface AttachmentDescription extends LNamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Final Layout</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Final Layout</em>' attribute isn't clear,
@@ -217,7 +216,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Final Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #setFinalLayout(EImageLayout)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachmentDescription_FinalLayout()
 	 * @model unique="false"
@@ -230,7 +229,7 @@ public interface AttachmentDescription extends LNamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Final Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #getFinalLayout()
 	 * @generated
 	 */

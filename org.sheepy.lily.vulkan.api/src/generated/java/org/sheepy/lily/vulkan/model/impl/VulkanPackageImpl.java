@@ -13,7 +13,6 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.ColorDomain;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResource;
@@ -22,8 +21,7 @@ import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,13 +72,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	private EClass iExecutionManagerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass colorDomainEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -295,39 +286,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getColorDomain()
-	{
-		return colorDomainEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorDomain_Format()
-	{
-		return (EAttribute) colorDomainEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorDomain_ColorSpace()
-	{
-		return (EAttribute) colorDomainEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public VulkanFactory getVulkanFactory()
 	{
 		return (VulkanFactory) getEFactoryInstance();
@@ -370,10 +328,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		createEAttribute(iProcessEClass, IPROCESS__ENABLED);
 
 		iExecutionManagerEClass = createEClass(IEXECUTION_MANAGER);
-
-		colorDomainEClass = createEClass(COLOR_DOMAIN);
-		createEAttribute(colorDomainEClass, COLOR_DOMAIN__FORMAT);
-		createEAttribute(colorDomainEClass, COLOR_DOMAIN__COLOR_SPACE);
 	}
 
 	/**
@@ -461,16 +415,6 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 
 		initEClass(iExecutionManagerEClass, IExecutionManager.class, "IExecutionManager",
 				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(colorDomainEClass, ColorDomain.class, "ColorDomain", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getColorDomain_Format(), theEnumerationPackage.getEFormat(), "format",
-				"B8G8R8A8_UNORM", 0, 1, ColorDomain.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorDomain_ColorSpace(), theEnumerationPackage.getEColorSpace(),
-				"colorSpace", "SRGB_NONLINEAR_KHR", 0, 1, ColorDomain.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

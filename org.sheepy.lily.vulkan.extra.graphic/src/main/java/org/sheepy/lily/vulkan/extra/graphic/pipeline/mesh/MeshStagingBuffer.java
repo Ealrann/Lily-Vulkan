@@ -3,17 +3,16 @@ package org.sheepy.lily.vulkan.extra.graphic.pipeline.mesh;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.BufferInfo;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.CPUBufferBackend;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferWithUniform;
-import org.sheepy.lily.vulkan.api.resource.IVertex;
 import org.sheepy.lily.vulkan.extra.api.terrain.IMeshStagingBuffer;
 import org.sheepy.lily.vulkan.extra.api.terrain.data.IMeshUniformDataProvider;
 import org.sheepy.lily.vulkan.extra.api.terrain.data.IMeshVertexDataProvider;
-import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.resource.buffer.BufferInfo;
+import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
+import org.sheepy.vulkan.resource.indexed.IndexedBufferWithUniform;
 
 public class MeshStagingBuffer implements IAllocable, IMeshStagingBuffer
 {
@@ -58,7 +57,7 @@ public class MeshStagingBuffer implements IAllocable, IMeshStagingBuffer
 	}
 
 	@Override
-	public void fillBufferWith(	IndexedBufferWithUniform<? extends IVertex> buffer,
+	public void fillBufferWith(	IndexedBufferWithUniform<?> buffer,
 								IMeshVertexDataProvider vertexDataProvider,
 								IMeshVertexDataProvider indexDataProvider,
 								List<IMeshUniformDataProvider> uniformDataProviders)

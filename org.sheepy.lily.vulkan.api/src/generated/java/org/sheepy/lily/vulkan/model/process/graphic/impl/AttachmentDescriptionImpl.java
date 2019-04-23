@@ -8,14 +8,12 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.sheepy.lily.vulkan.model.enumeration.EAttachmentLoadOp;
-import org.sheepy.lily.vulkan.model.enumeration.EAttachmentStoreOp;
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.lily.vulkan.model.enumeration.ESampleCount;
-
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
+import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.ESampleCount;
 
 /**
  * <!-- begin-user-doc -->

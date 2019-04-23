@@ -18,25 +18,25 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-import org.sheepy.lily.vulkan.api.concurrent.IFence;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
-import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkFence;
-import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
-import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
-import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
-import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
-import org.sheepy.lily.vulkan.common.device.LogicalDevice;
-import org.sheepy.lily.vulkan.common.device.PhysicalDevice;
-import org.sheepy.lily.vulkan.common.device.VulkanContext;
-import org.sheepy.lily.vulkan.common.device.VulkanInstance;
-import org.sheepy.lily.vulkan.common.device.judge.PhysicalDeviceSelector;
-import org.sheepy.lily.vulkan.common.engine.utils.EngineExtensionRequirement;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineAllocationRoot;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.vulkan.concurrent.VkFence;
+import org.sheepy.vulkan.device.EPhysicalFeature;
+import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.device.PhysicalDevice;
+import org.sheepy.vulkan.device.PhysicalDeviceSelector;
+import org.sheepy.vulkan.device.VulkanContext;
+import org.sheepy.vulkan.execution.ExecutionContext;
+import org.sheepy.vulkan.extension.EngineExtensionRequirement;
+import org.sheepy.vulkan.instance.VulkanInstance;
+import org.sheepy.vulkan.queue.EQueueType;
+import org.sheepy.vulkan.surface.VkSurface;
+import org.sheepy.vulkan.window.IWindowListener;
+import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = VulkanEngine.class)
@@ -136,7 +136,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 		try (MemoryStack stack = stackPush())
 		{
-			extensionRequirement = new EngineExtensionRequirement(engine, stack, debug);
+			extensionRequirement = new EngineExtensionRequirement(stack, debug);
 		}
 	}
 
@@ -254,11 +254,8 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void createInstance(MemoryStack stack)
 	{
-
-		vkInstance = new VulkanInstance(application, extensionRequirement, debug);
-
+		vkInstance = new VulkanInstance(application.getTitle(), extensionRequirement, debug);
 		vkInstance.allocate(stack);
-
 	}
 
 	private void pickPhysicalDevice(MemoryStack stack, VkSurface dummySurface)
@@ -288,8 +285,13 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	private void createLogicalDevice(MemoryStack stack, VkSurface dummySurface)
 	{
 		final var features = engine.getFeatures();
+		final List<EPhysicalFeature> vkFeatures = new ArrayList<>();
+		for (final var modelFeature : features)
+		{
+			vkFeatures.add(EPhysicalFeature.valueOf(modelFeature.getName()));
+		}
 
-		logicalDevice = new LogicalDevice(physicalDevice, dummySurface, features, true);
+		logicalDevice = new LogicalDevice(physicalDevice, dummySurface, vkFeatures, true);
 		logicalDevice.allocate(stack);
 	}
 
@@ -308,13 +310,13 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	}
 
 	@Override
-	public IFence newFence()
+	public VkFence newFence()
 	{
 		return newFence(false);
 	}
 
 	@Override
-	public IFence newFence(boolean signaled)
+	public VkFence newFence(boolean signaled)
 	{
 		final VkFence res = new VkFence(signaled);
 		res.allocate(null, vulkanContext);

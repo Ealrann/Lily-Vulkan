@@ -8,13 +8,13 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize.Buffer;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.VkDescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.descriptor.VkDescriptorSet;
 
 @Statefull
 @Adapter(scope = DescriptorSet.class)

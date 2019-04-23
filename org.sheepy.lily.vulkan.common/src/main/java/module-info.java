@@ -10,7 +10,6 @@ module org.sheepy.lily.vulkan.common
 	requires org.sheepy.lily.core.impl;
 
 	exports org.sheepy.lily.vulkan.common.allocation;
-	exports org.sheepy.lily.vulkan.common.execution;
 	exports org.sheepy.lily.vulkan.common.util;
 
 	opens org.sheepy.lily.vulkan.common.engine;

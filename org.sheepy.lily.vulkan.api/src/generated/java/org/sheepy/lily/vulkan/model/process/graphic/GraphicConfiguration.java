@@ -2,9 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.sheepy.lily.vulkan.model.ColorDomain;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.process.Configuration;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,7 +73,7 @@ public interface GraphicConfiguration extends Configuration
 	/**
 	 * Returns the value of the '<em><b>Acquire Wait Stage</b></em>' attribute.
 	 * The default value is <code>"COLOR_ATTACHMENT_OUTPUT_BIT"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Acquire Wait Stage</em>' attribute isn't clear,
@@ -82,7 +81,7 @@ public interface GraphicConfiguration extends Configuration
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Acquire Wait Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #setAcquireWaitStage(EPipelineStage)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_AcquireWaitStage()
 	 * @model default="COLOR_ATTACHMENT_OUTPUT_BIT" unique="false"
@@ -96,7 +95,7 @@ public interface GraphicConfiguration extends Configuration
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Acquire Wait Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #getAcquireWaitStage()
 	 * @generated
 	 */

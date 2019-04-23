@@ -4,9 +4,8 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +30,7 @@ public interface ImageTransition extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Src Layout</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Src Layout</em>' attribute isn't clear,
@@ -39,7 +38,7 @@ public interface ImageTransition extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #setSrcLayout(EImageLayout)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageTransition_SrcLayout()
 	 * @model unique="false"
@@ -52,7 +51,7 @@ public interface ImageTransition extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Src Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #getSrcLayout()
 	 * @generated
 	 */
@@ -60,7 +59,7 @@ public interface ImageTransition extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Dst Layout</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dst Layout</em>' attribute isn't clear,
@@ -68,7 +67,7 @@ public interface ImageTransition extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #setDstLayout(EImageLayout)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageTransition_DstLayout()
 	 * @model unique="false"
@@ -81,7 +80,7 @@ public interface ImageTransition extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dst Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #getDstLayout()
 	 * @generated
 	 */
@@ -89,8 +88,8 @@ public interface ImageTransition extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Src Access Mask</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Src Access Mask</em>' attribute list isn't clear,
@@ -98,7 +97,7 @@ public interface ImageTransition extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Access Mask</em>' attribute list.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageTransition_SrcAccessMask()
 	 * @model
 	 * @generated
@@ -107,8 +106,8 @@ public interface ImageTransition extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Dst Access Mask</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dst Access Mask</em>' attribute list isn't clear,
@@ -116,7 +115,7 @@ public interface ImageTransition extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Access Mask</em>' attribute list.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageTransition_DstAccessMask()
 	 * @model
 	 * @generated

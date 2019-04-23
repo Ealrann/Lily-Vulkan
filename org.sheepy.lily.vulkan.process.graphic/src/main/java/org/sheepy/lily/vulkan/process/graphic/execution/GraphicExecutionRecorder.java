@@ -5,9 +5,9 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public class GraphicExecutionRecorder extends AbstractExecutionRecorder
 {

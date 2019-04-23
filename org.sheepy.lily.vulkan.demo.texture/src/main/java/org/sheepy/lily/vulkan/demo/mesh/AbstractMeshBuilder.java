@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.demo.mesh;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBuffer;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferData;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferWithUniform;
-import org.sheepy.lily.vulkan.api.resource.IVertex;
+import org.sheepy.vulkan.resource.indexed.IVertex;
+import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
+import org.sheepy.vulkan.resource.indexed.IndexedBufferData;
+import org.sheepy.vulkan.resource.indexed.IndexedBufferWithUniform;
 
 public abstract class AbstractMeshBuilder<T extends IVertex> implements IIndexedBufferBuilder<T>
 {

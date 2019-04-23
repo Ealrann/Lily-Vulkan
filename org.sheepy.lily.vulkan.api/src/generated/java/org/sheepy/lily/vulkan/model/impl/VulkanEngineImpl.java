@@ -34,7 +34,7 @@ import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature;
+import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
 
 /**
  * <!-- begin-user-doc -->

@@ -3,14 +3,14 @@ package org.sheepy.lily.vulkan.common.application;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.IEngine;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
-import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
+import org.sheepy.vulkan.window.Window;
 
 public class VulkanApplicationUtil
 {
 	public static IVulkanEngineAdapter getEngineAdapter(Application application)
 	{
-		VulkanEngine vulkanEngine = getEngine(application);
+		final VulkanEngine vulkanEngine = getEngine(application);
 
 		return IVulkanEngineAdapter.adapt(vulkanEngine);
 	}
@@ -18,7 +18,7 @@ public class VulkanApplicationUtil
 	public static VulkanEngine getEngine(Application application)
 	{
 		VulkanEngine vulkanEngine = null;
-		for (IEngine engine : application.getEngines())
+		for (final IEngine engine : application.getEngines())
 		{
 			if (engine instanceof VulkanEngine)
 			{
@@ -31,7 +31,7 @@ public class VulkanApplicationUtil
 
 	public static Window getWindow(Application application)
 	{
-		var engineAdapter = getEngineAdapter(application);
+		final var engineAdapter = getEngineAdapter(application);
 		if (engineAdapter != null)
 		{
 			return engineAdapter.getWindow();

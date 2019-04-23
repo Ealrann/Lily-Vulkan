@@ -5,11 +5,11 @@ import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
-import org.sheepy.lily.vulkan.api.util.Logger;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.log.Logger;
 
 public class ImageAcquirer implements IAllocable
 {

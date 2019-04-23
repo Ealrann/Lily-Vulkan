@@ -20,6 +20,7 @@ public class ConstantsAdapter extends AbstractConstantsAdapter
 
 	public ConstantsAdapter(Constants constants)
 	{
+		super(constants);
 		this.constants = constants;
 	}
 

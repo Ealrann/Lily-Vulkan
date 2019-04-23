@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationObject;
-import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationAdapter;
+import org.sheepy.vulkan.allocation.IAllocationObject;
 
 public class AllocableWrapperFactory
 {

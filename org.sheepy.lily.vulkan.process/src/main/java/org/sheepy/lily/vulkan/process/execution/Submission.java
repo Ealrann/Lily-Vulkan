@@ -12,14 +12,14 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
-import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkFence;
-import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.concurrent.VkFence;
+import org.sheepy.vulkan.execution.ExecutionContext;
+import org.sheepy.vulkan.execution.ICommandBuffer;
+import org.sheepy.vulkan.log.Logger;
 
 public class Submission implements IAllocable, ISubmission
 {

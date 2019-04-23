@@ -13,19 +13,21 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.image.ImageInfo;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.execution.ExecutionContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.execution.ISingleTimeCommand;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImageView;
+import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = Image.class)
@@ -53,7 +55,7 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	{
 		this.executionContext = (ExecutionContext) context;
 		final var logicalDevice = executionContext.getLogicalDevice();
-		final var info = new ImageInfo(image);
+		final var info = createInfo(image);
 
 		imageBackend = new VkImage(logicalDevice, info);
 		imageBackend.allocate(stack);
@@ -157,11 +159,24 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 
 	public static interface IImageLoader
 	{
-		void load(ExecutionContext executionManager, VkImage backendBuffer);
+		void load(IExecutionContext executionManager, VkImage backendBuffer);
 	}
 
 	public static ImageAdapter adapt(Image image)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(image, ImageAdapter.class);
+	}
+
+	private static ImageInfo createInfo(Image image)
+	{
+		final int usages = VkModelUtil.getEnumeratedFlag(image.getUsages());
+		final int format = image.getFormat().getValue();
+		final int mipLevels = image.getMipLevels();
+		final int height = image.getHeight();
+		final int tiling = image.getTiling();
+		final int width = image.getWidth();
+		final int properties = image.getProperties();
+
+		return new ImageInfo(width, height, format, usages, properties, tiling, mipLevels);
 	}
 }

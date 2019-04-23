@@ -8,9 +8,7 @@ package org.sheepy.lily.vulkan.model
 
 import org.sheepy.lily.core.model.application.IEngine
 import org.sheepy.lily.core.model.types.LNamedElement
-import org.sheepy.lily.vulkan.model.enumeration.EColorSpace
-import org.sheepy.lily.vulkan.model.enumeration.EFormat
-import org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature
+import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature
 
 class VulkanEngine extends IEngine, IResourceContainer, IExecutionManager
 {
@@ -40,10 +38,4 @@ interface IProcess extends IResourceContainer, LNamedElement, IExecutionManager
 
 interface IExecutionManager
 {
-}
-
-class ColorDomain
-{
-	EFormat format = "B8G8R8A8_UNORM"
-	EColorSpace colorSpace = "SRGB_NONLINEAR_KHR"
 }

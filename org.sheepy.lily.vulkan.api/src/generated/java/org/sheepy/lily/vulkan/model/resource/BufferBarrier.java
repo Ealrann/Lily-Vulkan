@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public interface BufferBarrier extends Barrier
 
 	/**
 	 * Returns the value of the '<em><b>Src Access</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Src Access</em>' attribute isn't clear,
@@ -60,7 +60,7 @@ public interface BufferBarrier extends Barrier
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Access</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see #setSrcAccess(EAccess)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferBarrier_SrcAccess()
 	 * @model unique="false"
@@ -73,7 +73,7 @@ public interface BufferBarrier extends Barrier
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Src Access</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see #getSrcAccess()
 	 * @generated
 	 */
@@ -81,7 +81,7 @@ public interface BufferBarrier extends Barrier
 
 	/**
 	 * Returns the value of the '<em><b>Dst Access</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dst Access</em>' attribute isn't clear,
@@ -89,7 +89,7 @@ public interface BufferBarrier extends Barrier
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Access</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see #setDstAccess(EAccess)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBufferBarrier_DstAccess()
 	 * @model unique="false"
@@ -102,7 +102,7 @@ public interface BufferBarrier extends Barrier
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dst Access</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see #getDstAccess()
 	 * @generated
 	 */

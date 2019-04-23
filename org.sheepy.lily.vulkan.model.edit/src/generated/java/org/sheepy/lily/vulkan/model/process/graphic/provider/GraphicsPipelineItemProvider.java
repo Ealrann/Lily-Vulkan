@@ -12,10 +12,10 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.provider.AbstractPipelineItemProvider;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline} object.
@@ -197,27 +197,27 @@ public class GraphicsPipelineItemProvider extends AbstractPipelineItemProvider
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-						GraphicFactory.eINSTANCE.createStaticViewportState()));
+						GraphicpipelineFactory.eINSTANCE.createStaticViewportState()));
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE,
-						GraphicFactory.eINSTANCE.createDynamicViewportState()));
+						GraphicpipelineFactory.eINSTANCE.createDynamicViewportState()));
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__INPUT_ASSEMBLY,
-						GraphicFactory.eINSTANCE.createInputAssembly()));
+						GraphicpipelineFactory.eINSTANCE.createInputAssembly()));
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER,
-						GraphicFactory.eINSTANCE.createRasterizer()));
+						GraphicpipelineFactory.eINSTANCE.createRasterizer()));
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__COLOR_BLEND,
-						GraphicFactory.eINSTANCE.createColorBlend()));
+						GraphicpipelineFactory.eINSTANCE.createColorBlend()));
 
 		newChildDescriptors
 				.add(createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__DYNAMIC_STATE,
-						GraphicFactory.eINSTANCE.createDynamicState()));
+						GraphicpipelineFactory.eINSTANCE.createDynamicState()));
 	}
 
 }

@@ -9,9 +9,6 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.sheepy.lily.vulkan.model,
- org.sheepy.lily.vulkan.model.enumeration,
- org.sheepy.lily.vulkan.model.enumeration.impl,
- org.sheepy.lily.vulkan.model.enumeration.util,
  org.sheepy.lily.vulkan.model.impl,
  org.sheepy.lily.vulkan.model.process,
  org.sheepy.lily.vulkan.model.process.compute,
@@ -32,6 +29,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xcore.lib,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.sheepy.lily.core.model;bundle-version="0.1.0";visibility:=reexport,
- org.sheepy.lily.vulkan.model;visibility:=reexport
+ org.sheepy.lily.vulkan.model;visibility:=reexport,
+ org.sheepy.vulkan.model;bundle-version="0.1.0";visibility:=reexport
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy

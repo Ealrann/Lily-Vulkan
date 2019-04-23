@@ -4,14 +4,14 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.image.ImageInfo;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.Texture;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.resource.image.ImageInfo;
 
 public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 {

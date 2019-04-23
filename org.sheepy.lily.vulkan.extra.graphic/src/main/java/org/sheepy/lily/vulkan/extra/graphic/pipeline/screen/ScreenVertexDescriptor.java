@@ -10,9 +10,9 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineVertexInputStateCreateInfo;
 import org.lwjgl.vulkan.VkVertexInputAttributeDescription;
 import org.lwjgl.vulkan.VkVertexInputBindingDescription;
-import org.sheepy.lily.vulkan.api.resource.IVertex;
-import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.extra.graphic.pipeline.screen.ScreenVertexDescriptor.ScreenVertex;
+import org.sheepy.vulkan.resource.indexed.IVertex;
+import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
 public class ScreenVertexDescriptor implements IVertexBufferDescriptor<ScreenVertex>
 {

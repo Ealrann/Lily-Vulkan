@@ -4,12 +4,8 @@ import java.util.List;
 import java.util.Objects;
 
 import org.lwjgl.nuklear.NkUserFont;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.VkDescriptorSet;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
-import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
@@ -18,6 +14,10 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexBuffer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NullTexture;
 import org.sheepy.lily.vulkan.nuklear.util.NkFontLoader;
 import org.sheepy.lily.vulkan.resource.texture.FontAdapter;
+import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.descriptor.VkDescriptorSet;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 public class NuklearResources
 {

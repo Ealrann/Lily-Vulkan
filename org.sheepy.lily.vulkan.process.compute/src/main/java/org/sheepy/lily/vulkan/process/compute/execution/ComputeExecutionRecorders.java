@@ -3,11 +3,11 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.process.compute.process.ComputeContext;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.SubmissionsBuilder;
+import org.sheepy.vulkan.allocation.IAllocationContext;
 
 public class ComputeExecutionRecorders extends ExecutionRecorders
 {

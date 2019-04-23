@@ -10,13 +10,13 @@ import org.lwjgl.nuklear.NkDrawNullTexture;
 import org.lwjgl.nuklear.NkDrawVertexLayoutElement;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBuffer;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedStagingBuffer;
-import org.sheepy.lily.vulkan.api.process.IVulkanContext;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.device.IVulkanContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
+import org.sheepy.vulkan.resource.indexed.IndexedStagingBuffer;
 
 public class NuklearVertexBuffer implements IAllocable
 {

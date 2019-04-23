@@ -5,8 +5,7 @@ package org.sheepy.lily.vulkan.model.process;
 import org.sheepy.lily.core.model.root.LObject;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
-
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +56,7 @@ public interface IPipeline extends LObject, LNamedElement
 	/**
 	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
 	 * The default value is <code>"Render"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.ECommandStage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ECommandStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stage</em>' attribute isn't clear,
@@ -65,7 +64,7 @@ public interface IPipeline extends LObject, LNamedElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.ECommandStage
+	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
 	 * @see #setStage(ECommandStage)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_Stage()
 	 * @model default="Render" unique="false"
@@ -78,7 +77,7 @@ public interface IPipeline extends LObject, LNamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.ECommandStage
+	 * @see org.sheepy.vulkan.model.enumeration.ECommandStage
 	 * @see #getStage()
 	 * @generated
 	 */

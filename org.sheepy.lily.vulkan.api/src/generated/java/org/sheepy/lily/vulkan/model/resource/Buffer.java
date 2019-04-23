@@ -4,7 +4,7 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,8 +57,8 @@ public interface Buffer extends DescriptorResource
 
 	/**
 	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EBufferUsage}.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EBufferUsage}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Usages</em>' attribute list isn't clear,
@@ -66,7 +66,7 @@ public interface Buffer extends DescriptorResource
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usages</em>' attribute list.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EBufferUsage
+	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_Usages()
 	 * @model
 	 * @generated

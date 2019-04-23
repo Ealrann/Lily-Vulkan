@@ -3,11 +3,11 @@ package org.sheepy.lily.vulkan.common.allocation;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationAdapter;
 import org.sheepy.lily.vulkan.common.allocation.wrapper.AllocableWrapperFactory;
 import org.sheepy.lily.vulkan.common.allocation.wrapper.IAllocationWrapper;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
 
 public class TreeAllocator implements IAllocable
 {

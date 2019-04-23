@@ -89,6 +89,13 @@ public class GraphicSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case GraphicPackage.COLOR_DOMAIN:
+		{
+			ColorDomain colorDomain = (ColorDomain) theEObject;
+			T result = caseColorDomain(colorDomain);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		case GraphicPackage.SWAPCHAIN_CONFIGURATION:
 		{
 			SwapchainConfiguration swapchainConfiguration = (SwapchainConfiguration) theEObject;
@@ -229,78 +236,6 @@ public class GraphicSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicPackage.DYNAMIC_STATE:
-		{
-			DynamicState dynamicState = (DynamicState) theEObject;
-			T result = caseDynamicState(dynamicState);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.COLOR_BLEND:
-		{
-			ColorBlend colorBlend = (ColorBlend) theEObject;
-			T result = caseColorBlend(colorBlend);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT:
-		{
-			ColorBlendAttachment colorBlendAttachment = (ColorBlendAttachment) theEObject;
-			T result = caseColorBlendAttachment(colorBlendAttachment);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.VIEWPORT_STATE:
-		{
-			ViewportState viewportState = (ViewportState) theEObject;
-			T result = caseViewportState(viewportState);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.STATIC_VIEWPORT_STATE:
-		{
-			StaticViewportState staticViewportState = (StaticViewportState) theEObject;
-			T result = caseStaticViewportState(staticViewportState);
-			if (result == null) result = caseViewportState(staticViewportState);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.DYNAMIC_VIEWPORT_STATE:
-		{
-			DynamicViewportState dynamicViewportState = (DynamicViewportState) theEObject;
-			T result = caseDynamicViewportState(dynamicViewportState);
-			if (result == null) result = caseViewportState(dynamicViewportState);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.VIEWPORT:
-		{
-			Viewport viewport = (Viewport) theEObject;
-			T result = caseViewport(viewport);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.SCISSOR:
-		{
-			Scissor scissor = (Scissor) theEObject;
-			T result = caseScissor(scissor);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.RASTERIZER:
-		{
-			Rasterizer rasterizer = (Rasterizer) theEObject;
-			T result = caseRasterizer(rasterizer);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.INPUT_ASSEMBLY:
-		{
-			InputAssembly inputAssembly = (InputAssembly) theEObject;
-			T result = caseInputAssembly(inputAssembly);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -318,6 +253,22 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseGraphicConfiguration(GraphicConfiguration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Color Domain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Color Domain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseColorDomain(ColorDomain object)
 	{
 		return null;
 	}
@@ -574,166 +525,6 @@ public class GraphicSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseGraphicsPipeline(GraphicsPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dynamic State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dynamic State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDynamicState(DynamicState object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Color Blend</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Color Blend</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseColorBlend(ColorBlend object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Color Blend Attachment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Color Blend Attachment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseColorBlendAttachment(ColorBlendAttachment object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Viewport State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Viewport State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseViewportState(ViewportState object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Static Viewport State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Static Viewport State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStaticViewportState(StaticViewportState object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Viewport State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dynamic Viewport State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDynamicViewportState(DynamicViewportState object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Viewport</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Viewport</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseViewport(Viewport object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Scissor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Scissor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseScissor(Scissor object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Rasterizer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Rasterizer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRasterizer(Rasterizer object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Input Assembly</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Input Assembly</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInputAssembly(InputAssembly object)
 	{
 		return null;
 	}

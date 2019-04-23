@@ -66,6 +66,8 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 		{
 		case GraphicPackage.GRAPHIC_CONFIGURATION:
 			return createGraphicConfiguration();
+		case GraphicPackage.COLOR_DOMAIN:
+			return createColorDomain();
 		case GraphicPackage.SWAPCHAIN_CONFIGURATION:
 			return createSwapchainConfiguration();
 		case GraphicPackage.FRAMEBUFFER_CONFIGURATION:
@@ -90,24 +92,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createGraphicProcess();
 		case GraphicPackage.GRAPHICS_PIPELINE:
 			return createGraphicsPipeline();
-		case GraphicPackage.DYNAMIC_STATE:
-			return createDynamicState();
-		case GraphicPackage.COLOR_BLEND:
-			return createColorBlend();
-		case GraphicPackage.COLOR_BLEND_ATTACHMENT:
-			return createColorBlendAttachment();
-		case GraphicPackage.STATIC_VIEWPORT_STATE:
-			return createStaticViewportState();
-		case GraphicPackage.DYNAMIC_VIEWPORT_STATE:
-			return createDynamicViewportState();
-		case GraphicPackage.VIEWPORT:
-			return createViewport();
-		case GraphicPackage.SCISSOR:
-			return createScissor();
-		case GraphicPackage.RASTERIZER:
-			return createRasterizer();
-		case GraphicPackage.INPUT_ASSEMBLY:
-			return createInputAssembly();
 		default:
 			throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier");
@@ -124,6 +108,18 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicConfigurationImpl graphicConfiguration = new GraphicConfigurationImpl();
 		return graphicConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ColorDomain createColorDomain()
+	{
+		ColorDomainImpl colorDomain = new ColorDomainImpl();
+		return colorDomain;
 	}
 
 	/**
@@ -268,114 +264,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicsPipelineImpl graphicsPipeline = new GraphicsPipelineImpl();
 		return graphicsPipeline;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DynamicState createDynamicState()
-	{
-		DynamicStateImpl dynamicState = new DynamicStateImpl();
-		return dynamicState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ColorBlend createColorBlend()
-	{
-		ColorBlendImpl colorBlend = new ColorBlendImpl();
-		return colorBlend;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ColorBlendAttachment createColorBlendAttachment()
-	{
-		ColorBlendAttachmentImpl colorBlendAttachment = new ColorBlendAttachmentImpl();
-		return colorBlendAttachment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public StaticViewportState createStaticViewportState()
-	{
-		StaticViewportStateImpl staticViewportState = new StaticViewportStateImpl();
-		return staticViewportState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DynamicViewportState createDynamicViewportState()
-	{
-		DynamicViewportStateImpl dynamicViewportState = new DynamicViewportStateImpl();
-		return dynamicViewportState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Viewport createViewport()
-	{
-		ViewportImpl viewport = new ViewportImpl();
-		return viewport;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Scissor createScissor()
-	{
-		ScissorImpl scissor = new ScissorImpl();
-		return scissor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Rasterizer createRasterizer()
-	{
-		RasterizerImpl rasterizer = new RasterizerImpl();
-		return rasterizer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public InputAssembly createInputAssembly()
-	{
-		InputAssemblyImpl inputAssembly = new InputAssemblyImpl();
-		return inputAssembly;
 	}
 
 	/**

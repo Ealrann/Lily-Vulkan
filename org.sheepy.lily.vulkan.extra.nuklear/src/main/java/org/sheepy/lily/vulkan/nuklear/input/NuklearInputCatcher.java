@@ -17,8 +17,8 @@ import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
 import org.sheepy.lily.core.api.input.event.ScrollEvent;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.vulkan.api.input.IInputCatcher;
-import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPipelineAdapter;
+import org.sheepy.vulkan.window.Window;
 
 public class NuklearInputCatcher implements IInputCatcher
 {
@@ -46,8 +46,8 @@ public class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public void onKeyEvent(KeyEvent event)
 	{
-		long windowId = window.getId();
-		boolean press = event.state == EKeyState.PRESSED;
+		final long windowId = window.getId();
+		final boolean press = event.state == EKeyState.PRESSED;
 		switch (event.key)
 		{
 		case GLFW_KEY_ESCAPE:
@@ -126,8 +126,8 @@ public class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public void onMouseClickEvent(Vector2f location, MouseButtonEvent event)
 	{
-		int x = (int) location.x;
-		int y = (int) location.y;
+		final int x = (int) location.x;
+		final int y = (int) location.y;
 
 		int nkButton = -1;
 		switch (event.button)
@@ -174,16 +174,16 @@ public class NuklearInputCatcher implements IInputCatcher
 	@Override
 	public boolean hasCaughtInputs(List<IInputEvent> events)
 	{
-		long windowId = window.getId();
-		NkMouse mouse = nkContext.input().mouse();
+		final long windowId = window.getId();
+		final NkMouse mouse = nkContext.input().mouse();
 		if (mouse.grab())
 		{
 			glfwSetInputMode(windowId, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 		}
 		else if (mouse.grabbed())
 		{
-			float prevX = mouse.prev().x();
-			float prevY = mouse.prev().y();
+			final float prevX = mouse.prev().x();
+			final float prevY = mouse.prev().y();
 			glfwSetCursorPos(windowId, prevX, prevY);
 			mouse.pos().x(prevX);
 			mouse.pos().y(prevY);
@@ -201,7 +201,7 @@ public class NuklearInputCatcher implements IInputCatcher
 
 		if (nk_item_is_any_active(nkContext))
 		{
-			for (IInputEvent event : events)
+			for (final IInputEvent event : events)
 			{
 				if (event instanceof MouseButtonEvent && ((MouseButtonEvent) event).pressed == true)
 				{

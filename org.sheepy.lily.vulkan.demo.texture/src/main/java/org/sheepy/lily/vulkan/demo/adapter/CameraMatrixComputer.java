@@ -9,11 +9,11 @@ import org.joml.Vector3f;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.GPUBufferBackend;
 import org.sheepy.lily.vulkan.common.util.SizeOf;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 
 public class CameraMatrixComputer implements IAllocable
 {

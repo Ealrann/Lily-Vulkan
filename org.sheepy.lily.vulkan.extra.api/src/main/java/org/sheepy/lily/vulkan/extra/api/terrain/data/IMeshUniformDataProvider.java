@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.extra.api.terrain.data;
 
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.IBufferBackend;
+import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.resource.buffer.IBufferBackend;
 
 public interface IMeshUniformDataProvider extends IMeshDataProvider
 {

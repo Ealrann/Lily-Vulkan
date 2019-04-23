@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.api.graphic;
 
 import java.util.List;
 
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocable;
 
 public interface ISwapChainManager extends IAllocable
 {

@@ -8,11 +8,11 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContextProvider;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationNode;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationObject;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.allocation.IAllocationContextProvider;
+import org.sheepy.vulkan.allocation.IAllocationNode;
+import org.sheepy.vulkan.allocation.IAllocationObject;
 
 public class AllocationWrapper extends AdapterImpl implements IAllocationWrapper
 {

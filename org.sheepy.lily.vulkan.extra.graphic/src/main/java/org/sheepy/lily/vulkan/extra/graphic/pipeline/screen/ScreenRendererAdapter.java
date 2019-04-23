@@ -12,14 +12,14 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.BufferInfo;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.buffer.GPUBufferBackend;
-import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer;
-import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.resource.buffer.BufferInfo;
+import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
+import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
 @Statefull
 @Adapter(scope = ScreenRenderer.class)
@@ -52,7 +52,7 @@ public class ScreenRendererAdapter extends GraphicsPipelineAdapter
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		buffer.pushData((ExecutionContext) context, datas);
+		buffer.pushData((IExecutionContext) context, datas);
 		super.allocate(stack, context);
 	}
 

@@ -23,13 +23,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.model.VulkanFactory;
-
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration} object.
@@ -203,7 +200,7 @@ public class GraphicConfigurationItemProvider extends ItemProviderAdapter
 
 		newChildDescriptors.add(
 				createChildParameter(GraphicPackage.Literals.GRAPHIC_CONFIGURATION__COLOR_DOMAIN,
-						VulkanFactory.eINSTANCE.createColorDomain()));
+						GraphicFactory.eINSTANCE.createColorDomain()));
 	}
 
 	/**

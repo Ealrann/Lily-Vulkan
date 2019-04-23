@@ -11,11 +11,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
-
 import org.sheepy.lily.vulkan.model.resource.ImageTransition;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
  * <!-- begin-user-doc -->

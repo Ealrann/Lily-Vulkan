@@ -10,10 +10,10 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
 @Adapter(scope = Shader.class)

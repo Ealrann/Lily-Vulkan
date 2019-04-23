@@ -21,17 +21,11 @@ import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
-
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
-import org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
-import org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
@@ -43,19 +37,14 @@ import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
-import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.lily.vulkan.model.process.graphic.Scissor;
-import org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
-import org.sheepy.lily.vulkan.model.process.graphic.Viewport;
-import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
-
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,6 +60,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass graphicConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass colorDomainEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,76 +181,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	private EClass graphicsPipelineEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass dynamicStateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass colorBlendEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass colorBlendAttachmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass viewportStateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass staticViewportStateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass dynamicViewportStateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass viewportEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass scissorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass rasterizerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass inputAssemblyEClass = null;
-
-	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -309,12 +235,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		// Initialize simple dependencies
 		ProcessPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
-		VulkanPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
+		VulkanPackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
+		GraphicpipelinePackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 
@@ -385,6 +312,39 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	public EReference getGraphicConfiguration_ColorDomain()
 	{
 		return (EReference) graphicConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getColorDomain()
+	{
+		return colorDomainEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getColorDomain_Format()
+	{
+		return (EAttribute) colorDomainEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getColorDomain_ColorSpace()
+	{
+		return (EAttribute) colorDomainEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1020,534 +980,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getDynamicState()
-	{
-		return dynamicStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getDynamicState_States()
-	{
-		return (EAttribute) dynamicStateEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getColorBlend()
-	{
-		return colorBlendEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getColorBlend_Attachments()
-	{
-		return (EReference) colorBlendEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlend_LogicOpEnable()
-	{
-		return (EAttribute) colorBlendEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlend_LogicOp()
-	{
-		return (EAttribute) colorBlendEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlend_BlendConstant0()
-	{
-		return (EAttribute) colorBlendEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlend_BlendConstant1()
-	{
-		return (EAttribute) colorBlendEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlend_BlendConstant2()
-	{
-		return (EAttribute) colorBlendEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlend_BlendConstant3()
-	{
-		return (EAttribute) colorBlendEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getColorBlendAttachment()
-	{
-		return colorBlendAttachmentEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_BlendEnable()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_RedComponentEnable()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_GreenComponentEnable()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_BlueComponentEnable()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_AlphaComponentEnable()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_SrcColor()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_DstColor()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_SrcAlpha()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_DstAlpha()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_ColorBlendOp()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getColorBlendAttachment_AlphaBlendOp()
-	{
-		return (EAttribute) colorBlendAttachmentEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getViewportState()
-	{
-		return viewportStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getStaticViewportState()
-	{
-		return staticViewportStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getStaticViewportState_Viewports()
-	{
-		return (EReference) staticViewportStateEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getStaticViewportState_Scissors()
-	{
-		return (EReference) staticViewportStateEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getDynamicViewportState()
-	{
-		return dynamicViewportStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getDynamicViewportState_ViewportCount()
-	{
-		return (EAttribute) dynamicViewportStateEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getDynamicViewportState_ScissorCount()
-	{
-		return (EAttribute) dynamicViewportStateEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getViewport()
-	{
-		return viewportEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getViewport_Offset()
-	{
-		return (EAttribute) viewportEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getViewport_Extent()
-	{
-		return (EAttribute) viewportEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getViewport_MinDepth()
-	{
-		return (EAttribute) viewportEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getViewport_MaxDepth()
-	{
-		return (EAttribute) viewportEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getScissor()
-	{
-		return scissorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getScissor_Offset()
-	{
-		return (EAttribute) scissorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getScissor_Extent()
-	{
-		return (EAttribute) scissorEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getRasterizer()
-	{
-		return rasterizerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRasterizer_CullMode()
-	{
-		return (EAttribute) rasterizerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRasterizer_FrontFace()
-	{
-		return (EAttribute) rasterizerEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRasterizer_PolygonMode()
-	{
-		return (EAttribute) rasterizerEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRasterizer_LineWidth()
-	{
-		return (EAttribute) rasterizerEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRasterizer_DepthClampEnable()
-	{
-		return (EAttribute) rasterizerEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRasterizer_DiscardEnable()
-	{
-		return (EAttribute) rasterizerEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRasterizer_DepthBiasEnable()
-	{
-		return (EAttribute) rasterizerEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getInputAssembly()
-	{
-		return inputAssemblyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getInputAssembly_PrimitiveRestartEnabled()
-	{
-		return (EAttribute) inputAssemblyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getInputAssembly_PrimitiveTopology()
-	{
-		return (EAttribute) inputAssemblyEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public GraphicFactory getGraphicFactory()
 	{
 		return (GraphicFactory) getEFactoryInstance();
@@ -1580,6 +1012,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				GRAPHIC_CONFIGURATION__FRAMEBUFFER_CONFIGURATION);
 		createEAttribute(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__ACQUIRE_WAIT_STAGE);
 		createEReference(graphicConfigurationEClass, GRAPHIC_CONFIGURATION__COLOR_DOMAIN);
+
+		colorDomainEClass = createEClass(COLOR_DOMAIN);
+		createEAttribute(colorDomainEClass, COLOR_DOMAIN__FORMAT);
+		createEAttribute(colorDomainEClass, COLOR_DOMAIN__COLOR_SPACE);
 
 		swapchainConfigurationEClass = createEClass(SWAPCHAIN_CONFIGURATION);
 		createEAttribute(swapchainConfigurationEClass, SWAPCHAIN_CONFIGURATION__PRESENTATION_MODE);
@@ -1655,66 +1091,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__COLOR_BLEND);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__DYNAMIC_STATE);
 		createEAttribute(graphicsPipelineEClass, GRAPHICS_PIPELINE__SUBPASS);
-
-		dynamicStateEClass = createEClass(DYNAMIC_STATE);
-		createEAttribute(dynamicStateEClass, DYNAMIC_STATE__STATES);
-
-		colorBlendEClass = createEClass(COLOR_BLEND);
-		createEReference(colorBlendEClass, COLOR_BLEND__ATTACHMENTS);
-		createEAttribute(colorBlendEClass, COLOR_BLEND__LOGIC_OP_ENABLE);
-		createEAttribute(colorBlendEClass, COLOR_BLEND__LOGIC_OP);
-		createEAttribute(colorBlendEClass, COLOR_BLEND__BLEND_CONSTANT0);
-		createEAttribute(colorBlendEClass, COLOR_BLEND__BLEND_CONSTANT1);
-		createEAttribute(colorBlendEClass, COLOR_BLEND__BLEND_CONSTANT2);
-		createEAttribute(colorBlendEClass, COLOR_BLEND__BLEND_CONSTANT3);
-
-		colorBlendAttachmentEClass = createEClass(COLOR_BLEND_ATTACHMENT);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__BLEND_ENABLE);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__SRC_COLOR);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__DST_COLOR);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__SRC_ALPHA);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__DST_ALPHA);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__COLOR_BLEND_OP);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__ALPHA_BLEND_OP);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__RED_COMPONENT_ENABLE);
-		createEAttribute(colorBlendAttachmentEClass,
-				COLOR_BLEND_ATTACHMENT__GREEN_COMPONENT_ENABLE);
-		createEAttribute(colorBlendAttachmentEClass, COLOR_BLEND_ATTACHMENT__BLUE_COMPONENT_ENABLE);
-		createEAttribute(colorBlendAttachmentEClass,
-				COLOR_BLEND_ATTACHMENT__ALPHA_COMPONENT_ENABLE);
-
-		viewportStateEClass = createEClass(VIEWPORT_STATE);
-
-		staticViewportStateEClass = createEClass(STATIC_VIEWPORT_STATE);
-		createEReference(staticViewportStateEClass, STATIC_VIEWPORT_STATE__VIEWPORTS);
-		createEReference(staticViewportStateEClass, STATIC_VIEWPORT_STATE__SCISSORS);
-
-		dynamicViewportStateEClass = createEClass(DYNAMIC_VIEWPORT_STATE);
-		createEAttribute(dynamicViewportStateEClass, DYNAMIC_VIEWPORT_STATE__VIEWPORT_COUNT);
-		createEAttribute(dynamicViewportStateEClass, DYNAMIC_VIEWPORT_STATE__SCISSOR_COUNT);
-
-		viewportEClass = createEClass(VIEWPORT);
-		createEAttribute(viewportEClass, VIEWPORT__OFFSET);
-		createEAttribute(viewportEClass, VIEWPORT__EXTENT);
-		createEAttribute(viewportEClass, VIEWPORT__MIN_DEPTH);
-		createEAttribute(viewportEClass, VIEWPORT__MAX_DEPTH);
-
-		scissorEClass = createEClass(SCISSOR);
-		createEAttribute(scissorEClass, SCISSOR__OFFSET);
-		createEAttribute(scissorEClass, SCISSOR__EXTENT);
-
-		rasterizerEClass = createEClass(RASTERIZER);
-		createEAttribute(rasterizerEClass, RASTERIZER__CULL_MODE);
-		createEAttribute(rasterizerEClass, RASTERIZER__FRONT_FACE);
-		createEAttribute(rasterizerEClass, RASTERIZER__POLYGON_MODE);
-		createEAttribute(rasterizerEClass, RASTERIZER__LINE_WIDTH);
-		createEAttribute(rasterizerEClass, RASTERIZER__DEPTH_CLAMP_ENABLE);
-		createEAttribute(rasterizerEClass, RASTERIZER__DISCARD_ENABLE);
-		createEAttribute(rasterizerEClass, RASTERIZER__DEPTH_BIAS_ENABLE);
-
-		inputAssemblyEClass = createEClass(INPUT_ASSEMBLY);
-		createEAttribute(inputAssemblyEClass, INPUT_ASSEMBLY__PRIMITIVE_RESTART_ENABLED);
-		createEAttribute(inputAssemblyEClass, INPUT_ASSEMBLY__PRIMITIVE_TOPOLOGY);
 	}
 
 	/**
@@ -1746,14 +1122,14 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				.getEPackage(ProcessPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(EnumerationPackage.eNS_URI);
-		VulkanPackage theVulkanPackage = (VulkanPackage) EPackage.Registry.INSTANCE
-				.getEPackage(VulkanPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 				.getEPackage(EcorePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
 				.getEPackage(TypesPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ResourcePackage.eNS_URI);
+		GraphicpipelinePackage theGraphicpipelinePackage = (GraphicpipelinePackage) EPackage.Registry.INSTANCE
+				.getEPackage(GraphicpipelinePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1771,8 +1147,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		iguiPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
 		graphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
 		graphicsPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
-		staticViewportStateEClass.getESuperTypes().add(this.getViewportState());
-		dynamicViewportStateEClass.getESuperTypes().add(this.getViewportState());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(graphicConfigurationEClass, GraphicConfiguration.class, "GraphicConfiguration",
@@ -1792,10 +1166,20 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"COLOR_ATTACHMENT_OUTPUT_BIT", 0, 1, GraphicConfiguration.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getGraphicConfiguration_ColorDomain(), theVulkanPackage.getColorDomain(),
-				null, "colorDomain", null, 1, 1, GraphicConfiguration.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicConfiguration_ColorDomain(), this.getColorDomain(), null,
+				"colorDomain", null, 1, 1, GraphicConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(colorDomainEClass, ColorDomain.class, "ColorDomain", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getColorDomain_Format(), theEnumerationPackage.getEFormat(), "format",
+				"B8G8R8A8_UNORM", 0, 1, ColorDomain.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColorDomain_ColorSpace(), theEnumerationPackage.getEColorSpace(),
+				"colorSpace", "SRGB_NONLINEAR_KHR", 0, 1, ColorDomain.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(swapchainConfigurationEClass, SwapchainConfiguration.class,
 				"SwapchainConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1975,185 +1359,28 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"shaders", null, 1, -1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicsPipeline_ViewportState(), this.getViewportState(), null,
-				"viewportState", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getGraphicsPipeline_ViewportState(),
+				theGraphicpipelinePackage.getViewportState(), null, "viewportState", null, 1, 1,
+				GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_InputAssembly(),
+				theGraphicpipelinePackage.getInputAssembly(), null, "inputAssembly", null, 1, 1,
+				GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_Rasterizer(), theGraphicpipelinePackage.getRasterizer(),
+				null, "rasterizer", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicsPipeline_InputAssembly(), this.getInputAssembly(), null,
-				"inputAssembly", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getGraphicsPipeline_ColorBlend(), theGraphicpipelinePackage.getColorBlend(),
+				null, "colorBlend", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicsPipeline_Rasterizer(), this.getRasterizer(), null, "rasterizer",
-				null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getGraphicsPipeline_ColorBlend(), this.getColorBlend(), null, "colorBlend",
-				null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getGraphicsPipeline_DynamicState(), this.getDynamicState(), null,
-				"dynamicState", null, 0, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_DynamicState(),
+				theGraphicpipelinePackage.getDynamicState(), null, "dynamicState", null, 0, 1,
+				GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGraphicsPipeline_Subpass(), theEcorePackage.getEInt(), "subpass", "0", 0,
 				1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(dynamicStateEClass, DynamicState.class, "DynamicState", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDynamicState_States(), theEnumerationPackage.getEDynamicState(), "states",
-				null, 0, -1, DynamicState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(colorBlendEClass, ColorBlend.class, "ColorBlend", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getColorBlend_Attachments(), this.getColorBlendAttachment(), null,
-				"attachments", null, 0, -1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_LogicOpEnable(), theEcorePackage.getEBoolean(),
-				"logicOpEnable", "false", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_LogicOp(), theEnumerationPackage.getELogicOp(), "logicOp",
-				"COPY", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_BlendConstant0(), theEcorePackage.getEInt(), "blendConstant0",
-				"0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_BlendConstant1(), theEcorePackage.getEInt(), "blendConstant1",
-				"0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_BlendConstant2(), theEcorePackage.getEInt(), "blendConstant2",
-				"0", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlend_BlendConstant3(), theEcorePackage.getEInt(), "blendConstant3",
-				"1", 0, 1, ColorBlend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(colorBlendAttachmentEClass, ColorBlendAttachment.class, "ColorBlendAttachment",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getColorBlendAttachment_BlendEnable(), theEcorePackage.getEBoolean(),
-				"blendEnable", "false", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_SrcColor(), theEnumerationPackage.getEBlendFactor(),
-				"srcColor", "ONE", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_DstColor(), theEnumerationPackage.getEBlendFactor(),
-				"dstColor", "ZERO", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_SrcAlpha(), theEnumerationPackage.getEBlendFactor(),
-				"srcAlpha", "ONE", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_DstAlpha(), theEnumerationPackage.getEBlendFactor(),
-				"dstAlpha", "ZERO", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_ColorBlendOp(), theEnumerationPackage.getEBlendOp(),
-				"colorBlendOp", "ADD", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_AlphaBlendOp(), theEnumerationPackage.getEBlendOp(),
-				"alphaBlendOp", "ADD", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_RedComponentEnable(), theEcorePackage.getEBoolean(),
-				"redComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_GreenComponentEnable(),
-				theEcorePackage.getEBoolean(), "greenComponentEnable", "true", 0, 1,
-				ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_BlueComponentEnable(), theEcorePackage.getEBoolean(),
-				"blueComponentEnable", "true", 0, 1, ColorBlendAttachment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getColorBlendAttachment_AlphaComponentEnable(),
-				theEcorePackage.getEBoolean(), "alphaComponentEnable", "true", 0, 1,
-				ColorBlendAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(viewportStateEClass, ViewportState.class, "ViewportState", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(staticViewportStateEClass, StaticViewportState.class, "StaticViewportState",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStaticViewportState_Viewports(), this.getViewport(), null, "viewports",
-				null, 0, -1, StaticViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getStaticViewportState_Scissors(), this.getScissor(), null, "scissors", null,
-				0, -1, StaticViewportState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(dynamicViewportStateEClass, DynamicViewportState.class, "DynamicViewportState",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDynamicViewportState_ViewportCount(), theEcorePackage.getEInt(),
-				"viewportCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getDynamicViewportState_ScissorCount(), theEcorePackage.getEInt(),
-				"scissorCount", null, 0, 1, DynamicViewportState.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(viewportEClass, Viewport.class, "Viewport", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getViewport_Offset(), theTypesPackage.getVector2i(), "offset", "0, 0", 0, 1,
-				Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getViewport_Extent(), theTypesPackage.getVector2i(), "extent", null, 0, 1,
-				Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getViewport_MinDepth(), theEcorePackage.getEInt(), "minDepth", "0", 0, 1,
-				Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getViewport_MaxDepth(), theEcorePackage.getEInt(), "maxDepth", "1", 0, 1,
-				Viewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(scissorEClass, Scissor.class, "Scissor", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getScissor_Offset(), theTypesPackage.getVector2i(), "offset", "0, 0", 0, 1,
-				Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getScissor_Extent(), theTypesPackage.getVector2i(), "extent", null, 0, 1,
-				Scissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(rasterizerEClass, Rasterizer.class, "Rasterizer", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRasterizer_CullMode(), theEnumerationPackage.getECullMode(), "cullMode",
-				"BACK_BIT", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_FrontFace(), theEnumerationPackage.getEFrontFace(),
-				"frontFace", "CLOCKWISE", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_PolygonMode(), theEnumerationPackage.getEPolygonMode(),
-				"polygonMode", "FILL", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_LineWidth(), theEcorePackage.getEInt(), "lineWidth", "1", 0, 1,
-				Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_DepthClampEnable(), theEcorePackage.getEBoolean(),
-				"depthClampEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_DiscardEnable(), theEcorePackage.getEBoolean(),
-				"discardEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRasterizer_DepthBiasEnable(), theEcorePackage.getEBoolean(),
-				"depthBiasEnable", "false", 0, 1, Rasterizer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(inputAssemblyEClass, InputAssembly.class, "InputAssembly", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getInputAssembly_PrimitiveRestartEnabled(), theEcorePackage.getEBoolean(),
-				"primitiveRestartEnabled", "false", 0, 1, InputAssembly.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getInputAssembly_PrimitiveTopology(),
-				theEnumerationPackage.getEPrimitiveTopology(), "primitiveTopology", "TRIANGLE_LIST",
-				0, 1, InputAssembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

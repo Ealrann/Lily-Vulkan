@@ -3,14 +3,12 @@
 package org.sheepy.lily.vulkan.extra.graphic.model;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
-
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
 import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,11 +57,11 @@ public interface ImagePipeline extends AbstractPipeline
 
 	/**
 	 * Returns the value of the '<em><b>Image Src Stage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image Src Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #setImageSrcStage(EPipelineStage)
 	 * @see org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage#getImagePipeline_ImageSrcStage()
 	 * @model unique="false"
@@ -76,7 +74,7 @@ public interface ImagePipeline extends AbstractPipeline
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Image Src Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #getImageSrcStage()
 	 * @generated
 	 */
@@ -84,11 +82,11 @@ public interface ImagePipeline extends AbstractPipeline
 
 	/**
 	 * Returns the value of the '<em><b>Image Dst Stage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image Dst Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #setImageDstStage(EPipelineStage)
 	 * @see org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage#getImagePipeline_ImageDstStage()
 	 * @model unique="false"
@@ -101,7 +99,7 @@ public interface ImagePipeline extends AbstractPipeline
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Image Dst Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #getImageDstStage()
 	 * @generated
 	 */
@@ -109,12 +107,12 @@ public interface ImagePipeline extends AbstractPipeline
 
 	/**
 	 * Returns the value of the '<em><b>Image Src Access Mask</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image Src Access Mask</em>' attribute list.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage#getImagePipeline_ImageSrcAccessMask()
 	 * @model
 	 * @generated
@@ -123,12 +121,12 @@ public interface ImagePipeline extends AbstractPipeline
 
 	/**
 	 * Returns the value of the '<em><b>Image Dst Access Mask</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image Dst Access Mask</em>' attribute list.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage#getImagePipeline_ImageDstAccessMask()
 	 * @model
 	 * @generated

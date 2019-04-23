@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.extra.api.terrain;
 
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBuffer;
+import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
 
 public interface IMeshObject
 {

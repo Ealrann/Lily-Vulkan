@@ -17,12 +17,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
-
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
+import org.sheepy.vulkan.model.enumeration.EPresentMode;
 
 /**
  * <!-- begin-user-doc -->

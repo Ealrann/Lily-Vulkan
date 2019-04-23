@@ -9,8 +9,8 @@ package org.sheepy.lily.vulkan.extra.graphic.model
 
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline
 import org.sheepy.lily.vulkan.model.process.AbstractProcess
-import org.sheepy.lily.vulkan.model.enumeration.EAccess
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+import org.sheepy.vulkan.model.enumeration.EAccess
+import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.lily.vulkan.model.resource.Image
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline
 import org.sheepy.lily.vulkan.model.process.IPipeline

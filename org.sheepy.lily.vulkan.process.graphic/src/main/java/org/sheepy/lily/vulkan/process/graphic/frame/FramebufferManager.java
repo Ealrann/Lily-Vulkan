@@ -9,15 +9,15 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkFramebufferCreateInfo;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.lily.vulkan.api.graphic.ClearInfo;
 import org.sheepy.lily.vulkan.api.graphic.IFramebufferManager;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.nativehelper.ClearInfo;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
-import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.log.Logger;
+import org.sheepy.vulkan.resource.image.VkImageView;
 
 public class FramebufferManager implements IFramebufferManager
 {

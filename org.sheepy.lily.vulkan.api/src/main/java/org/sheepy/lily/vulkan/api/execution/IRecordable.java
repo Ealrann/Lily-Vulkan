@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.api.execution;
 
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public interface IRecordable
 {

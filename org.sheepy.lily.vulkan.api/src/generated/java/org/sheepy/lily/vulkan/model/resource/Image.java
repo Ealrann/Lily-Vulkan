@@ -3,8 +3,8 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.model.enumeration.EFormat;
-import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
+import org.sheepy.vulkan.model.enumeration.EFormat;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,7 +85,7 @@ public interface Image extends DescriptorResource
 
 	/**
 	 * Returns the value of the '<em><b>Format</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EFormat}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFormat}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Format</em>' attribute isn't clear,
@@ -93,7 +93,7 @@ public interface Image extends DescriptorResource
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Format</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EFormat
+	 * @see org.sheepy.vulkan.model.enumeration.EFormat
 	 * @see #setFormat(EFormat)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_Format()
 	 * @model unique="false"
@@ -106,7 +106,7 @@ public interface Image extends DescriptorResource
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Format</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EFormat
+	 * @see org.sheepy.vulkan.model.enumeration.EFormat
 	 * @see #getFormat()
 	 * @generated
 	 */
@@ -114,8 +114,8 @@ public interface Image extends DescriptorResource
 
 	/**
 	 * Returns the value of the '<em><b>Usages</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage}.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EImageUsage}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Usages</em>' attribute list isn't clear,
@@ -123,7 +123,7 @@ public interface Image extends DescriptorResource
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usages</em>' attribute list.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageUsage
+	 * @see org.sheepy.vulkan.model.enumeration.EImageUsage
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_Usages()
 	 * @model
 	 * @generated

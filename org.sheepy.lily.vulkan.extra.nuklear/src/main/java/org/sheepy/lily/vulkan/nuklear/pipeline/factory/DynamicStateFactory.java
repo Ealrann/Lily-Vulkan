@@ -1,8 +1,8 @@
 package org.sheepy.lily.vulkan.nuklear.pipeline.factory;
 
-import org.sheepy.lily.vulkan.model.enumeration.EDynamicState;
-import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.DynamicStateImpl;
+import org.sheepy.vulkan.model.enumeration.EDynamicState;
+import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
+import org.sheepy.vulkan.model.graphicpipeline.impl.DynamicStateImpl;
 
 public class DynamicStateFactory
 {

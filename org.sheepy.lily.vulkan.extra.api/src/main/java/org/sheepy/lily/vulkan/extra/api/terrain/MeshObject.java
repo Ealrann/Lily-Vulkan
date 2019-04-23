@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptor;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.VkDescriptorSet;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBuffer;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferWithUniform;
-import org.sheepy.lily.vulkan.api.resource.IIndexedBufferDescriptor;
-import org.sheepy.lily.vulkan.api.resource.IVertex;
 import org.sheepy.lily.vulkan.extra.api.terrain.data.IMeshUniformDataProvider;
 import org.sheepy.lily.vulkan.extra.api.terrain.data.IMeshVertexDataProvider;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.descriptor.VkDescriptorSet;
+import org.sheepy.vulkan.resource.indexed.IIndexedBufferDescriptor;
+import org.sheepy.vulkan.resource.indexed.IVertex;
+import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
+import org.sheepy.vulkan.resource.indexed.IndexedBufferWithUniform;
 
 public class MeshObject implements IAllocable, IMeshObject
 {

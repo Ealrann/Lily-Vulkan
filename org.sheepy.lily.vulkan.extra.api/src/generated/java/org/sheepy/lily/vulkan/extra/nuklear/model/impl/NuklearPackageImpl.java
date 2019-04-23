@@ -26,14 +26,13 @@ import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
-
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,6 +115,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		EcorePackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		GraphicpipelinePackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 

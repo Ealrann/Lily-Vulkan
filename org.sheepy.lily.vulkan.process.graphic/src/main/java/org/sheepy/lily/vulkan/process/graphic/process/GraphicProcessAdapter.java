@@ -5,13 +5,13 @@ import java.util.List;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.queue.EQueueType;
-import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.present.ImageAcquirer;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.queue.EQueueType;
+import org.sheepy.vulkan.queue.VulkanQueue;
 
 @Statefull
 @Adapter(scope = GraphicProcess.class)

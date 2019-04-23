@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 public class ImageUtil
 {

@@ -4,7 +4,7 @@ package org.sheepy.lily.vulkan.model;
 
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.application.IEngine;
-import org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature;
+import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,12 +71,12 @@ public interface VulkanEngine extends IEngine, IResourceContainer, IExecutionMan
 
 	/**
 	 * Returns the value of the '<em><b>Features</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature}.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Features</em>' attribute list.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPhysicalDeviceFeature
+	 * @see org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature
 	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanEngine_Features()
 	 * @model
 	 * @generated

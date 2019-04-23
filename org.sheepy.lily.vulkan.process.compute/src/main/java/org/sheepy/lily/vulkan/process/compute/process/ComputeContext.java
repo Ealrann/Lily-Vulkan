@@ -3,12 +3,12 @@ package org.sheepy.lily.vulkan.process.compute.process;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.DescriptorPool;
-import org.sheepy.lily.vulkan.api.queue.EQueueType;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.compute.execution.ComputeExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
+import org.sheepy.vulkan.descriptor.DescriptorPool;
+import org.sheepy.vulkan.queue.EQueueType;
 
 public class ComputeContext extends ProcessContext
 {

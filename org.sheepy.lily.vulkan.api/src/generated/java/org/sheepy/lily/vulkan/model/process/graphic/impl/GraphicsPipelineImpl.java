@@ -10,15 +10,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
-import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
-import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
-import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
+import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
+import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
+import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
+import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
 
 /**
  * <!-- begin-user-doc -->

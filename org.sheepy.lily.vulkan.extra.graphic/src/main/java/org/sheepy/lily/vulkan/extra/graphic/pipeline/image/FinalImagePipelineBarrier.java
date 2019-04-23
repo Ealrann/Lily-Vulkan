@@ -2,18 +2,18 @@ package org.sheepy.lily.vulkan.extra.graphic.pipeline.image;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline;
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageTransition;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 public class FinalImagePipelineBarrier implements IAllocable
 {

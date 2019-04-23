@@ -17,15 +17,13 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage;
 import org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline;
-
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
-
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
 import org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl;
 
 import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * <!-- begin-user-doc -->

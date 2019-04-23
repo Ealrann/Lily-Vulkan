@@ -13,9 +13,7 @@ import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
-import org.sheepy.lily.vulkan.api.util.Logger;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
@@ -23,6 +21,8 @@ import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.log.Logger;
 
 @Statefull
 @Adapter(scope = ComputePipeline.class)

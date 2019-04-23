@@ -3,12 +3,12 @@ package org.sheepy.lily.vulkan.process.execution;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.api.allocation.IAllocationNode;
-import org.sheepy.lily.vulkan.api.execution.ICommandBuffer;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.allocation.IAllocationNode;
+import org.sheepy.vulkan.execution.ICommandBuffer;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public abstract class AbstractExecutionRecorder implements IExecutionRecorder, IAllocationNode
 {
@@ -46,7 +46,7 @@ public abstract class AbstractExecutionRecorder implements IExecutionRecorder, I
 
 		setDirty(false);
 	}
-	
+
 	public boolean isBusy()
 	{
 		return submission.isBusy();

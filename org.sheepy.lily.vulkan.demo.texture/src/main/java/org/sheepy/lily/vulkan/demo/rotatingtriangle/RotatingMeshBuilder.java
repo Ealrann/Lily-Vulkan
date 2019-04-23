@@ -1,10 +1,10 @@
 package org.sheepy.lily.vulkan.demo.rotatingtriangle;
 
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferData;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferDescriptor;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferDescriptor.Vertex;
 import org.sheepy.lily.vulkan.demo.adapter.CameraMatrixComputer;
 import org.sheepy.lily.vulkan.demo.mesh.AbstractMeshBuilder;
+import org.sheepy.vulkan.resource.indexed.IndexedBufferData;
+import org.sheepy.vulkan.resource.indexed.IndexedBufferDescriptor;
+import org.sheepy.vulkan.resource.indexed.IndexedBufferDescriptor.Vertex;
 
 public class RotatingMeshBuilder extends AbstractMeshBuilder<Vertex>
 {

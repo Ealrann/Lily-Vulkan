@@ -18,12 +18,11 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.IResource;
-import org.sheepy.lily.vulkan.model.enumeration.EBufferUsage;
-import org.sheepy.lily.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
-
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EDescriptorType;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
  * <!-- begin-user-doc -->

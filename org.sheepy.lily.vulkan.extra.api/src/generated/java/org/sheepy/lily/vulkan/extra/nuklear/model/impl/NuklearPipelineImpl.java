@@ -39,9 +39,8 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearConstants;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
-
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.resource.Font;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
  * <!-- begin-user-doc -->

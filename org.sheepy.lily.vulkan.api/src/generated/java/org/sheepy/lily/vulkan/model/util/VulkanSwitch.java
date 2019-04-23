@@ -126,13 +126,6 @@ public class VulkanSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case VulkanPackage.COLOR_DOMAIN:
-		{
-			ColorDomain colorDomain = (ColorDomain) theEObject;
-			T result = caseColorDomain(colorDomain);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -230,22 +223,6 @@ public class VulkanSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIExecutionManager(IExecutionManager object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Color Domain</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Color Domain</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseColorDomain(ColorDomain object)
 	{
 		return null;
 	}

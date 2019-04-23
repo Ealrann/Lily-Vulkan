@@ -22,21 +22,6 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated VulkanEnum -->
-      <package
-            uri="org.sheepy.lily.vulkan.model.enumeration"
-            class="org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage"
-            genModel="model/VulkanEnum.xcore"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated VulkanEnum -->
-      <parser
-            type="enumeration"
-            class="org.sheepy.lily.vulkan.model.enumeration.util.EnumerationResourceFactoryImpl"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Resource -->
       <package
             uri="org.sheepy.lily.vulkan.model.resource"

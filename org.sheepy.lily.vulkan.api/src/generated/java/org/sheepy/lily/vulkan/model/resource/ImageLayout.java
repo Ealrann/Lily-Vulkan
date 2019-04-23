@@ -4,10 +4,9 @@ package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +30,7 @@ public interface ImageLayout extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stage</em>' attribute isn't clear,
@@ -39,7 +38,7 @@ public interface ImageLayout extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #setStage(EPipelineStage)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageLayout_Stage()
 	 * @model unique="false"
@@ -52,7 +51,7 @@ public interface ImageLayout extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #getStage()
 	 * @generated
 	 */
@@ -60,7 +59,7 @@ public interface ImageLayout extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Layout</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Layout</em>' attribute isn't clear,
@@ -68,7 +67,7 @@ public interface ImageLayout extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #setLayout(EImageLayout)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageLayout_Layout()
 	 * @model unique="false"
@@ -81,7 +80,7 @@ public interface ImageLayout extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #getLayout()
 	 * @generated
 	 */
@@ -89,8 +88,8 @@ public interface ImageLayout extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Access Mask</b></em>' attribute list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EAccess}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Access Mask</em>' attribute list isn't clear,
@@ -98,7 +97,7 @@ public interface ImageLayout extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Access Mask</em>' attribute list.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImageLayout_AccessMask()
 	 * @model
 	 * @generated

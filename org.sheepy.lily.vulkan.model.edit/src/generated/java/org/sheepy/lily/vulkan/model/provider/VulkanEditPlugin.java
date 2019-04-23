@@ -10,7 +10,7 @@ import org.sheepy.lily.core.model.application.provider.ApplicationEditPlugin;
 import org.sheepy.lily.core.model.inference.provider.InferenceEditPlugin;
 import org.sheepy.lily.core.model.root.provider.RootEditPlugin;
 import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
-import org.sheepy.lily.vulkan.model.enumeration.provider.EnumerationEditPlugin;
+import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
 
 /**
  * This is the central singleton for the Vulkan edit plugin.

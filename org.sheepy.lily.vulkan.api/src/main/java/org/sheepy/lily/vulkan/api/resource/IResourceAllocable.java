@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.api.resource;
 
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
+import org.sheepy.vulkan.allocation.IAllocationContext;
 
 public interface IResourceAllocable extends IAllocableAdapter
 {

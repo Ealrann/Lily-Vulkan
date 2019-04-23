@@ -6,7 +6,7 @@ import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
 import org.sheepy.lily.vulkan.demo.mesh.MeshModelFactory;
 import org.sheepy.lily.vulkan.demo.mesh.MeshPipelineAdapter;
-import org.sheepy.lily.vulkan.model.enumeration.EFrontFace;
+import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 public class MainTexture
 {

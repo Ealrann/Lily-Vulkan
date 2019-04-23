@@ -13,18 +13,18 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkSwapchainCreateInfoKHR;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
-import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
 import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
-import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.common.util.VulkanBufferUtils;
-import org.sheepy.lily.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.log.Logger;
+import org.sheepy.vulkan.model.enumeration.EImageUsage;
+import org.sheepy.vulkan.model.enumeration.EPresentMode;
+import org.sheepy.vulkan.surface.VkSurface;
+import org.sheepy.vulkan.util.VkModelUtil;
 
 public class SwapChainManager implements ISwapChainManager
 {
@@ -58,7 +58,7 @@ public class SwapChainManager implements ISwapChainManager
 
 		attachments = swapchainConfiguration.getAtachments();
 		allocateAttachments(stack, context);
-		
+
 		final VkSwapchainCreateInfoKHR createInfo = VkSwapchainCreateInfoKHR.callocStack(stack);
 		createInfo.sType(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR);
 		createInfo.surface(surface.ptr);
@@ -120,7 +120,7 @@ public class SwapChainManager implements ISwapChainManager
 	private static int loadSwapChainUsage(final SwapchainConfiguration configuration)
 	{
 		final var usages = configuration.getSwapImageUsages();
-		int res = VulkanModelUtil.getEnumeratedFlag(usages);
+		int res = VkModelUtil.getEnumeratedFlag(usages);
 		if (res == 0)
 		{
 			res = EImageUsage.COLOR_ATTACHMENT_VALUE;
@@ -149,7 +149,7 @@ public class SwapChainManager implements ISwapChainManager
 			adapter.free(context);
 		}
 	}
-	
+
 	private void printSwapChainInformations(int presentMode)
 	{
 		final String presentationName = EPresentMode.get(presentMode).getName();

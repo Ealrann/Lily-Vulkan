@@ -147,31 +147,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.ColorDomain} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ColorDomainItemProvider colorDomainItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.ColorDomain}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createColorDomainAdapter()
-	{
-		if (colorDomainItemProvider == null)
-		{
-			colorDomainItemProvider = new ColorDomainItemProvider(this);
-		}
-
-		return colorDomainItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -322,7 +297,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	{
 		if (vulkanEngineItemProvider != null) vulkanEngineItemProvider.dispose();
 		if (resourcePkgItemProvider != null) resourcePkgItemProvider.dispose();
-		if (colorDomainItemProvider != null) colorDomainItemProvider.dispose();
 	}
 
 	/**
@@ -368,7 +342,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
-
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -401,7 +374,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
@@ -414,7 +386,6 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return VulkanEditPlugin.INSTANCE;

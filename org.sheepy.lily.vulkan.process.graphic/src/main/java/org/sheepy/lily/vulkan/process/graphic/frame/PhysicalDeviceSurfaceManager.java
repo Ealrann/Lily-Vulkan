@@ -1,18 +1,19 @@
 package org.sheepy.lily.vulkan.process.graphic.frame;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
-import org.sheepy.lily.vulkan.api.nativehelper.Extent2D;
-import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.Capabilities;
-import org.sheepy.lily.vulkan.api.nativehelper.device.capabilities.ColorDomains;
-import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
-import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
-import org.sheepy.lily.vulkan.api.queue.VulkanQueue;
-import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.model.ColorDomain;
+import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.device.capabilities.Capabilities;
+import org.sheepy.vulkan.device.capabilities.ColorDomains;
+import org.sheepy.vulkan.device.capabilities.VkColorDomain;
+import org.sheepy.vulkan.log.Logger;
+import org.sheepy.vulkan.queue.VulkanQueue;
+import org.sheepy.vulkan.surface.Extent2D;
+import org.sheepy.vulkan.surface.VkSurface;
+import org.sheepy.vulkan.window.IWindowListener;
 
 public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 {
@@ -66,7 +67,10 @@ public class PhysicalDeviceSurfaceManager implements IAllocable, ISurfaceManager
 	private ColorDomain loadColorDomain(IGraphicContext context)
 	{
 		final var colorDomain = context.getConfiguration().getColorDomain();
-		if (colorDomains.isColorDomainAvaillable(colorDomain) == false)
+		final var vkColorDomain = new VkColorDomain(colorDomain.getFormat().getValue(),
+				colorDomain.getColorSpace().getValue());
+
+		if (colorDomains.isColorDomainAvaillable(vkColorDomain) == false)
 		{
 			Logger.log("The desired ColorDomain is not availlable");
 		}

@@ -8,13 +8,13 @@ import java.util.List;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.extra.api.terrain.IMeshProviderAdapter;
 import org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
+import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
 @Statefull
 @Adapter(scope = MeshRenderer.class)
@@ -52,7 +52,6 @@ public class MeshRendererAdapter extends GraphicsPipelineAdapter
 			final var mesh = meshes.get(i);
 			recordNeeded |= mesh.update(stagingBuffer);
 		}
-
 	}
 
 	@Override

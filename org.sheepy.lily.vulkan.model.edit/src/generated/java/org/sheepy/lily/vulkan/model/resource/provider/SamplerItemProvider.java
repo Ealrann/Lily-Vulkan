@@ -21,11 +21,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.model.enumeration.EFilter;
-
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
+import org.sheepy.vulkan.model.enumeration.EFilter;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Sampler} object.

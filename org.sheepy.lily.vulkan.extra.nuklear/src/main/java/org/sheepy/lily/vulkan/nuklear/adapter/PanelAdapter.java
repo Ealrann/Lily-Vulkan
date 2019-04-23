@@ -14,9 +14,9 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.model.presentation.IUIElement;
 import org.sheepy.lily.core.model.ui.IControl;
 import org.sheepy.lily.core.model.ui.Panel;
-import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
-import org.sheepy.lily.vulkan.api.nativehelper.window.Window;
 import org.sheepy.lily.vulkan.common.util.UIUtil;
+import org.sheepy.vulkan.window.IWindowListener;
+import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = Panel.class)
@@ -79,10 +79,10 @@ public class PanelAdapter implements IUIElementAdapter
 
 	private void updateLocation(Vector2i size)
 	{
-		int width = panel.getWidth();
-		int height = panel.getHeight();
-		int x = UIUtil.computeXRelative(size, panel);
-		int y = UIUtil.computeYRelative(size, panel);
+		final int width = panel.getWidth();
+		final int height = panel.getHeight();
+		final int x = UIUtil.computeXRelative(size, panel);
+		final int y = UIUtil.computeYRelative(size, panel);
 
 		rect.set(x, y, width, height);
 	}
@@ -91,7 +91,7 @@ public class PanelAdapter implements IUIElementAdapter
 	public boolean layout(UIContext context, IUIElement control)
 	{
 		boolean res = false;
-		var nkContext = context.nkContext;
+		final var nkContext = context.nkContext;
 
 		if (window == null)
 		{
@@ -103,10 +103,10 @@ public class PanelAdapter implements IUIElementAdapter
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
 			rect = NkRect.mallocStack(stack);
-			int width = panel.getWidth();
-			int height = panel.getHeight();
-			int x = UIUtil.computeXRelative(window.getSize(), panel);
-			int y = UIUtil.computeYRelative(window.getSize(), panel);
+			final int width = panel.getWidth();
+			final int height = panel.getHeight();
+			final int x = UIUtil.computeXRelative(window.getSize(), panel);
+			final int y = UIUtil.computeYRelative(window.getSize(), panel);
 
 			if (nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style))
 			{
@@ -116,9 +116,9 @@ public class PanelAdapter implements IUIElementAdapter
 					style ^= NK_WINDOW_MINIMIZED;
 				}
 
-				for (IControl child : panel.getControls())
+				for (final IControl child : panel.getControls())
 				{
-					var adapter = IUIElementAdapter.adapt(child);
+					final var adapter = IUIElementAdapter.adapt(child);
 					res |= adapter.layout(context, child);
 				}
 			}

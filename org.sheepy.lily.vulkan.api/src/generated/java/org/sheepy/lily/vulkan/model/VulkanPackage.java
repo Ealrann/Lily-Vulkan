@@ -373,52 +373,6 @@ public interface VulkanPackage extends EPackage
 	int IEXECUTION_MANAGER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.impl.ColorDomainImpl
-	 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getColorDomain()
-	 * @generated
-	 */
-	int COLOR_DOMAIN = 6;
-
-	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLOR_DOMAIN__FORMAT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Color Space</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLOR_DOMAIN__COLOR_SPACE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Color Domain</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLOR_DOMAIN_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Color Domain</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLOR_DOMAIN_OPERATION_COUNT = 0;
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.VulkanEngine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -543,38 +497,6 @@ public interface VulkanPackage extends EPackage
 	 * @generated
 	 */
 	EClass getIExecutionManager();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.ColorDomain <em>Color Domain</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Color Domain</em>'.
-	 * @see org.sheepy.lily.vulkan.model.ColorDomain
-	 * @generated
-	 */
-	EClass getColorDomain();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.ColorDomain#getFormat <em>Format</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Format</em>'.
-	 * @see org.sheepy.lily.vulkan.model.ColorDomain#getFormat()
-	 * @see #getColorDomain()
-	 * @generated
-	 */
-	EAttribute getColorDomain_Format();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.ColorDomain#getColorSpace <em>Color Space</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Color Space</em>'.
-	 * @see org.sheepy.lily.vulkan.model.ColorDomain#getColorSpace()
-	 * @see #getColorDomain()
-	 * @generated
-	 */
-	EAttribute getColorDomain_ColorSpace();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -708,32 +630,6 @@ public interface VulkanPackage extends EPackage
 		 * @generated
 		 */
 		EClass IEXECUTION_MANAGER = eINSTANCE.getIExecutionManager();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.impl.ColorDomainImpl <em>Color Domain</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.impl.ColorDomainImpl
-		 * @see org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl#getColorDomain()
-		 * @generated
-		 */
-		EClass COLOR_DOMAIN = eINSTANCE.getColorDomain();
-
-		/**
-		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COLOR_DOMAIN__FORMAT = eINSTANCE.getColorDomain_Format();
-
-		/**
-		 * The meta object literal for the '<em><b>Color Space</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COLOR_DOMAIN__COLOR_SPACE = eINSTANCE.getColorDomain_ColorSpace();
 
 	}
 

@@ -107,11 +107,6 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 			return createIExecutionManagerAdapter();
 		}
 		@Override
-		public Adapter caseColorDomain(ColorDomain object)
-		{
-			return createColorDomainAdapter();
-		}
-		@Override
 		public Adapter caseIInferenceObject(IInferenceObject object)
 		{
 			return createIInferenceObjectAdapter();
@@ -238,21 +233,6 @@ public class VulkanAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIExecutionManagerAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.ColorDomain <em>Color Domain</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.ColorDomain
-	 * @generated
-	 */
-	public Adapter createColorDomainAdapter()
 	{
 		return null;
 	}

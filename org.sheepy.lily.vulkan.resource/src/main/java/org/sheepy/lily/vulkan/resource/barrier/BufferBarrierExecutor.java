@@ -4,9 +4,9 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 public class BufferBarrierExecutor implements IBarrierExecutor
 {

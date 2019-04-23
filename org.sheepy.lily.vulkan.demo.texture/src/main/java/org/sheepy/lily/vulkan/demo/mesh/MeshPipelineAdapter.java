@@ -8,17 +8,17 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.VkDescriptorSet;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBuffer;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.indexed.IndexedBufferWithUniform;
-import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.demo.adapter.CameraMatrixComputer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.descriptor.VkDescriptorSet;
+import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
+import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
+import org.sheepy.vulkan.resource.indexed.IndexedBufferWithUniform;
 
 @Statefull
 @Adapter(scope = GraphicsPipeline.class, name = MeshModelFactory.MESH_PIPELINE_NAME)
@@ -43,14 +43,14 @@ public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 
 		if (indexBuffer instanceof IndexedBufferWithUniform)
 		{
-			var uniformBuffer = ((IndexedBufferWithUniform<?>) indexBuffer).getUniformBuffer();
+			final var uniformBuffer = ((IndexedBufferWithUniform<?>) indexBuffer).getUniformBuffer();
 			cameraComputer = new CameraMatrixComputer(application, uniformBuffer);
 
-			var indexedBufferWithUniform = (IndexedBufferWithUniform<?>) indexBuffer;
-			var size = indexedBufferWithUniform.getUniformBufferCapacity();
-			var offset = indexedBufferWithUniform.getUniformBufferOffset();
+			final var indexedBufferWithUniform = (IndexedBufferWithUniform<?>) indexBuffer;
+			final var size = indexedBufferWithUniform.getUniformBufferCapacity();
+			final var offset = indexedBufferWithUniform.getUniformBufferOffset();
 
-			CameraUniformDescriptor descriptor = new CameraUniformDescriptor(
+			final CameraUniformDescriptor descriptor = new CameraUniformDescriptor(
 					indexedBufferWithUniform.getUniformBuffer(), offset, size);
 
 			descriptorSet = new VkDescriptorSet(List.of(descriptor));

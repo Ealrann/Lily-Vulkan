@@ -86,6 +86,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createGraphicConfigurationAdapter();
 		}
 		@Override
+		public Adapter caseColorDomain(ColorDomain object)
+		{
+			return createColorDomainAdapter();
+		}
+		@Override
 		public Adapter caseSwapchainConfiguration(SwapchainConfiguration object)
 		{
 			return createSwapchainConfigurationAdapter();
@@ -164,56 +169,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 		public Adapter caseGraphicsPipeline(GraphicsPipeline object)
 		{
 			return createGraphicsPipelineAdapter();
-		}
-		@Override
-		public Adapter caseDynamicState(DynamicState object)
-		{
-			return createDynamicStateAdapter();
-		}
-		@Override
-		public Adapter caseColorBlend(ColorBlend object)
-		{
-			return createColorBlendAdapter();
-		}
-		@Override
-		public Adapter caseColorBlendAttachment(ColorBlendAttachment object)
-		{
-			return createColorBlendAttachmentAdapter();
-		}
-		@Override
-		public Adapter caseViewportState(ViewportState object)
-		{
-			return createViewportStateAdapter();
-		}
-		@Override
-		public Adapter caseStaticViewportState(StaticViewportState object)
-		{
-			return createStaticViewportStateAdapter();
-		}
-		@Override
-		public Adapter caseDynamicViewportState(DynamicViewportState object)
-		{
-			return createDynamicViewportStateAdapter();
-		}
-		@Override
-		public Adapter caseViewport(Viewport object)
-		{
-			return createViewportAdapter();
-		}
-		@Override
-		public Adapter caseScissor(Scissor object)
-		{
-			return createScissorAdapter();
-		}
-		@Override
-		public Adapter caseRasterizer(Rasterizer object)
-		{
-			return createRasterizerAdapter();
-		}
-		@Override
-		public Adapter caseInputAssembly(InputAssembly object)
-		{
-			return createInputAssemblyAdapter();
 		}
 		@Override
 		public Adapter caseConfiguration(Configuration object)
@@ -297,6 +252,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGraphicConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorDomain <em>Color Domain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorDomain
+	 * @generated
+	 */
+	public Adapter createColorDomainAdapter()
 	{
 		return null;
 	}
@@ -537,156 +507,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGraphicsPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicState <em>Dynamic State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.DynamicState
-	 * @generated
-	 */
-	public Adapter createDynamicStateAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlend <em>Color Blend</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlend
-	 * @generated
-	 */
-	public Adapter createColorBlendAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment <em>Color Blend Attachment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.ColorBlendAttachment
-	 * @generated
-	 */
-	public Adapter createColorBlendAttachmentAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.ViewportState <em>Viewport State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.ViewportState
-	 * @generated
-	 */
-	public Adapter createViewportStateAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState <em>Static Viewport State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.StaticViewportState
-	 * @generated
-	 */
-	public Adapter createStaticViewportStateAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState <em>Dynamic Viewport State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.DynamicViewportState
-	 * @generated
-	 */
-	public Adapter createDynamicViewportStateAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.Viewport <em>Viewport</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.Viewport
-	 * @generated
-	 */
-	public Adapter createViewportAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.Scissor <em>Scissor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.Scissor
-	 * @generated
-	 */
-	public Adapter createScissorAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.Rasterizer <em>Rasterizer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.Rasterizer
-	 * @generated
-	 */
-	public Adapter createRasterizerAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.InputAssembly <em>Input Assembly</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputAssembly
-	 * @generated
-	 */
-	public Adapter createInputAssemblyAdapter()
 	{
 		return null;
 	}

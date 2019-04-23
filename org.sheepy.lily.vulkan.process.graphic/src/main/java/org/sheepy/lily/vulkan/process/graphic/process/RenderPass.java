@@ -3,10 +3,10 @@ package org.sheepy.lily.vulkan.process.graphic.process;
 import static org.lwjgl.vulkan.VK10.vkDestroyRenderPass;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IRenderPass;
-import org.sheepy.lily.vulkan.api.nativehelper.VkRenderPassAllocator;
+import org.sheepy.lily.vulkan.process.graphic.renderpass.VkRenderPassAllocator;
+import org.sheepy.vulkan.allocation.IAllocationContext;
 
 public class RenderPass implements IRenderPass
 {

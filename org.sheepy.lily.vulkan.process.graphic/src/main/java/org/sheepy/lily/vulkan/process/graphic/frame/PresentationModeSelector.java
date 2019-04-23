@@ -5,17 +5,17 @@ import static org.lwjgl.vulkan.KHRSurface.*;
 
 import java.nio.IntBuffer;
 
-import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
-import org.sheepy.lily.vulkan.api.nativehelper.surface.VkSurface;
-import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.model.enumeration.EPresentMode;
+import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.log.Logger;
+import org.sheepy.vulkan.model.enumeration.EPresentMode;
+import org.sheepy.vulkan.surface.VkSurface;
 
 public class PresentationModeSelector
 {
-	private final ILogicalDevice logicalDevice;
+	private final LogicalDevice logicalDevice;
 	private final VkSurface surface;
 
-	public PresentationModeSelector(ILogicalDevice logicalDevice, VkSurface surface)
+	public PresentationModeSelector(LogicalDevice logicalDevice, VkSurface surface)
 	{
 		this.logicalDevice = logicalDevice;
 		this.surface = surface;

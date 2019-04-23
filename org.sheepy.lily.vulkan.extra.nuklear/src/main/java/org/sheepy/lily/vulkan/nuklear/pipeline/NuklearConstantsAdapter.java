@@ -7,12 +7,12 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.nativehelper.window.IWindowListener;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearConstants;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.window.IWindowListener;
 
 @Statefull
 @Adapter(scope = NuklearConstants.class)
@@ -31,6 +31,11 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 			needRecord = true;
 		}
 	};
+
+	public NuklearConstantsAdapter(NuklearConstants constants)
+	{
+		super(constants);
+	}
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)

@@ -1,7 +1,7 @@
 package org.sheepy.lily.vulkan.common.allocation.wrapper;
 
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
 
 public interface IAllocationWrapper extends IAllocable
 {

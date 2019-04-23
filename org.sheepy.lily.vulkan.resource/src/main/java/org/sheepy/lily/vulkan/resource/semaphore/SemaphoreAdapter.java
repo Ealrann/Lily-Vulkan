@@ -4,11 +4,11 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.concurrent.VkSemaphore;
+import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
 @Adapter(scope = Semaphore.class)
@@ -29,7 +29,7 @@ public class SemaphoreAdapter implements IResourceAdapter
 
 		if (semaphore.isSignalizedAtInit())
 		{
-			vkSemaphore.signalSemaphore((ExecutionContext) context);
+			vkSemaphore.signalSemaphore((IExecutionContext) context);
 		}
 	}
 

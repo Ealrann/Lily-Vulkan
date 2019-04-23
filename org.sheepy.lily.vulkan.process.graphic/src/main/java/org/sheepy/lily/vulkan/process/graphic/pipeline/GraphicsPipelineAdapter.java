@@ -1,6 +1,6 @@
 package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.vkCmdPushConstants;
 
 import java.util.List;
 
@@ -8,19 +8,19 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.resource.IConstantsAdapter;
-import org.sheepy.lily.vulkan.api.resource.IVertexBufferDescriptor;
-import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
-import org.sheepy.lily.vulkan.model.process.graphic.ColorBlend;
-import org.sheepy.lily.vulkan.model.process.graphic.DynamicState;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.InputAssembly;
-import org.sheepy.lily.vulkan.model.process.graphic.Rasterizer;
-import org.sheepy.lily.vulkan.model.process.graphic.ViewportState;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
+import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
+import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
+import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
+import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
+import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
+import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = GraphicsPipeline.class)
@@ -52,7 +52,7 @@ public abstract class GraphicsPipelineAdapter extends AbstractGraphicsPipelineAd
 		{
 			pushAdapter = AbstractConstantsAdapter.adapt(constants);
 			final var stages = constants.getStages();
-			pushStageFlags = VulkanModelUtil.getEnumeratedFlag(stages);
+			pushStageFlags = VkModelUtil.getEnumeratedFlag(stages);
 		}
 	}
 

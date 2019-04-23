@@ -7,20 +7,20 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferImageCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.image.ImageInfo;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.image.VkImageAllocator;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.memory.VkMemoryAllocator;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.memory.VkMemoryAllocator.MemoryAllocationInfo;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.memory.VkMemoryAllocator.MemoryInfo;
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.resource.barrier.ImageBarrierExecutor;
+import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImageAllocator;
+import org.sheepy.vulkan.resource.memory.VkMemoryAllocator;
+import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryAllocationInfo;
+import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryInfo;
 
 public class VkImage
 {
-	private final ILogicalDevice logicalDevice;
+	private final LogicalDevice logicalDevice;
 
 	private final ImageInfo info;
 
@@ -28,7 +28,7 @@ public class VkImage
 	protected long imageMemoryAddress;
 	protected long size;
 
-	public VkImage(ILogicalDevice logicalDevice, ImageInfo info)
+	public VkImage(LogicalDevice logicalDevice, ImageInfo info)
 	{
 		this.logicalDevice = logicalDevice;
 		this.info = info;
@@ -45,7 +45,7 @@ public class VkImage
 		vkBindImageMemory(logicalDevice.getVkDevice(), imageAddress, imageMemoryAddress, 0);
 	}
 
-	private MemoryInfo allocateMemory(MemoryStack stack, ILogicalDevice logicalDevice)
+	private MemoryInfo allocateMemory(MemoryStack stack, LogicalDevice logicalDevice)
 	{
 		final var properties = info.properties;
 		final var allocationInfo = new MemoryAllocationInfo(logicalDevice, imageAddress,

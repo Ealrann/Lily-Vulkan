@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
-import org.sheepy.lily.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,7 +51,7 @@ public interface Shader extends BasicResource
 
 	/**
 	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EShaderStage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EShaderStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stage</em>' attribute isn't clear,
@@ -59,7 +59,7 @@ public interface Shader extends BasicResource
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
+	 * @see org.sheepy.vulkan.model.enumeration.EShaderStage
 	 * @see #setStage(EShaderStage)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getShader_Stage()
 	 * @model unique="false"
@@ -72,7 +72,7 @@ public interface Shader extends BasicResource
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EShaderStage
+	 * @see org.sheepy.vulkan.model.enumeration.EShaderStage
 	 * @see #getStage()
 	 * @generated
 	 */

@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +52,7 @@ public interface AttachementRef extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Layout</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EImageLayout}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Layout</em>' attribute isn't clear,
@@ -61,7 +60,7 @@ public interface AttachementRef extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #setLayout(EImageLayout)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getAttachementRef_Layout()
 	 * @model unique="false"
@@ -74,7 +73,7 @@ public interface AttachementRef extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Layout</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EImageLayout
+	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
 	 * @see #getLayout()
 	 * @generated
 	 */

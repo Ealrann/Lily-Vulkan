@@ -4,10 +4,10 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.util.Logger;
-import org.sheepy.lily.vulkan.common.execution.AbstractCommandBuffer;
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.execution.AbstractCommandBuffer;
+import org.sheepy.vulkan.log.Logger;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public class ComputeCommandBuffer extends AbstractCommandBuffer
 {
@@ -60,11 +60,11 @@ public class ComputeCommandBuffer extends AbstractCommandBuffer
 		case COMPUTE:
 			Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
 			break;
-		case POST_RENDER:
+		case PRE_RENDER:
 			break;
 		case RENDER:
 			break;
-		case PRE_RENDER:
+		case POST_RENDER:
 			break;
 		}
 	}

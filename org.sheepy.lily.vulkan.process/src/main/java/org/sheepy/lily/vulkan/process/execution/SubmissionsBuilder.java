@@ -4,8 +4,8 @@ import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
 
-import org.sheepy.lily.vulkan.api.execution.ICommandBuffer;
-import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
+import org.sheepy.vulkan.concurrent.VkSemaphore;
+import org.sheepy.vulkan.execution.ICommandBuffer;
 
 public class SubmissionsBuilder
 {

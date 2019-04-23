@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationNode;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
-import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAdapter;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.allocation.IAllocationNode;
+import org.sheepy.vulkan.concurrent.VkSemaphore;
 
 public abstract class ExecutionRecorders implements IAllocationNode, IAllocable
 {

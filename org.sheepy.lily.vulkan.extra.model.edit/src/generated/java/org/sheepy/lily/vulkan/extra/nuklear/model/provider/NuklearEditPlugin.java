@@ -16,8 +16,6 @@ import org.sheepy.lily.core.model.root.provider.RootEditPlugin;
 
 import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
 
-import org.sheepy.lily.vulkan.model.enumeration.provider.EnumerationEditPlugin;
-
 import org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicEditPlugin;
 
 import org.sheepy.lily.vulkan.model.process.provider.ProcessEditPlugin;
@@ -25,6 +23,10 @@ import org.sheepy.lily.vulkan.model.process.provider.ProcessEditPlugin;
 import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
 
 import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
+
+import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
+
+import org.sheepy.vulkan.model.graphicpipeline.provider.GraphicpipelineEditPlugin;
 
 /**
  * This is the central singleton for the Nuklear edit plugin.
@@ -69,6 +71,7 @@ public final class NuklearEditPlugin extends EMFPlugin
 		     ResourceEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
 		     EnumerationEditPlugin.INSTANCE,
+		     GraphicpipelineEditPlugin.INSTANCE,
 		     ActionEditPlugin.INSTANCE,
 		     ApplicationEditPlugin.INSTANCE,
 		   });

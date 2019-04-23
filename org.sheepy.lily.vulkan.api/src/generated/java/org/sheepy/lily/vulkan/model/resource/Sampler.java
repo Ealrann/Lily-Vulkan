@@ -3,11 +3,10 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.sheepy.lily.vulkan.model.enumeration.EBorderColor;
-import org.sheepy.lily.vulkan.model.enumeration.EFilter;
-import org.sheepy.lily.vulkan.model.enumeration.ESamplerAddressMode;
-import org.sheepy.lily.vulkan.model.enumeration.ESamplerMipmapMode;
+import org.sheepy.vulkan.model.enumeration.EBorderColor;
+import org.sheepy.vulkan.model.enumeration.EFilter;
+import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode;
+import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +40,7 @@ public interface Sampler extends EObject
 	/**
 	 * Returns the value of the '<em><b>Min Filter</b></em>' attribute.
 	 * The default value is <code>"NEAREST"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EFilter}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFilter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Min Filter</em>' attribute isn't clear,
@@ -49,7 +48,7 @@ public interface Sampler extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Min Filter</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EFilter
+	 * @see org.sheepy.vulkan.model.enumeration.EFilter
 	 * @see #setMinFilter(EFilter)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler_MinFilter()
 	 * @model default="NEAREST" unique="false"
@@ -62,7 +61,7 @@ public interface Sampler extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Min Filter</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EFilter
+	 * @see org.sheepy.vulkan.model.enumeration.EFilter
 	 * @see #getMinFilter()
 	 * @generated
 	 */
@@ -71,7 +70,7 @@ public interface Sampler extends EObject
 	/**
 	 * Returns the value of the '<em><b>Mag Filter</b></em>' attribute.
 	 * The default value is <code>"NEAREST"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EFilter}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFilter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mag Filter</em>' attribute isn't clear,
@@ -79,7 +78,7 @@ public interface Sampler extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mag Filter</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EFilter
+	 * @see org.sheepy.vulkan.model.enumeration.EFilter
 	 * @see #setMagFilter(EFilter)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler_MagFilter()
 	 * @model default="NEAREST" unique="false"
@@ -92,7 +91,7 @@ public interface Sampler extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mag Filter</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EFilter
+	 * @see org.sheepy.vulkan.model.enumeration.EFilter
 	 * @see #getMagFilter()
 	 * @generated
 	 */
@@ -101,7 +100,7 @@ public interface Sampler extends EObject
 	/**
 	 * Returns the value of the '<em><b>Mipmap Mode</b></em>' attribute.
 	 * The default value is <code>"NEAREST"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.ESamplerMipmapMode}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mipmap Mode</em>' attribute isn't clear,
@@ -109,7 +108,7 @@ public interface Sampler extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mipmap Mode</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.ESamplerMipmapMode
+	 * @see org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
 	 * @see #setMipmapMode(ESamplerMipmapMode)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler_MipmapMode()
 	 * @model default="NEAREST" unique="false"
@@ -122,7 +121,7 @@ public interface Sampler extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mipmap Mode</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.ESamplerMipmapMode
+	 * @see org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
 	 * @see #getMipmapMode()
 	 * @generated
 	 */
@@ -131,7 +130,7 @@ public interface Sampler extends EObject
 	/**
 	 * Returns the value of the '<em><b>Address Mode</b></em>' attribute.
 	 * The default value is <code>"REPEAT"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.ESamplerAddressMode}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ESamplerAddressMode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Address Mode</em>' attribute isn't clear,
@@ -139,7 +138,7 @@ public interface Sampler extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Address Mode</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.ESamplerAddressMode
+	 * @see org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 	 * @see #setAddressMode(ESamplerAddressMode)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler_AddressMode()
 	 * @model default="REPEAT" unique="false"
@@ -152,7 +151,7 @@ public interface Sampler extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Address Mode</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.ESamplerAddressMode
+	 * @see org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 	 * @see #getAddressMode()
 	 * @generated
 	 */
@@ -161,7 +160,7 @@ public interface Sampler extends EObject
 	/**
 	 * Returns the value of the '<em><b>Border Color</b></em>' attribute.
 	 * The default value is <code>"INT_OPAQUE_BLACK"</code>.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EBorderColor}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBorderColor}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Border Color</em>' attribute isn't clear,
@@ -169,7 +168,7 @@ public interface Sampler extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Border Color</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EBorderColor
+	 * @see org.sheepy.vulkan.model.enumeration.EBorderColor
 	 * @see #setBorderColor(EBorderColor)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampler_BorderColor()
 	 * @model default="INT_OPAQUE_BLACK" unique="false"
@@ -182,7 +181,7 @@ public interface Sampler extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Border Color</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EBorderColor
+	 * @see org.sheepy.vulkan.model.enumeration.EBorderColor
 	 * @see #getBorderColor()
 	 * @generated
 	 */

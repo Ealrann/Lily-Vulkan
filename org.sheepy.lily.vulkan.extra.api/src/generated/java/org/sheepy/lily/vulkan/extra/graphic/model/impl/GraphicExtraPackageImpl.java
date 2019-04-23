@@ -28,13 +28,12 @@ import org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline;
 import org.sheepy.lily.vulkan.extra.graphic.model.ScreenRenderer;
 import org.sheepy.lily.vulkan.extra.graphic.model.MeshRenderer;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-
-import org.sheepy.lily.vulkan.model.enumeration.EnumerationPackage;
-
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -136,6 +135,7 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 		EcorePackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
+		GraphicpipelinePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theGraphicExtraPackage.createPackageContents();

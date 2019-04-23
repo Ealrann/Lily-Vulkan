@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.sheepy.lily.vulkan.api.execution.ICommandBuffer;
-import org.sheepy.lily.vulkan.api.nativehelper.concurrent.VkSemaphore;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.lily.vulkan.process.execution.SubmissionsBuilder;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
+import org.sheepy.vulkan.concurrent.VkSemaphore;
+import org.sheepy.vulkan.execution.ICommandBuffer;
 
 public class FrameSubmissionsBuilder extends SubmissionsBuilder
 {

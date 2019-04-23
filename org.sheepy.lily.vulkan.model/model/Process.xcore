@@ -10,7 +10,7 @@ import org.sheepy.lily.core.model.root.LObject
 import org.sheepy.lily.core.model.types.LNamedElement
 import org.sheepy.lily.vulkan.model.IProcess
 import org.sheepy.lily.vulkan.model.IResourceContainer
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage
+import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants
 import org.sheepy.lily.vulkan.model.resource.Barrier
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet

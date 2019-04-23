@@ -8,13 +8,13 @@ import org.lwjgl.vulkan.VkImageBlit;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
 import org.sheepy.lily.vulkan.extra.graphic.model.ImagePipeline;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
+import org.sheepy.vulkan.allocation.IAllocationContext;
 
 @Statefull
 @Adapter(scope = ImagePipeline.class)

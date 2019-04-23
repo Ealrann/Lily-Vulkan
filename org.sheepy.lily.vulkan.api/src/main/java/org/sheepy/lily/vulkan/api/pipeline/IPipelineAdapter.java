@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.execution.IExecutionContext;
 
 public interface IPipelineAdapter extends IVulkanAdapter, IRecordable
 {

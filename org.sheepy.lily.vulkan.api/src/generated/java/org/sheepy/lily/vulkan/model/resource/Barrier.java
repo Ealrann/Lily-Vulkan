@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +26,7 @@ public interface Barrier extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Src Stage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Src Stage</em>' attribute isn't clear,
@@ -35,7 +34,7 @@ public interface Barrier extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #setSrcStage(EPipelineStage)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBarrier_SrcStage()
 	 * @model unique="false"
@@ -48,7 +47,7 @@ public interface Barrier extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Src Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #getSrcStage()
 	 * @generated
 	 */
@@ -56,7 +55,7 @@ public interface Barrier extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Dst Stage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.lily.vulkan.model.enumeration.EPipelineStage}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dst Stage</em>' attribute isn't clear,
@@ -64,7 +63,7 @@ public interface Barrier extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #setDstStage(EPipelineStage)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBarrier_DstStage()
 	 * @model unique="false"
@@ -77,7 +76,7 @@ public interface Barrier extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dst Stage</em>' attribute.
-	 * @see org.sheepy.lily.vulkan.model.enumeration.EPipelineStage
+	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
 	 * @see #getDstStage()
 	 * @generated
 	 */

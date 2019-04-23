@@ -12,11 +12,9 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
-
 import org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier} object.

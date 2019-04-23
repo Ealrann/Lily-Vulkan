@@ -6,8 +6,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
@@ -15,6 +14,7 @@ import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
+import org.sheepy.vulkan.allocation.IAllocationContext;
 
 @Statefull
 @Adapter(scope = PipelineBarrier.class)

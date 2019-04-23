@@ -1,8 +1,5 @@
 package org.sheepy.lily.vulkan.api.util;
 
-import java.util.List;
-
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
@@ -35,17 +32,5 @@ public class VulkanModelUtil extends ModelUtil
 			}
 		}
 		return null;
-	}
-
-	public static final int getEnumeratedFlag(List<? extends Enumerator> enumerates)
-	{
-		int res = 0;
-
-		for (final Enumerator enumerate : enumerates)
-		{
-			res |= enumerate.getValue();
-		}
-
-		return res;
 	}
 }

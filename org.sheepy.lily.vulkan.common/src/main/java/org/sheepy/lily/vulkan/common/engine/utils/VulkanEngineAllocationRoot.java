@@ -2,10 +2,10 @@ package org.sheepy.lily.vulkan.common.engine.utils;
 
 import java.util.List;
 
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContextProvider;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationNode;
-import org.sheepy.lily.vulkan.common.execution.ExecutionContext;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.allocation.IAllocationContextProvider;
+import org.sheepy.vulkan.allocation.IAllocationNode;
+import org.sheepy.vulkan.execution.ExecutionContext;
 
 public class VulkanEngineAllocationRoot implements IAllocationNode, IAllocationContextProvider
 {

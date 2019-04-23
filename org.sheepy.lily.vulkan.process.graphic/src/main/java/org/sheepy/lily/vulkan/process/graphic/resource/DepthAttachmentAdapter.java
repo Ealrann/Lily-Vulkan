@@ -6,23 +6,23 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.device.ILogicalDevice;
-import org.sheepy.lily.vulkan.api.device.IPhysicalDevice;
-import org.sheepy.lily.vulkan.api.execution.IExecutionContext;
-import org.sheepy.lily.vulkan.api.execution.ISingleTimeCommand;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.image.ImageInfo;
-import org.sheepy.lily.vulkan.api.nativehelper.resource.image.VkImageView;
 import org.sheepy.lily.vulkan.api.resource.attachment.IDepthAttachmentAdapter;
-import org.sheepy.lily.vulkan.model.enumeration.EAccess;
-import org.sheepy.lily.vulkan.model.enumeration.EImageLayout;
-import org.sheepy.lily.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.device.LogicalDevice;
+import org.sheepy.vulkan.device.PhysicalDevice;
+import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.execution.ISingleTimeCommand;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImageView;
 
 @Statefull
 @Adapter(scope = DepthAttachment.class)
@@ -46,7 +46,7 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		layoutTransitionOfDepthImage(stack, graphicContext);
 	}
 
-	private void createAndAllocateImageView(ILogicalDevice logicalDevice)
+	private void createAndAllocateImageView(LogicalDevice logicalDevice)
 	{
 		depthImageView = new VkImageView(logicalDevice.getVkDevice());
 		depthImageView.allocate(depthImageBackend.getAddress(), 1, depthFormat,
@@ -103,7 +103,7 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		barrierExecutor.free();
 	}
 
-	private static int findDepthFormat(IPhysicalDevice physicalDevice)
+	private static int findDepthFormat(PhysicalDevice physicalDevice)
 	{
 		return physicalDevice.findSupportedFormat(new int[] {
 				VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT

@@ -10,21 +10,21 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.allocation.IAllocable;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationContext;
-import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocableAdapter;
-import org.sheepy.lily.vulkan.api.allocation.adapter.IAllocationDescriptorAdapter;
-import org.sheepy.lily.vulkan.api.nativehelper.descriptor.IVkDescriptorSet;
-import org.sheepy.lily.vulkan.api.nativehelper.pipeline.VkPipeline;
+import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.resource.IConstantsAdapter;
-import org.sheepy.lily.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.pipeline.VkPipeline;
 
 @Statefull
 public abstract class AbstractPipelineAdapter
@@ -85,7 +85,13 @@ public abstract class AbstractPipelineAdapter
 
 		collectDescriptorSets(descriptorSets);
 
-		return new VkPipeline(descriptorSets, constantsList);
+		final List<IConstantsAdapter> adapters = new ArrayList<>();
+		for (final AbstractConstants constant : constantsList)
+		{
+			adapters.add(IConstantsAdapter.adapt(constant));
+		}
+
+		return new VkPipeline(descriptorSets, adapters);
 	}
 
 	@Override

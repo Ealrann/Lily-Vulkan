@@ -5,6 +5,11 @@ package org.sheepy.lily.vulkan.model.process.graphic;
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
+import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
+import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
+import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
+import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
 
 /**
  * <!-- begin-user-doc -->
