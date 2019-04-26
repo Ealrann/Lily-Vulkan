@@ -26,6 +26,7 @@ module org.sheepy.vulkan
 	exports org.sheepy.vulkan.concurrent;
 	exports org.sheepy.vulkan.descriptor;
 	exports org.sheepy.vulkan.device;
+	exports org.sheepy.vulkan.device.data;
 	exports org.sheepy.vulkan.device.capabilities;
 	exports org.sheepy.vulkan.execution;
 	exports org.sheepy.vulkan.extension;
