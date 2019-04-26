@@ -14,10 +14,11 @@ public class Logger
 	public static final void check(int status, String message, boolean noException)
 	{
 		final EVulkanErrorStatus error = EVulkanErrorStatus.resolveFromCode(status);
-		if (error.isError)
+
+		if ((error != null && error.isError) || status < 0)
 		{
 			final String stringError = error != null ? error.name() : UNKOWN_ERROR;
-			final String errorMessage = error.message;
+			final String errorMessage = error != null ? error.message : "Error code: " + status;
 
 			final String messageWithError = String.format("%s\n[%s] %s", message, stringError,
 					errorMessage);
