@@ -6,6 +6,8 @@ import static org.lwjgl.vulkan.KHRSurface.*;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
 import static org.lwjgl.vulkan.VK10.*;
 
+import org.lwjgl.vulkan.NVGLSLShader;
+
 public enum EVulkanErrorStatus
 {
 	// Success codes
@@ -42,6 +44,7 @@ public enum EVulkanErrorStatus
 			+ "presenting to the surface."),
 	ERROR_INCOMPATIBLE_DISPLAY_KHR(VK_ERROR_INCOMPATIBLE_DISPLAY_KHR, true, "The display used by a swapchain does not use the same presentable image layout, or is incompatible in a way that prevents sharing an"
 			+ " image."),
+	ERROR_INVALID_SHADER_NV(NVGLSLShader.VK_ERROR_INVALID_SHADER_NV, true, "Invalid shaders (NVidia)"),
 	ERROR_VALIDATION_FAILED_EXT(VK_ERROR_VALIDATION_FAILED_EXT, true, "A validation layer found an error.")
 	;
 
