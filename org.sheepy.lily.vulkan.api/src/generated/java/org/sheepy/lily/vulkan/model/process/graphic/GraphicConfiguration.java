@@ -85,7 +85,6 @@ public interface GraphicConfiguration extends Configuration
 	 * @see #setAcquireWaitStage(EPipelineStage)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicConfiguration_AcquireWaitStage()
 	 * @model default="COLOR_ATTACHMENT_OUTPUT_BIT" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The stage on which we should wait until acquire the next image'"
 	 * @generated
 	 */
 	EPipelineStage getAcquireWaitStage();

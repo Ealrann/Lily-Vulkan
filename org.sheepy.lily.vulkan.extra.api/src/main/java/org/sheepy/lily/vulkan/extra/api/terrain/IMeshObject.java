@@ -1,14 +1,21 @@
 package org.sheepy.lily.vulkan.extra.api.terrain;
 
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
 
 public interface IMeshObject
 {
-	IndexedBuffer<?> getIIndexedBuffer();
 	IVkDescriptorSet getDescriptorSet();
 
-	boolean update(IMeshStagingBuffer stagingBuffer);
+	long getIndexBufferAddress();
+	long getIndexBufferOffset();
+	int getIndicesCount();
+
+	long getVertexBufferAddress();
+	long getVertexBufferOffset();
+
+	void update(IStagingBuffer stagingBuffer);
+	boolean hasChanged();
 
 	void setInstanceCount(int size);
 	int getInstanceCount();

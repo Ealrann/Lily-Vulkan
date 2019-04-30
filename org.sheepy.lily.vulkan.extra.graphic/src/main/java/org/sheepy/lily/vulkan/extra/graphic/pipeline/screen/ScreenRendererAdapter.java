@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
@@ -70,22 +71,28 @@ public class ScreenRendererAdapter extends GraphicsPipelineAdapter
 	}
 
 	@Override
-	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
+	public void record(	ECommandStage stage,
+						VkCommandBuffer vkCommandBuffer,
+						int bindPoint,
+						int index)
 	{
-		final long[] vertexBuffers = new long[1];
-		final long[] offsets = new long[1];
+		if (stage == pipeline.getStage())
+		{
+			final long[] vertexBuffers = new long[1];
+			final long[] offsets = new long[1];
 
-		vertexBuffers[0] = buffer.getAddress();
-		offsets[0] = 0;
+			vertexBuffers[0] = buffer.getAddress();
+			offsets[0] = 0;
 
-		vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
-		pushConstants(vkCommandBuffer);
-		bindDescriptor(vkCommandBuffer, bindPoint, new Integer[] {
-				0
-		});
-		vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
-		vkCmdBindVertexBuffers(vkCommandBuffer, 1, vertexBuffers, offsets);
-		vkCmdDraw(vkCommandBuffer, 4, 1, 0, 0);
+			vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
+			pushConstants(vkCommandBuffer);
+			bindDescriptor(vkCommandBuffer, bindPoint, new Integer[] {
+					0
+			});
+			vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
+			vkCmdBindVertexBuffers(vkCommandBuffer, 1, vertexBuffers, offsets);
+			vkCmdDraw(vkCommandBuffer, 4, 1, 0, 0);
+		}
 	}
 
 	@Override

@@ -207,6 +207,27 @@ public class PhysicalDevice
 		return driverVersion;
 	}
 
+	public long getBufferAlignement(int usage)
+	{
+		final var limits = getDeviceProperties().limits();
+		long alignment = 0;
+
+		if ((usage & VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT) != 0)
+		{
+			alignment = limits.minUniformBufferOffsetAlignment();
+		}
+		else if ((usage & VK_BUFFER_USAGE_STORAGE_BUFFER_BIT) != 0)
+		{
+			alignment = limits.minStorageBufferOffsetAlignment();
+		}
+		else
+		{
+			alignment = 1;
+		}
+
+		return alignment;
+	}
+
 	public void printRetainedExtensions()
 	{
 		System.out.println("\nUsing Device Extensions:");

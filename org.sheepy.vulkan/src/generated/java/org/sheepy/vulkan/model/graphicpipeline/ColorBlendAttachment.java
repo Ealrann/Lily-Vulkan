@@ -43,7 +43,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setBlendEnable(boolean)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_BlendEnable()
 	 * @model default="false" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='1 - Common'"
 	 * @generated
 	 */
 	boolean isBlendEnable();
@@ -69,7 +68,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setSrcColor(EBlendFactor)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_SrcColor()
 	 * @model default="ONE" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='2 - Operation'"
 	 * @generated
 	 */
 	EBlendFactor getSrcColor();
@@ -96,7 +94,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setDstColor(EBlendFactor)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_DstColor()
 	 * @model default="ZERO" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='2 - Operation'"
 	 * @generated
 	 */
 	EBlendFactor getDstColor();
@@ -123,7 +120,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setSrcAlpha(EBlendFactor)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_SrcAlpha()
 	 * @model default="ONE" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='2 - Operation'"
 	 * @generated
 	 */
 	EBlendFactor getSrcAlpha();
@@ -150,7 +146,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setDstAlpha(EBlendFactor)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_DstAlpha()
 	 * @model default="ZERO" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='2 - Operation'"
 	 * @generated
 	 */
 	EBlendFactor getDstAlpha();
@@ -177,7 +172,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setColorBlendOp(EBlendOp)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_ColorBlendOp()
 	 * @model default="ADD" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='2 - Operation'"
 	 * @generated
 	 */
 	EBlendOp getColorBlendOp();
@@ -204,7 +198,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setAlphaBlendOp(EBlendOp)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_AlphaBlendOp()
 	 * @model default="ADD" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='2 - Operation'"
 	 * @generated
 	 */
 	EBlendOp getAlphaBlendOp();
@@ -229,7 +222,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setRedComponentEnable(boolean)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_RedComponentEnable()
 	 * @model default="true" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='3 - Component'"
 	 * @generated
 	 */
 	boolean isRedComponentEnable();
@@ -253,7 +245,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setGreenComponentEnable(boolean)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_GreenComponentEnable()
 	 * @model default="true" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='3 - Component'"
 	 * @generated
 	 */
 	boolean isGreenComponentEnable();
@@ -277,7 +268,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setBlueComponentEnable(boolean)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_BlueComponentEnable()
 	 * @model default="true" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='3 - Component'"
 	 * @generated
 	 */
 	boolean isBlueComponentEnable();
@@ -301,7 +291,6 @@ public interface ColorBlendAttachment extends EObject
 	 * @see #setAlphaComponentEnable(boolean)
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getColorBlendAttachment_AlphaComponentEnable()
 	 * @model default="true" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='3 - Component'"
 	 * @generated
 	 */
 	boolean isAlphaComponentEnable();

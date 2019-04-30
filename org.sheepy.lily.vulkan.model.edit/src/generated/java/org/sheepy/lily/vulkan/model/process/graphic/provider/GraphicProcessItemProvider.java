@@ -51,27 +51,9 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addGraphicOffsetPropertyDescriptor(object);
 			addFieldOfViewYPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Graphic Offset feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addGraphicOffsetPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_GraphicProcess_graphicOffset_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_GraphicProcess_graphicOffset_feature", "_UI_GraphicProcess_type"),
-				GraphicPackage.Literals.GRAPHIC_PROCESS__GRAPHIC_OFFSET, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -165,7 +147,6 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 
 		switch (notification.getFeatureID(GraphicProcess.class))
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__GRAPHIC_OFFSET:
 		case GraphicPackage.GRAPHIC_PROCESS__FIELD_OF_VIEW_Y:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));

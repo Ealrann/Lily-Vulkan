@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.vulkan.model/src/generated/java' editDirectory='/org.sheepy.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.vulkan.model'"
  * @generated
  */
 public interface GraphicpipelinePackage extends EPackage

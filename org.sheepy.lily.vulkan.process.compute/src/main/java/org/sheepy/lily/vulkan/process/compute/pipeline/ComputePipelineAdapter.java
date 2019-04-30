@@ -23,6 +23,7 @@ import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.log.Logger;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
 @Adapter(scope = ComputePipeline.class)
@@ -126,12 +127,15 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter
 	}
 
 	@Override
-	public void record(VkCommandBuffer commandBuffer, int bindPoint, int index)
+	public void record(ECommandStage stage, VkCommandBuffer commandBuffer, int bindPoint, int index)
 	{
-		bindDescriptor(commandBuffer, bindPoint, new Integer[] {
-				0
-		});
-		recordComputers(commandBuffer, bindPoint);
+		if (stage == pipeline.getStage())
+		{
+			bindDescriptor(commandBuffer, bindPoint, new Integer[] {
+					0
+			});
+			recordComputers(commandBuffer, bindPoint);
+		}
 	}
 
 	protected void recordComputers(VkCommandBuffer commandBuffer, int bindPoint)

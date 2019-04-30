@@ -39,15 +39,11 @@ public class ComputeCommandBuffer extends AbstractCommandBuffer
 	{
 		switch (stage)
 		{
-		case COMPUTE:
+		case TRANSFER:
 			Logger.check(vkBeginCommandBuffer(vkCommandBuffer, beginInfo),
 					FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER);
 			break;
-		case PRE_RENDER:
-			break;
-		case RENDER:
-			break;
-		case POST_RENDER:
+		default:
 			break;
 		}
 	}
@@ -60,11 +56,7 @@ public class ComputeCommandBuffer extends AbstractCommandBuffer
 		case COMPUTE:
 			Logger.check(vkEndCommandBuffer(vkCommandBuffer), FAILED_TO_RECORD_COMMAND_BUFFER);
 			break;
-		case PRE_RENDER:
-			break;
-		case RENDER:
-			break;
-		case POST_RENDER:
+		default:
 			break;
 		}
 	}

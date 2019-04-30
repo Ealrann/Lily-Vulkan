@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
 import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
 @Adapter(scope = ImagePipeline.class)
@@ -105,21 +106,27 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter
 	}
 
 	@Override
-	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
+	public void record(	ECommandStage stage,
+						VkCommandBuffer vkCommandBuffer,
+						int bindPoint,
+						int index)
 	{
-		final var srcImage = imagePipeline.getImage();
-		final var srcImageId = ImageAdapter.adapt(srcImage).getAddress();
-		final var dstImageView = imageViewManager.getImageViews().get(index);
+		if (stage == pipeline.getStage())
+		{
+			final var srcImage = imagePipeline.getImage();
+			final var srcImageId = ImageAdapter.adapt(srcImage).getAddress();
+			final var dstImageView = imageViewManager.getImageViews().get(index);
 
-		initialBarriers[index].execute(vkCommandBuffer);
+			initialBarriers[index].execute(vkCommandBuffer);
 
-		final long bltSrcImage = srcImageId;
-		final long bltDstImage = dstImageView.getImageAddress();
+			final long bltSrcImage = srcImageId;
+			final long bltDstImage = dstImageView.getImageAddress();
 
-		vkCmdBlitImage(vkCommandBuffer, bltSrcImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
-				bltDstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region, VK_FILTER_NEAREST);
+			vkCmdBlitImage(vkCommandBuffer, bltSrcImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+					bltDstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region, VK_FILTER_NEAREST);
 
-		finalBarriers[index].execute(vkCommandBuffer);
+			finalBarriers[index].execute(vkCommandBuffer);
+		}
 	}
 
 	@Override

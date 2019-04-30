@@ -27,7 +27,8 @@ public class ComputeExecutionRecorder extends AbstractExecutionRecorder
 			final var pipelineAdapter = recordables.get(i);
 			if (pipelineAdapter.shouldRecord(stage))
 			{
-				pipelineAdapter.record(vkCommandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE, index);
+				pipelineAdapter.record(stage, vkCommandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE,
+						index);
 			}
 			pipelineAdapter.setRecordNeeded(false);
 		}

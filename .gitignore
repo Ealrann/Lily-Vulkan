@@ -7,4 +7,8 @@ bin/
 build/
 .settings/
 *.log
+jitdump.*
+javacore.*
+*.dmp
+*.trc
 

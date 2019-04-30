@@ -23,7 +23,6 @@ import org.sheepy.lily.core.model.types.TypesPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.lily.vulkan.model.VulkanFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' modelName='Vulkan' prefix='Vulkan' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' basePackage='org.sheepy.lily.vulkan'"
  * @generated
  */
 public interface VulkanPackage extends EPackage

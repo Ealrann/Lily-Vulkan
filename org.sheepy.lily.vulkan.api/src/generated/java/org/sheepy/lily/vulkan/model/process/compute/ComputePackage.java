@@ -22,7 +22,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.lily.vulkan.model.process.compute.ComputeFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model.process'"
  * @generated
  */
 public interface ComputePackage extends EPackage

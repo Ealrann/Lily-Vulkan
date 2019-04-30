@@ -28,6 +28,10 @@ public class CPUBufferBackend implements IBufferBackend
 	private long address = -1;
 	private long memoryAddress;
 	private long memoryMap = -1;
+	private int currentInstance = 0;
+	private long currentOffset = 0;
+
+	private VkDevice vkDevice;
 
 	public CPUBufferBackend(BufferInfo info, boolean coherent)
 	{
@@ -50,7 +54,7 @@ public class CPUBufferBackend implements IBufferBackend
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		final IVulkanContext vulkanContext = (IVulkanContext) context;
-		final var vkDevice = vulkanContext.getVkDevice();
+		vkDevice = vulkanContext.getVkDevice();
 
 		info.computeAlignment(vulkanContext.getPhysicalDevice());
 		address = VkBufferAllocator.allocate(stack, vkDevice, info);
@@ -63,7 +67,7 @@ public class CPUBufferBackend implements IBufferBackend
 
 		if (info.keptMapped)
 		{
-			mapMemory(vkDevice);
+			mapMemory();
 		}
 	}
 
@@ -81,7 +85,7 @@ public class CPUBufferBackend implements IBufferBackend
 
 		if (memoryMap != -1)
 		{
-			unmapMemory(vkDevice);
+			unmapMemory();
 		}
 
 		vkDestroyBuffer(vkDevice, address, null);
@@ -99,24 +103,22 @@ public class CPUBufferBackend implements IBufferBackend
 			throw new AssertionError("Buffer not allocated");
 		}
 
-		final var vkDevice = executionContext.getVkDevice();
-
-		mapMemory(vkDevice);
+		mapMemory();
 		MemoryUtil.memCopy(memAddress(data), memoryMap, info.size);
 
 		if (info.keptMapped == false)
 		{
-			unmapMemory(vkDevice);
+			unmapMemory();
 		}
 	}
 
 	@Override
-	public long mapMemory(VkDevice vkDevice)
+	public long mapMemory()
 	{
 		if (memoryMap == -1)
 		{
 			final PointerBuffer pBuffer = MemoryUtil.memAllocPointer(1);
-			vkMapMemory(vkDevice, memoryAddress, 0, info.size, 0, pBuffer);
+			vkMapMemory(vkDevice, memoryAddress, currentOffset, info.getInstanceSize(), 0, pBuffer);
 			memoryMap = pBuffer.get(0);
 			MemoryUtil.memFree(pBuffer);
 		}
@@ -125,7 +127,7 @@ public class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void unmapMemory(VkDevice vkDevice)
+	public void unmapMemory()
 	{
 		if (memoryMap != -1)
 		{
@@ -137,10 +139,30 @@ public class CPUBufferBackend implements IBufferBackend
 	@Override
 	public void nextInstance()
 	{
-		if (info.instanceCount > 1)
+		final boolean wasMapped = memoryMap != -1;
+
+		if (wasMapped)
 		{
-			throw new AssertionError("Not implemented for CPU Buffer");
+			unmapMemory();
 		}
+
+		currentInstance++;
+		if (currentInstance >= info.instanceCount)
+		{
+			currentInstance = 0;
+		}
+
+		currentOffset = currentInstance * info.getInstanceSize();
+
+		if (wasMapped)
+		{
+			mapMemory();
+		}
+	}
+
+	public void flush(LogicalDevice logicalDevice)
+	{
+		BufferUtils.flush(logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
 	}
 
 	@Override

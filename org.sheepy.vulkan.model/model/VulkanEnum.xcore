@@ -69,10 +69,11 @@ enum EBorderColor
 
 enum ECommandStage
 {
-	Compute    = 0
-	PreRender  = 1
-	Render     = 2
-	PostRender = 3
+	Transfer   = 0
+	Compute    = 1
+	PreRender  = 2
+	Render     = 3
+	PostRender = 4
 }
 
 enum EAttachmentLoadOp

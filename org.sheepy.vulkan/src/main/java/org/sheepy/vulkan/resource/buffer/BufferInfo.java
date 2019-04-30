@@ -1,7 +1,5 @@
 package org.sheepy.vulkan.resource.buffer;
 
-import static org.lwjgl.vulkan.VK10.*;
-
 import org.sheepy.vulkan.device.PhysicalDevice;
 
 public class BufferInfo
@@ -29,22 +27,7 @@ public class BufferInfo
 
 	public void computeAlignment(PhysicalDevice device)
 	{
-		final var limits = device.getDeviceProperties().limits();
-		double alignment = 0;
-
-		if ((usage | VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT) != 0)
-		{
-			alignment = limits.minUniformBufferOffsetAlignment();
-		}
-		else if ((usage | VK_BUFFER_USAGE_STORAGE_BUFFER_BIT) != 0)
-		{
-			alignment = limits.minStorageBufferOffsetAlignment();
-		}
-		else
-		{
-			alignment = 1;
-		}
-
+		final double alignment = device.getBufferAlignement(usage);
 		final int chunks = (int) Math.ceil(size / alignment);
 		instanceSize = (long) (chunks * alignment);
 		totalSize = instanceSize * instanceCount;

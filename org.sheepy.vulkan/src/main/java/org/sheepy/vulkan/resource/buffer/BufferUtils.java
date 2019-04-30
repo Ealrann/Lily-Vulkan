@@ -10,7 +10,7 @@ import org.sheepy.vulkan.device.LogicalDevice;
 public class BufferUtils
 {
 
-	public static int flush(LogicalDevice logicalDevice, int bufferMemoryId)
+	public static int flush(LogicalDevice logicalDevice, long bufferMemoryId)
 	{
 		return BufferUtils.flush(logicalDevice, bufferMemoryId, VK_WHOLE_SIZE, 0);
 	}
@@ -28,7 +28,10 @@ public class BufferUtils
 	 *
 	 * @return VkResult of the flush call
 	 */
-	public static int flush(LogicalDevice logicalDevice, int bufferMemoryId, long size, int offset)
+	public static int flush(LogicalDevice logicalDevice,
+							long bufferMemoryId,
+							long size,
+							long offset)
 	{
 		final VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);
@@ -36,6 +39,11 @@ public class BufferUtils
 		mappedRange.offset(offset);
 		mappedRange.size(size);
 		return vkFlushMappedMemoryRanges(logicalDevice.getVkDevice(), mappedRange);
+	}
+
+	public static int invalidate(LogicalDevice logicalDevice, long bufferMemoryId)
+	{
+		return BufferUtils.invalidate(logicalDevice, bufferMemoryId, VK_WHOLE_SIZE, 0);
 	}
 
 	/**
@@ -52,9 +60,9 @@ public class BufferUtils
 	 * @return VkResult of the invalidate call
 	 */
 	public static int invalidate(	LogicalDevice logicalDevice,
-									int bufferMemoryId,
-									int size,
-									int offset)
+									long bufferMemoryId,
+									long size,
+									long offset)
 	{
 		final VkMappedMemoryRange.Buffer mappedRange = VkMappedMemoryRange.create(1);
 		mappedRange.sType(VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE);

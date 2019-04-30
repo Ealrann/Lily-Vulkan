@@ -17,8 +17,8 @@ import org.sheepy.vulkan.queue.VulkanQueue;
 @Adapter(scope = GraphicProcess.class)
 public class GraphicProcessAdapter extends AbstractProcessAdapter
 {
-	private static final List<ECommandStage> stages = List.of(ECommandStage.PRE_RENDER,
-			ECommandStage.RENDER, ECommandStage.POST_RENDER);
+	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
+			ECommandStage.PRE_RENDER, ECommandStage.RENDER, ECommandStage.POST_RENDER);
 
 	private final ImageAcquirer acquirer = new ImageAcquirer();
 

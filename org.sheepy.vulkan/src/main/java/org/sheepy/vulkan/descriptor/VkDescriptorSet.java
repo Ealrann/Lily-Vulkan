@@ -3,6 +3,7 @@ package org.sheepy.vulkan.descriptor;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
@@ -31,10 +32,16 @@ public class VkDescriptorSet implements IVkDescriptorSet
 
 	private LongBuffer bDescriptorSet;
 	private VkDevice device;
+	private boolean allocated = false;
+
+	public VkDescriptorSet()
+	{
+		this.descriptors = new ArrayList<>();
+	}
 
 	public VkDescriptorSet(List<IVkDescriptor> descriptors)
 	{
-		this.descriptors = List.copyOf(descriptors);
+		this.descriptors = new ArrayList<>(descriptors);
 	}
 
 	@Override
@@ -76,6 +83,8 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		bDescriptorSet.flip();
 
 		updateDescriptorSet(stack, true);
+
+		allocated = true;
 	}
 
 	@Override
@@ -91,6 +100,7 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		layoutId = UNINITIALIZED;
 		MemoryUtil.memFree(bDescriptorSet);
 		bDescriptorSet = null;
+		allocated = false;
 	}
 
 	private VkDescriptorSetLayoutBinding.Buffer createLayoutBinding(MemoryStack stack)
@@ -145,6 +155,16 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		descriptorWrites.flip();
 
 		vkUpdateDescriptorSets(device, descriptorWrites, null);
+	}
+
+	public void addDescriptor(IVkDescriptor descriptor)
+	{
+		if (allocated)
+		{
+			throw new AssertionError("Can't add descriptor after allocation");
+		}
+
+		descriptors.add(descriptor);
 	}
 
 	@Override

@@ -16,6 +16,8 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable
 	private final GPUBufferBackend uniformBuffer;
 	private final int shaderStages;
 
+	private final long offset = 0;
+
 	public VkUniformBuffer(BufferInfo info, int shaderStages)
 	{
 		this.shaderStages = shaderStages;
@@ -74,7 +76,7 @@ public class VkUniformBuffer implements IVkDescriptor, IAllocable
 	{
 		final var bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
 		bufferInfo.buffer(uniformBuffer.getAddress());
-		bufferInfo.offset(0);
+		bufferInfo.offset(offset);
 		bufferInfo.range(uniformBuffer.getInfos().size);
 
 		return bufferInfo;

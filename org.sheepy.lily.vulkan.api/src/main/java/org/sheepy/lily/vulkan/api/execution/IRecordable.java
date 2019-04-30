@@ -5,7 +5,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 public interface IRecordable
 {
-	void record(VkCommandBuffer commandBuffer, int bindPoint, int index);
+	void record(ECommandStage stage, VkCommandBuffer commandBuffer, int bindPoint, int index);
 
 	boolean shouldRecord(ECommandStage stage);
 	boolean isRecordNeeded();

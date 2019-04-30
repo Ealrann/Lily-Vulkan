@@ -23,7 +23,6 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.lily.vulkan.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' updateClasspath='false' basePackage='org.sheepy.lily.vulkan.model.process'"
  * @generated
  */
 public interface GraphicPackage extends EPackage
@@ -1043,22 +1042,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__RENDER_PASS_INFO = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Graphic Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__GRAPHIC_OFFSET = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Field Of View Y</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__FIELD_OF_VIEW_Y = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
+	int GRAPHIC_PROCESS__FIELD_OF_VIEW_Y = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -1067,7 +1057,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
+	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -2082,17 +2072,6 @@ public interface GraphicPackage extends EPackage
 	EReference getGraphicProcess_RenderPassInfo();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getGraphicOffset <em>Graphic Offset</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Graphic Offset</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getGraphicOffset()
-	 * @see #getGraphicProcess()
-	 * @generated
-	 */
-	EAttribute getGraphicProcess_GraphicOffset();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess#getFieldOfViewY <em>Field Of View Y</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2703,14 +2682,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference GRAPHIC_PROCESS__RENDER_PASS_INFO = eINSTANCE.getGraphicProcess_RenderPassInfo();
-
-		/**
-		 * The meta object literal for the '<em><b>Graphic Offset</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GRAPHIC_PROCESS__GRAPHIC_OFFSET = eINSTANCE.getGraphicProcess_GraphicOffset();
 
 		/**
 		 * The meta object literal for the '<em><b>Field Of View Y</b></em>' attribute feature.

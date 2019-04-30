@@ -16,6 +16,7 @@ import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.descriptor.VkDescriptorSet;
 import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
 import org.sheepy.vulkan.resource.indexed.IndexedBufferWithUniform;
@@ -43,7 +44,8 @@ public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 
 		if (indexBuffer instanceof IndexedBufferWithUniform)
 		{
-			final var uniformBuffer = ((IndexedBufferWithUniform<?>) indexBuffer).getUniformBuffer();
+			final var uniformBuffer = ((IndexedBufferWithUniform<?>) indexBuffer)
+					.getUniformBuffer();
 			cameraComputer = new CameraMatrixComputer(application, uniformBuffer);
 
 			final var indexedBufferWithUniform = (IndexedBufferWithUniform<?>) indexBuffer;
@@ -107,32 +109,38 @@ public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 	}
 
 	@Override
-	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
+	public void record(	ECommandStage stage,
+						VkCommandBuffer vkCommandBuffer,
+						int bindPoint,
+						int index)
 	{
-		if (first == true)
+		if (stage == pipeline.getStage())
 		{
-			meshBuilder.fillBuffer();
-			first = false;
+			if (first == true)
+			{
+				meshBuilder.fillBuffer();
+				first = false;
+			}
+
+			final var indexBufferId = indexBuffer.getIndexBufferAddress();
+
+			final long[] vertexBuffers = new long[] {
+					indexBuffer.getVertexBufferAddress()
+			};
+			final long[] offsets = {
+					0
+			};
+
+			vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
+
+			bindDescriptor(vkCommandBuffer, bindPoint, new Integer[] {
+					0, 1
+			});
+
+			vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
+			vkCmdBindIndexBuffer(vkCommandBuffer, indexBufferId, 0, VK_INDEX_TYPE_UINT32);
+			vkCmdDrawIndexed(vkCommandBuffer, indexBuffer.getIndicesCount(), 1, 0, 0, 0);
 		}
-
-		final var indexBufferId = indexBuffer.getIndexBufferAddress();
-
-		final long[] vertexBuffers = new long[] {
-				indexBuffer.getVertexBufferAddress()
-		};
-		final long[] offsets = {
-				0
-		};
-
-		vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
-
-		bindDescriptor(vkCommandBuffer, bindPoint, new Integer[] {
-				0, 1
-		});
-
-		vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
-		vkCmdBindIndexBuffer(vkCommandBuffer, indexBufferId, 0, VK_INDEX_TYPE_UINT32);
-		vkCmdDrawIndexed(vkCommandBuffer, indexBuffer.getIndicesCount(), 1, 0, 0, 0);
 	}
 
 	@Override

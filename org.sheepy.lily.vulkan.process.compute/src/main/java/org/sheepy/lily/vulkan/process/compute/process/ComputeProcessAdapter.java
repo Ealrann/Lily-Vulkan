@@ -16,7 +16,8 @@ import org.sheepy.vulkan.queue.VulkanQueue;
 @Adapter(scope = ComputeProcess.class)
 public class ComputeProcessAdapter extends AbstractProcessAdapter
 {
-	private static final List<ECommandStage> stages = List.of(ECommandStage.COMPUTE);
+	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
+			ECommandStage.COMPUTE);
 
 	public ComputeProcessAdapter(ComputeProcess process)
 	{

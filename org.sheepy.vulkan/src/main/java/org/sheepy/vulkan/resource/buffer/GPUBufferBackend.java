@@ -6,7 +6,6 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.device.LogicalDevice;
@@ -135,11 +134,11 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public long mapMemory(VkDevice vkDevice)
+	public long mapMemory()
 	{
 		if (cpuBackend != null)
 		{
-			return cpuBackend.mapMemory(vkDevice);
+			return cpuBackend.mapMemory();
 		}
 		else
 		{
@@ -149,11 +148,11 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void unmapMemory(VkDevice vkDevice)
+	public void unmapMemory()
 	{
 		if (cpuBackend != null)
 		{
-			cpuBackend.unmapMemory(vkDevice);
+			cpuBackend.unmapMemory();
 		}
 		else
 		{

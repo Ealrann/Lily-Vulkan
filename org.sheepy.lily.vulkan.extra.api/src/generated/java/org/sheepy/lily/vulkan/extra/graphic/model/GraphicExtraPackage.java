@@ -24,7 +24,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
  * <!-- end-user-doc -->
  * @see org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel cleanup='true' codeFormatting='true' modelDirectory='/org.sheepy.lily.vulkan.extra.model/src/generated/java' editDirectory='/org.sheepy.lily.vulkan.extra.model.edit/src/generated/java' publicConstructors='true' complianceLevel='11.0' resource='XMI' extensibleProviderFactory='true' childCreationExtenders='true' modelName='GraphicExtra' prefix='GraphicExtra' basePackage='org.sheepy.lily.vulkan.extra.graphic'"
  * @generated
  */
 public interface GraphicExtraPackage extends EPackage

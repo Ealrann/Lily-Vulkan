@@ -4,96 +4,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.vulkan.extra.api.terrain.data.IMeshIndexDataProvider;
 import org.sheepy.lily.vulkan.extra.api.terrain.data.IMeshUniformDataProvider;
 import org.sheepy.lily.vulkan.extra.api.terrain.data.IMeshVertexDataProvider;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.descriptor.VkDescriptorSet;
-import org.sheepy.vulkan.resource.indexed.IIndexedBufferDescriptor;
-import org.sheepy.vulkan.resource.indexed.IVertex;
-import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
-import org.sheepy.vulkan.resource.indexed.IndexedBufferWithUniform;
+import org.sheepy.vulkan.resource.buffer.BufferComposite;
+import org.sheepy.vulkan.resource.buffer.IBufferDataProvider;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
 
 public class MeshObject implements IAllocable, IMeshObject
 {
 	private final IMeshVertexDataProvider vertexDataProvider;
-	private final IMeshVertexDataProvider indexDataProvider;
-	private final List<IMeshUniformDataProvider> uniformDataProviders;
+	private final IMeshIndexDataProvider indexDataProvider;
 
-	private final IndexedBufferWithUniform<? extends IVertex> buffer;
-	private final VkDescriptorSet descriptorSet;
+	private final BufferComposite buffer;
 
+	private boolean hasChanged = true;
 	private int instanceCount;
 
 	public MeshObject(	IMeshVertexDataProvider vertexDataProvider,
-						IMeshVertexDataProvider indexDataProvider,
+						IMeshIndexDataProvider indexDataProvider,
 						List<IMeshUniformDataProvider> uniformDataProviders,
-						int instanceCount,
-						IIndexedBufferDescriptor<? extends IVertex> descriptor)
+						int instanceCount)
 	{
 		this.instanceCount = instanceCount;
 		this.vertexDataProvider = vertexDataProvider;
 		this.indexDataProvider = indexDataProvider;
-		this.uniformDataProviders = uniformDataProviders;
 
-		final var vertexCapacity = vertexDataProvider.getCapacity();
-		final var indexCapacity = indexDataProvider.getCapacity();
+		final List<IBufferDataProvider> dataProviders = new ArrayList<>();
+		dataProviders.add(vertexDataProvider);
+		dataProviders.add(indexDataProvider);
+		dataProviders.addAll(uniformDataProviders);
 
-		int uniformCapacity = 0;
-		for (final var uniformDataProvider : uniformDataProviders)
-		{
-			uniformCapacity += uniformDataProvider.getCapacity();
-		}
-
-		buffer = new IndexedBufferWithUniform<>(descriptor, vertexCapacity, indexCapacity,
-				uniformCapacity);
-		final var uniformBuffer = buffer.getUniformBuffer();
-
-		int position = 0;
-		final List<IVkDescriptor> descriptors = new ArrayList<>();
-		for (final IMeshUniformDataProvider uniformDataProvider : uniformDataProviders)
-		{
-			descriptors.add(uniformDataProvider.createDescriptor(uniformBuffer, position));
-			position += uniformDataProvider.getCapacity();
-		}
-
-		descriptorSet = new VkDescriptorSet(descriptors);
+		buffer = new BufferComposite(dataProviders);
 	}
 
 	@Override
-	public boolean update(IMeshStagingBuffer stagingBuffer)
+	public void update(IStagingBuffer stagingBuffer)
 	{
-		boolean changed = false;
-		if (hasChanged())
-		{
-			fillBuffer(stagingBuffer);
-
-			changed = true;
-		}
-
-		return changed;
+		buffer.update(stagingBuffer);
+		hasChanged = buffer.hasChanged();
 	}
 
-	private boolean hasChanged()
+	@Override
+	public boolean hasChanged()
 	{
-		boolean res = false;
-
-		res |= vertexDataProvider.hasChanged();
-		res |= indexDataProvider.hasChanged();
-		for (final var uniformDataProvider : uniformDataProviders)
-		{
-			res |= uniformDataProvider.hasChanged();
-		}
-
-		return res;
-	}
-
-	private void fillBuffer(IMeshStagingBuffer stagingBuffer)
-	{
-		stagingBuffer.fillBufferWith(buffer, vertexDataProvider, indexDataProvider,
-				uniformDataProviders);
+		return hasChanged;
 	}
 
 	@Override
@@ -117,13 +75,7 @@ public class MeshObject implements IAllocable, IMeshObject
 	@Override
 	public IVkDescriptorSet getDescriptorSet()
 	{
-		return descriptorSet;
-	}
-
-	@Override
-	public IndexedBuffer<?> getIIndexedBuffer()
-	{
-		return buffer;
+		return buffer.getDescriptorSet();
 	}
 
 	@Override
@@ -136,5 +88,35 @@ public class MeshObject implements IAllocable, IMeshObject
 	public int getInstanceCount()
 	{
 		return instanceCount;
+	}
+
+	@Override
+	public long getIndexBufferAddress()
+	{
+		return buffer.getBufferAddress();
+	}
+
+	@Override
+	public long getIndexBufferOffset()
+	{
+		return buffer.getOffset(indexDataProvider);
+	}
+
+	@Override
+	public int getIndicesCount()
+	{
+		return indexDataProvider.getDataCount();
+	}
+
+	@Override
+	public long getVertexBufferAddress()
+	{
+		return buffer.getBufferAddress();
+	}
+
+	@Override
+	public long getVertexBufferOffset()
+	{
+		return buffer.getOffset(vertexDataProvider);
 	}
 }

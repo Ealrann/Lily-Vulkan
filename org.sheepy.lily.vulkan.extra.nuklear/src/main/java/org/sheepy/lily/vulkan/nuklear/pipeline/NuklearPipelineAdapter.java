@@ -47,6 +47,7 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.factory.ViewportStateFactory;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.enumeration.ECullMode;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
@@ -242,22 +243,28 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
+	public void record(	ECommandStage stage,
+						VkCommandBuffer vkCommandBuffer,
+						int bindPoint,
+						int index)
 	{
-		vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
-
-		resources.getVertexBuffer().bind(vkCommandBuffer);
-
-		setViewport(vkCommandBuffer);
-		pushConstants(vkCommandBuffer);
-
-		drawer.prepare(bindPoint, graphicContext.getSurfaceManager().getExtent());
-		for (final DrawCommandData data : recorder.getDrawCommands())
+		if (stage == pipeline.getStage())
 		{
-			drawer.draw(vkCommandBuffer, data);
-		}
+			vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
 
-		dirty = false;
+			resources.getVertexBuffer().bind(vkCommandBuffer);
+
+			setViewport(vkCommandBuffer);
+			pushConstants(vkCommandBuffer);
+
+			drawer.prepare(bindPoint, graphicContext.getSurfaceManager().getExtent());
+			for (final DrawCommandData data : recorder.getDrawCommands())
+			{
+				drawer.draw(vkCommandBuffer, data);
+			}
+
+			dirty = false;
+		}
 	}
 
 	private void setViewport(VkCommandBuffer commandBuffer)

@@ -752,6 +752,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eBorderColorEEnum, EBorderColor.INT_OPAQUE_WHITE);
 
 		initEEnum(eCommandStageEEnum, ECommandStage.class, "ECommandStage");
+		addEEnumLiteral(eCommandStageEEnum, ECommandStage.TRANSFER);
 		addEEnumLiteral(eCommandStageEEnum, ECommandStage.COMPUTE);
 		addEEnumLiteral(eCommandStageEEnum, ECommandStage.PRE_RENDER);
 		addEEnumLiteral(eCommandStageEEnum, ECommandStage.RENDER);

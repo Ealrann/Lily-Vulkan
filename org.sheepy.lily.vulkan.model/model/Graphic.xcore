@@ -8,7 +8,6 @@ package org.sheepy.lily.vulkan.model.process.graphic
 
 import org.sheepy.lily.core.model.types.Color4f
 import org.sheepy.lily.core.model.types.LNamedElement
-import org.sheepy.lily.core.model.types.Vector3d
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline
 import org.sheepy.lily.vulkan.model.process.AbstractProcess
 import org.sheepy.lily.vulkan.model.process.Configuration
@@ -128,7 +127,7 @@ class GraphicProcess extends AbstractProcess
 {
 	contains GraphicConfiguration[1..1] configuration
 	contains RenderPassInfo[1..1] renderPassInfo
-	Vector3d graphicOffset = "0;0;0"
+//	Vector3d graphicOffset = "0;0;0"
 	@GenModel(propertyDescription="Field of View in degree ]0 ; 360[")
 	float fieldOfViewY = "45"
 }

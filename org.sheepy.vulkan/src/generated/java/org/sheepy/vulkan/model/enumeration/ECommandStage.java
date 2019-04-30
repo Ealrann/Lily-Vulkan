@@ -20,14 +20,23 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum ECommandStage implements Enumerator
 {
 	/**
-	 * The '<em><b>Compute</b></em>' literal object.
+	 * The '<em><b>Transfer</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #COMPUTE_VALUE
+	 * @see #TRANSFER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	COMPUTE(0, "Compute", "Compute"),
+	TRANSFER(0, "Transfer", "Transfer"),
+	/**
+	* The '<em><b>Compute</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #COMPUTE_VALUE
+	* @generated
+	* @ordered
+	*/
+	COMPUTE(1, "Compute", "Compute"),
 
 	/**
 	 * The '<em><b>Pre Render</b></em>' literal object.
@@ -37,7 +46,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	PRE_RENDER(1, "PreRender", "PreRender"),
+	PRE_RENDER(2, "PreRender", "PreRender"),
 
 	/**
 	 * The '<em><b>Render</b></em>' literal object.
@@ -47,7 +56,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	RENDER(2, "Render", "Render"),
+	RENDER(3, "Render", "Render"),
 
 	/**
 	 * The '<em><b>Post Render</b></em>' literal object.
@@ -57,7 +66,18 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	POST_RENDER(3, "PostRender", "PostRender");
+	POST_RENDER(4, "PostRender", "PostRender");
+
+	/**
+	 * The '<em><b>Transfer</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TRANSFER
+	 * @model name="Transfer"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TRANSFER_VALUE = 0;
 
 	/**
 	 * The '<em><b>Compute</b></em>' literal value.
@@ -68,7 +88,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPUTE_VALUE = 0;
+	public static final int COMPUTE_VALUE = 1;
 
 	/**
 	 * The '<em><b>Pre Render</b></em>' literal value.
@@ -79,7 +99,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRE_RENDER_VALUE = 1;
+	public static final int PRE_RENDER_VALUE = 2;
 
 	/**
 	 * The '<em><b>Render</b></em>' literal value.
@@ -90,7 +110,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RENDER_VALUE = 2;
+	public static final int RENDER_VALUE = 3;
 
 	/**
 	 * The '<em><b>Post Render</b></em>' literal value.
@@ -101,7 +121,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POST_RENDER_VALUE = 3;
+	public static final int POST_RENDER_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>ECommand Stage</b></em>' enumerators.
@@ -110,7 +130,7 @@ public enum ECommandStage implements Enumerator
 	 * @generated
 	 */
 	private static final ECommandStage[] VALUES_ARRAY = new ECommandStage[] {
-			COMPUTE, PRE_RENDER, RENDER, POST_RENDER,
+			TRANSFER, COMPUTE, PRE_RENDER, RENDER, POST_RENDER,
 	};
 
 	/**
@@ -176,6 +196,8 @@ public enum ECommandStage implements Enumerator
 	{
 		switch (value)
 		{
+		case TRANSFER_VALUE:
+			return TRANSFER;
 		case COMPUTE_VALUE:
 			return COMPUTE;
 		case PRE_RENDER_VALUE:

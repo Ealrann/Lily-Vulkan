@@ -39,7 +39,6 @@ public interface AbstractProcess extends IProcess
 	 * @see #setWaitingFenceDuringAcquire(boolean)
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_WaitingFenceDuringAcquire()
 	 * @model default="false" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring'"
 	 * @generated
 	 */
 	boolean isWaitingFenceDuringAcquire();
@@ -127,7 +126,7 @@ public interface AbstractProcess extends IProcess
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Signals</em>' reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_Signals()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Semaphores'"
+	 * @model
 	 * @generated
 	 */
 	EList<Semaphore> getSignals();
@@ -139,7 +138,7 @@ public interface AbstractProcess extends IProcess
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wait For</em>' reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_WaitFor()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Semaphores'"
+	 * @model
 	 * @generated
 	 */
 	EList<Semaphore> getWaitFor();

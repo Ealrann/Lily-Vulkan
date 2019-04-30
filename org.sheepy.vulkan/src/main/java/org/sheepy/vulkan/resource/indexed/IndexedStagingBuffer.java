@@ -5,7 +5,6 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.ExecutionContext;
@@ -76,15 +75,15 @@ public class IndexedStagingBuffer implements IAllocable
 		return false;
 	}
 
-	public void mapMemory(VkDevice device)
+	public void mapMemory()
 	{
-		vertexMemoryMap = stagingBuffer.mapMemory(device);
+		vertexMemoryMap = stagingBuffer.mapMemory();
 		indexMemoryMap = vertexMemoryMap + vertexBufferSize;
 	}
 
-	public void unmapMemory(VkDevice device)
+	public void unmapMemory()
 	{
-		stagingBuffer.unmapMemory(device);
+		stagingBuffer.unmapMemory();
 	}
 
 	public long getVertexMemoryMap()

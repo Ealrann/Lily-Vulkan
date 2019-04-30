@@ -17,10 +17,11 @@ import org.sheepy.vulkan.util.VkModelUtil;
 public class VkDescriptor implements IVkDescriptor
 {
 	private final IBufferBackend buffer;
-	private final long offset;
 	private final long capacity;
 	private final int descriptorType;
 	private final int shaderStages;
+
+	private final long offset;
 
 	public VkDescriptor(IBufferBackend buffer,
 						long capacity,

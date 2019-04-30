@@ -162,7 +162,6 @@ public interface Buffer extends DescriptorResource
 	 * @see #setInstanceCount(int)
 	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBuffer_InstanceCount()
 	 * @model default="1" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='Every push in this buffer will write on the next instance, and update the descriptor acordingly'"
 	 * @generated
 	 */
 	int getInstanceCount();

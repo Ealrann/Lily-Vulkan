@@ -53,7 +53,7 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder
 
 				if (recordOk)
 				{
-					adapter.record(vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, index);
+					adapter.record(stage, vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, index);
 					adapter.setRecordNeeded(false);
 				}
 			}

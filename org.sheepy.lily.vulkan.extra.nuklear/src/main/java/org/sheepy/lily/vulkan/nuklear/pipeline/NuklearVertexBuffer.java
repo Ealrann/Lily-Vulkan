@@ -13,8 +13,6 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.device.IVulkanContext;
-import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
 import org.sheepy.vulkan.resource.indexed.IndexedStagingBuffer;
 
@@ -50,9 +48,6 @@ public class NuklearVertexBuffer implements IAllocable
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		final var vulkanContext = (IExecutionContext) context;
-		final var vkDevice = vulkanContext.getVkDevice();
-
 		nkNullTexture.texture().ptr(nullTexture.getSamplerAddress());
 		nkNullTexture.uv().set(0.5f, 0.5f);
 
@@ -66,7 +61,7 @@ public class NuklearVertexBuffer implements IAllocable
 		indexBuffer.allocate(stack, context);
 		stagingIndexBuffer.allocate(stack, context);
 
-		stagingIndexBuffer.mapMemory(vkDevice);
+		stagingIndexBuffer.mapMemory();
 
 		config.null_texture(nkNullTexture);
 		config.vertex_layout(VERTEX_LAYOUT);
@@ -83,10 +78,7 @@ public class NuklearVertexBuffer implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
-		final var vulkanContext = (IVulkanContext) context;
-		final var vkDevice = vulkanContext.getVkDevice();
-
-		stagingIndexBuffer.unmapMemory(vkDevice);
+		stagingIndexBuffer.unmapMemory();
 
 		stagingIndexBuffer.free(context);
 		stagingIndexBuffer = null;
@@ -102,8 +94,8 @@ public class NuklearVertexBuffer implements IAllocable
 
 	public void update(NkContext ctx, NkBuffer cmds)
 	{
-		var vertexMemoryMap = stagingIndexBuffer.getVertexMemoryMap();
-		var indexMemoryMap = stagingIndexBuffer.getIndexMemoryMap();
+		final var vertexMemoryMap = stagingIndexBuffer.getVertexMemoryMap();
+		final var indexMemoryMap = stagingIndexBuffer.getIndexMemoryMap();
 
 		nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, VERTEX_BUFFER_SIZE);
 		nnk_buffer_init_fixed(ebuf.address(), indexMemoryMap, INDEX_BUFFER_SIZE);

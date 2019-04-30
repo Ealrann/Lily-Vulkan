@@ -14,18 +14,20 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.model.enumeration.ECommandStage;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
+import org.sheepy.vulkan.resource.buffer.StagingBuffer;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 
 @Statefull
 @Adapter(scope = MeshRenderer.class)
 public class MeshRendererAdapter extends GraphicsPipelineAdapter
 {
-	private static final long SIZE_1M = (long) Math.pow(2, 20);
-	private static final long SIZE_256K = (long) Math.pow(2, 18);
+	private static final long SIZE_5M = (long) Math.pow(2, 20);
 
 	private IMeshProviderAdapter meshProviderAdapter;
 	private List<Integer[]> descriptorIndexes;
-	private final MeshStagingBuffer stagingBuffer;
+	private final IStagingBuffer stagingBuffer;
 
 	public MeshRendererAdapter(MeshRenderer pipeline)
 	{
@@ -33,8 +35,10 @@ public class MeshRendererAdapter extends GraphicsPipelineAdapter
 
 		final var meshProvider = pipeline.getMeshProvider();
 		final var process = (GraphicProcess) pipeline.eContainer().eContainer();
+		final var swapchainConfiguration = process.getConfiguration().getSwapchainConfiguration();
+		final int imageCount = swapchainConfiguration.getRequiredSwapImageCount();
 
-		stagingBuffer = new MeshStagingBuffer(process, SIZE_1M, SIZE_256K, SIZE_1M);
+		stagingBuffer = new StagingBuffer(SIZE_5M, imageCount);
 
 		if (meshProvider != null)
 		{
@@ -50,12 +54,32 @@ public class MeshRendererAdapter extends GraphicsPipelineAdapter
 		for (int i = 0; i < meshes.size(); i++)
 		{
 			final var mesh = meshes.get(i);
-			recordNeeded |= mesh.update(stagingBuffer);
+			mesh.update(stagingBuffer);
+			recordNeeded |= mesh.hasChanged();
+			recordNeeded |= !stagingBuffer.isEmpty();
 		}
 	}
 
 	@Override
-	public void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index)
+	public void record(	ECommandStage stage,
+						VkCommandBuffer vkCommandBuffer,
+						int bindPoint,
+						int index)
+	{
+		switch (stage)
+		{
+		case TRANSFER:
+			stagingBuffer.flush(vkCommandBuffer);
+			break;
+		case RENDER:
+			recordRender(vkCommandBuffer, bindPoint);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void recordRender(VkCommandBuffer vkCommandBuffer, int bindPoint)
 	{
 		vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
 		pushConstants(vkCommandBuffer);
@@ -67,17 +91,28 @@ public class MeshRendererAdapter extends GraphicsPipelineAdapter
 		for (int i = 0; i < meshes.size(); i++)
 		{
 			final var mesh = meshes.get(i);
-			final var indexedBuffer = mesh.getIIndexedBuffer();
-			final long indexAddress = indexedBuffer.getIndexBufferAddress();
-			final int indexCount = indexedBuffer.getIndicesCount();
-			vertexBuffers[0] = indexedBuffer.getVertexBufferAddress();
-			offsets[0] = 0;
+			final long indexAddress = mesh.getIndexBufferAddress();
+			final int indexCount = mesh.getIndicesCount();
+			final long indexOffset = mesh.getIndexBufferOffset();
+			vertexBuffers[0] = mesh.getVertexBufferAddress();
+			offsets[0] = mesh.getVertexBufferOffset();
 
 			bindDescriptor(vkCommandBuffer, bindPoint, descriptorIndexes.get(i));
+
 			vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
-			vkCmdBindIndexBuffer(vkCommandBuffer, indexAddress, 0, VK_INDEX_TYPE_UINT32);
+			vkCmdBindIndexBuffer(vkCommandBuffer, indexAddress, indexOffset, VK_INDEX_TYPE_UINT32);
 			vkCmdDrawIndexed(vkCommandBuffer, indexCount, mesh.getInstanceCount(), 0, 0, 0);
 		}
+	}
+
+	@Override
+	public boolean shouldRecord(ECommandStage stage)
+	{
+		boolean res = super.shouldRecord(stage);
+
+		res |= (stage == ECommandStage.TRANSFER && !stagingBuffer.isEmpty());
+
+		return res;
 	}
 
 	@Override
