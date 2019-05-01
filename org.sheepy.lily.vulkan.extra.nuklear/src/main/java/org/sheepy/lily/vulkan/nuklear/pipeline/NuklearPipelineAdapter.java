@@ -137,16 +137,13 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 
 		// Prepare a first render for the opening of the screen
 		layout(Collections.emptyList());
+		dirty = true;
 	}
 
 	@Override
 	public void free(IAllocationContext context)
 	{
 		super.free(context);
-
-		// Release all Vulkan resources required for rendering imGui
-
-		recorder = null;
 
 		resources.free();
 
@@ -156,6 +153,7 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		nk_free(nkContext);
 		nk_buffer_free(cmds);
 
+		recorder = null;
 		nkContext = null;
 		cmds = null;
 	}
@@ -218,23 +216,29 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	@Override
 	public void update()
 	{
-		if (nk_item_is_any_active(nkContext))
-		{
-			dirty = true;
-		}
+		// if (nk_item_is_any_active(nkContext))
+		// {
+		// dirty = true;
+		// }
 
-		if (dirty == false)
-		{
-			recorder.clear();
-		}
-
-		if (dirty == true)
+		if (dirty)
 		{
 			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
 			resources.getVertexBuffer().update(stagingBuffer, nkContext, cmds);
-			System.out.println("update");
 			recorder.prepare(cmds);
+
+			// Print vertex buffer
+			//
+			// final var backend = ((StagingBuffer) stagingBuffer).bufferBackend;
+			// NuklearVertexDescriptor.dumpVertex(backend.getMemoryMap(),
+			// NuklearVertexBuffer.VERTEX_BUFFER_SIZE);
+			//
+			// NuklearVertexDescriptor.dumpIndex(
+			// backend.getMemoryMap() + NuklearVertexBuffer.VERTEX_BUFFER_SIZE - 24,
+			// f NuklearVertexBuffer.INDEX_BUFFER_SIZE);
 		}
+
+		recorder.clear();
 	}
 
 	@Override
@@ -263,7 +267,6 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		}
 
 		dirty = false;
-		System.out.println("record" + index);
 	}
 
 	@Override

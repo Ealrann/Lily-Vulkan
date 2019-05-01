@@ -35,7 +35,7 @@ public class PanelAdapter implements IUIElementAdapter
 	private final ByteBuffer textBuffer;
 
 	private NkRect rect = NkRect.create();
-
+	private boolean wasMinimized = true;
 	private Window window = null;
 	private int style;
 
@@ -110,6 +110,12 @@ public class PanelAdapter implements IUIElementAdapter
 
 			if (nk_begin(nkContext, panel.getName(), nk_rect(x, y, width, height, rect), style))
 			{
+				if (wasMinimized)
+				{
+					res = true;
+					wasMinimized = false;
+				}
+
 				if (nk_window_is_collapsed(nkContext, textBuffer)
 						&& (style & NK_WINDOW_MINIMIZED) != 0)
 				{
@@ -122,6 +128,12 @@ public class PanelAdapter implements IUIElementAdapter
 					res |= adapter.layout(context, child);
 				}
 			}
+			else if (wasMinimized == false)
+			{
+				res = true;
+				wasMinimized = true;
+			}
+
 			nk_end(nkContext);
 		}
 

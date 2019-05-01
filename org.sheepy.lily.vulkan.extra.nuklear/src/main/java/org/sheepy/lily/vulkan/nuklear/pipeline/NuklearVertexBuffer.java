@@ -20,10 +20,12 @@ import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
 
 public class NuklearVertexBuffer implements IAllocable
 {
+	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
+
 	public static final NuklearVertexDescriptor VERTEX_DESCRIPTOR = new NuklearVertexDescriptor();
 
-	private static final int VERTEX_BUFFER_SIZE = 512 * 1024;
-	private static final int INDEX_BUFFER_SIZE = 128 * 1024;
+	public static final int VERTEX_BUFFER_SIZE = 512 * 1024;
+	public static final int INDEX_BUFFER_SIZE = 128 * 1024;
 
 	private static final NkDrawVertexLayoutElement.Buffer VERTEX_LAYOUT;
 	static
@@ -64,9 +66,9 @@ public class NuklearVertexBuffer implements IAllocable
 		config.vertex_layout(VERTEX_LAYOUT);
 		config.vertex_size(NuklearVertexDescriptor.SIZE_OF);
 		config.vertex_alignment(4);
-		config.circle_segment_count(22);
-		config.curve_segment_count(22);
-		config.arc_segment_count(22);
+		config.circle_segment_count(20);
+		config.curve_segment_count(20);
+		config.arc_segment_count(20);
 		config.global_alpha(1.0f);
 		config.shape_AA(NK_ANTI_ALIASING_ON);
 		config.line_AA(NK_ANTI_ALIASING_ON);
@@ -103,7 +105,11 @@ public class NuklearVertexBuffer implements IAllocable
 				EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
 
 		// load draw vertices & elements directly into vertex + element buffer
-		nk_convert(ctx, cmds, vbuf, ebuf, config);
+		final int result = nk_convert(ctx, cmds, vbuf, ebuf, config);
+		if (result != 0)
+		{
+			System.err.println(NK_CONVERT_FAILED + result);
+		}
 	}
 
 	public void bind(VkCommandBuffer commandBuffer)

@@ -12,10 +12,10 @@ import org.lwjgl.nuklear.NkDrawCommand;
 public class DrawRecorder
 {
 	private final NkContext nkContext;
-
-	private int previousDrawedIndexes = 0;
 	private final boolean debug;
 	private final List<DrawCommandData> datas = new ArrayList<>();
+
+	private int previousDrawedIndexes = 0;
 
 	public DrawRecorder(NkContext nkContext, boolean debug)
 	{
@@ -31,7 +31,7 @@ public class DrawRecorder
 		for (NkDrawCommand cmd = nk__draw_begin(nkContext, cmds); cmd != null; cmd = nk__draw_next(
 				cmd, cmds, nkContext))
 		{
-			int elemCount = cmd.elem_count();
+			final int elemCount = cmd.elem_count();
 			if (elemCount <= 0)
 			{
 				continue;
@@ -48,8 +48,6 @@ public class DrawRecorder
 			System.out.println("Nuklear Index count:" + drawedIndexes);
 			previousDrawedIndexes = drawedIndexes;
 		}
-
-		clear();
 	}
 
 	public void clear()
