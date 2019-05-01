@@ -68,6 +68,7 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 
 	private final NuklearPipeline nkPipeline;
 	private final NuklearResources resources;
+	private final boolean[] stagingFlushHistory = new boolean[3];
 
 	private final NkAllocator ALLOCATOR;
 	private final NuklearInputCatcher inputCatcher = new NuklearInputCatcher();
@@ -215,20 +216,12 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	}
 
 	@Override
-	public boolean isRecordNeeded()
-	{
-		return dirty;
-	}
-
-	@Override
 	public void update()
 	{
 		if (nk_item_is_any_active(nkContext))
 		{
 			dirty = true;
 		}
-
-		dirty |= super.isRecordNeeded();
 
 		if (dirty == false)
 		{
@@ -238,8 +231,23 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 		if (dirty == true)
 		{
 			resources.getVertexBuffer().update(nkContext, cmds);
+			System.out.println("update");
 			recorder.prepare(cmds);
 		}
+	}
+
+	@Override
+	public boolean isRecordNeeded(int index)
+	{
+		boolean superNeedRecord = super.isRecordNeeded(index);
+		boolean previousRecordMadeFlush = stagingFlushHistory[index];
+		
+		if(previousRecordMadeFlush)
+		{
+			stagingFlushHistory[index] = false;
+		}
+		
+		return dirty || previousRecordMadeFlush || superNeedRecord;
 	}
 
 	@Override
@@ -248,7 +256,13 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 						int bindPoint,
 						int index)
 	{
-		if (stage == pipeline.getStage())
+		if (stage == ECommandStage.TRANSFER)
+		{
+			resources.getVertexBuffer().flush(vkCommandBuffer);
+			stagingFlushHistory[index] = true;
+			System.out.println("flush" + index);
+		}
+		else if (stage == pipeline.getStage())
 		{
 			vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
 
@@ -264,7 +278,17 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 			}
 
 			dirty = false;
+			System.out.println("record" + index);
 		}
+	}
+
+	@Override
+	public boolean shouldRecord(ECommandStage stage)
+	{
+		boolean res = super.shouldRecord(stage);
+		res |= (stage == ECommandStage.TRANSFER && dirty == true);
+
+		return res;
 	}
 
 	private void setViewport(VkCommandBuffer commandBuffer)

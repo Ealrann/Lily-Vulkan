@@ -13,8 +13,10 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearVertexDescriptor.GuiVertex;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.resource.buffer.StagingBuffer;
 import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
-import org.sheepy.vulkan.resource.indexed.IndexedStagingBuffer;
 
 public class NuklearVertexBuffer implements IAllocable
 {
@@ -38,8 +40,8 @@ public class NuklearVertexBuffer implements IAllocable
 	private final NkDrawNullTexture nkNullTexture = NkDrawNullTexture.create();
 	private final NkConvertConfig config = NkConvertConfig.create();
 
-	private IndexedBuffer<?> indexBuffer;
-	private IndexedStagingBuffer stagingIndexBuffer;
+	private IndexedBuffer<?> indexedBuffer;
+	private StagingBuffer stagingBuffer;
 
 	private NullTexture nullTexture = null;
 	private NkBuffer vbuf;
@@ -54,14 +56,12 @@ public class NuklearVertexBuffer implements IAllocable
 		vbuf = NkBuffer.calloc();
 		ebuf = NkBuffer.calloc();
 
-		indexBuffer = new IndexedBuffer<GuiVertex>(VERTEX_DESCRIPTOR, VERTEX_BUFFER_SIZE,
+		indexedBuffer = new IndexedBuffer<GuiVertex>(VERTEX_DESCRIPTOR, VERTEX_BUFFER_SIZE,
 				INDEX_BUFFER_SIZE);
-		stagingIndexBuffer = new IndexedStagingBuffer(indexBuffer, true);
+		stagingBuffer = new StagingBuffer(VERTEX_BUFFER_SIZE + INDEX_BUFFER_SIZE, 3);
 
-		indexBuffer.allocate(stack, context);
-		stagingIndexBuffer.allocate(stack, context);
-
-		stagingIndexBuffer.mapMemory();
+		indexedBuffer.allocate(stack, context);
+		stagingBuffer.allocate(stack, context);
 
 		config.null_texture(nkNullTexture);
 		config.vertex_layout(VERTEX_LAYOUT);
@@ -78,13 +78,11 @@ public class NuklearVertexBuffer implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
-		stagingIndexBuffer.unmapMemory();
+		stagingBuffer.free(context);
+		stagingBuffer = null;
 
-		stagingIndexBuffer.free(context);
-		stagingIndexBuffer = null;
-
-		indexBuffer.free(context);
-		indexBuffer = null;
+		indexedBuffer.free(context);
+		indexedBuffer = null;
 
 		vbuf.free();
 		ebuf.free();
@@ -94,30 +92,43 @@ public class NuklearVertexBuffer implements IAllocable
 
 	public void update(NkContext ctx, NkBuffer cmds)
 	{
-		final var vertexMemoryMap = stagingIndexBuffer.getVertexMemoryMap();
-		final var indexMemoryMap = stagingIndexBuffer.getIndexMemoryMap();
+		final var vertexBuffer = indexedBuffer.getVertexBufferAddress();
+		final var vertexOffset = indexedBuffer.getVertexMemoryOffset();
 
+		final var vertexMemoryMap = stagingBuffer.reserveMemory(VERTEX_BUFFER_SIZE);
 		nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, VERTEX_BUFFER_SIZE);
+		stagingBuffer.pushSynchronized(vertexMemoryMap, vertexBuffer, vertexOffset,
+				EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+
+		final var indexBuffer = indexedBuffer.getIndexBufferAddress();
+		final var indexOffset = indexedBuffer.getIndexMemoryOffset();
+
+		final var indexMemoryMap = stagingBuffer.reserveMemory(INDEX_BUFFER_SIZE);
 		nnk_buffer_init_fixed(ebuf.address(), indexMemoryMap, INDEX_BUFFER_SIZE);
+		stagingBuffer.pushSynchronized(indexMemoryMap, indexBuffer, indexOffset,
+				EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
 
 		// load draw vertices & elements directly into vertex + element buffer
 		nk_convert(ctx, cmds, vbuf, ebuf, config);
+	}
 
-		stagingIndexBuffer.pushData();
+	public void flush(VkCommandBuffer commandBuffer)
+	{
+		stagingBuffer.flush(commandBuffer);
 	}
 
 	public void bind(VkCommandBuffer commandBuffer)
 	{
 		// Bind vertex and index buffer
 		final long[] pBuffer = {
-				indexBuffer.getVertexBufferAddress()
+				indexedBuffer.getVertexBufferAddress()
 		};
 		final long[] offsets = {
 				0
 		};
 		vkCmdBindVertexBuffers(commandBuffer, 0, pBuffer, offsets);
 
-		vkCmdBindIndexBuffer(commandBuffer, indexBuffer.getIndexBufferAddress(), 0,
+		vkCmdBindIndexBuffer(commandBuffer, indexedBuffer.getIndexBufferAddress(), 0,
 				VK_INDEX_TYPE_UINT16);
 	}
 

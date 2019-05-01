@@ -28,6 +28,7 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 		@Override
 		public void onResize(Vector2i size)
 		{
+			fillBuffer();
 			needRecord = true;
 		}
 	};
@@ -43,6 +44,7 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 		graphicContext = (IGraphicContext) context;
 		buffer = MemoryUtil.memAlloc(SIZE);
 		graphicContext.getWindow().addListener(windowListener);
+		fillBuffer();
 	}
 
 	@Override
@@ -74,6 +76,12 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 	@Override
 	public ByteBuffer getData()
 	{
+		needRecord = false;
+		return buffer;
+	}
+
+	private void fillBuffer()
+	{
 		final Vector2i size = graphicContext.getWindow().getSize();
 		final int width = size.x;
 		final int height = size.y;
@@ -96,8 +104,5 @@ public class NuklearConstantsAdapter extends AbstractConstantsAdapter implements
 		buffer.putFloat(1.0f);
 
 		buffer.flip();
-
-		needRecord = false;
-		return buffer;
 	}
 }
