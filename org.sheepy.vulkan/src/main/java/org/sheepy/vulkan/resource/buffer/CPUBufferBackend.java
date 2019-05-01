@@ -168,7 +168,7 @@ public class CPUBufferBackend implements IBufferBackend
 	@Override
 	public long getOffset()
 	{
-		return 0;
+		return currentOffset;
 	}
 
 	public BufferInfo getInfos()

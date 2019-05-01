@@ -20,7 +20,7 @@ import org.sheepy.vulkan.resource.barrier.ReferenceBufferBarrierExecutor;
 
 public class StagingBuffer implements IAllocable, IStagingBuffer
 {
-	private final CPUBufferBackend bufferBackend;
+	public final CPUBufferBackend bufferBackend;
 
 	private final Map<Long, TransferCommand> commands = new HashMap<>();
 	private final Deque<TransferCommand> synchronizedCommands = new ArrayDeque<>();
@@ -68,7 +68,9 @@ public class StagingBuffer implements IAllocable, IStagingBuffer
 		}
 
 		final long memoryAddress = bufferBackend.getMemoryMap() + position;
-		final var command = new TransferCommand(bufferBackend.getAddress(), position, size);
+		final long bufferOffset = bufferBackend.getOffset() + position;
+
+		final var command = new TransferCommand(bufferBackend.getAddress(), bufferOffset, size);
 		commands.put(memoryAddress, command);
 		position += alignedSize;
 

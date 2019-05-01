@@ -180,7 +180,6 @@ public abstract class AbstractPipelineAdapter
 
 			stagingFlushHistory[index] = true;
 			stagingBuffer.flush(vkCommandBuffer);
-			System.out.println("flush" + index);
 		}
 		if (stage == pipelineStage)
 		{
