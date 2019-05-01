@@ -132,24 +132,6 @@ public interface ResourceFactory extends EFactory
 	ImageBarrier createImageBarrier();
 
 	/**
-	 * Returns a new object of class '<em>Reference Image Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reference Image Barrier</em>'.
-	 * @generated
-	 */
-	ReferenceImageBarrier createReferenceImageBarrier();
-
-	/**
-	 * Returns a new object of class '<em>Image Transition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Image Transition</em>'.
-	 * @generated
-	 */
-	ImageTransition createImageTransition();
-
-	/**
 	 * Returns a new object of class '<em>Shader</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

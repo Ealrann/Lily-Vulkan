@@ -15,7 +15,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
-Export-Package: org.sheepy.vulkan.model.enumeration,
+Export-Package: org.sheepy.vulkan.model.barrier,
+ org.sheepy.vulkan.model.barrier.impl,
+ org.sheepy.vulkan.model.barrier.util,
+ org.sheepy.vulkan.model.enumeration,
  org.sheepy.vulkan.model.enumeration.impl,
  org.sheepy.vulkan.model.enumeration.util,
  org.sheepy.vulkan.model.graphicpipeline,

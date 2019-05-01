@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.sheepy.lily.core.model.root.LObject;
-
-import org.sheepy.lily.vulkan.model.resource.Barrier;
+import org.sheepy.vulkan.model.barrier.Barrier;
 
 /**
  * <!-- begin-user-doc -->

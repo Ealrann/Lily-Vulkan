@@ -13,8 +13,8 @@ import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
-import org.sheepy.lily.vulkan.resource.barrier.IBarrierExecutor;
 import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.resource.barrier.IBarrierExecutor;
 
 @Statefull
 @Adapter(scope = PipelineBarrier.class)

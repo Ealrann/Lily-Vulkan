@@ -43,6 +43,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
@@ -242,6 +243,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 

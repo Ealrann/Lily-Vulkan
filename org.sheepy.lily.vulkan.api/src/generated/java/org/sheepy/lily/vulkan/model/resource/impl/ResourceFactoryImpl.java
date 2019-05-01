@@ -91,10 +91,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createBufferBarrier();
 		case ResourcePackage.IMAGE_BARRIER:
 			return createImageBarrier();
-		case ResourcePackage.REFERENCE_IMAGE_BARRIER:
-			return createReferenceImageBarrier();
-		case ResourcePackage.IMAGE_TRANSITION:
-			return createImageTransition();
 		case ResourcePackage.SHADER:
 			return createShader();
 		case ResourcePackage.FILE_RESOURCE:
@@ -291,30 +287,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		ImageBarrierImpl imageBarrier = new ImageBarrierImpl();
 		return imageBarrier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ReferenceImageBarrier createReferenceImageBarrier()
-	{
-		ReferenceImageBarrierImpl referenceImageBarrier = new ReferenceImageBarrierImpl();
-		return referenceImageBarrier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ImageTransition createImageTransition()
-	{
-		ImageTransitionImpl imageTransition = new ImageTransitionImpl();
-		return imageTransition;
 	}
 
 	/**

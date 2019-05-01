@@ -92,7 +92,7 @@ public abstract class AbstractProcessAdapter
 
 		prepareProcess();
 
-		final var recorder = acquireNextPlayer();
+		final var nextIndex = acquireNextPlayer();
 
 		if (DebugUtil.DEBUG_ENABLED)
 		{
@@ -100,12 +100,17 @@ public abstract class AbstractProcessAdapter
 					System.nanoTime() - startPrepareNs);
 		}
 
-		return recorder;
+		return nextIndex;
 	}
 
 	private Integer acquireNextPlayer()
 	{
 		final Integer next = prepareNextExecution();
+
+		if (next != null && next != -1)
+		{
+			prepareRecord(next);
+		}
 
 		if (process.isWaitingFenceDuringAcquire())
 		{
@@ -198,9 +203,18 @@ public abstract class AbstractProcessAdapter
 	{
 		final boolean allocationDirty = prepareAllocation();
 		final boolean descriptorsDirty = prepareDescriptors();
-		final boolean needRecord = isRecordNeeded();
 
-		if (needRecord || allocationDirty || descriptorsDirty)
+		if (allocationDirty || descriptorsDirty)
+		{
+			invalidateRecords();
+		}
+	}
+
+	private void prepareRecord(int index)
+	{
+		final boolean needRecord = isRecordNeeded(index);
+
+		if (needRecord)
 		{
 			invalidateRecords();
 		}
@@ -247,7 +261,7 @@ public abstract class AbstractProcessAdapter
 		return dirty;
 	}
 
-	private boolean isRecordNeeded()
+	private boolean isRecordNeeded(int index)
 	{
 		boolean res = false;
 
@@ -255,7 +269,7 @@ public abstract class AbstractProcessAdapter
 		{
 			final var pipelineAdapter = pipelineAdapters.get(i);
 			pipelineAdapter.update();
-			res |= pipelineAdapter.isRecordNeeded();
+			res |= pipelineAdapter.isRecordNeeded(index);
 		}
 
 		return res;

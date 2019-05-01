@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.provider;
+package org.sheepy.vulkan.model.barrier.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,12 +12,14 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
+import org.sheepy.vulkan.model.barrier.ReferenceImageBarrier;
+
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier} object.
+ * This is the item provider adapter for a {@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -69,7 +71,7 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ReferenceImageBarrier_imageId_feature",
 						"_UI_ReferenceImageBarrier_type"),
-				ResourcePackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_ID, true, false, false,
+				BarrierPackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_ID, true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -87,7 +89,7 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ReferenceImageBarrier_mipLevels_feature",
 						"_UI_ReferenceImageBarrier_type"),
-				ResourcePackage.Literals.REFERENCE_IMAGE_BARRIER__MIP_LEVELS, true, false, false,
+				BarrierPackage.Literals.REFERENCE_IMAGE_BARRIER__MIP_LEVELS, true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -105,7 +107,7 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ReferenceImageBarrier_imageFormat_feature",
 						"_UI_ReferenceImageBarrier_type"),
-				ResourcePackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT, true, false, false,
+				BarrierPackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT, true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -152,9 +154,9 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 
 		switch (notification.getFeatureID(ReferenceImageBarrier.class))
 		{
-		case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
-		case ResourcePackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
-		case ResourcePackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
+		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
+		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
+		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

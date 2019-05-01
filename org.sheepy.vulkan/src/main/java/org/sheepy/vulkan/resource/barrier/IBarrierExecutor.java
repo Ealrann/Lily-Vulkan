@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.barrier;
+package org.sheepy.vulkan.resource.barrier;
 
 import org.lwjgl.vulkan.VkCommandBuffer;
 

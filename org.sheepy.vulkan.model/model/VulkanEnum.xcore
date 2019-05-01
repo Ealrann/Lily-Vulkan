@@ -203,6 +203,7 @@ enum EBlendOp
 
 enum EAccess
 {
+	UNDEFINED                          = 0
 	INDIRECT_COMMAND_READ_BIT          = 1
 	INDEX_READ_BIT                     = 2
 	VERTEX_ATTRIBUTE_READ_BIT          = 4

@@ -29,8 +29,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
-import org.sheepy.lily.vulkan.model.resource.Barrier;
+import org.sheepy.vulkan.model.barrier.Barrier;
 
 /**
  * <!-- begin-user-doc -->

@@ -24,6 +24,7 @@ import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
 
 import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
 
+import org.sheepy.vulkan.model.barrier.provider.BarrierEditPlugin;
 import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
 
 import org.sheepy.vulkan.model.graphicpipeline.provider.GraphicpipelineEditPlugin;
@@ -69,6 +70,7 @@ public final class GraphicExtraEditPlugin extends EMFPlugin
 				ResourceEditPlugin.INSTANCE,
 				EnumerationEditPlugin.INSTANCE,
 				GraphicEditPlugin.INSTANCE,
+				BarrierEditPlugin.INSTANCE,
 				ActionEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
 				GraphicpipelineEditPlugin.INSTANCE,

@@ -8,7 +8,7 @@ public interface IRecordable
 	void record(ECommandStage stage, VkCommandBuffer commandBuffer, int bindPoint, int index);
 
 	boolean shouldRecord(ECommandStage stage);
-	boolean isRecordNeeded();
+	boolean isRecordNeeded(int index);
 
 	void setRecordNeeded(boolean value);
 }

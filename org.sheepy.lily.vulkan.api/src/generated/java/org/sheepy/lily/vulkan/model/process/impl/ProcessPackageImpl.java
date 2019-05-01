@@ -33,6 +33,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 /**
@@ -158,6 +159,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		ResourcePackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
@@ -562,6 +564,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				.getEPackage(ResourcePackage.eNS_URI);
 		RootPackage theRootPackage = (RootPackage) EPackage.Registry.INSTANCE
 				.getEPackage(RootPackage.eNS_URI);
+		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
+				.getEPackage(BarrierPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
 				.getEPackage(TypesPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
@@ -621,7 +625,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPipelineBarrier_Barrier(), theResourcePackage.getBarrier(), null,
+		initEReference(getPipelineBarrier_Barrier(), theBarrierPackage.getBarrier(), null,
 				"barrier", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);

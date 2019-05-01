@@ -18,10 +18,8 @@ import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
-import org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
-import org.sheepy.lily.vulkan.model.resource.Barrier;
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
@@ -34,12 +32,10 @@ import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
-import org.sheepy.lily.vulkan.model.resource.ImageTransition;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.DescriptorResource;
-import org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
@@ -47,6 +43,7 @@ import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.Texture;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 /**
@@ -174,13 +171,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass barrierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass bufferBarrierEClass = null;
 
 	/**
@@ -188,28 +178,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abstractImageBarrierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass imageBarrierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass referenceImageBarrierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass imageTransitionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -324,6 +293,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		TypesPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
@@ -987,39 +957,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getBarrier()
-	{
-		return barrierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBarrier_SrcStage()
-	{
-		return (EAttribute) barrierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBarrier_DstStage()
-	{
-		return (EAttribute) barrierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getBufferBarrier()
 	{
 		return bufferBarrierEClass;
@@ -1042,50 +979,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBufferBarrier_SrcAccess()
-	{
-		return (EAttribute) bufferBarrierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBufferBarrier_DstAccess()
-	{
-		return (EAttribute) bufferBarrierEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getAbstractImageBarrier()
-	{
-		return abstractImageBarrierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAbstractImageBarrier_Transitions()
-	{
-		return (EReference) abstractImageBarrierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getImageBarrier()
 	{
 		return imageBarrierEClass;
@@ -1100,105 +993,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EReference getImageBarrier_Image()
 	{
 		return (EReference) imageBarrierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getReferenceImageBarrier()
-	{
-		return referenceImageBarrierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getReferenceImageBarrier_ImageId()
-	{
-		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getReferenceImageBarrier_MipLevels()
-	{
-		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getReferenceImageBarrier_ImageFormat()
-	{
-		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getImageTransition()
-	{
-		return imageTransitionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImageTransition_SrcLayout()
-	{
-		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImageTransition_DstLayout()
-	{
-		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImageTransition_SrcAccessMask()
-	{
-		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getImageTransition_DstAccessMask()
-	{
-		return (EAttribute) imageTransitionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1449,31 +1243,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		descriptorSetPkgEClass = createEClass(DESCRIPTOR_SET_PKG);
 		createEReference(descriptorSetPkgEClass, DESCRIPTOR_SET_PKG__DESCRIPTOR_SETS);
 
-		barrierEClass = createEClass(BARRIER);
-		createEAttribute(barrierEClass, BARRIER__SRC_STAGE);
-		createEAttribute(barrierEClass, BARRIER__DST_STAGE);
-
 		bufferBarrierEClass = createEClass(BUFFER_BARRIER);
 		createEReference(bufferBarrierEClass, BUFFER_BARRIER__BUFFER);
-		createEAttribute(bufferBarrierEClass, BUFFER_BARRIER__SRC_ACCESS);
-		createEAttribute(bufferBarrierEClass, BUFFER_BARRIER__DST_ACCESS);
-
-		abstractImageBarrierEClass = createEClass(ABSTRACT_IMAGE_BARRIER);
-		createEReference(abstractImageBarrierEClass, ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
 
 		imageBarrierEClass = createEClass(IMAGE_BARRIER);
 		createEReference(imageBarrierEClass, IMAGE_BARRIER__IMAGE);
-
-		referenceImageBarrierEClass = createEClass(REFERENCE_IMAGE_BARRIER);
-		createEAttribute(referenceImageBarrierEClass, REFERENCE_IMAGE_BARRIER__IMAGE_ID);
-		createEAttribute(referenceImageBarrierEClass, REFERENCE_IMAGE_BARRIER__MIP_LEVELS);
-		createEAttribute(referenceImageBarrierEClass, REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT);
-
-		imageTransitionEClass = createEClass(IMAGE_TRANSITION);
-		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__SRC_LAYOUT);
-		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__DST_LAYOUT);
-		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__SRC_ACCESS_MASK);
-		createEAttribute(imageTransitionEClass, IMAGE_TRANSITION__DST_ACCESS_MASK);
 
 		shaderEClass = createEClass(SHADER);
 		createEReference(shaderEClass, SHADER__FILE);
@@ -1530,6 +1304,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				.getEPackage(EnumerationPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
 				.getEPackage(TypesPackage.eNS_URI);
+		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
+				.getEPackage(BarrierPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1550,10 +1326,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		abstractConstantsEClass.getESuperTypes().add(this.getBasicResource());
 		constantsEClass.getESuperTypes().add(this.getAbstractConstants());
 		descriptorSetEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		bufferBarrierEClass.getESuperTypes().add(this.getBarrier());
-		abstractImageBarrierEClass.getESuperTypes().add(this.getBarrier());
-		imageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
-		referenceImageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
+		bufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
+		imageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
 		shaderEClass.getESuperTypes().add(this.getBasicResource());
 		pathResourceEClass.getESuperTypes().add(this.getBasicResource());
 		fileResourceEClass.getESuperTypes().add(this.getPathResource());
@@ -1739,66 +1513,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBarrier_SrcStage(), theEnumerationPackage.getEPipelineStage(), "srcStage",
-				null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(), "dstStage",
-				null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(bufferBarrierEClass, BufferBarrier.class, "BufferBarrier", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBufferBarrier_Buffer(), this.getBuffer(), null, "buffer", null, 0, 1,
 				BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferBarrier_SrcAccess(), theEnumerationPackage.getEAccess(),
-				"srcAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBufferBarrier_DstAccess(), theEnumerationPackage.getEAccess(),
-				"dstAccess", null, 0, 1, BufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(abstractImageBarrierEClass, AbstractImageBarrier.class, "AbstractImageBarrier",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractImageBarrier_Transitions(), this.getImageTransition(), null,
-				"transitions", null, 0, -1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageBarrierEClass, ImageBarrier.class, "ImageBarrier", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImageBarrier_Image(), this.getImage(), null, "image", null, 0, 1,
 				ImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(referenceImageBarrierEClass, ReferenceImageBarrier.class,
-				"ReferenceImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReferenceImageBarrier_ImageId(), theEcorePackage.getELong(), "imageId",
-				null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getReferenceImageBarrier_MipLevels(), theEcorePackage.getEInt(), "mipLevels",
-				null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getReferenceImageBarrier_ImageFormat(), theEcorePackage.getEInt(),
-				"imageFormat", null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(imageTransitionEClass, ImageTransition.class, "ImageTransition", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImageTransition_SrcLayout(), theEnumerationPackage.getEImageLayout(),
-				"srcLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_DstLayout(), theEnumerationPackage.getEImageLayout(),
-				"dstLayout", null, 0, 1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_SrcAccessMask(), theEnumerationPackage.getEAccess(),
-				"srcAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getImageTransition_DstAccessMask(), theEnumerationPackage.getEAccess(),
-				"dstAccessMask", null, 0, -1, ImageTransition.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(shaderEClass, Shader.class, "Shader", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

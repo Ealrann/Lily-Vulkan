@@ -14,7 +14,9 @@ import org.sheepy.vulkan.descriptor.VkDescriptor;
 import org.sheepy.vulkan.descriptor.VkDescriptorSet;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.device.PhysicalDevice;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
+import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 public class BufferComposite implements IAllocable
 {
@@ -88,13 +90,35 @@ public class BufferComposite implements IAllocable
 				final long bufferAddress = bufferBackend.getAddress();
 				final long offset = providerWrapper.alignedOffset;
 
+				final EPipelineStage stage = EPipelineStage.VERTEX_INPUT_BIT;
+				final EAccess access = guessAccessFromUsage(dataProvider.getUsage());
+
 				dataProvider.fill(memAddress);
-				stagingBuffer.pushMemoryTo(memAddress, bufferAddress, offset);
+				stagingBuffer.pushSynchronized(memAddress, bufferAddress, offset, stage, access);
 
 				hasChanged = true;
 			}
 		}
 		needUpdate = false;
+	}
+
+	private static EAccess guessAccessFromUsage(int usage)
+	{
+		EAccess res = null;
+		switch (usage)
+		{
+		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
+			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
+			break;
+		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
+			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
+			break;
+		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
+			res = EAccess.UNIFORM_READ_BIT;
+			break;
+		}
+
+		return res;
 	}
 
 	public boolean hasChanged()

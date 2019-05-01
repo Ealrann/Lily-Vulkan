@@ -1,18 +1,23 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.impl;
+package org.sheepy.vulkan.model.barrier.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.sheepy.lily.vulkan.model.resource.ImageTransition;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
+import org.sheepy.vulkan.model.barrier.ImageTransition;
+
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
@@ -24,10 +29,10 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl#getSrcLayout <em>Src Layout</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl#getDstLayout <em>Dst Layout</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl#getSrcAccessMask <em>Src Access Mask</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl#getDstAccessMask <em>Dst Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ImageTransitionImpl#getSrcLayout <em>Src Layout</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ImageTransitionImpl#getDstLayout <em>Dst Layout</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ImageTransitionImpl#getSrcAccessMask <em>Src Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ImageTransitionImpl#getDstAccessMask <em>Dst Access Mask</em>}</li>
  * </ul>
  *
  * @generated
@@ -112,7 +117,7 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.IMAGE_TRANSITION;
+		return BarrierPackage.Literals.IMAGE_TRANSITION;
 	}
 
 	/**
@@ -137,7 +142,7 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 		EImageLayout oldSrcLayout = srcLayout;
 		srcLayout = newSrcLayout == null ? SRC_LAYOUT_EDEFAULT : newSrcLayout;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT, oldSrcLayout, srcLayout));
+				BarrierPackage.IMAGE_TRANSITION__SRC_LAYOUT, oldSrcLayout, srcLayout));
 	}
 
 	/**
@@ -162,7 +167,7 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 		EImageLayout oldDstLayout = dstLayout;
 		dstLayout = newDstLayout == null ? DST_LAYOUT_EDEFAULT : newDstLayout;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT, oldDstLayout, dstLayout));
+				BarrierPackage.IMAGE_TRANSITION__DST_LAYOUT, oldDstLayout, dstLayout));
 	}
 
 	/**
@@ -176,7 +181,7 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 		if (srcAccessMask == null)
 		{
 			srcAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
-					ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK);
+					BarrierPackage.IMAGE_TRANSITION__SRC_ACCESS_MASK);
 		}
 		return srcAccessMask;
 	}
@@ -192,7 +197,7 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 		if (dstAccessMask == null)
 		{
 			dstAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
-					ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK);
+					BarrierPackage.IMAGE_TRANSITION__DST_ACCESS_MASK);
 		}
 		return dstAccessMask;
 	}
@@ -207,13 +212,13 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_LAYOUT:
 			return getSrcLayout();
-		case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__DST_LAYOUT:
 			return getDstLayout();
-		case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
 			return getSrcAccessMask();
-		case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
 			return getDstAccessMask();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -230,17 +235,17 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_LAYOUT:
 			setSrcLayout((EImageLayout) newValue);
 			return;
-		case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__DST_LAYOUT:
 			setDstLayout((EImageLayout) newValue);
 			return;
-		case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
 			getSrcAccessMask().clear();
 			getSrcAccessMask().addAll((Collection<? extends EAccess>) newValue);
 			return;
-		case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
 			getDstAccessMask().clear();
 			getDstAccessMask().addAll((Collection<? extends EAccess>) newValue);
 			return;
@@ -258,16 +263,16 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_LAYOUT:
 			setSrcLayout(SRC_LAYOUT_EDEFAULT);
 			return;
-		case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__DST_LAYOUT:
 			setDstLayout(DST_LAYOUT_EDEFAULT);
 			return;
-		case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
 			getSrcAccessMask().clear();
 			return;
-		case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
 			getDstAccessMask().clear();
 			return;
 		}
@@ -284,13 +289,13 @@ public class ImageTransitionImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_LAYOUT:
 			return srcLayout != SRC_LAYOUT_EDEFAULT;
-		case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__DST_LAYOUT:
 			return dstLayout != DST_LAYOUT_EDEFAULT;
-		case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
 			return srcAccessMask != null && !srcAccessMask.isEmpty();
-		case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
 			return dstAccessMask != null && !dstAccessMask.isEmpty();
 		}
 		return super.eIsSet(featureID);

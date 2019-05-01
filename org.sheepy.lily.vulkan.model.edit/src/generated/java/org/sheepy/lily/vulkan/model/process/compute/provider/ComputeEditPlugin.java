@@ -15,6 +15,7 @@ import org.sheepy.lily.vulkan.model.process.provider.ProcessEditPlugin;
 import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
 
 import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
+import org.sheepy.vulkan.model.barrier.provider.BarrierEditPlugin;
 import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
 
 /**
@@ -56,6 +57,7 @@ public final class ComputeEditPlugin extends EMFPlugin
 				RootEditPlugin.INSTANCE,
 				InferenceEditPlugin.INSTANCE,
 				ResourceEditPlugin.INSTANCE,
+				BarrierEditPlugin.INSTANCE,
 				EnumerationEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
 				ActionEditPlugin.INSTANCE,

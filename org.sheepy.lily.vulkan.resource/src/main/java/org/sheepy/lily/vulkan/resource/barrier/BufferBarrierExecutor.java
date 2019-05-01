@@ -7,6 +7,7 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.resource.barrier.IBarrierExecutor;
 
 public class BufferBarrierExecutor implements IBarrierExecutor
 {

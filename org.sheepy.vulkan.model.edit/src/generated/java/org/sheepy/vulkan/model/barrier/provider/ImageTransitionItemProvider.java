@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.provider;
+package org.sheepy.vulkan.model.barrier.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,12 +21,14 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.resource.ImageTransition;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
+import org.sheepy.vulkan.model.barrier.ImageTransition;
+
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageTransition} object.
+ * This is the item provider adapter for a {@link org.sheepy.vulkan.model.barrier.ImageTransition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -80,7 +82,7 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 				getResourceLocator(), getString("_UI_ImageTransition_srcLayout_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ImageTransition_srcLayout_feature", "_UI_ImageTransition_type"),
-				ResourcePackage.Literals.IMAGE_TRANSITION__SRC_LAYOUT, true, false, false,
+				BarrierPackage.Literals.IMAGE_TRANSITION__SRC_LAYOUT, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -97,7 +99,7 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 				getResourceLocator(), getString("_UI_ImageTransition_dstLayout_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ImageTransition_dstLayout_feature", "_UI_ImageTransition_type"),
-				ResourcePackage.Literals.IMAGE_TRANSITION__DST_LAYOUT, true, false, false,
+				BarrierPackage.Literals.IMAGE_TRANSITION__DST_LAYOUT, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -114,7 +116,7 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 				getResourceLocator(), getString("_UI_ImageTransition_srcAccessMask_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ImageTransition_srcAccessMask_feature", "_UI_ImageTransition_type"),
-				ResourcePackage.Literals.IMAGE_TRANSITION__SRC_ACCESS_MASK, true, false, false,
+				BarrierPackage.Literals.IMAGE_TRANSITION__SRC_ACCESS_MASK, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -131,7 +133,7 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 				getResourceLocator(), getString("_UI_ImageTransition_dstAccessMask_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ImageTransition_dstAccessMask_feature", "_UI_ImageTransition_type"),
-				ResourcePackage.Literals.IMAGE_TRANSITION__DST_ACCESS_MASK, true, false, false,
+				BarrierPackage.Literals.IMAGE_TRANSITION__DST_ACCESS_MASK, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -177,10 +179,10 @@ public class ImageTransitionItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(ImageTransition.class))
 		{
-		case ResourcePackage.IMAGE_TRANSITION__SRC_LAYOUT:
-		case ResourcePackage.IMAGE_TRANSITION__DST_LAYOUT:
-		case ResourcePackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
-		case ResourcePackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__DST_LAYOUT:
+		case BarrierPackage.IMAGE_TRANSITION__SRC_ACCESS_MASK:
+		case BarrierPackage.IMAGE_TRANSITION__DST_ACCESS_MASK:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

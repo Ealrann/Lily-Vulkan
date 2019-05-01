@@ -28,14 +28,15 @@ public enum ECommandStage implements Enumerator
 	 * @ordered
 	 */
 	TRANSFER(0, "Transfer", "Transfer"),
+
 	/**
-	* The '<em><b>Compute</b></em>' literal object.
-	* <!-- begin-user-doc -->
-	* <!-- end-user-doc -->
-	* @see #COMPUTE_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * The '<em><b>Compute</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #COMPUTE_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	COMPUTE(1, "Compute", "Compute"),
 
 	/**

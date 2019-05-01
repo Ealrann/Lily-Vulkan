@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.provider;
+package org.sheepy.vulkan.model.barrier.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,13 +12,15 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
+import org.sheepy.vulkan.model.barrier.BarrierFactory;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
+
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier} object.
+ * This is the item provider adapter for a {@link org.sheepy.vulkan.model.barrier.AbstractImageBarrier} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -67,7 +69,7 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ResourcePackage.Literals.ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
+			childrenFeatures.add(BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
 		}
 		return childrenFeatures;
 	}
@@ -116,7 +118,7 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 
 		switch (notification.getFeatureID(AbstractImageBarrier.class))
 		{
-		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -137,8 +139,8 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(
-				createChildParameter(ResourcePackage.Literals.ABSTRACT_IMAGE_BARRIER__TRANSITIONS,
-						ResourceFactory.eINSTANCE.createImageTransition()));
+				createChildParameter(BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__TRANSITIONS,
+						BarrierFactory.eINSTANCE.createImageTransition()));
 	}
 
 }

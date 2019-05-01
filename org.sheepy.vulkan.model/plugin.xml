@@ -35,4 +35,18 @@
             type="graphicpipeline"
             class="org.sheepy.vulkan.model.graphicpipeline.util.GraphicpipelineResourceFactoryImpl"/>
    </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Barrier -->
+      <package
+            uri="org.sheepy.vulkan.model.barrier"
+            class="org.sheepy.vulkan.model.barrier.BarrierPackage"
+            genModel="model/Barrier.xcore"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Barrier -->
+      <parser
+            type="barrier"
+            class="org.sheepy.vulkan.model.barrier.util.BarrierResourceFactoryImpl"/>
+   </extension>
 </plugin>

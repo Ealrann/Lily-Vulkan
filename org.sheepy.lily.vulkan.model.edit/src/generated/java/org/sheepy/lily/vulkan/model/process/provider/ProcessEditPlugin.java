@@ -12,6 +12,7 @@ import org.sheepy.lily.core.model.root.provider.RootEditPlugin;
 import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
 import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
+import org.sheepy.vulkan.model.barrier.provider.BarrierEditPlugin;
 import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
 
 /**
@@ -52,6 +53,7 @@ public final class ProcessEditPlugin extends EMFPlugin
 				ResourceEditPlugin.INSTANCE,
 				RootEditPlugin.INSTANCE,
 				InferenceEditPlugin.INSTANCE,
+				BarrierEditPlugin.INSTANCE,
 				EnumerationEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
 				ActionEditPlugin.INSTANCE,

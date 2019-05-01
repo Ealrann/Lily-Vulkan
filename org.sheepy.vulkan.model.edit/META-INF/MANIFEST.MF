@@ -8,7 +8,8 @@ Bundle-ClassPath: .
 Bundle-Activator: org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.sheepy.vulkan.model.enumeration.provider,
+Export-Package: org.sheepy.vulkan.model.barrier.provider,
+ org.sheepy.vulkan.model.enumeration.provider,
  org.sheepy.vulkan.model.graphicpipeline.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.sheepy.vulkan.model;visibility:=reexport,

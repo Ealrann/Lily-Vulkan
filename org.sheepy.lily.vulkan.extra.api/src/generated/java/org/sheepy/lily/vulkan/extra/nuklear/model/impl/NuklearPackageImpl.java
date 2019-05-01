@@ -31,6 +31,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
@@ -117,6 +118,7 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects

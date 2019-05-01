@@ -136,7 +136,7 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter
 	}
 
 	@Override
-	public boolean isRecordNeeded()
+	public boolean isRecordNeeded(int index)
 	{
 		return false;
 	}

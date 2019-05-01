@@ -22,6 +22,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
 import org.sheepy.vulkan.model.enumeration.EShaderStage
+import org.sheepy.vulkan.model.barrier.AbstractImageBarrier
+import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier
 
 interface BasicResource extends IResource
 {
@@ -135,42 +137,14 @@ class DescriptorSetPkg
 	contains DescriptorSet[] descriptorSets
 }
 
-abstract class Barrier
-{
-	EPipelineStage srcStage
-	EPipelineStage dstStage
-}
-
-class BufferBarrier extends Barrier
+class BufferBarrier extends AbstractBufferBarrier
 {
 	refers Buffer buffer
-	EAccess srcAccess
-	EAccess dstAccess
-}
-
-abstract class AbstractImageBarrier extends Barrier
-{
-	contains ImageTransition[] transitions
 }
 
 class ImageBarrier extends AbstractImageBarrier
 {
 	refers Image image
-}
-
-class ReferenceImageBarrier extends AbstractImageBarrier
-{
-	long imageId
-	int mipLevels
-	int imageFormat
-}
-
-class ImageTransition
-{
-	EImageLayout srcLayout
-	EImageLayout dstLayout
-	unique EAccess[] srcAccessMask
-	unique EAccess[] dstAccessMask
 }
 
 // ---------------------

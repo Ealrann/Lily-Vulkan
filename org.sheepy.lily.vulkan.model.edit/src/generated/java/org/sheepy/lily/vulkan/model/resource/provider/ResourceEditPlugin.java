@@ -11,6 +11,7 @@ import org.sheepy.lily.core.model.inference.provider.InferenceEditPlugin;
 import org.sheepy.lily.core.model.root.provider.RootEditPlugin;
 import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
 import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
+import org.sheepy.vulkan.model.barrier.provider.BarrierEditPlugin;
 import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
 
 /**
@@ -49,6 +50,7 @@ public final class ResourceEditPlugin extends EMFPlugin
 				VulkanEditPlugin.INSTANCE,
 				TypesEditPlugin.INSTANCE,
 				EnumerationEditPlugin.INSTANCE,
+				BarrierEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
 				RootEditPlugin.INSTANCE,
 				InferenceEditPlugin.INSTANCE,

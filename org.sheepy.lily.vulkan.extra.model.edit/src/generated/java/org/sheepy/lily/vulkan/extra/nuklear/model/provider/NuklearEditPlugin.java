@@ -24,6 +24,7 @@ import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
 
 import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
 
+import org.sheepy.vulkan.model.barrier.provider.BarrierEditPlugin;
 import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
 
 import org.sheepy.vulkan.model.graphicpipeline.provider.GraphicpipelineEditPlugin;
@@ -73,6 +74,7 @@ public final class NuklearEditPlugin extends EMFPlugin
 		     EnumerationEditPlugin.INSTANCE,
 		     GraphicpipelineEditPlugin.INSTANCE,
 		     ActionEditPlugin.INSTANCE,
+		     BarrierEditPlugin.INSTANCE,
 		     ApplicationEditPlugin.INSTANCE,
 		   });
 	}

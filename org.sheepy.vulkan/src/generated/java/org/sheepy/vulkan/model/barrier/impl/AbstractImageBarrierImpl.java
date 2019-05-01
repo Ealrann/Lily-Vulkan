@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.impl;
+package org.sheepy.vulkan.model.barrier.impl;
 
 import java.util.Collection;
 
@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.ImageTransition;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
+import org.sheepy.vulkan.model.barrier.ImageTransition;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl#getTransitions <em>Transitions</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.AbstractImageBarrierImpl#getTransitions <em>Transitions</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,7 +61,7 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.ABSTRACT_IMAGE_BARRIER;
+		return BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 		if (transitions == null)
 		{
 			transitions = new EObjectContainmentEList<ImageTransition>(ImageTransition.class, this,
-					ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
+					BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
 		}
 		return transitions;
 	}
@@ -92,7 +92,7 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 			return ((InternalEList<?>) getTransitions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -108,7 +108,7 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 			return getTransitions();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -125,7 +125,7 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 			getTransitions().clear();
 			getTransitions().addAll((Collection<? extends ImageTransition>) newValue);
 			return;
@@ -143,7 +143,7 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 			getTransitions().clear();
 			return;
 		}
@@ -160,7 +160,7 @@ public abstract class AbstractImageBarrierImpl extends BarrierImpl implements Ab
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
 			return transitions != null && !transitions.isEmpty();
 		}
 		return super.eIsSet(featureID);

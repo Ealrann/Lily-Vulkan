@@ -1,14 +1,17 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource.impl;
+package org.sheepy.vulkan.model.barrier.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.lily.vulkan.model.resource.Barrier;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
+import org.sheepy.vulkan.model.barrier.Barrier;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
+
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -19,8 +22,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl#getSrcStage <em>Src Stage</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl#getDstStage <em>Dst Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.BarrierImpl#getSrcStage <em>Src Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.BarrierImpl#getDstStage <em>Dst Stage</em>}</li>
  * </ul>
  *
  * @generated
@@ -85,7 +88,7 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ResourcePackage.Literals.BARRIER;
+		return BarrierPackage.Literals.BARRIER;
 	}
 
 	/**
@@ -110,7 +113,7 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 		EPipelineStage oldSrcStage = srcStage;
 		srcStage = newSrcStage == null ? SRC_STAGE_EDEFAULT : newSrcStage;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BARRIER__SRC_STAGE, oldSrcStage, srcStage));
+				BarrierPackage.BARRIER__SRC_STAGE, oldSrcStage, srcStage));
 	}
 
 	/**
@@ -135,7 +138,7 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 		EPipelineStage oldDstStage = dstStage;
 		dstStage = newDstStage == null ? DST_STAGE_EDEFAULT : newDstStage;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.BARRIER__DST_STAGE, oldDstStage, dstStage));
+				BarrierPackage.BARRIER__DST_STAGE, oldDstStage, dstStage));
 	}
 
 	/**
@@ -148,9 +151,9 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BARRIER__SRC_STAGE:
+		case BarrierPackage.BARRIER__SRC_STAGE:
 			return getSrcStage();
-		case ResourcePackage.BARRIER__DST_STAGE:
+		case BarrierPackage.BARRIER__DST_STAGE:
 			return getDstStage();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -166,10 +169,10 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BARRIER__SRC_STAGE:
+		case BarrierPackage.BARRIER__SRC_STAGE:
 			setSrcStage((EPipelineStage) newValue);
 			return;
-		case ResourcePackage.BARRIER__DST_STAGE:
+		case BarrierPackage.BARRIER__DST_STAGE:
 			setDstStage((EPipelineStage) newValue);
 			return;
 		}
@@ -186,10 +189,10 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BARRIER__SRC_STAGE:
+		case BarrierPackage.BARRIER__SRC_STAGE:
 			setSrcStage(SRC_STAGE_EDEFAULT);
 			return;
-		case ResourcePackage.BARRIER__DST_STAGE:
+		case BarrierPackage.BARRIER__DST_STAGE:
 			setDstStage(DST_STAGE_EDEFAULT);
 			return;
 		}
@@ -206,9 +209,9 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.BARRIER__SRC_STAGE:
+		case BarrierPackage.BARRIER__SRC_STAGE:
 			return srcStage != SRC_STAGE_EDEFAULT;
-		case ResourcePackage.BARRIER__DST_STAGE:
+		case BarrierPackage.BARRIER__DST_STAGE:
 			return dstStage != DST_STAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

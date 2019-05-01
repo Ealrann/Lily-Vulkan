@@ -2,6 +2,8 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Image Barrier</b></em>'.

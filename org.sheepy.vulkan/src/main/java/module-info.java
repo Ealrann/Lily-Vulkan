@@ -15,6 +15,9 @@ module org.sheepy.vulkan
 	requires org.lwjgl.glfw.natives;
 	requires org.lwjgl.stb.natives;
 
+	exports org.sheepy.vulkan.model.barrier;
+	exports org.sheepy.vulkan.model.barrier.impl;
+	exports org.sheepy.vulkan.model.barrier.util;
 	exports org.sheepy.vulkan.model.enumeration;
 	exports org.sheepy.vulkan.model.enumeration.impl;
 	exports org.sheepy.vulkan.model.enumeration.util;
@@ -35,6 +38,7 @@ module org.sheepy.vulkan
 	exports org.sheepy.vulkan.pipeline;
 	exports org.sheepy.vulkan.pipeline.builder;
 	exports org.sheepy.vulkan.queue;
+	exports org.sheepy.vulkan.resource.barrier;
 	exports org.sheepy.vulkan.resource.buffer;
 	exports org.sheepy.vulkan.resource.image;
 	exports org.sheepy.vulkan.resource.indexed;

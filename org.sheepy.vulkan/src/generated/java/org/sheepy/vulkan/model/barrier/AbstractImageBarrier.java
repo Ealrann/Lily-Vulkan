@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.resource;
+package org.sheepy.vulkan.model.barrier;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -13,10 +13,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier#getTransitions <em>Transitions</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.AbstractImageBarrier#getTransitions <em>Transitions</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getAbstractImageBarrier()
+ * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getAbstractImageBarrier()
  * @model abstract="true"
  * @generated
  */
@@ -24,15 +24,11 @@ public interface AbstractImageBarrier extends Barrier
 {
 	/**
 	 * Returns the value of the '<em><b>Transitions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.ImageTransition}.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.barrier.ImageTransition}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Transitions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transitions</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getAbstractImageBarrier_Transitions()
+	 * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getAbstractImageBarrier_Transitions()
 	 * @model containment="true"
 	 * @generated
 	 */

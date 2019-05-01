@@ -12,10 +12,10 @@ import org.sheepy.lily.vulkan.model.IProcess
 import org.sheepy.lily.vulkan.model.IResourceContainer
 import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants
-import org.sheepy.lily.vulkan.model.resource.Barrier
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet
 import org.sheepy.lily.vulkan.model.resource.Semaphore
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
+import org.sheepy.vulkan.model.barrier.Barrier
 
 abstract class AbstractProcess extends IProcess
 {

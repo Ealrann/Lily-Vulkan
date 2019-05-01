@@ -32,6 +32,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
@@ -133,6 +134,7 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 		EnumerationPackage.eINSTANCE.eClass();
 		GraphicPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();

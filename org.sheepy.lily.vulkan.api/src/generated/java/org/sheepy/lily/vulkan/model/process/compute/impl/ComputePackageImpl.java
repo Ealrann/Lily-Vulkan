@@ -30,6 +30,7 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
 
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 /**
@@ -121,6 +122,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		InferencePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();

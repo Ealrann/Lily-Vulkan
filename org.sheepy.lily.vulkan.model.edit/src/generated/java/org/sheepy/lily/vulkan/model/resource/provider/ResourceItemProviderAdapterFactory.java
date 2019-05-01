@@ -401,56 +401,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReferenceImageBarrierItemProvider referenceImageBarrierItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReferenceImageBarrierAdapter()
-	{
-		if (referenceImageBarrierItemProvider == null)
-		{
-			referenceImageBarrierItemProvider = new ReferenceImageBarrierItemProvider(this);
-		}
-
-		return referenceImageBarrierItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.ImageTransition} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ImageTransitionItemProvider imageTransitionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageTransition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createImageTransitionAdapter()
-	{
-		if (imageTransitionItemProvider == null)
-		{
-			imageTransitionItemProvider = new ImageTransitionItemProvider(this);
-		}
-
-		return imageTransitionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Shader} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -711,8 +661,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
 		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();
 		if (imageBarrierItemProvider != null) imageBarrierItemProvider.dispose();
-		if (referenceImageBarrierItemProvider != null) referenceImageBarrierItemProvider.dispose();
-		if (imageTransitionItemProvider != null) imageTransitionItemProvider.dispose();
 		if (shaderItemProvider != null) shaderItemProvider.dispose();
 		if (fileResourceItemProvider != null) fileResourceItemProvider.dispose();
 		if (moduleResourceItemProvider != null) moduleResourceItemProvider.dispose();

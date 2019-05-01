@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -536,16 +537,6 @@ public interface ResourcePackage extends EPackage
 	int DESCRIPTOR_SET = 14;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl <em>Barrier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
-	 * @generated
-	 */
-	int BARRIER = 16;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -553,17 +544,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 17;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
-	 * @generated
-	 */
-	int ABSTRACT_IMAGE_BARRIER = 18;
+	int BUFFER_BARRIER = 16;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
@@ -573,27 +554,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 19;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
-	 * @generated
-	 */
-	int REFERENCE_IMAGE_BARRIER = 20;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
-	 * @generated
-	 */
-	int IMAGE_TRANSITION = 21;
+	int IMAGE_BARRIER = 17;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
@@ -603,7 +564,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 22;
+	int SHADER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -1243,7 +1204,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BARRIER__SRC_STAGE = 0;
+	int BUFFER_BARRIER__SRC_STAGE = BarrierPackage.ABSTRACT_BUFFER_BARRIER__SRC_STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
@@ -1252,52 +1213,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BARRIER__DST_STAGE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BARRIER_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BARRIER_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__SRC_STAGE = BARRIER__SRC_STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__DST_STAGE = BARRIER__DST_STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Buffer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__BUFFER = BARRIER_FEATURE_COUNT + 0;
+	int BUFFER_BARRIER__DST_STAGE = BarrierPackage.ABSTRACT_BUFFER_BARRIER__DST_STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Src Access</b></em>' attribute.
@@ -1306,7 +1222,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_BARRIER__SRC_ACCESS = BARRIER_FEATURE_COUNT + 1;
+	int BUFFER_BARRIER__SRC_ACCESS = BarrierPackage.ABSTRACT_BUFFER_BARRIER__SRC_ACCESS;
 
 	/**
 	 * The feature id for the '<em><b>Dst Access</b></em>' attribute.
@@ -1315,7 +1231,16 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_BARRIER__DST_ACCESS = BARRIER_FEATURE_COUNT + 2;
+	int BUFFER_BARRIER__DST_ACCESS = BarrierPackage.ABSTRACT_BUFFER_BARRIER__DST_ACCESS;
+
+	/**
+	 * The feature id for the '<em><b>Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_BARRIER__BUFFER = BarrierPackage.ABSTRACT_BUFFER_BARRIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Buffer Barrier</em>' class.
@@ -1324,7 +1249,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_BARRIER_FEATURE_COUNT = BARRIER_FEATURE_COUNT + 3;
+	int BUFFER_BARRIER_FEATURE_COUNT = BarrierPackage.ABSTRACT_BUFFER_BARRIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Buffer Barrier</em>' class.
@@ -1333,7 +1258,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_BARRIER_OPERATION_COUNT = BARRIER_OPERATION_COUNT + 0;
+	int BUFFER_BARRIER_OPERATION_COUNT = BarrierPackage.ABSTRACT_BUFFER_BARRIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
@@ -1342,7 +1267,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_IMAGE_BARRIER__SRC_STAGE = BARRIER__SRC_STAGE;
+	int IMAGE_BARRIER__SRC_STAGE = BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
@@ -1351,7 +1276,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_IMAGE_BARRIER__DST_STAGE = BARRIER__DST_STAGE;
+	int IMAGE_BARRIER__DST_STAGE = BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_STAGE;
 
 	/**
 	 * The feature id for the '<em><b>Transitions</b></em>' containment reference list.
@@ -1360,52 +1285,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_IMAGE_BARRIER__TRANSITIONS = BARRIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT = BARRIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Abstract Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT = BARRIER_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_BARRIER__SRC_STAGE = ABSTRACT_IMAGE_BARRIER__SRC_STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_BARRIER__DST_STAGE = ABSTRACT_IMAGE_BARRIER__DST_STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Transitions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_BARRIER__TRANSITIONS = ABSTRACT_IMAGE_BARRIER__TRANSITIONS;
+	int IMAGE_BARRIER__TRANSITIONS = BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS;
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' reference.
@@ -1414,7 +1294,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BARRIER__IMAGE = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 0;
+	int IMAGE_BARRIER__IMAGE = BarrierPackage.ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Image Barrier</em>' class.
@@ -1423,7 +1303,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BARRIER_FEATURE_COUNT = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 1;
+	int IMAGE_BARRIER_FEATURE_COUNT = BarrierPackage.ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Image Barrier</em>' class.
@@ -1432,133 +1312,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BARRIER_OPERATION_COUNT = ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__SRC_STAGE = ABSTRACT_IMAGE_BARRIER__SRC_STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__DST_STAGE = ABSTRACT_IMAGE_BARRIER__DST_STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Transitions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__TRANSITIONS = ABSTRACT_IMAGE_BARRIER__TRANSITIONS;
-
-	/**
-	 * The feature id for the '<em><b>Image Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__IMAGE_ID = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__MIP_LEVELS = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Image Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Reference Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER_FEATURE_COUNT = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Reference Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER_OPERATION_COUNT = ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Src Layout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_TRANSITION__SRC_LAYOUT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Dst Layout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_TRANSITION__DST_LAYOUT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_TRANSITION__SRC_ACCESS_MASK = 2;
-
-	/**
-	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_TRANSITION__DST_ACCESS_MASK = 3;
-
-	/**
-	 * The number of structural features of the '<em>Image Transition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_TRANSITION_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>Image Transition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_TRANSITION_OPERATION_COUNT = 0;
+	int IMAGE_BARRIER_OPERATION_COUNT = BarrierPackage.ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1613,7 +1367,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 23;
+	int PATH_RESOURCE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1659,7 +1413,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 24;
+	int FILE_RESOURCE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1705,7 +1459,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
 	 * @generated
 	 */
-	int ABSTRACT_MODULE_RESOURCE = 25;
+	int ABSTRACT_MODULE_RESOURCE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1751,7 +1505,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 26;
+	int MODULE_RESOURCE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1806,7 +1560,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
 	 * @generated
 	 */
-	int STRING_MODULE_RESOURCE = 27;
+	int STRING_MODULE_RESOURCE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1861,7 +1615,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 28;
+	int BYTE_BUFFER = 24;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -1871,7 +1625,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 29;
+	int JAVA_MODULE = 25;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -2496,38 +2250,6 @@ public interface ResourcePackage extends EPackage
 	EReference getDescriptorSetPkg_DescriptorSets();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Barrier <em>Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Barrier</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Barrier
-	 * @generated
-	 */
-	EClass getBarrier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Barrier#getSrcStage <em>Src Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Barrier#getSrcStage()
-	 * @see #getBarrier()
-	 * @generated
-	 */
-	EAttribute getBarrier_SrcStage();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Barrier#getDstStage <em>Dst Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dst Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Barrier#getDstStage()
-	 * @see #getBarrier()
-	 * @generated
-	 */
-	EAttribute getBarrier_DstStage();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier <em>Buffer Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2549,49 +2271,6 @@ public interface ResourcePackage extends EPackage
 	EReference getBufferBarrier_Buffer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getSrcAccess <em>Src Access</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src Access</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.BufferBarrier#getSrcAccess()
-	 * @see #getBufferBarrier()
-	 * @generated
-	 */
-	EAttribute getBufferBarrier_SrcAccess();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferBarrier#getDstAccess <em>Dst Access</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dst Access</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.BufferBarrier#getDstAccess()
-	 * @see #getBufferBarrier()
-	 * @generated
-	 */
-	EAttribute getBufferBarrier_DstAccess();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier <em>Abstract Image Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Image Barrier</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier
-	 * @generated
-	 */
-	EClass getAbstractImageBarrier();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier#getTransitions <em>Transitions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Transitions</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier#getTransitions()
-	 * @see #getAbstractImageBarrier()
-	 * @generated
-	 */
-	EReference getAbstractImageBarrier_Transitions();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageBarrier <em>Image Barrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2611,103 +2290,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EReference getImageBarrier_Image();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier <em>Reference Image Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Reference Image Barrier</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier
-	 * @generated
-	 */
-	EClass getReferenceImageBarrier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageId <em>Image Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Image Id</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageId()
-	 * @see #getReferenceImageBarrier()
-	 * @generated
-	 */
-	EAttribute getReferenceImageBarrier_ImageId();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getMipLevels <em>Mip Levels</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mip Levels</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getMipLevels()
-	 * @see #getReferenceImageBarrier()
-	 * @generated
-	 */
-	EAttribute getReferenceImageBarrier_MipLevels();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageFormat <em>Image Format</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Image Format</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier#getImageFormat()
-	 * @see #getReferenceImageBarrier()
-	 * @generated
-	 */
-	EAttribute getReferenceImageBarrier_ImageFormat();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition <em>Image Transition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Image Transition</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition
-	 * @generated
-	 */
-	EClass getImageTransition();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition#getSrcLayout <em>Src Layout</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src Layout</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition#getSrcLayout()
-	 * @see #getImageTransition()
-	 * @generated
-	 */
-	EAttribute getImageTransition_SrcLayout();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition#getDstLayout <em>Dst Layout</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dst Layout</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition#getDstLayout()
-	 * @see #getImageTransition()
-	 * @generated
-	 */
-	EAttribute getImageTransition_DstLayout();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition#getSrcAccessMask <em>Src Access Mask</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Src Access Mask</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition#getSrcAccessMask()
-	 * @see #getImageTransition()
-	 * @generated
-	 */
-	EAttribute getImageTransition_SrcAccessMask();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.ImageTransition#getDstAccessMask <em>Dst Access Mask</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Dst Access Mask</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.ImageTransition#getDstAccessMask()
-	 * @see #getImageTransition()
-	 * @generated
-	 */
-	EAttribute getImageTransition_DstAccessMask();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Shader <em>Shader</em>}'.
@@ -3369,32 +2951,6 @@ public interface ResourcePackage extends EPackage
 				.getDescriptorSetPkg_DescriptorSets();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl <em>Barrier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.BarrierImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBarrier()
-		 * @generated
-		 */
-		EClass BARRIER = eINSTANCE.getBarrier();
-
-		/**
-		 * The meta object literal for the '<em><b>Src Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BARRIER__SRC_STAGE = eINSTANCE.getBarrier_SrcStage();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BARRIER__DST_STAGE = eINSTANCE.getBarrier_DstStage();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3413,41 +2969,6 @@ public interface ResourcePackage extends EPackage
 		EReference BUFFER_BARRIER__BUFFER = eINSTANCE.getBufferBarrier_Buffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Src Access</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER_BARRIER__SRC_ACCESS = eINSTANCE.getBufferBarrier_SrcAccess();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Access</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUFFER_BARRIER__DST_ACCESS = eINSTANCE.getBufferBarrier_DstAccess();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractImageBarrierImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractImageBarrier()
-		 * @generated
-		 */
-		EClass ABSTRACT_IMAGE_BARRIER = eINSTANCE.getAbstractImageBarrier();
-
-		/**
-		 * The meta object literal for the '<em><b>Transitions</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_IMAGE_BARRIER__TRANSITIONS = eINSTANCE
-				.getAbstractImageBarrier_Transitions();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3464,84 +2985,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference IMAGE_BARRIER__IMAGE = eINSTANCE.getImageBarrier_Image();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getReferenceImageBarrier()
-		 * @generated
-		 */
-		EClass REFERENCE_IMAGE_BARRIER = eINSTANCE.getReferenceImageBarrier();
-
-		/**
-		 * The meta object literal for the '<em><b>Image Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERENCE_IMAGE_BARRIER__IMAGE_ID = eINSTANCE.getReferenceImageBarrier_ImageId();
-
-		/**
-		 * The meta object literal for the '<em><b>Mip Levels</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERENCE_IMAGE_BARRIER__MIP_LEVELS = eINSTANCE
-				.getReferenceImageBarrier_MipLevels();
-
-		/**
-		 * The meta object literal for the '<em><b>Image Format</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT = eINSTANCE
-				.getReferenceImageBarrier_ImageFormat();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageTransition()
-		 * @generated
-		 */
-		EClass IMAGE_TRANSITION = eINSTANCE.getImageTransition();
-
-		/**
-		 * The meta object literal for the '<em><b>Src Layout</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_TRANSITION__SRC_LAYOUT = eINSTANCE.getImageTransition_SrcLayout();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Layout</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_TRANSITION__DST_LAYOUT = eINSTANCE.getImageTransition_DstLayout();
-
-		/**
-		 * The meta object literal for the '<em><b>Src Access Mask</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_TRANSITION__SRC_ACCESS_MASK = eINSTANCE.getImageTransition_SrcAccessMask();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Access Mask</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_TRANSITION__DST_ACCESS_MASK = eINSTANCE.getImageTransition_DstAccessMask();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.

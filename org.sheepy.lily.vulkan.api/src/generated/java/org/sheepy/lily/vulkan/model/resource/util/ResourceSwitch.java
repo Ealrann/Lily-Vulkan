@@ -10,6 +10,9 @@ import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IResource;
 
 import org.sheepy.lily.vulkan.model.resource.*;
+import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
+import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
+import org.sheepy.vulkan.model.barrier.Barrier;
 
 /**
  * <!-- begin-user-doc -->
@@ -230,26 +233,12 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case ResourcePackage.BARRIER:
-		{
-			Barrier barrier = (Barrier) theEObject;
-			T result = caseBarrier(barrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
 		case ResourcePackage.BUFFER_BARRIER:
 		{
 			BufferBarrier bufferBarrier = (BufferBarrier) theEObject;
 			T result = caseBufferBarrier(bufferBarrier);
+			if (result == null) result = caseAbstractBufferBarrier(bufferBarrier);
 			if (result == null) result = caseBarrier(bufferBarrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.ABSTRACT_IMAGE_BARRIER:
-		{
-			AbstractImageBarrier abstractImageBarrier = (AbstractImageBarrier) theEObject;
-			T result = caseAbstractImageBarrier(abstractImageBarrier);
-			if (result == null) result = caseBarrier(abstractImageBarrier);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -259,22 +248,6 @@ public class ResourceSwitch<T> extends Switch<T>
 			T result = caseImageBarrier(imageBarrier);
 			if (result == null) result = caseAbstractImageBarrier(imageBarrier);
 			if (result == null) result = caseBarrier(imageBarrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.REFERENCE_IMAGE_BARRIER:
-		{
-			ReferenceImageBarrier referenceImageBarrier = (ReferenceImageBarrier) theEObject;
-			T result = caseReferenceImageBarrier(referenceImageBarrier);
-			if (result == null) result = caseAbstractImageBarrier(referenceImageBarrier);
-			if (result == null) result = caseBarrier(referenceImageBarrier);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.IMAGE_TRANSITION:
-		{
-			ImageTransition imageTransition = (ImageTransition) theEObject;
-			T result = caseImageTransition(imageTransition);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -606,22 +579,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBarrier(Barrier object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Buffer Barrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -638,22 +595,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Image Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Image Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractImageBarrier(AbstractImageBarrier object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Image Barrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -665,38 +606,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseImageBarrier(ImageBarrier object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reference Image Barrier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reference Image Barrier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReferenceImageBarrier(ReferenceImageBarrier object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Image Transition</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Image Transition</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseImageTransition(ImageTransition object)
 	{
 		return null;
 	}
@@ -825,6 +734,54 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIResource(IResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Barrier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBarrier(Barrier object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Buffer Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Buffer Barrier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractBufferBarrier(AbstractBufferBarrier object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Image Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Image Barrier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractImageBarrier(AbstractImageBarrier object)
 	{
 		return null;
 	}

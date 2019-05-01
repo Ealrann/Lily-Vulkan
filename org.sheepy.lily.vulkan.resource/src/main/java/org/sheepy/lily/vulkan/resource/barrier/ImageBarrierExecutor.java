@@ -6,19 +6,20 @@ import java.util.List;
 
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
-import org.sheepy.lily.vulkan.model.resource.AbstractImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
-import org.sheepy.lily.vulkan.model.resource.ImageTransition;
-import org.sheepy.lily.vulkan.model.resource.ReferenceImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.ImageTransitionImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.ReferenceImageBarrierImpl;
 import org.sheepy.lily.vulkan.resource.barrier.proxy.IImageProxy;
 import org.sheepy.lily.vulkan.resource.image.ImageUtil;
+import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
+import org.sheepy.vulkan.model.barrier.ImageTransition;
+import org.sheepy.vulkan.model.barrier.ReferenceImageBarrier;
+import org.sheepy.vulkan.model.barrier.impl.ImageTransitionImpl;
+import org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.resource.barrier.IBarrierExecutor;
 
 public class ImageBarrierExecutor implements IBarrierExecutor
 {

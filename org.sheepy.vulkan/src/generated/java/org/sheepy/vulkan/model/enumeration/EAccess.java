@@ -20,6 +20,16 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum EAccess implements Enumerator
 {
 	/**
+	 * The '<em><b>UNDEFINED</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNDEFINED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	UNDEFINED(0, "UNDEFINED", "UNDEFINED"),
+
+	/**
 	 * The '<em><b>INDIRECT COMMAND READ BIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,6 +204,17 @@ public enum EAccess implements Enumerator
 	 * @ordered
 	 */
 	MEMORY_WRITE_BIT(65536, "MEMORY_WRITE_BIT", "MEMORY_WRITE_BIT");
+
+	/**
+	 * The '<em><b>UNDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNDEFINED_VALUE = 0;
 
 	/**
 	 * The '<em><b>INDIRECT COMMAND READ BIT</b></em>' literal value.
@@ -389,6 +410,7 @@ public enum EAccess implements Enumerator
 	 * @generated
 	 */
 	private static final EAccess[] VALUES_ARRAY = new EAccess[] {
+			UNDEFINED,
 			INDIRECT_COMMAND_READ_BIT,
 			INDEX_READ_BIT,
 			VERTEX_ATTRIBUTE_READ_BIT,
@@ -471,6 +493,8 @@ public enum EAccess implements Enumerator
 	{
 		switch (value)
 		{
+		case UNDEFINED_VALUE:
+			return UNDEFINED;
 		case INDIRECT_COMMAND_READ_BIT_VALUE:
 			return INDIRECT_COMMAND_READ_BIT;
 		case INDEX_READ_BIT_VALUE:

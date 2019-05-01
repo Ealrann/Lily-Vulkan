@@ -119,7 +119,7 @@ public abstract class AbstractPipelineAdapter
 	}
 
 	@Override
-	public boolean isRecordNeeded()
+	public boolean isRecordNeeded(int index)
 	{
 		boolean res = recordNeeded;
 

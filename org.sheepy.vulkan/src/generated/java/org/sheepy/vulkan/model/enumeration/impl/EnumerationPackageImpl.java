@@ -862,6 +862,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(eBlendOpEEnum, EBlendOp.MAX);
 
 		initEEnum(eAccessEEnum, EAccess.class, "EAccess");
+		addEEnumLiteral(eAccessEEnum, EAccess.UNDEFINED);
 		addEEnumLiteral(eAccessEEnum, EAccess.INDIRECT_COMMAND_READ_BIT);
 		addEEnumLiteral(eAccessEEnum, EAccess.INDEX_READ_BIT);
 		addEEnumLiteral(eAccessEEnum, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
