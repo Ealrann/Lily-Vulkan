@@ -89,9 +89,10 @@ public class BufferComposite implements IAllocable
 				final long memAddress = stagingBuffer.reserveMemory(dataProvider.getSize());
 				final long bufferAddress = bufferBackend.getAddress();
 				final long offset = providerWrapper.alignedOffset;
+				final int usage = dataProvider.getUsage();
 
-				final EPipelineStage stage = EPipelineStage.VERTEX_INPUT_BIT;
-				final EAccess access = guessAccessFromUsage(dataProvider.getUsage());
+				final EPipelineStage stage = guessStageFromUsage(usage);
+				final EAccess access = guessAccessFromUsage(usage);
 
 				dataProvider.fill(memAddress);
 				stagingBuffer.pushSynchronized(memAddress, bufferAddress, offset, stage, access);
@@ -100,6 +101,25 @@ public class BufferComposite implements IAllocable
 			}
 		}
 		needUpdate = false;
+	}
+
+	private static EPipelineStage guessStageFromUsage(int usage)
+	{
+		EPipelineStage res = null;
+		switch (usage)
+		{
+		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
+			res = EPipelineStage.VERTEX_INPUT_BIT;
+			break;
+		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
+			res = EPipelineStage.VERTEX_INPUT_BIT;
+			break;
+		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
+			res = EPipelineStage.VERTEX_SHADER_BIT;
+			break;
+		}
+
+		return res;
 	}
 
 	private static EAccess guessAccessFromUsage(int usage)

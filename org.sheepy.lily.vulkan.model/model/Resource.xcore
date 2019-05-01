@@ -33,6 +33,12 @@ interface DescriptorResource extends IDescriptor, IResource
 {
 }
 
+class PushBuffer extends IResource
+{
+	long size
+	int instanceCount = "3"
+}
+
 class Buffer extends DescriptorResource
 {
 	long size

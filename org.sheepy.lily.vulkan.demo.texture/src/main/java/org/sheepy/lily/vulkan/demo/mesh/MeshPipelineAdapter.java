@@ -109,38 +109,32 @@ public class MeshPipelineAdapter extends GraphicsPipelineAdapter
 	}
 
 	@Override
-	public void record(	ECommandStage stage,
-						VkCommandBuffer vkCommandBuffer,
-						int bindPoint,
-						int index)
+	protected void record(VkCommandBuffer commandBuffer, int bindPoint, int index)
 	{
-		if (stage == pipeline.getStage())
+		if (first == true)
 		{
-			if (first == true)
-			{
-				meshBuilder.fillBuffer();
-				first = false;
-			}
-
-			final var indexBufferId = indexBuffer.getIndexBufferAddress();
-
-			final long[] vertexBuffers = new long[] {
-					indexBuffer.getVertexBufferAddress()
-			};
-			final long[] offsets = {
-					0
-			};
-
-			vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
-
-			bindDescriptor(vkCommandBuffer, bindPoint, new Integer[] {
-					0, 1
-			});
-
-			vkCmdBindVertexBuffers(vkCommandBuffer, 0, vertexBuffers, offsets);
-			vkCmdBindIndexBuffer(vkCommandBuffer, indexBufferId, 0, VK_INDEX_TYPE_UINT32);
-			vkCmdDrawIndexed(vkCommandBuffer, indexBuffer.getIndicesCount(), 1, 0, 0, 0);
+			meshBuilder.fillBuffer();
+			first = false;
 		}
+
+		final var indexBufferId = indexBuffer.getIndexBufferAddress();
+
+		final long[] vertexBuffers = new long[] {
+				indexBuffer.getVertexBufferAddress()
+		};
+		final long[] offsets = {
+				0
+		};
+
+		vkCmdBindPipeline(commandBuffer, bindPoint, getPipelineId());
+
+		bindDescriptor(commandBuffer, bindPoint, new Integer[] {
+				0, 1
+		});
+
+		vkCmdBindVertexBuffers(commandBuffer, 0, vertexBuffers, offsets);
+		vkCmdBindIndexBuffer(commandBuffer, indexBufferId, 0, VK_INDEX_TYPE_UINT32);
+		vkCmdDrawIndexed(commandBuffer, indexBuffer.getIndicesCount(), 1, 0, 0, 0);
 	}
 
 	@Override

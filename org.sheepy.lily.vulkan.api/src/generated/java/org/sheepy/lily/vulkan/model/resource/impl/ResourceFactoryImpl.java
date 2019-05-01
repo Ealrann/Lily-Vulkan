@@ -67,6 +67,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eClass.getClassifierID())
 		{
+		case ResourcePackage.PUSH_BUFFER:
+			return createPushBuffer();
 		case ResourcePackage.BUFFER:
 			return createBuffer();
 		case ResourcePackage.IMAGE:
@@ -143,6 +145,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			throw new IllegalArgumentException(
 					"The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PushBuffer createPushBuffer()
+	{
+		PushBufferImpl pushBuffer = new PushBufferImpl();
+		return pushBuffer;
 	}
 
 	/**

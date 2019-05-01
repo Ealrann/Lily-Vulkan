@@ -107,7 +107,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
 	 * @generated
 	 */
-	int IDESCRIPTOR = 13;
+	int IDESCRIPTOR = 14;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -201,6 +201,61 @@ public interface ResourcePackage extends EPackage
 	int DESCRIPTOR_RESOURCE_OPERATION_COUNT = IDESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl <em>Push Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPushBuffer()
+	 * @generated
+	 */
+	int PUSH_BUFFER = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER__NAME = VulkanPackage.IRESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER__SIZE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER__INSTANCE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Push Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Push Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -208,7 +263,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBuffer()
 	 * @generated
 	 */
-	int BUFFER = 2;
+	int BUFFER = 3;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -317,7 +372,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImage()
 	 * @generated
 	 */
-	int IMAGE = 3;
+	int IMAGE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -444,7 +499,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageLayout()
 	 * @generated
 	 */
-	int IMAGE_LAYOUT = 4;
+	int IMAGE_LAYOUT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
@@ -454,7 +509,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE = 5;
+	int SAMPLED_IMAGE = 6;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SemaphoreImpl <em>Semaphore</em>}' class.
@@ -464,7 +519,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSemaphore()
 	 * @generated
 	 */
-	int SEMAPHORE = 6;
+	int SEMAPHORE = 7;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
@@ -474,7 +529,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
 	 * @generated
 	 */
-	int FONT = 7;
+	int FONT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
@@ -484,7 +539,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
 	 * @generated
 	 */
-	int ABSTRACT_TEXTURE = 8;
+	int ABSTRACT_TEXTURE = 9;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
@@ -494,7 +549,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
 	 * @generated
 	 */
-	int TEXTURE = 9;
+	int TEXTURE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
@@ -504,7 +559,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
 	 * @generated
 	 */
-	int SAMPLER = 10;
+	int SAMPLER = 11;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl <em>Abstract Constants</em>}' class.
@@ -514,7 +569,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractConstants()
 	 * @generated
 	 */
-	int ABSTRACT_CONSTANTS = 11;
+	int ABSTRACT_CONSTANTS = 12;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.
@@ -524,7 +579,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getConstants()
 	 * @generated
 	 */
-	int CONSTANTS = 12;
+	int CONSTANTS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
@@ -534,7 +589,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 14;
+	int DESCRIPTOR_SET = 15;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
@@ -544,7 +599,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 16;
+	int BUFFER_BARRIER = 17;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
@@ -554,7 +609,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 17;
+	int IMAGE_BARRIER = 18;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
@@ -564,7 +619,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 18;
+	int SHADER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -1168,7 +1223,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSetPkg()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET_PKG = 15;
+	int DESCRIPTOR_SET_PKG = 16;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -1367,7 +1422,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 19;
+	int PATH_RESOURCE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1413,7 +1468,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 20;
+	int FILE_RESOURCE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1459,7 +1514,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
 	 * @generated
 	 */
-	int ABSTRACT_MODULE_RESOURCE = 21;
+	int ABSTRACT_MODULE_RESOURCE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1505,7 +1560,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 22;
+	int MODULE_RESOURCE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1560,7 +1615,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
 	 * @generated
 	 */
-	int STRING_MODULE_RESOURCE = 23;
+	int STRING_MODULE_RESOURCE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1615,7 +1670,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 24;
+	int BYTE_BUFFER = 25;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -1625,7 +1680,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 25;
+	int JAVA_MODULE = 26;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -1646,6 +1701,38 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EClass getDescriptorResource();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.PushBuffer <em>Push Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Push Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.PushBuffer
+	 * @generated
+	 */
+	EClass getPushBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.PushBuffer#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.PushBuffer#getSize()
+	 * @see #getPushBuffer()
+	 * @generated
+	 */
+	EAttribute getPushBuffer_Size();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.PushBuffer#getInstanceCount <em>Instance Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.PushBuffer#getInstanceCount()
+	 * @see #getPushBuffer()
+	 * @generated
+	 */
+	EAttribute getPushBuffer_InstanceCount();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Buffer <em>Buffer</em>}'.
@@ -2471,6 +2558,32 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EClass DESCRIPTOR_RESOURCE = eINSTANCE.getDescriptorResource();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl <em>Push Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPushBuffer()
+		 * @generated
+		 */
+		EClass PUSH_BUFFER = eINSTANCE.getPushBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PUSH_BUFFER__SIZE = eINSTANCE.getPushBuffer_Size();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PUSH_BUFFER__INSTANCE_COUNT = eINSTANCE.getPushBuffer_InstanceCount();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.

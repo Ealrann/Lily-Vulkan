@@ -46,6 +46,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
@@ -64,6 +65,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSetRef <em>Descriptor Set Ref</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSet <em>Descriptor Set</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getConstants <em>Constants</em>}</li>
  * </ul>
  *
@@ -181,6 +183,16 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected DescriptorSet descriptorSet;
+
+	/**
+	 * The cached value of the '{@link #getPushBuffer() <em>Push Buffer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPushBuffer()
+	 * @generated
+	 * @ordered
+	 */
+	protected PushBuffer pushBuffer;
 
 	/**
 	 * The cached value of the '{@link #getConstants() <em>Constants</em>}' reference.
@@ -495,6 +507,60 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
+	public PushBuffer getPushBuffer()
+	{
+		return pushBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPushBuffer(PushBuffer newPushBuffer, NotificationChain msgs)
+	{
+		PushBuffer oldPushBuffer = pushBuffer;
+		pushBuffer = newPushBuffer;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER, oldPushBuffer, newPushBuffer);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPushBuffer(PushBuffer newPushBuffer)
+	{
+		if (newPushBuffer != pushBuffer)
+		{
+			NotificationChain msgs = null;
+			if (pushBuffer != null) msgs = ((InternalEObject) pushBuffer).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER, null,
+					msgs);
+			if (newPushBuffer != null) msgs = ((InternalEObject) newPushBuffer).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER, null,
+					msgs);
+			msgs = basicSetPushBuffer(newPushBuffer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER, newPushBuffer, newPushBuffer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public AbstractConstants getConstants()
 	{
 		if (constants != null && constants.eIsProxy())
@@ -647,6 +713,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return ((InternalEList<?>) getUnits()).basicRemove(otherEnd, msgs);
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			return basicSetDescriptorSet(null, msgs);
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			return basicSetPushBuffer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -678,6 +746,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return basicGetDescriptorSetRef();
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			return getDescriptorSet();
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			return getPushBuffer();
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
 			if (resolve) return getConstants();
 			return basicGetConstants();
@@ -721,6 +791,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			setDescriptorSet((DescriptorSet) newValue);
 			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			setPushBuffer((PushBuffer) newValue);
+			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
 			setConstants((AbstractConstants) newValue);
 			return;
@@ -762,6 +835,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			setDescriptorSet((DescriptorSet) null);
 			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			setPushBuffer((PushBuffer) null);
+			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
 			setConstants((AbstractConstants) null);
 			return;
@@ -795,6 +871,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return descriptorSetRef != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			return descriptorSet != null;
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			return pushBuffer != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
 			return constants != null;
 		}

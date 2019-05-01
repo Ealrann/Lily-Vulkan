@@ -127,15 +127,12 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter
 	}
 
 	@Override
-	public void record(ECommandStage stage, VkCommandBuffer commandBuffer, int bindPoint, int index)
+	protected void record(VkCommandBuffer commandBuffer, int bindPoint, int index)
 	{
-		if (stage == pipeline.getStage())
-		{
-			bindDescriptor(commandBuffer, bindPoint, new Integer[] {
-					0
-			});
-			recordComputers(commandBuffer, bindPoint);
-		}
+		bindDescriptor(commandBuffer, bindPoint, new Integer[] {
+				0
+		});
+		recordComputers(commandBuffer, bindPoint);
 	}
 
 	protected void recordComputers(VkCommandBuffer commandBuffer, int bindPoint)

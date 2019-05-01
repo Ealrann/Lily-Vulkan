@@ -35,6 +35,7 @@ import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
+import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
@@ -67,6 +68,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass descriptorResourceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pushBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -333,6 +341,39 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EClass getDescriptorResource()
 	{
 		return descriptorResourceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPushBuffer()
+	{
+		return pushBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPushBuffer_Size()
+	{
+		return (EAttribute) pushBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPushBuffer_InstanceCount()
+	{
+		return (EAttribute) pushBufferEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1173,6 +1214,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		descriptorResourceEClass = createEClass(DESCRIPTOR_RESOURCE);
 
+		pushBufferEClass = createEClass(PUSH_BUFFER);
+		createEAttribute(pushBufferEClass, PUSH_BUFFER__SIZE);
+		createEAttribute(pushBufferEClass, PUSH_BUFFER__INSTANCE_COUNT);
+
 		bufferEClass = createEClass(BUFFER);
 		createEAttribute(bufferEClass, BUFFER__SIZE);
 		createEAttribute(bufferEClass, BUFFER__USAGES);
@@ -1315,6 +1360,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		basicResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		descriptorResourceEClass.getESuperTypes().add(this.getIDescriptor());
 		descriptorResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		pushBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getDescriptorResource());
 		imageEClass.getESuperTypes().add(this.getDescriptorResource());
 		sampledImageEClass.getESuperTypes().add(this.getDescriptorResource());
@@ -1341,6 +1387,15 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(descriptorResourceEClass, DescriptorResource.class, "DescriptorResource",
 				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(pushBufferEClass, PushBuffer.class, "PushBuffer", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPushBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
+				PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPushBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount",
+				"3", 0, 1, PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

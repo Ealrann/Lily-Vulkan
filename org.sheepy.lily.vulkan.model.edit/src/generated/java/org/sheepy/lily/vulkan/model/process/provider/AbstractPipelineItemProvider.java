@@ -176,6 +176,7 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS);
 			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PIPELINE__DESCRIPTOR_SET);
+			childrenFeatures.add(ProcessPackage.Literals.ABSTRACT_PIPELINE__PUSH_BUFFER);
 		}
 		return childrenFeatures;
 	}
@@ -233,6 +234,7 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -267,6 +269,10 @@ public class AbstractPipelineItemProvider extends ItemProviderAdapter
 		newChildDescriptors
 				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__DESCRIPTOR_SET,
 						ResourceFactory.eINSTANCE.createDescriptorSet()));
+
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__PUSH_BUFFER,
+						ResourceFactory.eINSTANCE.createPushBuffer()));
 	}
 
 	/**

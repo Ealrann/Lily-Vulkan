@@ -68,7 +68,6 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 
 	private final NuklearPipeline nkPipeline;
 	private final NuklearResources resources;
-	private final boolean[] stagingFlushHistory = new boolean[3];
 
 	private final NkAllocator ALLOCATOR;
 	private final NuklearInputCatcher inputCatcher = new NuklearInputCatcher();
@@ -230,7 +229,8 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 
 		if (dirty == true)
 		{
-			resources.getVertexBuffer().update(nkContext, cmds);
+			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
+			resources.getVertexBuffer().update(stagingBuffer, nkContext, cmds);
 			System.out.println("update");
 			recorder.prepare(cmds);
 		}
@@ -239,47 +239,30 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	@Override
 	public boolean isRecordNeeded(int index)
 	{
-		boolean superNeedRecord = super.isRecordNeeded(index);
-		boolean previousRecordMadeFlush = stagingFlushHistory[index];
-		
-		if(previousRecordMadeFlush)
-		{
-			stagingFlushHistory[index] = false;
-		}
-		
-		return dirty || previousRecordMadeFlush || superNeedRecord;
+		boolean res = dirty;
+		res |= super.isRecordNeeded(index);
+
+		return res;
 	}
 
 	@Override
-	public void record(	ECommandStage stage,
-						VkCommandBuffer vkCommandBuffer,
-						int bindPoint,
-						int index)
+	protected void record(VkCommandBuffer commandBuffer, int bindPoint, int index)
 	{
-		if (stage == ECommandStage.TRANSFER)
+		vkCmdBindPipeline(commandBuffer, bindPoint, getPipelineId());
+
+		resources.getVertexBuffer().bind(commandBuffer);
+
+		setViewport(commandBuffer);
+		pushConstants(commandBuffer);
+
+		drawer.prepare(bindPoint, graphicContext.getSurfaceManager().getExtent());
+		for (final DrawCommandData data : recorder.getDrawCommands())
 		{
-			resources.getVertexBuffer().flush(vkCommandBuffer);
-			stagingFlushHistory[index] = true;
-			System.out.println("flush" + index);
+			drawer.draw(commandBuffer, data);
 		}
-		else if (stage == pipeline.getStage())
-		{
-			vkCmdBindPipeline(vkCommandBuffer, bindPoint, getPipelineId());
 
-			resources.getVertexBuffer().bind(vkCommandBuffer);
-
-			setViewport(vkCommandBuffer);
-			pushConstants(vkCommandBuffer);
-
-			drawer.prepare(bindPoint, graphicContext.getSurfaceManager().getExtent());
-			for (final DrawCommandData data : recorder.getDrawCommands())
-			{
-				drawer.draw(vkCommandBuffer, data);
-			}
-
-			dirty = false;
-			System.out.println("record" + index);
-		}
+		dirty = false;
+		System.out.println("record" + index);
 	}
 
 	@Override

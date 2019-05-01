@@ -24,6 +24,15 @@ public interface ResourceFactory extends EFactory
 			.init();
 
 	/**
+	 * Returns a new object of class '<em>Push Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Push Buffer</em>'.
+	 * @generated
+	 */
+	PushBuffer createPushBuffer();
+
+	/**
 	 * Returns a new object of class '<em>Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -544,13 +544,22 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PIPELINE__PUSH_BUFFER = IPIPELINE_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 4;
+	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
@@ -559,7 +568,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 5;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -733,6 +742,15 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_COMPOSITE_PIPELINE__DESCRIPTOR_SET = ABSTRACT_PIPELINE__DESCRIPTOR_SET;
+
+	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_COMPOSITE_PIPELINE__PUSH_BUFFER = ABSTRACT_PIPELINE__PUSH_BUFFER;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
@@ -1078,6 +1096,17 @@ public interface ProcessPackage extends EPackage
 	EReference getAbstractPipeline_DescriptorSet();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getPushBuffer <em>Push Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Push Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getPushBuffer()
+	 * @see #getAbstractPipeline()
+	 * @generated
+	 */
+	EReference getAbstractPipeline_PushBuffer();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1336,6 +1365,14 @@ public interface ProcessPackage extends EPackage
 		 */
 		EReference ABSTRACT_PIPELINE__DESCRIPTOR_SET = eINSTANCE
 				.getAbstractPipeline_DescriptorSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Push Buffer</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_PIPELINE__PUSH_BUFFER = eINSTANCE.getAbstractPipeline_PushBuffer();
 
 		/**
 		 * The meta object literal for the '<em><b>Constants</b></em>' reference feature.

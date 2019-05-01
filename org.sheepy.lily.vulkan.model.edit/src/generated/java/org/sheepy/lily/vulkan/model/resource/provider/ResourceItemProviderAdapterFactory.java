@@ -101,6 +101,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.PushBuffer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PushBufferItemProvider pushBufferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.PushBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPushBufferAdapter()
+	{
+		if (pushBufferItemProvider == null)
+		{
+			pushBufferItemProvider = new PushBufferItemProvider(this);
+		}
+
+		return pushBufferItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Buffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -649,6 +674,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	@Override
 	public void dispose()
 	{
+		if (pushBufferItemProvider != null) pushBufferItemProvider.dispose();
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
@@ -719,6 +745,10 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 			@Override
 			public Object caseResourcePkg(ResourcePkg object)
 			{
+				newChildDescriptors
+						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+								ResourceFactory.eINSTANCE.createPushBuffer()));
+
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 								ResourceFactory.eINSTANCE.createBuffer()));

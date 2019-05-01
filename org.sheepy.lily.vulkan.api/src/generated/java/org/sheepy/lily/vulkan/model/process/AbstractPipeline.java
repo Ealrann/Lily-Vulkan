@@ -6,6 +6,7 @@ import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +20,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSetRef <em>Descriptor Set Ref</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}</li>
  * </ul>
  *
@@ -87,6 +89,28 @@ public interface AbstractPipeline extends IPipeline, IResourceContainer
 	 * @generated
 	 */
 	void setDescriptorSet(DescriptorSet value);
+
+	/**
+	 * Returns the value of the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Push Buffer</em>' containment reference.
+	 * @see #setPushBuffer(PushBuffer)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractPipeline_PushBuffer()
+	 * @model containment="true"
+	 * @generated
+	 */
+	PushBuffer getPushBuffer();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getPushBuffer <em>Push Buffer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Push Buffer</em>' containment reference.
+	 * @see #getPushBuffer()
+	 * @generated
+	 */
+	void setPushBuffer(PushBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Constants</b></em>' reference.

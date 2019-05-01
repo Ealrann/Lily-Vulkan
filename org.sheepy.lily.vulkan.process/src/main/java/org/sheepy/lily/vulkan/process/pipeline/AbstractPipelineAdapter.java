@@ -14,10 +14,12 @@ import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationDescriptorAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
 import org.sheepy.lily.vulkan.api.resource.IConstantsAdapter;
+import org.sheepy.lily.vulkan.api.resource.IPushBufferAdapter;
 import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.vulkan.allocation.IAllocable;
@@ -31,6 +33,8 @@ public abstract class AbstractPipelineAdapter
 		implements IAllocableAdapter, IPipelineAdapter, IAllocationDescriptorAdapter
 {
 	private final List<Object> allocationList;
+	private final boolean[] stagingFlushHistory;
+	protected final IPushBufferAdapter pushBufferAdapter;
 	protected final IPipeline pipeline;
 
 	protected boolean recordNeeded = false;
@@ -44,11 +48,26 @@ public abstract class AbstractPipelineAdapter
 
 		if (pipeline instanceof AbstractPipeline)
 		{
-			allocationList = List.copyOf(((AbstractPipeline) pipeline).getUnits());
+			final AbstractPipeline abstractPipeline = (AbstractPipeline) pipeline;
+			allocationList = List.copyOf(abstractPipeline.getUnits());
+			final PushBuffer pushBuffer = abstractPipeline.getPushBuffer();
+
+			if (pushBuffer != null)
+			{
+				pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
+				stagingFlushHistory = new boolean[pushBuffer.getInstanceCount()];
+			}
+			else
+			{
+				pushBufferAdapter = null;
+				stagingFlushHistory = null;
+			}
 		}
 		else
 		{
 			allocationList = Collections.emptyList();
+			stagingFlushHistory = null;
+			pushBufferAdapter = null;
 		}
 	}
 
@@ -123,6 +142,19 @@ public abstract class AbstractPipelineAdapter
 	{
 		boolean res = recordNeeded;
 
+		if (pushBufferAdapter != null)
+		{
+			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
+			final boolean previousRecordMadeFlush = stagingFlushHistory[index];
+			if (previousRecordMadeFlush)
+			{
+				stagingFlushHistory[index] = false;
+			}
+
+			res |= !stagingBuffer.isEmpty();
+			res |= previousRecordMadeFlush;
+		}
+
 		if (res == false)
 		{
 			final var pushConstant = getConstants();
@@ -137,14 +169,42 @@ public abstract class AbstractPipelineAdapter
 	}
 
 	@Override
+	public final void record(	ECommandStage stage,
+								VkCommandBuffer vkCommandBuffer,
+								int bindPoint,
+								int index)
+	{
+		final var pipelineStage = pipeline.getStage();
+
+		if (stage == ECommandStage.TRANSFER)
+		{
+			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
+
+			stagingFlushHistory[index] = true;
+			stagingBuffer.flush(vkCommandBuffer);
+			System.out.println("flush" + index);
+		}
+		if (stage == pipelineStage)
+		{
+			record(vkCommandBuffer, bindPoint, index);
+		}
+	}
+
+	@Override
 	public void collectResources(List<Object> collectIn)
 	{
 		if (pipeline instanceof AbstractPipeline)
 		{
-			final var resourcePkg = ((AbstractPipeline) pipeline).getResourcePkg();
+			final var abstractPipeline = (AbstractPipeline) pipeline;
+			final var resourcePkg = abstractPipeline.getResourcePkg();
+
 			if (resourcePkg != null)
 			{
 				collectIn.addAll(resourcePkg.getResources());
+			}
+			if (pushBufferAdapter != null)
+			{
+				collectIn.add(pushBufferAdapter.getStagingBuffer());
 			}
 		}
 	}
@@ -189,7 +249,18 @@ public abstract class AbstractPipelineAdapter
 	@Override
 	public boolean shouldRecord(ECommandStage stage)
 	{
-		return pipeline.isEnabled() && pipeline.getStage() == stage;
+
+		final boolean enabled = pipeline.isEnabled();
+		final boolean requiredStage = pipeline.getStage() == stage;
+		boolean needTransfer = false;
+
+		if (pushBufferAdapter != null)
+		{
+			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
+			needTransfer = (stage == ECommandStage.TRANSFER && !stagingBuffer.isEmpty());
+		}
+
+		return enabled && (requiredStage || needTransfer);
 	}
 
 	@Override
@@ -199,6 +270,7 @@ public abstract class AbstractPipelineAdapter
 	}
 
 	public abstract AbstractConstants getConstants();
+	protected abstract void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index);
 
 	public static AbstractPipelineAdapter adapt(IPipeline object)
 	{

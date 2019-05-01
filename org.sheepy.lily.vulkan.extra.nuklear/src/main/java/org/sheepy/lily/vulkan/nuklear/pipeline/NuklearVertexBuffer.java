@@ -15,7 +15,7 @@ import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.resource.buffer.StagingBuffer;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
 import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
 
 public class NuklearVertexBuffer implements IAllocable
@@ -41,7 +41,6 @@ public class NuklearVertexBuffer implements IAllocable
 	private final NkConvertConfig config = NkConvertConfig.create();
 
 	private IndexedBuffer<?> indexedBuffer;
-	private StagingBuffer stagingBuffer;
 
 	private NullTexture nullTexture = null;
 	private NkBuffer vbuf;
@@ -58,10 +57,8 @@ public class NuklearVertexBuffer implements IAllocable
 
 		indexedBuffer = new IndexedBuffer<GuiVertex>(VERTEX_DESCRIPTOR, VERTEX_BUFFER_SIZE,
 				INDEX_BUFFER_SIZE);
-		stagingBuffer = new StagingBuffer(VERTEX_BUFFER_SIZE + INDEX_BUFFER_SIZE, 3);
 
 		indexedBuffer.allocate(stack, context);
-		stagingBuffer.allocate(stack, context);
 
 		config.null_texture(nkNullTexture);
 		config.vertex_layout(VERTEX_LAYOUT);
@@ -78,9 +75,6 @@ public class NuklearVertexBuffer implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
-		stagingBuffer.free(context);
-		stagingBuffer = null;
-
 		indexedBuffer.free(context);
 		indexedBuffer = null;
 
@@ -90,7 +84,7 @@ public class NuklearVertexBuffer implements IAllocable
 		ebuf = null;
 	}
 
-	public void update(NkContext ctx, NkBuffer cmds)
+	public void update(IStagingBuffer stagingBuffer, NkContext ctx, NkBuffer cmds)
 	{
 		final var vertexBuffer = indexedBuffer.getVertexBufferAddress();
 		final var vertexOffset = indexedBuffer.getVertexMemoryOffset();
@@ -110,11 +104,6 @@ public class NuklearVertexBuffer implements IAllocable
 
 		// load draw vertices & elements directly into vertex + element buffer
 		nk_convert(ctx, cmds, vbuf, ebuf, config);
-	}
-
-	public void flush(VkCommandBuffer commandBuffer)
-	{
-		stagingBuffer.flush(commandBuffer);
 	}
 
 	public void bind(VkCommandBuffer commandBuffer)

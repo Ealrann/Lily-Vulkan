@@ -144,6 +144,15 @@ public interface GraphicExtraPackage extends EPackage
 	int IMAGE_PIPELINE__DESCRIPTOR_SET = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET;
 
 	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_PIPELINE__PUSH_BUFFER = ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER;
+
+	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -350,6 +359,15 @@ public interface GraphicExtraPackage extends EPackage
 	 * @ordered
 	 */
 	int MESH_RENDERER__DESCRIPTOR_SET = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
+
+	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_RENDERER__PUSH_BUFFER = GraphicPackage.GRAPHICS_PIPELINE__PUSH_BUFFER;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
@@ -604,6 +622,15 @@ public interface GraphicExtraPackage extends EPackage
 	 * @ordered
 	 */
 	int SCREEN_RENDERER__DESCRIPTOR_SET = GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET;
+
+	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCREEN_RENDERER__PUSH_BUFFER = GraphicPackage.GRAPHICS_PIPELINE__PUSH_BUFFER;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.

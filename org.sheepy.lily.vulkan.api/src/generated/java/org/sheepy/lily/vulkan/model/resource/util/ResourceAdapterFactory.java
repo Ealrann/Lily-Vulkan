@@ -89,6 +89,11 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			return createDescriptorResourceAdapter();
 		}
 		@Override
+		public Adapter casePushBuffer(PushBuffer object)
+		{
+			return createPushBufferAdapter();
+		}
+		@Override
 		public Adapter caseBuffer(Buffer object)
 		{
 			return createBufferAdapter();
@@ -270,6 +275,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDescriptorResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.PushBuffer <em>Push Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.PushBuffer
+	 * @generated
+	 */
+	public Adapter createPushBufferAdapter()
 	{
 		return null;
 	}

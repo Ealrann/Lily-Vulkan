@@ -106,27 +106,21 @@ public class ImagePipelineAdapter extends AbstractPipelineAdapter
 	}
 
 	@Override
-	public void record(	ECommandStage stage,
-						VkCommandBuffer vkCommandBuffer,
-						int bindPoint,
-						int index)
+	protected void record(VkCommandBuffer commandBuffer, int bindPoint, int index)
 	{
-		if (stage == pipeline.getStage())
-		{
-			final var srcImage = imagePipeline.getImage();
-			final var srcImageId = ImageAdapter.adapt(srcImage).getAddress();
-			final var dstImageView = imageViewManager.getImageViews().get(index);
+		final var srcImage = imagePipeline.getImage();
+		final var srcImageId = ImageAdapter.adapt(srcImage).getAddress();
+		final var dstImageView = imageViewManager.getImageViews().get(index);
 
-			initialBarriers[index].execute(vkCommandBuffer);
+		initialBarriers[index].execute(commandBuffer);
 
-			final long bltSrcImage = srcImageId;
-			final long bltDstImage = dstImageView.getImageAddress();
+		final long bltSrcImage = srcImageId;
+		final long bltDstImage = dstImageView.getImageAddress();
 
-			vkCmdBlitImage(vkCommandBuffer, bltSrcImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
-					bltDstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region, VK_FILTER_NEAREST);
+		vkCmdBlitImage(commandBuffer, bltSrcImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+				bltDstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, region, VK_FILTER_NEAREST);
 
-			finalBarriers[index].execute(vkCommandBuffer);
-		}
+		finalBarriers[index].execute(commandBuffer);
 	}
 
 	@Override

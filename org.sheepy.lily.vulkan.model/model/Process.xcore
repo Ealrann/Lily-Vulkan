@@ -16,6 +16,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet
 import org.sheepy.lily.vulkan.model.resource.Semaphore
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
 import org.sheepy.vulkan.model.barrier.Barrier
+import org.sheepy.lily.vulkan.model.resource.PushBuffer
 
 abstract class AbstractProcess extends IProcess
 {
@@ -62,6 +63,7 @@ abstract class AbstractPipeline extends IPipeline, IResourceContainer
 	refers DescriptorSet descriptorSetRef
 	contains DescriptorSet descriptorSet
 
+	contains PushBuffer pushBuffer 
 	refers AbstractConstants constants
 }
 

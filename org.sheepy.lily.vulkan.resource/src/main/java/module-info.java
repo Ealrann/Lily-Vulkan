@@ -1,6 +1,7 @@
 import org.sheepy.lily.core.api.adapter.annotation.Adapters;
 import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
 import org.sheepy.lily.vulkan.resource.buffer.ConstantsAdapter;
+import org.sheepy.lily.vulkan.resource.buffer.PushBufferAdapter;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.ModuleResourceAdapter;
 import org.sheepy.lily.vulkan.resource.file.StringModuleResourceAdapter;
@@ -13,6 +14,7 @@ import org.sheepy.lily.vulkan.resource.texture.TextureAdapter;
 @Adapters(classifiers = {
 		ShaderAdapter.class,
 		BufferAdapter.class,
+		PushBufferAdapter.class,
 		ImageAdapter.class,
 		TextureAdapter.class,
 		FileResourceAdapter.class,
