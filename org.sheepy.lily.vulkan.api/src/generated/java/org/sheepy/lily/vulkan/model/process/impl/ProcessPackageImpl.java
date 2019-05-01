@@ -371,6 +371,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getIPipeline_PushBuffer()
+	{
+		return (EReference) iPipelineEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getAbstractPipeline()
 	{
 		return abstractPipelineEClass;
@@ -415,20 +426,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractPipeline_PushBuffer()
-	{
-		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getAbstractPipeline_Constants()
 	{
-		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(4);
+		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -527,12 +527,12 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		iPipelineEClass = createEClass(IPIPELINE);
 		createEAttribute(iPipelineEClass, IPIPELINE__ENABLED);
 		createEAttribute(iPipelineEClass, IPIPELINE__STAGE);
+		createEReference(iPipelineEClass, IPIPELINE__PUSH_BUFFER);
 
 		abstractPipelineEClass = createEClass(ABSTRACT_PIPELINE);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__UNITS);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__DESCRIPTOR_SET);
-		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__PUSH_BUFFER);
 		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__CONSTANTS);
 
 		iPipelineUnitEClass = createEClass(IPIPELINE_UNIT);
@@ -658,6 +658,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEAttribute(getIPipeline_Stage(), theEnumerationPackage.getECommandStage(), "stage",
 				"Render", 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIPipeline_PushBuffer(), theResourcePackage.getPushBuffer(), null,
+				"pushBuffer", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractPipelineEClass, AbstractPipeline.class, "AbstractPipeline", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -673,10 +677,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				null, "descriptorSet", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractPipeline_PushBuffer(), theResourcePackage.getPushBuffer(), null,
-				"pushBuffer", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractPipeline_Constants(), theResourcePackage.getAbstractConstants(),
 				null, "constants", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,

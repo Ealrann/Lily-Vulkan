@@ -40,6 +40,7 @@ import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearConstants;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline;
 import org.sheepy.lily.vulkan.model.resource.Font;
+import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
@@ -54,6 +55,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl#getFont <em>Font</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl#getPushConstant <em>Push Constant</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl#getSubpass <em>Subpass</em>}</li>
@@ -132,6 +134,16 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPushBuffer() <em>Push Buffer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPushBuffer()
+	 * @generated
+	 * @ordered
+	 */
+	protected PushBuffer pushBuffer;
 
 	/**
 	 * The cached value of the '{@link #getFont() <em>Font</em>}' containment reference.
@@ -292,6 +304,56 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 		stage = newStage == null ? STAGE_EDEFAULT : newStage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_PIPELINE__STAGE, oldStage, stage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PushBuffer getPushBuffer()
+	{
+		return pushBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPushBuffer(PushBuffer newPushBuffer, NotificationChain msgs)
+	{
+		PushBuffer oldPushBuffer = pushBuffer;
+		pushBuffer = newPushBuffer;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER, oldPushBuffer, newPushBuffer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPushBuffer(PushBuffer newPushBuffer)
+	{
+		if (newPushBuffer != pushBuffer)
+		{
+			NotificationChain msgs = null;
+			if (pushBuffer != null)
+				msgs = ((InternalEObject)pushBuffer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER, null, msgs);
+			if (newPushBuffer != null)
+				msgs = ((InternalEObject)newPushBuffer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER, null, msgs);
+			msgs = basicSetPushBuffer(newPushBuffer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER, newPushBuffer, newPushBuffer));
 	}
 
 	/**
@@ -523,6 +585,8 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 	{
 		switch (featureID)
 		{
+			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER:
+				return basicSetPushBuffer(null, msgs);
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				return basicSetFont(null, msgs);
 			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_CONSTANT:
@@ -549,6 +613,8 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 				return isEnabled();
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				return getStage();
+			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER:
+				return getPushBuffer();
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				return getFont();
 			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_CONSTANT:
@@ -581,6 +647,9 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				setStage((ECommandStage)newValue);
+				return;
+			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER:
+				setPushBuffer((PushBuffer)newValue);
 				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				setFont((Font)newValue);
@@ -617,6 +686,9 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				setStage(STAGE_EDEFAULT);
 				return;
+			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER:
+				setPushBuffer((PushBuffer)null);
+				return;
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				setFont((Font)null);
 				return;
@@ -648,6 +720,8 @@ public class NuklearPipelineImpl extends MinimalEObjectImpl.Container implements
 				return enabled != ENABLED_EDEFAULT;
 			case NuklearPackage.NUKLEAR_PIPELINE__STAGE:
 				return stage != STAGE_EDEFAULT;
+			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER:
+				return pushBuffer != null;
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 				return font != null;
 			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_CONSTANT:

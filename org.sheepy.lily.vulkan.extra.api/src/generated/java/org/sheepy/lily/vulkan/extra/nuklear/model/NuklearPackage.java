@@ -106,6 +106,15 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_PIPELINE__STAGE = GraphicPackage.IGUI_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_PIPELINE__PUSH_BUFFER = GraphicPackage.IGUI_PIPELINE__PUSH_BUFFER;
+
+	/**
 	 * The feature id for the '<em><b>Font</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

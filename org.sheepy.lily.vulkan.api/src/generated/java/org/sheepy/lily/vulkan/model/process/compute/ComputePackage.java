@@ -215,6 +215,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__PUSH_BUFFER = ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER;
+
+	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,15 +258,6 @@ public interface ComputePackage extends EPackage
 	 * @ordered
 	 */
 	int COMPUTE_PIPELINE__DESCRIPTOR_SET = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET;
-
-	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__PUSH_BUFFER = ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.

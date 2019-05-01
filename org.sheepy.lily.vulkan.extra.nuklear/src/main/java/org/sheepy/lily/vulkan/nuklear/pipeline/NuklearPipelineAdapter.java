@@ -109,6 +109,7 @@ public class NuklearPipelineAdapter extends AbstractGraphicsPipelineAdapter
 	@Override
 	public void collectResources(List<Object> collectIn)
 	{
+		super.collectResources(collectIn);
 		collectIn.addAll(resources.toList());
 		collectIn.add(nkPipeline.getPushConstant());
 	}

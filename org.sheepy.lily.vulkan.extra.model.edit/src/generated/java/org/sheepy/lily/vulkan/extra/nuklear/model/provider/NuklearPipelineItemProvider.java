@@ -187,6 +187,7 @@ public class NuklearPipelineItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__PUSH_BUFFER);
 			childrenFeatures.add(NuklearPackage.Literals.NUKLEAR_PIPELINE__FONT);
 			childrenFeatures.add(NuklearPackage.Literals.NUKLEAR_PIPELINE__PUSH_CONSTANT);
 		}
@@ -256,6 +257,7 @@ public class NuklearPipelineItemProvider
 			case NuklearPackage.NUKLEAR_PIPELINE__SUBPASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_BUFFER:
 			case NuklearPackage.NUKLEAR_PIPELINE__FONT:
 			case NuklearPackage.NUKLEAR_PIPELINE__PUSH_CONSTANT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -275,6 +277,11 @@ public class NuklearPipelineItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ProcessPackage.Literals.IPIPELINE__PUSH_BUFFER,
+				 ResourceFactory.eINSTANCE.createPushBuffer()));
 
 		newChildDescriptors.add
 			(createChildParameter

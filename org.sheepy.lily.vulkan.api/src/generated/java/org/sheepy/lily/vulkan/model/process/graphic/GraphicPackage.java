@@ -1115,6 +1115,15 @@ public interface GraphicPackage extends EPackage
 	int IGRAPHICS_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGRAPHICS_PIPELINE__PUSH_BUFFER = ProcessPackage.IPIPELINE__PUSH_BUFFER;
+
+	/**
 	 * The number of structural features of the '<em>IGraphics Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1222,6 +1231,15 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int IGUI_PIPELINE__STAGE = IGRAPHICS_PIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUI_PIPELINE__PUSH_BUFFER = IGRAPHICS_PIPELINE__PUSH_BUFFER;
 
 	/**
 	 * The number of structural features of the '<em>IGUI Pipeline</em>' class.
@@ -1333,6 +1351,15 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__PUSH_BUFFER = ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER;
+
+	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1367,15 +1394,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHICS_PIPELINE__DESCRIPTOR_SET = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET;
-
-	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__PUSH_BUFFER = ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.

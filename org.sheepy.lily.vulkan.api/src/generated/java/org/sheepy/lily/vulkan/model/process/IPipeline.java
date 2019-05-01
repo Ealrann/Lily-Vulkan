@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.model.process;
 import org.sheepy.lily.core.model.root.LObject;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
+import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 /**
@@ -18,6 +19,7 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getPushBuffer <em>Push Buffer</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline()
@@ -82,5 +84,27 @@ public interface IPipeline extends LObject, LNamedElement
 	 * @generated
 	 */
 	void setStage(ECommandStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Push Buffer</em>' containment reference.
+	 * @see #setPushBuffer(PushBuffer)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_PushBuffer()
+	 * @model containment="true"
+	 * @generated
+	 */
+	PushBuffer getPushBuffer();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getPushBuffer <em>Push Buffer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Push Buffer</em>' containment reference.
+	 * @see #getPushBuffer()
+	 * @generated
+	 */
+	void setPushBuffer(PushBuffer value);
 
 } // IPipeline

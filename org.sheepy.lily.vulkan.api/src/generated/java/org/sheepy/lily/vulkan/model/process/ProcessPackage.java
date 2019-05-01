@@ -399,13 +399,22 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE__STAGE = RootPackage.LOBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__PUSH_BUFFER = RootPackage.LOBJECT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>IPipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 3;
+	int IPIPELINE_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -508,6 +517,15 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__STAGE = IPIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_PIPELINE__PUSH_BUFFER = IPIPELINE__PUSH_BUFFER;
+
+	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -544,22 +562,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE__PUSH_BUFFER = IPIPELINE_FEATURE_COUNT + 4;
-
-	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 5;
+	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
@@ -568,7 +577,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 6;
+	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -708,6 +717,15 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_COMPOSITE_PIPELINE__STAGE = ABSTRACT_PIPELINE__STAGE;
 
 	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_COMPOSITE_PIPELINE__PUSH_BUFFER = ABSTRACT_PIPELINE__PUSH_BUFFER;
+
+	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -742,15 +760,6 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_COMPOSITE_PIPELINE__DESCRIPTOR_SET = ABSTRACT_PIPELINE__DESCRIPTOR_SET;
-
-	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__PUSH_BUFFER = ABSTRACT_PIPELINE__PUSH_BUFFER;
 
 	/**
 	 * The feature id for the '<em><b>Constants</b></em>' reference.
@@ -1053,6 +1062,17 @@ public interface ProcessPackage extends EPackage
 	EAttribute getIPipeline_Stage();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getPushBuffer <em>Push Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Push Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getPushBuffer()
+	 * @see #getIPipeline()
+	 * @generated
+	 */
+	EReference getIPipeline_PushBuffer();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1094,17 +1114,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getAbstractPipeline_DescriptorSet();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getPushBuffer <em>Push Buffer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Push Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getPushBuffer()
-	 * @see #getAbstractPipeline()
-	 * @generated
-	 */
-	EReference getAbstractPipeline_PushBuffer();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}'.
@@ -1331,6 +1340,14 @@ public interface ProcessPackage extends EPackage
 		EAttribute IPIPELINE__STAGE = eINSTANCE.getIPipeline_Stage();
 
 		/**
+		 * The meta object literal for the '<em><b>Push Buffer</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IPIPELINE__PUSH_BUFFER = eINSTANCE.getIPipeline_PushBuffer();
+
+		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1365,14 +1382,6 @@ public interface ProcessPackage extends EPackage
 		 */
 		EReference ABSTRACT_PIPELINE__DESCRIPTOR_SET = eINSTANCE
 				.getAbstractPipeline_DescriptorSet();
-
-		/**
-		 * The meta object literal for the '<em><b>Push Buffer</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PIPELINE__PUSH_BUFFER = eINSTANCE.getAbstractPipeline_PushBuffer();
 
 		/**
 		 * The meta object literal for the '<em><b>Constants</b></em>' reference feature.

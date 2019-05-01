@@ -46,28 +46,26 @@ public abstract class AbstractPipelineAdapter
 	{
 		this.pipeline = pipeline;
 
+		final PushBuffer pushBuffer = pipeline.getPushBuffer();
+		if (pushBuffer != null)
+		{
+			pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
+			stagingFlushHistory = new boolean[pushBuffer.getInstanceCount()];
+		}
+		else
+		{
+			pushBufferAdapter = null;
+			stagingFlushHistory = null;
+		}
+
 		if (pipeline instanceof AbstractPipeline)
 		{
 			final AbstractPipeline abstractPipeline = (AbstractPipeline) pipeline;
 			allocationList = List.copyOf(abstractPipeline.getUnits());
-			final PushBuffer pushBuffer = abstractPipeline.getPushBuffer();
-
-			if (pushBuffer != null)
-			{
-				pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
-				stagingFlushHistory = new boolean[pushBuffer.getInstanceCount()];
-			}
-			else
-			{
-				pushBufferAdapter = null;
-				stagingFlushHistory = null;
-			}
 		}
 		else
 		{
 			allocationList = Collections.emptyList();
-			stagingFlushHistory = null;
-			pushBufferAdapter = null;
 		}
 	}
 
@@ -202,10 +200,11 @@ public abstract class AbstractPipelineAdapter
 			{
 				collectIn.addAll(resourcePkg.getResources());
 			}
-			if (pushBufferAdapter != null)
-			{
-				collectIn.add(pushBufferAdapter.getStagingBuffer());
-			}
+		}
+
+		if (pushBufferAdapter != null)
+		{
+			collectIn.add(pushBufferAdapter.getStagingBuffer());
 		}
 	}
 

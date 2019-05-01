@@ -61,11 +61,11 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getResourcePkg <em>Resource Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getUnits <em>Units</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSetRef <em>Descriptor Set Ref</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getDescriptorSet <em>Descriptor Set</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getPushBuffer <em>Push Buffer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl#getConstants <em>Constants</em>}</li>
  * </ul>
  *
@@ -145,6 +145,16 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	protected ECommandStage stage = STAGE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getPushBuffer() <em>Push Buffer</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPushBuffer()
+	 * @generated
+	 * @ordered
+	 */
+	protected PushBuffer pushBuffer;
+
+	/**
 	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,16 +193,6 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected DescriptorSet descriptorSet;
-
-	/**
-	 * The cached value of the '{@link #getPushBuffer() <em>Push Buffer</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPushBuffer()
-	 * @generated
-	 * @ordered
-	 */
-	protected PushBuffer pushBuffer;
 
 	/**
 	 * The cached value of the '{@link #getConstants() <em>Constants</em>}' reference.
@@ -707,14 +707,14 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			return basicSetPushBuffer(null, msgs);
 		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
 			return basicSetResourcePkg(null, msgs);
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
 			return ((InternalEList<?>) getUnits()).basicRemove(otherEnd, msgs);
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			return basicSetDescriptorSet(null, msgs);
-		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
-			return basicSetPushBuffer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -737,6 +737,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return isEnabled();
 		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 			return getStage();
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			return getPushBuffer();
 		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
 			return getResourcePkg();
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
@@ -746,8 +748,6 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return basicGetDescriptorSetRef();
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			return getDescriptorSet();
-		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
-			return getPushBuffer();
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
 			if (resolve) return getConstants();
 			return basicGetConstants();
@@ -778,6 +778,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 			setStage((ECommandStage) newValue);
 			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			setPushBuffer((PushBuffer) newValue);
+			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
 			setResourcePkg((ResourcePkg) newValue);
 			return;
@@ -790,9 +793,6 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			setDescriptorSet((DescriptorSet) newValue);
-			return;
-		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
-			setPushBuffer((PushBuffer) newValue);
 			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
 			setConstants((AbstractConstants) newValue);
@@ -823,6 +823,9 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 			setStage(STAGE_EDEFAULT);
 			return;
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			setPushBuffer((PushBuffer) null);
+			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
 			setResourcePkg((ResourcePkg) null);
 			return;
@@ -834,9 +837,6 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			setDescriptorSet((DescriptorSet) null);
-			return;
-		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
-			setPushBuffer((PushBuffer) null);
 			return;
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
 			setConstants((AbstractConstants) null);
@@ -863,6 +863,8 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return enabled != ENABLED_EDEFAULT;
 		case ProcessPackage.ABSTRACT_PIPELINE__STAGE:
 			return stage != STAGE_EDEFAULT;
+		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
+			return pushBuffer != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG:
 			return resourcePkg != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__UNITS:
@@ -871,8 +873,6 @@ public abstract class AbstractPipelineImpl extends MinimalEObjectImpl.Container
 			return descriptorSetRef != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET:
 			return descriptorSet != null;
-		case ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER:
-			return pushBuffer != null;
 		case ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS:
 			return constants != null;
 		}
