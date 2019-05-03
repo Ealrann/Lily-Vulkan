@@ -29,7 +29,7 @@ public class NuklearInputCatcher implements IInputCatcher
 	private NuklearPipelineAdapter pipelineAdapter;
 
 	public void configure(	NkContext nkContext,
-	                      	Window window,
+							Window window,
 							NuklearPipelineAdapter pipelineAdapter)
 	{
 		this.nkContext = nkContext;
@@ -92,8 +92,10 @@ public class NuklearInputCatcher implements IInputCatcher
 		case GLFW_KEY_RIGHT_CONTROL:
 			if (press)
 			{
-				nk_input_key(nkContext, NK_KEY_COPY, glfwGetKey(windowId, GLFW_KEY_C) == GLFW_PRESS);
-				nk_input_key(nkContext, NK_KEY_PASTE, glfwGetKey(windowId, GLFW_KEY_P) == GLFW_PRESS);
+				nk_input_key(nkContext, NK_KEY_COPY,
+						glfwGetKey(windowId, GLFW_KEY_C) == GLFW_PRESS);
+				nk_input_key(nkContext, NK_KEY_PASTE,
+						glfwGetKey(windowId, GLFW_KEY_P) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_CUT, glfwGetKey(windowId, GLFW_KEY_X) == GLFW_PRESS);
 				nk_input_key(nkContext, NK_KEY_TEXT_UNDO,
 						glfwGetKey(windowId, GLFW_KEY_Z) == GLFW_PRESS);
@@ -169,6 +171,12 @@ public class NuklearInputCatcher implements IInputCatcher
 	public void startCatch()
 	{
 		nk_input_begin(nkContext);
+	}
+
+	@Override
+	public boolean isCursorThere()
+	{
+		return nk_item_is_any_active(nkContext);
 	}
 
 	@Override

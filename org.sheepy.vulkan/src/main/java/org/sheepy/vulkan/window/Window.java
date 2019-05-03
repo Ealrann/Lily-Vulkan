@@ -218,4 +218,16 @@ public class Window
 	{
 		return opened;
 	}
+
+	public void hideCursor(boolean hide)
+	{
+		if(hide)
+		{
+			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+		}
+		else
+		{
+			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		}
+	}
 }

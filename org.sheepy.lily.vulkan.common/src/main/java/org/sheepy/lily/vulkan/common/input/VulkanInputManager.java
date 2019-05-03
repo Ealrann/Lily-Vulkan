@@ -40,6 +40,7 @@ public class VulkanInputManager implements IVulkanInputManager
 	private final List<IInputListener> listeners = new ArrayList<>();
 
 	private IInputCatcher catcher;
+	private Boolean inputsAreCaught = null;
 
 	private final GLFWCharCallback glfwSetCharCallback = new GLFWCharCallback()
 	{
@@ -208,6 +209,20 @@ public class VulkanInputManager implements IVulkanInputManager
 				{
 					dropInputEvents();
 				}
+
+				if (catcher.isCursorThere())
+				{
+					if (inputsAreCaught == null || inputsAreCaught == false)
+					{
+						inputsAreCaught = true;
+						fireInputCaught();
+					}
+				}
+				else if (inputsAreCaught == null || inputsAreCaught == true)
+				{
+					inputsAreCaught = false;
+					fireInputCaught();
+				}
 			}
 
 			fireEvents();
@@ -268,6 +283,14 @@ public class VulkanInputManager implements IVulkanInputManager
 		else if (event instanceof ScrollEvent)
 		{
 			listener.onScrollEvent((ScrollEvent) event);
+		}
+	}
+
+	private void fireInputCaught()
+	{
+		for (final IInputListener listener : listeners)
+		{
+			listener.onMouseOverUI(inputsAreCaught);
 		}
 	}
 

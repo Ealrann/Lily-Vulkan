@@ -9,4 +9,5 @@ public interface IInputCatcher extends IInputListener
 {
 	void startCatch();
 	boolean hasCaughtInputs(List<IInputEvent> events);
+	boolean isCursorThere();
 }
