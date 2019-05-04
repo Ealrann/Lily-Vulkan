@@ -25,12 +25,15 @@ public class ComputeExecutionRecorder extends AbstractExecutionRecorder
 		for (int i = 0; i < recordables.size(); i++)
 		{
 			final var pipelineAdapter = recordables.get(i);
-			if (pipelineAdapter.shouldRecord(stage))
+			if (pipelineAdapter.isActive())
 			{
-				pipelineAdapter.record(stage, vkCommandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE,
-						index);
+				if (pipelineAdapter.shouldRecord(stage))
+				{
+					pipelineAdapter.record(stage, vkCommandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE,
+							index);
+				}
+				pipelineAdapter.setRecordNeeded(false);
 			}
-			pipelineAdapter.setRecordNeeded(false);
 		}
 	}
 }

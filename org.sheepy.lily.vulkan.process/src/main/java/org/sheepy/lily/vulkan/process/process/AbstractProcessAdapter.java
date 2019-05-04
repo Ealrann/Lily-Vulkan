@@ -137,7 +137,10 @@ public abstract class AbstractProcessAdapter
 		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
 			final var pipelineAdapter = pipelineAdapters.get(i);
-			pipelineAdapter.prepareExecution(context);
+			if (pipelineAdapter.isActive())
+			{
+				pipelineAdapter.prepareExecution(context);
+			}
 		}
 
 		recorder.play();
@@ -212,9 +215,9 @@ public abstract class AbstractProcessAdapter
 
 	private void prepareRecord(int index)
 	{
-		final boolean needRecord = isRecordNeeded(index);
+		updatePipelines();
 
-		if (needRecord)
+		if (isRecordNeeded(index))
 		{
 			invalidateRecords();
 		}
@@ -261,17 +264,29 @@ public abstract class AbstractProcessAdapter
 		return dirty;
 	}
 
-	private boolean isRecordNeeded(int index)
+	private void updatePipelines()
 	{
-		boolean res = false;
-
 		for (int i = 0; i < pipelineAdapters.size(); i++)
 		{
 			final var pipelineAdapter = pipelineAdapters.get(i);
-			pipelineAdapter.update();
-			res |= pipelineAdapter.isRecordNeeded(index);
+			if (pipelineAdapter.isActive())
+			{
+				pipelineAdapter.update();
+			}
 		}
+	}
 
+	private boolean isRecordNeeded(int index)
+	{
+		boolean res = false;
+		for (int i = 0; i < pipelineAdapters.size(); i++)
+		{
+			final var pipelineAdapter = pipelineAdapters.get(i);
+			if (pipelineAdapter.isActive())
+			{
+				res |= pipelineAdapter.isRecordNeeded(index);
+			}
+		}
 		return res;
 	}
 

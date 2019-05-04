@@ -245,10 +245,14 @@ public abstract class AbstractPipelineAdapter
 	}
 
 	@Override
+	public boolean isActive()
+	{
+		return pipeline.isEnabled();
+	}
+
+	@Override
 	public boolean shouldRecord(ECommandStage stage)
 	{
-
-		final boolean enabled = pipeline.isEnabled();
 		final boolean requiredStage = pipeline.getStage() == stage;
 		boolean needTransfer = false;
 
@@ -258,7 +262,7 @@ public abstract class AbstractPipelineAdapter
 			needTransfer = (stage == ECommandStage.TRANSFER && !stagingBuffer.isEmpty());
 		}
 
-		return enabled && (requiredStage || needTransfer);
+		return requiredStage || needTransfer;
 	}
 
 	@Override

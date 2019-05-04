@@ -16,7 +16,6 @@ import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.descriptor.VkDescriptorSet;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.resource.indexed.IVertexBufferDescriptor;
 import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
 import org.sheepy.vulkan.resource.indexed.IndexedBufferWithUniform;

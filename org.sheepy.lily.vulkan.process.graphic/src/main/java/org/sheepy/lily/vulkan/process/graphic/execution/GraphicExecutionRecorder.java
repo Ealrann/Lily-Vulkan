@@ -35,9 +35,8 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder
 			for (int i = 0; i < adapters.size(); i++)
 			{
 				final IRecordable adapter = adapters.get(i);
-				boolean recordOk = adapter.shouldRecord(stage);
-
 				int pipelineSubpass = 0;
+
 				if (stage == ECommandStage.RENDER
 						&& adapter instanceof AbstractGraphicsPipelineAdapter)
 				{
@@ -47,14 +46,19 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder
 					{
 						subpassCount = pipelineSubpass + 1;
 					}
-
-					recordOk &= pipelineSubpass == currentSubpass;
 				}
 
-				if (recordOk)
+				if (adapter.isActive())
 				{
-					adapter.record(stage, vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, index);
-					adapter.setRecordNeeded(false);
+					final boolean shouldRecord = adapter.shouldRecord(stage);
+					final boolean goodSubpass = pipelineSubpass == currentSubpass;
+
+					if (shouldRecord && goodSubpass)
+					{
+						adapter.record(stage, vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS,
+								index);
+						adapter.setRecordNeeded(false);
+					}
 				}
 			}
 
