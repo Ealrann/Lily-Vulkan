@@ -26,7 +26,6 @@ public class VkImage
 
 	protected long imageAddress;
 	protected long imageMemoryAddress;
-	protected long size;
 
 	public VkImage(LogicalDevice logicalDevice, ImageInfo info)
 	{
@@ -40,7 +39,6 @@ public class VkImage
 
 		final var memoryInfo = allocateMemory(stack, logicalDevice);
 		imageMemoryAddress = memoryInfo.id;
-		size = memoryInfo.size;
 
 		vkBindImageMemory(logicalDevice.getVkDevice(), imageAddress, imageMemoryAddress, 0);
 	}
@@ -95,11 +93,6 @@ public class VkImage
 		vkFreeMemory(logicalDevice.getVkDevice(), imageMemoryAddress, null);
 		imageAddress = -1;
 		imageMemoryAddress = -1;
-	}
-
-	public long getSize()
-	{
-		return size;
 	}
 
 	public long getAddress()

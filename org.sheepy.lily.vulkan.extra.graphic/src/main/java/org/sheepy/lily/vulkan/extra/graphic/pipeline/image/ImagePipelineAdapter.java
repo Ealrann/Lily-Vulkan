@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.lily.vulkan.resource.image.ImageAdapter;
 import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
 @Statefull
 @Adapter(scope = ImagePipeline.class)
