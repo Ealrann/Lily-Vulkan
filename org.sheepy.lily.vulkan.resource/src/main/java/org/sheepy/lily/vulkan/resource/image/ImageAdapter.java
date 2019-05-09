@@ -17,7 +17,6 @@ import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -25,7 +24,7 @@ import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImageView;
 import org.sheepy.vulkan.util.VkModelUtil;
 
@@ -55,10 +54,10 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	{
 		this.executionContext = (ExecutionContext) context;
 		final var logicalDevice = executionContext.getLogicalDevice();
-		final var info = createInfo(image);
+		final var builder = createBuilder(image);
 
-		imageBackend = new VkImage(logicalDevice, info);
-		imageBackend.allocate(stack);
+		imageBackend = builder.build();
+		imageBackend.allocate(stack, context);
 
 		if (image.getInitialLayout() != null)
 		{
@@ -66,7 +65,8 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 		}
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
-		imageView.allocate(imageBackend.getAddress(), 1, info.format, VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView.allocate(imageBackend.getAddress(), 1, imageBackend.format,
+				VK_IMAGE_ASPECT_COLOR_BIT);
 
 		load();
 	}
@@ -79,9 +79,10 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 			{
 				final ImageLayout initialLayout = image.getInitialLayout();
-				imageBackend.transitionImageLayout(commandBuffer, EPipelineStage.BOTTOM_OF_PIPE_BIT,
-						initialLayout.getStage(), EImageLayout.UNDEFINED, initialLayout.getLayout(),
-						Collections.emptyList(), initialLayout.getAccessMask());
+				imageBackend.transitionImageLayout(stack, commandBuffer,
+						EPipelineStage.BOTTOM_OF_PIPE_BIT, initialLayout.getStage(),
+						EImageLayout.UNDEFINED, initialLayout.getLayout(), Collections.emptyList(),
+						initialLayout.getAccessMask());
 			}
 		});
 	}
@@ -100,7 +101,7 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 		imageView.free();
 		imageView = null;
 
-		imageBackend.free();
+		imageBackend.free(context);
 		imageBackend = null;
 	}
 
@@ -167,7 +168,7 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 		return IAdapterFactoryService.INSTANCE.adapt(image, ImageAdapter.class);
 	}
 
-	private static ImageInfo createInfo(Image image)
+	private static VkImage.Builder createBuilder(Image image)
 	{
 		final int usages = VkModelUtil.getEnumeratedFlag(image.getUsages());
 		final int format = image.getFormat().getValue();
@@ -176,7 +177,15 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 		final int tiling = image.getTiling();
 		final int width = image.getWidth();
 		final int properties = image.getProperties();
+		final boolean fillWithZero = image.isFillWithZero();
 
-		return new ImageInfo(width, height, format, usages, properties, tiling, mipLevels);
+		final var res = VkImage.newBuilder(width, height, format);
+		res.usage(usages);
+		res.properties(properties);
+		res.mipLevels(mipLevels);
+		res.tiling(tiling);
+		res.fillWithZero(fillWithZero);
+
+		return res;
 	}
 }

@@ -16,8 +16,9 @@ import org.lwjgl.vulkan.VkOffset3D;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
-import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EAccess;
@@ -25,23 +26,23 @@ import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
-import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImage;
+import org.sheepy.vulkan.resource.image.VkImageBuilder;
 import org.sheepy.vulkan.resource.image.VkImageView;
 
-public class VkTexture implements IVkDescriptor
+public class VkTexture implements IVkDescriptor, IAllocable
 {
 	private final Sampler samplerInfo;
-	private final ImageInfo imageInfo;
 
-	private VkImage image;
+	private final VkImage image;
 	private VkImageView imageView;
 	private VkSampler sampler;
 
-	public VkTexture(ImageInfo imageInfo, Sampler samplerInfo)
+	public VkTexture(VkImage.Builder imageBuilder, Sampler samplerInfo)
 	{
-		this.imageInfo = new ImageInfo(imageInfo.width, imageInfo.height, imageInfo.format,
-				imageInfo.usage | VK_IMAGE_USAGE_SAMPLED_BIT, imageInfo.properties,
-				imageInfo.tiling, imageInfo.mipLevels);
+		final var sampledBuilder = new VkImageBuilder(imageBuilder);
+		sampledBuilder.addUsage(VK_IMAGE_USAGE_SAMPLED_BIT);
+		image = sampledBuilder.build();
 
 		if (samplerInfo == null)
 		{
@@ -53,17 +54,18 @@ public class VkTexture implements IVkDescriptor
 		}
 	}
 
-	public void allocate(MemoryStack stack, LogicalDevice logicalDevice)
+	@Override
+	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
-		image = new VkImage(logicalDevice, imageInfo);
-		image.allocate(stack);
+		final var executionContext = (IExecutionContext) context;
+		final var logicalDevice = executionContext.getLogicalDevice();
+		image.allocate(stack, context);
 		final var imageAddress = image.getAddress();
 
 		imageView = new VkImageView(logicalDevice.getVkDevice());
 		sampler = new VkSampler(logicalDevice, samplerInfo);
 
-		imageView.allocate(imageAddress, imageInfo.mipLevels, imageInfo.format,
-				VK_IMAGE_ASPECT_COLOR_BIT);
+		imageView.allocate(imageAddress, image.mipLevels, image.format, VK_IMAGE_ASPECT_COLOR_BIT);
 		sampler.load(stack);
 	}
 
@@ -71,7 +73,7 @@ public class VkTexture implements IVkDescriptor
 	{
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 
-		final int size = imageInfo.width * imageInfo.height * 4;
+		final int size = image.width * image.height * 4;
 
 		final CPUBufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack,
 				executionContext, size, stagingUsage, false, data);
@@ -84,24 +86,26 @@ public class VkTexture implements IVkDescriptor
 				final List<EAccess> srcAccessMask = List.of();
 				final List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 
-				image.transitionImageLayout(commandBuffer, EPipelineStage.TOP_OF_PIPE_BIT,
+				image.transitionImageLayout(stack, commandBuffer, EPipelineStage.TOP_OF_PIPE_BIT,
 						EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,
 						EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask, dstAccessMask);
 
 				image.fillWithBuffer(commandBuffer, buffer.getAddress());
 
-				generateMipmaps(commandBuffer, image.getAddress());
+				generateMipmaps(commandBuffer);
 			}
 		});
 
 		buffer.free(executionContext);
 	}
 
-	private void generateMipmaps(VkCommandBuffer commandBuffer, long image)
+	private void generateMipmaps(VkCommandBuffer commandBuffer)
 	{
+		final long imageAddress = image.getAddress();
+
 		final VkImageMemoryBarrier.Buffer barrier = VkImageMemoryBarrier.calloc(1);
 		barrier.sType(VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER);
-		barrier.image(image);
+		barrier.image(imageAddress);
 		barrier.srcQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
 		barrier.dstQueueFamilyIndex(VK_QUEUE_FAMILY_IGNORED);
 		barrier.subresourceRange().aspectMask(VK_IMAGE_ASPECT_COLOR_BIT);
@@ -109,10 +113,10 @@ public class VkTexture implements IVkDescriptor
 		barrier.subresourceRange().layerCount(1);
 		barrier.subresourceRange().levelCount(1);
 
-		int mipWidth = imageInfo.width;
-		int mipHeight = imageInfo.height;
+		int mipWidth = image.width;
+		int mipHeight = image.height;
 
-		for (int i = 1; i < imageInfo.mipLevels; i++)
+		for (int i = 1; i < image.mipLevels; i++)
 		{
 			barrier.subresourceRange().baseMipLevel(i - 1);
 			barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
@@ -143,8 +147,8 @@ public class VkTexture implements IVkDescriptor
 			blit.dstSubresource().baseArrayLayer(0);
 			blit.dstSubresource().layerCount(1);
 
-			vkCmdBlitImage(commandBuffer, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image,
-					VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, blit, VK_FILTER_LINEAR);
+			vkCmdBlitImage(commandBuffer, imageAddress, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+					imageAddress, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, blit, VK_FILTER_LINEAR);
 
 			barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
 			barrier.newLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
@@ -160,7 +164,7 @@ public class VkTexture implements IVkDescriptor
 			blit.free();
 		}
 
-		barrier.subresourceRange().baseMipLevel(imageInfo.mipLevels - 1);
+		barrier.subresourceRange().baseMipLevel(image.mipLevels - 1);
 		barrier.oldLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
 		barrier.newLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 		barrier.srcAccessMask(VK_ACCESS_TRANSFER_WRITE_BIT);
@@ -187,15 +191,21 @@ public class VkTexture implements IVkDescriptor
 		return sampler.getAddress();
 	}
 
-	public void free()
+	@Override
+	public void free(IAllocationContext context)
 	{
 		sampler.free();
 		imageView.free();
-		image.free();
+		image.free(context);
 
 		sampler = null;
 		imageView = null;
-		image = null;
+	}
+
+	@Override
+	public boolean isAllocationDirty(IAllocationContext context)
+	{
+		return false;
 	}
 
 	@Override

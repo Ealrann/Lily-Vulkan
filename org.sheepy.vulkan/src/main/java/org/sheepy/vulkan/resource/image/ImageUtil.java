@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.image;
+package org.sheepy.vulkan.resource.image;
 
 import static org.lwjgl.vulkan.VK10.*;
 

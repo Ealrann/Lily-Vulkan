@@ -474,13 +474,22 @@ public interface ResourcePackage extends EPackage
 	int IMAGE__INITIAL_LAYOUT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Fill With Zero</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__FILL_WITH_ZERO = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_FEATURE_COUNT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 8;
+	int IMAGE_FEATURE_COUNT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Image</em>' class.
@@ -1909,6 +1918,17 @@ public interface ResourcePackage extends EPackage
 	EReference getImage_InitialLayout();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Image#isFillWithZero <em>Fill With Zero</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Fill With Zero</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Image#isFillWithZero()
+	 * @see #getImage()
+	 * @generated
+	 */
+	EAttribute getImage_FillWithZero();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.ImageLayout <em>Image Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2716,6 +2736,14 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EReference IMAGE__INITIAL_LAYOUT = eINSTANCE.getImage_InitialLayout();
+
+		/**
+		 * The meta object literal for the '<em><b>Fill With Zero</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE__FILL_WITH_ZERO = eINSTANCE.getImage_FillWithZero();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.

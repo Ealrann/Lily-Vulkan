@@ -63,6 +63,7 @@ class Image extends DescriptorResource
 	int tiling = "0"
 	int mipLevels = "1"
 	contains ImageLayout initialLayout
+	boolean fillWithZero = "false"
 }
 
 class ImageLayout

@@ -10,7 +10,6 @@ import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.resource.attachment.IDepthAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.resource.barrier.BarrierExecutorFactory;
-import org.sheepy.lily.vulkan.resource.nativehelper.VkImage;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.PhysicalDevice;
@@ -21,7 +20,7 @@ import org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImageView;
 
 @Statefull
@@ -39,7 +38,7 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 		depthFormat = findDepthFormat(graphicContext.getPhysicalDevice());
 
 		createDepthImage(graphicContext);
-		allocateDepthImage(stack);
+		allocateDepthImage(stack, context);
 
 		createAndAllocateImageView(graphicContext.getLogicalDevice());
 
@@ -53,23 +52,23 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 				VK_IMAGE_ASPECT_DEPTH_BIT);
 	}
 
-	private void allocateDepthImage(MemoryStack stack)
+	private void allocateDepthImage(MemoryStack stack, IAllocationContext context)
 	{
-		depthImageBackend.allocate(stack);
+		depthImageBackend.allocate(stack, context);
 	}
 
 	private void createDepthImage(IGraphicContext context)
 	{
-		final var logicalDevice = context.getLogicalDevice();
 		final var surfaceManager = context.getSurfaceManager();
 		final var extent = surfaceManager.getExtent();
 		final int width = extent.width;
 		final int height = extent.height;
 		final int usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
-		final var depthImageInfo = new ImageInfo(width, height, depthFormat, usage,
-				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		final var depthImageBuilder = VkImage.newBuilder(width, height, depthFormat);
+		depthImageBuilder.usage(usage);
+		depthImageBuilder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		depthImageBackend = new VkImage(logicalDevice, depthImageInfo);
+		depthImageBackend = depthImageBuilder.build();
 	}
 
 	private void layoutTransitionOfDepthImage(MemoryStack stack, IExecutionContext context)
@@ -114,7 +113,7 @@ public class DepthAttachmentAdapter implements IDepthAttachmentAdapter
 	public void free(IAllocationContext context)
 	{
 		depthImageView.free();
-		depthImageBackend.free();
+		depthImageBackend.free(context);
 	}
 
 	@Override

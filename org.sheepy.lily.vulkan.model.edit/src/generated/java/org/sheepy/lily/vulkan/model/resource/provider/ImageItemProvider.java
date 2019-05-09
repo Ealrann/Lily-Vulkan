@@ -72,6 +72,7 @@ public class ImageItemProvider extends ItemProviderAdapter
 			addPropertiesPropertyDescriptor(object);
 			addTilingPropertyDescriptor(object);
 			addMipLevelsPropertyDescriptor(object);
+			addFillWithZeroPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -247,6 +248,23 @@ public class ImageItemProvider extends ItemProviderAdapter
 	}
 
 	/**
+	 * This adds a property descriptor for the Fill With Zero feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFillWithZeroPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Image_fillWithZero_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Image_fillWithZero_feature",
+						"_UI_Image_type"),
+				ResourcePackage.Literals.IMAGE__FILL_WITH_ZERO, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -330,6 +348,7 @@ public class ImageItemProvider extends ItemProviderAdapter
 		case ResourcePackage.IMAGE__PROPERTIES:
 		case ResourcePackage.IMAGE__TILING:
 		case ResourcePackage.IMAGE__MIP_LEVELS:
+		case ResourcePackage.IMAGE__FILL_WITH_ZERO:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

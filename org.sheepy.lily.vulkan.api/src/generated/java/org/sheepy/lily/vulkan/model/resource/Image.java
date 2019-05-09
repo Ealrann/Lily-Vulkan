@@ -23,6 +23,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getTiling <em>Tiling</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getMipLevels <em>Mip Levels</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#getInitialLayout <em>Initial Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Image#isFillWithZero <em>Fill With Zero</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage()
@@ -235,5 +236,28 @@ public interface Image extends DescriptorResource
 	 * @generated
 	 */
 	void setInitialLayout(ImageLayout value);
+
+	/**
+	 * Returns the value of the '<em><b>Fill With Zero</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fill With Zero</em>' attribute.
+	 * @see #setFillWithZero(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getImage_FillWithZero()
+	 * @model default="false" unique="false"
+	 * @generated
+	 */
+	boolean isFillWithZero();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Image#isFillWithZero <em>Fill With Zero</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fill With Zero</em>' attribute.
+	 * @see #isFillWithZero()
+	 * @generated
+	 */
+	void setFillWithZero(boolean value);
 
 } // Image

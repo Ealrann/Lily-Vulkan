@@ -11,13 +11,13 @@ import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
 import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImage;
 
 public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 {
 	private final Texture texture;
 
-	private ImageInfo info;
+	private VkImage.Builder imageBuilder;
 	private int mipLevels;
 
 	protected VkTexture vkTexture;
@@ -38,28 +38,32 @@ public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 			texture.setSampler(samplerInfos);
 		}
 
-		int width = getWidth();
-		int height = getHeight();
+		final int width = getWidth();
+		final int height = getHeight();
 		if (texture.isMipmapEnabled())
 			mipLevels = (int) (Math.floor(log2nlz(Math.max(width, height))) + 1);
 		else mipLevels = 1;
 		samplerInfos.setMaxLod(Math.max(mipLevels, samplerInfos.getMaxLod()));
 
-		int format = VK_FORMAT_R8G8B8A8_UNORM;
-		int usage = VK_IMAGE_USAGE_TRANSFER_SRC_BIT
+		final int format = VK_FORMAT_R8G8B8A8_UNORM;
+		final int usage = VK_IMAGE_USAGE_TRANSFER_SRC_BIT
 				| VK_IMAGE_USAGE_TRANSFER_DST_BIT
 				| VK_IMAGE_USAGE_SAMPLED_BIT;
 
-		info = new ImageInfo(width, height, format, usage, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
-				VK_IMAGE_TILING_OPTIMAL, mipLevels);
+		final var imageBuilder = VkImage.newBuilder(width, height, format);
+		imageBuilder.usage(usage);
+		imageBuilder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		imageBuilder.tiling(VK_IMAGE_TILING_OPTIMAL);
+		imageBuilder.mipLevels(mipLevels);
+		this.imageBuilder = imageBuilder.copyImmutable();
 
 		super.allocate(stack, context);
 	}
 
 	@Override
-	protected ImageInfo getImageInfo()
+	protected VkImage.Builder getImageBuilder()
 	{
-		return info;
+		return imageBuilder;
 	}
 
 	protected abstract int getWidth();

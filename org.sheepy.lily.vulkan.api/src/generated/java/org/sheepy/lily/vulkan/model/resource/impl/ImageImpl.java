@@ -45,6 +45,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getTiling <em>Tiling</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getMipLevels <em>Mip Levels</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getInitialLayout <em>Initial Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#isFillWithZero <em>Fill With Zero</em>}</li>
  * </ul>
  *
  * @generated
@@ -240,6 +241,26 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	 * @ordered
 	 */
 	protected ImageLayout initialLayout;
+
+	/**
+	 * The default value of the '{@link #isFillWithZero() <em>Fill With Zero</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFillWithZero()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FILL_WITH_ZERO_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isFillWithZero() <em>Fill With Zero</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFillWithZero()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean fillWithZero = FILL_WITH_ZERO_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -554,6 +575,31 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	 * @generated
 	 */
 	@Override
+	public boolean isFillWithZero()
+	{
+		return fillWithZero;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFillWithZero(boolean newFillWithZero)
+	{
+		boolean oldFillWithZero = fillWithZero;
+		fillWithZero = newFillWithZero;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.IMAGE__FILL_WITH_ZERO, oldFillWithZero, fillWithZero));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 											int featureID,
 											NotificationChain msgs)
@@ -598,6 +644,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 			return getMipLevels();
 		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
 			return getInitialLayout();
+		case ResourcePackage.IMAGE__FILL_WITH_ZERO:
+			return isFillWithZero();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -648,6 +696,9 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
 			setInitialLayout((ImageLayout) newValue);
 			return;
+		case ResourcePackage.IMAGE__FILL_WITH_ZERO:
+			setFillWithZero((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -695,6 +746,9 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
 			setInitialLayout((ImageLayout) null);
 			return;
+		case ResourcePackage.IMAGE__FILL_WITH_ZERO:
+			setFillWithZero(FILL_WITH_ZERO_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -731,6 +785,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 			return mipLevels != MIP_LEVELS_EDEFAULT;
 		case ResourcePackage.IMAGE__INITIAL_LAYOUT:
 			return initialLayout != null;
+		case ResourcePackage.IMAGE__FILL_WITH_ZERO:
+			return fillWithZero != FILL_WITH_ZERO_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -824,6 +880,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 		result.append(tiling);
 		result.append(", mipLevels: ");
 		result.append(mipLevels);
+		result.append(", fillWithZero: ");
+		result.append(fillWithZero);
 		result.append(')');
 		return result.toString();
 	}

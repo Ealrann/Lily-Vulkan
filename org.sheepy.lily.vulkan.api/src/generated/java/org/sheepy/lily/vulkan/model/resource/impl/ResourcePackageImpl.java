@@ -558,6 +558,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getImage_FillWithZero()
+	{
+		return (EAttribute) imageEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getImageLayout()
 	{
 		return imageLayoutEClass;
@@ -1235,6 +1246,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(imageEClass, IMAGE__TILING);
 		createEAttribute(imageEClass, IMAGE__MIP_LEVELS);
 		createEReference(imageEClass, IMAGE__INITIAL_LAYOUT);
+		createEAttribute(imageEClass, IMAGE__FILL_WITH_ZERO);
 
 		imageLayoutEClass = createEClass(IMAGE_LAYOUT);
 		createEAttribute(imageLayoutEClass, IMAGE_LAYOUT__STAGE);
@@ -1444,6 +1456,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getImage_InitialLayout(), this.getImageLayout(), null, "initialLayout", null,
 				0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_FillWithZero(), theEcorePackage.getEBoolean(), "fillWithZero",
+				"false", 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageLayoutEClass, ImageLayout.class, "ImageLayout", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

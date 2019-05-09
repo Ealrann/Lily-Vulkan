@@ -14,7 +14,7 @@ import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.ExecutionContext;
-import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImage;
 
 @Statefull
 public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter, IResourceAdapter
@@ -32,16 +32,15 @@ public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter,
 	public void allocate(MemoryStack stack, IAllocationContext context)
 	{
 		final var samplerInfo = sampledImage.getSampler();
-		final var imageInfo = getImageInfo();
+		final var imageBuilder = getImageBuilder().copyImmutable();
 
-		vkTexture = new VkTexture(imageInfo, samplerInfo);
+		vkTexture = new VkTexture(imageBuilder, samplerInfo);
 
 		final var executionContext = (ExecutionContext) context;
-		final var logicalDevice = executionContext.getLogicalDevice();
 
 		final ByteBuffer allocDataBuffer = allocDataBuffer(stack);
 
-		vkTexture.allocate(stack, logicalDevice);
+		vkTexture.allocate(stack, context);
 		vkTexture.loadImage(stack, executionContext, allocDataBuffer);
 
 		MemoryUtil.memFree(allocDataBuffer);
@@ -65,7 +64,7 @@ public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter,
 	@Override
 	public void free(IAllocationContext context)
 	{
-		vkTexture.free();
+		vkTexture.free(context);
 	}
 
 	@Override
@@ -86,7 +85,7 @@ public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter,
 		vkTexture.fillPoolSize(poolSize);
 	}
 
-	protected abstract ImageInfo getImageInfo();
+	protected abstract VkImage.Builder getImageBuilder();
 
 	protected abstract ByteBuffer allocDataBuffer(MemoryStack stack);
 }

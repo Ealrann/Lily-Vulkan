@@ -20,7 +20,7 @@ import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.log.Logger;
-import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImage;
 
 @Statefull
 @Adapter(scope = Font.class)
@@ -28,6 +28,18 @@ public class FontAdapter extends AbstractSampledImageAdapter
 {
 	public static final int BUFFER_WIDTH = 1024;
 	public static final int BUFFER_HEIGHT = 1024;
+
+	public static final VkImage.Builder imageBuilder;
+	static
+	{
+		final var builder = VkImage.newBuilder(BUFFER_WIDTH, BUFFER_HEIGHT,
+				VK_FORMAT_R8G8B8A8_UNORM);
+		builder.usage(VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT);
+		builder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		builder.tiling(VK_IMAGE_TILING_OPTIMAL);
+		builder.mipLevels(1);
+		imageBuilder = builder.copyImmutable();
+	}
 
 	private final Font font;
 
@@ -84,13 +96,13 @@ public class FontAdapter extends AbstractSampledImageAdapter
 			stbtt_InitFont(fontInfo, ttf);
 			scale = stbtt_ScaleForPixelHeight(fontInfo, fontHeight);
 
-			IntBuffer d = stack.mallocInt(1);
+			final IntBuffer d = stack.mallocInt(1);
 			stbtt_GetFontVMetrics(fontInfo, null, d, null);
 			descent = d.get(0) * scale;
 
 			bitmap = memAlloc(BUFFER_WIDTH * BUFFER_HEIGHT);
 
-			STBTTPackContext pc = STBTTPackContext.mallocStack(stack);
+			final STBTTPackContext pc = STBTTPackContext.mallocStack(stack);
 			stbtt_PackBegin(pc, bitmap, BUFFER_WIDTH, BUFFER_HEIGHT, 0, 1, NULL);
 			stbtt_PackSetOversampling(pc, 4, 4);
 			if (stbtt_PackFontRange(pc, ttf, 0, fontHeight, 32, cdata) == false)
@@ -106,7 +118,7 @@ public class FontAdapter extends AbstractSampledImageAdapter
 				texture.putInt((bitmap.get(i) << 24) | 0x00FFFFFF);
 			}
 			texture.flip();
-		} catch (Exception e)
+		} catch (final Exception e)
 		{
 			e.printStackTrace();
 		} finally
@@ -140,11 +152,9 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	}
 
 	@Override
-	protected ImageInfo getImageInfo()
+	protected VkImage.Builder getImageBuilder()
 	{
-		return new ImageInfo(BUFFER_WIDTH, BUFFER_HEIGHT, VK_FORMAT_R8G8B8A8_UNORM,
-				VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT,
-				VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, VK_IMAGE_TILING_OPTIMAL, 1);
+		return imageBuilder;
 	}
 
 	public static FontAdapter adapt(Font font)

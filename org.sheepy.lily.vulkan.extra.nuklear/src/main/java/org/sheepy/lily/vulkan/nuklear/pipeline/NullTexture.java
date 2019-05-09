@@ -13,7 +13,7 @@ import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EFilter;
-import org.sheepy.vulkan.resource.image.ImageInfo;
+import org.sheepy.vulkan.resource.image.VkImage;
 
 public class NullTexture implements IAllocable
 {
@@ -27,10 +27,16 @@ public class NullTexture implements IAllocable
 		sampler.setMagFilter(EFilter.NEAREST);
 	}
 
-	private static final ImageInfo imageInfo = new ImageInfo(1, 1, FORMAT, USAGE,
-			VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+	private static final VkImage.Builder imageBuilder;
+	static
+	{
+		final var builder = VkImage.newBuilder(1, 1, FORMAT);
+		builder.usage(USAGE);
+		builder.properties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		imageBuilder = builder.copyImmutable();
+	}
 
-	public final VkTexture texture = new VkTexture(imageInfo, sampler);
+	public final VkTexture texture = new VkTexture(imageBuilder, sampler);
 
 	@Override
 	public void allocate(MemoryStack stack, IAllocationContext context)
@@ -40,7 +46,7 @@ public class NullTexture implements IAllocable
 		buffer.putInt(0xFFFFFFFF);
 		buffer.flip();
 
-		texture.allocate(stack, executionContext.getLogicalDevice());
+		texture.allocate(stack, context);
 		texture.loadImage(stack, executionContext, buffer);
 
 		MemoryUtil.memFree(buffer);
@@ -49,7 +55,7 @@ public class NullTexture implements IAllocable
 	@Override
 	public void free(IAllocationContext context)
 	{
-		texture.free();
+		texture.free(context);
 	}
 
 	public long getSamplerAddress()
