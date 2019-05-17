@@ -7,7 +7,7 @@ import org.sheepy.vulkan.queue.VulkanQueue;
 import org.sheepy.vulkan.surface.Extent2D;
 import org.sheepy.vulkan.surface.VkSurface;
 
-public interface ISurfaceManager extends IAllocable
+public interface ISurfaceManager extends IAllocable<IGraphicContext>
 {
 	Extent2D getExtent();
 

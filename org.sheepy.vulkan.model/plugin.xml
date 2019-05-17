@@ -49,4 +49,18 @@
             type="barrier"
             class="org.sheepy.vulkan.model.barrier.util.BarrierResourceFactoryImpl"/>
    </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Pipeline -->
+      <package
+            uri="org.sheepy.vulkan.model.pipeline"
+            class="org.sheepy.vulkan.model.pipeline.PipelinePackage"
+            genModel="model/Pipeline.xcore"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Pipeline -->
+      <parser
+            type="pipeline"
+            class="org.sheepy.vulkan.model.pipeline.util.PipelineResourceFactoryImpl"/>
+   </extension>
 </plugin>

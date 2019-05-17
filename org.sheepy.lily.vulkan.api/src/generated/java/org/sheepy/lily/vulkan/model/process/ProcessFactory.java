@@ -23,13 +23,31 @@ public interface ProcessFactory extends EFactory
 	ProcessFactory eINSTANCE = org.sheepy.lily.vulkan.model.process.impl.ProcessFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Pipeline Pkg</em>'.
+	 * Returns a new object of class '<em>Part Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pipeline Pkg</em>'.
+	 * @return a new object of class '<em>Part Pkg</em>'.
 	 * @generated
 	 */
-	PipelinePkg createPipelinePkg();
+	ProcessPartPkg createProcessPartPkg();
+
+	/**
+	 * Returns a new object of class '<em>Task Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Task Pkg</em>'.
+	 * @generated
+	 */
+	TaskPkg createTaskPkg();
+
+	/**
+	 * Returns a new object of class '<em>Pipeline</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pipeline</em>'.
+	 * @generated
+	 */
+	Pipeline createPipeline();
 
 	/**
 	 * Returns a new object of class '<em>Pipeline Barrier</em>'.
@@ -41,6 +59,24 @@ public interface ProcessFactory extends EFactory
 	PipelineBarrier createPipelineBarrier();
 
 	/**
+	 * Returns a new object of class '<em>Composite Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Task</em>'.
+	 * @generated
+	 */
+	CompositeTask createCompositeTask();
+
+	/**
+	 * Returns a new object of class '<em>Bind Descriptor Sets</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bind Descriptor Sets</em>'.
+	 * @generated
+	 */
+	BindDescriptorSets createBindDescriptorSets();
+
+	/**
 	 * Returns a new object of class '<em>Push Constant</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48,6 +84,15 @@ public interface ProcessFactory extends EFactory
 	 * @generated
 	 */
 	PushConstant createPushConstant();
+
+	/**
+	 * Returns a new object of class '<em>Push Buffer Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Push Buffer Task</em>'.
+	 * @generated
+	 */
+	PushBufferTask createPushBufferTask();
 
 	/**
 	 * Returns the package supported by this factory.

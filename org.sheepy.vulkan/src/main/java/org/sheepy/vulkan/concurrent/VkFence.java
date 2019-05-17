@@ -6,11 +6,10 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkFenceCreateInfo;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.log.Logger;
 
-public class VkFence implements IAllocable
+public class VkFence implements IAllocable<IVulkanContext>
 {
 	private final boolean signaled;
 	private long id;
@@ -24,9 +23,9 @@ public class VkFence implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IVulkanContext context)
 	{
-		device = ((IVulkanContext) context).getVkDevice();
+		device = context.getVkDevice();
 		final VkFenceCreateInfo createInfo = VkFenceCreateInfo.calloc();
 		createInfo.sType(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO);
 		createInfo.pNext(VK_NULL_HANDLE);
@@ -41,7 +40,7 @@ public class VkFence implements IAllocable
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IVulkanContext context)
 	{
 		vkDestroyFence(device, id, null);
 		id = -1;
@@ -71,7 +70,7 @@ public class VkFence implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IVulkanContext context)
 	{
 		return false;
 	}

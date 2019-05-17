@@ -6,8 +6,6 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
@@ -45,15 +43,14 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		final IVulkanContext vulkanContext = (IVulkanContext) context;
-		final var vkDevice = vulkanContext.getVkDevice();
+		final var vkDevice = context.getVkDevice();
 
-		info.computeAlignment(vulkanContext.getPhysicalDevice());
+		info.computeAlignment(context.getPhysicalDevice());
 		address = VkBufferAllocator.allocate(stack, vkDevice, info);
 
-		final var memoryInfo = allocateMemory(stack, vulkanContext.getLogicalDevice());
+		final var memoryInfo = allocateMemory(stack, context.getLogicalDevice());
 		memoryAddress = memoryInfo.id;
 
 		vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
@@ -72,10 +69,9 @@ public class GPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
-		final IVulkanContext vulkanContext = (IVulkanContext) context;
-		final var vkDevice = vulkanContext.getVkDevice();
+		final var vkDevice = context.getVkDevice();
 
 		vkDestroyBuffer(vkDevice, address, null);
 		vkFreeMemory(vkDevice, memoryAddress, null);

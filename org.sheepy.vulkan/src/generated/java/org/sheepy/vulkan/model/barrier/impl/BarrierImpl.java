@@ -2,17 +2,16 @@
  */
 package org.sheepy.vulkan.model.barrier.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.vulkan.model.barrier.Barrier;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,8 +21,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.barrier.impl.BarrierImpl#getSrcStage <em>Src Stage</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.barrier.impl.BarrierImpl#getDstStage <em>Dst Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.BarrierImpl#getSrcAccessMask <em>Src Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.BarrierImpl#getDstAccessMask <em>Dst Access Mask</em>}</li>
  * </ul>
  *
  * @generated
@@ -31,44 +30,24 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 public abstract class BarrierImpl extends MinimalEObjectImpl.Container implements Barrier
 {
 	/**
-	 * The default value of the '{@link #getSrcStage() <em>Src Stage</em>}' attribute.
+	 * The cached value of the '{@link #getSrcAccessMask() <em>Src Access Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSrcStage()
+	 * @see #getSrcAccessMask()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EPipelineStage SRC_STAGE_EDEFAULT = EPipelineStage.TOP_OF_PIPE_BIT;
+	protected EList<EAccess> srcAccessMask;
 
 	/**
-	 * The cached value of the '{@link #getSrcStage() <em>Src Stage</em>}' attribute.
+	 * The cached value of the '{@link #getDstAccessMask() <em>Dst Access Mask</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSrcStage()
+	 * @see #getDstAccessMask()
 	 * @generated
 	 * @ordered
 	 */
-	protected EPipelineStage srcStage = SRC_STAGE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDstStage() <em>Dst Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDstStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EPipelineStage DST_STAGE_EDEFAULT = EPipelineStage.TOP_OF_PIPE_BIT;
-
-	/**
-	 * The cached value of the '{@link #getDstStage() <em>Dst Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDstStage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EPipelineStage dstStage = DST_STAGE_EDEFAULT;
+	protected EList<EAccess> dstAccessMask;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -97,9 +76,14 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public EPipelineStage getSrcStage()
+	public EList<EAccess> getSrcAccessMask()
 	{
-		return srcStage;
+		if (srcAccessMask == null)
+		{
+			srcAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
+					BarrierPackage.BARRIER__SRC_ACCESS_MASK);
+		}
+		return srcAccessMask;
 	}
 
 	/**
@@ -108,37 +92,14 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void setSrcStage(EPipelineStage newSrcStage)
+	public EList<EAccess> getDstAccessMask()
 	{
-		EPipelineStage oldSrcStage = srcStage;
-		srcStage = newSrcStage == null ? SRC_STAGE_EDEFAULT : newSrcStage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.BARRIER__SRC_STAGE, oldSrcStage, srcStage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EPipelineStage getDstStage()
-	{
-		return dstStage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDstStage(EPipelineStage newDstStage)
-	{
-		EPipelineStage oldDstStage = dstStage;
-		dstStage = newDstStage == null ? DST_STAGE_EDEFAULT : newDstStage;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.BARRIER__DST_STAGE, oldDstStage, dstStage));
+		if (dstAccessMask == null)
+		{
+			dstAccessMask = new EDataTypeUniqueEList<EAccess>(EAccess.class, this,
+					BarrierPackage.BARRIER__DST_ACCESS_MASK);
+		}
+		return dstAccessMask;
 	}
 
 	/**
@@ -151,10 +112,10 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.BARRIER__SRC_STAGE:
-			return getSrcStage();
-		case BarrierPackage.BARRIER__DST_STAGE:
-			return getDstStage();
+		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+			return getSrcAccessMask();
+		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
+			return getDstAccessMask();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -164,16 +125,19 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.BARRIER__SRC_STAGE:
-			setSrcStage((EPipelineStage) newValue);
+		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+			getSrcAccessMask().clear();
+			getSrcAccessMask().addAll((Collection<? extends EAccess>) newValue);
 			return;
-		case BarrierPackage.BARRIER__DST_STAGE:
-			setDstStage((EPipelineStage) newValue);
+		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
+			getDstAccessMask().clear();
+			getDstAccessMask().addAll((Collection<? extends EAccess>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,11 +153,11 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.BARRIER__SRC_STAGE:
-			setSrcStage(SRC_STAGE_EDEFAULT);
+		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+			getSrcAccessMask().clear();
 			return;
-		case BarrierPackage.BARRIER__DST_STAGE:
-			setDstStage(DST_STAGE_EDEFAULT);
+		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
+			getDstAccessMask().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -209,10 +173,10 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.BARRIER__SRC_STAGE:
-			return srcStage != SRC_STAGE_EDEFAULT;
-		case BarrierPackage.BARRIER__DST_STAGE:
-			return dstStage != DST_STAGE_EDEFAULT;
+		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+			return srcAccessMask != null && !srcAccessMask.isEmpty();
+		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
+			return dstAccessMask != null && !dstAccessMask.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -228,10 +192,10 @@ public abstract class BarrierImpl extends MinimalEObjectImpl.Container implement
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (srcStage: ");
-		result.append(srcStage);
-		result.append(", dstStage: ");
-		result.append(dstStage);
+		result.append(" (srcAccessMask: ");
+		result.append(srcAccessMask);
+		result.append(", dstAccessMask: ");
+		result.append(dstAccessMask);
 		result.append(')');
 		return result.toString();
 	}

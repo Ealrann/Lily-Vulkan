@@ -5,43 +5,46 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
+import org.sheepy.lily.vulkan.api.execution.IExecutionRecorders;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.resource.semaphore.SemaphoreAdapter;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.allocation.IAllocationNode;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 
-public abstract class ExecutionRecorders implements IAllocationNode, IAllocable
+public abstract class ExecutionRecorders<T extends IProcessContext>
+		implements IExecutionRecorders<T>, IAllocationNode<T>, IAllocable<T>
 {
-	private List<IExecutionRecorder> recorders;
+	private List<IExecutionRecorder<? super T>> recorders;
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, T context)
 	{
 		recorders = List.copyOf(createRecorders(stack, context));
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(T context)
 	{
 		recorders = null;
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(T context)
 	{
 		return false;
 	}
 
 	@Override
-	public List<? extends Object> getAllocationChildren()
+	public List<IExecutionRecorder<? super T>> getAllocationChildren()
 	{
 		return recorders;
 	}
 
-	public List<IExecutionRecorder> getRecorders()
+	@Override
+	public List<IExecutionRecorder<? super T>> getRecorders()
 	{
 		return recorders;
 	}
@@ -74,6 +77,6 @@ public abstract class ExecutionRecorders implements IAllocationNode, IAllocable
 		return new WaitData(adapter.getVkSemaphore(), waitStage);
 	}
 
-	protected abstract List<IExecutionRecorder> createRecorders(MemoryStack stack,
-																IAllocationContext context);
+	protected abstract List<? extends IExecutionRecorder<? super T>> createRecorders(	MemoryStack stack,
+																						T context);
 }

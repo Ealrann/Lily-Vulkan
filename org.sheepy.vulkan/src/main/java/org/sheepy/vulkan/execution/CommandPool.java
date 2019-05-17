@@ -5,9 +5,8 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandPoolCreateInfo;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 
-public class CommandPool implements IAllocable
+public class CommandPool implements IAllocable<IExecutionContext>
 {
 	private final int queueIndex;
 	private final boolean allowReset;
@@ -21,9 +20,9 @@ public class CommandPool implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		var device = ((ExecutionContext) context).getVkDevice();
+		final var device = context.getVkDevice();
 		if (commandPoolId != -1) free(context);
 
 		// Command Pool
@@ -42,7 +41,7 @@ public class CommandPool implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
 	}
@@ -53,9 +52,9 @@ public class CommandPool implements IAllocable
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
-		var device = ((ExecutionContext) context).getVkDevice();
+		final var device = context.getVkDevice();
 		vkDestroyCommandPool(device, commandPoolId, null);
 		commandPoolId = -1;
 	}

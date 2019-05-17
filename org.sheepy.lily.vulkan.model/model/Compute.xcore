@@ -7,16 +7,16 @@
 
 package org.sheepy.lily.vulkan.model.process.compute
 
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline
 import org.sheepy.lily.vulkan.model.process.AbstractProcess
-import org.sheepy.lily.vulkan.model.process.IPipelineUnit
+import org.sheepy.lily.vulkan.model.process.IPipeline
+import org.sheepy.lily.vulkan.model.process.IPipelineTask
 import org.sheepy.lily.vulkan.model.resource.Shader
 
 class ComputeProcess extends AbstractProcess
 {
 }
 
-class ComputePipeline extends AbstractPipeline
+class ComputePipeline extends IPipeline
 {
 	int workgroupSizeX = "32"
 	int workgroupSizeY = "32"
@@ -26,7 +26,7 @@ class ComputePipeline extends AbstractPipeline
 	int depth
 }
 
-class Computer extends IPipelineUnit
+class Computer extends IPipelineTask
 {
 	refers Shader shader
 }

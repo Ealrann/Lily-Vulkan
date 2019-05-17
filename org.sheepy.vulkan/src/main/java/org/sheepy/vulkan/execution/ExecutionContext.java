@@ -5,14 +5,14 @@ import java.util.Collection;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.device.VulkanContext;
 import org.sheepy.vulkan.queue.EQueueType;
 import org.sheepy.vulkan.queue.VulkanQueue;
 
-public class ExecutionContext extends VulkanContext implements IAllocable, IExecutionContext
+public class ExecutionContext extends VulkanContext
+		implements IAllocable<IVulkanContext>, IExecutionContext
 {
 	public final EQueueType queueType;
 	private final boolean resetAllowed;
@@ -27,10 +27,10 @@ public class ExecutionContext extends VulkanContext implements IAllocable, IExec
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IVulkanContext context)
 	{
-		setLogicalDevice(((IVulkanContext) context).getLogicalDevice());
-		setWindow(((IVulkanContext) context).getWindow());
+		setLogicalDevice(context.getLogicalDevice());
+		setWindow(context.getWindow());
 
 		switch (queueType)
 		{
@@ -51,13 +51,13 @@ public class ExecutionContext extends VulkanContext implements IAllocable, IExec
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IVulkanContext context)
 	{
 		commandPool.free(this);
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IVulkanContext context)
 	{
 		return false;
 	}
@@ -66,6 +66,12 @@ public class ExecutionContext extends VulkanContext implements IAllocable, IExec
 	public VulkanQueue getQueue()
 	{
 		return queue;
+	}
+
+	@Override
+	public CommandPool getCommandPool()
+	{
+		return commandPool;
 	}
 
 	@Override

@@ -89,17 +89,60 @@ public class ProcessSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case ProcessPackage.PIPELINE_PKG:
-		{
-			PipelinePkg pipelinePkg = (PipelinePkg) theEObject;
-			T result = casePipelinePkg(pipelinePkg);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
 		case ProcessPackage.CONFIGURATION:
 		{
 			Configuration configuration = (Configuration) theEObject;
 			T result = caseConfiguration(configuration);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.PROCESS_PART_PKG:
+		{
+			ProcessPartPkg processPartPkg = (ProcessPartPkg) theEObject;
+			T result = caseProcessPartPkg(processPartPkg);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.IPIPELINE_TASK:
+		{
+			IPipelineTask iPipelineTask = (IPipelineTask) theEObject;
+			T result = caseIPipelineTask(iPipelineTask);
+			if (result == null) result = caseLNamedElement(iPipelineTask);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.IPROCESS_PART:
+		{
+			IProcessPart iProcessPart = (IProcessPart) theEObject;
+			T result = caseIProcessPart(iProcessPart);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.IPIPELINE:
+		{
+			IPipeline iPipeline = (IPipeline) theEObject;
+			T result = caseIPipeline(iPipeline);
+			if (result == null) result = caseLNamedElement(iPipeline);
+			if (result == null) result = caseIResourceContainer(iPipeline);
+			if (result == null) result = caseIProcessPart(iPipeline);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.TASK_PKG:
+		{
+			TaskPkg taskPkg = (TaskPkg) theEObject;
+			T result = caseTaskPkg(taskPkg);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.PIPELINE:
+		{
+			Pipeline pipeline = (Pipeline) theEObject;
+			T result = casePipeline(pipeline);
+			if (result == null) result = caseIPipeline(pipeline);
+			if (result == null) result = caseLNamedElement(pipeline);
+			if (result == null) result = caseIResourceContainer(pipeline);
+			if (result == null) result = caseIProcessPart(pipeline);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -108,52 +151,27 @@ public class ProcessSwitch<T> extends Switch<T>
 			PipelineBarrier pipelineBarrier = (PipelineBarrier) theEObject;
 			T result = casePipelineBarrier(pipelineBarrier);
 			if (result == null) result = caseLObject(pipelineBarrier);
-			if (result == null) result = caseIPipelineUnit(pipelineBarrier);
+			if (result == null) result = caseIPipelineTask(pipelineBarrier);
 			if (result == null) result = caseIInferenceObject(pipelineBarrier);
 			if (result == null) result = caseLNamedElement(pipelineBarrier);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case ProcessPackage.IPIPELINE:
+		case ProcessPackage.COMPOSITE_TASK:
 		{
-			IPipeline iPipeline = (IPipeline) theEObject;
-			T result = caseIPipeline(iPipeline);
-			if (result == null) result = caseLObject(iPipeline);
-			if (result == null) result = caseLNamedElement(iPipeline);
-			if (result == null) result = caseIInferenceObject(iPipeline);
+			CompositeTask compositeTask = (CompositeTask) theEObject;
+			T result = caseCompositeTask(compositeTask);
+			if (result == null) result = caseIPipelineTask(compositeTask);
+			if (result == null) result = caseLNamedElement(compositeTask);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case ProcessPackage.ABSTRACT_PIPELINE:
+		case ProcessPackage.BIND_DESCRIPTOR_SETS:
 		{
-			AbstractPipeline abstractPipeline = (AbstractPipeline) theEObject;
-			T result = caseAbstractPipeline(abstractPipeline);
-			if (result == null) result = caseIPipeline(abstractPipeline);
-			if (result == null) result = caseIResourceContainer(abstractPipeline);
-			if (result == null) result = caseLObject(abstractPipeline);
-			if (result == null) result = caseLNamedElement(abstractPipeline);
-			if (result == null) result = caseIInferenceObject(abstractPipeline);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ProcessPackage.IPIPELINE_UNIT:
-		{
-			IPipelineUnit iPipelineUnit = (IPipelineUnit) theEObject;
-			T result = caseIPipelineUnit(iPipelineUnit);
-			if (result == null) result = caseLNamedElement(iPipelineUnit);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ProcessPackage.ABSTRACT_COMPOSITE_PIPELINE:
-		{
-			AbstractCompositePipeline abstractCompositePipeline = (AbstractCompositePipeline) theEObject;
-			T result = caseAbstractCompositePipeline(abstractCompositePipeline);
-			if (result == null) result = caseAbstractPipeline(abstractCompositePipeline);
-			if (result == null) result = caseIPipeline(abstractCompositePipeline);
-			if (result == null) result = caseIResourceContainer(abstractCompositePipeline);
-			if (result == null) result = caseLObject(abstractCompositePipeline);
-			if (result == null) result = caseLNamedElement(abstractCompositePipeline);
-			if (result == null) result = caseIInferenceObject(abstractCompositePipeline);
+			BindDescriptorSets bindDescriptorSets = (BindDescriptorSets) theEObject;
+			T result = caseBindDescriptorSets(bindDescriptorSets);
+			if (result == null) result = caseIPipelineTask(bindDescriptorSets);
+			if (result == null) result = caseLNamedElement(bindDescriptorSets);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -161,8 +179,17 @@ public class ProcessSwitch<T> extends Switch<T>
 		{
 			PushConstant pushConstant = (PushConstant) theEObject;
 			T result = casePushConstant(pushConstant);
-			if (result == null) result = caseIPipelineUnit(pushConstant);
+			if (result == null) result = caseIPipelineTask(pushConstant);
 			if (result == null) result = caseLNamedElement(pushConstant);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ProcessPackage.PUSH_BUFFER_TASK:
+		{
+			PushBufferTask pushBufferTask = (PushBufferTask) theEObject;
+			T result = casePushBufferTask(pushBufferTask);
+			if (result == null) result = caseIPipelineTask(pushBufferTask);
+			if (result == null) result = caseLNamedElement(pushBufferTask);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -188,22 +215,6 @@ public class ProcessSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Pkg</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pipeline Pkg</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePipelinePkg(PipelinePkg object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -215,6 +226,54 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseConfiguration(Configuration object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Part Pkg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Part Pkg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProcessPartPkg(ProcessPartPkg object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIPipelineTask(IPipelineTask object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIProcessPart(IProcessPart object)
 	{
 		return null;
 	}
@@ -236,6 +295,22 @@ public class ProcessSwitch<T> extends Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompositeTask(CompositeTask object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -252,49 +327,49 @@ public class ProcessSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Task Pkg</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Task Pkg</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractPipeline(AbstractPipeline object)
+	public T caseTaskPkg(TaskPkg object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pipeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pipeline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPipelineUnit(IPipelineUnit object)
+	public T casePipeline(Pipeline object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Composite Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Bind Descriptor Sets</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Composite Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Bind Descriptor Sets</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractCompositePipeline(AbstractCompositePipeline object)
+	public T caseBindDescriptorSets(BindDescriptorSets object)
 	{
 		return null;
 	}
@@ -311,6 +386,22 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T casePushConstant(PushConstant object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Push Buffer Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Push Buffer Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePushBufferTask(PushBufferTask object)
 	{
 		return null;
 	}

@@ -18,8 +18,8 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
@@ -36,7 +36,7 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPipelinePkg <em>Pipeline Pkg</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPartPkg <em>Part Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSignals <em>Signals</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getWaitFor <em>Wait For</em>}</li>
@@ -128,14 +128,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	protected DescriptorSetPkg descriptorSetPkg;
 
 	/**
-	 * The cached value of the '{@link #getPipelinePkg() <em>Pipeline Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getPartPkg() <em>Part Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPipelinePkg()
+	 * @see #getPartPkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected PipelinePkg pipelinePkg;
+	protected ProcessPartPkg partPkg;
 
 	/**
 	 * The default value of the '{@link #isResetAllowed() <em>Reset Allowed</em>}' attribute.
@@ -395,9 +395,9 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public PipelinePkg getPipelinePkg()
+	public ProcessPartPkg getPartPkg()
 	{
-		return pipelinePkg;
+		return partPkg;
 	}
 
 	/**
@@ -405,14 +405,14 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPipelinePkg(PipelinePkg newPipelinePkg, NotificationChain msgs)
+	public NotificationChain basicSetPartPkg(ProcessPartPkg newPartPkg, NotificationChain msgs)
 	{
-		PipelinePkg oldPipelinePkg = pipelinePkg;
-		pipelinePkg = newPipelinePkg;
+		ProcessPartPkg oldPartPkg = partPkg;
+		partPkg = newPartPkg;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, oldPipelinePkg, newPipelinePkg);
+					ProcessPackage.ABSTRACT_PROCESS__PART_PKG, oldPartPkg, newPartPkg);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -425,22 +425,20 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public void setPipelinePkg(PipelinePkg newPipelinePkg)
+	public void setPartPkg(ProcessPartPkg newPartPkg)
 	{
-		if (newPipelinePkg != pipelinePkg)
+		if (newPartPkg != partPkg)
 		{
 			NotificationChain msgs = null;
-			if (pipelinePkg != null) msgs = ((InternalEObject) pipelinePkg).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, null,
-					msgs);
-			if (newPipelinePkg != null) msgs = ((InternalEObject) newPipelinePkg).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, null,
-					msgs);
-			msgs = basicSetPipelinePkg(newPipelinePkg, msgs);
+			if (partPkg != null) msgs = ((InternalEObject) partPkg).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PART_PKG, null, msgs);
+			if (newPartPkg != null) msgs = ((InternalEObject) newPartPkg).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - ProcessPackage.ABSTRACT_PROCESS__PART_PKG, null, msgs);
+			msgs = basicSetPartPkg(newPartPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG, newPipelinePkg, newPipelinePkg));
+				ProcessPackage.ABSTRACT_PROCESS__PART_PKG, newPartPkg, newPartPkg));
 	}
 
 	/**
@@ -516,8 +514,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 			return basicSetResourcePkg(null, msgs);
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
 			return basicSetDescriptorSetPkg(null, msgs);
-		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-			return basicSetPipelinePkg(null, msgs);
+		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+			return basicSetPartPkg(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -542,8 +540,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 			return isWaitingFenceDuringAcquire();
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
 			return getDescriptorSetPkg();
-		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-			return getPipelinePkg();
+		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+			return getPartPkg();
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 			return isResetAllowed();
 		case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:
@@ -580,8 +578,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
 			setDescriptorSetPkg((DescriptorSetPkg) newValue);
 			return;
-		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-			setPipelinePkg((PipelinePkg) newValue);
+		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+			setPartPkg((ProcessPartPkg) newValue);
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 			setResetAllowed((Boolean) newValue);
@@ -623,8 +621,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
 			setDescriptorSetPkg((DescriptorSetPkg) null);
 			return;
-		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-			setPipelinePkg((PipelinePkg) null);
+		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+			setPartPkg((ProcessPartPkg) null);
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 			setResetAllowed(RESET_ALLOWED_EDEFAULT);
@@ -659,8 +657,8 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 			return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
 		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
 			return descriptorSetPkg != null;
-		case ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG:
-			return pipelinePkg != null;
+		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
+			return partPkg != null;
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
 			return resetAllowed != RESET_ALLOWED_EDEFAULT;
 		case ProcessPackage.ABSTRACT_PROCESS__SIGNALS:

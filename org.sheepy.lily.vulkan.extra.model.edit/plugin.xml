@@ -22,29 +22,16 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated Nuklear -->
       <extender
+            uri="org.sheepy.lily.core.model.builder"
+            class="org.sheepy.lily.vulkan.extra.nuklear.model.provider.NuklearItemProviderAdapterFactory$BuilderChildCreationExtender"/>
+      <extender
+            uri="org.sheepy.lily.vulkan.model.process.graphic"
+            class="org.sheepy.lily.vulkan.extra.nuklear.model.provider.NuklearItemProviderAdapterFactory$GraphicChildCreationExtender"/>
+      <extender
             uri="org.sheepy.lily.vulkan.model.process"
             class="org.sheepy.lily.vulkan.extra.nuklear.model.provider.NuklearItemProviderAdapterFactory$ProcessChildCreationExtender"/>
       <extender
             uri="org.sheepy.lily.vulkan.model"
             class="org.sheepy.lily.vulkan.extra.nuklear.model.provider.NuklearItemProviderAdapterFactory$VulkanChildCreationExtender"/>
-   </extension>
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated Graphic -->
-      <factory
-            uri="org.sheepy.lily.vulkan.extra.graphic.model"
-            class="org.sheepy.lily.vulkan.extra.graphic.model.provider.GraphicExtraItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.childCreationExtenders">
-      <!-- @generated Graphic -->
-      <extender
-            uri="org.sheepy.lily.vulkan.model.process"
-            class="org.sheepy.lily.vulkan.extra.graphic.model.provider.GraphicExtraItemProviderAdapterFactory$ProcessChildCreationExtender"/>
    </extension>
 </plugin>

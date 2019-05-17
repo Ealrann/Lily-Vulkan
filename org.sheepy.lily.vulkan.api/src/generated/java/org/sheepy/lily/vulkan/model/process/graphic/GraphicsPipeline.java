@@ -3,7 +3,8 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.core.model.builder.Buildable;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
@@ -27,13 +28,14 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexDescriptor <em>Vertex Descriptor</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline()
  * @model
  * @generated
  */
-public interface GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
+public interface GraphicsPipeline extends IPipeline, Buildable<GraphicsPipeline>
 {
 
 	/**
@@ -180,5 +182,27 @@ public interface GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 	 * @generated
 	 */
 	void setSubpass(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Vertex Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Vertex Descriptor</em>' containment reference.
+	 * @see #setVertexDescriptor(VertexDescriptor)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_VertexDescriptor()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	VertexDescriptor getVertexDescriptor();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexDescriptor <em>Vertex Descriptor</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Vertex Descriptor</em>' containment reference.
+	 * @see #getVertexDescriptor()
+	 * @generated
+	 */
+	void setVertexDescriptor(VertexDescriptor value);
 
 } // GraphicsPipeline

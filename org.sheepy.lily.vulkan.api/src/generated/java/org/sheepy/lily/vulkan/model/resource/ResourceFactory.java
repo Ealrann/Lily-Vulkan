@@ -24,6 +24,15 @@ public interface ResourceFactory extends EFactory
 			.init();
 
 	/**
+	 * Returns a new object of class '<em>Basic Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Basic Resource</em>'.
+	 * @generated
+	 */
+	BasicResource createBasicResource();
+
+	/**
 	 * Returns a new object of class '<em>Push Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,6 +69,15 @@ public interface ResourceFactory extends EFactory
 	ImageLayout createImageLayout();
 
 	/**
+	 * Returns a new object of class '<em>Sampled Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sampled Image</em>'.
+	 * @generated
+	 */
+	SampledImage createSampledImage();
+
+	/**
 	 * Returns a new object of class '<em>Semaphore</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,15 +112,6 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	Sampler createSampler();
-
-	/**
-	 * Returns a new object of class '<em>Constants</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constants</em>'.
-	 * @generated
-	 */
-	Constants createConstants();
 
 	/**
 	 * Returns a new object of class '<em>Descriptor Set</em>'.

@@ -3,23 +3,23 @@ package org.sheepy.lily.vulkan.process.compute.execution;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
-import org.sheepy.lily.vulkan.process.compute.process.ComputeContext;
+import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.SubmissionsBuilder;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 
-public class ComputeExecutionRecorders extends ExecutionRecorders
+public class ComputeExecutionRecorders extends ExecutionRecorders<IComputeContext>
 {
 	@Override
-	public List<IExecutionRecorder> createRecorders(MemoryStack stack, IAllocationContext context)
+	public List<ComputeExecutionRecorder> createRecorders(	MemoryStack stack,
+															IComputeContext context)
 	{
-		final var computeContext = (ComputeContext) context;
-		final var process = computeContext.process;
+		final var computeContext = context;
+		final var process = computeContext.getProcess();
 
 		final var waitForEmitters = gatherWaitDatas(process);
 		final var signals = gatherSinalSemaphores(process);
-		final var submissionBuilder = new SubmissionsBuilder(waitForEmitters, signals, true);
+		final var submissionBuilder = new SubmissionsBuilder<IComputeContext>(waitForEmitters,
+				signals, true);
 
 		final var commandBuffer = new ComputeCommandBuffer();
 		final var submission = submissionBuilder.buildSubmission(commandBuffer, 0);

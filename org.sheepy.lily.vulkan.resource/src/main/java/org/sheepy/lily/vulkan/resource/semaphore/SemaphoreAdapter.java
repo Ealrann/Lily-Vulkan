@@ -6,7 +6,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
@@ -23,18 +22,18 @@ public class SemaphoreAdapter implements IResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
 		vkSemaphore.allocate(stack, context);
 
 		if (semaphore.isSignalizedAtInit())
 		{
-			vkSemaphore.signalSemaphore((IExecutionContext) context);
+			vkSemaphore.signalSemaphore(context);
 		}
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		vkSemaphore.free(context);
 	}

@@ -1,72 +1,97 @@
 package org.sheepy.lily.vulkan.process.pipeline;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkCommandBuffer;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
+import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationDescriptorAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
-import org.sheepy.lily.vulkan.api.resource.IConstantsAdapter;
-import org.sheepy.lily.vulkan.api.resource.IPushBufferAdapter;
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
-import org.sheepy.lily.vulkan.model.resource.PushBuffer;
-import org.sheepy.lily.vulkan.resource.buffer.AbstractConstantsAdapter;
+import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorSetAdapter;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.allocation.IAllocationNode;
+import org.sheepy.vulkan.allocation.IAllocationObject;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.pipeline.VkPipeline;
+import org.sheepy.vulkan.pipeline.VkPipelineLayout;
 
 @Statefull
-public abstract class AbstractPipelineAdapter
-		implements IAllocableAdapter, IPipelineAdapter, IAllocationDescriptorAdapter
+public abstract class AbstractPipelineAdapter<T extends IProcessContext>
+		implements IAllocableAdapter<T>, IPipelineAdapter<T>, IAllocationNode<T>
 {
-	private final List<Object> allocationList;
-	private final boolean[] stagingFlushHistory;
-	protected final IPushBufferAdapter pushBufferAdapter;
+
 	protected final IPipeline pipeline;
 
 	protected boolean recordNeeded = false;
-	protected List<IAllocable> allocationDependencies = new ArrayList<>();
+	protected List<IAllocable<? super T>> allocationDependencies = new ArrayList<>();
 
-	private VkPipeline vkPipeline;
+	private final List<IAllocationObject<? super T>> allocationList = new ArrayList<>();
+	private final List<TaskWrapper<?>> taskWrappers = new ArrayList<>();
+	private VkPipelineLayout<? super T> vkPipelineLayout;
+	private final TaskPkg taskPkg;
+	private boolean taskListDirty = true;
+
+	private final Adapter taskListener = new AdapterImpl()
+	{
+		@Override
+		public void notifyChanged(Notification notification)
+		{
+			if (notification.getFeature() == ProcessPackage.Literals.TASK_PKG__TASKS)
+			{
+				taskListDirty = true;
+			}
+		}
+	};
 
 	public AbstractPipelineAdapter(IPipeline pipeline)
 	{
 		this.pipeline = pipeline;
+		taskPkg = pipeline.getTaskPkg();
+		taskPkg.eAdapters().add(taskListener);
 
-		final PushBuffer pushBuffer = pipeline.getPushBuffer();
-		if (pushBuffer != null)
+		collectTasks();
+	}
+
+	@Dispose
+	public void dispose()
+	{
+		taskPkg.eAdapters().remove(taskListener);
+	}
+
+	@SuppressWarnings("unchecked")
+	private void collectTasks()
+	{
+		allocationList.clear();
+		taskWrappers.clear();
+
+		final var tasks = taskPkg.getTasks();
+		for (int i = 0; i < tasks.size(); i++)
 		{
-			pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
-			stagingFlushHistory = new boolean[pushBuffer.getInstanceCount()];
-		}
-		else
-		{
-			pushBufferAdapter = null;
-			stagingFlushHistory = null;
+			final var task = tasks.get(i);
+			final var adapter = IAllocationAdapter.adapt(task);
+			if (adapter != null)
+			{
+				allocationList.add((IAllocationObject<? super T>) adapter);
+			}
+
+			taskWrappers.add(new TaskWrapper<>(task));
 		}
 
-		if (pipeline instanceof AbstractPipeline)
-		{
-			final AbstractPipeline abstractPipeline = (AbstractPipeline) pipeline;
-			allocationList = List.copyOf(abstractPipeline.getUnits());
-		}
-		else
-		{
-			allocationList = Collections.emptyList();
-		}
+		taskListDirty = false;
 	}
 
 	@NotifyChanged
@@ -80,51 +105,36 @@ public abstract class AbstractPipelineAdapter
 	}
 
 	@Override
-	public void setRecordNeeded(boolean value)
+	public void allocate(MemoryStack stack, T context)
 	{
-		recordNeeded = value;
+		vkPipelineLayout = createVkPipelineLayout();
+		vkPipelineLayout.allocate(stack, context);
 	}
 
-	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	protected VkPipelineLayout<T> createVkPipelineLayout()
 	{
-		vkPipeline = createVkPipeline();
-		vkPipeline.allocate(stack, context);
-	}
-
-	protected VkPipeline createVkPipeline()
-	{
-		final var constants = getConstants();
 		final List<IVkDescriptorSet> descriptorSets = new ArrayList<>();
-		final List<AbstractConstants> constantsList = constants != null
-				? List.of(constants)
-				: Collections.emptyList();
-
 		collectDescriptorSets(descriptorSets);
 
-		final List<IConstantsAdapter> adapters = new ArrayList<>();
-		for (final AbstractConstants constant : constantsList)
-		{
-			adapters.add(IConstantsAdapter.adapt(constant));
-		}
-
-		return new VkPipeline(descriptorSets, adapters);
+		final var pushConstantRanges = pipeline.getPushConstantRanges();
+		return new VkPipelineLayout<>(descriptorSets, pushConstantRanges);
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(T context)
 	{
-		vkPipeline.free(context);
+		vkPipelineLayout.free(context);
 		allocationDependencies.clear();
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(T context)
 	{
 		boolean res = false;
 
-		for (final IAllocable dependency : allocationDependencies)
+		for (int i = 0; i < allocationDependencies.size(); i++)
 		{
+			final var dependency = allocationDependencies.get(i);
 			if (dependency.isAllocationDirty(context))
 			{
 				res = true;
@@ -136,30 +146,34 @@ public abstract class AbstractPipelineAdapter
 	}
 
 	@Override
+	public void update()
+	{
+		if (taskListDirty)
+		{
+			collectTasks();
+		}
+
+		for (int i = 0; i < taskWrappers.size(); i++)
+		{
+			final var wrapper = taskWrappers.get(i);
+			if (wrapper.isEnabled())
+			{
+				wrapper.update();
+			}
+		}
+	}
+
+	@Override
 	public boolean isRecordNeeded(int index)
 	{
 		boolean res = recordNeeded;
 
-		if (pushBufferAdapter != null)
+		for (int i = 0; i < taskWrappers.size(); i++)
 		{
-			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
-			final boolean previousRecordMadeFlush = stagingFlushHistory[index];
-			if (previousRecordMadeFlush)
+			final var wrapper = taskWrappers.get(i);
+			if (wrapper.isEnabled())
 			{
-				stagingFlushHistory[index] = false;
-			}
-
-			res |= !stagingBuffer.isEmpty();
-			res |= previousRecordMadeFlush;
-		}
-
-		if (res == false)
-		{
-			final var pushConstant = getConstants();
-			if (pushConstant != null)
-			{
-				final IConstantsAdapter pushAdapter = AbstractConstantsAdapter.adapt(pushConstant);
-				res |= pushAdapter.needRecord();
+				res |= wrapper.needRecord(index);
 			}
 		}
 
@@ -167,81 +181,69 @@ public abstract class AbstractPipelineAdapter
 	}
 
 	@Override
-	public final void record(	ECommandStage stage,
-								VkCommandBuffer vkCommandBuffer,
-								int bindPoint,
-								int index)
+	public final void record(RecordContext context)
 	{
 		final var pipelineStage = pipeline.getStage();
+		final var vkPipelines = getVkPipelines();
+		final var currentStage = context.stage;
 
-		if (stage == ECommandStage.TRANSFER)
+		if (vkPipelines.size() == 1)
 		{
-			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
-
-			stagingFlushHistory[index] = true;
-			stagingBuffer.flush(vkCommandBuffer);
+			vkPipelines.get(0).bindPipeline(context.commandBuffer, context.bindPoint);
 		}
-		if (stage == pipelineStage)
-		{
-			record(vkCommandBuffer, bindPoint, index);
-		}
-	}
 
-	@Override
-	public void collectResources(List<Object> collectIn)
-	{
-		if (pipeline instanceof AbstractPipeline)
+		for (int i = 0; i < taskWrappers.size(); i++)
 		{
-			final var abstractPipeline = (AbstractPipeline) pipeline;
-			final var resourcePkg = abstractPipeline.getResourcePkg();
-
-			if (resourcePkg != null)
+			final var wrapper = taskWrappers.get(i);
+			if (wrapper.isEnabled())
 			{
-				collectIn.addAll(resourcePkg.getResources());
+				final var taskStage = wrapper.getStage();
+
+				if ((taskStage == null && currentStage == pipelineStage)
+						|| (taskStage == currentStage))
+				{
+					wrapper.record(context);
+				}
 			}
 		}
 
-		if (pushBufferAdapter != null)
+		recordNeeded = false;
+	}
+
+	@Override
+	public void collectResources(List<IAllocable<? super IExecutionContext>> collectIn)
+	{
+		final var resourcePkg = pipeline.getResourcePkg();
+		if (resourcePkg != null)
 		{
-			collectIn.add(pushBufferAdapter.getStagingBuffer());
+			for (final var resource : resourcePkg.getResources())
+			{
+				final var adapter = IResourceAdapter.adapt(resource);
+				collectIn.add(adapter);
+			}
 		}
 	}
 
 	@Override
 	public void collectDescriptorSets(List<IVkDescriptorSet> collectIn)
 	{
-		if (pipeline instanceof AbstractPipeline)
+		var ds = pipeline.getDescriptorSet();
+		if (ds == null)
 		{
-			final var abstractPipeline = (AbstractPipeline) pipeline;
-			var ds = abstractPipeline.getDescriptorSet();
-			if (ds == null)
-			{
-				ds = abstractPipeline.getDescriptorSetRef();
-			}
+			ds = pipeline.getDescriptorSetRef();
+		}
 
-			if (ds != null)
-			{
-				final var adapter = IDescriptorSetAdapter.adapt(ds);
-				collectIn.add(adapter);
-			}
+		if (ds != null)
+		{
+			final var adapter = IDescriptorSetAdapter.adapt(ds);
+			collectIn.add(adapter);
 		}
 	}
 
-	public long getPipelineLayout()
+	@Override
+	public VkPipelineLayout<? super T> getVkPipelineLayout()
 	{
-		return vkPipeline.getPipelineLayout();
-	}
-
-	public long getPipelineId()
-	{
-		return vkPipeline.getPipelineId();
-	}
-
-	public void bindDescriptor(	VkCommandBuffer commandBuffer,
-								int bindPoint,
-								Integer[] descriptorSetIndexes)
-	{
-		vkPipeline.bindDescriptor(commandBuffer, bindPoint, descriptorSetIndexes);
+		return vkPipelineLayout;
 	}
 
 	@Override
@@ -253,29 +255,66 @@ public abstract class AbstractPipelineAdapter
 	@Override
 	public boolean shouldRecord(ECommandStage stage)
 	{
-		final boolean requiredStage = pipeline.getStage() == stage;
-		boolean needTransfer = false;
-
-		if (pushBufferAdapter != null)
+		boolean res = pipeline.getStage() == stage;
+		if (!res)
 		{
-			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
-			needTransfer = (stage == ECommandStage.TRANSFER && !stagingBuffer.isEmpty());
+			for (int i = 0; i < taskWrappers.size(); i++)
+			{
+				final var wrapper = taskWrappers.get(i);
+				if (wrapper.isEnabled())
+				{
+					if (wrapper.getStage() == stage)
+					{
+						res = true;
+						break;
+					}
+				}
+			}
 		}
 
-		return requiredStage || needTransfer;
+		return res;
 	}
 
 	@Override
-	public List<? extends Object> getAllocationChildren()
+	public List<? extends IAllocationObject<? super T>> getAllocationChildren()
 	{
 		return allocationList;
 	}
 
-	public abstract AbstractConstants getConstants();
-	protected abstract void record(VkCommandBuffer vkCommandBuffer, int bindPoint, int index);
-
-	public static AbstractPipelineAdapter adapt(IPipeline object)
+	private static final class TaskWrapper<T extends IPipelineTask>
 	{
-		return IAdapterFactoryService.INSTANCE.adapt(object, AbstractPipelineAdapter.class);
+		private final T task;
+		private final IPipelineTaskAdapter<T> adapter;
+
+		public TaskWrapper(T task)
+		{
+			this.task = task;
+			adapter = IPipelineTaskAdapter.adapt(task);
+		}
+
+		public void record(RecordContext context)
+		{
+			adapter.record(task, context);
+		}
+
+		public ECommandStage getStage()
+		{
+			return adapter.getStage(task);
+		}
+
+		public boolean needRecord(int index)
+		{
+			return adapter.needRecord(task, index);
+		}
+
+		public boolean isEnabled()
+		{
+			return task.isEnabled();
+		}
+
+		public void update()
+		{
+			adapter.update(task);
+		}
 	}
 }

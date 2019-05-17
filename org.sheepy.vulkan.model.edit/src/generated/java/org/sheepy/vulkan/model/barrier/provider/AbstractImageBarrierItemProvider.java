@@ -7,17 +7,15 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
-import org.sheepy.vulkan.model.barrier.BarrierFactory;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.vulkan.model.barrier.AbstractImageBarrier} object.
@@ -51,41 +49,46 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			addSrcLayoutPropertyDescriptor(object);
+			addDstLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Src Layout feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	protected void addSrcLayoutPropertyDescriptor(Object object)
 	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
-		}
-		return childrenFeatures;
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AbstractImageBarrier_srcLayout_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractImageBarrier_srcLayout_feature",
+						"_UI_AbstractImageBarrier_type"),
+				BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Dst Layout feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
+	protected void addDstLayoutPropertyDescriptor(Object object)
 	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_AbstractImageBarrier_dstLayout_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractImageBarrier_dstLayout_feature",
+						"_UI_AbstractImageBarrier_type"),
+				BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -97,7 +100,7 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((AbstractImageBarrier) object).getSrcStage();
+		EImageLayout labelValue = ((AbstractImageBarrier) object).getSrcLayout();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0
 				? getString("_UI_AbstractImageBarrier_type")
@@ -118,9 +121,10 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 
 		switch (notification.getFeatureID(AbstractImageBarrier.class))
 		{
-		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS:
+		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT:
+		case BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT:
 			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -137,10 +141,6 @@ public class AbstractImageBarrierItemProvider extends BarrierItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(
-				createChildParameter(BarrierPackage.Literals.ABSTRACT_IMAGE_BARRIER__TRANSITIONS,
-						BarrierFactory.eINSTANCE.createImageTransition()));
 	}
 
 }

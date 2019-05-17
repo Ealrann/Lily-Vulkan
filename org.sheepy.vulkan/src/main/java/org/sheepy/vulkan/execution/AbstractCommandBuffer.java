@@ -6,19 +6,18 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkCommandBufferAllocateInfo;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.log.Logger;
 
-public abstract class AbstractCommandBuffer implements ICommandBuffer
+public abstract class AbstractCommandBuffer<T extends IExecutionContext>
+		implements ICommandBuffer<T>
 {
 	protected VkCommandBuffer vkCommandBuffer;
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, T context)
 	{
-		final var processContext = (ExecutionContext) context;
-		final long commandPoolId = processContext.commandPool.getId();
-		final var vkDevice = processContext.getVkDevice();
+		final long commandPoolId = context.getCommandPool().getId();
+		final var vkDevice = context.getVkDevice();
 
 		final var allocInfo = VkCommandBufferAllocateInfo.callocStack(stack);
 		allocInfo.sType(VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO);
@@ -40,11 +39,10 @@ public abstract class AbstractCommandBuffer implements ICommandBuffer
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(T context)
 	{
-		final var executionContext = (ExecutionContext) context;
-		final var device = executionContext.getVkDevice();
-		final long poolId = executionContext.commandPool.getId();
+		final var device = context.getVkDevice();
+		final long poolId = context.getCommandPool().getId();
 
 		vkFreeCommandBuffers(device, poolId, vkCommandBuffer);
 	}

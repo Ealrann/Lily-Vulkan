@@ -5,16 +5,16 @@ import java.util.List;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.process.process.AbstractProcessAdapter;
-import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.queue.EQueueType;
 import org.sheepy.vulkan.queue.VulkanQueue;
 
 @Statefull
 @Adapter(scope = ComputeProcess.class)
-public class ComputeProcessAdapter extends AbstractProcessAdapter
+public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContext>
 {
 	private static final List<ECommandStage> stages = List.of(ECommandStage.TRANSFER,
 			ECommandStage.COMPUTE);
@@ -25,7 +25,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter
 	}
 
 	@Override
-	protected ProcessContext createContext()
+	protected IComputeContext createContext()
 	{
 		return new ComputeContext(getQueueType(), isResetAllowed(), descriptorPool,
 				(ComputeProcess) process);

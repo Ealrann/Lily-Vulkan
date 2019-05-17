@@ -4,15 +4,15 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IPushBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
-import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
 import org.sheepy.vulkan.resource.buffer.StagingBuffer;
 
 @Statefull
 @Adapter(scope = PushBuffer.class)
-public class PushBufferAdapter implements IPushBufferAdapter, IAllocable
+public class PushBufferAdapter implements IPushBufferAdapter, IResourceAdapter
 {
 	private final StagingBuffer stagingBuffer;
 
@@ -25,19 +25,19 @@ public class PushBufferAdapter implements IPushBufferAdapter, IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
 		stagingBuffer.allocate(stack, context);
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		stagingBuffer.free(context);
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
 	}

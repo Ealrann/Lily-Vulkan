@@ -6,19 +6,18 @@ import java.util.Map;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.descriptor.DescriptorUtil;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.descriptor.VkDescriptor;
 import org.sheepy.vulkan.descriptor.VkDescriptorSet;
-import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.device.PhysicalDevice;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
-public class BufferComposite implements IAllocable
+public class BufferComposite implements IAllocable<IExecutionContext>
 {
 	private final Map<IBufferDataProvider, DataProviderWrapper> providerWrappers = new LinkedHashMap<>();
 	private final VkDescriptorSet descriptorSet = new VkDescriptorSet();
@@ -36,10 +35,9 @@ public class BufferComposite implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		final var vContext = (IVulkanContext) context;
-		final var physicalDevice = vContext.getPhysicalDevice();
+		final var physicalDevice = context.getPhysicalDevice();
 
 		int usage = EBufferUsage.TRANSFER_DST_BIT_VALUE;
 		long position = 0;
@@ -71,7 +69,7 @@ public class BufferComposite implements IAllocable
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		bufferBackend.free(context);
 	}
@@ -147,7 +145,7 @@ public class BufferComposite implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
 	}

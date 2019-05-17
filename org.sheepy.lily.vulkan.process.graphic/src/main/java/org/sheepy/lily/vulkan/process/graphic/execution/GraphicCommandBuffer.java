@@ -7,12 +7,11 @@ import org.lwjgl.vulkan.VkClearValue;
 import org.lwjgl.vulkan.VkCommandBufferBeginInfo;
 import org.lwjgl.vulkan.VkRenderPassBeginInfo;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.AbstractCommandBuffer;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public class GraphicCommandBuffer extends AbstractCommandBuffer
+public class GraphicCommandBuffer extends AbstractCommandBuffer<IGraphicContext>
 {
 	private static final String FAILED_TO_RECORD_COMMAND_BUFFER = "Failed to record command buffer";
 	private static final String FAILED_TO_BEGIN_RECORDING_COMMAND_BUFFER = "Failed to begin recording command buffer";
@@ -28,11 +27,10 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		final var extent = graphicContext.getSurfaceManager().getExtent();
-		final var framebufferManager = graphicContext.getFramebufferManager();
+		final var extent = context.getSurfaceManager().getExtent();
+		final var framebufferManager = context.getFramebufferManager();
 		final var framebufferId = framebufferManager.getFramebufferAddresses().get(index);
 		final var clearInfos = framebufferManager.getClearInfos();
 		final int clearCount = clearInfos.size();
@@ -58,7 +56,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 
 		renderPassInfo = VkRenderPassBeginInfo.calloc();
 		renderPassInfo.sType(VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO);
-		renderPassInfo.renderPass(graphicContext.getRenderPass().getAddress());
+		renderPassInfo.renderPass(context.getRenderPass().getAddress());
 		renderPassInfo.framebuffer(framebufferId);
 		renderPassInfo.renderArea().offset().set(0, 0);
 		renderPassInfo.renderArea().extent().set(extent.getWidth(), extent.getHeight());
@@ -73,7 +71,7 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IGraphicContext context)
 	{
 		if (clearValues != null)
 		{
@@ -124,10 +122,9 @@ public class GraphicCommandBuffer extends AbstractCommandBuffer
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		return graphicContext.getFramebufferManager().isAllocationDirty(context);
+		return context.getFramebufferManager().isAllocationDirty(context);
 	}
 
 }

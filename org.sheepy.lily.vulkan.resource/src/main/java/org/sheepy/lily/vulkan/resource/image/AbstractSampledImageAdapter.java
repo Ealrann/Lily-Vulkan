@@ -8,16 +8,17 @@ import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
+import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.ExecutionContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.image.VkImage;
 
 @Statefull
-public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter, IResourceAdapter
+public abstract class AbstractSampledImageAdapter
+		implements IDescriptorAdapter, ISampledImageAdapter
 {
 	private final SampledImage sampledImage;
 
@@ -29,7 +30,7 @@ public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter,
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
 		final var samplerInfo = sampledImage.getSampler();
 		final var imageBuilder = getImageBuilder().copyImmutable();
@@ -46,23 +47,26 @@ public abstract class AbstractSampledImageAdapter implements IDescriptorAdapter,
 		MemoryUtil.memFree(allocDataBuffer);
 	}
 
+	@Override
 	public long getImageAddress()
 	{
 		return vkTexture.getImageAddress();
 	}
 
+	@Override
 	public long getViewAddress()
 	{
 		return vkTexture.getViewAddress();
 	}
 
+	@Override
 	public long getSamplerAddress()
 	{
 		return vkTexture.getSamplerAddress();
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		vkTexture.free(context);
 	}

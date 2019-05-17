@@ -6,29 +6,25 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IRenderPass;
 import org.sheepy.lily.vulkan.process.graphic.renderpass.VkRenderPassAllocator;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 
 public class RenderPass implements IRenderPass
 {
 	private long renderPass;
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		final var renderPassInfo = graphicContext.getGraphicProcess().getRenderPassInfo();
-		final var format = graphicContext.getSurfaceManager().getColorDomain().getFormat();
+		final var renderPassInfo = context.getGraphicProcess().getRenderPassInfo();
+		final var format = context.getSurfaceManager().getColorDomain().getFormat();
 
-		final var renderPassAllocator = new VkRenderPassAllocator(graphicContext.getVkDevice(),
-				format);
+		final var renderPassAllocator = new VkRenderPassAllocator(context.getVkDevice(), format);
 		renderPass = renderPassAllocator.allocate(stack, renderPassInfo);
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		vkDestroyRenderPass(graphicContext.getVkDevice(), renderPass, null);
+		vkDestroyRenderPass(context.getVkDevice(), renderPass, null);
 		renderPass = -1;
 	}
 
@@ -39,9 +35,8 @@ public class RenderPass implements IRenderPass
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		return graphicContext.getSwapChainManager().isAllocationDirty(context);
+		return context.getSwapChainManager().isAllocationDirty(context);
 	}
 }

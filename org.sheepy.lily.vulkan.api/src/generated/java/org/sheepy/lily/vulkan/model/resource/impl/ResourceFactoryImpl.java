@@ -67,6 +67,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		switch (eClass.getClassifierID())
 		{
+		case ResourcePackage.BASIC_RESOURCE:
+			return createBasicResource();
 		case ResourcePackage.PUSH_BUFFER:
 			return createPushBuffer();
 		case ResourcePackage.BUFFER:
@@ -75,6 +77,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createImage();
 		case ResourcePackage.IMAGE_LAYOUT:
 			return createImageLayout();
+		case ResourcePackage.SAMPLED_IMAGE:
+			return createSampledImage();
 		case ResourcePackage.SEMAPHORE:
 			return createSemaphore();
 		case ResourcePackage.FONT:
@@ -83,8 +87,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createTexture();
 		case ResourcePackage.SAMPLER:
 			return createSampler();
-		case ResourcePackage.CONSTANTS:
-			return createConstants();
 		case ResourcePackage.DESCRIPTOR_SET:
 			return createDescriptorSet();
 		case ResourcePackage.DESCRIPTOR_SET_PKG:
@@ -153,6 +155,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
+	public BasicResource createBasicResource()
+	{
+		BasicResourceImpl basicResource = new BasicResourceImpl();
+		return basicResource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public PushBuffer createPushBuffer()
 	{
 		PushBufferImpl pushBuffer = new PushBufferImpl();
@@ -201,6 +215,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
+	public SampledImage createSampledImage()
+	{
+		SampledImageImpl sampledImage = new SampledImageImpl();
+		return sampledImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Semaphore createSemaphore()
 	{
 		SemaphoreImpl semaphore = new SemaphoreImpl();
@@ -241,18 +267,6 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		SamplerImpl sampler = new SamplerImpl();
 		return sampler;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Constants createConstants()
-	{
-		ConstantsImpl constants = new ConstantsImpl();
-		return constants;
 	}
 
 	/**

@@ -14,12 +14,11 @@ import org.lwjgl.vulkan.VkQueue;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.execution.ICommandBuffer;
 import org.sheepy.vulkan.log.Logger;
 
-public class FrameSubmission extends Submission
+public class FrameSubmission extends Submission<IGraphicContext>
 {
 	private static final String FAILED_SUBMIT_PRESENT = "Failed to submit present command buffer";
 
@@ -34,7 +33,7 @@ public class FrameSubmission extends Submission
 	private VkQueue presentQueue;
 
 	public FrameSubmission(	int imageIndex,
-							ICommandBuffer commandBuffer,
+							ICommandBuffer<? super IGraphicContext> commandBuffer,
 							Collection<WaitData> waitSemaphores,
 							Collection<Long> signalSemaphores,
 							boolean useFence)
@@ -47,12 +46,11 @@ public class FrameSubmission extends Submission
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		final var swapChain = graphicContext.getSwapChainManager();
+		final var swapChain = context.getSwapChainManager();
 		
-		presentQueue = graphicContext.getSurfaceManager().getPresentQueue().vkQueue;
+		presentQueue = context.getSurfaceManager().getPresentQueue().vkQueue;
 
 		presentWaitSemaphore.allocate(stack, context);
 		final long presentSemaphoreId = presentWaitSemaphore.getId();
@@ -82,7 +80,7 @@ public class FrameSubmission extends Submission
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IGraphicContext context)
 	{
 		presentInfo.free();
 		presentInfo = null;

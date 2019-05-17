@@ -10,7 +10,7 @@ import org.sheepy.lily.vulkan.model.resource.Texture;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
-import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.image.VkImage;
 
 public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
@@ -29,7 +29,7 @@ public abstract class AbstractTextureAdapter extends AbstractSampledImageAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
 		Sampler samplerInfos = texture.getSampler();
 		if (samplerInfos == null)

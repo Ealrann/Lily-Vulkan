@@ -3,28 +3,18 @@ package org.sheepy.lily.vulkan.api.pipeline;
 import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
-import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
-import org.sheepy.lily.vulkan.api.execution.IRecordable;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.execution.IExecutionContext;
+import org.sheepy.vulkan.pipeline.VkPipeline;
+import org.sheepy.vulkan.pipeline.VkPipelineLayout;
 
-public interface IPipelineAdapter extends IVulkanAdapter, IRecordable
+public interface IPipelineAdapter<T extends IProcessContext> extends IProcessPartAdapter
 {
-	default void update()
-	{}
+	VkPipelineLayout<? super T> getVkPipelineLayout();
+	List<? extends VkPipeline<? super T>> getVkPipelines();
 
-	default void prepareExecution(IExecutionContext context)
-	{}
-
-	void collectDescriptorSets(List<IVkDescriptorSet> collectIn);
-
-	/**
-	 * @return List of IAllocables or EObjects
-	 */
-	default void collectResources(List<Object> collectIn) {};
-
-	static IPipelineAdapter adapt(IPipeline object)
+	static IPipelineAdapter<?> adapt(IPipeline object)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(object, IPipelineAdapter.class);
 	}

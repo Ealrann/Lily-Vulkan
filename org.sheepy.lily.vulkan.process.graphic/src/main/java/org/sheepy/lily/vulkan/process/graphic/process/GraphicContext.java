@@ -12,7 +12,6 @@ import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.lily.vulkan.api.graphic.ISwapChainManager;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
-import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.graphic.execution.GraphicExecutionRecorders;
 import org.sheepy.lily.vulkan.process.graphic.frame.FramebufferManager;
 import org.sheepy.lily.vulkan.process.graphic.frame.ImageViewManager;
@@ -22,7 +21,7 @@ import org.sheepy.lily.vulkan.process.process.ProcessContext;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.queue.EQueueType;
 
-class GraphicContext extends ProcessContext implements IGraphicContext
+final class GraphicContext extends ProcessContext<IGraphicContext> implements IGraphicContext
 {
 	public final GraphicConfiguration configuration;
 	public final GraphicProcess graphicProcess;
@@ -78,15 +77,15 @@ class GraphicContext extends ProcessContext implements IGraphicContext
 	}
 
 	@Override
-	public List<IExecutionRecorder> getRecorders()
+	public GraphicExecutionRecorders getExecutionRecorders()
 	{
-		return executionRecorders.getRecorders();
+		return executionRecorders;
 	}
 
 	@Override
-	public ExecutionRecorders getExecutionRecorders()
+	public List<IExecutionRecorder<? super IGraphicContext>> getRecorders()
 	{
-		return executionRecorders;
+		return executionRecorders.getRecorders();
 	}
 
 	@Override
@@ -111,5 +110,11 @@ class GraphicContext extends ProcessContext implements IGraphicContext
 	public IGraphicExecutionRecorders getGraphicExecutionRecorders()
 	{
 		return executionRecorders;
+	}
+
+	@Override
+	public int getSwapCount()
+	{
+		return swapChainManager.getImageCount();
 	}
 }

@@ -10,6 +10,7 @@ import org.sheepy.vulkan.queue.VulkanQueue;
 public interface IExecutionContext extends IVulkanContext
 {
 	VulkanQueue getQueue();
+	CommandPool getCommandPool();
 
 	void execute(ISingleTimeCommand command);
 

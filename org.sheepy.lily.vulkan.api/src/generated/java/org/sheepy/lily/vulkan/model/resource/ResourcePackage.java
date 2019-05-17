@@ -63,10 +63,10 @@ public interface ResourcePackage extends EPackage
 			.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BasicResourceImpl <em>Basic Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.BasicResource
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BasicResourceImpl
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBasicResource()
 	 * @generated
 	 */
@@ -107,7 +107,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
 	 * @generated
 	 */
-	int IDESCRIPTOR = 14;
+	int IDESCRIPTOR = 12;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
@@ -571,26 +571,6 @@ public interface ResourcePackage extends EPackage
 	int SAMPLER = 11;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl <em>Abstract Constants</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractConstants()
-	 * @generated
-	 */
-	int ABSTRACT_CONSTANTS = 12;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getConstants()
-	 * @generated
-	 */
-	int CONSTANTS = 13;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -598,7 +578,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 15;
+	int DESCRIPTOR_SET = 13;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
@@ -608,7 +588,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 17;
+	int BUFFER_BARRIER = 15;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
@@ -618,7 +598,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 18;
+	int IMAGE_BARRIER = 16;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
@@ -628,7 +608,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 19;
+	int SHADER = 17;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -1114,87 +1094,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_CONSTANTS__NAME = BASIC_RESOURCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_CONSTANTS__STAGES = BASIC_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Constants</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_CONSTANTS_FEATURE_COUNT = BASIC_RESOURCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Abstract Constants</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_CONSTANTS_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTANTS__NAME = ABSTRACT_CONSTANTS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTANTS__STAGES = ABSTRACT_CONSTANTS__STAGES;
-
-	/**
-	 * The feature id for the '<em><b>Data</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTANTS__DATA = ABSTRACT_CONSTANTS_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Constants</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTANTS_FEATURE_COUNT = ABSTRACT_CONSTANTS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Constants</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTANTS_OPERATION_COUNT = ABSTRACT_CONSTANTS_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int DESCRIPTOR_SET__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
 
 	/**
@@ -1232,7 +1131,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSetPkg()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET_PKG = 16;
+	int DESCRIPTOR_SET_PKG = 14;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -1262,40 +1161,22 @@ public interface ResourcePackage extends EPackage
 	int DESCRIPTOR_SET_PKG_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_BARRIER__SRC_STAGE = BarrierPackage.ABSTRACT_BUFFER_BARRIER__SRC_STAGE;
+	int BUFFER_BARRIER__SRC_ACCESS_MASK = BarrierPackage.ABSTRACT_BUFFER_BARRIER__SRC_ACCESS_MASK;
 
 	/**
-	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_BARRIER__DST_STAGE = BarrierPackage.ABSTRACT_BUFFER_BARRIER__DST_STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Src Access</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__SRC_ACCESS = BarrierPackage.ABSTRACT_BUFFER_BARRIER__SRC_ACCESS;
-
-	/**
-	 * The feature id for the '<em><b>Dst Access</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_BARRIER__DST_ACCESS = BarrierPackage.ABSTRACT_BUFFER_BARRIER__DST_ACCESS;
+	int BUFFER_BARRIER__DST_ACCESS_MASK = BarrierPackage.ABSTRACT_BUFFER_BARRIER__DST_ACCESS_MASK;
 
 	/**
 	 * The feature id for the '<em><b>Buffer</b></em>' reference.
@@ -1325,31 +1206,40 @@ public interface ResourcePackage extends EPackage
 	int BUFFER_BARRIER_OPERATION_COUNT = BarrierPackage.ABSTRACT_BUFFER_BARRIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BARRIER__SRC_STAGE = BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_STAGE;
+	int IMAGE_BARRIER__SRC_ACCESS_MASK = BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_ACCESS_MASK;
 
 	/**
-	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BARRIER__DST_STAGE = BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_STAGE;
+	int IMAGE_BARRIER__DST_ACCESS_MASK = BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_ACCESS_MASK;
 
 	/**
-	 * The feature id for the '<em><b>Transitions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Src Layout</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BARRIER__TRANSITIONS = BarrierPackage.ABSTRACT_IMAGE_BARRIER__TRANSITIONS;
+	int IMAGE_BARRIER__SRC_LAYOUT = BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Dst Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BARRIER__DST_LAYOUT = BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT;
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' reference.
@@ -1431,7 +1321,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 20;
+	int PATH_RESOURCE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1477,7 +1367,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 21;
+	int FILE_RESOURCE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1523,7 +1413,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
 	 * @generated
 	 */
-	int ABSTRACT_MODULE_RESOURCE = 22;
+	int ABSTRACT_MODULE_RESOURCE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1569,7 +1459,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 23;
+	int MODULE_RESOURCE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1624,7 +1514,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
 	 * @generated
 	 */
-	int STRING_MODULE_RESOURCE = 24;
+	int STRING_MODULE_RESOURCE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1679,7 +1569,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 25;
+	int BYTE_BUFFER = 23;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -1689,7 +1579,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 26;
+	int JAVA_MODULE = 24;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -2241,48 +2131,6 @@ public interface ResourcePackage extends EPackage
 	EAttribute getSampler_MaxAnisotropy();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants <em>Abstract Constants</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Constants</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractConstants
-	 * @generated
-	 */
-	EClass getAbstractConstants();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStages <em>Stages</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Stages</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractConstants#getStages()
-	 * @see #getAbstractConstants()
-	 * @generated
-	 */
-	EAttribute getAbstractConstants_Stages();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Constants <em>Constants</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constants</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Constants
-	 * @generated
-	 */
-	EClass getConstants();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Constants#getData <em>Data</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.Constants#getData()
-	 * @see #getConstants()
-	 * @generated
-	 */
-	EAttribute getConstants_Data();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2560,10 +2408,10 @@ public interface ResourcePackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BasicResourceImpl <em>Basic Resource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.BasicResource
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.BasicResourceImpl
 		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBasicResource()
 		 * @generated
 		 */
@@ -2991,42 +2839,6 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SAMPLER__MAX_ANISOTROPY = eINSTANCE.getSampler_MaxAnisotropy();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl <em>Abstract Constants</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.AbstractConstantsImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractConstants()
-		 * @generated
-		 */
-		EClass ABSTRACT_CONSTANTS = eINSTANCE.getAbstractConstants();
-
-		/**
-		 * The meta object literal for the '<em><b>Stages</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_CONSTANTS__STAGES = eINSTANCE.getAbstractConstants_Stages();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl <em>Constants</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ConstantsImpl
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getConstants()
-		 * @generated
-		 */
-		EClass CONSTANTS = eINSTANCE.getConstants();
-
-		/**
-		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONSTANTS__DATA = eINSTANCE.getConstants_Data();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.

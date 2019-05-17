@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.compute;
 
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
+import org.sheepy.lily.vulkan.model.process.IPipeline;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,16 +25,12 @@ import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
  * @model
  * @generated
  */
-public interface ComputePipeline extends AbstractPipeline
+public interface ComputePipeline extends IPipeline
 {
 	/**
 	 * Returns the value of the '<em><b>Workgroup Size X</b></em>' attribute.
 	 * The default value is <code>"32"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Workgroup Size X</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Workgroup Size X</em>' attribute.
 	 * @see #setWorkgroupSizeX(int)
@@ -58,10 +54,6 @@ public interface ComputePipeline extends AbstractPipeline
 	 * Returns the value of the '<em><b>Workgroup Size Y</b></em>' attribute.
 	 * The default value is <code>"32"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Workgroup Size Y</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Workgroup Size Y</em>' attribute.
 	 * @see #setWorkgroupSizeY(int)
@@ -85,10 +77,6 @@ public interface ComputePipeline extends AbstractPipeline
 	 * Returns the value of the '<em><b>Workgroup Size Z</b></em>' attribute.
 	 * The default value is <code>"32"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Workgroup Size Z</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Workgroup Size Z</em>' attribute.
 	 * @see #setWorkgroupSizeZ(int)
@@ -111,10 +99,6 @@ public interface ComputePipeline extends AbstractPipeline
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Width</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
 	 * @see #setWidth(int)
@@ -137,10 +121,6 @@ public interface ComputePipeline extends AbstractPipeline
 	/**
 	 * Returns the value of the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Height</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
 	 * @see #setHeight(int)
@@ -163,10 +143,6 @@ public interface ComputePipeline extends AbstractPipeline
 	/**
 	 * Returns the value of the '<em><b>Depth</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Depth</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth</em>' attribute.
 	 * @see #setDepth(int)

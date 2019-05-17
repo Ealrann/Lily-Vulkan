@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.sheepy.vulkan.allocation.IAllocable;
 
-public interface ISwapChainManager extends IAllocable
+public interface ISwapChainManager extends IAllocable<IGraphicContext>
 {
 	List<Long> getSwapChainImages();
 

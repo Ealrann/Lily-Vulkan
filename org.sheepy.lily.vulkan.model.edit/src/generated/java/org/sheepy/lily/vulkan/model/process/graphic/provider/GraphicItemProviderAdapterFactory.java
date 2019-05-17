@@ -33,9 +33,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
-import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
+import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
@@ -456,6 +458,306 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.MeshProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MeshProviderItemProvider meshProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.MeshProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMeshProviderAdapter()
+	{
+		if (meshProviderItemProvider == null)
+		{
+			meshProviderItemProvider = new MeshProviderItemProvider(this);
+		}
+
+		return meshProviderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SwapImageBarrierItemProvider swapImageBarrierItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSwapImageBarrierAdapter()
+	{
+		if (swapImageBarrierItemProvider == null)
+		{
+			swapImageBarrierItemProvider = new SwapImageBarrierItemProvider(this);
+		}
+
+		return swapImageBarrierItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BlitToSwapImageItemProvider blitToSwapImageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBlitToSwapImageAdapter()
+	{
+		if (blitToSwapImageItemProvider == null)
+		{
+			blitToSwapImageItemProvider = new BlitToSwapImageItemProvider(this);
+		}
+
+		return blitToSwapImageItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DrawIndexedItemProvider drawIndexedItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDrawIndexedAdapter()
+	{
+		if (drawIndexedItemProvider == null)
+		{
+			drawIndexedItemProvider = new DrawIndexedItemProvider(this);
+		}
+
+		return drawIndexedItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VertexDescriptorItemProvider vertexDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVertexDescriptorAdapter()
+	{
+		if (vertexDescriptorItemProvider == null)
+		{
+			vertexDescriptorItemProvider = new VertexDescriptorItemProvider(this);
+		}
+
+		return vertexDescriptorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeDescriptionItemProvider attributeDescriptionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeDescriptionAdapter()
+	{
+		if (attributeDescriptionItemProvider == null)
+		{
+			attributeDescriptionItemProvider = new AttributeDescriptionItemProvider(this);
+		}
+
+		return attributeDescriptionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IndexedVertexDescriptorItemProvider indexedVertexDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIndexedVertexDescriptorAdapter()
+	{
+		if (indexedVertexDescriptorItemProvider == null)
+		{
+			indexedVertexDescriptorItemProvider = new IndexedVertexDescriptorItemProvider(this);
+		}
+
+		return indexedVertexDescriptorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BindVertexBufferItemProvider bindVertexBufferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBindVertexBufferAdapter()
+	{
+		if (bindVertexBufferItemProvider == null)
+		{
+			bindVertexBufferItemProvider = new BindVertexBufferItemProvider(this);
+		}
+
+		return bindVertexBufferItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SetScissor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SetScissorItemProvider setScissorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SetScissor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSetScissorAdapter()
+	{
+		if (setScissorItemProvider == null)
+		{
+			setScissorItemProvider = new SetScissorItemProvider(this);
+		}
+
+		return setScissorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SetViewportItemProvider setViewportItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSetViewportAdapter()
+	{
+		if (setViewportItemProvider == null)
+		{
+			setViewportItemProvider = new SetViewportItemProvider(this);
+		}
+
+		return setViewportItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VertexBindingItemProvider vertexBindingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVertexBindingAdapter()
+	{
+		if (vertexBindingItemProvider == null)
+		{
+			vertexBindingItemProvider = new VertexBindingItemProvider(this);
+		}
+
+		return vertexBindingItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BindIndexBufferItemProvider bindIndexBufferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBindIndexBufferAdapter()
+	{
+		if (bindIndexBufferItemProvider == null)
+		{
+			bindIndexBufferItemProvider = new BindIndexBufferItemProvider(this);
+		}
+
+		return bindIndexBufferItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -622,6 +924,19 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 			extraAttachmentDescriptionItemProvider.dispose();
 		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
 		if (graphicsPipelineItemProvider != null) graphicsPipelineItemProvider.dispose();
+		if (meshProviderItemProvider != null) meshProviderItemProvider.dispose();
+		if (swapImageBarrierItemProvider != null) swapImageBarrierItemProvider.dispose();
+		if (blitToSwapImageItemProvider != null) blitToSwapImageItemProvider.dispose();
+		if (drawIndexedItemProvider != null) drawIndexedItemProvider.dispose();
+		if (vertexDescriptorItemProvider != null) vertexDescriptorItemProvider.dispose();
+		if (attributeDescriptionItemProvider != null) attributeDescriptionItemProvider.dispose();
+		if (indexedVertexDescriptorItemProvider != null)
+			indexedVertexDescriptorItemProvider.dispose();
+		if (bindVertexBufferItemProvider != null) bindVertexBufferItemProvider.dispose();
+		if (setScissorItemProvider != null) setScissorItemProvider.dispose();
+		if (setViewportItemProvider != null) setViewportItemProvider.dispose();
+		if (vertexBindingItemProvider != null) vertexBindingItemProvider.dispose();
+		if (bindIndexBufferItemProvider != null) bindIndexBufferItemProvider.dispose();
 	}
 
 	/**
@@ -667,37 +982,102 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
-
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
 			@Override
-			public Object casePipelinePkg(PipelinePkg object)
+			public Object caseProcessPartPkg(ProcessPartPkg object)
 			{
 				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+						.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
 								GraphicFactory.eINSTANCE.createGraphicsPipeline()));
 
 				return null;
 			}
-
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
 			@Override
-			public Object caseAbstractCompositePipeline(AbstractCompositePipeline object)
+			public Object caseTaskPkg(TaskPkg object)
 			{
-				newChildDescriptors.add(createChildParameter(
-						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
-						GraphicFactory.eINSTANCE.createGraphicsPipeline()));
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
+								GraphicFactory.eINSTANCE.createBlitToSwapImage()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
+								GraphicFactory.eINSTANCE.createDrawIndexed()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
+								GraphicFactory.eINSTANCE.createBindVertexBuffer()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
+								GraphicFactory.eINSTANCE.createSetScissor()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
+								GraphicFactory.eINSTANCE.createSetViewport()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
+								GraphicFactory.eINSTANCE.createBindIndexBuffer()));
 
 				return null;
 			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object casePipelineBarrier(PipelineBarrier object)
+			{
+				newChildDescriptors.add(
+						createChildParameter(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
+								GraphicFactory.eINSTANCE.createSwapImageBarrier()));
 
+				return null;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCompositeTask(CompositeTask object)
+			{
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+								GraphicFactory.eINSTANCE.createBlitToSwapImage()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+								GraphicFactory.eINSTANCE.createDrawIndexed()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+								GraphicFactory.eINSTANCE.createBindVertexBuffer()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+								GraphicFactory.eINSTANCE.createSetScissor()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+								GraphicFactory.eINSTANCE.createSetViewport()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+								GraphicFactory.eINSTANCE.createBindIndexBuffer()));
+
+				return null;
+			}
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

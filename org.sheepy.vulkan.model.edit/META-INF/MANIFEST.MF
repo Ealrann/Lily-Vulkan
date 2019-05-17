@@ -5,14 +5,17 @@ Bundle-SymbolicName: org.sheepy.vulkan.model.edit;singleton:=true
 Automatic-Module-Name: org.sheepy.vulkan.model.edit
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin$Implementation
+Bundle-Activator: org.sheepy.vulkan.model.pipeline.provider.PipelineEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.sheepy.vulkan.model.barrier.provider,
  org.sheepy.vulkan.model.enumeration.provider,
- org.sheepy.vulkan.model.graphicpipeline.provider
+ org.sheepy.vulkan.model.graphicpipeline.provider,
+ org.sheepy.vulkan.model.pipeline.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.sheepy.vulkan.model;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.sheepy.vulkan.model.edit;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-11

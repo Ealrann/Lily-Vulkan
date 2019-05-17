@@ -7,40 +7,40 @@
 
 package org.sheepy.vulkan.model.barrier
 
-
-import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.EAccess
 import org.sheepy.vulkan.model.enumeration.EImageLayout
 
 abstract class Barrier
 {
-	EPipelineStage srcStage
-	EPipelineStage dstStage
+	unique EAccess[] srcAccessMask
+	unique EAccess[] dstAccessMask
 }
 
 abstract class AbstractBufferBarrier extends Barrier
 {
-	EAccess srcAccess
-	EAccess dstAccess
 }
 
+// Deprecated
 class ReferenceBufferBarrier extends AbstractBufferBarrier
 {
-	long bufferAddress
+	long bufferPtr
 }
 
 abstract class AbstractImageBarrier extends Barrier
 {
-	contains ImageTransition[] transitions
+	EImageLayout srcLayout
+	EImageLayout dstLayout
 }
 
+// Deprecated
 class ReferenceImageBarrier extends AbstractImageBarrier
 {
-	long imageId
+	long imagePtr
 	int mipLevels
 	int imageFormat
 }
 
+// Deprecated
 class ImageTransition
 {
 	EImageLayout srcLayout

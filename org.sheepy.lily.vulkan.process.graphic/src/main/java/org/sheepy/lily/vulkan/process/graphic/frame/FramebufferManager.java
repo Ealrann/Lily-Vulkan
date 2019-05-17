@@ -15,7 +15,6 @@ import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.resource.image.VkImageView;
 
@@ -27,20 +26,18 @@ public class FramebufferManager implements IFramebufferManager
 	private EList<ISwapAttachment> attachments;
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		final var vkDevice = graphicContext.getVkDevice();
-		final var imageViews = graphicContext.getImageViewManager().getImageViews();
+		final var vkDevice = context.getVkDevice();
+		final var imageViews = context.getImageViewManager().getImageViews();
 		final var aFramebufferId = new long[1];
 
-		final var configuration = graphicContext.getConfiguration().getFramebufferConfiguration();
-		final var swapChainConfiguration = graphicContext.getConfiguration()
-				.getSwapchainConfiguration();
+		final var configuration = context.getConfiguration().getFramebufferConfiguration();
+		final var swapChainConfiguration = context.getConfiguration().getSwapchainConfiguration();
 		attachments = swapChainConfiguration.getAtachments();
 
 		final var attachmentsBuffer = allocAttachmentsBuffer(stack);
-		final var createInfo = allocCreateInfo(stack, graphicContext, attachmentsBuffer);
+		final var createInfo = allocCreateInfo(stack, context, attachmentsBuffer);
 
 		framebuffersIds = new ArrayList<>(imageViews.size());
 		for (final VkImageView imageView : imageViews)
@@ -102,12 +99,11 @@ public class FramebufferManager implements IFramebufferManager
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
 		for (final long framebuffer : framebuffersIds)
 		{
-			vkDestroyFramebuffer(graphicContext.getVkDevice(), framebuffer, null);
+			vkDestroyFramebuffer(context.getVkDevice(), framebuffer, null);
 		}
 		framebuffersIds = null;
 	}
@@ -124,11 +120,10 @@ public class FramebufferManager implements IFramebufferManager
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		return graphicContext.getSwapChainManager().isAllocationDirty(context)
-				|| graphicContext.getImageViewManager().isAllocationDirty(context);
+		return context.getSwapChainManager().isAllocationDirty(context)
+				|| context.getImageViewManager().isAllocationDirty(context);
 	}
 
 	@Override

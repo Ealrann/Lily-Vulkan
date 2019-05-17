@@ -64,8 +64,10 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case NuklearPackage.NUKLEAR_PIPELINE: return createNuklearPipeline();
-			case NuklearPackage.NUKLEAR_CONSTANTS: return createNuklearConstants();
+			case NuklearPackage.NUKLEAR_PIPELINE_BUILDER: return createNuklearPipelineBuilder();
+			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS: return createNuklearPushConstants();
+			case NuklearPackage.NUKLEAR_LAYOUT_TASK: return createNuklearLayoutTask();
+			case NuklearPackage.NUKLEAR_CONTEXT: return createNuklearContext();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -77,10 +79,10 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	 * @generated
 	 */
 	@Override
-	public NuklearPipeline createNuklearPipeline()
+	public NuklearPipelineBuilder createNuklearPipelineBuilder()
 	{
-		NuklearPipelineImpl nuklearPipeline = new NuklearPipelineImpl();
-		return nuklearPipeline;
+		NuklearPipelineBuilderImpl nuklearPipelineBuilder = new NuklearPipelineBuilderImpl();
+		return nuklearPipelineBuilder;
 	}
 
 	/**
@@ -89,10 +91,34 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	 * @generated
 	 */
 	@Override
-	public NuklearConstants createNuklearConstants()
+	public NuklearPushConstants createNuklearPushConstants()
 	{
-		NuklearConstantsImpl nuklearConstants = new NuklearConstantsImpl();
-		return nuklearConstants;
+		NuklearPushConstantsImpl nuklearPushConstants = new NuklearPushConstantsImpl();
+		return nuklearPushConstants;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NuklearLayoutTask createNuklearLayoutTask()
+	{
+		NuklearLayoutTaskImpl nuklearLayoutTask = new NuklearLayoutTaskImpl();
+		return nuklearLayoutTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NuklearContext createNuklearContext()
+	{
+		NuklearContextImpl nuklearContext = new NuklearContextImpl();
+		return nuklearContext;
 	}
 
 	/**

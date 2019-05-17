@@ -5,18 +5,26 @@ import org.sheepy.lily.vulkan.nuklear.adapter.LabelAdapter;
 import org.sheepy.lily.vulkan.nuklear.adapter.PanelAdapter;
 import org.sheepy.lily.vulkan.nuklear.adapter.SliderAdapter;
 import org.sheepy.lily.vulkan.nuklear.adapter.VariableLabelAdapter;
-import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearConstantsAdapter;
-import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPipelineAdapter;
+import org.sheepy.lily.vulkan.nuklear.builder.NkPipelineBuilderAdapter;
+import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
+import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPushConstantsAdapter;
+import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
+import org.sheepy.lily.vulkan.nuklear.resource.NuklearFontAdapter;
+import org.sheepy.lily.vulkan.nuklear.resource.NullTextureAdapter;
 
 @Adapters(classifiers = {
-		NuklearPipelineAdapter.class,
-		NuklearConstantsAdapter.class,
 		ButtonAdapter.class,
 		PanelAdapter.class,
 		LabelAdapter.class,
 		DynamicRowLayoutAdapter.class,
 		VariableLabelAdapter.class,
-		SliderAdapter.class
+		SliderAdapter.class,
+		NkPipelineBuilderAdapter.class,
+		NullTextureAdapter.class,
+		NuklearLayoutTaskAdapter.class,
+		NuklearContextAdapter.class,
+		NuklearFontAdapter.class,
+		NuklearPushConstantsAdapter.class
 })
 
 module org.sheepy.lily.vulkan.extra.nuklear
@@ -31,5 +39,7 @@ module org.sheepy.lily.vulkan.extra.nuklear
 	exports org.sheepy.lily.vulkan.nuklear.adapter;
 
 	opens org.sheepy.lily.vulkan.nuklear.adapter;
+	opens org.sheepy.lily.vulkan.nuklear.builder;
 	opens org.sheepy.lily.vulkan.nuklear.pipeline;
+	opens org.sheepy.lily.vulkan.nuklear.resource;
 }

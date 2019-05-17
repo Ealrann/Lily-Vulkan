@@ -3,13 +3,12 @@ package org.sheepy.vulkan.resource.buffer;
 import java.nio.ByteBuffer;
 
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
-public interface IBufferBackend extends IAllocable
+public interface IBufferBackend extends IAllocable<IExecutionContext>
 {
 	@Override
-	default boolean isAllocationDirty(IAllocationContext context)
+	default boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
 	}

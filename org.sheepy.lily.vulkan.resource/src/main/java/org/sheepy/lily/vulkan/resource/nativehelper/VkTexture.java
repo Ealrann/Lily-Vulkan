@@ -17,7 +17,6 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
@@ -27,10 +26,9 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImageBuilder;
 import org.sheepy.vulkan.resource.image.VkImageView;
 
-public class VkTexture implements IVkDescriptor, IAllocable
+public class VkTexture implements IVkDescriptor, IAllocable<IExecutionContext>
 {
 	private final Sampler samplerInfo;
 
@@ -40,7 +38,7 @@ public class VkTexture implements IVkDescriptor, IAllocable
 
 	public VkTexture(VkImage.Builder imageBuilder, Sampler samplerInfo)
 	{
-		final var sampledBuilder = new VkImageBuilder(imageBuilder);
+		final var sampledBuilder = new VkImage.VkImageBuilder(imageBuilder);
 		sampledBuilder.addUsage(VK_IMAGE_USAGE_SAMPLED_BIT);
 		image = sampledBuilder.build();
 
@@ -55,10 +53,9 @@ public class VkTexture implements IVkDescriptor, IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		final var executionContext = (IExecutionContext) context;
-		final var logicalDevice = executionContext.getLogicalDevice();
+		final var logicalDevice = context.getLogicalDevice();
 		image.allocate(stack, context);
 		final var imageAddress = image.getAddress();
 
@@ -192,7 +189,7 @@ public class VkTexture implements IVkDescriptor, IAllocable
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		sampler.free();
 		imageView.free();
@@ -203,7 +200,7 @@ public class VkTexture implements IVkDescriptor, IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
 	}

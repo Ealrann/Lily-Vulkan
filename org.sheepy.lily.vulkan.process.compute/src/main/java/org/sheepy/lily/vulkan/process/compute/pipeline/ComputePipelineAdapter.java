@@ -1,40 +1,33 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
-import static org.lwjgl.vulkan.VK10.*;
-
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 import org.joml.Vector3i;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
-import org.lwjgl.vulkan.VkPipelineShaderStageCreateInfo;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
-import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
-import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
-import org.sheepy.lily.vulkan.process.pipeline.IPipelineUnitAdapter;
-import org.sheepy.lily.vulkan.process.process.ProcessContext;
-import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.log.Logger;
 
 @Statefull
 @Adapter(scope = ComputePipeline.class)
-public class ComputePipelineAdapter extends AbstractPipelineAdapter
+public final class ComputePipelineAdapter extends AbstractPipelineAdapter<IComputeContext>
 {
 	protected final ComputePipeline pipeline;
 
-	private final List<IPipelineUnitAdapter> pipelinesAdapters = new ArrayList<>();
-
 	private final Vector3i groupCount = new Vector3i();
 
-	private long[] pipelines;
+	private final List<VkComputePipeline> vkPipelines = new ArrayList<>();
 
 	public ComputePipelineAdapter(ComputePipeline pipeline)
 	{
@@ -43,106 +36,62 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IComputeContext context)
 	{
 		super.allocate(stack, context);
 
-		final var processContext = (ProcessContext) context;
-		final var vkDevice = processContext.getVkDevice();
-		final var units = pipeline.getUnits();
-		int size = 0;
+		final var tasks = pipeline.getTaskPkg().getTasks();
 
 		groupCount.x = (int) Math.ceil((float) pipeline.getWidth() / pipeline.getWorkgroupSizeX());
 		groupCount.y = (int) Math.ceil((float) pipeline.getHeight() / pipeline.getWorkgroupSizeY());
 		groupCount.z = (int) Math.ceil((float) pipeline.getDepth() / pipeline.getWorkgroupSizeZ());
 
-		for (int i = 0; i < units.size(); i++)
+		final Deque<IPipelineTask> course = new ArrayDeque<>();
+		course.addAll(tasks);
+		while (course.isEmpty() == false)
 		{
-			final IPipelineUnit unit = units.get(i);
-			if (unit instanceof Computer)
+			final IPipelineTask task = course.removeFirst();
+			if (task instanceof Computer)
 			{
-				size++;
-			}
-
-			pipelinesAdapters.add(IPipelineUnitAdapter.adapt(unit));
-		}
-
-		final var pipelineCreateInfos = VkComputePipelineCreateInfo.callocStack(size, stack);
-		final var shaderInfo = VkPipelineShaderStageCreateInfo.calloc();
-
-		int index = 0;
-		for (int i = 0; i < units.size(); i++)
-		{
-			final IPipelineUnit unit = units.get(i);
-			if (unit instanceof Computer)
-			{
-				final var computer = (Computer) unit;
+				final var computer = (Computer) task;
 				final var shader = computer.getShader();
-				final IShaderAdapter shaderAdapter = IShaderAdapter.adapt(shader);
+				final var shaderAdapter = IShaderAdapter.adapt(shader);
+				final var computerAdapter = (ComputerAdapter) IPipelineTaskAdapter.adapt(computer);
 
-				shaderAdapter.fillInfo(shaderInfo);
+				final var vkPipeline = new VkComputePipeline(getVkPipelineLayout(), shaderAdapter);
+				vkPipeline.allocate(stack, context);
+				vkPipelines.add(vkPipeline);
 
-				final var adapter = (ComputerAdapter) pipelinesAdapters.get(i);
-
-				adapter.setIndex(index);
-				adapter.setGroupCount(groupCount);
-				index++;
-
-				final var pipelineCreateInfo = pipelineCreateInfos.get();
-				pipelineCreateInfo.sType(VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO);
-				pipelineCreateInfo.stage(shaderInfo);
-				pipelineCreateInfo.layout(getPipelineLayout());
+				computerAdapter.setVkPipeline(vkPipeline);
+				computerAdapter.setGroupCount(groupCount);
+			}
+			else if (task instanceof CompositeTask)
+			{
+				final var subTasks = ((CompositeTask) task).getTasks();
+				for (int i = subTasks.size(); i > 0; i--)
+				{
+					final var subTask = subTasks.get(i - 1);
+					course.addFirst(subTask);
+				}
 			}
 		}
-		shaderInfo.free();
-
-		pipelineCreateInfos.flip();
-
-		pipelines = new long[size];
-		Logger.check("Failed to create compute pipeline!",
-				() -> vkCreateComputePipelines(vkDevice, 0, pipelineCreateInfos, null, pipelines));
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IComputeContext context)
 	{
-		final var processContext = (ProcessContext) context;
-		final var vkDevice = processContext.getVkDevice();
-		for (final long id : pipelines)
+		for (final var pipeline : vkPipelines)
 		{
-			vkDestroyPipeline(vkDevice, id, null);
+			pipeline.free(context);
 		}
-
-		pipelines = null;
-
-		pipelinesAdapters.clear();
+		vkPipelines.clear();
 
 		super.free(context);
 	}
 
 	public long getPipelineId(int index)
 	{
-		return pipelines[index];
-	}
-
-	@Override
-	protected void record(VkCommandBuffer commandBuffer, int bindPoint, int index)
-	{
-		bindDescriptor(commandBuffer, bindPoint, new Integer[] {
-				0
-		});
-		recordComputers(commandBuffer, bindPoint);
-	}
-
-	protected void recordComputers(VkCommandBuffer commandBuffer, int bindPoint)
-	{
-		final var units = pipeline.getUnits();
-		for (int i = 0; i < units.size(); i++)
-		{
-			final IPipelineUnit unit = units.get(i);
-			final var adapter = pipelinesAdapters.get(i);
-			adapter.record(unit, commandBuffer, bindPoint);
-		}
+		return vkPipelines.get(index).getPipelineId();
 	}
 
 	public Vector3i getGroupCount()
@@ -150,14 +99,14 @@ public class ComputePipelineAdapter extends AbstractPipelineAdapter
 		return groupCount;
 	}
 
-	@Override
-	public AbstractConstants getConstants()
-	{
-		return pipeline.getConstants();
-	}
-
 	public static ComputePipelineAdapter adapt(ComputePipeline object)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(object, ComputePipelineAdapter.class);
+	}
+
+	@Override
+	public List<VkComputePipeline> getVkPipelines()
+	{
+		return vkPipelines;
 	}
 }

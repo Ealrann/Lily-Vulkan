@@ -11,7 +11,7 @@ package org.sheepy.vulkan.model.barrier;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getImageId <em>Image Id</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getImagePtr <em>Image Ptr</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getMipLevels <em>Mip Levels</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getImageFormat <em>Image Format</em>}</li>
  * </ul>
@@ -23,26 +23,26 @@ package org.sheepy.vulkan.model.barrier;
 public interface ReferenceImageBarrier extends AbstractImageBarrier
 {
 	/**
-	 * Returns the value of the '<em><b>Image Id</b></em>' attribute.
+	 * Returns the value of the '<em><b>Image Ptr</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Image Id</em>' attribute.
-	 * @see #setImageId(long)
-	 * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getReferenceImageBarrier_ImageId()
+	 * @return the value of the '<em>Image Ptr</em>' attribute.
+	 * @see #setImagePtr(long)
+	 * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getReferenceImageBarrier_ImagePtr()
 	 * @model unique="false"
 	 * @generated
 	 */
-	long getImageId();
+	long getImagePtr();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getImageId <em>Image Id</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier#getImagePtr <em>Image Ptr</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Image Id</em>' attribute.
-	 * @see #getImageId()
+	 * @param value the new value of the '<em>Image Ptr</em>' attribute.
+	 * @see #getImagePtr()
 	 * @generated
 	 */
-	void setImageId(long value);
+	void setImagePtr(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Mip Levels</b></em>' attribute.

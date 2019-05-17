@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
 import org.joml.Vector2i;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
@@ -19,13 +20,18 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
+import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
+import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
 import org.sheepy.lily.vulkan.common.engine.utils.VulkanEngineAllocationRoot;
 import org.sheepy.lily.vulkan.common.input.VulkanInputManager;
+import org.sheepy.lily.vulkan.model.IProcess;
+import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.vulkan.concurrent.VkFence;
 import org.sheepy.vulkan.device.EPhysicalFeature;
+import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.device.PhysicalDevice;
 import org.sheepy.vulkan.device.PhysicalDeviceSelector;
@@ -75,7 +81,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 	protected PhysicalDevice physicalDevice;
 	protected LogicalDevice logicalDevice = null;
 	protected VulkanContext vulkanContext = null;
-	protected TreeAllocator allocator;
+	protected TreeAllocator<IVulkanContext> allocator;
 	private VulkanEngineAllocationRoot allocationRoot;
 	private boolean allocated = false;
 	private ExecutionContext executionContext = null;
@@ -222,21 +228,38 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void allocate(MemoryStack stack)
 	{
-		allocationRoot = new VulkanEngineAllocationRoot(executionContext, gatherAllocationList());
-		allocator = new TreeAllocator(allocationRoot);
+		allocationRoot = new VulkanEngineAllocationRoot(executionContext, gatherResourceAdapters());
+		allocator = new TreeAllocator<IVulkanContext>(allocationRoot);
 		allocator.allocate(stack, vulkanContext);
+
+		startProcesses(stack);
+
 		allocated = true;
 	}
 
-	private List<Object> gatherAllocationList()
+	private void startProcesses(MemoryStack stack)
 	{
-		final List<Object> allocationList = new ArrayList<>();
+		for (final IProcess process : engine.getProcesses())
+		{
+			final var adapter = IProcessAdapter.adapt(process);
+			adapter.start(stack, vulkanContext);
+		}
+	}
+
+	private List<IResourceAdapter> gatherResourceAdapters()
+	{
+		final List<IResourceAdapter> allocationList = new ArrayList<>();
 		final var resourcePkg = engine.getResourcePkg();
 		if (resourcePkg != null)
 		{
-			allocationList.addAll(resourcePkg.getResources());
+
+			final EList<IResource> resources = resourcePkg.getResources();
+			for (final IResource resource : resources)
+			{
+				final var resourceAdapter = IResourceAdapter.adapt(resource);
+				allocationList.add(resourceAdapter);
+			}
 		}
-		allocationList.addAll(engine.getProcesses());
 		return allocationList;
 	}
 
@@ -245,11 +268,22 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		executionContext.getQueue().waitIdle();
 		allocator.free(vulkanContext);
 
+		stopProcesses();
+
 		for (final VkFence fence : fences)
 		{
 			fence.free(vulkanContext);
 		}
 		allocated = false;
+	}
+
+	private void stopProcesses()
+	{
+		for (final IProcess process : engine.getProcesses())
+		{
+			final var adapter = IProcessAdapter.adapt(process);
+			adapter.stop(vulkanContext);
+		}
 	}
 
 	private void createInstance(MemoryStack stack)

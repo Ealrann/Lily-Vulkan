@@ -14,6 +14,7 @@ import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
 import org.sheepy.vulkan.model.barrier.provider.BarrierEditPlugin;
 import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
+import org.sheepy.vulkan.model.pipeline.provider.PipelineEditPlugin;
 
 /**
  * This is the central singleton for the Process edit plugin.
@@ -51,10 +52,11 @@ public final class ProcessEditPlugin extends EMFPlugin
 				VulkanEditPlugin.INSTANCE,
 				TypesEditPlugin.INSTANCE,
 				ResourceEditPlugin.INSTANCE,
+				EnumerationEditPlugin.INSTANCE,
+				PipelineEditPlugin.INSTANCE,
 				RootEditPlugin.INSTANCE,
 				InferenceEditPlugin.INSTANCE,
 				BarrierEditPlugin.INSTANCE,
-				EnumerationEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
 				ActionEditPlugin.INSTANCE,
 		});

@@ -17,13 +17,11 @@ import org.sheepy.lily.core.model.inference.InferencePackage;
 import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
 import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
-import org.sheepy.lily.vulkan.model.resource.Constants;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.FileResource;
@@ -138,20 +136,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass samplerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass abstractConstantsEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass constantsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -888,50 +872,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getAbstractConstants()
-	{
-		return abstractConstantsEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAbstractConstants_Stages()
-	{
-		return (EAttribute) abstractConstantsEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getConstants()
-	{
-		return constantsEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getConstants_Data()
-	{
-		return (EAttribute) constantsEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getIDescriptor()
 	{
 		return iDescriptorEClass;
@@ -1284,12 +1224,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(samplerEClass, SAMPLER__MAX_LOD);
 		createEAttribute(samplerEClass, SAMPLER__MAX_ANISOTROPY);
 
-		abstractConstantsEClass = createEClass(ABSTRACT_CONSTANTS);
-		createEAttribute(abstractConstantsEClass, ABSTRACT_CONSTANTS__STAGES);
-
-		constantsEClass = createEClass(CONSTANTS);
-		createEAttribute(constantsEClass, CONSTANTS__DATA);
-
 		iDescriptorEClass = createEClass(IDESCRIPTOR);
 		createEAttribute(iDescriptorEClass, IDESCRIPTOR__DESCRIPTOR_TYPE);
 		createEAttribute(iDescriptorEClass, IDESCRIPTOR__SHADER_STAGES);
@@ -1381,8 +1315,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		fontEClass.getESuperTypes().add(this.getSampledImage());
 		abstractTextureEClass.getESuperTypes().add(this.getSampledImage());
 		textureEClass.getESuperTypes().add(this.getAbstractTexture());
-		abstractConstantsEClass.getESuperTypes().add(this.getBasicResource());
-		constantsEClass.getESuperTypes().add(this.getAbstractConstants());
 		descriptorSetEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		bufferBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractBufferBarrier());
 		imageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
@@ -1394,8 +1326,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		stringModuleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(descriptorResourceEClass, DescriptorResource.class, "DescriptorResource",
 				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1472,7 +1404,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				"accessMask", null, 0, -1, ImageLayout.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", IS_ABSTRACT,
+		initEClass(sampledImageEClass, SampledImage.class, "SampledImage", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSampledImage_Sampler(), this.getSampler(), null, "sampler", null, 0, 1,
 				SampledImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
@@ -1547,18 +1479,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getSampler_MaxAnisotropy(), theEcorePackage.getEFloat(), "maxAnisotropy",
 				"1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(abstractConstantsEClass, AbstractConstants.class, "AbstractConstants",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractConstants_Stages(), theEnumerationPackage.getEShaderStage(),
-				"stages", null, 0, -1, AbstractConstants.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(constantsEClass, Constants.class, "Constants", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstants_Data(), this.getByteBuffer(), "data", null, 0, 1,
-				Constants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

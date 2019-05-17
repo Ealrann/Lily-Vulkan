@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.execution.IExecutionRecorder;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicExecutionRecorders;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
@@ -12,10 +11,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
 import org.sheepy.lily.vulkan.process.graphic.process.PresentSemaphore;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 
-public class GraphicExecutionRecorders extends ExecutionRecorders
+public class GraphicExecutionRecorders extends ExecutionRecorders<IGraphicContext>
 		implements IGraphicExecutionRecorders
 {
 	public final PresentSemaphore imageAvailableSemaphore;
@@ -26,13 +24,13 @@ public class GraphicExecutionRecorders extends ExecutionRecorders
 	}
 
 	@Override
-	public List<IExecutionRecorder> createRecorders(MemoryStack stack, IAllocationContext context)
+	public List<GraphicExecutionRecorder> createRecorders(	MemoryStack stack,
+	                                                      	IGraphicContext context)
 	{
-		final List<IExecutionRecorder> res = new ArrayList<>();
+		final List<GraphicExecutionRecorder> res = new ArrayList<>();
 
-		final var graphicContext = (IGraphicContext) context;
-		final var process = graphicContext.getGraphicProcess();
-		final int executionCount = graphicContext.getSwapChainManager().getImageCount();
+		final var process = context.getGraphicProcess();
+		final int executionCount = context.getSwapChainManager().getImageCount();
 
 		imageAvailableSemaphore.allocate(stack, context);
 
@@ -55,15 +53,14 @@ public class GraphicExecutionRecorders extends ExecutionRecorders
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		return graphicContext.getSwapChainManager().isAllocationDirty(context)
+		return context.getSwapChainManager().isAllocationDirty(context)
 				|| super.isAllocationDirty(context);
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IGraphicContext context)
 	{
 		super.free(context);
 		imageAvailableSemaphore.free(context);

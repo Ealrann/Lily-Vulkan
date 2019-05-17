@@ -9,10 +9,8 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.barrier.provider.AbstractBufferBarrierItemProvider;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferBarrier} object.
@@ -89,11 +87,7 @@ public class BufferBarrierItemProvider extends AbstractBufferBarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((BufferBarrier) object).getSrcStage();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_BufferBarrier_type")
-				: getString("_UI_BufferBarrier_type") + " " + label;
+		return getString("_UI_BufferBarrier_type");
 	}
 
 	/**

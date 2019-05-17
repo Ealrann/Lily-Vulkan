@@ -7,16 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
-import org.sheepy.vulkan.model.barrier.BarrierPackage;
-
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.vulkan.model.barrier.AbstractBufferBarrier} object.
@@ -50,46 +41,8 @@ public class AbstractBufferBarrierItemProvider extends BarrierItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addSrcAccessPropertyDescriptor(object);
-			addDstAccessPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Src Access feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSrcAccessPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AbstractBufferBarrier_srcAccess_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractBufferBarrier_srcAccess_feature",
-						"_UI_AbstractBufferBarrier_type"),
-				BarrierPackage.Literals.ABSTRACT_BUFFER_BARRIER__SRC_ACCESS, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Dst Access feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDstAccessPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AbstractBufferBarrier_dstAccess_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_AbstractBufferBarrier_dstAccess_feature",
-						"_UI_AbstractBufferBarrier_type"),
-				BarrierPackage.Literals.ABSTRACT_BUFFER_BARRIER__DST_ACCESS, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -101,11 +54,7 @@ public class AbstractBufferBarrierItemProvider extends BarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((AbstractBufferBarrier) object).getSrcStage();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_AbstractBufferBarrier_type")
-				: getString("_UI_AbstractBufferBarrier_type") + " " + label;
+		return getString("_UI_AbstractBufferBarrier_type");
 	}
 
 	/**
@@ -119,15 +68,6 @@ public class AbstractBufferBarrierItemProvider extends BarrierItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(AbstractBufferBarrier.class))
-		{
-		case BarrierPackage.ABSTRACT_BUFFER_BARRIER__SRC_ACCESS:
-		case BarrierPackage.ABSTRACT_BUFFER_BARRIER__DST_ACCESS:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		}
 		super.notifyChanged(notification);
 	}
 

@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -988,13 +989,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__DESCRIPTOR_SET_PKG = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Part Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG;
+	int GRAPHIC_PROCESS__PART_PKG = ProcessPackage.ABSTRACT_PROCESS__PART_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
@@ -1069,242 +1070,6 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS_OPERATION_COUNT = ProcessPackage.ABSTRACT_PROCESS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
-	 * @generated
-	 */
-	int IGRAPHICS_PIPELINE = 15;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__CONTENT_OBJECTS = ProcessPackage.IPIPELINE__CONTENT_OBJECTS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__NAME = ProcessPackage.IPIPELINE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__ENABLED = ProcessPackage.IPIPELINE__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE__PUSH_BUFFER = ProcessPackage.IPIPELINE__PUSH_BUFFER;
-
-	/**
-	 * The number of structural features of the '<em>IGraphics Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE___LINFERENCE_OBJECT = ProcessPackage.IPIPELINE___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = ProcessPackage.IPIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE___LCONTENTS = ProcessPackage.IPIPELINE___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE___LPARENT = ProcessPackage.IPIPELINE___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE___LALL_CONTENTS = ProcessPackage.IPIPELINE___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>IGraphics Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.IPIPELINE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
-	 * @generated
-	 */
-	int IGUI_PIPELINE = 16;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE__CONTENT_OBJECTS = IGRAPHICS_PIPELINE__CONTENT_OBJECTS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE__NAME = IGRAPHICS_PIPELINE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE__ENABLED = IGRAPHICS_PIPELINE__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE__STAGE = IGRAPHICS_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE__PUSH_BUFFER = IGRAPHICS_PIPELINE__PUSH_BUFFER;
-
-	/**
-	 * The number of structural features of the '<em>IGUI Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE_FEATURE_COUNT = IGRAPHICS_PIPELINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE___LINFERENCE_OBJECT = IGRAPHICS_PIPELINE___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = IGRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE___LCONTENTS = IGRAPHICS_PIPELINE___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE___LPARENT = IGRAPHICS_PIPELINE___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE___LALL_CONTENTS = IGRAPHICS_PIPELINE___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>IGUI Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IGUI_PIPELINE_OPERATION_COUNT = IGRAPHICS_PIPELINE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1312,16 +1077,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getGraphicsPipeline()
 	 * @generated
 	 */
-	int GRAPHICS_PIPELINE = 17;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__CONTENT_OBJECTS = ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS;
+	int GRAPHICS_PIPELINE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1330,34 +1086,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__NAME = ProcessPackage.ABSTRACT_PIPELINE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__ENABLED = ProcessPackage.ABSTRACT_PIPELINE__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__PUSH_BUFFER = ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER;
+	int GRAPHICS_PIPELINE__NAME = ProcessPackage.IPIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -1366,16 +1095,34 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__RESOURCE_PKG = ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG;
+	int GRAPHICS_PIPELINE__RESOURCE_PKG = ProcessPackage.IPIPELINE__RESOURCE_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE__UNITS;
+	int GRAPHICS_PIPELINE__ENABLED = ProcessPackage.IPIPELINE__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.IPIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
@@ -1384,7 +1131,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF;
+	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.IPIPELINE__DESCRIPTOR_SET_REF;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
@@ -1393,16 +1140,25 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DESCRIPTOR_SET = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET;
+	int GRAPHICS_PIPELINE__DESCRIPTOR_SET = ProcessPackage.IPIPELINE__DESCRIPTOR_SET;
 
 	/**
-	 * The feature id for the '<em><b>Constants</b></em>' reference.
+	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__CONSTANTS = ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS;
+	int GRAPHICS_PIPELINE__TASK_PKG = ProcessPackage.IPIPELINE__TASK_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Builder</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__BUILDER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.
@@ -1411,7 +1167,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__SHADERS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
+	int GRAPHICS_PIPELINE__SHADERS = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Viewport State</b></em>' containment reference.
@@ -1420,7 +1176,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__VIEWPORT_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 1;
+	int GRAPHICS_PIPELINE__VIEWPORT_STATE = ProcessPackage.IPIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Input Assembly</b></em>' containment reference.
@@ -1429,7 +1185,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__INPUT_ASSEMBLY = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 2;
+	int GRAPHICS_PIPELINE__INPUT_ASSEMBLY = ProcessPackage.IPIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Rasterizer</b></em>' containment reference.
@@ -1438,7 +1194,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
+	int GRAPHICS_PIPELINE__RASTERIZER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Color Blend</b></em>' containment reference.
@@ -1447,7 +1203,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__COLOR_BLEND = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
+	int GRAPHICS_PIPELINE__COLOR_BLEND = ProcessPackage.IPIPELINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic State</b></em>' containment reference.
@@ -1456,7 +1212,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
+	int GRAPHICS_PIPELINE__DYNAMIC_STATE = ProcessPackage.IPIPELINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
@@ -1465,7 +1221,16 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__SUBPASS = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 6;
+	int GRAPHICS_PIPELINE__SUBPASS = ProcessPackage.IPIPELINE_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Vertex Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR = ProcessPackage.IPIPELINE_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
@@ -1474,52 +1239,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 7;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE___LINFERENCE_OBJECT = ProcessPackage.ABSTRACT_PIPELINE___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = ProcessPackage.ABSTRACT_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE___LCONTENTS = ProcessPackage.ABSTRACT_PIPELINE___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE___LPARENT = ProcessPackage.ABSTRACT_PIPELINE___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE___LALL_CONTENTS = ProcessPackage.ABSTRACT_PIPELINE___LALL_CONTENTS;
+	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
@@ -1528,7 +1248,758 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
+	int GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.IPIPELINE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.MeshProviderImpl <em>Mesh Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.MeshProviderImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getMeshProvider()
+	 * @generated
+	 */
+	int MESH_PROVIDER = 16;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PROVIDER__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Mesh Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Mesh Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_PROVIDER_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl <em>Swap Image Barrier</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSwapImageBarrier()
+	 * @generated
+	 */
+	int SWAP_IMAGE_BARRIER = 17;
+
+	/**
+	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_IMAGE_BARRIER__SRC_ACCESS_MASK = BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_ACCESS_MASK;
+
+	/**
+	 * The feature id for the '<em><b>Dst Access Mask</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_IMAGE_BARRIER__DST_ACCESS_MASK = BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_ACCESS_MASK;
+
+	/**
+	 * The feature id for the '<em><b>Src Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_IMAGE_BARRIER__SRC_LAYOUT = BarrierPackage.ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT;
+
+	/**
+	 * The feature id for the '<em><b>Dst Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_IMAGE_BARRIER__DST_LAYOUT = BarrierPackage.ABSTRACT_IMAGE_BARRIER__DST_LAYOUT;
+
+	/**
+	 * The number of structural features of the '<em>Swap Image Barrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_IMAGE_BARRIER_FEATURE_COUNT = BarrierPackage.ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Swap Image Barrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWAP_IMAGE_BARRIER_OPERATION_COUNT = BarrierPackage.ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT
+			+ 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl <em>Blit To Swap Image</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBlitToSwapImage()
+	 * @generated
+	 */
+	int BLIT_TO_SWAP_IMAGE = 18;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__IMAGE = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Blit To Swap Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Blit To Swap Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl <em>Draw Indexed</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDrawIndexed()
+	 * @generated
+	 */
+	int DRAW_INDEXED = 19;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_INDEXED__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_INDEXED__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Index Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_INDEXED__INDEX_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_INDEXED__INSTANCE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>First Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_INDEXED__FIRST_INDEX = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Vertex Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_INDEXED__VERTEX_OFFSET = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>First Instance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_INDEXED__FIRST_INSTANCE = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Draw Indexed</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_INDEXED_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>Draw Indexed</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_INDEXED_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl <em>Vertex Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexDescriptor()
+	 * @generated
+	 */
+	int VERTEX_DESCRIPTOR = 20;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_DESCRIPTOR__ATTRIBUTES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Stride Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_DESCRIPTOR__STRIDE_LENGTH = 1;
+
+	/**
+	 * The number of structural features of the '<em>Vertex Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_DESCRIPTOR_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Vertex Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl <em>Attribute Description</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttributeDescription()
+	 * @generated
+	 */
+	int ATTRIBUTE_DESCRIPTION = 21;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DESCRIPTION__FORMAT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DESCRIPTION__OFFSET = 1;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Description</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DESCRIPTION_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Attribute Description</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DESCRIPTION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl <em>Indexed Vertex Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIndexedVertexDescriptor()
+	 * @generated
+	 */
+	int INDEXED_VERTEX_DESCRIPTOR = 22;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEXED_VERTEX_DESCRIPTOR__ATTRIBUTES = VERTEX_DESCRIPTOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Stride Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEXED_VERTEX_DESCRIPTOR__STRIDE_LENGTH = VERTEX_DESCRIPTOR__STRIDE_LENGTH;
+
+	/**
+	 * The feature id for the '<em><b>Index Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEXED_VERTEX_DESCRIPTOR__INDEX_TYPE = VERTEX_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Indexed Vertex Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEXED_VERTEX_DESCRIPTOR_FEATURE_COUNT = VERTEX_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Indexed Vertex Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEXED_VERTEX_DESCRIPTOR_OPERATION_COUNT = VERTEX_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindVertexBufferImpl <em>Bind Vertex Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BindVertexBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBindVertexBuffer()
+	 * @generated
+	 */
+	int BIND_VERTEX_BUFFER = 23;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_VERTEX_BUFFER__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_VERTEX_BUFFER__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>First Binding</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_VERTEX_BUFFER__FIRST_BINDING = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Vertex Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_VERTEX_BUFFER__VERTEX_BINDINGS = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Bind Vertex Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_VERTEX_BUFFER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Bind Vertex Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_VERTEX_BUFFER_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SetScissorImpl <em>Set Scissor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SetScissorImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSetScissor()
+	 * @generated
+	 */
+	int SET_SCISSOR = 24;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SCISSOR__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SCISSOR__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Offset X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SCISSOR__OFFSET_X = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Offset Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SCISSOR__OFFSET_Y = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SCISSOR__WIDTH = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SCISSOR__HEIGHT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Set Scissor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SCISSOR_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>Set Scissor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SCISSOR_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SetViewportImpl <em>Set Viewport</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SetViewportImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSetViewport()
+	 * @generated
+	 */
+	int SET_VIEWPORT = 25;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT__X = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT__Y = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT__WIDTH = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT__HEIGHT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Min Depth</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT__MIN_DEPTH = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Max Depth</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT__MAX_DEPTH = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>Set Viewport</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of operations of the '<em>Set Viewport</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_VIEWPORT_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl <em>Vertex Binding</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexBinding()
+	 * @generated
+	 */
+	int VERTEX_BINDING = 26;
+
+	/**
+	 * The feature id for the '<em><b>Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_BINDING__BUFFER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_BINDING__OFFSET = 1;
+
+	/**
+	 * The number of structural features of the '<em>Vertex Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_BINDING_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Vertex Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_BINDING_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl <em>Bind Index Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBindIndexBuffer()
+	 * @generated
+	 */
+	int BIND_INDEX_BUFFER = 27;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_INDEX_BUFFER__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_INDEX_BUFFER__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_INDEX_BUFFER__BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_INDEX_BUFFER__OFFSET = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Bind Index Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_INDEX_BUFFER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Bind Index Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_INDEX_BUFFER_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
@@ -2110,26 +2581,6 @@ public interface GraphicPackage extends EPackage
 	EAttribute getGraphicProcess_FieldOfViewY();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IGraphics Pipeline</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline
-	 * @generated
-	 */
-	EClass getIGraphicsPipeline();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IGUI Pipeline</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline
-	 * @generated
-	 */
-	EClass getIGUIPipeline();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2215,6 +2666,434 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getGraphicsPipeline_Subpass();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexDescriptor <em>Vertex Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Vertex Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexDescriptor()
+	 * @see #getGraphicsPipeline()
+	 * @generated
+	 */
+	EReference getGraphicsPipeline_VertexDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.MeshProvider <em>Mesh Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mesh Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.MeshProvider
+	 * @generated
+	 */
+	EClass getMeshProvider();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier <em>Swap Image Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Swap Image Barrier</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier
+	 * @generated
+	 */
+	EClass getSwapImageBarrier();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage <em>Blit To Swap Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Blit To Swap Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage
+	 * @generated
+	 */
+	EClass getBlitToSwapImage();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getImage <em>Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Image</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getImage()
+	 * @see #getBlitToSwapImage()
+	 * @generated
+	 */
+	EReference getBlitToSwapImage_Image();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed <em>Draw Indexed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Draw Indexed</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed
+	 * @generated
+	 */
+	EClass getDrawIndexed();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getIndexCount <em>Index Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getIndexCount()
+	 * @see #getDrawIndexed()
+	 * @generated
+	 */
+	EAttribute getDrawIndexed_IndexCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getInstanceCount <em>Instance Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getInstanceCount()
+	 * @see #getDrawIndexed()
+	 * @generated
+	 */
+	EAttribute getDrawIndexed_InstanceCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getFirstIndex <em>First Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>First Index</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getFirstIndex()
+	 * @see #getDrawIndexed()
+	 * @generated
+	 */
+	EAttribute getDrawIndexed_FirstIndex();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getVertexOffset <em>Vertex Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Vertex Offset</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getVertexOffset()
+	 * @see #getDrawIndexed()
+	 * @generated
+	 */
+	EAttribute getDrawIndexed_VertexOffset();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getFirstInstance <em>First Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>First Instance</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed#getFirstInstance()
+	 * @see #getDrawIndexed()
+	 * @generated
+	 */
+	EAttribute getDrawIndexed_FirstInstance();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor <em>Vertex Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Vertex Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor
+	 * @generated
+	 */
+	EClass getVertexDescriptor();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor#getAttributes <em>Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor#getAttributes()
+	 * @see #getVertexDescriptor()
+	 * @generated
+	 */
+	EReference getVertexDescriptor_Attributes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor#getStrideLength <em>Stride Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stride Length</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor#getStrideLength()
+	 * @see #getVertexDescriptor()
+	 * @generated
+	 */
+	EAttribute getVertexDescriptor_StrideLength();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription <em>Attribute Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Description</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription
+	 * @generated
+	 */
+	EClass getAttributeDescription();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription#getFormat <em>Format</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Format</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription#getFormat()
+	 * @see #getAttributeDescription()
+	 * @generated
+	 */
+	EAttribute getAttributeDescription_Format();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription#getOffset <em>Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offset</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription#getOffset()
+	 * @see #getAttributeDescription()
+	 * @generated
+	 */
+	EAttribute getAttributeDescription_Offset();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor <em>Indexed Vertex Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Indexed Vertex Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor
+	 * @generated
+	 */
+	EClass getIndexedVertexDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor#getIndexType <em>Index Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index Type</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor#getIndexType()
+	 * @see #getIndexedVertexDescriptor()
+	 * @generated
+	 */
+	EAttribute getIndexedVertexDescriptor_IndexType();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer <em>Bind Vertex Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bind Vertex Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer
+	 * @generated
+	 */
+	EClass getBindVertexBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer#getFirstBinding <em>First Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>First Binding</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer#getFirstBinding()
+	 * @see #getBindVertexBuffer()
+	 * @generated
+	 */
+	EAttribute getBindVertexBuffer_FirstBinding();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer#getVertexBindings <em>Vertex Bindings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Vertex Bindings</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer#getVertexBindings()
+	 * @see #getBindVertexBuffer()
+	 * @generated
+	 */
+	EReference getBindVertexBuffer_VertexBindings();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SetScissor <em>Set Scissor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Set Scissor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetScissor
+	 * @generated
+	 */
+	EClass getSetScissor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetScissor#getOffsetX <em>Offset X</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offset X</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetScissor#getOffsetX()
+	 * @see #getSetScissor()
+	 * @generated
+	 */
+	EAttribute getSetScissor_OffsetX();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetScissor#getOffsetY <em>Offset Y</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offset Y</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetScissor#getOffsetY()
+	 * @see #getSetScissor()
+	 * @generated
+	 */
+	EAttribute getSetScissor_OffsetY();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetScissor#getWidth <em>Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Width</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetScissor#getWidth()
+	 * @see #getSetScissor()
+	 * @generated
+	 */
+	EAttribute getSetScissor_Width();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetScissor#getHeight <em>Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetScissor#getHeight()
+	 * @see #getSetScissor()
+	 * @generated
+	 */
+	EAttribute getSetScissor_Height();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport <em>Set Viewport</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Set Viewport</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetViewport
+	 * @generated
+	 */
+	EClass getSetViewport();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getX <em>X</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>X</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getX()
+	 * @see #getSetViewport()
+	 * @generated
+	 */
+	EAttribute getSetViewport_X();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getY <em>Y</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Y</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getY()
+	 * @see #getSetViewport()
+	 * @generated
+	 */
+	EAttribute getSetViewport_Y();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getWidth <em>Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Width</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getWidth()
+	 * @see #getSetViewport()
+	 * @generated
+	 */
+	EAttribute getSetViewport_Width();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getHeight <em>Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getHeight()
+	 * @see #getSetViewport()
+	 * @generated
+	 */
+	EAttribute getSetViewport_Height();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getMinDepth <em>Min Depth</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Depth</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getMinDepth()
+	 * @see #getSetViewport()
+	 * @generated
+	 */
+	EAttribute getSetViewport_MinDepth();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getMaxDepth <em>Max Depth</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Depth</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetViewport#getMaxDepth()
+	 * @see #getSetViewport()
+	 * @generated
+	 */
+	EAttribute getSetViewport_MaxDepth();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding <em>Vertex Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Vertex Binding</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexBinding
+	 * @generated
+	 */
+	EClass getVertexBinding();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBuffer <em>Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBuffer()
+	 * @see #getVertexBinding()
+	 * @generated
+	 */
+	EReference getVertexBinding_Buffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getOffset <em>Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offset</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getOffset()
+	 * @see #getVertexBinding()
+	 * @generated
+	 */
+	EAttribute getVertexBinding_Offset();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer <em>Bind Index Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bind Index Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer
+	 * @generated
+	 */
+	EClass getBindIndexBuffer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBuffer <em>Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBuffer()
+	 * @see #getBindIndexBuffer()
+	 * @generated
+	 */
+	EReference getBindIndexBuffer_Buffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getOffset <em>Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offset</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getOffset()
+	 * @see #getBindIndexBuffer()
+	 * @generated
+	 */
+	EAttribute getBindIndexBuffer_Offset();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2719,26 +3598,6 @@ public interface GraphicPackage extends EPackage
 		EAttribute GRAPHIC_PROCESS__FIELD_OF_VIEW_Y = eINSTANCE.getGraphicProcess_FieldOfViewY();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGraphicsPipeline()
-		 * @generated
-		 */
-		EClass IGRAPHICS_PIPELINE = eINSTANCE.getIGraphicsPipeline();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIGUIPipeline()
-		 * @generated
-		 */
-		EClass IGUI_PIPELINE = eINSTANCE.getIGUIPipeline();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2805,6 +3664,353 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute GRAPHICS_PIPELINE__SUBPASS = eINSTANCE.getGraphicsPipeline_Subpass();
+
+		/**
+		 * The meta object literal for the '<em><b>Vertex Descriptor</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR = eINSTANCE
+				.getGraphicsPipeline_VertexDescriptor();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.MeshProviderImpl <em>Mesh Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.MeshProviderImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getMeshProvider()
+		 * @generated
+		 */
+		EClass MESH_PROVIDER = eINSTANCE.getMeshProvider();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl <em>Swap Image Barrier</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSwapImageBarrier()
+		 * @generated
+		 */
+		EClass SWAP_IMAGE_BARRIER = eINSTANCE.getSwapImageBarrier();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl <em>Blit To Swap Image</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBlitToSwapImage()
+		 * @generated
+		 */
+		EClass BLIT_TO_SWAP_IMAGE = eINSTANCE.getBlitToSwapImage();
+
+		/**
+		 * The meta object literal for the '<em><b>Image</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BLIT_TO_SWAP_IMAGE__IMAGE = eINSTANCE.getBlitToSwapImage_Image();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl <em>Draw Indexed</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDrawIndexed()
+		 * @generated
+		 */
+		EClass DRAW_INDEXED = eINSTANCE.getDrawIndexed();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRAW_INDEXED__INDEX_COUNT = eINSTANCE.getDrawIndexed_IndexCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRAW_INDEXED__INSTANCE_COUNT = eINSTANCE.getDrawIndexed_InstanceCount();
+
+		/**
+		 * The meta object literal for the '<em><b>First Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRAW_INDEXED__FIRST_INDEX = eINSTANCE.getDrawIndexed_FirstIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Vertex Offset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRAW_INDEXED__VERTEX_OFFSET = eINSTANCE.getDrawIndexed_VertexOffset();
+
+		/**
+		 * The meta object literal for the '<em><b>First Instance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRAW_INDEXED__FIRST_INSTANCE = eINSTANCE.getDrawIndexed_FirstInstance();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl <em>Vertex Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexDescriptor()
+		 * @generated
+		 */
+		EClass VERTEX_DESCRIPTOR = eINSTANCE.getVertexDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VERTEX_DESCRIPTOR__ATTRIBUTES = eINSTANCE.getVertexDescriptor_Attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Stride Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERTEX_DESCRIPTOR__STRIDE_LENGTH = eINSTANCE.getVertexDescriptor_StrideLength();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl <em>Attribute Description</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttributeDescription()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_DESCRIPTION = eINSTANCE.getAttributeDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_DESCRIPTION__FORMAT = eINSTANCE.getAttributeDescription_Format();
+
+		/**
+		 * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_DESCRIPTION__OFFSET = eINSTANCE.getAttributeDescription_Offset();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl <em>Indexed Vertex Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIndexedVertexDescriptor()
+		 * @generated
+		 */
+		EClass INDEXED_VERTEX_DESCRIPTOR = eINSTANCE.getIndexedVertexDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEXED_VERTEX_DESCRIPTOR__INDEX_TYPE = eINSTANCE
+				.getIndexedVertexDescriptor_IndexType();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindVertexBufferImpl <em>Bind Vertex Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BindVertexBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBindVertexBuffer()
+		 * @generated
+		 */
+		EClass BIND_VERTEX_BUFFER = eINSTANCE.getBindVertexBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>First Binding</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIND_VERTEX_BUFFER__FIRST_BINDING = eINSTANCE.getBindVertexBuffer_FirstBinding();
+
+		/**
+		 * The meta object literal for the '<em><b>Vertex Bindings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BIND_VERTEX_BUFFER__VERTEX_BINDINGS = eINSTANCE
+				.getBindVertexBuffer_VertexBindings();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SetScissorImpl <em>Set Scissor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SetScissorImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSetScissor()
+		 * @generated
+		 */
+		EClass SET_SCISSOR = eINSTANCE.getSetScissor();
+
+		/**
+		 * The meta object literal for the '<em><b>Offset X</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_SCISSOR__OFFSET_X = eINSTANCE.getSetScissor_OffsetX();
+
+		/**
+		 * The meta object literal for the '<em><b>Offset Y</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_SCISSOR__OFFSET_Y = eINSTANCE.getSetScissor_OffsetY();
+
+		/**
+		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_SCISSOR__WIDTH = eINSTANCE.getSetScissor_Width();
+
+		/**
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_SCISSOR__HEIGHT = eINSTANCE.getSetScissor_Height();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SetViewportImpl <em>Set Viewport</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.SetViewportImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSetViewport()
+		 * @generated
+		 */
+		EClass SET_VIEWPORT = eINSTANCE.getSetViewport();
+
+		/**
+		 * The meta object literal for the '<em><b>X</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_VIEWPORT__X = eINSTANCE.getSetViewport_X();
+
+		/**
+		 * The meta object literal for the '<em><b>Y</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_VIEWPORT__Y = eINSTANCE.getSetViewport_Y();
+
+		/**
+		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_VIEWPORT__WIDTH = eINSTANCE.getSetViewport_Width();
+
+		/**
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_VIEWPORT__HEIGHT = eINSTANCE.getSetViewport_Height();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Depth</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_VIEWPORT__MIN_DEPTH = eINSTANCE.getSetViewport_MinDepth();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Depth</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_VIEWPORT__MAX_DEPTH = eINSTANCE.getSetViewport_MaxDepth();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl <em>Vertex Binding</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexBinding()
+		 * @generated
+		 */
+		EClass VERTEX_BINDING = eINSTANCE.getVertexBinding();
+
+		/**
+		 * The meta object literal for the '<em><b>Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VERTEX_BINDING__BUFFER = eINSTANCE.getVertexBinding_Buffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERTEX_BINDING__OFFSET = eINSTANCE.getVertexBinding_Offset();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl <em>Bind Index Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBindIndexBuffer()
+		 * @generated
+		 */
+		EClass BIND_INDEX_BUFFER = eINSTANCE.getBindIndexBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BIND_INDEX_BUFFER__BUFFER = eINSTANCE.getBindIndexBuffer_Buffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIND_INDEX_BUFFER__OFFSET = eINSTANCE.getBindIndexBuffer_Offset();
 
 	}
 

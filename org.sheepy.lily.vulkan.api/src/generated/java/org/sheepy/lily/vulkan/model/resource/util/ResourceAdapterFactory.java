@@ -139,16 +139,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			return createSamplerAdapter();
 		}
 		@Override
-		public Adapter caseAbstractConstants(AbstractConstants object)
-		{
-			return createAbstractConstantsAdapter();
-		}
-		@Override
-		public Adapter caseConstants(Constants object)
-		{
-			return createConstantsAdapter();
-		}
-		@Override
 		public Adapter caseIDescriptor(IDescriptor object)
 		{
 			return createIDescriptorAdapter();
@@ -425,36 +415,6 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createSamplerAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.AbstractConstants <em>Abstract Constants</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.AbstractConstants
-	 * @generated
-	 */
-	public Adapter createAbstractConstantsAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Constants <em>Constants</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.Constants
-	 * @generated
-	 */
-	public Adapter createConstantsAdapter()
 	{
 		return null;
 	}

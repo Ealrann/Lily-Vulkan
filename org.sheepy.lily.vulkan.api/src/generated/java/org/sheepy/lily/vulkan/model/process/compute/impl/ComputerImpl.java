@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
-
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 /**
@@ -23,6 +22,7 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getShader <em>Shader</em>}</li>
  * </ul>
  *
@@ -48,6 +48,24 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+	/**
+	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ENABLED_EDEFAULT = true;
+	/**
+	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean enabled = ENABLED_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getShader() <em>Shader</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -110,6 +128,31 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @generated
 	 */
 	@Override
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEnabled(boolean newEnabled)
+	{
+		boolean oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTER__ENABLED, oldEnabled, enabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Shader getShader()
 	{
 		if (shader != null && shader.eIsProxy())
@@ -161,6 +204,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 		{
 		case ComputePackage.COMPUTER__NAME:
 			return getName();
+		case ComputePackage.COMPUTER__ENABLED:
+			return isEnabled();
 		case ComputePackage.COMPUTER__SHADER:
 			if (resolve) return getShader();
 			return basicGetShader();
@@ -180,6 +225,9 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 		{
 		case ComputePackage.COMPUTER__NAME:
 			setName((String) newValue);
+			return;
+		case ComputePackage.COMPUTER__ENABLED:
+			setEnabled((Boolean) newValue);
 			return;
 		case ComputePackage.COMPUTER__SHADER:
 			setShader((Shader) newValue);
@@ -201,6 +249,9 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 		case ComputePackage.COMPUTER__NAME:
 			setName(NAME_EDEFAULT);
 			return;
+		case ComputePackage.COMPUTER__ENABLED:
+			setEnabled(ENABLED_EDEFAULT);
+			return;
 		case ComputePackage.COMPUTER__SHADER:
 			setShader((Shader) null);
 			return;
@@ -220,6 +271,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 		{
 		case ComputePackage.COMPUTER__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ComputePackage.COMPUTER__ENABLED:
+			return enabled != ENABLED_EDEFAULT;
 		case ComputePackage.COMPUTER__SHADER:
 			return shader != null;
 		}
@@ -239,6 +292,8 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", enabled: ");
+		result.append(enabled);
 		result.append(')');
 		return result.toString();
 	}

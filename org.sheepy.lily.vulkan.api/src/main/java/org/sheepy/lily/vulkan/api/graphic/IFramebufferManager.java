@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.sheepy.vulkan.allocation.IAllocable;
 
-public interface IFramebufferManager extends IAllocable
+public interface IFramebufferManager extends IAllocable<IGraphicContext>
 {
 	List<ClearInfo> getClearInfos();
 

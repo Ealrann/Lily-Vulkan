@@ -19,7 +19,6 @@ import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
 import org.sheepy.lily.vulkan.common.util.VulkanBufferUtils;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EPresentMode;
@@ -36,15 +35,14 @@ public class SwapChainManager implements ISwapChainManager
 	private EList<ISwapAttachment> attachments;
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		final var logicalDevice = graphicContext.getLogicalDevice();
-		final var configuration = graphicContext.getConfiguration();
+		final var logicalDevice = context.getLogicalDevice();
+		final var configuration = context.getConfiguration();
 		final var swapchainConfiguration = configuration.getSwapchainConfiguration();
 		final var requiredImageCount = swapchainConfiguration.getRequiredSwapImageCount();
-		final var pdsManager = graphicContext.getSurfaceManager();
-		final var vkDevice = graphicContext.getVkDevice();
+		final var pdsManager = context.getSurfaceManager();
+		final var vkDevice = context.getVkDevice();
 		final var capabilities = pdsManager.getCapabilities().vkCapabilities;
 		final var surface = pdsManager.getSurface();
 		final var extent = pdsManager.getExtent();
@@ -53,7 +51,7 @@ public class SwapChainManager implements ISwapChainManager
 		final var imageCount = pdsManager.bestSupportedImageCount(requiredImageCount);
 		final var requiredPresentMode = swapchainConfiguration.getPresentationMode();
 		final int swapImageUsage = loadSwapChainUsage(swapchainConfiguration);
-		final int targetPresentMode = selectPresentMode(graphicContext, requiredPresentMode,
+		final int targetPresentMode = selectPresentMode(context, requiredPresentMode,
 				surface);
 
 		attachments = swapchainConfiguration.getAtachments();
@@ -108,7 +106,7 @@ public class SwapChainManager implements ISwapChainManager
 		}
 	}
 
-	private void allocateAttachments(MemoryStack stack, IAllocationContext context)
+	private void allocateAttachments(MemoryStack stack, IGraphicContext context)
 	{
 		for (final ISwapAttachment attachment : attachments)
 		{
@@ -129,10 +127,9 @@ public class SwapChainManager implements ISwapChainManager
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		vkDestroySwapchainKHR(graphicContext.getVkDevice(), swapChain, null);
+		vkDestroySwapchainKHR(context.getVkDevice(), swapChain, null);
 		if (indices != null) MemoryUtil.memFree(indices);
 		swapChain = null;
 		swapChainImages = null;
@@ -141,7 +138,7 @@ public class SwapChainManager implements ISwapChainManager
 		freeAttachments(context);
 	}
 
-	private void freeAttachments(IAllocationContext context)
+	private void freeAttachments(IGraphicContext context)
 	{
 		for (final ISwapAttachment attachment : attachments)
 		{
@@ -187,9 +184,8 @@ public class SwapChainManager implements ISwapChainManager
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		return graphicContext.getSurfaceManager().isAllocationDirty(context);
+		return context.getSurfaceManager().isAllocationDirty(context);
 	}
 }

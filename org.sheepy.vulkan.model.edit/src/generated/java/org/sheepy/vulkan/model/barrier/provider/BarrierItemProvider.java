@@ -25,8 +25,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.vulkan.model.barrier.Barrier;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-
 /**
  * This is the item provider adapter for a {@link org.sheepy.vulkan.model.barrier.Barrier} object.
  * <!-- begin-user-doc -->
@@ -61,43 +59,43 @@ public class BarrierItemProvider extends ItemProviderAdapter
 		{
 			super.getPropertyDescriptors(object);
 
-			addSrcStagePropertyDescriptor(object);
-			addDstStagePropertyDescriptor(object);
+			addSrcAccessMaskPropertyDescriptor(object);
+			addDstAccessMaskPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Src Stage feature.
+	 * This adds a property descriptor for the Src Access Mask feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSrcStagePropertyDescriptor(Object object)
+	protected void addSrcAccessMaskPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Barrier_srcStage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Barrier_srcStage_feature",
+				getResourceLocator(), getString("_UI_Barrier_srcAccessMask_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Barrier_srcAccessMask_feature",
 						"_UI_Barrier_type"),
-				BarrierPackage.Literals.BARRIER__SRC_STAGE, true, false, false,
+				BarrierPackage.Literals.BARRIER__SRC_ACCESS_MASK, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Dst Stage feature.
+	 * This adds a property descriptor for the Dst Access Mask feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDstStagePropertyDescriptor(Object object)
+	protected void addDstAccessMaskPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Barrier_dstStage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Barrier_dstStage_feature",
+				getResourceLocator(), getString("_UI_Barrier_dstAccessMask_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Barrier_dstAccessMask_feature",
 						"_UI_Barrier_type"),
-				BarrierPackage.Literals.BARRIER__DST_STAGE, true, false, false,
+				BarrierPackage.Literals.BARRIER__DST_ACCESS_MASK, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -110,11 +108,7 @@ public class BarrierItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((Barrier) object).getSrcStage();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_Barrier_type")
-				: getString("_UI_Barrier_type") + " " + label;
+		return getString("_UI_Barrier_type");
 	}
 
 	/**
@@ -131,8 +125,8 @@ public class BarrierItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(Barrier.class))
 		{
-		case BarrierPackage.BARRIER__SRC_STAGE:
-		case BarrierPackage.BARRIER__DST_STAGE:
+		case BarrierPackage.BARRIER__SRC_ACCESS_MASK:
+		case BarrierPackage.BARRIER__DST_ACCESS_MASK:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

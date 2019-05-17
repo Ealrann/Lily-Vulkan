@@ -1,24 +1,23 @@
 package org.sheepy.vulkan.resource.buffer;
 
+import static org.lwjgl.vulkan.VK10.*;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
-import org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier;
-import org.sheepy.vulkan.model.barrier.impl.ReferenceBufferBarrierImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.resource.barrier.ReferenceBufferBarrierExecutor;
 
-public class StagingBuffer implements IAllocable, IStagingBuffer
+public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuffer
 {
 	public final CPUBufferBackend bufferBackend;
 
@@ -41,10 +40,10 @@ public class StagingBuffer implements IAllocable, IStagingBuffer
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		executionContext = (IExecutionContext) context;
-		final var physicalDevice = executionContext.getPhysicalDevice();
+		this.executionContext = context;
+		final var physicalDevice = context.getPhysicalDevice();
 		minMemoryMapAlignment = physicalDevice.getDeviceProperties().limits()
 				.minMemoryMapAlignment();
 
@@ -52,7 +51,7 @@ public class StagingBuffer implements IAllocable, IStagingBuffer
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		bufferBackend.free(context);
 	}
@@ -115,9 +114,12 @@ public class StagingBuffer implements IAllocable, IStagingBuffer
 		bufferBackend.flush(executionContext.getLogicalDevice());
 		bufferBackend.nextInstance();
 
-		while (synchronizedCommands.isEmpty() == false)
+		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			synchronizedCommands.pop().execute(commandBuffer);
+			while (synchronizedCommands.isEmpty() == false)
+			{
+				synchronizedCommands.pop().execute(stack, commandBuffer);
+			}
 		}
 
 		if (unsynchronizedCommands.isEmpty() == false)
@@ -129,7 +131,7 @@ public class StagingBuffer implements IAllocable, IStagingBuffer
 				{
 					while (unsynchronizedCommands.isEmpty() == false)
 					{
-						unsynchronizedCommands.pop().execute(commandBuffer);
+						unsynchronizedCommands.pop().execute(stack, commandBuffer);
 					}
 				}
 			});
@@ -140,7 +142,7 @@ public class StagingBuffer implements IAllocable, IStagingBuffer
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
 	}
@@ -163,35 +165,33 @@ public class StagingBuffer implements IAllocable, IStagingBuffer
 			this.size = size;
 		}
 
-		public void execute(VkCommandBuffer commandBuffer)
+		public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
 		{
-			final ReferenceBufferBarrier barrier = new ReferenceBufferBarrierImpl();
-			barrier.setSrcStage(EPipelineStage.TOP_OF_PIPE_BIT);
-			barrier.setDstStage(EPipelineStage.TRANSFER_BIT);
-			barrier.setBufferAddress(trgBuffer);
-			barrier.setSrcAccess(null);
-			barrier.setDstAccess(EAccess.TRANSFER_WRITE_BIT);
+			final var barrierInfo = VkBufferMemoryBarrier.callocStack(1, stack);
+			barrierInfo.sType(VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER);
+			barrierInfo.buffer(trgBuffer);
+			barrierInfo.srcAccessMask(0);
+			barrierInfo.dstAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
+			barrierInfo.offset(0);
+			barrierInfo.size(VK_WHOLE_SIZE);
 
-			final var executor = new ReferenceBufferBarrierExecutor(barrier);
-			executor.allocate();
-			executor.execute(commandBuffer);
-			executor.free();
+			final var srcStage1 = EPipelineStage.TOP_OF_PIPE_BIT_VALUE;
+			final var dstStage1 = EPipelineStage.TRANSFER_BIT_VALUE;
+
+			vkCmdPipelineBarrier(commandBuffer, srcStage1, dstStage1, 0, null, barrierInfo, null);
 
 			BufferUtils.copyBuffer(commandBuffer, srcBuffer, offset, trgBuffer, trgOffset, size);
 
 			if (dstStage != null)
 			{
-				final ReferenceBufferBarrier trgBarrier = new ReferenceBufferBarrierImpl();
-				trgBarrier.setSrcStage(EPipelineStage.TRANSFER_BIT);
-				trgBarrier.setDstStage(dstStage);
-				trgBarrier.setBufferAddress(trgBuffer);
-				trgBarrier.setSrcAccess(EAccess.TRANSFER_WRITE_BIT);
-				trgBarrier.setDstAccess(dstAccess);
+				final var srcStage2 = EPipelineStage.TRANSFER_BIT_VALUE;
+				final var dstStage2 = dstStage.getValue();
 
-				final var trgExecutor = new ReferenceBufferBarrierExecutor(trgBarrier);
-				trgExecutor.allocate();
-				trgExecutor.execute(commandBuffer);
-				trgExecutor.free();
+				barrierInfo.srcAccessMask(EAccess.TRANSFER_WRITE_BIT_VALUE);
+				barrierInfo.dstAccessMask(dstAccess.getValue());
+
+				vkCmdPipelineBarrier(commandBuffer, srcStage2, dstStage2, 0, null, barrierInfo,
+						null);
 			}
 		}
 

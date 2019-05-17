@@ -8,19 +8,18 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
 
-public class VkSemaphore implements IAllocable
+public class VkSemaphore implements IAllocable<IVulkanContext>
 {
 	private long semaphoreId = -1;
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IVulkanContext context)
 	{
-		final var logicalDevice = ((IVulkanContext) context).getLogicalDevice();
+		final var logicalDevice = context.getLogicalDevice();
 		final VkSemaphoreCreateInfo semaphoreInfo = VkSemaphoreCreateInfo.calloc();
 		semaphoreInfo.sType(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO);
 		semaphoreInfo.pNext(VK_NULL_HANDLE);
@@ -61,15 +60,15 @@ public class VkSemaphore implements IAllocable
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IVulkanContext context)
 	{
-		final var logicalDevice = ((IVulkanContext) context).getLogicalDevice();
+		final var logicalDevice = context.getLogicalDevice();
 		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphoreId, null);
 		semaphoreId = -1;
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IVulkanContext context)
 	{
 		return false;
 	}

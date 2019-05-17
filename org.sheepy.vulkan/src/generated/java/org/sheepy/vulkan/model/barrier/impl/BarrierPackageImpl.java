@@ -5,7 +5,6 @@ package org.sheepy.vulkan.model.barrier.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -158,7 +157,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBarrier_SrcStage()
+	public EAttribute getBarrier_SrcAccessMask()
 	{
 		return (EAttribute) barrierEClass.getEStructuralFeatures().get(0);
 	}
@@ -169,7 +168,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBarrier_DstStage()
+	public EAttribute getBarrier_DstAccessMask()
 	{
 		return (EAttribute) barrierEClass.getEStructuralFeatures().get(1);
 	}
@@ -191,28 +190,6 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAbstractBufferBarrier_SrcAccess()
-	{
-		return (EAttribute) abstractBufferBarrierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAbstractBufferBarrier_DstAccess()
-	{
-		return (EAttribute) abstractBufferBarrierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getReferenceBufferBarrier()
 	{
 		return referenceBufferBarrierEClass;
@@ -224,7 +201,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getReferenceBufferBarrier_BufferAddress()
+	public EAttribute getReferenceBufferBarrier_BufferPtr()
 	{
 		return (EAttribute) referenceBufferBarrierEClass.getEStructuralFeatures().get(0);
 	}
@@ -246,9 +223,20 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractImageBarrier_Transitions()
+	public EAttribute getAbstractImageBarrier_SrcLayout()
 	{
-		return (EReference) abstractImageBarrierEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) abstractImageBarrierEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractImageBarrier_DstLayout()
+	{
+		return (EAttribute) abstractImageBarrierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -268,7 +256,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getReferenceImageBarrier_ImageId()
+	public EAttribute getReferenceImageBarrier_ImagePtr()
 	{
 		return (EAttribute) referenceImageBarrierEClass.getEStructuralFeatures().get(0);
 	}
@@ -382,21 +370,20 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 
 		// Create classes and their features
 		barrierEClass = createEClass(BARRIER);
-		createEAttribute(barrierEClass, BARRIER__SRC_STAGE);
-		createEAttribute(barrierEClass, BARRIER__DST_STAGE);
+		createEAttribute(barrierEClass, BARRIER__SRC_ACCESS_MASK);
+		createEAttribute(barrierEClass, BARRIER__DST_ACCESS_MASK);
 
 		abstractBufferBarrierEClass = createEClass(ABSTRACT_BUFFER_BARRIER);
-		createEAttribute(abstractBufferBarrierEClass, ABSTRACT_BUFFER_BARRIER__SRC_ACCESS);
-		createEAttribute(abstractBufferBarrierEClass, ABSTRACT_BUFFER_BARRIER__DST_ACCESS);
 
 		referenceBufferBarrierEClass = createEClass(REFERENCE_BUFFER_BARRIER);
-		createEAttribute(referenceBufferBarrierEClass, REFERENCE_BUFFER_BARRIER__BUFFER_ADDRESS);
+		createEAttribute(referenceBufferBarrierEClass, REFERENCE_BUFFER_BARRIER__BUFFER_PTR);
 
 		abstractImageBarrierEClass = createEClass(ABSTRACT_IMAGE_BARRIER);
-		createEReference(abstractImageBarrierEClass, ABSTRACT_IMAGE_BARRIER__TRANSITIONS);
+		createEAttribute(abstractImageBarrierEClass, ABSTRACT_IMAGE_BARRIER__SRC_LAYOUT);
+		createEAttribute(abstractImageBarrierEClass, ABSTRACT_IMAGE_BARRIER__DST_LAYOUT);
 
 		referenceImageBarrierEClass = createEClass(REFERENCE_IMAGE_BARRIER);
-		createEAttribute(referenceImageBarrierEClass, REFERENCE_IMAGE_BARRIER__IMAGE_ID);
+		createEAttribute(referenceImageBarrierEClass, REFERENCE_IMAGE_BARRIER__IMAGE_PTR);
 		createEAttribute(referenceImageBarrierEClass, REFERENCE_IMAGE_BARRIER__MIP_LEVELS);
 		createEAttribute(referenceImageBarrierEClass, REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT);
 
@@ -450,39 +437,34 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBarrier_SrcStage(), theEnumerationPackage.getEPipelineStage(), "srcStage",
-				null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(), "dstStage",
-				null, 0, 1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBarrier_SrcAccessMask(), theEnumerationPackage.getEAccess(),
+				"srcAccessMask", null, 0, -1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBarrier_DstAccessMask(), theEnumerationPackage.getEAccess(),
+				"dstAccessMask", null, 0, -1, Barrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractBufferBarrierEClass, AbstractBufferBarrier.class,
 				"AbstractBufferBarrier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractBufferBarrier_SrcAccess(), theEnumerationPackage.getEAccess(),
-				"srcAccess", null, 0, 1, AbstractBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAbstractBufferBarrier_DstAccess(), theEnumerationPackage.getEAccess(),
-				"dstAccess", null, 0, 1, AbstractBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceBufferBarrierEClass, ReferenceBufferBarrier.class,
 				"ReferenceBufferBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReferenceBufferBarrier_BufferAddress(), theEcorePackage.getELong(),
-				"bufferAddress", null, 0, 1, ReferenceBufferBarrier.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEAttribute(getReferenceBufferBarrier_BufferPtr(), theEcorePackage.getELong(),
+				"bufferPtr", null, 0, 1, ReferenceBufferBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractImageBarrierEClass, AbstractImageBarrier.class, "AbstractImageBarrier",
 				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractImageBarrier_Transitions(), this.getImageTransition(), null,
-				"transitions", null, 0, -1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractImageBarrier_SrcLayout(), theEnumerationPackage.getEImageLayout(),
+				"srcLayout", null, 0, 1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractImageBarrier_DstLayout(), theEnumerationPackage.getEImageLayout(),
+				"dstLayout", null, 0, 1, AbstractImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceImageBarrierEClass, ReferenceImageBarrier.class,
 				"ReferenceImageBarrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReferenceImageBarrier_ImageId(), theEcorePackage.getELong(), "imageId",
+		initEAttribute(getReferenceImageBarrier_ImagePtr(), theEcorePackage.getELong(), "imagePtr",
 				null, 0, 1, ReferenceImageBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getReferenceImageBarrier_MipLevels(), theEcorePackage.getEInt(), "mipLevels",

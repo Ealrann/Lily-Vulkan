@@ -5,11 +5,13 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
+import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
-import org.sheepy.lily.vulkan.process.graphic.pipeline.AbstractGraphicsPipelineAdapter;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public class GraphicExecutionRecorder extends AbstractExecutionRecorder
+public class GraphicExecutionRecorder extends AbstractExecutionRecorder<IGraphicContext>
 {
 	public GraphicExecutionRecorder(GraphicCommandBuffer commandBuffer,
 									FrameSubmission frameSubmission,
@@ -37,10 +39,9 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder
 				final IRecordable adapter = adapters.get(i);
 				int pipelineSubpass = 0;
 
-				if (stage == ECommandStage.RENDER
-						&& adapter instanceof AbstractGraphicsPipelineAdapter)
+				if (stage == ECommandStage.RENDER && adapter instanceof GraphicsPipelineAdapter)
 				{
-					final var graphicsPipelineAdapter = (AbstractGraphicsPipelineAdapter) adapter;
+					final var graphicsPipelineAdapter = (GraphicsPipelineAdapter) adapter;
 					pipelineSubpass = graphicsPipelineAdapter.getSubpass();
 					if (subpassCount <= pipelineSubpass)
 					{
@@ -55,9 +56,9 @@ public class GraphicExecutionRecorder extends AbstractExecutionRecorder
 
 					if (shouldRecord && goodSubpass)
 					{
-						adapter.record(stage, vkCommandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS,
-								index);
-						adapter.setRecordNeeded(false);
+						final var context = new RecordContext(vkCommandBuffer, stage,
+								VK_PIPELINE_BIND_POINT_GRAPHICS, index);
+						adapter.record(context);
 					}
 				}
 			}

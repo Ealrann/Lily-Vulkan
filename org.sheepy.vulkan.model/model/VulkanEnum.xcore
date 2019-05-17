@@ -179,6 +179,12 @@ enum EBlendFactor
 	ONE_MINUS_SRC1_ALPHA     = 18
 }
 
+enum EIndexType
+{
+    UINT16 = 0
+    UINT32 = 1
+}
+
 enum EDynamicState
 {
 	VIEWPORT             = 0

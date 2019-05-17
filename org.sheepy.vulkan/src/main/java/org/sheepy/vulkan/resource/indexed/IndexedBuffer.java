@@ -5,22 +5,20 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.execution.ExecutionContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 
-public class IndexedBuffer<T extends IVertex> implements IAllocable
+public class IndexedBuffer implements IAllocable<IExecutionContext>
 {
-	private final IIndexedBufferDescriptor<T> meshDescriptor;
+	private final VkIndexedVertexDescriptor meshDescriptor;
 	private final int vertexBufferCapacity;
 	private final int indexBufferCapacity;
 
-	protected ExecutionContext context;
+	protected IExecutionContext context;
 	protected GPUBufferBackend vertexBuffer;
 	protected GPUBufferBackend indexBuffer;
 
@@ -29,33 +27,7 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 
 	boolean allocated = false;
 
-	public static <T extends IVertex> IndexedBuffer<T> alloc(	ExecutionContext context,
-																IndexedBufferData<T> datas)
-	{
-		return alloc(context, datas.meshDescriptor, datas.vertices, datas.indices);
-	}
-
-	public static <T extends IVertex> IndexedBuffer<T> alloc(	ExecutionContext context,
-																IIndexedBufferDescriptor<T> indexedDescriptor,
-																T[] vertices,
-																int[] indices)
-	{
-		final int vertexBufferSize = vertices.length * indexedDescriptor.sizeOfVertex();
-		final int indexBufferSize = indices.length * indexedDescriptor.sizeOfIndex();
-
-		final IndexedBuffer<T> res = new IndexedBuffer<>(indexedDescriptor, vertexBufferSize,
-				indexBufferSize);
-
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			res.allocate(stack, context);
-			res.fillBuffer(stack, vertices, indices);
-		}
-
-		return res;
-	}
-
-	public IndexedBuffer(	IIndexedBufferDescriptor<T> meshDescriptor,
+	public IndexedBuffer(	VkIndexedVertexDescriptor meshDescriptor,
 							int vertexBufferCapacity,
 							int indexBufferCapacity)
 	{
@@ -65,9 +37,9 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		this.context = (ExecutionContext) context;
+		this.context = context;
 
 		allocateIndexBuffer(stack);
 		allocateVertexBuffer(stack);
@@ -91,21 +63,7 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 				false, false);
 	}
 
-	public void fillBuffer(MemoryStack stack, T[] vertices, int[] indices)
-	{
-		final int verticeCount = vertices.length;
-		final int indiceCount = indices.length;
-
-		final var vertexBuffer = meshDescriptor.toVertexBuffer(vertices);
-		final var indexBuffer = meshDescriptor.toIndexBuffer(indices);
-
-		fillBuffer(stack, vertexBuffer, verticeCount, indexBuffer, indiceCount);
-
-		MemoryUtil.memFree(indexBuffer);
-		MemoryUtil.memFree(vertexBuffer);
-	}
-
-	private void fillBuffer(MemoryStack stack,
+	public void fillBuffer(	MemoryStack stack,
 							ByteBuffer vertices,
 							int numberOfVertice,
 							ByteBuffer indices,
@@ -114,7 +72,7 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		indexCount = numberOfIndice;
 		vertexCount = numberOfVertice;
 
-		final int indexByteSize = numberOfIndice * meshDescriptor.sizeOfIndex();
+		final int indexByteSize = numberOfIndice * meshDescriptor.indexSizeBytes;
 		final int vertexByteSize = numberOfVertice * meshDescriptor.sizeOfVertex();
 
 		final var vertexFiller = new BufferGPUFiller(stack, context, vertexBuffer.getAddress());
@@ -137,7 +95,7 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		vertexBuffer.free(context);
 		indexBuffer.free(context);
@@ -148,7 +106,7 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 		allocated = false;
 	}
 
-	public IIndexedBufferDescriptor<T> getIndexBufferDescriptor()
+	public VkIndexedVertexDescriptor getIndexBufferDescriptor()
 	{
 		return meshDescriptor;
 	}
@@ -209,7 +167,7 @@ public class IndexedBuffer<T extends IVertex> implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
 	}

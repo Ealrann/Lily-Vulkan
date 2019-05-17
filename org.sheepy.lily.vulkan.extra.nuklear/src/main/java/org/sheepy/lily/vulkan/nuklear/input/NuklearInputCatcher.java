@@ -17,24 +17,29 @@ import org.sheepy.lily.core.api.input.event.MouseLocationEvent;
 import org.sheepy.lily.core.api.input.event.ScrollEvent;
 import org.sheepy.lily.core.model.types.EKeyState;
 import org.sheepy.lily.vulkan.api.input.IInputCatcher;
-import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearPipelineAdapter;
+import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
 import org.sheepy.vulkan.window.Window;
 
-public class NuklearInputCatcher implements IInputCatcher
+public final class NuklearInputCatcher implements IInputCatcher
 {
+	public static final NuklearInputCatcher INSTANCE = new NuklearInputCatcher();
+
 	private static final NkVec2 scroll = NkVec2.create();
 
 	private NkContext nkContext;
 	private Window window;
-	private NuklearPipelineAdapter pipelineAdapter;
+	private NuklearLayoutTaskAdapter layoutAdapter;
+
+	private NuklearInputCatcher()
+	{}
 
 	public void configure(	NkContext nkContext,
 							Window window,
-							NuklearPipelineAdapter pipelineAdapter)
+							NuklearLayoutTaskAdapter layoutAdapter)
 	{
 		this.nkContext = nkContext;
 		this.window = window;
-		this.pipelineAdapter = pipelineAdapter;
+		this.layoutAdapter = layoutAdapter;
 	}
 
 	@Override
@@ -203,7 +208,7 @@ public class NuklearInputCatcher implements IInputCatcher
 
 		nk_input_end(nkContext);
 
-		pipelineAdapter.layout(events);
+		layoutAdapter.layout(events);
 
 		boolean res = false;
 

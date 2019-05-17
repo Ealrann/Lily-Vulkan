@@ -5,7 +5,6 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.demo.mesh.MeshConfiguration;
 import org.sheepy.lily.vulkan.demo.mesh.MeshMainLoop;
 import org.sheepy.lily.vulkan.demo.mesh.MeshModelFactory;
-import org.sheepy.lily.vulkan.demo.mesh.MeshPipelineAdapter;
 import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 public class MainTexture
@@ -18,19 +17,26 @@ public class MainTexture
 	{
 		DebugUtil.DEBUG_ENABLED = true;
 
-		MeshPipelineAdapter.meshBuilder = new TextureMeshBuilder();
+		final var modelFactory = createFactory();
 
-		final var meshConfiguration = new MeshConfiguration();
+		final MeshMainLoop mainLoop = new MeshMainLoop(modelFactory);
+
+		ApplicationLauncher.launch(modelFactory.application, mainLoop);
+	}
+
+	static MeshModelFactory createFactory()
+	{
+		final var meshBuilder = new TextureMeshBuilder();
+		final var meshConfiguration = new MeshConfiguration(meshBuilder);
 		meshConfiguration.depth = true;
+		meshConfiguration.useCamera = true;
+		meshConfiguration.useTexture = true;
 		meshConfiguration.vertexShaderPath = VERTEX_SHADER_PATH;
 		meshConfiguration.fragmentShaderPath = FRAGMENT_SHADER_PATH;
 		meshConfiguration.rasterizerFrontFace = EFrontFace.COUNTER_CLOCKWISE;
 		meshConfiguration.texturePath = IMAGE_PATH;
 
 		final var modelFactory = new MeshModelFactory(meshConfiguration);
-
-		final MeshMainLoop mainLoop = new MeshMainLoop(modelFactory);
-
-		ApplicationLauncher.launch(modelFactory.application, mainLoop);
+		return modelFactory;
 	}
 }

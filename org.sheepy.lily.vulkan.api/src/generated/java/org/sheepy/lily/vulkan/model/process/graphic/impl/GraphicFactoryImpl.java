@@ -92,6 +92,30 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createGraphicProcess();
 		case GraphicPackage.GRAPHICS_PIPELINE:
 			return createGraphicsPipeline();
+		case GraphicPackage.MESH_PROVIDER:
+			return createMeshProvider();
+		case GraphicPackage.SWAP_IMAGE_BARRIER:
+			return createSwapImageBarrier();
+		case GraphicPackage.BLIT_TO_SWAP_IMAGE:
+			return createBlitToSwapImage();
+		case GraphicPackage.DRAW_INDEXED:
+			return createDrawIndexed();
+		case GraphicPackage.VERTEX_DESCRIPTOR:
+			return createVertexDescriptor();
+		case GraphicPackage.ATTRIBUTE_DESCRIPTION:
+			return createAttributeDescription();
+		case GraphicPackage.INDEXED_VERTEX_DESCRIPTOR:
+			return createIndexedVertexDescriptor();
+		case GraphicPackage.BIND_VERTEX_BUFFER:
+			return createBindVertexBuffer();
+		case GraphicPackage.SET_SCISSOR:
+			return createSetScissor();
+		case GraphicPackage.SET_VIEWPORT:
+			return createSetViewport();
+		case GraphicPackage.VERTEX_BINDING:
+			return createVertexBinding();
+		case GraphicPackage.BIND_INDEX_BUFFER:
+			return createBindIndexBuffer();
 		default:
 			throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier");
@@ -264,6 +288,150 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicsPipelineImpl graphicsPipeline = new GraphicsPipelineImpl();
 		return graphicsPipeline;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MeshProvider createMeshProvider()
+	{
+		MeshProviderImpl meshProvider = new MeshProviderImpl();
+		return meshProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SwapImageBarrier createSwapImageBarrier()
+	{
+		SwapImageBarrierImpl swapImageBarrier = new SwapImageBarrierImpl();
+		return swapImageBarrier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BlitToSwapImage createBlitToSwapImage()
+	{
+		BlitToSwapImageImpl blitToSwapImage = new BlitToSwapImageImpl();
+		return blitToSwapImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DrawIndexed createDrawIndexed()
+	{
+		DrawIndexedImpl drawIndexed = new DrawIndexedImpl();
+		return drawIndexed;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VertexDescriptor createVertexDescriptor()
+	{
+		VertexDescriptorImpl vertexDescriptor = new VertexDescriptorImpl();
+		return vertexDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttributeDescription createAttributeDescription()
+	{
+		AttributeDescriptionImpl attributeDescription = new AttributeDescriptionImpl();
+		return attributeDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IndexedVertexDescriptor createIndexedVertexDescriptor()
+	{
+		IndexedVertexDescriptorImpl indexedVertexDescriptor = new IndexedVertexDescriptorImpl();
+		return indexedVertexDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BindVertexBuffer createBindVertexBuffer()
+	{
+		BindVertexBufferImpl bindVertexBuffer = new BindVertexBufferImpl();
+		return bindVertexBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SetScissor createSetScissor()
+	{
+		SetScissorImpl setScissor = new SetScissorImpl();
+		return setScissor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SetViewport createSetViewport()
+	{
+		SetViewportImpl setViewport = new SetViewportImpl();
+		return setViewport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VertexBinding createVertexBinding()
+	{
+		VertexBindingImpl vertexBinding = new VertexBindingImpl();
+		return vertexBinding;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BindIndexBuffer createBindIndexBuffer()
+	{
+		BindIndexBufferImpl bindIndexBuffer = new BindIndexBufferImpl();
+		return bindIndexBuffer;
 	}
 
 	/**

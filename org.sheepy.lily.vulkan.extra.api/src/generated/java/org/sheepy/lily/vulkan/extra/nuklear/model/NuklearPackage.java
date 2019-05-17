@@ -6,8 +6,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.core.model.builder.BuilderPackage;
+import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,59 +61,14 @@ public interface NuklearPackage extends EPackage
 	NuklearPackage eINSTANCE = org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl <em>Pipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineBuilderImpl <em>Pipeline Builder</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearPipeline()
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineBuilderImpl
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearPipelineBuilder()
 	 * @generated
 	 */
-	int NUKLEAR_PIPELINE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE__CONTENT_OBJECTS = GraphicPackage.IGUI_PIPELINE__CONTENT_OBJECTS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE__NAME = GraphicPackage.IGUI_PIPELINE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE__ENABLED = GraphicPackage.IGUI_PIPELINE__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE__STAGE = GraphicPackage.IGUI_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE__PUSH_BUFFER = GraphicPackage.IGUI_PIPELINE__PUSH_BUFFER;
+	int NUKLEAR_PIPELINE_BUILDER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Font</b></em>' containment reference.
@@ -121,98 +77,36 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__FONT = GraphicPackage.IGUI_PIPELINE_FEATURE_COUNT + 0;
+	int NUKLEAR_PIPELINE_BUILDER__FONT = BuilderPackage.BUILDER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Push Constant</b></em>' containment reference.
+	 * The number of structural features of the '<em>Pipeline Builder</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__PUSH_CONSTANT = GraphicPackage.IGUI_PIPELINE_FEATURE_COUNT + 1;
+	int NUKLEAR_PIPELINE_BUILDER_FEATURE_COUNT = BuilderPackage.BUILDER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Subpass</b></em>' attribute.
+	 * The number of operations of the '<em>Pipeline Builder</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_PIPELINE__SUBPASS = GraphicPackage.IGUI_PIPELINE_FEATURE_COUNT + 2;
+	int NUKLEAR_PIPELINE_BUILDER_OPERATION_COUNT = BuilderPackage.BUILDER_OPERATION_COUNT + 0;
+
 
 	/**
-	 * The number of structural features of the '<em>Pipeline</em>' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPushConstantsImpl <em>Push Constants</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE_FEATURE_COUNT = GraphicPackage.IGUI_PIPELINE_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE___LINFERENCE_OBJECT = GraphicPackage.IGUI_PIPELINE___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = GraphicPackage.IGUI_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE___LCONTENTS = GraphicPackage.IGUI_PIPELINE___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE___LPARENT = GraphicPackage.IGUI_PIPELINE___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE___LALL_CONTENTS = GraphicPackage.IGUI_PIPELINE___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE_OPERATION_COUNT = GraphicPackage.IGUI_PIPELINE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearConstantsImpl <em>Constants</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearConstantsImpl
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearConstants()
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPushConstantsImpl
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearPushConstants()
 	 * @generated
 	 */
-	int NUKLEAR_CONSTANTS = 1;
+	int NUKLEAR_PUSH_CONSTANTS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -221,7 +115,16 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONSTANTS__NAME = ResourcePackage.CONSTANTS__NAME;
+	int NUKLEAR_PUSH_CONSTANTS__NAME = ProcessPackage.PUSH_CONSTANT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_PUSH_CONSTANTS__ENABLED = ProcessPackage.PUSH_CONSTANT__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
@@ -230,7 +133,7 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONSTANTS__STAGES = ResourcePackage.CONSTANTS__STAGES;
+	int NUKLEAR_PUSH_CONSTANTS__STAGES = ProcessPackage.PUSH_CONSTANT__STAGES;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
@@ -239,79 +142,360 @@ public interface NuklearPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONSTANTS__DATA = ResourcePackage.CONSTANTS__DATA;
+	int NUKLEAR_PUSH_CONSTANTS__DATA = ProcessPackage.PUSH_CONSTANT__DATA;
 
 	/**
-	 * The number of structural features of the '<em>Constants</em>' class.
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONSTANTS_FEATURE_COUNT = ResourcePackage.CONSTANTS_FEATURE_COUNT + 0;
+	int NUKLEAR_PUSH_CONSTANTS__WIDTH = ProcessPackage.PUSH_CONSTANT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Constants</em>' class.
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUKLEAR_CONSTANTS_OPERATION_COUNT = ResourcePackage.CONSTANTS_OPERATION_COUNT + 0;
-
+	int NUKLEAR_PUSH_CONSTANTS__HEIGHT = ProcessPackage.PUSH_CONSTANT_FEATURE_COUNT + 1;
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline <em>Pipeline</em>}'.
+	 * The feature id for the '<em><b>Current Descriptor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Pipeline</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline
 	 * @generated
+	 * @ordered
 	 */
-	EClass getNuklearPipeline();
+	int NUKLEAR_PUSH_CONSTANTS__CURRENT_DESCRIPTOR = ProcessPackage.PUSH_CONSTANT_FEATURE_COUNT + 2;
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline#getFont <em>Font</em>}'.
+	 * The number of structural features of the '<em>Push Constants</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_PUSH_CONSTANTS_FEATURE_COUNT = ProcessPackage.PUSH_CONSTANT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Push Constants</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_PUSH_CONSTANTS_OPERATION_COUNT = ProcessPackage.PUSH_CONSTANT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearLayoutTaskImpl <em>Layout Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearLayoutTaskImpl
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearLayoutTask()
+	 * @generated
+	 */
+	int NUKLEAR_LAYOUT_TASK = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_LAYOUT_TASK__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_LAYOUT_TASK__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_LAYOUT_TASK__CONTEXT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Draw Task</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_LAYOUT_TASK__DRAW_TASK = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_LAYOUT_TASK__PUSH_BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Vertex Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Layout Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_LAYOUT_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>Layout Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_LAYOUT_TASK_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearContextImpl <em>Context</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearContextImpl
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearContext()
+	 * @generated
+	 */
+	int NUKLEAR_CONTEXT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_CONTEXT__NAME = VulkanPackage.IRESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Font</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_CONTEXT__FONT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Null Texture</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_CONTEXT__NULL_TEXTURE = VulkanPackage.IRESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Layout Task</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_CONTEXT__LAYOUT_TASK = VulkanPackage.IRESOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_CONTEXT_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUKLEAR_CONTEXT_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
+
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder <em>Pipeline Builder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pipeline Builder</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder
+	 * @generated
+	 */
+	EClass getNuklearPipelineBuilder();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder#getFont <em>Font</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Font</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline#getFont()
-	 * @see #getNuklearPipeline()
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder#getFont()
+	 * @see #getNuklearPipelineBuilder()
 	 * @generated
 	 */
-	EReference getNuklearPipeline_Font();
+	EReference getNuklearPipelineBuilder_Font();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline#getPushConstant <em>Push Constant</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants <em>Push Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Push Constant</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline#getPushConstant()
-	 * @see #getNuklearPipeline()
+	 * @return the meta object for class '<em>Push Constants</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants
 	 * @generated
 	 */
-	EReference getNuklearPipeline_PushConstant();
+	EClass getNuklearPushConstants();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline#getSubpass <em>Subpass</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants#getWidth <em>Width</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Subpass</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipeline#getSubpass()
-	 * @see #getNuklearPipeline()
+	 * @return the meta object for the attribute '<em>Width</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants#getWidth()
+	 * @see #getNuklearPushConstants()
 	 * @generated
 	 */
-	EAttribute getNuklearPipeline_Subpass();
+	EAttribute getNuklearPushConstants_Width();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearConstants <em>Constants</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants#getHeight <em>Height</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constants</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearConstants
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants#getHeight()
+	 * @see #getNuklearPushConstants()
 	 * @generated
 	 */
-	EClass getNuklearConstants();
+	EAttribute getNuklearPushConstants_Height();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants#getCurrentDescriptor <em>Current Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Current Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants#getCurrentDescriptor()
+	 * @see #getNuklearPushConstants()
+	 * @generated
+	 */
+	EAttribute getNuklearPushConstants_CurrentDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask <em>Layout Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Layout Task</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask
+	 * @generated
+	 */
+	EClass getNuklearLayoutTask();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Context</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask#getContext()
+	 * @see #getNuklearLayoutTask()
+	 * @generated
+	 */
+	EReference getNuklearLayoutTask_Context();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask#getDrawTask <em>Draw Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Draw Task</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask#getDrawTask()
+	 * @see #getNuklearLayoutTask()
+	 * @generated
+	 */
+	EReference getNuklearLayoutTask_DrawTask();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask#getPushBuffer <em>Push Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Push Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask#getPushBuffer()
+	 * @see #getNuklearLayoutTask()
+	 * @generated
+	 */
+	EReference getNuklearLayoutTask_PushBuffer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask#getVertexBuffer <em>Vertex Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Vertex Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask#getVertexBuffer()
+	 * @see #getNuklearLayoutTask()
+	 * @generated
+	 */
+	EReference getNuklearLayoutTask_VertexBuffer();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Context</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearContext
+	 * @generated
+	 */
+	EClass getNuklearContext();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearContext#getFont <em>Font</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Font</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearContext#getFont()
+	 * @see #getNuklearContext()
+	 * @generated
+	 */
+	EReference getNuklearContext_Font();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearContext#getNullTexture <em>Null Texture</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Null Texture</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearContext#getNullTexture()
+	 * @see #getNuklearContext()
+	 * @generated
+	 */
+	EReference getNuklearContext_NullTexture();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearContext#getLayoutTask <em>Layout Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Layout Task</em>'.
+	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearContext#getLayoutTask()
+	 * @see #getNuklearContext()
+	 * @generated
+	 */
+	EReference getNuklearContext_LayoutTask();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -338,14 +522,14 @@ public interface NuklearPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl <em>Pipeline</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineBuilderImpl <em>Pipeline Builder</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineImpl
-		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearPipeline()
+		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineBuilderImpl
+		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearPipelineBuilder()
 		 * @generated
 		 */
-		EClass NUKLEAR_PIPELINE = eINSTANCE.getNuklearPipeline();
+		EClass NUKLEAR_PIPELINE_BUILDER = eINSTANCE.getNuklearPipelineBuilder();
 
 		/**
 		 * The meta object literal for the '<em><b>Font</b></em>' containment reference feature.
@@ -353,33 +537,117 @@ public interface NuklearPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUKLEAR_PIPELINE__FONT = eINSTANCE.getNuklearPipeline_Font();
+		EReference NUKLEAR_PIPELINE_BUILDER__FONT = eINSTANCE.getNuklearPipelineBuilder_Font();
 
 		/**
-		 * The meta object literal for the '<em><b>Push Constant</b></em>' containment reference feature.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPushConstantsImpl <em>Push Constants</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPushConstantsImpl
+		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearPushConstants()
+		 * @generated
+		 */
+		EClass NUKLEAR_PUSH_CONSTANTS = eINSTANCE.getNuklearPushConstants();
+
+		/**
+		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUKLEAR_PIPELINE__PUSH_CONSTANT = eINSTANCE.getNuklearPipeline_PushConstant();
+		EAttribute NUKLEAR_PUSH_CONSTANTS__WIDTH = eINSTANCE.getNuklearPushConstants_Width();
 
 		/**
-		 * The meta object literal for the '<em><b>Subpass</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NUKLEAR_PIPELINE__SUBPASS = eINSTANCE.getNuklearPipeline_Subpass();
+		EAttribute NUKLEAR_PUSH_CONSTANTS__HEIGHT = eINSTANCE.getNuklearPushConstants_Height();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearConstantsImpl <em>Constants</em>}' class.
+		 * The meta object literal for the '<em><b>Current Descriptor</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearConstantsImpl
-		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearConstants()
 		 * @generated
 		 */
-		EClass NUKLEAR_CONSTANTS = eINSTANCE.getNuklearConstants();
+		EAttribute NUKLEAR_PUSH_CONSTANTS__CURRENT_DESCRIPTOR = eINSTANCE.getNuklearPushConstants_CurrentDescriptor();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearLayoutTaskImpl <em>Layout Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearLayoutTaskImpl
+		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearLayoutTask()
+		 * @generated
+		 */
+		EClass NUKLEAR_LAYOUT_TASK = eINSTANCE.getNuklearLayoutTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_LAYOUT_TASK__CONTEXT = eINSTANCE.getNuklearLayoutTask_Context();
+
+		/**
+		 * The meta object literal for the '<em><b>Draw Task</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_LAYOUT_TASK__DRAW_TASK = eINSTANCE.getNuklearLayoutTask_DrawTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Push Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_LAYOUT_TASK__PUSH_BUFFER = eINSTANCE.getNuklearLayoutTask_PushBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Vertex Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_LAYOUT_TASK__VERTEX_BUFFER = eINSTANCE.getNuklearLayoutTask_VertexBuffer();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearContextImpl <em>Context</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearContextImpl
+		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearContext()
+		 * @generated
+		 */
+		EClass NUKLEAR_CONTEXT = eINSTANCE.getNuklearContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Font</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_CONTEXT__FONT = eINSTANCE.getNuklearContext_Font();
+
+		/**
+		 * The meta object literal for the '<em><b>Null Texture</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_CONTEXT__NULL_TEXTURE = eINSTANCE.getNuklearContext_NullTexture();
+
+		/**
+		 * The meta object literal for the '<em><b>Layout Task</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUKLEAR_CONTEXT__LAYOUT_TASK = eINSTANCE.getNuklearContext_LayoutTask();
 
 	}
 

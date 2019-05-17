@@ -115,13 +115,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PROCESS__DESCRIPTOR_SET_PKG = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Part Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PROCESS__PIPELINE_PKG = ProcessPackage.ABSTRACT_PROCESS__PIPELINE_PKG;
+	int COMPUTE_PROCESS__PART_PKG = ProcessPackage.ABSTRACT_PROCESS__PART_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
@@ -179,49 +179,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__CONTENT_OBJECTS = ProcessPackage.ABSTRACT_PIPELINE__CONTENT_OBJECTS;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__NAME = ProcessPackage.ABSTRACT_PIPELINE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__ENABLED = ProcessPackage.ABSTRACT_PIPELINE__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__STAGE = ProcessPackage.ABSTRACT_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__PUSH_BUFFER = ProcessPackage.ABSTRACT_PIPELINE__PUSH_BUFFER;
+	int COMPUTE_PIPELINE__NAME = ProcessPackage.IPIPELINE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
@@ -230,16 +194,34 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__RESOURCE_PKG = ProcessPackage.ABSTRACT_PIPELINE__RESOURCE_PKG;
+	int COMPUTE_PIPELINE__RESOURCE_PKG = ProcessPackage.IPIPELINE__RESOURCE_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__UNITS = ProcessPackage.ABSTRACT_PIPELINE__UNITS;
+	int COMPUTE_PIPELINE__ENABLED = ProcessPackage.IPIPELINE__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__STAGE = ProcessPackage.IPIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.IPIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
@@ -248,7 +230,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF;
+	int COMPUTE_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.IPIPELINE__DESCRIPTOR_SET_REF;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
@@ -257,16 +239,16 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__DESCRIPTOR_SET = ProcessPackage.ABSTRACT_PIPELINE__DESCRIPTOR_SET;
+	int COMPUTE_PIPELINE__DESCRIPTOR_SET = ProcessPackage.IPIPELINE__DESCRIPTOR_SET;
 
 	/**
-	 * The feature id for the '<em><b>Constants</b></em>' reference.
+	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__CONSTANTS = ProcessPackage.ABSTRACT_PIPELINE__CONSTANTS;
+	int COMPUTE_PIPELINE__TASK_PKG = ProcessPackage.IPIPELINE__TASK_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Workgroup Size X</b></em>' attribute.
@@ -275,7 +257,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__WORKGROUP_SIZE_X = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
+	int COMPUTE_PIPELINE__WORKGROUP_SIZE_X = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Workgroup Size Y</b></em>' attribute.
@@ -284,7 +266,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__WORKGROUP_SIZE_Y = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 1;
+	int COMPUTE_PIPELINE__WORKGROUP_SIZE_Y = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Workgroup Size Z</b></em>' attribute.
@@ -293,7 +275,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__WORKGROUP_SIZE_Z = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 2;
+	int COMPUTE_PIPELINE__WORKGROUP_SIZE_Z = ProcessPackage.IPIPELINE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -302,7 +284,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__WIDTH = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 3;
+	int COMPUTE_PIPELINE__WIDTH = ProcessPackage.IPIPELINE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -311,7 +293,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__HEIGHT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 4;
+	int COMPUTE_PIPELINE__HEIGHT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Depth</b></em>' attribute.
@@ -320,7 +302,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE__DEPTH = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 5;
+	int COMPUTE_PIPELINE__DEPTH = ProcessPackage.IPIPELINE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Pipeline</em>' class.
@@ -329,52 +311,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.ABSTRACT_PIPELINE_FEATURE_COUNT + 6;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE___LINFERENCE_OBJECT = ProcessPackage.ABSTRACT_PIPELINE___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = ProcessPackage.ABSTRACT_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE___LCONTENTS = ProcessPackage.ABSTRACT_PIPELINE___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE___LPARENT = ProcessPackage.ABSTRACT_PIPELINE___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE___LALL_CONTENTS = ProcessPackage.ABSTRACT_PIPELINE___LALL_CONTENTS;
+	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Pipeline</em>' class.
@@ -383,7 +320,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE_OPERATION_COUNT = ProcessPackage.ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
+	int COMPUTE_PIPELINE_OPERATION_COUNT = ProcessPackage.IPIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
@@ -402,7 +339,16 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER__NAME = ProcessPackage.IPIPELINE_UNIT__NAME;
+	int COMPUTER__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTER__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Shader</b></em>' reference.
@@ -411,7 +357,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER__SHADER = ProcessPackage.IPIPELINE_UNIT_FEATURE_COUNT + 0;
+	int COMPUTER__SHADER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Computer</em>' class.
@@ -420,7 +366,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER_FEATURE_COUNT = ProcessPackage.IPIPELINE_UNIT_FEATURE_COUNT + 1;
+	int COMPUTER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Computer</em>' class.
@@ -429,7 +375,7 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER_OPERATION_COUNT = ProcessPackage.IPIPELINE_UNIT_OPERATION_COUNT + 0;
+	int COMPUTER_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.ComputeProcess <em>Process</em>}'.

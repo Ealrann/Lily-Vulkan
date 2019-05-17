@@ -3,7 +3,6 @@ package org.sheepy.vulkan.resource.buffer;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
@@ -26,7 +25,7 @@ public class BufferAllocator
 	}
 
 	public static GPUBufferBackend allocateGPUBuffer(	MemoryStack stack,
-														IAllocationContext context,
+	                                                 	IExecutionContext context,
 														long size,
 														int usage,
 														boolean keepStagingBuffer,
@@ -39,7 +38,7 @@ public class BufferAllocator
 	}
 
 	public static CPUBufferBackend allocateCPUBuffer(	MemoryStack stack,
-														IAllocationContext context,
+	                                                 	IExecutionContext context,
 														long size,
 														int usage,
 														boolean keptMapped)

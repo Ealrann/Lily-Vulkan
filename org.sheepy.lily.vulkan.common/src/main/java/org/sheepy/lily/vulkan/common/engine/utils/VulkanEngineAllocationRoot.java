@@ -2,30 +2,32 @@ package org.sheepy.lily.vulkan.common.engine.utils;
 
 import java.util.List;
 
-import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationContextProvider;
-import org.sheepy.vulkan.allocation.IAllocationNode;
-import org.sheepy.vulkan.execution.ExecutionContext;
+import org.sheepy.vulkan.device.IVulkanContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 
-public class VulkanEngineAllocationRoot implements IAllocationNode, IAllocationContextProvider
+public class VulkanEngineAllocationRoot
+		implements IAllocationContextProvider<IVulkanContext, IExecutionContext>
 {
-	private final ExecutionContext context;
-	private final List<Object> allocationObjects;
+	private final IExecutionContext context;
+	private final List<? extends IAllocable<? super IExecutionContext>> allocationObjects;
 
-	public VulkanEngineAllocationRoot(ExecutionContext context, List<Object> allocationObjects)
+	public VulkanEngineAllocationRoot(	IExecutionContext context,
+										List<? extends IAllocable<? super IExecutionContext>> allocationObjects)
 	{
 		this.context = context;
 		this.allocationObjects = List.copyOf(allocationObjects);
 	}
 
 	@Override
-	public IAllocationContext getAllocationContext()
+	public IExecutionContext getAllocationContext()
 	{
 		return context;
 	}
 
 	@Override
-	public List<Object> getAllocationChildren()
+	public List<? extends IAllocable<? super IExecutionContext>> getAllocationChildren()
 	{
 		return allocationObjects;
 	}

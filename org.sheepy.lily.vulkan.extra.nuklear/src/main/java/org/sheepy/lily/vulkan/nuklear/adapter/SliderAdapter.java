@@ -53,7 +53,7 @@ public class SliderAdapter implements IUIElementAdapter
 
 	private void updateValue()
 	{
-		Integer val = (Integer) resolverAdapter.getValue(variableResolver);
+		final Integer val = (Integer) resolverAdapter.getValue(variableResolver);
 		buffer.put(val);
 		buffer.flip();
 	}
@@ -61,20 +61,21 @@ public class SliderAdapter implements IUIElementAdapter
 	@Override
 	public boolean layout(UIContext context, IUIElement control)
 	{
+		final var slider = (Slider) control;
+
 		boolean res = dirty;
-		Slider slider = (Slider) control;
+		dirty = false;
 
 		nk_slider_int(context.nkContext, slider.getMinValue(), buffer, slider.getMaxValue(),
 				slider.getStep());
 
-		Integer val = (Integer) resolverAdapter.getValue(variableResolver);
+		final Integer val = (Integer) resolverAdapter.getValue(variableResolver);
 		if (val != buffer.get(0))
 		{
 			resolverAdapter.setValue(variableResolver, buffer.get(0));
 			res = true;
 		}
 
-		dirty = false;
 		return res;
 	}
 }

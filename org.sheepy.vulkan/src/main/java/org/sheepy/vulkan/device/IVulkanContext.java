@@ -7,7 +7,6 @@ import org.sheepy.vulkan.window.Window;
 
 public interface IVulkanContext extends IAllocationContext
 {
-
 	void setLogicalDevice(LogicalDevice logicalDevice);
 
 	void setWindow(Window window);
@@ -21,5 +20,4 @@ public interface IVulkanContext extends IAllocationContext
 	LogicalDevice getLogicalDevice();
 
 	VkDevice getVkDevice();
-
 }

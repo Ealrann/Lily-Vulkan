@@ -1,5 +1,11 @@
 package org.sheepy.vulkan.allocation;
 
-public interface IAllocationObject
+import java.util.List;
+
+public interface IAllocationObject<T extends IAllocationContext>
 {
+	interface IAllocationContainer<T extends IAllocationContext>
+	{
+		List<? extends IAllocationObject<? super T>> getAllocationChildren();
+	}
 }

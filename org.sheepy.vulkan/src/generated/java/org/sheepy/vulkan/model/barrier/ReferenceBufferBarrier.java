@@ -11,7 +11,7 @@ package org.sheepy.vulkan.model.barrier;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier#getBufferAddress <em>Buffer Address</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier#getBufferPtr <em>Buffer Ptr</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getReferenceBufferBarrier()
@@ -21,25 +21,25 @@ package org.sheepy.vulkan.model.barrier;
 public interface ReferenceBufferBarrier extends AbstractBufferBarrier
 {
 	/**
-	 * Returns the value of the '<em><b>Buffer Address</b></em>' attribute.
+	 * Returns the value of the '<em><b>Buffer Ptr</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Buffer Address</em>' attribute.
-	 * @see #setBufferAddress(long)
-	 * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getReferenceBufferBarrier_BufferAddress()
+	 * @return the value of the '<em>Buffer Ptr</em>' attribute.
+	 * @see #setBufferPtr(long)
+	 * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getReferenceBufferBarrier_BufferPtr()
 	 * @model unique="false"
 	 * @generated
 	 */
-	long getBufferAddress();
+	long getBufferPtr();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier#getBufferAddress <em>Buffer Address</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier#getBufferPtr <em>Buffer Ptr</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Buffer Address</em>' attribute.
-	 * @see #getBufferAddress()
+	 * @param value the new value of the '<em>Buffer Ptr</em>' attribute.
+	 * @see #getBufferPtr()
 	 * @generated
 	 */
-	void setBufferAddress(long value);
+	void setBufferPtr(long value);
 
 } // ReferenceBufferBarrier

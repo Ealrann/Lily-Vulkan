@@ -93,28 +93,78 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PipelinePkg} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PipelinePkgItemProvider pipelinePkgItemProvider;
+	protected ProcessPartPkgItemProvider processPartPkgItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PipelinePkg}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPipelinePkgAdapter()
+	public Adapter createProcessPartPkgAdapter()
 	{
-		if (pipelinePkgItemProvider == null)
+		if (processPartPkgItemProvider == null)
 		{
-			pipelinePkgItemProvider = new PipelinePkgItemProvider(this);
+			processPartPkgItemProvider = new ProcessPartPkgItemProvider(this);
 		}
 
-		return pipelinePkgItemProvider;
+		return processPartPkgItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.TaskPkg} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TaskPkgItemProvider taskPkgItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.TaskPkg}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTaskPkgAdapter()
+	{
+		if (taskPkgItemProvider == null)
+		{
+			taskPkgItemProvider = new TaskPkgItemProvider(this);
+		}
+
+		return taskPkgItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.Pipeline} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PipelineItemProvider pipelineItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.Pipeline}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPipelineAdapter()
+	{
+		if (pipelineItemProvider == null)
+		{
+			pipelineItemProvider = new PipelineItemProvider(this);
+		}
+
+		return pipelineItemProvider;
 	}
 
 	/**
@@ -143,6 +193,56 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.CompositeTask} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositeTaskItemProvider compositeTaskItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.CompositeTask}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositeTaskAdapter()
+	{
+		if (compositeTaskItemProvider == null)
+		{
+			compositeTaskItemProvider = new CompositeTaskItemProvider(this);
+		}
+
+		return compositeTaskItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BindDescriptorSetsItemProvider bindDescriptorSetsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBindDescriptorSetsAdapter()
+	{
+		if (bindDescriptorSetsItemProvider == null)
+		{
+			bindDescriptorSetsItemProvider = new BindDescriptorSetsItemProvider(this);
+		}
+
+		return bindDescriptorSetsItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PushConstant} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -165,6 +265,31 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		}
 
 		return pushConstantItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PushBufferTask} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PushBufferTaskItemProvider pushBufferTaskItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PushBufferTask}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPushBufferTaskAdapter()
+	{
+		if (pushBufferTaskItemProvider == null)
+		{
+			pushBufferTaskItemProvider = new PushBufferTaskItemProvider(this);
+		}
+
+		return pushBufferTaskItemProvider;
 	}
 
 	/**
@@ -316,9 +441,14 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	@Override
 	public void dispose()
 	{
-		if (pipelinePkgItemProvider != null) pipelinePkgItemProvider.dispose();
+		if (processPartPkgItemProvider != null) processPartPkgItemProvider.dispose();
+		if (taskPkgItemProvider != null) taskPkgItemProvider.dispose();
+		if (pipelineItemProvider != null) pipelineItemProvider.dispose();
 		if (pipelineBarrierItemProvider != null) pipelineBarrierItemProvider.dispose();
+		if (compositeTaskItemProvider != null) compositeTaskItemProvider.dispose();
+		if (bindDescriptorSetsItemProvider != null) bindDescriptorSetsItemProvider.dispose();
 		if (pushConstantItemProvider != null) pushConstantItemProvider.dispose();
+		if (pushBufferTaskItemProvider != null) pushBufferTaskItemProvider.dispose();
 	}
 
 }

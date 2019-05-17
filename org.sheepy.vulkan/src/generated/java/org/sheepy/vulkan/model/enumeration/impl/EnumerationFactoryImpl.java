@@ -113,6 +113,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 			return createESamplerAddressModeFromString(eDataType, initialValue);
 		case EnumerationPackage.EBLEND_FACTOR:
 			return createEBlendFactorFromString(eDataType, initialValue);
+		case EnumerationPackage.EINDEX_TYPE:
+			return createEIndexTypeFromString(eDataType, initialValue);
 		case EnumerationPackage.EDYNAMIC_STATE:
 			return createEDynamicStateFromString(eDataType, initialValue);
 		case EnumerationPackage.EBLEND_OP:
@@ -185,6 +187,8 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 			return convertESamplerAddressModeToString(eDataType, instanceValue);
 		case EnumerationPackage.EBLEND_FACTOR:
 			return convertEBlendFactorToString(eDataType, instanceValue);
+		case EnumerationPackage.EINDEX_TYPE:
+			return convertEIndexTypeToString(eDataType, instanceValue);
 		case EnumerationPackage.EDYNAMIC_STATE:
 			return convertEDynamicStateToString(eDataType, instanceValue);
 		case EnumerationPackage.EBLEND_OP:
@@ -633,6 +637,32 @@ public class EnumerationFactoryImpl extends EFactoryImpl implements EnumerationF
 	 * @generated
 	 */
 	public String convertEBlendFactorToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EIndexType createEIndexTypeFromString(EDataType eDataType, String initialValue)
+	{
+		EIndexType result = EIndexType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '"
+				+ initialValue
+				+ "' is not a valid enumerator of '"
+				+ eDataType.getName()
+				+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEIndexTypeToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}

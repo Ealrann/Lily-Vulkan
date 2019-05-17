@@ -15,7 +15,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getSampledImage()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface SampledImage extends DescriptorResource

@@ -4,10 +4,11 @@ import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
 
+import org.sheepy.lily.vulkan.api.process.IProcessContext.IRecorderContext;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.execution.ICommandBuffer;
 
-public class SubmissionsBuilder
+public class SubmissionsBuilder<T extends IRecorderContext<T>>
 {
 	public final Collection<VkSemaphore> signalEmitters;
 	private final Deque<WaitData> waitSemaphores = new ArrayDeque<>();
@@ -23,7 +24,7 @@ public class SubmissionsBuilder
 		waitSemaphores.addAll(waitForSemaphores);
 	}
 
-	public Submission buildSubmission(ICommandBuffer commandBuffer, int index)
+	public Submission<T> buildSubmission(ICommandBuffer<? super T> commandBuffer, int index)
 	{
 		fillSemaphoreDeque(signalEmitters, signalSemaphores);
 
@@ -40,11 +41,11 @@ public class SubmissionsBuilder
 		}
 	}
 
-	protected Submission buildSubmissionInfo(	int infoNumber,
-												ICommandBuffer commandBuffer,
+	protected Submission<T> buildSubmissionInfo(int infoNumber,
+												ICommandBuffer<? super T> commandBuffer,
 												Collection<WaitData> waitSemaphores,
 												Collection<Long> signalSemaphores)
 	{
-		return new Submission(commandBuffer, waitSemaphores, signalSemaphores, useFence);
+		return new Submission<T>(commandBuffer, waitSemaphores, signalSemaphores, useFence);
 	}
 }

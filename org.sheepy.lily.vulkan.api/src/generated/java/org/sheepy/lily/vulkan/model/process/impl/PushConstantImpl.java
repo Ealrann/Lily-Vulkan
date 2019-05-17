@@ -2,15 +2,18 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
+import java.nio.ByteBuffer;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +24,9 @@ import org.sheepy.lily.vulkan.model.process.PushConstant;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl#getStages <em>Stages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -36,7 +42,6 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,6 +51,51 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+	/**
+	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ENABLED_EDEFAULT = true;
+	/**
+	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean enabled = ENABLED_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getStages() <em>Stages</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EShaderStage> stages;
+	/**
+	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getData()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ByteBuffer DATA_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getData() <em>Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getData()
+	 * @generated
+	 * @ordered
+	 */
+	protected ByteBuffer data = DATA_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -99,12 +149,84 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	 * @generated
 	 */
 	@Override
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEnabled(boolean newEnabled)
+	{
+		boolean oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.PUSH_CONSTANT__ENABLED, oldEnabled, enabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<EShaderStage> getStages()
+	{
+		if (stages == null)
+		{
+			stages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
+					ProcessPackage.PUSH_CONSTANT__STAGES);
+		}
+		return stages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ByteBuffer getData()
+	{
+		return data;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setData(ByteBuffer newData)
+	{
+		ByteBuffer oldData = data;
+		data = newData;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.PUSH_CONSTANT__DATA, oldData, data));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
 		case ProcessPackage.PUSH_CONSTANT__NAME:
 			return getName();
+		case ProcessPackage.PUSH_CONSTANT__ENABLED:
+			return isEnabled();
+		case ProcessPackage.PUSH_CONSTANT__STAGES:
+			return getStages();
+		case ProcessPackage.PUSH_CONSTANT__DATA:
+			return getData();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,6 +236,7 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -121,6 +244,16 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 		{
 		case ProcessPackage.PUSH_CONSTANT__NAME:
 			setName((String) newValue);
+			return;
+		case ProcessPackage.PUSH_CONSTANT__ENABLED:
+			setEnabled((Boolean) newValue);
+			return;
+		case ProcessPackage.PUSH_CONSTANT__STAGES:
+			getStages().clear();
+			getStages().addAll((Collection<? extends EShaderStage>) newValue);
+			return;
+		case ProcessPackage.PUSH_CONSTANT__DATA:
+			setData((ByteBuffer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -139,6 +272,15 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 		case ProcessPackage.PUSH_CONSTANT__NAME:
 			setName(NAME_EDEFAULT);
 			return;
+		case ProcessPackage.PUSH_CONSTANT__ENABLED:
+			setEnabled(ENABLED_EDEFAULT);
+			return;
+		case ProcessPackage.PUSH_CONSTANT__STAGES:
+			getStages().clear();
+			return;
+		case ProcessPackage.PUSH_CONSTANT__DATA:
+			setData(DATA_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -155,6 +297,12 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 		{
 		case ProcessPackage.PUSH_CONSTANT__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ProcessPackage.PUSH_CONSTANT__ENABLED:
+			return enabled != ENABLED_EDEFAULT;
+		case ProcessPackage.PUSH_CONSTANT__STAGES:
+			return stages != null && !stages.isEmpty();
+		case ProcessPackage.PUSH_CONSTANT__DATA:
+			return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -172,6 +320,12 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", enabled: ");
+		result.append(enabled);
+		result.append(", stages: ");
+		result.append(stages);
+		result.append(", data: ");
+		result.append(data);
 		result.append(')');
 		return result.toString();
 	}

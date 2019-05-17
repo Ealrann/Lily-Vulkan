@@ -40,7 +40,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *
  * @generated
  */
-public abstract class SampledImageImpl extends MinimalEObjectImpl.Container implements SampledImage
+public class SampledImageImpl extends MinimalEObjectImpl.Container implements SampledImage
 {
 	/**
 	 * The default value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.

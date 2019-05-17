@@ -2,9 +2,9 @@ package org.sheepy.vulkan.allocation;
 
 import org.lwjgl.system.MemoryStack;
 
-public interface IAllocable extends IAllocationObject
+public interface IAllocable<T extends IAllocationContext> extends IAllocationObject<T>
 {
-	void allocate(MemoryStack stack, IAllocationContext context);
-	void free(IAllocationContext context);
-	boolean isAllocationDirty(IAllocationContext context);
+	void allocate(MemoryStack stack, T context);
+	void free(T context);
+	boolean isAllocationDirty(T context);
 }

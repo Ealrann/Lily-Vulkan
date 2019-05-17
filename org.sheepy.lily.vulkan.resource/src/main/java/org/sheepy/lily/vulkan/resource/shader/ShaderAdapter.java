@@ -12,7 +12,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 
 @Statefull
@@ -44,9 +43,9 @@ public class ShaderAdapter implements IShaderAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		final var vkDevice = ((IExecutionContext) context).getVkDevice();
+		final var vkDevice = context.getVkDevice();
 		final var resource = shader.getFile();
 
 		shaderBackend = new ShaderBackend(vkDevice, resource);
@@ -68,7 +67,7 @@ public class ShaderAdapter implements IShaderAdapter
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		shaderBackend.free();
 		shaderBackend = null;

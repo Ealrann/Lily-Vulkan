@@ -6,67 +6,84 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.cadence.IStatistics;
 import org.sheepy.lily.core.api.util.DebugUtil;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationDescriptorAdapter;
-import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
+import org.sheepy.lily.vulkan.api.allocation.IAllocationAdapter;
 import org.sheepy.lily.vulkan.api.process.IProcessAdapter;
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.lily.vulkan.api.process.IProcessPartAdapter;
+import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.common.allocation.TreeAllocator;
+import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
-import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationContextProvider;
+import org.sheepy.vulkan.allocation.IAllocationObject;
 import org.sheepy.vulkan.descriptor.DescriptorPool;
 import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
+import org.sheepy.vulkan.device.IVulkanContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.queue.EQueueType;
 
 @Statefull
-public abstract class AbstractProcessAdapter
-		implements IProcessAdapter, IAllocationContextProvider, IAllocationDescriptorAdapter
+public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
+		implements IProcessAdapter, IAllocationContextProvider<IVulkanContext, T>,
+		IAllocationAdapter<IVulkanContext>
 {
 	protected final AbstractProcess process;
 	protected final DescriptorPool descriptorPool;
-	private final TreeAllocator allocator;
-	protected final ProcessContext context;
+	private final TreeAllocator<IVulkanContext> allocator;
+	protected final T context;
 
 	private long startPrepareNs = 0;
 
-	protected final List<Object> allocationList;
-	protected final List<IPipelineAdapter> pipelineAdapters = new ArrayList<>();
+	protected final List<IAllocationObject<? super T>> allocationList;
+	protected final List<IProcessPartAdapter> partAdapters = new ArrayList<>();
 
 	public AbstractProcessAdapter(AbstractProcess process)
 	{
 		this.process = process;
-		gatherPipelineAdapters(process);
+		gatherProcessPartAdapters(process);
 		descriptorPool = new DescriptorPool(gatherDescriptorLists());
 		context = createContext();
-		allocator = new TreeAllocator(process);
+		allocator = new TreeAllocator<IVulkanContext>(this);
 
-		allocationList = new ArrayList<>();
-		allocationList.addAll(gatherAllocationServices());
-		allocationList.addAll(gatherPipelines());
+		allocationList = gatherAllocationList();
 	}
 
-	private void gatherPipelineAdapters(AbstractProcess process)
+	private void gatherProcessPartAdapters(AbstractProcess process)
 	{
-		final PipelinePkg pipelinePkg = process.getPipelinePkg();
-		if (pipelinePkg != null)
+		final ProcessPartPkg partPkg = process.getPartPkg();
+		if (partPkg != null)
 		{
-			final var pipelines = pipelinePkg.getPipelines();
-			for (int i = 0; i < pipelines.size(); i++)
+			final var parts = partPkg.getParts();
+			for (int i = 0; i < parts.size(); i++)
 			{
-				final IPipeline pipeline = pipelines.get(i);
-				final IPipelineAdapter adapter = IPipelineAdapter.adapt(pipeline);
-				pipelineAdapters.add(adapter);
+				final var part = parts.get(i);
+				final var adapter = IProcessPartAdapter.adapt(part);
+				partAdapters.add(adapter);
 			}
 		}
 	}
 
 	@Override
-	public ProcessContext getAllocationContext()
+	public void start(MemoryStack stack, IVulkanContext context)
+	{
+		allocator.allocate(stack, context);
+	}
+
+	@Override
+	public void stop(IVulkanContext context)
+	{
+		allocator.free(context);
+	}
+
+	@Override
+	public T getAllocationContext()
 	{
 		return context;
 	}
@@ -131,12 +148,12 @@ public abstract class AbstractProcessAdapter
 
 		if (recorder.isDirty())
 		{
-			recorder.record(pipelineAdapters, getStages());
+			recorder.record(partAdapters, getStages());
 		}
 
-		for (int i = 0; i < pipelineAdapters.size(); i++)
+		for (int i = 0; i < partAdapters.size(); i++)
 		{
-			final var pipelineAdapter = pipelineAdapters.get(i);
+			final var pipelineAdapter = partAdapters.get(i);
 			if (pipelineAdapter.isActive())
 			{
 				pipelineAdapter.prepareExecution(context);
@@ -146,43 +163,52 @@ public abstract class AbstractProcessAdapter
 		recorder.play();
 	}
 
-	protected List<Object> gatherAllocationServices()
+	protected List<IAllocationObject<? super T>> gatherAllocationList()
 	{
-		final List<Object> res = new ArrayList<>();
+		final List<IAllocationObject<? super T>> res = new ArrayList<>();
 
 		res.addAll(gatherResources());
 		res.addAll(context.getAllocationChildren());
 		res.add(descriptorPool);
 
+		collectAllocationPipelines(res);
+
 		return res;
 	}
 
-	protected List<IPipeline> gatherPipelines()
+	@SuppressWarnings("unchecked")
+	protected void collectAllocationPipelines(List<? super IAllocationObject<? super T>> collectIn)
 	{
-		final List<IPipeline> res = new ArrayList<>();
-
-		final PipelinePkg pipelinePkg = process.getPipelinePkg();
-		if (pipelinePkg != null)
+		final var partPkg = process.getPartPkg();
+		if (partPkg != null)
 		{
-			res.addAll(pipelinePkg.getPipelines());
+			for (final var part : partPkg.getParts())
+			{
+				final var adapter = IAllocableAdapter.adapt(part);
+				if (adapter != null)
+				{
+					collectIn.add((IAllocable<? super T>) adapter);
+				}
+			}
 		}
-
-		return res;
 	}
 
-	protected List<Object> gatherResources()
+	protected List<IAllocable<? super IExecutionContext>> gatherResources()
 	{
-		final List<Object> resources = new ArrayList<>();
+		final List<IAllocable<? super IExecutionContext>> resources = new ArrayList<>();
 
 		final var resourcePkg = process.getResourcePkg();
 		if (resourcePkg != null)
 		{
-			resources.addAll(resourcePkg.getResources());
+			for (final IResource resource : resourcePkg.getResources())
+			{
+				resources.add(IResourceAdapter.adapt(resource));
+			}
 		}
 
-		for (int i = 0; i < pipelineAdapters.size(); i++)
+		for (int i = 0; i < partAdapters.size(); i++)
 		{
-			final var pipelineAdapter = pipelineAdapters.get(i);
+			final var pipelineAdapter = partAdapters.get(i);
 			pipelineAdapter.collectResources(resources);
 		}
 
@@ -193,9 +219,9 @@ public abstract class AbstractProcessAdapter
 	{
 		final List<IVkDescriptorSet> res = new ArrayList<>();
 
-		for (int i = 0; i < pipelineAdapters.size(); i++)
+		for (int i = 0; i < partAdapters.size(); i++)
 		{
-			final var pipelineAdapter = pipelineAdapters.get(i);
+			final var pipelineAdapter = partAdapters.get(i);
 			pipelineAdapter.collectDescriptorSets(res);
 		}
 
@@ -266,9 +292,9 @@ public abstract class AbstractProcessAdapter
 
 	private void updatePipelines()
 	{
-		for (int i = 0; i < pipelineAdapters.size(); i++)
+		for (int i = 0; i < partAdapters.size(); i++)
 		{
-			final var pipelineAdapter = pipelineAdapters.get(i);
+			final var pipelineAdapter = partAdapters.get(i);
 			if (pipelineAdapter.isActive())
 			{
 				pipelineAdapter.update();
@@ -279,9 +305,9 @@ public abstract class AbstractProcessAdapter
 	private boolean isRecordNeeded(int index)
 	{
 		boolean res = false;
-		for (int i = 0; i < pipelineAdapters.size(); i++)
+		for (int i = 0; i < partAdapters.size(); i++)
 		{
-			final var pipelineAdapter = pipelineAdapters.get(i);
+			final var pipelineAdapter = partAdapters.get(i);
 			if (pipelineAdapter.isActive())
 			{
 				res |= pipelineAdapter.isRecordNeeded(index);
@@ -291,7 +317,7 @@ public abstract class AbstractProcessAdapter
 	}
 
 	@Override
-	public List<? extends Object> getAllocationChildren()
+	public List<? extends IAllocationObject<? super T>> getAllocationChildren()
 	{
 		return allocationList;
 	}
@@ -307,10 +333,5 @@ public abstract class AbstractProcessAdapter
 
 	protected abstract List<ECommandStage> getStages();
 
-	protected abstract ProcessContext createContext();
-
-	public static AbstractProcessAdapter adapt(AbstractProcess object)
-	{
-		return IAdapterFactoryService.INSTANCE.adapt(object, AbstractProcessAdapter.class);
-	}
+	protected abstract T createContext();
 }

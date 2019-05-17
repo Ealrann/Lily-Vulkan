@@ -2,7 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.compute;
 
-import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 /**
@@ -21,7 +21,7 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  * @model
  * @generated
  */
-public interface Computer extends IPipelineUnit
+public interface Computer extends IPipelineTask
 {
 	/**
 	 * Returns the value of the '<em><b>Shader</b></em>' reference.

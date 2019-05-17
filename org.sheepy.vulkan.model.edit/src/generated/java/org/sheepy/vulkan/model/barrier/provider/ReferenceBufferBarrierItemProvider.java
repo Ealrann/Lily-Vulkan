@@ -16,8 +16,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier;
 
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-
 /**
  * This is the item provider adapter for a {@link org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier} object.
  * <!-- begin-user-doc -->
@@ -50,27 +48,27 @@ public class ReferenceBufferBarrierItemProvider extends AbstractBufferBarrierIte
 		{
 			super.getPropertyDescriptors(object);
 
-			addBufferAddressPropertyDescriptor(object);
+			addBufferPtrPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Buffer Address feature.
+	 * This adds a property descriptor for the Buffer Ptr feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBufferAddressPropertyDescriptor(Object object)
+	protected void addBufferPtrPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ReferenceBufferBarrier_bufferAddress_feature"),
+				getResourceLocator(), getString("_UI_ReferenceBufferBarrier_bufferPtr_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_ReferenceBufferBarrier_bufferAddress_feature",
+						"_UI_ReferenceBufferBarrier_bufferPtr_feature",
 						"_UI_ReferenceBufferBarrier_type"),
-				BarrierPackage.Literals.REFERENCE_BUFFER_BARRIER__BUFFER_ADDRESS, true, false,
-				false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+				BarrierPackage.Literals.REFERENCE_BUFFER_BARRIER__BUFFER_PTR, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -95,11 +93,10 @@ public class ReferenceBufferBarrierItemProvider extends AbstractBufferBarrierIte
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((ReferenceBufferBarrier) object).getSrcStage();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0
-				? getString("_UI_ReferenceBufferBarrier_type")
-				: getString("_UI_ReferenceBufferBarrier_type") + " " + label;
+		ReferenceBufferBarrier referenceBufferBarrier = (ReferenceBufferBarrier) object;
+		return getString("_UI_ReferenceBufferBarrier_type")
+				+ " "
+				+ referenceBufferBarrier.getBufferPtr();
 	}
 
 	/**
@@ -116,7 +113,7 @@ public class ReferenceBufferBarrierItemProvider extends AbstractBufferBarrierIte
 
 		switch (notification.getFeatureID(ReferenceBufferBarrier.class))
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_ADDRESS:
+		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

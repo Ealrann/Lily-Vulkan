@@ -9,8 +9,6 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkDevice;
-import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.memory.VkMemoryAllocator;
@@ -51,15 +49,14 @@ public class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		final IVulkanContext vulkanContext = (IVulkanContext) context;
-		vkDevice = vulkanContext.getVkDevice();
+		vkDevice = context.getVkDevice();
 
-		info.computeAlignment(vulkanContext.getPhysicalDevice());
+		info.computeAlignment(context.getPhysicalDevice());
 		address = VkBufferAllocator.allocate(stack, vkDevice, info);
 
-		final var memoryInfo = allocateMemory(stack, vulkanContext.getLogicalDevice());
+		final var memoryInfo = allocateMemory(stack, context.getLogicalDevice());
 		memoryAddress = memoryInfo.id;
 
 		vkBindBufferMemory(vkDevice, address, memoryAddress, 0);
@@ -78,10 +75,9 @@ public class CPUBufferBackend implements IBufferBackend
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
-		final IVulkanContext vulkanContext = (IVulkanContext) context;
-		final var vkDevice = vulkanContext.getVkDevice();
+		final var vkDevice = context.getVkDevice();
 
 		if (memoryMap != -1)
 		{

@@ -23,22 +23,40 @@ public interface NuklearFactory extends EFactory
 	NuklearFactory eINSTANCE = org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Pipeline</em>'.
+	 * Returns a new object of class '<em>Pipeline Builder</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pipeline</em>'.
+	 * @return a new object of class '<em>Pipeline Builder</em>'.
 	 * @generated
 	 */
-	NuklearPipeline createNuklearPipeline();
+	NuklearPipelineBuilder createNuklearPipelineBuilder();
 
 	/**
-	 * Returns a new object of class '<em>Constants</em>'.
+	 * Returns a new object of class '<em>Push Constants</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constants</em>'.
+	 * @return a new object of class '<em>Push Constants</em>'.
 	 * @generated
 	 */
-	NuklearConstants createNuklearConstants();
+	NuklearPushConstants createNuklearPushConstants();
+
+	/**
+	 * Returns a new object of class '<em>Layout Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Layout Task</em>'.
+	 * @generated
+	 */
+	NuklearLayoutTask createNuklearLayoutTask();
+
+	/**
+	 * Returns a new object of class '<em>Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Context</em>'.
+	 * @generated
+	 */
+	NuklearContext createNuklearContext();
 
 	/**
 	 * Returns the package supported by this factory.

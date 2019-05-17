@@ -2,9 +2,10 @@
  */
 package org.sheepy.vulkan.model.barrier;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EAccess;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,8 +16,8 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.barrier.Barrier#getSrcStage <em>Src Stage</em>}</li>
- *   <li>{@link org.sheepy.vulkan.model.barrier.Barrier#getDstStage <em>Dst Stage</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.Barrier#getSrcAccessMask <em>Src Access Mask</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.Barrier#getDstAccessMask <em>Dst Access Mask</em>}</li>
  * </ul>
  *
  * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getBarrier()
@@ -26,53 +27,31 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 public interface Barrier extends EObject
 {
 	/**
-	 * Returns the value of the '<em><b>Src Stage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
+	 * Returns the value of the '<em><b>Src Access Mask</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Src Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #setSrcStage(EPipelineStage)
-	 * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getBarrier_SrcStage()
-	 * @model unique="false"
+	 * @return the value of the '<em>Src Access Mask</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getBarrier_SrcAccessMask()
+	 * @model
 	 * @generated
 	 */
-	EPipelineStage getSrcStage();
+	EList<EAccess> getSrcAccessMask();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.barrier.Barrier#getSrcStage <em>Src Stage</em>}' attribute.
+	 * Returns the value of the '<em><b>Dst Access Mask</b></em>' attribute list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
+	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Src Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #getSrcStage()
+	 * @return the value of the '<em>Dst Access Mask</em>' attribute list.
+	 * @see org.sheepy.vulkan.model.enumeration.EAccess
+	 * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getBarrier_DstAccessMask()
+	 * @model
 	 * @generated
 	 */
-	void setSrcStage(EPipelineStage value);
-
-	/**
-	 * Returns the value of the '<em><b>Dst Stage</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dst Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #setDstStage(EPipelineStage)
-	 * @see org.sheepy.vulkan.model.barrier.BarrierPackage#getBarrier_DstStage()
-	 * @model unique="false"
-	 * @generated
-	 */
-	EPipelineStage getDstStage();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.vulkan.model.barrier.Barrier#getDstStage <em>Dst Stage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dst Stage</em>' attribute.
-	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
-	 * @see #getDstStage()
-	 * @generated
-	 */
-	void setDstStage(EPipelineStage value);
+	EList<EAccess> getDstAccessMask();
 
 } // Barrier

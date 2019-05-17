@@ -6,17 +6,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-import org.sheepy.lily.core.model.inference.IInferenceObject;
-import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.compute.*;
 
 /**
@@ -98,12 +96,10 @@ public class ComputeSwitch<T> extends Switch<T>
 		{
 			ComputePipeline computePipeline = (ComputePipeline) theEObject;
 			T result = caseComputePipeline(computePipeline);
-			if (result == null) result = caseAbstractPipeline(computePipeline);
 			if (result == null) result = caseIPipeline(computePipeline);
-			if (result == null) result = caseIResourceContainer(computePipeline);
-			if (result == null) result = caseLObject(computePipeline);
 			if (result == null) result = caseLNamedElement(computePipeline);
-			if (result == null) result = caseIInferenceObject(computePipeline);
+			if (result == null) result = caseIResourceContainer(computePipeline);
+			if (result == null) result = caseIProcessPart(computePipeline);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -111,7 +107,7 @@ public class ComputeSwitch<T> extends Switch<T>
 		{
 			Computer computer = (Computer) theEObject;
 			T result = caseComputer(computer);
-			if (result == null) result = caseIPipelineUnit(computer);
+			if (result == null) result = caseIPipelineTask(computer);
 			if (result == null) result = caseLNamedElement(computer);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
@@ -250,33 +246,17 @@ public class ComputeSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IProcess Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIInferenceObject(IInferenceObject object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>LObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>LObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLObject(LObject object)
+	public T caseIProcessPart(IProcessPart object)
 	{
 		return null;
 	}
@@ -298,33 +278,17 @@ public class ComputeSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline Task</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractPipeline(AbstractPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPipeline Unit</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIPipelineUnit(IPipelineUnit object)
+	public T caseIPipelineTask(IPipelineTask object)
 	{
 		return null;
 	}

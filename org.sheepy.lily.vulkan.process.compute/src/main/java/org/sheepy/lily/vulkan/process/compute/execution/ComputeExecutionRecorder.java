@@ -5,14 +5,16 @@ import static org.lwjgl.vulkan.VK10.VK_PIPELINE_BIND_POINT_COMPUTE;
 import java.util.List;
 
 import org.sheepy.lily.vulkan.api.execution.IRecordable;
+import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
+import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.lily.vulkan.process.execution.AbstractExecutionRecorder;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public class ComputeExecutionRecorder extends AbstractExecutionRecorder
+public class ComputeExecutionRecorder extends AbstractExecutionRecorder<IComputeContext>
 {
 	public ComputeExecutionRecorder(ComputeCommandBuffer commandBuffer,
-									Submission submission,
+									Submission<? super IComputeContext> submission,
 									int index)
 	{
 		super(commandBuffer, submission, index);
@@ -29,10 +31,10 @@ public class ComputeExecutionRecorder extends AbstractExecutionRecorder
 			{
 				if (pipelineAdapter.shouldRecord(stage))
 				{
-					pipelineAdapter.record(stage, vkCommandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE,
-							index);
+					final RecordContext context = new RecordContext(vkCommandBuffer, stage,
+							VK_PIPELINE_BIND_POINT_COMPUTE, index);
+					pipelineAdapter.record(context);
 				}
-				pipelineAdapter.setRecordNeeded(false);
 			}
 		}
 	}

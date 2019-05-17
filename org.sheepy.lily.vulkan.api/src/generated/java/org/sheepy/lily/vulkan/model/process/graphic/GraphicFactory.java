@@ -150,6 +150,114 @@ public interface GraphicFactory extends EFactory
 	GraphicsPipeline createGraphicsPipeline();
 
 	/**
+	 * Returns a new object of class '<em>Mesh Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mesh Provider</em>'.
+	 * @generated
+	 */
+	MeshProvider createMeshProvider();
+
+	/**
+	 * Returns a new object of class '<em>Swap Image Barrier</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Swap Image Barrier</em>'.
+	 * @generated
+	 */
+	SwapImageBarrier createSwapImageBarrier();
+
+	/**
+	 * Returns a new object of class '<em>Blit To Swap Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Blit To Swap Image</em>'.
+	 * @generated
+	 */
+	BlitToSwapImage createBlitToSwapImage();
+
+	/**
+	 * Returns a new object of class '<em>Draw Indexed</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Draw Indexed</em>'.
+	 * @generated
+	 */
+	DrawIndexed createDrawIndexed();
+
+	/**
+	 * Returns a new object of class '<em>Vertex Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Vertex Descriptor</em>'.
+	 * @generated
+	 */
+	VertexDescriptor createVertexDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Description</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Description</em>'.
+	 * @generated
+	 */
+	AttributeDescription createAttributeDescription();
+
+	/**
+	 * Returns a new object of class '<em>Indexed Vertex Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Indexed Vertex Descriptor</em>'.
+	 * @generated
+	 */
+	IndexedVertexDescriptor createIndexedVertexDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Bind Vertex Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bind Vertex Buffer</em>'.
+	 * @generated
+	 */
+	BindVertexBuffer createBindVertexBuffer();
+
+	/**
+	 * Returns a new object of class '<em>Set Scissor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Set Scissor</em>'.
+	 * @generated
+	 */
+	SetScissor createSetScissor();
+
+	/**
+	 * Returns a new object of class '<em>Set Viewport</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Set Viewport</em>'.
+	 * @generated
+	 */
+	SetViewport createSetViewport();
+
+	/**
+	 * Returns a new object of class '<em>Vertex Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Vertex Binding</em>'.
+	 * @generated
+	 */
+	VertexBinding createVertexBinding();
+
+	/**
+	 * Returns a new object of class '<em>Bind Index Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bind Index Buffer</em>'.
+	 * @generated
+	 */
+	BindIndexBuffer createBindIndexBuffer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

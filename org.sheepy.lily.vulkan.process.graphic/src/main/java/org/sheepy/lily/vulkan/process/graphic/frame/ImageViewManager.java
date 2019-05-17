@@ -8,7 +8,6 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.IImageViewManager;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.resource.image.VkImageView;
 
 public class ImageViewManager implements IImageViewManager
@@ -18,12 +17,11 @@ public class ImageViewManager implements IImageViewManager
 	private List<VkImageView> imageViews = null;
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		final var device = graphicContext.getVkDevice();
-		final var swapChainManager = graphicContext.getSwapChainManager();
-		final var pdsManager = graphicContext.getSurfaceManager();
+		final var device = context.getVkDevice();
+		final var swapChainManager = context.getSwapChainManager();
+		final var pdsManager = context.getSurfaceManager();
 		final var colorFormat = pdsManager.getColorDomain().getFormat().getValue();
 		final var swapImages = swapChainManager.getSwapChainImages();
 
@@ -49,7 +47,7 @@ public class ImageViewManager implements IImageViewManager
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IGraphicContext context)
 	{
 		for (final VkImageView view : imageViews)
 		{
@@ -59,9 +57,8 @@ public class ImageViewManager implements IImageViewManager
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		return graphicContext.getSwapChainManager().isAllocationDirty(context);
+		return context.getSwapChainManager().isAllocationDirty(context);
 	}
 }

@@ -64,12 +64,22 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-		case ProcessPackage.PIPELINE_PKG:
-			return createPipelinePkg();
+		case ProcessPackage.PROCESS_PART_PKG:
+			return createProcessPartPkg();
+		case ProcessPackage.TASK_PKG:
+			return createTaskPkg();
+		case ProcessPackage.PIPELINE:
+			return createPipeline();
 		case ProcessPackage.PIPELINE_BARRIER:
 			return createPipelineBarrier();
+		case ProcessPackage.COMPOSITE_TASK:
+			return createCompositeTask();
+		case ProcessPackage.BIND_DESCRIPTOR_SETS:
+			return createBindDescriptorSets();
 		case ProcessPackage.PUSH_CONSTANT:
 			return createPushConstant();
+		case ProcessPackage.PUSH_BUFFER_TASK:
+			return createPushBufferTask();
 		default:
 			throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier");
@@ -82,10 +92,34 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	 * @generated
 	 */
 	@Override
-	public PipelinePkg createPipelinePkg()
+	public ProcessPartPkg createProcessPartPkg()
 	{
-		PipelinePkgImpl pipelinePkg = new PipelinePkgImpl();
-		return pipelinePkg;
+		ProcessPartPkgImpl processPartPkg = new ProcessPartPkgImpl();
+		return processPartPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TaskPkg createTaskPkg()
+	{
+		TaskPkgImpl taskPkg = new TaskPkgImpl();
+		return taskPkg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Pipeline createPipeline()
+	{
+		PipelineImpl pipeline = new PipelineImpl();
+		return pipeline;
 	}
 
 	/**
@@ -106,10 +140,46 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	 * @generated
 	 */
 	@Override
+	public CompositeTask createCompositeTask()
+	{
+		CompositeTaskImpl compositeTask = new CompositeTaskImpl();
+		return compositeTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BindDescriptorSets createBindDescriptorSets()
+	{
+		BindDescriptorSetsImpl bindDescriptorSets = new BindDescriptorSetsImpl();
+		return bindDescriptorSets;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public PushConstant createPushConstant()
 	{
 		PushConstantImpl pushConstant = new PushConstantImpl();
 		return pushConstant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PushBufferTask createPushBufferTask()
+	{
+		PushBufferTaskImpl pushBufferTask = new PushBufferTaskImpl();
+		return pushBufferTask;
 	}
 
 	/**

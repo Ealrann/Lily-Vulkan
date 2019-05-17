@@ -17,8 +17,6 @@ import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
-import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -37,7 +35,7 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	private VkImageView imageView;
 
 	private IImageLoader loader = null;
-	private ExecutionContext executionContext;
+	private IExecutionContext executionContext;
 
 	public ImageAdapter(Image image)
 	{
@@ -50,9 +48,9 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		this.executionContext = (ExecutionContext) context;
+		this.executionContext = context;
 		final var logicalDevice = executionContext.getLogicalDevice();
 		final var builder = createBuilder(image);
 
@@ -96,7 +94,7 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		imageView.free();
 		imageView = null;

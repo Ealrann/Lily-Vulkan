@@ -8,10 +8,9 @@ import org.lwjgl.vulkan.VkDevice;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.log.Logger;
 
-public class ImageAcquirer implements IAllocable
+public class ImageAcquirer implements IAllocable<IGraphicContext>
 {
 	private static final String FAILED_ACQUIRE_IMAGE = "Failed to acquire next image";
 
@@ -25,36 +24,34 @@ public class ImageAcquirer implements IAllocable
 	private Container container;
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		container = new Container(graphicContext);
+		container = new Container(context);
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IGraphicContext context)
 	{}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IGraphicContext context)
 	{
-		final var graphicContext = (IGraphicContext) context;
-		return graphicContext.getSwapChainManager().isAllocationDirty(context);
+		return context.getSwapChainManager().isAllocationDirty(context);
 	}
 
 	public Integer acquireNextImage()
 	{
-		return container.acquireNextImage();
+		return container.acquireNextImage(nextImageArray);
 	}
 
-	class Container
+	private static class Container
 	{
 		final long semaphore;
 		final long swapChain;
 		final ISurfaceManager surfaceManager;
 		final VkDevice device;
 
-		Container(IGraphicContext context)
+		private Container(IGraphicContext context)
 		{
 			semaphore = context.getGraphicExecutionRecorders().getPresentSemaphore().getId();
 			swapChain = context.getSwapChainManager().getAddress();
@@ -62,7 +59,7 @@ public class ImageAcquirer implements IAllocable
 			surfaceManager = context.getSurfaceManager();
 		}
 
-		public Integer acquireNextImage()
+		public Integer acquireNextImage(int[] nextImageArray)
 		{
 			final int res = vkAcquireNextImageKHR(device, swapChain, UINT64_MAX, semaphore, 0,
 					nextImageArray);

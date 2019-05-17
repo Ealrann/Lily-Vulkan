@@ -25,7 +25,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier
 
-interface BasicResource extends IResource
+class BasicResource extends IResource
 {
 }
 
@@ -73,7 +73,7 @@ class ImageLayout
 	unique EAccess[] accessMask
 }
 
-abstract class SampledImage extends DescriptorResource
+class SampledImage extends DescriptorResource
 {
 	contains Sampler sampler
 }
@@ -117,16 +117,6 @@ class Sampler
 }
 
 type JavaModule wraps Module
-
-abstract class AbstractConstants extends BasicResource
-{
-	unique EShaderStage[] stages
-}
-
-class Constants extends AbstractConstants
-{
-	ByteBuffer data
-}
 
 interface IDescriptor
 {

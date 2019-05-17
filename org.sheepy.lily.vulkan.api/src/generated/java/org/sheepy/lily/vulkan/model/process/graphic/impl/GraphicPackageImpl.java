@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -14,6 +15,7 @@ import org.sheepy.lily.core.model.action.ActionPackage;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
 
+import org.sheepy.lily.core.model.builder.BuilderPackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.root.RootPackage;
@@ -24,8 +26,13 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
@@ -33,19 +40,25 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor;
+import org.sheepy.lily.vulkan.model.process.graphic.MeshProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
+import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
+import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
+import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -165,21 +178,91 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iGraphicsPipelineEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iguiPipelineEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass graphicsPipelineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass meshProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass swapImageBarrierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass blitToSwapImageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass drawIndexedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vertexDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeDescriptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass indexedVertexDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bindVertexBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass setScissorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass setViewportEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vertexBindingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bindIndexBufferEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -240,10 +323,12 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		TypesPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
-		RootPackage.eINSTANCE.eClass();
-		InferencePackage.eINSTANCE.eClass();
+		BuilderPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
+		RootPackage.eINSTANCE.eClass();
+		InferencePackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 
@@ -861,28 +946,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getIGraphicsPipeline()
-	{
-		return iGraphicsPipelineEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIGUIPipeline()
-	{
-		return iguiPipelineEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getGraphicsPipeline()
 	{
 		return graphicsPipelineEClass;
@@ -963,6 +1026,446 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	public EAttribute getGraphicsPipeline_Subpass()
 	{
 		return (EAttribute) graphicsPipelineEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGraphicsPipeline_VertexDescriptor()
+	{
+		return (EReference) graphicsPipelineEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMeshProvider()
+	{
+		return meshProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSwapImageBarrier()
+	{
+		return swapImageBarrierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBlitToSwapImage()
+	{
+		return blitToSwapImageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBlitToSwapImage_Image()
+	{
+		return (EReference) blitToSwapImageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDrawIndexed()
+	{
+		return drawIndexedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDrawIndexed_IndexCount()
+	{
+		return (EAttribute) drawIndexedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDrawIndexed_InstanceCount()
+	{
+		return (EAttribute) drawIndexedEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDrawIndexed_FirstIndex()
+	{
+		return (EAttribute) drawIndexedEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDrawIndexed_VertexOffset()
+	{
+		return (EAttribute) drawIndexedEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDrawIndexed_FirstInstance()
+	{
+		return (EAttribute) drawIndexedEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getVertexDescriptor()
+	{
+		return vertexDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getVertexDescriptor_Attributes()
+	{
+		return (EReference) vertexDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVertexDescriptor_StrideLength()
+	{
+		return (EAttribute) vertexDescriptorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAttributeDescription()
+	{
+		return attributeDescriptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAttributeDescription_Format()
+	{
+		return (EAttribute) attributeDescriptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAttributeDescription_Offset()
+	{
+		return (EAttribute) attributeDescriptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIndexedVertexDescriptor()
+	{
+		return indexedVertexDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIndexedVertexDescriptor_IndexType()
+	{
+		return (EAttribute) indexedVertexDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBindVertexBuffer()
+	{
+		return bindVertexBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBindVertexBuffer_FirstBinding()
+	{
+		return (EAttribute) bindVertexBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBindVertexBuffer_VertexBindings()
+	{
+		return (EReference) bindVertexBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSetScissor()
+	{
+		return setScissorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetScissor_OffsetX()
+	{
+		return (EAttribute) setScissorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetScissor_OffsetY()
+	{
+		return (EAttribute) setScissorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetScissor_Width()
+	{
+		return (EAttribute) setScissorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetScissor_Height()
+	{
+		return (EAttribute) setScissorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSetViewport()
+	{
+		return setViewportEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetViewport_X()
+	{
+		return (EAttribute) setViewportEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetViewport_Y()
+	{
+		return (EAttribute) setViewportEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetViewport_Width()
+	{
+		return (EAttribute) setViewportEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetViewport_Height()
+	{
+		return (EAttribute) setViewportEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetViewport_MinDepth()
+	{
+		return (EAttribute) setViewportEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSetViewport_MaxDepth()
+	{
+		return (EAttribute) setViewportEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getVertexBinding()
+	{
+		return vertexBindingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getVertexBinding_Buffer()
+	{
+		return (EReference) vertexBindingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVertexBinding_Offset()
+	{
+		return (EAttribute) vertexBindingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBindIndexBuffer()
+	{
+		return bindIndexBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBindIndexBuffer_Buffer()
+	{
+		return (EReference) bindIndexBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBindIndexBuffer_Offset()
+	{
+		return (EAttribute) bindIndexBufferEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1069,10 +1572,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicProcessEClass, GRAPHIC_PROCESS__RENDER_PASS_INFO);
 		createEAttribute(graphicProcessEClass, GRAPHIC_PROCESS__FIELD_OF_VIEW_Y);
 
-		iGraphicsPipelineEClass = createEClass(IGRAPHICS_PIPELINE);
-
-		iguiPipelineEClass = createEClass(IGUI_PIPELINE);
-
 		graphicsPipelineEClass = createEClass(GRAPHICS_PIPELINE);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__SHADERS);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VIEWPORT_STATE);
@@ -1081,6 +1580,58 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__COLOR_BLEND);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__DYNAMIC_STATE);
 		createEAttribute(graphicsPipelineEClass, GRAPHICS_PIPELINE__SUBPASS);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR);
+
+		meshProviderEClass = createEClass(MESH_PROVIDER);
+
+		swapImageBarrierEClass = createEClass(SWAP_IMAGE_BARRIER);
+
+		blitToSwapImageEClass = createEClass(BLIT_TO_SWAP_IMAGE);
+		createEReference(blitToSwapImageEClass, BLIT_TO_SWAP_IMAGE__IMAGE);
+
+		drawIndexedEClass = createEClass(DRAW_INDEXED);
+		createEAttribute(drawIndexedEClass, DRAW_INDEXED__INDEX_COUNT);
+		createEAttribute(drawIndexedEClass, DRAW_INDEXED__INSTANCE_COUNT);
+		createEAttribute(drawIndexedEClass, DRAW_INDEXED__FIRST_INDEX);
+		createEAttribute(drawIndexedEClass, DRAW_INDEXED__VERTEX_OFFSET);
+		createEAttribute(drawIndexedEClass, DRAW_INDEXED__FIRST_INSTANCE);
+
+		vertexDescriptorEClass = createEClass(VERTEX_DESCRIPTOR);
+		createEReference(vertexDescriptorEClass, VERTEX_DESCRIPTOR__ATTRIBUTES);
+		createEAttribute(vertexDescriptorEClass, VERTEX_DESCRIPTOR__STRIDE_LENGTH);
+
+		attributeDescriptionEClass = createEClass(ATTRIBUTE_DESCRIPTION);
+		createEAttribute(attributeDescriptionEClass, ATTRIBUTE_DESCRIPTION__FORMAT);
+		createEAttribute(attributeDescriptionEClass, ATTRIBUTE_DESCRIPTION__OFFSET);
+
+		indexedVertexDescriptorEClass = createEClass(INDEXED_VERTEX_DESCRIPTOR);
+		createEAttribute(indexedVertexDescriptorEClass, INDEXED_VERTEX_DESCRIPTOR__INDEX_TYPE);
+
+		bindVertexBufferEClass = createEClass(BIND_VERTEX_BUFFER);
+		createEAttribute(bindVertexBufferEClass, BIND_VERTEX_BUFFER__FIRST_BINDING);
+		createEReference(bindVertexBufferEClass, BIND_VERTEX_BUFFER__VERTEX_BINDINGS);
+
+		setScissorEClass = createEClass(SET_SCISSOR);
+		createEAttribute(setScissorEClass, SET_SCISSOR__OFFSET_X);
+		createEAttribute(setScissorEClass, SET_SCISSOR__OFFSET_Y);
+		createEAttribute(setScissorEClass, SET_SCISSOR__WIDTH);
+		createEAttribute(setScissorEClass, SET_SCISSOR__HEIGHT);
+
+		setViewportEClass = createEClass(SET_VIEWPORT);
+		createEAttribute(setViewportEClass, SET_VIEWPORT__X);
+		createEAttribute(setViewportEClass, SET_VIEWPORT__Y);
+		createEAttribute(setViewportEClass, SET_VIEWPORT__WIDTH);
+		createEAttribute(setViewportEClass, SET_VIEWPORT__HEIGHT);
+		createEAttribute(setViewportEClass, SET_VIEWPORT__MIN_DEPTH);
+		createEAttribute(setViewportEClass, SET_VIEWPORT__MAX_DEPTH);
+
+		vertexBindingEClass = createEClass(VERTEX_BINDING);
+		createEReference(vertexBindingEClass, VERTEX_BINDING__BUFFER);
+		createEAttribute(vertexBindingEClass, VERTEX_BINDING__OFFSET);
+
+		bindIndexBufferEClass = createEClass(BIND_INDEX_BUFFER);
+		createEReference(bindIndexBufferEClass, BIND_INDEX_BUFFER__BUFFER);
+		createEAttribute(bindIndexBufferEClass, BIND_INDEX_BUFFER__OFFSET);
 	}
 
 	/**
@@ -1118,8 +1669,12 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				.getEPackage(TypesPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ResourcePackage.eNS_URI);
+		BuilderPackage theBuilderPackage = (BuilderPackage) EPackage.Registry.INSTANCE
+				.getEPackage(BuilderPackage.eNS_URI);
 		GraphicpipelinePackage theGraphicpipelinePackage = (GraphicpipelinePackage) EPackage.Registry.INSTANCE
 				.getEPackage(GraphicpipelinePackage.eNS_URI);
+		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
+				.getEPackage(BarrierPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1133,10 +1688,21 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		swapImageAttachmentDescriptionEClass.getESuperTypes().add(this.getAttachmentDescription());
 		extraAttachmentDescriptionEClass.getESuperTypes().add(this.getAttachmentDescription());
 		graphicProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
-		iGraphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
-		iguiPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
-		graphicsPipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
-		graphicsPipelineEClass.getESuperTypes().add(this.getIGraphicsPipeline());
+		EGenericType g1 = createEGenericType(theProcessPackage.getIPipeline());
+		graphicsPipelineEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theBuilderPackage.getBuildable());
+		EGenericType g2 = createEGenericType(this.getGraphicsPipeline());
+		g1.getETypeArguments().add(g2);
+		graphicsPipelineEClass.getEGenericSuperTypes().add(g1);
+		meshProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
+		swapImageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
+		blitToSwapImageEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		drawIndexedEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		indexedVertexDescriptorEClass.getESuperTypes().add(this.getVertexDescriptor());
+		bindVertexBufferEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		setScissorEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		setViewportEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		bindIndexBufferEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(graphicConfigurationEClass, GraphicConfiguration.class, "GraphicConfiguration",
@@ -1334,12 +1900,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"fieldOfViewY", "45", 0, 1, GraphicProcess.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iGraphicsPipelineEClass, IGraphicsPipeline.class, "IGraphicsPipeline",
-				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(iguiPipelineEClass, IGUIPipeline.class, "IGUIPipeline", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(graphicsPipelineEClass, GraphicsPipeline.class, "GraphicsPipeline", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphicsPipeline_Shaders(), theResourcePackage.getShader(), null,
@@ -1369,6 +1929,134 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getGraphicsPipeline_Subpass(), theEcorePackage.getEInt(), "subpass", "0", 0,
 				1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphicsPipeline_VertexDescriptor(), this.getVertexDescriptor(), null,
+				"vertexDescriptor", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(meshProviderEClass, MeshProvider.class, "MeshProvider", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(swapImageBarrierEClass, SwapImageBarrier.class, "SwapImageBarrier", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(blitToSwapImageEClass, BlitToSwapImage.class, "BlitToSwapImage", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBlitToSwapImage_Image(), theResourcePackage.getImage(), null, "image",
+				null, 1, 1, BlitToSwapImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(drawIndexedEClass, DrawIndexed.class, "DrawIndexed", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDrawIndexed_IndexCount(), theEcorePackage.getEInt(), "indexCount", null,
+				1, 1, DrawIndexed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDrawIndexed_InstanceCount(), theEcorePackage.getEInt(), "instanceCount",
+				"1", 0, 1, DrawIndexed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDrawIndexed_FirstIndex(), theEcorePackage.getEInt(), "firstIndex", "0", 0,
+				1, DrawIndexed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDrawIndexed_VertexOffset(), theEcorePackage.getEInt(), "vertexOffset",
+				"0", 0, 1, DrawIndexed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDrawIndexed_FirstInstance(), theEcorePackage.getEInt(), "firstInstance",
+				"0", 0, 1, DrawIndexed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(vertexDescriptorEClass, VertexDescriptor.class, "VertexDescriptor", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVertexDescriptor_Attributes(), this.getAttributeDescription(), null,
+				"attributes", null, 1, -1, VertexDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVertexDescriptor_StrideLength(), theEcorePackage.getEInt(),
+				"strideLength", null, 0, 1, VertexDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attributeDescriptionEClass, AttributeDescription.class, "AttributeDescription",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAttributeDescription_Format(), theEnumerationPackage.getEFormat(),
+				"format", null, 0, 1, AttributeDescription.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeDescription_Offset(), theEcorePackage.getEInt(), "offset", null,
+				0, 1, AttributeDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(indexedVertexDescriptorEClass, IndexedVertexDescriptor.class,
+				"IndexedVertexDescriptor", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIndexedVertexDescriptor_IndexType(),
+				theEnumerationPackage.getEIndexType(), "indexType", null, 0, 1,
+				IndexedVertexDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bindVertexBufferEClass, BindVertexBuffer.class, "BindVertexBuffer", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBindVertexBuffer_FirstBinding(), theEcorePackage.getEInt(),
+				"firstBinding", "0", 0, 1, BindVertexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBindVertexBuffer_VertexBindings(), this.getVertexBinding(), null,
+				"vertexBindings", null, 1, -1, BindVertexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(setScissorEClass, SetScissor.class, "SetScissor", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSetScissor_OffsetX(), theEcorePackage.getEInt(), "offsetX", "0", 0, 1,
+				SetScissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetScissor_OffsetY(), theEcorePackage.getEInt(), "offsetY", "0", 0, 1,
+				SetScissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetScissor_Width(), theEcorePackage.getEInt(), "width", null, 0, 1,
+				SetScissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetScissor_Height(), theEcorePackage.getEInt(), "height", null, 0, 1,
+				SetScissor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(setViewportEClass, SetViewport.class, "SetViewport", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSetViewport_X(), theEcorePackage.getEFloat(), "x", "0", 0, 1,
+				SetViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetViewport_Y(), theEcorePackage.getEFloat(), "y", "0", 0, 1,
+				SetViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetViewport_Width(), theEcorePackage.getEFloat(), "width", null, 0, 1,
+				SetViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetViewport_Height(), theEcorePackage.getEFloat(), "height", null, 0, 1,
+				SetViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetViewport_MinDepth(), theEcorePackage.getEFloat(), "minDepth", "1", 0,
+				1, SetViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetViewport_MaxDepth(), theEcorePackage.getEFloat(), "maxDepth", "1", 0,
+				1, SetViewport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(vertexBindingEClass, VertexBinding.class, "VertexBinding", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVertexBinding_Buffer(), theResourcePackage.getBuffer(), null, "buffer",
+				null, 1, 1, VertexBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getVertexBinding_Offset(), theEcorePackage.getELong(), "offset", "0", 0, 1,
+				VertexBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bindIndexBufferEClass, BindIndexBuffer.class, "BindIndexBuffer", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBindIndexBuffer_Buffer(), theResourcePackage.getBuffer(), null, "buffer",
+				null, 1, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getBindIndexBuffer_Offset(), theEcorePackage.getELong(), "offset", "0", 0, 1,
+				BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

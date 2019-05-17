@@ -11,6 +11,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
 public class VulkanModelExtension implements IModelExtension
@@ -19,6 +20,8 @@ public class VulkanModelExtension implements IModelExtension
 	public Collection<EPackage> getEPackages()
 	{
 		final List<EPackage> res = new ArrayList<>();
+
+		res.add(BarrierPackage.eINSTANCE);
 
 		res.add(ComputePackage.eINSTANCE);
 		res.add(GraphicPackage.eINSTANCE);

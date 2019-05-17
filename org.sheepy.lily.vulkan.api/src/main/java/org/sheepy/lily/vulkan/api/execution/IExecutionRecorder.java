@@ -2,14 +2,17 @@ package org.sheepy.lily.vulkan.api.execution;
 
 import java.util.List;
 
+import org.sheepy.lily.vulkan.api.process.IProcessContext;
+import org.sheepy.vulkan.allocation.IAllocationObject;
 import org.sheepy.vulkan.execution.ICommandBuffer;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public interface IExecutionRecorder extends IExecutionPlayer
+public interface IExecutionRecorder<T extends IProcessContext>
+		extends IExecutionPlayer, IAllocationObject<T>
 {
-	ICommandBuffer getCommandBuffer();
+	ICommandBuffer<? super T> getCommandBuffer();
 
-	ISubmission getSubmission();
+	ISubmission<? super T> getSubmission();
 
 	boolean isDirty();
 

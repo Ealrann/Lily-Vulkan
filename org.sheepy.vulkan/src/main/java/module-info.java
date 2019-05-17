@@ -24,6 +24,9 @@ module org.sheepy.vulkan
 	exports org.sheepy.vulkan.model.graphicpipeline;
 	exports org.sheepy.vulkan.model.graphicpipeline.impl;
 	exports org.sheepy.vulkan.model.graphicpipeline.util;
+	exports org.sheepy.vulkan.model.pipeline;
+	exports org.sheepy.vulkan.model.pipeline.impl;
+	exports org.sheepy.vulkan.model.pipeline.util;
 
 	exports org.sheepy.vulkan.allocation;
 	exports org.sheepy.vulkan.concurrent;
@@ -38,7 +41,6 @@ module org.sheepy.vulkan
 	exports org.sheepy.vulkan.pipeline;
 	exports org.sheepy.vulkan.pipeline.builder;
 	exports org.sheepy.vulkan.queue;
-	exports org.sheepy.vulkan.resource.barrier;
 	exports org.sheepy.vulkan.resource.buffer;
 	exports org.sheepy.vulkan.resource.image;
 	exports org.sheepy.vulkan.resource.indexed;

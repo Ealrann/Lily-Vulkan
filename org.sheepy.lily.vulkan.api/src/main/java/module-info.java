@@ -8,6 +8,7 @@ module org.sheepy.lily.vulkan.api
 
 	exports org.sheepy.lily.vulkan.api.adapter;
 	exports org.sheepy.lily.vulkan.api.allocation;
+	exports org.sheepy.lily.vulkan.api.barrier;
 	exports org.sheepy.lily.vulkan.api.engine;
 	exports org.sheepy.lily.vulkan.api.execution;
 	exports org.sheepy.lily.vulkan.api.graphic;
@@ -16,6 +17,8 @@ module org.sheepy.lily.vulkan.api
 	exports org.sheepy.lily.vulkan.api.process;
 	exports org.sheepy.lily.vulkan.api.resource;
 	exports org.sheepy.lily.vulkan.api.resource.attachment;
+	exports org.sheepy.lily.vulkan.api.resource.mesh;
+	exports org.sheepy.lily.vulkan.api.resource.mesh.data;
 	exports org.sheepy.lily.vulkan.api.util;
 
 	exports org.sheepy.lily.vulkan.model;

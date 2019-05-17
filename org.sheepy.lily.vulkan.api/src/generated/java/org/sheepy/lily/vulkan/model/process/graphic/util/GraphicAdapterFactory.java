@@ -6,17 +6,19 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.lily.core.model.inference.IInferenceObject;
-import org.sheepy.lily.core.model.root.LObject;
+import org.sheepy.lily.core.model.builder.Buildable;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.graphic.*;
+import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
+import org.sheepy.vulkan.model.barrier.Barrier;
 
 /**
  * <!-- begin-user-doc -->
@@ -156,19 +158,69 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createGraphicProcessAdapter();
 		}
 		@Override
-		public Adapter caseIGraphicsPipeline(IGraphicsPipeline object)
-		{
-			return createIGraphicsPipelineAdapter();
-		}
-		@Override
-		public Adapter caseIGUIPipeline(IGUIPipeline object)
-		{
-			return createIGUIPipelineAdapter();
-		}
-		@Override
 		public Adapter caseGraphicsPipeline(GraphicsPipeline object)
 		{
 			return createGraphicsPipelineAdapter();
+		}
+		@Override
+		public Adapter caseMeshProvider(MeshProvider object)
+		{
+			return createMeshProviderAdapter();
+		}
+		@Override
+		public Adapter caseSwapImageBarrier(SwapImageBarrier object)
+		{
+			return createSwapImageBarrierAdapter();
+		}
+		@Override
+		public Adapter caseBlitToSwapImage(BlitToSwapImage object)
+		{
+			return createBlitToSwapImageAdapter();
+		}
+		@Override
+		public Adapter caseDrawIndexed(DrawIndexed object)
+		{
+			return createDrawIndexedAdapter();
+		}
+		@Override
+		public Adapter caseVertexDescriptor(VertexDescriptor object)
+		{
+			return createVertexDescriptorAdapter();
+		}
+		@Override
+		public Adapter caseAttributeDescription(AttributeDescription object)
+		{
+			return createAttributeDescriptionAdapter();
+		}
+		@Override
+		public Adapter caseIndexedVertexDescriptor(IndexedVertexDescriptor object)
+		{
+			return createIndexedVertexDescriptorAdapter();
+		}
+		@Override
+		public Adapter caseBindVertexBuffer(BindVertexBuffer object)
+		{
+			return createBindVertexBufferAdapter();
+		}
+		@Override
+		public Adapter caseSetScissor(SetScissor object)
+		{
+			return createSetScissorAdapter();
+		}
+		@Override
+		public Adapter caseSetViewport(SetViewport object)
+		{
+			return createSetViewportAdapter();
+		}
+		@Override
+		public Adapter caseVertexBinding(VertexBinding object)
+		{
+			return createVertexBindingAdapter();
+		}
+		@Override
+		public Adapter caseBindIndexBuffer(BindIndexBuffer object)
+		{
+			return createBindIndexBufferAdapter();
 		}
 		@Override
 		public Adapter caseConfiguration(Configuration object)
@@ -201,14 +253,9 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createAbstractProcessAdapter();
 		}
 		@Override
-		public Adapter caseIInferenceObject(IInferenceObject object)
+		public Adapter caseIProcessPart(IProcessPart object)
 		{
-			return createIInferenceObjectAdapter();
-		}
-		@Override
-		public Adapter caseLObject(LObject object)
-		{
-			return createLObjectAdapter();
+			return createIProcessPartAdapter();
 		}
 		@Override
 		public Adapter caseIPipeline(IPipeline object)
@@ -216,9 +263,24 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createIPipelineAdapter();
 		}
 		@Override
-		public Adapter caseAbstractPipeline(AbstractPipeline object)
+		public <T extends Buildable<T>> Adapter caseBuildable(Buildable<T> object)
 		{
-			return createAbstractPipelineAdapter();
+			return createBuildableAdapter();
+		}
+		@Override
+		public Adapter caseBarrier(Barrier object)
+		{
+			return createBarrierAdapter();
+		}
+		@Override
+		public Adapter caseAbstractImageBarrier(AbstractImageBarrier object)
+		{
+			return createAbstractImageBarrierAdapter();
+		}
+		@Override
+		public Adapter caseIPipelineTask(IPipelineTask object)
+		{
+			return createIPipelineTaskAdapter();
 		}
 		@Override
 		public Adapter defaultCase(EObject object)
@@ -467,36 +529,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline <em>IGraphics Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline
-	 * @generated
-	 */
-	public Adapter createIGraphicsPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline <em>IGUI Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline
-	 * @generated
-	 */
-	public Adapter createIGUIPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline <em>Graphics Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -507,6 +539,186 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGraphicsPipelineAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.MeshProvider <em>Mesh Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.MeshProvider
+	 * @generated
+	 */
+	public Adapter createMeshProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier <em>Swap Image Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier
+	 * @generated
+	 */
+	public Adapter createSwapImageBarrierAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage <em>Blit To Swap Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage
+	 * @generated
+	 */
+	public Adapter createBlitToSwapImageAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed <em>Draw Indexed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed
+	 * @generated
+	 */
+	public Adapter createDrawIndexedAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor <em>Vertex Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor
+	 * @generated
+	 */
+	public Adapter createVertexDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription <em>Attribute Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription
+	 * @generated
+	 */
+	public Adapter createAttributeDescriptionAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor <em>Indexed Vertex Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor
+	 * @generated
+	 */
+	public Adapter createIndexedVertexDescriptorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer <em>Bind Vertex Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer
+	 * @generated
+	 */
+	public Adapter createBindVertexBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.SetScissor <em>Set Scissor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetScissor
+	 * @generated
+	 */
+	public Adapter createSetScissorAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.SetViewport <em>Set Viewport</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.SetViewport
+	 * @generated
+	 */
+	public Adapter createSetViewportAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding <em>Vertex Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexBinding
+	 * @generated
+	 */
+	public Adapter createVertexBindingAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer <em>Bind Index Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer
+	 * @generated
+	 */
+	public Adapter createBindIndexBufferAdapter()
 	{
 		return null;
 	}
@@ -602,31 +814,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.inference.IInferenceObject <em>IInference Object</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IProcessPart <em>IProcess Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.inference.IInferenceObject
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessPart
 	 * @generated
 	 */
-	public Adapter createIInferenceObjectAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.root.LObject <em>LObject</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.root.LObject
-	 * @generated
-	 */
-	public Adapter createLObjectAdapter()
+	public Adapter createIProcessPartAdapter()
 	{
 		return null;
 	}
@@ -647,16 +844,61 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.builder.Buildable <em>Buildable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline
+	 * @see org.sheepy.lily.core.model.builder.Buildable
 	 * @generated
 	 */
-	public Adapter createAbstractPipelineAdapter()
+	public Adapter createBuildableAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.barrier.Barrier <em>Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.barrier.Barrier
+	 * @generated
+	 */
+	public Adapter createBarrierAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.barrier.AbstractImageBarrier <em>Abstract Image Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.barrier.AbstractImageBarrier
+	 * @generated
+	 */
+	public Adapter createAbstractImageBarrierAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipelineTask <em>IPipeline Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineTask
+	 * @generated
+	 */
+	public Adapter createIPipelineTaskAdapter()
 	{
 		return null;
 	}

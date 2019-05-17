@@ -33,10 +33,10 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
-import org.sheepy.lily.vulkan.model.process.PipelinePkg;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 
@@ -376,52 +376,48 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
-
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
 			@Override
-			public Object casePipelinePkg(PipelinePkg object)
+			public Object caseProcessPartPkg(ProcessPartPkg object)
 			{
 				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.PIPELINE_PKG__PIPELINES,
+						.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
 								ComputeFactory.eINSTANCE.createComputePipeline()));
 
 				return null;
 			}
-
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
 			@Override
-			public Object caseAbstractPipeline(AbstractPipeline object)
+			public Object caseTaskPkg(TaskPkg object)
 			{
 				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.ABSTRACT_PIPELINE__UNITS,
+						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
 								ComputeFactory.eINSTANCE.createComputer()));
 
 				return null;
 			}
-
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
 			@Override
-			public Object caseAbstractCompositePipeline(AbstractCompositePipeline object)
+			public Object caseCompositeTask(CompositeTask object)
 			{
-				newChildDescriptors.add(createChildParameter(
-						ProcessPackage.Literals.ABSTRACT_COMPOSITE_PIPELINE__PIPELINES,
-						ComputeFactory.eINSTANCE.createComputePipeline()));
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+								ComputeFactory.eINSTANCE.createComputer()));
 
 				return null;
 			}
-
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -439,6 +435,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
@@ -451,6 +448,7 @@ public class ComputeItemProviderAdapterFactory extends ComputeAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
 			return ComputeEditPlugin.INSTANCE;

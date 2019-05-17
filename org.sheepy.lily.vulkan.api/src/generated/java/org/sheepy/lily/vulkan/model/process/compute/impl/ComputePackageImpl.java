@@ -22,7 +22,6 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
@@ -32,6 +31,7 @@ import org.sheepy.lily.vulkan.model.process.compute.Computer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -118,12 +118,13 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		ProcessPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
-		RootPackage.eINSTANCE.eClass();
-		InferencePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
-		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
+		RootPackage.eINSTANCE.eClass();
+		InferencePackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 
@@ -334,8 +335,8 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 
 		// Add supertypes to classes
 		computeProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
-		computePipelineEClass.getESuperTypes().add(theProcessPackage.getAbstractPipeline());
-		computerEClass.getESuperTypes().add(theProcessPackage.getIPipelineUnit());
+		computePipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
+		computerEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT,

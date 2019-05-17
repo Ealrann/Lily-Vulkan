@@ -101,6 +101,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BasicResource} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BasicResourceItemProvider basicResourceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BasicResource}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBasicResourceAdapter()
+	{
+		if (basicResourceItemProvider == null)
+		{
+			basicResourceItemProvider = new BasicResourceItemProvider(this);
+		}
+
+		return basicResourceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.PushBuffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -201,6 +226,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.SampledImage} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SampledImageItemProvider sampledImageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.SampledImage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSampledImageAdapter()
+	{
+		if (sampledImageItemProvider == null)
+		{
+			sampledImageItemProvider = new SampledImageItemProvider(this);
+		}
+
+		return sampledImageItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Semaphore} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -298,31 +348,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		}
 
 		return samplerItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Constants} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConstantsItemProvider constantsItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Constants}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConstantsAdapter()
-	{
-		if (constantsItemProvider == null)
-		{
-			constantsItemProvider = new ConstantsItemProvider(this);
-		}
-
-		return constantsItemProvider;
 	}
 
 	/**
@@ -674,15 +699,16 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	@Override
 	public void dispose()
 	{
+		if (basicResourceItemProvider != null) basicResourceItemProvider.dispose();
 		if (pushBufferItemProvider != null) pushBufferItemProvider.dispose();
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
+		if (sampledImageItemProvider != null) sampledImageItemProvider.dispose();
 		if (semaphoreItemProvider != null) semaphoreItemProvider.dispose();
 		if (fontItemProvider != null) fontItemProvider.dispose();
 		if (textureItemProvider != null) textureItemProvider.dispose();
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
-		if (constantsItemProvider != null) constantsItemProvider.dispose();
 		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
 		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
 		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();
@@ -747,6 +773,10 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 			{
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+								ResourceFactory.eINSTANCE.createBasicResource()));
+
+				newChildDescriptors
+						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 								ResourceFactory.eINSTANCE.createPushBuffer()));
 
 				newChildDescriptors
@@ -759,6 +789,10 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+								ResourceFactory.eINSTANCE.createSampledImage()));
+
+				newChildDescriptors
+						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 								ResourceFactory.eINSTANCE.createSemaphore()));
 
 				newChildDescriptors
@@ -768,10 +802,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 								ResourceFactory.eINSTANCE.createTexture()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createConstants()));
 
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,

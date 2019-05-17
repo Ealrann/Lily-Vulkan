@@ -19,7 +19,7 @@ import org.sheepy.vulkan.model.barrier.ReferenceImageBarrier;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl#getImageId <em>Image Id</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl#getImagePtr <em>Image Ptr</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl#getMipLevels <em>Mip Levels</em>}</li>
  *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl#getImageFormat <em>Image Format</em>}</li>
  * </ul>
@@ -30,24 +30,24 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 		implements ReferenceImageBarrier
 {
 	/**
-	 * The default value of the '{@link #getImageId() <em>Image Id</em>}' attribute.
+	 * The default value of the '{@link #getImagePtr() <em>Image Ptr</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImageId()
+	 * @see #getImagePtr()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long IMAGE_ID_EDEFAULT = 0L;
+	protected static final long IMAGE_PTR_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getImageId() <em>Image Id</em>}' attribute.
+	 * The cached value of the '{@link #getImagePtr() <em>Image Ptr</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImageId()
+	 * @see #getImagePtr()
 	 * @generated
 	 * @ordered
 	 */
-	protected long imageId = IMAGE_ID_EDEFAULT;
+	protected long imagePtr = IMAGE_PTR_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMipLevels() <em>Mip Levels</em>}' attribute.
@@ -116,9 +116,9 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	 * @generated
 	 */
 	@Override
-	public long getImageId()
+	public long getImagePtr()
 	{
-		return imageId;
+		return imagePtr;
 	}
 
 	/**
@@ -127,12 +127,12 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	 * @generated
 	 */
 	@Override
-	public void setImageId(long newImageId)
+	public void setImagePtr(long newImagePtr)
 	{
-		long oldImageId = imageId;
-		imageId = newImageId;
+		long oldImagePtr = imagePtr;
+		imagePtr = newImagePtr;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID, oldImageId, imageId));
+				BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR, oldImagePtr, imagePtr));
 	}
 
 	/**
@@ -195,8 +195,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
-			return getImageId();
+		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
+			return getImagePtr();
 		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
 			return getMipLevels();
 		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
@@ -215,8 +215,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
-			setImageId((Long) newValue);
+		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
+			setImagePtr((Long) newValue);
 			return;
 		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
 			setMipLevels((Integer) newValue);
@@ -238,8 +238,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
-			setImageId(IMAGE_ID_EDEFAULT);
+		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
+			setImagePtr(IMAGE_PTR_EDEFAULT);
 			return;
 		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
 			setMipLevels(MIP_LEVELS_EDEFAULT);
@@ -261,8 +261,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
-			return imageId != IMAGE_ID_EDEFAULT;
+		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
+			return imagePtr != IMAGE_PTR_EDEFAULT;
 		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
 			return mipLevels != MIP_LEVELS_EDEFAULT;
 		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
@@ -282,8 +282,8 @@ public class ReferenceImageBarrierImpl extends AbstractImageBarrierImpl
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (imageId: ");
-		result.append(imageId);
+		result.append(" (imagePtr: ");
+		result.append(imagePtr);
 		result.append(", mipLevels: ");
 		result.append(mipLevels);
 		result.append(", imageFormat: ");

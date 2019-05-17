@@ -85,19 +85,24 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			return createAbstractProcessAdapter();
 		}
 		@Override
-		public Adapter casePipelinePkg(PipelinePkg object)
-		{
-			return createPipelinePkgAdapter();
-		}
-		@Override
 		public Adapter caseConfiguration(Configuration object)
 		{
 			return createConfigurationAdapter();
 		}
 		@Override
-		public Adapter casePipelineBarrier(PipelineBarrier object)
+		public Adapter caseProcessPartPkg(ProcessPartPkg object)
 		{
-			return createPipelineBarrierAdapter();
+			return createProcessPartPkgAdapter();
+		}
+		@Override
+		public Adapter caseIPipelineTask(IPipelineTask object)
+		{
+			return createIPipelineTaskAdapter();
+		}
+		@Override
+		public Adapter caseIProcessPart(IProcessPart object)
+		{
+			return createIProcessPartAdapter();
 		}
 		@Override
 		public Adapter caseIPipeline(IPipeline object)
@@ -105,24 +110,39 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			return createIPipelineAdapter();
 		}
 		@Override
-		public Adapter caseAbstractPipeline(AbstractPipeline object)
+		public Adapter caseTaskPkg(TaskPkg object)
 		{
-			return createAbstractPipelineAdapter();
+			return createTaskPkgAdapter();
 		}
 		@Override
-		public Adapter caseIPipelineUnit(IPipelineUnit object)
+		public Adapter casePipeline(Pipeline object)
 		{
-			return createIPipelineUnitAdapter();
+			return createPipelineAdapter();
 		}
 		@Override
-		public Adapter caseAbstractCompositePipeline(AbstractCompositePipeline object)
+		public Adapter casePipelineBarrier(PipelineBarrier object)
 		{
-			return createAbstractCompositePipelineAdapter();
+			return createPipelineBarrierAdapter();
+		}
+		@Override
+		public Adapter caseCompositeTask(CompositeTask object)
+		{
+			return createCompositeTaskAdapter();
+		}
+		@Override
+		public Adapter caseBindDescriptorSets(BindDescriptorSets object)
+		{
+			return createBindDescriptorSetsAdapter();
 		}
 		@Override
 		public Adapter casePushConstant(PushConstant object)
 		{
 			return createPushConstantAdapter();
+		}
+		@Override
+		public Adapter casePushBufferTask(PushBufferTask object)
+		{
+			return createPushBufferTaskAdapter();
 		}
 		@Override
 		public Adapter caseIResourceContainer(IResourceContainer object)
@@ -191,21 +211,6 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.PipelinePkg <em>Pipeline Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelinePkg
-	 * @generated
-	 */
-	public Adapter createPipelinePkgAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -216,6 +221,51 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createConfigurationAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg <em>Part Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPartPkg
+	 * @generated
+	 */
+	public Adapter createProcessPartPkgAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipelineTask <em>IPipeline Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineTask
+	 * @generated
+	 */
+	public Adapter createIPipelineTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IProcessPart <em>IProcess Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessPart
+	 * @generated
+	 */
+	public Adapter createIProcessPartAdapter()
 	{
 		return null;
 	}
@@ -236,6 +286,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.CompositeTask <em>Composite Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask
+	 * @generated
+	 */
+	public Adapter createCompositeTaskAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -251,46 +316,46 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.TaskPkg <em>Task Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.TaskPkg
 	 * @generated
 	 */
-	public Adapter createAbstractPipelineAdapter()
+	public Adapter createTaskPkgAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.Pipeline <em>Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IPipelineUnit
+	 * @see org.sheepy.lily.vulkan.model.process.Pipeline
 	 * @generated
 	 */
-	public Adapter createIPipelineUnitAdapter()
+	public Adapter createPipelineAdapter()
 	{
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline <em>Abstract Composite Pipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets <em>Bind Descriptor Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline
+	 * @see org.sheepy.lily.vulkan.model.process.BindDescriptorSets
 	 * @generated
 	 */
-	public Adapter createAbstractCompositePipelineAdapter()
+	public Adapter createBindDescriptorSetsAdapter()
 	{
 		return null;
 	}
@@ -306,6 +371,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPushConstantAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.PushBufferTask <em>Push Buffer Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.PushBufferTask
+	 * @generated
+	 */
+	public Adapter createPushBufferTaskAdapter()
 	{
 		return null;
 	}

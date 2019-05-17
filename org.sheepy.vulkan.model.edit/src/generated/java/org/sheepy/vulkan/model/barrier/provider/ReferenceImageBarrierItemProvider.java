@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.barrier.ReferenceImageBarrier;
 
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.vulkan.model.barrier.ReferenceImageBarrier} object.
@@ -50,7 +50,7 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 		{
 			super.getPropertyDescriptors(object);
 
-			addImageIdPropertyDescriptor(object);
+			addImagePtrPropertyDescriptor(object);
 			addMipLevelsPropertyDescriptor(object);
 			addImageFormatPropertyDescriptor(object);
 		}
@@ -58,20 +58,20 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 	}
 
 	/**
-	 * This adds a property descriptor for the Image Id feature.
+	 * This adds a property descriptor for the Image Ptr feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addImageIdPropertyDescriptor(Object object)
+	protected void addImagePtrPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ReferenceImageBarrier_imageId_feature"),
+				getResourceLocator(), getString("_UI_ReferenceImageBarrier_imagePtr_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_ReferenceImageBarrier_imageId_feature",
+						"_UI_ReferenceImageBarrier_imagePtr_feature",
 						"_UI_ReferenceImageBarrier_type"),
-				BarrierPackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_ID, true, false, false,
+				BarrierPackage.Literals.REFERENCE_IMAGE_BARRIER__IMAGE_PTR, true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -133,7 +133,7 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((ReferenceImageBarrier) object).getSrcStage();
+		EImageLayout labelValue = ((ReferenceImageBarrier) object).getSrcLayout();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0
 				? getString("_UI_ReferenceImageBarrier_type")
@@ -154,7 +154,7 @@ public class ReferenceImageBarrierItemProvider extends AbstractImageBarrierItemP
 
 		switch (notification.getFeatureID(ReferenceImageBarrier.class))
 		{
-		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_ID:
+		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_PTR:
 		case BarrierPackage.REFERENCE_IMAGE_BARRIER__MIP_LEVELS:
 		case BarrierPackage.REFERENCE_IMAGE_BARRIER__IMAGE_FORMAT:
 			fireNotifyChanged(

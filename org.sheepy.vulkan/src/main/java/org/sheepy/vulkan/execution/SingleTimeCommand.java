@@ -16,18 +16,18 @@ import org.lwjgl.vulkan.VkSubmitInfo;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 
-public abstract class SingleTimeCommand extends AbstractCommandBuffer
+public abstract class SingleTimeCommand extends AbstractCommandBuffer<IExecutionContext>
 {
-	protected final ExecutionContext executionContext;
+	protected final IExecutionContext executionContext;
 	private List<VkSemaphore> semaphoreToSignal = null;
 	private final MemoryStack stack;
 
-	public SingleTimeCommand(ExecutionContext executionManager, MemoryStack stack)
+	public SingleTimeCommand(IExecutionContext executionManager, MemoryStack stack)
 	{
 		this(executionManager, stack, null);
 	}
 
-	public SingleTimeCommand(	ExecutionContext executionContext,
+	public SingleTimeCommand(	IExecutionContext executionContext,
 								MemoryStack stack,
 								Collection<VkSemaphore> semaphoreToSignal)
 	{

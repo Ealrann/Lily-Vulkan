@@ -12,7 +12,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.barrier.provider.AbstractImageBarrierItemProvider;
-import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.ImageBarrier} object.
@@ -89,7 +89,7 @@ public class ImageBarrierItemProvider extends AbstractImageBarrierItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		EPipelineStage labelValue = ((ImageBarrier) object).getSrcStage();
+		EImageLayout labelValue = ((ImageBarrier) object).getSrcLayout();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0
 				? getString("_UI_ImageBarrier_type")

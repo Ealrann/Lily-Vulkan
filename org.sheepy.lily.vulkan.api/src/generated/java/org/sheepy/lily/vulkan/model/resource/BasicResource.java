@@ -11,7 +11,7 @@ import org.sheepy.lily.vulkan.model.IResource;
  *
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getBasicResource()
- * @model interface="true" abstract="true"
+ * @model
  * @generated
  */
 public interface BasicResource extends IResource

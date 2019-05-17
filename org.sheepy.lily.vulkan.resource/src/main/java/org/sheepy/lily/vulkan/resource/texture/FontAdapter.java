@@ -18,7 +18,7 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.model.resource.Font;
 import org.sheepy.lily.vulkan.resource.file.FileResourceAdapter;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
-import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.resource.image.VkImage;
 
@@ -56,7 +56,7 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
 		final var file = font.getFile();
 		final var fileAdapter = FileResourceAdapter.adapt(file);
@@ -66,7 +66,7 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		super.free(context);
 

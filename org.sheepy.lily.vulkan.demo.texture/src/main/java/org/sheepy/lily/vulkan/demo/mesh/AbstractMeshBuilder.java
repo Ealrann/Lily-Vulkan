@@ -1,59 +1,108 @@
 package org.sheepy.lily.vulkan.demo.mesh;
 
-import org.lwjgl.system.MemoryStack;
-import org.sheepy.vulkan.resource.indexed.IVertex;
-import org.sheepy.vulkan.resource.indexed.IndexedBuffer;
-import org.sheepy.vulkan.resource.indexed.IndexedBufferData;
-import org.sheepy.vulkan.resource.indexed.IndexedBufferWithUniform;
+import java.nio.ByteBuffer;
 
-public abstract class AbstractMeshBuilder<T extends IVertex> implements IIndexedBufferBuilder<T>
+import org.lwjgl.system.MemoryUtil;
+import org.sheepy.lily.vulkan.api.resource.mesh.data.IMeshIndexDataProvider;
+import org.sheepy.lily.vulkan.api.resource.mesh.data.IMeshVertexDataProvider;
+
+public abstract class AbstractMeshBuilder
 {
-	private final IndexedBufferData<T> data;
-	private final IndexedBuffer<T> indexBuffer;
+	private final ByteBuffer data;
+	long indexOffset;
+	int indexCount;
 
-	public AbstractMeshBuilder()
+	public AbstractMeshBuilder(float[] vertices, int[] indices)
 	{
-		data = buildData();
+		final var vertexProvider = new VertexProvider(vertices);
+		final var indexProvider = new IndexProvider(indices);
 
-		final var descriptor = data.meshDescriptor;
-		final int vertexBufferCapacity = data.vertices.length * descriptor.sizeOfVertex();
-		final int indexBufferCapacity = data.indices.length * descriptor.sizeOfIndex();
-		final int uniformCapacity = data.uniformData != null ? data.uniformData.length : 0;
+		final long size = vertexProvider.getSize() + indexProvider.getSize();
+		indexCount = indexProvider.getDataCount();
+		indexOffset = vertexProvider.getSize();
 
-		if (uniformCapacity > 0)
+		data = MemoryUtil.memAlloc((int) size);
+		final long address = MemoryUtil.memAddress(data);
+		vertexProvider.fill(address);
+		indexProvider.fill(address + indexOffset);
+	}
+
+	public ByteBuffer getData()
+	{
+		return data;
+	}
+
+	public long getIndexOffset()
+	{
+		return indexOffset;
+	}
+
+	public int getIndexCount()
+	{
+		return indexCount;
+	}
+
+	private static class VertexProvider implements IMeshVertexDataProvider
+	{
+		private final float[] vertices;
+
+		public VertexProvider(float[] vertices)
 		{
-			indexBuffer = new IndexedBufferWithUniform<>(descriptor, vertexBufferCapacity,
-					indexBufferCapacity, uniformCapacity);
+			this.vertices = vertices;
 		}
-		else
+
+		@Override
+		public long getSize()
 		{
-			indexBuffer = new IndexedBuffer<>(descriptor, vertexBufferCapacity,
-					indexBufferCapacity);
+			return vertices.length * 4;
+		}
+
+		@Override
+		public void fill(long memoryAddress)
+		{
+			final var buffer = MemoryUtil.memByteBuffer(memoryAddress, (int) getSize());
+			buffer.asFloatBuffer().put(vertices);
+		}
+
+		@Override
+		public boolean hasChanged()
+		{
+			return false;
 		}
 	}
 
-	@Override
-	public IndexedBuffer<T> getIndexedBuffer()
+	private static class IndexProvider implements IMeshIndexDataProvider
 	{
-		return indexBuffer;
-	}
+		private final int[] indices;
 
-	@Override
-	public void fillBuffer()
-	{
-		try (MemoryStack stack = MemoryStack.stackPush())
+		public IndexProvider(int[] indices)
 		{
-			if (indexBuffer instanceof IndexedBufferWithUniform)
-			{
-				((IndexedBufferWithUniform<T>) indexBuffer).fillBuffer(stack, data.vertices,
-						data.indices, data.uniformData);
-			}
-			else
-			{
-				indexBuffer.fillBuffer(stack, data.vertices, data.indices);
-			}
+			this.indices = indices;
+		}
+
+		@Override
+		public void fill(long memoryAddress)
+		{
+			final var buffer = MemoryUtil.memByteBuffer(memoryAddress, (int) getSize());
+			buffer.asIntBuffer().put(indices);
+		}
+
+		@Override
+		public long getSize()
+		{
+			return indices.length * Integer.BYTES;
+		}
+
+		@Override
+		public int getDataCount()
+		{
+			return indices.length;
+		}
+
+		@Override
+		public boolean hasChanged()
+		{
+			return false;
 		}
 	}
-
-	protected abstract IndexedBufferData<T> buildData();
 }

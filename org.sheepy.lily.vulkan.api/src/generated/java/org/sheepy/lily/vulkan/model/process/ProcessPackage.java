@@ -116,13 +116,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Pipeline Pkg</b></em>' containment reference.
+	 * The feature id for the '<em><b>Part Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__PIPELINE_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
+	int ABSTRACT_PROCESS__PART_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
@@ -170,43 +170,6 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS_OPERATION_COUNT = VulkanPackage.IPROCESS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl <em>Pipeline Pkg</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelinePkg()
-	 * @generated
-	 */
-	int PIPELINE_PKG = 1;
-
-	/**
-	 * The feature id for the '<em><b>Pipelines</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_PKG__PIPELINES = 0;
-
-	/**
-	 * The number of structural features of the '<em>Pipeline Pkg</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_PKG_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Pipeline Pkg</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_PKG_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -214,7 +177,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getConfiguration()
 	 * @generated
 	 */
-	int CONFIGURATION = 2;
+	int CONFIGURATION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -235,6 +198,117 @@ public interface ProcessPackage extends EPackage
 	int CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl <em>Part Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessPartPkg()
+	 * @generated
+	 */
+	int PROCESS_PART_PKG = 2;
+
+	/**
+	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_PART_PKG__PARTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Part Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_PART_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Part Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_PART_PKG_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IPipelineTask <em>IPipeline Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineTask
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineTask()
+	 * @generated
+	 */
+	int IPIPELINE_TASK = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_TASK__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_TASK__ENABLED = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>IPipeline Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_TASK_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>IPipeline Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_TASK_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IProcessPart <em>IProcess Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessPart
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIProcessPart()
+	 * @generated
+	 */
+	int IPROCESS_PART = 4;
+
+	/**
+	 * The number of structural features of the '<em>IProcess Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS_PART_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>IProcess Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROCESS_PART_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -242,7 +316,244 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
 	 * @generated
 	 */
-	int PIPELINE_BARRIER = 3;
+	int PIPELINE_BARRIER = 8;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
+	 * @generated
+	 */
+	int IPIPELINE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__RESOURCE_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__ENABLED = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__STAGE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__PUSH_CONSTANT_RANGES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__DESCRIPTOR_SET_REF = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__DESCRIPTOR_SET = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__TASK_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of structural features of the '<em>IPipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of operations of the '<em>IPipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.TaskPkgImpl <em>Task Pkg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.TaskPkgImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getTaskPkg()
+	 * @generated
+	 */
+	int TASK_PKG = 6;
+
+	/**
+	 * The feature id for the '<em><b>Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_PKG__TASKS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Task Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_PKG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Task Pkg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_PKG_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl <em>Pipeline</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipeline()
+	 * @generated
+	 */
+	int PIPELINE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__NAME = IPIPELINE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__RESOURCE_PKG = IPIPELINE__RESOURCE_PKG;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__ENABLED = IPIPELINE__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__STAGE = IPIPELINE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Push Constant Ranges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__PUSH_CONSTANT_RANGES = IPIPELINE__PUSH_CONSTANT_RANGES;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__DESCRIPTOR_SET_REF = IPIPELINE__DESCRIPTOR_SET_REF;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__DESCRIPTOR_SET = IPIPELINE__DESCRIPTOR_SET;
+
+	/**
+	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__TASK_PKG = IPIPELINE__TASK_PKG;
+
+	/**
+	 * The number of structural features of the '<em>Pipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Pipeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_OPERATION_COUNT = IPIPELINE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -263,13 +574,40 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_BARRIER__NAME = RootPackage.LOBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Barrier</b></em>' containment reference.
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__BARRIER = RootPackage.LOBJECT_FEATURE_COUNT + 1;
+	int PIPELINE_BARRIER__ENABLED = RootPackage.LOBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Barriers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_BARRIER__BARRIERS = RootPackage.LOBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Src Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_BARRIER__SRC_STAGE = RootPackage.LOBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Dst Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE_BARRIER__DST_STAGE = RootPackage.LOBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Src Queue</b></em>' reference.
@@ -278,7 +616,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__SRC_QUEUE = RootPackage.LOBJECT_FEATURE_COUNT + 2;
+	int PIPELINE_BARRIER__SRC_QUEUE = RootPackage.LOBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Dst Queue</b></em>' reference.
@@ -287,7 +625,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER__DST_QUEUE = RootPackage.LOBJECT_FEATURE_COUNT + 3;
+	int PIPELINE_BARRIER__DST_QUEUE = RootPackage.LOBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Pipeline Barrier</em>' class.
@@ -296,7 +634,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE_BARRIER_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 4;
+	int PIPELINE_BARRIER_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>LInference Object</em>' operation.
@@ -353,23 +691,14 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_BARRIER_OPERATION_COUNT = RootPackage.LOBJECT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl <em>Composite Task</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.IPipeline
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCompositeTask()
 	 * @generated
 	 */
-	int IPIPELINE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE__CONTENT_OBJECTS = RootPackage.LOBJECT__CONTENT_OBJECTS;
+	int COMPOSITE_TASK = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -378,7 +707,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__NAME = RootPackage.LOBJECT_FEATURE_COUNT + 0;
+	int COMPOSITE_TASK__NAME = IPIPELINE_TASK__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -387,107 +716,53 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__ENABLED = RootPackage.LOBJECT_FEATURE_COUNT + 1;
+	int COMPOSITE_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Repeat Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__STAGE = RootPackage.LOBJECT_FEATURE_COUNT + 2;
+	int COMPOSITE_TASK__REPEAT_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * The feature id for the '<em><b>Tasks</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__PUSH_BUFFER = RootPackage.LOBJECT_FEATURE_COUNT + 3;
+	int COMPOSITE_TASK__TASKS = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>IPipeline</em>' class.
+	 * The number of structural features of the '<em>Composite Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 4;
+	int COMPOSITE_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
+	 * The number of operations of the '<em>Composite Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE___LINFERENCE_OBJECT = RootPackage.LOBJECT___LINFERENCE_OBJECT;
+	int COMPOSITE_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl <em>Bind Descriptor Sets</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = RootPackage.LOBJECT___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE___LCONTENTS = RootPackage.LOBJECT___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE___LPARENT = RootPackage.LOBJECT___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE___LALL_CONTENTS = RootPackage.LOBJECT___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>IPipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE_OPERATION_COUNT = RootPackage.LOBJECT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getBindDescriptorSets()
 	 * @generated
 	 */
-	int ABSTRACT_PIPELINE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE__CONTENT_OBJECTS = IPIPELINE__CONTENT_OBJECTS;
+	int BIND_DESCRIPTOR_SETS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -496,7 +771,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__NAME = IPIPELINE__NAME;
+	int BIND_DESCRIPTOR_SETS__NAME = IPIPELINE_TASK__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -505,342 +780,34 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__ENABLED = IPIPELINE__ENABLED;
+	int BIND_DESCRIPTOR_SETS__ENABLED = IPIPELINE_TASK__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__STAGE = IPIPELINE__STAGE;
+	int BIND_DESCRIPTOR_SETS__INDEX = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
+	 * The number of structural features of the '<em>Bind Descriptor Sets</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__PUSH_BUFFER = IPIPELINE__PUSH_BUFFER;
+	int BIND_DESCRIPTOR_SETS_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
+	 * The number of operations of the '<em>Bind Descriptor Sets</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PIPELINE__RESOURCE_PKG = IPIPELINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE__UNITS = IPIPELINE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF = IPIPELINE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE__DESCRIPTOR_SET = IPIPELINE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Constants</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE__CONSTANTS = IPIPELINE_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE___LINFERENCE_OBJECT = IPIPELINE___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = IPIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE___LCONTENTS = IPIPELINE___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE___LPARENT = IPIPELINE___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE___LALL_CONTENTS = IPIPELINE___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>Abstract Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PIPELINE_OPERATION_COUNT = IPIPELINE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.IPipelineUnit
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
-	 * @generated
-	 */
-	int IPIPELINE_UNIT = 6;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE_UNIT__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
-
-	/**
-	 * The number of structural features of the '<em>IPipeline Unit</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE_UNIT_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>IPipeline Unit</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE_UNIT_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractCompositePipelineImpl <em>Abstract Composite Pipeline</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractCompositePipelineImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
-	 * @generated
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE = 7;
-
-	/**
-	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__CONTENT_OBJECTS = ABSTRACT_PIPELINE__CONTENT_OBJECTS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__NAME = ABSTRACT_PIPELINE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__ENABLED = ABSTRACT_PIPELINE__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Stage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__STAGE = ABSTRACT_PIPELINE__STAGE;
-
-	/**
-	 * The feature id for the '<em><b>Push Buffer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__PUSH_BUFFER = ABSTRACT_PIPELINE__PUSH_BUFFER;
-
-	/**
-	 * The feature id for the '<em><b>Resource Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__RESOURCE_PKG = ABSTRACT_PIPELINE__RESOURCE_PKG;
-
-	/**
-	 * The feature id for the '<em><b>Units</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__UNITS = ABSTRACT_PIPELINE__UNITS;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__DESCRIPTOR_SET_REF = ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__DESCRIPTOR_SET = ABSTRACT_PIPELINE__DESCRIPTOR_SET;
-
-	/**
-	 * The feature id for the '<em><b>Constants</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__CONSTANTS = ABSTRACT_PIPELINE__CONSTANTS;
-
-	/**
-	 * The feature id for the '<em><b>Pipelines</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE__PIPELINES = ABSTRACT_PIPELINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Composite Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE_FEATURE_COUNT = ABSTRACT_PIPELINE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE___LINFERENCE_OBJECT = ABSTRACT_PIPELINE___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS = ABSTRACT_PIPELINE___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE___LCONTENTS = ABSTRACT_PIPELINE___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE___LPARENT = ABSTRACT_PIPELINE___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE___LALL_CONTENTS = ABSTRACT_PIPELINE___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>Abstract Composite Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_COMPOSITE_PIPELINE_OPERATION_COUNT = ABSTRACT_PIPELINE_OPERATION_COUNT + 0;
+	int BIND_DESCRIPTOR_SETS_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
@@ -850,7 +817,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushConstant()
 	 * @generated
 	 */
-	int PUSH_CONSTANT = 8;
+	int PUSH_CONSTANT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -859,7 +826,34 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT__NAME = IPIPELINE_UNIT__NAME;
+	int PUSH_CONSTANT__NAME = IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT__ENABLED = IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT__STAGES = IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT__DATA = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Push Constant</em>' class.
@@ -868,7 +862,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT_FEATURE_COUNT = IPIPELINE_UNIT_FEATURE_COUNT + 0;
+	int PUSH_CONSTANT_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Push Constant</em>' class.
@@ -877,7 +871,62 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT_OPERATION_COUNT = IPIPELINE_UNIT_OPERATION_COUNT + 0;
+	int PUSH_CONSTANT_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl <em>Push Buffer Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushBufferTask()
+	 * @generated
+	 */
+	int PUSH_BUFFER_TASK = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER_TASK__NAME = IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Push Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER_TASK__PUSH_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Push Buffer Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Push Buffer Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
@@ -912,15 +961,15 @@ public interface ProcessPackage extends EPackage
 	EReference getAbstractProcess_DescriptorSetPkg();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg <em>Pipeline Pkg</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPartPkg <em>Part Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Pipeline Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getPipelinePkg()
+	 * @return the meta object for the containment reference '<em>Part Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getPartPkg()
 	 * @see #getAbstractProcess()
 	 * @generated
 	 */
-	EReference getAbstractProcess_PipelinePkg();
+	EReference getAbstractProcess_PartPkg();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}'.
@@ -956,27 +1005,6 @@ public interface ProcessPackage extends EPackage
 	EReference getAbstractProcess_WaitFor();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelinePkg <em>Pipeline Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Pipeline Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelinePkg
-	 * @generated
-	 */
-	EClass getPipelinePkg();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.PipelinePkg#getPipelines <em>Pipelines</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Pipelines</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelinePkg#getPipelines()
-	 * @see #getPipelinePkg()
-	 * @generated
-	 */
-	EReference getPipelinePkg_Pipelines();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -985,6 +1013,58 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EClass getConfiguration();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg <em>Part Pkg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Part Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPartPkg
+	 * @generated
+	 */
+	EClass getProcessPartPkg();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg#getParts <em>Parts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parts</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPartPkg#getParts()
+	 * @see #getProcessPartPkg()
+	 * @generated
+	 */
+	EReference getProcessPartPkg_Parts();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IPipelineTask <em>IPipeline Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IPipeline Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineTask
+	 * @generated
+	 */
+	EClass getIPipelineTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.IPipelineTask#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineTask#isEnabled()
+	 * @see #getIPipelineTask()
+	 * @generated
+	 */
+	EAttribute getIPipelineTask_Enabled();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IProcessPart <em>IProcess Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IProcess Part</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessPart
+	 * @generated
+	 */
+	EClass getIProcessPart();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier <em>Pipeline Barrier</em>}'.
@@ -997,15 +1077,37 @@ public interface ProcessPackage extends EPackage
 	EClass getPipelineBarrier();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarrier <em>Barrier</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarriers <em>Barriers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Barrier</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarrier()
+	 * @return the meta object for the containment reference list '<em>Barriers</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarriers()
 	 * @see #getPipelineBarrier()
 	 * @generated
 	 */
-	EReference getPipelineBarrier_Barrier();
+	EReference getPipelineBarrier_Barriers();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcStage <em>Src Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Src Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcStage()
+	 * @see #getPipelineBarrier()
+	 * @generated
+	 */
+	EAttribute getPipelineBarrier_SrcStage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstStage <em>Dst Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dst Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstStage()
+	 * @see #getPipelineBarrier()
+	 * @generated
+	 */
+	EAttribute getPipelineBarrier_DstStage();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}'.
@@ -1028,6 +1130,38 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getPipelineBarrier_DstQueue();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CompositeTask <em>Composite Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Composite Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask
+	 * @generated
+	 */
+	EClass getCompositeTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CompositeTask#getRepeatCount <em>Repeat Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Repeat Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask#getRepeatCount()
+	 * @see #getCompositeTask()
+	 * @generated
+	 */
+	EAttribute getCompositeTask_RepeatCount();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.CompositeTask#getTasks <em>Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tasks</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask#getTasks()
+	 * @see #getCompositeTask()
+	 * @generated
+	 */
+	EReference getCompositeTask_Tasks();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
@@ -1062,100 +1196,100 @@ public interface ProcessPackage extends EPackage
 	EAttribute getIPipeline_Stage();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getPushBuffer <em>Push Buffer</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getPushConstantRanges <em>Push Constant Ranges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Push Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getPushBuffer()
+	 * @return the meta object for the containment reference list '<em>Push Constant Ranges</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getPushConstantRanges()
 	 * @see #getIPipeline()
 	 * @generated
 	 */
-	EReference getIPipeline_PushBuffer();
+	EReference getIPipeline_PushConstantRanges();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Pipeline</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline
-	 * @generated
-	 */
-	EClass getAbstractPipeline();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getUnits <em>Units</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Units</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getUnits()
-	 * @see #getAbstractPipeline()
-	 * @generated
-	 */
-	EReference getAbstractPipeline_Units();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSetRef <em>Descriptor Set Ref</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetRef <em>Descriptor Set Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Descriptor Set Ref</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSetRef()
-	 * @see #getAbstractPipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetRef()
+	 * @see #getIPipeline()
 	 * @generated
 	 */
-	EReference getAbstractPipeline_DescriptorSetRef();
+	EReference getIPipeline_DescriptorSetRef();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Descriptor Set</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getDescriptorSet()
-	 * @see #getAbstractPipeline()
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSet()
+	 * @see #getIPipeline()
 	 * @generated
 	 */
-	EReference getAbstractPipeline_DescriptorSet();
+	EReference getIPipeline_DescriptorSet();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants <em>Constants</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getTaskPkg <em>Task Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Constants</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline#getConstants()
-	 * @see #getAbstractPipeline()
+	 * @return the meta object for the containment reference '<em>Task Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getTaskPkg()
+	 * @see #getIPipeline()
 	 * @generated
 	 */
-	EReference getAbstractPipeline_Constants();
+	EReference getIPipeline_TaskPkg();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.TaskPkg <em>Task Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IPipeline Unit</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.IPipelineUnit
+	 * @return the meta object for class '<em>Task Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.TaskPkg
 	 * @generated
 	 */
-	EClass getIPipelineUnit();
+	EClass getTaskPkg();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline <em>Abstract Composite Pipeline</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.TaskPkg#getTasks <em>Tasks</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Composite Pipeline</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline
+	 * @return the meta object for the containment reference list '<em>Tasks</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.TaskPkg#getTasks()
+	 * @see #getTaskPkg()
 	 * @generated
 	 */
-	EClass getAbstractCompositePipeline();
+	EReference getTaskPkg_Tasks();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline#getPipelines <em>Pipelines</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.Pipeline <em>Pipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Pipelines</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline#getPipelines()
-	 * @see #getAbstractCompositePipeline()
+	 * @return the meta object for class '<em>Pipeline</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.Pipeline
 	 * @generated
 	 */
-	EReference getAbstractCompositePipeline_Pipelines();
+	EClass getPipeline();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets <em>Bind Descriptor Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bind Descriptor Sets</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.BindDescriptorSets
+	 * @generated
+	 */
+	EClass getBindDescriptorSets();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getIndex <em>Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getIndex()
+	 * @see #getBindDescriptorSets()
+	 * @generated
+	 */
+	EAttribute getBindDescriptorSets_Index();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PushConstant <em>Push Constant</em>}'.
@@ -1166,6 +1300,49 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EClass getPushConstant();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.process.PushConstant#getStages <em>Stages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Stages</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PushConstant#getStages()
+	 * @see #getPushConstant()
+	 * @generated
+	 */
+	EAttribute getPushConstant_Stages();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PushConstant#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PushConstant#getData()
+	 * @see #getPushConstant()
+	 * @generated
+	 */
+	EAttribute getPushConstant_Data();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PushBufferTask <em>Push Buffer Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Push Buffer Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PushBufferTask
+	 * @generated
+	 */
+	EClass getPushBufferTask();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PushBufferTask#getPushBuffer <em>Push Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Push Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PushBufferTask#getPushBuffer()
+	 * @see #getPushBufferTask()
+	 * @generated
+	 */
+	EReference getPushBufferTask_PushBuffer();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1220,12 +1397,12 @@ public interface ProcessPackage extends EPackage
 				.getAbstractProcess_DescriptorSetPkg();
 
 		/**
-		 * The meta object literal for the '<em><b>Pipeline Pkg</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Part Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PROCESS__PIPELINE_PKG = eINSTANCE.getAbstractProcess_PipelinePkg();
+		EReference ABSTRACT_PROCESS__PART_PKG = eINSTANCE.getAbstractProcess_PartPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Reset Allowed</b></em>' attribute feature.
@@ -1252,24 +1429,6 @@ public interface ProcessPackage extends EPackage
 		EReference ABSTRACT_PROCESS__WAIT_FOR = eINSTANCE.getAbstractProcess_WaitFor();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl <em>Pipeline Pkg</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.PipelinePkgImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelinePkg()
-		 * @generated
-		 */
-		EClass PIPELINE_PKG = eINSTANCE.getPipelinePkg();
-
-		/**
-		 * The meta object literal for the '<em><b>Pipelines</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PIPELINE_PKG__PIPELINES = eINSTANCE.getPipelinePkg_Pipelines();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1278,6 +1437,52 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EClass CONFIGURATION = eINSTANCE.getConfiguration();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl <em>Part Pkg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getProcessPartPkg()
+		 * @generated
+		 */
+		EClass PROCESS_PART_PKG = eINSTANCE.getProcessPartPkg();
+
+		/**
+		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_PART_PKG__PARTS = eINSTANCE.getProcessPartPkg_Parts();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IPipelineTask <em>IPipeline Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.IPipelineTask
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineTask()
+		 * @generated
+		 */
+		EClass IPIPELINE_TASK = eINSTANCE.getIPipelineTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IPIPELINE_TASK__ENABLED = eINSTANCE.getIPipelineTask_Enabled();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IProcessPart <em>IProcess Part</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.IProcessPart
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIProcessPart()
+		 * @generated
+		 */
+		EClass IPROCESS_PART = eINSTANCE.getIProcessPart();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
@@ -1290,12 +1495,28 @@ public interface ProcessPackage extends EPackage
 		EClass PIPELINE_BARRIER = eINSTANCE.getPipelineBarrier();
 
 		/**
-		 * The meta object literal for the '<em><b>Barrier</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Barriers</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PIPELINE_BARRIER__BARRIER = eINSTANCE.getPipelineBarrier_Barrier();
+		EReference PIPELINE_BARRIER__BARRIERS = eINSTANCE.getPipelineBarrier_Barriers();
+
+		/**
+		 * The meta object literal for the '<em><b>Src Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PIPELINE_BARRIER__SRC_STAGE = eINSTANCE.getPipelineBarrier_SrcStage();
+
+		/**
+		 * The meta object literal for the '<em><b>Dst Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PIPELINE_BARRIER__DST_STAGE = eINSTANCE.getPipelineBarrier_DstStage();
 
 		/**
 		 * The meta object literal for the '<em><b>Src Queue</b></em>' reference feature.
@@ -1312,6 +1533,32 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PIPELINE_BARRIER__DST_QUEUE = eINSTANCE.getPipelineBarrier_DstQueue();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl <em>Composite Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCompositeTask()
+		 * @generated
+		 */
+		EClass COMPOSITE_TASK = eINSTANCE.getCompositeTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Repeat Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_TASK__REPEAT_COUNT = eINSTANCE.getCompositeTask_RepeatCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Tasks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE_TASK__TASKS = eINSTANCE.getCompositeTask_Tasks();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
@@ -1340,30 +1587,12 @@ public interface ProcessPackage extends EPackage
 		EAttribute IPIPELINE__STAGE = eINSTANCE.getIPipeline_Stage();
 
 		/**
-		 * The meta object literal for the '<em><b>Push Buffer</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Push Constant Ranges</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IPIPELINE__PUSH_BUFFER = eINSTANCE.getIPipeline_PushBuffer();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl <em>Abstract Pipeline</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractPipelineImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractPipeline()
-		 * @generated
-		 */
-		EClass ABSTRACT_PIPELINE = eINSTANCE.getAbstractPipeline();
-
-		/**
-		 * The meta object literal for the '<em><b>Units</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PIPELINE__UNITS = eINSTANCE.getAbstractPipeline_Units();
+		EReference IPIPELINE__PUSH_CONSTANT_RANGES = eINSTANCE.getIPipeline_PushConstantRanges();
 
 		/**
 		 * The meta object literal for the '<em><b>Descriptor Set Ref</b></em>' reference feature.
@@ -1371,8 +1600,7 @@ public interface ProcessPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF = eINSTANCE
-				.getAbstractPipeline_DescriptorSetRef();
+		EReference IPIPELINE__DESCRIPTOR_SET_REF = eINSTANCE.getIPipeline_DescriptorSetRef();
 
 		/**
 		 * The meta object literal for the '<em><b>Descriptor Set</b></em>' containment reference feature.
@@ -1380,45 +1608,61 @@ public interface ProcessPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PIPELINE__DESCRIPTOR_SET = eINSTANCE
-				.getAbstractPipeline_DescriptorSet();
+		EReference IPIPELINE__DESCRIPTOR_SET = eINSTANCE.getIPipeline_DescriptorSet();
 
 		/**
-		 * The meta object literal for the '<em><b>Constants</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Task Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_PIPELINE__CONSTANTS = eINSTANCE.getAbstractPipeline_Constants();
+		EReference IPIPELINE__TASK_PKG = eINSTANCE.getIPipeline_TaskPkg();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.TaskPkgImpl <em>Task Pkg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.IPipelineUnit
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getIPipelineUnit()
+		 * @see org.sheepy.lily.vulkan.model.process.impl.TaskPkgImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getTaskPkg()
 		 * @generated
 		 */
-		EClass IPIPELINE_UNIT = eINSTANCE.getIPipelineUnit();
+		EClass TASK_PKG = eINSTANCE.getTaskPkg();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.AbstractCompositePipelineImpl <em>Abstract Composite Pipeline</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.AbstractCompositePipelineImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getAbstractCompositePipeline()
-		 * @generated
-		 */
-		EClass ABSTRACT_COMPOSITE_PIPELINE = eINSTANCE.getAbstractCompositePipeline();
-
-		/**
-		 * The meta object literal for the '<em><b>Pipelines</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Tasks</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_COMPOSITE_PIPELINE__PIPELINES = eINSTANCE
-				.getAbstractCompositePipeline_Pipelines();
+		EReference TASK_PKG__TASKS = eINSTANCE.getTaskPkg_Tasks();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl <em>Pipeline</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipeline()
+		 * @generated
+		 */
+		EClass PIPELINE = eINSTANCE.getPipeline();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl <em>Bind Descriptor Sets</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getBindDescriptorSets()
+		 * @generated
+		 */
+		EClass BIND_DESCRIPTOR_SETS = eINSTANCE.getBindDescriptorSets();
+
+		/**
+		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIND_DESCRIPTOR_SETS__INDEX = eINSTANCE.getBindDescriptorSets_Index();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
@@ -1429,6 +1673,40 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EClass PUSH_CONSTANT = eINSTANCE.getPushConstant();
+
+		/**
+		 * The meta object literal for the '<em><b>Stages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PUSH_CONSTANT__STAGES = eINSTANCE.getPushConstant_Stages();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PUSH_CONSTANT__DATA = eINSTANCE.getPushConstant_Data();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl <em>Push Buffer Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushBufferTask()
+		 * @generated
+		 */
+		EClass PUSH_BUFFER_TASK = eINSTANCE.getPushBufferTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Push Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PUSH_BUFFER_TASK__PUSH_BUFFER = eINSTANCE.getPushBufferTask_PushBuffer();
 
 	}
 

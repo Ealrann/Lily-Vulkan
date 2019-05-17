@@ -6,14 +6,17 @@
 @GenModel(updateClasspath="false")
 package org.sheepy.lily.vulkan.model.process.graphic
 
+import org.sheepy.lily.core.model.builder.Buildable
 import org.sheepy.lily.core.model.types.Color4f
 import org.sheepy.lily.core.model.types.LNamedElement
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline
 import org.sheepy.lily.vulkan.model.process.AbstractProcess
 import org.sheepy.lily.vulkan.model.process.Configuration
 import org.sheepy.lily.vulkan.model.process.IPipeline
+import org.sheepy.lily.vulkan.model.process.IPipelineTask
+import org.sheepy.lily.vulkan.model.resource.Buffer
 import org.sheepy.lily.vulkan.model.resource.Image
 import org.sheepy.lily.vulkan.model.resource.Shader
+import org.sheepy.vulkan.model.barrier.AbstractImageBarrier
 import org.sheepy.vulkan.model.enumeration.EAccess
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
@@ -21,14 +24,15 @@ import org.sheepy.vulkan.model.enumeration.EColorSpace
 import org.sheepy.vulkan.model.enumeration.EFormat
 import org.sheepy.vulkan.model.enumeration.EImageLayout
 import org.sheepy.vulkan.model.enumeration.EImageUsage
+import org.sheepy.vulkan.model.enumeration.EIndexType
 import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.EPresentMode
 import org.sheepy.vulkan.model.enumeration.ESampleCount
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend
+import org.sheepy.vulkan.model.graphicpipeline.DynamicState
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState
-import org.sheepy.vulkan.model.graphicpipeline.DynamicState
 
 class GraphicConfiguration extends Configuration
 {
@@ -132,15 +136,7 @@ class GraphicProcess extends AbstractProcess
 	float fieldOfViewY = "45"
 }
 
-interface IGraphicsPipeline extends IPipeline
-{
-}
-
-interface IGUIPipeline extends IGraphicsPipeline
-{
-}
-
-class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
+class GraphicsPipeline extends IPipeline, Buildable<GraphicsPipeline>
 {
 	refers unique Shader[1..*] shaders
 	contains ViewportState[1..1] viewportState
@@ -149,4 +145,103 @@ class GraphicsPipeline extends AbstractPipeline, IGraphicsPipeline
 	contains ColorBlend[1..1] colorBlend
 	contains DynamicState dynamicState
 	int subpass = "0"
+
+	contains VertexDescriptor[1..1] vertexDescriptor
+}
+
+class MeshProvider extends LNamedElement
+{
+}
+
+//class ComplexMeshProvider extends MeshProvider
+//{
+//	contains VertexDataProvider[1..1] vertexDataProvider
+//	contains IndexDataProvider[1..1] indexDataProvider
+//	contains UniformDataProvider[0..*] uniformDataProvider
+//}
+//
+//interface IDataProvider extends LNamedElement
+//{}
+//
+//class VertexDataProvider extends IDataProvider
+//{}
+//
+//class IndexDataProvider extends IDataProvider
+//{}
+//
+//class UniformDataProvider extends IDataProvider
+//{}
+
+
+class SwapImageBarrier extends AbstractImageBarrier
+{
+}
+
+class BlitToSwapImage extends IPipelineTask
+{
+	refers Image[1..1] image
+}
+
+class DrawIndexed extends IPipelineTask
+{
+	int[1..1] indexCount
+	int instanceCount = "1"
+	int firstIndex = "0"
+	int vertexOffset = "0"
+	int firstInstance = "0"
+}
+
+class VertexDescriptor
+{
+	contains AttributeDescription[1..*] attributes
+
+	@GenModel(propertyDescription="Size of a vertex in bytes")
+	int strideLength
+}
+
+class AttributeDescription
+{
+	EFormat format
+	int offset
+}
+
+class IndexedVertexDescriptor extends VertexDescriptor
+{
+	EIndexType indexType
+}
+
+class BindVertexBuffer extends IPipelineTask
+{
+	int firstBinding = "0"
+	contains VertexBinding[1..*] vertexBindings
+}
+
+class SetScissor extends IPipelineTask
+{
+	int offsetX = "0"
+	int offsetY = "0"
+	int width
+	int height
+}
+
+class SetViewport extends IPipelineTask
+{
+	float x = "0"
+	float y = "0"
+	float width
+	float height
+	float minDepth = "1"
+	float maxDepth = "1"
+}
+
+class VertexBinding
+{
+	refers Buffer[1..1] buffer
+	long offset = "0"
+}
+
+class BindIndexBuffer extends IPipelineTask
+{
+	refers Buffer[1..1] buffer
+	long offset = "0"
 }

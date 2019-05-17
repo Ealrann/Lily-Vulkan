@@ -13,7 +13,6 @@ import org.lwjgl.vulkan.VkDevice;
 import org.lwjgl.vulkan.VkImageCreateInfo;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
@@ -28,7 +27,7 @@ import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryAllocationInfo;
 import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryInfo;
 import org.sheepy.vulkan.util.VkModelUtil;
 
-public final class VkImage implements IAllocable
+public final class VkImage implements IAllocable<IExecutionContext>
 {
 	protected long imageAddress;
 	protected long imageMemoryAddress;
@@ -67,10 +66,9 @@ public final class VkImage implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		final var executionContext = (IExecutionContext) context;
-		final var logicalDevice = executionContext.getLogicalDevice();
+		final var logicalDevice = context.getLogicalDevice();
 
 		imageAddress = allocateImage(stack, logicalDevice.getVkDevice());
 
@@ -81,7 +79,7 @@ public final class VkImage implements IAllocable
 
 		if (fillWithZero)
 		{
-			fillWithZero(stack, executionContext, memoryInfo);
+			fillWithZero(stack, context, memoryInfo);
 		}
 	}
 
@@ -179,10 +177,9 @@ public final class VkImage implements IAllocable
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
-		final var executionContext = (IExecutionContext) context;
-		final var logicalDevice = executionContext.getLogicalDevice();
+		final var logicalDevice = context.getLogicalDevice();
 
 		vkDestroyImage(logicalDevice.getVkDevice(), imageAddress, null);
 		vkFreeMemory(logicalDevice.getVkDevice(), imageMemoryAddress, null);
@@ -191,7 +188,7 @@ public final class VkImage implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
 	}
@@ -253,4 +250,216 @@ public final class VkImage implements IAllocable
 		VkImage build();
 	}
 
+	public static final class VkImageBuilder implements Builder
+	{
+		private final int width;
+		private final int height;
+		private final int format;
+		private int usage = 0;
+		private int properties = 0;
+		private int tiling = 0;
+		private int mipLevels = 1;
+		private boolean fillWithZero = false;
+
+		public VkImageBuilder(int width, int height, int format)
+		{
+			this.width = width;
+			this.height = height;
+			this.format = format;
+		}
+
+		public VkImageBuilder(Builder builder)
+		{
+			this.width = builder.width();
+			this.height = builder.height();
+			this.format = builder.format();
+			this.usage = builder.usage();
+			this.properties = builder.properties();
+			this.tiling = builder.tiling();
+			this.mipLevels = builder.mipLevels();
+			this.fillWithZero = builder.fillWithZero();
+		}
+
+		@Override
+		public int width()
+		{
+			return width;
+		}
+
+		@Override
+		public int height()
+		{
+			return height;
+		}
+
+		@Override
+		public int format()
+		{
+			return format;
+		}
+
+		public VkImageBuilder addUsage(int usage)
+		{
+			this.usage |= usage;
+			return this;
+		}
+
+		public VkImageBuilder usage(int usage)
+		{
+			this.usage = usage;
+			return this;
+		}
+
+		@Override
+		public int usage()
+		{
+			return usage;
+		}
+
+		public VkImageBuilder properties(int properties)
+		{
+			this.properties = properties;
+			return this;
+		}
+
+		@Override
+		public int properties()
+		{
+			return properties;
+		}
+
+		public VkImageBuilder tiling(int tiling)
+		{
+			this.tiling = tiling;
+			return this;
+		}
+
+		@Override
+		public int tiling()
+		{
+			return tiling;
+		}
+
+		public VkImageBuilder mipLevels(int mipLevels)
+		{
+			this.mipLevels = mipLevels;
+			return this;
+		}
+
+		@Override
+		public int mipLevels()
+		{
+			return mipLevels;
+		}
+
+		public VkImageBuilder fillWithZero(boolean fillWithZero)
+		{
+			this.fillWithZero = fillWithZero;
+			return this;
+		}
+
+		@Override
+		public boolean fillWithZero()
+		{
+			return fillWithZero;
+		}
+
+		@Override
+		public Builder copyImmutable()
+		{
+			return new ImmutableBuilder(this);
+		}
+
+		@Override
+		public VkImage build()
+		{
+			return new VkImage(width, height, format, usage, properties, tiling, mipLevels,
+					fillWithZero);
+		}
+	}
+
+	private static final class ImmutableBuilder implements Builder
+	{
+		private final int width;
+		private final int height;
+		private final int format;
+		private int usage = 0;
+		private int properties = 0;
+		private int tiling = 0;
+		private int mipLevels = 1;
+		private boolean fillWithZero = false;
+
+		public ImmutableBuilder(Builder builder)
+		{
+			this.width = builder.width();
+			this.height = builder.height();
+			this.format = builder.format();
+			this.usage = builder.usage();
+			this.properties = builder.properties();
+			this.tiling = builder.tiling();
+			this.mipLevels = builder.mipLevels();
+			this.fillWithZero = builder.fillWithZero();
+		}
+
+		@Override
+		public int width()
+		{
+			return width;
+		}
+
+		@Override
+		public int height()
+		{
+			return height;
+		}
+
+		@Override
+		public int format()
+		{
+			return format;
+		}
+
+		@Override
+		public int usage()
+		{
+			return usage;
+		}
+
+		@Override
+		public int properties()
+		{
+			return properties;
+		}
+
+		@Override
+		public int tiling()
+		{
+			return tiling;
+		}
+
+		@Override
+		public int mipLevels()
+		{
+			return mipLevels;
+		}
+
+		@Override
+		public boolean fillWithZero()
+		{
+			return fillWithZero;
+		}
+
+		@Override
+		public Builder copyImmutable()
+		{
+			return this;
+		}
+
+		@Override
+		public VkImage build()
+		{
+			return new VkImage(width, height, format, usage, properties, tiling, mipLevels,
+					fillWithZero);
+		}
+	}
 }

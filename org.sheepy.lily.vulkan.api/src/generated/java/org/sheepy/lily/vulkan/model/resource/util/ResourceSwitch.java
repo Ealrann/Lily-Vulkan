@@ -199,27 +199,6 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case ResourcePackage.ABSTRACT_CONSTANTS:
-		{
-			AbstractConstants abstractConstants = (AbstractConstants) theEObject;
-			T result = caseAbstractConstants(abstractConstants);
-			if (result == null) result = caseBasicResource(abstractConstants);
-			if (result == null) result = caseIResource(abstractConstants);
-			if (result == null) result = caseLNamedElement(abstractConstants);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case ResourcePackage.CONSTANTS:
-		{
-			Constants constants = (Constants) theEObject;
-			T result = caseConstants(constants);
-			if (result == null) result = caseAbstractConstants(constants);
-			if (result == null) result = caseBasicResource(constants);
-			if (result == null) result = caseIResource(constants);
-			if (result == null) result = caseLNamedElement(constants);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
 		case ResourcePackage.IDESCRIPTOR:
 		{
 			IDescriptor iDescriptor = (IDescriptor) theEObject;
@@ -519,38 +498,6 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseSampler(Sampler object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Constants</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Constants</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractConstants(AbstractConstants object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constants</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constants</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstants(Constants object)
 	{
 		return null;
 	}

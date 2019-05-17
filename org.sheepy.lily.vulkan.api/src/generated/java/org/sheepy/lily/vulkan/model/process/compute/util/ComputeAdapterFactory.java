@@ -8,17 +8,15 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.lily.core.model.inference.IInferenceObject;
-import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.compute.*;
 
 /**
@@ -124,14 +122,9 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 			return createAbstractProcessAdapter();
 		}
 		@Override
-		public Adapter caseIInferenceObject(IInferenceObject object)
+		public Adapter caseIProcessPart(IProcessPart object)
 		{
-			return createIInferenceObjectAdapter();
-		}
-		@Override
-		public Adapter caseLObject(LObject object)
-		{
-			return createLObjectAdapter();
+			return createIProcessPartAdapter();
 		}
 		@Override
 		public Adapter caseIPipeline(IPipeline object)
@@ -139,14 +132,9 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 			return createIPipelineAdapter();
 		}
 		@Override
-		public Adapter caseAbstractPipeline(AbstractPipeline object)
+		public Adapter caseIPipelineTask(IPipelineTask object)
 		{
-			return createAbstractPipelineAdapter();
-		}
-		@Override
-		public Adapter caseIPipelineUnit(IPipelineUnit object)
-		{
-			return createIPipelineUnitAdapter();
+			return createIPipelineTaskAdapter();
 		}
 		@Override
 		public Adapter defaultCase(EObject object)
@@ -290,31 +278,16 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.inference.IInferenceObject <em>IInference Object</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IProcessPart <em>IProcess Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.inference.IInferenceObject
+	 * @see org.sheepy.lily.vulkan.model.process.IProcessPart
 	 * @generated
 	 */
-	public Adapter createIInferenceObjectAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.root.LObject <em>LObject</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.root.LObject
-	 * @generated
-	 */
-	public Adapter createLObjectAdapter()
+	public Adapter createIProcessPartAdapter()
 	{
 		return null;
 	}
@@ -335,31 +308,16 @@ public class ComputeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.AbstractPipeline <em>Abstract Pipeline</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipelineTask <em>IPipeline Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractPipeline
+	 * @see org.sheepy.lily.vulkan.model.process.IPipelineTask
 	 * @generated
 	 */
-	public Adapter createAbstractPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.IPipelineUnit <em>IPipeline Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.IPipelineUnit
-	 * @generated
-	 */
-	public Adapter createIPipelineUnitAdapter()
+	public Adapter createIPipelineTaskAdapter()
 	{
 		return null;
 	}

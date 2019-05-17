@@ -15,7 +15,6 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
@@ -39,9 +38,9 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		executionManager = (IExecutionContext) context;
+		executionManager = context;
 		final var info = createInfo(buffer);
 
 		if (buffer.isGpuBuffer())
@@ -74,7 +73,7 @@ public class BufferAdapter implements IDescriptorAdapter, IResourceAdapter
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		bufferBackend.free(context);
 		bufferBackend = null;

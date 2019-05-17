@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -23,35 +22,14 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getFile <em>File</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getStage <em>Stage</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
+public class ShaderImpl extends BasicResourceImpl implements Shader
 {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -101,31 +79,6 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	protected EClass eStaticClass()
 	{
 		return ResourcePackage.Literals.SHADER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SHADER__NAME, oldName, name));
 	}
 
 	/**
@@ -233,8 +186,6 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SHADER__NAME:
-			return getName();
 		case ResourcePackage.SHADER__FILE:
 			return getFile();
 		case ResourcePackage.SHADER__STAGE:
@@ -253,9 +204,6 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SHADER__NAME:
-			setName((String) newValue);
-			return;
 		case ResourcePackage.SHADER__FILE:
 			setFile((PathResource) newValue);
 			return;
@@ -276,9 +224,6 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SHADER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
 		case ResourcePackage.SHADER__FILE:
 			setFile((PathResource) null);
 			return;
@@ -299,8 +244,6 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SHADER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ResourcePackage.SHADER__FILE:
 			return file != null;
 		case ResourcePackage.SHADER__STAGE:
@@ -320,9 +263,7 @@ public class ShaderImpl extends MinimalEObjectImpl.Container implements Shader
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", stage: ");
+		result.append(" (stage: ");
 		result.append(stage);
 		result.append(')');
 		return result.toString();

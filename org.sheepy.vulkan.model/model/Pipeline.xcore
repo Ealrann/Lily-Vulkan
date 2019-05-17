@@ -1,0 +1,18 @@
+@GenModel(cleanup="true", codeFormatting="true")
+@GenModel(modelDirectory="/org.sheepy.vulkan.model/src/generated/java")
+@GenModel(editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java")
+@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
+@GenModel(updateClasspath="false")
+
+package org.sheepy.vulkan.model.pipeline
+
+
+import org.sheepy.vulkan.model.enumeration.EShaderStage
+
+class PushConstantRange
+{
+	EShaderStage[1..*] stages
+	int offset = "0"
+	int size
+}

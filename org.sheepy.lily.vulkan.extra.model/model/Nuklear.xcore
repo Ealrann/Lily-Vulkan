@@ -7,19 +7,41 @@
 
 package org.sheepy.lily.vulkan.extra.nuklear.model
 
-import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline
-import org.sheepy.lily.vulkan.model.resource.Constants
+import org.sheepy.lily.core.model.builder.Builder
+import org.sheepy.lily.vulkan.model.process.CompositeTask
+import org.sheepy.lily.vulkan.model.process.IPipelineTask
+import org.sheepy.lily.vulkan.model.process.PushConstant
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline
+import org.sheepy.lily.vulkan.model.resource.BasicResource
+import org.sheepy.lily.vulkan.model.resource.Buffer
 import org.sheepy.lily.vulkan.model.resource.Font
+import org.sheepy.lily.vulkan.model.resource.PushBuffer
+import org.sheepy.lily.vulkan.model.resource.SampledImage
+import org.sheepy.lily.vulkan.model.IResource
 
-class NuklearPipeline extends IGUIPipeline
+class NuklearPipelineBuilder extends Builder<GraphicsPipeline>
 {
 	contains Font[1..1] font
-
-	contains NuklearConstants[1..1] pushConstant
-
-	int subpass = "0"
 }
 
-class NuklearConstants extends Constants
+class NuklearPushConstants extends PushConstant
 {
+	int width
+	int height
+	int currentDescriptor
+}
+
+class NuklearLayoutTask extends IPipelineTask
+{
+	refers NuklearContext[1..1] context opposite layoutTask
+	refers CompositeTask drawTask
+	refers PushBuffer pushBuffer
+	refers Buffer vertexBuffer
+}
+
+class NuklearContext extends IResource, BasicResource
+{
+	refers Font[1..1] font
+	refers SampledImage nullTexture
+	refers NuklearLayoutTask[1..1] layoutTask opposite context
 }

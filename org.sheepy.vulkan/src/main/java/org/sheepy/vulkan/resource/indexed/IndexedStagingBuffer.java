@@ -6,16 +6,16 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkBufferCopy;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.execution.ExecutionContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 
-public class IndexedStagingBuffer implements IAllocable
+public class IndexedStagingBuffer implements IAllocable<IExecutionContext>
 {
 	private final CPUBufferBackend stagingBuffer;
-	private final IndexedBuffer<?> indexedBuffer;
+	private final IndexedBuffer indexedBuffer;
 	private final int vertexBufferSize;
 	private final int indexBufferSize;
 
@@ -27,7 +27,7 @@ public class IndexedStagingBuffer implements IAllocable
 	private VkBufferCopy.Buffer vertexCopyInfo;
 	private VkBufferCopy.Buffer indexCopyInfo;
 
-	public IndexedStagingBuffer(IndexedBuffer<?> indexedBuffer, boolean coherent)
+	public IndexedStagingBuffer(IndexedBuffer indexedBuffer, boolean coherent)
 	{
 		this.indexedBuffer = indexedBuffer;
 		vertexBufferSize = indexedBuffer.getVertexBufferCapacity();
@@ -41,7 +41,7 @@ public class IndexedStagingBuffer implements IAllocable
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext allocContext)
+	public void allocate(MemoryStack stack, IExecutionContext allocContext)
 	{
 		context = (ExecutionContext) allocContext;
 
@@ -58,7 +58,7 @@ public class IndexedStagingBuffer implements IAllocable
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		stagingBuffer.free(context);
 
@@ -70,7 +70,7 @@ public class IndexedStagingBuffer implements IAllocable
 	}
 
 	@Override
-	public boolean isAllocationDirty(IAllocationContext context)
+	public boolean isAllocationDirty(IExecutionContext context)
 	{
 		return false;
 	}

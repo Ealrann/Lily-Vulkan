@@ -1,11 +1,22 @@
 #version 450
-#extension GL_ARB_separate_shader_objects : enable
 
 #define WIDTH 800
 #define HEIGHT 600
-#define WORKGROUP_SIZE 32
 
-layout (local_size_x = WORKGROUP_SIZE, local_size_y = WORKGROUP_SIZE, local_size_z = 1) in;
+#define WORKGROUP_SIDE 8
+
+const int WIDTH_IN_TILE = WIDTH / WORKGROUP_SIDE;
+const int TILE_SIZE = WORKGROUP_SIDE * WORKGROUP_SIDE;
+
+const int EDGE_SIZE = (WORKGROUP_SIDE * 4) + 4;
+
+
+const int SWIZZLE_SIZE = 2;
+const int SWIZZLE_AREA = SWIZZLE_SIZE * SWIZZLE_SIZE;
+const int WIDTH_IN_SWIZZLE = WIDTH / SWIZZLE_SIZE;
+
+
+layout (local_size_x = WORKGROUP_SIDE, local_size_y = WORKGROUP_SIDE, local_size_z = 1) in;
 
 layout(binding = 0) readonly buffer buf1 {
    int data[];
@@ -15,71 +26,226 @@ layout(binding = 1) buffer buf2 {
    int data[];
 } nextBoard;
 
+// const ivec2 UP_VEC = ivec2(0, -1);
+// const ivec2 UP_RIGHT_VEC = ivec2(1, -1);
+// const ivec2 RIGHT_VEC = ivec2(1, 0);
+// const ivec2 RIGHT_DOWN_VEC = ivec2(1, 1);
+// const ivec2 DOWN_VEC = ivec2(0, 1);
+// const ivec2 DOWN_LEFT_VEC = ivec2(-1, 1);
+// const ivec2 LEFT_VEC = ivec2(-1, 0);
+// const ivec2 LEFT_UP_VEC = ivec2(-1, -1);
+
+shared int localData[WORKGROUP_SIDE + 2][WORKGROUP_SIDE + 2];
+
+void setExtraLoc(ivec2 extraLoc);
+ivec2 computeExtraLoc();
+uint globalIndexFromGlobal(ivec2 globalLocation);
+uint globalIndexFromLocal();
+
 void main() {
 
+  bool valid = true;
   uint x = gl_GlobalInvocationID.x;
   uint y = gl_GlobalInvocationID.y;
-  uint arrayLocation = WIDTH * y + x;
+  int localX = int(gl_LocalInvocationID.x + 1);
+  int localY = int(gl_LocalInvocationID.y + 1);
+
+  uint globalIndex = globalIndexFromLocal();
+
+  if(x >= WIDTH || y >= HEIGHT)
+  {
+  	valid = false;
+  }
+  else
+  {
+    // Fill shared buffer
+    localData[localX][localY] = previousBoard.data[globalIndex];
+
+    if(gl_LocalInvocationIndex < EDGE_SIZE)
+    {
+      ivec2 extraLoc = computeExtraLoc();
+      setExtraLoc(extraLoc);
+    }
+    // bool up = false;
+    // bool down = false;
+    // bool right = false;
+    // bool left = false;
+    //
+    // if(gl_LocalInvocationID.x == 0 && x > 0)
+    // {
+    //   setExtraLoc(LEFT_VEC);
+    //   left = true;
+    // }
+    // if(gl_LocalInvocationID.y == 0 && y > 0)
+    // {
+    //   setExtraLoc(UP_VEC);
+    //   up = true;
+    // }
+    // if(gl_LocalInvocationID.x == WORKGROUP_SIDE - 1 && x < WIDTH - 1)
+    // {
+    //   setExtraLoc(RIGHT_VEC);
+    //   right = true;
+    // }
+    // if(gl_LocalInvocationID.y == WORKGROUP_SIDE - 1 && y < HEIGHT - 1)
+    // {
+    //   setExtraLoc(DOWN_VEC);
+    //   down = true;
+    // }
+    //
+    // if(left && up && x > 0 && y > 0)
+    // {
+    //   setExtraLoc(LEFT_UP_VEC);
+    // }
+    // if(up && right && x < WIDTH - 1 && y > 0)
+    // {
+    //   setExtraLoc(UP_RIGHT_VEC);
+    // }
+    // if(right && down && x < WIDTH - 1 && y < HEIGHT - 1)
+    // {
+    //   setExtraLoc(RIGHT_DOWN_VEC);
+    // }
+    // if(down && left && x > 0 && y < HEIGHT - 1)
+    // {
+    //   setExtraLoc(DOWN_LEFT_VEC);
+    // }
+  }
+
+  memoryBarrierShared();
+  barrier();
+
+  if(valid == false)
+  	return;
+
   uint countNeighboors = 0;
-  
+
   if (y > 0)
   {
     if (x > 0)
     {
       // x - 1 ; y - 1
-      countNeighboors += previousBoard.data[arrayLocation - 1 - WIDTH];
+      countNeighboors += localData[localX - 1][localY - 1];
     }
-    
+
     // x ; y - 1
-    countNeighboors += previousBoard.data[arrayLocation- WIDTH];
-    
+    countNeighboors += localData[localX][localY - 1];
+
     if(x < WIDTH - 1)
     {
       // x + 1 ; y - 1
-      countNeighboors += previousBoard.data[arrayLocation + 1 - WIDTH];
+      countNeighboors += localData[localX + 1][localY - 1];
     }
   }
-  
+
   if (x > 0)
   {
   	// x - 1 ; y
-  	countNeighboors += previousBoard.data[arrayLocation - 1];
+    countNeighboors += localData[localX - 1][localY];
   }
-  
+
   if(x < WIDTH - 1)
   {
     // x + 1 ; y
-    countNeighboors += previousBoard.data[arrayLocation + 1];
+    countNeighboors += localData[localX + 1][localY];
   }
-  
+
   if (y < HEIGHT - 1)
   {
     if (x > 0)
     {
       // x - 1 ; y + 1
-      countNeighboors += previousBoard.data[arrayLocation - 1 + WIDTH];
+      countNeighboors += localData[localX - 1][localY + 1];
     }
-    
+
     // x ; y + 1
-    countNeighboors += previousBoard.data[arrayLocation + WIDTH];
-    
+    countNeighboors += localData[localX][localY + 1];
+
     if(x < WIDTH - 1)
     {
       // x + 1 ; y + 1
-      countNeighboors += previousBoard.data[arrayLocation + 1 + WIDTH];
+      countNeighboors += localData[localX + 1][localY + 1];
     }
   }
-  
-  if(countNeighboors == 3)
+
+  switch(countNeighboors)
   {
-  	nextBoard.data[arrayLocation] = 1;
-  } 
-  else if (countNeighboors == 2) 
-  {
-  	nextBoard.data[arrayLocation] = previousBoard.data[arrayLocation];
+    case 3:
+      nextBoard.data[globalIndex] = 1;
+      break;
+    case 2:
+      nextBoard.data[globalIndex] = localData[localX][localY];
+      break;
+    default:
+      nextBoard.data[globalIndex] = 0;
+      break;
   }
-  else 
+}
+
+// void setExtraLoc(ivec2 extraLoc)
+// {
+//   ivec2 extraLocalLoc = ivec2(gl_LocalInvocationID.xy + 1) + extraLoc;
+//   ivec2 extraGlobalLoc = ivec2(gl_GlobalInvocationID.xy) + extraLoc;
+//
+//   if (extraGlobalLoc.x >= 0 && extraGlobalLoc.y >= 0 && extraGlobalLoc.x < WIDTH && extraGlobalLoc.y < HEIGHT)
+//   {
+//     uint extraIndex = globalIndexFromGlobal(extraGlobalLoc);
+//     localData[extraLocalLoc.x][extraLocalLoc.y] = previousBoard.data[extraIndex];
+//   }
+// }
+
+void setExtraLoc(ivec2 extraLoc)
+{
+  ivec2 extraGlobalLoc = ivec2(gl_WorkGroupID.xy * gl_WorkGroupSize.xy) + extraLoc - 1;
+
+  if (extraGlobalLoc.x >= 0 && extraGlobalLoc.y >= 0 && extraGlobalLoc.x < WIDTH && extraGlobalLoc.y < HEIGHT)
   {
-  	nextBoard.data[arrayLocation] = 0;
+    uint extraIndex = globalIndexFromGlobal(extraGlobalLoc);
+    localData[extraLoc.x][extraLoc.y] = previousBoard.data[extraIndex];
   }
+}
+
+uint globalIndexFromGlobal(ivec2 loc)
+{
+  ivec2 workgroupLoc = loc / WORKGROUP_SIDE;
+  ivec2 localId = loc - workgroupLoc * WORKGROUP_SIDE;
+
+  uint tileIndex = (workgroupLoc.x + workgroupLoc.y * WIDTH_IN_TILE) * TILE_SIZE;
+  uint index = tileIndex + localId.x + localId.y * WORKGROUP_SIDE;
+
+  return index;
+}
+
+uint globalIndexFromLocal()
+{
+  return (gl_WorkGroupID.x + gl_WorkGroupID.y * WIDTH_IN_TILE) * TILE_SIZE + gl_LocalInvocationIndex;
+}
+
+ivec2 computeExtraLoc()
+{
+	ivec2 res = ivec2(0, 0);
+	int index = int(gl_LocalInvocationIndex);
+
+  int offset = index >> 2;
+  int modulo = index ^ (offset << 2);
+
+  switch(modulo)
+  {
+    case 0 :
+      res.x = offset;
+      res.y = 0;
+      break;
+    case 1 :
+      res.x = WORKGROUP_SIDE + 1;
+      res.y = offset;
+      break;
+    case 2 :
+      res.x = WORKGROUP_SIDE + 1 - offset;
+      res.y = WORKGROUP_SIDE + 1;
+      break;
+    case 3 :
+      res.x = 0;
+      res.y = WORKGROUP_SIDE + 1 - offset;
+      break;
+  }
+
+	return res;
 }

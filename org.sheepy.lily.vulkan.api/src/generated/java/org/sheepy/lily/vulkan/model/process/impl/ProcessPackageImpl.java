@@ -21,20 +21,25 @@ import org.sheepy.lily.core.model.root.RootPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.AbstractCompositePipeline;
-import org.sheepy.lily.vulkan.model.process.AbstractPipeline;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
+import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
+import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.Configuration;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
-import org.sheepy.lily.vulkan.model.process.IPipelineUnit;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.IProcessPart;
+import org.sheepy.lily.vulkan.model.process.Pipeline;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
-import org.sheepy.lily.vulkan.model.process.PipelinePkg;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.lily.vulkan.model.process.PushBufferTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
+import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,13 +61,28 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pipelinePkgEClass = null;
+	private EClass configurationEClass = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass configurationEClass = null;
+	private EClass processPartPkgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iPipelineTaskEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iProcessPartEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,31 +94,49 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass compositeTaskEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass iPipelineEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abstractPipelineEClass = null;
+	private EClass taskPkgEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iPipelineUnitEClass = null;
+	private EClass pipelineEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abstractCompositePipelineEClass = null;
+	private EClass bindDescriptorSetsEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass pushConstantEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pushBufferTaskEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -157,10 +195,11 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		TypesPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
+		EnumerationPackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
-		EnumerationPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 
@@ -217,7 +256,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_PipelinePkg()
+	public EReference getAbstractProcess_PartPkg()
 	{
 		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(2);
 	}
@@ -261,31 +300,64 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPipelinePkg()
-	{
-		return pipelinePkgEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPipelinePkg_Pipelines()
-	{
-		return (EReference) pipelinePkgEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getConfiguration()
 	{
 		return configurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getProcessPartPkg()
+	{
+		return processPartPkgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getProcessPartPkg_Parts()
+	{
+		return (EReference) processPartPkgEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIPipelineTask()
+	{
+		return iPipelineTaskEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIPipelineTask_Enabled()
+	{
+		return (EAttribute) iPipelineTaskEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIProcessPart()
+	{
+		return iProcessPartEClass;
 	}
 
 	/**
@@ -305,7 +377,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getPipelineBarrier_Barrier()
+	public EReference getPipelineBarrier_Barriers()
 	{
 		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(0);
 	}
@@ -316,9 +388,31 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getPipelineBarrier_SrcStage()
+	{
+		return (EAttribute) pipelineBarrierEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPipelineBarrier_DstStage()
+	{
+		return (EAttribute) pipelineBarrierEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getPipelineBarrier_SrcQueue()
 	{
-		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(1);
+		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -329,7 +423,40 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getPipelineBarrier_DstQueue()
 	{
-		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(2);
+		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCompositeTask()
+	{
+		return compositeTaskEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCompositeTask_RepeatCount()
+	{
+		return (EAttribute) compositeTaskEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeTask_Tasks()
+	{
+		return (EReference) compositeTaskEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -371,7 +498,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getIPipeline_PushBuffer()
+	public EReference getIPipeline_PushConstantRanges()
 	{
 		return (EReference) iPipelineEClass.getEStructuralFeatures().get(2);
 	}
@@ -382,9 +509,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getAbstractPipeline()
+	public EReference getIPipeline_DescriptorSetRef()
 	{
-		return abstractPipelineEClass;
+		return (EReference) iPipelineEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -393,9 +520,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractPipeline_Units()
+	public EReference getIPipeline_DescriptorSet()
 	{
-		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(0);
+		return (EReference) iPipelineEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -404,9 +531,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractPipeline_DescriptorSetRef()
+	public EReference getIPipeline_TaskPkg()
 	{
-		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(1);
+		return (EReference) iPipelineEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -415,9 +542,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractPipeline_DescriptorSet()
+	public EClass getTaskPkg()
 	{
-		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(2);
+		return taskPkgEClass;
 	}
 
 	/**
@@ -426,9 +553,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractPipeline_Constants()
+	public EReference getTaskPkg_Tasks()
 	{
-		return (EReference) abstractPipelineEClass.getEStructuralFeatures().get(3);
+		return (EReference) taskPkgEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -437,9 +564,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getIPipelineUnit()
+	public EClass getPipeline()
 	{
-		return iPipelineUnitEClass;
+		return pipelineEClass;
 	}
 
 	/**
@@ -448,9 +575,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getAbstractCompositePipeline()
+	public EClass getBindDescriptorSets()
 	{
-		return abstractCompositePipelineEClass;
+		return bindDescriptorSetsEClass;
 	}
 
 	/**
@@ -459,9 +586,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractCompositePipeline_Pipelines()
+	public EAttribute getBindDescriptorSets_Index()
 	{
-		return (EReference) abstractCompositePipelineEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) bindDescriptorSetsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -473,6 +600,50 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EClass getPushConstant()
 	{
 		return pushConstantEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPushConstant_Stages()
+	{
+		return (EAttribute) pushConstantEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPushConstant_Data()
+	{
+		return (EAttribute) pushConstantEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPushBufferTask()
+	{
+		return pushBufferTaskEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPushBufferTask_PushBuffer()
+	{
+		return (EReference) pushBufferTaskEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -509,38 +680,54 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__PIPELINE_PKG);
+		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__PART_PKG);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SIGNALS);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__WAIT_FOR);
 
-		pipelinePkgEClass = createEClass(PIPELINE_PKG);
-		createEReference(pipelinePkgEClass, PIPELINE_PKG__PIPELINES);
-
 		configurationEClass = createEClass(CONFIGURATION);
 
-		pipelineBarrierEClass = createEClass(PIPELINE_BARRIER);
-		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__BARRIER);
-		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__SRC_QUEUE);
-		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__DST_QUEUE);
+		processPartPkgEClass = createEClass(PROCESS_PART_PKG);
+		createEReference(processPartPkgEClass, PROCESS_PART_PKG__PARTS);
+
+		iPipelineTaskEClass = createEClass(IPIPELINE_TASK);
+		createEAttribute(iPipelineTaskEClass, IPIPELINE_TASK__ENABLED);
+
+		iProcessPartEClass = createEClass(IPROCESS_PART);
 
 		iPipelineEClass = createEClass(IPIPELINE);
 		createEAttribute(iPipelineEClass, IPIPELINE__ENABLED);
 		createEAttribute(iPipelineEClass, IPIPELINE__STAGE);
-		createEReference(iPipelineEClass, IPIPELINE__PUSH_BUFFER);
+		createEReference(iPipelineEClass, IPIPELINE__PUSH_CONSTANT_RANGES);
+		createEReference(iPipelineEClass, IPIPELINE__DESCRIPTOR_SET_REF);
+		createEReference(iPipelineEClass, IPIPELINE__DESCRIPTOR_SET);
+		createEReference(iPipelineEClass, IPIPELINE__TASK_PKG);
 
-		abstractPipelineEClass = createEClass(ABSTRACT_PIPELINE);
-		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__UNITS);
-		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__DESCRIPTOR_SET_REF);
-		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__DESCRIPTOR_SET);
-		createEReference(abstractPipelineEClass, ABSTRACT_PIPELINE__CONSTANTS);
+		taskPkgEClass = createEClass(TASK_PKG);
+		createEReference(taskPkgEClass, TASK_PKG__TASKS);
 
-		iPipelineUnitEClass = createEClass(IPIPELINE_UNIT);
+		pipelineEClass = createEClass(PIPELINE);
 
-		abstractCompositePipelineEClass = createEClass(ABSTRACT_COMPOSITE_PIPELINE);
-		createEReference(abstractCompositePipelineEClass, ABSTRACT_COMPOSITE_PIPELINE__PIPELINES);
+		pipelineBarrierEClass = createEClass(PIPELINE_BARRIER);
+		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__BARRIERS);
+		createEAttribute(pipelineBarrierEClass, PIPELINE_BARRIER__SRC_STAGE);
+		createEAttribute(pipelineBarrierEClass, PIPELINE_BARRIER__DST_STAGE);
+		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__SRC_QUEUE);
+		createEReference(pipelineBarrierEClass, PIPELINE_BARRIER__DST_QUEUE);
+
+		compositeTaskEClass = createEClass(COMPOSITE_TASK);
+		createEAttribute(compositeTaskEClass, COMPOSITE_TASK__REPEAT_COUNT);
+		createEReference(compositeTaskEClass, COMPOSITE_TASK__TASKS);
+
+		bindDescriptorSetsEClass = createEClass(BIND_DESCRIPTOR_SETS);
+		createEAttribute(bindDescriptorSetsEClass, BIND_DESCRIPTOR_SETS__INDEX);
 
 		pushConstantEClass = createEClass(PUSH_CONSTANT);
+		createEAttribute(pushConstantEClass, PUSH_CONSTANT__STAGES);
+		createEAttribute(pushConstantEClass, PUSH_CONSTANT__DATA);
+
+		pushBufferTaskEClass = createEClass(PUSH_BUFFER_TASK);
+		createEReference(pushBufferTaskEClass, PUSH_BUFFER_TASK__PUSH_BUFFER);
 	}
 
 	/**
@@ -574,14 +761,16 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				.getEPackage(EcorePackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ResourcePackage.eNS_URI);
-		RootPackage theRootPackage = (RootPackage) EPackage.Registry.INSTANCE
-				.getEPackage(RootPackage.eNS_URI);
-		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
-				.getEPackage(BarrierPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
 				.getEPackage(TypesPackage.eNS_URI);
 		EnumerationPackage theEnumerationPackage = (EnumerationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(EnumerationPackage.eNS_URI);
+		PipelinePackage thePipelinePackage = (PipelinePackage) EPackage.Registry.INSTANCE
+				.getEPackage(PipelinePackage.eNS_URI);
+		RootPackage theRootPackage = (RootPackage) EPackage.Registry.INSTANCE
+				.getEPackage(RootPackage.eNS_URI);
+		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
+				.getEPackage(BarrierPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -589,15 +778,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		// Add supertypes to classes
 		abstractProcessEClass.getESuperTypes().add(theVulkanPackage.getIProcess());
-		pipelineBarrierEClass.getESuperTypes().add(theRootPackage.getLObject());
-		pipelineBarrierEClass.getESuperTypes().add(this.getIPipelineUnit());
-		iPipelineEClass.getESuperTypes().add(theRootPackage.getLObject());
+		iPipelineTaskEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iPipelineEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		abstractPipelineEClass.getESuperTypes().add(this.getIPipeline());
-		abstractPipelineEClass.getESuperTypes().add(theVulkanPackage.getIResourceContainer());
-		iPipelineUnitEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		abstractCompositePipelineEClass.getESuperTypes().add(this.getAbstractPipeline());
-		pushConstantEClass.getESuperTypes().add(this.getIPipelineUnit());
+		iPipelineEClass.getESuperTypes().add(theVulkanPackage.getIResourceContainer());
+		iPipelineEClass.getESuperTypes().add(this.getIProcessPart());
+		pipelineEClass.getESuperTypes().add(this.getIPipeline());
+		pipelineBarrierEClass.getESuperTypes().add(theRootPackage.getLObject());
+		pipelineBarrierEClass.getESuperTypes().add(this.getIPipelineTask());
+		compositeTaskEClass.getESuperTypes().add(this.getIPipelineTask());
+		bindDescriptorSetsEClass.getESuperTypes().add(this.getIPipelineTask());
+		pushConstantEClass.getESuperTypes().add(this.getIPipelineTask());
+		pushBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT,
@@ -610,7 +801,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				theResourcePackage.getDescriptorSetPkg(), null, "descriptorSetPkg", null, 0, 1,
 				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_PipelinePkg(), this.getPipelinePkg(), null, "pipelinePkg",
+		initEReference(getAbstractProcess_PartPkg(), this.getProcessPartPkg(), null, "partPkg",
 				null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
@@ -626,29 +817,23 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(pipelinePkgEClass, PipelinePkg.class, "PipelinePkg", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPipelinePkg_Pipelines(), this.getIPipeline(), null, "pipelines", null, 0,
-				-1, PipelinePkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(configurationEClass, Configuration.class, "Configuration", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", !IS_ABSTRACT,
+		initEClass(processPartPkgEClass, ProcessPartPkg.class, "ProcessPartPkg", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPipelineBarrier_Barrier(), theBarrierPackage.getBarrier(), null,
-				"barrier", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getPipelineBarrier_SrcQueue(), this.getAbstractProcess(), null, "srcQueue",
-				null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getPipelineBarrier_DstQueue(), this.getAbstractProcess(), null, "dstQueue",
-				null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEReference(getProcessPartPkg_Parts(), this.getIProcessPart(), null, "parts", null, 0,
+				-1, ProcessPartPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iPipelineTaskEClass, IPipelineTask.class, "IPipelineTask", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIPipelineTask_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true",
+				0, 1, IPipelineTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iProcessPartEClass, IProcessPart.class, "IProcessPart", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iPipelineEClass, IPipeline.class, "IPipeline", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -658,43 +843,82 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		initEAttribute(getIPipeline_Stage(), theEnumerationPackage.getECommandStage(), "stage",
 				"Render", 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIPipeline_PushBuffer(), theResourcePackage.getPushBuffer(), null,
-				"pushBuffer", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(abstractPipelineEClass, AbstractPipeline.class, "AbstractPipeline", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractPipeline_Units(), this.getIPipelineUnit(), null, "units", null, 0,
-				-1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getAbstractPipeline_DescriptorSetRef(),
-				theResourcePackage.getDescriptorSet(), null, "descriptorSetRef", null, 0, 1,
-				AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractPipeline_DescriptorSet(), theResourcePackage.getDescriptorSet(),
-				null, "descriptorSet", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT,
+		initEReference(getIPipeline_PushConstantRanges(), thePipelinePackage.getPushConstantRange(),
+				null, "pushConstantRanges", null, 0, -1, IPipeline.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractPipeline_Constants(), theResourcePackage.getAbstractConstants(),
-				null, "constants", null, 0, 1, AbstractPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getIPipeline_DescriptorSetRef(), theResourcePackage.getDescriptorSet(), null,
+				"descriptorSetRef", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEReference(getIPipeline_DescriptorSet(), theResourcePackage.getDescriptorSet(), null,
+				"descriptorSet", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getIPipeline_TaskPkg(), this.getTaskPkg(), null, "taskPkg", null, 0, 1,
+				IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iPipelineUnitEClass, IPipelineUnit.class, "IPipelineUnit", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(abstractCompositePipelineEClass, AbstractCompositePipeline.class,
-				"AbstractCompositePipeline", IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(taskPkgEClass, TaskPkg.class, "TaskPkg", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractCompositePipeline_Pipelines(), this.getAbstractPipeline(), null,
-				"pipelines", null, 0, -1, AbstractCompositePipeline.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTaskPkg_Tasks(), this.getIPipelineTask(), null, "tasks", null, 0, -1,
+				TaskPkg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pipelineEClass, Pipeline.class, "Pipeline", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(pipelineBarrierEClass, PipelineBarrier.class, "PipelineBarrier", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPipelineBarrier_Barriers(), theBarrierPackage.getBarrier(), null,
+				"barriers", null, 1, -1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPipelineBarrier_SrcStage(), theEnumerationPackage.getEPipelineStage(),
+				"srcStage", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPipelineBarrier_DstStage(), theEnumerationPackage.getEPipelineStage(),
+				"dstStage", null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPipelineBarrier_SrcQueue(), this.getAbstractProcess(), null, "srcQueue",
+				null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getPipelineBarrier_DstQueue(), this.getAbstractProcess(), null, "dstQueue",
+				null, 0, 1, PipelineBarrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(compositeTaskEClass, CompositeTask.class, "CompositeTask", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCompositeTask_RepeatCount(), theEcorePackage.getEInt(), "repeatCount",
+				"1", 0, 1, CompositeTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeTask_Tasks(), this.getIPipelineTask(), null, "tasks", null, 0,
+				-1, CompositeTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bindDescriptorSetsEClass, BindDescriptorSets.class, "BindDescriptorSets",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBindDescriptorSets_Index(), theEcorePackage.getEInt(), "index", "0", 0, 1,
+				BindDescriptorSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPushConstant_Stages(), theEnumerationPackage.getEShaderStage(), "stages",
+				null, 1, -1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPushConstant_Data(), theResourcePackage.getByteBuffer(), "data", null, 0,
+				1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pushBufferTaskEClass, PushBufferTask.class, "PushBufferTask", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPushBufferTask_PushBuffer(), theResourcePackage.getPushBuffer(), null,
+				"pushBuffer", null, 1, 1, PushBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

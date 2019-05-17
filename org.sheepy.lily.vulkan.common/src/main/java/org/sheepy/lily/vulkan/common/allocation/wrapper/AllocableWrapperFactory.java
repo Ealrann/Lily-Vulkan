@@ -3,69 +3,66 @@ package org.sheepy.lily.vulkan.common.allocation.wrapper;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationAdapter;
+import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.allocation.IAllocationContext;
+import org.sheepy.vulkan.allocation.IAllocationContextProvider;
 import org.sheepy.vulkan.allocation.IAllocationObject;
+import org.sheepy.vulkan.allocation.IAllocationObject.IAllocationContainer;
 
 public class AllocableWrapperFactory
 {
 	public static final AllocableWrapperFactory INSTANCE = new AllocableWrapperFactory();
 
-	private final Map<IAllocationObject, AllocationWrapper> map = new HashMap<>();
+	private final Map<Object, IAllocationWrapper<?>> map = new HashMap<>();
 
-	public AllocationWrapper wrap(Object object)
+	@SuppressWarnings("unchecked")
+	public <T extends IAllocationContext> IAllocationWrapper<T> wrap(IAllocationObject<T> object)
 	{
-		if (object instanceof EObject)
-		{
-			return wrap((EObject) object);
-		}
-		else if (object instanceof IAllocationObject)
-		{
-			return wrap((IAllocationObject) object);
-		}
-
-		return null;
-	}
-
-	public AllocationWrapper wrap(IAllocationObject object)
-	{
-		AllocationWrapper res = map.get(object);
+		// TODO cette map est source de fuite memoire.
+		// Chaque wrapper devrait contenir/maintenir sa propre liste de wrappers fils.
+		IAllocationWrapper<T> res = (IAllocationWrapper<T>) map.get(object);
 
 		if (res == null)
 		{
-			res = new AllocationWrapper(object);
+			if (object instanceof IAllocationContextProvider)
+			{
+				res = createContextProvider((IAllocationContextProvider<T, ?>) object);
+			}
+			else if (object instanceof IAllocationContainer && object instanceof IAllocable)
+			{
+				res = createAllocableNode(object);
+			}
+			else if (object instanceof IAllocable)
+			{
+				res = create((IAllocable<T>) object);
+			}
+			else if (object instanceof IAllocationContainer)
+			{
+				res = create((IAllocationContainer<T>) object);
+			}
 			map.put(object, res);
 		}
 
 		return res;
 	}
 
-	public AllocationWrapper wrap(EObject object)
+	private <T extends IAllocationContext> AllocationContextProviderWrapper<T, ?> createContextProvider(IAllocationContextProvider<T, ?> object)
 	{
-		AllocationWrapper res = null;
+		return new AllocationContextProviderWrapper<>(object);
+	}
 
-		final var adapters = object.eAdapters();
-		for (int i = 0; i < adapters.size(); i++)
-		{
-			final var adapter = adapters.get(i);
-			if (adapter instanceof AllocationWrapper)
-			{
-				res = (AllocationWrapper) adapter;
-				break;
-			}
-		}
+	private <T extends IAllocationContext> AllocableNodeWrapper<T> createAllocableNode(Object object)
+	{
+		return new AllocableNodeWrapper<>(object);
+	}
 
-		if (res == null)
-		{
-			final IAllocationAdapter adapter = IAllocationAdapter.adapt(object);
+	private <T extends IAllocationContext> AllocableWrapper<T> create(IAllocable<T> object)
+	{
+		return new AllocableWrapper<>(object);
+	}
 
-			if (adapter != null)
-			{
-				res = new AllocationWrapper(adapter);
-				adapters.add(res);
-			}
-		}
-
-		return res;
+	public <T extends IAllocationContext> AllocationNodeWrapper<T> create(IAllocationContainer<T> object)
+	{
+		return new AllocationNodeWrapper<>(object);
 	}
 }

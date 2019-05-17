@@ -21,18 +21,4 @@
             type="nuklear"
             class="org.sheepy.lily.vulkan.extra.nuklear.model.util.NuklearResourceFactoryImpl"/>
    </extension>
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Graphic -->
-      <package
-            uri="org.sheepy.lily.vulkan.extra.graphic.model"
-            class="org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage"
-            genModel="model/GraphicExtra.xcore"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Graphic -->
-      <parser
-            type="graphicextra"
-            class="org.sheepy.lily.vulkan.extra.graphic.model.util.GraphicExtraResourceFactoryImpl"/>
-   </extension>
 </plugin>

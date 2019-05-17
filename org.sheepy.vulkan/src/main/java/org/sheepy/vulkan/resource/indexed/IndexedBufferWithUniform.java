@@ -5,15 +5,13 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
-import org.sheepy.vulkan.allocation.IAllocationContext;
-import org.sheepy.vulkan.execution.ExecutionContext;
+import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferGPUFiller;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 
-public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T>
+public class IndexedBufferWithUniform extends IndexedBuffer
 {
 	final int USAGE = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
 	private final int uniformBufferCapacity;
@@ -22,36 +20,7 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 
 	boolean allocated = false;
 
-	public static <T extends IVertex> IndexedBufferWithUniform<T> alloc(ExecutionContext context,
-																		IndexedBufferData<T> datas)
-	{
-		return alloc(context, datas.meshDescriptor, datas.vertices, datas.indices,
-				datas.uniformData);
-	}
-
-	public static <T extends IVertex> IndexedBufferWithUniform<T> alloc(ExecutionContext context,
-																		IIndexedBufferDescriptor<T> indexedDescriptor,
-																		T[] vertices,
-																		int[] indices,
-																		byte[] uniformData)
-	{
-		final int vertexBufferSize = vertices.length * indexedDescriptor.sizeOfVertex();
-		final int indexBufferSize = indices.length * indexedDescriptor.sizeOfIndex();
-		final int uniformBufferSize = uniformData != null ? uniformData.length : 0;
-
-		final IndexedBufferWithUniform<T> res = new IndexedBufferWithUniform<>(indexedDescriptor,
-				vertexBufferSize, indexBufferSize, uniformBufferSize);
-
-		try (MemoryStack stack = MemoryStack.stackPush())
-		{
-			res.allocate(stack, context);
-			res.fillBuffer(stack, vertices, indices, uniformData);
-		}
-
-		return res;
-	}
-
-	public IndexedBufferWithUniform(IIndexedBufferDescriptor<T> meshDescriptor,
+	public IndexedBufferWithUniform(VkIndexedVertexDescriptor meshDescriptor,
 									int vertexBufferCapacity,
 									int indexBufferCapacity,
 									int uniformBufferCapacity)
@@ -64,7 +33,7 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 	}
 
 	@Override
-	public void allocate(MemoryStack stack, IAllocationContext context)
+	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
 		super.allocate(stack, context);
 
@@ -76,20 +45,16 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 		uniformBuffer.allocate(stack, context);
 	}
 
-	public void fillBuffer(MemoryStack stack, T[] vertices, int[] indices, byte[] uniformData)
+	public void fillBuffer(	MemoryStack stack,
+							ByteBuffer vertices,
+							int numberOfVertice,
+							ByteBuffer indices,
+							int numberOfIndice,
+							ByteBuffer uniforms,
+							int uniformDataCount)
 	{
-		super.fillBuffer(stack, vertices, indices);
+		super.fillBuffer(stack, vertices, numberOfVertice, indices, numberOfIndice);
 
-		final int uniformCount = uniformData != null ? uniformData.length : 0;
-		final var uniformBuffer = uniformCount != 0 ? MemoryUtil.memAlloc(uniformCount) : null;
-
-		fillBuffer(stack, uniformBuffer, uniformCount);
-
-		MemoryUtil.memFree(uniformBuffer);
-	}
-
-	private void fillBuffer(MemoryStack stack, ByteBuffer uniforms, int uniformDataCount)
-	{
 		final int uniformDataByteSize = uniformDataCount;
 		final var uniformFiller = new BufferGPUFiller(stack, context, uniformBuffer.getAddress());
 
@@ -109,7 +74,7 @@ public class IndexedBufferWithUniform<T extends IVertex> extends IndexedBuffer<T
 	}
 
 	@Override
-	public void free(IAllocationContext context)
+	public void free(IExecutionContext context)
 	{
 		super.free(context);
 

@@ -19,7 +19,7 @@ import org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ReferenceBufferBarrierImpl#getBufferAddress <em>Buffer Address</em>}</li>
+ *   <li>{@link org.sheepy.vulkan.model.barrier.impl.ReferenceBufferBarrierImpl#getBufferPtr <em>Buffer Ptr</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,24 +28,24 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 		implements ReferenceBufferBarrier
 {
 	/**
-	 * The default value of the '{@link #getBufferAddress() <em>Buffer Address</em>}' attribute.
+	 * The default value of the '{@link #getBufferPtr() <em>Buffer Ptr</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBufferAddress()
+	 * @see #getBufferPtr()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long BUFFER_ADDRESS_EDEFAULT = 0L;
+	protected static final long BUFFER_PTR_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getBufferAddress() <em>Buffer Address</em>}' attribute.
+	 * The cached value of the '{@link #getBufferPtr() <em>Buffer Ptr</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBufferAddress()
+	 * @see #getBufferPtr()
 	 * @generated
 	 * @ordered
 	 */
-	protected long bufferAddress = BUFFER_ADDRESS_EDEFAULT;
+	protected long bufferPtr = BUFFER_PTR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,9 +74,9 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	 * @generated
 	 */
 	@Override
-	public long getBufferAddress()
+	public long getBufferPtr()
 	{
-		return bufferAddress;
+		return bufferPtr;
 	}
 
 	/**
@@ -85,13 +85,12 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	 * @generated
 	 */
 	@Override
-	public void setBufferAddress(long newBufferAddress)
+	public void setBufferPtr(long newBufferPtr)
 	{
-		long oldBufferAddress = bufferAddress;
-		bufferAddress = newBufferAddress;
+		long oldBufferPtr = bufferPtr;
+		bufferPtr = newBufferPtr;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_ADDRESS, oldBufferAddress,
-				bufferAddress));
+				BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR, oldBufferPtr, bufferPtr));
 	}
 
 	/**
@@ -104,8 +103,8 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_ADDRESS:
-			return getBufferAddress();
+		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
+			return getBufferPtr();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,8 +119,8 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_ADDRESS:
-			setBufferAddress((Long) newValue);
+		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
+			setBufferPtr((Long) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,8 +136,8 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_ADDRESS:
-			setBufferAddress(BUFFER_ADDRESS_EDEFAULT);
+		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
+			setBufferPtr(BUFFER_PTR_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -154,8 +153,8 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	{
 		switch (featureID)
 		{
-		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_ADDRESS:
-			return bufferAddress != BUFFER_ADDRESS_EDEFAULT;
+		case BarrierPackage.REFERENCE_BUFFER_BARRIER__BUFFER_PTR:
+			return bufferPtr != BUFFER_PTR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -171,8 +170,8 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (bufferAddress: ");
-		result.append(bufferAddress);
+		result.append(" (bufferPtr: ");
+		result.append(bufferPtr);
 		result.append(')');
 		return result.toString();
 	}

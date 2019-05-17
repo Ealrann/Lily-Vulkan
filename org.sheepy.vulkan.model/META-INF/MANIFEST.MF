@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.ecore.xcore.lib,
- org.eclipse.emf.ecore.xmi;visibility:=reexport
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.sheepy.vulkan.model;visibility:=reexport
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.sheepy.vulkan.model.barrier,
@@ -23,4 +24,7 @@ Export-Package: org.sheepy.vulkan.model.barrier,
  org.sheepy.vulkan.model.enumeration.util,
  org.sheepy.vulkan.model.graphicpipeline,
  org.sheepy.vulkan.model.graphicpipeline.impl,
- org.sheepy.vulkan.model.graphicpipeline.util
+ org.sheepy.vulkan.model.graphicpipeline.util,
+ org.sheepy.vulkan.model.pipeline,
+ org.sheepy.vulkan.model.pipeline.impl,
+ org.sheepy.vulkan.model.pipeline.util

@@ -6,25 +6,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.sheepy.lily.core.model.inference.IInferenceObject;
-
-import org.sheepy.lily.core.model.root.LObject;
-
+import org.sheepy.lily.core.model.builder.Buildable;
+import org.sheepy.lily.core.model.builder.Builder;
 import org.sheepy.lily.core.model.types.LNamedElement;
-
 import org.sheepy.lily.vulkan.extra.nuklear.model.*;
-
 import org.sheepy.lily.vulkan.model.IResource;
-
-import org.sheepy.lily.vulkan.model.process.IPipeline;
-
-import org.sheepy.lily.vulkan.model.process.graphic.IGUIPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.IGraphicsPipeline;
-
-import org.sheepy.lily.vulkan.model.resource.AbstractConstants;
+import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
-import org.sheepy.lily.vulkan.model.resource.Constants;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +28,7 @@ import org.sheepy.lily.vulkan.model.resource.Constants;
  * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage
  * @generated
  */
-public class NuklearSwitch<T> extends Switch<T>
+public class NuklearSwitch<T1> extends Switch<T1>
 {
 	/**
 	 * The cached model package
@@ -85,32 +74,44 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
+	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
-			case NuklearPackage.NUKLEAR_PIPELINE:
+			case NuklearPackage.NUKLEAR_PIPELINE_BUILDER:
 			{
-				NuklearPipeline nuklearPipeline = (NuklearPipeline)theEObject;
-				T result = caseNuklearPipeline(nuklearPipeline);
-				if (result == null) result = caseIGUIPipeline(nuklearPipeline);
-				if (result == null) result = caseIGraphicsPipeline(nuklearPipeline);
-				if (result == null) result = caseIPipeline(nuklearPipeline);
-				if (result == null) result = caseLObject(nuklearPipeline);
-				if (result == null) result = caseLNamedElement(nuklearPipeline);
-				if (result == null) result = caseIInferenceObject(nuklearPipeline);
+				NuklearPipelineBuilder nuklearPipelineBuilder = (NuklearPipelineBuilder)theEObject;
+				T1 result = caseNuklearPipelineBuilder(nuklearPipelineBuilder);
+				if (result == null) result = caseBuilder(nuklearPipelineBuilder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NuklearPackage.NUKLEAR_CONSTANTS:
+			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS:
 			{
-				NuklearConstants nuklearConstants = (NuklearConstants)theEObject;
-				T result = caseNuklearConstants(nuklearConstants);
-				if (result == null) result = caseConstants(nuklearConstants);
-				if (result == null) result = caseAbstractConstants(nuklearConstants);
-				if (result == null) result = caseBasicResource(nuklearConstants);
-				if (result == null) result = caseIResource(nuklearConstants);
-				if (result == null) result = caseLNamedElement(nuklearConstants);
+				NuklearPushConstants nuklearPushConstants = (NuklearPushConstants)theEObject;
+				T1 result = caseNuklearPushConstants(nuklearPushConstants);
+				if (result == null) result = casePushConstant(nuklearPushConstants);
+				if (result == null) result = caseIPipelineTask(nuklearPushConstants);
+				if (result == null) result = caseLNamedElement(nuklearPushConstants);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NuklearPackage.NUKLEAR_LAYOUT_TASK:
+			{
+				NuklearLayoutTask nuklearLayoutTask = (NuklearLayoutTask)theEObject;
+				T1 result = caseNuklearLayoutTask(nuklearLayoutTask);
+				if (result == null) result = caseIPipelineTask(nuklearLayoutTask);
+				if (result == null) result = caseLNamedElement(nuklearLayoutTask);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NuklearPackage.NUKLEAR_CONTEXT:
+			{
+				NuklearContext nuklearContext = (NuklearContext)theEObject;
+				T1 result = caseNuklearContext(nuklearContext);
+				if (result == null) result = caseBasicResource(nuklearContext);
+				if (result == null) result = caseIResource(nuklearContext);
+				if (result == null) result = caseLNamedElement(nuklearContext);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -119,65 +120,81 @@ public class NuklearSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Pipeline Builder</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Pipeline Builder</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNuklearPipeline(NuklearPipeline object)
+	public T1 caseNuklearPipelineBuilder(NuklearPipelineBuilder object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constants</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Push Constants</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constants</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Push Constants</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNuklearConstants(NuklearConstants object)
+	public T1 caseNuklearPushConstants(NuklearPushConstants object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Layout Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IInference Object</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Layout Task</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIInferenceObject(IInferenceObject object)
+	public T1 caseNuklearLayoutTask(NuklearLayoutTask object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>LObject</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Context</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>LObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Context</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLObject(LObject object)
+	public T1 caseNuklearContext(NuklearContext object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Builder</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Builder</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Buildable<T>> T1 caseBuilder(Builder<T> object)
 	{
 		return null;
 	}
@@ -193,55 +210,39 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLNamedElement(LNamedElement object)
+	public T1 caseLNamedElement(LNamedElement object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IPipeline Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IPipeline Task</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPipeline(IPipeline object)
+	public T1 caseIPipelineTask(IPipelineTask object)
 	{
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IGraphics Pipeline</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Push Constant</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IGraphics Pipeline</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Push Constant</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIGraphicsPipeline(IGraphicsPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IGUI Pipeline</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IGUI Pipeline</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIGUIPipeline(IGUIPipeline object)
+	public T1 casePushConstant(PushConstant object)
 	{
 		return null;
 	}
@@ -257,7 +258,7 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIResource(IResource object)
+	public T1 caseIResource(IResource object)
 	{
 		return null;
 	}
@@ -273,39 +274,7 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBasicResource(BasicResource object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Constants</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Constants</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractConstants(AbstractConstants object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constants</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constants</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstants(Constants object)
+	public T1 caseBasicResource(BasicResource object)
 	{
 		return null;
 	}
@@ -322,7 +291,7 @@ public class NuklearSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
+	public T1 defaultCase(EObject object)
 	{
 		return null;
 	}
