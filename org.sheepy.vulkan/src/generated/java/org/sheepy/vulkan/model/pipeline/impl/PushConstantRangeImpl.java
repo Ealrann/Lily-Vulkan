@@ -12,9 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
@@ -118,7 +116,7 @@ public class PushConstantRangeImpl extends MinimalEObjectImpl.Container implemen
 	{
 		if (stages == null)
 		{
-			stages = new EDataTypeEList<EShaderStage>(EShaderStage.class, this,
+			stages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
 					PipelinePackage.PUSH_CONSTANT_RANGE__STAGES);
 		}
 		return stages;

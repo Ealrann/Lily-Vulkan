@@ -37,7 +37,7 @@ public interface PushConstantRange extends EObject
 	 * @return the value of the '<em>Stages</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EShaderStage
 	 * @see org.sheepy.vulkan.model.pipeline.PipelinePackage#getPushConstantRange_Stages()
-	 * @model unique="false" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	EList<EShaderStage> getStages();

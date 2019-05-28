@@ -12,7 +12,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage
 
 class PushConstantRange
 {
-	EShaderStage[1..*] stages
+	unique EShaderStage[1..*] stages
 	int offset = "0"
 	int size
 }

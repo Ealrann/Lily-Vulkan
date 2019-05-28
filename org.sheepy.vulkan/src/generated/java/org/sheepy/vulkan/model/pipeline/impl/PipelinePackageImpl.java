@@ -222,7 +222,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPushConstantRange_Stages(), theEnumerationPackage.getEShaderStage(),
 				"stages", null, 1, -1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPushConstantRange_Offset(), theEcorePackage.getEInt(), "offset", "0", 0,
 				1, PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
