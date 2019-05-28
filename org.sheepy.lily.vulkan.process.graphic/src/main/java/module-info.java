@@ -4,6 +4,7 @@ import org.sheepy.lily.vulkan.process.graphic.pipeline.GraphicsPipelineAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.BindIndexBufferAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.BindVertexBuferAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.BlitToSwapImageAdapter;
+import org.sheepy.lily.vulkan.process.graphic.pipeline.task.DrawAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.DrawIndexedAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.SetScissorAdapter;
 import org.sheepy.lily.vulkan.process.graphic.pipeline.task.SetViewportAdapter;
@@ -21,6 +22,7 @@ import org.sheepy.lily.vulkan.process.graphic.resource.VertexDescriptorAdapter;
 		VertexDescriptorAdapter.class,
 		IndexedVertexDescriptorAdapter.class,
 		DrawIndexedAdapter.class,
+		DrawAdapter.class,
 		BindIndexBufferAdapter.class,
 		BindVertexBuferAdapter.class,
 		SetScissorAdapter.class,

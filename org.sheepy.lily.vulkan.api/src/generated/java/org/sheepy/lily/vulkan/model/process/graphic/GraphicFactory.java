@@ -186,6 +186,15 @@ public interface GraphicFactory extends EFactory
 	DrawIndexed createDrawIndexed();
 
 	/**
+	 * Returns a new object of class '<em>Draw</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Draw</em>'.
+	 * @generated
+	 */
+	Draw createDraw();
+
+	/**
 	 * Returns a new object of class '<em>Vertex Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

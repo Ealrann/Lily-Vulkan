@@ -558,6 +558,31 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.Draw} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DrawItemProvider drawItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.Draw}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDrawAdapter()
+	{
+		if (drawItemProvider == null)
+		{
+			drawItemProvider = new DrawItemProvider(this);
+		}
+
+		return drawItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -928,6 +953,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (swapImageBarrierItemProvider != null) swapImageBarrierItemProvider.dispose();
 		if (blitToSwapImageItemProvider != null) blitToSwapImageItemProvider.dispose();
 		if (drawIndexedItemProvider != null) drawIndexedItemProvider.dispose();
+		if (drawItemProvider != null) drawItemProvider.dispose();
 		if (vertexDescriptorItemProvider != null) vertexDescriptorItemProvider.dispose();
 		if (attributeDescriptionItemProvider != null) attributeDescriptionItemProvider.dispose();
 		if (indexedVertexDescriptorItemProvider != null)
@@ -1014,6 +1040,10 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 
 				newChildDescriptors
 						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
+								GraphicFactory.eINSTANCE.createDraw()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
 								GraphicFactory.eINSTANCE.createBindVertexBuffer()));
 
 				newChildDescriptors
@@ -1059,6 +1089,10 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 				newChildDescriptors
 						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
 								GraphicFactory.eINSTANCE.createDrawIndexed()));
+
+				newChildDescriptors
+						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+								GraphicFactory.eINSTANCE.createDraw()));
 
 				newChildDescriptors
 						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,

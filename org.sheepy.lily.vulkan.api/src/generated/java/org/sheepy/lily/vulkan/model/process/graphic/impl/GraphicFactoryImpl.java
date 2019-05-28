@@ -100,6 +100,8 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createBlitToSwapImage();
 		case GraphicPackage.DRAW_INDEXED:
 			return createDrawIndexed();
+		case GraphicPackage.DRAW:
+			return createDraw();
 		case GraphicPackage.VERTEX_DESCRIPTOR:
 			return createVertexDescriptor();
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION:
@@ -336,6 +338,18 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		DrawIndexedImpl drawIndexed = new DrawIndexedImpl();
 		return drawIndexed;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Draw createDraw()
+	{
+		DrawImpl draw = new DrawImpl();
+		return draw;
 	}
 
 	/**

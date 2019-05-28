@@ -32,6 +32,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.ColorDomain;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.Draw;
 import org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration;
@@ -207,6 +208,13 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass drawIndexedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass drawEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1155,6 +1163,61 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getDraw()
+	{
+		return drawEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDraw_VertexCount()
+	{
+		return (EAttribute) drawEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDraw_InstanceCount()
+	{
+		return (EAttribute) drawEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDraw_FirstVertex()
+	{
+		return (EAttribute) drawEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDraw_FirstInstance()
+	{
+		return (EAttribute) drawEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getVertexDescriptor()
 	{
 		return vertexDescriptorEClass;
@@ -1596,6 +1659,12 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(drawIndexedEClass, DRAW_INDEXED__VERTEX_OFFSET);
 		createEAttribute(drawIndexedEClass, DRAW_INDEXED__FIRST_INSTANCE);
 
+		drawEClass = createEClass(DRAW);
+		createEAttribute(drawEClass, DRAW__VERTEX_COUNT);
+		createEAttribute(drawEClass, DRAW__INSTANCE_COUNT);
+		createEAttribute(drawEClass, DRAW__FIRST_VERTEX);
+		createEAttribute(drawEClass, DRAW__FIRST_INSTANCE);
+
 		vertexDescriptorEClass = createEClass(VERTEX_DESCRIPTOR);
 		createEReference(vertexDescriptorEClass, VERTEX_DESCRIPTOR__ATTRIBUTES);
 		createEAttribute(vertexDescriptorEClass, VERTEX_DESCRIPTOR__STRIDE_LENGTH);
@@ -1698,6 +1767,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		swapImageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
 		blitToSwapImageEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		drawIndexedEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		drawEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		indexedVertexDescriptorEClass.getESuperTypes().add(this.getVertexDescriptor());
 		bindVertexBufferEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		setScissorEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
@@ -1964,6 +2034,21 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getDrawIndexed_FirstInstance(), theEcorePackage.getEInt(), "firstInstance",
 				"0", 0, 1, DrawIndexed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(drawEClass, Draw.class, "Draw", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDraw_VertexCount(), theEcorePackage.getEInt(), "vertexCount", null, 1, 1,
+				Draw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDraw_InstanceCount(), theEcorePackage.getEInt(), "instanceCount", "1", 0,
+				1, Draw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDraw_FirstVertex(), theEcorePackage.getEInt(), "firstVertex", "0", 0, 1,
+				Draw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDraw_FirstInstance(), theEcorePackage.getEInt(), "firstInstance", "0", 0,
+				1, Draw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vertexDescriptorEClass, VertexDescriptor.class, "VertexDescriptor", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

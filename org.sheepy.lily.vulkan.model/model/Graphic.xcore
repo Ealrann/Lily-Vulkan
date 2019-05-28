@@ -191,6 +191,14 @@ class DrawIndexed extends IPipelineTask
 	int firstInstance = "0"
 }
 
+class Draw extends IPipelineTask
+{
+	int[1..1] vertexCount
+	int instanceCount = "1"
+	int firstVertex = "0"
+	int firstInstance = "0"
+}
+
 class VertexDescriptor
 {
 	contains AttributeDescription[1..*] attributes

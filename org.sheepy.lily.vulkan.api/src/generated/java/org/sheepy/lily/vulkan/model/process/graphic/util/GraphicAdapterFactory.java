@@ -183,6 +183,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createDrawIndexedAdapter();
 		}
 		@Override
+		public Adapter caseDraw(Draw object)
+		{
+			return createDrawAdapter();
+		}
+		@Override
 		public Adapter caseVertexDescriptor(VertexDescriptor object)
 		{
 			return createVertexDescriptorAdapter();
@@ -599,6 +604,21 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createDrawIndexedAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.Draw <em>Draw</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Draw
+	 * @generated
+	 */
+	public Adapter createDrawAdapter()
 	{
 		return null;
 	}

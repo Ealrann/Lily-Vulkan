@@ -1499,6 +1499,88 @@ public interface GraphicPackage extends EPackage
 	int DRAW_INDEXED_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawImpl <em>Draw</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DrawImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDraw()
+	 * @generated
+	 */
+	int DRAW = 20;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW__NAME = ProcessPackage.IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Vertex Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW__VERTEX_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW__INSTANCE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>First Vertex</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW__FIRST_VERTEX = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>First Instance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW__FIRST_INSTANCE = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Draw</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>Draw</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAW_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl <em>Vertex Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1506,7 +1588,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexDescriptor()
 	 * @generated
 	 */
-	int VERTEX_DESCRIPTOR = 20;
+	int VERTEX_DESCRIPTOR = 21;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -1552,7 +1634,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttributeDescription()
 	 * @generated
 	 */
-	int ATTRIBUTE_DESCRIPTION = 21;
+	int ATTRIBUTE_DESCRIPTION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
@@ -1598,7 +1680,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIndexedVertexDescriptor()
 	 * @generated
 	 */
-	int INDEXED_VERTEX_DESCRIPTOR = 22;
+	int INDEXED_VERTEX_DESCRIPTOR = 23;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -1653,7 +1735,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBindVertexBuffer()
 	 * @generated
 	 */
-	int BIND_VERTEX_BUFFER = 23;
+	int BIND_VERTEX_BUFFER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1717,7 +1799,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSetScissor()
 	 * @generated
 	 */
-	int SET_SCISSOR = 24;
+	int SET_SCISSOR = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1799,7 +1881,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getSetViewport()
 	 * @generated
 	 */
-	int SET_VIEWPORT = 25;
+	int SET_VIEWPORT = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1899,7 +1981,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexBinding()
 	 * @generated
 	 */
-	int VERTEX_BINDING = 26;
+	int VERTEX_BINDING = 27;
 
 	/**
 	 * The feature id for the '<em><b>Buffer</b></em>' reference.
@@ -1945,7 +2027,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getBindIndexBuffer()
 	 * @generated
 	 */
-	int BIND_INDEX_BUFFER = 27;
+	int BIND_INDEX_BUFFER = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2783,6 +2865,60 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getDrawIndexed_FirstInstance();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.Draw <em>Draw</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Draw</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Draw
+	 * @generated
+	 */
+	EClass getDraw();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Draw#getVertexCount <em>Vertex Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Vertex Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Draw#getVertexCount()
+	 * @see #getDraw()
+	 * @generated
+	 */
+	EAttribute getDraw_VertexCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Draw#getInstanceCount <em>Instance Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Draw#getInstanceCount()
+	 * @see #getDraw()
+	 * @generated
+	 */
+	EAttribute getDraw_InstanceCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Draw#getFirstVertex <em>First Vertex</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>First Vertex</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Draw#getFirstVertex()
+	 * @see #getDraw()
+	 * @generated
+	 */
+	EAttribute getDraw_FirstVertex();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.Draw#getFirstInstance <em>First Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>First Instance</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.Draw#getFirstInstance()
+	 * @see #getDraw()
+	 * @generated
+	 */
+	EAttribute getDraw_FirstInstance();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor <em>Vertex Descriptor</em>}'.
@@ -3761,6 +3897,48 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute DRAW_INDEXED__FIRST_INSTANCE = eINSTANCE.getDrawIndexed_FirstInstance();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawImpl <em>Draw</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.DrawImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getDraw()
+		 * @generated
+		 */
+		EClass DRAW = eINSTANCE.getDraw();
+
+		/**
+		 * The meta object literal for the '<em><b>Vertex Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRAW__VERTEX_COUNT = eINSTANCE.getDraw_VertexCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRAW__INSTANCE_COUNT = eINSTANCE.getDraw_InstanceCount();
+
+		/**
+		 * The meta object literal for the '<em><b>First Vertex</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRAW__FIRST_VERTEX = eINSTANCE.getDraw_FirstVertex();
+
+		/**
+		 * The meta object literal for the '<em><b>First Instance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRAW__FIRST_INSTANCE = eINSTANCE.getDraw_FirstInstance();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl <em>Vertex Descriptor</em>}' class.
