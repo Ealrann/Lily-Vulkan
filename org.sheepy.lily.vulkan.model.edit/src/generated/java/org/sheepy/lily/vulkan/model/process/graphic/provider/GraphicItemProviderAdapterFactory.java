@@ -458,31 +458,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.MeshProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MeshProviderItemProvider meshProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.MeshProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMeshProviderAdapter()
-	{
-		if (meshProviderItemProvider == null)
-		{
-			meshProviderItemProvider = new MeshProviderItemProvider(this);
-		}
-
-		return meshProviderItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -949,7 +924,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 			extraAttachmentDescriptionItemProvider.dispose();
 		if (graphicProcessItemProvider != null) graphicProcessItemProvider.dispose();
 		if (graphicsPipelineItemProvider != null) graphicsPipelineItemProvider.dispose();
-		if (meshProviderItemProvider != null) meshProviderItemProvider.dispose();
 		if (swapImageBarrierItemProvider != null) swapImageBarrierItemProvider.dispose();
 		if (blitToSwapImageItemProvider != null) blitToSwapImageItemProvider.dispose();
 		if (drawIndexedItemProvider != null) drawIndexedItemProvider.dispose();

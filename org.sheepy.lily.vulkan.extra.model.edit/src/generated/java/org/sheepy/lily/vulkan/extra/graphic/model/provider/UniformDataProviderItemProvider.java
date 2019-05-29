@@ -1,6 +1,7 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.graphic.provider;
+package org.sheepy.lily.vulkan.extra.graphic.model.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -9,8 +10,8 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,18 +23,24 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.MeshProvider;
+
+import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage;
+import org.sheepy.lily.vulkan.extra.graphic.model.UniformDataProvider;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.MeshProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.UniformDataProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MeshProviderItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class UniformDataProviderItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -41,7 +48,7 @@ public class MeshProviderItemProvider extends ItemProviderAdapter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MeshProviderItemProvider(AdapterFactory adapterFactory)
+	public UniformDataProviderItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -72,17 +79,23 @@ public class MeshProviderItemProvider extends ItemProviderAdapter
 	 */
 	protected void addNamePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LNamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
+				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns MeshProvider.gif.
+	 * This returns UniformDataProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -90,7 +103,7 @@ public class MeshProviderItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MeshProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UniformDataProvider"));
 	}
 
 	/**
@@ -102,11 +115,12 @@ public class MeshProviderItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((MeshProvider) object).getName();
-		return label == null || label.length() == 0
-				? getString("_UI_MeshProvider_type")
-				: getString("_UI_MeshProvider_type") + " " + label;
+		String label = ((UniformDataProvider)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_UniformDataProvider_type") :
+			getString("_UI_UniformDataProvider_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -120,12 +134,11 @@ public class MeshProviderItemProvider extends ItemProviderAdapter
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MeshProvider.class))
+		switch (notification.getFeatureID(UniformDataProvider.class))
 		{
-		case GraphicPackage.MESH_PROVIDER__NAME:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case GraphicExtraPackage.UNIFORM_DATA_PROVIDER__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -152,7 +165,7 @@ public class MeshProviderItemProvider extends ItemProviderAdapter
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return GraphicExtraEditPlugin.INSTANCE;
 	}
 
 }

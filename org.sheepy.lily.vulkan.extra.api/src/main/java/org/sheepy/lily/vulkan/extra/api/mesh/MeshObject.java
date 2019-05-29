@@ -1,12 +1,12 @@
-package org.sheepy.lily.vulkan.api.resource.mesh;
+package org.sheepy.lily.vulkan.extra.api.mesh;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.resource.mesh.data.IMeshIndexDataProvider;
-import org.sheepy.lily.vulkan.api.resource.mesh.data.IMeshUniformDataProvider;
-import org.sheepy.lily.vulkan.api.resource.mesh.data.IMeshVertexDataProvider;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IMeshIndexDataProvider;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IMeshUniformDataProvider;
+import org.sheepy.lily.vulkan.extra.api.mesh.data.IMeshVertexDataProvider;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.buffer.BufferComposite;

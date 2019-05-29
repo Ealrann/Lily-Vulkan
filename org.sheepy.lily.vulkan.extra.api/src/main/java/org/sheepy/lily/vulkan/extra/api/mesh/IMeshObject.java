@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.api.resource.mesh;
+package org.sheepy.lily.vulkan.extra.api.mesh;
 
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.execution.IExecutionContext;

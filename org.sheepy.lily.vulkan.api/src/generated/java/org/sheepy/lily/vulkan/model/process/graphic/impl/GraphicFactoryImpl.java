@@ -92,8 +92,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createGraphicProcess();
 		case GraphicPackage.GRAPHICS_PIPELINE:
 			return createGraphicsPipeline();
-		case GraphicPackage.MESH_PROVIDER:
-			return createMeshProvider();
 		case GraphicPackage.SWAP_IMAGE_BARRIER:
 			return createSwapImageBarrier();
 		case GraphicPackage.BLIT_TO_SWAP_IMAGE:
@@ -290,18 +288,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		GraphicsPipelineImpl graphicsPipeline = new GraphicsPipelineImpl();
 		return graphicsPipeline;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public MeshProvider createMeshProvider()
-	{
-		MeshProviderImpl meshProvider = new MeshProviderImpl();
-		return meshProvider;
 	}
 
 	/**

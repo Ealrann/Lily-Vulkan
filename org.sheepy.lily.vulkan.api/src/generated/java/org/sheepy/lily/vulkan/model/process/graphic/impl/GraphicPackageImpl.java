@@ -44,7 +44,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor;
-import org.sheepy.lily.vulkan.model.process.graphic.MeshProvider;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
 import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
@@ -180,13 +179,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass graphicsPipelineEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass meshProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1053,17 +1045,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getMeshProvider()
-	{
-		return meshProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getSwapImageBarrier()
 	{
 		return swapImageBarrierEClass;
@@ -1645,8 +1626,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(graphicsPipelineEClass, GRAPHICS_PIPELINE__SUBPASS);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR);
 
-		meshProviderEClass = createEClass(MESH_PROVIDER);
-
 		swapImageBarrierEClass = createEClass(SWAP_IMAGE_BARRIER);
 
 		blitToSwapImageEClass = createEClass(BLIT_TO_SWAP_IMAGE);
@@ -1763,7 +1742,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		EGenericType g2 = createEGenericType(this.getGraphicsPipeline());
 		g1.getETypeArguments().add(g2);
 		graphicsPipelineEClass.getEGenericSuperTypes().add(g1);
-		meshProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		swapImageBarrierEClass.getESuperTypes().add(theBarrierPackage.getAbstractImageBarrier());
 		blitToSwapImageEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		drawIndexedEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
@@ -2003,9 +1981,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				"vertexDescriptor", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(meshProviderEClass, MeshProvider.class, "MeshProvider", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(swapImageBarrierEClass, SwapImageBarrier.class, "SwapImageBarrier", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

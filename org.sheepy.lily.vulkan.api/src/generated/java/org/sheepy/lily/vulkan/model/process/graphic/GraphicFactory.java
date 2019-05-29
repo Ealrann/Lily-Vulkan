@@ -150,15 +150,6 @@ public interface GraphicFactory extends EFactory
 	GraphicsPipeline createGraphicsPipeline();
 
 	/**
-	 * Returns a new object of class '<em>Mesh Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mesh Provider</em>'.
-	 * @generated
-	 */
-	MeshProvider createMeshProvider();
-
-	/**
 	 * Returns a new object of class '<em>Swap Image Barrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

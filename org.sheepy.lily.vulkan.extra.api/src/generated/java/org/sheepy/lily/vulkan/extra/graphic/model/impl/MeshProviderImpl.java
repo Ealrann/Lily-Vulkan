@@ -1,13 +1,16 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.graphic.impl;
+package org.sheepy.lily.vulkan.extra.graphic.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.MeshProvider;
+
+import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage;
+import org.sheepy.lily.vulkan.extra.graphic.model.MeshProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +20,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.MeshProvider;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.MeshProviderImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.extra.graphic.model.impl.MeshProviderImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,7 +65,7 @@ public class MeshProviderImpl extends MinimalEObjectImpl.Container implements Me
 	@Override
 	protected EClass eStaticClass()
 	{
-		return GraphicPackage.Literals.MESH_PROVIDER;
+		return GraphicExtraPackage.Literals.MESH_PROVIDER;
 	}
 
 	/**
@@ -86,8 +89,8 @@ public class MeshProviderImpl extends MinimalEObjectImpl.Container implements Me
 	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.MESH_PROVIDER__NAME, oldName, name));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphicExtraPackage.MESH_PROVIDER__NAME, oldName, name));
 	}
 
 	/**
@@ -100,8 +103,8 @@ public class MeshProviderImpl extends MinimalEObjectImpl.Container implements Me
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.MESH_PROVIDER__NAME:
-			return getName();
+			case GraphicExtraPackage.MESH_PROVIDER__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,9 +119,9 @@ public class MeshProviderImpl extends MinimalEObjectImpl.Container implements Me
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.MESH_PROVIDER__NAME:
-			setName((String) newValue);
-			return;
+			case GraphicExtraPackage.MESH_PROVIDER__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -133,9 +136,9 @@ public class MeshProviderImpl extends MinimalEObjectImpl.Container implements Me
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.MESH_PROVIDER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
+			case GraphicExtraPackage.MESH_PROVIDER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -150,8 +153,8 @@ public class MeshProviderImpl extends MinimalEObjectImpl.Container implements Me
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.MESH_PROVIDER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GraphicExtraPackage.MESH_PROVIDER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}

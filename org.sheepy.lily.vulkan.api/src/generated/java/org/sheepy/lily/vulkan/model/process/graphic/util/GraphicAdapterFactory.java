@@ -163,11 +163,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createGraphicsPipelineAdapter();
 		}
 		@Override
-		public Adapter caseMeshProvider(MeshProvider object)
-		{
-			return createMeshProviderAdapter();
-		}
-		@Override
 		public Adapter caseSwapImageBarrier(SwapImageBarrier object)
 		{
 			return createSwapImageBarrierAdapter();
@@ -544,21 +539,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGraphicsPipelineAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.MeshProvider <em>Mesh Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.MeshProvider
-	 * @generated
-	 */
-	public Adapter createMeshProviderAdapter()
 	{
 		return null;
 	}

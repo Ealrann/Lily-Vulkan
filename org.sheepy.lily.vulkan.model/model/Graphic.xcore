@@ -149,30 +149,6 @@ class GraphicsPipeline extends IPipeline, Buildable<GraphicsPipeline>
 	contains VertexDescriptor[1..1] vertexDescriptor
 }
 
-class MeshProvider extends LNamedElement
-{
-}
-
-//class ComplexMeshProvider extends MeshProvider
-//{
-//	contains VertexDataProvider[1..1] vertexDataProvider
-//	contains IndexDataProvider[1..1] indexDataProvider
-//	contains UniformDataProvider[0..*] uniformDataProvider
-//}
-//
-//interface IDataProvider extends LNamedElement
-//{}
-//
-//class VertexDataProvider extends IDataProvider
-//{}
-//
-//class IndexDataProvider extends IDataProvider
-//{}
-//
-//class UniformDataProvider extends IDataProvider
-//{}
-
-
 class SwapImageBarrier extends AbstractImageBarrier
 {
 }

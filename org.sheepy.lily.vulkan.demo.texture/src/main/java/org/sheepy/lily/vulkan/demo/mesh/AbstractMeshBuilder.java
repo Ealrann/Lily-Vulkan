@@ -3,8 +3,6 @@ package org.sheepy.lily.vulkan.demo.mesh;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryUtil;
-import org.sheepy.lily.vulkan.api.resource.mesh.data.IMeshIndexDataProvider;
-import org.sheepy.lily.vulkan.api.resource.mesh.data.IMeshVertexDataProvider;
 
 public abstract class AbstractMeshBuilder
 {
@@ -42,7 +40,7 @@ public abstract class AbstractMeshBuilder
 		return indexCount;
 	}
 
-	private static class VertexProvider implements IMeshVertexDataProvider
+	private static class VertexProvider
 	{
 		private final float[] vertices;
 
@@ -51,27 +49,19 @@ public abstract class AbstractMeshBuilder
 			this.vertices = vertices;
 		}
 
-		@Override
 		public long getSize()
 		{
 			return vertices.length * 4;
 		}
 
-		@Override
 		public void fill(long memoryAddress)
 		{
 			final var buffer = MemoryUtil.memByteBuffer(memoryAddress, (int) getSize());
 			buffer.asFloatBuffer().put(vertices);
 		}
-
-		@Override
-		public boolean hasChanged()
-		{
-			return false;
-		}
 	}
 
-	private static class IndexProvider implements IMeshIndexDataProvider
+	private static class IndexProvider
 	{
 		private final int[] indices;
 
@@ -80,29 +70,20 @@ public abstract class AbstractMeshBuilder
 			this.indices = indices;
 		}
 
-		@Override
 		public void fill(long memoryAddress)
 		{
 			final var buffer = MemoryUtil.memByteBuffer(memoryAddress, (int) getSize());
 			buffer.asIntBuffer().put(indices);
 		}
 
-		@Override
 		public long getSize()
 		{
 			return indices.length * Integer.BYTES;
 		}
 
-		@Override
 		public int getDataCount()
 		{
 			return indices.length;
-		}
-
-		@Override
-		public boolean hasChanged()
-		{
-			return false;
 		}
 	}
 }

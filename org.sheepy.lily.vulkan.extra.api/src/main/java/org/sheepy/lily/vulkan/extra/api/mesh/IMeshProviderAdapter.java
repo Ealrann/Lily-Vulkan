@@ -1,10 +1,10 @@
-package org.sheepy.lily.vulkan.api.resource.mesh;
+package org.sheepy.lily.vulkan.extra.api.mesh;
 
 import java.util.List;
 
 import org.sheepy.lily.core.api.adapter.IAdapter;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
-import org.sheepy.lily.vulkan.model.process.graphic.MeshProvider;
+import org.sheepy.lily.vulkan.extra.graphic.model.MeshProvider;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 
 public interface IMeshProviderAdapter extends IAdapter

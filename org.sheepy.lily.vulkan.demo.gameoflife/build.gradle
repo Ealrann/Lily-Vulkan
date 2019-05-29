@@ -1,6 +1,5 @@
 plugins {
 	id 'java-library'
-	// id 'application'
 }
 
 dependencies {
@@ -12,12 +11,6 @@ dependencies {
 	testImplementation 'org.junit.jupiter:junit-jupiter-params:5.4.2'
 
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
-}
-
-// mainClassName = 'org.sheepy.lily.vulkan.gameoflife.MainGameOfLife'
-
-if (project.hasProperty('javaModule')) {
-	javaModule.name = 'org.sheepy.lily.vulkan.gameoflife'
 }
 
 test {

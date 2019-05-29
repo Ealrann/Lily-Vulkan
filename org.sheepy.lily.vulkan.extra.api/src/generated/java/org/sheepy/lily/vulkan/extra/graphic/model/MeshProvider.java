@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.graphic;
+package org.sheepy.lily.vulkan.extra.graphic.model;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
 
@@ -10,11 +10,10 @@ import org.sheepy.lily.core.model.types.LNamedElement;
  * <!-- end-user-doc -->
  *
  *
- * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getMeshProvider()
+ * @see org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage#getMeshProvider()
  * @model
  * @generated
  */
 public interface MeshProvider extends LNamedElement
 {
-
 } // MeshProvider

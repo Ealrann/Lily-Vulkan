@@ -213,14 +213,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicPackage.MESH_PROVIDER:
-		{
-			MeshProvider meshProvider = (MeshProvider) theEObject;
-			T1 result = caseMeshProvider(meshProvider);
-			if (result == null) result = caseLNamedElement(meshProvider);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
 		case GraphicPackage.SWAP_IMAGE_BARRIER:
 		{
 			SwapImageBarrier swapImageBarrier = (SwapImageBarrier) theEObject;
@@ -579,22 +571,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseGraphicsPipeline(GraphicsPipeline object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mesh Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mesh Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseMeshProvider(MeshProvider object)
 	{
 		return null;
 	}
