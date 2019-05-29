@@ -64,7 +64,6 @@ interface IPipeline extends LNamedElement, IResourceContainer, IProcessPart
 	refers DescriptorSet descriptorSetRef
 	contains DescriptorSet descriptorSet
 
-//	refers PushBuffer pushBuffer
 	contains TaskPkg taskPkg
 }
 
