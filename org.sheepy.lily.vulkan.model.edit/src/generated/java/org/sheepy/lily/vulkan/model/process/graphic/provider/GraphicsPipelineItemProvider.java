@@ -70,7 +70,6 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
-			addDescriptorSetRefPropertyDescriptor(object);
 			addShadersPropertyDescriptor(object);
 			addSubpassPropertyDescriptor(object);
 		}
@@ -129,23 +128,6 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Descriptor Set Ref feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptorSetRefPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipeline_descriptorSetRef_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_IPipeline_descriptorSetRef_feature", "_UI_IPipeline_type"),
-				ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_REF, true, false, true, null,
-				null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Shaders feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -195,7 +177,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES);
-			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET);
+			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__TASK_PKG);
 			childrenFeatures.add(BuilderPackage.Literals.BUILDABLE__BUILDER);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE);
@@ -272,7 +254,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__RESOURCE_PKG:
 		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
-		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET:
+		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
 		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
 		case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
 		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
@@ -309,8 +291,8 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 						PipelineFactory.eINSTANCE.createPushConstantRange()));
 
 		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET,
-						ResourceFactory.eINSTANCE.createDescriptorSet()));
+				.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
+						ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
 		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
 				ProcessFactory.eINSTANCE.createTaskPkg()));

@@ -107,22 +107,13 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE = VulkanPackage.IPROCESS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Part Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__PART_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
+	int ABSTRACT_PROCESS__PART_PKG = VulkanPackage.IPROCESS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Reset Allowed</b></em>' attribute.
@@ -131,7 +122,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
+	int ABSTRACT_PROCESS__RESET_ALLOWED = VulkanPackage.IPROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Signals</b></em>' reference list.
@@ -140,7 +131,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__SIGNALS = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
+	int ABSTRACT_PROCESS__SIGNALS = VulkanPackage.IPROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Wait For</b></em>' reference list.
@@ -149,7 +140,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS__WAIT_FOR = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
+	int ABSTRACT_PROCESS__WAIT_FOR = VulkanPackage.IPROCESS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Process</em>' class.
@@ -158,7 +149,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 6;
+	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Abstract Process</em>' class.
@@ -374,22 +365,13 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE__PUSH_CONSTANT_RANGES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__DESCRIPTOR_SET_REF = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE__DESCRIPTOR_SET = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
+	int IPIPELINE__DESCRIPTOR_SET_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -398,7 +380,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__TASK_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
+	int IPIPELINE__TASK_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>IPipeline</em>' class.
@@ -407,7 +389,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
+	int IPIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>IPipeline</em>' class.
@@ -511,22 +493,13 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE__PUSH_CONSTANT_RANGES = IPIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIPELINE__DESCRIPTOR_SET_REF = IPIPELINE__DESCRIPTOR_SET_REF;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE__DESCRIPTOR_SET = IPIPELINE__DESCRIPTOR_SET;
+	int PIPELINE__DESCRIPTOR_SET_PKG = IPIPELINE__DESCRIPTOR_SET_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -783,13 +756,13 @@ public interface ProcessPackage extends EPackage
 	int BIND_DESCRIPTOR_SETS__ENABLED = IPIPELINE_TASK__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * The feature id for the '<em><b>Descriptor Sets</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BIND_DESCRIPTOR_SETS__INDEX = IPIPELINE_TASK_FEATURE_COUNT + 0;
+	int BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Bind Descriptor Sets</em>' class.
@@ -948,17 +921,6 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getAbstractProcess_WaitingFenceDuringAcquire();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Descriptor Set Pkg</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg()
-	 * @see #getAbstractProcess()
-	 * @generated
-	 */
-	EReference getAbstractProcess_DescriptorSetPkg();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPartPkg <em>Part Pkg</em>}'.
@@ -1207,26 +1169,15 @@ public interface ProcessPackage extends EPackage
 	EReference getIPipeline_PushConstantRanges();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetRef <em>Descriptor Set Ref</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Descriptor Set Ref</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetRef()
+	 * @return the meta object for the containment reference '<em>Descriptor Set Pkg</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetPkg()
 	 * @see #getIPipeline()
 	 * @generated
 	 */
-	EReference getIPipeline_DescriptorSetRef();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSet <em>Descriptor Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Descriptor Set</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSet()
-	 * @see #getIPipeline()
-	 * @generated
-	 */
-	EReference getIPipeline_DescriptorSet();
+	EReference getIPipeline_DescriptorSetPkg();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getTaskPkg <em>Task Pkg</em>}'.
@@ -1281,15 +1232,15 @@ public interface ProcessPackage extends EPackage
 	EClass getBindDescriptorSets();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getIndex <em>Index</em>}'.
+	 * Returns the meta object for the reference list '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getDescriptorSets <em>Descriptor Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Index</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getIndex()
+	 * @return the meta object for the reference list '<em>Descriptor Sets</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getDescriptorSets()
 	 * @see #getBindDescriptorSets()
 	 * @generated
 	 */
-	EAttribute getBindDescriptorSets_Index();
+	EReference getBindDescriptorSets_DescriptorSets();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PushConstant <em>Push Constant</em>}'.
@@ -1386,15 +1337,6 @@ public interface ProcessPackage extends EPackage
 		 */
 		EAttribute ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE = eINSTANCE
 				.getAbstractProcess_WaitingFenceDuringAcquire();
-
-		/**
-		 * The meta object literal for the '<em><b>Descriptor Set Pkg</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG = eINSTANCE
-				.getAbstractProcess_DescriptorSetPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Part Pkg</b></em>' containment reference feature.
@@ -1595,20 +1537,12 @@ public interface ProcessPackage extends EPackage
 		EReference IPIPELINE__PUSH_CONSTANT_RANGES = eINSTANCE.getIPipeline_PushConstantRanges();
 
 		/**
-		 * The meta object literal for the '<em><b>Descriptor Set Ref</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Descriptor Set Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IPIPELINE__DESCRIPTOR_SET_REF = eINSTANCE.getIPipeline_DescriptorSetRef();
-
-		/**
-		 * The meta object literal for the '<em><b>Descriptor Set</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IPIPELINE__DESCRIPTOR_SET = eINSTANCE.getIPipeline_DescriptorSet();
+		EReference IPIPELINE__DESCRIPTOR_SET_PKG = eINSTANCE.getIPipeline_DescriptorSetPkg();
 
 		/**
 		 * The meta object literal for the '<em><b>Task Pkg</b></em>' containment reference feature.
@@ -1657,12 +1591,13 @@ public interface ProcessPackage extends EPackage
 		EClass BIND_DESCRIPTOR_SETS = eINSTANCE.getBindDescriptorSets();
 
 		/**
-		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Descriptor Sets</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BIND_DESCRIPTOR_SETS__INDEX = eINSTANCE.getBindDescriptorSets_Index();
+		EReference BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS = eINSTANCE
+				.getBindDescriptorSets_DescriptorSets();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.

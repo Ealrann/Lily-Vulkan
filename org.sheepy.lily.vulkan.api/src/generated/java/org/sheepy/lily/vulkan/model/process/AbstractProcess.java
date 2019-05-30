@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.vulkan.model.IProcess;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
@@ -17,7 +16,6 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getPartPkg <em>Part Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getSignals <em>Signals</em>}</li>
@@ -52,28 +50,6 @@ public interface AbstractProcess extends IProcess
 	 * @generated
 	 */
 	void setWaitingFenceDuringAcquire(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor Set Pkg</em>' containment reference.
-	 * @see #setDescriptorSetPkg(DescriptorSetPkg)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getAbstractProcess_DescriptorSetPkg()
-	 * @model containment="true"
-	 * @generated
-	 */
-	DescriptorSetPkg getDescriptorSetPkg();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor Set Pkg</em>' containment reference.
-	 * @see #getDescriptorSetPkg()
-	 * @generated
-	 */
-	void setDescriptorSetPkg(DescriptorSetPkg value);
 
 	/**
 	 * Returns the value of the '<em><b>Part Pkg</b></em>' containment reference.

@@ -22,6 +22,7 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl#getFormat <em>Format</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl#getOffset <em>Offset</em>}</li>
  * </ul>
@@ -31,6 +32,26 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
 public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
 		implements AttributeDescription
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -98,6 +119,31 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EFormat getFormat()
 	{
 		return format;
@@ -152,6 +198,8 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
+			return getName();
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
 			return getFormat();
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
@@ -170,6 +218,9 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
+			setName((String) newValue);
+			return;
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
 			setFormat((EFormat) newValue);
 			return;
@@ -190,6 +241,9 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
+			setName(NAME_EDEFAULT);
+			return;
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
 			setFormat(FORMAT_EDEFAULT);
 			return;
@@ -210,6 +264,8 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
 			return format != FORMAT_EDEFAULT;
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
@@ -229,7 +285,9 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (format: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", format: ");
 		result.append(format);
 		result.append(", offset: ");
 		result.append(offset);

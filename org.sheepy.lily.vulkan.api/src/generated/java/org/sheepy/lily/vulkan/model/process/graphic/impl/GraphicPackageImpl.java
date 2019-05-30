@@ -1746,6 +1746,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		blitToSwapImageEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		drawIndexedEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		drawEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
+		attributeDescriptionEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		indexedVertexDescriptorEClass.getESuperTypes().add(this.getVertexDescriptor());
 		bindVertexBufferEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		setScissorEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());

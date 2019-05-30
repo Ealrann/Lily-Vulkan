@@ -260,6 +260,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 		{
 			AttributeDescription attributeDescription = (AttributeDescription) theEObject;
 			T1 result = caseAttributeDescription(attributeDescription);
+			if (result == null) result = caseLNamedElement(attributeDescription);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}

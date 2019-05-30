@@ -11,7 +11,6 @@ import org.sheepy.lily.core.model.types.LNamedElement
 import org.sheepy.lily.vulkan.model.IProcess
 import org.sheepy.lily.vulkan.model.IResourceContainer
 import org.sheepy.lily.vulkan.model.resource.ByteBuffer
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
 import org.sheepy.lily.vulkan.model.resource.PushBuffer
 import org.sheepy.lily.vulkan.model.resource.Semaphore
@@ -20,13 +19,13 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.EShaderStage
 import org.sheepy.vulkan.model.pipeline.PushConstantRange
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet
 
 abstract class AbstractProcess extends IProcess
 {
 	@GenModel(propertyDescription="If fenceEnabled, will wait during acquire. Useless for a render process that already wait for image acquiring")
 	boolean waitingFenceDuringAcquire = "false"
 
-	contains DescriptorSetPkg descriptorSetPkg
 	contains ProcessPartPkg partPkg
 	boolean resetAllowed
 
@@ -61,8 +60,7 @@ interface IPipeline extends LNamedElement, IResourceContainer, IProcessPart
 
 	contains PushConstantRange[0..*] pushConstantRanges
 
-	refers DescriptorSet descriptorSetRef
-	contains DescriptorSet descriptorSet
+	contains DescriptorSetPkg descriptorSetPkg
 
 	contains TaskPkg taskPkg
 }
@@ -95,7 +93,7 @@ class CompositeTask extends IPipelineTask
 
 class BindDescriptorSets extends IPipelineTask
 {
-	int index = "0"
+	refers DescriptorSet[] descriptorSets
 }
 
 class PushConstant extends IPipelineTask

@@ -7,6 +7,7 @@ import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.Font;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
@@ -50,7 +51,9 @@ public class ResourceBuilder
 		descriptorSet.getDescriptors().add(nullTexture);
 		descriptorSet.getDescriptors().add(font);
 
-		pipeline.setDescriptorSet(descriptorSet);
+		final DescriptorSetPkg descriptorSetPkg = ResourceFactory.eINSTANCE.createDescriptorSetPkg();
+		pipeline.setDescriptorSetPkg(descriptorSetPkg);
+		descriptorSetPkg.getDescriptorSets().add(descriptorSet);
 
 		return new ResourceBuilder(nullTexture, font, indexedVertexBuffer, context);
 	}

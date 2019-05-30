@@ -20,7 +20,6 @@ import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 
 /**
@@ -35,7 +34,6 @@ import org.sheepy.lily.vulkan.model.resource.Semaphore;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isWaitingFenceDuringAcquire <em>Waiting Fence During Acquire</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getPartPkg <em>Part Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#isResetAllowed <em>Reset Allowed</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl#getSignals <em>Signals</em>}</li>
@@ -116,16 +114,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected boolean waitingFenceDuringAcquire = WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptorSetPkg()
-	 * @generated
-	 * @ordered
-	 */
-	protected DescriptorSetPkg descriptorSetPkg;
 
 	/**
 	 * The cached value of the '{@link #getPartPkg() <em>Part Pkg</em>}' containment reference.
@@ -334,67 +322,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public DescriptorSetPkg getDescriptorSetPkg()
-	{
-		return descriptorSetPkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDescriptorSetPkg(	DescriptorSetPkg newDescriptorSetPkg,
-														NotificationChain msgs)
-	{
-		DescriptorSetPkg oldDescriptorSetPkg = descriptorSetPkg;
-		descriptorSetPkg = newDescriptorSetPkg;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg,
-					newDescriptorSetPkg);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg)
-	{
-		if (newDescriptorSetPkg != descriptorSetPkg)
-		{
-			NotificationChain msgs = null;
-			if (descriptorSetPkg != null) msgs = ((InternalEObject) descriptorSetPkg)
-					.eInverseRemove(this,
-							EOPPOSITE_FEATURE_BASE
-									- ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
-							null, msgs);
-			if (newDescriptorSetPkg != null) msgs = ((InternalEObject) newDescriptorSetPkg)
-					.eInverseAdd(this,
-							EOPPOSITE_FEATURE_BASE
-									- ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG,
-							null, msgs);
-			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG, newDescriptorSetPkg,
-				newDescriptorSetPkg));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ProcessPartPkg getPartPkg()
 	{
 		return partPkg;
@@ -512,8 +439,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		{
 		case ProcessPackage.ABSTRACT_PROCESS__RESOURCE_PKG:
 			return basicSetResourcePkg(null, msgs);
-		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-			return basicSetDescriptorSetPkg(null, msgs);
 		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 			return basicSetPartPkg(null, msgs);
 		}
@@ -538,8 +463,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 			return isEnabled();
 		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 			return isWaitingFenceDuringAcquire();
-		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-			return getDescriptorSetPkg();
 		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 			return getPartPkg();
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:
@@ -574,9 +497,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 			setWaitingFenceDuringAcquire((Boolean) newValue);
-			return;
-		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-			setDescriptorSetPkg((DescriptorSetPkg) newValue);
 			return;
 		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 			setPartPkg((ProcessPartPkg) newValue);
@@ -618,9 +538,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 			setWaitingFenceDuringAcquire(WAITING_FENCE_DURING_ACQUIRE_EDEFAULT);
 			return;
-		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-			setDescriptorSetPkg((DescriptorSetPkg) null);
-			return;
 		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 			setPartPkg((ProcessPartPkg) null);
 			return;
@@ -655,8 +572,6 @@ public abstract class AbstractProcessImpl extends MinimalEObjectImpl.Container
 			return enabled != ENABLED_EDEFAULT;
 		case ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE:
 			return waitingFenceDuringAcquire != WAITING_FENCE_DURING_ACQUIRE_EDEFAULT;
-		case ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG:
-			return descriptorSetPkg != null;
 		case ProcessPackage.ABSTRACT_PROCESS__PART_PKG:
 			return partPkg != null;
 		case ProcessPackage.ABSTRACT_PROCESS__RESET_ALLOWED:

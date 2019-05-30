@@ -25,8 +25,7 @@ import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
-
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
@@ -43,8 +42,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getDescriptorSetRef <em>Descriptor Set Ref</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getDescriptorSet <em>Descriptor Set</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getTaskPkg <em>Task Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeX <em>Workgroup Size X</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl#getWorkgroupSizeY <em>Workgroup Size Y</em>}</li>
@@ -139,24 +137,14 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 	protected EList<PushConstantRange> pushConstantRanges;
 
 	/**
-	 * The cached value of the '{@link #getDescriptorSetRef() <em>Descriptor Set Ref</em>}' reference.
+	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescriptorSetRef()
+	 * @see #getDescriptorSetPkg()
 	 * @generated
 	 * @ordered
 	 */
-	protected DescriptorSet descriptorSetRef;
-
-	/**
-	 * The cached value of the '{@link #getDescriptorSet() <em>Descriptor Set</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptorSet()
-	 * @generated
-	 * @ordered
-	 */
-	protected DescriptorSet descriptorSet;
+	protected DescriptorSetPkg descriptorSetPkg;
 
 	/**
 	 * The cached value of the '{@link #getTaskPkg() <em>Task Pkg</em>}' containment reference.
@@ -461,20 +449,9 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public DescriptorSet getDescriptorSetRef()
+	public DescriptorSetPkg getDescriptorSetPkg()
 	{
-		if (descriptorSetRef != null && descriptorSetRef.eIsProxy())
-		{
-			InternalEObject oldDescriptorSetRef = (InternalEObject) descriptorSetRef;
-			descriptorSetRef = (DescriptorSet) eResolveProxy(oldDescriptorSetRef);
-			if (descriptorSetRef != oldDescriptorSetRef)
-			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_REF,
-						oldDescriptorSetRef, descriptorSetRef));
-			}
-		}
-		return descriptorSetRef;
+		return descriptorSetPkg;
 	}
 
 	/**
@@ -482,52 +459,16 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescriptorSet basicGetDescriptorSetRef()
+	public NotificationChain basicSetDescriptorSetPkg(	DescriptorSetPkg newDescriptorSetPkg,
+														NotificationChain msgs)
 	{
-		return descriptorSetRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDescriptorSetRef(DescriptorSet newDescriptorSetRef)
-	{
-		DescriptorSet oldDescriptorSetRef = descriptorSetRef;
-		descriptorSetRef = newDescriptorSetRef;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_REF, oldDescriptorSetRef,
-				descriptorSetRef));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DescriptorSet getDescriptorSet()
-	{
-		return descriptorSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDescriptorSet(	DescriptorSet newDescriptorSet,
-													NotificationChain msgs)
-	{
-		DescriptorSet oldDescriptorSet = descriptorSet;
-		descriptorSet = newDescriptorSet;
+		DescriptorSetPkg oldDescriptorSetPkg = descriptorSetPkg;
+		descriptorSetPkg = newDescriptorSetPkg;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET, oldDescriptorSet,
-					newDescriptorSet);
+					ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG, oldDescriptorSetPkg,
+					newDescriptorSetPkg);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -540,24 +481,27 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public void setDescriptorSet(DescriptorSet newDescriptorSet)
+	public void setDescriptorSetPkg(DescriptorSetPkg newDescriptorSetPkg)
 	{
-		if (newDescriptorSet != descriptorSet)
+		if (newDescriptorSetPkg != descriptorSetPkg)
 		{
 			NotificationChain msgs = null;
-			if (descriptorSet != null) msgs = ((InternalEObject) descriptorSet).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET, null,
-					msgs);
-			if (newDescriptorSet != null)
-				msgs = ((InternalEObject) newDescriptorSet).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET,
-						null, msgs);
-			msgs = basicSetDescriptorSet(newDescriptorSet, msgs);
+			if (descriptorSetPkg != null) msgs = ((InternalEObject) descriptorSetPkg)
+					.eInverseRemove(this,
+							EOPPOSITE_FEATURE_BASE
+									- ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG,
+							null, msgs);
+			if (newDescriptorSetPkg != null) msgs = ((InternalEObject) newDescriptorSetPkg)
+					.eInverseAdd(this,
+							EOPPOSITE_FEATURE_BASE
+									- ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG,
+							null, msgs);
+			msgs = basicSetDescriptorSetPkg(newDescriptorSetPkg, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET, newDescriptorSet,
-				newDescriptorSet));
+				ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG, newDescriptorSetPkg,
+				newDescriptorSetPkg));
 	}
 
 	/**
@@ -781,8 +725,8 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 			return basicSetResourcePkg(null, msgs);
 		case ComputePackage.COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES:
 			return ((InternalEList<?>) getPushConstantRanges()).basicRemove(otherEnd, msgs);
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET:
-			return basicSetDescriptorSet(null, msgs);
+		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG:
+			return basicSetDescriptorSetPkg(null, msgs);
 		case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 			return basicSetTaskPkg(null, msgs);
 		}
@@ -809,11 +753,8 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 			return getStage();
 		case ComputePackage.COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES:
 			return getPushConstantRanges();
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_REF:
-			if (resolve) return getDescriptorSetRef();
-			return basicGetDescriptorSetRef();
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET:
-			return getDescriptorSet();
+		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG:
+			return getDescriptorSetPkg();
 		case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 			return getTaskPkg();
 		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
@@ -859,11 +800,8 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 			getPushConstantRanges().clear();
 			getPushConstantRanges().addAll((Collection<? extends PushConstantRange>) newValue);
 			return;
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_REF:
-			setDescriptorSetRef((DescriptorSet) newValue);
-			return;
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET:
-			setDescriptorSet((DescriptorSet) newValue);
+		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG:
+			setDescriptorSetPkg((DescriptorSetPkg) newValue);
 			return;
 		case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 			setTaskPkg((TaskPkg) newValue);
@@ -915,11 +853,8 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 		case ComputePackage.COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES:
 			getPushConstantRanges().clear();
 			return;
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_REF:
-			setDescriptorSetRef((DescriptorSet) null);
-			return;
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET:
-			setDescriptorSet((DescriptorSet) null);
+		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG:
+			setDescriptorSetPkg((DescriptorSetPkg) null);
 			return;
 		case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 			setTaskPkg((TaskPkg) null);
@@ -966,10 +901,8 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 			return stage != STAGE_EDEFAULT;
 		case ComputePackage.COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES:
 			return pushConstantRanges != null && !pushConstantRanges.isEmpty();
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_REF:
-			return descriptorSetRef != null;
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET:
-			return descriptorSet != null;
+		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG:
+			return descriptorSetPkg != null;
 		case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 			return taskPkg != null;
 		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:

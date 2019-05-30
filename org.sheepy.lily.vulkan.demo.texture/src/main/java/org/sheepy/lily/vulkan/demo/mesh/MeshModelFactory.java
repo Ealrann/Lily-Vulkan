@@ -2,20 +2,18 @@ package org.sheepy.lily.vulkan.demo.mesh;
 
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.application.impl.ApplicationImpl;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.demo.adapter.CameraConstantAdapter;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
+import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl;
-import org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
-import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl;
@@ -35,14 +33,13 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl;
-import org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl;
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl;
 import org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetPkgImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
@@ -71,8 +68,8 @@ public class MeshModelFactory
 {
 	private final MeshConfiguration meshConfiguration;
 
-	public final Application application = new ApplicationImpl();
-	public final VulkanEngine engine = new VulkanEngineImpl();
+	public final Application application = ApplicationFactory.eINSTANCE.createApplication();
+	public final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 	public final GraphicProcess graphicProcess;
 
 	private DepthAttachment depthAttachment;
@@ -84,13 +81,11 @@ public class MeshModelFactory
 
 		application.setTitle("Vulkan Triangle");
 		application.setSize(size);
-
 		application.getEngines().add(engine);
 
 		final var framebufferConfiguration = new FramebufferConfigurationImpl();
-
-		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
-		final SwapchainConfiguration swapchainConfiguration = new SwapchainConfigurationImpl();
+		final var graphicConfiguration = new GraphicConfigurationImpl();
+		final var swapchainConfiguration = new SwapchainConfigurationImpl();
 
 		if (meshConfiguration.depth)
 		{
@@ -98,12 +93,12 @@ public class MeshModelFactory
 			swapchainConfiguration.getAtachments().add(depthAttachment);
 		}
 
-		configuration.setSwapchainConfiguration(swapchainConfiguration);
-		configuration.setFramebufferConfiguration(framebufferConfiguration);
-		configuration.setColorDomain(new ColorDomainImpl());
+		graphicConfiguration.setSwapchainConfiguration(swapchainConfiguration);
+		graphicConfiguration.setFramebufferConfiguration(framebufferConfiguration);
+		graphicConfiguration.setColorDomain(new ColorDomainImpl());
 
 		graphicProcess = newMeshProcess();
-		graphicProcess.setConfiguration(configuration);
+		graphicProcess.setConfiguration(graphicConfiguration);
 		graphicProcess.setRenderPassInfo(newInfo());
 
 		engine.getProcesses().add(graphicProcess);
@@ -273,7 +268,8 @@ public class MeshModelFactory
 		graphicPipeline.setTaskPkg(taskPkg);
 
 		final var taskList = taskPkg.getTasks();
-		taskList.add(new BindDescriptorSetsImpl());
+		final var bindDescriptorSets = ProcessFactory.eINSTANCE.createBindDescriptorSets();
+		taskList.add(bindDescriptorSets);
 		if (meshConfiguration.useCamera) taskList.add(pushConstants);
 		taskList.add(bindVertexBuffer);
 		taskList.add(bindIndexBuffer);
@@ -305,15 +301,13 @@ public class MeshModelFactory
 
 			descriptorSet.getDescriptors().add(texture);
 			resourceContainer.getResources().add(texture);
-
-			final var descriptorSetPkg = new DescriptorSetPkgImpl();
-			descriptorSetPkg.getDescriptorSets().add(descriptorSet);
-			graphicProcess.setDescriptorSetPkg(descriptorSetPkg);
 		}
 
 		if (descriptorSet.getDescriptors().isEmpty() == false)
 		{
-			graphicPipeline.setDescriptorSet(descriptorSet);
+			graphicPipeline.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
+			graphicPipeline.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
+			bindDescriptorSets.getDescriptorSets().add(descriptorSet);
 		}
 
 		return graphicProcess;

@@ -80,10 +80,20 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 		return layouts;
 	}
 
-	public void bindDescriptors(VkCommandBuffer commandBuffer, int bindPoint)
+	public void bindDescriptors(VkCommandBuffer commandBuffer,
+								List<IVkDescriptorSet> sets,
+								int bindPoint)
 	{
-		if (descriptorSetAddressBuffer.limit() > 0)
+		if (sets.size() > 0)
 		{
+			descriptorSetAddressBuffer.clear();
+
+			for (final var set : sets)
+			{
+				descriptorSetAddressBuffer.put(set.getId());
+			}
+			descriptorSetAddressBuffer.flip();
+
 			vkCmdBindDescriptorSets(commandBuffer, bindPoint, pipelineLayout, 0,
 					descriptorSetAddressBuffer, null);
 		}

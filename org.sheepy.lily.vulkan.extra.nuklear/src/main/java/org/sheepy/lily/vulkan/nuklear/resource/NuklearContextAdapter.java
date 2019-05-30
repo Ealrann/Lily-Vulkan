@@ -101,7 +101,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 		final var defaultFont = fontAdapter.getNkFont();
 		final var layoutTask = nuklearContext.getLayoutTask();
 		final var pipeline = ModelUtil.findParent(layoutTask, GraphicsPipeline.class);
-		final var descriptorSet = pipeline.getDescriptorSet();
+		final var descriptorSet = pipeline.getDescriptorSetPkg().getDescriptorSets().get(0);
 		final var layoutTaskAdapter = (NuklearLayoutTaskAdapter) IPipelineTaskAdapter
 				.adapt(layoutTask);
 		final var engine = VulkanModelUtil.getEngine(nuklearContext);

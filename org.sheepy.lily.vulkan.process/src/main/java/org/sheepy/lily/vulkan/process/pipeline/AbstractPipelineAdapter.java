@@ -227,16 +227,14 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	@Override
 	public void collectDescriptorSets(List<IVkDescriptorSet> collectIn)
 	{
-		var ds = pipeline.getDescriptorSet();
-		if (ds == null)
+		final var descriptorSetPkg = pipeline.getDescriptorSetPkg();
+		if (descriptorSetPkg != null)
 		{
-			ds = pipeline.getDescriptorSetRef();
-		}
-
-		if (ds != null)
-		{
-			final var adapter = IDescriptorSetAdapter.adapt(ds);
-			collectIn.add(adapter);
+			for (final var descriptorSet : descriptorSetPkg.getDescriptorSets())
+			{
+				final var adapter = IDescriptorSetAdapter.adapt(descriptorSet);
+				collectIn.add(adapter);
+			}
 		}
 	}
 

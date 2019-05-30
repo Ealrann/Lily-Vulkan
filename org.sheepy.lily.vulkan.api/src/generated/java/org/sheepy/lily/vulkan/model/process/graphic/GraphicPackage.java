@@ -980,15 +980,6 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__WAITING_FENCE_DURING_ACQUIRE = ProcessPackage.ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS__DESCRIPTOR_SET_PKG = ProcessPackage.ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG;
-
-	/**
 	 * The feature id for the '<em><b>Part Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1125,22 +1116,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.IPIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_REF = ProcessPackage.IPIPELINE__DESCRIPTOR_SET_REF;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Set</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE__DESCRIPTOR_SET = ProcessPackage.IPIPELINE__DESCRIPTOR_SET;
+	int GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG = ProcessPackage.IPIPELINE__DESCRIPTOR_SET_PKG;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -1600,13 +1582,22 @@ public interface GraphicPackage extends EPackage
 	int ATTRIBUTE_DESCRIPTION = 21;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DESCRIPTION__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_DESCRIPTION__FORMAT = 0;
+	int ATTRIBUTE_DESCRIPTION__FORMAT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -1615,7 +1606,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_DESCRIPTION__OFFSET = 1;
+	int ATTRIBUTE_DESCRIPTION__OFFSET = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Description</em>' class.
@@ -1624,7 +1615,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_DESCRIPTION_FEATURE_COUNT = 2;
+	int ATTRIBUTE_DESCRIPTION_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Attribute Description</em>' class.
@@ -1633,7 +1624,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_DESCRIPTION_OPERATION_COUNT = 0;
+	int ATTRIBUTE_DESCRIPTION_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl <em>Indexed Vertex Descriptor</em>}' class.

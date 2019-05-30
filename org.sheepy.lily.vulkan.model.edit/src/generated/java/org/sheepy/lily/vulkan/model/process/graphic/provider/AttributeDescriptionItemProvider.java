@@ -22,10 +22,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-
-import org.sheepy.vulkan.model.enumeration.EFormat;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription} object.
@@ -61,10 +60,28 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter
 		{
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addFormatPropertyDescriptor(object);
 			addOffsetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
+						"_UI_LNamedElement_type"),
+				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -123,8 +140,7 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		EFormat labelValue = ((AttributeDescription) object).getFormat();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((AttributeDescription) object).getName();
 		return label == null || label.length() == 0
 				? getString("_UI_AttributeDescription_type")
 				: getString("_UI_AttributeDescription_type") + " " + label;
@@ -144,6 +160,7 @@ public class AttributeDescriptionItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(AttributeDescription.class))
 		{
+		case GraphicPackage.ATTRIBUTE_DESCRIPTION__NAME:
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__FORMAT:
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION__OFFSET:
 			fireNotifyChanged(

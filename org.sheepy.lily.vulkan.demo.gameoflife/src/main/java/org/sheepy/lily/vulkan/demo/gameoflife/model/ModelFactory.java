@@ -2,7 +2,7 @@ package org.sheepy.lily.vulkan.demo.gameoflife.model;
 
 import org.joml.Vector2i;
 import org.sheepy.lily.core.model.application.Application;
-import org.sheepy.lily.core.model.application.impl.ApplicationImpl;
+import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
@@ -11,12 +11,11 @@ import org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
-import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePipelineImpl;
 import org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl;
-import org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
@@ -35,7 +34,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
-import org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl;
 import org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl;
 import org.sheepy.lily.vulkan.model.process.impl.PipelineImpl;
 import org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl;
@@ -43,8 +41,8 @@ import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
@@ -65,7 +63,7 @@ public class ModelFactory
 	private static final String SHADER_LIFE = "life.comp.spv";
 	private static final String SHADER_LIFE2PIXEL = "life2pixel.comp.spv";
 
-	public final Application application = new ApplicationImpl();
+	public final Application application = ApplicationFactory.eINSTANCE.createApplication();
 	public final VulkanEngine engine = new VulkanEngineImpl();
 	public final GraphicProcess imageProcess;
 	public ComputeProcess process1;
@@ -257,23 +255,25 @@ public class ModelFactory
 
 	private ComputePipeline createPipeline(IPipelineTask computer, IDescriptor... descriptors)
 	{
-		final var descriptorSet = new DescriptorSetImpl();
+		final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
 		for (final IDescriptor descriptor : descriptors)
 		{
 			descriptorSet.getDescriptors().add(descriptor);
 		}
 
-		final var bindDescriptorSet = new BindDescriptorSetsImpl();
+		final var bindDescriptorSet = ProcessFactory.eINSTANCE.createBindDescriptorSets();
+		bindDescriptorSet.getDescriptorSets().add(descriptorSet);
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 
-		final ComputePipeline res = new ComputePipelineImpl();
+		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
 		res.setWorkgroupSizeX(WORKGROUP_SIDE);
 		res.setWorkgroupSizeY(WORKGROUP_SIDE);
 		res.setTaskPkg(taskPkg);
 		taskPkg.getTasks().add(bindDescriptorSet);
 		taskPkg.getTasks().add(computer);
 
-		res.setDescriptorSet(descriptorSet);
+		res.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
+		res.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
 		res.setStage(ECommandStage.COMPUTE);
 
 		res.setWidth(application.getSize().x);
@@ -285,7 +285,7 @@ public class ModelFactory
 
 	private static Computer createComputer(final Shader shader)
 	{
-		final Computer res = new ComputerImpl();
+		final var res = ComputeFactory.eINSTANCE.createComputer();
 		res.setShader(shader);
 		return res;
 	}

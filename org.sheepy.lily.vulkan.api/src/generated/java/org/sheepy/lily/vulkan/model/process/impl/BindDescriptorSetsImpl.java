@@ -2,12 +2,16 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +23,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl#getDescriptorSets <em>Descriptor Sets</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,23 +70,14 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
+	 * The cached value of the '{@link #getDescriptorSets() <em>Descriptor Sets</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIndex()
+	 * @see #getDescriptorSets()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int INDEX_EDEFAULT = 0;
-	/**
-	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIndex()
-	 * @generated
-	 * @ordered
-	 */
-	protected int index = INDEX_EDEFAULT;
+	protected EList<DescriptorSet> descriptorSets;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,23 +156,14 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public int getIndex()
+	public EList<DescriptorSet> getDescriptorSets()
 	{
-		return index;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIndex(int newIndex)
-	{
-		int oldIndex = index;
-		index = newIndex;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.BIND_DESCRIPTOR_SETS__INDEX, oldIndex, index));
+		if (descriptorSets == null)
+		{
+			descriptorSets = new EObjectResolvingEList<DescriptorSet>(DescriptorSet.class, this,
+					ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS);
+		}
+		return descriptorSets;
 	}
 
 	/**
@@ -194,8 +180,8 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 			return getName();
 		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
 			return isEnabled();
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__INDEX:
-			return getIndex();
+		case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
+			return getDescriptorSets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -205,6 +191,7 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -216,8 +203,9 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
 			setEnabled((Boolean) newValue);
 			return;
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__INDEX:
-			setIndex((Integer) newValue);
+		case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
+			getDescriptorSets().clear();
+			getDescriptorSets().addAll((Collection<? extends DescriptorSet>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -239,8 +227,8 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
 			setEnabled(ENABLED_EDEFAULT);
 			return;
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__INDEX:
-			setIndex(INDEX_EDEFAULT);
+		case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
+			getDescriptorSets().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -260,8 +248,8 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
 			return enabled != ENABLED_EDEFAULT;
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__INDEX:
-			return index != INDEX_EDEFAULT;
+		case ProcessPackage.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS:
+			return descriptorSets != null && !descriptorSets.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -281,8 +269,6 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
-		result.append(", index: ");
-		result.append(index);
 		result.append(')');
 		return result.toString();
 	}

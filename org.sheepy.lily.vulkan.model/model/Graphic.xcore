@@ -183,7 +183,7 @@ class VertexDescriptor
 	int strideLength
 }
 
-class AttributeDescription
+class AttributeDescription extends LNamedElement
 {
 	EFormat format
 	int offset

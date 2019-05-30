@@ -5,7 +5,7 @@ package org.sheepy.lily.vulkan.model.process;
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
@@ -21,8 +21,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetRef <em>Descriptor Set Ref</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSet <em>Descriptor Set</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getTaskPkg <em>Task Pkg</em>}</li>
  * </ul>
  *
@@ -94,48 +93,26 @@ public interface IPipeline extends LNamedElement, IResourceContainer, IProcessPa
 	EList<PushConstantRange> getPushConstantRanges();
 
 	/**
-	 * Returns the value of the '<em><b>Descriptor Set Ref</b></em>' reference.
+	 * Returns the value of the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor Set Ref</em>' reference.
-	 * @see #setDescriptorSetRef(DescriptorSet)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_DescriptorSetRef()
-	 * @model
-	 * @generated
-	 */
-	DescriptorSet getDescriptorSetRef();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetRef <em>Descriptor Set Ref</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor Set Ref</em>' reference.
-	 * @see #getDescriptorSetRef()
-	 * @generated
-	 */
-	void setDescriptorSetRef(DescriptorSet value);
-
-	/**
-	 * Returns the value of the '<em><b>Descriptor Set</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor Set</em>' containment reference.
-	 * @see #setDescriptorSet(DescriptorSet)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_DescriptorSet()
+	 * @return the value of the '<em>Descriptor Set Pkg</em>' containment reference.
+	 * @see #setDescriptorSetPkg(DescriptorSetPkg)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_DescriptorSetPkg()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DescriptorSet getDescriptorSet();
+	DescriptorSetPkg getDescriptorSetPkg();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSet <em>Descriptor Set</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor Set</em>' containment reference.
-	 * @see #getDescriptorSet()
+	 * @param value the new value of the '<em>Descriptor Set Pkg</em>' containment reference.
+	 * @see #getDescriptorSetPkg()
 	 * @generated
 	 */
-	void setDescriptorSet(DescriptorSet value);
+	void setDescriptorSetPkg(DescriptorSetPkg value);
 
 	/**
 	 * Returns the value of the '<em><b>Task Pkg</b></em>' containment reference.

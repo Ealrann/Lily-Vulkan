@@ -2,6 +2,9 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
+import org.eclipse.emf.common.util.EList;
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Bind Descriptor Sets</b></em>'.
@@ -11,7 +14,7 @@ package org.sheepy.lily.vulkan.model.process;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getDescriptorSets <em>Descriptor Sets</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getBindDescriptorSets()
@@ -22,25 +25,14 @@ public interface BindDescriptorSets extends IPipelineTask
 {
 
 	/**
-	 * Returns the value of the '<em><b>Index</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * Returns the value of the '<em><b>Descriptor Sets</b></em>' reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.DescriptorSet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Index</em>' attribute.
-	 * @see #setIndex(int)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getBindDescriptorSets_Index()
-	 * @model default="0" unique="false"
+	 * @return the value of the '<em>Descriptor Sets</em>' reference list.
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getBindDescriptorSets_DescriptorSets()
+	 * @model
 	 * @generated
 	 */
-	int getIndex();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets#getIndex <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Index</em>' attribute.
-	 * @see #getIndex()
-	 * @generated
-	 */
-	void setIndex(int value);
+	EList<DescriptorSet> getDescriptorSets();
 } // BindDescriptorSets

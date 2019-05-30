@@ -67,7 +67,6 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
-			addDescriptorSetRefPropertyDescriptor(object);
 			addWorkgroupSizeXPropertyDescriptor(object);
 			addWorkgroupSizeYPropertyDescriptor(object);
 			addWorkgroupSizeZPropertyDescriptor(object);
@@ -127,23 +126,6 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 						"_UI_IPipeline_type"),
 				ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Descriptor Set Ref feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptorSetRefPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipeline_descriptorSetRef_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_IPipeline_descriptorSetRef_feature", "_UI_IPipeline_type"),
-				ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_REF, true, false, true, null,
-				null, null));
 	}
 
 	/**
@@ -264,7 +246,7 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES);
-			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET);
+			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__TASK_PKG);
 		}
 		return childrenFeatures;
@@ -339,7 +321,7 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 			return;
 		case ComputePackage.COMPUTE_PIPELINE__RESOURCE_PKG:
 		case ComputePackage.COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES:
-		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET:
+		case ComputePackage.COMPUTE_PIPELINE__DESCRIPTOR_SET_PKG:
 		case ComputePackage.COMPUTE_PIPELINE__TASK_PKG:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -369,8 +351,8 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 						PipelineFactory.eINSTANCE.createPushConstantRange()));
 
 		newChildDescriptors
-				.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET,
-						ResourceFactory.eINSTANCE.createDescriptorSet()));
+				.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG,
+						ResourceFactory.eINSTANCE.createDescriptorSetPkg()));
 
 		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.IPIPELINE__TASK_PKG,
 				ProcessFactory.eINSTANCE.createTaskPkg()));

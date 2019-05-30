@@ -61,7 +61,7 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter
 
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
-			addIndexPropertyDescriptor(object);
+			addDescriptorSetsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -101,20 +101,21 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Index feature.
+	 * This adds a property descriptor for the Descriptor Sets feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIndexPropertyDescriptor(Object object)
+	protected void addDescriptorSetsPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_BindDescriptorSets_index_feature"),
+				getResourceLocator(), getString("_UI_BindDescriptorSets_descriptorSets_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_BindDescriptorSets_index_feature", "_UI_BindDescriptorSets_type"),
-				ProcessPackage.Literals.BIND_DESCRIPTOR_SETS__INDEX, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+						"_UI_BindDescriptorSets_descriptorSets_feature",
+						"_UI_BindDescriptorSets_type"),
+				ProcessPackage.Literals.BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -160,7 +161,6 @@ public class BindDescriptorSetsItemProvider extends ItemProviderAdapter
 		{
 		case ProcessPackage.BIND_DESCRIPTOR_SETS__NAME:
 		case ProcessPackage.BIND_DESCRIPTOR_SETS__ENABLED:
-		case ProcessPackage.BIND_DESCRIPTOR_SETS__INDEX:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

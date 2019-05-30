@@ -2,8 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
-import org.eclipse.emf.ecore.EObject;
-
+import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 
 /**
@@ -23,7 +22,7 @@ import org.sheepy.vulkan.model.enumeration.EFormat;
  * @model
  * @generated
  */
-public interface AttributeDescription extends EObject
+public interface AttributeDescription extends LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Format</b></em>' attribute.

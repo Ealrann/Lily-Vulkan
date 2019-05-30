@@ -245,7 +245,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_DescriptorSetPkg()
+	public EReference getAbstractProcess_PartPkg()
 	{
 		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(1);
 	}
@@ -256,20 +256,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractProcess_PartPkg()
-	{
-		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getAbstractProcess_ResetAllowed()
 	{
-		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) abstractProcessEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -280,7 +269,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_Signals()
 	{
-		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(4);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -291,7 +280,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getAbstractProcess_WaitFor()
 	{
-		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(5);
+		return (EReference) abstractProcessEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -509,7 +498,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getIPipeline_DescriptorSetRef()
+	public EReference getIPipeline_DescriptorSetPkg()
 	{
 		return (EReference) iPipelineEClass.getEStructuralFeatures().get(3);
 	}
@@ -520,20 +509,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getIPipeline_DescriptorSet()
-	{
-		return (EReference) iPipelineEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getIPipeline_TaskPkg()
 	{
-		return (EReference) iPipelineEClass.getEStructuralFeatures().get(5);
+		return (EReference) iPipelineEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -586,9 +564,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBindDescriptorSets_Index()
+	public EReference getBindDescriptorSets_DescriptorSets()
 	{
-		return (EAttribute) bindDescriptorSetsEClass.getEStructuralFeatures().get(0);
+		return (EReference) bindDescriptorSetsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -679,7 +657,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		// Create classes and their features
 		abstractProcessEClass = createEClass(ABSTRACT_PROCESS);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__WAITING_FENCE_DURING_ACQUIRE);
-		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__DESCRIPTOR_SET_PKG);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__PART_PKG);
 		createEAttribute(abstractProcessEClass, ABSTRACT_PROCESS__RESET_ALLOWED);
 		createEReference(abstractProcessEClass, ABSTRACT_PROCESS__SIGNALS);
@@ -699,8 +676,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEAttribute(iPipelineEClass, IPIPELINE__ENABLED);
 		createEAttribute(iPipelineEClass, IPIPELINE__STAGE);
 		createEReference(iPipelineEClass, IPIPELINE__PUSH_CONSTANT_RANGES);
-		createEReference(iPipelineEClass, IPIPELINE__DESCRIPTOR_SET_REF);
-		createEReference(iPipelineEClass, IPIPELINE__DESCRIPTOR_SET);
+		createEReference(iPipelineEClass, IPIPELINE__DESCRIPTOR_SET_PKG);
 		createEReference(iPipelineEClass, IPIPELINE__TASK_PKG);
 
 		taskPkgEClass = createEClass(TASK_PKG);
@@ -720,7 +696,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEReference(compositeTaskEClass, COMPOSITE_TASK__TASKS);
 
 		bindDescriptorSetsEClass = createEClass(BIND_DESCRIPTOR_SETS);
-		createEAttribute(bindDescriptorSetsEClass, BIND_DESCRIPTOR_SETS__INDEX);
+		createEReference(bindDescriptorSetsEClass, BIND_DESCRIPTOR_SETS__DESCRIPTOR_SETS);
 
 		pushConstantEClass = createEClass(PUSH_CONSTANT);
 		createEAttribute(pushConstantEClass, PUSH_CONSTANT__STAGES);
@@ -797,10 +773,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				theEcorePackage.getEBoolean(), "waitingFenceDuringAcquire", "false", 0, 1,
 				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractProcess_DescriptorSetPkg(),
-				theResourcePackage.getDescriptorSetPkg(), null, "descriptorSetPkg", null, 0, 1,
-				AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractProcess_PartPkg(), this.getProcessPartPkg(), null, "partPkg",
 				null, 0, 1, AbstractProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
@@ -847,12 +819,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				null, "pushConstantRanges", null, 0, -1, IPipeline.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIPipeline_DescriptorSetRef(), theResourcePackage.getDescriptorSet(), null,
-				"descriptorSetRef", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getIPipeline_DescriptorSet(), theResourcePackage.getDescriptorSet(), null,
-				"descriptorSet", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getIPipeline_DescriptorSetPkg(), theResourcePackage.getDescriptorSetPkg(),
+				null, "descriptorSetPkg", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getIPipeline_TaskPkg(), this.getTaskPkg(), null, "taskPkg", null, 0, 1,
@@ -900,9 +868,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		initEClass(bindDescriptorSetsEClass, BindDescriptorSets.class, "BindDescriptorSets",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBindDescriptorSets_Index(), theEcorePackage.getEInt(), "index", "0", 0, 1,
-				BindDescriptorSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBindDescriptorSets_DescriptorSets(),
+				theResourcePackage.getDescriptorSet(), null, "descriptorSets", null, 0, -1,
+				BindDescriptorSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
