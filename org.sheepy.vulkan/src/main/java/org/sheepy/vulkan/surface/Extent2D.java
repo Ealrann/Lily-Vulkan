@@ -2,7 +2,7 @@ package org.sheepy.vulkan.surface;
 
 import org.lwjgl.vulkan.VkExtent2D;
 
-public class Extent2D
+public final class Extent2D
 {
 	public final int width;
 	public final int height;

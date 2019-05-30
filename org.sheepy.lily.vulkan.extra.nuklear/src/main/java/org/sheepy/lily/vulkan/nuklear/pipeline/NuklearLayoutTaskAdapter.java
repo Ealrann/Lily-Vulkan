@@ -6,6 +6,7 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
+import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.core.model.presentation.IUIView;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
@@ -18,6 +19,8 @@ import org.sheepy.lily.vulkan.nuklear.adapter.IUIElementAdapter;
 import org.sheepy.lily.vulkan.nuklear.adapter.IUIElementAdapter.UIContext;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskBuilder;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
+import org.sheepy.vulkan.surface.Extent2D;
+import org.sheepy.vulkan.window.Window;
 
 @Statefull
 @Adapter(scope = NuklearLayoutTask.class)
@@ -31,7 +34,10 @@ public class NuklearLayoutTaskAdapter
 	private boolean dirty = true;
 	private IGraphicContext context;
 
+	private Extent2D currentExtent;
 	private NuklearContextAdapter nuklearContextAdapter;
+	private Window window;
+	private Application application;
 
 	public NuklearLayoutTaskAdapter(NuklearLayoutTask task)
 	{
@@ -47,6 +53,8 @@ public class NuklearLayoutTaskAdapter
 	public void allocate(MemoryStack stack, IGraphicContext context)
 	{
 		this.context = context;
+		window = context.getWindow();
+		application = VulkanModelUtil.getApplication(task);
 		nuklearContextAdapter = NuklearContextAdapter.adapt(task.getContext());
 
 		// Prepare a first render before the opening of the window
@@ -61,10 +69,16 @@ public class NuklearLayoutTaskAdapter
 
 	public void layout(List<IInputEvent> events)
 	{
-		final var application = VulkanModelUtil.getApplication(task);
 		final var view = application.getCurrentView();
 		final var nkContext = nuklearContextAdapter.getNkContext();
-		final var uiContext = new UIContext(context.getWindow(), nkContext, events);
+		final var uiContext = new UIContext(window, nkContext, events);
+
+		final var extent = context.getSurfaceManager().getExtent();
+		if (extent != currentExtent)
+		{
+			dirty = true;
+			currentExtent = extent;
+		}
 
 		if (view != null && view instanceof IUIView)
 		{
@@ -91,8 +105,6 @@ public class NuklearLayoutTaskAdapter
 
 		if (dirty)
 		{
-			final var extent = context.getSurfaceManager().getExtent();
-
 			final var pushBuffer = task.getPushBuffer();
 			final var pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
 			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
@@ -100,7 +112,7 @@ public class NuklearLayoutTaskAdapter
 
 			nuklearContextAdapter.fillVertexBuffer(stagingBuffer, vertexBuffer);
 			final var commands = nuklearContextAdapter.prepareDrawCommands();
-			drawTaskMaintainer.reloadTasks(commands, extent);
+			drawTaskMaintainer.reloadTasks(commands, currentExtent);
 
 			// Print vertex buffer
 			//
