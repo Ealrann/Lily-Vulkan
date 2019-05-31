@@ -30,10 +30,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import org.sheepy.lily.core.model.builder.Buildable;
-import org.sheepy.lily.core.model.builder.BuilderPackage;
-import org.sheepy.lily.core.model.builder.util.BuilderSwitch;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearFactory;
 
 import org.sheepy.lily.vulkan.extra.nuklear.model.util.NuklearAdapterFactory;
@@ -42,7 +38,6 @@ import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
-import org.sheepy.lily.vulkan.model.process.graphic.util.GraphicSwitch;
 import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
 import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 
@@ -94,31 +89,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 		supportedTypes.add(ITreeItemContentProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
 		supportedTypes.add(IItemPropertySource.class);
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NuklearPipelineBuilderItemProvider nuklearPipelineBuilderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNuklearPipelineBuilderAdapter()
-	{
-		if (nuklearPipelineBuilderItemProvider == null)
-		{
-			nuklearPipelineBuilderItemProvider = new NuklearPipelineBuilderItemProvider(this);
-		}
-
-		return nuklearPipelineBuilderItemProvider;
 	}
 
 	/**
@@ -313,104 +283,9 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 	@Override
 	public void dispose()
 	{
-		if (nuklearPipelineBuilderItemProvider != null) nuklearPipelineBuilderItemProvider.dispose();
 		if (nuklearPushConstantsItemProvider != null) nuklearPushConstantsItemProvider.dispose();
 		if (nuklearLayoutTaskItemProvider != null) nuklearLayoutTaskItemProvider.dispose();
 		if (nuklearContextItemProvider != null) nuklearContextItemProvider.dispose();
-	}
-
-	/**
-	 * A child creation extender for the {@link GraphicPackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class GraphicChildCreationExtender implements IChildCreationExtender
-	{
-		/**
-		 * The switch for creating child descriptors specific to each extended class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected static class CreationSwitch extends GraphicSwitch<Object>
-		{
-			/**
-			 * The child descriptors being populated.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected List<Object> newChildDescriptors;
-
-			/**
-			 * The domain in which to create the children.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected EditingDomain editingDomain;
-
-			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
-			{
-				this.newChildDescriptors = newChildDescriptors;
-				this.editingDomain = editingDomain;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public <T extends Buildable<T>> Object caseBuildable(Buildable<T> object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(BuilderPackage.Literals.BUILDABLE__BUILDER,
-						 NuklearFactory.eINSTANCE.createNuklearPipelineBuilder()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected CommandParameter createChildParameter(Object feature, Object child)
-			{
-				return new CommandParameter(null, feature, child);
-			}
-
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-		{
-			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
-			return result;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public ResourceLocator getResourceLocator()
-		{
-			return NuklearEditPlugin.INSTANCE;
-		}
 	}
 
 	/**
@@ -468,100 +343,6 @@ public class NuklearItemProviderAdapterFactory extends NuklearAdapterFactory imp
 					(createChildParameter
 						(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 						 NuklearFactory.eINSTANCE.createNuklearContext()));
-
-				return null;
-			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected CommandParameter createChildParameter(Object feature, Object child)
-			{
-				return new CommandParameter(null, feature, child);
-			}
-
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-		{
-			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
-			return result;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public ResourceLocator getResourceLocator()
-		{
-			return NuklearEditPlugin.INSTANCE;
-		}
-	}
-
-	/**
-	 * A child creation extender for the {@link BuilderPackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class BuilderChildCreationExtender implements IChildCreationExtender
-	{
-		/**
-		 * The switch for creating child descriptors specific to each extended class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected static class CreationSwitch extends BuilderSwitch<Object>
-		{
-			/**
-			 * The child descriptors being populated.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected List<Object> newChildDescriptors;
-
-			/**
-			 * The domain in which to create the children.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected EditingDomain editingDomain;
-
-			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) 
-			{
-				this.newChildDescriptors = newChildDescriptors;
-				this.editingDomain = editingDomain;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public <T extends Buildable<T>> Object caseBuildable(Buildable<T> object)
-			{
-				newChildDescriptors.add
-					(createChildParameter
-						(BuilderPackage.Literals.BUILDABLE__BUILDER,
-						 NuklearFactory.eINSTANCE.createNuklearPipelineBuilder()));
 
 				return null;
 			}

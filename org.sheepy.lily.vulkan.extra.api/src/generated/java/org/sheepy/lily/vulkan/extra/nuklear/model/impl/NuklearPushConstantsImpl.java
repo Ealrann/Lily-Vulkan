@@ -95,7 +95,7 @@ public class NuklearPushConstantsImpl extends PushConstantImpl implements Nuklea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NuklearPushConstantsImpl()
+	protected NuklearPushConstantsImpl()
 	{
 		super();
 	}

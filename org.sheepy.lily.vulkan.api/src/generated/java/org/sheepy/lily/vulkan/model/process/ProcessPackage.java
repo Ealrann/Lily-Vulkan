@@ -692,13 +692,22 @@ public interface ProcessPackage extends EPackage
 	int COMPOSITE_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Builder</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_TASK__BUILDER = IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Repeat Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_TASK__REPEAT_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 0;
+	int COMPOSITE_TASK__REPEAT_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' containment reference list.
@@ -707,7 +716,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_TASK__TASKS = IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int COMPOSITE_TASK__TASKS = IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Composite Task</em>' class.
@@ -716,7 +725,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int COMPOSITE_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Composite Task</em>' class.

@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -16,6 +17,7 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -200,6 +202,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
+		MaintainerPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 
@@ -747,6 +750,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				.getEPackage(RootPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
 				.getEPackage(BarrierPackage.eNS_URI);
+		MaintainerPackage theMaintainerPackage = (MaintainerPackage) EPackage.Registry.INSTANCE
+				.getEPackage(MaintainerPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -761,7 +766,12 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		pipelineEClass.getESuperTypes().add(this.getIPipeline());
 		pipelineBarrierEClass.getESuperTypes().add(theRootPackage.getLObject());
 		pipelineBarrierEClass.getESuperTypes().add(this.getIPipelineTask());
-		compositeTaskEClass.getESuperTypes().add(this.getIPipelineTask());
+		EGenericType g1 = createEGenericType(this.getIPipelineTask());
+		compositeTaskEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theMaintainerPackage.getMaintainable());
+		EGenericType g2 = createEGenericType(this.getCompositeTask());
+		g1.getETypeArguments().add(g2);
+		compositeTaskEClass.getEGenericSuperTypes().add(g1);
 		bindDescriptorSetsEClass.getESuperTypes().add(this.getIPipelineTask());
 		pushConstantEClass.getESuperTypes().add(this.getIPipelineTask());
 		pushBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());

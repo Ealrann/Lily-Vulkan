@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.builder.BuilderPackage;
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -179,7 +179,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__PUSH_CONSTANT_RANGES);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__DESCRIPTOR_SET_PKG);
 			childrenFeatures.add(ProcessPackage.Literals.IPIPELINE__TASK_PKG);
-			childrenFeatures.add(BuilderPackage.Literals.BUILDABLE__BUILDER);
+			childrenFeatures.add(MaintainerPackage.Literals.MAINTAINABLE__BUILDER);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__VIEWPORT_STATE);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__INPUT_ASSEMBLY);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER);

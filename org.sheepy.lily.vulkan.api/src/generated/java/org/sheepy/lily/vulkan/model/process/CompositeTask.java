@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
+import org.sheepy.lily.core.model.maintainer.Maintainable;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface CompositeTask extends IPipelineTask
+public interface CompositeTask extends IPipelineTask, Maintainable<CompositeTask>
 {
 	/**
 	 * Returns the value of the '<em><b>Repeat Count</b></em>' attribute.

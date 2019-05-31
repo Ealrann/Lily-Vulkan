@@ -116,7 +116,7 @@ public class NuklearLayoutTaskImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NuklearLayoutTaskImpl()
+	protected NuklearLayoutTaskImpl()
 	{
 		super();
 	}

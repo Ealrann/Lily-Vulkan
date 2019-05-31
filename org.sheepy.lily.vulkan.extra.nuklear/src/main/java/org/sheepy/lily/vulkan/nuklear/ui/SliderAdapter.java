@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.nuklear.adapter;
+package org.sheepy.lily.vulkan.nuklear.ui;
 
 import static org.lwjgl.nuklear.Nuklear.nk_slider_int;
 

@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.sheepy.lily.core.model.builder.BuilderPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
@@ -61,44 +60,6 @@ public interface NuklearPackage extends EPackage
 	NuklearPackage eINSTANCE = org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineBuilderImpl <em>Pipeline Builder</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineBuilderImpl
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearPipelineBuilder()
-	 * @generated
-	 */
-	int NUKLEAR_PIPELINE_BUILDER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Font</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE_BUILDER__FONT = BuilderPackage.BUILDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Pipeline Builder</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE_BUILDER_FEATURE_COUNT = BuilderPackage.BUILDER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Pipeline Builder</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PIPELINE_BUILDER_OPERATION_COUNT = BuilderPackage.BUILDER_OPERATION_COUNT + 0;
-
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPushConstantsImpl <em>Push Constants</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,7 +67,7 @@ public interface NuklearPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearPushConstants()
 	 * @generated
 	 */
-	int NUKLEAR_PUSH_CONSTANTS = 1;
+	int NUKLEAR_PUSH_CONSTANTS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -197,7 +158,7 @@ public interface NuklearPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearLayoutTask()
 	 * @generated
 	 */
-	int NUKLEAR_LAYOUT_TASK = 2;
+	int NUKLEAR_LAYOUT_TASK = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -279,7 +240,7 @@ public interface NuklearPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearContext()
 	 * @generated
 	 */
-	int NUKLEAR_CONTEXT = 3;
+	int NUKLEAR_CONTEXT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -335,27 +296,6 @@ public interface NuklearPackage extends EPackage
 	 */
 	int NUKLEAR_CONTEXT_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
 
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder <em>Pipeline Builder</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Pipeline Builder</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder
-	 * @generated
-	 */
-	EClass getNuklearPipelineBuilder();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder#getFont <em>Font</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Font</em>'.
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder#getFont()
-	 * @see #getNuklearPipelineBuilder()
-	 * @generated
-	 */
-	EReference getNuklearPipelineBuilder_Font();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants <em>Push Constants</em>}'.
@@ -521,24 +461,6 @@ public interface NuklearPackage extends EPackage
 	 */
 	interface Literals
 	{
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineBuilderImpl <em>Pipeline Builder</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPipelineBuilderImpl
-		 * @see org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPackageImpl#getNuklearPipelineBuilder()
-		 * @generated
-		 */
-		EClass NUKLEAR_PIPELINE_BUILDER = eINSTANCE.getNuklearPipelineBuilder();
-
-		/**
-		 * The meta object literal for the '<em><b>Font</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NUKLEAR_PIPELINE_BUILDER__FONT = eINSTANCE.getNuklearPipelineBuilder_Font();
-
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearPushConstantsImpl <em>Push Constants</em>}' class.
 		 * <!-- begin-user-doc -->

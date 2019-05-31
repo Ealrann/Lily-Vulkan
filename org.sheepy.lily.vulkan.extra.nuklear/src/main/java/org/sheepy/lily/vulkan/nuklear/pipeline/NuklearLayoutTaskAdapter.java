@@ -15,10 +15,10 @@ import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
 import org.sheepy.lily.vulkan.api.resource.IPushBufferAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask;
-import org.sheepy.lily.vulkan.nuklear.adapter.IUIElementAdapter;
-import org.sheepy.lily.vulkan.nuklear.adapter.IUIElementAdapter.UIContext;
-import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskBuilder;
+import org.sheepy.lily.vulkan.nuklear.draw.DrawTaskMaintainer;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
+import org.sheepy.lily.vulkan.nuklear.ui.IUIElementAdapter;
+import org.sheepy.lily.vulkan.nuklear.ui.IUIElementAdapter.UIContext;
 import org.sheepy.vulkan.surface.Extent2D;
 import org.sheepy.vulkan.window.Window;
 
@@ -27,7 +27,7 @@ import org.sheepy.vulkan.window.Window;
 public class NuklearLayoutTaskAdapter
 		implements IPipelineTaskAdapter<NuklearLayoutTask>, IAllocableAdapter<IGraphicContext>
 {
-	private final DrawTaskBuilder drawTaskMaintainer;
+	private final DrawTaskMaintainer drawTaskMaintainer;
 
 	private final NuklearLayoutTask task;
 
@@ -46,7 +46,7 @@ public class NuklearLayoutTaskAdapter
 		final var drawTask = task.getDrawTask();
 		final var vertexBuffer = task.getVertexBuffer();
 
-		drawTaskMaintainer = new DrawTaskBuilder(drawTask, vertexBuffer);
+		drawTaskMaintainer = new DrawTaskMaintainer(drawTask, vertexBuffer);
 	}
 
 	@Override

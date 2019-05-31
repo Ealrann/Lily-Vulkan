@@ -34,9 +34,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
-import org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl;
-import org.sheepy.lily.vulkan.model.process.impl.PipelineImpl;
-import org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Image;
@@ -141,7 +138,7 @@ public class ModelFactory
 
 	private GraphicProcess newImageProcess()
 	{
-		final var imagePipeline = new PipelineImpl();
+		final var imagePipeline = ProcessFactory.eINSTANCE.createPipeline();
 
 		final var imageBarrier1 = new ImageBarrierImpl();
 		imageBarrier1.setImage(boardImage);
@@ -156,7 +153,7 @@ public class ModelFactory
 		swapImageBarrier.setSrcLayout(EImageLayout.UNDEFINED);
 		swapImageBarrier.setDstLayout(EImageLayout.TRANSFER_DST_OPTIMAL);
 
-		final var pipelineBarrier1 = new PipelineBarrierImpl();
+		final var pipelineBarrier1 = ProcessFactory.eINSTANCE.createPipelineBarrier();
 		pipelineBarrier1.setSrcStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		pipelineBarrier1.setDstStage(EPipelineStage.TRANSFER_BIT);
 		pipelineBarrier1.getBarriers().add(imageBarrier1);
@@ -172,7 +169,7 @@ public class ModelFactory
 		imageBarrier2.setSrcLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
 		imageBarrier2.setDstLayout(EImageLayout.GENERAL);
 
-		final var pipelineBarrier2 = new PipelineBarrierImpl();
+		final var pipelineBarrier2 = ProcessFactory.eINSTANCE.createPipelineBarrier();
 		pipelineBarrier2.setSrcStage(EPipelineStage.TRANSFER_BIT);
 		pipelineBarrier2.setDstStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		pipelineBarrier2.getBarriers().add(imageBarrier2);
@@ -186,7 +183,7 @@ public class ModelFactory
 		imagePipeline.setTaskPkg(taskPkg);
 
 		final GraphicProcess graphicProcess = new GraphicProcessImpl();
-		graphicProcess.setPartPkg(new ProcessPartPkgImpl());
+		graphicProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
 		graphicProcess.getPartPkg().getParts().add(imagePipeline);
 
 		return graphicProcess;
@@ -231,13 +228,13 @@ public class ModelFactory
 		final var pixelPipeline1 = createPipeline(pixelComputer1, boardBuffer2, boardImage);
 		final var pixelPipeline2 = createPipeline(pixelComputer2, boardBuffer1, boardImage);
 
-		final ProcessPartPkg pipelines1 = new ProcessPartPkgImpl();
+		final ProcessPartPkg pipelines1 = ProcessFactory.eINSTANCE.createProcessPartPkg();
 		process1.setPartPkg(pipelines1);
 
 		pipelines1.getParts().add(lifePipeline1);
 		pipelines1.getParts().add(pixelPipeline1);
 
-		final ProcessPartPkg pipelines2 = new ProcessPartPkgImpl();
+		final ProcessPartPkg pipelines2 = ProcessFactory.eINSTANCE.createProcessPartPkg();
 		process2.setPartPkg(pipelines2);
 
 		pipelines2.getParts().add(lifePipeline2);

@@ -8,8 +8,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.lily.core.model.builder.Buildable;
-import org.sheepy.lily.core.model.builder.Builder;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.extra.nuklear.model.*;
 import org.sheepy.lily.vulkan.model.IResource;
@@ -81,11 +79,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 		new NuklearSwitch<Adapter>()
 		{
 			@Override
-			public Adapter caseNuklearPipelineBuilder(NuklearPipelineBuilder object)
-			{
-				return createNuklearPipelineBuilderAdapter();
-			}
-			@Override
 			public Adapter caseNuklearPushConstants(NuklearPushConstants object)
 			{
 				return createNuklearPushConstantsAdapter();
@@ -99,11 +92,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseNuklearContext(NuklearContext object)
 			{
 				return createNuklearContextAdapter();
-			}
-			@Override
-			public <T extends Buildable<T>> Adapter caseBuilder(Builder<T> object)
-			{
-				return createBuilderAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -153,21 +141,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder <em>Pipeline Builder</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder
-	 * @generated
-	 */
-	public Adapter createNuklearPipelineBuilderAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants <em>Push Constants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -208,21 +181,6 @@ public class NuklearAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNuklearContextAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.builder.Builder <em>Builder</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.builder.Builder
-	 * @generated
-	 */
-	public Adapter createBuilderAdapter()
 	{
 		return null;
 	}

@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-import org.sheepy.lily.core.model.builder.Buildable;
+import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
@@ -206,7 +206,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			GraphicsPipeline graphicsPipeline = (GraphicsPipeline) theEObject;
 			T1 result = caseGraphicsPipeline(graphicsPipeline);
 			if (result == null) result = caseIPipeline(graphicsPipeline);
-			if (result == null) result = caseBuildable(graphicsPipeline);
+			if (result == null) result = caseMaintainable(graphicsPipeline);
 			if (result == null) result = caseLNamedElement(graphicsPipeline);
 			if (result == null) result = caseIResourceContainer(graphicsPipeline);
 			if (result == null) result = caseIProcessPart(graphicsPipeline);
@@ -897,17 +897,17 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Buildable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Maintainable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Buildable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Maintainable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Buildable<T>> T1 caseBuildable(Buildable<T> object)
+	public <T extends Maintainable<T>> T1 caseMaintainable(Maintainable<T> object)
 	{
 		return null;
 	}

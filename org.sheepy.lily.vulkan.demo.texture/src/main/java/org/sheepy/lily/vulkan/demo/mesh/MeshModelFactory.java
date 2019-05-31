@@ -33,8 +33,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl;
-import org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl;
-import org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -195,7 +193,7 @@ public class MeshModelFactory
 		PushConstant pushConstants = null;
 		if (meshConfiguration.useCamera)
 		{
-			pushConstants = new PushConstantImpl();
+			pushConstants = ProcessFactory.eINSTANCE.createPushConstant();
 			pushConstants.setName(CameraConstantAdapter.DEMO_CAMERA);
 			pushConstants.getStages().add(EShaderStage.VERTEX_BIT);
 
@@ -286,7 +284,7 @@ public class MeshModelFactory
 		resourceContainer.getResources().add(pushBuffer);
 		resourceContainer.getResources().add(indexedVertexBuffer);
 
-		graphicProcess.setPartPkg(new ProcessPartPkgImpl());
+		graphicProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
 		graphicProcess.getPartPkg().getParts().add(graphicPipeline);
 
 		if (meshConfiguration.useTexture)

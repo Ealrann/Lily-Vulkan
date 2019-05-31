@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
-import org.sheepy.lily.core.model.builder.Buildable;
+import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
@@ -35,7 +35,7 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  * @model
  * @generated
  */
-public interface GraphicsPipeline extends IPipeline, Buildable<GraphicsPipeline>
+public interface GraphicsPipeline extends IPipeline, Maintainable<GraphicsPipeline>
 {
 
 	/**

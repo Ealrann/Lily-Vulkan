@@ -16,6 +16,7 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -125,6 +126,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
+		MaintainerPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 

@@ -7,15 +7,15 @@ import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearFactory;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.nuklear.builder.NkPipelineBuilderAdapter;
+import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.vulkan.surface.Extent2D;
 
-public final class DrawTaskBuilder
+public final class DrawTaskMaintainer
 {
 	private final CompositeTask drawCompositeTask;
 	private final Buffer vertexBuffer;
 
-	public DrawTaskBuilder(CompositeTask drawCompositeTask, Buffer vertexBuffer)
+	public DrawTaskMaintainer(CompositeTask drawCompositeTask, Buffer vertexBuffer)
 	{
 		this.drawCompositeTask = drawCompositeTask;
 		this.vertexBuffer = vertexBuffer;
@@ -54,7 +54,7 @@ public final class DrawTaskBuilder
 
 		final var bindIndexBuffer = GraphicFactory.eINSTANCE.createBindIndexBuffer();
 		bindIndexBuffer.setBuffer(vertexBuffer);
-		bindIndexBuffer.setOffset(NkPipelineBuilderAdapter.INDEX_OFFSET);
+		bindIndexBuffer.setOffset(NuklearContextAdapter.INDEX_OFFSET);
 
 		final var setViewport = GraphicFactory.eINSTANCE.createSetViewport();
 		setViewport.setWidth(extent.getWidth());

@@ -34,8 +34,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
-import org.sheepy.lily.vulkan.nuklear.builder.NkPipelineBuilderAdapter;
-import org.sheepy.lily.vulkan.nuklear.builder.internal.VertexDescriptorBuilder;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
@@ -49,6 +47,12 @@ import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
 @Adapter(scope = NuklearContext.class)
 public class NuklearContextAdapter implements IResourceAdapter
 {
+	private static final int VERTEX_SIZE = 20;
+	public static final long INDEXED_BUFFER_SIZE = (long) Math.pow(2, 19);
+	public static final long INDEX_BUFFER_SIZE = (long) Math.pow(2, 16);
+	public static final long VERTEX_BUFFER_SIZE = INDEXED_BUFFER_SIZE - INDEX_BUFFER_SIZE;
+	public static final long INDEX_OFFSET = INDEXED_BUFFER_SIZE - INDEX_BUFFER_SIZE;
+
 	private static final int BUFFER_INITIAL_SIZE = 4 * 1024;
 	private static final String NK_CONVERT_FAILED = "nk_convert failed: ";
 	private static final NkDrawVertexLayoutElement.Buffer VERTEX_LAYOUT;
@@ -150,7 +154,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 
 		config.null_texture(nkNullTexture);
 		config.vertex_layout(VERTEX_LAYOUT);
-		config.vertex_size(VertexDescriptorBuilder.SIZE_OF_VERTEX);
+		config.vertex_size(VERTEX_SIZE);
 		config.vertex_alignment(4);
 		config.circle_segment_count(20);
 		config.curve_segment_count(20);
@@ -167,8 +171,8 @@ public class NuklearContextAdapter implements IResourceAdapter
 			final var vertexBufferAdapter = BufferAdapter.adapt(vertexBuffer);
 			final var bufferPtr = vertexBufferAdapter.getAddress();
 
-			final long vertexBufferSize = NkPipelineBuilderAdapter.VERTEX_BUFFER_SIZE;
-			final long indexBufferSize = NkPipelineBuilderAdapter.INDEX_BUFFER_SIZE;
+			final long vertexBufferSize = VERTEX_BUFFER_SIZE;
+			final long indexBufferSize = INDEX_BUFFER_SIZE;
 			final var vertexOffset = 0;
 
 			final var vertexMemoryMap = stagingBuffer.reserveMemory(vertexBufferSize);

@@ -7,8 +7,8 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.sheepy.lily.core.model.action.provider.ActionEditPlugin;
 import org.sheepy.lily.core.model.application.provider.ApplicationEditPlugin;
-import org.sheepy.lily.core.model.builder.provider.BuilderEditPlugin;
 import org.sheepy.lily.core.model.inference.provider.InferenceEditPlugin;
+import org.sheepy.lily.core.model.maintainer.provider.MaintainerEditPlugin;
 import org.sheepy.lily.core.model.root.provider.RootEditPlugin;
 import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
 import org.sheepy.lily.vulkan.model.process.provider.ProcessEditPlugin;
@@ -59,7 +59,7 @@ public final class GraphicEditPlugin extends EMFPlugin
 				TypesEditPlugin.INSTANCE,
 				ResourceEditPlugin.INSTANCE,
 				VulkanEditPlugin.INSTANCE,
-				BuilderEditPlugin.INSTANCE,
+				MaintainerEditPlugin.INSTANCE,
 				GraphicpipelineEditPlugin.INSTANCE,
 				BarrierEditPlugin.INSTANCE,
 				PipelineEditPlugin.INSTANCE,

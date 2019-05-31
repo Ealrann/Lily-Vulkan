@@ -23,15 +23,6 @@ public interface NuklearFactory extends EFactory
 	NuklearFactory eINSTANCE = org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Pipeline Builder</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pipeline Builder</em>'.
-	 * @generated
-	 */
-	NuklearPipelineBuilder createNuklearPipelineBuilder();
-
-	/**
 	 * Returns a new object of class '<em>Push Constants</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

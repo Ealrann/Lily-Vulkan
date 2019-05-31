@@ -1,9 +1,10 @@
 @GenModel(cleanup="true", codeFormatting="true")
 @GenModel(modelDirectory="/org.sheepy.lily.vulkan.model/src/generated/java")
 @GenModel(editDirectory="/org.sheepy.lily.vulkan.model.edit/src/generated/java")
-@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(complianceLevel="11.0", resource="XMI")
 @GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
 @GenModel(updateClasspath="false")
+
 package org.sheepy.lily.vulkan.model.process
 
 import org.sheepy.lily.core.model.root.LObject
@@ -20,6 +21,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.EShaderStage
 import org.sheepy.vulkan.model.pipeline.PushConstantRange
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet
+import org.sheepy.lily.core.model.maintainer.Maintainable
 
 abstract class AbstractProcess extends IProcess
 {
@@ -85,7 +87,7 @@ class PipelineBarrier extends LObject, IPipelineTask
 	refers AbstractProcess dstQueue
 }
 
-class CompositeTask extends IPipelineTask
+class CompositeTask extends IPipelineTask, Maintainable<CompositeTask>
 {
 	int repeatCount = "1"
 	contains IPipelineTask[] tasks

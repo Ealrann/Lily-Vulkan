@@ -9,14 +9,12 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.sheepy.lily.core.model.action.provider.ActionEditPlugin;
 
 import org.sheepy.lily.core.model.application.provider.ApplicationEditPlugin;
-
-import org.sheepy.lily.core.model.builder.provider.BuilderEditPlugin;
 import org.sheepy.lily.core.model.inference.provider.InferenceEditPlugin;
 
+import org.sheepy.lily.core.model.maintainer.provider.MaintainerEditPlugin;
 import org.sheepy.lily.core.model.root.provider.RootEditPlugin;
 
 import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
-import org.sheepy.lily.vulkan.model.process.graphic.provider.GraphicEditPlugin;
 import org.sheepy.lily.vulkan.model.process.provider.ProcessEditPlugin;
 import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
 
@@ -24,7 +22,6 @@ import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
 
 import org.sheepy.vulkan.model.barrier.provider.BarrierEditPlugin;
 import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
-import org.sheepy.vulkan.model.graphicpipeline.provider.GraphicpipelineEditPlugin;
 import org.sheepy.vulkan.model.pipeline.provider.PipelineEditPlugin;
 
 /**
@@ -62,18 +59,16 @@ public final class NuklearEditPlugin extends EMFPlugin
 		super
 		  (new ResourceLocator [] 
 		   {
-		     BuilderEditPlugin.INSTANCE,
-		     ResourceEditPlugin.INSTANCE,
-		     GraphicEditPlugin.INSTANCE,
 		     ProcessEditPlugin.INSTANCE,
 		     TypesEditPlugin.INSTANCE,
+		     ResourceEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
 		     EnumerationEditPlugin.INSTANCE,
-		     BarrierEditPlugin.INSTANCE,
-		     GraphicpipelineEditPlugin.INSTANCE,
 		     PipelineEditPlugin.INSTANCE,
 		     RootEditPlugin.INSTANCE,
 		     InferenceEditPlugin.INSTANCE,
+		     BarrierEditPlugin.INSTANCE,
+		     MaintainerEditPlugin.INSTANCE,
 		     ApplicationEditPlugin.INSTANCE,
 		     ActionEditPlugin.INSTANCE,
 		   });

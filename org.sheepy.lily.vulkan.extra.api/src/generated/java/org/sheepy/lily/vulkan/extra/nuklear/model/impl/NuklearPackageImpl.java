@@ -4,7 +4,6 @@ package org.sheepy.lily.vulkan.extra.nuklear.model.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -14,10 +13,9 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.sheepy.lily.core.model.action.ActionPackage;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-
-import org.sheepy.lily.core.model.builder.BuilderPackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -25,15 +23,12 @@ import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearContext;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearFactory;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage;
-import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPipelineBuilder;
 import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
-import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -44,13 +39,6 @@ import org.sheepy.vulkan.model.pipeline.PipelinePackage;
  */
 public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass nuklearPipelineBuilderEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,19 +110,17 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		BuilderPackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
-		GraphicPackage.eINSTANCE.eClass();
 		ProcessPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
+		ResourcePackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
-		BarrierPackage.eINSTANCE.eClass();
-		GraphicpipelinePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
+		MaintainerPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		ActionPackage.eINSTANCE.eClass();
 
@@ -150,28 +136,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NuklearPackage.eNS_URI, theNuklearPackage);
 		return theNuklearPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getNuklearPipelineBuilder()
-	{
-		return nuklearPipelineBuilderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getNuklearPipelineBuilder_Font()
-	{
-		return (EReference)nuklearPipelineBuilderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -348,9 +312,6 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		isCreated = true;
 
 		// Create classes and their features
-		nuklearPipelineBuilderEClass = createEClass(NUKLEAR_PIPELINE_BUILDER);
-		createEReference(nuklearPipelineBuilderEClass, NUKLEAR_PIPELINE_BUILDER__FONT);
-
 		nuklearPushConstantsEClass = createEClass(NUKLEAR_PUSH_CONSTANTS);
 		createEAttribute(nuklearPushConstantsEClass, NUKLEAR_PUSH_CONSTANTS__WIDTH);
 		createEAttribute(nuklearPushConstantsEClass, NUKLEAR_PUSH_CONSTANTS__HEIGHT);
@@ -393,11 +354,9 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		BuilderPackage theBuilderPackage = (BuilderPackage)EPackage.Registry.INSTANCE.getEPackage(BuilderPackage.eNS_URI);
-		GraphicPackage theGraphicPackage = (GraphicPackage)EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		VulkanPackage theVulkanPackage = (VulkanPackage)EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
 
 		// Create type parameters
@@ -405,19 +364,12 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		EGenericType g1 = createEGenericType(theBuilderPackage.getBuilder());
-		EGenericType g2 = createEGenericType(theGraphicPackage.getGraphicsPipeline());
-		g1.getETypeArguments().add(g2);
-		nuklearPipelineBuilderEClass.getEGenericSuperTypes().add(g1);
 		nuklearPushConstantsEClass.getESuperTypes().add(theProcessPackage.getPushConstant());
 		nuklearLayoutTaskEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		nuklearContextEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		nuklearContextEClass.getESuperTypes().add(theResourcePackage.getBasicResource());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(nuklearPipelineBuilderEClass, NuklearPipelineBuilder.class, "NuklearPipelineBuilder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNuklearPipelineBuilder_Font(), theResourcePackage.getFont(), null, "font", null, 1, 1, NuklearPipelineBuilder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(nuklearPushConstantsEClass, NuklearPushConstants.class, "NuklearPushConstants", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNuklearPushConstants_Width(), theEcorePackage.getEInt(), "width", null, 0, 1, NuklearPushConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNuklearPushConstants_Height(), theEcorePackage.getEInt(), "height", null, 0, 1, NuklearPushConstants.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

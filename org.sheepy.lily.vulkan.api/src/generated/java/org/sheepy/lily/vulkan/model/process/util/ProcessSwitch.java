@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 import org.sheepy.lily.core.model.inference.IInferenceObject;
+import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
@@ -28,7 +29,7 @@ import org.sheepy.lily.vulkan.model.process.*;
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage
  * @generated
  */
-public class ProcessSwitch<T> extends Switch<T>
+public class ProcessSwitch<T1> extends Switch<T1>
 {
 	/**
 	 * The cached model package
@@ -74,14 +75,14 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
+	protected T1 doSwitch(int classifierID, EObject theEObject)
 	{
 		switch (classifierID)
 		{
 		case ProcessPackage.ABSTRACT_PROCESS:
 		{
 			AbstractProcess abstractProcess = (AbstractProcess) theEObject;
-			T result = caseAbstractProcess(abstractProcess);
+			T1 result = caseAbstractProcess(abstractProcess);
 			if (result == null) result = caseIProcess(abstractProcess);
 			if (result == null) result = caseIResourceContainer(abstractProcess);
 			if (result == null) result = caseLNamedElement(abstractProcess);
@@ -92,21 +93,21 @@ public class ProcessSwitch<T> extends Switch<T>
 		case ProcessPackage.CONFIGURATION:
 		{
 			Configuration configuration = (Configuration) theEObject;
-			T result = caseConfiguration(configuration);
+			T1 result = caseConfiguration(configuration);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ProcessPackage.PROCESS_PART_PKG:
 		{
 			ProcessPartPkg processPartPkg = (ProcessPartPkg) theEObject;
-			T result = caseProcessPartPkg(processPartPkg);
+			T1 result = caseProcessPartPkg(processPartPkg);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ProcessPackage.IPIPELINE_TASK:
 		{
 			IPipelineTask iPipelineTask = (IPipelineTask) theEObject;
-			T result = caseIPipelineTask(iPipelineTask);
+			T1 result = caseIPipelineTask(iPipelineTask);
 			if (result == null) result = caseLNamedElement(iPipelineTask);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
@@ -114,14 +115,14 @@ public class ProcessSwitch<T> extends Switch<T>
 		case ProcessPackage.IPROCESS_PART:
 		{
 			IProcessPart iProcessPart = (IProcessPart) theEObject;
-			T result = caseIProcessPart(iProcessPart);
+			T1 result = caseIProcessPart(iProcessPart);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ProcessPackage.IPIPELINE:
 		{
 			IPipeline iPipeline = (IPipeline) theEObject;
-			T result = caseIPipeline(iPipeline);
+			T1 result = caseIPipeline(iPipeline);
 			if (result == null) result = caseLNamedElement(iPipeline);
 			if (result == null) result = caseIResourceContainer(iPipeline);
 			if (result == null) result = caseIProcessPart(iPipeline);
@@ -131,14 +132,14 @@ public class ProcessSwitch<T> extends Switch<T>
 		case ProcessPackage.TASK_PKG:
 		{
 			TaskPkg taskPkg = (TaskPkg) theEObject;
-			T result = caseTaskPkg(taskPkg);
+			T1 result = caseTaskPkg(taskPkg);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
 		case ProcessPackage.PIPELINE:
 		{
 			Pipeline pipeline = (Pipeline) theEObject;
-			T result = casePipeline(pipeline);
+			T1 result = casePipeline(pipeline);
 			if (result == null) result = caseIPipeline(pipeline);
 			if (result == null) result = caseLNamedElement(pipeline);
 			if (result == null) result = caseIResourceContainer(pipeline);
@@ -149,7 +150,7 @@ public class ProcessSwitch<T> extends Switch<T>
 		case ProcessPackage.PIPELINE_BARRIER:
 		{
 			PipelineBarrier pipelineBarrier = (PipelineBarrier) theEObject;
-			T result = casePipelineBarrier(pipelineBarrier);
+			T1 result = casePipelineBarrier(pipelineBarrier);
 			if (result == null) result = caseLObject(pipelineBarrier);
 			if (result == null) result = caseIPipelineTask(pipelineBarrier);
 			if (result == null) result = caseIInferenceObject(pipelineBarrier);
@@ -160,8 +161,9 @@ public class ProcessSwitch<T> extends Switch<T>
 		case ProcessPackage.COMPOSITE_TASK:
 		{
 			CompositeTask compositeTask = (CompositeTask) theEObject;
-			T result = caseCompositeTask(compositeTask);
+			T1 result = caseCompositeTask(compositeTask);
 			if (result == null) result = caseIPipelineTask(compositeTask);
+			if (result == null) result = caseMaintainable(compositeTask);
 			if (result == null) result = caseLNamedElement(compositeTask);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
@@ -169,7 +171,7 @@ public class ProcessSwitch<T> extends Switch<T>
 		case ProcessPackage.BIND_DESCRIPTOR_SETS:
 		{
 			BindDescriptorSets bindDescriptorSets = (BindDescriptorSets) theEObject;
-			T result = caseBindDescriptorSets(bindDescriptorSets);
+			T1 result = caseBindDescriptorSets(bindDescriptorSets);
 			if (result == null) result = caseIPipelineTask(bindDescriptorSets);
 			if (result == null) result = caseLNamedElement(bindDescriptorSets);
 			if (result == null) result = defaultCase(theEObject);
@@ -178,7 +180,7 @@ public class ProcessSwitch<T> extends Switch<T>
 		case ProcessPackage.PUSH_CONSTANT:
 		{
 			PushConstant pushConstant = (PushConstant) theEObject;
-			T result = casePushConstant(pushConstant);
+			T1 result = casePushConstant(pushConstant);
 			if (result == null) result = caseIPipelineTask(pushConstant);
 			if (result == null) result = caseLNamedElement(pushConstant);
 			if (result == null) result = defaultCase(theEObject);
@@ -187,7 +189,7 @@ public class ProcessSwitch<T> extends Switch<T>
 		case ProcessPackage.PUSH_BUFFER_TASK:
 		{
 			PushBufferTask pushBufferTask = (PushBufferTask) theEObject;
-			T result = casePushBufferTask(pushBufferTask);
+			T1 result = casePushBufferTask(pushBufferTask);
 			if (result == null) result = caseIPipelineTask(pushBufferTask);
 			if (result == null) result = caseLNamedElement(pushBufferTask);
 			if (result == null) result = defaultCase(theEObject);
@@ -209,7 +211,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractProcess(AbstractProcess object)
+	public T1 caseAbstractProcess(AbstractProcess object)
 	{
 		return null;
 	}
@@ -225,7 +227,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConfiguration(Configuration object)
+	public T1 caseConfiguration(Configuration object)
 	{
 		return null;
 	}
@@ -241,7 +243,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProcessPartPkg(ProcessPartPkg object)
+	public T1 caseProcessPartPkg(ProcessPartPkg object)
 	{
 		return null;
 	}
@@ -257,7 +259,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPipelineTask(IPipelineTask object)
+	public T1 caseIPipelineTask(IPipelineTask object)
 	{
 		return null;
 	}
@@ -273,7 +275,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIProcessPart(IProcessPart object)
+	public T1 caseIProcessPart(IProcessPart object)
 	{
 		return null;
 	}
@@ -289,7 +291,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePipelineBarrier(PipelineBarrier object)
+	public T1 casePipelineBarrier(PipelineBarrier object)
 	{
 		return null;
 	}
@@ -305,7 +307,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCompositeTask(CompositeTask object)
+	public T1 caseCompositeTask(CompositeTask object)
 	{
 		return null;
 	}
@@ -321,7 +323,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPipeline(IPipeline object)
+	public T1 caseIPipeline(IPipeline object)
 	{
 		return null;
 	}
@@ -337,7 +339,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTaskPkg(TaskPkg object)
+	public T1 caseTaskPkg(TaskPkg object)
 	{
 		return null;
 	}
@@ -353,7 +355,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePipeline(Pipeline object)
+	public T1 casePipeline(Pipeline object)
 	{
 		return null;
 	}
@@ -369,7 +371,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBindDescriptorSets(BindDescriptorSets object)
+	public T1 caseBindDescriptorSets(BindDescriptorSets object)
 	{
 		return null;
 	}
@@ -385,7 +387,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePushConstant(PushConstant object)
+	public T1 casePushConstant(PushConstant object)
 	{
 		return null;
 	}
@@ -401,7 +403,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePushBufferTask(PushBufferTask object)
+	public T1 casePushBufferTask(PushBufferTask object)
 	{
 		return null;
 	}
@@ -417,7 +419,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIResourceContainer(IResourceContainer object)
+	public T1 caseIResourceContainer(IResourceContainer object)
 	{
 		return null;
 	}
@@ -433,7 +435,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLNamedElement(LNamedElement object)
+	public T1 caseLNamedElement(LNamedElement object)
 	{
 		return null;
 	}
@@ -449,7 +451,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIExecutionManager(IExecutionManager object)
+	public T1 caseIExecutionManager(IExecutionManager object)
 	{
 		return null;
 	}
@@ -465,7 +467,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIProcess(IProcess object)
+	public T1 caseIProcess(IProcess object)
 	{
 		return null;
 	}
@@ -481,7 +483,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIInferenceObject(IInferenceObject object)
+	public T1 caseIInferenceObject(IInferenceObject object)
 	{
 		return null;
 	}
@@ -497,7 +499,23 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLObject(LObject object)
+	public T1 caseLObject(LObject object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Maintainable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Maintainable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends Maintainable<T>> T1 caseMaintainable(Maintainable<T> object)
 	{
 		return null;
 	}
@@ -514,7 +532,7 @@ public class ProcessSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
+	public T1 defaultCase(EObject object)
 	{
 		return null;
 	}

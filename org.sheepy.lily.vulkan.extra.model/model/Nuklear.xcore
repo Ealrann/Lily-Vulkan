@@ -1,28 +1,21 @@
 @GenModel(modelDirectory="/org.sheepy.lily.vulkan.extra.model/src/generated/java")
 @GenModel(editDirectory="/org.sheepy.lily.vulkan.extra.model.edit/src/generated/java")
 @GenModel(modelName="Nuklear", prefix="Nuklear")
-@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(complianceLevel="11.0", resource="XMI")
 @GenModel(childCreationExtenders="true")
 @GenModel(updateClasspath="false")
 
 package org.sheepy.lily.vulkan.extra.nuklear.model
 
-import org.sheepy.lily.core.model.builder.Builder
 import org.sheepy.lily.vulkan.model.process.CompositeTask
 import org.sheepy.lily.vulkan.model.process.IPipelineTask
 import org.sheepy.lily.vulkan.model.process.PushConstant
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline
 import org.sheepy.lily.vulkan.model.resource.BasicResource
 import org.sheepy.lily.vulkan.model.resource.Buffer
 import org.sheepy.lily.vulkan.model.resource.Font
 import org.sheepy.lily.vulkan.model.resource.PushBuffer
 import org.sheepy.lily.vulkan.model.resource.SampledImage
 import org.sheepy.lily.vulkan.model.IResource
-
-class NuklearPipelineBuilder extends Builder<GraphicsPipeline>
-{
-	contains Font[1..1] font
-}
 
 class NuklearPushConstants extends PushConstant
 {

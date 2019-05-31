@@ -13,9 +13,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.sheepy.lily.core.model.builder.Buildable;
-import org.sheepy.lily.core.model.builder.Builder;
-import org.sheepy.lily.core.model.builder.BuilderPackage;
+import org.sheepy.lily.core.model.maintainer.Maintainable;
+import org.sheepy.lily.core.model.maintainer.Maintainer;
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
@@ -162,7 +162,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected Builder<GraphicsPipeline> builder;
+	protected Maintainer<GraphicsPipeline> builder;
 	/**
 	 * The cached value of the '{@link #getShaders() <em>Shaders</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -534,7 +534,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public Builder<GraphicsPipeline> getBuilder()
+	public Maintainer<GraphicsPipeline> getBuilder()
 	{
 		return builder;
 	}
@@ -544,10 +544,10 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBuilder(	Builder<GraphicsPipeline> newBuilder,
+	public NotificationChain basicSetBuilder(	Maintainer<GraphicsPipeline> newBuilder,
 												NotificationChain msgs)
 	{
-		Builder<GraphicsPipeline> oldBuilder = builder;
+		Maintainer<GraphicsPipeline> oldBuilder = builder;
 		builder = newBuilder;
 		if (eNotificationRequired())
 		{
@@ -565,7 +565,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void setBuilder(Builder<GraphicsPipeline> newBuilder)
+	public void setBuilder(Maintainer<GraphicsPipeline> newBuilder)
 	{
 		if (newBuilder != builder)
 		{
@@ -1082,7 +1082,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			setTaskPkg((TaskPkg) newValue);
 			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
-			setBuilder((Builder<GraphicsPipeline>) newValue);
+			setBuilder((Maintainer<GraphicsPipeline>) newValue);
 			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 			getShaders().clear();
@@ -1145,7 +1145,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			setTaskPkg((TaskPkg) null);
 			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
-			setBuilder((Builder<GraphicsPipeline>) null);
+			setBuilder((Maintainer<GraphicsPipeline>) null);
 			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 			getShaders().clear();
@@ -1247,12 +1247,12 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 				return -1;
 			}
 		}
-		if (baseClass == Buildable.class)
+		if (baseClass == Maintainable.class)
 		{
 			switch (derivedFeatureID)
 			{
 			case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
-				return BuilderPackage.BUILDABLE__BUILDER;
+				return MaintainerPackage.MAINTAINABLE__BUILDER;
 			default:
 				return -1;
 			}
@@ -1286,11 +1286,11 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 				return -1;
 			}
 		}
-		if (baseClass == Buildable.class)
+		if (baseClass == Maintainable.class)
 		{
 			switch (baseFeatureID)
 			{
-			case BuilderPackage.BUILDABLE__BUILDER:
+			case MaintainerPackage.MAINTAINABLE__BUILDER:
 				return GraphicPackage.GRAPHICS_PIPELINE__BUILDER;
 			default:
 				return -1;

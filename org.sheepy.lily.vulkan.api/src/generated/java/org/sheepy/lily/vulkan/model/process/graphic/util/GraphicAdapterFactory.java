@@ -6,7 +6,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.sheepy.lily.core.model.builder.Buildable;
+import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
@@ -263,9 +263,9 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createIPipelineAdapter();
 		}
 		@Override
-		public <T extends Buildable<T>> Adapter caseBuildable(Buildable<T> object)
+		public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
 		{
-			return createBuildableAdapter();
+			return createMaintainableAdapter();
 		}
 		@Override
 		public Adapter caseBarrier(Barrier object)
@@ -844,16 +844,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.builder.Buildable <em>Buildable</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.core.model.maintainer.Maintainable <em>Maintainable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.core.model.builder.Buildable
+	 * @see org.sheepy.lily.core.model.maintainer.Maintainable
 	 * @generated
 	 */
-	public Adapter createBuildableAdapter()
+	public Adapter createMaintainableAdapter()
 	{
 		return null;
 	}

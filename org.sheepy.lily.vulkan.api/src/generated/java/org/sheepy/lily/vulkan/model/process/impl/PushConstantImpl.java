@@ -102,7 +102,7 @@ public class PushConstantImpl extends MinimalEObjectImpl.Container implements Pu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushConstantImpl()
+	protected PushConstantImpl()
 	{
 		super();
 	}

@@ -14,10 +14,9 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.sheepy.lily.core.model.action.ActionPackage;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
-
-import org.sheepy.lily.core.model.builder.BuilderPackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
@@ -323,7 +322,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		TypesPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
-		BuilderPackage.eINSTANCE.eClass();
+		MaintainerPackage.eINSTANCE.eClass();
 		GraphicpipelinePackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
@@ -1717,8 +1716,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				.getEPackage(TypesPackage.eNS_URI);
 		ResourcePackage theResourcePackage = (ResourcePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ResourcePackage.eNS_URI);
-		BuilderPackage theBuilderPackage = (BuilderPackage) EPackage.Registry.INSTANCE
-				.getEPackage(BuilderPackage.eNS_URI);
+		MaintainerPackage theMaintainerPackage = (MaintainerPackage) EPackage.Registry.INSTANCE
+				.getEPackage(MaintainerPackage.eNS_URI);
 		GraphicpipelinePackage theGraphicpipelinePackage = (GraphicpipelinePackage) EPackage.Registry.INSTANCE
 				.getEPackage(GraphicpipelinePackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
@@ -1738,7 +1737,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		graphicProcessEClass.getESuperTypes().add(theProcessPackage.getAbstractProcess());
 		EGenericType g1 = createEGenericType(theProcessPackage.getIPipeline());
 		graphicsPipelineEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theBuilderPackage.getBuildable());
+		g1 = createEGenericType(theMaintainerPackage.getMaintainable());
 		EGenericType g2 = createEGenericType(this.getGraphicsPipeline());
 		g1.getETypeArguments().add(g2);
 		graphicsPipelineEClass.getEGenericSuperTypes().add(g1);

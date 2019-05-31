@@ -64,25 +64,12 @@ public class NuklearFactoryImpl extends EFactoryImpl implements NuklearFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-			case NuklearPackage.NUKLEAR_PIPELINE_BUILDER: return createNuklearPipelineBuilder();
 			case NuklearPackage.NUKLEAR_PUSH_CONSTANTS: return createNuklearPushConstants();
 			case NuklearPackage.NUKLEAR_LAYOUT_TASK: return createNuklearLayoutTask();
 			case NuklearPackage.NUKLEAR_CONTEXT: return createNuklearContext();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NuklearPipelineBuilder createNuklearPipelineBuilder()
-	{
-		NuklearPipelineBuilderImpl nuklearPipelineBuilder = new NuklearPipelineBuilderImpl();
-		return nuklearPipelineBuilder;
 	}
 
 	/**

@@ -36,13 +36,13 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 {
 	protected final AbstractProcess process;
 	protected final DescriptorPool descriptorPool;
-	private final TreeAllocator<IVulkanContext> allocator;
 	protected final T context;
-
-	private long startPrepareNs = 0;
-
 	protected final List<IAllocationObject<? super T>> allocationList;
 	protected final List<IProcessPartAdapter> partAdapters = new ArrayList<>();
+
+	private final TreeAllocator<IVulkanContext> allocator;
+
+	private long startPrepareNs = 0;
 
 	public AbstractProcessAdapter(AbstractProcess process)
 	{

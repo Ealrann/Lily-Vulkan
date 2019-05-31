@@ -92,7 +92,7 @@ public class NuklearContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NuklearContextImpl()
+	protected NuklearContextImpl()
 	{
 		super();
 	}
