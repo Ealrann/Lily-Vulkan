@@ -12,4 +12,3 @@ Another project using this wrapper: https://github.com/Ealrann/VSand
 Using:
 - Vulkan
 - LWJGL3
-- Kotlin-graphics/imgui
