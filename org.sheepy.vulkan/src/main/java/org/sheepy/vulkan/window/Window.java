@@ -26,6 +26,7 @@ public class Window
 	private final boolean resizeable;
 	private boolean fullscreen;
 	private boolean opened = false;
+	private boolean cursorHide = false;
 
 	private final long[] aSurface = new long[1];
 
@@ -84,7 +85,7 @@ public class Window
 
 		id = glfwCreateWindow(size.x, size.y, title, monitor, 0);
 		createSurface();
-
+		hideCursor(cursorHide);
 		callback = new GLFWWindowSizeCallback()
 		{
 			@Override
@@ -221,12 +222,14 @@ public class Window
 
 	public void hideCursor(boolean hide)
 	{
-		if(hide)
+		if (hide)
 		{
+			cursorHide = true;
 			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 		}
 		else
 		{
+			cursorHide = false;
 			glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		}
 	}
