@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
-import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -57,7 +57,7 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IDescriptor> descriptors;
+	protected EList<DescriptedResource> descriptors;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,12 +111,12 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	 * @generated
 	 */
 	@Override
-	public EList<IDescriptor> getDescriptors()
+	public EList<DescriptedResource> getDescriptors()
 	{
 		if (descriptors == null)
 		{
-			descriptors = new EObjectResolvingEList<IDescriptor>(IDescriptor.class, this,
-					ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
+			descriptors = new EObjectResolvingEList<DescriptedResource>(DescriptedResource.class,
+					this, ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS);
 		}
 		return descriptors;
 	}
@@ -155,7 +155,7 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 			return;
 		case ResourcePackage.DESCRIPTOR_SET__DESCRIPTORS:
 			getDescriptors().clear();
-			getDescriptors().addAll((Collection<? extends IDescriptor>) newValue);
+			getDescriptors().addAll((Collection<? extends DescriptedResource>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

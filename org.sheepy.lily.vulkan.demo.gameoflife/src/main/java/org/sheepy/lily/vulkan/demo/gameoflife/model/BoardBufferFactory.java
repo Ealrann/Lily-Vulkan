@@ -4,6 +4,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.vulkan.demo.gameoflife.MainGameOfLife;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
@@ -27,8 +28,11 @@ public class BoardBufferFactory
 		res.getUsages().add(EBufferUsage.STORAGE_BUFFER_BIT);
 		res.getUsages().add(EBufferUsage.TRANSFER_SRC_BIT);
 		res.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
-		res.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
-		res.getShaderStages().add(EShaderStage.COMPUTE_BIT);
+
+		final var descriptor = ResourceFactory.eINSTANCE.createDescriptor();
+		descriptor.setDescriptorType(EDescriptorType.STORAGE_BUFFER);
+		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
+		res.setDescriptor(descriptor);
 
 		final var byteBuffer = MemoryUtil.memAlloc(byteSize);
 		final var intBufferView = byteBuffer.asIntBuffer();

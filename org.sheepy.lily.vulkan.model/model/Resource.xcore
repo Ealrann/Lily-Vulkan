@@ -4,7 +4,6 @@
 @GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
 @GenModel(extensibleProviderFactory="true", childCreationExtenders="true")
 @GenModel(updateClasspath="false")
-
 package org.sheepy.lily.vulkan.model.resource
 
 import java.nio.ByteBuffer
@@ -29,31 +28,51 @@ class BasicResource extends IResource
 {
 }
 
-interface DescriptorResource extends IDescriptor, IResource
-{
-}
-
 class PushBuffer extends IResource
 {
 	long size
 	int instanceCount = "3"
 }
 
-class Buffer extends DescriptorResource
+interface DescriptedResource extends IResource
+{
+}
+
+abstract class BasicDescriptedResource extends DescriptedResource
+{
+	contains Descriptor descriptor
+}
+
+class Buffer extends BasicDescriptedResource
 {
 	long size
 	unique EBufferUsage[] usages
 	ByteBuffer data
 	boolean oftenUpdated = "false"
 	boolean gpuBuffer = "true"
-
- 	@GenModel(propertyDescription="Every push in this buffer will write on the next instance, and update the descriptor acordingly")
+	@GenModel(propertyDescription="Every push in this buffer will write on the next instance, and update the descriptor acordingly")
 	int instanceCount = "1"
+}
+
+class CompositeBuffer extends DescriptedResource
+{
+	contains BufferDataProvider[] dataProviders
+}
+
+class BufferDataProvider extends Descriptor, LNamedElement
+{
+	long size
+	EBufferUsage usage
+	int instanceCount = "1"
+}
+
+class DescribedDataProvider extends BufferDataProvider, Descriptor
+{
 }
 
 type ByteBuffer wraps ByteBuffer
 
-class Image extends DescriptorResource
+class Image extends BasicDescriptedResource
 {
 	int width
 	int height
@@ -73,7 +92,7 @@ class ImageLayout
 	unique EAccess[] accessMask
 }
 
-class SampledImage extends DescriptorResource
+class SampledImage extends BasicDescriptedResource
 {
 	contains Sampler sampler
 }
@@ -118,7 +137,7 @@ class Sampler
 
 type JavaModule wraps Module
 
-interface IDescriptor
+class Descriptor
 {
 	EDescriptorType descriptorType
 	unique EShaderStage[] shaderStages
@@ -126,7 +145,7 @@ interface IDescriptor
 
 class DescriptorSet extends LNamedElement
 {
-	refers IDescriptor[1..*] descriptors
+	refers DescriptedResource[1..*] descriptors
 }
 
 class DescriptorSetPkg
@@ -162,7 +181,8 @@ class FileResource extends PathResource
 }
 
 abstract class AbstractModuleResource extends PathResource
-{}
+{
+}
 
 class ModuleResource extends AbstractModuleResource
 {

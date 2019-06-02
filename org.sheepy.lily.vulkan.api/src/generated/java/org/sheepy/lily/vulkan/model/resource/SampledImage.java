@@ -18,7 +18,7 @@ package org.sheepy.lily.vulkan.model.resource;
  * @model
  * @generated
  */
-public interface SampledImage extends DescriptorResource
+public interface SampledImage extends BasicDescriptedResource
 {
 	/**
 	 * Returns the value of the '<em><b>Sampler</b></em>' containment reference.

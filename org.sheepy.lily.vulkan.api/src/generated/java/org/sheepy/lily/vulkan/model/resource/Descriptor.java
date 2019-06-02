@@ -5,48 +5,45 @@ package org.sheepy.lily.vulkan.model.resource;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>IDescriptor</b></em>'.
+ * A representation of the model object '<em><b>Descriptor</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getDescriptorType <em>Descriptor Type</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getShaderStages <em>Shader Stages</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Descriptor#getDescriptorType <em>Descriptor Type</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Descriptor#getShaderStages <em>Shader Stages</em>}</li>
  * </ul>
  *
- * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getIDescriptor()
- * @model interface="true" abstract="true"
+ * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getDescriptor()
+ * @model
  * @generated
  */
-public interface IDescriptor extends EObject
+public interface Descriptor extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Descriptor Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EDescriptorType}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Descriptor Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Descriptor Type</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EDescriptorType
 	 * @see #setDescriptorType(EDescriptorType)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getIDescriptor_DescriptorType()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getDescriptor_DescriptorType()
 	 * @model unique="false"
 	 * @generated
 	 */
 	EDescriptorType getDescriptorType();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getDescriptorType <em>Descriptor Type</em>}' attribute.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.Descriptor#getDescriptorType <em>Descriptor Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Descriptor Type</em>' attribute.
@@ -61,17 +58,13 @@ public interface IDescriptor extends EObject
 	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EShaderStage}.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EShaderStage}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Shader Stages</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shader Stages</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EShaderStage
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getIDescriptor_ShaderStages()
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getDescriptor_ShaderStages()
 	 * @model
 	 * @generated
 	 */
 	EList<EShaderStage> getShaderStages();
 
-} // IDescriptor
+} // Descriptor

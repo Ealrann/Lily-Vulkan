@@ -26,7 +26,7 @@ public interface DescriptorSet extends LNamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Descriptors</b></em>' reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.IDescriptor}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.DescriptedResource}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Descriptors</em>' reference list isn't clear,
@@ -38,5 +38,5 @@ public interface DescriptorSet extends LNamedElement
 	 * @model required="true"
 	 * @generated
 	 */
-	EList<IDescriptor> getDescriptors();
+	EList<DescriptedResource> getDescriptors();
 } // DescriptorSet

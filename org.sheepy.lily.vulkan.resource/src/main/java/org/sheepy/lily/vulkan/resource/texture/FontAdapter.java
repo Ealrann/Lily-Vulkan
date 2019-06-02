@@ -51,7 +51,7 @@ public class FontAdapter extends AbstractSampledImageAdapter
 
 	public FontAdapter(Font font)
 	{
-		super(font);
+		super(font, imageBuilder);
 		this.font = font;
 	}
 
@@ -149,12 +149,6 @@ public class FontAdapter extends AbstractSampledImageAdapter
 	public float getScale()
 	{
 		return scale;
-	}
-
-	@Override
-	protected VkImage.Builder getImageBuilder()
-	{
-		return imageBuilder;
 	}
 
 	public static FontAdapter adapt(Font font)

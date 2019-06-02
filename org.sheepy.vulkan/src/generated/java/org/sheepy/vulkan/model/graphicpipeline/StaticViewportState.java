@@ -30,7 +30,7 @@ public interface StaticViewportState extends ViewportState
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Viewports</em>' containment reference list.
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getStaticViewportState_Viewports()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<Viewport> getViewports();
@@ -42,7 +42,7 @@ public interface StaticViewportState extends ViewportState
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Scissors</em>' containment reference list.
 	 * @see org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage#getStaticViewportState_Scissors()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<Scissor> getScissors();

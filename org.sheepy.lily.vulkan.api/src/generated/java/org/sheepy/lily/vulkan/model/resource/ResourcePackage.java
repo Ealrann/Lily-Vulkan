@@ -100,105 +100,24 @@ public interface ResourcePackage extends EPackage
 	int BASIC_RESOURCE_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.DescriptedResource <em>Descripted Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptedResource
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptedResource()
 	 * @generated
 	 */
-	int IDESCRIPTOR = 12;
+	int DESCRIPTED_RESOURCE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BasicDescriptedResourceImpl <em>Basic Descripted Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDESCRIPTOR__DESCRIPTOR_TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDESCRIPTOR__SHADER_STAGES = 1;
-
-	/**
-	 * The number of structural features of the '<em>IDescriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDESCRIPTOR_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>IDescriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.DescriptorResource <em>Descriptor Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorResource
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorResource()
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BasicDescriptedResourceImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBasicDescriptedResource()
 	 * @generated
 	 */
-	int DESCRIPTOR_RESOURCE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR_RESOURCE__DESCRIPTOR_TYPE = IDESCRIPTOR__DESCRIPTOR_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR_RESOURCE__SHADER_STAGES = IDESCRIPTOR__SHADER_STAGES;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR_RESOURCE__NAME = IDESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Descriptor Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR_RESOURCE_FEATURE_COUNT = IDESCRIPTOR_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Descriptor Resource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR_RESOURCE_OPERATION_COUNT = IDESCRIPTOR_OPERATION_COUNT + 0;
+	int BASIC_DESCRIPTED_RESOURCE = 3;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl <em>Push Buffer</em>}' class.
@@ -208,7 +127,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPushBuffer()
 	 * @generated
 	 */
-	int PUSH_BUFFER = 2;
+	int PUSH_BUFFER = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -256,32 +175,31 @@ public interface ResourcePackage extends EPackage
 	int PUSH_BUFFER_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferImpl
-	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBuffer()
-	 * @generated
-	 */
-	int BUFFER = 3;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__DESCRIPTOR_TYPE = DESCRIPTOR_RESOURCE__DESCRIPTOR_TYPE;
+	int DESCRIPTED_RESOURCE__NAME = VulkanPackage.IRESOURCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * The number of structural features of the '<em>Descripted Resource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__SHADER_STAGES = DESCRIPTOR_RESOURCE__SHADER_STAGES;
+	int DESCRIPTED_RESOURCE_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Descripted Resource</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTED_RESOURCE_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -290,7 +208,62 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__NAME = DESCRIPTOR_RESOURCE__NAME;
+	int BASIC_DESCRIPTED_RESOURCE__NAME = DESCRIPTED_RESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR = DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Basic Descripted Resource</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Basic Descripted Resource</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_DESCRIPTED_RESOURCE_OPERATION_COUNT = DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferImpl <em>Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBuffer()
+	 * @generated
+	 */
+	int BUFFER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER__NAME = BASIC_DESCRIPTED_RESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER__DESCRIPTOR = BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -299,7 +272,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__SIZE = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 0;
+	int BUFFER__SIZE = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
@@ -308,7 +281,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__USAGES = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 1;
+	int BUFFER__USAGES = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
@@ -317,7 +290,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__DATA = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 2;
+	int BUFFER__DATA = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Often Updated</b></em>' attribute.
@@ -326,7 +299,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__OFTEN_UPDATED = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 3;
+	int BUFFER__OFTEN_UPDATED = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Gpu Buffer</b></em>' attribute.
@@ -335,7 +308,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__GPU_BUFFER = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 4;
+	int BUFFER__GPU_BUFFER = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
@@ -344,7 +317,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER__INSTANCE_COUNT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 5;
+	int BUFFER__INSTANCE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Buffer</em>' class.
@@ -353,7 +326,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_FEATURE_COUNT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 6;
+	int BUFFER_FEATURE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Buffer</em>' class.
@@ -362,7 +335,53 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_OPERATION_COUNT = DESCRIPTOR_RESOURCE_OPERATION_COUNT + 0;
+	int BUFFER_OPERATION_COUNT = BASIC_DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl <em>Composite Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getCompositeBuffer()
+	 * @generated
+	 */
+	int COMPOSITE_BUFFER = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER__NAME = DESCRIPTED_RESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Data Providers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER__DATA_PROVIDERS = DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Composite Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER_FEATURE_COUNT = DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Composite Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BUFFER_OPERATION_COUNT = DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
@@ -372,133 +391,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImage()
 	 * @generated
 	 */
-	int IMAGE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__DESCRIPTOR_TYPE = DESCRIPTOR_RESOURCE__DESCRIPTOR_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__SHADER_STAGES = DESCRIPTOR_RESOURCE__SHADER_STAGES;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__NAME = DESCRIPTOR_RESOURCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__WIDTH = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__HEIGHT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__FORMAT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__USAGES = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__PROPERTIES = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__TILING = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__MIP_LEVELS = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__INITIAL_LAYOUT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Fill With Zero</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__FILL_WITH_ZERO = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 8;
-
-	/**
-	 * The number of structural features of the '<em>Image</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_FEATURE_COUNT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 9;
-
-	/**
-	 * The number of operations of the '<em>Image</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_OPERATION_COUNT = DESCRIPTOR_RESOURCE_OPERATION_COUNT + 0;
+	int IMAGE = 8;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl <em>Image Layout</em>}' class.
@@ -508,7 +401,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageLayout()
 	 * @generated
 	 */
-	int IMAGE_LAYOUT = 5;
+	int IMAGE_LAYOUT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl <em>Sampled Image</em>}' class.
@@ -518,7 +411,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampledImage()
 	 * @generated
 	 */
-	int SAMPLED_IMAGE = 6;
+	int SAMPLED_IMAGE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SemaphoreImpl <em>Semaphore</em>}' class.
@@ -528,7 +421,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSemaphore()
 	 * @generated
 	 */
-	int SEMAPHORE = 7;
+	int SEMAPHORE = 11;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.FontImpl <em>Font</em>}' class.
@@ -538,7 +431,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFont()
 	 * @generated
 	 */
-	int FONT = 8;
+	int FONT = 12;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.AbstractTextureImpl <em>Abstract Texture</em>}' class.
@@ -548,7 +441,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractTexture()
 	 * @generated
 	 */
-	int ABSTRACT_TEXTURE = 9;
+	int ABSTRACT_TEXTURE = 13;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.TextureImpl <em>Texture</em>}' class.
@@ -558,7 +451,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getTexture()
 	 * @generated
 	 */
-	int TEXTURE = 10;
+	int TEXTURE = 14;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl <em>Sampler</em>}' class.
@@ -568,7 +461,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getSampler()
 	 * @generated
 	 */
-	int SAMPLER = 11;
+	int SAMPLER = 15;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.
@@ -578,7 +471,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSet()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET = 13;
+	int DESCRIPTOR_SET = 17;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferBarrierImpl <em>Buffer Barrier</em>}' class.
@@ -588,7 +481,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferBarrier()
 	 * @generated
 	 */
-	int BUFFER_BARRIER = 15;
+	int BUFFER_BARRIER = 19;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl <em>Image Barrier</em>}' class.
@@ -598,7 +491,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getImageBarrier()
 	 * @generated
 	 */
-	int IMAGE_BARRIER = 16;
+	int IMAGE_BARRIER = 20;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl <em>Shader</em>}' class.
@@ -608,7 +501,334 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getShader()
 	 * @generated
 	 */
-	int SHADER = 17;
+	int SHADER = 21;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorImpl <em>Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.DescriptorImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptor()
+	 * @generated
+	 */
+	int DESCRIPTOR = 16;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR__DESCRIPTOR_TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR__SHADER_STAGES = 1;
+
+	/**
+	 * The number of structural features of the '<em>Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl <em>Buffer Data Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferDataProvider()
+	 * @generated
+	 */
+	int BUFFER_DATA_PROVIDER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__DESCRIPTOR_TYPE = DESCRIPTOR__DESCRIPTOR_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__SHADER_STAGES = DESCRIPTOR__SHADER_STAGES;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__NAME = DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__SIZE = DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Usage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__USAGE = DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER__INSTANCE_COUNT = DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Buffer Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>Buffer Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_DATA_PROVIDER_OPERATION_COUNT = DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescribedDataProviderImpl <em>Described Data Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.DescribedDataProviderImpl
+	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescribedDataProvider()
+	 * @generated
+	 */
+	int DESCRIBED_DATA_PROVIDER = 7;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE = BUFFER_DATA_PROVIDER__DESCRIPTOR_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__SHADER_STAGES = BUFFER_DATA_PROVIDER__SHADER_STAGES;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__NAME = BUFFER_DATA_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__SIZE = BUFFER_DATA_PROVIDER__SIZE;
+
+	/**
+	 * The feature id for the '<em><b>Usage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__USAGE = BUFFER_DATA_PROVIDER__USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__INSTANCE_COUNT = BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
+
+	/**
+	 * The number of structural features of the '<em>Described Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Described Data Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER_OPERATION_COUNT = BUFFER_DATA_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__NAME = BASIC_DESCRIPTED_RESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__DESCRIPTOR = BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__WIDTH = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__HEIGHT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__FORMAT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Usages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__USAGES = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__PROPERTIES = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Tiling</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__TILING = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Mip Levels</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__MIP_LEVELS = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Initial Layout</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__INITIAL_LAYOUT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Fill With Zero</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__FILL_WITH_ZERO = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 8;
+
+	/**
+	 * The number of structural features of the '<em>Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_FEATURE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 9;
+
+	/**
+	 * The number of operations of the '<em>Image</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_OPERATION_COUNT = BASIC_DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -656,31 +876,22 @@ public interface ResourcePackage extends EPackage
 	int IMAGE_LAYOUT_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLED_IMAGE__DESCRIPTOR_TYPE = DESCRIPTOR_RESOURCE__DESCRIPTOR_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLED_IMAGE__SHADER_STAGES = DESCRIPTOR_RESOURCE__SHADER_STAGES;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE__NAME = DESCRIPTOR_RESOURCE__NAME;
+	int SAMPLED_IMAGE__NAME = BASIC_DESCRIPTED_RESOURCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAMPLED_IMAGE__DESCRIPTOR = BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
@@ -689,7 +900,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE__SAMPLER = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 0;
+	int SAMPLED_IMAGE__SAMPLER = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Sampled Image</em>' class.
@@ -698,7 +909,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE_FEATURE_COUNT = DESCRIPTOR_RESOURCE_FEATURE_COUNT + 1;
+	int SAMPLED_IMAGE_FEATURE_COUNT = BASIC_DESCRIPTED_RESOURCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Sampled Image</em>' class.
@@ -707,7 +918,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SAMPLED_IMAGE_OPERATION_COUNT = DESCRIPTOR_RESOURCE_OPERATION_COUNT + 0;
+	int SAMPLED_IMAGE_OPERATION_COUNT = BASIC_DESCRIPTED_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -755,24 +966,6 @@ public interface ResourcePackage extends EPackage
 	int SEMAPHORE_OPERATION_COUNT = BASIC_RESOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT__DESCRIPTOR_TYPE = SAMPLED_IMAGE__DESCRIPTOR_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FONT__SHADER_STAGES = SAMPLED_IMAGE__SHADER_STAGES;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -780,6 +973,15 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int FONT__NAME = SAMPLED_IMAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT__DESCRIPTOR = SAMPLED_IMAGE__DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
@@ -827,24 +1029,6 @@ public interface ResourcePackage extends EPackage
 	int FONT_OPERATION_COUNT = SAMPLED_IMAGE_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TEXTURE__DESCRIPTOR_TYPE = SAMPLED_IMAGE__DESCRIPTOR_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TEXTURE__SHADER_STAGES = SAMPLED_IMAGE__SHADER_STAGES;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -852,6 +1036,15 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_TEXTURE__NAME = SAMPLED_IMAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TEXTURE__DESCRIPTOR = SAMPLED_IMAGE__DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
@@ -890,24 +1083,6 @@ public interface ResourcePackage extends EPackage
 	int ABSTRACT_TEXTURE_OPERATION_COUNT = SAMPLED_IMAGE_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE__DESCRIPTOR_TYPE = ABSTRACT_TEXTURE__DESCRIPTOR_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXTURE__SHADER_STAGES = ABSTRACT_TEXTURE__SHADER_STAGES;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -915,6 +1090,15 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int TEXTURE__NAME = ABSTRACT_TEXTURE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXTURE__DESCRIPTOR = ABSTRACT_TEXTURE__DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Sampler</b></em>' containment reference.
@@ -1131,7 +1315,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorSetPkg()
 	 * @generated
 	 */
-	int DESCRIPTOR_SET_PKG = 14;
+	int DESCRIPTOR_SET_PKG = 18;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Sets</b></em>' containment reference list.
@@ -1321,7 +1505,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getPathResource()
 	 * @generated
 	 */
-	int PATH_RESOURCE = 18;
+	int PATH_RESOURCE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1367,7 +1551,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getFileResource()
 	 * @generated
 	 */
-	int FILE_RESOURCE = 19;
+	int FILE_RESOURCE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1413,7 +1597,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getAbstractModuleResource()
 	 * @generated
 	 */
-	int ABSTRACT_MODULE_RESOURCE = 20;
+	int ABSTRACT_MODULE_RESOURCE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1459,7 +1643,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getModuleResource()
 	 * @generated
 	 */
-	int MODULE_RESOURCE = 21;
+	int MODULE_RESOURCE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1514,7 +1698,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getStringModuleResource()
 	 * @generated
 	 */
-	int STRING_MODULE_RESOURCE = 22;
+	int STRING_MODULE_RESOURCE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1569,7 +1753,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getByteBuffer()
 	 * @generated
 	 */
-	int BYTE_BUFFER = 23;
+	int BYTE_BUFFER = 27;
 
 	/**
 	 * The meta object id for the '<em>Java Module</em>' data type.
@@ -1579,7 +1763,7 @@ public interface ResourcePackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getJavaModule()
 	 * @generated
 	 */
-	int JAVA_MODULE = 24;
+	int JAVA_MODULE = 28;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicResource <em>Basic Resource</em>}'.
@@ -1592,14 +1776,35 @@ public interface ResourcePackage extends EPackage
 	EClass getBasicResource();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorResource <em>Descriptor Resource</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.DescriptedResource <em>Descripted Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Descriptor Resource</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorResource
+	 * @return the meta object for class '<em>Descripted Resource</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptedResource
 	 * @generated
 	 */
-	EClass getDescriptorResource();
+	EClass getDescriptedResource();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource <em>Basic Descripted Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Basic Descripted Resource</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource
+	 * @generated
+	 */
+	EClass getBasicDescriptedResource();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource#getDescriptor <em>Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource#getDescriptor()
+	 * @see #getBasicDescriptedResource()
+	 * @generated
+	 */
+	EReference getBasicDescriptedResource_Descriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.PushBuffer <em>Push Buffer</em>}'.
@@ -1708,6 +1913,80 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getBuffer_InstanceCount();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer <em>Composite Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Composite Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBuffer
+	 * @generated
+	 */
+	EClass getCompositeBuffer();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getDataProviders <em>Data Providers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Data Providers</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getDataProviders()
+	 * @see #getCompositeBuffer()
+	 * @generated
+	 */
+	EReference getCompositeBuffer_DataProviders();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider <em>Buffer Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Buffer Data Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider
+	 * @generated
+	 */
+	EClass getBufferDataProvider();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getSize()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_Size();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getUsage <em>Usage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Usage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getUsage()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_Usage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstanceCount <em>Instance Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Instance Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider#getInstanceCount()
+	 * @see #getBufferDataProvider()
+	 * @generated
+	 */
+	EAttribute getBufferDataProvider_InstanceCount();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider <em>Described Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Described Data Provider</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescribedDataProvider
+	 * @generated
+	 */
+	EClass getDescribedDataProvider();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Image <em>Image</em>}'.
@@ -2131,36 +2410,36 @@ public interface ResourcePackage extends EPackage
 	EAttribute getSampler_MaxAnisotropy();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.Descriptor <em>Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IDescriptor</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor
+	 * @return the meta object for class '<em>Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.resource.Descriptor
 	 * @generated
 	 */
-	EClass getIDescriptor();
+	EClass getDescriptor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getDescriptorType <em>Descriptor Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.resource.Descriptor#getDescriptorType <em>Descriptor Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Descriptor Type</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor#getDescriptorType()
-	 * @see #getIDescriptor()
+	 * @see org.sheepy.lily.vulkan.model.resource.Descriptor#getDescriptorType()
+	 * @see #getDescriptor()
 	 * @generated
 	 */
-	EAttribute getIDescriptor_DescriptorType();
+	EAttribute getDescriptor_DescriptorType();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor#getShaderStages <em>Shader Stages</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.sheepy.lily.vulkan.model.resource.Descriptor#getShaderStages <em>Shader Stages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Shader Stages</em>'.
-	 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor#getShaderStages()
-	 * @see #getIDescriptor()
+	 * @see org.sheepy.lily.vulkan.model.resource.Descriptor#getShaderStages()
+	 * @see #getDescriptor()
 	 * @generated
 	 */
-	EAttribute getIDescriptor_ShaderStages();
+	EAttribute getDescriptor_ShaderStages();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorSet <em>Descriptor Set</em>}'.
@@ -2418,14 +2697,33 @@ public interface ResourcePackage extends EPackage
 		EClass BASIC_RESOURCE = eINSTANCE.getBasicResource();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.DescriptorResource <em>Descriptor Resource</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.DescriptedResource <em>Descripted Resource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.DescriptorResource
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptorResource()
+		 * @see org.sheepy.lily.vulkan.model.resource.DescriptedResource
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptedResource()
 		 * @generated
 		 */
-		EClass DESCRIPTOR_RESOURCE = eINSTANCE.getDescriptorResource();
+		EClass DESCRIPTED_RESOURCE = eINSTANCE.getDescriptedResource();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BasicDescriptedResourceImpl <em>Basic Descripted Resource</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.BasicDescriptedResourceImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBasicDescriptedResource()
+		 * @generated
+		 */
+		EClass BASIC_DESCRIPTED_RESOURCE = eINSTANCE.getBasicDescriptedResource();
+
+		/**
+		 * The meta object literal for the '<em><b>Descriptor</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR = eINSTANCE
+				.getBasicDescriptedResource_Descriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl <em>Push Buffer</em>}' class.
@@ -2510,6 +2808,69 @@ public interface ResourcePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute BUFFER__INSTANCE_COUNT = eINSTANCE.getBuffer_InstanceCount();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl <em>Composite Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getCompositeBuffer()
+		 * @generated
+		 */
+		EClass COMPOSITE_BUFFER = eINSTANCE.getCompositeBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Providers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE_BUFFER__DATA_PROVIDERS = eINSTANCE.getCompositeBuffer_DataProviders();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl <em>Buffer Data Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getBufferDataProvider()
+		 * @generated
+		 */
+		EClass BUFFER_DATA_PROVIDER = eINSTANCE.getBufferDataProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__SIZE = eINSTANCE.getBufferDataProvider_Size();
+
+		/**
+		 * The meta object literal for the '<em><b>Usage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__USAGE = eINSTANCE.getBufferDataProvider_Usage();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER_DATA_PROVIDER__INSTANCE_COUNT = eINSTANCE
+				.getBufferDataProvider_InstanceCount();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescribedDataProviderImpl <em>Described Data Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.DescribedDataProviderImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescribedDataProvider()
+		 * @generated
+		 */
+		EClass DESCRIBED_DATA_PROVIDER = eINSTANCE.getDescribedDataProvider();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl <em>Image</em>}' class.
@@ -2841,14 +3202,14 @@ public interface ResourcePackage extends EPackage
 		EAttribute SAMPLER__MAX_ANISOTROPY = eINSTANCE.getSampler_MaxAnisotropy();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorImpl <em>Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor
-		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getIDescriptor()
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.DescriptorImpl
+		 * @see org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl#getDescriptor()
 		 * @generated
 		 */
-		EClass IDESCRIPTOR = eINSTANCE.getIDescriptor();
+		EClass DESCRIPTOR = eINSTANCE.getDescriptor();
 
 		/**
 		 * The meta object literal for the '<em><b>Descriptor Type</b></em>' attribute feature.
@@ -2856,7 +3217,7 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IDESCRIPTOR__DESCRIPTOR_TYPE = eINSTANCE.getIDescriptor_DescriptorType();
+		EAttribute DESCRIPTOR__DESCRIPTOR_TYPE = eINSTANCE.getDescriptor_DescriptorType();
 
 		/**
 		 * The meta object literal for the '<em><b>Shader Stages</b></em>' attribute list feature.
@@ -2864,7 +3225,7 @@ public interface ResourcePackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IDESCRIPTOR__SHADER_STAGES = eINSTANCE.getIDescriptor_ShaderStages();
+		EAttribute DESCRIPTOR__SHADER_STAGES = eINSTANCE.getDescriptor_ShaderStages();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl <em>Descriptor Set</em>}' class.

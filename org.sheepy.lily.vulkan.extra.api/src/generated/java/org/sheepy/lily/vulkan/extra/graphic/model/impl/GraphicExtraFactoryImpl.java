@@ -65,10 +65,6 @@ public class GraphicExtraFactoryImpl extends EFactoryImpl implements GraphicExtr
 		switch (eClass.getClassifierID())
 		{
 			case GraphicExtraPackage.MESH_PROVIDER: return createMeshProvider();
-			case GraphicExtraPackage.COMPLEX_MESH_PROVIDER: return createComplexMeshProvider();
-			case GraphicExtraPackage.VERTEX_DATA_PROVIDER: return createVertexDataProvider();
-			case GraphicExtraPackage.INDEX_DATA_PROVIDER: return createIndexDataProvider();
-			case GraphicExtraPackage.UNIFORM_DATA_PROVIDER: return createUniformDataProvider();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -84,54 +80,6 @@ public class GraphicExtraFactoryImpl extends EFactoryImpl implements GraphicExtr
 	{
 		MeshProviderImpl meshProvider = new MeshProviderImpl();
 		return meshProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ComplexMeshProvider createComplexMeshProvider()
-	{
-		ComplexMeshProviderImpl complexMeshProvider = new ComplexMeshProviderImpl();
-		return complexMeshProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public VertexDataProvider createVertexDataProvider()
-	{
-		VertexDataProviderImpl vertexDataProvider = new VertexDataProviderImpl();
-		return vertexDataProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public IndexDataProvider createIndexDataProvider()
-	{
-		IndexDataProviderImpl indexDataProvider = new IndexDataProviderImpl();
-		return indexDataProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public UniformDataProvider createUniformDataProvider()
-	{
-		UniformDataProviderImpl uniformDataProvider = new UniformDataProviderImpl();
-		return uniformDataProvider;
 	}
 
 	/**

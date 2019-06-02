@@ -35,7 +35,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDesc
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
-import org.sheepy.lily.vulkan.model.resource.IDescriptor;
+import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -250,10 +250,10 @@ public class ModelFactory
 		process2.setResetAllowed(true);
 	}
 
-	private ComputePipeline createPipeline(IPipelineTask computer, IDescriptor... descriptors)
+	private ComputePipeline createPipeline(IPipelineTask computer, DescriptedResource... descriptors)
 	{
 		final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
-		for (final IDescriptor descriptor : descriptors)
+		for (final var descriptor : descriptors)
 		{
 			descriptorSet.getDescriptors().add(descriptor);
 		}

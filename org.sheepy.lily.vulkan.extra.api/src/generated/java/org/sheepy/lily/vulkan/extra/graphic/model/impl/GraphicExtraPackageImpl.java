@@ -4,21 +4,15 @@ package org.sheepy.lily.vulkan.extra.graphic.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
-
-import org.sheepy.lily.vulkan.extra.graphic.model.ComplexMeshProvider;
 import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraFactory;
 import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage;
 import org.sheepy.lily.vulkan.extra.graphic.model.IDataProvider;
-import org.sheepy.lily.vulkan.extra.graphic.model.IndexDataProvider;
 import org.sheepy.lily.vulkan.extra.graphic.model.MeshProvider;
-import org.sheepy.lily.vulkan.extra.graphic.model.UniformDataProvider;
-import org.sheepy.lily.vulkan.extra.graphic.model.VertexDataProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,35 +34,7 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass complexMeshProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass iDataProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass vertexDataProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass indexDataProviderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass uniformDataProviderEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -154,86 +120,9 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 	 * @generated
 	 */
 	@Override
-	public EClass getComplexMeshProvider()
-	{
-		return complexMeshProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getComplexMeshProvider_VertexDataProvider()
-	{
-		return (EReference)complexMeshProviderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getComplexMeshProvider_IndexDataProvider()
-	{
-		return (EReference)complexMeshProviderEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getComplexMeshProvider_UniformDataProvider()
-	{
-		return (EReference)complexMeshProviderEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getIDataProvider()
 	{
 		return iDataProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getVertexDataProvider()
-	{
-		return vertexDataProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIndexDataProvider()
-	{
-		return indexDataProviderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUniformDataProvider()
-	{
-		return uniformDataProviderEClass;
 	}
 
 	/**
@@ -269,18 +158,7 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 		// Create classes and their features
 		meshProviderEClass = createEClass(MESH_PROVIDER);
 
-		complexMeshProviderEClass = createEClass(COMPLEX_MESH_PROVIDER);
-		createEReference(complexMeshProviderEClass, COMPLEX_MESH_PROVIDER__VERTEX_DATA_PROVIDER);
-		createEReference(complexMeshProviderEClass, COMPLEX_MESH_PROVIDER__INDEX_DATA_PROVIDER);
-		createEReference(complexMeshProviderEClass, COMPLEX_MESH_PROVIDER__UNIFORM_DATA_PROVIDER);
-
 		iDataProviderEClass = createEClass(IDATA_PROVIDER);
-
-		vertexDataProviderEClass = createEClass(VERTEX_DATA_PROVIDER);
-
-		indexDataProviderEClass = createEClass(INDEX_DATA_PROVIDER);
-
-		uniformDataProviderEClass = createEClass(UNIFORM_DATA_PROVIDER);
 	}
 
 	/**
@@ -316,27 +194,12 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 
 		// Add supertypes to classes
 		meshProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		complexMeshProviderEClass.getESuperTypes().add(this.getMeshProvider());
 		iDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		vertexDataProviderEClass.getESuperTypes().add(this.getIDataProvider());
-		indexDataProviderEClass.getESuperTypes().add(this.getIDataProvider());
-		uniformDataProviderEClass.getESuperTypes().add(this.getIDataProvider());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(meshProviderEClass, MeshProvider.class, "MeshProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(complexMeshProviderEClass, ComplexMeshProvider.class, "ComplexMeshProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComplexMeshProvider_VertexDataProvider(), this.getVertexDataProvider(), null, "vertexDataProvider", null, 1, 1, ComplexMeshProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComplexMeshProvider_IndexDataProvider(), this.getIndexDataProvider(), null, "indexDataProvider", null, 1, 1, ComplexMeshProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComplexMeshProvider_UniformDataProvider(), this.getUniformDataProvider(), null, "uniformDataProvider", null, 0, -1, ComplexMeshProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(iDataProviderEClass, IDataProvider.class, "IDataProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(vertexDataProviderEClass, VertexDataProvider.class, "VertexDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(indexDataProviderEClass, IndexDataProvider.class, "IndexDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(uniformDataProviderEClass, UniformDataProvider.class, "UniformDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -82,47 +82,11 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphicExtraPackage.COMPLEX_MESH_PROVIDER:
-			{
-				ComplexMeshProvider complexMeshProvider = (ComplexMeshProvider)theEObject;
-				T result = caseComplexMeshProvider(complexMeshProvider);
-				if (result == null) result = caseMeshProvider(complexMeshProvider);
-				if (result == null) result = caseLNamedElement(complexMeshProvider);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case GraphicExtraPackage.IDATA_PROVIDER:
 			{
 				IDataProvider iDataProvider = (IDataProvider)theEObject;
 				T result = caseIDataProvider(iDataProvider);
 				if (result == null) result = caseLNamedElement(iDataProvider);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicExtraPackage.VERTEX_DATA_PROVIDER:
-			{
-				VertexDataProvider vertexDataProvider = (VertexDataProvider)theEObject;
-				T result = caseVertexDataProvider(vertexDataProvider);
-				if (result == null) result = caseIDataProvider(vertexDataProvider);
-				if (result == null) result = caseLNamedElement(vertexDataProvider);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicExtraPackage.INDEX_DATA_PROVIDER:
-			{
-				IndexDataProvider indexDataProvider = (IndexDataProvider)theEObject;
-				T result = caseIndexDataProvider(indexDataProvider);
-				if (result == null) result = caseIDataProvider(indexDataProvider);
-				if (result == null) result = caseLNamedElement(indexDataProvider);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GraphicExtraPackage.UNIFORM_DATA_PROVIDER:
-			{
-				UniformDataProvider uniformDataProvider = (UniformDataProvider)theEObject;
-				T result = caseUniformDataProvider(uniformDataProvider);
-				if (result == null) result = caseIDataProvider(uniformDataProvider);
-				if (result == null) result = caseLNamedElement(uniformDataProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,22 +111,6 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complex Mesh Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complex Mesh Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseComplexMeshProvider(ComplexMeshProvider object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IData Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -174,54 +122,6 @@ public class GraphicExtraSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseIDataProvider(IDataProvider object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vertex Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vertex Data Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVertexDataProvider(VertexDataProvider object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Index Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Index Data Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIndexDataProvider(IndexDataProvider object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Uniform Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Uniform Data Provider</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUniformDataProvider(UniformDataProvider object)
 	{
 		return null;
 	}

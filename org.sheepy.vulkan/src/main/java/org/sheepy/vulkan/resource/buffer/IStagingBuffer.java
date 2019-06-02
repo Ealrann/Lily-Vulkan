@@ -13,6 +13,7 @@ public interface IStagingBuffer
 							long trgOffset,
 							EPipelineStage dstStage,
 							EAccess dstAccess);
+
 	void pushUnsynchronized(long localMemoryAddress, long trgAddress, long trgOffset);
 
 	boolean isEmpty();

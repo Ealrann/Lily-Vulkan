@@ -99,106 +99,6 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.graphic.model.ComplexMeshProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ComplexMeshProviderItemProvider complexMeshProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.ComplexMeshProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createComplexMeshProviderAdapter()
-	{
-		if (complexMeshProviderItemProvider == null)
-		{
-			complexMeshProviderItemProvider = new ComplexMeshProviderItemProvider(this);
-		}
-
-		return complexMeshProviderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.graphic.model.VertexDataProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VertexDataProviderItemProvider vertexDataProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.VertexDataProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVertexDataProviderAdapter()
-	{
-		if (vertexDataProviderItemProvider == null)
-		{
-			vertexDataProviderItemProvider = new VertexDataProviderItemProvider(this);
-		}
-
-		return vertexDataProviderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.graphic.model.IndexDataProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IndexDataProviderItemProvider indexDataProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.IndexDataProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createIndexDataProviderAdapter()
-	{
-		if (indexDataProviderItemProvider == null)
-		{
-			indexDataProviderItemProvider = new IndexDataProviderItemProvider(this);
-		}
-
-		return indexDataProviderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.extra.graphic.model.UniformDataProvider} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UniformDataProviderItemProvider uniformDataProviderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.UniformDataProvider}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createUniformDataProviderAdapter()
-	{
-		if (uniformDataProviderItemProvider == null)
-		{
-			uniformDataProviderItemProvider = new UniformDataProviderItemProvider(this);
-		}
-
-		return uniformDataProviderItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,10 +216,6 @@ public class GraphicExtraItemProviderAdapterFactory extends GraphicExtraAdapterF
 	public void dispose()
 	{
 		if (meshProviderItemProvider != null) meshProviderItemProvider.dispose();
-		if (complexMeshProviderItemProvider != null) complexMeshProviderItemProvider.dispose();
-		if (vertexDataProviderItemProvider != null) vertexDataProviderItemProvider.dispose();
-		if (indexDataProviderItemProvider != null) indexDataProviderItemProvider.dispose();
-		if (uniformDataProviderItemProvider != null) uniformDataProviderItemProvider.dispose();
 	}
 
 }

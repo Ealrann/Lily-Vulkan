@@ -1,7 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.graphic.model.provider;
-
+package org.sheepy.lily.vulkan.model.resource.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,25 +22,20 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.core.model.types.TypesPackage;
+import org.sheepy.lily.vulkan.model.resource.Descriptor;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
-import org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage;
-import org.sheepy.lily.vulkan.extra.graphic.model.UniformDataProvider;
+import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.graphic.model.UniformDataProvider} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Descriptor} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UniformDataProviderItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource
+public class DescriptorItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -48,7 +43,7 @@ public class UniformDataProviderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UniformDataProviderItemProvider(AdapterFactory adapterFactory)
+	public DescriptorItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -66,36 +61,48 @@ public class UniformDataProviderItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
+			addDescriptorTypePropertyDescriptor(object);
+			addShaderStagesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Descriptor Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
+	protected void addDescriptorTypePropertyDescriptor(Object object)
 	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Descriptor_descriptorType_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Descriptor_descriptorType_feature", "_UI_Descriptor_type"),
+				ResourcePackage.Literals.DESCRIPTOR__DESCRIPTOR_TYPE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns UniformDataProvider.gif.
+	 * This adds a property descriptor for the Shader Stages feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addShaderStagesPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Descriptor_shaderStages_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Descriptor_shaderStages_feature", "_UI_Descriptor_type"),
+				ResourcePackage.Literals.DESCRIPTOR__SHADER_STAGES, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This returns Descriptor.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -103,7 +110,7 @@ public class UniformDataProviderItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UniformDataProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Descriptor"));
 	}
 
 	/**
@@ -115,12 +122,12 @@ public class UniformDataProviderItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((UniformDataProvider)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_UniformDataProvider_type") :
-			getString("_UI_UniformDataProvider_type") + " " + label;
+		EDescriptorType labelValue = ((Descriptor) object).getDescriptorType();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0
+				? getString("_UI_Descriptor_type")
+				: getString("_UI_Descriptor_type") + " " + label;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -134,11 +141,13 @@ public class UniformDataProviderItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(UniformDataProvider.class))
+		switch (notification.getFeatureID(Descriptor.class))
 		{
-			case GraphicExtraPackage.UNIFORM_DATA_PROVIDER__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ResourcePackage.DESCRIPTOR__DESCRIPTOR_TYPE:
+		case ResourcePackage.DESCRIPTOR__SHADER_STAGES:
+			fireNotifyChanged(
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -165,7 +174,7 @@ public class UniformDataProviderItemProvider
 	@Override
 	public ResourceLocator getResourceLocator()
 	{
-		return GraphicExtraEditPlugin.INSTANCE;
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

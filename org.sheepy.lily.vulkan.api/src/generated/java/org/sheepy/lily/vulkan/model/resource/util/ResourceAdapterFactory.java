@@ -84,19 +84,39 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			return createBasicResourceAdapter();
 		}
 		@Override
-		public Adapter caseDescriptorResource(DescriptorResource object)
-		{
-			return createDescriptorResourceAdapter();
-		}
-		@Override
 		public Adapter casePushBuffer(PushBuffer object)
 		{
 			return createPushBufferAdapter();
 		}
 		@Override
+		public Adapter caseDescriptedResource(DescriptedResource object)
+		{
+			return createDescriptedResourceAdapter();
+		}
+		@Override
+		public Adapter caseBasicDescriptedResource(BasicDescriptedResource object)
+		{
+			return createBasicDescriptedResourceAdapter();
+		}
+		@Override
 		public Adapter caseBuffer(Buffer object)
 		{
 			return createBufferAdapter();
+		}
+		@Override
+		public Adapter caseCompositeBuffer(CompositeBuffer object)
+		{
+			return createCompositeBufferAdapter();
+		}
+		@Override
+		public Adapter caseBufferDataProvider(BufferDataProvider object)
+		{
+			return createBufferDataProviderAdapter();
+		}
+		@Override
+		public Adapter caseDescribedDataProvider(DescribedDataProvider object)
+		{
+			return createDescribedDataProviderAdapter();
 		}
 		@Override
 		public Adapter caseImage(Image object)
@@ -139,9 +159,9 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			return createSamplerAdapter();
 		}
 		@Override
-		public Adapter caseIDescriptor(IDescriptor object)
+		public Adapter caseDescriptor(Descriptor object)
 		{
-			return createIDescriptorAdapter();
+			return createDescriptorAdapter();
 		}
 		@Override
 		public Adapter caseDescriptorSet(DescriptorSet object)
@@ -255,16 +275,31 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptorResource <em>Descriptor Resource</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescriptedResource <em>Descripted Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.DescriptorResource
+	 * @see org.sheepy.lily.vulkan.model.resource.DescriptedResource
 	 * @generated
 	 */
-	public Adapter createDescriptorResourceAdapter()
+	public Adapter createDescriptedResourceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource <em>Basic Descripted Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource
+	 * @generated
+	 */
+	public Adapter createBasicDescriptedResourceAdapter()
 	{
 		return null;
 	}
@@ -295,6 +330,51 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer <em>Composite Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBuffer
+	 * @generated
+	 */
+	public Adapter createCompositeBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider <em>Buffer Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferDataProvider
+	 * @generated
+	 */
+	public Adapter createBufferDataProviderAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider <em>Described Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.DescribedDataProvider
+	 * @generated
+	 */
+	public Adapter createDescribedDataProviderAdapter()
 	{
 		return null;
 	}
@@ -420,16 +500,16 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.IDescriptor <em>IDescriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.Descriptor <em>Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.resource.IDescriptor
+	 * @see org.sheepy.lily.vulkan.model.resource.Descriptor
 	 * @generated
 	 */
-	public Adapter createIDescriptorAdapter()
+	public Adapter createDescriptorAdapter()
 	{
 		return null;
 	}

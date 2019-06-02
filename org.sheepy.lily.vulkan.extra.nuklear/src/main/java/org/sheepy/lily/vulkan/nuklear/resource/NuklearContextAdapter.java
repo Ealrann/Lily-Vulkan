@@ -26,6 +26,7 @@ import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.core.api.util.ModelUtil;
 import org.sheepy.lily.vulkan.api.engine.IVulkanEngineAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.resource.IBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
@@ -37,7 +38,6 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.nuklear.draw.DrawCommandData;
 import org.sheepy.lily.vulkan.nuklear.input.NuklearInputCatcher;
 import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
-import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -168,8 +168,8 @@ public class NuklearContextAdapter implements IResourceAdapter
 	{
 		try
 		{
-			final var vertexBufferAdapter = BufferAdapter.adapt(vertexBuffer);
-			final var bufferPtr = vertexBufferAdapter.getAddress();
+			final var vertexBufferAdapter = IBufferAdapter.adapt(vertexBuffer);
+			final var bufferPtr = vertexBufferAdapter.getPtr();
 
 			final long vertexBufferSize = VERTEX_BUFFER_SIZE;
 			final long indexBufferSize = INDEX_BUFFER_SIZE;

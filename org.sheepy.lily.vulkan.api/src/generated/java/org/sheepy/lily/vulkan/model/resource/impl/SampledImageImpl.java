@@ -2,27 +2,15 @@
  */
 package org.sheepy.lily.vulkan.model.resource.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.sheepy.lily.core.model.types.LNamedElement;
-import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,66 +20,13 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getDescriptorType <em>Descriptor Type</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getShaderStages <em>Shader Stages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.SampledImageImpl#getSampler <em>Sampler</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SampledImageImpl extends MinimalEObjectImpl.Container implements SampledImage
+public class SampledImageImpl extends BasicDescriptedResourceImpl implements SampledImage
 {
-	/**
-	 * The default value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptorType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EDescriptorType DESCRIPTOR_TYPE_EDEFAULT = EDescriptorType.SAMPLER;
-
-	/**
-	 * The cached value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptorType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EDescriptorType descriptorType = DESCRIPTOR_TYPE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getShaderStages() <em>Shader Stages</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getShaderStages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EShaderStage> shaderStages;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getSampler() <em>Sampler</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -121,72 +56,6 @@ public class SampledImageImpl extends MinimalEObjectImpl.Container implements Sa
 	protected EClass eStaticClass()
 	{
 		return ResourcePackage.Literals.SAMPLED_IMAGE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EDescriptorType getDescriptorType()
-	{
-		return descriptorType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDescriptorType(EDescriptorType newDescriptorType)
-	{
-		EDescriptorType oldDescriptorType = descriptorType;
-		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<EShaderStage> getShaderStages()
-	{
-		if (shaderStages == null)
-		{
-			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
-					ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES);
-		}
-		return shaderStages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.SAMPLED_IMAGE__NAME, oldName, name));
 	}
 
 	/**
@@ -269,12 +138,6 @@ public class SampledImageImpl extends MinimalEObjectImpl.Container implements Sa
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
-			return getDescriptorType();
-		case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
-			return getShaderStages();
-		case ResourcePackage.SAMPLED_IMAGE__NAME:
-			return getName();
 		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 			return getSampler();
 		}
@@ -286,22 +149,11 @@ public class SampledImageImpl extends MinimalEObjectImpl.Container implements Sa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
-			setDescriptorType((EDescriptorType) newValue);
-			return;
-		case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
-			getShaderStages().clear();
-			getShaderStages().addAll((Collection<? extends EShaderStage>) newValue);
-			return;
-		case ResourcePackage.SAMPLED_IMAGE__NAME:
-			setName((String) newValue);
-			return;
 		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 			setSampler((Sampler) newValue);
 			return;
@@ -319,15 +171,6 @@ public class SampledImageImpl extends MinimalEObjectImpl.Container implements Sa
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
-			setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
-			return;
-		case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
-			getShaderStages().clear();
-			return;
-		case ResourcePackage.SAMPLED_IMAGE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
 		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 			setSampler((Sampler) null);
 			return;
@@ -345,95 +188,10 @@ public class SampledImageImpl extends MinimalEObjectImpl.Container implements Sa
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.SAMPLED_IMAGE__DESCRIPTOR_TYPE:
-			return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-		case ResourcePackage.SAMPLED_IMAGE__SHADER_STAGES:
-			return shaderStages != null && !shaderStages.isEmpty();
-		case ResourcePackage.SAMPLED_IMAGE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ResourcePackage.SAMPLED_IMAGE__SAMPLER:
 			return sampler != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-			case ResourcePackage.SAMPLED_IMAGE__NAME:
-				return TypesPackage.LNAMED_ELEMENT__NAME;
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == IResource.class)
-		{
-			switch (derivedFeatureID)
-			{
-			default:
-				return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (baseFeatureID)
-			{
-			case TypesPackage.LNAMED_ELEMENT__NAME:
-				return ResourcePackage.SAMPLED_IMAGE__NAME;
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == IResource.class)
-		{
-			switch (baseFeatureID)
-			{
-			default:
-				return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (descriptorType: ");
-		result.append(descriptorType);
-		result.append(", shaderStages: ");
-		result.append(shaderStages);
-		result.append(", name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SampledImageImpl

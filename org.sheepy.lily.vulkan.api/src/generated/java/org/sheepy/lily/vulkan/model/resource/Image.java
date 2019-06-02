@@ -30,7 +30,7 @@ import org.sheepy.vulkan.model.enumeration.EImageUsage;
  * @model
  * @generated
  */
-public interface Image extends DescriptorResource
+public interface Image extends BasicDescriptedResource
 {
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.

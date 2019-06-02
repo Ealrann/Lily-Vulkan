@@ -6,10 +6,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.resource.IBufferAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor;
-import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
 
 @Adapter(scope = BindIndexBuffer.class)
 public final class BindIndexBufferAdapter implements IPipelineTaskAdapter<BindIndexBuffer>
@@ -19,8 +19,8 @@ public final class BindIndexBufferAdapter implements IPipelineTaskAdapter<BindIn
 	{
 		final var pipeline = findPipeline(task);
 		final var buffer = task.getBuffer();
-		final var bufferAdapter = BufferAdapter.adapt(buffer);
-		final var indexPtr = bufferAdapter.getAddress();
+		final var bufferAdapter = IBufferAdapter.adapt(buffer);
+		final var indexPtr = bufferAdapter.getPtr();
 		final var indexOffset = task.getOffset();
 		final var vertexDescriptor = (IndexedVertexDescriptor) pipeline.getVertexDescriptor();
 		final var indexType = vertexDescriptor.getIndexType().getValue();

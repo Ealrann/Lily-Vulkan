@@ -86,16 +86,6 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case ResourcePackage.DESCRIPTOR_RESOURCE:
-		{
-			DescriptorResource descriptorResource = (DescriptorResource) theEObject;
-			T result = caseDescriptorResource(descriptorResource);
-			if (result == null) result = caseIDescriptor(descriptorResource);
-			if (result == null) result = caseIResource(descriptorResource);
-			if (result == null) result = caseLNamedElement(descriptorResource);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
 		case ResourcePackage.PUSH_BUFFER:
 		{
 			PushBuffer pushBuffer = (PushBuffer) theEObject;
@@ -105,14 +95,62 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case ResourcePackage.DESCRIPTED_RESOURCE:
+		{
+			DescriptedResource descriptedResource = (DescriptedResource) theEObject;
+			T result = caseDescriptedResource(descriptedResource);
+			if (result == null) result = caseIResource(descriptedResource);
+			if (result == null) result = caseLNamedElement(descriptedResource);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ResourcePackage.BASIC_DESCRIPTED_RESOURCE:
+		{
+			BasicDescriptedResource basicDescriptedResource = (BasicDescriptedResource) theEObject;
+			T result = caseBasicDescriptedResource(basicDescriptedResource);
+			if (result == null) result = caseDescriptedResource(basicDescriptedResource);
+			if (result == null) result = caseIResource(basicDescriptedResource);
+			if (result == null) result = caseLNamedElement(basicDescriptedResource);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		case ResourcePackage.BUFFER:
 		{
 			Buffer buffer = (Buffer) theEObject;
 			T result = caseBuffer(buffer);
-			if (result == null) result = caseDescriptorResource(buffer);
-			if (result == null) result = caseIDescriptor(buffer);
+			if (result == null) result = caseBasicDescriptedResource(buffer);
+			if (result == null) result = caseDescriptedResource(buffer);
 			if (result == null) result = caseIResource(buffer);
 			if (result == null) result = caseLNamedElement(buffer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ResourcePackage.COMPOSITE_BUFFER:
+		{
+			CompositeBuffer compositeBuffer = (CompositeBuffer) theEObject;
+			T result = caseCompositeBuffer(compositeBuffer);
+			if (result == null) result = caseDescriptedResource(compositeBuffer);
+			if (result == null) result = caseIResource(compositeBuffer);
+			if (result == null) result = caseLNamedElement(compositeBuffer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ResourcePackage.BUFFER_DATA_PROVIDER:
+		{
+			BufferDataProvider bufferDataProvider = (BufferDataProvider) theEObject;
+			T result = caseBufferDataProvider(bufferDataProvider);
+			if (result == null) result = caseDescriptor(bufferDataProvider);
+			if (result == null) result = caseLNamedElement(bufferDataProvider);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case ResourcePackage.DESCRIBED_DATA_PROVIDER:
+		{
+			DescribedDataProvider describedDataProvider = (DescribedDataProvider) theEObject;
+			T result = caseDescribedDataProvider(describedDataProvider);
+			if (result == null) result = caseBufferDataProvider(describedDataProvider);
+			if (result == null) result = caseDescriptor(describedDataProvider);
+			if (result == null) result = caseLNamedElement(describedDataProvider);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -120,8 +158,8 @@ public class ResourceSwitch<T> extends Switch<T>
 		{
 			Image image = (Image) theEObject;
 			T result = caseImage(image);
-			if (result == null) result = caseDescriptorResource(image);
-			if (result == null) result = caseIDescriptor(image);
+			if (result == null) result = caseBasicDescriptedResource(image);
+			if (result == null) result = caseDescriptedResource(image);
 			if (result == null) result = caseIResource(image);
 			if (result == null) result = caseLNamedElement(image);
 			if (result == null) result = defaultCase(theEObject);
@@ -138,8 +176,8 @@ public class ResourceSwitch<T> extends Switch<T>
 		{
 			SampledImage sampledImage = (SampledImage) theEObject;
 			T result = caseSampledImage(sampledImage);
-			if (result == null) result = caseDescriptorResource(sampledImage);
-			if (result == null) result = caseIDescriptor(sampledImage);
+			if (result == null) result = caseBasicDescriptedResource(sampledImage);
+			if (result == null) result = caseDescriptedResource(sampledImage);
 			if (result == null) result = caseIResource(sampledImage);
 			if (result == null) result = caseLNamedElement(sampledImage);
 			if (result == null) result = defaultCase(theEObject);
@@ -160,8 +198,8 @@ public class ResourceSwitch<T> extends Switch<T>
 			Font font = (Font) theEObject;
 			T result = caseFont(font);
 			if (result == null) result = caseSampledImage(font);
-			if (result == null) result = caseDescriptorResource(font);
-			if (result == null) result = caseIDescriptor(font);
+			if (result == null) result = caseBasicDescriptedResource(font);
+			if (result == null) result = caseDescriptedResource(font);
 			if (result == null) result = caseIResource(font);
 			if (result == null) result = caseLNamedElement(font);
 			if (result == null) result = defaultCase(theEObject);
@@ -172,8 +210,8 @@ public class ResourceSwitch<T> extends Switch<T>
 			AbstractTexture abstractTexture = (AbstractTexture) theEObject;
 			T result = caseAbstractTexture(abstractTexture);
 			if (result == null) result = caseSampledImage(abstractTexture);
-			if (result == null) result = caseDescriptorResource(abstractTexture);
-			if (result == null) result = caseIDescriptor(abstractTexture);
+			if (result == null) result = caseBasicDescriptedResource(abstractTexture);
+			if (result == null) result = caseDescriptedResource(abstractTexture);
 			if (result == null) result = caseIResource(abstractTexture);
 			if (result == null) result = caseLNamedElement(abstractTexture);
 			if (result == null) result = defaultCase(theEObject);
@@ -185,8 +223,8 @@ public class ResourceSwitch<T> extends Switch<T>
 			T result = caseTexture(texture);
 			if (result == null) result = caseAbstractTexture(texture);
 			if (result == null) result = caseSampledImage(texture);
-			if (result == null) result = caseDescriptorResource(texture);
-			if (result == null) result = caseIDescriptor(texture);
+			if (result == null) result = caseBasicDescriptedResource(texture);
+			if (result == null) result = caseDescriptedResource(texture);
 			if (result == null) result = caseIResource(texture);
 			if (result == null) result = caseLNamedElement(texture);
 			if (result == null) result = defaultCase(theEObject);
@@ -199,10 +237,10 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case ResourcePackage.IDESCRIPTOR:
+		case ResourcePackage.DESCRIPTOR:
 		{
-			IDescriptor iDescriptor = (IDescriptor) theEObject;
-			T result = caseIDescriptor(iDescriptor);
+			Descriptor descriptor = (Descriptor) theEObject;
+			T result = caseDescriptor(descriptor);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -327,17 +365,33 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Descriptor Resource</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Descripted Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Descriptor Resource</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Descripted Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDescriptorResource(DescriptorResource object)
+	public T caseDescriptedResource(DescriptedResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Basic Descripted Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Basic Descripted Resource</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBasicDescriptedResource(BasicDescriptedResource object)
 	{
 		return null;
 	}
@@ -370,6 +424,54 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseBuffer(Buffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompositeBuffer(CompositeBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer Data Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBufferDataProvider(BufferDataProvider object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Described Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Described Data Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDescribedDataProvider(DescribedDataProvider object)
 	{
 		return null;
 	}
@@ -503,17 +605,17 @@ public class ResourceSwitch<T> extends Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IDescriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIDescriptor(IDescriptor object)
+	public T caseDescriptor(Descriptor object)
 	{
 		return null;
 	}

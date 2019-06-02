@@ -73,6 +73,12 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createPushBuffer();
 		case ResourcePackage.BUFFER:
 			return createBuffer();
+		case ResourcePackage.COMPOSITE_BUFFER:
+			return createCompositeBuffer();
+		case ResourcePackage.BUFFER_DATA_PROVIDER:
+			return createBufferDataProvider();
+		case ResourcePackage.DESCRIBED_DATA_PROVIDER:
+			return createDescribedDataProvider();
 		case ResourcePackage.IMAGE:
 			return createImage();
 		case ResourcePackage.IMAGE_LAYOUT:
@@ -87,6 +93,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createTexture();
 		case ResourcePackage.SAMPLER:
 			return createSampler();
+		case ResourcePackage.DESCRIPTOR:
+			return createDescriptor();
 		case ResourcePackage.DESCRIPTOR_SET:
 			return createDescriptorSet();
 		case ResourcePackage.DESCRIPTOR_SET_PKG:
@@ -191,6 +199,42 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	@Override
+	public CompositeBuffer createCompositeBuffer()
+	{
+		CompositeBufferImpl compositeBuffer = new CompositeBufferImpl();
+		return compositeBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BufferDataProvider createBufferDataProvider()
+	{
+		BufferDataProviderImpl bufferDataProvider = new BufferDataProviderImpl();
+		return bufferDataProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DescribedDataProvider createDescribedDataProvider()
+	{
+		DescribedDataProviderImpl describedDataProvider = new DescribedDataProviderImpl();
+		return describedDataProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Image createImage()
 	{
 		ImageImpl image = new ImageImpl();
@@ -267,6 +311,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		SamplerImpl sampler = new SamplerImpl();
 		return sampler;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Descriptor createDescriptor()
+	{
+		DescriptorImpl descriptor = new DescriptorImpl();
+		return descriptor;
 	}
 
 	/**

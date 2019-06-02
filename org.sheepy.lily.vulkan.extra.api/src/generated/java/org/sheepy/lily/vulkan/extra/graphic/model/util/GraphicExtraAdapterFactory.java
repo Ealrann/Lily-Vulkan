@@ -82,29 +82,9 @@ public class GraphicExtraAdapterFactory extends AdapterFactoryImpl
 				return createMeshProviderAdapter();
 			}
 			@Override
-			public Adapter caseComplexMeshProvider(ComplexMeshProvider object)
-			{
-				return createComplexMeshProviderAdapter();
-			}
-			@Override
 			public Adapter caseIDataProvider(IDataProvider object)
 			{
 				return createIDataProviderAdapter();
-			}
-			@Override
-			public Adapter caseVertexDataProvider(VertexDataProvider object)
-			{
-				return createVertexDataProviderAdapter();
-			}
-			@Override
-			public Adapter caseIndexDataProvider(IndexDataProvider object)
-			{
-				return createIndexDataProviderAdapter();
-			}
-			@Override
-			public Adapter caseUniformDataProvider(UniformDataProvider object)
-			{
-				return createUniformDataProviderAdapter();
 			}
 			@Override
 			public Adapter caseLNamedElement(LNamedElement object)
@@ -149,21 +129,6 @@ public class GraphicExtraAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.graphic.model.ComplexMeshProvider <em>Complex Mesh Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.graphic.model.ComplexMeshProvider
-	 * @generated
-	 */
-	public Adapter createComplexMeshProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.graphic.model.IDataProvider <em>IData Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -174,51 +139,6 @@ public class GraphicExtraAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createIDataProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.graphic.model.VertexDataProvider <em>Vertex Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.graphic.model.VertexDataProvider
-	 * @generated
-	 */
-	public Adapter createVertexDataProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.graphic.model.IndexDataProvider <em>Index Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.graphic.model.IndexDataProvider
-	 * @generated
-	 */
-	public Adapter createIndexDataProviderAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.extra.graphic.model.UniformDataProvider <em>Uniform Data Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.extra.graphic.model.UniformDataProvider
-	 * @generated
-	 */
-	public Adapter createUniformDataProviderAdapter()
 	{
 		return null;
 	}

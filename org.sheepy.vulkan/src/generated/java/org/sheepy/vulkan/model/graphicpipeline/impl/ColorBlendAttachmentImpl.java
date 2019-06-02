@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.vulkan.model.enumeration.EBlendFactor;
 import org.sheepy.vulkan.model.enumeration.EBlendOp;
+
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlendAttachment;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
@@ -68,7 +69,7 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EBlendFactor SRC_COLOR_EDEFAULT = EBlendFactor.ONE; // TODO The default value literal "ONE" is not valid.
+	protected static final EBlendFactor SRC_COLOR_EDEFAULT = EBlendFactor.ONE;
 
 	/**
 	 * The cached value of the '{@link #getSrcColor() <em>Src Color</em>}' attribute.
@@ -88,7 +89,7 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EBlendFactor DST_COLOR_EDEFAULT = EBlendFactor.ZERO; // TODO The default value literal "ZERO" is not valid.
+	protected static final EBlendFactor DST_COLOR_EDEFAULT = EBlendFactor.ZERO;
 
 	/**
 	 * The cached value of the '{@link #getDstColor() <em>Dst Color</em>}' attribute.
@@ -108,7 +109,7 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EBlendFactor SRC_ALPHA_EDEFAULT = EBlendFactor.ONE; // TODO The default value literal "ONE" is not valid.
+	protected static final EBlendFactor SRC_ALPHA_EDEFAULT = EBlendFactor.ONE;
 
 	/**
 	 * The cached value of the '{@link #getSrcAlpha() <em>Src Alpha</em>}' attribute.
@@ -128,7 +129,7 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EBlendFactor DST_ALPHA_EDEFAULT = EBlendFactor.ZERO; // TODO The default value literal "ZERO" is not valid.
+	protected static final EBlendFactor DST_ALPHA_EDEFAULT = EBlendFactor.ZERO;
 
 	/**
 	 * The cached value of the '{@link #getDstAlpha() <em>Dst Alpha</em>}' attribute.
@@ -148,7 +149,7 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EBlendOp COLOR_BLEND_OP_EDEFAULT = EBlendOp.ADD; // TODO The default value literal "ADD" is not valid.
+	protected static final EBlendOp COLOR_BLEND_OP_EDEFAULT = EBlendOp.ADD;
 
 	/**
 	 * The cached value of the '{@link #getColorBlendOp() <em>Color Blend Op</em>}' attribute.
@@ -168,7 +169,7 @@ public class ColorBlendAttachmentImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EBlendOp ALPHA_BLEND_OP_EDEFAULT = EBlendOp.ADD; // TODO The default value literal "ADD" is not valid.
+	protected static final EBlendOp ALPHA_BLEND_OP_EDEFAULT = EBlendOp.ADD;
 
 	/**
 	 * The cached value of the '{@link #getAlphaBlendOp() <em>Alpha Blend Op</em>}' attribute.

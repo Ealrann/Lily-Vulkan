@@ -1,34 +1,47 @@
-package org.sheepy.vulkan.resource.buffer;
+package org.sheepy.lily.vulkan.resource.buffer;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.lwjgl.system.MemoryStack;
+import org.sheepy.lily.core.api.adapter.annotation.Adapter;
+import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.resource.IBufferDataProviderAdapter;
+import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
+import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.descriptor.DescriptorUtil;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
-import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
-import org.sheepy.vulkan.descriptor.VkDescriptor;
-import org.sheepy.vulkan.descriptor.VkDescriptorSet;
+import org.sheepy.vulkan.descriptor.VkBufferDescriptor;
 import org.sheepy.vulkan.device.PhysicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.resource.buffer.BufferInfo;
+import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
+import org.sheepy.vulkan.resource.buffer.IBufferBackend;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
 
-public class BufferComposite implements IAllocable<IExecutionContext>
+@Statefull
+@Adapter(scope = CompositeBuffer.class)
+public final class CompositeBufferAdapter
+		implements IDescriptedResourceAdapter, IAllocable<IExecutionContext>
 {
-	private final Map<IBufferDataProvider, DataProviderWrapper> providerWrappers = new LinkedHashMap<>();
-	private final VkDescriptorSet descriptorSet = new VkDescriptorSet();
+	private final Map<BufferDataProvider, DataProviderWrapper> providerWrappers = new LinkedHashMap<>();
+	private final List<IVkDescriptor> descriptors = new ArrayList<>();
 
 	private IBufferBackend bufferBackend;
 	private boolean hasChanged = true;
 	private boolean needUpdate = true;
 
-	public BufferComposite(List<IBufferDataProvider> dataProviders)
+	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
-		for (final var dataProvider : dataProviders)
+		for (final var dataProvider : compositeBuffer.getDataProviders())
 		{
 			this.providerWrappers.put(dataProvider, new DataProviderWrapper(dataProvider));
 		}
@@ -46,7 +59,7 @@ public class BufferComposite implements IAllocable<IExecutionContext>
 			providerWrapper.updateAlignement(physicalDevice, position);
 			position = providerWrapper.alignedOffset + providerWrapper.alignedSize;
 
-			usage |= providerWrapper.dataProvider.getUsage();
+			usage |= providerWrapper.dataProvider.getUsage().getValue();
 		}
 
 		createBuffer(position, usage);
@@ -54,10 +67,10 @@ public class BufferComposite implements IAllocable<IExecutionContext>
 
 		for (final var providerWrapper : providerWrappers.values())
 		{
-			if (providerWrapper.dataProvider instanceof IDescriptedDataProvider)
+			if (providerWrapper.dataProvider instanceof DescribedDataProvider)
 			{
 				final var descriptor = providerWrapper.createDescriptor();
-				descriptorSet.addDescriptor(descriptor);
+				descriptors.add(descriptor);
 			}
 		}
 	}
@@ -81,23 +94,24 @@ public class BufferComposite implements IAllocable<IExecutionContext>
 		for (final var providerWrapper : providerWrappers.values())
 		{
 			final var dataProvider = providerWrapper.dataProvider;
-			final boolean providerChanged = dataProvider.hasChanged();
+			final boolean providerChanged = providerWrapper.adapter.hasChanged();
 			if (providerChanged || needUpdate)
 			{
 				final long memAddress = stagingBuffer.reserveMemory(dataProvider.getSize());
 				final long bufferAddress = bufferBackend.getAddress();
 				final long offset = providerWrapper.alignedOffset;
-				final int usage = dataProvider.getUsage();
+				final int usage = dataProvider.getUsage().getValue();
 
 				final EPipelineStage stage = guessStageFromUsage(usage);
 				final EAccess access = guessAccessFromUsage(usage);
 
-				dataProvider.fill(memAddress);
+				providerWrapper.adapter.fill(memAddress);
 				stagingBuffer.pushSynchronized(memAddress, bufferAddress, offset, stage, access);
 
 				hasChanged = true;
 			}
 		}
+
 		needUpdate = false;
 	}
 
@@ -150,9 +164,10 @@ public class BufferComposite implements IAllocable<IExecutionContext>
 		return false;
 	}
 
-	public IVkDescriptorSet getDescriptorSet()
+	@Override
+	public List<IVkDescriptor> getDescriptors()
 	{
-		return descriptorSet;
+		return descriptors;
 	}
 
 	public long getBufferAddress()
@@ -160,7 +175,7 @@ public class BufferComposite implements IAllocable<IExecutionContext>
 		return bufferBackend.getAddress();
 	}
 
-	public long getOffset(IBufferDataProvider dataProvider)
+	public long getOffset(BufferDataProvider dataProvider)
 	{
 		return providerWrappers.get(dataProvider).alignedOffset;
 	}
@@ -168,25 +183,28 @@ public class BufferComposite implements IAllocable<IExecutionContext>
 	class DataProviderWrapper
 	{
 		private final int usage;
-		final IBufferDataProvider dataProvider;
+		private final BufferDataProvider dataProvider;
+		private final IBufferDataProviderAdapter adapter;
 
-		long alignedOffset;
-		long alignedSize;
+		private long alignedOffset;
+		private long alignedSize;
 
-		DataProviderWrapper(IBufferDataProvider dataProvider)
+		private DataProviderWrapper(BufferDataProvider dataProvider)
 		{
 			this.dataProvider = dataProvider;
-			usage = dataProvider.getUsage();
+			this.adapter = IBufferDataProviderAdapter.adapt(dataProvider);
+			usage = dataProvider.getUsage().getValue();
 		}
 
 		public IVkDescriptor createDescriptor()
 		{
-			final var descripted = (IDescriptedDataProvider) dataProvider;
+			final var described = (DescribedDataProvider) dataProvider;
 
 			final var type = DescriptorUtil.guessType(usage);
-			final var stages = descripted.getStages();
+			final var stages = described.getShaderStages();
 
-			return new VkDescriptor(bufferBackend, alignedSize, alignedOffset, type, stages);
+			return new VkBufferDescriptor(bufferBackend.getAddress(), alignedSize, alignedOffset,
+					type, stages);
 		}
 
 		public void updateAlignement(PhysicalDevice physicalDevice, long desiredOffset)

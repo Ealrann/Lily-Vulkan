@@ -1,42 +1,37 @@
 package org.sheepy.lily.vulkan.resource.image;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
-import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
-import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.ISampledImageAdapter;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
-import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
 import org.sheepy.lily.vulkan.resource.nativehelper.VkTexture;
+import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.resource.image.VkImage;
 
 @Statefull
 public abstract class AbstractSampledImageAdapter
-		implements IDescriptorAdapter, ISampledImageAdapter
+		implements IDescriptedResourceAdapter, ISampledImageAdapter
 {
-	private final SampledImage sampledImage;
-
+	private List<IVkDescriptor> descriptors = null;
 	protected VkTexture vkTexture;
 
-	public AbstractSampledImageAdapter(SampledImage sampledImage)
+	public AbstractSampledImageAdapter(SampledImage sampledImage, VkImage.Builder imageBuilder)
 	{
-		this.sampledImage = sampledImage;
+		final var samplerInfo = sampledImage.getSampler();
+
+		vkTexture = new VkTexture(imageBuilder, samplerInfo);
 	}
 
 	@Override
 	public void allocate(MemoryStack stack, IExecutionContext context)
 	{
-		final var samplerInfo = sampledImage.getSampler();
-		final var imageBuilder = getImageBuilder().copyImmutable();
-
-		vkTexture = new VkTexture(imageBuilder, samplerInfo);
-
 		final var executionContext = (ExecutionContext) context;
 
 		final ByteBuffer allocDataBuffer = allocDataBuffer(stack);
@@ -72,24 +67,15 @@ public abstract class AbstractSampledImageAdapter
 	}
 
 	@Override
-	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
+	public List<IVkDescriptor> getDescriptors()
 	{
-		return vkTexture.allocLayoutBinding(stack);
-	}
+		if (descriptors == null)
+		{
+			descriptors = List.of(vkTexture.getDescriptor());
+		}
 
-	@Override
-	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
-	{
-		vkTexture.fillWriteDescriptor(stack, writeDescriptor);
+		return descriptors;
 	}
-
-	@Override
-	public void fillPoolSize(VkDescriptorPoolSize poolSize)
-	{
-		vkTexture.fillPoolSize(poolSize);
-	}
-
-	protected abstract VkImage.Builder getImageBuilder();
 
 	protected abstract ByteBuffer allocDataBuffer(MemoryStack stack);
 }

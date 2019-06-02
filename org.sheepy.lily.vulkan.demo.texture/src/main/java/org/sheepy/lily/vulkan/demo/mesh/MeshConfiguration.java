@@ -6,12 +6,11 @@ import org.sheepy.vulkan.model.enumeration.EFrontFace;
 
 public class MeshConfiguration
 {
-	
+
 	public String texturePath = null;
 	public String vertexShaderPath = "triangle.vert.spv";
 	public String fragmentShaderPath = "triangle.frag.spv";
 	public Module module = MeshConfiguration.class.getModule();
-	
 
 	public boolean useCamera = false;
 	public boolean depth = false;
@@ -22,15 +21,11 @@ public class MeshConfiguration
 	public int height = 600;
 	public boolean mipmap = false;
 	public boolean useTexture = false;
-	
 
-	@Deprecated
-	public String meshProviderName;
 	public long indexOffset;
 	public int indexCount;
 	public ByteBuffer vertexData;
-	
-	
+
 	public MeshConfiguration(AbstractMeshBuilder meshBuilder)
 	{
 		vertexData = meshBuilder.getData();

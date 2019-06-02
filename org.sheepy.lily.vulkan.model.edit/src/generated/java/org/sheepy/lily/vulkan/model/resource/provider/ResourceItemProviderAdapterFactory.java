@@ -176,6 +176,81 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositeBufferItemProvider compositeBufferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositeBufferAdapter()
+	{
+		if (compositeBufferItemProvider == null)
+		{
+			compositeBufferItemProvider = new CompositeBufferItemProvider(this);
+		}
+
+		return compositeBufferItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BufferDataProviderItemProvider bufferDataProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBufferDataProviderAdapter()
+	{
+		if (bufferDataProviderItemProvider == null)
+		{
+			bufferDataProviderItemProvider = new BufferDataProviderItemProvider(this);
+		}
+
+		return bufferDataProviderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DescribedDataProviderItemProvider describedDataProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.DescribedDataProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDescribedDataProviderAdapter()
+	{
+		if (describedDataProviderItemProvider == null)
+		{
+			describedDataProviderItemProvider = new DescribedDataProviderItemProvider(this);
+		}
+
+		return describedDataProviderItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Image} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -348,6 +423,31 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		}
 
 		return samplerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.Descriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DescriptorItemProvider descriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.Descriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDescriptorAdapter()
+	{
+		if (descriptorItemProvider == null)
+		{
+			descriptorItemProvider = new DescriptorItemProvider(this);
+		}
+
+		return descriptorItemProvider;
 	}
 
 	/**
@@ -702,6 +802,9 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (basicResourceItemProvider != null) basicResourceItemProvider.dispose();
 		if (pushBufferItemProvider != null) pushBufferItemProvider.dispose();
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
+		if (compositeBufferItemProvider != null) compositeBufferItemProvider.dispose();
+		if (bufferDataProviderItemProvider != null) bufferDataProviderItemProvider.dispose();
+		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();
 		if (imageLayoutItemProvider != null) imageLayoutItemProvider.dispose();
 		if (sampledImageItemProvider != null) sampledImageItemProvider.dispose();
@@ -709,6 +812,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (fontItemProvider != null) fontItemProvider.dispose();
 		if (textureItemProvider != null) textureItemProvider.dispose();
 		if (samplerItemProvider != null) samplerItemProvider.dispose();
+		if (descriptorItemProvider != null) descriptorItemProvider.dispose();
 		if (descriptorSetItemProvider != null) descriptorSetItemProvider.dispose();
 		if (descriptorSetPkgItemProvider != null) descriptorSetPkgItemProvider.dispose();
 		if (bufferBarrierItemProvider != null) bufferBarrierItemProvider.dispose();
@@ -782,6 +886,10 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
 								ResourceFactory.eINSTANCE.createBuffer()));
+
+				newChildDescriptors
+						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
+								ResourceFactory.eINSTANCE.createCompositeBuffer()));
 
 				newChildDescriptors
 						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,

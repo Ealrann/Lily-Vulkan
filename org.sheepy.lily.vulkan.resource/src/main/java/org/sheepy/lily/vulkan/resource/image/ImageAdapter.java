@@ -1,34 +1,32 @@
 package org.sheepy.lily.vulkan.resource.image;
 
-import static org.lwjgl.vulkan.VK10.*;
+import static org.lwjgl.vulkan.VK10.VK_IMAGE_ASPECT_COLOR_BIT;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkDescriptorImageInfo;
-import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
-import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
-import org.sheepy.lily.vulkan.resource.descriptor.IDescriptorAdapter;
+import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.descriptor.VkImageDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImageView;
 import org.sheepy.vulkan.util.VkModelUtil;
 
 @Statefull
 @Adapter(scope = Image.class)
-public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
+public class ImageAdapter implements IDescriptedResourceAdapter, IResourceAdapter
 {
 	private VkImage imageBackend;
 	private final Image image;
@@ -36,6 +34,8 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 
 	private IImageLoader loader = null;
 	private IExecutionContext executionContext;
+
+	private List<IVkDescriptor> descriptors = null;
 
 	public ImageAdapter(Image image)
 	{
@@ -104,41 +104,21 @@ public class ImageAdapter implements IDescriptorAdapter, IResourceAdapter
 	}
 
 	@Override
-	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
+	public List<IVkDescriptor> getDescriptors()
 	{
-		int stages = 0;
-		for (final EShaderStage stage : image.getShaderStages())
+		if (descriptors == null)
 		{
-			stages |= stage.getValue();
+			final var descriptor = image.getDescriptor();
+			final var type = descriptor.getDescriptorType();
+			final var stages = descriptor.getShaderStages();
+			final var layout = EImageLayout.GENERAL;
+			final long viewPtr = getViewAddress();
+
+			final var vkImageDescriptor = new VkImageDescriptor(viewPtr, 0, layout, type, stages);
+			descriptors = List.of(vkImageDescriptor);
 		}
 
-		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
-		res.descriptorType(image.getDescriptorType().getValue());
-		res.descriptorCount(1);
-		res.stageFlags(stages);
-		return res;
-	}
-
-	@Override
-	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
-	{
-		final var imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
-		imageInfo.imageLayout(VK_IMAGE_LAYOUT_GENERAL);
-		imageInfo.imageView(imageView.getAddress());
-
-		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
-		writeDescriptor.dstArrayElement(0);
-		writeDescriptor.descriptorType(image.getDescriptorType().getValue());
-		writeDescriptor.pBufferInfo(null);
-		writeDescriptor.pImageInfo(imageInfo);
-		writeDescriptor.pTexelBufferView(null);
-	}
-
-	@Override
-	public void fillPoolSize(VkDescriptorPoolSize poolSize)
-	{
-		poolSize.type(image.getDescriptorType().getValue());
-		poolSize.descriptorCount(1);
+		return descriptors;
 	}
 
 	public long getAddress()

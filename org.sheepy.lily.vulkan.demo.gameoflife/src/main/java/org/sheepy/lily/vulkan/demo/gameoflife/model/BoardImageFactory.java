@@ -5,6 +5,7 @@ import static org.lwjgl.vulkan.VK10.*;
 import org.joml.Vector2i;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
@@ -21,9 +22,9 @@ public class BoardImageFactory
 
 	public static final Image createBoardImage(Vector2i size)
 	{
-		Image res = new ImageImpl();
+		final Image res = new ImageImpl();
 
-		ImageLayout initialLayout = new ImageLayoutImpl();
+		final ImageLayout initialLayout = new ImageLayoutImpl();
 		initialLayout.setStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		initialLayout.setLayout(EImageLayout.GENERAL);
 		initialLayout.getAccessMask().add(EAccess.SHADER_WRITE_BIT);
@@ -37,8 +38,10 @@ public class BoardImageFactory
 		res.getUsages().add(EImageUsage.STORAGE);
 		res.setProperties(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-		res.setDescriptorType(EDescriptorType.STORAGE_IMAGE);
-		res.getShaderStages().add(EShaderStage.COMPUTE_BIT);
+		final var descriptor = ResourceFactory.eINSTANCE.createDescriptor();
+		descriptor.setDescriptorType(EDescriptorType.STORAGE_IMAGE);
+		descriptor.getShaderStages().add(EShaderStage.COMPUTE_BIT);
+		res.setDescriptor(descriptor);
 
 		res.setInitialLayout(initialLayout);
 

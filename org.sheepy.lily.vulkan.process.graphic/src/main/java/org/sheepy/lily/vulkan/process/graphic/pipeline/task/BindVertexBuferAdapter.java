@@ -5,8 +5,8 @@ import static org.lwjgl.vulkan.VK10.vkCmdBindVertexBuffers;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.vulkan.api.execution.IRecordable.RecordContext;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineTaskAdapter;
+import org.sheepy.lily.vulkan.api.resource.IBufferAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
-import org.sheepy.lily.vulkan.resource.buffer.BufferAdapter;
 
 @Adapter(scope = BindVertexBuffer.class)
 public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBuffer>
@@ -26,9 +26,9 @@ public class BindVertexBuferAdapter implements IPipelineTaskAdapter<BindVertexBu
 		{
 			final var binding = bindings.get(i);
 			final var buffer = binding.getBuffer();
-			final var bufferAdapter = BufferAdapter.adapt(buffer);
+			final var bufferAdapter = IBufferAdapter.adapt(buffer);
 
-			vertexBuffers[i] = bufferAdapter.getAddress();
+			vertexBuffers[i] = bufferAdapter.getPtr();
 			offsets[i] = binding.getOffset();
 		}
 

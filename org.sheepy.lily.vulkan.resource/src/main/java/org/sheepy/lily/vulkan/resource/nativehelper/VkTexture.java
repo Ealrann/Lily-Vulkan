@@ -7,34 +7,34 @@ import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
-import org.lwjgl.vulkan.VkDescriptorImageInfo;
-import org.lwjgl.vulkan.VkDescriptorPoolSize;
-import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
-import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
+import org.sheepy.vulkan.descriptor.VkImageDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EAccess;
+import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.resource.buffer.BufferAllocator;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 import org.sheepy.vulkan.resource.image.VkImage;
 import org.sheepy.vulkan.resource.image.VkImageView;
 
-public class VkTexture implements IVkDescriptor, IAllocable<IExecutionContext>
+public class VkTexture implements IAllocable<IExecutionContext>
 {
 	private final Sampler samplerInfo;
 
 	private final VkImage image;
 	private VkImageView imageView;
 	private VkSampler sampler;
+	private IVkDescriptor descriptor = null;
 
 	public VkTexture(VkImage.Builder imageBuilder, Sampler samplerInfo)
 	{
@@ -205,37 +205,16 @@ public class VkTexture implements IVkDescriptor, IAllocable<IExecutionContext>
 		return false;
 	}
 
-	@Override
-	public VkDescriptorSetLayoutBinding allocLayoutBinding(MemoryStack stack)
+	public IVkDescriptor getDescriptor()
 	{
-		final VkDescriptorSetLayoutBinding res = VkDescriptorSetLayoutBinding.callocStack(stack);
-		res.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		res.descriptorCount(1);
-		res.stageFlags(VK_SHADER_STAGE_FRAGMENT_BIT);
-		return res;
-	}
+		if (descriptor == null)
+		{
+			descriptor = new VkImageDescriptor(getViewAddress(), sampler.getAddress(),
+					EImageLayout.SHADER_READ_ONLY_OPTIMAL, EDescriptorType.COMBINED_IMAGE_SAMPLER,
+					List.of(EShaderStage.FRAGMENT_BIT));
+		}
 
-	@Override
-	public void fillWriteDescriptor(MemoryStack stack, VkWriteDescriptorSet writeDescriptor)
-	{
-		final var imageInfo = VkDescriptorImageInfo.callocStack(1, stack);
-		imageInfo.imageLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-		imageInfo.imageView(getViewAddress());
-		imageInfo.sampler(sampler.getAddress());
-
-		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
-		writeDescriptor.dstArrayElement(0);
-		writeDescriptor.descriptorType(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		writeDescriptor.pBufferInfo(null);
-		writeDescriptor.pImageInfo(imageInfo);
-		writeDescriptor.pTexelBufferView(null); // Optional
-	}
-
-	@Override
-	public void fillPoolSize(VkDescriptorPoolSize poolSize)
-	{
-		poolSize.type(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER);
-		poolSize.descriptorCount(1);
+		return descriptor;
 	}
 
 	public VkImage getImage()

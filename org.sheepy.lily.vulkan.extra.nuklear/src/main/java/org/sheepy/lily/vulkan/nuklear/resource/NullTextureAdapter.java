@@ -11,14 +11,13 @@ import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
 import org.sheepy.vulkan.resource.image.VkImage;
-import org.sheepy.vulkan.resource.image.VkImage.Builder;
 
 @Statefull
 @Adapter(scope = SampledImage.class, name = NullTextureAdapter.MODEL_OBJECT_NAME)
 public class NullTextureAdapter extends AbstractSampledImageAdapter
 {
 	public static final String MODEL_OBJECT_NAME = "NullTexture";
-	
+
 	private static final int FORMAT = VK_FORMAT_R8G8B8A8_UNORM;
 	private static final int USAGE = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
 
@@ -33,7 +32,7 @@ public class NullTextureAdapter extends AbstractSampledImageAdapter
 
 	public NullTextureAdapter(SampledImage sampledImage)
 	{
-		super(sampledImage);
+		super(sampledImage, imageBuilder);
 	}
 
 	@Override
@@ -44,11 +43,5 @@ public class NullTextureAdapter extends AbstractSampledImageAdapter
 		buffer.flip();
 
 		return buffer;
-	}
-
-	@Override
-	protected Builder getImageBuilder()
-	{
-		return imageBuilder;
 	}
 }

@@ -51,6 +51,33 @@ public interface ResourceFactory extends EFactory
 	Buffer createBuffer();
 
 	/**
+	 * Returns a new object of class '<em>Composite Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Buffer</em>'.
+	 * @generated
+	 */
+	CompositeBuffer createCompositeBuffer();
+
+	/**
+	 * Returns a new object of class '<em>Buffer Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Buffer Data Provider</em>'.
+	 * @generated
+	 */
+	BufferDataProvider createBufferDataProvider();
+
+	/**
+	 * Returns a new object of class '<em>Described Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Described Data Provider</em>'.
+	 * @generated
+	 */
+	DescribedDataProvider createDescribedDataProvider();
+
+	/**
 	 * Returns a new object of class '<em>Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,6 +139,15 @@ public interface ResourceFactory extends EFactory
 	 * @generated
 	 */
 	Sampler createSampler();
+
+	/**
+	 * Returns a new object of class '<em>Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Descriptor</em>'.
+	 * @generated
+	 */
+	Descriptor createDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Descriptor Set</em>'.

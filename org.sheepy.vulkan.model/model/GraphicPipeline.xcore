@@ -81,8 +81,8 @@ interface ViewportState
 
 class StaticViewportState extends ViewportState
 {
-	contains Viewport[] viewports
-	contains Scissor[] scissors
+	contains Viewport[1..*] viewports
+	contains Scissor[1..*] scissors
 }
 
 class DynamicViewportState extends ViewportState

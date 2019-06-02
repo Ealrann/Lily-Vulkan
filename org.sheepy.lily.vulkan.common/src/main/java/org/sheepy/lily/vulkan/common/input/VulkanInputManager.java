@@ -2,17 +2,16 @@ package org.sheepy.lily.vulkan.common.input;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-import java.nio.DoubleBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.joml.Vector2f;
+import org.joml.Vector2fc;
 import org.lwjgl.glfw.GLFWCharCallback;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
 import org.lwjgl.glfw.GLFWScrollCallback;
-import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.input.event.CharEvent;
 import org.sheepy.lily.core.api.input.event.IInputEvent;
 import org.sheepy.lily.core.api.input.event.KeyEvent;
@@ -85,45 +84,37 @@ public class VulkanInputManager implements IVulkanInputManager
 	private final GLFWMouseButtonCallback glfwSetMouseButtonCallback = new GLFWMouseButtonCallback()
 	{
 		@Override
-		public void invoke(long window, int button, int action, int mods)
+		public void invoke(long windowPtr, int button, int action, int mods)
 		{
-			try (MemoryStack stack = MemoryStack.stackPush())
+			EMouseButton mouseButton = null;
+			switch (button)
 			{
-				final DoubleBuffer cx = stack.mallocDouble(1);
-				final DoubleBuffer cy = stack.mallocDouble(1);
-
-				glfwGetCursorPos(window, cx, cy);
-
-				EMouseButton mouseButton = null;
-				switch (button)
-				{
-				case GLFW_MOUSE_BUTTON_RIGHT:
-					mouseButton = EMouseButton.RIGHT;
-					break;
-				case GLFW_MOUSE_BUTTON_MIDDLE:
-					mouseButton = EMouseButton.MIDDLE;
-					break;
-				case GLFW_MOUSE_BUTTON_LEFT:
-					mouseButton = EMouseButton.LEFT;
-					break;
-				case GLFW_MOUSE_BUTTON_4:
-					mouseButton = EMouseButton._4;
-					break;
-				case GLFW_MOUSE_BUTTON_5:
-					mouseButton = EMouseButton._5;
-					break;
-				case GLFW_MOUSE_BUTTON_6:
-					mouseButton = EMouseButton._6;
-					break;
-				case GLFW_MOUSE_BUTTON_7:
-					mouseButton = EMouseButton._7;
-					break;
-				case GLFW_MOUSE_BUTTON_8:
-					mouseButton = EMouseButton._8;
-					break;
-				}
-				events.add(new MouseButtonEvent(mouseButton, action == GLFW_PRESS));
+			case GLFW_MOUSE_BUTTON_RIGHT:
+				mouseButton = EMouseButton.RIGHT;
+				break;
+			case GLFW_MOUSE_BUTTON_MIDDLE:
+				mouseButton = EMouseButton.MIDDLE;
+				break;
+			case GLFW_MOUSE_BUTTON_LEFT:
+				mouseButton = EMouseButton.LEFT;
+				break;
+			case GLFW_MOUSE_BUTTON_4:
+				mouseButton = EMouseButton._4;
+				break;
+			case GLFW_MOUSE_BUTTON_5:
+				mouseButton = EMouseButton._5;
+				break;
+			case GLFW_MOUSE_BUTTON_6:
+				mouseButton = EMouseButton._6;
+				break;
+			case GLFW_MOUSE_BUTTON_7:
+				mouseButton = EMouseButton._7;
+				break;
+			case GLFW_MOUSE_BUTTON_8:
+				mouseButton = EMouseButton._8;
+				break;
 			}
+			events.add(new MouseButtonEvent(cursorPosition, mouseButton, action == GLFW_PRESS));
 		}
 	};
 
@@ -162,26 +153,6 @@ public class VulkanInputManager implements IVulkanInputManager
 	}
 
 	@Override
-	public void showCursor(boolean show)
-	{
-		final int flag = show ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN;
-		glfwSetInputMode(window.getId(), GLFW_CURSOR, flag);
-	}
-
-	@Override
-	public Vector2f getCursorPosition()
-	{
-		return cursorPosition;
-	}
-
-	@Override
-	public void setCursorPosition(Vector2f position)
-	{
-		glfwSetCursorPos(window.getId(), position.x, position.y);
-		cursorPosition.set(position);
-	}
-
-	@Override
 	public void pollInputs()
 	{
 		if (window.isOpenned())
@@ -191,18 +162,16 @@ public class VulkanInputManager implements IVulkanInputManager
 				catcher.startCatch();
 			}
 
-			glfwPollEvents();
+			updateMouseLocation();
 
-			// The elegance itself (nonono)
-			glfwGetCursorPos(window.getId(), cursorPositionX, cursorPositionY);
-			cursorPosition.x = (float) cursorPositionX[0];
-			cursorPosition.y = (float) cursorPositionY[0];
+			glfwPollEvents();
 
 			if (catcher != null)
 			{
-				for (final IInputEvent event : events)
+				for (int i = 0; i < events.size(); i++)
 				{
-					fireEvent(event, catcher);
+					final var event = events.get(i);
+					event.fireEvent(catcher);
 				}
 
 				if (catcher.hasCaughtInputs(events))
@@ -227,11 +196,41 @@ public class VulkanInputManager implements IVulkanInputManager
 
 			fireEvents();
 
+			fireAfterPollInputs();
+
 			if (window.shouldClose())
 			{
 				application.setRun(false);
 			}
 		}
+	}
+
+	private void updateMouseLocation()
+	{
+		// The elegance itself (nonono)
+		glfwGetCursorPos(window.getId(), cursorPositionX, cursorPositionY);
+		cursorPosition.x = (float) cursorPositionX[0];
+		cursorPosition.y = (float) cursorPositionY[0];
+	}
+
+	@Override
+	public void showCursor(boolean show)
+	{
+		final int flag = show ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN;
+		glfwSetInputMode(window.getId(), GLFW_CURSOR, flag);
+	}
+
+	@Override
+	public Vector2f getCursorPosition()
+	{
+		return cursorPosition;
+	}
+
+	@Override
+	public void setCursorPosition(Vector2fc position)
+	{
+		glfwSetCursorPos(window.getId(), position.x(), position.y());
+		cursorPosition.set(position);
 	}
 
 	public void fireEvents()
@@ -256,33 +255,19 @@ public class VulkanInputManager implements IVulkanInputManager
 
 	private void fireEvent(IInputEvent event)
 	{
-		for (final IInputListener listener : listeners)
+		for (int i = 0; i < listeners.size(); i++)
 		{
-			fireEvent(event, listener);
+			final var listener = listeners.get(i);
+			event.fireEvent(listener);
 		}
 	}
 
-	private void fireEvent(IInputEvent event, IInputListener listener)
+	private void fireAfterPollInputs()
 	{
-		if (event instanceof CharEvent)
+		for (int i = 0; i < listeners.size(); i++)
 		{
-			listener.onCharEvent((CharEvent) event);
-		}
-		else if (event instanceof KeyEvent)
-		{
-			listener.onKeyEvent((KeyEvent) event);
-		}
-		else if (event instanceof MouseButtonEvent)
-		{
-			listener.onMouseClickEvent(getCursorPosition(), (MouseButtonEvent) event);
-		}
-		else if (event instanceof MouseLocationEvent)
-		{
-			listener.onMouseLocationEvent((MouseLocationEvent) event);
-		}
-		else if (event instanceof ScrollEvent)
-		{
-			listener.onScrollEvent((ScrollEvent) event);
+			final var listener = listeners.get(i);
+			listener.afterPollInputs();
 		}
 	}
 

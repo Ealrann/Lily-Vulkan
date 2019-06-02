@@ -1,4 +1,4 @@
-package org.sheepy.lily.vulkan.resource.descriptor;
+package org.sheepy.lily.vulkan.api.resource;
 
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;

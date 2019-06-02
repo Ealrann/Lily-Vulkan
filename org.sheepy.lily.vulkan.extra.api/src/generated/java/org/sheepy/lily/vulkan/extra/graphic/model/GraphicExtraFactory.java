@@ -32,42 +32,6 @@ public interface GraphicExtraFactory extends EFactory
 	MeshProvider createMeshProvider();
 
 	/**
-	 * Returns a new object of class '<em>Complex Mesh Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complex Mesh Provider</em>'.
-	 * @generated
-	 */
-	ComplexMeshProvider createComplexMeshProvider();
-
-	/**
-	 * Returns a new object of class '<em>Vertex Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Vertex Data Provider</em>'.
-	 * @generated
-	 */
-	VertexDataProvider createVertexDataProvider();
-
-	/**
-	 * Returns a new object of class '<em>Index Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Index Data Provider</em>'.
-	 * @generated
-	 */
-	IndexDataProvider createIndexDataProvider();
-
-	/**
-	 * Returns a new object of class '<em>Uniform Data Provider</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Uniform Data Provider</em>'.
-	 * @generated
-	 */
-	UniformDataProvider createUniformDataProvider();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

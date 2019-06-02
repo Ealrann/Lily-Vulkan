@@ -5,7 +5,6 @@ import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.util.List;
 
-import org.joml.Vector2f;
 import org.lwjgl.nuklear.NkContext;
 import org.lwjgl.nuklear.NkMouse;
 import org.lwjgl.nuklear.NkVec2;
@@ -131,10 +130,10 @@ public final class NuklearInputCatcher implements IInputCatcher
 	}
 
 	@Override
-	public void onMouseClickEvent(Vector2f location, MouseButtonEvent event)
+	public void onMouseClickEvent(MouseButtonEvent event)
 	{
-		final int x = (int) location.x;
-		final int y = (int) location.y;
+		final int x = (int) event.mouseLocation.x();
+		final int y = (int) event.mouseLocation.y();
 
 		int nkButton = -1;
 		switch (event.button)

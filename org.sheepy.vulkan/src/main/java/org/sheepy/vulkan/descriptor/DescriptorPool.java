@@ -17,28 +17,15 @@ import org.sheepy.vulkan.log.Logger;
 
 public class DescriptorPool implements IAllocable<IExecutionContext>
 {
-	private final List<IVkDescriptor> descriptors;
 	private final List<IVkDescriptorSet> descriptorSets;
 
+	private List<IVkDescriptor> descriptors = null;
 	private long id;
 	private boolean hasChanged = false;
 
 	public DescriptorPool(List<IVkDescriptorSet> descriptorSets)
 	{
 		this.descriptorSets = List.copyOf(descriptorSets);
-		descriptors = List.copyOf(gatherDescriptors());
-	}
-
-	private Collection<IVkDescriptor> gatherDescriptors()
-	{
-		final Set<IVkDescriptor> res = new HashSet<>();
-
-		for (final IVkDescriptorSet descriptorSet : descriptorSets)
-		{
-			res.addAll(descriptorSet.getDescriptors());
-		}
-
-		return res;
 	}
 
 	@Override
@@ -81,6 +68,11 @@ public class DescriptorPool implements IAllocable<IExecutionContext>
 	{
 		hasChanged = false;
 
+		if (descriptors == null)
+		{
+			descriptors = List.copyOf(gatherDescriptors());
+		}
+
 		for (final IVkDescriptor descriptor : descriptors)
 		{
 			descriptor.update();
@@ -94,6 +86,18 @@ public class DescriptorPool implements IAllocable<IExecutionContext>
 				descriptorSet.updateDescriptorSet(stack);
 			}
 		}
+	}
+
+	private Collection<IVkDescriptor> gatherDescriptors()
+	{
+		final Set<IVkDescriptor> res = new HashSet<>();
+
+		for (final IVkDescriptorSet descriptorSet : descriptorSets)
+		{
+			res.addAll(descriptorSet.getDescriptors());
+		}
+
+		return res;
 	}
 
 	public boolean hasChanged()

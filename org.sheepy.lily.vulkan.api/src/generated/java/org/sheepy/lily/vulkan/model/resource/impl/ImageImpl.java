@@ -13,18 +13,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.sheepy.lily.core.model.types.LNamedElement;
-import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.IResource;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
-import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
-import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,9 +28,6 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getDescriptorType <em>Descriptor Type</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getShaderStages <em>Shader Stages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getWidth <em>Width</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ImageImpl#getFormat <em>Format</em>}</li>
@@ -50,58 +41,8 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  *
  * @generated
  */
-public class ImageImpl extends MinimalEObjectImpl.Container implements Image
+public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 {
-	/**
-	 * The default value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptorType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EDescriptorType DESCRIPTOR_TYPE_EDEFAULT = EDescriptorType.SAMPLER;
-
-	/**
-	 * The cached value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescriptorType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EDescriptorType descriptorType = DESCRIPTOR_TYPE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getShaderStages() <em>Shader Stages</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getShaderStages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EShaderStage> shaderStages;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -281,72 +222,6 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	protected EClass eStaticClass()
 	{
 		return ResourcePackage.Literals.IMAGE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EDescriptorType getDescriptorType()
-	{
-		return descriptorType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDescriptorType(EDescriptorType newDescriptorType)
-	{
-		EDescriptorType oldDescriptorType = descriptorType;
-		descriptorType = newDescriptorType == null ? DESCRIPTOR_TYPE_EDEFAULT : newDescriptorType;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__DESCRIPTOR_TYPE, oldDescriptorType, descriptorType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<EShaderStage> getShaderStages()
-	{
-		if (shaderStages == null)
-		{
-			shaderStages = new EDataTypeUniqueEList<EShaderStage>(EShaderStage.class, this,
-					ResourcePackage.IMAGE__SHADER_STAGES);
-		}
-		return shaderStages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName)
-	{
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.IMAGE__NAME, oldName, name));
 	}
 
 	/**
@@ -622,12 +497,6 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
-			return getDescriptorType();
-		case ResourcePackage.IMAGE__SHADER_STAGES:
-			return getShaderStages();
-		case ResourcePackage.IMAGE__NAME:
-			return getName();
 		case ResourcePackage.IMAGE__WIDTH:
 			return getWidth();
 		case ResourcePackage.IMAGE__HEIGHT:
@@ -661,16 +530,6 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
-			setDescriptorType((EDescriptorType) newValue);
-			return;
-		case ResourcePackage.IMAGE__SHADER_STAGES:
-			getShaderStages().clear();
-			getShaderStages().addAll((Collection<? extends EShaderStage>) newValue);
-			return;
-		case ResourcePackage.IMAGE__NAME:
-			setName((String) newValue);
-			return;
 		case ResourcePackage.IMAGE__WIDTH:
 			setWidth((Integer) newValue);
 			return;
@@ -713,15 +572,6 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
-			setDescriptorType(DESCRIPTOR_TYPE_EDEFAULT);
-			return;
-		case ResourcePackage.IMAGE__SHADER_STAGES:
-			getShaderStages().clear();
-			return;
-		case ResourcePackage.IMAGE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
 		case ResourcePackage.IMAGE__WIDTH:
 			setWidth(WIDTH_EDEFAULT);
 			return;
@@ -763,12 +613,6 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	{
 		switch (featureID)
 		{
-		case ResourcePackage.IMAGE__DESCRIPTOR_TYPE:
-			return descriptorType != DESCRIPTOR_TYPE_EDEFAULT;
-		case ResourcePackage.IMAGE__SHADER_STAGES:
-			return shaderStages != null && !shaderStages.isEmpty();
-		case ResourcePackage.IMAGE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ResourcePackage.IMAGE__WIDTH:
 			return width != WIDTH_EDEFAULT;
 		case ResourcePackage.IMAGE__HEIGHT:
@@ -797,76 +641,12 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-			case ResourcePackage.IMAGE__NAME:
-				return TypesPackage.LNAMED_ELEMENT__NAME;
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == IResource.class)
-		{
-			switch (derivedFeatureID)
-			{
-			default:
-				return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (baseFeatureID)
-			{
-			case TypesPackage.LNAMED_ELEMENT__NAME:
-				return ResourcePackage.IMAGE__NAME;
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == IResource.class)
-		{
-			switch (baseFeatureID)
-			{
-			default:
-				return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String toString()
 	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (descriptorType: ");
-		result.append(descriptorType);
-		result.append(", shaderStages: ");
-		result.append(shaderStages);
-		result.append(", name: ");
-		result.append(name);
-		result.append(", width: ");
+		result.append(" (width: ");
 		result.append(width);
 		result.append(", height: ");
 		result.append(height);

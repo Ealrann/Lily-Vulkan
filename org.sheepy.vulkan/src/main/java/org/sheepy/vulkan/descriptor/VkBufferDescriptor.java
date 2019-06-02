@@ -11,25 +11,24 @@ import org.lwjgl.vulkan.VkDescriptorSetLayoutBinding;
 import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.resource.buffer.IBufferBackend;
 import org.sheepy.vulkan.util.VkModelUtil;
 
-public class VkDescriptor implements IVkDescriptor
+public class VkBufferDescriptor implements IVkDescriptor
 {
-	private final IBufferBackend buffer;
+	private final long bufferPtr;
 	private final long capacity;
 	private final int descriptorType;
 	private final int shaderStages;
 
 	private final long offset;
 
-	public VkDescriptor(IBufferBackend buffer,
+	public VkBufferDescriptor(long bufferPtr,
 						long capacity,
 						long offset,
 						EDescriptorType descriptorType,
 						List<EShaderStage> shaderStages)
 	{
-		this.buffer = buffer;
+		this.bufferPtr = bufferPtr;
 		this.capacity = capacity;
 		this.offset = offset;
 		this.descriptorType = descriptorType.getValue();
@@ -69,7 +68,7 @@ public class VkDescriptor implements IVkDescriptor
 	protected VkDescriptorBufferInfo.Buffer allocBufferInfo(MemoryStack stack)
 	{
 		final var bufferInfo = VkDescriptorBufferInfo.callocStack(1, stack);
-		bufferInfo.buffer(buffer.getAddress());
+		bufferInfo.buffer(bufferPtr);
 		bufferInfo.offset(offset);
 		bufferInfo.range(capacity);
 

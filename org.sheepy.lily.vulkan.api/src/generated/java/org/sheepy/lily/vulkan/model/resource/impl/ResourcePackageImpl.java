@@ -19,14 +19,18 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
+import org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.BasicResource;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
+import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
+import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.FileResource;
 import org.sheepy.lily.vulkan.model.resource.Font;
-import org.sheepy.lily.vulkan.model.resource.IDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
@@ -34,7 +38,6 @@ import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
-import org.sheepy.lily.vulkan.model.resource.DescriptorResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.SampledImage;
@@ -65,7 +68,14 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass descriptorResourceEClass = null;
+	private EClass descriptedResourceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass basicDescriptedResourceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,6 +90,27 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass bufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bufferDataProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass describedDataProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,7 +173,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iDescriptorEClass = null;
+	private EClass descriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -322,9 +353,31 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getDescriptorResource()
+	public EClass getDescriptedResource()
 	{
-		return descriptorResourceEClass;
+		return descriptedResourceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBasicDescriptedResource()
+	{
+		return basicDescriptedResourceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBasicDescriptedResource_Descriptor()
+	{
+		return (EReference) basicDescriptedResourceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -435,6 +488,83 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getBuffer_InstanceCount()
 	{
 		return (EAttribute) bufferEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCompositeBuffer()
+	{
+		return compositeBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeBuffer_DataProviders()
+	{
+		return (EReference) compositeBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBufferDataProvider()
+	{
+		return bufferDataProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_Size()
+	{
+		return (EAttribute) bufferDataProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_Usage()
+	{
+		return (EAttribute) bufferDataProviderEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferDataProvider_InstanceCount()
+	{
+		return (EAttribute) bufferDataProviderEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDescribedDataProvider()
+	{
+		return describedDataProviderEClass;
 	}
 
 	/**
@@ -872,9 +1002,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getIDescriptor()
+	public EClass getDescriptor()
 	{
-		return iDescriptorEClass;
+		return descriptorEClass;
 	}
 
 	/**
@@ -883,9 +1013,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getIDescriptor_DescriptorType()
+	public EAttribute getDescriptor_DescriptorType()
 	{
-		return (EAttribute) iDescriptorEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) descriptorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -894,9 +1024,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getIDescriptor_ShaderStages()
+	public EAttribute getDescriptor_ShaderStages()
 	{
-		return (EAttribute) iDescriptorEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) descriptorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1163,11 +1293,14 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Create classes and their features
 		basicResourceEClass = createEClass(BASIC_RESOURCE);
 
-		descriptorResourceEClass = createEClass(DESCRIPTOR_RESOURCE);
-
 		pushBufferEClass = createEClass(PUSH_BUFFER);
 		createEAttribute(pushBufferEClass, PUSH_BUFFER__SIZE);
 		createEAttribute(pushBufferEClass, PUSH_BUFFER__INSTANCE_COUNT);
+
+		descriptedResourceEClass = createEClass(DESCRIPTED_RESOURCE);
+
+		basicDescriptedResourceEClass = createEClass(BASIC_DESCRIPTED_RESOURCE);
+		createEReference(basicDescriptedResourceEClass, BASIC_DESCRIPTED_RESOURCE__DESCRIPTOR);
 
 		bufferEClass = createEClass(BUFFER);
 		createEAttribute(bufferEClass, BUFFER__SIZE);
@@ -1176,6 +1309,16 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(bufferEClass, BUFFER__OFTEN_UPDATED);
 		createEAttribute(bufferEClass, BUFFER__GPU_BUFFER);
 		createEAttribute(bufferEClass, BUFFER__INSTANCE_COUNT);
+
+		compositeBufferEClass = createEClass(COMPOSITE_BUFFER);
+		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_PROVIDERS);
+
+		bufferDataProviderEClass = createEClass(BUFFER_DATA_PROVIDER);
+		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__SIZE);
+		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USAGE);
+		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__INSTANCE_COUNT);
+
+		describedDataProviderEClass = createEClass(DESCRIBED_DATA_PROVIDER);
 
 		imageEClass = createEClass(IMAGE);
 		createEAttribute(imageEClass, IMAGE__WIDTH);
@@ -1224,9 +1367,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(samplerEClass, SAMPLER__MAX_LOD);
 		createEAttribute(samplerEClass, SAMPLER__MAX_ANISOTROPY);
 
-		iDescriptorEClass = createEClass(IDESCRIPTOR);
-		createEAttribute(iDescriptorEClass, IDESCRIPTOR__DESCRIPTOR_TYPE);
-		createEAttribute(iDescriptorEClass, IDESCRIPTOR__SHADER_STAGES);
+		descriptorEClass = createEClass(DESCRIPTOR);
+		createEAttribute(descriptorEClass, DESCRIPTOR__DESCRIPTOR_TYPE);
+		createEAttribute(descriptorEClass, DESCRIPTOR__SHADER_STAGES);
 
 		descriptorSetEClass = createEClass(DESCRIPTOR_SET);
 		createEReference(descriptorSetEClass, DESCRIPTOR_SET__DESCRIPTORS);
@@ -1304,12 +1447,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		// Add supertypes to classes
 		basicResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		descriptorResourceEClass.getESuperTypes().add(this.getIDescriptor());
-		descriptorResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		pushBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
-		bufferEClass.getESuperTypes().add(this.getDescriptorResource());
-		imageEClass.getESuperTypes().add(this.getDescriptorResource());
-		sampledImageEClass.getESuperTypes().add(this.getDescriptorResource());
+		descriptedResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		basicDescriptedResourceEClass.getESuperTypes().add(this.getDescriptedResource());
+		bufferEClass.getESuperTypes().add(this.getBasicDescriptedResource());
+		compositeBufferEClass.getESuperTypes().add(this.getDescriptedResource());
+		bufferDataProviderEClass.getESuperTypes().add(this.getDescriptor());
+		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
+		describedDataProviderEClass.getESuperTypes().add(this.getBufferDataProvider());
+		describedDataProviderEClass.getESuperTypes().add(this.getDescriptor());
+		imageEClass.getESuperTypes().add(this.getBasicDescriptedResource());
+		sampledImageEClass.getESuperTypes().add(this.getBasicDescriptedResource());
 		semaphoreEClass.getESuperTypes().add(this.getBasicResource());
 		semaphoreEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		fontEClass.getESuperTypes().add(this.getSampledImage());
@@ -1329,9 +1477,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(descriptorResourceEClass, DescriptorResource.class, "DescriptorResource",
-				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(pushBufferEClass, PushBuffer.class, "PushBuffer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPushBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
@@ -1340,6 +1485,16 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getPushBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount",
 				"3", 0, 1, PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(descriptedResourceEClass, DescriptedResource.class, "DescriptedResource",
+				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(basicDescriptedResourceEClass, BasicDescriptedResource.class,
+				"BasicDescriptedResource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBasicDescriptedResource_Descriptor(), this.getDescriptor(), null,
+				"descriptor", null, 0, 1, BasicDescriptedResource.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1361,6 +1516,28 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount", "1",
 				0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compositeBufferEClass, CompositeBuffer.class, "CompositeBuffer", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeBuffer_DataProviders(), this.getBufferDataProvider(), null,
+				"dataProviders", null, 0, -1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(bufferDataProviderEClass, BufferDataProvider.class, "BufferDataProvider",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBufferDataProvider_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
+				BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_Usage(), theEnumerationPackage.getEBufferUsage(),
+				"usage", null, 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferDataProvider_InstanceCount(), theEcorePackage.getEInt(),
+				"instanceCount", "1", 0, 1, BufferDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(describedDataProviderEClass, DescribedDataProvider.class,
+				"DescribedDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1480,21 +1657,23 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				"1", 0, 1, Sampler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iDescriptorEClass, IDescriptor.class, "IDescriptor", IS_ABSTRACT, IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(),
-				"descriptorType", null, 0, 1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEClass(descriptorEClass, org.sheepy.lily.vulkan.model.resource.Descriptor.class,
+				"Descriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDescriptor_DescriptorType(), theEnumerationPackage.getEDescriptorType(),
+				"descriptorType", null, 0, 1,
+				org.sheepy.lily.vulkan.model.resource.Descriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(),
-				"shaderStages", null, 0, -1, IDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDescriptor_ShaderStages(), theEnumerationPackage.getEShaderStage(),
+				"shaderStages", null, 0, -1, org.sheepy.lily.vulkan.model.resource.Descriptor.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptorSetEClass, DescriptorSet.class, "DescriptorSet", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDescriptorSet_Descriptors(), this.getIDescriptor(), null, "descriptors",
-				null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEReference(getDescriptorSet_Descriptors(), this.getDescriptedResource(), null,
+				"descriptors", null, 1, -1, DescriptorSet.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptorSetPkgEClass, DescriptorSetPkg.class, "DescriptorSetPkg", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
