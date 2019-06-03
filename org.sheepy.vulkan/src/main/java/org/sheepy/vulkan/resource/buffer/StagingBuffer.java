@@ -12,7 +12,6 @@ import org.lwjgl.vulkan.VkBufferMemoryBarrier;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
@@ -124,15 +123,10 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 
 		if (unsynchronizedCommands.isEmpty() == false)
 		{
-			executionContext.execute(new ISingleTimeCommand()
-			{
-				@Override
-				public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
+			executionContext.execute((MemoryStack stack, VkCommandBuffer subCommandBuffer) -> {
+				while (unsynchronizedCommands.isEmpty() == false)
 				{
-					while (unsynchronizedCommands.isEmpty() == false)
-					{
-						unsynchronizedCommands.pop().execute(stack, commandBuffer);
-					}
+					unsynchronizedCommands.pop().execute(stack, subCommandBuffer);
 				}
 			});
 		}

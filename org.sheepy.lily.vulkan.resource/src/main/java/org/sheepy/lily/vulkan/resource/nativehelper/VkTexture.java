@@ -16,7 +16,6 @@ import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.descriptor.VkImageDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -69,28 +68,19 @@ public class VkTexture implements IAllocable<IExecutionContext>
 	public void loadImage(MemoryStack stack, IExecutionContext executionContext, ByteBuffer data)
 	{
 		final int stagingUsage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-
+		final List<EAccess> srcAccessMask = List.of();
+		final List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
 		final int size = image.width * image.height * 4;
 
 		final CPUBufferBackend buffer = BufferAllocator.allocateCPUBufferAndFill(stack,
 				executionContext, size, stagingUsage, false, data);
 
-		executionContext.execute(stack, new ISingleTimeCommand()
-		{
-			@Override
-			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
-			{
-				final List<EAccess> srcAccessMask = List.of();
-				final List<EAccess> dstAccessMask = List.of(EAccess.TRANSFER_WRITE_BIT);
-
-				image.transitionImageLayout(stack, commandBuffer, EPipelineStage.TOP_OF_PIPE_BIT,
-						EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,
-						EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask, dstAccessMask);
-
-				image.fillWithBuffer(commandBuffer, buffer.getAddress());
-
-				generateMipmaps(commandBuffer);
-			}
+		executionContext.execute(stack, (MemoryStack stack2, VkCommandBuffer commandBuffer) -> {
+			image.transitionImageLayout(stack2, commandBuffer, EPipelineStage.TOP_OF_PIPE_BIT,
+					EPipelineStage.TRANSFER_BIT, EImageLayout.UNDEFINED,
+					EImageLayout.TRANSFER_DST_OPTIMAL, srcAccessMask, dstAccessMask);
+			image.fillWithBuffer(commandBuffer, buffer.getAddress());
+			generateMipmaps(commandBuffer);
 		});
 
 		buffer.free(executionContext);

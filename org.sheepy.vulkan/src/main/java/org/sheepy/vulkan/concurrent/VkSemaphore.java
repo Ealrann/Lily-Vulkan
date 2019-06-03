@@ -5,12 +5,10 @@ import static org.lwjgl.vulkan.VK10.*;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkSemaphoreCreateInfo;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.execution.ISingleTimeCommand;
 
 public class VkSemaphore implements IAllocable<IVulkanContext>
 {
@@ -50,12 +48,7 @@ public class VkSemaphore implements IAllocable<IVulkanContext>
 
 		try (MemoryStack stack = MemoryStack.stackPush())
 		{
-			executionContext.execute(stack, List.of(this), new ISingleTimeCommand()
-			{
-				@Override
-				public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
-				{}
-			});
+			executionContext.execute(stack, List.of(this), (s, c) -> {});
 		}
 	}
 

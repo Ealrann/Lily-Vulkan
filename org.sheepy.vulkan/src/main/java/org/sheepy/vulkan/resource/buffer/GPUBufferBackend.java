@@ -8,7 +8,6 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.resource.memory.VkMemoryAllocator;
 import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryAllocationInfo;
 import org.sheepy.vulkan.resource.memory.VkMemoryAllocator.MemoryInfo;
@@ -117,15 +116,10 @@ public class GPUBufferBackend implements IBufferBackend
 	public void pushData(IExecutionContext executionContext, CPUBufferBackend stagingBuffer)
 	{
 		final int size = (int) Math.min(stagingBuffer.info.size, info.size);
+		final long bufferPtr = stagingBuffer.getAddress();
 
-		executionContext.execute(new ISingleTimeCommand()
-		{
-			@Override
-			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
-			{
-				BufferUtils.copyBuffer(commandBuffer, stagingBuffer.getAddress(), 0, address,
-						currentOffset, size);
-			}
+		executionContext.execute((MemoryStack stack, VkCommandBuffer commandBuffer) -> {
+			BufferUtils.copyBuffer(commandBuffer, bufferPtr, 0, address, currentOffset, size);
 		});
 	}
 

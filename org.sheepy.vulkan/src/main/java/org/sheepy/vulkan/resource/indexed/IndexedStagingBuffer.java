@@ -8,7 +8,6 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.execution.ExecutionContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.CPUBufferBackend;
 
@@ -102,14 +101,9 @@ public class IndexedStagingBuffer implements IAllocable<IExecutionContext>
 		final var dstVertexAddress = indexedBuffer.getVertexBufferAddress();
 		final var dstIndexAddress = indexedBuffer.getIndexBufferAddress();
 
-		context.execute(new ISingleTimeCommand()
-		{
-			@Override
-			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
-			{
-				vkCmdCopyBuffer(commandBuffer, srcBufferAddress, dstVertexAddress, vertexCopyInfo);
-				vkCmdCopyBuffer(commandBuffer, srcBufferAddress, dstIndexAddress, indexCopyInfo);
-			}
+		context.execute((MemoryStack stack, VkCommandBuffer commandBuffer) -> {
+			vkCmdCopyBuffer(commandBuffer, srcBufferAddress, dstVertexAddress, vertexCopyInfo);
+			vkCmdCopyBuffer(commandBuffer, srcBufferAddress, dstIndexAddress, indexCopyInfo);
 		});
 	}
 }

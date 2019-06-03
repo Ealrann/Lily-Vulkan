@@ -59,10 +59,6 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		}
 
 		@Override
-		public void onClose(long oldId)
-		{}
-
-		@Override
 		public void onOpen(long id)
 		{
 			inputManager.load();

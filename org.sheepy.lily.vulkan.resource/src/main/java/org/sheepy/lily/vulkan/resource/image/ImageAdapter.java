@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.vulkan.VkCommandBuffer;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
@@ -17,7 +16,6 @@ import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.descriptor.VkImageDescriptor;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.execution.ISingleTimeCommand;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.image.VkImage;
@@ -71,17 +69,12 @@ public class ImageAdapter implements IDescriptedResourceAdapter, IResourceAdapte
 
 	private void initialTransition(MemoryStack stack)
 	{
-		executionContext.execute(stack, new ISingleTimeCommand()
-		{
-			@Override
-			public void execute(MemoryStack stack, VkCommandBuffer commandBuffer)
-			{
-				final ImageLayout initialLayout = image.getInitialLayout();
-				imageBackend.transitionImageLayout(stack, commandBuffer,
-						EPipelineStage.BOTTOM_OF_PIPE_BIT, initialLayout.getStage(),
-						EImageLayout.UNDEFINED, initialLayout.getLayout(), Collections.emptyList(),
-						initialLayout.getAccessMask());
-			}
+		executionContext.execute(stack, (stack2, commandBuffer) -> {
+			final ImageLayout initialLayout = image.getInitialLayout();
+			imageBackend.transitionImageLayout(stack2, commandBuffer,
+					EPipelineStage.BOTTOM_OF_PIPE_BIT, initialLayout.getStage(),
+					EImageLayout.UNDEFINED, initialLayout.getLayout(), Collections.emptyList(),
+					initialLayout.getAccessMask());
 		});
 	}
 
