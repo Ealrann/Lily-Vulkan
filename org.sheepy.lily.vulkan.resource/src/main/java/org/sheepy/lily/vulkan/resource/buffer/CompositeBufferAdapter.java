@@ -13,8 +13,6 @@ import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
-import org.sheepy.vulkan.allocation.IAllocable;
-import org.sheepy.vulkan.descriptor.DescriptorUtil;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.descriptor.VkBufferDescriptor;
 import org.sheepy.vulkan.device.PhysicalDevice;
@@ -29,8 +27,7 @@ import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class)
-public final class CompositeBufferAdapter
-		implements IDescriptedResourceAdapter, IAllocable<IExecutionContext>
+public final class CompositeBufferAdapter implements IDescriptedResourceAdapter
 {
 	private final Map<BufferDataProvider, DataProviderWrapper> providerWrappers = new LinkedHashMap<>();
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
@@ -199,12 +196,12 @@ public final class CompositeBufferAdapter
 		public IVkDescriptor createDescriptor()
 		{
 			final var described = (DescribedDataProvider) dataProvider;
+			final long bufferPtr = bufferBackend.getAddress();
 
-			final var type = DescriptorUtil.guessType(usage);
+			final var type = described.getDescriptorType();
 			final var stages = described.getShaderStages();
 
-			return new VkBufferDescriptor(bufferBackend.getAddress(), alignedSize, alignedOffset,
-					type, stages);
+			return new VkBufferDescriptor(bufferPtr, alignedSize, alignedOffset, type, stages);
 		}
 
 		public void updateAlignement(PhysicalDevice physicalDevice, long desiredOffset)

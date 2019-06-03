@@ -514,42 +514,6 @@ public interface ResourcePackage extends EPackage
 	int DESCRIPTOR = 16;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR__DESCRIPTOR_TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR__SHADER_STAGES = 1;
-
-	/**
-	 * The number of structural features of the '<em>Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.BufferDataProviderImpl <em>Buffer Data Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -560,31 +524,13 @@ public interface ResourcePackage extends EPackage
 	int BUFFER_DATA_PROVIDER = 6;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_DATA_PROVIDER__DESCRIPTOR_TYPE = DESCRIPTOR__DESCRIPTOR_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUFFER_DATA_PROVIDER__SHADER_STAGES = DESCRIPTOR__SHADER_STAGES;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__NAME = DESCRIPTOR_FEATURE_COUNT + 0;
+	int BUFFER_DATA_PROVIDER__NAME = TypesPackage.LNAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -593,7 +539,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__SIZE = DESCRIPTOR_FEATURE_COUNT + 1;
+	int BUFFER_DATA_PROVIDER__SIZE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Usage</b></em>' attribute.
@@ -602,7 +548,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__USAGE = DESCRIPTOR_FEATURE_COUNT + 2;
+	int BUFFER_DATA_PROVIDER__USAGE = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Instance Count</b></em>' attribute.
@@ -611,7 +557,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER__INSTANCE_COUNT = DESCRIPTOR_FEATURE_COUNT + 3;
+	int BUFFER_DATA_PROVIDER__INSTANCE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Buffer Data Provider</em>' class.
@@ -620,7 +566,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = DESCRIPTOR_FEATURE_COUNT + 4;
+	int BUFFER_DATA_PROVIDER_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Buffer Data Provider</em>' class.
@@ -629,7 +575,7 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BUFFER_DATA_PROVIDER_OPERATION_COUNT = DESCRIPTOR_OPERATION_COUNT + 0;
+	int BUFFER_DATA_PROVIDER_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.resource.impl.DescribedDataProviderImpl <em>Described Data Provider</em>}' class.
@@ -640,24 +586,6 @@ public interface ResourcePackage extends EPackage
 	 * @generated
 	 */
 	int DESCRIBED_DATA_PROVIDER = 7;
-
-	/**
-	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE = BUFFER_DATA_PROVIDER__DESCRIPTOR_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBED_DATA_PROVIDER__SHADER_STAGES = BUFFER_DATA_PROVIDER__SHADER_STAGES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -696,13 +624,31 @@ public interface ResourcePackage extends EPackage
 	int DESCRIBED_DATA_PROVIDER__INSTANCE_COUNT = BUFFER_DATA_PROVIDER__INSTANCE_COUNT;
 
 	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__DESCRIPTOR_TYPE = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBED_DATA_PROVIDER__SHADER_STAGES = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Described Data Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 0;
+	int DESCRIBED_DATA_PROVIDER_FEATURE_COUNT = BUFFER_DATA_PROVIDER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Described Data Provider</em>' class.
@@ -1270,6 +1216,42 @@ public interface ResourcePackage extends EPackage
 	 * @ordered
 	 */
 	int SAMPLER_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Descriptor Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR__DESCRIPTOR_TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Shader Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR__SHADER_STAGES = 1;
+
+	/**
+	 * The number of structural features of the '<em>Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.

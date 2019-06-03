@@ -24,7 +24,7 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  * @model
  * @generated
  */
-public interface BufferDataProvider extends Descriptor, LNamedElement
+public interface BufferDataProvider extends LNamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

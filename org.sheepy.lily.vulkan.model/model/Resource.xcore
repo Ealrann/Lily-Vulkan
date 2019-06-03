@@ -59,7 +59,7 @@ class CompositeBuffer extends DescriptedResource
 	contains BufferDataProvider[] dataProviders
 }
 
-class BufferDataProvider extends Descriptor, LNamedElement
+class BufferDataProvider extends LNamedElement
 {
 	long size
 	EBufferUsage usage

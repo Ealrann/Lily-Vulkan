@@ -139,7 +139,6 @@ public class ResourceSwitch<T> extends Switch<T>
 		{
 			BufferDataProvider bufferDataProvider = (BufferDataProvider) theEObject;
 			T result = caseBufferDataProvider(bufferDataProvider);
-			if (result == null) result = caseDescriptor(bufferDataProvider);
 			if (result == null) result = caseLNamedElement(bufferDataProvider);
 			if (result == null) result = defaultCase(theEObject);
 			return result;

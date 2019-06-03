@@ -1452,7 +1452,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		basicDescriptedResourceEClass.getESuperTypes().add(this.getDescriptedResource());
 		bufferEClass.getESuperTypes().add(this.getBasicDescriptedResource());
 		compositeBufferEClass.getESuperTypes().add(this.getDescriptedResource());
-		bufferDataProviderEClass.getESuperTypes().add(this.getDescriptor());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		describedDataProviderEClass.getESuperTypes().add(this.getBufferDataProvider());
 		describedDataProviderEClass.getESuperTypes().add(this.getDescriptor());

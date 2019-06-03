@@ -8,9 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.lily.core.model.types.LNamedElement;
-import org.sheepy.lily.core.model.types.TypesPackage;
-
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
@@ -32,7 +30,8 @@ import org.sheepy.vulkan.model.enumeration.EBufferUsage;
  *
  * @generated
  */
-public class BufferDataProviderImpl extends DescriptorImpl implements BufferDataProvider
+public class BufferDataProviderImpl extends MinimalEObjectImpl.Container
+		implements BufferDataProvider
 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -330,48 +329,6 @@ public class BufferDataProviderImpl extends DescriptorImpl implements BufferData
 			return instanceCount != INSTANCE_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-			case ResourcePackage.BUFFER_DATA_PROVIDER__NAME:
-				return TypesPackage.LNAMED_ELEMENT__NAME;
-			default:
-				return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == LNamedElement.class)
-		{
-			switch (baseFeatureID)
-			{
-			case TypesPackage.LNAMED_ELEMENT__NAME:
-				return ResourcePackage.BUFFER_DATA_PROVIDER__NAME;
-			default:
-				return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
