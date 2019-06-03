@@ -1,15 +1,14 @@
 package org.sheepy.lily.vulkan.resource.buffer;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.resource.IBufferDataProviderAdapter;
-import org.sheepy.lily.vulkan.api.resource.IDescriptedResourceAdapter;
+import org.sheepy.lily.vulkan.api.resource.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
@@ -27,21 +26,24 @@ import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class)
-public final class CompositeBufferAdapter implements IDescriptedResourceAdapter
+public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
-	private final Map<BufferDataProvider, DataProviderWrapper> providerWrappers = new LinkedHashMap<>();
+	private final List<DataProviderWrapper> providerWrappers;
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
 
 	private IBufferBackend bufferBackend;
-	private boolean hasChanged = true;
+	private final boolean hasChanged = true;
 	private boolean needUpdate = true;
 
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
+		final List<DataProviderWrapper> tmpList = new ArrayList<>();
 		for (final var dataProvider : compositeBuffer.getDataProviders())
 		{
-			this.providerWrappers.put(dataProvider, new DataProviderWrapper(dataProvider));
+			tmpList.add(new DataProviderWrapper(dataProvider));
 		}
+
+		this.providerWrappers = List.copyOf(tmpList);
 	}
 
 	@Override
@@ -51,7 +53,7 @@ public final class CompositeBufferAdapter implements IDescriptedResourceAdapter
 
 		int usage = EBufferUsage.TRANSFER_DST_BIT_VALUE;
 		long position = 0;
-		for (final var providerWrapper : providerWrappers.values())
+		for (final var providerWrapper : providerWrappers)
 		{
 			providerWrapper.updateAlignement(physicalDevice, position);
 			position = providerWrapper.alignedOffset + providerWrapper.alignedSize;
@@ -62,7 +64,7 @@ public final class CompositeBufferAdapter implements IDescriptedResourceAdapter
 		createBuffer(position, usage);
 		bufferBackend.allocate(stack, context);
 
-		for (final var providerWrapper : providerWrappers.values())
+		for (final var providerWrapper : providerWrappers)
 		{
 			if (providerWrapper.dataProvider instanceof DescribedDataProvider)
 			{
@@ -79,6 +81,34 @@ public final class CompositeBufferAdapter implements IDescriptedResourceAdapter
 	}
 
 	@Override
+	public long getPtr()
+	{
+		return bufferBackend.getAddress();
+	}
+
+	@Override
+	public long getMemoryPtr()
+	{
+		return bufferBackend.getMemoryAddress();
+	}
+
+	@Override
+	public long getSize(int componentIndex)
+	{
+		return providerWrappers.get(componentIndex).alignedSize;
+	}
+
+	@Override
+	public long getOffset(int componentIndex)
+	{
+		return providerWrappers.get(componentIndex).alignedOffset;
+	}
+
+	@Override
+	public void pushData(ByteBuffer data)
+	{}
+
+	@Override
 	public void free(IExecutionContext context)
 	{
 		bufferBackend.free(context);
@@ -86,9 +116,12 @@ public final class CompositeBufferAdapter implements IDescriptedResourceAdapter
 
 	public void update(IStagingBuffer stagingBuffer)
 	{
+		
+		getPushBuffer
+		
 		hasChanged = false;
 
-		for (final var providerWrapper : providerWrappers.values())
+		for (final var providerWrapper : providerWrappers)
 		{
 			final var dataProvider = providerWrapper.dataProvider;
 			final boolean providerChanged = providerWrapper.adapter.hasChanged();
@@ -170,11 +203,6 @@ public final class CompositeBufferAdapter implements IDescriptedResourceAdapter
 	public long getBufferAddress()
 	{
 		return bufferBackend.getAddress();
-	}
-
-	public long getOffset(BufferDataProvider dataProvider)
-	{
-		return providerWrappers.get(dataProvider).alignedOffset;
 	}
 
 	class DataProviderWrapper

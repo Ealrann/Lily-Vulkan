@@ -13,7 +13,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess
 import org.sheepy.lily.vulkan.model.process.Configuration
 import org.sheepy.lily.vulkan.model.process.IPipeline
 import org.sheepy.lily.vulkan.model.process.IPipelineTask
-import org.sheepy.lily.vulkan.model.resource.Buffer
+import org.sheepy.lily.vulkan.model.resource.IBuffer
 import org.sheepy.lily.vulkan.model.resource.Image
 import org.sheepy.lily.vulkan.model.resource.Shader
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier
@@ -220,12 +220,12 @@ class SetViewport extends IPipelineTask
 
 class VertexBinding
 {
-	refers Buffer[1..1] buffer
+	refers IBuffer[1..1] buffer
 	long offset = "0"
 }
 
 class BindIndexBuffer extends IPipelineTask
 {
-	refers Buffer[1..1] buffer
+	refers IBuffer[1..1] buffer
 	long offset = "0"
 }

@@ -65,6 +65,7 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addPushBufferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -84,6 +85,23 @@ public class CompositeBufferItemProvider extends ItemProviderAdapter
 						"_UI_LNamedElement_type"),
 				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Push Buffer feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPushBufferPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_CompositeBuffer_pushBuffer_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_CompositeBuffer_pushBuffer_feature", "_UI_CompositeBuffer_type"),
+				ResourcePackage.Literals.COMPOSITE_BUFFER__PUSH_BUFFER, true, false, true, null,
+				null, null));
 	}
 
 	/**

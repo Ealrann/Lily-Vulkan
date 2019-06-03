@@ -12,8 +12,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
-
-import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +38,7 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	 * @generated
 	 * @ordered
 	 */
-	protected Buffer buffer;
+	protected IBuffer buffer;
 
 	/**
 	 * The default value of the '{@link #getOffset() <em>Offset</em>}' attribute.
@@ -88,12 +87,12 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	 * @generated
 	 */
 	@Override
-	public Buffer getBuffer()
+	public IBuffer getBuffer()
 	{
 		if (buffer != null && buffer.eIsProxy())
 		{
 			InternalEObject oldBuffer = (InternalEObject) buffer;
-			buffer = (Buffer) eResolveProxy(oldBuffer);
+			buffer = (IBuffer) eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
 				if (eNotificationRequired())
@@ -109,7 +108,7 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Buffer basicGetBuffer()
+	public IBuffer basicGetBuffer()
 	{
 		return buffer;
 	}
@@ -120,9 +119,9 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	 * @generated
 	 */
 	@Override
-	public void setBuffer(Buffer newBuffer)
+	public void setBuffer(IBuffer newBuffer)
 	{
-		Buffer oldBuffer = buffer;
+		IBuffer oldBuffer = buffer;
 		buffer = newBuffer;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				GraphicPackage.VERTEX_BINDING__BUFFER, oldBuffer, buffer));
@@ -183,7 +182,7 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 		switch (featureID)
 		{
 		case GraphicPackage.VERTEX_BINDING__BUFFER:
-			setBuffer((Buffer) newValue);
+			setBuffer((IBuffer) newValue);
 			return;
 		case GraphicPackage.VERTEX_BINDING__OFFSET:
 			setOffset((Long) newValue);
@@ -203,7 +202,7 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 		switch (featureID)
 		{
 		case GraphicPackage.VERTEX_BINDING__BUFFER:
-			setBuffer((Buffer) null);
+			setBuffer((IBuffer) null);
 			return;
 		case GraphicPackage.VERTEX_BINDING__OFFSET:
 			setOffset(OFFSET_EDEFAULT);

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
@@ -32,6 +33,7 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getDataProviders <em>Data Providers</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.CompositeBufferImpl#getPushBuffer <em>Push Buffer</em>}</li>
  * </ul>
  *
  * @generated
@@ -67,6 +69,16 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected EList<BufferDataProvider> dataProviders;
+
+	/**
+	 * The cached value of the '{@link #getPushBuffer() <em>Push Buffer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPushBuffer()
+	 * @generated
+	 * @ordered
+	 */
+	protected PushBuffer pushBuffer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,6 +149,52 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public PushBuffer getPushBuffer()
+	{
+		if (pushBuffer != null && pushBuffer.eIsProxy())
+		{
+			InternalEObject oldPushBuffer = (InternalEObject) pushBuffer;
+			pushBuffer = (PushBuffer) eResolveProxy(oldPushBuffer);
+			if (pushBuffer != oldPushBuffer)
+			{
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
+						Notification.RESOLVE, ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER,
+						oldPushBuffer, pushBuffer));
+			}
+		}
+		return pushBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PushBuffer basicGetPushBuffer()
+	{
+		return pushBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPushBuffer(PushBuffer newPushBuffer)
+	{
+		PushBuffer oldPushBuffer = pushBuffer;
+		pushBuffer = newPushBuffer;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER, oldPushBuffer, pushBuffer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 											int featureID,
 											NotificationChain msgs)
@@ -163,6 +221,9 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 			return getName();
 		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 			return getDataProviders();
+		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
+			if (resolve) return getPushBuffer();
+			return basicGetPushBuffer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -185,6 +246,9 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 			getDataProviders().clear();
 			getDataProviders().addAll((Collection<? extends BufferDataProvider>) newValue);
 			return;
+		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
+			setPushBuffer((PushBuffer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -205,6 +269,9 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 			getDataProviders().clear();
 			return;
+		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
+			setPushBuffer((PushBuffer) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -223,6 +290,8 @@ public class CompositeBufferImpl extends MinimalEObjectImpl.Container implements
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ResourcePackage.COMPOSITE_BUFFER__DATA_PROVIDERS:
 			return dataProviders != null && !dataProviders.isEmpty();
+		case ResourcePackage.COMPOSITE_BUFFER__PUSH_BUFFER:
+			return pushBuffer != null;
 		}
 		return super.eIsSet(featureID);
 	}

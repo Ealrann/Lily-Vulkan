@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
-import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +29,12 @@ public interface BindIndexBuffer extends IPipelineTask
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffer</em>' reference.
-	 * @see #setBuffer(Buffer)
+	 * @see #setBuffer(IBuffer)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getBindIndexBuffer_Buffer()
 	 * @model required="true"
 	 * @generated
 	 */
-	Buffer getBuffer();
+	IBuffer getBuffer();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBuffer <em>Buffer</em>}' reference.
@@ -44,7 +44,7 @@ public interface BindIndexBuffer extends IPipelineTask
 	 * @see #getBuffer()
 	 * @generated
 	 */
-	void setBuffer(Buffer value);
+	void setBuffer(IBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Offset</b></em>' attribute.

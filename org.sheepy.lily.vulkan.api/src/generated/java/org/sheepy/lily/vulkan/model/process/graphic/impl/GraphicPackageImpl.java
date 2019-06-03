@@ -2100,7 +2100,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(vertexBindingEClass, VertexBinding.class, "VertexBinding", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVertexBinding_Buffer(), theResourcePackage.getBuffer(), null, "buffer",
+		initEReference(getVertexBinding_Buffer(), theResourcePackage.getIBuffer(), null, "buffer",
 				null, 1, 1, VertexBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
@@ -2110,7 +2110,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(bindIndexBufferEClass, BindIndexBuffer.class, "BindIndexBuffer", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBindIndexBuffer_Buffer(), theResourcePackage.getBuffer(), null, "buffer",
+		initEReference(getBindIndexBuffer_Buffer(), theResourcePackage.getIBuffer(), null, "buffer",
 				null, 1, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);

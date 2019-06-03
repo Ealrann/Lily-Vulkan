@@ -30,7 +30,6 @@ public class VulkanInputManager implements IVulkanInputManager
 	private final Application application;
 	private final Window window;
 
-	private final Vector2f cursorPosition = new Vector2f();
 	private final double[] cursorPositionX = new double[1];
 	private final double[] cursorPositionY = new double[1];
 
@@ -40,6 +39,7 @@ public class VulkanInputManager implements IVulkanInputManager
 
 	private IInputCatcher catcher;
 	private Boolean inputsAreCaught = null;
+	private Vector2fc cursorPosition = new Vector2f();
 
 	private final GLFWCharCallback glfwSetCharCallback = new GLFWCharCallback()
 	{
@@ -209,8 +209,7 @@ public class VulkanInputManager implements IVulkanInputManager
 	{
 		// The elegance itself (nonono)
 		glfwGetCursorPos(window.getId(), cursorPositionX, cursorPositionY);
-		cursorPosition.x = (float) cursorPositionX[0];
-		cursorPosition.y = (float) cursorPositionY[0];
+		cursorPosition = new Vector2f((float) cursorPositionX[0], (float) cursorPositionY[0]);
 	}
 
 	@Override
@@ -221,7 +220,7 @@ public class VulkanInputManager implements IVulkanInputManager
 	}
 
 	@Override
-	public Vector2f getCursorPosition()
+	public Vector2fc getCursorPosition()
 	{
 		return cursorPosition;
 	}
@@ -230,7 +229,7 @@ public class VulkanInputManager implements IVulkanInputManager
 	public void setCursorPosition(Vector2fc position)
 	{
 		glfwSetCursorPos(window.getId(), position.x(), position.y());
-		cursorPosition.set(position);
+		cursorPosition = new Vector2f(position);
 	}
 
 	public void fireEvents()

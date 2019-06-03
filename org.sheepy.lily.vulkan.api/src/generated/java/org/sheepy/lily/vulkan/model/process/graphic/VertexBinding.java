@@ -3,8 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +29,12 @@ public interface VertexBinding extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Buffer</em>' reference.
-	 * @see #setBuffer(Buffer)
+	 * @see #setBuffer(IBuffer)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getVertexBinding_Buffer()
 	 * @model required="true"
 	 * @generated
 	 */
-	Buffer getBuffer();
+	IBuffer getBuffer();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBuffer <em>Buffer</em>}' reference.
@@ -45,7 +44,7 @@ public interface VertexBinding extends EObject
 	 * @see #getBuffer()
 	 * @generated
 	 */
-	void setBuffer(Buffer value);
+	void setBuffer(IBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Offset</b></em>' attribute.

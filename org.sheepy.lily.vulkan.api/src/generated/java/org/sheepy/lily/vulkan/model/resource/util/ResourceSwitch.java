@@ -114,11 +114,19 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case ResourcePackage.IBUFFER:
+		{
+			IBuffer iBuffer = (IBuffer) theEObject;
+			T result = caseIBuffer(iBuffer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		case ResourcePackage.BUFFER:
 		{
 			Buffer buffer = (Buffer) theEObject;
 			T result = caseBuffer(buffer);
 			if (result == null) result = caseBasicDescriptedResource(buffer);
+			if (result == null) result = caseIBuffer(buffer);
 			if (result == null) result = caseDescriptedResource(buffer);
 			if (result == null) result = caseIResource(buffer);
 			if (result == null) result = caseLNamedElement(buffer);
@@ -130,6 +138,7 @@ public class ResourceSwitch<T> extends Switch<T>
 			CompositeBuffer compositeBuffer = (CompositeBuffer) theEObject;
 			T result = caseCompositeBuffer(compositeBuffer);
 			if (result == null) result = caseDescriptedResource(compositeBuffer);
+			if (result == null) result = caseIBuffer(compositeBuffer);
 			if (result == null) result = caseIResource(compositeBuffer);
 			if (result == null) result = caseLNamedElement(compositeBuffer);
 			if (result == null) result = defaultCase(theEObject);
@@ -391,6 +400,22 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseBasicDescriptedResource(BasicDescriptedResource object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IBuffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IBuffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIBuffer(IBuffer object)
 	{
 		return null;
 	}

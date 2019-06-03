@@ -14,13 +14,14 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getDataProviders <em>Data Providers</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getPushBuffer <em>Push Buffer</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer()
  * @model
  * @generated
  */
-public interface CompositeBuffer extends DescriptedResource
+public interface CompositeBuffer extends DescriptedResource, IBuffer
 {
 
 	/**
@@ -34,5 +35,27 @@ public interface CompositeBuffer extends DescriptedResource
 	 * @generated
 	 */
 	EList<BufferDataProvider> getDataProviders();
+
+	/**
+	 * Returns the value of the '<em><b>Push Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Push Buffer</em>' reference.
+	 * @see #setPushBuffer(PushBuffer)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getCompositeBuffer_PushBuffer()
+	 * @model required="true"
+	 * @generated
+	 */
+	PushBuffer getPushBuffer();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.CompositeBuffer#getPushBuffer <em>Push Buffer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Push Buffer</em>' reference.
+	 * @see #getPushBuffer()
+	 * @generated
+	 */
+	void setPushBuffer(PushBuffer value);
 
 } // CompositeBuffer

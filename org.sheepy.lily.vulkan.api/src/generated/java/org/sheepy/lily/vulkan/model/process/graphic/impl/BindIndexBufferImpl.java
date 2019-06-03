@@ -12,8 +12,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-
-import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.IBuffer;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,7 +80,7 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected Buffer buffer;
+	protected IBuffer buffer;
 
 	/**
 	 * The default value of the '{@link #getOffset() <em>Offset</em>}' attribute.
@@ -180,12 +179,12 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public Buffer getBuffer()
+	public IBuffer getBuffer()
 	{
 		if (buffer != null && buffer.eIsProxy())
 		{
 			InternalEObject oldBuffer = (InternalEObject) buffer;
-			buffer = (Buffer) eResolveProxy(oldBuffer);
+			buffer = (IBuffer) eResolveProxy(oldBuffer);
 			if (buffer != oldBuffer)
 			{
 				if (eNotificationRequired())
@@ -201,7 +200,7 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Buffer basicGetBuffer()
+	public IBuffer basicGetBuffer()
 	{
 		return buffer;
 	}
@@ -212,9 +211,9 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public void setBuffer(Buffer newBuffer)
+	public void setBuffer(IBuffer newBuffer)
 	{
-		Buffer oldBuffer = buffer;
+		IBuffer oldBuffer = buffer;
 		buffer = newBuffer;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				GraphicPackage.BIND_INDEX_BUFFER__BUFFER, oldBuffer, buffer));
@@ -285,7 +284,7 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 			setEnabled((Boolean) newValue);
 			return;
 		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
-			setBuffer((Buffer) newValue);
+			setBuffer((IBuffer) newValue);
 			return;
 		case GraphicPackage.BIND_INDEX_BUFFER__OFFSET:
 			setOffset((Long) newValue);
@@ -311,7 +310,7 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 			setEnabled(ENABLED_EDEFAULT);
 			return;
 		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
-			setBuffer((Buffer) null);
+			setBuffer((IBuffer) null);
 			return;
 		case GraphicPackage.BIND_INDEX_BUFFER__OFFSET:
 			setOffset(OFFSET_EDEFAULT);
