@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.model.process.graphic.provider;
+package org.sheepy.lily.vulkan.model.resource.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,20 +18,20 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.resource.BufferReference;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class VertexBindingItemProvider extends ItemProviderAdapter
+public class BufferReferenceItemProvider extends ItemProviderAdapter
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
@@ -41,7 +41,7 @@ public class VertexBindingItemProvider extends ItemProviderAdapter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VertexBindingItemProvider(AdapterFactory adapterFactory)
+	public BufferReferenceItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -59,45 +59,48 @@ public class VertexBindingItemProvider extends ItemProviderAdapter
 		{
 			super.getPropertyDescriptors(object);
 
+			addBufferPropertyDescriptor(object);
+			addOffsetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Buffer feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	protected void addBufferPropertyDescriptor(Object object)
 	{
-		if (childrenFeatures == null)
-		{
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF);
-		}
-		return childrenFeatures;
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_BufferReference_buffer_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_BufferReference_buffer_feature", "_UI_BufferReference_type"),
+				ResourcePackage.Literals.BUFFER_REFERENCE__BUFFER, true, false, true, null, null,
+				null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Offset feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
+	protected void addOffsetPropertyDescriptor(Object object)
 	{
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_BufferReference_offset_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_BufferReference_offset_feature", "_UI_BufferReference_type"),
+				ResourcePackage.Literals.BUFFER_REFERENCE__OFFSET, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns VertexBinding.gif.
+	 * This returns BufferReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -105,7 +108,7 @@ public class VertexBindingItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/VertexBinding"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BufferReference"));
 	}
 
 	/**
@@ -117,7 +120,8 @@ public class VertexBindingItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_VertexBinding_type");
+		BufferReference bufferReference = (BufferReference) object;
+		return getString("_UI_BufferReference_type") + " " + bufferReference.getOffset();
 	}
 
 	/**
@@ -132,11 +136,11 @@ public class VertexBindingItemProvider extends ItemProviderAdapter
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(VertexBinding.class))
+		switch (notification.getFeatureID(BufferReference.class))
 		{
-		case GraphicPackage.VERTEX_BINDING__BUFFER_REF:
+		case ResourcePackage.BUFFER_REFERENCE__OFFSET:
 			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), true, false));
+					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -153,14 +157,6 @@ public class VertexBindingItemProvider extends ItemProviderAdapter
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
-						ResourceFactory.eINSTANCE.createBufferReference()));
-
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.VERTEX_BINDING__BUFFER_REF,
-						ResourceFactory.eINSTANCE.createCompositeBufferReference()));
 	}
 
 	/**

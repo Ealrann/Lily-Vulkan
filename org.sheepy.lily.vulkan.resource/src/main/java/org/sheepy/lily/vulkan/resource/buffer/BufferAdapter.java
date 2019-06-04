@@ -26,6 +26,7 @@ public final class BufferAdapter implements IBufferAdapter
 
 	private List<IVkDescriptor> descriptors = null;
 	private IExecutionContext executionManager;
+	private VkBufferDescriptor vkDescriptor;
 
 	public BufferAdapter(Buffer buffer)
 	{
@@ -61,6 +62,11 @@ public final class BufferAdapter implements IBufferAdapter
 	{
 		bufferBackend.nextInstance();
 		bufferBackend.pushData(executionManager, data);
+
+		if (vkDescriptor != null)
+		{
+			vkDescriptor.updateOffset(bufferBackend.getOffset());
+		}
 	}
 
 	@Override
@@ -92,8 +98,9 @@ public final class BufferAdapter implements IBufferAdapter
 			final long size = buffer.getSize();
 			final var type = descriptor.getDescriptorType();
 			final var shaderStages = descriptor.getShaderStages();
+			final var offset = bufferBackend.getOffset();
 
-			final var vkDescriptor = new VkBufferDescriptor(bufferPtr, size, 0, type, shaderStages);
+			vkDescriptor = new VkBufferDescriptor(bufferPtr, size, offset, type, shaderStages);
 			descriptors = List.of(vkDescriptor);
 		}
 

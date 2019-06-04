@@ -43,9 +43,8 @@ abstract class BasicDescriptedResource extends DescriptedResource
 	contains Descriptor descriptor
 }
 
-interface IBuffer
-{
-}
+interface IBuffer extends IResource
+{}
 
 class Buffer extends BasicDescriptedResource, IBuffer
 {
@@ -62,6 +61,21 @@ class CompositeBuffer extends DescriptedResource, IBuffer
 {
 	contains BufferDataProvider[] dataProviders
 	refers PushBuffer[1..1] pushBuffer
+}
+
+interface IBufferReference
+{}
+
+class BufferReference extends IBufferReference
+{
+	refers Buffer[1..1] buffer
+	long offset
+}
+
+class CompositeBufferReference extends IBufferReference
+{
+	refers CompositeBuffer[1..1] buffer
+	int part
 }
 
 class BufferDataProvider extends LNamedElement

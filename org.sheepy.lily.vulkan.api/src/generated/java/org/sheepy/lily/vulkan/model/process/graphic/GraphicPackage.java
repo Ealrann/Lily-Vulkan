@@ -1938,22 +1938,13 @@ public interface GraphicPackage extends EPackage
 	int VERTEX_BINDING = 26;
 
 	/**
-	 * The feature id for the '<em><b>Buffer</b></em>' reference.
+	 * The feature id for the '<em><b>Buffer Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_BINDING__BUFFER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERTEX_BINDING__OFFSET = 1;
+	int VERTEX_BINDING__BUFFER_REF = 0;
 
 	/**
 	 * The number of structural features of the '<em>Vertex Binding</em>' class.
@@ -1962,7 +1953,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_BINDING_FEATURE_COUNT = 2;
+	int VERTEX_BINDING_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Vertex Binding</em>' class.
@@ -2002,22 +1993,13 @@ public interface GraphicPackage extends EPackage
 	int BIND_INDEX_BUFFER__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Buffer</b></em>' reference.
+	 * The feature id for the '<em><b>Buffer Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BIND_INDEX_BUFFER__BUFFER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BIND_INDEX_BUFFER__OFFSET = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int BIND_INDEX_BUFFER__BUFFER_REF = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Bind Index Buffer</em>' class.
@@ -2026,7 +2008,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BIND_INDEX_BUFFER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int BIND_INDEX_BUFFER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Bind Index Buffer</em>' class.
@@ -3122,26 +3104,15 @@ public interface GraphicPackage extends EPackage
 	EClass getVertexBinding();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBuffer <em>Buffer</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBufferRef <em>Buffer Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBuffer()
+	 * @return the meta object for the containment reference '<em>Buffer Ref</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getBufferRef()
 	 * @see #getVertexBinding()
 	 * @generated
 	 */
-	EReference getVertexBinding_Buffer();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getOffset <em>Offset</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Offset</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexBinding#getOffset()
-	 * @see #getVertexBinding()
-	 * @generated
-	 */
-	EAttribute getVertexBinding_Offset();
+	EReference getVertexBinding_BufferRef();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer <em>Bind Index Buffer</em>}'.
@@ -3154,26 +3125,15 @@ public interface GraphicPackage extends EPackage
 	EClass getBindIndexBuffer();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBuffer <em>Buffer</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBufferRef <em>Buffer Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Buffer</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBuffer()
+	 * @return the meta object for the containment reference '<em>Buffer Ref</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBufferRef()
 	 * @see #getBindIndexBuffer()
 	 * @generated
 	 */
-	EReference getBindIndexBuffer_Buffer();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getOffset <em>Offset</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Offset</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getOffset()
-	 * @see #getBindIndexBuffer()
-	 * @generated
-	 */
-	EAttribute getBindIndexBuffer_Offset();
+	EReference getBindIndexBuffer_BufferRef();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4083,20 +4043,12 @@ public interface GraphicPackage extends EPackage
 		EClass VERTEX_BINDING = eINSTANCE.getVertexBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>Buffer</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Buffer Ref</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX_BINDING__BUFFER = eINSTANCE.getVertexBinding_Buffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VERTEX_BINDING__OFFSET = eINSTANCE.getVertexBinding_Offset();
+		EReference VERTEX_BINDING__BUFFER_REF = eINSTANCE.getVertexBinding_BufferRef();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl <em>Bind Index Buffer</em>}' class.
@@ -4109,20 +4061,12 @@ public interface GraphicPackage extends EPackage
 		EClass BIND_INDEX_BUFFER = eINSTANCE.getBindIndexBuffer();
 
 		/**
-		 * The meta object literal for the '<em><b>Buffer</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Buffer Ref</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BIND_INDEX_BUFFER__BUFFER = eINSTANCE.getBindIndexBuffer_Buffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BIND_INDEX_BUFFER__OFFSET = eINSTANCE.getBindIndexBuffer_Offset();
+		EReference BIND_INDEX_BUFFER__BUFFER_REF = eINSTANCE.getBindIndexBuffer_BufferRef();
 
 	}
 

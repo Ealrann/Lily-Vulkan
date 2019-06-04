@@ -248,16 +248,21 @@ public class MeshModelFactory
 		if (pushConstantRange != null)
 			graphicPipeline.getPushConstantRanges().add(pushConstantRange);
 
+		final var vertexRef = ResourceFactory.eINSTANCE.createBufferReference();
+		vertexRef.setBuffer(indexedVertexBuffer);
+		vertexRef.setOffset(0);
+
 		final var bindVertexBuffer = new BindVertexBufferImpl();
 		final var vertexBinding = new VertexBindingImpl();
-
-		vertexBinding.setBuffer(indexedVertexBuffer);
-		vertexBinding.setOffset(0);
+		vertexBinding.setBufferRef(vertexRef);
 		bindVertexBuffer.getVertexBindings().add(vertexBinding);
 
+		final var indexRef = ResourceFactory.eINSTANCE.createBufferReference();
+		indexRef.setBuffer(indexedVertexBuffer);
+		indexRef.setOffset(meshConfiguration.indexOffset);
+
 		final var bindIndexBuffer = new BindIndexBufferImpl();
-		bindIndexBuffer.setBuffer(indexedVertexBuffer);
-		bindIndexBuffer.setOffset(meshConfiguration.indexOffset);
+		bindIndexBuffer.setBufferRef(indexRef);
 
 		final var drawIndexed = new DrawIndexedImpl();
 		drawIndexed.setIndexCount(meshConfiguration.indexCount);

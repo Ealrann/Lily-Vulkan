@@ -7,6 +7,7 @@ import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearFactory;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
 import org.sheepy.vulkan.surface.Extent2D;
 
@@ -45,16 +46,22 @@ public final class DrawTaskMaintainer
 
 	private void createBindTasks(Extent2D extent)
 	{
-		final var bindVertexBuffer = GraphicFactory.eINSTANCE.createBindVertexBuffer();
-		final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
-		vertexBinding.setOffset(0);
-		vertexBinding.setBuffer(vertexBuffer);
+		final var vertexRef = ResourceFactory.eINSTANCE.createBufferReference();
+		vertexRef.setOffset(0);
+		vertexRef.setBuffer(vertexBuffer);
 
+		final var indexRef = ResourceFactory.eINSTANCE.createBufferReference();
+		indexRef.setOffset(NuklearContextAdapter.INDEX_OFFSET);
+		indexRef.setBuffer(vertexBuffer);
+
+		final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
+		vertexBinding.setBufferRef(vertexRef);
+
+		final var bindVertexBuffer = GraphicFactory.eINSTANCE.createBindVertexBuffer();
 		bindVertexBuffer.getVertexBindings().add(vertexBinding);
 
 		final var bindIndexBuffer = GraphicFactory.eINSTANCE.createBindIndexBuffer();
-		bindIndexBuffer.setBuffer(vertexBuffer);
-		bindIndexBuffer.setOffset(NuklearContextAdapter.INDEX_OFFSET);
+		bindIndexBuffer.setBufferRef(indexRef);
 
 		final var setViewport = GraphicFactory.eINSTANCE.createSetViewport();
 		setViewport.setWidth(extent.getWidth());

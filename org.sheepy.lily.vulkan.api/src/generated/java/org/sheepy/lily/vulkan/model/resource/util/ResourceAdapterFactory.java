@@ -114,6 +114,21 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 			return createCompositeBufferAdapter();
 		}
 		@Override
+		public Adapter caseIBufferReference(IBufferReference object)
+		{
+			return createIBufferReferenceAdapter();
+		}
+		@Override
+		public Adapter caseBufferReference(BufferReference object)
+		{
+			return createBufferReferenceAdapter();
+		}
+		@Override
+		public Adapter caseCompositeBufferReference(CompositeBufferReference object)
+		{
+			return createCompositeBufferReferenceAdapter();
+		}
+		@Override
 		public Adapter caseBufferDataProvider(BufferDataProvider object)
 		{
 			return createBufferDataProviderAdapter();
@@ -365,6 +380,51 @@ public class ResourceAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createCompositeBufferAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.IBufferReference <em>IBuffer Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.IBufferReference
+	 * @generated
+	 */
+	public Adapter createIBufferReferenceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.BufferReference <em>Buffer Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.BufferReference
+	 * @generated
+	 */
+	public Adapter createBufferReferenceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference <em>Composite Buffer Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.resource.CompositeBufferReference
+	 * @generated
+	 */
+	public Adapter createCompositeBufferReferenceAdapter()
 	{
 		return null;
 	}

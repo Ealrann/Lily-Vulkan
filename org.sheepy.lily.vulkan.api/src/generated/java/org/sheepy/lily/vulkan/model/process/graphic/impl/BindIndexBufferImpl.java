@@ -4,6 +4,7 @@ package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -12,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.resource.IBuffer;
+import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,8 +25,7 @@ import org.sheepy.lily.vulkan.model.resource.IBuffer;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getBuffer <em>Buffer</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getOffset <em>Offset</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getBufferRef <em>Buffer Ref</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,34 +73,14 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBuffer() <em>Buffer</em>}' reference.
+	 * The cached value of the '{@link #getBufferRef() <em>Buffer Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBuffer()
+	 * @see #getBufferRef()
 	 * @generated
 	 * @ordered
 	 */
-	protected IBuffer buffer;
-
-	/**
-	 * The default value of the '{@link #getOffset() <em>Offset</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOffset()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final long OFFSET_EDEFAULT = 0L;
-
-	/**
-	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOffset()
-	 * @generated
-	 * @ordered
-	 */
-	protected long offset = OFFSET_EDEFAULT;
+	protected IBufferReference bufferRef;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -179,30 +159,29 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public IBuffer getBuffer()
+	public IBufferReference getBufferRef()
 	{
-		if (buffer != null && buffer.eIsProxy())
+		return bufferRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBufferRef(	IBufferReference newBufferRef,
+												NotificationChain msgs)
+	{
+		IBufferReference oldBufferRef = bufferRef;
+		bufferRef = newBufferRef;
+		if (eNotificationRequired())
 		{
-			InternalEObject oldBuffer = (InternalEObject) buffer;
-			buffer = (IBuffer) eResolveProxy(oldBuffer);
-			if (buffer != oldBuffer)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							GraphicPackage.BIND_INDEX_BUFFER__BUFFER, oldBuffer, buffer));
-			}
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, oldBufferRef, newBufferRef);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
 		}
-		return buffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IBuffer basicGetBuffer()
-	{
-		return buffer;
+		return msgs;
 	}
 
 	/**
@@ -211,12 +190,22 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public void setBuffer(IBuffer newBuffer)
+	public void setBufferRef(IBufferReference newBufferRef)
 	{
-		IBuffer oldBuffer = buffer;
-		buffer = newBuffer;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BIND_INDEX_BUFFER__BUFFER, oldBuffer, buffer));
+		if (newBufferRef != bufferRef)
+		{
+			NotificationChain msgs = null;
+			if (bufferRef != null) msgs = ((InternalEObject) bufferRef).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null,
+					msgs);
+			if (newBufferRef != null) msgs = ((InternalEObject) newBufferRef).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, null,
+					msgs);
+			msgs = basicSetBufferRef(newBufferRef, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF, newBufferRef, newBufferRef));
 	}
 
 	/**
@@ -225,23 +214,16 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public long getOffset()
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
 	{
-		return offset;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setOffset(long newOffset)
-	{
-		long oldOffset = offset;
-		offset = newOffset;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.BIND_INDEX_BUFFER__OFFSET, oldOffset, offset));
+		switch (featureID)
+		{
+		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+			return basicSetBufferRef(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -258,11 +240,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 			return getName();
 		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
 			return isEnabled();
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
-			if (resolve) return getBuffer();
-			return basicGetBuffer();
-		case GraphicPackage.BIND_INDEX_BUFFER__OFFSET:
-			return getOffset();
+		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+			return getBufferRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -283,11 +262,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
 			setEnabled((Boolean) newValue);
 			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
-			setBuffer((IBuffer) newValue);
-			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__OFFSET:
-			setOffset((Long) newValue);
+		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+			setBufferRef((IBufferReference) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -309,11 +285,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
 			setEnabled(ENABLED_EDEFAULT);
 			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
-			setBuffer((IBuffer) null);
-			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__OFFSET:
-			setOffset(OFFSET_EDEFAULT);
+		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+			setBufferRef((IBufferReference) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -333,10 +306,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
 			return enabled != ENABLED_EDEFAULT;
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER:
-			return buffer != null;
-		case GraphicPackage.BIND_INDEX_BUFFER__OFFSET:
-			return offset != OFFSET_EDEFAULT;
+		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+			return bufferRef != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -356,8 +327,6 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
-		result.append(", offset: ");
-		result.append(offset);
 		result.append(')');
 		return result.toString();
 	}

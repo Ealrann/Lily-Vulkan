@@ -201,6 +201,56 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BufferReferenceItemProvider bufferReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.BufferReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBufferReferenceAdapter()
+	{
+		if (bufferReferenceItemProvider == null)
+		{
+			bufferReferenceItemProvider = new BufferReferenceItemProvider(this);
+		}
+
+		return bufferReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositeBufferReferenceItemProvider compositeBufferReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.resource.CompositeBufferReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositeBufferReferenceAdapter()
+	{
+		if (compositeBufferReferenceItemProvider == null)
+		{
+			compositeBufferReferenceItemProvider = new CompositeBufferReferenceItemProvider(this);
+		}
+
+		return compositeBufferReferenceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -803,6 +853,9 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (pushBufferItemProvider != null) pushBufferItemProvider.dispose();
 		if (bufferItemProvider != null) bufferItemProvider.dispose();
 		if (compositeBufferItemProvider != null) compositeBufferItemProvider.dispose();
+		if (bufferReferenceItemProvider != null) bufferReferenceItemProvider.dispose();
+		if (compositeBufferReferenceItemProvider != null)
+			compositeBufferReferenceItemProvider.dispose();
 		if (bufferDataProviderItemProvider != null) bufferDataProviderItemProvider.dispose();
 		if (describedDataProviderItemProvider != null) describedDataProviderItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();

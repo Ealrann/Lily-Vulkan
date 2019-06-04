@@ -7,8 +7,10 @@ import java.util.List;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.vulkan.api.resource.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.api.resource.ICompositeBufferAdapter;
+import org.sheepy.lily.vulkan.api.resource.IPushBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
@@ -22,7 +24,6 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 import org.sheepy.vulkan.resource.buffer.IBufferBackend;
-import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class)
@@ -30,13 +31,15 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
 	private final List<DataProviderWrapper> providerWrappers;
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
+	private final CompositeBuffer compositeBuffer;
 
 	private IBufferBackend bufferBackend;
-	private final boolean hasChanged = true;
 	private boolean needUpdate = true;
 
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
+		this.compositeBuffer = compositeBuffer;
+
 		final List<DataProviderWrapper> tmpList = new ArrayList<>();
 		for (final var dataProvider : compositeBuffer.getDataProviders())
 		{
@@ -68,7 +71,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		{
 			if (providerWrapper.dataProvider instanceof DescribedDataProvider)
 			{
-				final var descriptor = providerWrapper.createDescriptor();
+				final var descriptor = providerWrapper.createDescriptor(bufferBackend.getAddress());
 				descriptors.add(descriptor);
 			}
 		}
@@ -114,12 +117,12 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		bufferBackend.free(context);
 	}
 
-	public void update(IStagingBuffer stagingBuffer)
+	@Tick
+	public void update()
 	{
-		
-		getPushBuffer
-		
-		hasChanged = false;
+		final var pushBuffer = compositeBuffer.getPushBuffer();
+		final var pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
+		final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
 
 		for (final var providerWrapper : providerWrappers)
 		{
@@ -127,65 +130,20 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			final boolean providerChanged = providerWrapper.adapter.hasChanged();
 			if (providerChanged || needUpdate)
 			{
-				final long memAddress = stagingBuffer.reserveMemory(dataProvider.getSize());
+				final long size = dataProvider.getSize();
+				final long memAddress = stagingBuffer.reserveMemory(size);
 				final long bufferAddress = bufferBackend.getAddress();
 				final long offset = providerWrapper.alignedOffset;
-				final int usage = dataProvider.getUsage().getValue();
 
-				final EPipelineStage stage = guessStageFromUsage(usage);
-				final EAccess access = guessAccessFromUsage(usage);
+				final var stage = providerWrapper.getStage();
+				final var access = providerWrapper.getAccess();
 
 				providerWrapper.adapter.fill(memAddress);
 				stagingBuffer.pushSynchronized(memAddress, bufferAddress, offset, stage, access);
-
-				hasChanged = true;
 			}
 		}
 
 		needUpdate = false;
-	}
-
-	private static EPipelineStage guessStageFromUsage(int usage)
-	{
-		EPipelineStage res = null;
-		switch (usage)
-		{
-		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
-			res = EPipelineStage.VERTEX_INPUT_BIT;
-			break;
-		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
-			res = EPipelineStage.VERTEX_INPUT_BIT;
-			break;
-		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
-			res = EPipelineStage.VERTEX_SHADER_BIT;
-			break;
-		}
-
-		return res;
-	}
-
-	private static EAccess guessAccessFromUsage(int usage)
-	{
-		EAccess res = null;
-		switch (usage)
-		{
-		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
-			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
-			break;
-		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
-			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
-			break;
-		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
-			res = EAccess.UNIFORM_READ_BIT;
-			break;
-		}
-
-		return res;
-	}
-
-	public boolean hasChanged()
-	{
-		return hasChanged;
 	}
 
 	@Override
@@ -205,7 +163,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		return bufferBackend.getAddress();
 	}
 
-	class DataProviderWrapper
+	static final class DataProviderWrapper
 	{
 		private final int usage;
 		private final BufferDataProvider dataProvider;
@@ -221,10 +179,19 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			usage = dataProvider.getUsage().getValue();
 		}
 
-		public IVkDescriptor createDescriptor()
+		public EAccess getAccess()
+		{
+			return guessAccessFromUsage(usage);
+		}
+
+		public EPipelineStage getStage()
+		{
+			return guessStageFromUsage(usage);
+		}
+
+		public IVkDescriptor createDescriptor(long bufferPtr)
 		{
 			final var described = (DescribedDataProvider) dataProvider;
-			final long bufferPtr = bufferBackend.getAddress();
 
 			final var type = described.getDescriptorType();
 			final var stages = described.getShaderStages();
@@ -245,6 +212,44 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		{
 			final int chunkCount = (int) Math.ceil(((double) index) / alignment);
 			return chunkCount * alignment;
+		}
+
+		private static EPipelineStage guessStageFromUsage(int usage)
+		{
+			EPipelineStage res = null;
+			switch (usage)
+			{
+			case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
+				res = EPipelineStage.VERTEX_INPUT_BIT;
+				break;
+			case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
+				res = EPipelineStage.VERTEX_INPUT_BIT;
+				break;
+			case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
+				res = EPipelineStage.VERTEX_SHADER_BIT;
+				break;
+			}
+
+			return res;
+		}
+
+		private static EAccess guessAccessFromUsage(int usage)
+		{
+			EAccess res = null;
+			switch (usage)
+			{
+			case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
+				res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
+				break;
+			case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
+				res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
+				break;
+			case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
+				res = EAccess.UNIFORM_READ_BIT;
+				break;
+			}
+
+			return res;
 		}
 	}
 }

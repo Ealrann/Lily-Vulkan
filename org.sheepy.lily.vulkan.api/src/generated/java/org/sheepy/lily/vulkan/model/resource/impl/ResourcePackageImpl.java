@@ -24,7 +24,9 @@ import org.sheepy.lily.vulkan.model.resource.BasicResource;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.BufferBarrier;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
+import org.sheepy.lily.vulkan.model.resource.BufferReference;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
+import org.sheepy.lily.vulkan.model.resource.CompositeBufferReference;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
@@ -32,6 +34,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.FileResource;
 import org.sheepy.lily.vulkan.model.resource.Font;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
+import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
@@ -105,6 +108,27 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass compositeBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iBufferReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bufferReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeBufferReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -540,6 +564,83 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EReference getCompositeBuffer_PushBuffer()
 	{
 		return (EReference) compositeBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIBufferReference()
+	{
+		return iBufferReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBufferReference()
+	{
+		return bufferReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBufferReference_Buffer()
+	{
+		return (EReference) bufferReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferReference_Offset()
+	{
+		return (EAttribute) bufferReferenceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCompositeBufferReference()
+	{
+		return compositeBufferReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeBufferReference_Buffer()
+	{
+		return (EReference) compositeBufferReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCompositeBufferReference_Part()
+	{
+		return (EAttribute) compositeBufferReferenceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1346,6 +1447,16 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__DATA_PROVIDERS);
 		createEReference(compositeBufferEClass, COMPOSITE_BUFFER__PUSH_BUFFER);
 
+		iBufferReferenceEClass = createEClass(IBUFFER_REFERENCE);
+
+		bufferReferenceEClass = createEClass(BUFFER_REFERENCE);
+		createEReference(bufferReferenceEClass, BUFFER_REFERENCE__BUFFER);
+		createEAttribute(bufferReferenceEClass, BUFFER_REFERENCE__OFFSET);
+
+		compositeBufferReferenceEClass = createEClass(COMPOSITE_BUFFER_REFERENCE);
+		createEReference(compositeBufferReferenceEClass, COMPOSITE_BUFFER_REFERENCE__BUFFER);
+		createEAttribute(compositeBufferReferenceEClass, COMPOSITE_BUFFER_REFERENCE__PART);
+
 		bufferDataProviderEClass = createEClass(BUFFER_DATA_PROVIDER);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__SIZE);
 		createEAttribute(bufferDataProviderEClass, BUFFER_DATA_PROVIDER__USAGE);
@@ -1483,10 +1594,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		pushBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		descriptedResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		basicDescriptedResourceEClass.getESuperTypes().add(this.getDescriptedResource());
+		iBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		bufferEClass.getESuperTypes().add(this.getBasicDescriptedResource());
 		bufferEClass.getESuperTypes().add(this.getIBuffer());
 		compositeBufferEClass.getESuperTypes().add(this.getDescriptedResource());
 		compositeBufferEClass.getESuperTypes().add(this.getIBuffer());
+		bufferReferenceEClass.getESuperTypes().add(this.getIBufferReference());
+		compositeBufferReferenceEClass.getESuperTypes().add(this.getIBufferReference());
 		bufferDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		describedDataProviderEClass.getESuperTypes().add(this.getBufferDataProvider());
 		describedDataProviderEClass.getESuperTypes().add(this.getDescriptor());
@@ -1564,6 +1678,29 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				null, 1, 1, CompositeBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+
+		initEClass(iBufferReferenceEClass, IBufferReference.class, "IBufferReference", IS_ABSTRACT,
+				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(bufferReferenceEClass, BufferReference.class, "BufferReference", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBufferReference_Buffer(), this.getBuffer(), null, "buffer", null, 1, 1,
+				BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferReference_Offset(), theEcorePackage.getELong(), "offset", null, 0,
+				1, BufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compositeBufferReferenceEClass, CompositeBufferReference.class,
+				"CompositeBufferReference", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeBufferReference_Buffer(), this.getCompositeBuffer(), null,
+				"buffer", null, 1, 1, CompositeBufferReference.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeBufferReference_Part(), theEcorePackage.getEInt(), "part", null,
+				0, 1, CompositeBufferReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bufferDataProviderEClass, BufferDataProvider.class, "BufferDataProvider",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

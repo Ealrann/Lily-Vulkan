@@ -1462,20 +1462,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getVertexBinding_Buffer()
+	public EReference getVertexBinding_BufferRef()
 	{
 		return (EReference) vertexBindingEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getVertexBinding_Offset()
-	{
-		return (EAttribute) vertexBindingEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1495,20 +1484,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getBindIndexBuffer_Buffer()
+	public EReference getBindIndexBuffer_BufferRef()
 	{
 		return (EReference) bindIndexBufferEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBindIndexBuffer_Offset()
-	{
-		return (EAttribute) bindIndexBufferEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1673,12 +1651,10 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(setViewportEClass, SET_VIEWPORT__MAX_DEPTH);
 
 		vertexBindingEClass = createEClass(VERTEX_BINDING);
-		createEReference(vertexBindingEClass, VERTEX_BINDING__BUFFER);
-		createEAttribute(vertexBindingEClass, VERTEX_BINDING__OFFSET);
+		createEReference(vertexBindingEClass, VERTEX_BINDING__BUFFER_REF);
 
 		bindIndexBufferEClass = createEClass(BIND_INDEX_BUFFER);
-		createEReference(bindIndexBufferEClass, BIND_INDEX_BUFFER__BUFFER);
-		createEAttribute(bindIndexBufferEClass, BIND_INDEX_BUFFER__OFFSET);
+		createEReference(bindIndexBufferEClass, BIND_INDEX_BUFFER__BUFFER_REF);
 	}
 
 	/**
@@ -2100,23 +2076,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(vertexBindingEClass, VertexBinding.class, "VertexBinding", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVertexBinding_Buffer(), theResourcePackage.getIBuffer(), null, "buffer",
-				null, 1, 1, VertexBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getVertexBinding_Offset(), theEcorePackage.getELong(), "offset", "0", 0, 1,
-				VertexBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVertexBinding_BufferRef(), theResourcePackage.getIBufferReference(), null,
+				"bufferRef", null, 0, 1, VertexBinding.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(bindIndexBufferEClass, BindIndexBuffer.class, "BindIndexBuffer", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBindIndexBuffer_Buffer(), theResourcePackage.getIBuffer(), null, "buffer",
-				null, 1, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getBindIndexBuffer_Offset(), theEcorePackage.getELong(), "offset", "0", 0, 1,
-				BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBindIndexBuffer_BufferRef(), theResourcePackage.getIBufferReference(),
+				null, "bufferRef", null, 0, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

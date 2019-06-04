@@ -60,6 +60,24 @@ public interface ResourceFactory extends EFactory
 	CompositeBuffer createCompositeBuffer();
 
 	/**
+	 * Returns a new object of class '<em>Buffer Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Buffer Reference</em>'.
+	 * @generated
+	 */
+	BufferReference createBufferReference();
+
+	/**
+	 * Returns a new object of class '<em>Composite Buffer Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Buffer Reference</em>'.
+	 * @generated
+	 */
+	CompositeBufferReference createCompositeBufferReference();
+
+	/**
 	 * Returns a new object of class '<em>Buffer Data Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

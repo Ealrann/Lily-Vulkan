@@ -20,13 +20,14 @@ public class VkBufferDescriptor implements IVkDescriptor
 	private final int descriptorType;
 	private final int shaderStages;
 
-	private final long offset;
+	private boolean hasChanged = false;
+	private long offset;
 
-	public VkBufferDescriptor(long bufferPtr,
-						long capacity,
-						long offset,
-						EDescriptorType descriptorType,
-						List<EShaderStage> shaderStages)
+	public VkBufferDescriptor(	long bufferPtr,
+								long capacity,
+								long offset,
+								EDescriptorType descriptorType,
+								List<EShaderStage> shaderStages)
 	{
 		this.bufferPtr = bufferPtr;
 		this.capacity = capacity;
@@ -63,6 +64,8 @@ public class VkBufferDescriptor implements IVkDescriptor
 		writeDescriptor.pBufferInfo(bufferInfo);
 		writeDescriptor.pImageInfo(null);
 		writeDescriptor.pTexelBufferView(null);
+
+		hasChanged = false;
 	}
 
 	protected VkDescriptorBufferInfo.Buffer allocBufferInfo(MemoryStack stack)
@@ -73,5 +76,17 @@ public class VkBufferDescriptor implements IVkDescriptor
 		bufferInfo.range(capacity);
 
 		return bufferInfo;
+	}
+
+	public void updateOffset(long offset)
+	{
+		this.offset = offset;
+		hasChanged = true;
+	}
+
+	@Override
+	public boolean hasChanged()
+	{
+		return hasChanged;
 	}
 }
