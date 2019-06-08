@@ -107,7 +107,6 @@ public class ImageBarrierItemProvider extends AbstractImageBarrierItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

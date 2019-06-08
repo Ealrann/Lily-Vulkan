@@ -86,7 +86,6 @@ public class ComputeProcessItemProvider extends AbstractProcessItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

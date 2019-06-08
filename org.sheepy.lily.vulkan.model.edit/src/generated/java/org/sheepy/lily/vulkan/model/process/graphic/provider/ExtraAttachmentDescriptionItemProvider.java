@@ -109,7 +109,6 @@ public class ExtraAttachmentDescriptionItemProvider extends AttachmentDescriptio
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

@@ -101,7 +101,6 @@ public class BufferBarrierItemProvider extends AbstractBufferBarrierItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

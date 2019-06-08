@@ -86,7 +86,6 @@ public class FileResourceItemProvider extends PathResourceItemProvider
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

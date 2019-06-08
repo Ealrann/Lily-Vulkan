@@ -87,7 +87,6 @@ public class SwapImageAttachmentDescriptionItemProvider extends AttachmentDescri
 	public void notifyChanged(Notification notification)
 	{
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**
