@@ -1,7 +1,6 @@
 package org.sheepy.lily.vulkan.common.allocation;
 
 import org.lwjgl.system.MemoryStack;
-import org.sheepy.lily.vulkan.api.allocation.IAllocationAdapter;
 import org.sheepy.lily.vulkan.common.allocation.wrapper.AllocableWrapperFactory;
 import org.sheepy.lily.vulkan.common.allocation.wrapper.IAllocationWrapper;
 import org.sheepy.vulkan.allocation.IAllocable;
@@ -16,12 +15,6 @@ public class TreeAllocator<T extends IAllocationContext> implements IAllocable<T
 	public TreeAllocator(IAllocationObject<T> root)
 	{
 		rootWrapper = AllocableWrapperFactory.INSTANCE.wrap(root);
-		if (rootWrapper == null)
-		{
-			throw new AssertionError(String.format("[%s] cannot be adapted to %s.",
-					rootWrapper.getClass().getSimpleName(),
-					IAllocationAdapter.class.getSimpleName()));
-		}
 	}
 
 	@Override

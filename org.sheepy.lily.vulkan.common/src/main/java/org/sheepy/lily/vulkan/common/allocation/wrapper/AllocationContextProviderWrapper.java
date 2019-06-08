@@ -6,7 +6,7 @@ import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.allocation.IAllocationContextProvider;
 import org.sheepy.vulkan.allocation.IAllocationObject;
 
-public class AllocationContextProviderWrapper<CurrentContext extends IAllocationContext, ChildContext extends IAllocationContext>
+public final class AllocationContextProviderWrapper<CurrentContext extends IAllocationContext, ChildContext extends IAllocationContext>
 		implements IAllocationWrapper<CurrentContext>
 {
 	private final IAllocationContextProvider<CurrentContext, ChildContext> contextProvider;

@@ -6,7 +6,7 @@ import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.allocation.IAllocationObject;
 
-public class AllocableNodeWrapper<T extends IAllocationContext> extends AdapterImpl
+public final class AllocableNodeWrapper<T extends IAllocationContext> extends AdapterImpl
 		implements IAllocationWrapper<T>
 {
 	private final Object allocableNode;

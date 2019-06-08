@@ -10,7 +10,7 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.vulkan.allocation.IAllocationContext;
 import org.sheepy.vulkan.allocation.IAllocationObject;
 
-public class AllocationNodeWrapper<T extends IAllocationContext> extends AdapterImpl
+public final class AllocationNodeWrapper<T extends IAllocationContext> extends AdapterImpl
 		implements IAllocationWrapper<T>
 {
 	private final IAllocationContainer<T> allocationNode;
@@ -112,8 +112,9 @@ public class AllocationNodeWrapper<T extends IAllocationContext> extends Adapter
 	private List<? extends IAllocationWrapper<? super T>> gatherChildWrappers(List<? extends IAllocationObject<? super T>> children)
 	{
 		final List<IAllocationWrapper<? super T>> res = new ArrayList<>();
-		for (final var child : children)
+		for (int i = 0; i < children.size(); i++)
 		{
+			final var child = children.get(i);
 			final var wrap = getOrCreateChildWrapper(child);
 
 			if (wrap != null)
@@ -141,9 +142,10 @@ public class AllocationNodeWrapper<T extends IAllocationContext> extends Adapter
 	{
 		IAllocationWrapper<? super T> res = null;
 
-		for (final var allocationWrapper : this.children)
+		for (int i = 0; i < children.size(); i++)
 		{
-			final Object wrappedObject = child;
+			final var allocationWrapper = children.get(i);
+			final var wrappedObject = child;
 
 			if (wrappedObject == allocationWrapper.getAllocationObject())
 			{
