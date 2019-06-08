@@ -9,6 +9,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
+import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.surface.Extent2D;
 
 public final class DrawTaskMaintainer
@@ -88,6 +89,8 @@ public final class DrawTaskMaintainer
 			pushConstant.setCurrentDescriptor(currentIndex);
 			pushConstant.setWidth(context.extent.getWidth());
 			pushConstant.setHeight(context.extent.getHeight());
+			pushConstant.getStages().add(EShaderStage.VERTEX_BIT);
+			pushConstant.getStages().add(EShaderStage.FRAGMENT_BIT);
 
 			drawCompositeTask.getTasks().add(pushConstant);
 

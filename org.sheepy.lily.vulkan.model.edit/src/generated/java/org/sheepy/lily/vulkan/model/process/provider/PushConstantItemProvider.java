@@ -61,7 +61,6 @@ public class PushConstantItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addStagesPropertyDescriptor(object);
-			addDataPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -118,35 +117,6 @@ public class PushConstantItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Data feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDataPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_PushConstant_data_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_PushConstant_data_feature",
-						"_UI_PushConstant_type"),
-				ProcessPackage.Literals.PUSH_CONSTANT__DATA, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This returns PushConstant.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object)
-	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PushConstant"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,7 +148,6 @@ public class PushConstantItemProvider extends ItemProviderAdapter
 		case ProcessPackage.PUSH_CONSTANT__NAME:
 		case ProcessPackage.PUSH_CONSTANT__ENABLED:
 		case ProcessPackage.PUSH_CONSTANT__STAGES:
-		case ProcessPackage.PUSH_CONSTANT__DATA:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

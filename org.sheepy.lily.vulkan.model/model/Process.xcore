@@ -7,11 +7,13 @@
 
 package org.sheepy.lily.vulkan.model.process
 
+import org.sheepy.lily.core.model.maintainer.Maintainable
 import org.sheepy.lily.core.model.root.LObject
 import org.sheepy.lily.core.model.types.LNamedElement
 import org.sheepy.lily.vulkan.model.IProcess
 import org.sheepy.lily.vulkan.model.IResourceContainer
-import org.sheepy.lily.vulkan.model.resource.ByteBuffer
+import org.sheepy.lily.vulkan.model.resource.ConstantBuffer
+import org.sheepy.lily.vulkan.model.resource.DescriptorSet
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
 import org.sheepy.lily.vulkan.model.resource.PushBuffer
 import org.sheepy.lily.vulkan.model.resource.Semaphore
@@ -20,8 +22,6 @@ import org.sheepy.vulkan.model.enumeration.ECommandStage
 import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.EShaderStage
 import org.sheepy.vulkan.model.pipeline.PushConstantRange
-import org.sheepy.lily.vulkan.model.resource.DescriptorSet
-import org.sheepy.lily.core.model.maintainer.Maintainable
 
 abstract class AbstractProcess extends IProcess
 {
@@ -98,11 +98,14 @@ class BindDescriptorSets extends IPipelineTask
 	refers DescriptorSet[] descriptorSets
 }
 
-class PushConstant extends IPipelineTask
+abstract class PushConstant extends IPipelineTask
 {
 	unique EShaderStage[1..*] stages
+}
 
-	ByteBuffer data
+class PushConstantBuffer extends PushConstant
+{
+	refers ConstantBuffer[1..1] buffer
 }
 
 class PushBufferTask extends IPipelineTask

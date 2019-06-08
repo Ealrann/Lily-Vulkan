@@ -77,13 +77,13 @@ public interface ProcessFactory extends EFactory
 	BindDescriptorSets createBindDescriptorSets();
 
 	/**
-	 * Returns a new object of class '<em>Push Constant</em>'.
+	 * Returns a new object of class '<em>Push Constant Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Push Constant</em>'.
+	 * @return a new object of class '<em>Push Constant Buffer</em>'.
 	 * @generated
 	 */
-	PushConstant createPushConstant();
+	PushConstantBuffer createPushConstantBuffer();
 
 	/**
 	 * Returns a new object of class '<em>Push Buffer Task</em>'.

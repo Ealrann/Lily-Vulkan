@@ -76,8 +76,8 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 			return createCompositeTask();
 		case ProcessPackage.BIND_DESCRIPTOR_SETS:
 			return createBindDescriptorSets();
-		case ProcessPackage.PUSH_CONSTANT:
-			return createPushConstant();
+		case ProcessPackage.PUSH_CONSTANT_BUFFER:
+			return createPushConstantBuffer();
 		case ProcessPackage.PUSH_BUFFER_TASK:
 			return createPushBufferTask();
 		default:
@@ -164,10 +164,10 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory
 	 * @generated
 	 */
 	@Override
-	public PushConstant createPushConstant()
+	public PushConstantBuffer createPushConstantBuffer()
 	{
-		PushConstantImpl pushConstant = new PushConstantImpl();
-		return pushConstant;
+		PushConstantBufferImpl pushConstantBuffer = new PushConstantBufferImpl();
+		return pushConstantBuffer;
 	}
 
 	/**

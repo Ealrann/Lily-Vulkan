@@ -243,28 +243,28 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PushConstant} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.PushConstantBuffer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushConstantItemProvider pushConstantItemProvider;
+	protected PushConstantBufferItemProvider pushConstantBufferItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PushConstant}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.PushConstantBuffer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPushConstantAdapter()
+	public Adapter createPushConstantBufferAdapter()
 	{
-		if (pushConstantItemProvider == null)
+		if (pushConstantBufferItemProvider == null)
 		{
-			pushConstantItemProvider = new PushConstantItemProvider(this);
+			pushConstantBufferItemProvider = new PushConstantBufferItemProvider(this);
 		}
 
-		return pushConstantItemProvider;
+		return pushConstantBufferItemProvider;
 	}
 
 	/**
@@ -447,7 +447,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		if (pipelineBarrierItemProvider != null) pipelineBarrierItemProvider.dispose();
 		if (compositeTaskItemProvider != null) compositeTaskItemProvider.dispose();
 		if (bindDescriptorSetsItemProvider != null) bindDescriptorSetsItemProvider.dispose();
-		if (pushConstantItemProvider != null) pushConstantItemProvider.dispose();
+		if (pushConstantBufferItemProvider != null) pushConstantBufferItemProvider.dispose();
 		if (pushBufferTaskItemProvider != null) pushBufferTaskItemProvider.dispose();
 	}
 

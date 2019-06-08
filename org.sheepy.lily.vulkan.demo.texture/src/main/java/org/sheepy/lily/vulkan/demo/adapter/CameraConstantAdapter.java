@@ -16,10 +16,10 @@ import org.sheepy.lily.core.model.application.Application;
 import org.sheepy.lily.vulkan.api.adapter.IVulkanAdapter;
 import org.sheepy.lily.vulkan.api.util.VulkanModelUtil;
 import org.sheepy.lily.vulkan.common.util.SizeOf;
-import org.sheepy.lily.vulkan.model.process.PushConstant;
+import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 
 @Statefull
-@Adapter(scope = PushConstant.class, name = CameraConstantAdapter.DEMO_CAMERA)
+@Adapter(scope = ConstantBuffer.class, name = CameraConstantAdapter.DEMO_CAMERA)
 public class CameraConstantAdapter implements IVulkanAdapter
 {
 	public static final String DEMO_CAMERA = "DemoCameraPushConstant";
@@ -41,12 +41,12 @@ public class CameraConstantAdapter implements IVulkanAdapter
 
 	private double rotation = 0;
 	private ByteBuffer stagingBuffer;
-	private final PushConstant pushConstant;
+	private final ConstantBuffer buffer;
 
-	public CameraConstantAdapter(PushConstant pushConstant)
+	public CameraConstantAdapter(ConstantBuffer buffer)
 	{
-		this.pushConstant = pushConstant;
-		this.application = VulkanModelUtil.getApplication(pushConstant);
+		this.buffer = buffer;
+		this.application = VulkanModelUtil.getApplication(buffer);
 	}
 
 	@Autorun
@@ -92,6 +92,6 @@ public class CameraConstantAdapter implements IVulkanAdapter
 		final FloatBuffer fb = stagingBuffer.asFloatBuffer();
 		finalMatrix.get(fb);
 
-		pushConstant.setData(stagingBuffer);
+		buffer.setData(stagingBuffer);
 	}
 }

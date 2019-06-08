@@ -34,6 +34,11 @@ class PushBuffer extends IResource
 	int instanceCount = "3"
 }
 
+class ConstantBuffer extends IResource
+{
+	ByteBuffer data
+}
+
 interface DescriptedResource extends IResource
 {
 }

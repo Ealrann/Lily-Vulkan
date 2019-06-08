@@ -27,6 +27,7 @@ import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.BufferReference;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.CompositeBufferReference;
+import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
@@ -94,6 +95,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass pushBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass constantBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -454,6 +462,28 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getPushBuffer_InstanceCount()
 	{
 		return (EAttribute) pushBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getConstantBuffer()
+	{
+		return constantBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getConstantBuffer_Data()
+	{
+		return (EAttribute) constantBufferEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1428,6 +1458,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(pushBufferEClass, PUSH_BUFFER__SIZE);
 		createEAttribute(pushBufferEClass, PUSH_BUFFER__INSTANCE_COUNT);
 
+		constantBufferEClass = createEClass(CONSTANT_BUFFER);
+		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__DATA);
+
 		descriptedResourceEClass = createEClass(DESCRIPTED_RESOURCE);
 
 		basicDescriptedResourceEClass = createEClass(BASIC_DESCRIPTED_RESOURCE);
@@ -1592,6 +1625,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Add supertypes to classes
 		basicResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		pushBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		constantBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		descriptedResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		basicDescriptedResourceEClass.getESuperTypes().add(this.getDescriptedResource());
 		iBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
@@ -1633,6 +1667,12 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getPushBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount",
 				"3", 0, 1, PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(constantBufferEClass, ConstantBuffer.class, "ConstantBuffer", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConstantBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1,
+				ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptedResourceEClass, DescriptedResource.class, "DescriptedResource",
 				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -8,7 +8,7 @@ import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
-import org.sheepy.lily.vulkan.model.process.PushConstant;
+import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -33,6 +33,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl;
+import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
@@ -190,12 +191,16 @@ public class MeshModelFactory
 		pushBuffer.setSize((long) Math.pow(2, 16));
 
 		PushConstantRange pushConstantRange = null;
-		PushConstant pushConstants = null;
+		PushConstantBuffer pushConstants = null;
+		ConstantBuffer constantBuffer = null;
 		if (meshConfiguration.useCamera)
 		{
-			pushConstants = ProcessFactory.eINSTANCE.createPushConstant();
-			pushConstants.setName(CameraConstantAdapter.DEMO_CAMERA);
+			constantBuffer = ResourceFactory.eINSTANCE.createConstantBuffer();
+			constantBuffer.setName(CameraConstantAdapter.DEMO_CAMERA);
+
+			pushConstants = ProcessFactory.eINSTANCE.createPushConstantBuffer();
 			pushConstants.getStages().add(EShaderStage.VERTEX_BIT);
+			pushConstants.setBuffer(constantBuffer);
 
 			pushConstantRange = PipelineFactory.eINSTANCE.createPushConstantRange();
 			pushConstantRange.setSize(CameraConstantAdapter.SIZE_OF);
@@ -288,6 +293,7 @@ public class MeshModelFactory
 		resourceContainer.getResources().add(fragmentShader);
 		resourceContainer.getResources().add(pushBuffer);
 		resourceContainer.getResources().add(indexedVertexBuffer);
+		if (constantBuffer != null) resourceContainer.getResources().add(constantBuffer);
 
 		graphicProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
 		graphicProcess.getPartPkg().getParts().add(graphicPipeline);

@@ -141,6 +141,11 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 			return createPushConstantAdapter();
 		}
 		@Override
+		public Adapter casePushConstantBuffer(PushConstantBuffer object)
+		{
+			return createPushConstantBufferAdapter();
+		}
+		@Override
 		public Adapter casePushBufferTask(PushBufferTask object)
 		{
 			return createPushBufferTaskAdapter();
@@ -377,6 +382,21 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPushConstantAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.PushConstantBuffer <em>Push Constant Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.PushConstantBuffer
+	 * @generated
+	 */
+	public Adapter createPushConstantBufferAdapter()
 	{
 		return null;
 	}

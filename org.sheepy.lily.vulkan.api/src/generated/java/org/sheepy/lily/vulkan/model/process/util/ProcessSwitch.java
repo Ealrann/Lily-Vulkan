@@ -186,6 +186,16 @@ public class ProcessSwitch<T1> extends Switch<T1>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case ProcessPackage.PUSH_CONSTANT_BUFFER:
+		{
+			PushConstantBuffer pushConstantBuffer = (PushConstantBuffer) theEObject;
+			T1 result = casePushConstantBuffer(pushConstantBuffer);
+			if (result == null) result = casePushConstant(pushConstantBuffer);
+			if (result == null) result = caseIPipelineTask(pushConstantBuffer);
+			if (result == null) result = caseLNamedElement(pushConstantBuffer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		case ProcessPackage.PUSH_BUFFER_TASK:
 		{
 			PushBufferTask pushBufferTask = (PushBufferTask) theEObject;
@@ -388,6 +398,22 @@ public class ProcessSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 casePushConstant(PushConstant object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Push Constant Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Push Constant Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 casePushConstantBuffer(PushConstantBuffer object)
 	{
 		return null;
 	}

@@ -829,22 +829,13 @@ public interface ProcessPackage extends EPackage
 	int PUSH_CONSTANT__STAGES = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Data</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUSH_CONSTANT__DATA = IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Push Constant</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PUSH_CONSTANT_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+	int PUSH_CONSTANT_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Push Constant</em>' class.
@@ -856,6 +847,70 @@ public interface ProcessPackage extends EPackage
 	int PUSH_CONSTANT_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantBufferImpl <em>Push Constant Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.PushConstantBufferImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushConstantBuffer()
+	 * @generated
+	 */
+	int PUSH_CONSTANT_BUFFER = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT_BUFFER__NAME = PUSH_CONSTANT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT_BUFFER__ENABLED = PUSH_CONSTANT__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Stages</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT_BUFFER__STAGES = PUSH_CONSTANT__STAGES;
+
+	/**
+	 * The feature id for the '<em><b>Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT_BUFFER__BUFFER = PUSH_CONSTANT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Push Constant Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT_BUFFER_FEATURE_COUNT = PUSH_CONSTANT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Push Constant Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_CONSTANT_BUFFER_OPERATION_COUNT = PUSH_CONSTANT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl <em>Push Buffer Task</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -863,7 +918,7 @@ public interface ProcessPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushBufferTask()
 	 * @generated
 	 */
-	int PUSH_BUFFER_TASK = 12;
+	int PUSH_BUFFER_TASK = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1273,15 +1328,25 @@ public interface ProcessPackage extends EPackage
 	EAttribute getPushConstant_Stages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PushConstant#getData <em>Data</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PushConstantBuffer <em>Push Constant Buffer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PushConstant#getData()
-	 * @see #getPushConstant()
+	 * @return the meta object for class '<em>Push Constant Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PushConstantBuffer
 	 * @generated
 	 */
-	EAttribute getPushConstant_Data();
+	EClass getPushConstantBuffer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PushConstantBuffer#getBuffer <em>Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PushConstantBuffer#getBuffer()
+	 * @see #getPushConstantBuffer()
+	 * @generated
+	 */
+	EReference getPushConstantBuffer_Buffer();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PushBufferTask <em>Push Buffer Task</em>}'.
@@ -1627,12 +1692,22 @@ public interface ProcessPackage extends EPackage
 		EAttribute PUSH_CONSTANT__STAGES = eINSTANCE.getPushConstant_Stages();
 
 		/**
-		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantBufferImpl <em>Push Constant Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.PushConstantBufferImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPushConstantBuffer()
+		 * @generated
+		 */
+		EClass PUSH_CONSTANT_BUFFER = eINSTANCE.getPushConstantBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Buffer</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PUSH_CONSTANT__DATA = eINSTANCE.getPushConstant_Data();
+		EReference PUSH_CONSTANT_BUFFER__BUFFER = eINSTANCE.getPushConstantBuffer_Buffer();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl <em>Push Buffer Task</em>}' class.

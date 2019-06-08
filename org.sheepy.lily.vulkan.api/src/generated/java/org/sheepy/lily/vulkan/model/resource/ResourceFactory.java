@@ -42,6 +42,15 @@ public interface ResourceFactory extends EFactory
 	PushBuffer createPushBuffer();
 
 	/**
+	 * Returns a new object of class '<em>Constant Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constant Buffer</em>'.
+	 * @generated
+	 */
+	ConstantBuffer createConstantBuffer();
+
+	/**
 	 * Returns a new object of class '<em>Buffer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

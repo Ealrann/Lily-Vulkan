@@ -2,7 +2,6 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
-import java.nio.ByteBuffer;
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
@@ -16,11 +15,10 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.PushConstant#getStages <em>Stages</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.PushConstant#getData <em>Data</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPushConstant()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface PushConstant extends IPipelineTask
@@ -39,26 +37,4 @@ public interface PushConstant extends IPipelineTask
 	 * @generated
 	 */
 	EList<EShaderStage> getStages();
-
-	/**
-	 * Returns the value of the '<em><b>Data</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data</em>' attribute.
-	 * @see #setData(ByteBuffer)
-	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getPushConstant_Data()
-	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
-	 * @generated
-	 */
-	ByteBuffer getData();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.PushConstant#getData <em>Data</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data</em>' attribute.
-	 * @see #getData()
-	 * @generated
-	 */
-	void setData(ByteBuffer value);
 } // PushConstant

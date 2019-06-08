@@ -9,11 +9,11 @@ import org.sheepy.lily.vulkan.process.pipeline.task.BindDescriptorSetsAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.CompositeTaskAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PipelineBarrierAdapter;
 import org.sheepy.lily.vulkan.process.pipeline.task.PushBufferTaskAdapter;
-import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantAdapter;
+import org.sheepy.lily.vulkan.process.pipeline.task.PushConstantBufferAdapter;
 
 @Adapters(classifiers = {
 		PipelineBarrierAdapter.class,
-		PushConstantAdapter.class,
+		PushConstantBufferAdapter.class,
 		DescriptorSetAdapter.class,
 		ReferenceBufferBarrierAdapter.class,
 		ReferenceImageBarrierAdapter.class,

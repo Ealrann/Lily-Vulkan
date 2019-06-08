@@ -20,6 +20,8 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
 @Adapter(scope = NuklearPushConstants.class)
 public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<NuklearPushConstants>
 {
+	public static final int STAGE_FLAGS = EShaderStage.VERTEX_BIT_VALUE
+			| EShaderStage.FRAGMENT_BIT_VALUE;
 	public static final int SIZE = 16 * 4 + 4;
 
 	private final ByteBuffer buffer;
@@ -40,9 +42,10 @@ public class NuklearPushConstantsAdapter implements IPipelineTaskAdapter<Nuklear
 		final var pipeline = ModelUtil.findParent(pushConstant, IPipeline.class);
 		final var pipelineAdapter = IPipelineAdapter.adapt(pipeline);
 		final long layoutId = pipelineAdapter.getVkPipelineLayout().getId();
-		final int stageFlags = EShaderStage.VERTEX_BIT_VALUE | EShaderStage.FRAGMENT_BIT_VALUE;
 
-		vkCmdPushConstants(context.commandBuffer, layoutId, stageFlags, 0, buffer);
+		vkCmdPushConstants(context.commandBuffer, layoutId, STAGE_FLAGS, 0, buffer);
+
+		needRecord = false;
 	}
 
 	@Override

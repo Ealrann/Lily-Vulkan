@@ -37,6 +37,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.PushBufferTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
+import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
@@ -132,6 +133,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass pushConstantEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pushConstantBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -600,9 +608,20 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPushConstant_Data()
+	public EClass getPushConstantBuffer()
 	{
-		return (EAttribute) pushConstantEClass.getEStructuralFeatures().get(1);
+		return pushConstantBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPushConstantBuffer_Buffer()
+	{
+		return (EReference) pushConstantBufferEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -703,7 +722,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		pushConstantEClass = createEClass(PUSH_CONSTANT);
 		createEAttribute(pushConstantEClass, PUSH_CONSTANT__STAGES);
-		createEAttribute(pushConstantEClass, PUSH_CONSTANT__DATA);
+
+		pushConstantBufferEClass = createEClass(PUSH_CONSTANT_BUFFER);
+		createEReference(pushConstantBufferEClass, PUSH_CONSTANT_BUFFER__BUFFER);
 
 		pushBufferTaskEClass = createEClass(PUSH_BUFFER_TASK);
 		createEReference(pushBufferTaskEClass, PUSH_BUFFER_TASK__PUSH_BUFFER);
@@ -774,6 +795,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		compositeTaskEClass.getEGenericSuperTypes().add(g1);
 		bindDescriptorSetsEClass.getESuperTypes().add(this.getIPipelineTask());
 		pushConstantEClass.getESuperTypes().add(this.getIPipelineTask());
+		pushConstantBufferEClass.getESuperTypes().add(this.getPushConstant());
 		pushBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
@@ -883,14 +905,18 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				BindDescriptorSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", !IS_ABSTRACT,
+		initEClass(pushConstantEClass, PushConstant.class, "PushConstant", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPushConstant_Stages(), theEnumerationPackage.getEShaderStage(), "stages",
 				null, 1, -1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPushConstant_Data(), theResourcePackage.getByteBuffer(), "data", null, 0,
-				1, PushConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pushConstantBufferEClass, PushConstantBuffer.class, "PushConstantBuffer",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPushConstantBuffer_Buffer(), theResourcePackage.getConstantBuffer(), null,
+				"buffer", null, 1, 1, PushConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(pushBufferTaskEClass, PushBufferTask.class, "PushBufferTask", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
