@@ -33,11 +33,11 @@ module org.sheepy.lily.vulkan.resource
 {
 	requires transitive org.sheepy.lily.vulkan.common;
 
-	exports org.sheepy.lily.vulkan.resource.buffer;
-	exports org.sheepy.lily.vulkan.resource.file;
 	exports org.sheepy.lily.vulkan.resource.image;
-	exports org.sheepy.lily.vulkan.resource.nativehelper;
 	exports org.sheepy.lily.vulkan.resource.texture;
 	exports org.sheepy.lily.vulkan.resource.semaphore;
-	exports org.sheepy.lily.vulkan.resource.shader;
+
+	opens org.sheepy.lily.vulkan.resource.buffer;
+	opens org.sheepy.lily.vulkan.resource.file;
+	opens org.sheepy.lily.vulkan.resource.shader;
 }

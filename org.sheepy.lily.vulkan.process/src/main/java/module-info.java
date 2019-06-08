@@ -30,12 +30,12 @@ module org.sheepy.lily.vulkan.process
 	requires transitive org.sheepy.lily.vulkan.common;
 	requires transitive org.sheepy.lily.vulkan.resource;
 
-	exports org.sheepy.lily.vulkan.process.descriptor;
 	exports org.sheepy.lily.vulkan.process.execution;
 	exports org.sheepy.lily.vulkan.process.pipeline;
 	exports org.sheepy.lily.vulkan.process.pipeline.task;
 	exports org.sheepy.lily.vulkan.process.process;
 
+	opens org.sheepy.lily.vulkan.process.descriptor;
 	opens org.sheepy.lily.vulkan.process.barrier;
 	opens org.sheepy.lily.vulkan.process.pipeline.task;
 }

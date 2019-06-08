@@ -30,17 +30,17 @@ public class ButtonAdapter implements IUIElementAdapter
 	public boolean layout(UIContext context, IUIElement control)
 	{
 		boolean res = false;
-		Button button = (Button) control;
+		final Button button = (Button) control;
 
 		if (nk_button_label(context.nkContext, textBuffer))
 		{
-			var application = (Application) EcoreUtil.getRootContainer(button.getExecutor());
-			var cadencer = IApplicationAdapter.adapt(application).getCadencer();
+			final var executor = button.getExecutor();
+			final var application = (Application) EcoreUtil.getRootContainer(executor);
+			final var cadencer = IApplicationAdapter.adapt(application).getCadencer();
 
-			for (Action action : button.getActions())
+			for (final Action action : button.getActions())
 			{
-				ActionExecutionContext ec = new ActionExecutionContext(button.getExecutor(), action,
-						null);
+				final var ec = new ActionExecutionContext(executor, action, null);
 				cadencer.postAction(ec);
 			}
 			res = true;
