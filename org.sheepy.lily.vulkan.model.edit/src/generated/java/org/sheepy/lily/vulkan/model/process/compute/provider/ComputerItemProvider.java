@@ -61,6 +61,9 @@ public class ComputerItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addShaderPropertyDescriptor(object);
+			addWorkgroupCountXPropertyDescriptor(object);
+			addWorkgroupCountYPropertyDescriptor(object);
+			addWorkgroupCountZPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -116,6 +119,57 @@ public class ComputerItemProvider extends ItemProviderAdapter
 	}
 
 	/**
+	 * This adds a property descriptor for the Workgroup Count X feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWorkgroupCountXPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Computer_workgroupCountX_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Computer_workgroupCountX_feature", "_UI_Computer_type"),
+				ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_X, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Workgroup Count Y feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWorkgroupCountYPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Computer_workgroupCountY_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Computer_workgroupCountY_feature", "_UI_Computer_type"),
+				ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_Y, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Workgroup Count Z feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWorkgroupCountZPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Computer_workgroupCountZ_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Computer_workgroupCountZ_feature", "_UI_Computer_type"),
+				ComputePackage.Literals.COMPUTER__WORKGROUP_COUNT_Z, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns Computer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,6 +212,9 @@ public class ComputerItemProvider extends ItemProviderAdapter
 		{
 		case ComputePackage.COMPUTER__NAME:
 		case ComputePackage.COMPUTER__ENABLED:
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

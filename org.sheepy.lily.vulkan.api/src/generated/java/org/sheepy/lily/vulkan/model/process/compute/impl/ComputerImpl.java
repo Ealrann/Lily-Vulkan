@@ -24,6 +24,9 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getShader <em>Shader</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getWorkgroupCountX <em>Workgroup Count X</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getWorkgroupCountY <em>Workgroup Count Y</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl#getWorkgroupCountZ <em>Workgroup Count Z</em>}</li>
  * </ul>
  *
  * @generated
@@ -75,6 +78,61 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected Shader shader;
+
+	/**
+	 * The default value of the '{@link #getWorkgroupCountX() <em>Workgroup Count X</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkgroupCountX()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int WORKGROUP_COUNT_X_EDEFAULT = 1;
+	/**
+	 * The cached value of the '{@link #getWorkgroupCountX() <em>Workgroup Count X</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkgroupCountX()
+	 * @generated
+	 * @ordered
+	 */
+	protected int workgroupCountX = WORKGROUP_COUNT_X_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getWorkgroupCountY() <em>Workgroup Count Y</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkgroupCountY()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int WORKGROUP_COUNT_Y_EDEFAULT = 1;
+	/**
+	 * The cached value of the '{@link #getWorkgroupCountY() <em>Workgroup Count Y</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkgroupCountY()
+	 * @generated
+	 * @ordered
+	 */
+	protected int workgroupCountY = WORKGROUP_COUNT_Y_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getWorkgroupCountZ() <em>Workgroup Count Z</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkgroupCountZ()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int WORKGROUP_COUNT_Z_EDEFAULT = 1;
+	/**
+	 * The cached value of the '{@link #getWorkgroupCountZ() <em>Workgroup Count Z</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkgroupCountZ()
+	 * @generated
+	 * @ordered
+	 */
+	protected int workgroupCountZ = WORKGROUP_COUNT_Z_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -198,6 +256,81 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @generated
 	 */
 	@Override
+	public int getWorkgroupCountX()
+	{
+		return workgroupCountX;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setWorkgroupCountX(int newWorkgroupCountX)
+	{
+		int oldWorkgroupCountX = workgroupCountX;
+		workgroupCountX = newWorkgroupCountX;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTER__WORKGROUP_COUNT_X, oldWorkgroupCountX, workgroupCountX));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getWorkgroupCountY()
+	{
+		return workgroupCountY;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setWorkgroupCountY(int newWorkgroupCountY)
+	{
+		int oldWorkgroupCountY = workgroupCountY;
+		workgroupCountY = newWorkgroupCountY;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTER__WORKGROUP_COUNT_Y, oldWorkgroupCountY, workgroupCountY));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getWorkgroupCountZ()
+	{
+		return workgroupCountZ;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setWorkgroupCountZ(int newWorkgroupCountZ)
+	{
+		int oldWorkgroupCountZ = workgroupCountZ;
+		workgroupCountZ = newWorkgroupCountZ;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ComputePackage.COMPUTER__WORKGROUP_COUNT_Z, oldWorkgroupCountZ, workgroupCountZ));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -209,6 +342,12 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 		case ComputePackage.COMPUTER__SHADER:
 			if (resolve) return getShader();
 			return basicGetShader();
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+			return getWorkgroupCountX();
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+			return getWorkgroupCountY();
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+			return getWorkgroupCountZ();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,6 +370,15 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 			return;
 		case ComputePackage.COMPUTER__SHADER:
 			setShader((Shader) newValue);
+			return;
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+			setWorkgroupCountX((Integer) newValue);
+			return;
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+			setWorkgroupCountY((Integer) newValue);
+			return;
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+			setWorkgroupCountZ((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -255,6 +403,15 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 		case ComputePackage.COMPUTER__SHADER:
 			setShader((Shader) null);
 			return;
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+			setWorkgroupCountX(WORKGROUP_COUNT_X_EDEFAULT);
+			return;
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+			setWorkgroupCountY(WORKGROUP_COUNT_Y_EDEFAULT);
+			return;
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+			setWorkgroupCountZ(WORKGROUP_COUNT_Z_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -275,6 +432,12 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 			return enabled != ENABLED_EDEFAULT;
 		case ComputePackage.COMPUTER__SHADER:
 			return shader != null;
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_X:
+			return workgroupCountX != WORKGROUP_COUNT_X_EDEFAULT;
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Y:
+			return workgroupCountY != WORKGROUP_COUNT_Y_EDEFAULT;
+		case ComputePackage.COMPUTER__WORKGROUP_COUNT_Z:
+			return workgroupCountZ != WORKGROUP_COUNT_Z_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -294,6 +457,12 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
+		result.append(", workgroupCountX: ");
+		result.append(workgroupCountX);
+		result.append(", workgroupCountY: ");
+		result.append(workgroupCountY);
+		result.append(", workgroupCountZ: ");
+		result.append(workgroupCountZ);
 		result.append(')');
 		return result.toString();
 	}

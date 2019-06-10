@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import org.joml.Vector3i;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -25,8 +24,6 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<ICompu
 {
 	protected final ComputePipeline pipeline;
 
-	private final Vector3i groupCount = new Vector3i();
-
 	private final List<VkComputePipeline> vkPipelines = new ArrayList<>();
 
 	public ComputePipelineAdapter(ComputePipeline pipeline)
@@ -41,10 +38,6 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<ICompu
 		super.allocate(stack, context);
 
 		final var tasks = pipeline.getTaskPkg().getTasks();
-
-		groupCount.x = (int) Math.ceil((float) pipeline.getWidth() / pipeline.getWorkgroupSizeX());
-		groupCount.y = (int) Math.ceil((float) pipeline.getHeight() / pipeline.getWorkgroupSizeY());
-		groupCount.z = (int) Math.ceil((float) pipeline.getDepth() / pipeline.getWorkgroupSizeZ());
 
 		final Deque<IPipelineTask> course = new ArrayDeque<>();
 		course.addAll(tasks);
@@ -63,7 +56,6 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<ICompu
 				vkPipelines.add(vkPipeline);
 
 				computerAdapter.setVkPipeline(vkPipeline);
-				computerAdapter.setGroupCount(groupCount);
 			}
 			else if (task instanceof CompositeTask)
 			{
@@ -92,11 +84,6 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<ICompu
 	public long getPipelineId(int index)
 	{
 		return vkPipelines.get(index).getPipelineId();
-	}
-
-	public Vector3i getGroupCount()
-	{
-		return groupCount;
 	}
 
 	public static ComputePipelineAdapter adapt(ComputePipeline object)

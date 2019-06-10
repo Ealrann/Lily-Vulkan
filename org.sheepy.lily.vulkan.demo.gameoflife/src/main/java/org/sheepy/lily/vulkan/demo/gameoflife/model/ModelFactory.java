@@ -8,7 +8,6 @@ import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl;
 import org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl;
-import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
@@ -250,7 +249,7 @@ public class ModelFactory
 		process2.setResetAllowed(true);
 	}
 
-	private ComputePipeline createPipeline(IPipelineTask computer, DescriptedResource... descriptors)
+	private ComputePipeline createPipeline(Computer computer, DescriptedResource... descriptors)
 	{
 		final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
 		for (final var descriptor : descriptors)
@@ -263,8 +262,8 @@ public class ModelFactory
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 
 		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
-		res.setWorkgroupSizeX(WORKGROUP_SIDE);
-		res.setWorkgroupSizeY(WORKGROUP_SIDE);
+		computer.setWorkgroupCountX(application.getSize().x / WORKGROUP_SIDE);
+		computer.setWorkgroupCountY(application.getSize().y / WORKGROUP_SIDE);
 		res.setTaskPkg(taskPkg);
 		taskPkg.getTasks().add(bindDescriptorSet);
 		taskPkg.getTasks().add(computer);
@@ -272,10 +271,6 @@ public class ModelFactory
 		res.setDescriptorSetPkg(ResourceFactory.eINSTANCE.createDescriptorSetPkg());
 		res.getDescriptorSetPkg().getDescriptorSets().add(descriptorSet);
 		res.setStage(ECommandStage.COMPUTE);
-
-		res.setWidth(application.getSize().x);
-		res.setHeight(application.getSize().y);
-		res.setDepth(1);
 
 		return res;
 	}

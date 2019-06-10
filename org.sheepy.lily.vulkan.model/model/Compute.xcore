@@ -18,15 +18,12 @@ class ComputeProcess extends AbstractProcess
 
 class ComputePipeline extends IPipeline
 {
-	int workgroupSizeX = "32"
-	int workgroupSizeY = "32"
-	int workgroupSizeZ = "32"
-	int width
-	int height
-	int depth
 }
 
 class Computer extends IPipelineTask
 {
 	refers Shader shader
+	int workgroupCountX = "1"
+	int workgroupCountY = "1"
+	int workgroupCountZ = "1"
 }

@@ -15,6 +15,9 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getShader <em>Shader</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountX <em>Workgroup Count X</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountY <em>Workgroup Count Y</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountZ <em>Workgroup Count Z</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputer()
@@ -48,5 +51,74 @@ public interface Computer extends IPipelineTask
 	 * @generated
 	 */
 	void setShader(Shader value);
+
+	/**
+	 * Returns the value of the '<em><b>Workgroup Count X</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Workgroup Count X</em>' attribute.
+	 * @see #setWorkgroupCountX(int)
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputer_WorkgroupCountX()
+	 * @model default="1" unique="false"
+	 * @generated
+	 */
+	int getWorkgroupCountX();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountX <em>Workgroup Count X</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Workgroup Count X</em>' attribute.
+	 * @see #getWorkgroupCountX()
+	 * @generated
+	 */
+	void setWorkgroupCountX(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Workgroup Count Y</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Workgroup Count Y</em>' attribute.
+	 * @see #setWorkgroupCountY(int)
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputer_WorkgroupCountY()
+	 * @model default="1" unique="false"
+	 * @generated
+	 */
+	int getWorkgroupCountY();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountY <em>Workgroup Count Y</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Workgroup Count Y</em>' attribute.
+	 * @see #getWorkgroupCountY()
+	 * @generated
+	 */
+	void setWorkgroupCountY(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Workgroup Count Z</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Workgroup Count Z</em>' attribute.
+	 * @see #setWorkgroupCountZ(int)
+	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePackage#getComputer_WorkgroupCountZ()
+	 * @model default="1" unique="false"
+	 * @generated
+	 */
+	int getWorkgroupCountZ();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountZ <em>Workgroup Count Z</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Workgroup Count Z</em>' attribute.
+	 * @see #getWorkgroupCountZ()
+	 * @generated
+	 */
+	void setWorkgroupCountZ(int value);
 
 } // Computer

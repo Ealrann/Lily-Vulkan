@@ -233,67 +233,13 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__TASK_PKG = ProcessPackage.IPIPELINE__TASK_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Workgroup Size X</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__WORKGROUP_SIZE_X = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Workgroup Size Y</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__WORKGROUP_SIZE_Y = ProcessPackage.IPIPELINE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Workgroup Size Z</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__WORKGROUP_SIZE_Z = ProcessPackage.IPIPELINE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__WIDTH = ProcessPackage.IPIPELINE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__HEIGHT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Depth</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTE_PIPELINE__DEPTH = ProcessPackage.IPIPELINE_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Pipeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 6;
+	int COMPUTE_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Pipeline</em>' class.
@@ -342,13 +288,40 @@ public interface ComputePackage extends EPackage
 	int COMPUTER__SHADER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Workgroup Count X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTER__WORKGROUP_COUNT_X = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Workgroup Count Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTER__WORKGROUP_COUNT_Y = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Workgroup Count Z</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTER__WORKGROUP_COUNT_Z = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Computer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int COMPUTER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Computer</em>' class.
@@ -380,72 +353,6 @@ public interface ComputePackage extends EPackage
 	EClass getComputePipeline();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX <em>Workgroup Size X</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Workgroup Size X</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeX()
-	 * @see #getComputePipeline()
-	 * @generated
-	 */
-	EAttribute getComputePipeline_WorkgroupSizeX();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY <em>Workgroup Size Y</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Workgroup Size Y</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeY()
-	 * @see #getComputePipeline()
-	 * @generated
-	 */
-	EAttribute getComputePipeline_WorkgroupSizeY();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ <em>Workgroup Size Z</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Workgroup Size Z</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWorkgroupSizeZ()
-	 * @see #getComputePipeline()
-	 * @generated
-	 */
-	EAttribute getComputePipeline_WorkgroupSizeZ();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWidth <em>Width</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Width</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getWidth()
-	 * @see #getComputePipeline()
-	 * @generated
-	 */
-	EAttribute getComputePipeline_Width();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getHeight <em>Height</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Height</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getHeight()
-	 * @see #getComputePipeline()
-	 * @generated
-	 */
-	EAttribute getComputePipeline_Height();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getDepth <em>Depth</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Depth</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.compute.ComputePipeline#getDepth()
-	 * @see #getComputePipeline()
-	 * @generated
-	 */
-	EAttribute getComputePipeline_Depth();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.compute.Computer <em>Computer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -465,6 +372,39 @@ public interface ComputePackage extends EPackage
 	 * @generated
 	 */
 	EReference getComputer_Shader();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountX <em>Workgroup Count X</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Workgroup Count X</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountX()
+	 * @see #getComputer()
+	 * @generated
+	 */
+	EAttribute getComputer_WorkgroupCountX();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountY <em>Workgroup Count Y</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Workgroup Count Y</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountY()
+	 * @see #getComputer()
+	 * @generated
+	 */
+	EAttribute getComputer_WorkgroupCountY();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountZ <em>Workgroup Count Z</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Workgroup Count Z</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.compute.Computer#getWorkgroupCountZ()
+	 * @see #getComputer()
+	 * @generated
+	 */
+	EAttribute getComputer_WorkgroupCountZ();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -511,57 +451,6 @@ public interface ComputePackage extends EPackage
 		EClass COMPUTE_PIPELINE = eINSTANCE.getComputePipeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Workgroup Size X</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPUTE_PIPELINE__WORKGROUP_SIZE_X = eINSTANCE
-				.getComputePipeline_WorkgroupSizeX();
-
-		/**
-		 * The meta object literal for the '<em><b>Workgroup Size Y</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPUTE_PIPELINE__WORKGROUP_SIZE_Y = eINSTANCE
-				.getComputePipeline_WorkgroupSizeY();
-
-		/**
-		 * The meta object literal for the '<em><b>Workgroup Size Z</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPUTE_PIPELINE__WORKGROUP_SIZE_Z = eINSTANCE
-				.getComputePipeline_WorkgroupSizeZ();
-
-		/**
-		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPUTE_PIPELINE__WIDTH = eINSTANCE.getComputePipeline_Width();
-
-		/**
-		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPUTE_PIPELINE__HEIGHT = eINSTANCE.getComputePipeline_Height();
-
-		/**
-		 * The meta object literal for the '<em><b>Depth</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPUTE_PIPELINE__DEPTH = eINSTANCE.getComputePipeline_Depth();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.compute.impl.ComputerImpl <em>Computer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -578,6 +467,30 @@ public interface ComputePackage extends EPackage
 		 * @generated
 		 */
 		EReference COMPUTER__SHADER = eINSTANCE.getComputer_Shader();
+
+		/**
+		 * The meta object literal for the '<em><b>Workgroup Count X</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPUTER__WORKGROUP_COUNT_X = eINSTANCE.getComputer_WorkgroupCountX();
+
+		/**
+		 * The meta object literal for the '<em><b>Workgroup Count Y</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPUTER__WORKGROUP_COUNT_Y = eINSTANCE.getComputer_WorkgroupCountY();
+
+		/**
+		 * The meta object literal for the '<em><b>Workgroup Count Z</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPUTER__WORKGROUP_COUNT_Z = eINSTANCE.getComputer_WorkgroupCountZ();
 
 	}
 

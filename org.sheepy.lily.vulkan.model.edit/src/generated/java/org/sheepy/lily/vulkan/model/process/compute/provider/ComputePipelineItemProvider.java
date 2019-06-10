@@ -67,12 +67,6 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
-			addWorkgroupSizeXPropertyDescriptor(object);
-			addWorkgroupSizeYPropertyDescriptor(object);
-			addWorkgroupSizeZPropertyDescriptor(object);
-			addWidthPropertyDescriptor(object);
-			addHeightPropertyDescriptor(object);
-			addDepthPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -126,108 +120,6 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 						"_UI_IPipeline_type"),
 				ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Workgroup Size X feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWorkgroupSizeXPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ComputePipeline_workgroupSizeX_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ComputePipeline_workgroupSizeX_feature", "_UI_ComputePipeline_type"),
-				ComputePackage.Literals.COMPUTE_PIPELINE__WORKGROUP_SIZE_X, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Workgroup Size Y feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWorkgroupSizeYPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ComputePipeline_workgroupSizeY_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ComputePipeline_workgroupSizeY_feature", "_UI_ComputePipeline_type"),
-				ComputePackage.Literals.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Workgroup Size Z feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWorkgroupSizeZPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ComputePipeline_workgroupSizeZ_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ComputePipeline_workgroupSizeZ_feature", "_UI_ComputePipeline_type"),
-				ComputePackage.Literals.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Width feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addWidthPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ComputePipeline_width_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_width_feature",
-						"_UI_ComputePipeline_type"),
-				ComputePackage.Literals.COMPUTE_PIPELINE__WIDTH, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Height feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHeightPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ComputePipeline_height_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ComputePipeline_height_feature", "_UI_ComputePipeline_type"),
-				ComputePackage.Literals.COMPUTE_PIPELINE__HEIGHT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Depth feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDepthPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_ComputePipeline_depth_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ComputePipeline_depth_feature",
-						"_UI_ComputePipeline_type"),
-				ComputePackage.Literals.COMPUTE_PIPELINE__DEPTH, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -310,12 +202,6 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 		case ComputePackage.COMPUTE_PIPELINE__NAME:
 		case ComputePackage.COMPUTE_PIPELINE__ENABLED:
 		case ComputePackage.COMPUTE_PIPELINE__STAGE:
-		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_X:
-		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Y:
-		case ComputePackage.COMPUTE_PIPELINE__WORKGROUP_SIZE_Z:
-		case ComputePackage.COMPUTE_PIPELINE__WIDTH:
-		case ComputePackage.COMPUTE_PIPELINE__HEIGHT:
-		case ComputePackage.COMPUTE_PIPELINE__DEPTH:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
