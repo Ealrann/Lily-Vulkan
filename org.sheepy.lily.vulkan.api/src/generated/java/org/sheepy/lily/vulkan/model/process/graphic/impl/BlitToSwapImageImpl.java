@@ -14,6 +14,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 import org.sheepy.lily.vulkan.model.resource.Image;
+import org.sheepy.vulkan.model.enumeration.EFilter;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +27,7 @@ import org.sheepy.lily.vulkan.model.resource.Image;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl#getImage <em>Image</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl#getFilter <em>Filter</em>}</li>
  * </ul>
  *
  * @generated
@@ -81,6 +83,26 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected Image image;
+
+	/**
+	 * The default value of the '{@link #getFilter() <em>Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EFilter FILTER_EDEFAULT = EFilter.NEAREST;
+
+	/**
+	 * The cached value of the '{@link #getFilter() <em>Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EFilter filter = FILTER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -205,6 +227,31 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public EFilter getFilter()
+	{
+		return filter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFilter(EFilter newFilter)
+	{
+		EFilter oldFilter = filter;
+		filter = newFilter == null ? FILTER_EDEFAULT : newFilter;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER, oldFilter, filter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -216,6 +263,8 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 		case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
 			if (resolve) return getImage();
 			return basicGetImage();
+		case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+			return getFilter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -238,6 +287,9 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 			return;
 		case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
 			setImage((Image) newValue);
+			return;
+		case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+			setFilter((EFilter) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -262,6 +314,9 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 		case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
 			setImage((Image) null);
 			return;
+		case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+			setFilter(FILTER_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -282,6 +337,8 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 			return enabled != ENABLED_EDEFAULT;
 		case GraphicPackage.BLIT_TO_SWAP_IMAGE__IMAGE:
 			return image != null;
+		case GraphicPackage.BLIT_TO_SWAP_IMAGE__FILTER:
+			return filter != FILTER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -301,6 +358,8 @@ public class BlitToSwapImageImpl extends MinimalEObjectImpl.Container implements
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
+		result.append(", filter: ");
+		result.append(filter);
 		result.append(')');
 		return result.toString();
 	}

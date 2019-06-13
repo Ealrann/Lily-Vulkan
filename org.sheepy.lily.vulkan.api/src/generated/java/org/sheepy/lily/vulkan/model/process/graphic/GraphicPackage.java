@@ -1335,13 +1335,22 @@ public interface GraphicPackage extends EPackage
 	int BLIT_TO_SWAP_IMAGE__IMAGE = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLIT_TO_SWAP_IMAGE__FILTER = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Blit To Swap Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLIT_TO_SWAP_IMAGE_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int BLIT_TO_SWAP_IMAGE_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Blit To Swap Image</em>' class.
@@ -2728,6 +2737,17 @@ public interface GraphicPackage extends EPackage
 	EReference getBlitToSwapImage_Image();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getFilter <em>Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Filter</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BlitToSwapImage#getFilter()
+	 * @see #getBlitToSwapImage()
+	 * @generated
+	 */
+	EAttribute getBlitToSwapImage_Filter();
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.DrawIndexed <em>Draw Indexed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3741,6 +3761,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EReference BLIT_TO_SWAP_IMAGE__IMAGE = eINSTANCE.getBlitToSwapImage_Image();
+
+		/**
+		 * The meta object literal for the '<em><b>Filter</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BLIT_TO_SWAP_IMAGE__FILTER = eINSTANCE.getBlitToSwapImage_Filter();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl <em>Draw Indexed</em>}' class.

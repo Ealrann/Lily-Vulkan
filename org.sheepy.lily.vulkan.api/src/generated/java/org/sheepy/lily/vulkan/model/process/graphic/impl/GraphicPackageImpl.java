@@ -1077,6 +1077,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBlitToSwapImage_Filter()
+	{
+		return (EAttribute) blitToSwapImageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getDrawIndexed()
 	{
 		return drawIndexedEClass;
@@ -1607,6 +1618,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		blitToSwapImageEClass = createEClass(BLIT_TO_SWAP_IMAGE);
 		createEReference(blitToSwapImageEClass, BLIT_TO_SWAP_IMAGE__IMAGE);
+		createEAttribute(blitToSwapImageEClass, BLIT_TO_SWAP_IMAGE__FILTER);
 
 		drawIndexedEClass = createEClass(DRAW_INDEXED);
 		createEAttribute(drawIndexedEClass, DRAW_INDEXED__INDEX_COUNT);
@@ -1967,6 +1979,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				null, 1, 1, BlitToSwapImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getBlitToSwapImage_Filter(), theEnumerationPackage.getEFilter(), "filter",
+				"NEAREST", 0, 1, BlitToSwapImage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(drawIndexedEClass, DrawIndexed.class, "DrawIndexed", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

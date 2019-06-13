@@ -33,6 +33,7 @@ import org.sheepy.vulkan.model.graphicpipeline.DynamicState
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState
+import org.sheepy.vulkan.model.enumeration.EFilter
 
 class GraphicConfiguration extends Configuration
 {
@@ -156,6 +157,7 @@ class SwapImageBarrier extends AbstractImageBarrier
 class BlitToSwapImage extends IPipelineTask
 {
 	refers Image[1..1] image
+	EFilter filter = "NEAREST"
 }
 
 class DrawIndexed extends IPipelineTask

@@ -72,15 +72,16 @@ public class BlitToSwapImageAdapter
 	}
 
 	@Override
-	public void record(	BlitToSwapImage task,
-						RecordContext context)
+	public void record(BlitToSwapImage task, RecordContext context)
 	{
 		final var swapImage = imageViewManager.getImageViews().get(context.index).getImageAddress();
 		final var transfertSrc = EImageLayout.TRANSFER_SRC_OPTIMAL_VALUE;
 		final var transfertDst = EImageLayout.TRANSFER_DST_OPTIMAL_VALUE;
+		final var commandBuffer = context.commandBuffer;
+		final int filter = task.getFilter().getValue();
 
-		vkCmdBlitImage(context.commandBuffer, imagePtr, transfertSrc, swapImage, transfertDst, region,
-				VK_FILTER_NEAREST);
+		vkCmdBlitImage(commandBuffer, imagePtr, transfertSrc, swapImage, transfertDst, region,
+				filter);
 	}
 
 	@Override
