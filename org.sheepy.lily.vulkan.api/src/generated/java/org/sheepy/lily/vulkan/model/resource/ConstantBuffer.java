@@ -16,6 +16,7 @@ import org.sheepy.lily.vulkan.model.IResource;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#getData <em>Data</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#isBeingPushed <em>Being Pushed</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getConstantBuffer()
@@ -45,5 +46,28 @@ public interface ConstantBuffer extends IResource
 	 * @generated
 	 */
 	void setData(ByteBuffer value);
+
+	/**
+	 * Returns the value of the '<em><b>Being Pushed</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Being Pushed</em>' attribute.
+	 * @see #setBeingPushed(boolean)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getConstantBuffer_BeingPushed()
+	 * @model default="false" unique="false"
+	 * @generated
+	 */
+	boolean isBeingPushed();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#isBeingPushed <em>Being Pushed</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Being Pushed</em>' attribute.
+	 * @see #isBeingPushed()
+	 * @generated
+	 */
+	void setBeingPushed(boolean value);
 
 } // ConstantBuffer

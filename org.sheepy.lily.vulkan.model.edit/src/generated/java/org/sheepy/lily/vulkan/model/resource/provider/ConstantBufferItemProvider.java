@@ -63,6 +63,7 @@ public class ConstantBufferItemProvider extends ItemProviderAdapter
 
 			addNamePropertyDescriptor(object);
 			addDataPropertyDescriptor(object);
+			addBeingPushedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,6 +100,23 @@ public class ConstantBufferItemProvider extends ItemProviderAdapter
 						"_UI_ConstantBuffer_type"),
 				ResourcePackage.Literals.CONSTANT_BUFFER__DATA, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Being Pushed feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBeingPushedPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ConstantBuffer_beingPushed_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ConstantBuffer_beingPushed_feature", "_UI_ConstantBuffer_type"),
+				ResourcePackage.Literals.CONSTANT_BUFFER__BEING_PUSHED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -144,6 +162,7 @@ public class ConstantBufferItemProvider extends ItemProviderAdapter
 		{
 		case ResourcePackage.CONSTANT_BUFFER__NAME:
 		case ResourcePackage.CONSTANT_BUFFER__DATA:
+		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

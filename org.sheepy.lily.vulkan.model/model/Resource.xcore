@@ -37,6 +37,7 @@ class PushBuffer extends IResource
 class ConstantBuffer extends IResource
 {
 	ByteBuffer data
+	boolean beingPushed = "false"
 }
 
 interface DescriptedResource extends IResource

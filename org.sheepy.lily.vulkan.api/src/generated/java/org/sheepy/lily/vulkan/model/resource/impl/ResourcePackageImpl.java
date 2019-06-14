@@ -492,6 +492,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getConstantBuffer_BeingPushed()
+	{
+		return (EAttribute) constantBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getBuffer()
 	{
 		return bufferEClass;
@@ -1460,6 +1471,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		constantBufferEClass = createEClass(CONSTANT_BUFFER);
 		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__DATA);
+		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__BEING_PUSHED);
 
 		descriptedResourceEClass = createEClass(DESCRIPTED_RESOURCE);
 
@@ -1673,6 +1685,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getConstantBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1,
 				ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstantBuffer_BeingPushed(), theEcorePackage.getEBoolean(),
+				"beingPushed", "false", 0, 1, ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptedResourceEClass, DescriptedResource.class, "DescriptedResource",
 				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

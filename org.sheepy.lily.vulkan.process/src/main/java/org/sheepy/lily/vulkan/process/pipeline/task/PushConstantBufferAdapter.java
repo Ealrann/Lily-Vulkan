@@ -54,6 +54,9 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 	{
 		final var pipeline = ModelUtil.findParent(pushConstant, IPipeline.class);
 		final var pipelineAdapter = IPipelineAdapter.adapt(pipeline);
+
+		buffer.setBeingPushed(true);
+
 		final var data = buffer.getData();
 		if (data != null)
 		{
@@ -62,6 +65,8 @@ public class PushConstantBufferAdapter implements IPipelineTaskAdapter<PushConst
 
 			vkCmdPushConstants(context.commandBuffer, layoutId, stageFlags, 0, data);
 		}
+
+		buffer.setBeingPushed(false);
 
 		dirty = false;
 	}
