@@ -46,6 +46,8 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 
 	private static class Container
 	{
+		final static long TIMEOUT_NS = (long) 1e8;
+		
 		final long semaphore;
 		final long swapChain;
 		final ISurfaceManager surfaceManager;
@@ -61,7 +63,7 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 
 		public Integer acquireNextImage(int[] nextImageArray)
 		{
-			final int res = vkAcquireNextImageKHR(device, swapChain, UINT64_MAX, semaphore, 0,
+			final int res = vkAcquireNextImageKHR(device, swapChain, TIMEOUT_NS, semaphore, 0,
 					nextImageArray);
 
 			if (res == VK_ERROR_OUT_OF_DATE_KHR)
