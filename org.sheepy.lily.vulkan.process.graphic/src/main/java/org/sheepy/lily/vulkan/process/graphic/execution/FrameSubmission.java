@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.execution;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.vulkan.KHRSwapchain.*;
+import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
@@ -11,11 +12,13 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkPresentInfoKHR;
 import org.lwjgl.vulkan.VkQueue;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.process.execution.Submission;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 import org.sheepy.vulkan.execution.ICommandBuffer;
+import org.sheepy.vulkan.log.EVulkanErrorStatus;
 import org.sheepy.vulkan.log.Logger;
 
 public class FrameSubmission extends Submission<IGraphicContext>
@@ -31,6 +34,8 @@ public class FrameSubmission extends Submission<IGraphicContext>
 	private VkPresentInfoKHR presentInfo;
 	private LongBuffer bPresentWaitSemaphores;
 	private VkQueue presentQueue;
+
+	private IGraphicContext context;
 
 	public FrameSubmission(	int imageIndex,
 							ICommandBuffer<? super IGraphicContext> commandBuffer,
@@ -48,13 +53,14 @@ public class FrameSubmission extends Submission<IGraphicContext>
 	@Override
 	public void allocate(MemoryStack stack, IGraphicContext context)
 	{
+		this.context = context;
 		final var swapChain = context.getSwapChainManager();
-		
+
 		presentQueue = context.getSurfaceManager().getPresentQueue().vkQueue;
 
 		presentWaitSemaphore.allocate(stack, context);
-		final long presentSemaphoreId = presentWaitSemaphore.getId();
-		signalSemaphores.add(presentSemaphoreId);
+		final long presentSemaphorePtr = presentWaitSemaphore.getPtr();
+		signalSemaphores.add(presentSemaphorePtr);
 
 		super.allocate(stack, context);
 
@@ -67,7 +73,7 @@ public class FrameSubmission extends Submission<IGraphicContext>
 		bImageIndex.flip();
 
 		bPresentWaitSemaphores = MemoryUtil.memAllocLong(1);
-		bPresentWaitSemaphores.put(presentSemaphoreId);
+		bPresentWaitSemaphores.put(presentSemaphorePtr);
 		bPresentWaitSemaphores.flip();
 
 		presentInfo = VkPresentInfoKHR.calloc();
@@ -103,7 +109,19 @@ public class FrameSubmission extends Submission<IGraphicContext>
 	{
 		super.submit();
 
-		Logger.check(vkQueuePresentKHR(presentQueue, presentInfo), FAILED_SUBMIT_PRESENT, true);
+		final var res = vkQueuePresentKHR(presentQueue, presentInfo);
+
+		Logger.check(res, FAILED_SUBMIT_PRESENT, true);
+
+		if (res != VK_SUCCESS)
+		{
+			if (DebugUtil.DEBUG_ENABLED)
+			{
+				final var status = EVulkanErrorStatus.resolveFromCode(res);
+				System.err.println(status.message);
+			}
+			presentWaitSemaphore.signalSemaphore(context);
+		}
 	}
 
 	public VkPresentInfoKHR getPresentInfo()

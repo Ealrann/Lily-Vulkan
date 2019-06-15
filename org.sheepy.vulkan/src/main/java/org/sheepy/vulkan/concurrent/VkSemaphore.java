@@ -12,7 +12,7 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 
 public class VkSemaphore implements IAllocable<IVulkanContext>
 {
-	private long semaphoreId = -1;
+	private long semaphorePtr = VK_NULL_HANDLE;
 
 	@Override
 	public void allocate(MemoryStack stack, IVulkanContext context)
@@ -30,20 +30,20 @@ public class VkSemaphore implements IAllocable<IVulkanContext>
 			throw new AssertionError("Failed to create semaphores");
 		}
 
-		semaphoreId = aSemaphore[0];
+		semaphorePtr = aSemaphore[0];
 		semaphoreInfo.free();
 	}
 
-	public long getId()
+	public long getPtr()
 	{
-		return semaphoreId;
+		return semaphorePtr;
 	}
 
 	public void signalSemaphore(IExecutionContext executionContext)
 	{
-		if (semaphoreId == 0)
+		if (semaphorePtr == VK_NULL_HANDLE)
 		{
-			throw new AssertionError("");
+			throw new AssertionError("Unallocated Semaphore");
 		}
 
 		try (MemoryStack stack = MemoryStack.stackPush())
@@ -56,8 +56,8 @@ public class VkSemaphore implements IAllocable<IVulkanContext>
 	public void free(IVulkanContext context)
 	{
 		final var logicalDevice = context.getLogicalDevice();
-		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphoreId, null);
-		semaphoreId = -1;
+		vkDestroySemaphore(logicalDevice.getVkDevice(), semaphorePtr, null);
+		semaphorePtr = VK_NULL_HANDLE;
 	}
 
 	@Override

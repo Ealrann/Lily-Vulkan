@@ -9,7 +9,7 @@ public class SemaphoreManager
 {
 	private boolean lock;
 	private final List<VkSemaphore> semaphores = new ArrayList<>();
-	private final List<Long> semaphoreIds = new ArrayList<>();
+	private final List<Long> semaphorePtrs = new ArrayList<>();
 
 	private final VulkanContext context;
 
@@ -27,7 +27,7 @@ public class SemaphoreManager
 		final VkSemaphore res = new VkSemaphore();
 		res.allocate(null, context);
 		semaphores.add(res);
-		semaphoreIds.add(res.getId());
+		semaphorePtrs.add(res.getPtr());
 		return res;
 	}
 
@@ -38,7 +38,7 @@ public class SemaphoreManager
 			vkSemaphore.free(context);
 		}
 		semaphores.clear();
-		semaphoreIds.clear();
+		semaphorePtrs.clear();
 	}
 
 	/**
@@ -58,6 +58,6 @@ public class SemaphoreManager
 
 	public List<Long> getSemaphores()
 	{
-		return semaphoreIds;
+		return semaphorePtrs;
 	}
 }

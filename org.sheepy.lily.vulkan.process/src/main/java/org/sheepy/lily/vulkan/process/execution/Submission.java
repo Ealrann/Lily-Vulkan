@@ -68,7 +68,7 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 			waitStages = memAllocInt(waitSemaphores.size());
 			for (final WaitData waitData : waitSemaphores)
 			{
-				bWaitSemaphores.put(waitData.semaphore.getId());
+				bWaitSemaphores.put(waitData.semaphore.getPtr());
 				waitStages.put(waitData.waitStage.getValue());
 			}
 			bWaitSemaphores.flip();

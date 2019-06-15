@@ -36,7 +36,7 @@ public class SubmissionsBuilder<T extends IRecorderContext<T>>
 	{
 		for (final VkSemaphore emitter : emitters)
 		{
-			final long newSignalSemaphore = emitter.getId();
+			final long newSignalSemaphore = emitter.getPtr();
 			semaphoreDeque.add(newSignalSemaphore);
 		}
 	}

@@ -5,9 +5,12 @@ import static org.lwjgl.vulkan.VK10.VK_SUCCESS;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkDevice;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.graphic.ISurfaceManager;
 import org.sheepy.vulkan.allocation.IAllocable;
+import org.sheepy.vulkan.concurrent.VkSemaphore;
+import org.sheepy.vulkan.log.EVulkanErrorStatus;
 import org.sheepy.vulkan.log.Logger;
 
 public class ImageAcquirer implements IAllocable<IGraphicContext>
@@ -44,18 +47,20 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 		return container.acquireNextImage(nextImageArray);
 	}
 
-	private static class Container
+	private static final class Container
 	{
-		final static long TIMEOUT_NS = (long) 1e8;
-		
-		final long semaphore;
-		final long swapChain;
-		final ISurfaceManager surfaceManager;
-		final VkDevice device;
+		private final static long TIMEOUT_NS = (long) 1e8;
+
+		private final IGraphicContext context;
+		private final VkSemaphore semaphore;
+		private final long swapChain;
+		private final ISurfaceManager surfaceManager;
+		private final VkDevice device;
 
 		private Container(IGraphicContext context)
 		{
-			semaphore = context.getGraphicExecutionRecorders().getPresentSemaphore().getId();
+			this.context = context;
+			semaphore = context.getGraphicExecutionRecorders().getPresentSemaphore();
 			swapChain = context.getSwapChainManager().getAddress();
 			device = context.getVkDevice();
 			surfaceManager = context.getSurfaceManager();
@@ -63,7 +68,8 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 
 		public Integer acquireNextImage(int[] nextImageArray)
 		{
-			final int res = vkAcquireNextImageKHR(device, swapChain, TIMEOUT_NS, semaphore, 0,
+			final long semaphorePtr = semaphore.getPtr();
+			final int res = vkAcquireNextImageKHR(device, swapChain, TIMEOUT_NS, semaphorePtr, 0,
 					nextImageArray);
 
 			if (res == VK_ERROR_OUT_OF_DATE_KHR)
@@ -76,8 +82,16 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 			}
 
 			if (res == VK_SUCCESS || res == VK_SUBOPTIMAL_KHR) return nextImageArray[0];
-			else return null;
+			else
+			{
+				if (DebugUtil.DEBUG_ENABLED)
+				{
+					final var status = EVulkanErrorStatus.resolveFromCode(res);
+					System.err.println(status.message);
+				}
+				semaphore.signalSemaphore(context);
+				return null;
+			}
 		}
 	}
-
 }

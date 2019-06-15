@@ -3,7 +3,6 @@ package org.sheepy.vulkan.execution;
 import static org.lwjgl.vulkan.VK10.*;
 
 import java.nio.LongBuffer;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,11 +34,11 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<IExecution
 		this.stack = stack;
 		if (semaphoreToSignal != null && semaphoreToSignal.isEmpty() == false)
 		{
-			this.semaphoreToSignal = new ArrayList<>(semaphoreToSignal);
+			this.semaphoreToSignal = List.copyOf(semaphoreToSignal);
 		}
 		else
 		{
-			this.semaphoreToSignal = null;
+			this.semaphoreToSignal = List.of();
 		}
 
 		allocate(stack, executionContext);
@@ -78,12 +77,12 @@ public abstract class SingleTimeCommand extends AbstractCommandBuffer<IExecution
 		pCommandBuffer.flip();
 
 		LongBuffer lBuffer = null;
-		if (semaphoreToSignal != null)
+		if (semaphoreToSignal.isEmpty() == false)
 		{
 			lBuffer = MemoryUtil.memAllocLong(semaphoreToSignal.size());
 			for (final VkSemaphore vkSemaphore : semaphoreToSignal)
 			{
-				lBuffer.put(vkSemaphore.getId());
+				lBuffer.put(vkSemaphore.getPtr());
 			}
 			lBuffer.flip();
 		}
