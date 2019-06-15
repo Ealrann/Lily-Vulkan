@@ -44,7 +44,7 @@ public class ComputeProcessAdapter extends AbstractProcessAdapter<IComputeContex
 	}
 
 	@Override
-	protected EQueueType getQueueType()
+	public EQueueType getQueueType()
 	{
 		return EQueueType.Compute;
 	}

@@ -129,4 +129,9 @@ public class QueueManager
 		loadPresentFamilly(surface);
 		return createQueue(device, EQueueType.Present);
 	}
+
+	public int getQueueIndex(EQueueType queueType)
+	{
+		return indexMap.get(queueType);
+	}
 }

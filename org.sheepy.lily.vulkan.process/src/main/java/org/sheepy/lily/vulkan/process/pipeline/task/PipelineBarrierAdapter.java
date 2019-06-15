@@ -17,6 +17,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.process.pipeline.task.internal.BufferBarriersBackend;
 import org.sheepy.lily.vulkan.process.pipeline.task.internal.ImageBarriersBackend;
+import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier;
 import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
 
@@ -44,9 +45,12 @@ public class PipelineBarrierAdapter
 	public void allocate(MemoryStack stack, IProcessContext context)
 	{
 		final int swapCount = context.getSwapCount();
+		final var logicalDevice = context.getLogicalDevice();
+		final var srcQueue = pipelineBarrier.getSrcQueue();
+		final var dstQueue = pipelineBarrier.getDstQueue();
 
-		final int srcQueueIndex = getQueueFamillyIndex(pipelineBarrier.getSrcQueue());
-		final int dstQueueIndex = getQueueFamillyIndex(pipelineBarrier.getDstQueue());
+		final int srcQueueIndex = getQueueFamillyIndex(logicalDevice, srcQueue);
+		final int dstQueueIndex = getQueueFamillyIndex(logicalDevice, dstQueue);
 
 		final var barriers = pipelineBarrier.getBarriers();
 
@@ -91,13 +95,13 @@ public class PipelineBarrierAdapter
 				imageInfo);
 	}
 
-	private static int getQueueFamillyIndex(AbstractProcess process)
+	private static int getQueueFamillyIndex(LogicalDevice logicalDevice, AbstractProcess process)
 	{
 		int res = VK_QUEUE_FAMILY_IGNORED;
 		if (process != null)
 		{
-			final var queue = IProcessAdapter.adapt(process).getQueue();
-			res = queue.index;
+			final var queueType = IProcessAdapter.adapt(process).getQueueType();
+			res = logicalDevice.getQueueIndex(queueType);
 		}
 		return res;
 	}

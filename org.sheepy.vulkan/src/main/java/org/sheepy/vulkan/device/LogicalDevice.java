@@ -15,6 +15,7 @@ import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.lwjgl.vulkan.VkPhysicalDeviceFeatures;
 import org.sheepy.vulkan.extension.EDeviceExtension;
 import org.sheepy.vulkan.log.Logger;
+import org.sheepy.vulkan.queue.EQueueType;
 import org.sheepy.vulkan.queue.QueueManager;
 import org.sheepy.vulkan.queue.VulkanQueue;
 import org.sheepy.vulkan.surface.VkSurface;
@@ -154,5 +155,10 @@ public class LogicalDevice
 	public IntBuffer allocQueueIndices()
 	{
 		return queueManager.allocIndices();
+	}
+
+	public int getQueueIndex(EQueueType queueType)
+	{
+		return queueManager.getQueueIndex(queueType);
 	}
 }

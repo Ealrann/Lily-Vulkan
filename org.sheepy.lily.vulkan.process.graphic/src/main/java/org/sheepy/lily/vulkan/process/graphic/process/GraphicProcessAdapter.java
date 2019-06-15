@@ -66,7 +66,7 @@ public class GraphicProcessAdapter extends AbstractProcessAdapter<IGraphicContex
 	}
 
 	@Override
-	protected EQueueType getQueueType()
+	public EQueueType getQueueType()
 	{
 		return EQueueType.Graphic;
 	}

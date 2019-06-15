@@ -27,7 +27,6 @@ import org.sheepy.vulkan.descriptor.IVkDescriptorSet;
 import org.sheepy.vulkan.device.IVulkanContext;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
-import org.sheepy.vulkan.queue.EQueueType;
 
 @Statefull
 public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorderContext<T>>
@@ -328,8 +327,6 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 	}
 
 	protected abstract Integer prepareNextExecution();
-
-	protected abstract EQueueType getQueueType();
 
 	protected abstract List<ECommandStage> getStages();
 
