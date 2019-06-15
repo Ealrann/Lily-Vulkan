@@ -51,7 +51,6 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 	{
 		private final static long TIMEOUT_NS = (long) 1e8;
 
-		private final IGraphicContext context;
 		private final VkSemaphore semaphore;
 		private final long swapChain;
 		private final ISurfaceManager surfaceManager;
@@ -59,8 +58,7 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 
 		private Container(IGraphicContext context)
 		{
-			this.context = context;
-			semaphore = context.getGraphicExecutionRecorders().getPresentSemaphore();
+			semaphore = context.getGraphicExecutionRecorders().getAcquireSemaphore();
 			swapChain = context.getSwapChainManager().getAddress();
 			device = context.getVkDevice();
 			surfaceManager = context.getSurfaceManager();
@@ -72,14 +70,7 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 			final int res = vkAcquireNextImageKHR(device, swapChain, TIMEOUT_NS, semaphorePtr, 0,
 					nextImageArray);
 
-			if (res == VK_ERROR_OUT_OF_DATE_KHR)
-			{
-				surfaceManager.setDirty(true);
-			}
-			else
-			{
-				Logger.check(res, FAILED_ACQUIRE_IMAGE, true);
-			}
+			Logger.check(res, FAILED_ACQUIRE_IMAGE, true);
 
 			if (res == VK_SUCCESS || res == VK_SUBOPTIMAL_KHR) return nextImageArray[0];
 			else
@@ -87,9 +78,9 @@ public class ImageAcquirer implements IAllocable<IGraphicContext>
 				if (DebugUtil.DEBUG_ENABLED)
 				{
 					final var status = EVulkanErrorStatus.resolveFromCode(res);
-					System.err.println(status.message);
+					System.err.println("[Acquire] " + status.message);
 				}
-				semaphore.signalSemaphore(context);
+				surfaceManager.setDirty(true);
 				return null;
 			}
 		}

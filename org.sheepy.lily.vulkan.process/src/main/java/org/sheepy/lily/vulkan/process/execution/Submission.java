@@ -12,10 +12,12 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkQueue;
 import org.lwjgl.vulkan.VkSubmitInfo;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.execution.ISubmission;
 import org.sheepy.lily.vulkan.api.process.IProcessContext.IRecorderContext;
 import org.sheepy.vulkan.concurrent.VkFence;
 import org.sheepy.vulkan.execution.ICommandBuffer;
+import org.sheepy.vulkan.log.EVulkanErrorStatus;
 import org.sheepy.vulkan.log.Logger;
 
 public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
@@ -121,8 +123,16 @@ public class Submission<T extends IRecorderContext<T>> implements ISubmission<T>
 
 		waitIdle();
 
-		Logger.check(vkQueueSubmit(queue, submitInfo, fenceId), FAILED_SUBMIT, true);
+		final var res = vkQueueSubmit(queue, submitInfo, fenceId);
 		if (fence != null) fence.setUsed(true);
+
+		Logger.check(res, FAILED_SUBMIT, true);
+
+		if (res != VK_SUCCESS && DebugUtil.DEBUG_ENABLED)
+		{
+			final var status = EVulkanErrorStatus.resolveFromCode(res);
+			System.err.println("[Submit] " + status.message);
+		}
 	}
 
 	@Override

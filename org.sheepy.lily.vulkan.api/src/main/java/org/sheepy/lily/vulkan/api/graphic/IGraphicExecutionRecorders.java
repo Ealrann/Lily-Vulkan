@@ -5,5 +5,5 @@ import org.sheepy.vulkan.concurrent.VkSemaphore;
 public interface IGraphicExecutionRecorders
 {
 
-	VkSemaphore getPresentSemaphore();
+	VkSemaphore getAcquireSemaphore();
 }

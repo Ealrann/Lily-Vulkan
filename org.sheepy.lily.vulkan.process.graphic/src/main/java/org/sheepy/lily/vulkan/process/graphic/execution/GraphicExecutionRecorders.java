@@ -10,22 +10,21 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.process.execution.ExecutionRecorders;
 import org.sheepy.lily.vulkan.process.execution.WaitData;
-import org.sheepy.lily.vulkan.process.graphic.process.PresentSemaphore;
 import org.sheepy.vulkan.concurrent.VkSemaphore;
 
 public class GraphicExecutionRecorders extends ExecutionRecorders<IGraphicContext>
 		implements IGraphicExecutionRecorders
 {
-	public final PresentSemaphore imageAvailableSemaphore;
+	public final VkSemaphore imageAvailableSemaphore;
 
 	public GraphicExecutionRecorders()
 	{
-		imageAvailableSemaphore = new PresentSemaphore();
+		imageAvailableSemaphore = new VkSemaphore();
 	}
 
 	@Override
 	public List<GraphicExecutionRecorder> createRecorders(	MemoryStack stack,
-	                                                      	IGraphicContext context)
+															IGraphicContext context)
 	{
 		final List<GraphicExecutionRecorder> res = new ArrayList<>();
 
@@ -77,12 +76,12 @@ public class GraphicExecutionRecorders extends ExecutionRecorders<IGraphicContex
 	private WaitData createAcquireSemaphoreData(GraphicProcess process)
 	{
 		final var acquireWaitStage = process.getConfiguration().getAcquireWaitStage();
-		return new WaitData(imageAvailableSemaphore.presentSemaphore, acquireWaitStage);
+		return new WaitData(imageAvailableSemaphore, acquireWaitStage);
 	}
 
 	@Override
-	public VkSemaphore getPresentSemaphore()
+	public VkSemaphore getAcquireSemaphore()
 	{
-		return imageAvailableSemaphore.presentSemaphore;
+		return imageAvailableSemaphore;
 	}
 }

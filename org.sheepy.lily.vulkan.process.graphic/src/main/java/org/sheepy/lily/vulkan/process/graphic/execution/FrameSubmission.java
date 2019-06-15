@@ -118,7 +118,7 @@ public class FrameSubmission extends Submission<IGraphicContext>
 			if (DebugUtil.DEBUG_ENABLED)
 			{
 				final var status = EVulkanErrorStatus.resolveFromCode(res);
-				System.err.println(status.message);
+				System.err.println("[Present] " + status.message);
 			}
 			presentWaitSemaphore.signalSemaphore(context);
 		}
