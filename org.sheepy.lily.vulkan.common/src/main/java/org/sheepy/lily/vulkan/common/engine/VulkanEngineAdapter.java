@@ -131,10 +131,18 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		this.engine = engine;
 		application = (Application) engine.eContainer();
 		debug = DebugUtil.DEBUG_ENABLED;
-		window = new Window(application.getSize(), application.getTitle(),
-				application.isResizeable(), application.isFullscreen());
+		if (application.isHeadless() == false)
+		{
+			window = new Window(application.getSize(), application.getTitle(),
+					application.isResizeable(), application.isFullscreen());
+			inputManager = new VulkanInputManager(application, window);
+		}
+		else
+		{
+			window = null;
+			inputManager = null;
+		}
 		executionContext = new ExecutionContext(EQueueType.Graphic, false);
-		inputManager = new VulkanInputManager(application, window);
 
 		try (MemoryStack stack = stackPush())
 		{
@@ -172,16 +180,17 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 		try (MemoryStack stack = stackPush())
 		{
 			createInstance(stack);
-			window.open(vkInstance.getVkInstance());
+			if (window != null) window.open(vkInstance.getVkInstance());
 
-			final var dummySurface = window.createSurface();
+			final var dummySurface = window != null ? window.createSurface() : null;
 			pickPhysicalDevice(stack, dummySurface);
 			createLogicalDevice(stack, dummySurface);
-			dummySurface.free();
+			if (dummySurface != null) dummySurface.free();
 
 			vulkanContext = new VulkanContext(logicalDevice, window);
-			inputManager.load();
-			window.addListener(windowListener);
+			if (inputManager != null) inputManager.load();
+			if (window != null) window.addListener(windowListener);
+
 			allocate(stack);
 		} catch (final Throwable e)
 		{
@@ -218,7 +227,7 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			logicalDevice.waitIdle();
 		}
 
-		window.removeListener(windowListener);
+		if (window != null) window.removeListener(windowListener);
 		cleanup();
 	}
 
@@ -327,11 +336,11 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 
 	private void cleanup()
 	{
-		inputManager.dispose();
+		if(inputManager != null) inputManager.dispose();
 		logicalDevice.free();
 
-		window.close();
-		window.destroy();
+		if(window != null) window.close();
+		if(window != null) window.destroy();
 
 		physicalDevice.free();
 

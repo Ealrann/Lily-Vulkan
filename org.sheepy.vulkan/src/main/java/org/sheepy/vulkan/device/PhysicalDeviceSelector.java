@@ -75,7 +75,6 @@ public class PhysicalDeviceSelector
 
 	private void gatherDevices()
 	{
-		final PhysicalDeviceJudge judge = new PhysicalDeviceJudge();
 		final var vulkanInstance = vkInstance.getVkInstance();
 		for (int i = 0; i < pPhysicalDeviceCount.get(0); i++)
 		{
@@ -84,7 +83,9 @@ public class PhysicalDeviceSelector
 			final var physicalDevice = new PhysicalDevice(vkPhysicalDevice, vkInstance,
 					extensionRequirement);
 
-			final int deviceScore = judge.rateDeviceSuitability(physicalDevice, surface);
+			final int deviceScore = surface != null
+					? PhysicalDeviceJudge.rateDeviceSuitability(physicalDevice, surface)
+					: PhysicalDeviceJudge.rateDeviceSuitability(physicalDevice);
 
 			if (debug)
 			{

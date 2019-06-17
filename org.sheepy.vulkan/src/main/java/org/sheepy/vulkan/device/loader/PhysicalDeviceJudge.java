@@ -8,18 +8,10 @@ import org.sheepy.vulkan.device.capabilities.ColorDomains;
 import org.sheepy.vulkan.device.capabilities.PresentModes;
 import org.sheepy.vulkan.surface.VkSurface;
 
-public class PhysicalDeviceJudge
+public final class PhysicalDeviceJudge
 {
-	private ColorDomains colorDomains;
-	private PresentModes modes;
-
-	public PhysicalDeviceJudge()
-	{}
-
-	public int rateDeviceSuitability(PhysicalDevice physicalDevice, VkSurface surface)
+	public static int rateDeviceSuitability(PhysicalDevice physicalDevice)
 	{
-		colorDomains = new ColorDomains(physicalDevice.vkPhysicalDevice, surface);
-		modes = new PresentModes(physicalDevice.vkPhysicalDevice, surface);
 		final var deviceProperties = physicalDevice.deviceProperties.vkDeviceProperties;
 
 		final VkPhysicalDeviceFeatures deviceFeatures = VkPhysicalDeviceFeatures.calloc();
@@ -36,7 +28,6 @@ public class PhysicalDeviceJudge
 		score += deviceProperties.limits().maxImageDimension2D();
 
 		if (physicalDevice.getRetainedExtensions() == null
-				|| isAdequate() == false
 				|| deviceFeatures.samplerAnisotropy() == false)
 		{
 			score = 0;
@@ -51,8 +42,18 @@ public class PhysicalDeviceJudge
 		return score;
 	}
 
-	public boolean isAdequate()
+	public static int rateDeviceSuitability(PhysicalDevice physicalDevice, VkSurface surface)
 	{
-		return colorDomains.size() != 0 && modes.presentModes.length > 0;
+		int score = rateDeviceSuitability(physicalDevice);
+
+		final var colorDomains = new ColorDomains(physicalDevice.vkPhysicalDevice, surface);
+		final var modes = new PresentModes(physicalDevice.vkPhysicalDevice, surface);
+
+		if (colorDomains.size() == 0 || modes.presentModes.length == 0)
+		{
+			score = 0;
+		}
+
+		return score;
 	}
 }

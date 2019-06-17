@@ -9,7 +9,6 @@ import java.util.List;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkExtensionProperties;
-import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.window.Window;
 
 public class EngineExtensionRequirement
@@ -29,14 +28,10 @@ public class EngineExtensionRequirement
 	{
 		/* Look for GLFW instance extensions */
 		final PointerBuffer glfwRequiredExtensions = Window.getRequiredInstanceExtensions();
-		if (glfwRequiredExtensions == null)
-		{
-			Logger.log("Failed to find list of required Vulkan extensions");
-		}
 
 		var res = glfwRequiredExtensions;
 
-		if (requiredInstanceExtensions.isEmpty() == false)
+		if (res != null && requiredInstanceExtensions.isEmpty() == false)
 		{
 			res = stack.mallocPointer(
 					glfwRequiredExtensions.capacity() + requiredInstanceExtensions.size());

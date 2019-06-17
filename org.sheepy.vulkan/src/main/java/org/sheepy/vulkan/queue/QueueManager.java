@@ -41,7 +41,10 @@ public class QueueManager
 			loadComputeFamilly();
 		}
 
-		loadPresentFamilly(surface);
+		if (surface != null)
+		{
+			loadPresentFamilly(surface);
+		}
 
 		determineExclusitvity();
 	}
