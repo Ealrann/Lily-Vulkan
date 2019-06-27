@@ -89,4 +89,12 @@ public class VkBufferDescriptor implements IVkDescriptor
 	{
 		return hasChanged;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "VkBufferDescriptor [bufferPtr=" + bufferPtr + ", capacity=" + capacity + ", descriptorType="
+				+ descriptorType + ", shaderStages=" + shaderStages + ", hasChanged=" + hasChanged + ", offset="
+				+ offset + "]";
+	}
 }

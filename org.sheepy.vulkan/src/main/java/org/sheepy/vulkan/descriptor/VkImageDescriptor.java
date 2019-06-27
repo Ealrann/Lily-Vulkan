@@ -68,4 +68,12 @@ public class VkImageDescriptor implements IVkDescriptor
 		writeDescriptor.pImageInfo(imageInfo);
 		writeDescriptor.pTexelBufferView(null);
 	}
+
+	@Override
+	public String toString()
+	{
+		return "VkImageDescriptor [imageViewAddress=" + imageViewAddress + ", samplerAddress=" + samplerAddress
+				+ ", descriptorType=" + descriptorType + ", shaderStages=" + shaderStages + ", imageLayout="
+				+ imageLayout + "]";
+	}
 }

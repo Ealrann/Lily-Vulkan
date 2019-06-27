@@ -4,6 +4,7 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkComputePipelineCreateInfo;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.process.IComputeContext;
 import org.sheepy.vulkan.log.Logger;
 import org.sheepy.vulkan.pipeline.IShaderStageFiller;
@@ -43,6 +44,12 @@ public class VkComputePipeline extends VkPipeline<IComputeContext>
 		shader.fillInfo(pipelineCreateInfo.stage());
 
 		pipelineCreateInfos.flip();
+
+		if(DebugUtil.DEBUG_ENABLED)
+		{
+			System.out.println("Create compute pipeline with layout:");
+			System.out.println(pipelineLayout.toString());
+		}
 
 		Logger.check("Failed to create compute pipeline!", () -> vkCreateComputePipelines(device,
 				VK_NULL_HANDLE, pipelineCreateInfos, null, pipelineIds));

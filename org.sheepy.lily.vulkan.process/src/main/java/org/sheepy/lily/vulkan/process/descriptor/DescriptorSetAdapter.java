@@ -100,6 +100,11 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 		}
 	}
 
+	public String toString()
+	{
+		return vkDescriptorSet.toString();
+	}
+
 	public static DescriptorSetAdapter adapt(DescriptorSet object)
 	{
 		return IAdapterFactoryService.INSTANCE.adapt(object, DescriptorSetAdapter.class);

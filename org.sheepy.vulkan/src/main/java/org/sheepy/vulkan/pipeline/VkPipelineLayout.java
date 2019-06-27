@@ -143,4 +143,27 @@ public final class VkPipelineLayout<T extends IExecutionContext> implements IAll
 	{
 		return pipelineLayout;
 	}
+
+	@Override
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("Pipeline Layout:\n");
+		for (int i = 0; i < descriptorSets.size(); i++) {
+			final var descriptorSet = descriptorSets.get(i);
+			sb.append("Set ").append(i).append(":\n");
+			sb.append(descriptorSet.toString());
+			sb.append("\n");
+		}
+
+		for (int i = 0; i < constantRanges.size(); i++) {
+			final var constantRange = constantRanges.get(i);
+			sb.append("ConstantRange ").append(i).append(": ");
+			sb.append(constantRange.getSize());
+			sb.append("\n");
+		}
+
+		return sb.toString();
+	}
 }

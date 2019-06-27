@@ -195,4 +195,18 @@ public class VkDescriptorSet implements IVkDescriptorSet
 	{
 		return descriptors.size();
 	}
+
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < descriptors.size(); i++)
+		{
+			final var descriptor = descriptors.get(i);
+			sb.append(descriptor.toString());
+			sb.append("\n");
+		}
+
+		return sb.toString();
+	}
 }
