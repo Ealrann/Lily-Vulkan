@@ -194,6 +194,7 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			GraphicProcess graphicProcess = (GraphicProcess) theEObject;
 			T1 result = caseGraphicProcess(graphicProcess);
 			if (result == null) result = caseAbstractProcess(graphicProcess);
+			if (result == null) result = caseMaintainable(graphicProcess);
 			if (result == null) result = caseIProcess(graphicProcess);
 			if (result == null) result = caseIResourceContainer(graphicProcess);
 			if (result == null) result = caseLNamedElement(graphicProcess);

@@ -253,6 +253,11 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createAbstractProcessAdapter();
 		}
 		@Override
+		public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
+		{
+			return createMaintainableAdapter();
+		}
+		@Override
 		public Adapter caseIProcessPart(IProcessPart object)
 		{
 			return createIProcessPartAdapter();
@@ -261,11 +266,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 		public Adapter caseIPipeline(IPipeline object)
 		{
 			return createIPipelineAdapter();
-		}
-		@Override
-		public <T extends Maintainable<T>> Adapter caseMaintainable(Maintainable<T> object)
-		{
-			return createMaintainableAdapter();
 		}
 		@Override
 		public Adapter caseBarrier(Barrier object)

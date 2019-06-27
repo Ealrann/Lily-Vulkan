@@ -1016,13 +1016,22 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__WAIT_FOR = ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR;
 
 	/**
+	 * The feature id for the '<em><b>Builder</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHIC_PROCESS__BUILDER = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__CONFIGURATION = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
+	int GRAPHIC_PROCESS__CONFIGURATION = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Render Pass Info</b></em>' containment reference.
@@ -1031,7 +1040,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__RENDER_PASS_INFO = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 1;
+	int GRAPHIC_PROCESS__RENDER_PASS_INFO = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Field Of View Y</b></em>' attribute.
@@ -1040,7 +1049,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__FIELD_OF_VIEW_Y = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 2;
+	int GRAPHIC_PROCESS__FIELD_OF_VIEW_Y = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -1049,7 +1058,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 3;
+	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.

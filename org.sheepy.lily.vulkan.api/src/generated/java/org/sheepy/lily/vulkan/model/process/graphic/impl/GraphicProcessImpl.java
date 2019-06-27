@@ -9,6 +9,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.sheepy.lily.core.model.maintainer.Maintainable;
+import org.sheepy.lily.core.model.maintainer.Maintainer;
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -24,6 +27,7 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getBuilder <em>Builder</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getConfiguration <em>Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getRenderPassInfo <em>Render Pass Info</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getFieldOfViewY <em>Field Of View Y</em>}</li>
@@ -33,6 +37,16 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  */
 public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicProcess
 {
+	/**
+	 * The cached value of the '{@link #getBuilder() <em>Builder</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBuilder()
+	 * @generated
+	 * @ordered
+	 */
+	protected Maintainer<GraphicProcess> builder;
+
 	/**
 	 * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -92,6 +106,59 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	protected EClass eStaticClass()
 	{
 		return GraphicPackage.Literals.GRAPHIC_PROCESS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Maintainer<GraphicProcess> getBuilder()
+	{
+		return builder;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBuilder(	Maintainer<GraphicProcess> newBuilder,
+												NotificationChain msgs)
+	{
+		Maintainer<GraphicProcess> oldBuilder = builder;
+		builder = newBuilder;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					GraphicPackage.GRAPHIC_PROCESS__BUILDER, oldBuilder, newBuilder);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBuilder(Maintainer<GraphicProcess> newBuilder)
+	{
+		if (newBuilder != builder)
+		{
+			NotificationChain msgs = null;
+			if (builder != null) msgs = ((InternalEObject) builder).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__BUILDER, null, msgs);
+			if (newBuilder != null) msgs = ((InternalEObject) newBuilder).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__BUILDER, null, msgs);
+			msgs = basicSetBuilder(newBuilder, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHIC_PROCESS__BUILDER, newBuilder, newBuilder));
 	}
 
 	/**
@@ -247,6 +314,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
+			return basicSetBuilder(null, msgs);
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			return basicSetConfiguration(null, msgs);
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
@@ -265,6 +334,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
+			return getBuilder();
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			return getConfiguration();
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
@@ -280,11 +351,15 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
+			setBuilder((Maintainer<GraphicProcess>) newValue);
+			return;
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			setConfiguration((GraphicConfiguration) newValue);
 			return;
@@ -308,6 +383,9 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
+			setBuilder((Maintainer<GraphicProcess>) null);
+			return;
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			setConfiguration((GraphicConfiguration) null);
 			return;
@@ -331,6 +409,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
+		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
+			return builder != null;
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			return configuration != null;
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
@@ -339,6 +419,48 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 			return fieldOfViewY != FIELD_OF_VIEW_Y_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == Maintainable.class)
+		{
+			switch (derivedFeatureID)
+			{
+			case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
+				return MaintainerPackage.MAINTAINABLE__BUILDER;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == Maintainable.class)
+		{
+			switch (baseFeatureID)
+			{
+			case MaintainerPackage.MAINTAINABLE__BUILDER:
+				return GraphicPackage.GRAPHIC_PROCESS__BUILDER;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

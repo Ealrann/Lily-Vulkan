@@ -128,7 +128,7 @@ class ExtraAttachmentDescription extends AttachmentDescription
 	refers ISwapAttachment[1..1] attachment
 }
 
-class GraphicProcess extends AbstractProcess
+class GraphicProcess extends AbstractProcess, Maintainable<GraphicProcess>
 {
 	contains GraphicConfiguration[1..1] configuration
 	contains RenderPassInfo[1..1] renderPassInfo

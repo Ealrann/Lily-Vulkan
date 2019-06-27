@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic;
 
+import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
 /**
@@ -22,7 +23,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
  * @model
  * @generated
  */
-public interface GraphicProcess extends AbstractProcess
+public interface GraphicProcess extends AbstractProcess, Maintainable<GraphicProcess>
 {
 	/**
 	 * Returns the value of the '<em><b>Configuration</b></em>' containment reference.
