@@ -4,10 +4,7 @@ buildscript {
 	repositories {
 		mavenLocal()
 		mavenCentral()
-		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-		maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 		maven { url "https://plugins.gradle.org/m2/" }
-		jcenter()
 	}
 	dependencies {
 		classpath "org.javamodularity:moduleplugin:1.5.0"
@@ -18,12 +15,11 @@ repositories {
 	mavenLocal()
 	mavenCentral()
 	maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-	maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 }
 
 project.ext.targetPlatform = OperatingSystem.current()
 
-project.ext.jomlVersion = "1.9.14"
+project.ext.jomlVersion = "1.9.15"
 project.ext.lwjglVersion = "3.2.2"
 
 subprojects {
@@ -57,8 +53,6 @@ subprojects {
 		repositories {
 			mavenLocal()
 			jcenter()
-			maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-			maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 		}
 	}
 }
