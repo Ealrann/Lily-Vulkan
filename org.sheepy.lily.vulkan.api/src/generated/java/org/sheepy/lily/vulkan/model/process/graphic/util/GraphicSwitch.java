@@ -149,10 +149,10 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicPackage.ATTACHEMENT_REF:
+		case GraphicPackage.ATTACHMENT_REF:
 		{
-			AttachementRef attachementRef = (AttachementRef) theEObject;
-			T1 result = caseAttachementRef(attachementRef);
+			AttachmentRef attachmentRef = (AttachmentRef) theEObject;
+			T1 result = caseAttachmentRef(attachmentRef);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -466,17 +466,17 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attachement Ref</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Attachment Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attachement Ref</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Attachment Ref</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAttachementRef(AttachementRef object)
+	public T1 caseAttachmentRef(AttachmentRef object)
 	{
 		return null;
 	}

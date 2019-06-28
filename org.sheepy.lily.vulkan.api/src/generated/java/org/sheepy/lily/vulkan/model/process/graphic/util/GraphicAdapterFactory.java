@@ -128,9 +128,9 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createSubpassAdapter();
 		}
 		@Override
-		public Adapter caseAttachementRef(AttachementRef object)
+		public Adapter caseAttachmentRef(AttachmentRef object)
 		{
-			return createAttachementRefAdapter();
+			return createAttachmentRefAdapter();
 		}
 		@Override
 		public Adapter caseSubpassDependency(SubpassDependency object)
@@ -439,16 +439,16 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef <em>Attachement Ref</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef <em>Attachment Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachementRef
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef
 	 * @generated
 	 */
-	public Adapter createAttachementRefAdapter()
+	public Adapter createAttachmentRefAdapter()
 	{
 		return null;
 	}

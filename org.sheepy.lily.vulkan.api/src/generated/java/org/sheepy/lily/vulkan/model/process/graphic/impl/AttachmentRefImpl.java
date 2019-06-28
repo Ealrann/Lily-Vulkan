@@ -9,36 +9,38 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
+
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attachement Ref</b></em>'.
+ * An implementation of the model object '<em><b>Attachment Ref</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl#getAttachement <em>Attachement</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl#getLayout <em>Layout</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefImpl#getAttachment <em>Attachment</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefImpl#getLayout <em>Layout</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AttachementRefImpl extends MinimalEObjectImpl.Container implements AttachementRef
+public class AttachmentRefImpl extends MinimalEObjectImpl.Container implements AttachmentRef
 {
 	/**
-	 * The cached value of the '{@link #getAttachement() <em>Attachement</em>}' reference.
+	 * The cached value of the '{@link #getAttachment() <em>Attachment</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAttachement()
+	 * @see #getAttachment()
 	 * @generated
 	 * @ordered
 	 */
-	protected AttachmentDescription attachement;
+	protected AttachmentDescription attachment;
 
 	/**
 	 * The default value of the '{@link #getLayout() <em>Layout</em>}' attribute.
@@ -65,7 +67,7 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttachementRefImpl()
+	public AttachmentRefImpl()
 	{
 		super();
 	}
@@ -78,7 +80,7 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	protected EClass eStaticClass()
 	{
-		return GraphicPackage.Literals.ATTACHEMENT_REF;
+		return GraphicPackage.Literals.ATTACHMENT_REF;
 	}
 
 	/**
@@ -87,20 +89,20 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public AttachmentDescription getAttachement()
+	public AttachmentDescription getAttachment()
 	{
-		if (attachement != null && attachement.eIsProxy())
+		if (attachment != null && attachment.eIsProxy())
 		{
-			InternalEObject oldAttachement = (InternalEObject) attachement;
-			attachement = (AttachmentDescription) eResolveProxy(oldAttachement);
-			if (attachement != oldAttachement)
+			InternalEObject oldAttachment = (InternalEObject) attachment;
+			attachment = (AttachmentDescription) eResolveProxy(oldAttachment);
+			if (attachment != oldAttachment)
 			{
-				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
-						Notification.RESOLVE, GraphicPackage.ATTACHEMENT_REF__ATTACHEMENT,
-						oldAttachement, attachement));
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
 			}
 		}
-		return attachement;
+		return attachment;
 	}
 
 	/**
@@ -108,9 +110,9 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttachmentDescription basicGetAttachement()
+	public AttachmentDescription basicGetAttachment()
 	{
-		return attachement;
+		return attachment;
 	}
 
 	/**
@@ -119,12 +121,12 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void setAttachement(AttachmentDescription newAttachement)
+	public void setAttachment(AttachmentDescription newAttachment)
 	{
-		AttachmentDescription oldAttachement = attachement;
-		attachement = newAttachement;
+		AttachmentDescription oldAttachment = attachment;
+		attachment = newAttachment;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTACHEMENT_REF__ATTACHEMENT, oldAttachement, attachement));
+				GraphicPackage.ATTACHMENT_REF__ATTACHMENT, oldAttachment, attachment));
 	}
 
 	/**
@@ -149,7 +151,7 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 		EImageLayout oldLayout = layout;
 		layout = newLayout == null ? LAYOUT_EDEFAULT : newLayout;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.ATTACHEMENT_REF__LAYOUT, oldLayout, layout));
+				GraphicPackage.ATTACHMENT_REF__LAYOUT, oldLayout, layout));
 	}
 
 	/**
@@ -162,10 +164,10 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTACHEMENT_REF__ATTACHEMENT:
-			if (resolve) return getAttachement();
-			return basicGetAttachement();
-		case GraphicPackage.ATTACHEMENT_REF__LAYOUT:
+		case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
+			if (resolve) return getAttachment();
+			return basicGetAttachment();
+		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
 			return getLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -181,10 +183,10 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTACHEMENT_REF__ATTACHEMENT:
-			setAttachement((AttachmentDescription) newValue);
+		case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
+			setAttachment((AttachmentDescription) newValue);
 			return;
-		case GraphicPackage.ATTACHEMENT_REF__LAYOUT:
+		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
 			setLayout((EImageLayout) newValue);
 			return;
 		}
@@ -201,10 +203,10 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTACHEMENT_REF__ATTACHEMENT:
-			setAttachement((AttachmentDescription) null);
+		case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
+			setAttachment((AttachmentDescription) null);
 			return;
-		case GraphicPackage.ATTACHEMENT_REF__LAYOUT:
+		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
 			setLayout(LAYOUT_EDEFAULT);
 			return;
 		}
@@ -221,9 +223,9 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.ATTACHEMENT_REF__ATTACHEMENT:
-			return attachement != null;
-		case GraphicPackage.ATTACHEMENT_REF__LAYOUT:
+		case GraphicPackage.ATTACHMENT_REF__ATTACHMENT:
+			return attachment != null;
+		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
 			return layout != LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -246,4 +248,4 @@ public class AttachementRefImpl extends MinimalEObjectImpl.Container implements 
 		return result.toString();
 	}
 
-} //AttachementRefImpl
+} //AttachmentRefImpl

@@ -4,8 +4,8 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkAttachmentReference;
 import org.lwjgl.vulkan.VkSubpassDescription;
 import org.sheepy.lily.vulkan.api.resource.attachment.ISwapAttachmentAdapter;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.ExtraAttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 
@@ -32,16 +32,16 @@ public class VkSubpassDescriptionAllocator
 			final var refs = subpassDescription.getRefs();
 			final var colorAttachmentRef = VkAttachmentReference.callocStack(colorAttachmentCount,
 					stack);
-			for (final AttachementRef ref : refs)
+			for (final AttachmentRef ref : refs)
 			{
 				VkAttachmentReference vkAttachmentRef = null;
 				// DepthAttachmentRef shouldn't be mixed with ColorAttachments
 
 				boolean isDepth = false;
-				if (ref.getAttachement() instanceof ExtraAttachmentDescription)
+				if (ref.getAttachment() instanceof ExtraAttachmentDescription)
 				{
 
-					final var attachment = ((ExtraAttachmentDescription) ref.getAttachement())
+					final var attachment = ((ExtraAttachmentDescription) ref.getAttachment())
 							.getAttachment();
 					final var adapter = ISwapAttachmentAdapter.adapt(attachment);
 					isDepth = adapter.isDepthAttachment();
@@ -91,10 +91,10 @@ public class VkSubpassDescriptionAllocator
 		return colorAttachmentCount;
 	}
 
-	private void fillAttachmentRef(	final AttachementRef attachmentRef,
+	private void fillAttachmentRef(	final AttachmentRef attachmentRef,
 									VkAttachmentReference vkAttachmentRef)
 	{
-		final AttachmentDescription attachement = attachmentRef.getAttachement();
+		final AttachmentDescription attachement = attachmentRef.getAttachment();
 		final int index = renderPass.getAttachments().indexOf(attachement);
 		vkAttachmentRef.attachment(index);
 		vkAttachmentRef.layout(attachmentRef.getLayout().getValue());

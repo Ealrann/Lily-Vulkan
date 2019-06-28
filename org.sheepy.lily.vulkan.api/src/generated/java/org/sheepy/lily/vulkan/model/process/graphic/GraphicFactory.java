@@ -96,13 +96,13 @@ public interface GraphicFactory extends EFactory
 	Subpass createSubpass();
 
 	/**
-	 * Returns a new object of class '<em>Attachement Ref</em>'.
+	 * Returns a new object of class '<em>Attachment Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attachement Ref</em>'.
+	 * @return a new object of class '<em>Attachment Ref</em>'.
 	 * @generated
 	 */
-	AttachementRef createAttachementRef();
+	AttachmentRef createAttachmentRef();
 
 	/**
 	 * Returns a new object of class '<em>Subpass Dependency</em>'.

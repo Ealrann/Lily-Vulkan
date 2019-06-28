@@ -496,23 +496,23 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl <em>Attachement Ref</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefImpl <em>Attachment Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentRef()
 	 * @generated
 	 */
-	int ATTACHEMENT_REF = 9;
+	int ATTACHMENT_REF = 9;
 
 	/**
-	 * The feature id for the '<em><b>Attachement</b></em>' reference.
+	 * The feature id for the '<em><b>Attachment</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHEMENT_REF__ATTACHEMENT = 0;
+	int ATTACHMENT_REF__ATTACHMENT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Layout</b></em>' attribute.
@@ -521,25 +521,25 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHEMENT_REF__LAYOUT = 1;
+	int ATTACHMENT_REF__LAYOUT = 1;
 
 	/**
-	 * The number of structural features of the '<em>Attachement Ref</em>' class.
+	 * The number of structural features of the '<em>Attachment Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHEMENT_REF_FEATURE_COUNT = 2;
+	int ATTACHMENT_REF_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Attachement Ref</em>' class.
+	 * The number of operations of the '<em>Attachment Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHEMENT_REF_OPERATION_COUNT = 0;
+	int ATTACHMENT_REF_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
@@ -2348,36 +2348,36 @@ public interface GraphicPackage extends EPackage
 	EReference getSubpass_Refs();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef <em>Attachement Ref</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef <em>Attachment Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attachement Ref</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachementRef
+	 * @return the meta object for class '<em>Attachment Ref</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef
 	 * @generated
 	 */
-	EClass getAttachementRef();
+	EClass getAttachmentRef();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef#getAttachement <em>Attachement</em>}'.
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getAttachment <em>Attachment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Attachement</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachementRef#getAttachement()
-	 * @see #getAttachementRef()
+	 * @return the meta object for the reference '<em>Attachment</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getAttachment()
+	 * @see #getAttachmentRef()
 	 * @generated
 	 */
-	EReference getAttachementRef_Attachement();
+	EReference getAttachmentRef_Attachment();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef#getLayout <em>Layout</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getLayout <em>Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Layout</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachementRef#getLayout()
-	 * @see #getAttachementRef()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef#getLayout()
+	 * @see #getAttachmentRef()
 	 * @generated
 	 */
-	EAttribute getAttachementRef_Layout();
+	EAttribute getAttachmentRef_Layout();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency <em>Subpass Dependency</em>}'.
@@ -3448,22 +3448,22 @@ public interface GraphicPackage extends EPackage
 		EReference SUBPASS__REFS = eINSTANCE.getSubpass_Refs();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl <em>Attachement Ref</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefImpl <em>Attachment Ref</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachementRef()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttachmentRef()
 		 * @generated
 		 */
-		EClass ATTACHEMENT_REF = eINSTANCE.getAttachementRef();
+		EClass ATTACHMENT_REF = eINSTANCE.getAttachmentRef();
 
 		/**
-		 * The meta object literal for the '<em><b>Attachement</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Attachment</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTACHEMENT_REF__ATTACHEMENT = eINSTANCE.getAttachementRef_Attachement();
+		EReference ATTACHMENT_REF__ATTACHMENT = eINSTANCE.getAttachmentRef_Attachment();
 
 		/**
 		 * The meta object literal for the '<em><b>Layout</b></em>' attribute feature.
@@ -3471,7 +3471,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTACHEMENT_REF__LAYOUT = eINSTANCE.getAttachementRef_Layout();
+		EAttribute ATTACHMENT_REF__LAYOUT = eINSTANCE.getAttachmentRef_Layout();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.

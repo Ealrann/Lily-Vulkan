@@ -6,31 +6,22 @@ import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.demo.adapter.CameraConstantAdapter;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
-import org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.BindVertexBufferImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.ColorDomainImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.ExtraAttachmentDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
@@ -42,7 +33,6 @@ import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl;
 import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.TextureImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -105,11 +95,12 @@ public class MeshModelFactory
 
 	private RenderPassInfo newInfo()
 	{
-		final RenderPassInfo renderPass = new RenderPassInfoImpl();
-		final var subpass = new SubpassImpl();
+		final var renderPass = GraphicFactory.eINSTANCE.createRenderPassInfo();
+		final var subpass = GraphicFactory.eINSTANCE.createSubpass();
 		renderPass.getSubpasses().add(subpass);
 
-		final var colorAttachmentDescriptor = new SwapImageAttachmentDescriptionImpl();
+		final var colorAttachmentDescriptor = GraphicFactory.eINSTANCE
+				.createSwapImageAttachmentDescription();
 		colorAttachmentDescriptor.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachmentDescriptor.setLoadOp(EAttachmentLoadOp.CLEAR);
 		colorAttachmentDescriptor.setStoreOp(EAttachmentStoreOp.STORE);
@@ -120,14 +111,15 @@ public class MeshModelFactory
 
 		renderPass.getAttachments().add(colorAttachmentDescriptor);
 
-		final AttachementRef colorRef = new AttachementRefImpl();
+		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachement(colorAttachmentDescriptor);
+		colorRef.setAttachment(colorAttachmentDescriptor);
 		subpass.getRefs().add(colorRef);
 
 		if (meshConfiguration.depth)
 		{
-			final var depthAttachmentDescriptor = new ExtraAttachmentDescriptionImpl();
+			final var depthAttachmentDescriptor = GraphicFactory.eINSTANCE
+					.createExtraAttachmentDescription();
 
 			depthAttachmentDescriptor.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 			depthAttachmentDescriptor.setLoadOp(EAttachmentLoadOp.CLEAR);
@@ -138,15 +130,15 @@ public class MeshModelFactory
 			depthAttachmentDescriptor.setFinalLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
 			depthAttachmentDescriptor.setAttachment(depthAttachment);
 
-			final AttachementRef depthRef = new AttachementRefImpl();
+			final var depthRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 			depthRef.setLayout(EImageLayout.DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
-			depthRef.setAttachement(depthAttachmentDescriptor);
+			depthRef.setAttachment(depthAttachmentDescriptor);
 
 			subpass.getRefs().add(depthRef);
 			renderPass.getAttachments().add(depthAttachmentDescriptor);
 		}
 
-		final SubpassDependency dependency = new SubpassDependencyImpl();
+		final var dependency = GraphicFactory.eINSTANCE.createSubpassDependency();
 		dependency.setSrcSubpass(null);
 		dependency.setDstSubpass(subpass);
 		dependency.getSrcStageMask().add(EPipelineStage.COLOR_ATTACHMENT_OUTPUT_BIT);
@@ -283,33 +275,33 @@ public class MeshModelFactory
 		taskList.add(bindIndexBuffer);
 		taskList.add(drawIndexed);
 
-		final var graphicProcess = new GraphicProcessImpl();
+		final var graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
 		graphicProcess.setResetAllowed(true);
 
-		final var resourceContainer = new ResourcePkgImpl();
-		graphicProcess.setResourcePkg(resourceContainer);
+		final var resourcePkg = VulkanFactory.eINSTANCE.createResourcePkg();
+		graphicProcess.setResourcePkg(resourcePkg);
 
-		resourceContainer.getResources().add(vertexShader);
-		resourceContainer.getResources().add(fragmentShader);
-		resourceContainer.getResources().add(pushBuffer);
-		resourceContainer.getResources().add(indexedVertexBuffer);
-		if (constantBuffer != null) resourceContainer.getResources().add(constantBuffer);
+		resourcePkg.getResources().add(vertexShader);
+		resourcePkg.getResources().add(fragmentShader);
+		resourcePkg.getResources().add(pushBuffer);
+		resourcePkg.getResources().add(indexedVertexBuffer);
+		if (constantBuffer != null) resourcePkg.getResources().add(constantBuffer);
 
 		graphicProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
 		graphicProcess.getPartPkg().getParts().add(graphicPipeline);
 
 		if (meshConfiguration.useTexture)
 		{
-			final ModuleResource textureFile = new ModuleResourceImpl();
+			final var textureFile = ResourceFactory.eINSTANCE.createModuleResource();
 			textureFile.setModule(module);
 			textureFile.setPath(meshConfiguration.texturePath);
 
-			final var texture = new TextureImpl();
+			final var texture = ResourceFactory.eINSTANCE.createTexture();
 			texture.setFile(textureFile);
 			texture.setMipmapEnabled(meshConfiguration.mipmap);
 
 			descriptorSet.getDescriptors().add(texture);
-			resourceContainer.getResources().add(texture);
+			resourcePkg.getResources().add(texture);
 		}
 
 		if (descriptorSet.getDescriptors().isEmpty() == false)

@@ -80,8 +80,8 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createRenderPassInfo();
 		case GraphicPackage.SUBPASS:
 			return createSubpass();
-		case GraphicPackage.ATTACHEMENT_REF:
-			return createAttachementRef();
+		case GraphicPackage.ATTACHMENT_REF:
+			return createAttachmentRef();
 		case GraphicPackage.SUBPASS_DEPENDENCY:
 			return createSubpassDependency();
 		case GraphicPackage.SWAP_IMAGE_ATTACHMENT_DESCRIPTION:
@@ -224,10 +224,10 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
-	public AttachementRef createAttachementRef()
+	public AttachmentRef createAttachmentRef()
 	{
-		AttachementRefImpl attachementRef = new AttachementRefImpl();
-		return attachementRef;
+		AttachmentRefImpl attachmentRef = new AttachmentRefImpl();
+		return attachmentRef;
 	}
 
 	/**

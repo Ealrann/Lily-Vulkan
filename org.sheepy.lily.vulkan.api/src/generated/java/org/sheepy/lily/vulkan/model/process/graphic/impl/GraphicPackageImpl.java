@@ -23,8 +23,8 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer;
@@ -135,7 +135,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass attachementRefEClass = null;
+	private EClass attachmentRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -670,9 +670,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getAttachementRef()
+	public EClass getAttachmentRef()
 	{
-		return attachementRefEClass;
+		return attachmentRefEClass;
 	}
 
 	/**
@@ -681,9 +681,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getAttachementRef_Attachement()
+	public EReference getAttachmentRef_Attachment()
 	{
-		return (EReference) attachementRefEClass.getEStructuralFeatures().get(0);
+		return (EReference) attachmentRefEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -692,9 +692,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttachementRef_Layout()
+	public EAttribute getAttachmentRef_Layout()
 	{
-		return (EAttribute) attachementRefEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) attachmentRefEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1572,9 +1572,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(subpassEClass, SUBPASS__NAME);
 		createEReference(subpassEClass, SUBPASS__REFS);
 
-		attachementRefEClass = createEClass(ATTACHEMENT_REF);
-		createEReference(attachementRefEClass, ATTACHEMENT_REF__ATTACHEMENT);
-		createEAttribute(attachementRefEClass, ATTACHEMENT_REF__LAYOUT);
+		attachmentRefEClass = createEClass(ATTACHMENT_REF);
+		createEReference(attachmentRefEClass, ATTACHMENT_REF__ATTACHMENT);
+		createEAttribute(attachmentRefEClass, ATTACHMENT_REF__LAYOUT);
 
 		subpassDependencyEClass = createEClass(SUBPASS_DEPENDENCY);
 		createEReference(subpassDependencyEClass, SUBPASS_DEPENDENCY__SRC_SUBPASS);
@@ -1846,19 +1846,19 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getSubpass_Name(), theEcorePackage.getEString(), "name", null, 0, 1,
 				Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSubpass_Refs(), this.getAttachementRef(), null, "refs", null, 0, -1,
+		initEReference(getSubpass_Refs(), this.getAttachmentRef(), null, "refs", null, 0, -1,
 				Subpass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(attachementRefEClass, AttachementRef.class, "AttachementRef", !IS_ABSTRACT,
+		initEClass(attachmentRefEClass, AttachmentRef.class, "AttachmentRef", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttachementRef_Attachement(), this.getAttachmentDescription(), null,
-				"attachement", null, 0, 1, AttachementRef.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getAttachmentRef_Attachment(), this.getAttachmentDescription(), null,
+				"attachment", null, 0, 1, AttachmentRef.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttachementRef_Layout(), theEnumerationPackage.getEImageLayout(),
-				"layout", null, 0, 1, AttachementRef.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttachmentRef_Layout(), theEnumerationPackage.getEImageLayout(), "layout",
+				null, 0, 1, AttachmentRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(subpassDependencyEClass, SubpassDependency.class, "SubpassDependency",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

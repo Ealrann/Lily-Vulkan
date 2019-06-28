@@ -53,7 +53,7 @@ public interface Subpass extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Refs</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef}.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Refs</em>' containment reference list isn't clear,
@@ -65,6 +65,6 @@ public interface Subpass extends EObject
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<AttachementRef> getRefs();
+	EList<AttachmentRef> getRefs();
 
 } // Subpass

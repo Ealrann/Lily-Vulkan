@@ -21,17 +21,19 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
+
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttachementRefItemProvider extends ItemProviderAdapter
+public class AttachmentRefItemProvider extends ItemProviderAdapter
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
@@ -41,7 +43,7 @@ public class AttachementRefItemProvider extends ItemProviderAdapter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttachementRefItemProvider(AdapterFactory adapterFactory)
+	public AttachmentRefItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -59,26 +61,26 @@ public class AttachementRefItemProvider extends ItemProviderAdapter
 		{
 			super.getPropertyDescriptors(object);
 
-			addAttachementPropertyDescriptor(object);
+			addAttachmentPropertyDescriptor(object);
 			addLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Attachement feature.
+	 * This adds a property descriptor for the Attachment feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAttachementPropertyDescriptor(Object object)
+	protected void addAttachmentPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AttachementRef_attachement_feature"),
+				getResourceLocator(), getString("_UI_AttachmentRef_attachment_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_AttachementRef_attachement_feature", "_UI_AttachementRef_type"),
-				GraphicPackage.Literals.ATTACHEMENT_REF__ATTACHEMENT, true, false, true, null, null,
+						"_UI_AttachmentRef_attachment_feature", "_UI_AttachmentRef_type"),
+				GraphicPackage.Literals.ATTACHMENT_REF__ATTACHMENT, true, false, true, null, null,
 				null));
 	}
 
@@ -92,15 +94,15 @@ public class AttachementRefItemProvider extends ItemProviderAdapter
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_AttachementRef_layout_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_AttachementRef_layout_feature",
-						"_UI_AttachementRef_type"),
-				GraphicPackage.Literals.ATTACHEMENT_REF__LAYOUT, true, false, false,
+				getResourceLocator(), getString("_UI_AttachmentRef_layout_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_AttachmentRef_layout_feature",
+						"_UI_AttachmentRef_type"),
+				GraphicPackage.Literals.ATTACHMENT_REF__LAYOUT, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns AttachementRef.gif.
+	 * This returns AttachmentRef.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -108,7 +110,7 @@ public class AttachementRefItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttachementRef"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttachmentRef"));
 	}
 
 	/**
@@ -120,11 +122,11 @@ public class AttachementRefItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		EImageLayout labelValue = ((AttachementRef) object).getLayout();
+		EImageLayout labelValue = ((AttachmentRef) object).getLayout();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0
-				? getString("_UI_AttachementRef_type")
-				: getString("_UI_AttachementRef_type") + " " + label;
+				? getString("_UI_AttachmentRef_type")
+				: getString("_UI_AttachmentRef_type") + " " + label;
 	}
 
 	/**
@@ -139,9 +141,9 @@ public class AttachementRefItemProvider extends ItemProviderAdapter
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AttachementRef.class))
+		switch (notification.getFeatureID(AttachmentRef.class))
 		{
-		case GraphicPackage.ATTACHEMENT_REF__LAYOUT:
+		case GraphicPackage.ATTACHMENT_REF__LAYOUT:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

@@ -17,8 +17,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
+import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.Subpass;
 
@@ -66,7 +65,7 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttachementRef> refs;
+	protected EList<AttachmentRef> refs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,11 +119,11 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	 * @generated
 	 */
 	@Override
-	public EList<AttachementRef> getRefs()
+	public EList<AttachmentRef> getRefs()
 	{
 		if (refs == null)
 		{
-			refs = new EObjectContainmentEList<AttachementRef>(AttachementRef.class, this,
+			refs = new EObjectContainmentEList<AttachmentRef>(AttachmentRef.class, this,
 					GraphicPackage.SUBPASS__REFS);
 		}
 		return refs;
@@ -182,7 +181,7 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 			return;
 		case GraphicPackage.SUBPASS__REFS:
 			getRefs().clear();
-			getRefs().addAll((Collection<? extends AttachementRef>) newValue);
+			getRefs().addAll((Collection<? extends AttachmentRef>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

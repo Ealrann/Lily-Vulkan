@@ -89,12 +89,12 @@ class RenderPassInfo
 class Subpass
 {
 	String name
-	contains AttachementRef[] refs
+	contains AttachmentRef[] refs
 }
 
-class AttachementRef
+class AttachmentRef
 {
-	refers AttachmentDescription attachement
+	refers AttachmentDescription attachment
 	EImageLayout layout
 }
 

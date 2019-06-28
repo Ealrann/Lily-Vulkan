@@ -306,28 +306,28 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttachementRefItemProvider attachementRefItemProvider;
+	protected AttachmentRefItemProvider attachmentRefItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachementRef}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAttachementRefAdapter()
+	public Adapter createAttachmentRefAdapter()
 	{
-		if (attachementRefItemProvider == null)
+		if (attachmentRefItemProvider == null)
 		{
-			attachementRefItemProvider = new AttachementRefItemProvider(this);
+			attachmentRefItemProvider = new AttachmentRefItemProvider(this);
 		}
 
-		return attachementRefItemProvider;
+		return attachmentRefItemProvider;
 	}
 
 	/**
@@ -916,7 +916,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (depthAttachmentItemProvider != null) depthAttachmentItemProvider.dispose();
 		if (renderPassInfoItemProvider != null) renderPassInfoItemProvider.dispose();
 		if (subpassItemProvider != null) subpassItemProvider.dispose();
-		if (attachementRefItemProvider != null) attachementRefItemProvider.dispose();
+		if (attachmentRefItemProvider != null) attachmentRefItemProvider.dispose();
 		if (subpassDependencyItemProvider != null) subpassDependencyItemProvider.dispose();
 		if (swapImageAttachmentDescriptionItemProvider != null)
 			swapImageAttachmentDescriptionItemProvider.dispose();

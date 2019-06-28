@@ -15,24 +15,12 @@ import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
 import org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachementRef;
-import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.AttachementRefImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.ColorDomainImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDescriptionImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.Image;
@@ -77,15 +65,17 @@ public class ModelFactory
 		application.setSize(size);
 		application.getEngines().add(engine);
 
-		final var swapchainConfiguration = new SwapchainConfigurationImpl();
+		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
 		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.TRANSFER_DST);
 		swapchainConfiguration.getSwapImageUsages().add(EImageUsage.COLOR_ATTACHMENT);
 
-		final GraphicConfiguration configuration = new GraphicConfigurationImpl();
-		configuration.setColorDomain(new ColorDomainImpl());
+		final var framebufferConfiguration = GraphicFactory.eINSTANCE
+				.createFramebufferConfiguration();
+		final var configuration = GraphicFactory.eINSTANCE.createGraphicConfiguration();
+		configuration.setColorDomain(GraphicFactory.eINSTANCE.createColorDomain());
 		configuration.setAcquireWaitStage(EPipelineStage.TRANSFER_BIT);
 		configuration.setSwapchainConfiguration(swapchainConfiguration);
-		configuration.setFramebufferConfiguration(new FramebufferConfigurationImpl());
+		configuration.setFramebufferConfiguration(framebufferConfiguration);
 
 		createComputeProcessPool();
 
@@ -101,11 +91,11 @@ public class ModelFactory
 
 	private static RenderPassInfo newInfo()
 	{
-		final RenderPassInfo renderPass = new RenderPassInfoImpl();
-		final var subpass = new SubpassImpl();
+		final var renderPass = GraphicFactory.eINSTANCE.createRenderPassInfo();
+		final var subpass = GraphicFactory.eINSTANCE.createSubpass();
 		renderPass.getSubpasses().add(subpass);
 
-		final AttachmentDescription colorAttachment = new SwapImageAttachmentDescriptionImpl();
+		final var colorAttachment = GraphicFactory.eINSTANCE.createSwapImageAttachmentDescription();
 		colorAttachment.setSamples(ESampleCount.SAMPLE_COUNT_1BIT);
 		colorAttachment.setLoadOp(EAttachmentLoadOp.LOAD);
 		colorAttachment.setStoreOp(EAttachmentStoreOp.STORE);
@@ -116,12 +106,12 @@ public class ModelFactory
 
 		renderPass.getAttachments().add(colorAttachment);
 
-		final AttachementRef colorRef = new AttachementRefImpl();
+		final var colorRef = GraphicFactory.eINSTANCE.createAttachmentRef();
 		colorRef.setLayout(EImageLayout.COLOR_ATTACHMENT_OPTIMAL);
-		colorRef.setAttachement(colorAttachment);
+		colorRef.setAttachment(colorAttachment);
 		subpass.getRefs().add(colorRef);
 
-		final SubpassDependency dependencyExt = new SubpassDependencyImpl();
+		final var dependencyExt = GraphicFactory.eINSTANCE.createSubpassDependency();
 		dependencyExt.setSrcSubpass(null);
 		dependencyExt.setDstSubpass(subpass);
 		dependencyExt.getSrcStageMask().add(EPipelineStage.TRANSFER_BIT);

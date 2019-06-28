@@ -182,7 +182,7 @@ public class SubpassItemProvider extends ItemProviderAdapter
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(GraphicPackage.Literals.SUBPASS__REFS,
-				GraphicFactory.eINSTANCE.createAttachementRef()));
+				GraphicFactory.eINSTANCE.createAttachmentRef()));
 	}
 
 	/**
