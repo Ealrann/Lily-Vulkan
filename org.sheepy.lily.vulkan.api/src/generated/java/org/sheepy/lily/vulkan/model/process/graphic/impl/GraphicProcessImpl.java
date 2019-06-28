@@ -27,7 +27,7 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getBuilder <em>Builder</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getMaintainer <em>Maintainer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getConfiguration <em>Configuration</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getRenderPassInfo <em>Render Pass Info</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl#getFieldOfViewY <em>Field Of View Y</em>}</li>
@@ -38,14 +38,14 @@ import org.sheepy.lily.vulkan.model.process.impl.AbstractProcessImpl;
 public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicProcess
 {
 	/**
-	 * The cached value of the '{@link #getBuilder() <em>Builder</em>}' containment reference.
+	 * The cached value of the '{@link #getMaintainer() <em>Maintainer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBuilder()
+	 * @see #getMaintainer()
 	 * @generated
 	 * @ordered
 	 */
-	protected Maintainer<GraphicProcess> builder;
+	protected Maintainer<GraphicProcess> maintainer;
 
 	/**
 	 * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' containment reference.
@@ -113,10 +113,22 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public Maintainer<GraphicProcess> getBuilder()
+	public Maintainer<GraphicProcess> getMaintainer()
 	{
-		return builder;
+		if (maintainer != null && maintainer.eIsProxy())
+		{
+			InternalEObject oldMaintainer = (InternalEObject) maintainer;
+			maintainer = (Maintainer<GraphicProcess>) eResolveProxy(oldMaintainer);
+			if (maintainer != oldMaintainer)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, maintainer));
+			}
+		}
+		return maintainer;
 	}
 
 	/**
@@ -124,15 +136,25 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBuilder(	Maintainer<GraphicProcess> newBuilder,
+	public Maintainer<GraphicProcess> basicGetMaintainer()
+	{
+		return maintainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMaintainer(Maintainer<GraphicProcess> newMaintainer,
 												NotificationChain msgs)
 	{
-		Maintainer<GraphicProcess> oldBuilder = builder;
-		builder = newBuilder;
+		Maintainer<GraphicProcess> oldMaintainer = maintainer;
+		maintainer = newMaintainer;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHIC_PROCESS__BUILDER, oldBuilder, newBuilder);
+					GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, oldMaintainer, newMaintainer);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -145,20 +167,20 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * @generated
 	 */
 	@Override
-	public void setBuilder(Maintainer<GraphicProcess> newBuilder)
+	public void setMaintainer(Maintainer<GraphicProcess> newMaintainer)
 	{
-		if (newBuilder != builder)
+		if (newMaintainer != maintainer)
 		{
 			NotificationChain msgs = null;
-			if (builder != null) msgs = ((InternalEObject) builder).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__BUILDER, null, msgs);
-			if (newBuilder != null) msgs = ((InternalEObject) newBuilder).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHIC_PROCESS__BUILDER, null, msgs);
-			msgs = basicSetBuilder(newBuilder, msgs);
+			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
+					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			if (newMaintainer != null) msgs = ((InternalEObject) newMaintainer).eInverseAdd(this,
+					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			msgs = basicSetMaintainer(newMaintainer, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHIC_PROCESS__BUILDER, newBuilder, newBuilder));
+				GraphicPackage.GRAPHIC_PROCESS__MAINTAINER, newMaintainer, newMaintainer));
 	}
 
 	/**
@@ -307,6 +329,27 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(	InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
+					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			return basicSetMaintainer((Maintainer<GraphicProcess>) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 											int featureID,
@@ -314,8 +357,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
-			return basicSetBuilder(null, msgs);
+		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+			return basicSetMaintainer(null, msgs);
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			return basicSetConfiguration(null, msgs);
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
@@ -334,8 +377,9 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
-			return getBuilder();
+		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+			if (resolve) return getMaintainer();
+			return basicGetMaintainer();
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			return getConfiguration();
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
@@ -357,8 +401,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
-			setBuilder((Maintainer<GraphicProcess>) newValue);
+		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+			setMaintainer((Maintainer<GraphicProcess>) newValue);
 			return;
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			setConfiguration((GraphicConfiguration) newValue);
@@ -383,8 +427,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
-			setBuilder((Maintainer<GraphicProcess>) null);
+		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+			setMaintainer((Maintainer<GraphicProcess>) null);
 			return;
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			setConfiguration((GraphicConfiguration) null);
@@ -409,8 +453,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
-			return builder != null;
+		case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+			return maintainer != null;
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 			return configuration != null;
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
@@ -433,8 +477,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		{
 			switch (derivedFeatureID)
 			{
-			case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
-				return MaintainerPackage.MAINTAINABLE__BUILDER;
+			case GraphicPackage.GRAPHIC_PROCESS__MAINTAINER:
+				return MaintainerPackage.MAINTAINABLE__MAINTAINER;
 			default:
 				return -1;
 			}
@@ -454,8 +498,8 @@ public class GraphicProcessImpl extends AbstractProcessImpl implements GraphicPr
 		{
 			switch (baseFeatureID)
 			{
-			case MaintainerPackage.MAINTAINABLE__BUILDER:
-				return GraphicPackage.GRAPHIC_PROCESS__BUILDER;
+			case MaintainerPackage.MAINTAINABLE__MAINTAINER:
+				return GraphicPackage.GRAPHIC_PROCESS__MAINTAINER;
 			default:
 				return -1;
 			}

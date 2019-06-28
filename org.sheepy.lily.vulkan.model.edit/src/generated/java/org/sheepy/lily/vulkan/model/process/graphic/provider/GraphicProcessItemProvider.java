@@ -13,7 +13,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
@@ -87,7 +86,6 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MaintainerPackage.Literals.MAINTAINABLE__BUILDER);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__CONFIGURATION);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHIC_PROCESS__RENDER_PASS_INFO);
 		}
@@ -153,7 +151,6 @@ public class GraphicProcessItemProvider extends AbstractProcessItemProvider
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case GraphicPackage.GRAPHIC_PROCESS__BUILDER:
 		case GraphicPackage.GRAPHIC_PROCESS__CONFIGURATION:
 		case GraphicPackage.GRAPHIC_PROCESS__RENDER_PASS_INFO:
 			fireNotifyChanged(

@@ -64,7 +64,10 @@ public abstract class AbstractProcessAdapter<T extends IProcessContext.IRecorder
 			{
 				final var part = parts.get(i);
 				final var adapter = IProcessPartAdapter.adapt(part);
-				partAdapters.add(adapter);
+				if (adapter != null)
+				{
+					partAdapters.add(adapter);
+				}
 			}
 		}
 	}

@@ -10,6 +10,7 @@ import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Dispose;
 import org.sheepy.lily.core.api.adapter.annotation.NotifyChanged;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
+import org.sheepy.lily.core.api.util.DebugUtil;
 import org.sheepy.lily.vulkan.api.allocation.IAllocableAdapter;
 import org.sheepy.lily.vulkan.api.allocation.IAllocationAdapter;
 import org.sheepy.lily.vulkan.api.pipeline.IPipelineAdapter;
@@ -109,6 +110,12 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	{
 		vkPipelineLayout = createVkPipelineLayout();
 		vkPipelineLayout.allocate(stack, context);
+		
+		if(DebugUtil.DEBUG_ENABLED)
+		{
+			System.out.print("Pipeline Layout: ");
+			System.out.println(vkPipelineLayout.toString());
+		}
 	}
 
 	protected VkPipelineLayout<T> createVkPipelineLayout()

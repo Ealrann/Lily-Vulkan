@@ -35,7 +35,7 @@ import org.sheepy.lily.vulkan.model.process.ProcessPackage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl#getBuilder <em>Builder</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl#getMaintainer <em>Maintainer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl#getRepeatCount <em>Repeat Count</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl#getTasks <em>Tasks</em>}</li>
  * </ul>
@@ -85,14 +85,14 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBuilder() <em>Builder</em>}' containment reference.
+	 * The cached value of the '{@link #getMaintainer() <em>Maintainer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBuilder()
+	 * @see #getMaintainer()
 	 * @generated
 	 * @ordered
 	 */
-	protected Maintainer<CompositeTask> builder;
+	protected Maintainer<CompositeTask> maintainer;
 
 	/**
 	 * The default value of the '{@link #getRepeatCount() <em>Repeat Count</em>}' attribute.
@@ -200,10 +200,22 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public Maintainer<CompositeTask> getBuilder()
+	public Maintainer<CompositeTask> getMaintainer()
 	{
-		return builder;
+		if (maintainer != null && maintainer.eIsProxy())
+		{
+			InternalEObject oldMaintainer = (InternalEObject) maintainer;
+			maintainer = (Maintainer<CompositeTask>) eResolveProxy(oldMaintainer);
+			if (maintainer != oldMaintainer)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ProcessPackage.COMPOSITE_TASK__MAINTAINER, oldMaintainer, maintainer));
+			}
+		}
+		return maintainer;
 	}
 
 	/**
@@ -211,15 +223,25 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBuilder(	Maintainer<CompositeTask> newBuilder,
+	public Maintainer<CompositeTask> basicGetMaintainer()
+	{
+		return maintainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMaintainer(Maintainer<CompositeTask> newMaintainer,
 												NotificationChain msgs)
 	{
-		Maintainer<CompositeTask> oldBuilder = builder;
-		builder = newBuilder;
+		Maintainer<CompositeTask> oldMaintainer = maintainer;
+		maintainer = newMaintainer;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ProcessPackage.COMPOSITE_TASK__BUILDER, oldBuilder, newBuilder);
+					ProcessPackage.COMPOSITE_TASK__MAINTAINER, oldMaintainer, newMaintainer);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -232,20 +254,20 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	 * @generated
 	 */
 	@Override
-	public void setBuilder(Maintainer<CompositeTask> newBuilder)
+	public void setMaintainer(Maintainer<CompositeTask> newMaintainer)
 	{
-		if (newBuilder != builder)
+		if (newMaintainer != maintainer)
 		{
 			NotificationChain msgs = null;
-			if (builder != null) msgs = ((InternalEObject) builder).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.COMPOSITE_TASK__BUILDER, null, msgs);
-			if (newBuilder != null) msgs = ((InternalEObject) newBuilder).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - ProcessPackage.COMPOSITE_TASK__BUILDER, null, msgs);
-			msgs = basicSetBuilder(newBuilder, msgs);
+			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
+					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			if (newMaintainer != null) msgs = ((InternalEObject) newMaintainer).eInverseAdd(this,
+					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			msgs = basicSetMaintainer(newMaintainer, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ProcessPackage.COMPOSITE_TASK__BUILDER, newBuilder, newBuilder));
+				ProcessPackage.COMPOSITE_TASK__MAINTAINER, newMaintainer, newMaintainer));
 	}
 
 	/**
@@ -294,6 +316,27 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(	InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+		case ProcessPackage.COMPOSITE_TASK__MAINTAINER:
+			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
+					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			return basicSetMaintainer((Maintainer<CompositeTask>) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 											int featureID,
@@ -301,8 +344,8 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	{
 		switch (featureID)
 		{
-		case ProcessPackage.COMPOSITE_TASK__BUILDER:
-			return basicSetBuilder(null, msgs);
+		case ProcessPackage.COMPOSITE_TASK__MAINTAINER:
+			return basicSetMaintainer(null, msgs);
 		case ProcessPackage.COMPOSITE_TASK__TASKS:
 			return ((InternalEList<?>) getTasks()).basicRemove(otherEnd, msgs);
 		}
@@ -323,8 +366,9 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 			return getName();
 		case ProcessPackage.COMPOSITE_TASK__ENABLED:
 			return isEnabled();
-		case ProcessPackage.COMPOSITE_TASK__BUILDER:
-			return getBuilder();
+		case ProcessPackage.COMPOSITE_TASK__MAINTAINER:
+			if (resolve) return getMaintainer();
+			return basicGetMaintainer();
 		case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:
 			return getRepeatCount();
 		case ProcessPackage.COMPOSITE_TASK__TASKS:
@@ -350,8 +394,8 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 		case ProcessPackage.COMPOSITE_TASK__ENABLED:
 			setEnabled((Boolean) newValue);
 			return;
-		case ProcessPackage.COMPOSITE_TASK__BUILDER:
-			setBuilder((Maintainer<CompositeTask>) newValue);
+		case ProcessPackage.COMPOSITE_TASK__MAINTAINER:
+			setMaintainer((Maintainer<CompositeTask>) newValue);
 			return;
 		case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:
 			setRepeatCount((Integer) newValue);
@@ -380,8 +424,8 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 		case ProcessPackage.COMPOSITE_TASK__ENABLED:
 			setEnabled(ENABLED_EDEFAULT);
 			return;
-		case ProcessPackage.COMPOSITE_TASK__BUILDER:
-			setBuilder((Maintainer<CompositeTask>) null);
+		case ProcessPackage.COMPOSITE_TASK__MAINTAINER:
+			setMaintainer((Maintainer<CompositeTask>) null);
 			return;
 		case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:
 			setRepeatCount(REPEAT_COUNT_EDEFAULT);
@@ -407,8 +451,8 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ProcessPackage.COMPOSITE_TASK__ENABLED:
 			return enabled != ENABLED_EDEFAULT;
-		case ProcessPackage.COMPOSITE_TASK__BUILDER:
-			return builder != null;
+		case ProcessPackage.COMPOSITE_TASK__MAINTAINER:
+			return maintainer != null;
 		case ProcessPackage.COMPOSITE_TASK__REPEAT_COUNT:
 			return repeatCount != REPEAT_COUNT_EDEFAULT;
 		case ProcessPackage.COMPOSITE_TASK__TASKS:
@@ -429,8 +473,8 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 		{
 			switch (derivedFeatureID)
 			{
-			case ProcessPackage.COMPOSITE_TASK__BUILDER:
-				return MaintainerPackage.MAINTAINABLE__BUILDER;
+			case ProcessPackage.COMPOSITE_TASK__MAINTAINER:
+				return MaintainerPackage.MAINTAINABLE__MAINTAINER;
 			default:
 				return -1;
 			}
@@ -450,8 +494,8 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 		{
 			switch (baseFeatureID)
 			{
-			case MaintainerPackage.MAINTAINABLE__BUILDER:
-				return ProcessPackage.COMPOSITE_TASK__BUILDER;
+			case MaintainerPackage.MAINTAINABLE__MAINTAINER:
+				return ProcessPackage.COMPOSITE_TASK__MAINTAINER;
 			default:
 				return -1;
 			}

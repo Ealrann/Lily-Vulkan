@@ -49,7 +49,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getTaskPkg <em>Task Pkg</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getBuilder <em>Builder</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getMaintainer <em>Maintainer</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getShaders <em>Shaders</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getViewportState <em>Viewport State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getInputAssembly <em>Input Assembly</em>}</li>
@@ -155,14 +155,14 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 */
 	protected TaskPkg taskPkg;
 	/**
-	 * The cached value of the '{@link #getBuilder() <em>Builder</em>}' containment reference.
+	 * The cached value of the '{@link #getMaintainer() <em>Maintainer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBuilder()
+	 * @see #getMaintainer()
 	 * @generated
 	 * @ordered
 	 */
-	protected Maintainer<GraphicsPipeline> builder;
+	protected Maintainer<GraphicsPipeline> maintainer;
 	/**
 	 * The cached value of the '{@link #getShaders() <em>Shaders</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -533,10 +533,22 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public Maintainer<GraphicsPipeline> getBuilder()
+	public Maintainer<GraphicsPipeline> getMaintainer()
 	{
-		return builder;
+		if (maintainer != null && maintainer.eIsProxy())
+		{
+			InternalEObject oldMaintainer = (InternalEObject) maintainer;
+			maintainer = (Maintainer<GraphicsPipeline>) eResolveProxy(oldMaintainer);
+			if (maintainer != oldMaintainer)
+			{
+				if (eNotificationRequired()) eNotify(new ENotificationImpl(this,
+						Notification.RESOLVE, GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER,
+						oldMaintainer, maintainer));
+			}
+		}
+		return maintainer;
 	}
 
 	/**
@@ -544,15 +556,25 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBuilder(	Maintainer<GraphicsPipeline> newBuilder,
+	public Maintainer<GraphicsPipeline> basicGetMaintainer()
+	{
+		return maintainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMaintainer(Maintainer<GraphicsPipeline> newMaintainer,
 												NotificationChain msgs)
 	{
-		Maintainer<GraphicsPipeline> oldBuilder = builder;
-		builder = newBuilder;
+		Maintainer<GraphicsPipeline> oldMaintainer = maintainer;
+		maintainer = newMaintainer;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__BUILDER, oldBuilder, newBuilder);
+					GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, oldMaintainer, newMaintainer);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -565,20 +587,20 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void setBuilder(Maintainer<GraphicsPipeline> newBuilder)
+	public void setMaintainer(Maintainer<GraphicsPipeline> newMaintainer)
 	{
-		if (newBuilder != builder)
+		if (newMaintainer != maintainer)
 		{
 			NotificationChain msgs = null;
-			if (builder != null) msgs = ((InternalEObject) builder).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__BUILDER, null, msgs);
-			if (newBuilder != null) msgs = ((InternalEObject) newBuilder).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - GraphicPackage.GRAPHICS_PIPELINE__BUILDER, null, msgs);
-			msgs = basicSetBuilder(newBuilder, msgs);
+			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
+					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			if (newMaintainer != null) msgs = ((InternalEObject) newMaintainer).eInverseAdd(this,
+					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			msgs = basicSetMaintainer(newMaintainer, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__BUILDER, newBuilder, newBuilder));
+				GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER, newMaintainer, newMaintainer));
 	}
 
 	/**
@@ -969,6 +991,27 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(	InternalEObject otherEnd,
+											int featureID,
+											NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+			if (maintainer != null) msgs = ((InternalEObject) maintainer).eInverseRemove(this,
+					MaintainerPackage.MAINTAINER__MAINTAINED, Maintainer.class, msgs);
+			return basicSetMaintainer((Maintainer<GraphicsPipeline>) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 											int featureID,
@@ -984,8 +1027,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			return basicSetDescriptorSetPkg(null, msgs);
 		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
 			return basicSetTaskPkg(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
-			return basicSetBuilder(null, msgs);
+		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+			return basicSetMaintainer(null, msgs);
 		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
 			return basicSetViewportState(null, msgs);
 		case GraphicPackage.GRAPHICS_PIPELINE__INPUT_ASSEMBLY:
@@ -1026,8 +1069,9 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			return getDescriptorSetPkg();
 		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
 			return getTaskPkg();
-		case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
-			return getBuilder();
+		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+			if (resolve) return getMaintainer();
+			return basicGetMaintainer();
 		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 			return getShaders();
 		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
@@ -1081,8 +1125,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
 			setTaskPkg((TaskPkg) newValue);
 			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
-			setBuilder((Maintainer<GraphicsPipeline>) newValue);
+		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+			setMaintainer((Maintainer<GraphicsPipeline>) newValue);
 			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 			getShaders().clear();
@@ -1144,8 +1188,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
 			setTaskPkg((TaskPkg) null);
 			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
-			setBuilder((Maintainer<GraphicsPipeline>) null);
+		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+			setMaintainer((Maintainer<GraphicsPipeline>) null);
 			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 			getShaders().clear();
@@ -1199,8 +1243,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			return descriptorSetPkg != null;
 		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
 			return taskPkg != null;
-		case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
-			return builder != null;
+		case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+			return maintainer != null;
 		case GraphicPackage.GRAPHICS_PIPELINE__SHADERS:
 			return shaders != null && !shaders.isEmpty();
 		case GraphicPackage.GRAPHICS_PIPELINE__VIEWPORT_STATE:
@@ -1251,8 +1295,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			switch (derivedFeatureID)
 			{
-			case GraphicPackage.GRAPHICS_PIPELINE__BUILDER:
-				return MaintainerPackage.MAINTAINABLE__BUILDER;
+			case GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER:
+				return MaintainerPackage.MAINTAINABLE__MAINTAINER;
 			default:
 				return -1;
 			}
@@ -1290,8 +1334,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		{
 			switch (baseFeatureID)
 			{
-			case MaintainerPackage.MAINTAINABLE__BUILDER:
-				return GraphicPackage.GRAPHICS_PIPELINE__BUILDER;
+			case MaintainerPackage.MAINTAINABLE__MAINTAINER:
+				return GraphicPackage.GRAPHICS_PIPELINE__MAINTAINER;
 			default:
 				return -1;
 			}

@@ -1016,13 +1016,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_PROCESS__WAIT_FOR = ProcessPackage.ABSTRACT_PROCESS__WAIT_FOR;
 
 	/**
-	 * The feature id for the '<em><b>Builder</b></em>' containment reference.
+	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHIC_PROCESS__BUILDER = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
+	int GRAPHIC_PROCESS__MAINTAINER = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' containment reference.
@@ -1143,13 +1143,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__TASK_PKG = ProcessPackage.IPIPELINE__TASK_PKG;
 
 	/**
-	 * The feature id for the '<em><b>Builder</b></em>' containment reference.
+	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__BUILDER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
+	int GRAPHICS_PIPELINE__MAINTAINER = ProcessPackage.IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Shaders</b></em>' reference list.

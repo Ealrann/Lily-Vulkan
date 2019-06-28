@@ -23,8 +23,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
@@ -137,7 +135,6 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MaintainerPackage.Literals.MAINTAINABLE__BUILDER);
 			childrenFeatures.add(ProcessPackage.Literals.COMPOSITE_TASK__TASKS);
 		}
 		return childrenFeatures;
@@ -204,7 +201,6 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case ProcessPackage.COMPOSITE_TASK__BUILDER:
 		case ProcessPackage.COMPOSITE_TASK__TASKS:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));

@@ -692,13 +692,13 @@ public interface ProcessPackage extends EPackage
 	int COMPOSITE_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Builder</b></em>' containment reference.
+	 * The feature id for the '<em><b>Maintainer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_TASK__BUILDER = IPIPELINE_TASK_FEATURE_COUNT + 0;
+	int COMPOSITE_TASK__MAINTAINER = IPIPELINE_TASK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Repeat Count</b></em>' attribute.
