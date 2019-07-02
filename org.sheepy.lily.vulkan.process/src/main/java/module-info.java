@@ -37,5 +37,6 @@ module org.sheepy.lily.vulkan.process
 
 	opens org.sheepy.lily.vulkan.process.descriptor;
 	opens org.sheepy.lily.vulkan.process.barrier;
+	opens org.sheepy.lily.vulkan.process.pipeline;
 	opens org.sheepy.lily.vulkan.process.pipeline.task;
 }

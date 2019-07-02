@@ -18,9 +18,8 @@ import org.sheepy.vulkan.log.Logger;
 public class VulkanInstance
 {
 	private static final String[] LAYERS_TO_ENABLE = {
-			"VK_LAYER_LUNARG_standard_validation",
 			"VK_LAYER_KHRONOS_validation",
-			"VK_LAYER_LUNARG_monitor",
+			// "VK_LAYER_LUNARG_monitor",
 			// "VK_LAYER_LUNARG_api_dump"
 	};
 
