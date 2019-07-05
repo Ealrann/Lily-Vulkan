@@ -3,7 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
-import org.joml.Vector4f;
+import org.joml.Vector4fc;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +30,12 @@ public interface FramebufferConfiguration extends EObject
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Clear Value</em>' attribute.
-	 * @see #setClearValue(Vector4f)
+	 * @see #setClearValue(Vector4fc)
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getFramebufferConfiguration_ClearValue()
 	 * @model default="0;0;0;0" unique="false" dataType="org.sheepy.lily.core.model.types.Color4f"
 	 * @generated
 	 */
-	Vector4f getClearValue();
+	Vector4fc getClearValue();
 
 	/**
 	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.FramebufferConfiguration#getClearValue <em>Clear Value</em>}' attribute.
@@ -45,6 +45,6 @@ public interface FramebufferConfiguration extends EObject
 	 * @see #getClearValue()
 	 * @generated
 	 */
-	void setClearValue(Vector4f value);
+	void setClearValue(Vector4fc value);
 
 } // FramebufferConfiguration

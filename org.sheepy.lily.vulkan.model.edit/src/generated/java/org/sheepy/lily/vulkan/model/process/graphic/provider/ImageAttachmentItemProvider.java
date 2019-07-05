@@ -21,9 +21,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.joml.Vector4f;
-
+import org.joml.Vector4fc;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
 
@@ -122,7 +120,7 @@ public class ImageAttachmentItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		Vector4f labelValue = ((ImageAttachment) object).getClearValue();
+		Vector4fc labelValue = ((ImageAttachment) object).getClearValue();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0
 				? getString("_UI_ImageAttachment_type")

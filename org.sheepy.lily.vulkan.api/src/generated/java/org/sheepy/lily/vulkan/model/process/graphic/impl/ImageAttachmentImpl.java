@@ -9,9 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.joml.Vector4f;
-
+import org.joml.Vector4fc;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
@@ -44,7 +42,7 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Vector4f CLEAR_VALUE_EDEFAULT = (Vector4f) TypesFactory.eINSTANCE
+	protected static final Vector4fc CLEAR_VALUE_EDEFAULT = (Vector4fc) TypesFactory.eINSTANCE
 			.createFromString(TypesPackage.eINSTANCE.getColor4f(), "0;0;0;0");
 
 	/**
@@ -55,7 +53,7 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected Vector4f clearValue = CLEAR_VALUE_EDEFAULT;
+	protected Vector4fc clearValue = CLEAR_VALUE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getImageRef() <em>Image Ref</em>}' reference.
@@ -94,7 +92,7 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public Vector4f getClearValue()
+	public Vector4fc getClearValue()
 	{
 		return clearValue;
 	}
@@ -105,9 +103,9 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public void setClearValue(Vector4f newClearValue)
+	public void setClearValue(Vector4fc newClearValue)
 	{
-		Vector4f oldClearValue = clearValue;
+		Vector4fc oldClearValue = clearValue;
 		clearValue = newClearValue;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE, oldClearValue, clearValue));
@@ -189,7 +187,7 @@ public class ImageAttachmentImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID)
 		{
 		case GraphicPackage.IMAGE_ATTACHMENT__CLEAR_VALUE:
-			setClearValue((Vector4f) newValue);
+			setClearValue((Vector4fc) newValue);
 			return;
 		case GraphicPackage.IMAGE_ATTACHMENT__IMAGE_REF:
 			setImageRef((Image) newValue);

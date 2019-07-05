@@ -252,8 +252,8 @@ public class ModelFactory
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();
 
 		final var res = ComputeFactory.eINSTANCE.createComputePipeline();
-		computer.setWorkgroupCountX(application.getSize().x / WORKGROUP_SIDE);
-		computer.setWorkgroupCountY(application.getSize().y / WORKGROUP_SIDE);
+		computer.setWorkgroupCountX(application.getSize().x() / WORKGROUP_SIDE);
+		computer.setWorkgroupCountY(application.getSize().y() / WORKGROUP_SIDE);
 		res.setTaskPkg(taskPkg);
 		taskPkg.getTasks().add(bindDescriptorSet);
 		taskPkg.getTasks().add(computer);

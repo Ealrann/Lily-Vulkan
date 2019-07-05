@@ -8,9 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.joml.Vector4f;
-
+import org.joml.Vector4fc;
 import org.sheepy.lily.core.model.types.TypesFactory;
 import org.sheepy.lily.core.model.types.TypesPackage;
 
@@ -41,7 +39,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Vector4f CLEAR_VALUE_EDEFAULT = (Vector4f) TypesFactory.eINSTANCE
+	protected static final Vector4fc CLEAR_VALUE_EDEFAULT = (Vector4fc) TypesFactory.eINSTANCE
 			.createFromString(TypesPackage.eINSTANCE.getColor4f(), "0;0;0;0");
 
 	/**
@@ -52,7 +50,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected Vector4f clearValue = CLEAR_VALUE_EDEFAULT;
+	protected Vector4fc clearValue = CLEAR_VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,7 +79,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public Vector4f getClearValue()
+	public Vector4fc getClearValue()
 	{
 		return clearValue;
 	}
@@ -92,9 +90,9 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public void setClearValue(Vector4f newClearValue)
+	public void setClearValue(Vector4fc newClearValue)
 	{
-		Vector4f oldClearValue = clearValue;
+		Vector4fc oldClearValue = clearValue;
 		clearValue = newClearValue;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE, oldClearValue, clearValue));
@@ -127,7 +125,7 @@ public class FramebufferConfigurationImpl extends MinimalEObjectImpl.Container
 		switch (featureID)
 		{
 		case GraphicPackage.FRAMEBUFFER_CONFIGURATION__CLEAR_VALUE:
-			setClearValue((Vector4f) newValue);
+			setClearValue((Vector4fc) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import org.joml.Matrix4f;
-import org.joml.Vector2i;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -66,14 +65,13 @@ public class CameraConstantAdapter implements IVulkanAdapter
 	{
 		rotation += RADIANS_STEP;
 
-		final Vector2i size = application.getSize();
+		final var size = application.getSize();
+		final int width = size.x();
+		final int height = size.y();
 
 		model.identity().rotate((float) rotation, AXIS);
 
 		view.identity().lookAt(EYE_LOCATION, CENTER_LOCATION, UP_AXIS);
-
-		final int width = size.x;
-		final int height = size.y;
 
 		proj.identity().perspective(RADIANS_45DEG, (float) width / (float) height, 0.1f, 10f);
 		// inverse the y axis

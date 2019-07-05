@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
@@ -39,7 +40,7 @@ public class Window
 
 	private boolean fullscreenChangeRequested = false;
 
-	public Window(Vector2i initialSize, String title, boolean resizeable, boolean fullscreen)
+	public Window(Vector2ic initialSize, String title, boolean resizeable, boolean fullscreen)
 	{
 		this.size = new Vector2i(initialSize);
 		this.title = title;

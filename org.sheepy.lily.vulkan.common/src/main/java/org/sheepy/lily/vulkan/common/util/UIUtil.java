@@ -1,21 +1,21 @@
 package org.sheepy.lily.vulkan.common.util;
 
-import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.sheepy.lily.core.model.presentation.IPositionElement;
 import org.sheepy.lily.core.model.presentation.ISizedElement;
 
 public class UIUtil
 {
-	public final static int computeXRelative(Vector2i size, ISizedElement panel)
+	public final static int computeXRelative(Vector2ic size, ISizedElement panel)
 	{
-		int width = panel.getWidth();
+		final int width = panel.getWidth();
 		return computeXRelative(size, panel, width);
 	}
 
-	public final static int computeXRelative(Vector2i size, IPositionElement panel, int width)
+	public final static int computeXRelative(Vector2ic size, IPositionElement panel, int width)
 	{
-		int x = panel.getPosition().x;
-		int surfaceWidth = size.x;
+		int x = panel.getPosition().x();
+		final int surfaceWidth = size.x();
 
 		switch (panel.getHorizontalRelative())
 		{
@@ -31,16 +31,16 @@ public class UIUtil
 		return x;
 	}
 
-	public final static int computeYRelative(Vector2i size, ISizedElement panel)
+	public final static int computeYRelative(Vector2ic size, ISizedElement panel)
 	{
-		int height = panel.getHeight();
+		final int height = panel.getHeight();
 		return computeYRelative(size, panel, height);
 	}
 
-	public final static int computeYRelative(Vector2i size, IPositionElement panel, int height)
+	public final static int computeYRelative(Vector2ic size, IPositionElement panel, int height)
 	{
-		int y = panel.getPosition().y;
-		int surfaceHeight = size.y;
+		int y = panel.getPosition().y();
+		final int surfaceHeight = size.y();
 
 		switch (panel.getVerticalRelative())
 		{
