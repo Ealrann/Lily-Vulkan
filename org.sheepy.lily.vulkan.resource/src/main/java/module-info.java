@@ -39,5 +39,8 @@ module org.sheepy.lily.vulkan.resource
 
 	opens org.sheepy.lily.vulkan.resource.buffer;
 	opens org.sheepy.lily.vulkan.resource.file;
+	opens org.sheepy.lily.vulkan.resource.image;
+	opens org.sheepy.lily.vulkan.resource.semaphore;
 	opens org.sheepy.lily.vulkan.resource.shader;
+	opens org.sheepy.lily.vulkan.resource.texture;
 }

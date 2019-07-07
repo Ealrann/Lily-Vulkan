@@ -40,6 +40,7 @@ module org.sheepy.lily.vulkan.process.graphic
 	opens org.sheepy.lily.vulkan.process.graphic.barrier;
 	opens org.sheepy.lily.vulkan.process.graphic.frame;
 	opens org.sheepy.lily.vulkan.process.graphic.execution;
+	opens org.sheepy.lily.vulkan.process.graphic.pipeline;
 	opens org.sheepy.lily.vulkan.process.graphic.pipeline.task;
 	opens org.sheepy.lily.vulkan.process.graphic.process;
 	opens org.sheepy.lily.vulkan.process.graphic.resource;

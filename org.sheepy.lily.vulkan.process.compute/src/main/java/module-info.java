@@ -14,4 +14,7 @@ module org.sheepy.lily.vulkan.process.compute
 	exports org.sheepy.lily.vulkan.process.compute.execution;
 	exports org.sheepy.lily.vulkan.process.compute.pipeline;
 	exports org.sheepy.lily.vulkan.process.compute.process;
+
+	opens org.sheepy.lily.vulkan.process.compute.pipeline;
+	opens org.sheepy.lily.vulkan.process.compute.process;
 }
