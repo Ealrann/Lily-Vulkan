@@ -161,6 +161,7 @@ public class PushBufferItemProvider extends ItemProviderAdapter
 		switch (notification.getFeatureID(PushBuffer.class))
 		{
 		case ResourcePackage.PUSH_BUFFER__NAME:
+		case ResourcePackage.PUSH_BUFFER__BEING_UPDATED:
 		case ResourcePackage.PUSH_BUFFER__SIZE:
 		case ResourcePackage.PUSH_BUFFER__INSTANCE_COUNT:
 			fireNotifyChanged(

@@ -23,8 +23,8 @@ import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
  * </p>
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl#isBeingPushed <em>Being Pushed</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ConstantBufferImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,26 +52,6 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getData()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ByteBuffer DATA_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getData() <em>Data</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getData()
-	 * @generated
-	 * @ordered
-	 */
-	protected ByteBuffer data = DATA_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #isBeingPushed() <em>Being Pushed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,6 +70,26 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected boolean beingPushed = BEING_PUSHED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getData()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ByteBuffer DATA_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getData() <em>Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getData()
+	 * @generated
+	 * @ordered
+	 */
+	protected ByteBuffer data = DATA_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -199,10 +199,10 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		{
 		case ResourcePackage.CONSTANT_BUFFER__NAME:
 			return getName();
-		case ResourcePackage.CONSTANT_BUFFER__DATA:
-			return getData();
 		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
 			return isBeingPushed();
+		case ResourcePackage.CONSTANT_BUFFER__DATA:
+			return getData();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -220,11 +220,11 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		case ResourcePackage.CONSTANT_BUFFER__NAME:
 			setName((String) newValue);
 			return;
-		case ResourcePackage.CONSTANT_BUFFER__DATA:
-			setData((ByteBuffer) newValue);
-			return;
 		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
 			setBeingPushed((Boolean) newValue);
+			return;
+		case ResourcePackage.CONSTANT_BUFFER__DATA:
+			setData((ByteBuffer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -243,11 +243,11 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		case ResourcePackage.CONSTANT_BUFFER__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case ResourcePackage.CONSTANT_BUFFER__DATA:
-			setData(DATA_EDEFAULT);
-			return;
 		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
 			setBeingPushed(BEING_PUSHED_EDEFAULT);
+			return;
+		case ResourcePackage.CONSTANT_BUFFER__DATA:
+			setData(DATA_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -265,10 +265,10 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		{
 		case ResourcePackage.CONSTANT_BUFFER__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ResourcePackage.CONSTANT_BUFFER__DATA:
-			return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		case ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED:
 			return beingPushed != BEING_PUSHED_EDEFAULT;
+		case ResourcePackage.CONSTANT_BUFFER__DATA:
+			return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -286,10 +286,10 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", data: ");
-		result.append(data);
 		result.append(", beingPushed: ");
 		result.append(beingPushed);
+		result.append(", data: ");
+		result.append(data);
 		result.append(')');
 		return result.toString();
 	}

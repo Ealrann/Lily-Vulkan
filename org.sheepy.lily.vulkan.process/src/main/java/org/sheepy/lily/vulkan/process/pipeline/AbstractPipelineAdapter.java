@@ -37,14 +37,15 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 
 	protected final IPipeline pipeline;
 
-	protected boolean recordNeeded = false;
-	protected List<IAllocable<? super T>> allocationDependencies = new ArrayList<>();
-
 	private final List<IAllocationObject<? super T>> allocationList = new ArrayList<>();
 	private final List<TaskWrapper<?>> taskWrappers = new ArrayList<>();
-	private VkPipelineLayout<? super T> vkPipelineLayout;
 	private final TaskPkg taskPkg;
+
+	private VkPipelineLayout<? super T> vkPipelineLayout;
 	private boolean taskListDirty = true;
+
+	protected boolean recordNeeded = false;
+	protected List<IAllocable<? super T>> allocationDependencies = new ArrayList<>();
 
 	private final Adapter taskListener = new AdapterImpl()
 	{
@@ -62,7 +63,10 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	{
 		this.pipeline = pipeline;
 		taskPkg = pipeline.getTaskPkg();
-		taskPkg.eAdapters().add(taskListener);
+		if (taskPkg != null)
+		{
+			taskPkg.eAdapters().add(taskListener);
+		}
 
 		collectTasks();
 	}
@@ -70,7 +74,10 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	@Dispose
 	public void dispose()
 	{
-		taskPkg.eAdapters().remove(taskListener);
+		if (taskPkg != null)
+		{
+			taskPkg.eAdapters().remove(taskListener);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -79,17 +86,20 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 		allocationList.clear();
 		taskWrappers.clear();
 
-		final var tasks = taskPkg.getTasks();
-		for (int i = 0; i < tasks.size(); i++)
+		if (taskPkg != null)
 		{
-			final var task = tasks.get(i);
-			final var adapter = IAllocationAdapter.adapt(task);
-			if (adapter != null)
+			final var tasks = taskPkg.getTasks();
+			for (int i = 0; i < tasks.size(); i++)
 			{
-				allocationList.add((IAllocationObject<? super T>) adapter);
-			}
+				final var task = tasks.get(i);
+				final var adapter = IAllocationAdapter.adapt(task);
+				if (adapter != null)
+				{
+					allocationList.add((IAllocationObject<? super T>) adapter);
+				}
 
-			taskWrappers.add(new TaskWrapper<>(task));
+				taskWrappers.add(new TaskWrapper<>(task));
+			}
 		}
 
 		taskListDirty = false;
@@ -110,8 +120,8 @@ public abstract class AbstractPipelineAdapter<T extends IProcessContext>
 	{
 		vkPipelineLayout = createVkPipelineLayout();
 		vkPipelineLayout.allocate(stack, context);
-		
-		if(DebugUtil.DEBUG_ENABLED)
+
+		if (DebugUtil.DEBUG_ENABLED)
 		{
 			System.out.print("Pipeline Layout: ");
 			System.out.println(vkPipelineLayout.toString());

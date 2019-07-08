@@ -44,6 +44,9 @@ public class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTas
 
 		if (pushBufferAdapter != null)
 		{
+			task.getPushBuffer().setBeingUpdated(true);
+			task.getPushBuffer().setBeingUpdated(false);
+
 			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
 			final boolean previousRecordMadeFlush = stagingFlushHistory[index];
 			if (previousRecordMadeFlush)

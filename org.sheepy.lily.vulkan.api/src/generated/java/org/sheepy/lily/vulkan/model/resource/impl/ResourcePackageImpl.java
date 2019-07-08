@@ -448,7 +448,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPushBuffer_Size()
+	public EAttribute getPushBuffer_BeingUpdated()
 	{
 		return (EAttribute) pushBufferEClass.getEStructuralFeatures().get(0);
 	}
@@ -459,9 +459,20 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPushBuffer_InstanceCount()
+	public EAttribute getPushBuffer_Size()
 	{
 		return (EAttribute) pushBufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPushBuffer_InstanceCount()
+	{
+		return (EAttribute) pushBufferEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -483,7 +494,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getConstantBuffer_Data()
 	{
-		return (EAttribute) constantBufferEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) constantBufferEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -494,7 +505,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	@Override
 	public EAttribute getConstantBuffer_BeingPushed()
 	{
-		return (EAttribute) constantBufferEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) constantBufferEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1466,12 +1477,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		basicResourceEClass = createEClass(BASIC_RESOURCE);
 
 		pushBufferEClass = createEClass(PUSH_BUFFER);
+		createEAttribute(pushBufferEClass, PUSH_BUFFER__BEING_UPDATED);
 		createEAttribute(pushBufferEClass, PUSH_BUFFER__SIZE);
 		createEAttribute(pushBufferEClass, PUSH_BUFFER__INSTANCE_COUNT);
 
 		constantBufferEClass = createEClass(CONSTANT_BUFFER);
-		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__DATA);
 		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__BEING_PUSHED);
+		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__DATA);
 
 		descriptedResourceEClass = createEClass(DESCRIPTED_RESOURCE);
 
@@ -1673,6 +1685,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(pushBufferEClass, PushBuffer.class, "PushBuffer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPushBuffer_BeingUpdated(), theEcorePackage.getEBoolean(), "beingUpdated",
+				"false", 0, 1, PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPushBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
 				PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1682,12 +1697,12 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 
 		initEClass(constantBufferEClass, ConstantBuffer.class, "ConstantBuffer", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstantBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1,
-				ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConstantBuffer_BeingPushed(), theEcorePackage.getEBoolean(),
 				"beingPushed", "false", 0, 1, ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstantBuffer_Data(), this.getByteBuffer(), "data", null, 0, 1,
+				ConstantBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptedResourceEClass, DescriptedResource.class, "DescriptedResource",
 				IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

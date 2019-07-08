@@ -4,16 +4,19 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
-import org.sheepy.lily.core.api.adapter.annotation.Tick;
 import org.sheepy.lily.vulkan.api.resource.IBufferDataProviderAdapter;
 import org.sheepy.lily.vulkan.api.resource.ICompositeBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.IPushBufferAdapter;
 import org.sheepy.lily.vulkan.model.resource.BufferDataProvider;
 import org.sheepy.lily.vulkan.model.resource.CompositeBuffer;
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
+import org.sheepy.lily.vulkan.model.resource.PushBuffer;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.descriptor.VkBufferDescriptor;
 import org.sheepy.vulkan.device.PhysicalDevice;
@@ -34,13 +37,26 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 {
 	private final List<DataProviderWrapper> providerWrappers;
 	private final List<IVkDescriptor> descriptors = new ArrayList<>();
-	private final CompositeBuffer compositeBuffer;
 
 	private IBufferBackend bufferBackend;
+	private final PushBuffer pushBuffer;
+
+	private final AdapterImpl pushBufferListener = new AdapterImpl()
+	{
+		@Override
+		public void notifyChanged(Notification notification)
+		{
+			if (notification.getFeature() == ResourcePackage.Literals.PUSH_BUFFER__BEING_UPDATED
+					&& notification.getNewBooleanValue() == true)
+			{
+				update();
+			}
+		}
+	};
 
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
-		this.compositeBuffer = compositeBuffer;
+		pushBuffer = compositeBuffer.getPushBuffer();
 
 		final List<DataProviderWrapper> tmpList = new ArrayList<>();
 		for (final var dataProvider : compositeBuffer.getDataProviders())
@@ -77,12 +93,12 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 				descriptors.add(descriptor);
 			}
 		}
+
+		pushBuffer.eAdapters().add(pushBufferListener);
 	}
 
-	@Tick
 	public void update()
 	{
-		final var pushBuffer = compositeBuffer.getPushBuffer();
 		final var pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
 		final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
 
@@ -154,6 +170,8 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	public void free(IExecutionContext context)
 	{
 		bufferBackend.free(context);
+
+		pushBuffer.eAdapters().remove(pushBufferListener);
 	}
 
 	@Override

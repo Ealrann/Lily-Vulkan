@@ -15,8 +15,8 @@ import org.sheepy.lily.vulkan.model.IResource;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#getData <em>Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#isBeingPushed <em>Being Pushed</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#getData <em>Data</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getConstantBuffer()

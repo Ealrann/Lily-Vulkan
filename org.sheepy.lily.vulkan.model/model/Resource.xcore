@@ -30,14 +30,17 @@ class BasicResource extends IResource
 
 class PushBuffer extends IResource
 {
+	@GenModel(property="None")
+	boolean beingUpdated = "false"
 	long size
 	int instanceCount = "3"
 }
 
 class ConstantBuffer extends IResource
 {
-	ByteBuffer data
+	@GenModel(property="None")
 	boolean beingPushed = "false"
+	ByteBuffer data
 }
 
 interface DescriptedResource extends IResource
