@@ -24,6 +24,9 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 import org.sheepy.vulkan.resource.buffer.IBufferBackend;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer.MemoryTicket;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer.MemoryTicket.EReservationStatus;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class)
@@ -34,7 +37,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 	private final CompositeBuffer compositeBuffer;
 
 	private IBufferBackend bufferBackend;
-	private boolean needUpdate = true;
 
 	public CompositeBufferAdapter(CompositeBuffer compositeBuffer)
 	{
@@ -73,6 +75,43 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			{
 				final var descriptor = providerWrapper.createDescriptor(bufferBackend.getAddress());
 				descriptors.add(descriptor);
+			}
+		}
+	}
+
+	@Tick
+	public void update()
+	{
+		final var pushBuffer = compositeBuffer.getPushBuffer();
+		final var pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
+		final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
+
+		final List<DataProviderWrapper> providersToPush = new ArrayList<>();
+		boolean reservationSuccessfull = true;
+
+		for (final var providerWrapper : providerWrappers)
+		{
+			if (providerWrapper.needUpdate())
+			{
+				if (providerWrapper.reserveMemory(stagingBuffer) == false)
+				{
+					reservationSuccessfull = false;
+					break;
+				}
+
+				providersToPush.add(providerWrapper);
+			}
+		}
+
+		for (final var providerWrapper : providersToPush)
+		{
+			if (reservationSuccessfull)
+			{
+				providerWrapper.pushProvidedData();
+			}
+			else
+			{
+				providerWrapper.releaseMemory();
 			}
 		}
 	}
@@ -117,35 +156,6 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		bufferBackend.free(context);
 	}
 
-	@Tick
-	public void update()
-	{
-		final var pushBuffer = compositeBuffer.getPushBuffer();
-		final var pushBufferAdapter = IPushBufferAdapter.adapt(pushBuffer);
-		final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
-
-		for (final var providerWrapper : providerWrappers)
-		{
-			final var dataProvider = providerWrapper.dataProvider;
-			final boolean providerChanged = providerWrapper.adapter.hasChanged();
-			if (providerChanged || needUpdate)
-			{
-				final long size = dataProvider.getSize();
-				final long memAddress = stagingBuffer.reserveMemory(size);
-				final long bufferAddress = bufferBackend.getAddress();
-				final long offset = providerWrapper.alignedOffset;
-
-				final var stage = providerWrapper.getStage();
-				final var access = providerWrapper.getAccess();
-
-				providerWrapper.adapter.fill(memAddress);
-				stagingBuffer.pushSynchronized(memAddress, bufferAddress, offset, stage, access);
-			}
-		}
-
-		needUpdate = false;
-	}
-
 	@Override
 	public boolean isAllocationDirty(IExecutionContext context)
 	{
@@ -163,30 +173,61 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 		return bufferBackend.getAddress();
 	}
 
-	static final class DataProviderWrapper
+	private final class DataProviderWrapper
 	{
 		private final int usage;
 		private final BufferDataProvider dataProvider;
 		private final IBufferDataProviderAdapter adapter;
 
+		private final EAccess access;
+		private final EPipelineStage stage;
+
 		private long alignedOffset;
 		private long alignedSize;
+
+		private boolean needUpdate = true;
+		private MemoryTicket memTicket;
+		private IStagingBuffer stagingBuffer;
 
 		private DataProviderWrapper(BufferDataProvider dataProvider)
 		{
 			this.dataProvider = dataProvider;
 			this.adapter = IBufferDataProviderAdapter.adapt(dataProvider);
 			usage = dataProvider.getUsage().getValue();
+
+			access = guessAccessFromUsage(usage);
+			stage = guessStageFromUsage(usage);
 		}
 
-		public EAccess getAccess()
+		public boolean needUpdate()
 		{
-			return guessAccessFromUsage(usage);
+			return needUpdate || adapter.hasChanged();
 		}
 
-		public EPipelineStage getStage()
+		public boolean reserveMemory(IStagingBuffer stagingBuffer)
 		{
-			return guessStageFromUsage(usage);
+			this.stagingBuffer = stagingBuffer;
+			final long size = dataProvider.getSize();
+			memTicket = stagingBuffer.reserveMemory(size);
+
+			return memTicket.reservationStatus == EReservationStatus.SUCCESS;
+		}
+
+		public void releaseMemory()
+		{
+			stagingBuffer.releaseTicket(memTicket);
+		}
+
+		private void pushProvidedData()
+		{
+			assert (memTicket.reservationStatus != EReservationStatus.SUCCESS);
+
+			final long bufferAddress = bufferBackend.getAddress();
+
+			adapter.fill(memTicket.memoryAddress);
+			stagingBuffer.pushSynchronized(memTicket, bufferAddress, alignedOffset, stage, access);
+
+			needUpdate = false;
 		}
 
 		public IVkDescriptor createDescriptor(long bufferPtr)
@@ -207,49 +248,49 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			this.alignedOffset = align(desiredOffset, alignment);
 			this.alignedSize = align(size, alignment);
 		}
+	}
 
-		private long align(long index, long alignment)
+	private static long align(long index, long alignment)
+	{
+		final int chunkCount = (int) Math.ceil(((double) index) / alignment);
+		return chunkCount * alignment;
+	}
+
+	private static EPipelineStage guessStageFromUsage(int usage)
+	{
+		EPipelineStage res = null;
+		switch (usage)
 		{
-			final int chunkCount = (int) Math.ceil(((double) index) / alignment);
-			return chunkCount * alignment;
+		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
+			res = EPipelineStage.VERTEX_INPUT_BIT;
+			break;
+		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
+			res = EPipelineStage.VERTEX_INPUT_BIT;
+			break;
+		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
+			res = EPipelineStage.VERTEX_SHADER_BIT;
+			break;
 		}
 
-		private static EPipelineStage guessStageFromUsage(int usage)
-		{
-			EPipelineStage res = null;
-			switch (usage)
-			{
-			case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
-				res = EPipelineStage.VERTEX_INPUT_BIT;
-				break;
-			case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
-				res = EPipelineStage.VERTEX_INPUT_BIT;
-				break;
-			case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
-				res = EPipelineStage.VERTEX_SHADER_BIT;
-				break;
-			}
+		return res;
+	}
 
-			return res;
+	private static EAccess guessAccessFromUsage(int usage)
+	{
+		EAccess res = null;
+		switch (usage)
+		{
+		case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
+			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
+			break;
+		case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
+			res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
+			break;
+		case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
+			res = EAccess.UNIFORM_READ_BIT;
+			break;
 		}
 
-		private static EAccess guessAccessFromUsage(int usage)
-		{
-			EAccess res = null;
-			switch (usage)
-			{
-			case EBufferUsage.VERTEX_BUFFER_BIT_VALUE:
-				res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
-				break;
-			case EBufferUsage.INDEX_BUFFER_BIT_VALUE:
-				res = EAccess.VERTEX_ATTRIBUTE_READ_BIT;
-				break;
-			case EBufferUsage.UNIFORM_BUFFER_BIT_VALUE:
-				res = EAccess.UNIFORM_READ_BIT;
-				break;
-			}
-
-			return res;
-		}
+		return res;
 	}
 }

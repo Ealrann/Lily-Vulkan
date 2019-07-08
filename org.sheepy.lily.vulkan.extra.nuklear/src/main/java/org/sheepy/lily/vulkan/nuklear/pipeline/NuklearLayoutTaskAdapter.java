@@ -32,6 +32,7 @@ public class NuklearLayoutTaskAdapter
 	private final NuklearLayoutTask task;
 
 	private boolean dirty = true;
+	private boolean vertexUpdated = false;
 	private IGraphicContext context;
 
 	private Extent2D currentExtent;
@@ -110,9 +111,17 @@ public class NuklearLayoutTaskAdapter
 			final var stagingBuffer = pushBufferAdapter.getStagingBuffer();
 			final var vertexBuffer = task.getVertexBuffer();
 
-			nuklearContextAdapter.fillVertexBuffer(stagingBuffer, vertexBuffer);
-			final var commands = nuklearContextAdapter.prepareDrawCommands();
-			drawTaskMaintainer.reloadTasks(commands, currentExtent);
+			vertexUpdated = nuklearContextAdapter.fillVertexBuffer(stagingBuffer, vertexBuffer);
+
+			if (vertexUpdated == true)
+			{
+				final var commands = nuklearContextAdapter.prepareDrawCommands();
+				drawTaskMaintainer.reloadTasks(commands, currentExtent);
+			}
+			else
+			{
+				vertexUpdated = false;
+			}
 
 			// Print vertex buffer
 			//
@@ -131,7 +140,7 @@ public class NuklearLayoutTaskAdapter
 	@Override
 	public void record(NuklearLayoutTask task, RecordContext context)
 	{
-		dirty = false;
+		dirty = !vertexUpdated;
 	}
 
 	@Override

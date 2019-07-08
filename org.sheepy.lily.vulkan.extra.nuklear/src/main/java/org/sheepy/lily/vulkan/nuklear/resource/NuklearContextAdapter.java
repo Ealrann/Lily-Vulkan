@@ -42,6 +42,7 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer.MemoryTicket.EReservationStatus;
 
 @Statefull
 @Adapter(scope = NuklearContext.class)
@@ -164,8 +165,10 @@ public class NuklearContextAdapter implements IResourceAdapter
 		config.line_AA(NK_ANTI_ALIASING_ON);
 	}
 
-	public void fillVertexBuffer(IStagingBuffer stagingBuffer, Buffer vertexBuffer)
+	public boolean fillVertexBuffer(IStagingBuffer stagingBuffer, Buffer vertexBuffer)
 	{
+		boolean res = true;
+		
 		try
 		{
 			final var vertexBufferAdapter = IBufferAdapter.adapt(vertexBuffer);
@@ -175,28 +178,42 @@ public class NuklearContextAdapter implements IResourceAdapter
 			final long indexBufferSize = INDEX_BUFFER_SIZE;
 			final var vertexOffset = 0;
 
-			final var vertexMemoryMap = stagingBuffer.reserveMemory(vertexBufferSize);
-			nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, vertexBufferSize);
-			stagingBuffer.pushSynchronized(vertexMemoryMap, bufferPtr, vertexOffset,
-					EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+			final var vertexMemoryTicket = stagingBuffer.reserveMemory(vertexBufferSize);
+			final var indexMemoryTicket = stagingBuffer.reserveMemory(indexBufferSize);
 
-			final var indexOffset = vertexBufferSize;
-
-			final var indexMemoryMap = stagingBuffer.reserveMemory(indexBufferSize);
-			nnk_buffer_init_fixed(ebuf.address(), indexMemoryMap, indexBufferSize);
-			stagingBuffer.pushSynchronized(indexMemoryMap, bufferPtr, indexOffset,
-					EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
-
-			// load draw vertices & elements directly into vertex + element buffer
-			final int result = nk_convert(nkContext, cmds, vbuf, ebuf, config);
-			if (result != 0)
+			if (vertexMemoryTicket.reservationStatus == EReservationStatus.SUCCESS
+					&& indexMemoryTicket.reservationStatus == EReservationStatus.SUCCESS)
 			{
-				System.err.println(NK_CONVERT_FAILED + result);
+				final var vertexMemoryMap = vertexMemoryTicket.memoryAddress;
+				final var indexMemoryMap = indexMemoryTicket.memoryAddress;
+
+				nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, vertexBufferSize);
+				stagingBuffer.pushSynchronized(vertexMemoryTicket, bufferPtr, vertexOffset,
+						EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+
+				final var indexOffset = vertexBufferSize;
+
+				nnk_buffer_init_fixed(ebuf.address(), indexMemoryMap, indexBufferSize);
+				stagingBuffer.pushSynchronized(indexMemoryTicket, bufferPtr, indexOffset,
+						EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+
+				// load draw vertices & elements directly into vertex + element buffer
+				final int result = nk_convert(nkContext, cmds, vbuf, ebuf, config);
+				if (result != 0)
+				{
+					System.err.println(NK_CONVERT_FAILED + result);
+				}
+			}
+			else
+			{
+				res = false;
 			}
 		} catch (final Throwable t)
 		{
 			t.printStackTrace();
 		}
+		
+		return res;
 	}
 
 	private void reloadTexturePtrs(DescriptorSet descriptorSet)

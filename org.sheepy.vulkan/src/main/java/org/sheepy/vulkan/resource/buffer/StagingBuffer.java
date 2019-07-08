@@ -15,6 +15,7 @@ import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
+import org.sheepy.vulkan.resource.buffer.IStagingBuffer.MemoryTicket.EReservationStatus;
 
 public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuffer
 {
@@ -56,23 +57,33 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	}
 
 	@Override
-	public long reserveMemory(long size)
+	public MemoryTicket reserveMemory(long size)
 	{
+		long address = -1;
+		EReservationStatus status;
+
 		final long alignedSize = align(size, minMemoryMapAlignment);
 
-		if (position + alignedSize > capacity)
+		if (alignedSize > capacity)
 		{
-			throw new AssertionError("Staging buffer too small.");
+			status = EReservationStatus.ERROR__REQUEST_TOO_BIG;
+		}
+		else if (position + alignedSize > capacity)
+		{
+			status = EReservationStatus.FAIL__NO_SPACE_LEFT;
+		}
+		else
+		{
+			status = EReservationStatus.SUCCESS;
+			address = bufferBackend.getMemoryMap() + position;
+			final long bufferOffset = bufferBackend.getOffset() + position;
+
+			final var command = new TransferCommand(bufferBackend.getAddress(), bufferOffset, size);
+			commands.put(address, command);
+			position += alignedSize;
 		}
 
-		final long memoryAddress = bufferBackend.getMemoryMap() + position;
-		final long bufferOffset = bufferBackend.getOffset() + position;
-
-		final var command = new TransferCommand(bufferBackend.getAddress(), bufferOffset, size);
-		commands.put(memoryAddress, command);
-		position += alignedSize;
-
-		return memoryAddress;
+		return new MemoryTicket(status, address);
 	}
 
 	private static final long align(long index, long alignment)
@@ -82,21 +93,41 @@ public class StagingBuffer implements IAllocable<IExecutionContext>, IStagingBuf
 	}
 
 	@Override
-	public void pushSynchronized(	long localMemoryAddress,
+	public void releaseTicket(MemoryTicket ticket)
+	{
+		commands.remove(ticket.memoryAddress);
+
+		/**
+		 * @TODO position should be relocated. We need a new algorithm to manage fragmented memory
+		 */
+	}
+
+	@Override
+	public void pushSynchronized(	MemoryTicket ticket,
 									long trgAddress,
 									long trgOffset,
 									EPipelineStage dstStage,
 									EAccess dstAccess)
 	{
-		final var transferCommand = commands.get(localMemoryAddress);
+		if (ticket.reservationStatus != EReservationStatus.SUCCESS)
+		{
+			throw new IllegalStateException("MemoryTicket reservation was rejected");
+		}
+
+		final var transferCommand = commands.get(ticket.memoryAddress);
 		synchronizedCommands.add(transferCommand);
 		transferCommand.setTarget(trgAddress, trgOffset, dstStage, dstAccess);
 	}
 
 	@Override
-	public void pushUnsynchronized(long localMemoryAddress, long trgAddress, long trgOffset)
+	public void pushUnsynchronized(MemoryTicket ticket, long trgAddress, long trgOffset)
 	{
-		final var transferCommand = commands.get(localMemoryAddress);
+		if (ticket.reservationStatus != EReservationStatus.SUCCESS)
+		{
+			throw new IllegalStateException("MemoryTicket reservation was rejected");
+		}
+
+		final var transferCommand = commands.get(ticket.memoryAddress);
 		unsynchronizedCommands.add(transferCommand);
 		transferCommand.setTarget(trgAddress, trgOffset);
 	}
