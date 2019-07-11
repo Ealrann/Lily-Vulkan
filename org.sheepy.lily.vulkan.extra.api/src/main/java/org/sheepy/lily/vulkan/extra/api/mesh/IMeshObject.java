@@ -7,7 +7,7 @@ import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer;
 
 public interface IMeshObject extends IAllocable<IExecutionContext>
 {

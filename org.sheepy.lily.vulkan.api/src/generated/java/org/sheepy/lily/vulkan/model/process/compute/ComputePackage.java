@@ -215,6 +215,15 @@ public interface ComputePackage extends EPackage
 	int COMPUTE_PIPELINE__PUSH_CONSTANT_RANGES = ProcessPackage.IPIPELINE__PUSH_CONSTANT_RANGES;
 
 	/**
+	 * The feature id for the '<em><b>Specialization Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTE_PIPELINE__SPECIALIZATION_DATA = ProcessPackage.IPIPELINE__SPECIALIZATION_DATA;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

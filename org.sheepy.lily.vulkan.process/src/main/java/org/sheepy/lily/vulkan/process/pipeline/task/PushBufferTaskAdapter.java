@@ -32,7 +32,7 @@ public class PushBufferTaskAdapter implements IPipelineTaskAdapter<PushBufferTas
 			if (stagingBuffer.isEmpty() == false)
 			{
 				stagingFlushHistory[context.index] = true;
-				stagingBuffer.flush(context.commandBuffer);
+				stagingBuffer.flushCommands(context.commandBuffer);
 			}
 		}
 	}

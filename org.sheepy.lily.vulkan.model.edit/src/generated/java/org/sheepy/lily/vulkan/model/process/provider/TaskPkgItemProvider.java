@@ -169,6 +169,9 @@ public class TaskPkgItemProvider extends ItemProviderAdapter
 
 		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
 				ProcessFactory.eINSTANCE.createPushBufferTask()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
+				ProcessFactory.eINSTANCE.createGetBufferTask()));
 	}
 
 	/**

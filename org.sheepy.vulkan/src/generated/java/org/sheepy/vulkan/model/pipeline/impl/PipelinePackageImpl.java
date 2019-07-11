@@ -14,6 +14,7 @@ import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
+import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +30,13 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	 * @generated
 	 */
 	private EClass pushConstantRangeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass specializationConstantEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -150,6 +158,50 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 	 * @generated
 	 */
 	@Override
+	public EClass getSpecializationConstant()
+	{
+		return specializationConstantEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSpecializationConstant_Name()
+	{
+		return (EAttribute) specializationConstantEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSpecializationConstant_ConstantId()
+	{
+		return (EAttribute) specializationConstantEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSpecializationConstant_Size()
+	{
+		return (EAttribute) specializationConstantEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public PipelineFactory getPipelineFactory()
 	{
 		return (PipelineFactory) getEFactoryInstance();
@@ -179,6 +231,11 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 		createEAttribute(pushConstantRangeEClass, PUSH_CONSTANT_RANGE__STAGES);
 		createEAttribute(pushConstantRangeEClass, PUSH_CONSTANT_RANGE__OFFSET);
 		createEAttribute(pushConstantRangeEClass, PUSH_CONSTANT_RANGE__SIZE);
+
+		specializationConstantEClass = createEClass(SPECIALIZATION_CONSTANT);
+		createEAttribute(specializationConstantEClass, SPECIALIZATION_CONSTANT__NAME);
+		createEAttribute(specializationConstantEClass, SPECIALIZATION_CONSTANT__CONSTANT_ID);
+		createEAttribute(specializationConstantEClass, SPECIALIZATION_CONSTANT__SIZE);
 	}
 
 	/**
@@ -229,6 +286,18 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 		initEAttribute(getPushConstantRange_Size(), theEcorePackage.getEInt(), "size", null, 0, 1,
 				PushConstantRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(specializationConstantEClass, SpecializationConstant.class,
+				"SpecializationConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSpecializationConstant_Name(), theEcorePackage.getEString(), "name", null,
+				0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecializationConstant_ConstantId(), theEcorePackage.getEInt(),
+				"constantId", null, 0, 1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecializationConstant_Size(), theEcorePackage.getEInt(), "size", null, 0,
+				1, SpecializationConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

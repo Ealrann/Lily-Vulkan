@@ -32,6 +32,15 @@ public interface PipelineFactory extends EFactory
 	PushConstantRange createPushConstantRange();
 
 	/**
+	 * Returns a new object of class '<em>Specialization Constant</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Specialization Constant</em>'.
+	 * @generated
+	 */
+	SpecializationConstant createSpecializationConstant();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

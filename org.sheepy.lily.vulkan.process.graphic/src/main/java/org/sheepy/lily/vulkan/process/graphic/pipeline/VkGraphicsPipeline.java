@@ -2,6 +2,7 @@ package org.sheepy.lily.vulkan.process.graphic.pipeline;
 
 import static org.lwjgl.vulkan.VK10.*;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 
 import org.lwjgl.system.MemoryStack;
@@ -13,9 +14,9 @@ import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
-import org.sheepy.vulkan.pipeline.IShaderStageFiller;
 import org.sheepy.vulkan.pipeline.VkPipeline;
 import org.sheepy.vulkan.pipeline.VkPipelineLayout;
+import org.sheepy.vulkan.pipeline.VkShaderStage;
 import org.sheepy.vulkan.pipeline.builder.ColorBlendBuilder;
 import org.sheepy.vulkan.pipeline.builder.DepthStencilBuilder;
 import org.sheepy.vulkan.pipeline.builder.DynamicStateBuilder;
@@ -44,7 +45,8 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 	private final ViewportState viewportState;
 	private final DynamicState dynamicState;
 	private final VkVertexDescriptor vertexDescriptor;
-	private final List<IShaderStageFiller> shaders;
+	private final List<VkShaderStage> shaderStages;
+	private final ByteBuffer specializationData;
 
 	protected long pipelineId = -1;
 	private final int subpass;
@@ -56,7 +58,8 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 								ViewportState viewportState,
 								DynamicState dynamicState,
 								VkVertexDescriptor vertexBufferDescriptor,
-								List<IShaderStageFiller> shaders,
+								List<VkShaderStage> shaderStages,
+								ByteBuffer specializationData,
 								int subpass)
 	{
 		this.pipelineLayout = pipelineLayout;
@@ -66,7 +69,8 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		this.viewportState = viewportState;
 		this.dynamicState = dynamicState;
 		this.vertexDescriptor = vertexBufferDescriptor;
-		this.shaders = shaders;
+		this.shaderStages = shaderStages;
+		this.specializationData = specializationData;
 		this.subpass = subpass;
 
 		shaderStageBuilder = new ShaderStageBuilder();
@@ -94,7 +98,8 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 		// -----------------------
 		final var info = VkGraphicsPipelineCreateInfo.callocStack(1, stack);
 		info.sType(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO);
-		info.pStages(shaderStageBuilder.allocShaderStageInfo(stack, shaders));
+		info.pStages(
+				shaderStageBuilder.allocShaderStageInfo(stack, shaderStages, specializationData));
 		info.pVertexInputState(vertexDescriptor.allocCreateInfo(stack));
 		info.pInputAssemblyState(inputAssemblyBuilder.allocCreateInfo(stack, inputAssembly));
 		info.pViewportState(viewportStateBuilder.allocCreateInfo(stack, extent, viewportState));

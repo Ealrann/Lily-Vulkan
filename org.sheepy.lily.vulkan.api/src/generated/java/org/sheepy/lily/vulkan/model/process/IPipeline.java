@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process;
 
+import java.nio.ByteBuffer;
 import org.eclipse.emf.common.util.EList;
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.vulkan.model.IResourceContainer;
@@ -21,6 +22,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData <em>Specialization Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.IPipeline#getTaskPkg <em>Task Pkg</em>}</li>
  * </ul>
@@ -91,6 +93,28 @@ public interface IPipeline extends LNamedElement, IResourceContainer, IProcessPa
 	 * @generated
 	 */
 	EList<PushConstantRange> getPushConstantRanges();
+
+	/**
+	 * Returns the value of the '<em><b>Specialization Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Specialization Data</em>' attribute.
+	 * @see #setSpecializationData(ByteBuffer)
+	 * @see org.sheepy.lily.vulkan.model.process.ProcessPackage#getIPipeline_SpecializationData()
+	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
+	 * @generated
+	 */
+	ByteBuffer getSpecializationData();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData <em>Specialization Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Specialization Data</em>' attribute.
+	 * @see #getSpecializationData()
+	 * @generated
+	 */
+	void setSpecializationData(ByteBuffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Descriptor Set Pkg</b></em>' containment reference.

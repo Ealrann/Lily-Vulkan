@@ -95,6 +95,15 @@ public class ResourceSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case ResourcePackage.GET_BUFFER:
+		{
+			GetBuffer getBuffer = (GetBuffer) theEObject;
+			T result = caseGetBuffer(getBuffer);
+			if (result == null) result = caseIResource(getBuffer);
+			if (result == null) result = caseLNamedElement(getBuffer);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		case ResourcePackage.CONSTANT_BUFFER:
 		{
 			ConstantBuffer constantBuffer = (ConstantBuffer) theEObject;
@@ -466,6 +475,22 @@ public class ResourceSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T casePushBuffer(PushBuffer object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Get Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Get Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGetBuffer(GetBuffer object)
 	{
 		return null;
 	}

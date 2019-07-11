@@ -67,6 +67,7 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
+			addSpecializationDataPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -119,6 +120,23 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 				getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
 						"_UI_IPipeline_type"),
 				ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Specialization Data feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSpecializationDataPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_IPipeline_specializationData_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_IPipeline_specializationData_feature", "_UI_IPipeline_type"),
+				ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -202,6 +220,7 @@ public class ComputePipelineItemProvider extends ItemProviderAdapter
 		case ComputePackage.COMPUTE_PIPELINE__NAME:
 		case ComputePackage.COMPUTE_PIPELINE__ENABLED:
 		case ComputePackage.COMPUTE_PIPELINE__STAGE:
+		case ComputePackage.COMPUTE_PIPELINE__SPECIALIZATION_DATA:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

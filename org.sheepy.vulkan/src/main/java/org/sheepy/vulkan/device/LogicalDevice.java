@@ -95,11 +95,14 @@ public class LogicalDevice
 		deviceFeatures.samplerAnisotropy(true);
 
 		final boolean fillModeNonSolid = features.contains(EPhysicalFeature.FILL_MODE_NON_SOLID);
+		final var fragmentStoresAndAtomics = features
+				.contains(EPhysicalFeature.FRAGMENT_STORES_AND_ATOMICS);
 		final boolean wideLines = features.contains(EPhysicalFeature.WIDE_LINES);
 		final boolean geometryShader = features.contains(EPhysicalFeature.GEOMETRY_SHADER);
 
 		deviceFeatures.geometryShader(geometryShader);
 		deviceFeatures.fillModeNonSolid(fillModeNonSolid);
+		deviceFeatures.fragmentStoresAndAtomics(fragmentStoresAndAtomics);
 		deviceFeatures.wideLines(wideLines);
 
 		return deviceFeatures;

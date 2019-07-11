@@ -235,6 +235,9 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter
 
 		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
 				ProcessFactory.eINSTANCE.createPushBufferTask()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				ProcessFactory.eINSTANCE.createGetBufferTask()));
 	}
 
 	/**

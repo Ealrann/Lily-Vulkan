@@ -45,6 +45,7 @@ module org.sheepy.vulkan
 	exports org.sheepy.vulkan.resource.image;
 	exports org.sheepy.vulkan.resource.indexed;
 	exports org.sheepy.vulkan.resource.memory;
+	exports org.sheepy.vulkan.resource.staging;
 	exports org.sheepy.vulkan.surface;
 	exports org.sheepy.vulkan.util;
 	exports org.sheepy.vulkan.window;

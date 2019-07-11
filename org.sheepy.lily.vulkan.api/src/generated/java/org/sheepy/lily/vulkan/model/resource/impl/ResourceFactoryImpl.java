@@ -71,6 +71,8 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 			return createBasicResource();
 		case ResourcePackage.PUSH_BUFFER:
 			return createPushBuffer();
+		case ResourcePackage.GET_BUFFER:
+			return createGetBuffer();
 		case ResourcePackage.CONSTANT_BUFFER:
 			return createConstantBuffer();
 		case ResourcePackage.BUFFER:
@@ -185,6 +187,18 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	{
 		PushBufferImpl pushBuffer = new PushBufferImpl();
 		return pushBuffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GetBuffer createGetBuffer()
+	{
+		GetBufferImpl getBuffer = new GetBufferImpl();
+		return getBuffer;
 	}
 
 	/**

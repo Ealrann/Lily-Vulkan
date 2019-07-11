@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
+import java.nio.ByteBuffer;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -42,6 +43,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl#getSpecializationData <em>Specialization Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl#getTaskPkg <em>Task Pkg</em>}</li>
  * </ul>
@@ -129,6 +131,26 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	 * @ordered
 	 */
 	protected EList<PushConstantRange> pushConstantRanges;
+
+	/**
+	 * The default value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecializationData()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ByteBuffer SPECIALIZATION_DATA_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecializationData()
+	 * @generated
+	 * @ordered
+	 */
+	protected ByteBuffer specializationData = SPECIALIZATION_DATA_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
@@ -320,6 +342,32 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	 * @generated
 	 */
 	@Override
+	public ByteBuffer getSpecializationData()
+	{
+		return specializationData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSpecializationData(ByteBuffer newSpecializationData)
+	{
+		ByteBuffer oldSpecializationData = specializationData;
+		specializationData = newSpecializationData;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ProcessPackage.PIPELINE__SPECIALIZATION_DATA, oldSpecializationData,
+				specializationData));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public DescriptorSetPkg getDescriptorSetPkg()
 	{
 		return descriptorSetPkg;
@@ -469,6 +517,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 			return getStage();
 		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
 			return getPushConstantRanges();
+		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
+			return getSpecializationData();
 		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 			return getDescriptorSetPkg();
 		case ProcessPackage.PIPELINE__TASK_PKG:
@@ -503,6 +553,9 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
 			getPushConstantRanges().clear();
 			getPushConstantRanges().addAll((Collection<? extends PushConstantRange>) newValue);
+			return;
+		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
+			setSpecializationData((ByteBuffer) newValue);
 			return;
 		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 			setDescriptorSetPkg((DescriptorSetPkg) newValue);
@@ -539,6 +592,9 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
 			getPushConstantRanges().clear();
 			return;
+		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
+			setSpecializationData(SPECIALIZATION_DATA_EDEFAULT);
+			return;
 		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 			setDescriptorSetPkg((DescriptorSetPkg) null);
 			return;
@@ -569,6 +625,10 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 			return stage != STAGE_EDEFAULT;
 		case ProcessPackage.PIPELINE__PUSH_CONSTANT_RANGES:
 			return pushConstantRanges != null && !pushConstantRanges.isEmpty();
+		case ProcessPackage.PIPELINE__SPECIALIZATION_DATA:
+			return SPECIALIZATION_DATA_EDEFAULT == null
+					? specializationData != null
+					: !SPECIALIZATION_DATA_EDEFAULT.equals(specializationData);
 		case ProcessPackage.PIPELINE__DESCRIPTOR_SET_PKG:
 			return descriptorSetPkg != null;
 		case ProcessPackage.PIPELINE__TASK_PKG:
@@ -652,6 +712,8 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 		result.append(enabled);
 		result.append(", stage: ");
 		result.append(stage);
+		result.append(", specializationData: ");
+		result.append(specializationData);
 		result.append(')');
 		return result.toString();
 	}

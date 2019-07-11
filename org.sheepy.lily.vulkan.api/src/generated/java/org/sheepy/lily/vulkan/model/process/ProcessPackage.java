@@ -365,13 +365,22 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE__PUSH_CONSTANT_RANGES = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Specialization Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIPELINE__SPECIALIZATION_DATA = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__DESCRIPTOR_SET_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 4;
+	int IPIPELINE__DESCRIPTOR_SET_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Task Pkg</b></em>' containment reference.
@@ -380,7 +389,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE__TASK_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 5;
+	int IPIPELINE__TASK_PKG = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>IPipeline</em>' class.
@@ -389,7 +398,7 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IPIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 6;
+	int IPIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>IPipeline</em>' class.
@@ -491,6 +500,15 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int PIPELINE__PUSH_CONSTANT_RANGES = IPIPELINE__PUSH_CONSTANT_RANGES;
+
+	/**
+	 * The feature id for the '<em><b>Specialization Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIPELINE__SPECIALIZATION_DATA = IPIPELINE__SPECIALIZATION_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Descriptor Set Pkg</b></em>' containment reference.
@@ -966,6 +984,70 @@ public interface ProcessPackage extends EPackage
 	int PUSH_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl <em>Get Buffer Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getGetBufferTask()
+	 * @generated
+	 */
+	int GET_BUFFER_TASK = 14;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_BUFFER_TASK__NAME = IPIPELINE_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_BUFFER_TASK__ENABLED = IPIPELINE_TASK__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Get Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_BUFFER_TASK__GET_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Device Buffer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_BUFFER_TASK__DEVICE_BUFFER = IPIPELINE_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Get Buffer Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Get Buffer Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1233,6 +1315,17 @@ public interface ProcessPackage extends EPackage
 	EReference getIPipeline_PushConstantRanges();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData <em>Specialization Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Specialization Data</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.IPipeline#getSpecializationData()
+	 * @see #getIPipeline()
+	 * @generated
+	 */
+	EAttribute getIPipeline_SpecializationData();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.IPipeline#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1368,6 +1461,38 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EReference getPushBufferTask_PushBuffer();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.GetBufferTask <em>Get Buffer Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Get Buffer Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.GetBufferTask
+	 * @generated
+	 */
+	EClass getGetBufferTask();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.GetBufferTask#getGetBuffer <em>Get Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Get Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.GetBufferTask#getGetBuffer()
+	 * @see #getGetBufferTask()
+	 * @generated
+	 */
+	EReference getGetBufferTask_GetBuffer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.GetBufferTask#getDeviceBuffer <em>Device Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Device Buffer</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.GetBufferTask#getDeviceBuffer()
+	 * @see #getGetBufferTask()
+	 * @generated
+	 */
+	EReference getGetBufferTask_DeviceBuffer();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1611,6 +1736,14 @@ public interface ProcessPackage extends EPackage
 		EReference IPIPELINE__PUSH_CONSTANT_RANGES = eINSTANCE.getIPipeline_PushConstantRanges();
 
 		/**
+		 * The meta object literal for the '<em><b>Specialization Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IPIPELINE__SPECIALIZATION_DATA = eINSTANCE.getIPipeline_SpecializationData();
+
+		/**
 		 * The meta object literal for the '<em><b>Descriptor Set Pkg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1726,6 +1859,32 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EReference PUSH_BUFFER_TASK__PUSH_BUFFER = eINSTANCE.getPushBufferTask_PushBuffer();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl <em>Get Buffer Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getGetBufferTask()
+		 * @generated
+		 */
+		EClass GET_BUFFER_TASK = eINSTANCE.getGetBufferTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GET_BUFFER_TASK__GET_BUFFER = eINSTANCE.getGetBufferTask_GetBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Device Buffer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GET_BUFFER_TASK__DEVICE_BUFFER = eINSTANCE.getGetBufferTask_DeviceBuffer();
 
 	}
 

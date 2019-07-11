@@ -2,17 +2,22 @@
  */
 package org.sheepy.lily.vulkan.model.resource.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +29,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getFile <em>File</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl#getConstants <em>Constants</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +65,16 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	 * @ordered
 	 */
 	protected EShaderStage stage = STAGE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getConstants() <em>Constants</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstants()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SpecializationConstant> constants;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,6 +180,22 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	 * @generated
 	 */
 	@Override
+	public EList<SpecializationConstant> getConstants()
+	{
+		if (constants == null)
+		{
+			constants = new EObjectContainmentEList<SpecializationConstant>(
+					SpecializationConstant.class, this, ResourcePackage.SHADER__CONSTANTS);
+		}
+		return constants;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 											int featureID,
 											NotificationChain msgs)
@@ -172,6 +204,8 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 		{
 		case ResourcePackage.SHADER__FILE:
 			return basicSetFile(null, msgs);
+		case ResourcePackage.SHADER__CONSTANTS:
+			return ((InternalEList<?>) getConstants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -190,6 +224,8 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 			return getFile();
 		case ResourcePackage.SHADER__STAGE:
 			return getStage();
+		case ResourcePackage.SHADER__CONSTANTS:
+			return getConstants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -199,6 +235,7 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -209,6 +246,10 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 			return;
 		case ResourcePackage.SHADER__STAGE:
 			setStage((EShaderStage) newValue);
+			return;
+		case ResourcePackage.SHADER__CONSTANTS:
+			getConstants().clear();
+			getConstants().addAll((Collection<? extends SpecializationConstant>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -230,6 +271,9 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 		case ResourcePackage.SHADER__STAGE:
 			setStage(STAGE_EDEFAULT);
 			return;
+		case ResourcePackage.SHADER__CONSTANTS:
+			getConstants().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -248,6 +292,8 @@ public class ShaderImpl extends BasicResourceImpl implements Shader
 			return file != null;
 		case ResourcePackage.SHADER__STAGE:
 			return stage != STAGE_EDEFAULT;
+		case ResourcePackage.SHADER__CONSTANTS:
+			return constants != null && !constants.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

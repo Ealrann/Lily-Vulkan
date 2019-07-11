@@ -41,8 +41,9 @@ import org.sheepy.lily.vulkan.nuklear.pipeline.NuklearLayoutTaskAdapter;
 import org.sheepy.vulkan.execution.IExecutionContext;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
-import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
-import org.sheepy.vulkan.resource.buffer.IStagingBuffer.MemoryTicket.EReservationStatus;
+import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservationStatus;
 
 @Statefull
 @Adapter(scope = NuklearContext.class)
@@ -168,7 +169,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 	public boolean fillVertexBuffer(IStagingBuffer stagingBuffer, Buffer vertexBuffer)
 	{
 		boolean res = true;
-		
+
 		try
 		{
 			final var vertexBufferAdapter = IBufferAdapter.adapt(vertexBuffer);
@@ -181,21 +182,26 @@ public class NuklearContextAdapter implements IResourceAdapter
 			final var vertexMemoryTicket = stagingBuffer.reserveMemory(vertexBufferSize);
 			final var indexMemoryTicket = stagingBuffer.reserveMemory(indexBufferSize);
 
-			if (vertexMemoryTicket.reservationStatus == EReservationStatus.SUCCESS
-					&& indexMemoryTicket.reservationStatus == EReservationStatus.SUCCESS)
+			if (vertexMemoryTicket.getReservationStatus() == EReservationStatus.SUCCESS
+					&& indexMemoryTicket.getReservationStatus() == EReservationStatus.SUCCESS)
 			{
-				final var vertexMemoryMap = vertexMemoryTicket.memoryAddress;
-				final var indexMemoryMap = indexMemoryTicket.memoryAddress;
-
-				nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, vertexBufferSize);
-				stagingBuffer.pushSynchronized(vertexMemoryTicket, bufferPtr, vertexOffset,
-						EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
-
+				final var vertexMemoryMap = vertexMemoryTicket.getMemoryPtr();
+				final var indexMemoryMap = indexMemoryTicket.getMemoryPtr();
 				final var indexOffset = vertexBufferSize;
 
-				nnk_buffer_init_fixed(ebuf.address(), indexMemoryMap, indexBufferSize);
-				stagingBuffer.pushSynchronized(indexMemoryTicket, bufferPtr, indexOffset,
+				final var vertexPushCommand = IDataFlowCommand.newPipelinePushCommand(
+						vertexMemoryTicket, bufferPtr, vertexOffset,
 						EPipelineStage.VERTEX_INPUT_BIT, EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+
+				final var indexPushCommand = IDataFlowCommand.newPipelinePushCommand(
+						indexMemoryTicket, bufferPtr, indexOffset, EPipelineStage.VERTEX_INPUT_BIT,
+						EAccess.VERTEX_ATTRIBUTE_READ_BIT);
+
+				nnk_buffer_init_fixed(vbuf.address(), vertexMemoryMap, vertexBufferSize);
+				stagingBuffer.addStagingCommand(vertexPushCommand);
+
+				nnk_buffer_init_fixed(ebuf.address(), indexMemoryMap, indexBufferSize);
+				stagingBuffer.addStagingCommand(indexPushCommand);
 
 				// load draw vertices & elements directly into vertex + element buffer
 				final int result = nk_convert(nkContext, cmds, vbuf, ebuf, config);
@@ -212,7 +218,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 		{
 			t.printStackTrace();
 		}
-		
+
 		return res;
 	}
 

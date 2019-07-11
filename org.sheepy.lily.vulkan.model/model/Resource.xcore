@@ -9,6 +9,8 @@ package org.sheepy.lily.vulkan.model.resource
 import java.nio.ByteBuffer
 import org.sheepy.lily.core.model.types.LNamedElement
 import org.sheepy.lily.vulkan.model.IResource
+import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier
+import org.sheepy.vulkan.model.barrier.AbstractImageBarrier
 import org.sheepy.vulkan.model.enumeration.EAccess
 import org.sheepy.vulkan.model.enumeration.EBorderColor
 import org.sheepy.vulkan.model.enumeration.EBufferUsage
@@ -21,8 +23,7 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
 import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
 import org.sheepy.vulkan.model.enumeration.EShaderStage
-import org.sheepy.vulkan.model.barrier.AbstractImageBarrier
-import org.sheepy.vulkan.model.barrier.AbstractBufferBarrier
+import org.sheepy.vulkan.model.pipeline.SpecializationConstant
 
 class BasicResource extends IResource
 {
@@ -34,6 +35,11 @@ class PushBuffer extends IResource
 	boolean beingUpdated = "false"
 	long size
 	int instanceCount = "3"
+}
+
+class GetBuffer extends IResource
+{
+	long size
 }
 
 class ConstantBuffer extends IResource
@@ -197,6 +203,7 @@ class Shader extends BasicResource
 {
 	contains PathResource file
 	EShaderStage stage
+	contains SpecializationConstant[1..*] constants
 }
 
 abstract class PathResource extends BasicResource

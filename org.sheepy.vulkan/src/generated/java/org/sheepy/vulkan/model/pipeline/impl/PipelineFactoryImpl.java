@@ -66,6 +66,8 @@ public class PipelineFactoryImpl extends EFactoryImpl implements PipelineFactory
 		{
 		case PipelinePackage.PUSH_CONSTANT_RANGE:
 			return createPushConstantRange();
+		case PipelinePackage.SPECIALIZATION_CONSTANT:
+			return createSpecializationConstant();
 		default:
 			throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier");
@@ -82,6 +84,18 @@ public class PipelineFactoryImpl extends EFactoryImpl implements PipelineFactory
 	{
 		PushConstantRangeImpl pushConstantRange = new PushConstantRangeImpl();
 		return pushConstantRange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SpecializationConstant createSpecializationConstant()
+	{
+		SpecializationConstantImpl specializationConstant = new SpecializationConstantImpl();
+		return specializationConstant;
 	}
 
 	/**

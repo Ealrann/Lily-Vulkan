@@ -16,6 +16,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.resource.Shader} object.
@@ -86,6 +87,7 @@ public class ShaderItemProvider extends BasicResourceItemProvider
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ResourcePackage.Literals.SHADER__FILE);
+			childrenFeatures.add(ResourcePackage.Literals.SHADER__CONSTANTS);
 		}
 		return childrenFeatures;
 	}
@@ -150,6 +152,7 @@ public class ShaderItemProvider extends BasicResourceItemProvider
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ResourcePackage.SHADER__FILE:
+		case ResourcePackage.SHADER__CONSTANTS:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -177,6 +180,9 @@ public class ShaderItemProvider extends BasicResourceItemProvider
 
 		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SHADER__FILE,
 				ResourceFactory.eINSTANCE.createStringModuleResource()));
+
+		newChildDescriptors.add(createChildParameter(ResourcePackage.Literals.SHADER__CONSTANTS,
+				PipelineFactory.eINSTANCE.createSpecializationConstant()));
 	}
 
 }

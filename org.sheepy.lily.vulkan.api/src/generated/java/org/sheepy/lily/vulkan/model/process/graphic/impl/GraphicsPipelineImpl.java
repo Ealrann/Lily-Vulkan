@@ -2,6 +2,7 @@
  */
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
+import java.nio.ByteBuffer;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -47,6 +48,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getPushConstantRanges <em>Push Constant Ranges</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getSpecializationData <em>Specialization Data</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDescriptorSetPkg <em>Descriptor Set Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getTaskPkg <em>Task Pkg</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getMaintainer <em>Maintainer</em>}</li>
@@ -136,6 +138,24 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected EList<PushConstantRange> pushConstantRanges;
+	/**
+	 * The default value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecializationData()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ByteBuffer SPECIALIZATION_DATA_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecializationData()
+	 * @generated
+	 * @ordered
+	 */
+	protected ByteBuffer specializationData = SPECIALIZATION_DATA_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -411,6 +431,32 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 					GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES);
 		}
 		return pushConstantRanges;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ByteBuffer getSpecializationData()
+	{
+		return specializationData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSpecializationData(ByteBuffer newSpecializationData)
+	{
+		ByteBuffer oldSpecializationData = specializationData;
+		specializationData = newSpecializationData;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA, oldSpecializationData,
+				specializationData));
 	}
 
 	/**
@@ -1065,6 +1111,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			return getStage();
 		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
 			return getPushConstantRanges();
+		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
+			return getSpecializationData();
 		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
 			return getDescriptorSetPkg();
 		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
@@ -1118,6 +1166,9 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
 			getPushConstantRanges().clear();
 			getPushConstantRanges().addAll((Collection<? extends PushConstantRange>) newValue);
+			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
+			setSpecializationData((ByteBuffer) newValue);
 			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
 			setDescriptorSetPkg((DescriptorSetPkg) newValue);
@@ -1182,6 +1233,9 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
 			getPushConstantRanges().clear();
 			return;
+		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
+			setSpecializationData(SPECIALIZATION_DATA_EDEFAULT);
+			return;
 		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
 			setDescriptorSetPkg((DescriptorSetPkg) null);
 			return;
@@ -1239,6 +1293,10 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			return stage != STAGE_EDEFAULT;
 		case GraphicPackage.GRAPHICS_PIPELINE__PUSH_CONSTANT_RANGES:
 			return pushConstantRanges != null && !pushConstantRanges.isEmpty();
+		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
+			return SPECIALIZATION_DATA_EDEFAULT == null
+					? specializationData != null
+					: !SPECIALIZATION_DATA_EDEFAULT.equals(specializationData);
 		case GraphicPackage.GRAPHICS_PIPELINE__DESCRIPTOR_SET_PKG:
 			return descriptorSetPkg != null;
 		case GraphicPackage.GRAPHICS_PIPELINE__TASK_PKG:
@@ -1360,6 +1418,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		result.append(enabled);
 		result.append(", stage: ");
 		result.append(stage);
+		result.append(", specializationData: ");
+		result.append(specializationData);
 		result.append(", subpass: ");
 		result.append(subpass);
 		result.append(')');

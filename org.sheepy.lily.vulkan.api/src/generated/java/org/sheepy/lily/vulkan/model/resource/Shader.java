@@ -2,7 +2,9 @@
  */
 package org.sheepy.lily.vulkan.model.resource;
 
+import org.eclipse.emf.common.util.EList;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
+import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +17,7 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Shader#getFile <em>File</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.resource.Shader#getStage <em>Stage</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.resource.Shader#getConstants <em>Constants</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getShader()
@@ -77,5 +80,17 @@ public interface Shader extends BasicResource
 	 * @generated
 	 */
 	void setStage(EShaderStage value);
+
+	/**
+	 * Returns the value of the '<em><b>Constants</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.vulkan.model.pipeline.SpecializationConstant}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constants</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getShader_Constants()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	EList<SpecializationConstant> getConstants();
 
 } // Shader

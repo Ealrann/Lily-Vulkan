@@ -7,12 +7,18 @@
 
 package org.sheepy.vulkan.model.pipeline
 
-
 import org.sheepy.vulkan.model.enumeration.EShaderStage
 
 class PushConstantRange
 {
 	unique EShaderStage[1..*] stages
 	int offset = "0"
+	int size
+}
+
+class SpecializationConstant
+{
+	String name
+	unique int constantId
 	int size
 }

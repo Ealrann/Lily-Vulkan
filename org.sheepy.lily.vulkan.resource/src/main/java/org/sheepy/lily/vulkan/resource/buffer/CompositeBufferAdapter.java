@@ -27,9 +27,10 @@ import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.resource.buffer.BufferInfo;
 import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 import org.sheepy.vulkan.resource.buffer.IBufferBackend;
-import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
-import org.sheepy.vulkan.resource.buffer.IStagingBuffer.MemoryTicket;
-import org.sheepy.vulkan.resource.buffer.IStagingBuffer.MemoryTicket.EReservationStatus;
+import org.sheepy.vulkan.resource.staging.IDataFlowCommand;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer.MemoryTicket.EReservationStatus;
 
 @Statefull
 @Adapter(scope = CompositeBuffer.class)
@@ -228,7 +229,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 			final long size = dataProvider.getSize();
 			memTicket = stagingBuffer.reserveMemory(size);
 
-			return memTicket.reservationStatus == EReservationStatus.SUCCESS;
+			return memTicket.getReservationStatus() == EReservationStatus.SUCCESS;
 		}
 
 		public void releaseMemory()
@@ -238,12 +239,16 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		private void pushProvidedData()
 		{
-			assert (memTicket.reservationStatus != EReservationStatus.SUCCESS);
+			assert (memTicket.getReservationStatus() != EReservationStatus.SUCCESS);
 
 			final long bufferAddress = bufferBackend.getAddress();
 
-			adapter.fill(memTicket.memoryAddress);
-			stagingBuffer.pushSynchronized(memTicket, bufferAddress, alignedOffset, stage, access);
+			adapter.fill(memTicket.getMemoryPtr());
+
+			final var pushCommand = IDataFlowCommand.newPipelinePushCommand(memTicket,
+					bufferAddress, alignedOffset, stage, access);
+
+			stagingBuffer.addStagingCommand(pushCommand);
 
 			needUpdate = false;
 		}

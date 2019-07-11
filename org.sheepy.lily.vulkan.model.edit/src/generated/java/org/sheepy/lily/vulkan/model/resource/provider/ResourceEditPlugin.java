@@ -13,6 +13,7 @@ import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
 import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
 import org.sheepy.vulkan.model.barrier.provider.BarrierEditPlugin;
 import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
+import org.sheepy.vulkan.model.pipeline.provider.PipelineEditPlugin;
 
 /**
  * This is the central singleton for the Resource edit plugin.
@@ -51,6 +52,7 @@ public final class ResourceEditPlugin extends EMFPlugin
 				TypesEditPlugin.INSTANCE,
 				EnumerationEditPlugin.INSTANCE,
 				BarrierEditPlugin.INSTANCE,
+				PipelineEditPlugin.INSTANCE,
 				ApplicationEditPlugin.INSTANCE,
 				RootEditPlugin.INSTANCE,
 				InferenceEditPlugin.INSTANCE,

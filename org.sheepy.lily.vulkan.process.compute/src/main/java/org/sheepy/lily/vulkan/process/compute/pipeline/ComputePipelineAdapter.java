@@ -1,5 +1,6 @@
 package org.sheepy.lily.vulkan.process.compute.pipeline;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -49,9 +50,12 @@ public final class ComputePipelineAdapter extends AbstractPipelineAdapter<ICompu
 				final var computer = (Computer) task;
 				final var shader = computer.getShader();
 				final var shaderAdapter = IShaderAdapter.adapt(shader);
+				final var shaderStage = shaderAdapter.getVkShaderStage();
 				final var computerAdapter = (ComputerAdapter) IPipelineTaskAdapter.adapt(computer);
+				final ByteBuffer specializationData = pipeline.getSpecializationData();
 
-				final var vkPipeline = new VkComputePipeline(getVkPipelineLayout(), shaderAdapter);
+				final var vkPipeline = new VkComputePipeline(getVkPipelineLayout(), shaderStage,
+						specializationData);
 				vkPipeline.allocate(stack, context);
 				vkPipelines.add(vkPipeline);
 

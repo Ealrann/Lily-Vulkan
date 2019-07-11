@@ -7,8 +7,8 @@ import org.sheepy.lily.vulkan.api.resource.IPushBufferAdapter;
 import org.sheepy.lily.vulkan.api.resource.IResourceAdapter;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.vulkan.execution.IExecutionContext;
-import org.sheepy.vulkan.resource.buffer.IStagingBuffer;
-import org.sheepy.vulkan.resource.buffer.StagingBuffer;
+import org.sheepy.vulkan.resource.staging.IStagingBuffer;
+import org.sheepy.vulkan.resource.staging.StagingBuffer;
 
 @Statefull
 @Adapter(scope = PushBuffer.class)

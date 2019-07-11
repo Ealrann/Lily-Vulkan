@@ -27,6 +27,7 @@ import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.Configuration;
+import org.sheepy.lily.vulkan.model.process.GetBufferTask;
 import org.sheepy.lily.vulkan.model.process.IPipeline;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
@@ -147,6 +148,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass pushBufferTaskEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass getBufferTaskEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -509,9 +517,20 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getIPipeline_SpecializationData()
+	{
+		return (EAttribute) iPipelineEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getIPipeline_DescriptorSetPkg()
 	{
-		return (EReference) iPipelineEClass.getEStructuralFeatures().get(3);
+		return (EReference) iPipelineEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -522,7 +541,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	@Override
 	public EReference getIPipeline_TaskPkg()
 	{
-		return (EReference) iPipelineEClass.getEStructuralFeatures().get(4);
+		return (EReference) iPipelineEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -652,6 +671,39 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getGetBufferTask()
+	{
+		return getBufferTaskEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGetBufferTask_GetBuffer()
+	{
+		return (EReference) getBufferTaskEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGetBufferTask_DeviceBuffer()
+	{
+		return (EReference) getBufferTaskEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ProcessFactory getProcessFactory()
 	{
 		return (ProcessFactory) getEFactoryInstance();
@@ -698,6 +750,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		createEAttribute(iPipelineEClass, IPIPELINE__ENABLED);
 		createEAttribute(iPipelineEClass, IPIPELINE__STAGE);
 		createEReference(iPipelineEClass, IPIPELINE__PUSH_CONSTANT_RANGES);
+		createEAttribute(iPipelineEClass, IPIPELINE__SPECIALIZATION_DATA);
 		createEReference(iPipelineEClass, IPIPELINE__DESCRIPTOR_SET_PKG);
 		createEReference(iPipelineEClass, IPIPELINE__TASK_PKG);
 
@@ -728,6 +781,10 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 
 		pushBufferTaskEClass = createEClass(PUSH_BUFFER_TASK);
 		createEReference(pushBufferTaskEClass, PUSH_BUFFER_TASK__PUSH_BUFFER);
+
+		getBufferTaskEClass = createEClass(GET_BUFFER_TASK);
+		createEReference(getBufferTaskEClass, GET_BUFFER_TASK__GET_BUFFER);
+		createEReference(getBufferTaskEClass, GET_BUFFER_TASK__DEVICE_BUFFER);
 	}
 
 	/**
@@ -797,6 +854,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		pushConstantEClass.getESuperTypes().add(this.getIPipelineTask());
 		pushConstantBufferEClass.getESuperTypes().add(this.getPushConstant());
 		pushBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
+		getBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT,
@@ -851,6 +909,9 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				null, "pushConstantRanges", null, 0, -1, IPipeline.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIPipeline_SpecializationData(), theResourcePackage.getByteBuffer(),
+				"specializationData", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIPipeline_DescriptorSetPkg(), theResourcePackage.getDescriptorSetPkg(),
 				null, "descriptorSetPkg", null, 0, 1, IPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
@@ -922,6 +983,17 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPushBufferTask_PushBuffer(), theResourcePackage.getPushBuffer(), null,
 				"pushBuffer", null, 1, 1, PushBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(getBufferTaskEClass, GetBufferTask.class, "GetBufferTask", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGetBufferTask_GetBuffer(), theResourcePackage.getGetBuffer(), null,
+				"getBuffer", null, 1, 1, GetBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getGetBufferTask_DeviceBuffer(), theResourcePackage.getBuffer(), null,
+				"deviceBuffer", null, 0, 1, GetBufferTask.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 

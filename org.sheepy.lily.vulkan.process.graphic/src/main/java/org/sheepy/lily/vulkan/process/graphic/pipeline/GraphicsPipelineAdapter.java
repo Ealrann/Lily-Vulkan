@@ -11,11 +11,10 @@ import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
 import org.sheepy.lily.vulkan.api.resource.IVertexDescriptorAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
-import org.sheepy.vulkan.pipeline.IShaderStageFiller;
 import org.sheepy.vulkan.pipeline.VkPipeline;
+import org.sheepy.vulkan.pipeline.VkShaderStage;
 
 @Statefull
 @Adapter(scope = GraphicsPipeline.class)
@@ -39,13 +38,13 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 		final var shaders = pipeline.getShaders();
 		allocationDependencies.add(renderPass);
 
-		final List<IShaderStageFiller> shaderStageFillers = new ArrayList<>();
+		final List<VkShaderStage> shaderStages = new ArrayList<>();
 		for (final Shader shader : shaders)
 		{
-			shaderStageFillers.add(IShaderAdapter.adapt(shader));
+			shaderStages.add(IShaderAdapter.adapt(shader).getVkShaderStage());
 		}
 
-		final VertexDescriptor vertexDescriptor = pipeline.getVertexDescriptor();
+		final var vertexDescriptor = pipeline.getVertexDescriptor();
 		final var vertexAdapter = IVertexDescriptorAdapter.adapt(vertexDescriptor);
 		final var vkVertexDescriptor = vertexAdapter.buildVertexDescriptor(vertexDescriptor);
 		final var subpass = pipeline.getSubpass();
@@ -54,10 +53,11 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 		final var rasterizer = pipeline.getRasterizer();
 		final var colorBlend = pipeline.getColorBlend();
 		final var dynamicState = pipeline.getDynamicState();
+		final var specializationData = pipeline.getSpecializationData();
 
 		vkGraphicsPipeline = new VkGraphicsPipeline(getVkPipelineLayout(), colorBlend, rasterizer,
-				inputAssembly, viewportState, dynamicState, vkVertexDescriptor, shaderStageFillers,
-				subpass);
+				inputAssembly, viewportState, dynamicState, vkVertexDescriptor, shaderStages,
+				specializationData, subpass);
 		vkGraphicsPipeline.allocate(stack, context);
 	}
 

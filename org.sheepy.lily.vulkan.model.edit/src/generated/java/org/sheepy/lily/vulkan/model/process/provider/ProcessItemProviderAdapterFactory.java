@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import org.eclipse.emf.edit.provider.ChangeNotifier;
@@ -27,7 +26,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
 import org.sheepy.lily.vulkan.model.process.util.ProcessAdapterFactory;
@@ -293,6 +291,31 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.GetBufferTask} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GetBufferTaskItemProvider getBufferTaskItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.GetBufferTask}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGetBufferTaskAdapter()
+	{
+		if (getBufferTaskItemProvider == null)
+		{
+			getBufferTaskItemProvider = new GetBufferTaskItemProvider(this);
+		}
+
+		return getBufferTaskItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -449,6 +472,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 		if (bindDescriptorSetsItemProvider != null) bindDescriptorSetsItemProvider.dispose();
 		if (pushConstantBufferItemProvider != null) pushConstantBufferItemProvider.dispose();
 		if (pushBufferTaskItemProvider != null) pushBufferTaskItemProvider.dispose();
+		if (getBufferTaskItemProvider != null) getBufferTaskItemProvider.dispose();
 	}
 
 }

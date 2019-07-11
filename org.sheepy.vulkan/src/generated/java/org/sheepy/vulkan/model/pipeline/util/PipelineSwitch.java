@@ -79,6 +79,13 @@ public class PipelineSwitch<T> extends Switch<T>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
+		case PipelinePackage.SPECIALIZATION_CONSTANT:
+		{
+			SpecializationConstant specializationConstant = (SpecializationConstant) theEObject;
+			T result = caseSpecializationConstant(specializationConstant);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -96,6 +103,22 @@ public class PipelineSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T casePushConstantRange(PushConstantRange object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Specialization Constant</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Specialization Constant</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSpecializationConstant(SpecializationConstant object)
 	{
 		return null;
 	}

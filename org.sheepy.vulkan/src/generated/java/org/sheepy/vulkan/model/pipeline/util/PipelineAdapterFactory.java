@@ -79,6 +79,11 @@ public class PipelineAdapterFactory extends AdapterFactoryImpl
 			return createPushConstantRangeAdapter();
 		}
 		@Override
+		public Adapter caseSpecializationConstant(SpecializationConstant object)
+		{
+			return createSpecializationConstantAdapter();
+		}
+		@Override
 		public Adapter defaultCase(EObject object)
 		{
 			return createEObjectAdapter();
@@ -110,6 +115,21 @@ public class PipelineAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPushConstantRangeAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.vulkan.model.pipeline.SpecializationConstant <em>Specialization Constant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.vulkan.model.pipeline.SpecializationConstant
+	 * @generated
+	 */
+	public Adapter createSpecializationConstantAdapter()
 	{
 		return null;
 	}

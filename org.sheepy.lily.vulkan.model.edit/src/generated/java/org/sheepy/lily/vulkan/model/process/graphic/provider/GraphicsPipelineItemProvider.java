@@ -69,6 +69,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 			addNamePropertyDescriptor(object);
 			addEnabledPropertyDescriptor(object);
 			addStagePropertyDescriptor(object);
+			addSpecializationDataPropertyDescriptor(object);
 			addShadersPropertyDescriptor(object);
 			addSubpassPropertyDescriptor(object);
 		}
@@ -123,6 +124,23 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 				getString("_UI_PropertyDescriptor_description", "_UI_IPipeline_stage_feature",
 						"_UI_IPipeline_type"),
 				ProcessPackage.Literals.IPIPELINE__STAGE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Specialization Data feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSpecializationDataPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_IPipeline_specializationData_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_IPipeline_specializationData_feature", "_UI_IPipeline_type"),
+				ProcessPackage.Literals.IPIPELINE__SPECIALIZATION_DATA, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -246,6 +264,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 		case GraphicPackage.GRAPHICS_PIPELINE__NAME:
 		case GraphicPackage.GRAPHICS_PIPELINE__ENABLED:
 		case GraphicPackage.GRAPHICS_PIPELINE__STAGE:
+		case GraphicPackage.GRAPHICS_PIPELINE__SPECIALIZATION_DATA:
 		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));

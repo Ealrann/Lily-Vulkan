@@ -118,6 +118,31 @@ public class PipelineItemProviderAdapterFactory extends PipelineAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.vulkan.model.pipeline.SpecializationConstant} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SpecializationConstantItemProvider specializationConstantItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.vulkan.model.pipeline.SpecializationConstant}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSpecializationConstantAdapter()
+	{
+		if (specializationConstantItemProvider == null)
+		{
+			specializationConstantItemProvider = new SpecializationConstantItemProvider(this);
+		}
+
+		return specializationConstantItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,6 +292,8 @@ public class PipelineItemProviderAdapterFactory extends PipelineAdapterFactory
 	public void dispose()
 	{
 		if (pushConstantRangeItemProvider != null) pushConstantRangeItemProvider.dispose();
+		if (specializationConstantItemProvider != null)
+			specializationConstantItemProvider.dispose();
 	}
 
 }

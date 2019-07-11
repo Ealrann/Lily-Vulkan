@@ -161,6 +161,11 @@ public class CPUBufferBackend implements IBufferBackend
 		BufferUtils.flush(logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
 	}
 
+	public void invalidate(LogicalDevice logicalDevice)
+	{
+		BufferUtils.invalidate(logicalDevice, memoryAddress, VK_WHOLE_SIZE, currentOffset);
+	}
+
 	@Override
 	public long getOffset()
 	{

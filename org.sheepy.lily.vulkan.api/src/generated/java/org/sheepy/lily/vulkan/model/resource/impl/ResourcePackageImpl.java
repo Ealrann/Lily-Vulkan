@@ -34,6 +34,7 @@ import org.sheepy.lily.vulkan.model.resource.DescriptorSet;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.FileResource;
 import org.sheepy.lily.vulkan.model.resource.Font;
+import org.sheepy.lily.vulkan.model.resource.GetBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBuffer;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
 import org.sheepy.lily.vulkan.model.resource.Image;
@@ -52,6 +53,7 @@ import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.model.resource.Texture;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,6 +97,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass pushBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass getBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -357,6 +366,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		EcorePackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
@@ -473,6 +483,28 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EAttribute getPushBuffer_InstanceCount()
 	{
 		return (EAttribute) pushBufferEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getGetBuffer()
+	{
+		return getBufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGetBuffer_Size()
+	{
+		return (EAttribute) getBufferEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1339,6 +1371,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EReference getShader_Constants()
+	{
+		return (EReference) shaderEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPathResource()
 	{
 		return pathResourceEClass;
@@ -1481,6 +1524,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		createEAttribute(pushBufferEClass, PUSH_BUFFER__SIZE);
 		createEAttribute(pushBufferEClass, PUSH_BUFFER__INSTANCE_COUNT);
 
+		getBufferEClass = createEClass(GET_BUFFER);
+		createEAttribute(getBufferEClass, GET_BUFFER__SIZE);
+
 		constantBufferEClass = createEClass(CONSTANT_BUFFER);
 		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__BEING_PUSHED);
 		createEAttribute(constantBufferEClass, CONSTANT_BUFFER__DATA);
@@ -1587,6 +1633,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		shaderEClass = createEClass(SHADER);
 		createEReference(shaderEClass, SHADER__FILE);
 		createEAttribute(shaderEClass, SHADER__STAGE);
+		createEReference(shaderEClass, SHADER__CONSTANTS);
 
 		pathResourceEClass = createEClass(PATH_RESOURCE);
 		createEAttribute(pathResourceEClass, PATH_RESOURCE__PATH);
@@ -1641,6 +1688,8 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 				.getEPackage(TypesPackage.eNS_URI);
 		BarrierPackage theBarrierPackage = (BarrierPackage) EPackage.Registry.INSTANCE
 				.getEPackage(BarrierPackage.eNS_URI);
+		PipelinePackage thePipelinePackage = (PipelinePackage) EPackage.Registry.INSTANCE
+				.getEPackage(PipelinePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1649,6 +1698,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		// Add supertypes to classes
 		basicResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		pushBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
+		getBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		constantBufferEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		descriptedResourceEClass.getESuperTypes().add(theVulkanPackage.getIResource());
 		basicDescriptedResourceEClass.getESuperTypes().add(this.getDescriptedResource());
@@ -1694,6 +1744,12 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getPushBuffer_InstanceCount(), theEcorePackage.getEInt(), "instanceCount",
 				"3", 0, 1, PushBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(getBufferEClass, GetBuffer.class, "GetBuffer", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGetBuffer_Size(), theEcorePackage.getELong(), "size", null, 0, 1,
+				GetBuffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constantBufferEClass, ConstantBuffer.class, "ConstantBuffer", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1950,6 +2006,10 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEAttribute(getShader_Stage(), theEnumerationPackage.getEShaderStage(), "stage", null, 0,
 				1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getShader_Constants(), thePipelinePackage.getSpecializationConstant(), null,
+				"constants", null, 1, -1, Shader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(pathResourceEClass, PathResource.class, "PathResource", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

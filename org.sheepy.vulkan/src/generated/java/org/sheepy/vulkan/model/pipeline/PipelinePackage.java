@@ -112,6 +112,61 @@ public interface PipelinePackage extends EPackage
 	int PUSH_CONSTANT_RANGE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.pipeline.impl.SpecializationConstantImpl <em>Specialization Constant</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.pipeline.impl.SpecializationConstantImpl
+	 * @see org.sheepy.vulkan.model.pipeline.impl.PipelinePackageImpl#getSpecializationConstant()
+	 * @generated
+	 */
+	int SPECIALIZATION_CONSTANT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIALIZATION_CONSTANT__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Constant Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIALIZATION_CONSTANT__CONSTANT_ID = 1;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIALIZATION_CONSTANT__SIZE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Specialization Constant</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIALIZATION_CONSTANT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Specialization Constant</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIALIZATION_CONSTANT_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.pipeline.PushConstantRange <em>Push Constant Range</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,6 +208,49 @@ public interface PipelinePackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getPushConstantRange_Size();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.pipeline.SpecializationConstant <em>Specialization Constant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Specialization Constant</em>'.
+	 * @see org.sheepy.vulkan.model.pipeline.SpecializationConstant
+	 * @generated
+	 */
+	EClass getSpecializationConstant();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.pipeline.SpecializationConstant#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.sheepy.vulkan.model.pipeline.SpecializationConstant#getName()
+	 * @see #getSpecializationConstant()
+	 * @generated
+	 */
+	EAttribute getSpecializationConstant_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.pipeline.SpecializationConstant#getConstantId <em>Constant Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Constant Id</em>'.
+	 * @see org.sheepy.vulkan.model.pipeline.SpecializationConstant#getConstantId()
+	 * @see #getSpecializationConstant()
+	 * @generated
+	 */
+	EAttribute getSpecializationConstant_ConstantId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.vulkan.model.pipeline.SpecializationConstant#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see org.sheepy.vulkan.model.pipeline.SpecializationConstant#getSize()
+	 * @see #getSpecializationConstant()
+	 * @generated
+	 */
+	EAttribute getSpecializationConstant_Size();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -211,6 +309,41 @@ public interface PipelinePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute PUSH_CONSTANT_RANGE__SIZE = eINSTANCE.getPushConstantRange_Size();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.pipeline.impl.SpecializationConstantImpl <em>Specialization Constant</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.pipeline.impl.SpecializationConstantImpl
+		 * @see org.sheepy.vulkan.model.pipeline.impl.PipelinePackageImpl#getSpecializationConstant()
+		 * @generated
+		 */
+		EClass SPECIALIZATION_CONSTANT = eINSTANCE.getSpecializationConstant();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SPECIALIZATION_CONSTANT__NAME = eINSTANCE.getSpecializationConstant_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Constant Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SPECIALIZATION_CONSTANT__CONSTANT_ID = eINSTANCE
+				.getSpecializationConstant_ConstantId();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SPECIALIZATION_CONSTANT__SIZE = eINSTANCE.getSpecializationConstant_Size();
 
 	}
 

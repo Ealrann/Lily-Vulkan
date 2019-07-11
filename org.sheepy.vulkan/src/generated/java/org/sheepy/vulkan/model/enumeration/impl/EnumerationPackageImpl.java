@@ -739,6 +739,8 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		addEEnumLiteral(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.GEOMETRY_SHADER);
 		addEEnumLiteral(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.FILL_MODE_NON_SOLID);
 		addEEnumLiteral(ePhysicalDeviceFeatureEEnum, EPhysicalDeviceFeature.WIDE_LINES);
+		addEEnumLiteral(ePhysicalDeviceFeatureEEnum,
+				EPhysicalDeviceFeature.FRAGMENT_STORES_AND_ATOMICS);
 
 		initEEnum(eCullModeEEnum, ECullMode.class, "ECullMode");
 		addEEnumLiteral(eCullModeEEnum, ECullMode.NONE);

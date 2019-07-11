@@ -12,9 +12,12 @@ import org.sheepy.lily.core.model.root.LObject
 import org.sheepy.lily.core.model.types.LNamedElement
 import org.sheepy.lily.vulkan.model.IProcess
 import org.sheepy.lily.vulkan.model.IResourceContainer
+import org.sheepy.lily.vulkan.model.resource.Buffer
+import org.sheepy.lily.vulkan.model.resource.ByteBuffer
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer
 import org.sheepy.lily.vulkan.model.resource.DescriptorSet
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg
+import org.sheepy.lily.vulkan.model.resource.GetBuffer
 import org.sheepy.lily.vulkan.model.resource.PushBuffer
 import org.sheepy.lily.vulkan.model.resource.Semaphore
 import org.sheepy.vulkan.model.barrier.Barrier
@@ -61,6 +64,7 @@ interface IPipeline extends LNamedElement, IResourceContainer, IProcessPart
 	ECommandStage stage = "Render"
 
 	contains PushConstantRange[0..*] pushConstantRanges
+	ByteBuffer specializationData
 
 	contains DescriptorSetPkg descriptorSetPkg
 
@@ -111,4 +115,10 @@ class PushConstantBuffer extends PushConstant
 class PushBufferTask extends IPipelineTask
 {
 	refers PushBuffer[1..1] pushBuffer
+}
+
+class GetBufferTask  extends IPipelineTask
+{
+	refers GetBuffer[1..1] getBuffer
+	refers Buffer deviceBuffer
 }

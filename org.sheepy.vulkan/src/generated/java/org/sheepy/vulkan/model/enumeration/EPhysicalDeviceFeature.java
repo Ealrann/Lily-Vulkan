@@ -47,7 +47,16 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	 * @generated
 	 * @ordered
 	 */
-	WIDE_LINES(0, "WIDE_LINES", "WIDE_LINES");
+	WIDE_LINES(0, "WIDE_LINES", "WIDE_LINES"),
+	/**
+	* The '<em><b>FRAGMENT STORES AND ATOMICS</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #FRAGMENT_STORES_AND_ATOMICS_VALUE
+	* @generated
+	* @ordered
+	*/
+	FRAGMENT_STORES_AND_ATOMICS(0, "FRAGMENT_STORES_AND_ATOMICS", "FRAGMENT_STORES_AND_ATOMICS");
 
 	/**
 	 * The '<em><b>GEOMETRY SHADER</b></em>' literal value.
@@ -83,13 +92,24 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	public static final int WIDE_LINES_VALUE = 0;
 
 	/**
+	 * The '<em><b>FRAGMENT STORES AND ATOMICS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #FRAGMENT_STORES_AND_ATOMICS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FRAGMENT_STORES_AND_ATOMICS_VALUE = 0;
+
+	/**
 	 * An array of all the '<em><b>EPhysical Device Feature</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final EPhysicalDeviceFeature[] VALUES_ARRAY = new EPhysicalDeviceFeature[] {
-			GEOMETRY_SHADER, FILL_MODE_NON_SOLID, WIDE_LINES,
+			GEOMETRY_SHADER, FILL_MODE_NON_SOLID, WIDE_LINES, FRAGMENT_STORES_AND_ATOMICS,
 	};
 
 	/**
