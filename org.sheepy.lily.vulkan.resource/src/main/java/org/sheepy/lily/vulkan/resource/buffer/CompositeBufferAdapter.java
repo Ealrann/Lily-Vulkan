@@ -239,7 +239,7 @@ public final class CompositeBufferAdapter implements ICompositeBufferAdapter
 
 		private void pushProvidedData()
 		{
-			assert (memTicket.getReservationStatus() != EReservationStatus.SUCCESS);
+			assert (memTicket.getReservationStatus() == EReservationStatus.SUCCESS);
 
 			final long bufferAddress = bufferBackend.getAddress();
 
