@@ -38,8 +38,8 @@ public class WindowTest
 			@Override
 			public void step(Application application)
 			{
-				int expectedWidth = BasicModelFactory.WIDTH;
-				int expectedHeight = BasicModelFactory.HEIGHT;
+				final int expectedWidth = BasicModelFactory.WIDTH;
+				final int expectedHeight = BasicModelFactory.HEIGHT;
 
 				Assertions.assertTrue(
 						WindowTestUtil.checkWindowSize(application, expectedWidth, expectedHeight));
@@ -60,8 +60,8 @@ public class WindowTest
 	@Test
 	public void testResizeWindow()
 	{
-		int timeoutMs = 1000;
-		long setSizeDate = System.currentTimeMillis();
+		final int timeoutMs = 1000;
+		final long setSizeDate = System.currentTimeMillis();
 
 		ApplicationLauncher.launch(application, new IMainLoop()
 		{
@@ -74,12 +74,12 @@ public class WindowTest
 			@Override
 			public void step(Application application)
 			{
-				boolean expectedSize = WindowTestUtil.checkWindowSize(application, expectedWidth,
-						expectedHeight);
+				final boolean expectedSize = WindowTestUtil.checkWindowSize(application,
+						expectedWidth, expectedHeight);
 				if (expectedSize == true)
 				{
-					expectedWidth = random.nextInt(500) + 1;
-					expectedHeight = random.nextInt(500) + 1;
+					expectedWidth = random.nextInt(700) + 201;
+					expectedHeight = random.nextInt(700) + 201;
 
 					application.setSize(new Vector2i(expectedWidth, expectedHeight));
 
@@ -96,7 +96,7 @@ public class WindowTest
 						try
 						{
 							Thread.sleep(5);
-						} catch (InterruptedException e)
+						} catch (final InterruptedException e)
 						{
 							e.printStackTrace();
 						}

@@ -12,15 +12,15 @@ public class WindowTestUtil
 											int expectedWidth,
 											int expectedHeight)
 	{
-		var window = VulkanApplicationUtil.getWindow(application);
+		final var window = VulkanApplicationUtil.getWindow(application);
 
 		if (window == null)
 		{
 			fail("No window");
 		}
 
-		int[] width = new int[1];
-		int[] height = new int[1];
+		final int[] width = new int[1];
+		final int[] height = new int[1];
 
 		glfwGetWindowSize(window.getId(), width, height);
 

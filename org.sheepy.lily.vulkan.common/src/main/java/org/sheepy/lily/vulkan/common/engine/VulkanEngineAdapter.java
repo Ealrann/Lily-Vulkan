@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.lwjgl.system.MemoryStack;
 import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
@@ -94,8 +95,8 @@ public class VulkanEngineAdapter implements IVulkanEngineAdapter
 			{
 				if (notification.getFeature() == ApplicationPackage.Literals.APPLICATION__SIZE)
 				{
-					final Vector2i newSize = (Vector2i) notification.getNewValue();
-					window.setSize(newSize.x, newSize.y);
+					final Vector2ic newSize = (Vector2ic) notification.getNewValue();
+					window.setSize(newSize.x(), newSize.y());
 				}
 				else if (notification
 						.getFeature() == ApplicationPackage.Literals.APPLICATION__FULLSCREEN)
