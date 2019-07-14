@@ -58,6 +58,7 @@ public class VkUniformBuffer implements IVkDescriptor
 
 		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
 		writeDescriptor.dstArrayElement(0);
+		writeDescriptor.descriptorCount(1);
 		writeDescriptor.descriptorType(VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT);
 		writeDescriptor.pBufferInfo(bufferInfo);
 		writeDescriptor.pImageInfo(null);

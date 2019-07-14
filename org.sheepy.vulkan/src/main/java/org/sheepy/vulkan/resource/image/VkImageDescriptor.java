@@ -63,6 +63,7 @@ public class VkImageDescriptor implements IVkDescriptor
 
 		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
 		writeDescriptor.dstArrayElement(0);
+		writeDescriptor.descriptorCount(1);
 		writeDescriptor.descriptorType(descriptorType);
 		writeDescriptor.pBufferInfo(null);
 		writeDescriptor.pImageInfo(imageInfo);

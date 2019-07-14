@@ -14,13 +14,12 @@ buildscript {
 repositories {
 	mavenLocal()
 	mavenCentral()
-	maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 project.ext.targetPlatform = OperatingSystem.current()
 
-project.ext.jomlVersion = "1.9.16"
-project.ext.lwjglVersion = "3.2.2"
+project.ext.jomlVersion = "1.9.17"
+project.ext.lwjglVersion = "3.2.3"
 
 subprojects {
 
@@ -53,8 +52,8 @@ subprojects {
 
 	afterEvaluate {
 		repositories {
-			mavenLocal()
 			jcenter()
+			maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 		}
 	}
 }

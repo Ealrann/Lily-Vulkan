@@ -126,8 +126,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 		inputManager.setInputCatcher(inputCatcher);
 		inputCatcher.configure(nkContext, context.getWindow(), layoutTaskAdapter);
 
-		nkContext.clip(it -> it.copy((handle, text, len) ->
-		{
+		nkContext.clip().copy((handle, text, len) -> {
 			if (len == 0)
 			{
 				return;
@@ -148,7 +147,7 @@ public class NuklearContextAdapter implements IResourceAdapter
 			{
 				nnk_textedit_paste(edit, text, nnk_strlen(text));
 			}
-		}));
+		});
 
 		nkNullTexture.texture().ptr(nullTextureAdapter.getSamplerPtr());
 		nkNullTexture.uv().set(0.5f, 0.5f);

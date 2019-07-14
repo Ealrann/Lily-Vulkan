@@ -60,6 +60,7 @@ public class VkBufferDescriptor implements IVkDescriptor
 		final var bufferInfo = allocBufferInfo(stack);
 
 		writeDescriptor.sType(VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET);
+		writeDescriptor.descriptorCount(1);
 		writeDescriptor.dstArrayElement(0);
 		writeDescriptor.descriptorType(descriptorType);
 		writeDescriptor.pBufferInfo(bufferInfo);
