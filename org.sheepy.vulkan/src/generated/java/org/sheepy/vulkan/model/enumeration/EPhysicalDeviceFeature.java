@@ -49,13 +49,13 @@ public enum EPhysicalDeviceFeature implements Enumerator
 	 */
 	WIDE_LINES(0, "WIDE_LINES", "WIDE_LINES"),
 	/**
-	* The '<em><b>FRAGMENT STORES AND ATOMICS</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>FRAGMENT STORES AND ATOMICS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #FRAGMENT_STORES_AND_ATOMICS_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #FRAGMENT_STORES_AND_ATOMICS_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	FRAGMENT_STORES_AND_ATOMICS(0, "FRAGMENT_STORES_AND_ATOMICS", "FRAGMENT_STORES_AND_ATOMICS");
 
 	/**
