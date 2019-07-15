@@ -24,7 +24,7 @@ import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
-import org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
@@ -59,7 +59,7 @@ import org.sheepy.vulkan.model.pipeline.PushConstantRange;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getDynamicState <em>Dynamic State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getSubpass <em>Subpass</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getVertexDescriptor <em>Vertex Descriptor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl#getVertexInputState <em>Vertex Input State</em>}</li>
  * </ul>
  *
  * @generated
@@ -257,14 +257,14 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	protected int subpass = SUBPASS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getVertexDescriptor() <em>Vertex Descriptor</em>}' containment reference.
+	 * The cached value of the '{@link #getVertexInputState() <em>Vertex Input State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVertexDescriptor()
+	 * @see #getVertexInputState()
 	 * @generated
 	 * @ordered
 	 */
-	protected VertexDescriptor vertexDescriptor;
+	protected VertexInputState vertexInputState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -977,9 +977,9 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public VertexDescriptor getVertexDescriptor()
+	public VertexInputState getVertexInputState()
 	{
-		return vertexDescriptor;
+		return vertexInputState;
 	}
 
 	/**
@@ -987,16 +987,16 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVertexDescriptor(	VertexDescriptor newVertexDescriptor,
+	public NotificationChain basicSetVertexInputState(	VertexInputState newVertexInputState,
 														NotificationChain msgs)
 	{
-		VertexDescriptor oldVertexDescriptor = vertexDescriptor;
-		vertexDescriptor = newVertexDescriptor;
+		VertexInputState oldVertexInputState = vertexInputState;
+		vertexInputState = newVertexInputState;
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR, oldVertexDescriptor,
-					newVertexDescriptor);
+					GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, oldVertexInputState,
+					newVertexInputState);
 			if (msgs == null) msgs = notification;
 			else msgs.add(notification);
 		}
@@ -1009,27 +1009,27 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void setVertexDescriptor(VertexDescriptor newVertexDescriptor)
+	public void setVertexInputState(VertexInputState newVertexInputState)
 	{
-		if (newVertexDescriptor != vertexDescriptor)
+		if (newVertexInputState != vertexInputState)
 		{
 			NotificationChain msgs = null;
-			if (vertexDescriptor != null) msgs = ((InternalEObject) vertexDescriptor)
+			if (vertexInputState != null) msgs = ((InternalEObject) vertexInputState)
 					.eInverseRemove(this,
 							EOPPOSITE_FEATURE_BASE
-									- GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR,
+									- GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
 							null, msgs);
-			if (newVertexDescriptor != null) msgs = ((InternalEObject) newVertexDescriptor)
+			if (newVertexInputState != null) msgs = ((InternalEObject) newVertexInputState)
 					.eInverseAdd(this,
 							EOPPOSITE_FEATURE_BASE
-									- GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR,
+									- GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
 							null, msgs);
-			msgs = basicSetVertexDescriptor(newVertexDescriptor, msgs);
+			msgs = basicSetVertexInputState(newVertexInputState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR, newVertexDescriptor,
-				newVertexDescriptor));
+				GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE, newVertexInputState,
+				newVertexInputState));
 	}
 
 	/**
@@ -1085,8 +1085,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			return basicSetColorBlend(null, msgs);
 		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
 			return basicSetDynamicState(null, msgs);
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR:
-			return basicSetVertexDescriptor(null, msgs);
+		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+			return basicSetVertexInputState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1134,8 +1134,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			return getDynamicState();
 		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
 			return getSubpass();
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR:
-			return getVertexDescriptor();
+		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+			return getVertexInputState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1201,8 +1201,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
 			setSubpass((Integer) newValue);
 			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR:
-			setVertexDescriptor((VertexDescriptor) newValue);
+		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+			setVertexInputState((VertexInputState) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -1266,8 +1266,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
 			setSubpass(SUBPASS_EDEFAULT);
 			return;
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR:
-			setVertexDescriptor((VertexDescriptor) null);
+		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+			setVertexInputState((VertexInputState) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -1317,8 +1317,8 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 			return dynamicState != null;
 		case GraphicPackage.GRAPHICS_PIPELINE__SUBPASS:
 			return subpass != SUBPASS_EDEFAULT;
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR:
-			return vertexDescriptor != null;
+		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
+			return vertexInputState != null;
 		}
 		return super.eIsSet(featureID);
 	}

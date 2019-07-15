@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.IBufferReference;
+import org.sheepy.vulkan.model.enumeration.EIndexType;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +26,7 @@ import org.sheepy.lily.vulkan.model.resource.IBufferReference;
  * <ul>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getIndexType <em>Index Type</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl#getBufferRef <em>Buffer Ref</em>}</li>
  * </ul>
  *
@@ -71,6 +73,26 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getIndexType() <em>Index Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndexType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EIndexType INDEX_TYPE_EDEFAULT = EIndexType.UINT32;
+
+	/**
+	 * The cached value of the '{@link #getIndexType() <em>Index Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndexType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EIndexType indexType = INDEX_TYPE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getBufferRef() <em>Buffer Ref</em>}' containment reference.
@@ -151,6 +173,31 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 		enabled = newEnabled;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				GraphicPackage.BIND_INDEX_BUFFER__ENABLED, oldEnabled, enabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EIndexType getIndexType()
+	{
+		return indexType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIndexType(EIndexType newIndexType)
+	{
+		EIndexType oldIndexType = indexType;
+		indexType = newIndexType == null ? INDEX_TYPE_EDEFAULT : newIndexType;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE, oldIndexType, indexType));
 	}
 
 	/**
@@ -240,6 +287,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 			return getName();
 		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
 			return isEnabled();
+		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+			return getIndexType();
 		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
 			return getBufferRef();
 		}
@@ -261,6 +310,9 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 			return;
 		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
 			setEnabled((Boolean) newValue);
+			return;
+		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+			setIndexType((EIndexType) newValue);
 			return;
 		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
 			setBufferRef((IBufferReference) newValue);
@@ -285,6 +337,9 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
 			setEnabled(ENABLED_EDEFAULT);
 			return;
+		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+			setIndexType(INDEX_TYPE_EDEFAULT);
+			return;
 		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
 			setBufferRef((IBufferReference) null);
 			return;
@@ -306,6 +361,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
 			return enabled != ENABLED_EDEFAULT;
+		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+			return indexType != INDEX_TYPE_EDEFAULT;
 		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
 			return bufferRef != null;
 		}
@@ -327,6 +384,8 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 		result.append(name);
 		result.append(", enabled: ");
 		result.append(enabled);
+		result.append(", indexType: ");
+		result.append(indexType);
 		result.append(')');
 		return result.toString();
 	}

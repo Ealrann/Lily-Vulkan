@@ -201,7 +201,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__RASTERIZER);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__COLOR_BLEND);
 			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__DYNAMIC_STATE);
-			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR);
+			childrenFeatures.add(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE);
 		}
 		return childrenFeatures;
 	}
@@ -278,7 +278,7 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 		case GraphicPackage.GRAPHICS_PIPELINE__RASTERIZER:
 		case GraphicPackage.GRAPHICS_PIPELINE__COLOR_BLEND:
 		case GraphicPackage.GRAPHICS_PIPELINE__DYNAMIC_STATE:
-		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR:
+		case GraphicPackage.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -338,12 +338,8 @@ public class GraphicsPipelineItemProvider extends ItemProviderAdapter
 						GraphicpipelineFactory.eINSTANCE.createDynamicState()));
 
 		newChildDescriptors.add(
-				createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR,
-						GraphicFactory.eINSTANCE.createVertexDescriptor()));
-
-		newChildDescriptors.add(
-				createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR,
-						GraphicFactory.eINSTANCE.createIndexedVertexDescriptor()));
+				createChildParameter(GraphicPackage.Literals.GRAPHICS_PIPELINE__VERTEX_INPUT_STATE,
+						GraphicFactory.eINSTANCE.createVertexInputState()));
 	}
 
 	/**

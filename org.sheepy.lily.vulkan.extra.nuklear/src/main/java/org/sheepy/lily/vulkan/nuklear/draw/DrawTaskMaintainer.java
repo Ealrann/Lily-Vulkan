@@ -9,6 +9,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.nuklear.resource.NuklearContextAdapter;
+import org.sheepy.vulkan.model.enumeration.EIndexType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.surface.Extent2D;
 
@@ -63,6 +64,7 @@ public final class DrawTaskMaintainer
 
 		final var bindIndexBuffer = GraphicFactory.eINSTANCE.createBindIndexBuffer();
 		bindIndexBuffer.setBufferRef(indexRef);
+		bindIndexBuffer.setIndexType(EIndexType.UINT16);
 
 		final var setViewport = GraphicFactory.eINSTANCE.createSetViewport();
 		setViewport.setWidth(extent.getWidth());

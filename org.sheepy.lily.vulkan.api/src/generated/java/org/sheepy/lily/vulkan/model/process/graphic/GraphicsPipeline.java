@@ -28,7 +28,7 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getColorBlend <em>Color Blend</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getDynamicState <em>Dynamic State</em>}</li>
  *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getSubpass <em>Subpass</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexDescriptor <em>Vertex Descriptor</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexInputState <em>Vertex Input State</em>}</li>
  * </ul>
  *
  * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline()
@@ -184,25 +184,25 @@ public interface GraphicsPipeline extends IPipeline, Maintainable<GraphicsPipeli
 	void setSubpass(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Vertex Descriptor</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Vertex Input State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vertex Descriptor</em>' containment reference.
-	 * @see #setVertexDescriptor(VertexDescriptor)
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_VertexDescriptor()
+	 * @return the value of the '<em>Vertex Input State</em>' containment reference.
+	 * @see #setVertexInputState(VertexInputState)
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getGraphicsPipeline_VertexInputState()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	VertexDescriptor getVertexDescriptor();
+	VertexInputState getVertexInputState();
 
 	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexDescriptor <em>Vertex Descriptor</em>}' containment reference.
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexInputState <em>Vertex Input State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Vertex Descriptor</em>' containment reference.
-	 * @see #getVertexDescriptor()
+	 * @param value the new value of the '<em>Vertex Input State</em>' containment reference.
+	 * @see #getVertexInputState()
 	 * @generated
 	 */
-	void setVertexDescriptor(VertexDescriptor value);
+	void setVertexInputState(VertexInputState value);
 
 } // GraphicsPipeline

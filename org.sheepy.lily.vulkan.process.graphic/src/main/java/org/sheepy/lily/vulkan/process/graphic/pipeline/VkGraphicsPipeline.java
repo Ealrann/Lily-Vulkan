@@ -25,7 +25,7 @@ import org.sheepy.vulkan.pipeline.builder.MultisampleBuilder;
 import org.sheepy.vulkan.pipeline.builder.RasterizerBuilder;
 import org.sheepy.vulkan.pipeline.builder.ShaderStageBuilder;
 import org.sheepy.vulkan.pipeline.builder.ViewportStateBuilder;
-import org.sheepy.vulkan.resource.indexed.VkVertexDescriptor;
+import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor;
 
 public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 {
@@ -44,7 +44,7 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 	private final InputAssembly inputAssembly;
 	private final ViewportState viewportState;
 	private final DynamicState dynamicState;
-	private final VkVertexDescriptor vertexDescriptor;
+	private final VkInputStateDescriptor vertexDescriptor;
 	private final List<VkShaderStage> shaderStages;
 	private final ByteBuffer specializationData;
 
@@ -57,7 +57,7 @@ public class VkGraphicsPipeline extends VkPipeline<IGraphicContext>
 								InputAssembly inputAssembly,
 								ViewportState viewportState,
 								DynamicState dynamicState,
-								VkVertexDescriptor vertexBufferDescriptor,
+								VkInputStateDescriptor vertexBufferDescriptor,
 								List<VkShaderStage> shaderStages,
 								ByteBuffer specializationData,
 								int subpass)

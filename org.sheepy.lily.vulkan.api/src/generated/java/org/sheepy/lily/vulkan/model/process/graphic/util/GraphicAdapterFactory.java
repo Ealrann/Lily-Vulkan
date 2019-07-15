@@ -183,19 +183,19 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 			return createDrawAdapter();
 		}
 		@Override
-		public Adapter caseVertexDescriptor(VertexDescriptor object)
+		public Adapter caseVertexInputState(VertexInputState object)
 		{
-			return createVertexDescriptorAdapter();
+			return createVertexInputStateAdapter();
+		}
+		@Override
+		public Adapter caseInputDescriptor(InputDescriptor object)
+		{
+			return createInputDescriptorAdapter();
 		}
 		@Override
 		public Adapter caseAttributeDescription(AttributeDescription object)
 		{
 			return createAttributeDescriptionAdapter();
-		}
-		@Override
-		public Adapter caseIndexedVertexDescriptor(IndexedVertexDescriptor object)
-		{
-			return createIndexedVertexDescriptorAdapter();
 		}
 		@Override
 		public Adapter caseBindVertexBuffer(BindVertexBuffer object)
@@ -604,16 +604,31 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor <em>Vertex Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexInputState <em>Vertex Input State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexInputState
 	 * @generated
 	 */
-	public Adapter createVertexDescriptorAdapter()
+	public Adapter createVertexInputStateAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor <em>Input Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor
+	 * @generated
+	 */
+	public Adapter createInputDescriptorAdapter()
 	{
 		return null;
 	}
@@ -629,21 +644,6 @@ public class GraphicAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAttributeDescriptionAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor <em>Indexed Vertex Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor
-	 * @generated
-	 */
-	public Adapter createIndexedVertexDescriptorAdapter()
 	{
 		return null;
 	}

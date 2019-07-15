@@ -1224,13 +1224,13 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE__SUBPASS = ProcessPackage.IPIPELINE_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Vertex Descriptor</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vertex Input State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR = ProcessPackage.IPIPELINE_FEATURE_COUNT + 8;
+	int GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = ProcessPackage.IPIPELINE_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Graphics Pipeline</em>' class.
@@ -1553,23 +1553,60 @@ public interface GraphicPackage extends EPackage
 	int DRAW_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl <em>Vertex Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexInputStateImpl <em>Vertex Input State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexDescriptor()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.VertexInputStateImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexInputState()
 	 * @generated
 	 */
-	int VERTEX_DESCRIPTOR = 20;
+	int VERTEX_INPUT_STATE = 20;
 
 	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Input Descriptor</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_DESCRIPTOR__ATTRIBUTES = 0;
+	int VERTEX_INPUT_STATE__INPUT_DESCRIPTOR = 0;
+
+	/**
+	 * The number of structural features of the '<em>Vertex Input State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_INPUT_STATE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Vertex Input State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX_INPUT_STATE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.InputDescriptorImpl <em>Input Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.InputDescriptorImpl
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getInputDescriptor()
+	 * @generated
+	 */
+	int INPUT_DESCRIPTOR = 21;
+
+	/**
+	 * The feature id for the '<em><b>Input Rate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DESCRIPTOR__INPUT_RATE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Stride Length</b></em>' attribute.
@@ -1578,25 +1615,34 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_DESCRIPTOR__STRIDE_LENGTH = 1;
+	int INPUT_DESCRIPTOR__STRIDE_LENGTH = 1;
 
 	/**
-	 * The number of structural features of the '<em>Vertex Descriptor</em>' class.
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_DESCRIPTOR_FEATURE_COUNT = 2;
+	int INPUT_DESCRIPTOR__ATTRIBUTES = 2;
 
 	/**
-	 * The number of operations of the '<em>Vertex Descriptor</em>' class.
+	 * The number of structural features of the '<em>Input Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_DESCRIPTOR_OPERATION_COUNT = 0;
+	int INPUT_DESCRIPTOR_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Input Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl <em>Attribute Description</em>}' class.
@@ -1606,7 +1652,7 @@ public interface GraphicPackage extends EPackage
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getAttributeDescription()
 	 * @generated
 	 */
-	int ATTRIBUTE_DESCRIPTION = 21;
+	int ATTRIBUTE_DESCRIPTION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1652,61 +1698,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int ATTRIBUTE_DESCRIPTION_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl <em>Indexed Vertex Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIndexedVertexDescriptor()
-	 * @generated
-	 */
-	int INDEXED_VERTEX_DESCRIPTOR = 22;
-
-	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEXED_VERTEX_DESCRIPTOR__ATTRIBUTES = VERTEX_DESCRIPTOR__ATTRIBUTES;
-
-	/**
-	 * The feature id for the '<em><b>Stride Length</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEXED_VERTEX_DESCRIPTOR__STRIDE_LENGTH = VERTEX_DESCRIPTOR__STRIDE_LENGTH;
-
-	/**
-	 * The feature id for the '<em><b>Index Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEXED_VERTEX_DESCRIPTOR__INDEX_TYPE = VERTEX_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Indexed Vertex Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEXED_VERTEX_DESCRIPTOR_FEATURE_COUNT = VERTEX_DESCRIPTOR_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Indexed Vertex Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEXED_VERTEX_DESCRIPTOR_OPERATION_COUNT = VERTEX_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindVertexBufferImpl <em>Bind Vertex Buffer</em>}' class.
@@ -2020,13 +2011,22 @@ public interface GraphicPackage extends EPackage
 	int BIND_INDEX_BUFFER__ENABLED = ProcessPackage.IPIPELINE_TASK__ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Index Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_INDEX_BUFFER__INDEX_TYPE = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Buffer Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BIND_INDEX_BUFFER__BUFFER_REF = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 0;
+	int BIND_INDEX_BUFFER__BUFFER_REF = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Bind Index Buffer</em>' class.
@@ -2035,7 +2035,7 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BIND_INDEX_BUFFER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 1;
+	int BIND_INDEX_BUFFER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Bind Index Buffer</em>' class.
@@ -2713,15 +2713,15 @@ public interface GraphicPackage extends EPackage
 	EAttribute getGraphicsPipeline_Subpass();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexDescriptor <em>Vertex Descriptor</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexInputState <em>Vertex Input State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Vertex Descriptor</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexDescriptor()
+	 * @return the meta object for the containment reference '<em>Vertex Input State</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline#getVertexInputState()
 	 * @see #getGraphicsPipeline()
 	 * @generated
 	 */
-	EReference getGraphicsPipeline_VertexDescriptor();
+	EReference getGraphicsPipeline_VertexInputState();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier <em>Swap Image Barrier</em>}'.
@@ -2885,36 +2885,68 @@ public interface GraphicPackage extends EPackage
 	EAttribute getDraw_FirstInstance();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor <em>Vertex Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexInputState <em>Vertex Input State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Vertex Descriptor</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor
+	 * @return the meta object for class '<em>Vertex Input State</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexInputState
 	 * @generated
 	 */
-	EClass getVertexDescriptor();
+	EClass getVertexInputState();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor#getAttributes <em>Attributes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexInputState#getInputDescriptor <em>Input Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Input Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexInputState#getInputDescriptor()
+	 * @see #getVertexInputState()
+	 * @generated
+	 */
+	EReference getVertexInputState_InputDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor <em>Input Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Input Descriptor</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor
+	 * @generated
+	 */
+	EClass getInputDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getInputRate <em>Input Rate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Input Rate</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getInputRate()
+	 * @see #getInputDescriptor()
+	 * @generated
+	 */
+	EAttribute getInputDescriptor_InputRate();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getAttributes <em>Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor#getAttributes()
-	 * @see #getVertexDescriptor()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getAttributes()
+	 * @see #getInputDescriptor()
 	 * @generated
 	 */
-	EReference getVertexDescriptor_Attributes();
+	EReference getInputDescriptor_Attributes();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor#getStrideLength <em>Stride Length</em>}'.
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getStrideLength <em>Stride Length</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stride Length</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor#getStrideLength()
-	 * @see #getVertexDescriptor()
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getStrideLength()
+	 * @see #getInputDescriptor()
 	 * @generated
 	 */
-	EAttribute getVertexDescriptor_StrideLength();
+	EAttribute getInputDescriptor_StrideLength();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription <em>Attribute Description</em>}'.
@@ -2947,27 +2979,6 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getAttributeDescription_Offset();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor <em>Indexed Vertex Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Indexed Vertex Descriptor</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor
-	 * @generated
-	 */
-	EClass getIndexedVertexDescriptor();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor#getIndexType <em>Index Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Index Type</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor#getIndexType()
-	 * @see #getIndexedVertexDescriptor()
-	 * @generated
-	 */
-	EAttribute getIndexedVertexDescriptor_IndexType();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.BindVertexBuffer <em>Bind Vertex Buffer</em>}'.
@@ -3161,6 +3172,17 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EClass getBindIndexBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getIndexType <em>Index Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index Type</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getIndexType()
+	 * @see #getBindIndexBuffer()
+	 * @generated
+	 */
+	EAttribute getBindIndexBuffer_IndexType();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer#getBufferRef <em>Buffer Ref</em>}'.
@@ -3744,13 +3766,13 @@ public interface GraphicPackage extends EPackage
 		EAttribute GRAPHICS_PIPELINE__SUBPASS = eINSTANCE.getGraphicsPipeline_Subpass();
 
 		/**
-		 * The meta object literal for the '<em><b>Vertex Descriptor</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Vertex Input State</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR = eINSTANCE
-				.getGraphicsPipeline_VertexDescriptor();
+		EReference GRAPHICS_PIPELINE__VERTEX_INPUT_STATE = eINSTANCE
+				.getGraphicsPipeline_VertexInputState();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl <em>Swap Image Barrier</em>}' class.
@@ -3881,14 +3903,41 @@ public interface GraphicPackage extends EPackage
 		EAttribute DRAW__FIRST_INSTANCE = eINSTANCE.getDraw_FirstInstance();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl <em>Vertex Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexInputStateImpl <em>Vertex Input State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexDescriptor()
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.VertexInputStateImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getVertexInputState()
 		 * @generated
 		 */
-		EClass VERTEX_DESCRIPTOR = eINSTANCE.getVertexDescriptor();
+		EClass VERTEX_INPUT_STATE = eINSTANCE.getVertexInputState();
+
+		/**
+		 * The meta object literal for the '<em><b>Input Descriptor</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VERTEX_INPUT_STATE__INPUT_DESCRIPTOR = eINSTANCE
+				.getVertexInputState_InputDescriptor();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.InputDescriptorImpl <em>Input Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.InputDescriptorImpl
+		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getInputDescriptor()
+		 * @generated
+		 */
+		EClass INPUT_DESCRIPTOR = eINSTANCE.getInputDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Input Rate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INPUT_DESCRIPTOR__INPUT_RATE = eINSTANCE.getInputDescriptor_InputRate();
 
 		/**
 		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
@@ -3896,7 +3945,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX_DESCRIPTOR__ATTRIBUTES = eINSTANCE.getVertexDescriptor_Attributes();
+		EReference INPUT_DESCRIPTOR__ATTRIBUTES = eINSTANCE.getInputDescriptor_Attributes();
 
 		/**
 		 * The meta object literal for the '<em><b>Stride Length</b></em>' attribute feature.
@@ -3904,7 +3953,7 @@ public interface GraphicPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VERTEX_DESCRIPTOR__STRIDE_LENGTH = eINSTANCE.getVertexDescriptor_StrideLength();
+		EAttribute INPUT_DESCRIPTOR__STRIDE_LENGTH = eINSTANCE.getInputDescriptor_StrideLength();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl <em>Attribute Description</em>}' class.
@@ -3931,25 +3980,6 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE_DESCRIPTION__OFFSET = eINSTANCE.getAttributeDescription_Offset();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl <em>Indexed Vertex Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl
-		 * @see org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl#getIndexedVertexDescriptor()
-		 * @generated
-		 */
-		EClass INDEXED_VERTEX_DESCRIPTOR = eINSTANCE.getIndexedVertexDescriptor();
-
-		/**
-		 * The meta object literal for the '<em><b>Index Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INDEXED_VERTEX_DESCRIPTOR__INDEX_TYPE = eINSTANCE
-				.getIndexedVertexDescriptor_IndexType();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindVertexBufferImpl <em>Bind Vertex Buffer</em>}' class.
@@ -4105,6 +4135,14 @@ public interface GraphicPackage extends EPackage
 		 * @generated
 		 */
 		EClass BIND_INDEX_BUFFER = eINSTANCE.getBindIndexBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIND_INDEX_BUFFER__INDEX_TYPE = eINSTANCE.getBindIndexBuffer_IndexType();
 
 		/**
 		 * The meta object literal for the '<em><b>Buffer Ref</b></em>' containment reference feature.

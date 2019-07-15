@@ -34,6 +34,7 @@ import org.sheepy.vulkan.model.graphicpipeline.InputAssembly
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState
 import org.sheepy.vulkan.model.enumeration.EFilter
+import org.sheepy.vulkan.model.enumeration.EInputRate
 
 class GraphicConfiguration extends Configuration
 {
@@ -147,7 +148,7 @@ class GraphicsPipeline extends IPipeline, Maintainable<GraphicsPipeline>
 	contains DynamicState dynamicState
 	int subpass = "0"
 
-	contains VertexDescriptor[1..1] vertexDescriptor
+	contains VertexInputState[1..1] vertexInputState
 }
 
 class SwapImageBarrier extends AbstractImageBarrier
@@ -177,23 +178,24 @@ class Draw extends IPipelineTask
 	int firstInstance = "0"
 }
 
-class VertexDescriptor
+class VertexInputState
 {
-	contains AttributeDescription[1..*] attributes
+	contains InputDescriptor[1..*] inputDescriptor
+}
 
-	@GenModel(propertyDescription="Size of a vertex in bytes")
+class InputDescriptor
+{
+	EInputRate inputRate = "VERTEX"
+	@GenModel(propertyDescription="Size of one element in bytes")
 	int strideLength
+
+	contains AttributeDescription[1..*] attributes
 }
 
 class AttributeDescription extends LNamedElement
 {
 	EFormat format
 	int offset
-}
-
-class IndexedVertexDescriptor extends VertexDescriptor
-{
-	EIndexType indexType
 }
 
 class BindVertexBuffer extends IPipelineTask
@@ -227,5 +229,6 @@ class VertexBinding
 
 class BindIndexBuffer extends IPipelineTask
 {
+	EIndexType indexType = "UINT32"
 	contains IBufferReference bufferRef
 }

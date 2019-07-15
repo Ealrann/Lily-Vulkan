@@ -186,13 +186,22 @@ public interface GraphicFactory extends EFactory
 	Draw createDraw();
 
 	/**
-	 * Returns a new object of class '<em>Vertex Descriptor</em>'.
+	 * Returns a new object of class '<em>Vertex Input State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Vertex Descriptor</em>'.
+	 * @return a new object of class '<em>Vertex Input State</em>'.
 	 * @generated
 	 */
-	VertexDescriptor createVertexDescriptor();
+	VertexInputState createVertexInputState();
+
+	/**
+	 * Returns a new object of class '<em>Input Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Input Descriptor</em>'.
+	 * @generated
+	 */
+	InputDescriptor createInputDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Description</em>'.
@@ -202,15 +211,6 @@ public interface GraphicFactory extends EFactory
 	 * @generated
 	 */
 	AttributeDescription createAttributeDescription();
-
-	/**
-	 * Returns a new object of class '<em>Indexed Vertex Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Indexed Vertex Descriptor</em>'.
-	 * @generated
-	 */
-	IndexedVertexDescriptor createIndexedVertexDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Bind Vertex Buffer</em>'.

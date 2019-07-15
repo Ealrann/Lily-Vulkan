@@ -14,7 +14,8 @@ import org.sheepy.vulkan.resource.buffer.GPUBufferBackend;
 
 public class IndexedBuffer implements IAllocable<IExecutionContext>
 {
-	private final VkIndexedVertexDescriptor meshDescriptor;
+	private final int vertexStride;
+	private final int indexSize;
 	private final int vertexBufferCapacity;
 	private final int indexBufferCapacity;
 
@@ -27,11 +28,13 @@ public class IndexedBuffer implements IAllocable<IExecutionContext>
 
 	boolean allocated = false;
 
-	public IndexedBuffer(	VkIndexedVertexDescriptor meshDescriptor,
+	public IndexedBuffer(	int vertexStride,
+							int indexSize,
 							int vertexBufferCapacity,
 							int indexBufferCapacity)
 	{
-		this.meshDescriptor = meshDescriptor;
+		this.vertexStride = vertexStride;
+		this.indexSize = indexSize;
 		this.vertexBufferCapacity = vertexBufferCapacity;
 		this.indexBufferCapacity = indexBufferCapacity;
 	}
@@ -72,8 +75,8 @@ public class IndexedBuffer implements IAllocable<IExecutionContext>
 		indexCount = numberOfIndice;
 		vertexCount = numberOfVertice;
 
-		final int indexByteSize = numberOfIndice * meshDescriptor.indexSizeBytes;
-		final int vertexByteSize = numberOfVertice * meshDescriptor.sizeOfVertex();
+		final int indexByteSize = numberOfIndice * indexSize;
+		final int vertexByteSize = numberOfVertice * vertexStride;
 
 		final var vertexFiller = new BufferGPUFiller(stack, context, vertexBuffer.getAddress());
 		final var indexFiller = new BufferGPUFiller(stack, context, indexBuffer.getAddress());
@@ -104,11 +107,6 @@ public class IndexedBuffer implements IAllocable<IExecutionContext>
 		indexBuffer = null;
 
 		allocated = false;
-	}
-
-	public VkIndexedVertexDescriptor getIndexBufferDescriptor()
-	{
-		return meshDescriptor;
 	}
 
 	public boolean isAllocated()

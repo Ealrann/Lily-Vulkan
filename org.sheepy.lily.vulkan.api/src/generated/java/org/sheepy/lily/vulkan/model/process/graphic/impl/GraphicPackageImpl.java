@@ -42,7 +42,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.ImageAttachment;
-import org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor;
+import org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
 import org.sheepy.lily.vulkan.model.process.graphic.SetScissor;
 import org.sheepy.lily.vulkan.model.process.graphic.SetViewport;
@@ -52,7 +52,7 @@ import org.sheepy.lily.vulkan.model.process.graphic.SwapImageAttachmentDescripti
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
-import org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
@@ -212,7 +212,14 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vertexDescriptorEClass = null;
+	private EClass vertexInputStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inputDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,13 +227,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	private EClass attributeDescriptionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass indexedVertexDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1033,7 +1033,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getGraphicsPipeline_VertexDescriptor()
+	public EReference getGraphicsPipeline_VertexInputState()
 	{
 		return (EReference) graphicsPipelineEClass.getEStructuralFeatures().get(7);
 	}
@@ -1209,9 +1209,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getVertexDescriptor()
+	public EClass getVertexInputState()
 	{
-		return vertexDescriptorEClass;
+		return vertexInputStateEClass;
 	}
 
 	/**
@@ -1220,9 +1220,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getVertexDescriptor_Attributes()
+	public EReference getVertexInputState_InputDescriptor()
 	{
-		return (EReference) vertexDescriptorEClass.getEStructuralFeatures().get(0);
+		return (EReference) vertexInputStateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1231,9 +1231,42 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getVertexDescriptor_StrideLength()
+	public EClass getInputDescriptor()
 	{
-		return (EAttribute) vertexDescriptorEClass.getEStructuralFeatures().get(1);
+		return inputDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getInputDescriptor_InputRate()
+	{
+		return (EAttribute) inputDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getInputDescriptor_Attributes()
+	{
+		return (EReference) inputDescriptorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getInputDescriptor_StrideLength()
+	{
+		return (EAttribute) inputDescriptorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1267,28 +1300,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	public EAttribute getAttributeDescription_Offset()
 	{
 		return (EAttribute) attributeDescriptionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIndexedVertexDescriptor()
-	{
-		return indexedVertexDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getIndexedVertexDescriptor_IndexType()
-	{
-		return (EAttribute) indexedVertexDescriptorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1495,9 +1506,20 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBindIndexBuffer_IndexType()
+	{
+		return (EAttribute) bindIndexBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getBindIndexBuffer_BufferRef()
 	{
-		return (EReference) bindIndexBufferEClass.getEStructuralFeatures().get(0);
+		return (EReference) bindIndexBufferEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1612,7 +1634,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__COLOR_BLEND);
 		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__DYNAMIC_STATE);
 		createEAttribute(graphicsPipelineEClass, GRAPHICS_PIPELINE__SUBPASS);
-		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VERTEX_DESCRIPTOR);
+		createEReference(graphicsPipelineEClass, GRAPHICS_PIPELINE__VERTEX_INPUT_STATE);
 
 		swapImageBarrierEClass = createEClass(SWAP_IMAGE_BARRIER);
 
@@ -1633,16 +1655,17 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEAttribute(drawEClass, DRAW__FIRST_VERTEX);
 		createEAttribute(drawEClass, DRAW__FIRST_INSTANCE);
 
-		vertexDescriptorEClass = createEClass(VERTEX_DESCRIPTOR);
-		createEReference(vertexDescriptorEClass, VERTEX_DESCRIPTOR__ATTRIBUTES);
-		createEAttribute(vertexDescriptorEClass, VERTEX_DESCRIPTOR__STRIDE_LENGTH);
+		vertexInputStateEClass = createEClass(VERTEX_INPUT_STATE);
+		createEReference(vertexInputStateEClass, VERTEX_INPUT_STATE__INPUT_DESCRIPTOR);
+
+		inputDescriptorEClass = createEClass(INPUT_DESCRIPTOR);
+		createEAttribute(inputDescriptorEClass, INPUT_DESCRIPTOR__INPUT_RATE);
+		createEAttribute(inputDescriptorEClass, INPUT_DESCRIPTOR__STRIDE_LENGTH);
+		createEReference(inputDescriptorEClass, INPUT_DESCRIPTOR__ATTRIBUTES);
 
 		attributeDescriptionEClass = createEClass(ATTRIBUTE_DESCRIPTION);
 		createEAttribute(attributeDescriptionEClass, ATTRIBUTE_DESCRIPTION__FORMAT);
 		createEAttribute(attributeDescriptionEClass, ATTRIBUTE_DESCRIPTION__OFFSET);
-
-		indexedVertexDescriptorEClass = createEClass(INDEXED_VERTEX_DESCRIPTOR);
-		createEAttribute(indexedVertexDescriptorEClass, INDEXED_VERTEX_DESCRIPTOR__INDEX_TYPE);
 
 		bindVertexBufferEClass = createEClass(BIND_VERTEX_BUFFER);
 		createEAttribute(bindVertexBufferEClass, BIND_VERTEX_BUFFER__FIRST_BINDING);
@@ -1666,6 +1689,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		createEReference(vertexBindingEClass, VERTEX_BINDING__BUFFER_REF);
 
 		bindIndexBufferEClass = createEClass(BIND_INDEX_BUFFER);
+		createEAttribute(bindIndexBufferEClass, BIND_INDEX_BUFFER__INDEX_TYPE);
 		createEReference(bindIndexBufferEClass, BIND_INDEX_BUFFER__BUFFER_REF);
 	}
 
@@ -1739,7 +1763,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		drawIndexedEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		drawEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		attributeDescriptionEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
-		indexedVertexDescriptorEClass.getESuperTypes().add(this.getVertexDescriptor());
 		bindVertexBufferEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		setScissorEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		setViewportEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
@@ -1970,8 +1993,8 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		initEAttribute(getGraphicsPipeline_Subpass(), theEcorePackage.getEInt(), "subpass", "0", 0,
 				1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphicsPipeline_VertexDescriptor(), this.getVertexDescriptor(), null,
-				"vertexDescriptor", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getGraphicsPipeline_VertexInputState(), this.getVertexInputState(), null,
+				"vertexInputState", null, 1, 1, GraphicsPipeline.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
@@ -2021,15 +2044,25 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				1, Draw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				!IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(vertexDescriptorEClass, VertexDescriptor.class, "VertexDescriptor", !IS_ABSTRACT,
+		initEClass(vertexInputStateEClass, VertexInputState.class, "VertexInputState", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVertexDescriptor_Attributes(), this.getAttributeDescription(), null,
-				"attributes", null, 1, -1, VertexDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getVertexInputState_InputDescriptor(), this.getInputDescriptor(), null,
+				"inputDescriptor", null, 1, -1, VertexInputState.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVertexDescriptor_StrideLength(), theEcorePackage.getEInt(),
-				"strideLength", null, 0, 1, VertexDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
+
+		initEClass(inputDescriptorEClass, InputDescriptor.class, "InputDescriptor", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getInputDescriptor_InputRate(), theEnumerationPackage.getEInputRate(),
+				"inputRate", "VERTEX", 0, 1, InputDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInputDescriptor_StrideLength(), theEcorePackage.getEInt(), "strideLength",
+				null, 0, 1, InputDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInputDescriptor_Attributes(), this.getAttributeDescription(), null,
+				"attributes", null, 1, -1, InputDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeDescriptionEClass, AttributeDescription.class, "AttributeDescription",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2038,14 +2071,6 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributeDescription_Offset(), theEcorePackage.getEInt(), "offset", null,
 				0, 1, AttributeDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(indexedVertexDescriptorEClass, IndexedVertexDescriptor.class,
-				"IndexedVertexDescriptor", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIndexedVertexDescriptor_IndexType(),
-				theEnumerationPackage.getEIndexType(), "indexType", null, 0, 1,
-				IndexedVertexDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bindVertexBufferEClass, BindVertexBuffer.class, "BindVertexBuffer", !IS_ABSTRACT,
@@ -2103,6 +2128,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 
 		initEClass(bindIndexBufferEClass, BindIndexBuffer.class, "BindIndexBuffer", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBindIndexBuffer_IndexType(), theEnumerationPackage.getEIndexType(),
+				"indexType", "UINT32", 0, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBindIndexBuffer_BufferRef(), theResourcePackage.getIBufferReference(),
 				null, "bufferRef", null, 0, 1, BindIndexBuffer.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,

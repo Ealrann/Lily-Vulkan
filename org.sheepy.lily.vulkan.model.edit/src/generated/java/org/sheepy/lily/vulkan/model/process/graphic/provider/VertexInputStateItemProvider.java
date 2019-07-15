@@ -11,7 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,21 +19,20 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.VertexInputState} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class VertexDescriptorItemProvider extends ItemProviderAdapter
+public class VertexInputStateItemProvider extends ItemProviderAdapter
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
@@ -43,7 +42,7 @@ public class VertexDescriptorItemProvider extends ItemProviderAdapter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VertexDescriptorItemProvider(AdapterFactory adapterFactory)
+	public VertexInputStateItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -61,25 +60,8 @@ public class VertexDescriptorItemProvider extends ItemProviderAdapter
 		{
 			super.getPropertyDescriptors(object);
 
-			addStrideLengthPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Stride Length feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStrideLengthPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_VertexDescriptor_strideLength_feature"),
-				getString("_UI_VertexDescriptor_strideLength_description"),
-				GraphicPackage.Literals.VERTEX_DESCRIPTOR__STRIDE_LENGTH, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -96,7 +78,7 @@ public class VertexDescriptorItemProvider extends ItemProviderAdapter
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.VERTEX_DESCRIPTOR__ATTRIBUTES);
+			childrenFeatures.add(GraphicPackage.Literals.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR);
 		}
 		return childrenFeatures;
 	}
@@ -116,7 +98,7 @@ public class VertexDescriptorItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This returns VertexDescriptor.gif.
+	 * This returns VertexInputState.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -124,7 +106,7 @@ public class VertexDescriptorItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/VertexDescriptor"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/VertexInputState"));
 	}
 
 	/**
@@ -136,8 +118,7 @@ public class VertexDescriptorItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		VertexDescriptor vertexDescriptor = (VertexDescriptor) object;
-		return getString("_UI_VertexDescriptor_type") + " " + vertexDescriptor.getStrideLength();
+		return getString("_UI_VertexInputState_type");
 	}
 
 	/**
@@ -152,13 +133,9 @@ public class VertexDescriptorItemProvider extends ItemProviderAdapter
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(VertexDescriptor.class))
+		switch (notification.getFeatureID(VertexInputState.class))
 		{
-		case GraphicPackage.VERTEX_DESCRIPTOR__STRIDE_LENGTH:
-			fireNotifyChanged(
-					new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GraphicPackage.VERTEX_DESCRIPTOR__ATTRIBUTES:
+		case GraphicPackage.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -178,9 +155,9 @@ public class VertexDescriptorItemProvider extends ItemProviderAdapter
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.VERTEX_DESCRIPTOR__ATTRIBUTES,
-						GraphicFactory.eINSTANCE.createAttributeDescription()));
+		newChildDescriptors.add(
+				createChildParameter(GraphicPackage.Literals.VERTEX_INPUT_STATE__INPUT_DESCRIPTOR,
+						GraphicFactory.eINSTANCE.createInputDescriptor()));
 	}
 
 	/**

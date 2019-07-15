@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -23,19 +24,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.core.model.types.TypesPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor;
+
+import org.sheepy.vulkan.model.enumeration.EInputRate;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.BindIndexBuffer} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BindIndexBufferItemProvider extends ItemProviderAdapter
+public class InputDescriptorItemProvider extends ItemProviderAdapter
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
@@ -45,7 +46,7 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BindIndexBufferItemProvider(AdapterFactory adapterFactory)
+	public InputDescriptorItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -63,62 +64,43 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter
 		{
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addEnabledPropertyDescriptor(object);
-			addIndexTypePropertyDescriptor(object);
+			addInputRatePropertyDescriptor(object);
+			addStrideLengthPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Input Rate feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
+	protected void addInputRatePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LNamedElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature",
-						"_UI_LNamedElement_type"),
-				TypesPackage.Literals.LNAMED_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Enabled feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEnabledPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_IPipelineTask_enabled_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IPipelineTask_enabled_feature",
-						"_UI_IPipelineTask_type"),
-				ProcessPackage.Literals.IPIPELINE_TASK__ENABLED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Index Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIndexTypePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_BindIndexBuffer_indexType_feature"),
+				getResourceLocator(), getString("_UI_InputDescriptor_inputRate_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_BindIndexBuffer_indexType_feature", "_UI_BindIndexBuffer_type"),
-				GraphicPackage.Literals.BIND_INDEX_BUFFER__INDEX_TYPE, true, false, false,
+						"_UI_InputDescriptor_inputRate_feature", "_UI_InputDescriptor_type"),
+				GraphicPackage.Literals.INPUT_DESCRIPTOR__INPUT_RATE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Stride Length feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStrideLengthPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_InputDescriptor_strideLength_feature"),
+				getString("_UI_InputDescriptor_strideLength_description"),
+				GraphicPackage.Literals.INPUT_DESCRIPTOR__STRIDE_LENGTH, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -135,7 +117,7 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GraphicPackage.Literals.BIND_INDEX_BUFFER__BUFFER_REF);
+			childrenFeatures.add(GraphicPackage.Literals.INPUT_DESCRIPTOR__ATTRIBUTES);
 		}
 		return childrenFeatures;
 	}
@@ -155,7 +137,7 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This returns BindIndexBuffer.gif.
+	 * This returns InputDescriptor.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -163,7 +145,7 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BindIndexBuffer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InputDescriptor"));
 	}
 
 	/**
@@ -175,10 +157,11 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((BindIndexBuffer) object).getName();
+		EInputRate labelValue = ((InputDescriptor) object).getInputRate();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0
-				? getString("_UI_BindIndexBuffer_type")
-				: getString("_UI_BindIndexBuffer_type") + " " + label;
+				? getString("_UI_InputDescriptor_type")
+				: getString("_UI_InputDescriptor_type") + " " + label;
 	}
 
 	/**
@@ -193,15 +176,14 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BindIndexBuffer.class))
+		switch (notification.getFeatureID(InputDescriptor.class))
 		{
-		case GraphicPackage.BIND_INDEX_BUFFER__NAME:
-		case GraphicPackage.BIND_INDEX_BUFFER__ENABLED:
-		case GraphicPackage.BIND_INDEX_BUFFER__INDEX_TYPE:
+		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case GraphicPackage.BIND_INDEX_BUFFER__BUFFER_REF:
+		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
 			fireNotifyChanged(
 					new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -222,12 +204,8 @@ public class BindIndexBufferItemProvider extends ItemProviderAdapter
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.BIND_INDEX_BUFFER__BUFFER_REF,
-						ResourceFactory.eINSTANCE.createBufferReference()));
-
-		newChildDescriptors
-				.add(createChildParameter(GraphicPackage.Literals.BIND_INDEX_BUFFER__BUFFER_REF,
-						ResourceFactory.eINSTANCE.createCompositeBufferReference()));
+				.add(createChildParameter(GraphicPackage.Literals.INPUT_DESCRIPTOR__ATTRIBUTES,
+						GraphicFactory.eINSTANCE.createAttributeDescription()));
 	}
 
 	/**

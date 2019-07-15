@@ -250,10 +250,17 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
-		case GraphicPackage.VERTEX_DESCRIPTOR:
+		case GraphicPackage.VERTEX_INPUT_STATE:
 		{
-			VertexDescriptor vertexDescriptor = (VertexDescriptor) theEObject;
-			T1 result = caseVertexDescriptor(vertexDescriptor);
+			VertexInputState vertexInputState = (VertexInputState) theEObject;
+			T1 result = caseVertexInputState(vertexInputState);
+			if (result == null) result = defaultCase(theEObject);
+			return result;
+		}
+		case GraphicPackage.INPUT_DESCRIPTOR:
+		{
+			InputDescriptor inputDescriptor = (InputDescriptor) theEObject;
+			T1 result = caseInputDescriptor(inputDescriptor);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -262,14 +269,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 			AttributeDescription attributeDescription = (AttributeDescription) theEObject;
 			T1 result = caseAttributeDescription(attributeDescription);
 			if (result == null) result = caseLNamedElement(attributeDescription);
-			if (result == null) result = defaultCase(theEObject);
-			return result;
-		}
-		case GraphicPackage.INDEXED_VERTEX_DESCRIPTOR:
-		{
-			IndexedVertexDescriptor indexedVertexDescriptor = (IndexedVertexDescriptor) theEObject;
-			T1 result = caseIndexedVertexDescriptor(indexedVertexDescriptor);
-			if (result == null) result = caseVertexDescriptor(indexedVertexDescriptor);
 			if (result == null) result = defaultCase(theEObject);
 			return result;
 		}
@@ -642,17 +641,33 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vertex Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Vertex Input State</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vertex Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Vertex Input State</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseVertexDescriptor(VertexDescriptor object)
+	public T1 caseVertexInputState(VertexInputState object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Input Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Input Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseInputDescriptor(InputDescriptor object)
 	{
 		return null;
 	}
@@ -669,22 +684,6 @@ public class GraphicSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	public T1 caseAttributeDescription(AttributeDescription object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Indexed Vertex Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Indexed Vertex Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseIndexedVertexDescriptor(IndexedVertexDescriptor object)
 	{
 		return null;
 	}

@@ -9,12 +9,15 @@ import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.api.graphic.IGraphicContext;
 import org.sheepy.lily.vulkan.api.resource.IShaderAdapter;
-import org.sheepy.lily.vulkan.api.resource.IVertexDescriptorAdapter;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
+import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
 import org.sheepy.lily.vulkan.model.resource.Shader;
 import org.sheepy.lily.vulkan.process.pipeline.AbstractPipelineAdapter;
 import org.sheepy.vulkan.pipeline.VkPipeline;
 import org.sheepy.vulkan.pipeline.VkShaderStage;
+import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor;
+import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor.VkAttributeDescription;
+import org.sheepy.vulkan.resource.indexed.VkInputStateDescriptor.VkVertexBinding;
 
 @Statefull
 @Adapter(scope = GraphicsPipeline.class)
@@ -44,9 +47,8 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 			shaderStages.add(IShaderAdapter.adapt(shader).getVkShaderStage());
 		}
 
-		final var vertexDescriptor = pipeline.getVertexDescriptor();
-		final var vertexAdapter = IVertexDescriptorAdapter.adapt(vertexDescriptor);
-		final var vkVertexDescriptor = vertexAdapter.buildVertexDescriptor(vertexDescriptor);
+		final var vertexInputState = pipeline.getVertexInputState();
+		final var inputState = createVkInputState(vertexInputState);
 		final var subpass = pipeline.getSubpass();
 		final var viewportState = pipeline.getViewportState();
 		final var inputAssembly = pipeline.getInputAssembly();
@@ -56,7 +58,7 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 		final var specializationData = pipeline.getSpecializationData();
 
 		vkGraphicsPipeline = new VkGraphicsPipeline(getVkPipelineLayout(), colorBlend, rasterizer,
-				inputAssembly, viewportState, dynamicState, vkVertexDescriptor, shaderStages,
+				inputAssembly, viewportState, dynamicState, inputState, shaderStages,
 				specializationData, subpass);
 		vkGraphicsPipeline.allocate(stack, context);
 	}
@@ -69,6 +71,29 @@ public class GraphicsPipelineAdapter extends AbstractPipelineAdapter<IGraphicCon
 		allocationDependencies.remove(renderPass);
 		vkGraphicsPipeline.free(context);
 		super.free(context);
+	}
+
+	public static VkInputStateDescriptor createVkInputState(VertexInputState inputState)
+	{
+		final List<VkVertexBinding> bindings = new ArrayList<>();
+
+		for (final var inputDescriptor : inputState.getInputDescriptor())
+		{
+			final var inputRate = inputDescriptor.getInputRate();
+			final var stride = inputDescriptor.getStrideLength();
+			final List<VkAttributeDescription> attributes = new ArrayList<>();
+
+			for (final var attribute : inputDescriptor.getAttributes())
+			{
+				final var format = attribute.getFormat().getValue();
+				final var offset = attribute.getOffset();
+				attributes.add(new VkAttributeDescription(format, offset));
+			}
+
+			bindings.add(new VkVertexBinding(inputRate, stride, attributes));
+		}
+
+		return new VkInputStateDescriptor(bindings);
 	}
 
 	@Override

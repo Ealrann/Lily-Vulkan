@@ -20,12 +20,13 @@ public class IndexedBufferWithUniform extends IndexedBuffer
 
 	boolean allocated = false;
 
-	public IndexedBufferWithUniform(VkIndexedVertexDescriptor meshDescriptor,
+	public IndexedBufferWithUniform(int vertexStride,
+									int indexSize,
 									int vertexBufferCapacity,
 									int indexBufferCapacity,
 									int uniformBufferCapacity)
 	{
-		super(meshDescriptor, vertexBufferCapacity, indexBufferCapacity);
+		super(vertexStride, indexSize, vertexBufferCapacity, indexBufferCapacity);
 		this.uniformBufferCapacity = uniformBufferCapacity;
 
 		final BufferInfo info = new BufferInfo(uniformBufferCapacity, USAGE, false);

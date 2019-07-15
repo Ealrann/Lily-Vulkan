@@ -25,6 +25,7 @@ import org.sheepy.vulkan.model.enumeration.EFrontFace;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 import org.sheepy.vulkan.model.enumeration.EIndexType;
+import org.sheepy.vulkan.model.enumeration.EInputRate;
 import org.sheepy.vulkan.model.enumeration.ELogicOp;
 import org.sheepy.vulkan.model.enumeration.EMemoryProperty;
 import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
@@ -165,6 +166,13 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	private EEnum eIndexTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eInputRateEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -509,6 +517,17 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 	 * @generated
 	 */
 	@Override
+	public EEnum getEInputRate()
+	{
+		return eInputRateEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getEDynamicState()
 	{
 		return eDynamicStateEEnum;
@@ -683,6 +702,7 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		eSamplerAddressModeEEnum = createEEnum(ESAMPLER_ADDRESS_MODE);
 		eBlendFactorEEnum = createEEnum(EBLEND_FACTOR);
 		eIndexTypeEEnum = createEEnum(EINDEX_TYPE);
+		eInputRateEEnum = createEEnum(EINPUT_RATE);
 		eDynamicStateEEnum = createEEnum(EDYNAMIC_STATE);
 		eBlendOpEEnum = createEEnum(EBLEND_OP);
 		eAccessEEnum = createEEnum(EACCESS);
@@ -868,6 +888,10 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 		initEEnum(eIndexTypeEEnum, EIndexType.class, "EIndexType");
 		addEEnumLiteral(eIndexTypeEEnum, EIndexType.UINT16);
 		addEEnumLiteral(eIndexTypeEEnum, EIndexType.UINT32);
+
+		initEEnum(eInputRateEEnum, EInputRate.class, "EInputRate");
+		addEEnumLiteral(eInputRateEEnum, EInputRate.VERTEX);
+		addEEnumLiteral(eInputRateEEnum, EInputRate.INSTANCE);
 
 		initEEnum(eDynamicStateEEnum, EDynamicState.class, "EDynamicState");
 		addEEnumLiteral(eDynamicStateEEnum, EDynamicState.VIEWPORT);

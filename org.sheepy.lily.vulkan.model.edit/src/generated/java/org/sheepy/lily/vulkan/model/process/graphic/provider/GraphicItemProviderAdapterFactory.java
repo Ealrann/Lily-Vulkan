@@ -558,28 +558,53 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor} instances.
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.VertexInputState} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VertexDescriptorItemProvider vertexDescriptorItemProvider;
+	protected VertexInputStateItemProvider vertexInputStateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor}.
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.VertexInputState}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createVertexDescriptorAdapter()
+	public Adapter createVertexInputStateAdapter()
 	{
-		if (vertexDescriptorItemProvider == null)
+		if (vertexInputStateItemProvider == null)
 		{
-			vertexDescriptorItemProvider = new VertexDescriptorItemProvider(this);
+			vertexInputStateItemProvider = new VertexInputStateItemProvider(this);
 		}
 
-		return vertexDescriptorItemProvider;
+		return vertexInputStateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InputDescriptorItemProvider inputDescriptorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInputDescriptorAdapter()
+	{
+		if (inputDescriptorItemProvider == null)
+		{
+			inputDescriptorItemProvider = new InputDescriptorItemProvider(this);
+		}
+
+		return inputDescriptorItemProvider;
 	}
 
 	/**
@@ -605,31 +630,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		}
 
 		return attributeDescriptionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IndexedVertexDescriptorItemProvider indexedVertexDescriptorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.sheepy.lily.vulkan.model.process.graphic.IndexedVertexDescriptor}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createIndexedVertexDescriptorAdapter()
-	{
-		if (indexedVertexDescriptorItemProvider == null)
-		{
-			indexedVertexDescriptorItemProvider = new IndexedVertexDescriptorItemProvider(this);
-		}
-
-		return indexedVertexDescriptorItemProvider;
 	}
 
 	/**
@@ -928,10 +928,9 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (blitToSwapImageItemProvider != null) blitToSwapImageItemProvider.dispose();
 		if (drawIndexedItemProvider != null) drawIndexedItemProvider.dispose();
 		if (drawItemProvider != null) drawItemProvider.dispose();
-		if (vertexDescriptorItemProvider != null) vertexDescriptorItemProvider.dispose();
+		if (vertexInputStateItemProvider != null) vertexInputStateItemProvider.dispose();
+		if (inputDescriptorItemProvider != null) inputDescriptorItemProvider.dispose();
 		if (attributeDescriptionItemProvider != null) attributeDescriptionItemProvider.dispose();
-		if (indexedVertexDescriptorItemProvider != null)
-			indexedVertexDescriptorItemProvider.dispose();
 		if (bindVertexBufferItemProvider != null) bindVertexBufferItemProvider.dispose();
 		if (setScissorItemProvider != null) setScissorItemProvider.dispose();
 		if (setViewportItemProvider != null) setViewportItemProvider.dispose();

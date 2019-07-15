@@ -21,7 +21,6 @@ import org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.IndexedVertexDescriptorImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
@@ -227,12 +226,14 @@ public class MeshModelFactory
 
 		final int strideLength = meshConfiguration.useTexture ? 32 : 20;
 
-		final var vertexDescriptor = new IndexedVertexDescriptorImpl();
-		vertexDescriptor.setIndexType(EIndexType.UINT32);
-		vertexDescriptor.setStrideLength(strideLength);
-		vertexDescriptor.getAttributes().add(locationAttribute);
-		vertexDescriptor.getAttributes().add(colorAttribute);
-		if (meshConfiguration.useTexture) vertexDescriptor.getAttributes().add(textureAttribute);
+		final var inputState = GraphicFactory.eINSTANCE.createVertexInputState();
+		final var inputDescriptor = GraphicFactory.eINSTANCE.createInputDescriptor();
+		inputState.getInputDescriptor().add(inputDescriptor);
+
+		inputDescriptor.setStrideLength(strideLength);
+		inputDescriptor.getAttributes().add(locationAttribute);
+		inputDescriptor.getAttributes().add(colorAttribute);
+		if (meshConfiguration.useTexture) inputDescriptor.getAttributes().add(textureAttribute);
 
 		final var graphicPipeline = new GraphicsPipelineImpl();
 		graphicPipeline.getShaders().add(vertexShader);
@@ -241,7 +242,7 @@ public class MeshModelFactory
 		graphicPipeline.setInputAssembly(new InputAssemblyImpl());
 		graphicPipeline.setViewportState(viewportState);
 		graphicPipeline.setColorBlend(colorBlend);
-		graphicPipeline.setVertexDescriptor(vertexDescriptor);
+		graphicPipeline.setVertexInputState(inputState);
 		if (pushConstantRange != null)
 			graphicPipeline.getPushConstantRanges().add(pushConstantRange);
 
@@ -260,6 +261,7 @@ public class MeshModelFactory
 
 		final var bindIndexBuffer = new BindIndexBufferImpl();
 		bindIndexBuffer.setBufferRef(indexRef);
+		bindIndexBuffer.setIndexType(EIndexType.UINT32);
 
 		final var drawIndexed = new DrawIndexedImpl();
 		drawIndexed.setIndexCount(meshConfiguration.indexCount);

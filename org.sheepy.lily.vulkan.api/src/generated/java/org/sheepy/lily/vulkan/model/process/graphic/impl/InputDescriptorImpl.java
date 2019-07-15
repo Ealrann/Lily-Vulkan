@@ -3,47 +3,63 @@
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
-import org.sheepy.lily.vulkan.model.process.graphic.VertexDescriptor;
+import org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor;
+
+import org.sheepy.vulkan.model.enumeration.EInputRate;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Vertex Descriptor</b></em>'.
+ * An implementation of the model object '<em><b>Input Descriptor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexDescriptorImpl#getStrideLength <em>Stride Length</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.InputDescriptorImpl#getInputRate <em>Input Rate</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.InputDescriptorImpl#getStrideLength <em>Stride Length</em>}</li>
+ *   <li>{@link org.sheepy.lily.vulkan.model.process.graphic.impl.InputDescriptorImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implements VertexDescriptor
+public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements InputDescriptor
 {
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
+	 * The default value of the '{@link #getInputRate() <em>Input Rate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAttributes()
+	 * @see #getInputRate()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeDescription> attributes;
+	protected static final EInputRate INPUT_RATE_EDEFAULT = EInputRate.VERTEX;
+
+	/**
+	 * The cached value of the '{@link #getInputRate() <em>Input Rate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInputRate()
+	 * @generated
+	 * @ordered
+	 */
+	protected EInputRate inputRate = INPUT_RATE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getStrideLength() <em>Stride Length</em>}' attribute.
@@ -66,11 +82,21 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 	protected int strideLength = STRIDE_LENGTH_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttributes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AttributeDescription> attributes;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VertexDescriptorImpl()
+	public InputDescriptorImpl()
 	{
 		super();
 	}
@@ -83,7 +109,32 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	protected EClass eStaticClass()
 	{
-		return GraphicPackage.Literals.VERTEX_DESCRIPTOR;
+		return GraphicPackage.Literals.INPUT_DESCRIPTOR;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EInputRate getInputRate()
+	{
+		return inputRate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInputRate(EInputRate newInputRate)
+	{
+		EInputRate oldInputRate = inputRate;
+		inputRate = newInputRate == null ? INPUT_RATE_EDEFAULT : newInputRate;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE, oldInputRate, inputRate));
 	}
 
 	/**
@@ -97,7 +148,7 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 		if (attributes == null)
 		{
 			attributes = new EObjectContainmentEList<AttributeDescription>(
-					AttributeDescription.class, this, GraphicPackage.VERTEX_DESCRIPTOR__ATTRIBUTES);
+					AttributeDescription.class, this, GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES);
 		}
 		return attributes;
 	}
@@ -124,7 +175,7 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 		int oldStrideLength = strideLength;
 		strideLength = newStrideLength;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				GraphicPackage.VERTEX_DESCRIPTOR__STRIDE_LENGTH, oldStrideLength, strideLength));
+				GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH, oldStrideLength, strideLength));
 	}
 
 	/**
@@ -139,7 +190,7 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_DESCRIPTOR__ATTRIBUTES:
+		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
 			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -155,10 +206,12 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_DESCRIPTOR__ATTRIBUTES:
-			return getAttributes();
-		case GraphicPackage.VERTEX_DESCRIPTOR__STRIDE_LENGTH:
+		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+			return getInputRate();
+		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
 			return getStrideLength();
+		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
+			return getAttributes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,12 +227,15 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_DESCRIPTOR__ATTRIBUTES:
+		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+			setInputRate((EInputRate) newValue);
+			return;
+		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
+			setStrideLength((Integer) newValue);
+			return;
+		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
 			getAttributes().clear();
 			getAttributes().addAll((Collection<? extends AttributeDescription>) newValue);
-			return;
-		case GraphicPackage.VERTEX_DESCRIPTOR__STRIDE_LENGTH:
-			setStrideLength((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,11 +251,14 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_DESCRIPTOR__ATTRIBUTES:
-			getAttributes().clear();
+		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+			setInputRate(INPUT_RATE_EDEFAULT);
 			return;
-		case GraphicPackage.VERTEX_DESCRIPTOR__STRIDE_LENGTH:
+		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
 			setStrideLength(STRIDE_LENGTH_EDEFAULT);
+			return;
+		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
+			getAttributes().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -215,10 +274,12 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case GraphicPackage.VERTEX_DESCRIPTOR__ATTRIBUTES:
-			return attributes != null && !attributes.isEmpty();
-		case GraphicPackage.VERTEX_DESCRIPTOR__STRIDE_LENGTH:
+		case GraphicPackage.INPUT_DESCRIPTOR__INPUT_RATE:
+			return inputRate != INPUT_RATE_EDEFAULT;
+		case GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH:
 			return strideLength != STRIDE_LENGTH_EDEFAULT;
+		case GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES:
+			return attributes != null && !attributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -234,10 +295,12 @@ public class VertexDescriptorImpl extends MinimalEObjectImpl.Container implement
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (strideLength: ");
+		result.append(" (inputRate: ");
+		result.append(inputRate);
+		result.append(", strideLength: ");
 		result.append(strideLength);
 		result.append(')');
 		return result.toString();
 	}
 
-} //VertexDescriptorImpl
+} //InputDescriptorImpl

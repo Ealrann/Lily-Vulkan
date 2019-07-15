@@ -227,6 +227,16 @@ public interface EnumerationPackage extends EPackage
 	int EINDEX_TYPE = 16;
 
 	/**
+	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EInputRate <em>EInput Rate</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.sheepy.vulkan.model.enumeration.EInputRate
+	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEInputRate()
+	 * @generated
+	 */
+	int EINPUT_RATE = 17;
+
+	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EDynamicState <em>EDynamic State</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -234,7 +244,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEDynamicState()
 	 * @generated
 	 */
-	int EDYNAMIC_STATE = 17;
+	int EDYNAMIC_STATE = 18;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EBlendOp <em>EBlend Op</em>}' enum.
@@ -244,7 +254,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBlendOp()
 	 * @generated
 	 */
-	int EBLEND_OP = 18;
+	int EBLEND_OP = 19;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EAccess <em>EAccess</em>}' enum.
@@ -254,7 +264,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEAccess()
 	 * @generated
 	 */
-	int EACCESS = 19;
+	int EACCESS = 20;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPipelineStage <em>EPipeline Stage</em>}' enum.
@@ -264,7 +274,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPipelineStage()
 	 * @generated
 	 */
-	int EPIPELINE_STAGE = 20;
+	int EPIPELINE_STAGE = 21;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EColorSpace <em>EColor Space</em>}' enum.
@@ -274,7 +284,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEColorSpace()
 	 * @generated
 	 */
-	int ECOLOR_SPACE = 21;
+	int ECOLOR_SPACE = 22;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EFormat <em>EFormat</em>}' enum.
@@ -284,7 +294,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEFormat()
 	 * @generated
 	 */
-	int EFORMAT = 22;
+	int EFORMAT = 23;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPresentMode <em>EPresent Mode</em>}' enum.
@@ -294,7 +304,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPresentMode()
 	 * @generated
 	 */
-	int EPRESENT_MODE = 23;
+	int EPRESENT_MODE = 24;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EPolygonMode <em>EPolygon Mode</em>}' enum.
@@ -304,7 +314,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEPolygonMode()
 	 * @generated
 	 */
-	int EPOLYGON_MODE = 24;
+	int EPOLYGON_MODE = 25;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EImageUsage <em>EImage Usage</em>}' enum.
@@ -314,7 +324,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEImageUsage()
 	 * @generated
 	 */
-	int EIMAGE_USAGE = 25;
+	int EIMAGE_USAGE = 26;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EBufferUsage <em>EBuffer Usage</em>}' enum.
@@ -324,7 +334,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEBufferUsage()
 	 * @generated
 	 */
-	int EBUFFER_USAGE = 26;
+	int EBUFFER_USAGE = 27;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.EMemoryProperty <em>EMemory Property</em>}' enum.
@@ -334,7 +344,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEMemoryProperty()
 	 * @generated
 	 */
-	int EMEMORY_PROPERTY = 27;
+	int EMEMORY_PROPERTY = 28;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.enumeration.ESampleCount <em>ESample Count</em>}' enum.
@@ -344,7 +354,7 @@ public interface EnumerationPackage extends EPackage
 	 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getESampleCount()
 	 * @generated
 	 */
-	int ESAMPLE_COUNT = 28;
+	int ESAMPLE_COUNT = 29;
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EImageLayout <em>EImage Layout</em>}'.
@@ -515,6 +525,16 @@ public interface EnumerationPackage extends EPackage
 	 * @generated
 	 */
 	EEnum getEIndexType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EInputRate <em>EInput Rate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EInput Rate</em>'.
+	 * @see org.sheepy.vulkan.model.enumeration.EInputRate
+	 * @generated
+	 */
+	EEnum getEInputRate();
 
 	/**
 	 * Returns the meta object for enum '{@link org.sheepy.vulkan.model.enumeration.EDynamicState <em>EDynamic State</em>}'.
@@ -829,6 +849,16 @@ public interface EnumerationPackage extends EPackage
 		 * @generated
 		 */
 		EEnum EINDEX_TYPE = eINSTANCE.getEIndexType();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EInputRate <em>EInput Rate</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.vulkan.model.enumeration.EInputRate
+		 * @see org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl#getEInputRate()
+		 * @generated
+		 */
+		EEnum EINPUT_RATE = eINSTANCE.getEInputRate();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.vulkan.model.enumeration.EDynamicState <em>EDynamic State</em>}' enum.

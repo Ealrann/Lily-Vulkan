@@ -100,12 +100,12 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 			return createDrawIndexed();
 		case GraphicPackage.DRAW:
 			return createDraw();
-		case GraphicPackage.VERTEX_DESCRIPTOR:
-			return createVertexDescriptor();
+		case GraphicPackage.VERTEX_INPUT_STATE:
+			return createVertexInputState();
+		case GraphicPackage.INPUT_DESCRIPTOR:
+			return createInputDescriptor();
 		case GraphicPackage.ATTRIBUTE_DESCRIPTION:
 			return createAttributeDescription();
-		case GraphicPackage.INDEXED_VERTEX_DESCRIPTOR:
-			return createIndexedVertexDescriptor();
 		case GraphicPackage.BIND_VERTEX_BUFFER:
 			return createBindVertexBuffer();
 		case GraphicPackage.SET_SCISSOR:
@@ -344,10 +344,22 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	 * @generated
 	 */
 	@Override
-	public VertexDescriptor createVertexDescriptor()
+	public VertexInputState createVertexInputState()
 	{
-		VertexDescriptorImpl vertexDescriptor = new VertexDescriptorImpl();
-		return vertexDescriptor;
+		VertexInputStateImpl vertexInputState = new VertexInputStateImpl();
+		return vertexInputState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InputDescriptor createInputDescriptor()
+	{
+		InputDescriptorImpl inputDescriptor = new InputDescriptorImpl();
+		return inputDescriptor;
 	}
 
 	/**
@@ -360,18 +372,6 @@ public class GraphicFactoryImpl extends EFactoryImpl implements GraphicFactory
 	{
 		AttributeDescriptionImpl attributeDescription = new AttributeDescriptionImpl();
 		return attributeDescription;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public IndexedVertexDescriptor createIndexedVertexDescriptor()
-	{
-		IndexedVertexDescriptorImpl indexedVertexDescriptor = new IndexedVertexDescriptorImpl();
-		return indexedVertexDescriptor;
 	}
 
 	/**
