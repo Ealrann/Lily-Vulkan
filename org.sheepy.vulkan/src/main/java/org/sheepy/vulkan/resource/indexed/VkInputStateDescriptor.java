@@ -82,6 +82,7 @@ public class VkInputStateDescriptor
 		final var attributeDescriptions = VkVertexInputAttributeDescription
 				.callocStack(attributeCount, stack);
 
+		int location = 0;
 		for (int bindingIndex = 0; bindingIndex < bindings.size(); bindingIndex++)
 		{
 			final var binding = bindings.get(bindingIndex);
@@ -94,7 +95,7 @@ public class VkInputStateDescriptor
 
 				final var attributeDescriptionPosition = attributeDescriptions.get();
 				attributeDescriptionPosition.binding(bindingIndex);
-				attributeDescriptionPosition.location(i);
+				attributeDescriptionPosition.location(location++);
 				attributeDescriptionPosition.format(format);
 				attributeDescriptionPosition.offset(offset);
 			}

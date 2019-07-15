@@ -196,9 +196,10 @@ public class VkDescriptorSet implements IVkDescriptorSet
 		return descriptors.size();
 	}
 
+	@Override
 	public String toString()
 	{
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < descriptors.size(); i++)
 		{

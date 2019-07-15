@@ -100,6 +100,7 @@ public class DescriptorSetAdapter implements IDescriptorSetAdapter
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return vkDescriptorSet.toString();
