@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
+
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -28,10 +29,6 @@ public interface Semaphore extends BasicResource, LNamedElement
 	 * Returns the value of the '<em><b>Signalized At Init</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Signalized At Init</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Signalized At Init</em>' attribute.
 	 * @see #setSignalizedAtInit(boolean)
@@ -55,10 +52,6 @@ public interface Semaphore extends BasicResource, LNamedElement
 	 * Returns the value of the '<em><b>Wait Stage</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Wait Stage</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wait Stage</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage

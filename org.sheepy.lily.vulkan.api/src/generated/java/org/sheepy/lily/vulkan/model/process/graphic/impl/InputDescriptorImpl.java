@@ -143,22 +143,6 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeDescription> getAttributes()
-	{
-		if (attributes == null)
-		{
-			attributes = new EObjectContainmentEList<AttributeDescription>(
-					AttributeDescription.class, this, GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES);
-		}
-		return attributes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public int getStrideLength()
 	{
 		return strideLength;
@@ -176,6 +160,22 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 		strideLength = newStrideLength;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				GraphicPackage.INPUT_DESCRIPTOR__STRIDE_LENGTH, oldStrideLength, strideLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<AttributeDescription> getAttributes()
+	{
+		if (attributes == null)
+		{
+			attributes = new EObjectContainmentEList<AttributeDescription>(
+					AttributeDescription.class, this, GraphicPackage.INPUT_DESCRIPTOR__ATTRIBUTES);
+		}
+		return attributes;
 	}
 
 	/**

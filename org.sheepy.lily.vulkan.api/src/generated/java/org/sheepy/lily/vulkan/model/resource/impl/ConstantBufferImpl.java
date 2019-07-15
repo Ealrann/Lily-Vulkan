@@ -143,31 +143,6 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public ByteBuffer getData()
-	{
-		return data;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setData(ByteBuffer newData)
-	{
-		ByteBuffer oldData = data;
-		data = newData;
-		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
-				ResourcePackage.CONSTANT_BUFFER__DATA, oldData, data));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isBeingPushed()
 	{
 		return beingPushed;
@@ -185,6 +160,31 @@ public class ConstantBufferImpl extends MinimalEObjectImpl.Container implements 
 		beingPushed = newBeingPushed;
 		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
 				ResourcePackage.CONSTANT_BUFFER__BEING_PUSHED, oldBeingPushed, beingPushed));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ByteBuffer getData()
+	{
+		return data;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setData(ByteBuffer newData)
+	{
+		ByteBuffer oldData = data;
+		data = newData;
+		if (eNotificationRequired()) eNotify(new ENotificationImpl(this, Notification.SET,
+				ResourcePackage.CONSTANT_BUFFER__DATA, oldData, data));
 	}
 
 	/**

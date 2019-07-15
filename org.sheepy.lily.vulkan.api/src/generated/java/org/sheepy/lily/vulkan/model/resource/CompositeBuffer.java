@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CompositeBuffer extends DescriptedResource, IBuffer
 {
-
 	/**
 	 * Returns the value of the '<em><b>Data Providers</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.BufferDataProvider}.

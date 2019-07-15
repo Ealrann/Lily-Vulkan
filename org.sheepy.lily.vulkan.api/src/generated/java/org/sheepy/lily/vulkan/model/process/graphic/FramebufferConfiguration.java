@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.joml.Vector4fc;
 
 /**
@@ -23,7 +24,6 @@ import org.joml.Vector4fc;
  */
 public interface FramebufferConfiguration extends EObject
 {
-
 	/**
 	 * Returns the value of the '<em><b>Clear Value</b></em>' attribute.
 	 * The default value is <code>"0;0;0;0"</code>.

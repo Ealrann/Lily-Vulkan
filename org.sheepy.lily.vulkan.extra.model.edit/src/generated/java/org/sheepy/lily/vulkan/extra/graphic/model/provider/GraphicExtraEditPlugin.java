@@ -5,7 +5,7 @@ package org.sheepy.lily.vulkan.extra.graphic.model.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
+import org.sheepy.lily.core.model.types.provider.LilyEditPlugin;
 
 /**
  * This is the central singleton for the GraphicExtra edit plugin.
@@ -42,7 +42,7 @@ public final class GraphicExtraEditPlugin extends EMFPlugin
 		super
 		  (new ResourceLocator [] 
 		   {
-		     TypesEditPlugin.INSTANCE,
+		     LilyEditPlugin.INSTANCE,
 		   });
 	}
 

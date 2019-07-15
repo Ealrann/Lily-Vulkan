@@ -10,8 +10,11 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
+import org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
+import org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlendAttachment;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
@@ -25,6 +28,8 @@ import org.sheepy.vulkan.model.graphicpipeline.StaticViewportState;
 import org.sheepy.vulkan.model.graphicpipeline.Vec2I;
 import org.sheepy.vulkan.model.graphicpipeline.Viewport;
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
+import org.sheepy.vulkan.model.pipeline.PipelinePackage;
+import org.sheepy.vulkan.model.pipeline.impl.PipelinePackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -165,13 +170,32 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
-		EnumerationPackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
+		BarrierPackageImpl theBarrierPackage = (BarrierPackageImpl) (registeredPackage instanceof BarrierPackageImpl
+				? registeredPackage
+				: BarrierPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		EnumerationPackageImpl theEnumerationPackage = (EnumerationPackageImpl) (registeredPackage instanceof EnumerationPackageImpl
+				? registeredPackage
+				: EnumerationPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
+		PipelinePackageImpl thePipelinePackage = (PipelinePackageImpl) (registeredPackage instanceof PipelinePackageImpl
+				? registeredPackage
+				: PipelinePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGraphicpipelinePackage.createPackageContents();
+		theBarrierPackage.createPackageContents();
+		theEnumerationPackage.createPackageContents();
+		thePipelinePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGraphicpipelinePackage.initializePackageContents();
+		theBarrierPackage.initializePackageContents();
+		theEnumerationPackage.initializePackageContents();
+		thePipelinePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theGraphicpipelinePackage.freeze();
@@ -900,7 +924,7 @@ public class GraphicpipelinePackageImpl extends EPackageImpl implements Graphicp
 		staticViewportStateEClass.getESuperTypes().add(this.getViewportState());
 		dynamicViewportStateEClass.getESuperTypes().add(this.getViewportState());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(colorBlendEClass, ColorBlend.class, "ColorBlend", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getColorBlend_Attachments(), this.getColorBlendAttachment(), null,

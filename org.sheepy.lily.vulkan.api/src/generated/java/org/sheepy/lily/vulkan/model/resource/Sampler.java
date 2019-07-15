@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.sheepy.vulkan.model.enumeration.EBorderColor;
 import org.sheepy.vulkan.model.enumeration.EFilter;
 import org.sheepy.vulkan.model.enumeration.ESamplerAddressMode;
@@ -42,10 +43,6 @@ public interface Sampler extends EObject
 	 * The default value is <code>"NEAREST"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFilter}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Min Filter</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Min Filter</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EFilter
@@ -72,10 +69,6 @@ public interface Sampler extends EObject
 	 * The default value is <code>"NEAREST"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFilter}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Mag Filter</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mag Filter</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EFilter
@@ -102,10 +95,6 @@ public interface Sampler extends EObject
 	 * The default value is <code>"NEAREST"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Mipmap Mode</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mipmap Mode</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode
@@ -132,10 +121,6 @@ public interface Sampler extends EObject
 	 * The default value is <code>"REPEAT"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ESamplerAddressMode}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Address Mode</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Address Mode</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.ESamplerAddressMode
@@ -162,10 +147,6 @@ public interface Sampler extends EObject
 	 * The default value is <code>"INT_OPAQUE_BLACK"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBorderColor}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Border Color</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Border Color</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EBorderColor
@@ -191,10 +172,6 @@ public interface Sampler extends EObject
 	 * Returns the value of the '<em><b>Anisotropy Enabled</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Anisotropy Enabled</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Anisotropy Enabled</em>' attribute.
 	 * @see #setAnisotropyEnabled(boolean)
@@ -218,10 +195,6 @@ public interface Sampler extends EObject
 	 * Returns the value of the '<em><b>Unnormalized Coordinates</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Unnormalized Coordinates</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unnormalized Coordinates</em>' attribute.
 	 * @see #setUnnormalizedCoordinates(boolean)
@@ -245,10 +218,6 @@ public interface Sampler extends EObject
 	 * Returns the value of the '<em><b>Compare Enable</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Compare Enable</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Compare Enable</em>' attribute.
 	 * @see #setCompareEnable(boolean)
@@ -272,10 +241,6 @@ public interface Sampler extends EObject
 	 * Returns the value of the '<em><b>Lod Bias</b></em>' attribute.
 	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Lod Bias</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Lod Bias</em>' attribute.
 	 * @see #setLodBias(float)
@@ -299,10 +264,6 @@ public interface Sampler extends EObject
 	 * Returns the value of the '<em><b>Min Lod</b></em>' attribute.
 	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Min Lod</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Min Lod</em>' attribute.
 	 * @see #setMinLod(int)
@@ -326,10 +287,6 @@ public interface Sampler extends EObject
 	 * Returns the value of the '<em><b>Max Lod</b></em>' attribute.
 	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Max Lod</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max Lod</em>' attribute.
 	 * @see #setMaxLod(int)
@@ -353,10 +310,6 @@ public interface Sampler extends EObject
 	 * Returns the value of the '<em><b>Max Anisotropy</b></em>' attribute.
 	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Max Anisotropy</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max Anisotropy</em>' attribute.
 	 * @see #setMaxAnisotropy(float)

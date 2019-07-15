@@ -6,8 +6,6 @@ import org.joml.Vector2i;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.impl.ImageImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.ImageLayoutImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EFormat;
@@ -22,9 +20,9 @@ public class BoardImageFactory
 
 	public static final Image createBoardImage(Vector2i size)
 	{
-		final Image res = new ImageImpl();
+		final Image res = ResourceFactory.eINSTANCE.createImage();
 
-		final ImageLayout initialLayout = new ImageLayoutImpl();
+		final ImageLayout initialLayout = ResourceFactory.eINSTANCE.createImageLayout();
 		initialLayout.setStage(EPipelineStage.COMPUTE_SHADER_BIT);
 		initialLayout.setLayout(EImageLayout.GENERAL);
 		initialLayout.getAccessMask().add(EAccess.SHADER_WRITE_BIT);

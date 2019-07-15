@@ -28,6 +28,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
+import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.util.ProcessAdapterFactory;
 
 /**
@@ -65,7 +66,7 @@ public class ProcessItemProviderAdapterFactory extends ProcessAdapterFactory
 	 * @generated
 	 */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			ProcessEditPlugin.INSTANCE, ProcessPackage.eNS_URI);
+			LilyVulkanEditPlugin.INSTANCE, ProcessPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.

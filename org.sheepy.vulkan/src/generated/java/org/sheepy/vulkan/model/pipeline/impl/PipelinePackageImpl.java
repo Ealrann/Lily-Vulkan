@@ -9,8 +9,13 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
+import org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
+import org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
+import org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
@@ -91,14 +96,33 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		EnumerationPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
+		BarrierPackageImpl theBarrierPackage = (BarrierPackageImpl) (registeredPackage instanceof BarrierPackageImpl
+				? registeredPackage
+				: BarrierPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnumerationPackage.eNS_URI);
+		EnumerationPackageImpl theEnumerationPackage = (EnumerationPackageImpl) (registeredPackage instanceof EnumerationPackageImpl
+				? registeredPackage
+				: EnumerationPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicpipelinePackage.eNS_URI);
+		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl) (registeredPackage instanceof GraphicpipelinePackageImpl
+				? registeredPackage
+				: GraphicpipelinePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePipelinePackage.createPackageContents();
+		theBarrierPackage.createPackageContents();
+		theEnumerationPackage.createPackageContents();
+		theGraphicpipelinePackage.createPackageContents();
 
 		// Initialize created meta-data
 		thePipelinePackage.initializePackageContents();
+		theBarrierPackage.initializePackageContents();
+		theEnumerationPackage.initializePackageContents();
+		theGraphicpipelinePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		thePipelinePackage.freeze();
@@ -274,7 +298,7 @@ public class PipelinePackageImpl extends EPackageImpl implements PipelinePackage
 
 		// Add supertypes to classes
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(pushConstantRangeEClass, PushConstantRange.class, "PushConstantRange",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPushConstantRange_Stages(), theEnumerationPackage.getEShaderStage(),

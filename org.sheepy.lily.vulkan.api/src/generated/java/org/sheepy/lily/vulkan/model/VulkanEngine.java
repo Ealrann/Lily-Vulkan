@@ -3,7 +3,9 @@
 package org.sheepy.lily.vulkan.model;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.lily.core.model.application.IEngine;
+
 import org.sheepy.vulkan.model.enumeration.EPhysicalDeviceFeature;
 
 /**
@@ -30,10 +32,6 @@ public interface VulkanEngine extends IEngine, IResourceContainer, IExecutionMan
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enabled</em>' attribute.
 	 * @see #setEnabled(boolean)
@@ -57,10 +55,6 @@ public interface VulkanEngine extends IEngine, IResourceContainer, IExecutionMan
 	 * Returns the value of the '<em><b>Processes</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.IProcess}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Processes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Processes</em>' containment reference list.
 	 * @see org.sheepy.lily.vulkan.model.VulkanPackage#getVulkanEngine_Processes()

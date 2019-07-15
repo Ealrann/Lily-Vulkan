@@ -3,8 +3,11 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.lily.core.model.root.LObject;
+
 import org.sheepy.vulkan.model.barrier.Barrier;
+
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -94,10 +97,6 @@ public interface PipelineBarrier extends LObject, IPipelineTask
 	/**
 	 * Returns the value of the '<em><b>Src Queue</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Src Queue</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Queue</em>' reference.
 	 * @see #setSrcQueue(AbstractProcess)
@@ -120,10 +119,6 @@ public interface PipelineBarrier extends LObject, IPipelineTask
 	/**
 	 * Returns the value of the '<em><b>Dst Queue</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Dst Queue</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Queue</em>' reference.
 	 * @see #setDstQueue(AbstractProcess)

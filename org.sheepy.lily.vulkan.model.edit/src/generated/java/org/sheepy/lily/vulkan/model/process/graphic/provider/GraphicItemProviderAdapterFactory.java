@@ -11,11 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import org.eclipse.emf.edit.provider.ChangeNotifier;
@@ -31,19 +26,10 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.sheepy.lily.vulkan.model.VulkanEngine;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.process.CompositeTask;
-import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
-import org.sheepy.lily.vulkan.model.process.ProcessPackage;
-import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
-import org.sheepy.lily.vulkan.model.process.TaskPkg;
-import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
+import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 
 import org.sheepy.lily.vulkan.model.process.graphic.util.GraphicAdapterFactory;
-import org.sheepy.lily.vulkan.model.process.util.ProcessSwitch;
-import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -80,7 +66,7 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 	 * @generated
 	 */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			GraphicEditPlugin.INSTANCE, GraphicPackage.eNS_URI);
+			LilyVulkanEditPlugin.INSTANCE, GraphicPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -936,286 +922,6 @@ public class GraphicItemProviderAdapterFactory extends GraphicAdapterFactory
 		if (setViewportItemProvider != null) setViewportItemProvider.dispose();
 		if (vertexBindingItemProvider != null) vertexBindingItemProvider.dispose();
 		if (bindIndexBufferItemProvider != null) bindIndexBufferItemProvider.dispose();
-	}
-
-	/**
-	 * A child creation extender for the {@link ProcessPackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class ProcessChildCreationExtender implements IChildCreationExtender
-	{
-		/**
-		 * The switch for creating child descriptors specific to each extended class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected static class CreationSwitch extends ProcessSwitch<Object>
-		{
-			/**
-			 * The child descriptors being populated.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected List<Object> newChildDescriptors;
-
-			/**
-			 * The domain in which to create the children.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected EditingDomain editingDomain;
-
-			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
-			{
-				this.newChildDescriptors = newChildDescriptors;
-				this.editingDomain = editingDomain;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseProcessPartPkg(ProcessPartPkg object)
-			{
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
-								GraphicFactory.eINSTANCE.createGraphicsPipeline()));
-
-				return null;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseTaskPkg(TaskPkg object)
-			{
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-								GraphicFactory.eINSTANCE.createBlitToSwapImage()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-								GraphicFactory.eINSTANCE.createDrawIndexed()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-								GraphicFactory.eINSTANCE.createDraw()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-								GraphicFactory.eINSTANCE.createBindVertexBuffer()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-								GraphicFactory.eINSTANCE.createSetScissor()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-								GraphicFactory.eINSTANCE.createSetViewport()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.TASK_PKG__TASKS,
-								GraphicFactory.eINSTANCE.createBindIndexBuffer()));
-
-				return null;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object casePipelineBarrier(PipelineBarrier object)
-			{
-				newChildDescriptors.add(
-						createChildParameter(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
-								GraphicFactory.eINSTANCE.createSwapImageBarrier()));
-
-				return null;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseCompositeTask(CompositeTask object)
-			{
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-								GraphicFactory.eINSTANCE.createBlitToSwapImage()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-								GraphicFactory.eINSTANCE.createDrawIndexed()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-								GraphicFactory.eINSTANCE.createDraw()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-								GraphicFactory.eINSTANCE.createBindVertexBuffer()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-								GraphicFactory.eINSTANCE.createSetScissor()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-								GraphicFactory.eINSTANCE.createSetViewport()));
-
-				newChildDescriptors
-						.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
-								GraphicFactory.eINSTANCE.createBindIndexBuffer()));
-
-				return null;
-			}
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected CommandParameter createChildParameter(Object feature, Object child)
-			{
-				return new CommandParameter(null, feature, child);
-			}
-
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-		{
-			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
-			return result;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public ResourceLocator getResourceLocator()
-		{
-			return GraphicEditPlugin.INSTANCE;
-		}
-	}
-
-	/**
-	 * A child creation extender for the {@link VulkanPackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class VulkanChildCreationExtender implements IChildCreationExtender
-	{
-		/**
-		 * The switch for creating child descriptors specific to each extended class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected static class CreationSwitch extends VulkanSwitch<Object>
-		{
-			/**
-			 * The child descriptors being populated.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected List<Object> newChildDescriptors;
-
-			/**
-			 * The domain in which to create the children.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected EditingDomain editingDomain;
-
-			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
-			{
-				this.newChildDescriptors = newChildDescriptors;
-				this.editingDomain = editingDomain;
-			}
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseVulkanEngine(VulkanEngine object)
-			{
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
-								GraphicFactory.eINSTANCE.createGraphicProcess()));
-
-				return null;
-			}
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected CommandParameter createChildParameter(Object feature, Object child)
-			{
-				return new CommandParameter(null, feature, child);
-			}
-
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-		{
-			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
-			return result;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public ResourceLocator getResourceLocator()
-		{
-			return GraphicEditPlugin.INSTANCE;
-		}
 	}
 
 }

@@ -63,7 +63,7 @@ public class StaticViewportStateImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StaticViewportStateImpl()
+	protected StaticViewportStateImpl()
 	{
 		super();
 	}

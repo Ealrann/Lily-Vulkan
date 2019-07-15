@@ -26,7 +26,6 @@ import org.sheepy.lily.vulkan.model.process.IPipelineTask;
  */
 public interface DrawIndexed extends IPipelineTask
 {
-
 	/**
 	 * Returns the value of the '<em><b>Index Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -140,4 +139,5 @@ public interface DrawIndexed extends IPipelineTask
 	 * @generated
 	 */
 	void setFirstInstance(int value);
+
 } // DrawIndexed

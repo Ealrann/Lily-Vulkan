@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.model.process.graphic;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
@@ -34,10 +35,6 @@ public interface SubpassDependency extends EObject
 	/**
 	 * Returns the value of the '<em><b>Src Subpass</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Src Subpass</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Subpass</em>' reference.
 	 * @see #setSrcSubpass(Subpass)
@@ -60,10 +57,6 @@ public interface SubpassDependency extends EObject
 	/**
 	 * Returns the value of the '<em><b>Dst Subpass</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Dst Subpass</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Subpass</em>' reference.
 	 * @see #setDstSubpass(Subpass)
@@ -88,10 +81,6 @@ public interface SubpassDependency extends EObject
 	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Src Stage Mask</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Stage Mask</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
@@ -106,10 +95,6 @@ public interface SubpassDependency extends EObject
 	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Dst Stage Mask</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Stage Mask</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
@@ -124,10 +109,6 @@ public interface SubpassDependency extends EObject
 	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Src Accesses</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src Accesses</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EAccess
@@ -142,10 +123,6 @@ public interface SubpassDependency extends EObject
 	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAccess}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Dst Accesses</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dst Accesses</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EAccess

@@ -4,7 +4,7 @@ package org.sheepy.lily.vulkan.model.resource;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Named Module Resource</b></em>'.
+ * A representation of the model object '<em><b>String Module Resource</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -23,10 +23,6 @@ public interface StringModuleResource extends AbstractModuleResource
 	/**
 	 * Returns the value of the '<em><b>Module Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Module Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module Name</em>' attribute.
 	 * @see #setModuleName(String)
@@ -46,4 +42,4 @@ public interface StringModuleResource extends AbstractModuleResource
 	 */
 	void setModuleName(String value);
 
-} // NamedModuleResource
+} // StringModuleResource

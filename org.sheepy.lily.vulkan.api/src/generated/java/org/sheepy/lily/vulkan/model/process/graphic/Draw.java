@@ -25,7 +25,6 @@ import org.sheepy.lily.vulkan.model.process.IPipelineTask;
  */
 public interface Draw extends IPipelineTask
 {
-
 	/**
 	 * Returns the value of the '<em><b>Vertex Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -116,4 +115,5 @@ public interface Draw extends IPipelineTask
 	 * @generated
 	 */
 	void setFirstInstance(int value);
+
 } // Draw

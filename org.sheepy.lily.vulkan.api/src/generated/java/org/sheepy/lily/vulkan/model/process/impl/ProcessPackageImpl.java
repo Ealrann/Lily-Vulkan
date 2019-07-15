@@ -18,11 +18,13 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
+
 import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.BindDescriptorSets;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
@@ -40,9 +42,16 @@ import org.sheepy.lily.vulkan.model.process.PushBufferTask;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
 import org.sheepy.lily.vulkan.model.process.PushConstantBuffer;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
+
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -66,6 +75,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass configurationEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,19 +102,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pipelineBarrierEClass = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compositeTaskEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass iPipelineEClass = null;
 
 	/**
@@ -120,6 +117,20 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	private EClass pipelineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pipelineBarrierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeTaskEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -209,24 +220,49 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		VulkanPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
-		EnumerationPackage.eINSTANCE.eClass();
-		PipelinePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
-		BarrierPackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
-		ApplicationPackage.eINSTANCE.eClass();
-		ActionPackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
+		EnumerationPackage.eINSTANCE.eClass();
+		GraphicpipelinePackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
+		ComputePackageImpl theComputePackage = (ComputePackageImpl) (registeredPackage instanceof ComputePackageImpl
+				? registeredPackage
+				: ComputePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl) (registeredPackage instanceof VulkanPackageImpl
+				? registeredPackage
+				: VulkanPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl) (registeredPackage instanceof ResourcePackageImpl
+				? registeredPackage
+				: ResourcePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
+		GraphicPackageImpl theGraphicPackage = (GraphicPackageImpl) (registeredPackage instanceof GraphicPackageImpl
+				? registeredPackage
+				: GraphicPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theProcessPackage.createPackageContents();
+		theComputePackage.createPackageContents();
+		theVulkanPackage.createPackageContents();
+		theResourcePackage.createPackageContents();
+		theGraphicPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theProcessPackage.initializePackageContents();
+		theComputePackage.initializePackageContents();
+		theVulkanPackage.initializePackageContents();
+		theResourcePackage.initializePackageContents();
+		theGraphicPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theProcessPackage.freeze();
@@ -374,105 +410,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPipelineBarrier()
-	{
-		return pipelineBarrierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPipelineBarrier_Barriers()
-	{
-		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getPipelineBarrier_SrcStage()
-	{
-		return (EAttribute) pipelineBarrierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getPipelineBarrier_DstStage()
-	{
-		return (EAttribute) pipelineBarrierEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPipelineBarrier_SrcQueue()
-	{
-		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPipelineBarrier_DstQueue()
-	{
-		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getCompositeTask()
-	{
-		return compositeTaskEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCompositeTask_RepeatCount()
-	{
-		return (EAttribute) compositeTaskEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getCompositeTask_Tasks()
-	{
-		return (EReference) compositeTaskEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getIPipeline()
 	{
 		return iPipelineEClass;
@@ -575,6 +512,105 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 	public EClass getPipeline()
 	{
 		return pipelineEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPipelineBarrier()
+	{
+		return pipelineBarrierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPipelineBarrier_Barriers()
+	{
+		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPipelineBarrier_SrcStage()
+	{
+		return (EAttribute) pipelineBarrierEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPipelineBarrier_DstStage()
+	{
+		return (EAttribute) pipelineBarrierEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPipelineBarrier_SrcQueue()
+	{
+		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPipelineBarrier_DstQueue()
+	{
+		return (EReference) pipelineBarrierEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCompositeTask()
+	{
+		return compositeTaskEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCompositeTask_RepeatCount()
+	{
+		return (EAttribute) compositeTaskEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeTask_Tasks()
+	{
+		return (EReference) compositeTaskEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -856,7 +892,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage
 		pushBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 		getBufferTaskEClass.getESuperTypes().add(this.getIPipelineTask());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(abstractProcessEClass, AbstractProcess.class, "AbstractProcess", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractProcess_WaitingFenceDuringAcquire(),

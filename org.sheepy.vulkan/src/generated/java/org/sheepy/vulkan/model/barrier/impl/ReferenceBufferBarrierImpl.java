@@ -52,7 +52,7 @@ public class ReferenceBufferBarrierImpl extends AbstractBufferBarrierImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceBufferBarrierImpl()
+	protected ReferenceBufferBarrierImpl()
 	{
 		super();
 	}

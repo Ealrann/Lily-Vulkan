@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.vulkan.model.barrier.BarrierFactory;
 
@@ -282,6 +283,10 @@ public class PipelineBarrierItemProvider extends ItemProviderAdapter
 		newChildDescriptors
 				.add(createChildParameter(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
 						ResourceFactory.eINSTANCE.createImageBarrier()));
+
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,
+						GraphicFactory.eINSTANCE.createSwapImageBarrier()));
 
 		newChildDescriptors
 				.add(createChildParameter(ProcessPackage.Literals.PIPELINE_BARRIER__BARRIERS,

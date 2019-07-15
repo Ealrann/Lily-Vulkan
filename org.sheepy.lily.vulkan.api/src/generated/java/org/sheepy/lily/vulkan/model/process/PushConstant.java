@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
@@ -23,7 +24,6 @@ import org.sheepy.vulkan.model.enumeration.EShaderStage;
  */
 public interface PushConstant extends IPipelineTask
 {
-
 	/**
 	 * Returns the value of the '<em><b>Stages</b></em>' attribute list.
 	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EShaderStage}.
@@ -37,4 +37,5 @@ public interface PushConstant extends IPipelineTask
 	 * @generated
 	 */
 	EList<EShaderStage> getStages();
+
 } // PushConstant

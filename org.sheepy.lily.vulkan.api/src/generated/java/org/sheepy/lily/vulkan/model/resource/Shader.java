@@ -3,7 +3,9 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
+
 import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
 
 /**
@@ -29,10 +31,6 @@ public interface Shader extends BasicResource
 	/**
 	 * Returns the value of the '<em><b>File</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>File</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' containment reference.
 	 * @see #setFile(PathResource)
@@ -56,10 +54,6 @@ public interface Shader extends BasicResource
 	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EShaderStage}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Stage</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stage</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EShaderStage

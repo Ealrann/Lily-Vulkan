@@ -26,6 +26,8 @@ import org.sheepy.lily.core.model.root.LObject;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.VulkanEngine} object.
@@ -207,6 +209,14 @@ public class VulkanEngineItemProvider extends ItemProviderAdapter
 		newChildDescriptors
 				.add(createChildParameter(VulkanPackage.Literals.IRESOURCE_CONTAINER__RESOURCE_PKG,
 						VulkanFactory.eINSTANCE.createResourcePkg()));
+
+		newChildDescriptors
+				.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
+						ComputeFactory.eINSTANCE.createComputeProcess()));
+
+		newChildDescriptors
+				.add(createChildParameter(VulkanPackage.Literals.VULKAN_ENGINE__PROCESSES,
+						GraphicFactory.eINSTANCE.createGraphicProcess()));
 	}
 
 	/**

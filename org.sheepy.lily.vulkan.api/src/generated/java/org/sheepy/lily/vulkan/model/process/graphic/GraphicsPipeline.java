@@ -3,9 +3,13 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.lily.core.model.maintainer.Maintainable;
+
 import org.sheepy.lily.vulkan.model.process.IPipeline;
+
 import org.sheepy.lily.vulkan.model.resource.Shader;
+
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
@@ -37,7 +41,6 @@ import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
  */
 public interface GraphicsPipeline extends IPipeline, Maintainable<GraphicsPipeline>
 {
-
 	/**
 	 * Returns the value of the '<em><b>Shaders</b></em>' reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.resource.Shader}.

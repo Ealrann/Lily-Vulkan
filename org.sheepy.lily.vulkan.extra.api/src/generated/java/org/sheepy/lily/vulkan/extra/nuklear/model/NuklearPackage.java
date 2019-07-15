@@ -133,15 +133,6 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_PUSH_CONSTANTS_FEATURE_COUNT = ProcessPackage.PUSH_CONSTANT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Push Constants</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_PUSH_CONSTANTS_OPERATION_COUNT = ProcessPackage.PUSH_CONSTANT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearLayoutTaskImpl <em>Layout Task</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -215,15 +206,6 @@ public interface NuklearPackage extends EPackage
 	int NUKLEAR_LAYOUT_TASK_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of operations of the '<em>Layout Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_LAYOUT_TASK_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.extra.nuklear.model.impl.NuklearContextImpl <em>Context</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -277,16 +259,6 @@ public interface NuklearPackage extends EPackage
 	 * @ordered
 	 */
 	int NUKLEAR_CONTEXT_FEATURE_COUNT = VulkanPackage.IRESOURCE_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Context</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUKLEAR_CONTEXT_OPERATION_COUNT = VulkanPackage.IRESOURCE_OPERATION_COUNT + 0;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPushConstants <em>Push Constants</em>}'.

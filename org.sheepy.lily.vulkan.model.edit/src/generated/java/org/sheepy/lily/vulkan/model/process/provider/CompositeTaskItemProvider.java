@@ -28,6 +28,8 @@ import org.sheepy.lily.core.model.types.TypesPackage;
 import org.sheepy.lily.vulkan.model.process.CompositeTask;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.CompositeTask} object.
@@ -238,6 +240,30 @@ public class CompositeTaskItemProvider extends ItemProviderAdapter
 
 		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
 				ProcessFactory.eINSTANCE.createGetBufferTask()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				ComputeFactory.eINSTANCE.createComputer()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				GraphicFactory.eINSTANCE.createBlitToSwapImage()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				GraphicFactory.eINSTANCE.createDrawIndexed()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				GraphicFactory.eINSTANCE.createDraw()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				GraphicFactory.eINSTANCE.createBindVertexBuffer()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				GraphicFactory.eINSTANCE.createSetScissor()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				GraphicFactory.eINSTANCE.createSetViewport()));
+
+		newChildDescriptors.add(createChildParameter(ProcessPackage.Literals.COMPOSITE_TASK__TASKS,
+				GraphicFactory.eINSTANCE.createBindIndexBuffer()));
 	}
 
 	/**

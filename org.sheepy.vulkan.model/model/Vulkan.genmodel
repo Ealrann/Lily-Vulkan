@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sheepy.vulkan.model/src/generated/java" editDirectory="/org.sheepy.vulkan.model.edit/src/generated/java"
+    editorDirectory="" modelPluginID="org.sheepy.vulkan.model" modelName="Vulkan"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    testsDirectory="" importerID="org.eclipse.emf.ecore.xcore.importer" containmentProxies="true"
+    complianceLevel="11.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    importOrganizing="true" cleanup="true" eclipsePlatformVersion="2019-06">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+    <genAnnotations source="selectedPackages">
+      <details key="http://www.eclipse.org/emf/2002/Ecore" value="Ecore.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="."/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter.xmi">
+    <genAnnotations source="selectedPackages">
+      <details key="http://www.eclipse.org/emf/2002/Ecore" value="EcoreXMI.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="."/>
+  </genAnnotations>
+  <foreignModel>Barrier.xcore</foreignModel>
+  <foreignModel>GraphicPipeline.xcore</foreignModel>
+  <foreignModel>Pipeline.xcore</foreignModel>
+  <foreignModel>VulkanEnum.xcore</foreignModel>
+  <genPackages prefix="Barrier" basePackage="org.sheepy.vulkan.model" resource="XMI"
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="barrier.ecore#/">
+    <genClasses image="false" ecoreClass="barrier.ecore#//Barrier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//Barrier/srcAccessMask"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//Barrier/dstAccessMask"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="barrier.ecore#//AbstractBufferBarrier"/>
+    <genClasses ecoreClass="barrier.ecore#//ReferenceBufferBarrier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ReferenceBufferBarrier/bufferPtr"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="barrier.ecore#//AbstractImageBarrier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//AbstractImageBarrier/srcLayout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//AbstractImageBarrier/dstLayout"/>
+    </genClasses>
+    <genClasses ecoreClass="barrier.ecore#//ReferenceImageBarrier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ReferenceImageBarrier/imagePtr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ReferenceImageBarrier/mipLevels"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ReferenceImageBarrier/imageFormat"/>
+    </genClasses>
+    <genClasses ecoreClass="barrier.ecore#//ImageTransition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ImageTransition/srcLayout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ImageTransition/dstLayout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ImageTransition/srcAccessMask"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute barrier.ecore#//ImageTransition/dstAccessMask"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Enumeration" basePackage="org.sheepy.vulkan.model" resource="XMI"
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="enumeration.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EImageLayout">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/UNDEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/GENERAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/COLOR_ATTACHMENT_OPTIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/DEPTH_STENCIL_ATTACHMENT_OPTIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/DEPTH_STENCIL_READ_ONLY_OPTIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/SHADER_READ_ONLY_OPTIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/TRANSFER_SRC_OPTIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/TRANSFER_DST_OPTIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/PREINITIALIZED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageLayout/PRESENT_SRC_KHR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EPhysicalDeviceFeature">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPhysicalDeviceFeature/GEOMETRY_SHADER"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPhysicalDeviceFeature/FILL_MODE_NON_SOLID"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPhysicalDeviceFeature/WIDE_LINES"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPhysicalDeviceFeature/FRAGMENT_STORES_AND_ATOMICS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//ECullMode">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECullMode/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECullMode/FRONT_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECullMode/BACK_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECullMode/FRONT_AND_BACK"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EDescriptorType">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/SAMPLER"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/COMBINED_IMAGE_SAMPLER"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/SAMPLED_IMAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/STORAGE_IMAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/UNIFORM_TEXEL_BUFFER"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/STORAGE_TEXEL_BUFFER"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/UNIFORM_BUFFER"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/STORAGE_BUFFER"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/UNIFORM_BUFFER_DYNAMIC"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/STORAGE_BUFFER_DYNAMIC"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDescriptorType/INPUT_ATTACHMENT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EFrontFace">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFrontFace/COUNTER_CLOCKWISE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFrontFace/CLOCKWISE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EBorderColor">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBorderColor/FLOAT_TRANSPARENT_BLACK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBorderColor/INT_TRANSPARENT_BLACK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBorderColor/FLOAT_OPAQUE_BLACK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBorderColor/INT_OPAQUE_BLACK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBorderColor/FLOAT_OPAQUE_WHITE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBorderColor/INT_OPAQUE_WHITE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//ECommandStage">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/Transfer"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/Compute"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/PreRender"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/Render"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ECommandStage/PostRender"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EAttachmentLoadOp">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAttachmentLoadOp/LOAD"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAttachmentLoadOp/CLEAR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAttachmentLoadOp/DONT_CARE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//ELogicOp">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/CLEAR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/AND_REVERSE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/COPY"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/AND_INVERTED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/NO_OP"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/XOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/OR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/NOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/EQUIVALENT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/INVERT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/OR_REVERSE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/COPY_INVERTED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/OR_INVERTED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/NAND"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ELogicOp/SET"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EPrimitiveTopology">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/POINT_LIST"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/LINE_LIST"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/LINE_STRIP"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/TRIANGLE_LIST"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/TRIANGLE_STRIP"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/TRIANGLE_FAN"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/LINE_LIST_WITH_ADJACENCY"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/LINE_STRIP_WITH_ADJACENCY"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/TRIANGLE_LIST_WITH_ADJACENCY"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/TRIANGLE_STRIP_WITH_ADJACENCY"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPrimitiveTopology/PATCH_LIST"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EAttachmentStoreOp">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAttachmentStoreOp/STORE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAttachmentStoreOp/DONT_CARE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EShaderStage">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EShaderStage/VERTEX_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EShaderStage/TESSELLATION_CONTROL_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EShaderStage/TESSELLATION_EVALUATION_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EShaderStage/GEOMETRY_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EShaderStage/FRAGMENT_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EShaderStage/COMPUTE_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EShaderStage/ALL_GRAPHICS"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EShaderStage/ALL"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EFilter">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFilter/NEAREST"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFilter/LINEAR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//ESamplerMipmapMode">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESamplerMipmapMode/NEAREST"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESamplerMipmapMode/LINEAR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//ESamplerAddressMode">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESamplerAddressMode/REPEAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESamplerAddressMode/MIRRORED_REPEAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESamplerAddressMode/CLAMP_TO_EDGE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESamplerAddressMode/CLAMP_TO_BORDER"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EBlendFactor">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ZERO"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ONE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/SRC_COLOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ONE_MINUS_SRC_COLOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/DST_COLOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ONE_MINUS_DST_COLOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/SRC_ALPHA"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ONE_MINUS_SRC_ALPHA"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/DST_ALPHA"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ONE_MINUS_DST_ALPHA"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/CONSTANT_COLOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ONE_MINUS_CONSTANT_COLOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/CONSTANT_ALPHA"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ONE_MINUS_CONSTANT_ALPHA"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/SRC_ALPHA_SATURATE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/SRC1_COLOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ONE_MINUS_SRC1_COLOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/SRC1_ALPHA"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendFactor/ONE_MINUS_SRC1_ALPHA"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EIndexType">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EIndexType/UINT16"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EIndexType/UINT32"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EInputRate">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EInputRate/VERTEX"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EInputRate/INSTANCE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EDynamicState">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDynamicState/VIEWPORT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDynamicState/SCISSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDynamicState/LINE_WIDTH"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDynamicState/DEPTH_BIAS"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDynamicState/BLEND_CONSTANTS"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDynamicState/DEPTH_BOUNDS"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDynamicState/STENCIL_COMPARE_MASK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDynamicState/STENCIL_WRITE_MASK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EDynamicState/STENCIL_REFERENCE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EBlendOp">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendOp/ADD"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendOp/SUBTRACT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendOp/REVERSE_SUBTRACT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendOp/MIN"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBlendOp/MAX"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EAccess">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/UNDEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/INDIRECT_COMMAND_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/INDEX_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/VERTEX_ATTRIBUTE_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/UNIFORM_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/INPUT_ATTACHMENT_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/SHADER_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/SHADER_WRITE_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/COLOR_ATTACHMENT_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/COLOR_ATTACHMENT_WRITE_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/DEPTH_STENCIL_ATTACHMENT_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/DEPTH_STENCIL_ATTACHMENT_WRITE_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/TRANSFER_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/TRANSFER_WRITE_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/HOST_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/HOST_WRITE_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/MEMORY_READ_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EAccess/MEMORY_WRITE_BIT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EPipelineStage">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/TOP_OF_PIPE_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/DRAW_INDIRECT_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/VERTEX_INPUT_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/VERTEX_SHADER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/TESSELLATION_CONTROL_SHADER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/TESSELLATION_EVALUATION_SHADER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/GEOMETRY_SHADER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/FRAGMENT_SHADER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/EARLY_FRAGMENT_TESTS_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/LATE_FRAGMENT_TESTS_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/COLOR_ATTACHMENT_OUTPUT_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/COMPUTE_SHADER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/TRANSFER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/BOTTOM_OF_PIPE_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/HOST_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/ALL_GRAPHICS_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPipelineStage/ALL_COMMANDS_BIT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EColorSpace">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EColorSpace/SRGB_NONLINEAR_KHR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EFormat">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/UNDEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R4G4_UNORM_PACK8"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R4G4B4A4_UNORM_PACK16"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B4G4R4A4_UNORM_PACK16"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R5G6B5_UNORM_PACK16"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B5G6R5_UNORM_PACK16"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R5G5B5A1_UNORM_PACK16"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B5G5R5A1_UNORM_PACK16"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A1R5G5B5_UNORM_PACK16"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8_SRGB"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8_SRGB"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8_SRGB"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8_SRGB"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8A8_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8A8_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8A8_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8A8_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8A8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8A8_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R8G8B8A8_SRGB"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8A8_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8A8_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8A8_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8A8_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8A8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8A8_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B8G8R8A8_SRGB"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A8B8G8R8_UNORM_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A8B8G8R8_SNORM_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A8B8G8R8_USCALED_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A8B8G8R8_SSCALED_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A8B8G8R8_UINT_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A8B8G8R8_SINT_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A8B8G8R8_SRGB_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2R10G10B10_UNORM_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2R10G10B10_SNORM_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2R10G10B10_USCALED_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2R10G10B10_SSCALED_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2R10G10B10_UINT_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2R10G10B10_SINT_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2B10G10R10_UNORM_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2B10G10R10_SNORM_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2B10G10R10_USCALED_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2B10G10R10_SSCALED_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2B10G10R10_UINT_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/A2B10G10R10_SINT_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16A16_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16A16_SNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16A16_USCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16A16_SSCALED"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16A16_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16A16_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R16G16B16A16_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32G32_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32G32_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32G32_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32G32B32_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32G32B32_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32G32B32_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32G32B32A32_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32G32B32A32_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R32G32B32A32_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64G64_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64G64_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64G64_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64G64B64_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64G64B64_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64G64B64_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64G64B64A64_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64G64B64A64_SINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/R64G64B64A64_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/B10G11R11_UFLOAT_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/E5B9G9R9_UFLOAT_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/D16_UNORM"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/X8_D24_UNORM_PACK32"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/D32_SFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/S8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/D16_UNORM_S8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/D24_UNORM_S8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/D32_SFLOAT_S8_UINT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC1_RGB_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC1_RGB_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC1_RGBA_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC1_RGBA_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC2_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC2_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC3_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC3_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC4_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC4_SNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC5_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC5_SNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC6H_UFLOAT_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC6H_SFLOAT_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC7_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/BC7_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ETC2_R8G8B8_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ETC2_R8G8B8_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ETC2_R8G8B8A1_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ETC2_R8G8B8A1_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ETC2_R8G8B8A8_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ETC2_R8G8B8A8_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/EAC_R11_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/EAC_R11_SNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/EAC_R11G11_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/EAC_R11G11_SNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_4x4_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_4x4_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_5x4_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_5x4_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_5x5_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_5x5_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_6x5_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_6x5_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_6x6_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_6x6_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_8x5_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_8x5_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_8x6_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_8x6_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_8x8_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_8x8_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_10x5_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_10x5_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_10x6_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_10x6_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_10x8_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_10x8_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_10x10_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_10x10_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_12x10_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_12x10_SRGB_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_12x12_UNORM_BLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EFormat/ASTC_12x12_SRGB_BLOCK"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EPresentMode">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPresentMode/Immediate"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPresentMode/MailBox"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPresentMode/Fifo"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPresentMode/FifoRelaxed"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EPolygonMode">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPolygonMode/FILL"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPolygonMode/LINE"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EPolygonMode/POINT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EImageUsage">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageUsage/TransferSrc"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageUsage/TransferDst"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageUsage/Sampled"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageUsage/Storage"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageUsage/ColorAttachment"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageUsage/DepthStencilAttachment"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageUsage/TransientAttachment"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EImageUsage/InputAttachement"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EBufferUsage">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBufferUsage/TRANSFER_SRC_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBufferUsage/TRANSFER_DST_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBufferUsage/UNIFORM_TEXEL_BUFFER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBufferUsage/STORAGE_TEXEL_BUFFER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBufferUsage/UNIFORM_BUFFER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBufferUsage/STORAGE_BUFFER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBufferUsage/INDEX_BUFFER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBufferUsage/VERTEX_BUFFER_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EBufferUsage/INDIRECT_BUFFER_BIT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//EMemoryProperty">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EMemoryProperty/DEVICE_LOCAL_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EMemoryProperty/HOST_VISIBLE_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EMemoryProperty/HOST_COHERENT_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EMemoryProperty/HOST_CACHED_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//EMemoryProperty/LAZILY_ALLOCATED_BIT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enumeration.ecore#//ESampleCount">
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESampleCount/SAMPLE_COUNT_1_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESampleCount/SAMPLE_COUNT_2_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESampleCount/SAMPLE_COUNT_4_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESampleCount/SAMPLE_COUNT_8_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESampleCount/SAMPLE_COUNT_16_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESampleCount/SAMPLE_COUNT_32_BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="enumeration.ecore#//ESampleCount/SAMPLE_COUNT_64_BIT"/>
+    </genEnums>
+  </genPackages>
+  <genPackages prefix="Graphicpipeline" basePackage="org.sheepy.vulkan.model" resource="XMI"
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="graphicpipeline.ecore#/">
+    <genClasses ecoreClass="graphicpipeline.ecore#//ColorBlend">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphicpipeline.ecore#//ColorBlend/attachments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlend/logicOpEnable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlend/logicOp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlend/blendConstant0"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlend/blendConstant1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlend/blendConstant2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlend/blendConstant3"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//ColorBlendAttachment">
+      <genFeatures createChild="false" propertyCategory="1 - Common" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/blendEnable"/>
+      <genFeatures createChild="false" propertyCategory="2 - Operation" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/srcColor"/>
+      <genFeatures createChild="false" propertyCategory="2 - Operation" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/dstColor"/>
+      <genFeatures createChild="false" propertyCategory="2 - Operation" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/srcAlpha"/>
+      <genFeatures createChild="false" propertyCategory="2 - Operation" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/dstAlpha"/>
+      <genFeatures createChild="false" propertyCategory="2 - Operation" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/colorBlendOp"/>
+      <genFeatures createChild="false" propertyCategory="2 - Operation" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/alphaBlendOp"/>
+      <genFeatures createChild="false" propertyCategory="3 - Component" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/redComponentEnable"/>
+      <genFeatures createChild="false" propertyCategory="3 - Component" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/greenComponentEnable"/>
+      <genFeatures createChild="false" propertyCategory="3 - Component" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/blueComponentEnable"/>
+      <genFeatures createChild="false" propertyCategory="3 - Component" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//ColorBlendAttachment/alphaComponentEnable"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//InputAssembly">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//InputAssembly/primitiveRestartEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//InputAssembly/primitiveTopology"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//Rasterizer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Rasterizer/cullMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Rasterizer/frontFace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Rasterizer/polygonMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Rasterizer/lineWidth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Rasterizer/depthClampEnable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Rasterizer/discardEnable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Rasterizer/depthBiasEnable"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//DynamicState">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DynamicState/states"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="graphicpipeline.ecore#//ViewportState"/>
+    <genClasses ecoreClass="graphicpipeline.ecore#//StaticViewportState">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphicpipeline.ecore#//StaticViewportState/viewports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphicpipeline.ecore#//StaticViewportState/scissors"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//DynamicViewportState">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DynamicViewportState/viewportCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//DynamicViewportState/scissorCount"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//Vec2I">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Vec2I/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Vec2I/y"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//Viewport">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/offsetX"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/offsetY"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphicpipeline.ecore#//Viewport/extent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/minDepth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Viewport/maxDepth"/>
+    </genClasses>
+    <genClasses ecoreClass="graphicpipeline.ecore#//Scissor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Scissor/offsetX"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphicpipeline.ecore#//Scissor/offsetY"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphicpipeline.ecore#//Scissor/extent"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Pipeline" basePackage="org.sheepy.vulkan.model" resource="XMI"
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="pipeline.ecore#/">
+    <genClasses ecoreClass="pipeline.ecore#//PushConstantRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pipeline.ecore#//PushConstantRange/stages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pipeline.ecore#//PushConstantRange/offset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pipeline.ecore#//PushConstantRange/size"/>
+    </genClasses>
+    <genClasses ecoreClass="pipeline.ecore#//SpecializationConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pipeline.ecore#//SpecializationConstant/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pipeline.ecore#//SpecializationConstant/constantId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pipeline.ecore#//SpecializationConstant/size"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

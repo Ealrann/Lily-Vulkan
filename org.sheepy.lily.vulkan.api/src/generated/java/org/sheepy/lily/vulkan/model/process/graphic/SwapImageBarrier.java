@@ -15,6 +15,4 @@ import org.sheepy.vulkan.model.barrier.AbstractImageBarrier;
  * @generated
  */
 public interface SwapImageBarrier extends AbstractImageBarrier
-{
-
-} // SwapImageBarrier
+{} // SwapImageBarrier

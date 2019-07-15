@@ -44,7 +44,7 @@ public class PushConstantBufferImpl extends PushConstantImpl implements PushCons
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushConstantBufferImpl()
+	public PushConstantBufferImpl()
 	{
 		super();
 	}

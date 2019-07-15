@@ -14,15 +14,20 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.sheepy.lily.core.model.action.ActionPackage;
 
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
+
 import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription;
 import org.sheepy.lily.vulkan.model.process.graphic.AttachmentRef;
 import org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription;
@@ -53,10 +58,15 @@ import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapchainConfiguration;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexBinding;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
+import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
+
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
+
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -316,26 +326,49 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		ProcessPackage.eINSTANCE.eClass();
-		EnumerationPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
-		MaintainerPackage.eINSTANCE.eClass();
-		VulkanPackage.eINSTANCE.eClass();
-		GraphicpipelinePackage.eINSTANCE.eClass();
-		BarrierPackage.eINSTANCE.eClass();
-		PipelinePackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
-		ApplicationPackage.eINSTANCE.eClass();
-		ActionPackage.eINSTANCE.eClass();
+		MaintainerPackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
+		EnumerationPackage.eINSTANCE.eClass();
+		GraphicpipelinePackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
+		ComputePackageImpl theComputePackage = (ComputePackageImpl) (registeredPackage instanceof ComputePackageImpl
+				? registeredPackage
+				: ComputePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl) (registeredPackage instanceof ProcessPackageImpl
+				? registeredPackage
+				: ProcessPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl) (registeredPackage instanceof VulkanPackageImpl
+				? registeredPackage
+				: VulkanPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl) (registeredPackage instanceof ResourcePackageImpl
+				? registeredPackage
+				: ResourcePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGraphicPackage.createPackageContents();
+		theComputePackage.createPackageContents();
+		theProcessPackage.createPackageContents();
+		theVulkanPackage.createPackageContents();
+		theResourcePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGraphicPackage.initializePackageContents();
+		theComputePackage.initializePackageContents();
+		theProcessPackage.initializePackageContents();
+		theVulkanPackage.initializePackageContents();
+		theResourcePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theGraphicPackage.freeze();
@@ -1253,9 +1286,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getInputDescriptor_Attributes()
+	public EAttribute getInputDescriptor_StrideLength()
 	{
-		return (EReference) inputDescriptorEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) inputDescriptorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1264,9 +1297,9 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getInputDescriptor_StrideLength()
+	public EReference getInputDescriptor_Attributes()
 	{
-		return (EAttribute) inputDescriptorEClass.getEStructuralFeatures().get(1);
+		return (EReference) inputDescriptorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1768,7 +1801,7 @@ public class GraphicPackageImpl extends EPackageImpl implements GraphicPackage
 		setViewportEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 		bindIndexBufferEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(graphicConfigurationEClass, GraphicConfiguration.class, "GraphicConfiguration",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphicConfiguration_SwapchainConfiguration(),

@@ -27,7 +27,6 @@ import org.sheepy.lily.vulkan.model.process.IPipelineTask;
  */
 public interface SetViewport extends IPipelineTask
 {
-
 	/**
 	 * Returns the value of the '<em><b>X</b></em>' attribute.
 	 * The default value is <code>"0"</code>.
@@ -163,4 +162,5 @@ public interface SetViewport extends IPipelineTask
 	 * @generated
 	 */
 	void setMaxDepth(float value);
+
 } // SetViewport

@@ -15,6 +15,4 @@ import org.sheepy.lily.vulkan.model.process.IPipeline;
  * @generated
  */
 public interface ComputePipeline extends IPipeline
-{
-
-} // ComputePipeline
+{} // ComputePipeline

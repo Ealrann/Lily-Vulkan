@@ -23,10 +23,6 @@ public interface Texture extends AbstractTexture
 	/**
 	 * Returns the value of the '<em><b>File</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>File</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' containment reference.
 	 * @see #setFile(PathResource)

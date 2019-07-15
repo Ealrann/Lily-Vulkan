@@ -20,7 +20,7 @@ public abstract class AbstractBufferBarrierImpl extends BarrierImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractBufferBarrierImpl()
+	protected AbstractBufferBarrierImpl()
 	{
 		super();
 	}

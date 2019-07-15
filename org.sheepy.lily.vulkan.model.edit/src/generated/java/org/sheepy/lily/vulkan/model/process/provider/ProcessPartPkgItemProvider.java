@@ -25,6 +25,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
+import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 
 /**
  * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.model.process.ProcessPartPkg} object.
@@ -158,6 +160,14 @@ public class ProcessPartPkgItemProvider extends ItemProviderAdapter
 		newChildDescriptors
 				.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
 						ProcessFactory.eINSTANCE.createPipeline()));
+
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+						ComputeFactory.eINSTANCE.createComputePipeline()));
+
+		newChildDescriptors
+				.add(createChildParameter(ProcessPackage.Literals.PROCESS_PART_PKG__PARTS,
+						GraphicFactory.eINSTANCE.createGraphicsPipeline()));
 	}
 
 	/**

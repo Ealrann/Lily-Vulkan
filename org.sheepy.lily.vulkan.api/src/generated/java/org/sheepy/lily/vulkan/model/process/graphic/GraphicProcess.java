@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.sheepy.lily.core.model.maintainer.Maintainable;
+
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 
 /**
@@ -28,10 +29,6 @@ public interface GraphicProcess extends AbstractProcess, Maintainable<GraphicPro
 	/**
 	 * Returns the value of the '<em><b>Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Configuration</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Configuration</em>' containment reference.
 	 * @see #setConfiguration(GraphicConfiguration)
@@ -54,10 +51,6 @@ public interface GraphicProcess extends AbstractProcess, Maintainable<GraphicPro
 	/**
 	 * Returns the value of the '<em><b>Render Pass Info</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Render Pass Info</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Render Pass Info</em>' containment reference.
 	 * @see #setRenderPassInfo(RenderPassInfo)

@@ -94,15 +94,6 @@ public interface BarrierPackage extends EPackage
 	int BARRIER_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BARRIER_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.barrier.impl.AbstractBufferBarrierImpl <em>Abstract Buffer Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,15 +129,6 @@ public interface BarrierPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_BUFFER_BARRIER_FEATURE_COUNT = BARRIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Abstract Buffer Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_BUFFER_BARRIER_OPERATION_COUNT = BARRIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.barrier.impl.AbstractImageBarrierImpl <em>Abstract Image Barrier</em>}' class.
@@ -205,15 +187,6 @@ public interface BarrierPackage extends EPackage
 	int REFERENCE_BUFFER_BARRIER_FEATURE_COUNT = ABSTRACT_BUFFER_BARRIER_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Reference Buffer Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_BUFFER_BARRIER_OPERATION_COUNT = ABSTRACT_BUFFER_BARRIER_OPERATION_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Src Access Mask</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -257,15 +230,6 @@ public interface BarrierPackage extends EPackage
 	 * @ordered
 	 */
 	int ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT = BARRIER_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Abstract Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT = BARRIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.barrier.impl.ReferenceImageBarrierImpl <em>Reference Image Barrier</em>}' class.
@@ -350,15 +314,6 @@ public interface BarrierPackage extends EPackage
 	int REFERENCE_IMAGE_BARRIER_FEATURE_COUNT = ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Reference Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_IMAGE_BARRIER_OPERATION_COUNT = ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.vulkan.model.barrier.impl.ImageTransitionImpl <em>Image Transition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -412,15 +367,6 @@ public interface BarrierPackage extends EPackage
 	 * @ordered
 	 */
 	int IMAGE_TRANSITION_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>Image Transition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_TRANSITION_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.vulkan.model.barrier.Barrier <em>Barrier</em>}'.

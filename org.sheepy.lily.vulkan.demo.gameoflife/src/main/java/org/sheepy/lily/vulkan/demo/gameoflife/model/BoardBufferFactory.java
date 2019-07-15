@@ -5,7 +5,6 @@ import org.sheepy.lily.vulkan.demo.gameoflife.MainGameOfLife;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
-import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
@@ -17,7 +16,7 @@ public class BoardBufferFactory
 
 	public static Buffer createBoardBuffer(Board board)
 	{
-		final Buffer res = new BufferImpl();
+		final Buffer res = ResourceFactory.eINSTANCE.createBuffer();
 
 		final int width = board.getWidth();
 		final int height = board.getHeight();

@@ -15,6 +15,4 @@ import org.sheepy.lily.vulkan.model.IResource;
  * @generated
  */
 public interface DescriptedResource extends IResource
-{
-
-} // DescriptedResource
+{} // DescriptedResource

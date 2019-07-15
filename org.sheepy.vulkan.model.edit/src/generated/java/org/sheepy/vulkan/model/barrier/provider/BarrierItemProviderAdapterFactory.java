@@ -67,7 +67,7 @@ public class BarrierItemProviderAdapterFactory extends BarrierAdapterFactory
 	 * @generated
 	 */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			BarrierEditPlugin.INSTANCE, BarrierPackage.eNS_URI);
+			VulkanEditPlugin.INSTANCE, BarrierPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.

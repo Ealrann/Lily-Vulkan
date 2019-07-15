@@ -19,6 +19,11 @@ import org.sheepy.vulkan.model.barrier.ReferenceBufferBarrier;
 import org.sheepy.vulkan.model.barrier.ReferenceImageBarrier;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.enumeration.impl.EnumerationPackageImpl;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
+import org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl;
+import org.sheepy.vulkan.model.pipeline.PipelinePackage;
+import org.sheepy.vulkan.model.pipeline.impl.PipelinePackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,14 +128,34 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		EnumerationPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE
+				.getEPackage(EnumerationPackage.eNS_URI);
+		EnumerationPackageImpl theEnumerationPackage = (EnumerationPackageImpl) (registeredPackage instanceof EnumerationPackageImpl
+				? registeredPackage
+				: EnumerationPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicpipelinePackage.eNS_URI);
+		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl) (registeredPackage instanceof GraphicpipelinePackageImpl
+				? registeredPackage
+				: GraphicpipelinePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
+		PipelinePackageImpl thePipelinePackage = (PipelinePackageImpl) (registeredPackage instanceof PipelinePackageImpl
+				? registeredPackage
+				: PipelinePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theBarrierPackage.createPackageContents();
+		theEnumerationPackage.createPackageContents();
+		theGraphicpipelinePackage.createPackageContents();
+		thePipelinePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theBarrierPackage.initializePackageContents();
+		theEnumerationPackage.initializePackageContents();
+		theGraphicpipelinePackage.initializePackageContents();
+		thePipelinePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theBarrierPackage.freeze();
@@ -434,7 +459,7 @@ public class BarrierPackageImpl extends EPackageImpl implements BarrierPackage
 		abstractImageBarrierEClass.getESuperTypes().add(this.getBarrier());
 		referenceImageBarrierEClass.getESuperTypes().add(this.getAbstractImageBarrier());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(barrierEClass, Barrier.class, "Barrier", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBarrier_SrcAccessMask(), theEnumerationPackage.getEAccess(),

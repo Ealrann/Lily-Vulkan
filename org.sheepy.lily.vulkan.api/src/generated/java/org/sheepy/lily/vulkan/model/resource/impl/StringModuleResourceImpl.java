@@ -8,12 +8,12 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Named Module Resource</b></em>'.
+ * An implementation of the model object '<em><b>String Module Resource</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -178,4 +178,4 @@ public class StringModuleResourceImpl extends AbstractModuleResourceImpl
 		return result.toString();
 	}
 
-} //NamedModuleResourceImpl
+} //StringModuleResourceImpl

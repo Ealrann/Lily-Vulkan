@@ -34,6 +34,7 @@ import org.sheepy.lily.core.model.application.util.ApplicationSwitch;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
+import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.util.VulkanAdapterFactory;
 
 /**
@@ -71,7 +72,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 	 * @generated
 	 */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			VulkanEditPlugin.INSTANCE, VulkanPackage.eNS_URI);
+			LilyVulkanEditPlugin.INSTANCE, VulkanPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -374,6 +375,7 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
 		{
 			ArrayList<Object> result = new ArrayList<Object>();
@@ -386,9 +388,10 @@ public class VulkanItemProviderAdapterFactory extends VulkanAdapterFactory
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator()
 		{
-			return VulkanEditPlugin.INSTANCE;
+			return LilyVulkanEditPlugin.INSTANCE;
 		}
 	}
 

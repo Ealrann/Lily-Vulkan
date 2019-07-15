@@ -47,7 +47,7 @@ public class DynamicStateImpl extends MinimalEObjectImpl.Container implements Dy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DynamicStateImpl()
+	protected DynamicStateImpl()
 	{
 		super();
 	}

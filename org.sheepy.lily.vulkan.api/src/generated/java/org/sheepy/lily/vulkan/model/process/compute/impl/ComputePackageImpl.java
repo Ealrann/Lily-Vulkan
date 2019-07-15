@@ -17,20 +17,29 @@ import org.sheepy.lily.core.model.application.ApplicationPackage;
 import org.sheepy.lily.core.model.inference.InferencePackage;
 
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
+
 import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
+import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl;
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
+
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -115,25 +124,49 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		ProcessPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
-		VulkanPackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
-		EnumerationPackage.eINSTANCE.eClass();
-		PipelinePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
+		ApplicationPackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
-		BarrierPackage.eINSTANCE.eClass();
 		MaintainerPackage.eINSTANCE.eClass();
-		ApplicationPackage.eINSTANCE.eClass();
-		ActionPackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
+		EnumerationPackage.eINSTANCE.eClass();
+		GraphicpipelinePackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl) (registeredPackage instanceof ProcessPackageImpl
+				? registeredPackage
+				: ProcessPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl) (registeredPackage instanceof VulkanPackageImpl
+				? registeredPackage
+				: VulkanPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl) (registeredPackage instanceof ResourcePackageImpl
+				? registeredPackage
+				: ResourcePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
+		GraphicPackageImpl theGraphicPackage = (GraphicPackageImpl) (registeredPackage instanceof GraphicPackageImpl
+				? registeredPackage
+				: GraphicPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theComputePackage.createPackageContents();
+		theProcessPackage.createPackageContents();
+		theVulkanPackage.createPackageContents();
+		theResourcePackage.createPackageContents();
+		theGraphicPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theComputePackage.initializePackageContents();
+		theProcessPackage.initializePackageContents();
+		theVulkanPackage.initializePackageContents();
+		theResourcePackage.initializePackageContents();
+		theGraphicPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theComputePackage.freeze();
@@ -303,7 +336,7 @@ public class ComputePackageImpl extends EPackageImpl implements ComputePackage
 		computePipelineEClass.getESuperTypes().add(theProcessPackage.getIPipeline());
 		computerEClass.getESuperTypes().add(theProcessPackage.getIPipelineTask());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(computeProcessEClass, ComputeProcess.class, "ComputeProcess", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

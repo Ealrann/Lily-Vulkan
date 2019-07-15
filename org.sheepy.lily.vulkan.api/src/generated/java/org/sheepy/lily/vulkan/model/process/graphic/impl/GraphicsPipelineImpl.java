@@ -3,36 +3,50 @@
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import java.nio.ByteBuffer;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.lily.core.model.maintainer.Maintainable;
 import org.sheepy.lily.core.model.maintainer.Maintainer;
 import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
+
 import org.sheepy.lily.vulkan.model.IResourceContainer;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+
 import org.sheepy.lily.vulkan.model.process.IProcessPart;
 import org.sheepy.lily.vulkan.model.process.TaskPkg;
+
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicsPipeline;
 import org.sheepy.lily.vulkan.model.process.graphic.VertexInputState;
+
 import org.sheepy.lily.vulkan.model.resource.DescriptorSetPkg;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+
 import org.sheepy.vulkan.model.enumeration.ECommandStage;
+
 import org.sheepy.vulkan.model.graphicpipeline.ColorBlend;
 import org.sheepy.vulkan.model.graphicpipeline.DynamicState;
 import org.sheepy.vulkan.model.graphicpipeline.InputAssembly;
 import org.sheepy.vulkan.model.graphicpipeline.Rasterizer;
 import org.sheepy.vulkan.model.graphicpipeline.ViewportState;
+
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
 /**
@@ -75,6 +89,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -84,6 +99,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getResourcePkg() <em>Resource Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -93,6 +109,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected ResourcePkg resourcePkg;
+
 	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -102,6 +119,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected static final boolean ENABLED_EDEFAULT = true;
+
 	/**
 	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -111,6 +129,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getStage() <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -120,6 +139,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected static final ECommandStage STAGE_EDEFAULT = ECommandStage.RENDER;
+
 	/**
 	 * The cached value of the '{@link #getStage() <em>Stage</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -129,6 +149,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected ECommandStage stage = STAGE_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getPushConstantRanges() <em>Push Constant Ranges</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -138,6 +159,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected EList<PushConstantRange> pushConstantRanges;
+
 	/**
 	 * The default value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -147,6 +169,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected static final ByteBuffer SPECIALIZATION_DATA_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getSpecializationData() <em>Specialization Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -156,6 +179,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected ByteBuffer specializationData = SPECIALIZATION_DATA_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getDescriptorSetPkg() <em>Descriptor Set Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -165,6 +189,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected DescriptorSetPkg descriptorSetPkg;
+
 	/**
 	 * The cached value of the '{@link #getTaskPkg() <em>Task Pkg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -174,6 +199,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected TaskPkg taskPkg;
+
 	/**
 	 * The cached value of the '{@link #getMaintainer() <em>Maintainer</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -183,6 +209,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected Maintainer<GraphicsPipeline> maintainer;
+
 	/**
 	 * The cached value of the '{@link #getShaders() <em>Shaders</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -192,6 +219,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected EList<Shader> shaders;
+
 	/**
 	 * The cached value of the '{@link #getViewportState() <em>Viewport State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -201,6 +229,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected ViewportState viewportState;
+
 	/**
 	 * The cached value of the '{@link #getInputAssembly() <em>Input Assembly</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -210,6 +239,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected InputAssembly inputAssembly;
+
 	/**
 	 * The cached value of the '{@link #getRasterizer() <em>Rasterizer</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -219,6 +249,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected Rasterizer rasterizer;
+
 	/**
 	 * The cached value of the '{@link #getColorBlend() <em>Color Blend</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -228,6 +259,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected ColorBlend colorBlend;
+
 	/**
 	 * The cached value of the '{@link #getDynamicState() <em>Dynamic State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -237,6 +269,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected DynamicState dynamicState;
+
 	/**
 	 * The default value of the '{@link #getSubpass() <em>Subpass</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -246,6 +279,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected static final int SUBPASS_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getSubpass() <em>Subpass</em>}' attribute.
 	 * <!-- begin-user-doc -->

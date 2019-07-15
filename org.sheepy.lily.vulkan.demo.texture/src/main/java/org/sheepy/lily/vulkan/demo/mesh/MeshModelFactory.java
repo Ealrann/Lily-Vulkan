@@ -12,26 +12,9 @@ import org.sheepy.lily.vulkan.model.process.graphic.DepthAttachment;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.BindVertexBufferImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.ColorDomainImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicConfigurationImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl;
 import org.sheepy.lily.vulkan.model.resource.ConstantBuffer;
-import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.model.resource.impl.BufferImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.DescriptorSetImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.PushBufferImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -42,13 +25,7 @@ import org.sheepy.vulkan.model.enumeration.EIndexType;
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 import org.sheepy.vulkan.model.enumeration.ESampleCount;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
-import org.sheepy.vulkan.model.graphicpipeline.impl.ColorBlendAttachmentImpl;
-import org.sheepy.vulkan.model.graphicpipeline.impl.ColorBlendImpl;
-import org.sheepy.vulkan.model.graphicpipeline.impl.InputAssemblyImpl;
-import org.sheepy.vulkan.model.graphicpipeline.impl.RasterizerImpl;
-import org.sheepy.vulkan.model.graphicpipeline.impl.ScissorImpl;
-import org.sheepy.vulkan.model.graphicpipeline.impl.StaticViewportStateImpl;
-import org.sheepy.vulkan.model.graphicpipeline.impl.ViewportImpl;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelineFactory;
 import org.sheepy.vulkan.model.pipeline.PipelineFactory;
 import org.sheepy.vulkan.model.pipeline.PushConstantRange;
 
@@ -71,19 +48,20 @@ public class MeshModelFactory
 		application.setSize(size);
 		application.getEngines().add(engine);
 
-		final var framebufferConfiguration = new FramebufferConfigurationImpl();
-		final var graphicConfiguration = new GraphicConfigurationImpl();
-		final var swapchainConfiguration = new SwapchainConfigurationImpl();
+		final var framebufferConfiguration = GraphicFactory.eINSTANCE
+				.createFramebufferConfiguration();
+		final var graphicConfiguration = GraphicFactory.eINSTANCE.createGraphicConfiguration();
+		final var swapchainConfiguration = GraphicFactory.eINSTANCE.createSwapchainConfiguration();
 
 		if (meshConfiguration.depth)
 		{
-			depthAttachment = new DepthAttachmentImpl();
+			depthAttachment = GraphicFactory.eINSTANCE.createDepthAttachment();
 			swapchainConfiguration.getAtachments().add(depthAttachment);
 		}
 
 		graphicConfiguration.setSwapchainConfiguration(swapchainConfiguration);
 		graphicConfiguration.setFramebufferConfiguration(framebufferConfiguration);
-		graphicConfiguration.setColorDomain(new ColorDomainImpl());
+		graphicConfiguration.setColorDomain(GraphicFactory.eINSTANCE.createColorDomain());
 
 		graphicProcess = newMeshProcess();
 		graphicProcess.setConfiguration(graphicConfiguration);
@@ -154,30 +132,30 @@ public class MeshModelFactory
 	{
 		final var module = meshConfiguration.module;
 
-		final ModuleResource vertexShaderFile = new ModuleResourceImpl();
+		final var vertexShaderFile = ResourceFactory.eINSTANCE.createModuleResource();
 		vertexShaderFile.setModule(module);
 		vertexShaderFile.setPath(meshConfiguration.vertexShaderPath);
 
-		final ModuleResource fragmentShaderFile = new ModuleResourceImpl();
+		final var fragmentShaderFile = ResourceFactory.eINSTANCE.createModuleResource();
 		fragmentShaderFile.setModule(module);
 		fragmentShaderFile.setPath(meshConfiguration.fragmentShaderPath);
 
-		final Shader vertexShader = new ShaderImpl();
+		final Shader vertexShader = ResourceFactory.eINSTANCE.createShader();
 		vertexShader.setFile(vertexShaderFile);
 		vertexShader.setStage(EShaderStage.VERTEX_BIT);
 
-		final Shader fragmentShader = new ShaderImpl();
+		final Shader fragmentShader = ResourceFactory.eINSTANCE.createShader();
 		fragmentShader.setFile(fragmentShaderFile);
 		fragmentShader.setStage(EShaderStage.FRAGMENT_BIT);
 
-		final var indexedVertexBuffer = new BufferImpl();
+		final var indexedVertexBuffer = ResourceFactory.eINSTANCE.createBuffer();
 		indexedVertexBuffer.setSize((long) Math.pow(2, 10));
 		indexedVertexBuffer.getUsages().add(EBufferUsage.VERTEX_BUFFER_BIT);
 		indexedVertexBuffer.getUsages().add(EBufferUsage.INDEX_BUFFER_BIT);
 		indexedVertexBuffer.getUsages().add(EBufferUsage.TRANSFER_DST_BIT);
 		indexedVertexBuffer.setData(meshConfiguration.vertexData);
 
-		final var pushBuffer = new PushBufferImpl();
+		final var pushBuffer = ResourceFactory.eINSTANCE.createPushBuffer();
 		pushBuffer.setInstanceCount(3);
 		pushBuffer.setSize((long) Math.pow(2, 16));
 
@@ -198,29 +176,30 @@ public class MeshModelFactory
 			pushConstantRange.getStages().add(EShaderStage.VERTEX_BIT);
 		}
 
-		final var descriptorSet = new DescriptorSetImpl();
+		final var descriptorSet = ResourceFactory.eINSTANCE.createDescriptorSet();
 
-		final var rasterizer = new RasterizerImpl();
+		final var rasterizer = GraphicpipelineFactory.eINSTANCE.createRasterizer();
 		rasterizer.setFrontFace(meshConfiguration.rasterizerFrontFace);
 
-		final var viewportState = new StaticViewportStateImpl();
-		viewportState.getViewports().add(new ViewportImpl());
-		viewportState.getScissors().add(new ScissorImpl());
+		final var viewportState = GraphicpipelineFactory.eINSTANCE.createStaticViewportState();
+		viewportState.getViewports().add(GraphicpipelineFactory.eINSTANCE.createViewport());
+		viewportState.getScissors().add(GraphicpipelineFactory.eINSTANCE.createScissor());
 
-		final var colorBlend = new ColorBlendImpl();
-		colorBlend.getAttachments().add(new ColorBlendAttachmentImpl());
+		final var colorBlend = GraphicpipelineFactory.eINSTANCE.createColorBlend();
+		colorBlend.getAttachments()
+				.add(GraphicpipelineFactory.eINSTANCE.createColorBlendAttachment());
 
-		final var locationAttribute = new AttributeDescriptionImpl();
+		final var locationAttribute = GraphicFactory.eINSTANCE.createAttributeDescription();
 		if (meshConfiguration.useTexture) locationAttribute.setFormat(EFormat.R32G32B32_SFLOAT);
 		else locationAttribute.setFormat(EFormat.R32G32_SFLOAT);
 		locationAttribute.setOffset(0);
 
-		final var colorAttribute = new AttributeDescriptionImpl();
+		final var colorAttribute = GraphicFactory.eINSTANCE.createAttributeDescription();
 		colorAttribute.setFormat(EFormat.R32G32B32_SFLOAT);
 		if (meshConfiguration.useTexture) colorAttribute.setOffset(12);
 		else colorAttribute.setOffset(8);
 
-		final var textureAttribute = new AttributeDescriptionImpl();
+		final var textureAttribute = GraphicFactory.eINSTANCE.createAttributeDescription();
 		textureAttribute.setFormat(EFormat.R32G32B32_SFLOAT);
 		textureAttribute.setOffset(24);
 
@@ -235,11 +214,11 @@ public class MeshModelFactory
 		inputDescriptor.getAttributes().add(colorAttribute);
 		if (meshConfiguration.useTexture) inputDescriptor.getAttributes().add(textureAttribute);
 
-		final var graphicPipeline = new GraphicsPipelineImpl();
+		final var graphicPipeline = GraphicFactory.eINSTANCE.createGraphicsPipeline();
 		graphicPipeline.getShaders().add(vertexShader);
 		graphicPipeline.getShaders().add(fragmentShader);
 		graphicPipeline.setRasterizer(rasterizer);
-		graphicPipeline.setInputAssembly(new InputAssemblyImpl());
+		graphicPipeline.setInputAssembly(GraphicpipelineFactory.eINSTANCE.createInputAssembly());
 		graphicPipeline.setViewportState(viewportState);
 		graphicPipeline.setColorBlend(colorBlend);
 		graphicPipeline.setVertexInputState(inputState);
@@ -250,8 +229,8 @@ public class MeshModelFactory
 		vertexRef.setBuffer(indexedVertexBuffer);
 		vertexRef.setOffset(0);
 
-		final var bindVertexBuffer = new BindVertexBufferImpl();
-		final var vertexBinding = new VertexBindingImpl();
+		final var bindVertexBuffer = GraphicFactory.eINSTANCE.createBindVertexBuffer();
+		final var vertexBinding = GraphicFactory.eINSTANCE.createVertexBinding();
 		vertexBinding.setBufferRef(vertexRef);
 		bindVertexBuffer.getVertexBindings().add(vertexBinding);
 
@@ -259,11 +238,11 @@ public class MeshModelFactory
 		indexRef.setBuffer(indexedVertexBuffer);
 		indexRef.setOffset(meshConfiguration.indexOffset);
 
-		final var bindIndexBuffer = new BindIndexBufferImpl();
+		final var bindIndexBuffer = GraphicFactory.eINSTANCE.createBindIndexBuffer();
 		bindIndexBuffer.setBufferRef(indexRef);
 		bindIndexBuffer.setIndexType(EIndexType.UINT32);
 
-		final var drawIndexed = new DrawIndexedImpl();
+		final var drawIndexed = GraphicFactory.eINSTANCE.createDrawIndexed();
 		drawIndexed.setIndexCount(meshConfiguration.indexCount);
 
 		final var taskPkg = ProcessFactory.eINSTANCE.createTaskPkg();

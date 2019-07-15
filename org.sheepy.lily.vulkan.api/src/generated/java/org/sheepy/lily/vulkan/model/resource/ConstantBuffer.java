@@ -26,28 +26,6 @@ import org.sheepy.lily.vulkan.model.IResource;
 public interface ConstantBuffer extends IResource
 {
 	/**
-	 * Returns the value of the '<em><b>Data</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data</em>' attribute.
-	 * @see #setData(ByteBuffer)
-	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getConstantBuffer_Data()
-	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
-	 * @generated
-	 */
-	ByteBuffer getData();
-
-	/**
-	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#getData <em>Data</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data</em>' attribute.
-	 * @see #getData()
-	 * @generated
-	 */
-	void setData(ByteBuffer value);
-
-	/**
 	 * Returns the value of the '<em><b>Being Pushed</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
@@ -69,5 +47,27 @@ public interface ConstantBuffer extends IResource
 	 * @generated
 	 */
 	void setBeingPushed(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data</em>' attribute.
+	 * @see #setData(ByteBuffer)
+	 * @see org.sheepy.lily.vulkan.model.resource.ResourcePackage#getConstantBuffer_Data()
+	 * @model unique="false" dataType="org.sheepy.lily.vulkan.model.resource.ByteBuffer"
+	 * @generated
+	 */
+	ByteBuffer getData();
+
+	/**
+	 * Sets the value of the '{@link org.sheepy.lily.vulkan.model.resource.ConstantBuffer#getData <em>Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data</em>' attribute.
+	 * @see #getData()
+	 * @generated
+	 */
+	void setData(ByteBuffer value);
 
 } // ConstantBuffer

@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.sheepy.lily.core.model.types.LNamedElement;
+
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
 import org.sheepy.vulkan.model.enumeration.EImageLayout;
@@ -36,10 +37,6 @@ public interface AttachmentDescription extends LNamedElement
 	 * Returns the value of the '<em><b>Samples</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.ESampleCount}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Samples</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Samples</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.ESampleCount
@@ -65,10 +62,6 @@ public interface AttachmentDescription extends LNamedElement
 	 * Returns the value of the '<em><b>Load Op</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Load Op</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Load Op</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
@@ -94,10 +87,6 @@ public interface AttachmentDescription extends LNamedElement
 	 * Returns the value of the '<em><b>Store Op</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Store Op</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Store Op</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
@@ -123,10 +112,6 @@ public interface AttachmentDescription extends LNamedElement
 	 * Returns the value of the '<em><b>Stencil Load Op</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Stencil Load Op</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stencil Load Op</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp
@@ -152,10 +137,6 @@ public interface AttachmentDescription extends LNamedElement
 	 * Returns the value of the '<em><b>Stencil Store Op</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Stencil Store Op</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stencil Store Op</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp
@@ -181,10 +162,6 @@ public interface AttachmentDescription extends LNamedElement
 	 * Returns the value of the '<em><b>Initial Layout</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Initial Layout</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial Layout</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout
@@ -210,10 +187,6 @@ public interface AttachmentDescription extends LNamedElement
 	 * Returns the value of the '<em><b>Final Layout</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageLayout}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Final Layout</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Final Layout</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EImageLayout

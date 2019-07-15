@@ -11,11 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import org.eclipse.emf.edit.provider.ChangeNotifier;
@@ -31,14 +26,10 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.sheepy.lily.vulkan.model.ResourcePkg;
-import org.sheepy.lily.vulkan.model.VulkanPackage;
-import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
+import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 import org.sheepy.lily.vulkan.model.resource.util.ResourceAdapterFactory;
-
-import org.sheepy.lily.vulkan.model.util.VulkanSwitch;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -75,7 +66,7 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 	 * @generated
 	 */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			ResourceEditPlugin.INSTANCE, ResourcePackage.eNS_URI);
+			LilyVulkanEditPlugin.INSTANCE, ResourcePackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -926,158 +917,6 @@ public class ResourceItemProviderAdapterFactory extends ResourceAdapterFactory
 		if (fileResourceItemProvider != null) fileResourceItemProvider.dispose();
 		if (moduleResourceItemProvider != null) moduleResourceItemProvider.dispose();
 		if (stringModuleResourceItemProvider != null) stringModuleResourceItemProvider.dispose();
-	}
-
-	/**
-	 * A child creation extender for the {@link VulkanPackage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static class VulkanChildCreationExtender implements IChildCreationExtender
-	{
-		/**
-		 * The switch for creating child descriptors specific to each extended class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected static class CreationSwitch extends VulkanSwitch<Object>
-		{
-			/**
-			 * The child descriptors being populated.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected List<Object> newChildDescriptors;
-
-			/**
-			 * The domain in which to create the children.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected EditingDomain editingDomain;
-
-			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
-			{
-				this.newChildDescriptors = newChildDescriptors;
-				this.editingDomain = editingDomain;
-			}
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseResourcePkg(ResourcePkg object)
-			{
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createBasicResource()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createPushBuffer()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createGetBuffer()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createConstantBuffer()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createBuffer()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createCompositeBuffer()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createImage()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createSampledImage()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createSemaphore()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createFont()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createTexture()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createShader()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createFileResource()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createModuleResource()));
-
-				newChildDescriptors
-						.add(createChildParameter(VulkanPackage.Literals.RESOURCE_PKG__RESOURCES,
-								ResourceFactory.eINSTANCE.createStringModuleResource()));
-
-				return null;
-			}
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			protected CommandParameter createChildParameter(Object feature, Object child)
-			{
-				return new CommandParameter(null, feature, child);
-			}
-
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-		{
-			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
-			return result;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public ResourceLocator getResourceLocator()
-		{
-			return ResourceEditPlugin.INSTANCE;
-		}
 	}
 
 }

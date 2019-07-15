@@ -5,24 +5,9 @@ package org.sheepy.lily.vulkan.extra.nuklear.model.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.sheepy.lily.core.model.action.provider.ActionEditPlugin;
-
-import org.sheepy.lily.core.model.application.provider.ApplicationEditPlugin;
-import org.sheepy.lily.core.model.inference.provider.InferenceEditPlugin;
-
-import org.sheepy.lily.core.model.maintainer.provider.MaintainerEditPlugin;
-import org.sheepy.lily.core.model.root.provider.RootEditPlugin;
-
-import org.sheepy.lily.core.model.types.provider.TypesEditPlugin;
-import org.sheepy.lily.vulkan.model.process.provider.ProcessEditPlugin;
-import org.sheepy.lily.vulkan.model.provider.VulkanEditPlugin;
-
-import org.sheepy.lily.vulkan.model.resource.provider.ResourceEditPlugin;
-
-import org.sheepy.vulkan.model.barrier.provider.BarrierEditPlugin;
-import org.sheepy.vulkan.model.enumeration.provider.EnumerationEditPlugin;
-import org.sheepy.vulkan.model.pipeline.provider.PipelineEditPlugin;
+import org.sheepy.lily.core.model.types.provider.LilyEditPlugin;
+import org.sheepy.lily.vulkan.model.process.compute.provider.LilyVulkanEditPlugin;
+import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
 
 /**
  * This is the central singleton for the Nuklear edit plugin.
@@ -59,18 +44,9 @@ public final class NuklearEditPlugin extends EMFPlugin
 		super
 		  (new ResourceLocator [] 
 		   {
-		     ProcessEditPlugin.INSTANCE,
-		     TypesEditPlugin.INSTANCE,
-		     ResourceEditPlugin.INSTANCE,
+		     LilyVulkanEditPlugin.INSTANCE,
+		     LilyEditPlugin.INSTANCE,
 		     VulkanEditPlugin.INSTANCE,
-		     EnumerationEditPlugin.INSTANCE,
-		     PipelineEditPlugin.INSTANCE,
-		     RootEditPlugin.INSTANCE,
-		     InferenceEditPlugin.INSTANCE,
-		     BarrierEditPlugin.INSTANCE,
-		     MaintainerEditPlugin.INSTANCE,
-		     ApplicationEditPlugin.INSTANCE,
-		     ActionEditPlugin.INSTANCE,
 		   });
 	}
 

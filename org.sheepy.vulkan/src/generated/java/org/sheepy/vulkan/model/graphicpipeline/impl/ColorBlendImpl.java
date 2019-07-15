@@ -180,7 +180,7 @@ public class ColorBlendImpl extends MinimalEObjectImpl.Container implements Colo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ColorBlendImpl()
+	protected ColorBlendImpl()
 	{
 		super();
 	}

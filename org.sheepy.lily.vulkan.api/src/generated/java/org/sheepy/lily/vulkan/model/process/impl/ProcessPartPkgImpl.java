@@ -50,7 +50,7 @@ public class ProcessPartPkgImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProcessPartPkgImpl()
+	public ProcessPartPkgImpl()
 	{
 		super();
 	}

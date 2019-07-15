@@ -4,8 +4,8 @@ import static org.lwjgl.vulkan.VK10.*;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkSamplerCreateInfo;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
-import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.vulkan.device.LogicalDevice;
 import org.sheepy.vulkan.log.Logger;
 
@@ -18,7 +18,7 @@ public class VkSampler
 
 	public VkSampler(LogicalDevice logicalDevice)
 	{
-		this(logicalDevice, new SamplerImpl());
+		this(logicalDevice, ResourceFactory.eINSTANCE.createSampler());
 	}
 
 	public VkSampler(LogicalDevice logicalDevice, Sampler sampler)

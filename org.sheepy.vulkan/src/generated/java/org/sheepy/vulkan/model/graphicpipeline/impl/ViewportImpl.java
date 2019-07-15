@@ -129,7 +129,7 @@ public class ViewportImpl extends MinimalEObjectImpl.Container implements Viewpo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ViewportImpl()
+	protected ViewportImpl()
 	{
 		super();
 	}

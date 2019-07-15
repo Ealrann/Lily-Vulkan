@@ -3,7 +3,9 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import java.nio.ByteBuffer;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.vulkan.model.enumeration.EBufferUsage;
 
 /**
@@ -32,10 +34,6 @@ public interface Buffer extends BasicDescriptedResource, IBuffer
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Size</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
 	 * @see #setSize(long)
@@ -60,10 +58,6 @@ public interface Buffer extends BasicDescriptedResource, IBuffer
 	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EBufferUsage}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Usages</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usages</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EBufferUsage
@@ -76,10 +70,6 @@ public interface Buffer extends BasicDescriptedResource, IBuffer
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Data</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data</em>' attribute.
 	 * @see #setData(ByteBuffer)
@@ -103,10 +93,6 @@ public interface Buffer extends BasicDescriptedResource, IBuffer
 	 * Returns the value of the '<em><b>Often Updated</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Often Updated</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Often Updated</em>' attribute.
 	 * @see #setOftenUpdated(boolean)
@@ -130,10 +116,6 @@ public interface Buffer extends BasicDescriptedResource, IBuffer
 	 * Returns the value of the '<em><b>Gpu Buffer</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Gpu Buffer</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gpu Buffer</em>' attribute.
 	 * @see #setGpuBuffer(boolean)

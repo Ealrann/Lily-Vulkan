@@ -6,7 +6,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
 
 /**
@@ -124,60 +126,6 @@ public interface VulkanPackage extends EPackage
 	int VULKAN_ENGINE_FEATURE_COUNT = ApplicationPackage.IENGINE_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_ENGINE___LINFERENCE_OBJECT = ApplicationPackage.IENGINE___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_ENGINE___CREATE_CONTAINMENT_ELIST__ECLASS = ApplicationPackage.IENGINE___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_ENGINE___LCONTENTS = ApplicationPackage.IENGINE___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_ENGINE___LPARENT = ApplicationPackage.IENGINE___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_ENGINE___LALL_CONTENTS = ApplicationPackage.IENGINE___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>Engine</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VULKAN_ENGINE_OPERATION_COUNT = ApplicationPackage.IENGINE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IResourceContainer <em>IResource Container</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -204,15 +152,6 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int IRESOURCE_CONTAINER_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>IResource Container</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IRESOURCE_CONTAINER_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl <em>Resource Pkg</em>}' class.
@@ -243,15 +182,6 @@ public interface VulkanPackage extends EPackage
 	int RESOURCE_PKG_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Resource Pkg</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE_PKG_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IResource <em>IResource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -278,15 +208,6 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int IRESOURCE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>IResource</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IRESOURCE_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IProcess <em>IProcess</em>}' class.
@@ -335,15 +256,6 @@ public interface VulkanPackage extends EPackage
 	int IPROCESS_FEATURE_COUNT = IRESOURCE_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>IProcess</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPROCESS_OPERATION_COUNT = IRESOURCE_CONTAINER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.IExecutionManager <em>IExecution Manager</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -361,15 +273,6 @@ public interface VulkanPackage extends EPackage
 	 * @ordered
 	 */
 	int IEXECUTION_MANAGER_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>IExecution Manager</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IEXECUTION_MANAGER_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.VulkanEngine <em>Engine</em>}'.

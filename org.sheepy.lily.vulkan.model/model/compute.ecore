@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="compute" nsURI="org.sheepy.lily.vulkan.model.process.compute"
+    nsPrefix="compute">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="cleanup" value="true"/>
+    <details key="codeFormatting" value="true"/>
+    <details key="modelDirectory" value="/org.sheepy.lily.vulkan.model/src/generated/java"/>
+    <details key="editDirectory" value="/org.sheepy.lily.vulkan.model.edit/src/generated/java"/>
+    <details key="publicConstructors" value="true"/>
+    <details key="complianceLevel" value="11.0"/>
+    <details key="resource" value="XMI"/>
+    <details key="extensibleProviderFactory" value="true"/>
+    <details key="childCreationExtenders" value="true"/>
+    <details key="updateClasspath" value="false"/>
+    <details key="basePackage" value="org.sheepy.lily.vulkan.model.process"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputeProcess" eSuperTypes="process.ecore#//AbstractProcess"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputePipeline" eSuperTypes="process.ecore#//IPipeline"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Computer" eSuperTypes="process.ecore#//IPipelineTask">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shader" eType="ecore:EClass resource.ecore#//Shader"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workgroupCountX" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workgroupCountY" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workgroupCountZ" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+        defaultValueLiteral="1"/>
+  </eClassifiers>
+</ecore:EPackage>

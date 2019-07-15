@@ -28,6 +28,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
 import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 
 import org.sheepy.vulkan.model.graphicpipeline.util.GraphicpipelineAdapterFactory;
@@ -67,7 +68,7 @@ public class GraphicpipelineItemProviderAdapterFactory extends GraphicpipelineAd
 	 * @generated
 	 */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			GraphicpipelineEditPlugin.INSTANCE, GraphicpipelinePackage.eNS_URI);
+			VulkanEditPlugin.INSTANCE, GraphicpipelinePackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.

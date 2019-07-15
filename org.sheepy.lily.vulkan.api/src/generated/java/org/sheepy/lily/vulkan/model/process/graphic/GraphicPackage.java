@@ -6,8 +6,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 /**
@@ -119,15 +122,6 @@ public interface GraphicPackage extends EPackage
 	int GRAPHIC_CONFIGURATION_FEATURE_COUNT = ProcessPackage.CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of operations of the '<em>Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_CONFIGURATION_OPERATION_COUNT = ProcessPackage.CONFIGURATION_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ColorDomainImpl <em>Color Domain</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -163,15 +157,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int COLOR_DOMAIN_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Color Domain</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLOR_DOMAIN_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapchainConfigurationImpl <em>Swapchain Configuration</em>}' class.
@@ -229,15 +214,6 @@ public interface GraphicPackage extends EPackage
 	int SWAPCHAIN_CONFIGURATION_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>Swapchain Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWAPCHAIN_CONFIGURATION_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.FramebufferConfigurationImpl <em>Framebuffer Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -266,15 +242,6 @@ public interface GraphicPackage extends EPackage
 	int FRAMEBUFFER_CONFIGURATION_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Framebuffer Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAMEBUFFER_CONFIGURATION_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.ISwapAttachment <em>ISwap Attachment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -292,15 +259,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int ISWAP_ATTACHMENT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>ISwap Attachment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISWAP_ATTACHMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ImageAttachmentImpl <em>Image Attachment</em>}' class.
@@ -340,15 +298,6 @@ public interface GraphicPackage extends EPackage
 	int IMAGE_ATTACHMENT_FEATURE_COUNT = ISWAP_ATTACHMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Image Attachment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE_ATTACHMENT_OPERATION_COUNT = ISWAP_ATTACHMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DepthAttachmentImpl <em>Depth Attachment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -375,15 +324,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int DEPTH_ATTACHMENT_FEATURE_COUNT = ISWAP_ATTACHMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Depth Attachment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPTH_ATTACHMENT_OPERATION_COUNT = ISWAP_ATTACHMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.RenderPassInfoImpl <em>Render Pass Info</em>}' class.
@@ -441,15 +381,6 @@ public interface GraphicPackage extends EPackage
 	int RENDER_PASS_INFO_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>Render Pass Info</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_PASS_INFO_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassImpl <em>Subpass</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -487,15 +418,6 @@ public interface GraphicPackage extends EPackage
 	int SUBPASS_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Subpass</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentRefImpl <em>Attachment Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -531,15 +453,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int ATTACHMENT_REF_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Attachment Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT_REF_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SubpassDependencyImpl <em>Subpass Dependency</em>}' class.
@@ -613,15 +526,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int SUBPASS_DEPENDENCY_FEATURE_COUNT = 6;
-
-	/**
-	 * The number of operations of the '<em>Subpass Dependency</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPASS_DEPENDENCY_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttachmentDescriptionImpl <em>Attachment Description</em>}' class.
@@ -715,15 +619,6 @@ public interface GraphicPackage extends EPackage
 	int ATTACHMENT_DESCRIPTION_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
-	 * The number of operations of the '<em>Attachment Description</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT_DESCRIPTION_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageAttachmentDescriptionImpl <em>Swap Image Attachment Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -813,16 +708,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int SWAP_IMAGE_ATTACHMENT_DESCRIPTION_FEATURE_COUNT = ATTACHMENT_DESCRIPTION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Swap Image Attachment Description</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWAP_IMAGE_ATTACHMENT_DESCRIPTION_OPERATION_COUNT = ATTACHMENT_DESCRIPTION_OPERATION_COUNT
-			+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.ExtraAttachmentDescriptionImpl <em>Extra Attachment Description</em>}' class.
@@ -923,15 +808,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int EXTRA_ATTACHMENT_DESCRIPTION_FEATURE_COUNT = ATTACHMENT_DESCRIPTION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Extra Attachment Description</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTRA_ATTACHMENT_DESCRIPTION_OPERATION_COUNT = ATTACHMENT_DESCRIPTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl <em>Process</em>}' class.
@@ -1059,15 +935,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int GRAPHIC_PROCESS_FEATURE_COUNT = ProcessPackage.ABSTRACT_PROCESS_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Process</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHIC_PROCESS_OPERATION_COUNT = ProcessPackage.ABSTRACT_PROCESS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicsPipelineImpl <em>Graphics Pipeline</em>}' class.
@@ -1242,15 +1109,6 @@ public interface GraphicPackage extends EPackage
 	int GRAPHICS_PIPELINE_FEATURE_COUNT = ProcessPackage.IPIPELINE_FEATURE_COUNT + 9;
 
 	/**
-	 * The number of operations of the '<em>Graphics Pipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPHICS_PIPELINE_OPERATION_COUNT = ProcessPackage.IPIPELINE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl <em>Swap Image Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1306,16 +1164,6 @@ public interface GraphicPackage extends EPackage
 	int SWAP_IMAGE_BARRIER_FEATURE_COUNT = BarrierPackage.ABSTRACT_IMAGE_BARRIER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Swap Image Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWAP_IMAGE_BARRIER_OPERATION_COUNT = BarrierPackage.ABSTRACT_IMAGE_BARRIER_OPERATION_COUNT
-			+ 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl <em>Blit To Swap Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1369,15 +1217,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int BLIT_TO_SWAP_IMAGE_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Blit To Swap Image</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLIT_TO_SWAP_IMAGE_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawIndexedImpl <em>Draw Indexed</em>}' class.
@@ -1462,15 +1301,6 @@ public interface GraphicPackage extends EPackage
 	int DRAW_INDEXED_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of operations of the '<em>Draw Indexed</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DRAW_INDEXED_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.DrawImpl <em>Draw</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1544,15 +1374,6 @@ public interface GraphicPackage extends EPackage
 	int DRAW_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of operations of the '<em>Draw</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DRAW_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexInputStateImpl <em>Vertex Input State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1579,15 +1400,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int VERTEX_INPUT_STATE_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Vertex Input State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERTEX_INPUT_STATE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.InputDescriptorImpl <em>Input Descriptor</em>}' class.
@@ -1636,15 +1448,6 @@ public interface GraphicPackage extends EPackage
 	int INPUT_DESCRIPTOR_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Input Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INPUT_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl <em>Attribute Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1689,15 +1492,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int ATTRIBUTE_DESCRIPTION_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Attribute Description</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_DESCRIPTION_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindVertexBufferImpl <em>Bind Vertex Buffer</em>}' class.
@@ -1753,15 +1547,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int BIND_VERTEX_BUFFER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Bind Vertex Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BIND_VERTEX_BUFFER_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SetScissorImpl <em>Set Scissor</em>}' class.
@@ -1835,15 +1620,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int SET_SCISSOR_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Set Scissor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_SCISSOR_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.SetViewportImpl <em>Set Viewport</em>}' class.
@@ -1937,15 +1713,6 @@ public interface GraphicPackage extends EPackage
 	int SET_VIEWPORT_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 6;
 
 	/**
-	 * The number of operations of the '<em>Set Viewport</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_VIEWPORT_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.VertexBindingImpl <em>Vertex Binding</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1972,15 +1739,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int VERTEX_BINDING_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Vertex Binding</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERTEX_BINDING_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.BindIndexBufferImpl <em>Bind Index Buffer</em>}' class.
@@ -2036,15 +1794,6 @@ public interface GraphicPackage extends EPackage
 	 * @ordered
 	 */
 	int BIND_INDEX_BUFFER_FEATURE_COUNT = ProcessPackage.IPIPELINE_TASK_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Bind Index Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BIND_INDEX_BUFFER_OPERATION_COUNT = ProcessPackage.IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.GraphicConfiguration <em>Configuration</em>}'.
@@ -2927,17 +2676,6 @@ public interface GraphicPackage extends EPackage
 	EAttribute getInputDescriptor_InputRate();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getAttributes <em>Attributes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getAttributes()
-	 * @see #getInputDescriptor()
-	 * @generated
-	 */
-	EReference getInputDescriptor_Attributes();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getStrideLength <em>Stride Length</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2947,6 +2685,17 @@ public interface GraphicPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getInputDescriptor_StrideLength();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getAttributes <em>Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.InputDescriptor#getAttributes()
+	 * @see #getInputDescriptor()
+	 * @generated
+	 */
+	EReference getInputDescriptor_Attributes();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription <em>Attribute Description</em>}'.
@@ -3940,20 +3689,20 @@ public interface GraphicPackage extends EPackage
 		EAttribute INPUT_DESCRIPTOR__INPUT_RATE = eINSTANCE.getInputDescriptor_InputRate();
 
 		/**
-		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INPUT_DESCRIPTOR__ATTRIBUTES = eINSTANCE.getInputDescriptor_Attributes();
-
-		/**
 		 * The meta object literal for the '<em><b>Stride Length</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute INPUT_DESCRIPTOR__STRIDE_LENGTH = eINSTANCE.getInputDescriptor_StrideLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INPUT_DESCRIPTOR__ATTRIBUTES = eINSTANCE.getInputDescriptor_Attributes();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.graphic.impl.AttributeDescriptionImpl <em>Attribute Description</em>}' class.

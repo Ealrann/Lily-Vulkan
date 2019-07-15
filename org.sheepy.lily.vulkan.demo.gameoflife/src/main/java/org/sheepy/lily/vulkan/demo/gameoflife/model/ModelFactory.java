@@ -6,30 +6,22 @@ import org.sheepy.lily.core.model.application.ApplicationFactory;
 import org.sheepy.lily.vulkan.demo.gameoflife.compute.Board;
 import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
-import org.sheepy.lily.vulkan.model.impl.ResourcePkgImpl;
-import org.sheepy.lily.vulkan.model.impl.VulkanEngineImpl;
+import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessFactory;
 import org.sheepy.lily.vulkan.model.process.ProcessPartPkg;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeFactory;
 import org.sheepy.lily.vulkan.model.process.compute.ComputePipeline;
 import org.sheepy.lily.vulkan.model.process.compute.ComputeProcess;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
-import org.sheepy.lily.vulkan.model.process.compute.impl.ComputeProcessImpl;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicFactory;
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicProcess;
 import org.sheepy.lily.vulkan.model.process.graphic.RenderPassInfo;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.BlitToSwapImageImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicProcessImpl;
-import org.sheepy.lily.vulkan.model.process.graphic.impl.SwapImageBarrierImpl;
 import org.sheepy.lily.vulkan.model.resource.Buffer;
 import org.sheepy.lily.vulkan.model.resource.DescriptedResource;
 import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Shader;
-import org.sheepy.lily.vulkan.model.resource.impl.ImageBarrierImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.ModuleResourceImpl;
-import org.sheepy.lily.vulkan.model.resource.impl.ShaderImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -48,11 +40,11 @@ public class ModelFactory
 	private static final String SHADER_LIFE2PIXEL = "life2pixel.comp.spv";
 
 	public final Application application = ApplicationFactory.eINSTANCE.createApplication();
-	public final VulkanEngine engine = new VulkanEngineImpl();
+	public final VulkanEngine engine = VulkanFactory.eINSTANCE.createVulkanEngine();
 	public final GraphicProcess imageProcess;
 	public ComputeProcess process1;
 	public ComputeProcess process2;
-	public ResourcePkg sharedResources = new ResourcePkgImpl();
+	public ResourcePkg sharedResources = VulkanFactory.eINSTANCE.createResourcePkg();
 
 	private Image boardImage;
 	private final Vector2i size;
@@ -129,14 +121,14 @@ public class ModelFactory
 	{
 		final var imagePipeline = ProcessFactory.eINSTANCE.createPipeline();
 
-		final var imageBarrier1 = new ImageBarrierImpl();
+		final var imageBarrier1 = ResourceFactory.eINSTANCE.createImageBarrier();
 		imageBarrier1.setImage(boardImage);
 		imageBarrier1.getSrcAccessMask().add(EAccess.SHADER_WRITE_BIT);
 		imageBarrier1.getDstAccessMask().add(EAccess.TRANSFER_READ_BIT);
 		imageBarrier1.setSrcLayout(EImageLayout.UNDEFINED);
 		imageBarrier1.setDstLayout(EImageLayout.TRANSFER_SRC_OPTIMAL);
 
-		final var swapImageBarrier = new SwapImageBarrierImpl();
+		final var swapImageBarrier = GraphicFactory.eINSTANCE.createSwapImageBarrier();
 		swapImageBarrier.getSrcAccessMask().add(EAccess.SHADER_WRITE_BIT);
 		swapImageBarrier.getDstAccessMask().add(EAccess.TRANSFER_WRITE_BIT);
 		swapImageBarrier.setSrcLayout(EImageLayout.UNDEFINED);
@@ -148,10 +140,10 @@ public class ModelFactory
 		pipelineBarrier1.getBarriers().add(imageBarrier1);
 		pipelineBarrier1.getBarriers().add(swapImageBarrier);
 
-		final var blit = new BlitToSwapImageImpl();
+		final var blit = GraphicFactory.eINSTANCE.createBlitToSwapImage();
 		blit.setImage(boardImage);
 
-		final var imageBarrier2 = new ImageBarrierImpl();
+		final var imageBarrier2 = ResourceFactory.eINSTANCE.createImageBarrier();
 		imageBarrier2.setImage(boardImage);
 		imageBarrier2.getSrcAccessMask().add(EAccess.TRANSFER_READ_BIT);
 		imageBarrier2.getDstAccessMask().add(EAccess.SHADER_WRITE_BIT);
@@ -171,7 +163,7 @@ public class ModelFactory
 		imagePipeline.setStage(ECommandStage.TRANSFER);
 		imagePipeline.setTaskPkg(taskPkg);
 
-		final GraphicProcess graphicProcess = new GraphicProcessImpl();
+		final GraphicProcess graphicProcess = GraphicFactory.eINSTANCE.createGraphicProcess();
 		graphicProcess.setPartPkg(ProcessFactory.eINSTANCE.createProcessPartPkg());
 		graphicProcess.getPartPkg().getParts().add(imagePipeline);
 
@@ -180,23 +172,24 @@ public class ModelFactory
 
 	private void createComputeProcessPool()
 	{
-		process1 = new ComputeProcessImpl();
-		process2 = new ComputeProcessImpl();
+		process1 = ComputeFactory.eINSTANCE.createComputeProcess();
+		process2 = ComputeFactory.eINSTANCE.createComputeProcess();
 		final Module thisModule = getClass().getModule();
 
-		final ModuleResource lifeShaderFile = new ModuleResourceImpl();
+		final ModuleResource lifeShaderFile = ResourceFactory.eINSTANCE.createModuleResource();
 		lifeShaderFile.setModule(thisModule);
 		lifeShaderFile.setPath(SHADER_LIFE);
 
-		final ModuleResource life2pixelShaderFile = new ModuleResourceImpl();
+		final ModuleResource life2pixelShaderFile = ResourceFactory.eINSTANCE
+				.createModuleResource();
 		life2pixelShaderFile.setModule(thisModule);
 		life2pixelShaderFile.setPath(SHADER_LIFE2PIXEL);
 
-		final Shader lifeShader = new ShaderImpl();
+		final Shader lifeShader = ResourceFactory.eINSTANCE.createShader();
 		lifeShader.setFile(lifeShaderFile);
 		lifeShader.setStage(EShaderStage.COMPUTE_BIT);
 
-		final Shader life2pixelShader = new ShaderImpl();
+		final Shader life2pixelShader = ResourceFactory.eINSTANCE.createShader();
 		life2pixelShader.setFile(life2pixelShaderFile);
 		life2pixelShader.setStage(EShaderStage.COMPUTE_BIT);
 

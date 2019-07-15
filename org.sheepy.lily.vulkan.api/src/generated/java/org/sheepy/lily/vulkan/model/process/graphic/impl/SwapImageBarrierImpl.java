@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.process.graphic.SwapImageBarrier;
 

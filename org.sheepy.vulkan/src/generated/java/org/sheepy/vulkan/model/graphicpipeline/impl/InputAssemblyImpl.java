@@ -75,7 +75,7 @@ public class InputAssemblyImpl extends MinimalEObjectImpl.Container implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputAssemblyImpl()
+	protected InputAssemblyImpl()
 	{
 		super();
 	}

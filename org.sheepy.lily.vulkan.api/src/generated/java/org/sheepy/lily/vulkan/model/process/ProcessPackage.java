@@ -6,8 +6,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.sheepy.lily.core.model.root.RootPackage;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 /**
@@ -152,15 +155,6 @@ public interface ProcessPackage extends EPackage
 	int ABSTRACT_PROCESS_FEATURE_COUNT = VulkanPackage.IPROCESS_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of operations of the '<em>Abstract Process</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_PROCESS_OPERATION_COUNT = VulkanPackage.IPROCESS_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.Configuration <em>Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,15 +172,6 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int CONFIGURATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.ProcessPartPkgImpl <em>Part Pkg</em>}' class.
@@ -215,15 +200,6 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int PROCESS_PART_PKG_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Part Pkg</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS_PART_PKG_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IPipelineTask <em>IPipeline Task</em>}' class.
@@ -263,15 +239,6 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE_TASK_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>IPipeline Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE_TASK_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IProcessPart <em>IProcess Part</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -289,25 +256,6 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int IPROCESS_PART_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>IProcess Part</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPROCESS_PART_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl
-	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
-	 * @generated
-	 */
-	int PIPELINE_BARRIER = 8;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
@@ -401,15 +349,6 @@ public interface ProcessPackage extends EPackage
 	int IPIPELINE_FEATURE_COUNT = TypesPackage.LNAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
-	 * The number of operations of the '<em>IPipeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPIPELINE_OPERATION_COUNT = TypesPackage.LNAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.TaskPkgImpl <em>Task Pkg</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -436,15 +375,6 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int TASK_PKG_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Task Pkg</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK_PKG_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineImpl <em>Pipeline</em>}' class.
@@ -538,13 +468,14 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_FEATURE_COUNT = IPIPELINE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Pipeline</em>' class.
+	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl
+	 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
 	 * @generated
-	 * @ordered
 	 */
-	int PIPELINE_OPERATION_COUNT = IPIPELINE_OPERATION_COUNT + 0;
+	int PIPELINE_BARRIER = 8;
 
 	/**
 	 * The feature id for the '<em><b>Content Objects</b></em>' attribute.
@@ -628,60 +559,6 @@ public interface ProcessPackage extends EPackage
 	int PIPELINE_BARRIER_FEATURE_COUNT = RootPackage.LOBJECT_FEATURE_COUNT + 7;
 
 	/**
-	 * The operation id for the '<em>LInference Object</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___LINFERENCE_OBJECT = RootPackage.LOBJECT___LINFERENCE_OBJECT;
-
-	/**
-	 * The operation id for the '<em>Create Containment EList</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___CREATE_CONTAINMENT_ELIST__ECLASS = RootPackage.LOBJECT___CREATE_CONTAINMENT_ELIST__ECLASS;
-
-	/**
-	 * The operation id for the '<em>LContents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___LCONTENTS = RootPackage.LOBJECT___LCONTENTS;
-
-	/**
-	 * The operation id for the '<em>LParent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___LPARENT = RootPackage.LOBJECT___LPARENT;
-
-	/**
-	 * The operation id for the '<em>LAll Contents</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER___LALL_CONTENTS = RootPackage.LOBJECT___LALL_CONTENTS;
-
-	/**
-	 * The number of operations of the '<em>Pipeline Barrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PIPELINE_BARRIER_OPERATION_COUNT = RootPackage.LOBJECT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl <em>Composite Task</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -746,15 +623,6 @@ public interface ProcessPackage extends EPackage
 	int COMPOSITE_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Composite Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl <em>Bind Descriptor Sets</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -801,15 +669,6 @@ public interface ProcessPackage extends EPackage
 	int BIND_DESCRIPTOR_SETS_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Bind Descriptor Sets</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BIND_DESCRIPTOR_SETS_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantImpl <em>Push Constant</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -854,15 +713,6 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int PUSH_CONSTANT_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Push Constant</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUSH_CONSTANT_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushConstantBufferImpl <em>Push Constant Buffer</em>}' class.
@@ -920,15 +770,6 @@ public interface ProcessPackage extends EPackage
 	int PUSH_CONSTANT_BUFFER_FEATURE_COUNT = PUSH_CONSTANT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Push Constant Buffer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUSH_CONSTANT_BUFFER_OPERATION_COUNT = PUSH_CONSTANT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.PushBufferTaskImpl <em>Push Buffer Task</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -973,15 +814,6 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int PUSH_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Push Buffer Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUSH_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.sheepy.lily.vulkan.model.process.impl.GetBufferTaskImpl <em>Get Buffer Task</em>}' class.
@@ -1037,15 +869,6 @@ public interface ProcessPackage extends EPackage
 	 * @ordered
 	 */
 	int GET_BUFFER_TASK_FEATURE_COUNT = IPIPELINE_TASK_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Get Buffer Task</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GET_BUFFER_TASK_OPERATION_COUNT = IPIPELINE_TASK_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.AbstractProcess <em>Abstract Process</em>}'.
@@ -1175,103 +998,6 @@ public interface ProcessPackage extends EPackage
 	EClass getIProcessPart();
 
 	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier <em>Pipeline Barrier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Pipeline Barrier</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier
-	 * @generated
-	 */
-	EClass getPipelineBarrier();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarriers <em>Barriers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Barriers</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarriers()
-	 * @see #getPipelineBarrier()
-	 * @generated
-	 */
-	EReference getPipelineBarrier_Barriers();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcStage <em>Src Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcStage()
-	 * @see #getPipelineBarrier()
-	 * @generated
-	 */
-	EAttribute getPipelineBarrier_SrcStage();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstStage <em>Dst Stage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dst Stage</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstStage()
-	 * @see #getPipelineBarrier()
-	 * @generated
-	 */
-	EAttribute getPipelineBarrier_DstStage();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Src Queue</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue()
-	 * @see #getPipelineBarrier()
-	 * @generated
-	 */
-	EReference getPipelineBarrier_SrcQueue();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstQueue <em>Dst Queue</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Dst Queue</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstQueue()
-	 * @see #getPipelineBarrier()
-	 * @generated
-	 */
-	EReference getPipelineBarrier_DstQueue();
-
-	/**
-	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CompositeTask <em>Composite Task</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composite Task</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask
-	 * @generated
-	 */
-	EClass getCompositeTask();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CompositeTask#getRepeatCount <em>Repeat Count</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Repeat Count</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask#getRepeatCount()
-	 * @see #getCompositeTask()
-	 * @generated
-	 */
-	EAttribute getCompositeTask_RepeatCount();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.CompositeTask#getTasks <em>Tasks</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Tasks</em>'.
-	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask#getTasks()
-	 * @see #getCompositeTask()
-	 * @generated
-	 */
-	EReference getCompositeTask_Tasks();
-
-	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1377,6 +1103,103 @@ public interface ProcessPackage extends EPackage
 	 * @generated
 	 */
 	EClass getPipeline();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier <em>Pipeline Barrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pipeline Barrier</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier
+	 * @generated
+	 */
+	EClass getPipelineBarrier();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarriers <em>Barriers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Barriers</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getBarriers()
+	 * @see #getPipelineBarrier()
+	 * @generated
+	 */
+	EReference getPipelineBarrier_Barriers();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcStage <em>Src Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Src Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcStage()
+	 * @see #getPipelineBarrier()
+	 * @generated
+	 */
+	EAttribute getPipelineBarrier_SrcStage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstStage <em>Dst Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dst Stage</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstStage()
+	 * @see #getPipelineBarrier()
+	 * @generated
+	 */
+	EAttribute getPipelineBarrier_DstStage();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue <em>Src Queue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Src Queue</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getSrcQueue()
+	 * @see #getPipelineBarrier()
+	 * @generated
+	 */
+	EReference getPipelineBarrier_SrcQueue();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstQueue <em>Dst Queue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Dst Queue</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.PipelineBarrier#getDstQueue()
+	 * @see #getPipelineBarrier()
+	 * @generated
+	 */
+	EReference getPipelineBarrier_DstQueue();
+
+	/**
+	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.CompositeTask <em>Composite Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Composite Task</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask
+	 * @generated
+	 */
+	EClass getCompositeTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.sheepy.lily.vulkan.model.process.CompositeTask#getRepeatCount <em>Repeat Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Repeat Count</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask#getRepeatCount()
+	 * @see #getCompositeTask()
+	 * @generated
+	 */
+	EAttribute getCompositeTask_RepeatCount();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.sheepy.lily.vulkan.model.process.CompositeTask#getTasks <em>Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tasks</em>'.
+	 * @see org.sheepy.lily.vulkan.model.process.CompositeTask#getTasks()
+	 * @see #getCompositeTask()
+	 * @generated
+	 */
+	EReference getCompositeTask_Tasks();
 
 	/**
 	 * Returns the meta object for class '{@link org.sheepy.lily.vulkan.model.process.BindDescriptorSets <em>Bind Descriptor Sets</em>}'.
@@ -1626,82 +1449,6 @@ public interface ProcessPackage extends EPackage
 		EClass IPROCESS_PART = eINSTANCE.getIProcessPart();
 
 		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
-		 * @generated
-		 */
-		EClass PIPELINE_BARRIER = eINSTANCE.getPipelineBarrier();
-
-		/**
-		 * The meta object literal for the '<em><b>Barriers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PIPELINE_BARRIER__BARRIERS = eINSTANCE.getPipelineBarrier_Barriers();
-
-		/**
-		 * The meta object literal for the '<em><b>Src Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PIPELINE_BARRIER__SRC_STAGE = eINSTANCE.getPipelineBarrier_SrcStage();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Stage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PIPELINE_BARRIER__DST_STAGE = eINSTANCE.getPipelineBarrier_DstStage();
-
-		/**
-		 * The meta object literal for the '<em><b>Src Queue</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PIPELINE_BARRIER__SRC_QUEUE = eINSTANCE.getPipelineBarrier_SrcQueue();
-
-		/**
-		 * The meta object literal for the '<em><b>Dst Queue</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PIPELINE_BARRIER__DST_QUEUE = eINSTANCE.getPipelineBarrier_DstQueue();
-
-		/**
-		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl <em>Composite Task</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl
-		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCompositeTask()
-		 * @generated
-		 */
-		EClass COMPOSITE_TASK = eINSTANCE.getCompositeTask();
-
-		/**
-		 * The meta object literal for the '<em><b>Repeat Count</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPOSITE_TASK__REPEAT_COUNT = eINSTANCE.getCompositeTask_RepeatCount();
-
-		/**
-		 * The meta object literal for the '<em><b>Tasks</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITE_TASK__TASKS = eINSTANCE.getCompositeTask_Tasks();
-
-		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.IPipeline <em>IPipeline</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1786,6 +1533,82 @@ public interface ProcessPackage extends EPackage
 		 * @generated
 		 */
 		EClass PIPELINE = eINSTANCE.getPipeline();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl <em>Pipeline Barrier</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.PipelineBarrierImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getPipelineBarrier()
+		 * @generated
+		 */
+		EClass PIPELINE_BARRIER = eINSTANCE.getPipelineBarrier();
+
+		/**
+		 * The meta object literal for the '<em><b>Barriers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PIPELINE_BARRIER__BARRIERS = eINSTANCE.getPipelineBarrier_Barriers();
+
+		/**
+		 * The meta object literal for the '<em><b>Src Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PIPELINE_BARRIER__SRC_STAGE = eINSTANCE.getPipelineBarrier_SrcStage();
+
+		/**
+		 * The meta object literal for the '<em><b>Dst Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PIPELINE_BARRIER__DST_STAGE = eINSTANCE.getPipelineBarrier_DstStage();
+
+		/**
+		 * The meta object literal for the '<em><b>Src Queue</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PIPELINE_BARRIER__SRC_QUEUE = eINSTANCE.getPipelineBarrier_SrcQueue();
+
+		/**
+		 * The meta object literal for the '<em><b>Dst Queue</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PIPELINE_BARRIER__DST_QUEUE = eINSTANCE.getPipelineBarrier_DstQueue();
+
+		/**
+		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl <em>Composite Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.sheepy.lily.vulkan.model.process.impl.CompositeTaskImpl
+		 * @see org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl#getCompositeTask()
+		 * @generated
+		 */
+		EClass COMPOSITE_TASK = eINSTANCE.getCompositeTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Repeat Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_TASK__REPEAT_COUNT = eINSTANCE.getCompositeTask_RepeatCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Tasks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE_TASK__TASKS = eINSTANCE.getCompositeTask_Tasks();
 
 		/**
 		 * The meta object literal for the '{@link org.sheepy.lily.vulkan.model.process.impl.BindDescriptorSetsImpl <em>Bind Descriptor Sets</em>}' class.

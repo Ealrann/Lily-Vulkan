@@ -50,7 +50,7 @@ public class TaskPkgImpl extends MinimalEObjectImpl.Container implements TaskPkg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TaskPkgImpl()
+	public TaskPkgImpl()
 	{
 		super();
 	}

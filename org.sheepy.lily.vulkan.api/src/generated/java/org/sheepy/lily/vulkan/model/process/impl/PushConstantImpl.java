@@ -3,15 +3,21 @@
 package org.sheepy.lily.vulkan.model.process.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 import org.sheepy.lily.vulkan.model.process.PushConstant;
+
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
 /**
@@ -40,6 +46,7 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,6 +56,7 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -58,6 +66,7 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected static final boolean ENABLED_EDEFAULT = true;
+
 	/**
 	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,6 +76,7 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getStages() <em>Stages</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -82,7 +92,7 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushConstantImpl()
+	public PushConstantImpl()
 	{
 		super();
 	}

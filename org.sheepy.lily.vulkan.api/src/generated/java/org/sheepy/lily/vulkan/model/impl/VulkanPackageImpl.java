@@ -7,12 +7,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.sheepy.lily.core.model.action.ActionPackage;
+
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+
 import org.sheepy.lily.core.model.inference.InferencePackage;
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.root.RootPackage;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.IExecutionManager;
 import org.sheepy.lily.vulkan.model.IProcess;
 import org.sheepy.lily.vulkan.model.IResource;
@@ -21,7 +28,18 @@ import org.sheepy.lily.vulkan.model.ResourcePkg;
 import org.sheepy.lily.vulkan.model.VulkanEngine;
 import org.sheepy.lily.vulkan.model.VulkanFactory;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
+import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
+import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+import org.sheepy.lily.vulkan.model.resource.impl.ResourcePackageImpl;
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
+import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -126,19 +144,49 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
-		EcorePackage.eINSTANCE.eClass();
+		MaintainerPackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
-		ActionPackage.eINSTANCE.eClass();
+		GraphicpipelinePackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
+		ComputePackageImpl theComputePackage = (ComputePackageImpl) (registeredPackage instanceof ComputePackageImpl
+				? registeredPackage
+				: ComputePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl) (registeredPackage instanceof ProcessPackageImpl
+				? registeredPackage
+				: ProcessPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl) (registeredPackage instanceof ResourcePackageImpl
+				? registeredPackage
+				: ResourcePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
+		GraphicPackageImpl theGraphicPackage = (GraphicPackageImpl) (registeredPackage instanceof GraphicPackageImpl
+				? registeredPackage
+				: GraphicPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theVulkanPackage.createPackageContents();
+		theComputePackage.createPackageContents();
+		theProcessPackage.createPackageContents();
+		theResourcePackage.createPackageContents();
+		theGraphicPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theVulkanPackage.initializePackageContents();
+		theComputePackage.initializePackageContents();
+		theProcessPackage.initializePackageContents();
+		theResourcePackage.initializePackageContents();
+		theGraphicPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theVulkanPackage.freeze();
@@ -377,7 +425,7 @@ public class VulkanPackageImpl extends EPackageImpl implements VulkanPackage
 		iProcessEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iProcessEClass.getESuperTypes().add(this.getIExecutionManager());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(vulkanEngineEClass, VulkanEngine.class, "VulkanEngine", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVulkanEngine_Enabled(), theEcorePackage.getEBoolean(), "enabled", "true",

@@ -28,6 +28,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.sheepy.vulkan.model.barrier.provider.VulkanEditPlugin;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 import org.sheepy.vulkan.model.pipeline.util.PipelineAdapterFactory;
@@ -67,7 +68,7 @@ public class PipelineItemProviderAdapterFactory extends PipelineAdapterFactory
 	 * @generated
 	 */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
-			PipelineEditPlugin.INSTANCE, PipelinePackage.eNS_URI);
+			VulkanEditPlugin.INSTANCE, PipelinePackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.

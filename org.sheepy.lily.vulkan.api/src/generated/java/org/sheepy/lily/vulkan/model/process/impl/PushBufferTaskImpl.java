@@ -87,7 +87,7 @@ public class PushBufferTaskImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushBufferTaskImpl()
+	public PushBufferTaskImpl()
 	{
 		super();
 	}

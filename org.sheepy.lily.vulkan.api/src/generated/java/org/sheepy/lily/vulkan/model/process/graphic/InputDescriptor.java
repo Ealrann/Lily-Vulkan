@@ -5,6 +5,7 @@ package org.sheepy.lily.vulkan.model.process.graphic;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.sheepy.vulkan.model.enumeration.EInputRate;
 
 /**
@@ -54,18 +55,6 @@ public interface InputDescriptor extends EObject
 	void setInputRate(EInputRate value);
 
 	/**
-	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attributes</em>' containment reference list.
-	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getInputDescriptor_Attributes()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	EList<AttributeDescription> getAttributes();
-
-	/**
 	 * Returns the value of the '<em><b>Stride Length</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,5 +75,17 @@ public interface InputDescriptor extends EObject
 	 * @generated
 	 */
 	void setStrideLength(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.AttributeDescription}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attributes</em>' containment reference list.
+	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getInputDescriptor_Attributes()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	EList<AttributeDescription> getAttributes();
 
 } // InputDescriptor

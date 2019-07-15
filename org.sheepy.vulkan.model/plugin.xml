@@ -7,26 +7,19 @@
 <plugin>
 
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated VulkanEnum -->
-      <package
-            uri="org.sheepy.vulkan.model.enumeration"
-            class="org.sheepy.vulkan.model.enumeration.EnumerationPackage"
-            genModel="model/VulkanEnum.xcore"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <!-- @generated VulkanEnum -->
       <parser
             type="enumeration"
             class="org.sheepy.vulkan.model.enumeration.util.EnumerationResourceFactoryImpl"/>
    </extension>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated GraphicPipeline -->
+      <!-- @generated Vulkan -->
       <package
             uri="org.sheepy.vulkan.model.graphicpipeline"
             class="org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage"
-            genModel="model/GraphicPipeline.xcore"/>
+            genModel="model/Vulkan.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -35,12 +28,21 @@
             type="graphicpipeline"
             class="org.sheepy.vulkan.model.graphicpipeline.util.GraphicpipelineResourceFactoryImpl"/>
    </extension>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Barrier -->
+      <!-- @generated Vulkan -->
+      <package
+            uri="org.sheepy.vulkan.model.pipeline"
+            class="org.sheepy.vulkan.model.pipeline.PipelinePackage"
+            genModel="model/Vulkan.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Vulkan -->
       <package
             uri="org.sheepy.vulkan.model.barrier"
             class="org.sheepy.vulkan.model.barrier.BarrierPackage"
-            genModel="model/Barrier.xcore"/>
+            genModel="model/Vulkan.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -49,12 +51,13 @@
             type="barrier"
             class="org.sheepy.vulkan.model.barrier.util.BarrierResourceFactoryImpl"/>
    </extension>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Pipeline -->
+      <!-- @generated Vulkan -->
       <package
-            uri="org.sheepy.vulkan.model.pipeline"
-            class="org.sheepy.vulkan.model.pipeline.PipelinePackage"
-            genModel="model/Pipeline.xcore"/>
+            uri="org.sheepy.vulkan.model.enumeration"
+            class="org.sheepy.vulkan.model.enumeration.EnumerationPackage"
+            genModel="model/Vulkan.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">

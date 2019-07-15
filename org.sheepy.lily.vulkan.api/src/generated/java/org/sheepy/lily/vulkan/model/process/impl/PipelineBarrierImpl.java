@@ -2,14 +2,16 @@
  */
 package org.sheepy.lily.vulkan.model.process.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -19,20 +21,29 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.lily.core.api.util.LTreeIterator;
+
 import org.sheepy.lily.core.model.inference.IInferenceObject;
+
 import org.sheepy.lily.core.model.root.LObject;
+
 import org.sheepy.lily.core.model.root.RootPackage.Literals;
+
 import org.sheepy.lily.core.model.types.LNamedElement;
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.process.AbstractProcess;
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
 import org.sheepy.lily.vulkan.model.process.PipelineBarrier;
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+
 import org.sheepy.vulkan.model.barrier.Barrier;
+
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -182,7 +193,7 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PipelineBarrierImpl()
+	public PipelineBarrierImpl()
 	{
 		super();
 	}
@@ -744,30 +755,6 @@ public class PipelineBarrierImpl extends MinimalEObjectImpl.Container implements
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
-		case ProcessPackage.PIPELINE_BARRIER___CREATE_CONTAINMENT_ELIST__ECLASS:
-			return createContainmentEList((EClass) arguments.get(0));
-		case ProcessPackage.PIPELINE_BARRIER___LCONTENTS:
-			return lContents();
-		case ProcessPackage.PIPELINE_BARRIER___LPARENT:
-			return lParent();
-		case ProcessPackage.PIPELINE_BARRIER___LALL_CONTENTS:
-			return lAllContents();
-		case ProcessPackage.PIPELINE_BARRIER___LINFERENCE_OBJECT:
-			return lInferenceObject();
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

@@ -196,7 +196,7 @@ public class GraphicExtraPackageImpl extends EPackageImpl implements GraphicExtr
 		meshProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 		iDataProviderEClass.getESuperTypes().add(theTypesPackage.getLNamedElement());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(meshProviderEClass, MeshProvider.class, "MeshProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iDataProviderEClass, IDataProvider.class, "IDataProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

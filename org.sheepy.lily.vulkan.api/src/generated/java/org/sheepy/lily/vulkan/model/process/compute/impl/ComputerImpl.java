@@ -9,8 +9,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
 import org.sheepy.lily.vulkan.model.process.compute.Computer;
+
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 /**
@@ -42,6 +44,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,6 +54,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,6 +64,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected static final boolean ENABLED_EDEFAULT = true;
+
 	/**
 	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -69,6 +74,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getShader() <em>Shader</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -88,6 +94,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected static final int WORKGROUP_COUNT_X_EDEFAULT = 1;
+
 	/**
 	 * The cached value of the '{@link #getWorkgroupCountX() <em>Workgroup Count X</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -97,6 +104,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected int workgroupCountX = WORKGROUP_COUNT_X_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getWorkgroupCountY() <em>Workgroup Count Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -106,6 +114,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected static final int WORKGROUP_COUNT_Y_EDEFAULT = 1;
+
 	/**
 	 * The cached value of the '{@link #getWorkgroupCountY() <em>Workgroup Count Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -115,6 +124,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected int workgroupCountY = WORKGROUP_COUNT_Y_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getWorkgroupCountZ() <em>Workgroup Count Z</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -124,6 +134,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * @ordered
 	 */
 	protected static final int WORKGROUP_COUNT_Z_EDEFAULT = 1;
+
 	/**
 	 * The cached value of the '{@link #getWorkgroupCountZ() <em>Workgroup Count Z</em>}' attribute.
 	 * <!-- begin-user-doc -->

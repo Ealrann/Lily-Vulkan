@@ -10,8 +10,8 @@ import org.lwjgl.vulkan.VkCommandBuffer;
 import org.lwjgl.vulkan.VkImageBlit;
 import org.lwjgl.vulkan.VkImageMemoryBarrier;
 import org.lwjgl.vulkan.VkOffset3D;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
-import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.vulkan.allocation.IAllocable;
 import org.sheepy.vulkan.descriptor.IVkDescriptor;
 import org.sheepy.vulkan.descriptor.VkImageDescriptor;
@@ -43,7 +43,7 @@ public class VkTexture implements IAllocable<IExecutionContext>
 
 		if (samplerInfo == null)
 		{
-			this.samplerInfo = new SamplerImpl();
+			this.samplerInfo = ResourceFactory.eINSTANCE.createSampler();
 		}
 		else
 		{

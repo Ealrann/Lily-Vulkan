@@ -5,8 +5,11 @@ package org.sheepy.vulkan.model.enumeration.impl;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.sheepy.vulkan.model.barrier.BarrierPackage;
+import org.sheepy.vulkan.model.barrier.impl.BarrierPackageImpl;
 import org.sheepy.vulkan.model.enumeration.EAccess;
 import org.sheepy.vulkan.model.enumeration.EAttachmentLoadOp;
 import org.sheepy.vulkan.model.enumeration.EAttachmentStoreOp;
@@ -39,6 +42,10 @@ import org.sheepy.vulkan.model.enumeration.ESamplerMipmapMode;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 import org.sheepy.vulkan.model.enumeration.EnumerationFactory;
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
+import org.sheepy.vulkan.model.graphicpipeline.impl.GraphicpipelinePackageImpl;
+import org.sheepy.vulkan.model.pipeline.PipelinePackage;
+import org.sheepy.vulkan.model.pipeline.impl.PipelinePackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -310,11 +317,34 @@ public class EnumerationPackageImpl extends EPackageImpl implements EnumerationP
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BarrierPackage.eNS_URI);
+		BarrierPackageImpl theBarrierPackage = (BarrierPackageImpl) (registeredPackage instanceof BarrierPackageImpl
+				? registeredPackage
+				: BarrierPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicpipelinePackage.eNS_URI);
+		GraphicpipelinePackageImpl theGraphicpipelinePackage = (GraphicpipelinePackageImpl) (registeredPackage instanceof GraphicpipelinePackageImpl
+				? registeredPackage
+				: GraphicpipelinePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(PipelinePackage.eNS_URI);
+		PipelinePackageImpl thePipelinePackage = (PipelinePackageImpl) (registeredPackage instanceof PipelinePackageImpl
+				? registeredPackage
+				: PipelinePackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theEnumerationPackage.createPackageContents();
+		theBarrierPackage.createPackageContents();
+		theGraphicpipelinePackage.createPackageContents();
+		thePipelinePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEnumerationPackage.initializePackageContents();
+		theBarrierPackage.initializePackageContents();
+		theGraphicpipelinePackage.initializePackageContents();
+		thePipelinePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theEnumerationPackage.freeze();

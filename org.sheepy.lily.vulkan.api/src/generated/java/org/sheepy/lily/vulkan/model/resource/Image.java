@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.resource;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.sheepy.vulkan.model.enumeration.EFormat;
 import org.sheepy.vulkan.model.enumeration.EImageUsage;
 
@@ -35,10 +36,6 @@ public interface Image extends BasicDescriptedResource
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Width</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
 	 * @see #setWidth(int)
@@ -61,10 +58,6 @@ public interface Image extends BasicDescriptedResource
 	/**
 	 * Returns the value of the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Height</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
 	 * @see #setHeight(int)
@@ -88,10 +81,6 @@ public interface Image extends BasicDescriptedResource
 	 * Returns the value of the '<em><b>Format</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EFormat}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Format</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Format</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EFormat
@@ -118,10 +107,6 @@ public interface Image extends BasicDescriptedResource
 	 * The list contents are of type {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EImageUsage}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Usages</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usages</em>' attribute list.
 	 * @see org.sheepy.vulkan.model.enumeration.EImageUsage
@@ -134,10 +119,6 @@ public interface Image extends BasicDescriptedResource
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Properties</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Properties</em>' attribute.
 	 * @see #setProperties(int)
@@ -161,10 +142,6 @@ public interface Image extends BasicDescriptedResource
 	 * Returns the value of the '<em><b>Tiling</b></em>' attribute.
 	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Tiling</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tiling</em>' attribute.
 	 * @see #setTiling(int)
@@ -188,10 +165,6 @@ public interface Image extends BasicDescriptedResource
 	 * Returns the value of the '<em><b>Mip Levels</b></em>' attribute.
 	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Mip Levels</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mip Levels</em>' attribute.
 	 * @see #setMipLevels(int)
@@ -214,10 +187,6 @@ public interface Image extends BasicDescriptedResource
 	/**
 	 * Returns the value of the '<em><b>Initial Layout</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Initial Layout</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial Layout</em>' containment reference.
 	 * @see #setInitialLayout(ImageLayout)

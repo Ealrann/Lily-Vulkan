@@ -1,7 +1,7 @@
 @GenModel(modelDirectory="/org.sheepy.lily.vulkan.extra.model/src/generated/java")
 @GenModel(editDirectory="/org.sheepy.lily.vulkan.extra.model.edit/src/generated/java")
 @GenModel(modelName="GraphicExtra", prefix="GraphicExtra")
-@GenModel(publicConstructors="true", complianceLevel="11.0", resource="XMI")
+@GenModel(complianceLevel="11.0", resource="XMI", operationReflection="false")
 @GenModel(childCreationExtenders="true")
 @GenModel(updateClasspath="true")
 

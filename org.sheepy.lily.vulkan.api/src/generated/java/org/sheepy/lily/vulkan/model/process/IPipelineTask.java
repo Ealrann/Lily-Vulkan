@@ -22,7 +22,6 @@ import org.sheepy.lily.core.model.types.LNamedElement;
  */
 public interface IPipelineTask extends LNamedElement
 {
-
 	/**
 	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
@@ -45,4 +44,5 @@ public interface IPipelineTask extends LNamedElement
 	 * @generated
 	 */
 	void setEnabled(boolean value);
+
 } // IPipelineTask

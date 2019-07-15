@@ -3,20 +3,26 @@
 package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
+
 import org.sheepy.vulkan.model.pipeline.SpecializationConstant;
 
 /**

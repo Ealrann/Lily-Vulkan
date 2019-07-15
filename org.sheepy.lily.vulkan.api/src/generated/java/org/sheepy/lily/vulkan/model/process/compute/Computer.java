@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.compute;
 
 import org.sheepy.lily.vulkan.model.process.IPipelineTask;
+
 import org.sheepy.lily.vulkan.model.resource.Shader;
 
 /**
@@ -29,10 +30,6 @@ public interface Computer extends IPipelineTask
 	/**
 	 * Returns the value of the '<em><b>Shader</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Shader</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shader</em>' reference.
 	 * @see #setShader(Shader)

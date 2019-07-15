@@ -3,6 +3,7 @@
 package org.sheepy.lily.vulkan.model.process.graphic;
 
 import org.sheepy.lily.vulkan.model.process.Configuration;
+
 import org.sheepy.vulkan.model.enumeration.EPipelineStage;
 
 /**
@@ -75,10 +76,6 @@ public interface GraphicConfiguration extends Configuration
 	 * The default value is <code>"COLOR_ATTACHMENT_OUTPUT_BIT"</code>.
 	 * The literals are from the enumeration {@link org.sheepy.vulkan.model.enumeration.EPipelineStage}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Acquire Wait Stage</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Acquire Wait Stage</em>' attribute.
 	 * @see org.sheepy.vulkan.model.enumeration.EPipelineStage
@@ -103,10 +100,6 @@ public interface GraphicConfiguration extends Configuration
 	/**
 	 * Returns the value of the '<em><b>Color Domain</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Color Domain</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Color Domain</em>' containment reference.
 	 * @see #setColorDomain(ColorDomain)

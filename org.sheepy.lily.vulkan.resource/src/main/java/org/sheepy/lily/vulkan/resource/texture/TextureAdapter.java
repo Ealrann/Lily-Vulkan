@@ -9,9 +9,9 @@ import org.sheepy.lily.core.api.adapter.IAdapterFactoryService;
 import org.sheepy.lily.core.api.adapter.annotation.Adapter;
 import org.sheepy.lily.core.api.adapter.annotation.Statefull;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
+import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.Texture;
-import org.sheepy.lily.vulkan.model.resource.impl.SamplerImpl;
 import org.sheepy.lily.vulkan.resource.image.AbstractSampledImageAdapter;
 import org.sheepy.lily.vulkan.resource.util.STBImageLoader;
 import org.sheepy.vulkan.execution.IExecutionContext;
@@ -66,7 +66,7 @@ public final class TextureAdapter extends AbstractSampledImageAdapter
 		Sampler samplerInfos = texture.getSampler();
 		if (samplerInfos == null)
 		{
-			samplerInfos = new SamplerImpl();
+			samplerInfos = ResourceFactory.eINSTANCE.createSampler();
 			texture.setSampler(samplerInfos);
 		}
 

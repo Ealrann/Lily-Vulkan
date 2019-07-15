@@ -73,7 +73,7 @@ public class Vec2IImpl extends MinimalEObjectImpl.Container implements Vec2I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vec2IImpl()
+	protected Vec2IImpl()
 	{
 		super();
 	}

@@ -74,7 +74,7 @@ public class DynamicViewportStateImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DynamicViewportStateImpl()
+	protected DynamicViewportStateImpl()
 	{
 		super();
 	}

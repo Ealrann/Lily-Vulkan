@@ -31,10 +31,6 @@ public interface RenderPassInfo extends EObject
 	 * Returns the value of the '<em><b>Attachments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.AttachmentDescription}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Attachments</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attachments</em>' containment reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRenderPassInfo_Attachments()
@@ -47,10 +43,6 @@ public interface RenderPassInfo extends EObject
 	 * Returns the value of the '<em><b>Subpasses</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.Subpass}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Subpasses</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subpasses</em>' containment reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRenderPassInfo_Subpasses()
@@ -63,10 +55,6 @@ public interface RenderPassInfo extends EObject
 	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
 	 * The list contents are of type {@link org.sheepy.lily.vulkan.model.process.graphic.SubpassDependency}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Dependencies</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dependencies</em>' containment reference list.
 	 * @see org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage#getRenderPassInfo_Dependencies()
@@ -79,10 +67,6 @@ public interface RenderPassInfo extends EObject
 	 * Returns the value of the '<em><b>Bind Point</b></em>' attribute.
 	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Bind Point</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bind Point</em>' attribute.
 	 * @see #setBindPoint(int)

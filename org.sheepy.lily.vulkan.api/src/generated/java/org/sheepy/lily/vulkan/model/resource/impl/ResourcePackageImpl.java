@@ -10,13 +10,27 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.sheepy.lily.core.model.action.ActionPackage;
+
 import org.sheepy.lily.core.model.application.ApplicationPackage;
+
 import org.sheepy.lily.core.model.inference.InferencePackage;
+import org.sheepy.lily.core.model.maintainer.MaintainerPackage;
 import org.sheepy.lily.core.model.root.RootPackage;
+
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.model.VulkanPackage;
+import org.sheepy.lily.vulkan.model.impl.VulkanPackageImpl;
+import org.sheepy.lily.vulkan.model.process.ProcessPackage;
+import org.sheepy.lily.vulkan.model.process.compute.ComputePackage;
+import org.sheepy.lily.vulkan.model.process.compute.impl.ComputePackageImpl;
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
+import org.sheepy.lily.vulkan.model.process.graphic.impl.GraphicPackageImpl;
+import org.sheepy.lily.vulkan.model.process.impl.ProcessPackageImpl;
 import org.sheepy.lily.vulkan.model.resource.AbstractModuleResource;
 import org.sheepy.lily.vulkan.model.resource.AbstractTexture;
 import org.sheepy.lily.vulkan.model.resource.BasicDescriptedResource;
@@ -41,7 +55,6 @@ import org.sheepy.lily.vulkan.model.resource.Image;
 import org.sheepy.lily.vulkan.model.resource.ImageBarrier;
 import org.sheepy.lily.vulkan.model.resource.ImageLayout;
 import org.sheepy.lily.vulkan.model.resource.ModuleResource;
-import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.PathResource;
 import org.sheepy.lily.vulkan.model.resource.PushBuffer;
 import org.sheepy.lily.vulkan.model.resource.ResourceFactory;
@@ -50,9 +63,13 @@ import org.sheepy.lily.vulkan.model.resource.SampledImage;
 import org.sheepy.lily.vulkan.model.resource.Sampler;
 import org.sheepy.lily.vulkan.model.resource.Semaphore;
 import org.sheepy.lily.vulkan.model.resource.Shader;
+import org.sheepy.lily.vulkan.model.resource.StringModuleResource;
 import org.sheepy.lily.vulkan.model.resource.Texture;
+
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
+
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -75,27 +92,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass descriptedResourceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass basicDescriptedResourceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iBufferEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass pushBufferEClass = null;
 
 	/**
@@ -111,6 +107,27 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	private EClass constantBufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass descriptedResourceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass basicDescriptedResourceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iBufferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -361,22 +378,49 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		VulkanPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
-		EnumerationPackage.eINSTANCE.eClass();
-		BarrierPackage.eINSTANCE.eClass();
-		PipelinePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
+		ActionPackage.eINSTANCE.eClass();
 		ApplicationPackage.eINSTANCE.eClass();
 		RootPackage.eINSTANCE.eClass();
 		InferencePackage.eINSTANCE.eClass();
-		ActionPackage.eINSTANCE.eClass();
+		MaintainerPackage.eINSTANCE.eClass();
+		BarrierPackage.eINSTANCE.eClass();
+		EnumerationPackage.eINSTANCE.eClass();
+		GraphicpipelinePackage.eINSTANCE.eClass();
+		PipelinePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ComputePackage.eNS_URI);
+		ComputePackageImpl theComputePackage = (ComputePackageImpl) (registeredPackage instanceof ComputePackageImpl
+				? registeredPackage
+				: ComputePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
+		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl) (registeredPackage instanceof ProcessPackageImpl
+				? registeredPackage
+				: ProcessPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(VulkanPackage.eNS_URI);
+		VulkanPackageImpl theVulkanPackage = (VulkanPackageImpl) (registeredPackage instanceof VulkanPackageImpl
+				? registeredPackage
+				: VulkanPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphicPackage.eNS_URI);
+		GraphicPackageImpl theGraphicPackage = (GraphicPackageImpl) (registeredPackage instanceof GraphicPackageImpl
+				? registeredPackage
+				: GraphicPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theResourcePackage.createPackageContents();
+		theComputePackage.createPackageContents();
+		theProcessPackage.createPackageContents();
+		theVulkanPackage.createPackageContents();
+		theGraphicPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theResourcePackage.initializePackageContents();
+		theComputePackage.initializePackageContents();
+		theProcessPackage.initializePackageContents();
+		theVulkanPackage.initializePackageContents();
+		theGraphicPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theResourcePackage.freeze();
@@ -395,50 +439,6 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	public EClass getBasicResource()
 	{
 		return basicResourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getDescriptedResource()
-	{
-		return descriptedResourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getBasicDescriptedResource()
-	{
-		return basicDescriptedResourceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getBasicDescriptedResource_Descriptor()
-	{
-		return (EReference) basicDescriptedResourceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIBuffer()
-	{
-		return iBufferEClass;
 	}
 
 	/**
@@ -524,6 +524,17 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getConstantBuffer_BeingPushed()
+	{
+		return (EAttribute) constantBufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EAttribute getConstantBuffer_Data()
 	{
 		return (EAttribute) constantBufferEClass.getEStructuralFeatures().get(1);
@@ -535,9 +546,42 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getConstantBuffer_BeingPushed()
+	public EClass getDescriptedResource()
 	{
-		return (EAttribute) constantBufferEClass.getEStructuralFeatures().get(0);
+		return descriptedResourceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBasicDescriptedResource()
+	{
+		return basicDescriptedResourceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBasicDescriptedResource_Descriptor()
+	{
+		return (EReference) basicDescriptedResourceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIBuffer()
+	{
+		return iBufferEClass;
 	}
 
 	/**
@@ -1729,7 +1773,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		moduleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
 		stringModuleResourceEClass.getESuperTypes().add(this.getAbstractModuleResource());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(basicResourceEClass, BasicResource.class, "BasicResource", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

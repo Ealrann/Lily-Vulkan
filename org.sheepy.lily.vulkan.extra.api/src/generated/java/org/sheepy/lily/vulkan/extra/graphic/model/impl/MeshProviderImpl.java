@@ -52,7 +52,7 @@ public class MeshProviderImpl extends MinimalEObjectImpl.Container implements Me
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MeshProviderImpl()
+	protected MeshProviderImpl()
 	{
 		super();
 	}

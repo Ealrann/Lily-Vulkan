@@ -3,15 +3,21 @@
 package org.sheepy.lily.vulkan.model.resource.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+
 import org.sheepy.lily.vulkan.model.resource.DescribedDataProvider;
 import org.sheepy.lily.vulkan.model.resource.Descriptor;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
+
 import org.sheepy.vulkan.model.enumeration.EDescriptorType;
 import org.sheepy.vulkan.model.enumeration.EShaderStage;
 
@@ -41,6 +47,7 @@ public class DescribedDataProviderImpl extends BufferDataProviderImpl
 	 * @ordered
 	 */
 	protected static final EDescriptorType DESCRIPTOR_TYPE_EDEFAULT = EDescriptorType.SAMPLER;
+
 	/**
 	 * The cached value of the '{@link #getDescriptorType() <em>Descriptor Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,6 +57,7 @@ public class DescribedDataProviderImpl extends BufferDataProviderImpl
 	 * @ordered
 	 */
 	protected EDescriptorType descriptorType = DESCRIPTOR_TYPE_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getShaderStages() <em>Shader Stages</em>}' attribute list.
 	 * <!-- begin-user-doc -->

@@ -23,10 +23,6 @@ public interface SampledImage extends BasicDescriptedResource
 	/**
 	 * Returns the value of the '<em><b>Sampler</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sampler</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sampler</em>' containment reference.
 	 * @see #setSampler(Sampler)

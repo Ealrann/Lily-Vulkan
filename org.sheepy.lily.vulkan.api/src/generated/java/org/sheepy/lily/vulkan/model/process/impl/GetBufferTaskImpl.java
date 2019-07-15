@@ -99,7 +99,7 @@ public class GetBufferTaskImpl extends MinimalEObjectImpl.Container implements G
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GetBufferTaskImpl()
+	public GetBufferTaskImpl()
 	{
 		super();
 	}

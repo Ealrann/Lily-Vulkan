@@ -7,75 +7,75 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Vulkan -->
-      <package
-            uri="org.sheepy.lily.vulkan.model"
-            class="org.sheepy.lily.vulkan.model.VulkanPackage"
-            genModel="model/Vulkan.xcore"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Vulkan -->
-      <parser
-            type="vulkan"
-            class="org.sheepy.lily.vulkan.model.util.VulkanResourceFactoryImpl"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Resource -->
-      <package
-            uri="org.sheepy.lily.vulkan.model.resource"
-            class="org.sheepy.lily.vulkan.model.resource.ResourcePackage"
-            genModel="model/Resource.xcore"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Resource -->
-      <parser
-            type="resource"
-            class="org.sheepy.lily.vulkan.model.resource.util.ResourceResourceFactoryImpl"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Process -->
-      <package
-            uri="org.sheepy.lily.vulkan.model.process"
-            class="org.sheepy.lily.vulkan.model.process.ProcessPackage"
-            genModel="model/Process.xcore"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Process -->
-      <parser
-            type="process"
-            class="org.sheepy.lily.vulkan.model.process.util.ProcessResourceFactoryImpl"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Compute -->
+      <!-- @generated LilyVulkan -->
       <package
             uri="org.sheepy.lily.vulkan.model.process.compute"
             class="org.sheepy.lily.vulkan.model.process.compute.ComputePackage"
-            genModel="model/Compute.xcore"/>
+            genModel="model/LilyVulkan.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Compute -->
+      <!-- @generated LilyVulkan -->
       <parser
             type="compute"
             class="org.sheepy.lily.vulkan.model.process.compute.util.ComputeResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Graphic -->
+      <!-- @generated LilyVulkan -->
       <package
-            uri="org.sheepy.lily.vulkan.model.process.graphic"
-            class="org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage"
-            genModel="model/Graphic.xcore"/>
+            uri="org.sheepy.lily.vulkan.model.process"
+            class="org.sheepy.lily.vulkan.model.process.ProcessPackage"
+            genModel="model/LilyVulkan.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Graphic -->
+      <!-- @generated LilyVulkan -->
+      <parser
+            type="process"
+            class="org.sheepy.lily.vulkan.model.process.util.ProcessResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated LilyVulkan -->
+      <package
+            uri="org.sheepy.lily.vulkan.model"
+            class="org.sheepy.lily.vulkan.model.VulkanPackage"
+            genModel="model/LilyVulkan.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated LilyVulkan -->
+      <parser
+            type="vulkan"
+            class="org.sheepy.lily.vulkan.model.util.VulkanResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated LilyVulkan -->
+      <package
+            uri="org.sheepy.lily.vulkan.model.resource"
+            class="org.sheepy.lily.vulkan.model.resource.ResourcePackage"
+            genModel="model/LilyVulkan.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated LilyVulkan -->
+      <parser
+            type="resource"
+            class="org.sheepy.lily.vulkan.model.resource.util.ResourceResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated LilyVulkan -->
+      <package
+            uri="org.sheepy.lily.vulkan.model.process.graphic"
+            class="org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage"
+            genModel="model/LilyVulkan.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated LilyVulkan -->
       <parser
             type="graphic"
             class="org.sheepy.lily.vulkan.model.process.graphic.util.GraphicResourceFactoryImpl"/>
