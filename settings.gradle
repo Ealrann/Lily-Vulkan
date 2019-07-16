@@ -1,4 +1,4 @@
-rootProject.name = "Vulkan"
+rootProject.name = "org.sheepy.lily.vulkan"
 
 
 include ':org.sheepy.vulkan'
@@ -16,17 +16,5 @@ include ':org.sheepy.lily.vulkan.extra.nuklear'
 include ':org.sheepy.lily.vulkan.demo.texture'
 include ':org.sheepy.lily.vulkan.demo.gameoflife'
 
-// Common
-include ':org.sheepy.lily.core.api'
-project(':org.sheepy.lily.core.api').projectDir = new File(settingsDir, 'Lily-core/org.sheepy.lily.core.api')
-
-include ':org.sheepy.lily.core.impl'
-project(':org.sheepy.lily.core.impl').projectDir = new File(settingsDir, 'Lily-core/org.sheepy.lily.core.impl')
-
-// EMF
-include 'org.eclipse.emf.common'
-include 'org.eclipse.emf.ecore'
-include 'org.eclipse.emf.ecore.xmi'
-project(':org.eclipse.emf.common').projectDir = new File(settingsDir, 'Lily-core/EMF/org.eclipse.emf.common')
-project(':org.eclipse.emf.ecore').projectDir = new File(settingsDir, 'Lily-core/EMF/org.eclipse.emf.ecore')
-project(':org.eclipse.emf.ecore.xmi').projectDir = new File(settingsDir, 'Lily-core/EMF/org.eclipse.emf.ecore.xmi')
+// Lily-Core
+includeBuild 'Lily-core'

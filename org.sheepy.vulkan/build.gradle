@@ -18,9 +18,9 @@ switch (targetPlatform) {
 
 dependencies {
 
-	api project(":org.eclipse.emf.common")
-	api project(":org.eclipse.emf.ecore")
-	api project(":org.eclipse.emf.ecore.xmi")
+	api "emf.standalone:org.eclipse.emf.common"
+	api "emf.standalone:org.eclipse.emf.ecore"
+	api "emf.standalone:org.eclipse.emf.ecore.xmi"
 
 	api "org.joml:joml:${jomlVersion}"
 

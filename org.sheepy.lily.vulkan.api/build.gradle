@@ -6,8 +6,9 @@ plugins {
 
 dependencies {
 
+	api 'org.sheepy.lily.core:org.sheepy.lily.core.api'
+
 	api project(':org.sheepy.vulkan')
-	api project(':org.sheepy.lily.core.api')
 }
 
 sourceSets {
