@@ -72,7 +72,7 @@ public class DescriptorImpl extends MinimalEObjectImpl.Container implements Desc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescriptorImpl()
+	protected DescriptorImpl()
 	{
 		super();
 	}

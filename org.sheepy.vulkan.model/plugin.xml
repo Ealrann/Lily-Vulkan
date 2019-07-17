@@ -6,37 +6,6 @@
 
 <plugin>
 
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated VulkanEnum -->
-      <parser
-            type="enumeration"
-            class="org.sheepy.vulkan.model.enumeration.util.EnumerationResourceFactoryImpl"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Vulkan -->
-      <package
-            uri="org.sheepy.vulkan.model.graphicpipeline"
-            class="org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage"
-            genModel="model/Vulkan.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated GraphicPipeline -->
-      <parser
-            type="graphicpipeline"
-            class="org.sheepy.vulkan.model.graphicpipeline.util.GraphicpipelineResourceFactoryImpl"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Vulkan -->
-      <package
-            uri="org.sheepy.vulkan.model.pipeline"
-            class="org.sheepy.vulkan.model.pipeline.PipelinePackage"
-            genModel="model/Vulkan.genmodel"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Vulkan -->
       <package
@@ -46,7 +15,7 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Barrier -->
+      <!-- @generated Vulkan -->
       <parser
             type="barrier"
             class="org.sheepy.vulkan.model.barrier.util.BarrierResourceFactoryImpl"/>
@@ -61,9 +30,40 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Pipeline -->
+      <!-- @generated Vulkan -->
+      <parser
+            type="enumeration"
+            class="org.sheepy.vulkan.model.enumeration.util.EnumerationResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Vulkan -->
+      <package
+            uri="org.sheepy.vulkan.model.graphicpipeline"
+            class="org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage"
+            genModel="model/Vulkan.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Vulkan -->
+      <parser
+            type="graphicpipeline"
+            class="org.sheepy.vulkan.model.graphicpipeline.util.GraphicpipelineResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Vulkan -->
+      <package
+            uri="org.sheepy.vulkan.model.pipeline"
+            class="org.sheepy.vulkan.model.pipeline.PipelinePackage"
+            genModel="model/Vulkan.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Vulkan -->
       <parser
             type="pipeline"
             class="org.sheepy.vulkan.model.pipeline.util.PipelineResourceFactoryImpl"/>
    </extension>
+
 </plugin>

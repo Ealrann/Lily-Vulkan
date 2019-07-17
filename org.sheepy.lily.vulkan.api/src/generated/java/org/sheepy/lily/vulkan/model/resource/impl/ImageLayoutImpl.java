@@ -94,7 +94,7 @@ public class ImageLayoutImpl extends MinimalEObjectImpl.Container implements Ima
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImageLayoutImpl()
+	protected ImageLayoutImpl()
 	{
 		super();
 	}

@@ -156,7 +156,7 @@ public class BufferImpl extends BasicDescriptedResourceImpl implements Buffer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BufferImpl()
+	protected BufferImpl()
 	{
 		super();
 	}

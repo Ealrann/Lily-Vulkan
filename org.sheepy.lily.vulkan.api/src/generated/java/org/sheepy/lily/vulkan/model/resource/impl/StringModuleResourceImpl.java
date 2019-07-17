@@ -52,7 +52,7 @@ public class StringModuleResourceImpl extends AbstractModuleResourceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringModuleResourceImpl()
+	protected StringModuleResourceImpl()
 	{
 		super();
 	}

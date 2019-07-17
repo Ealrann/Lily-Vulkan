@@ -52,7 +52,7 @@ public class BasicResourceImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BasicResourceImpl()
+	protected BasicResourceImpl()
 	{
 		super();
 	}

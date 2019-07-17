@@ -96,7 +96,7 @@ public class InputDescriptorImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputDescriptorImpl()
+	protected InputDescriptorImpl()
 	{
 		super();
 	}

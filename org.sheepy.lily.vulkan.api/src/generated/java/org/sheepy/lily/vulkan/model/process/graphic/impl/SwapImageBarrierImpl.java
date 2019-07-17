@@ -23,7 +23,7 @@ public class SwapImageBarrierImpl extends AbstractImageBarrierImpl implements Sw
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SwapImageBarrierImpl()
+	protected SwapImageBarrierImpl()
 	{
 		super();
 	}

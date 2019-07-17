@@ -157,7 +157,7 @@ public class DrawImpl extends MinimalEObjectImpl.Container implements Draw
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DrawImpl()
+	protected DrawImpl()
 	{
 		super();
 	}

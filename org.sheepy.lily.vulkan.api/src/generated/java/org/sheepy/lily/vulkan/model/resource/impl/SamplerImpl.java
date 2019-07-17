@@ -288,7 +288,7 @@ public class SamplerImpl extends MinimalEObjectImpl.Container implements Sampler
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SamplerImpl()
+	protected SamplerImpl()
 	{
 		super();
 	}

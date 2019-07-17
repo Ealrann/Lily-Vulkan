@@ -6,33 +6,12 @@
 
 <plugin>
 
-
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Nuklear -->
+      <!-- @generated Extra -->
       <package
-            uri="org.sheepy.lily.vulkan.extra.nuklear.model"
-            class="org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage"
-            genModel="model/Nuklear.xcore"/>
+            uri="org.sheepy.lily.vulkan.extra.model.nuklear"
+            class="org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage"
+            genModel="model/Extra.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Nuklear -->
-      <parser
-            type="nuklear"
-            class="org.sheepy.lily.vulkan.extra.nuklear.model.util.NuklearResourceFactoryImpl"/>
-   </extension>
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated GraphicExtra -->
-      <package
-            uri="org.sheepy.lily.vulkan.extra.graphic.model"
-            class="org.sheepy.lily.vulkan.extra.graphic.model.GraphicExtraPackage"
-            genModel="model/GraphicExtra.xcore"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated GraphicExtra -->
-      <parser
-            type="graphicextra"
-            class="org.sheepy.lily.vulkan.extra.graphic.model.util.GraphicExtraResourceFactoryImpl"/>
-   </extension>
 </plugin>

@@ -93,7 +93,7 @@ public class BindDescriptorSetsImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BindDescriptorSetsImpl()
+	protected BindDescriptorSetsImpl()
 	{
 		super();
 	}

@@ -44,7 +44,7 @@ public class TextureImpl extends AbstractTextureImpl implements Texture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TextureImpl()
+	protected TextureImpl()
 	{
 		super();
 	}

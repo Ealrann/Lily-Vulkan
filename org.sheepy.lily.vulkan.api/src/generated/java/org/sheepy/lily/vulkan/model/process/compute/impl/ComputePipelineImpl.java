@@ -183,7 +183,7 @@ public class ComputePipelineImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputePipelineImpl()
+	protected ComputePipelineImpl()
 	{
 		super();
 	}

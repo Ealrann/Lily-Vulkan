@@ -70,7 +70,7 @@ public class DescriptorSetImpl extends MinimalEObjectImpl.Container implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescriptorSetImpl()
+	protected DescriptorSetImpl()
 	{
 		super();
 	}

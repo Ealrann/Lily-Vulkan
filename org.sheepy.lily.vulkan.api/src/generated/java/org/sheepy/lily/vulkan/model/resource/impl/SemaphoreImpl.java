@@ -74,7 +74,7 @@ public class SemaphoreImpl extends BasicResourceImpl implements Semaphore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SemaphoreImpl()
+	protected SemaphoreImpl()
 	{
 		super();
 	}

@@ -51,7 +51,7 @@ public abstract class PathResourceImpl extends BasicResourceImpl implements Path
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathResourceImpl()
+	protected PathResourceImpl()
 	{
 		super();
 	}

@@ -46,7 +46,7 @@ public class VertexBindingImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VertexBindingImpl()
+	protected VertexBindingImpl()
 	{
 		super();
 	}

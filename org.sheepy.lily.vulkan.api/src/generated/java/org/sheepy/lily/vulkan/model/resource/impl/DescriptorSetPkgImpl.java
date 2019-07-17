@@ -50,7 +50,7 @@ public class DescriptorSetPkgImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescriptorSetPkgImpl()
+	protected DescriptorSetPkgImpl()
 	{
 		super();
 	}

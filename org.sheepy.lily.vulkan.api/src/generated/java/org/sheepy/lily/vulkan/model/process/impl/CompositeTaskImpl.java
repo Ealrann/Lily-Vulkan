@@ -130,7 +130,7 @@ public class CompositeTaskImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeTaskImpl()
+	protected CompositeTaskImpl()
 	{
 		super();
 	}

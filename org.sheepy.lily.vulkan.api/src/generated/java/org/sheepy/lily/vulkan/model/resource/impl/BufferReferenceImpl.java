@@ -65,7 +65,7 @@ public class BufferReferenceImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BufferReferenceImpl()
+	protected BufferReferenceImpl()
 	{
 		super();
 	}

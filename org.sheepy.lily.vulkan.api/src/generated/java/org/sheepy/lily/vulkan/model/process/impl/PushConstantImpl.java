@@ -92,7 +92,7 @@ public abstract class PushConstantImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushConstantImpl()
+	protected PushConstantImpl()
 	{
 		super();
 	}

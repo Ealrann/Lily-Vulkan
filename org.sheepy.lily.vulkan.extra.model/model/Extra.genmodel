@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sheepy.lily.vulkan.extra.model/src/generated/java"
+    editDirectory="/org.sheepy.lily.vulkan.extra.model.edit/src/generated/java" modelPluginID="org.sheepy.lily.vulkan.extra.model"
+    modelName="Extra" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="11.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline"
+    importOrganizing="true">
+  <foreignModel>Nuklear.ecore</foreignModel>
+  <genPackages prefix="Nuklear" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
+      ecorePackage="Nuklear.ecore#/">
+    <genClasses ecoreClass="Nuklear.ecore#//NuklearPushConstants">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//NuklearPushConstants/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//NuklearPushConstants/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nuklear.ecore#//NuklearPushConstants/currentDescriptor"/>
+    </genClasses>
+    <genClasses ecoreClass="Nuklear.ecore#//NuklearLayoutTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/context"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/drawTask"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/pushBuffer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearLayoutTask/vertexBuffer"/>
+    </genClasses>
+    <genClasses ecoreClass="Nuklear.ecore#//NuklearContext">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/font"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/nullTexture"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/layoutTask"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -8,16 +8,13 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: org.sheepy.lily.vulkan.extra.nuklear.model,
- org.sheepy.lily.vulkan.extra.nuklear.model.impl,
- org.sheepy.lily.vulkan.extra.nuklear.model.util,
- org.sheepy.lily.vulkan.extra.graphic.model,
- org.sheepy.lily.vulkan.extra.graphic.model.impl,
- org.sheepy.lily.vulkan.extra.graphic.model.util
+Export-Package: org.sheepy.lily.vulkan.extra.model.nuklear,
+ org.sheepy.lily.vulkan.extra.model.nuklear.impl,
+ org.sheepy.lily.vulkan.extra.model.nuklear.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.ecore.xcore.lib,
+ org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.sheepy.lily.core.model;bundle-version="0.1.0";visibility:=reexport,
  org.sheepy.vulkan.model;visibility:=reexport,

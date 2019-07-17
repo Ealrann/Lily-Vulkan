@@ -182,7 +182,7 @@ public class PipelineImpl extends MinimalEObjectImpl.Container implements Pipeli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PipelineImpl()
+	protected PipelineImpl()
 	{
 		super();
 	}

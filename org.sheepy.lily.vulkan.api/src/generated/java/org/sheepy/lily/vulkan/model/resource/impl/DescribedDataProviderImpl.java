@@ -73,7 +73,7 @@ public class DescribedDataProviderImpl extends BufferDataProviderImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescribedDataProviderImpl()
+	protected DescribedDataProviderImpl()
 	{
 		super();
 	}

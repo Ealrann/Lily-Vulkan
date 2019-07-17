@@ -50,7 +50,7 @@ public class VertexInputStateImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VertexInputStateImpl()
+	protected VertexInputStateImpl()
 	{
 		super();
 	}

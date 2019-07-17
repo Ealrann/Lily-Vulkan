@@ -118,7 +118,7 @@ public class BufferDataProviderImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BufferDataProviderImpl()
+	protected BufferDataProviderImpl()
 	{
 		super();
 	}

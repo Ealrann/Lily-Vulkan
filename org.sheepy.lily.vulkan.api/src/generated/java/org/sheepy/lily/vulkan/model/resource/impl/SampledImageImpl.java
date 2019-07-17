@@ -44,7 +44,7 @@ public class SampledImageImpl extends BasicDescriptedResourceImpl implements Sam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SampledImageImpl()
+	protected SampledImageImpl()
 	{
 		super();
 	}

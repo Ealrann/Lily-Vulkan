@@ -211,7 +211,7 @@ public class ImageImpl extends BasicDescriptedResourceImpl implements Image
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImageImpl()
+	protected ImageImpl()
 	{
 		super();
 	}

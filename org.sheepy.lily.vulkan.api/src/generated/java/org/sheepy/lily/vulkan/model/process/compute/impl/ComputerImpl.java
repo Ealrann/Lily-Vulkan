@@ -150,7 +150,7 @@ public class ComputerImpl extends MinimalEObjectImpl.Container implements Comput
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputerImpl()
+	protected ComputerImpl()
 	{
 		super();
 	}

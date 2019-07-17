@@ -97,7 +97,7 @@ public class AttributeDescriptionImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeDescriptionImpl()
+	protected AttributeDescriptionImpl()
 	{
 		super();
 	}

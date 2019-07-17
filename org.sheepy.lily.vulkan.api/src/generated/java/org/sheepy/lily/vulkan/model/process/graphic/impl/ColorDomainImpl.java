@@ -76,7 +76,7 @@ public class ColorDomainImpl extends MinimalEObjectImpl.Container implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ColorDomainImpl()
+	protected ColorDomainImpl()
 	{
 		super();
 	}

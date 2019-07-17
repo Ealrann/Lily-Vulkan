@@ -73,7 +73,7 @@ public class SubpassImpl extends MinimalEObjectImpl.Container implements Subpass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubpassImpl()
+	protected SubpassImpl()
 	{
 		super();
 	}

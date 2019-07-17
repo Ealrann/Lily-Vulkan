@@ -305,7 +305,7 @@ public class GraphicsPipelineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GraphicsPipelineImpl()
+	protected GraphicsPipelineImpl()
 	{
 		super();
 	}

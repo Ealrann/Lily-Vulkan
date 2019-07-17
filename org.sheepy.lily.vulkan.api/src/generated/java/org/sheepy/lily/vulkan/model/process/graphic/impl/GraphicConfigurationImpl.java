@@ -93,7 +93,7 @@ public class GraphicConfigurationImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GraphicConfigurationImpl()
+	protected GraphicConfigurationImpl()
 	{
 		super();
 	}

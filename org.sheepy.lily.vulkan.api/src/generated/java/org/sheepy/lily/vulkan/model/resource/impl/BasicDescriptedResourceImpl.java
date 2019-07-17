@@ -67,7 +67,7 @@ public abstract class BasicDescriptedResourceImpl extends MinimalEObjectImpl.Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BasicDescriptedResourceImpl()
+	protected BasicDescriptedResourceImpl()
 	{
 		super();
 	}

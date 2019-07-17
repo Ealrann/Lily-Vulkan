@@ -65,7 +65,7 @@ public class FontImpl extends SampledImageImpl implements Font
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FontImpl()
+	protected FontImpl()
 	{
 		super();
 	}

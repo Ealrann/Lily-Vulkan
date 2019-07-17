@@ -111,7 +111,7 @@ public class BindIndexBufferImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BindIndexBufferImpl()
+	protected BindIndexBufferImpl()
 	{
 		super();
 	}

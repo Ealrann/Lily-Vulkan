@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.sheepy.lily.core.api.resource.IModelExtension;
-import org.sheepy.lily.vulkan.extra.nuklear.model.NuklearPackage;
+import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 
 public class VulkanExtraModelExtension implements IModelExtension
 {

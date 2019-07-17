@@ -45,7 +45,7 @@ public class BufferBarrierImpl extends AbstractBufferBarrierImpl implements Buff
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BufferBarrierImpl()
+	protected BufferBarrierImpl()
 	{
 		super();
 	}
