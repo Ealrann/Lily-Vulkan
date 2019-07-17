@@ -22,22 +22,28 @@ import org.sheepy.lily.core.model.root.RootPackage;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
 
+import org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage;
+import org.sheepy.lily.vulkan.extra.model.mesh.impl.MeshPackageImpl;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearFactory;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearLayoutTask;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
 import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPushConstants;
 
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
+import org.sheepy.lily.vulkan.extra.model.rendering.impl.RenderingPackageImpl;
 import org.sheepy.lily.vulkan.model.VulkanPackage;
 
 import org.sheepy.lily.vulkan.model.process.ProcessPackage;
 
+import org.sheepy.lily.vulkan.model.process.graphic.GraphicPackage;
 import org.sheepy.lily.vulkan.model.resource.ResourcePackage;
 
 import org.sheepy.vulkan.model.barrier.BarrierPackage;
 
 import org.sheepy.vulkan.model.enumeration.EnumerationPackage;
 
+import org.sheepy.vulkan.model.graphicpipeline.GraphicpipelinePackage;
 import org.sheepy.vulkan.model.pipeline.PipelinePackage;
 
 /**
@@ -129,15 +135,27 @@ public class NuklearPackageImpl extends EPackageImpl implements NuklearPackage
 		ProcessPackage.eINSTANCE.eClass();
 		VulkanPackage.eINSTANCE.eClass();
 		ResourcePackage.eINSTANCE.eClass();
+		GraphicPackage.eINSTANCE.eClass();
 		BarrierPackage.eINSTANCE.eClass();
 		EnumerationPackage.eINSTANCE.eClass();
+		GraphicpipelinePackage.eINSTANCE.eClass();
 		PipelinePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MeshPackage.eNS_URI);
+		MeshPackageImpl theMeshPackage = (MeshPackageImpl)(registeredPackage instanceof MeshPackageImpl ? registeredPackage : MeshPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RenderingPackage.eNS_URI);
+		RenderingPackageImpl theRenderingPackage = (RenderingPackageImpl)(registeredPackage instanceof RenderingPackageImpl ? registeredPackage : RenderingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNuklearPackage.createPackageContents();
+		theMeshPackage.createPackageContents();
+		theRenderingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNuklearPackage.initializePackageContents();
+		theMeshPackage.initializePackageContents();
+		theRenderingPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNuklearPackage.freeze();

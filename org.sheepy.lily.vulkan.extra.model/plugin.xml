@@ -9,8 +9,24 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Extra -->
       <package
+            uri="org.sheepy.lily.vulkan.extra.model.mesh"
+            class="org.sheepy.lily.vulkan.extra.model.mesh.MeshPackage"
+            genModel="model/Extra.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Extra -->
+      <package
             uri="org.sheepy.lily.vulkan.extra.model.nuklear"
             class="org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage"
+            genModel="model/Extra.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Extra -->
+      <package
+            uri="org.sheepy.lily.vulkan.extra.model.rendering"
+            class="org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage"
             genModel="model/Extra.genmodel"/>
    </extension>
 

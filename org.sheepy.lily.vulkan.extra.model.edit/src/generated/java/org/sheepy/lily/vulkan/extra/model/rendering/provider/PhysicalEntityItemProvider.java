@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.nuklear.provider;
+package org.sheepy.lily.vulkan.extra.model.rendering.provider;
 
 
 import java.util.Collection;
@@ -10,6 +10,8 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -23,17 +25,20 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.sheepy.lily.core.model.types.TypesPackage;
+
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
+
+import org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingFactory;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.PhysicalEntity} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class NuklearContextItemProvider 
+public class PhysicalEntityItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +53,7 @@ public class NuklearContextItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NuklearContextItemProvider(AdapterFactory adapterFactory)
+	public PhysicalEntityItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -67,9 +72,9 @@ public class NuklearContextItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addFontPropertyDescriptor(object);
-			addNullTexturePropertyDescriptor(object);
-			addLayoutTaskPropertyDescriptor(object);
+			addGeoLocationPropertyDescriptor(object);
+			addGeoOrientationPropertyDescriptor(object);
+			addAxisLocationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -98,76 +103,109 @@ public class NuklearContextItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Font feature.
+	 * This adds a property descriptor for the Geo Location feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFontPropertyDescriptor(Object object)
+	protected void addGeoLocationPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearContext_font_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_font_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__FONT,
+				 getString("_UI_PhysicalEntity_geoLocation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PhysicalEntity_geoLocation_feature", "_UI_PhysicalEntity_type"),
+				 RenderingPackage.Literals.PHYSICAL_ENTITY__GEO_LOCATION,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Null Texture feature.
+	 * This adds a property descriptor for the Geo Orientation feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNullTexturePropertyDescriptor(Object object)
+	protected void addGeoOrientationPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearContext_nullTexture_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_nullTexture_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__NULL_TEXTURE,
+				 getString("_UI_PhysicalEntity_geoOrientation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PhysicalEntity_geoOrientation_feature", "_UI_PhysicalEntity_type"),
+				 RenderingPackage.Literals.PHYSICAL_ENTITY__GEO_ORIENTATION,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Layout Task feature.
+	 * This adds a property descriptor for the Axis Location feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLayoutTaskPropertyDescriptor(Object object)
+	protected void addAxisLocationPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearContext_layoutTask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_layoutTask_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__LAYOUT_TASK,
+				 getString("_UI_PhysicalEntity_axisLocation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PhysicalEntity_axisLocation_feature", "_UI_PhysicalEntity_type"),
+				 RenderingPackage.Literals.PHYSICAL_ENTITY__AXIS_LOCATION,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns NuklearContext.gif.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(RenderingPackage.Literals.PHYSICAL_ENTITY__AXIS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns PhysicalEntity.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -175,7 +213,7 @@ public class NuklearContextItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/NuklearContext"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PhysicalEntity"));
 	}
 
 	/**
@@ -187,10 +225,10 @@ public class NuklearContextItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((NuklearContext)object).getName();
+		String label = ((PhysicalEntity)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_NuklearContext_type") :
-			getString("_UI_NuklearContext_type") + " " + label;
+			getString("_UI_PhysicalEntity_type") :
+			getString("_UI_PhysicalEntity_type") + " " + label;
 	}
 
 
@@ -206,10 +244,16 @@ public class NuklearContextItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(NuklearContext.class))
+		switch (notification.getFeatureID(PhysicalEntity.class))
 		{
-			case NuklearPackage.NUKLEAR_CONTEXT__NAME:
+			case RenderingPackage.PHYSICAL_ENTITY__NAME:
+			case RenderingPackage.PHYSICAL_ENTITY__GEO_LOCATION:
+			case RenderingPackage.PHYSICAL_ENTITY__GEO_ORIENTATION:
+			case RenderingPackage.PHYSICAL_ENTITY__AXIS_LOCATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case RenderingPackage.PHYSICAL_ENTITY__AXIS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -226,6 +270,11 @@ public class NuklearContextItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderingPackage.Literals.PHYSICAL_ENTITY__AXIS,
+				 RenderingFactory.eINSTANCE.createAxis()));
 	}
 
 	/**

@@ -1,6 +1,6 @@
 /**
  */
-package org.sheepy.lily.vulkan.extra.model.nuklear.provider;
+package org.sheepy.lily.vulkan.extra.model.rendering.provider;
 
 
 import java.util.Collection;
@@ -22,18 +22,20 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.sheepy.lily.core.model.types.TypesPackage;
+import org.joml.Vector3dc;
+
 import org.sheepy.lily.vulkan.extra.model.mesh.provider.ExtraEditPlugin;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext;
-import org.sheepy.lily.vulkan.extra.model.nuklear.NuklearPackage;
+
+import org.sheepy.lily.vulkan.extra.model.rendering.Axis;
+import org.sheepy.lily.vulkan.extra.model.rendering.RenderingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.nuklear.NuklearContext} object.
+ * This is the item provider adapter for a {@link org.sheepy.lily.vulkan.extra.model.rendering.Axis} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class NuklearContextItemProvider 
+public class AxisItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +50,7 @@ public class NuklearContextItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NuklearContextItemProvider(AdapterFactory adapterFactory)
+	public AxisItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -66,29 +68,28 @@ public class NuklearContextItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addFontPropertyDescriptor(object);
-			addNullTexturePropertyDescriptor(object);
-			addLayoutTaskPropertyDescriptor(object);
+			addFrontDirectionPropertyDescriptor(object);
+			addUpDirectionPropertyDescriptor(object);
+			addRightDirectionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Front Direction feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
+	protected void addFrontDirectionPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LNamedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LNamedElement_name_feature", "_UI_LNamedElement_type"),
-				 TypesPackage.Literals.LNAMED_ELEMENT__NAME,
+				 getString("_UI_Axis_frontDirection_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Axis_frontDirection_feature", "_UI_Axis_type"),
+				 RenderingPackage.Literals.AXIS__FRONT_DIRECTION,
 				 true,
 				 false,
 				 false,
@@ -98,76 +99,53 @@ public class NuklearContextItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Font feature.
+	 * This adds a property descriptor for the Up Direction feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFontPropertyDescriptor(Object object)
+	protected void addUpDirectionPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearContext_font_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_font_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__FONT,
+				 getString("_UI_Axis_upDirection_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Axis_upDirection_feature", "_UI_Axis_type"),
+				 RenderingPackage.Literals.AXIS__UP_DIRECTION,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Null Texture feature.
+	 * This adds a property descriptor for the Right Direction feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNullTexturePropertyDescriptor(Object object)
+	protected void addRightDirectionPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NuklearContext_nullTexture_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_nullTexture_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__NULL_TEXTURE,
+				 getString("_UI_Axis_rightDirection_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Axis_rightDirection_feature", "_UI_Axis_type"),
+				 RenderingPackage.Literals.AXIS__RIGHT_DIRECTION,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Layout Task feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLayoutTaskPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NuklearContext_layoutTask_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NuklearContext_layoutTask_feature", "_UI_NuklearContext_type"),
-				 NuklearPackage.Literals.NUKLEAR_CONTEXT__LAYOUT_TASK,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns NuklearContext.gif.
+	 * This returns Axis.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -175,7 +153,7 @@ public class NuklearContextItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/NuklearContext"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Axis"));
 	}
 
 	/**
@@ -187,10 +165,11 @@ public class NuklearContextItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((NuklearContext)object).getName();
+		Vector3dc labelValue = ((Axis)object).getFrontDirection();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_NuklearContext_type") :
-			getString("_UI_NuklearContext_type") + " " + label;
+			getString("_UI_Axis_type") :
+			getString("_UI_Axis_type") + " " + label;
 	}
 
 
@@ -206,9 +185,11 @@ public class NuklearContextItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(NuklearContext.class))
+		switch (notification.getFeatureID(Axis.class))
 		{
-			case NuklearPackage.NUKLEAR_CONTEXT__NAME:
+			case RenderingPackage.AXIS__FRONT_DIRECTION:
+			case RenderingPackage.AXIS__UP_DIRECTION:
+			case RenderingPackage.AXIS__RIGHT_DIRECTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

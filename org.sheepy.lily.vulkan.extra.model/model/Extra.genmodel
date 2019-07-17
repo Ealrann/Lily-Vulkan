@@ -4,9 +4,15 @@
     editDirectory="/org.sheepy.lily.vulkan.extra.model.edit/src/generated/java" modelPluginID="org.sheepy.lily.vulkan.extra.model"
     modelName="Extra" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="11.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.sheepy.lily.core.model/model/Lily.genmodel#//types ../../org.sheepy.lily.core.model/model/Lily.genmodel#//action ../../org.sheepy.lily.core.model/model/Lily.genmodel#//application ../../org.sheepy.lily.core.model/model/Lily.genmodel#//root ../../org.sheepy.lily.core.model/model/Lily.genmodel#//inference ../../org.sheepy.lily.core.model/model/Lily.genmodel#//maintainer ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//process ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//model ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//resource ../../org.sheepy.lily.vulkan.model/model/LilyVulkan.genmodel#//graphic ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//barrier ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//enumeration ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//graphicpipeline ../../org.sheepy.vulkan.model/model/Vulkan.genmodel#//pipeline"
     importOrganizing="true">
+  <foreignModel>Mesh.ecore</foreignModel>
   <foreignModel>Nuklear.ecore</foreignModel>
+  <foreignModel>Rendering.ecore</foreignModel>
+  <genPackages prefix="Mesh" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
+      ecorePackage="Mesh.ecore#/">
+    <genClasses ecoreClass="Mesh.ecore#//Mesh"/>
+  </genPackages>
   <genPackages prefix="Nuklear" basePackage="org.sheepy.lily.vulkan.extra.model" disposableProviderFactory="true"
       ecorePackage="Nuklear.ecore#/">
     <genClasses ecoreClass="Nuklear.ecore#//NuklearPushConstants">
@@ -24,6 +30,31 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/font"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/nullTexture"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Nuklear.ecore#//NuklearContext/layoutTask"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Rendering" basePackage="org.sheepy.lily.vulkan.extra.model"
+      disposableProviderFactory="true" ecorePackage="Rendering.ecore#/">
+    <genClasses image="false" ecoreClass="Rendering.ecore#//Entity"/>
+    <genClasses ecoreClass="Rendering.ecore#//PhysicalEntity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/geoLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/geoOrientation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PhysicalEntity/axisLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//PhysicalEntity/axis"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//Axis">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Axis/frontDirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Axis/upDirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//Axis/rightDirection"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//Presentation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//Presentation/presentedEntities"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//PresentationPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rendering.ecore#//PresentationPkg/presentations"/>
+    </genClasses>
+    <genClasses ecoreClass="Rendering.ecore#//PresentableEntity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rendering.ecore#//PresentableEntity/presentation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rendering.ecore#//PresentableEntity/scale"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
